@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0.0",
     "status": "live",
-    "generatedAt": "2026-08-12T19:21:06.289Z",
+    "generatedAt": "2026-08-13T02:47:47.179Z",
     "source": "signalterrain-cyber-live-engine",
     "disclaimer": "Derived from live public sources — not a teaching sample."
   },
@@ -45,21 +45,21 @@
       "kind": "source",
       "title": "Cisco",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_secure-firewall-adaptive-security-appliance-asa-",
       "kind": "affected-software",
       "title": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) ",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_adaptive-security-appliance-software",
       "kind": "affected-software",
       "title": "adaptive security appliance software",
       "summary": "Product referenced by live intelligence (cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-8037",
@@ -99,21 +99,21 @@
       "kind": "source",
       "title": "Progress",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_loadmaster",
       "kind": "affected-software",
       "title": "LoadMaster",
       "summary": "Product referenced by live intelligence (Progress)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_connection-manager-for-objectscale",
       "kind": "affected-software",
       "title": "connection manager for objectscale",
       "summary": "Product referenced by live intelligence (progress)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-50751",
@@ -153,14 +153,14 @@
       "kind": "source",
       "title": "Check Point",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_security-gateway",
       "kind": "affected-software",
       "title": "Security Gateway",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-0257",
@@ -200,14 +200,14 @@
       "kind": "source",
       "title": "Palo Alto Networks",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_pan-os",
       "kind": "affected-software",
       "title": "PAN-OS",
       "summary": "Product referenced by live intelligence (Palo Alto Networks)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2023-21529",
@@ -247,14 +247,14 @@
       "kind": "source",
       "title": "Microsoft",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_exchange-server",
       "kind": "affected-software",
       "title": "Exchange Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20131",
@@ -294,7 +294,7 @@
       "kind": "affected-software",
       "title": "Secure Firewall Management Center (FMC)",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-45321",
@@ -334,14 +334,14 @@
       "kind": "source",
       "title": "TanStack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_tanstack",
       "kind": "affected-software",
       "title": "TanStack",
       "summary": "Product referenced by live intelligence (TanStack)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-15409",
@@ -381,14 +381,14 @@
       "kind": "source",
       "title": "SonicWall",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_sma1000-appliances",
       "kind": "affected-software",
       "title": "SMA1000 Appliances",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-15410",
@@ -461,7 +461,7 @@
       "kind": "affected-software",
       "title": "SharePoint Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-35273",
@@ -501,14 +501,14 @@
       "kind": "source",
       "title": "Oracle",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_-peoplesoft-enterprise-peopletools",
       "kind": "affected-software",
       "title": " PeopleSoft Enterprise PeopleTools",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-33825",
@@ -548,7 +548,7 @@
       "kind": "affected-software",
       "title": "Defender",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-72898",
@@ -588,14 +588,14 @@
       "kind": "source",
       "title": "Metabase",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_metabase",
       "kind": "affected-software",
       "title": "Metabase",
       "summary": "Product referenced by live intelligence (Metabase)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20316",
@@ -668,14 +668,14 @@
       "kind": "affected-software",
       "title": "Windows Ancillary Function Driver for WinSock ",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_windows-10-1607",
       "kind": "affected-software",
       "title": "windows 10 1607",
       "summary": "Product referenced by live intelligence (microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-63077",
@@ -715,14 +715,14 @@
       "kind": "source",
       "title": "JetBrains",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_teamcity",
       "kind": "affected-software",
       "title": "TeamCity",
       "summary": "Product referenced by live intelligence (JetBrains)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-9198",
@@ -762,21 +762,21 @@
       "kind": "source",
       "title": "IBM",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_langflow",
       "kind": "affected-software",
       "title": "Langflow",
       "summary": "Product referenced by live intelligence (IBM)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_vendor_langflow",
       "kind": "source",
       "title": "langflow",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-12569",
@@ -816,14 +816,14 @@
       "kind": "source",
       "title": "PTC",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_windchill-and-flexplm",
       "kind": "affected-software",
       "title": "Windchill and FlexPLM",
       "summary": "Product referenced by live intelligence (PTC)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48027",
@@ -863,14 +863,14 @@
       "kind": "source",
       "title": "Nx",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_nx-console",
       "kind": "affected-software",
       "title": "Nx Console",
       "summary": "Product referenced by live intelligence (Nx)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-41940",
@@ -910,14 +910,14 @@
       "kind": "source",
       "title": "WebPros",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_cpanel-whm-and-wp2-wordpress-squared-",
       "kind": "affected-software",
       "title": "cPanel & WHM and WP2 (WordPress Squared)",
       "summary": "Product referenced by live intelligence (WebPros)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-1708",
@@ -957,14 +957,14 @@
       "kind": "source",
       "title": "ConnectWise",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_screenconnect",
       "kind": "affected-software",
       "title": "ScreenConnect",
       "summary": "Product referenced by live intelligence (ConnectWise)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-57728",
@@ -1004,14 +1004,14 @@
       "kind": "source",
       "title": "SimpleHelp ",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_simplehelp",
       "kind": "affected-software",
       "title": "SimpleHelp",
       "summary": "Product referenced by live intelligence (SimpleHelp )",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-57726",
@@ -1084,14 +1084,14 @@
       "kind": "source",
       "title": "PaperCut",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_ng-mf",
       "kind": "affected-software",
       "title": "NG/MF",
       "summary": "Product referenced by live intelligence (PaperCut)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-27199",
@@ -1164,14 +1164,14 @@
       "kind": "source",
       "title": "SolarWinds",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_web-help-desk",
       "kind": "affected-software",
       "title": "Web Help Desk",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-1731",
@@ -1211,14 +1211,14 @@
       "kind": "source",
       "title": "BeyondTrust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_remote-support-rs-and-privileged-remote-access-p",
       "kind": "affected-software",
       "title": "Remote Support (RS) and Privileged Remote Access (PRA)",
       "summary": "Product referenced by live intelligence (BeyondTrust)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-24423",
@@ -1258,14 +1258,14 @@
       "kind": "source",
       "title": "SmarterTools",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_smartermail",
       "kind": "affected-software",
       "title": "SmarterMail",
       "summary": "Product referenced by live intelligence (SmarterTools)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-52691",
@@ -1371,14 +1371,14 @@
       "kind": "source",
       "title": "Meta",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_react-server-components",
       "kind": "affected-software",
       "title": "React Server Components",
       "summary": "Product referenced by live intelligence (Meta)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-34486",
@@ -1418,28 +1418,28 @@
       "kind": "source",
       "title": "Apache",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_tomcat",
       "kind": "affected-software",
       "title": "Tomcat",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_vendor_redhat",
       "kind": "source",
       "title": "redhat",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_jboss-web-server",
       "kind": "affected-software",
       "title": "jboss web server",
       "summary": "Product referenced by live intelligence (redhat)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-68686",
@@ -1479,14 +1479,14 @@
       "kind": "source",
       "title": "Fortinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_fortios",
       "kind": "affected-software",
       "title": "FortiOS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-25089",
@@ -1526,7 +1526,7 @@
       "kind": "affected-software",
       "title": "FortiSandbox",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-39808",
@@ -1599,7 +1599,7 @@
       "kind": "affected-software",
       "title": "Microsoft",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-21533",
@@ -1639,7 +1639,7 @@
       "kind": "affected-software",
       "title": "Windows",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-20393",
@@ -1679,7 +1679,7 @@
       "kind": "affected-software",
       "title": "Multiple Products",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-18577",
@@ -1719,61 +1719,14 @@
       "kind": "source",
       "title": "N-able",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_n-central",
       "kind": "affected-software",
       "title": "N-central",
       "summary": "Product referenced by live intelligence (N-able)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
-    },
-    {
-      "id": "cy_cve-2021-27137",
-      "kind": "kev-entry",
-      "title": "CVE-2021-27137",
-      "summary": "DD-WRT contains a stack-based buffer overflow vulnerability that could allow an unauthenticated attacker to overflow an internal buffer used by UPnP and trigger a code execution vulnerability.",
-      "updatedAt": "2026-08-11T18:59:43.6861Z",
-      "history": [
-        {
-          "at": "2026-07-21T00:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Known Exploited Vulnerabilities Catalog",
-          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "DD-WRT Stack-Based Buffer Overflow Vulnerability"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "DD-WRT contains a stack-based buffer overflow vulnerability that could allow an unauthenticated attacker to overflow an internal buffer used by UPnP and trigger a code execution vulnerability.",
-        "whyItMatters": "Priority 91 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 8.1 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
-      },
-      "liveRecordId": "live_kev_cve-2021-27137"
-    },
-    {
-      "id": "cy_vendor_dd-wrt",
-      "kind": "source",
-      "title": "DD-WRT",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
-    },
-    {
-      "id": "cy_product_dd-wrt",
-      "kind": "affected-software",
-      "title": "DD-WRT",
-      "summary": "Product referenced by live intelligence (DD-WRT)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-48595",
@@ -1813,14 +1766,14 @@
       "kind": "source",
       "title": "Android",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_framework",
       "kind": "affected-software",
       "title": "Framework",
       "summary": "Product referenced by live intelligence (Android)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2012-1854",
@@ -1860,7 +1813,7 @@
       "kind": "affected-software",
       "title": "Visual Basic for Applications (VBA)",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-21513",
@@ -1999,7 +1952,7 @@
       "kind": "affected-software",
       "title": "SharePoint",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-58644",
@@ -2072,7 +2025,7 @@
       "kind": "affected-software",
       "title": "E-Business Suite",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-56155",
@@ -2112,7 +2065,7 @@
       "kind": "affected-software",
       "title": "Active Directory Federation Services",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-56164",
@@ -2185,7 +2138,7 @@
       "kind": "affected-software",
       "title": "IOS",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-10520",
@@ -2225,14 +2178,14 @@
       "kind": "source",
       "title": "Ivanti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_sentry",
       "kind": "affected-software",
       "title": "Sentry",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-6973",
@@ -2272,7 +2225,7 @@
       "kind": "affected-software",
       "title": "Endpoint Manager Mobile (EPMM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-0300",
@@ -2345,7 +2298,7 @@
       "kind": "affected-software",
       "title": "FortiClient EMS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-1340",
@@ -2451,14 +2404,14 @@
       "kind": "source",
       "title": "Citrix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_netscaler",
       "kind": "affected-software",
       "title": "NetScaler",
       "summary": "Product referenced by live intelligence (Citrix)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-1603",
@@ -2498,7 +2451,7 @@
       "kind": "affected-software",
       "title": " Endpoint Manager (EPM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-1281",
@@ -2604,14 +2557,14 @@
       "kind": "source",
       "title": "WatchGuard",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_firebox",
       "kind": "affected-software",
       "title": "Firebox",
       "summary": "Product referenced by live intelligence (WatchGuard)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-59718",
@@ -2684,14 +2637,14 @@
       "kind": "source",
       "title": "Aquasecurity",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_trivy",
       "kind": "affected-software",
       "title": "Trivy",
       "summary": "Product referenced by live intelligence (Aquasecurity)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-59374",
@@ -2731,14 +2684,14 @@
       "kind": "source",
       "title": "ASUS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_live-update",
       "kind": "affected-software",
       "title": "Live Update",
       "summary": "Product referenced by live intelligence (ASUS)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-16812",
@@ -2778,14 +2731,14 @@
       "kind": "source",
       "title": "Arista",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_velocloud-orchestrator",
       "kind": "affected-software",
       "title": "VeloCloud Orchestrator",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-16232",
@@ -2825,7 +2778,7 @@
       "kind": "affected-software",
       "title": "SmartConsole",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-60137",
@@ -2865,14 +2818,14 @@
       "kind": "source",
       "title": "WordPress",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_core",
       "kind": "affected-software",
       "title": "Core",
       "summary": "Product referenced by live intelligence (WordPress)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-63030",
@@ -2941,6 +2894,53 @@
       "liveRecordId": "live_kev_cve-2026-0770"
     },
     {
+      "id": "cy_cve-2021-27137",
+      "kind": "kev-entry",
+      "title": "CVE-2021-27137",
+      "summary": "DD-WRT contains a stack-based buffer overflow vulnerability that could allow an unauthenticated attacker to overflow an internal buffer used by UPnP and trigger a code execution vulnerability.",
+      "updatedAt": "2026-08-11T18:59:43.6861Z",
+      "history": [
+        {
+          "at": "2026-07-21T00:00:00.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "DD-WRT Stack-Based Buffer Overflow Vulnerability"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "DD-WRT contains a stack-based buffer overflow vulnerability that could allow an unauthenticated attacker to overflow an internal buffer used by UPnP and trigger a code execution vulnerability.",
+        "whyItMatters": "Priority 86 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
+      },
+      "liveRecordId": "live_kev_cve-2021-27137"
+    },
+    {
+      "id": "cy_vendor_dd-wrt",
+      "kind": "source",
+      "title": "DD-WRT",
+      "summary": "Vendor referenced by live intelligence",
+      "updatedAt": "2026-08-13T02:47:25.531Z"
+    },
+    {
+      "id": "cy_product_dd-wrt",
+      "kind": "affected-software",
+      "title": "DD-WRT",
+      "summary": "Product referenced by live intelligence (DD-WRT)",
+      "updatedAt": "2026-08-13T02:47:25.531Z"
+    },
+    {
       "id": "cy_cve-2023-4346",
       "kind": "kev-entry",
       "title": "CVE-2023-4346",
@@ -2978,14 +2978,14 @@
       "kind": "source",
       "title": "KNX Association",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_knx-protocol-connection-authorization-option-1",
       "kind": "affected-software",
       "title": "KNX Protocol Connection Authorization Option 1",
       "summary": "Product referenced by live intelligence (KNX Association)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48282",
@@ -3025,14 +3025,14 @@
       "kind": "source",
       "title": "Adobe",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_coldfusion",
       "kind": "affected-software",
       "title": "ColdFusion",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20230",
@@ -3072,7 +3072,7 @@
       "kind": "affected-software",
       "title": "Unified Communications Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20262",
@@ -3112,7 +3112,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-11645",
@@ -3152,14 +3152,14 @@
       "kind": "source",
       "title": "Google",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_chromium-v8",
       "kind": "affected-software",
       "title": "Chromium V8",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20245",
@@ -3232,14 +3232,14 @@
       "kind": "source",
       "title": "Linux",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_kernel",
       "kind": "affected-software",
       "title": "Kernel",
       "summary": "Product referenced by live intelligence (Linux)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-21182",
@@ -3279,7 +3279,7 @@
       "kind": "affected-software",
       "title": "WebLogic Server",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2008-4250",
@@ -3352,7 +3352,7 @@
       "kind": "affected-software",
       "title": "DirectX",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2009-3459",
@@ -3392,7 +3392,7 @@
       "kind": "affected-software",
       "title": "Acrobat and Reader",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2010-0249",
@@ -3432,7 +3432,7 @@
       "kind": "affected-software",
       "title": "Internet Explorer",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2010-0806",
@@ -3571,7 +3571,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-31431",
@@ -3677,7 +3677,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manger",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20133",
@@ -3783,7 +3783,7 @@
       "kind": "affected-software",
       "title": "Office",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-32201",
@@ -3922,7 +3922,7 @@
       "kind": "affected-software",
       "title": "Acrobat",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-34621",
@@ -3995,7 +3995,7 @@
       "kind": "affected-software",
       "title": "Dawn",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-43510",
@@ -4035,7 +4035,7 @@
       "kind": "source",
       "title": "Apple",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-43520",
@@ -4207,7 +4207,7 @@
       "kind": "affected-software",
       "title": "Skia",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2021-22054",
@@ -4247,14 +4247,14 @@
       "kind": "source",
       "title": "Omnissa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_workspace-one-uem",
       "kind": "affected-software",
       "title": "Workspace One UEM",
       "summary": "Product referenced by live intelligence (Omnissa)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2023-43000",
@@ -4360,7 +4360,7 @@
       "kind": "affected-software",
       "title": "iOS and iPadOS",
       "summary": "Product referenced by live intelligence (Apple)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-22719",
@@ -4400,14 +4400,14 @@
       "kind": "source",
       "title": "Broadcom",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_vmware-aria-operations",
       "kind": "affected-software",
       "title": "VMware Aria Operations",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2022-20775",
@@ -4447,7 +4447,7 @@
       "kind": "affected-software",
       "title": "SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20127",
@@ -4487,7 +4487,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Controller and Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2008-0015",
@@ -4560,7 +4560,7 @@
       "kind": "affected-software",
       "title": "Chromium",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20700",
@@ -4633,7 +4633,7 @@
       "kind": "affected-software",
       "title": "Configuration Manager",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-21525",
@@ -4805,14 +4805,14 @@
       "kind": "source",
       "title": "React Native Community",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_cli",
       "kind": "affected-software",
       "title": "CLI",
       "summary": "Product referenced by live intelligence (React Native Community)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2018-14634",
@@ -4918,7 +4918,7 @@
       "kind": "affected-software",
       "title": "VMware vCenter Server",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-54313",
@@ -4958,14 +4958,14 @@
       "kind": "source",
       "title": "Prettier",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_eslint-config-prettier",
       "kind": "affected-software",
       "title": "eslint-config-prettier",
       "summary": "Product referenced by live intelligence (Prettier)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-20045",
@@ -5203,14 +5203,14 @@
       "kind": "source",
       "title": "Balbooa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_forms",
       "kind": "affected-software",
       "title": "Forms",
       "summary": "Product referenced by live intelligence (Balbooa)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48939",
@@ -5250,14 +5250,14 @@
       "kind": "source",
       "title": "iCagenda",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_icagenda",
       "kind": "affected-software",
       "title": "iCagenda",
       "summary": "Product referenced by live intelligence (iCagenda)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48908",
@@ -5297,14 +5297,14 @@
       "kind": "source",
       "title": "JoomShaper",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_sp-page-builder",
       "kind": "affected-software",
       "title": "SP Page Builder",
       "summary": "Product referenced by live intelligence (JoomShaper)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-55255",
@@ -5377,14 +5377,14 @@
       "kind": "source",
       "title": "Joomlack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_page-builder",
       "kind": "affected-software",
       "title": "Page Builder",
       "summary": "Product referenced by live intelligence (Joomlack)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48558",
@@ -5457,14 +5457,14 @@
       "kind": "source",
       "title": "Lantronix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_eds5000",
       "kind": "affected-software",
       "title": "EDS5000",
       "summary": "Product referenced by live intelligence (Lantronix)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-34910",
@@ -5504,14 +5504,14 @@
       "kind": "source",
       "title": "Ubiquiti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_unifi-os",
       "kind": "affected-software",
       "title": "UniFi OS",
       "summary": "Product referenced by live intelligence (Ubiquiti)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-34909",
@@ -5617,14 +5617,14 @@
       "kind": "source",
       "title": "Splunk",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_enterprise",
       "kind": "affected-software",
       "title": "Enterprise",
       "summary": "Product referenced by live intelligence (Splunk)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48907",
@@ -5664,14 +5664,14 @@
       "kind": "source",
       "title": "Widget Factory",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_joomla-content-editor-",
       "kind": "affected-software",
       "title": "Joomla Content Editor ",
       "summary": "Product referenced by live intelligence (Widget Factory)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-54420",
@@ -5711,14 +5711,14 @@
       "kind": "source",
       "title": "LiteSpeed",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_cpanel-plugin",
       "kind": "affected-software",
       "title": "cPanel Plugin",
       "summary": "Product referenced by live intelligence (LiteSpeed)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-7473",
@@ -5758,7 +5758,7 @@
       "kind": "affected-software",
       "title": "Extensible Operating System",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-42271",
@@ -5798,14 +5798,14 @@
       "kind": "source",
       "title": "BerriAI",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_litellm",
       "kind": "affected-software",
       "title": "LiteLLM",
       "summary": "Product referenced by live intelligence (BerriAI)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-28318",
@@ -5845,7 +5845,7 @@
       "kind": "affected-software",
       "title": "Serv-U",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-45247",
@@ -5885,14 +5885,14 @@
       "kind": "source",
       "title": "Mirasvit",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_mirasvit-full-page-cache-warmer",
       "kind": "affected-software",
       "title": "Mirasvit Full Page Cache Warmer",
       "summary": "Product referenced by live intelligence (Mirasvit)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-8398",
@@ -5932,14 +5932,14 @@
       "kind": "source",
       "title": "Daemon",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_daemon-tools-lite",
       "kind": "affected-software",
       "title": "Daemon Tools Lite",
       "summary": "Product referenced by live intelligence (Daemon)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-48172",
@@ -6012,7 +6012,7 @@
       "kind": "source",
       "title": "Drupal",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-34291",
@@ -6085,14 +6085,14 @@
       "kind": "source",
       "title": "Trend Micro",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_apex-one",
       "kind": "affected-software",
       "title": "Apex One",
       "summary": "Product referenced by live intelligence (Trend Micro)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-42208",
@@ -6165,14 +6165,14 @@
       "kind": "source",
       "title": "D-Link",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_dir-823x",
       "kind": "affected-software",
       "title": "DIR-823X",
       "summary": "Product referenced by live intelligence (D-Link)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-7399",
@@ -6212,14 +6212,14 @@
       "kind": "source",
       "title": "Samsung",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_magicinfo-9-server",
       "kind": "affected-software",
       "title": "MagicINFO 9 Server",
       "summary": "Product referenced by live intelligence (Samsung)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-39987",
@@ -6259,14 +6259,14 @@
       "kind": "source",
       "title": "Marimo",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_marimo",
       "kind": "affected-software",
       "title": "Marimo",
       "summary": "Product referenced by live intelligence (Marimo)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-2749",
@@ -6306,14 +6306,14 @@
       "kind": "source",
       "title": "Kentico",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_kentico-xperience",
       "kind": "affected-software",
       "title": "Kentico Xperience",
       "summary": "Product referenced by live intelligence (Kentico)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-48700",
@@ -6353,14 +6353,14 @@
       "kind": "source",
       "title": "Synacor",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_zimbra-collaboration-suite-zcs-",
       "kind": "affected-software",
       "title": "Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-32975",
@@ -6400,14 +6400,14 @@
       "kind": "source",
       "title": "Quest",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_kace-systems-management-appliance-sma-",
       "kind": "affected-software",
       "title": "KACE Systems Management Appliance (SMA)",
       "summary": "Product referenced by live intelligence (Quest)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-34197",
@@ -6447,7 +6447,7 @@
       "kind": "affected-software",
       "title": "ActiveMQ",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-3502",
@@ -6487,14 +6487,14 @@
       "kind": "source",
       "title": "TrueConf",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_client",
       "kind": "affected-software",
       "title": "Client",
       "summary": "Product referenced by live intelligence (TrueConf)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-53521",
@@ -6534,14 +6534,14 @@
       "kind": "source",
       "title": "F5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_big-ip",
       "kind": "affected-software",
       "title": "BIG-IP",
       "summary": "Product referenced by live intelligence (F5)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-33017",
@@ -6614,14 +6614,14 @@
       "kind": "source",
       "title": "Craft CMS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_craft-cms",
       "kind": "affected-software",
       "title": "Craft CMS",
       "summary": "Product referenced by live intelligence (Craft CMS)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-54068",
@@ -6661,14 +6661,14 @@
       "kind": "source",
       "title": "Laravel",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_livewire",
       "kind": "affected-software",
       "title": "Livewire",
       "summary": "Product referenced by live intelligence (Laravel)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-66376",
@@ -6741,14 +6741,14 @@
       "kind": "source",
       "title": "Wing FTP Server",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_wing-ftp-server",
       "kind": "affected-software",
       "title": "Wing FTP Server",
       "summary": "Product referenced by live intelligence (Wing FTP Server)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-68613",
@@ -6788,14 +6788,14 @@
       "kind": "source",
       "title": "n8n",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_n8n",
       "kind": "affected-software",
       "title": "n8n",
       "summary": "Product referenced by live intelligence (n8n)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2017-7921",
@@ -6835,7 +6835,7 @@
       "kind": "source",
       "title": "Hikvision",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2021-22681",
@@ -6875,7 +6875,7 @@
       "kind": "source",
       "title": "Rockwell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-21385",
@@ -6915,14 +6915,14 @@
       "kind": "source",
       "title": "Qualcomm",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_multiple-chipsets",
       "kind": "affected-software",
       "title": "Multiple Chipsets",
       "summary": "Product referenced by live intelligence (Qualcomm)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-25108",
@@ -6962,14 +6962,14 @@
       "kind": "source",
       "title": "Soliton Systems K.K",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_filezen",
       "kind": "affected-software",
       "title": "FileZen",
       "summary": "Product referenced by live intelligence (Soliton Systems K.K)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-49113",
@@ -7009,14 +7009,14 @@
       "kind": "source",
       "title": "Roundcube",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_webmail",
       "kind": "affected-software",
       "title": "Webmail",
       "summary": "Product referenced by live intelligence (Roundcube)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-68461",
@@ -7089,14 +7089,14 @@
       "kind": "source",
       "title": "GitLab",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_gitlab",
       "kind": "affected-software",
       "title": "GitLab",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2026-22769",
@@ -7136,14 +7136,14 @@
       "kind": "source",
       "title": "Dell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_recoverpoint-for-virtual-machines-rp4vms-",
       "kind": "affected-software",
       "title": "RecoverPoint for Virtual Machines (RP4VMs)",
       "summary": "Product referenced by live intelligence (Dell)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2020-7796",
@@ -7183,7 +7183,7 @@
       "kind": "affected-software",
       "title": "Zimbra Collaboration Suite",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2024-7694",
@@ -7223,14 +7223,14 @@
       "kind": "source",
       "title": "TeamT5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_threatsonar-anti-ransomware",
       "kind": "affected-software",
       "title": "ThreatSonar Anti-Ransomware",
       "summary": "Product referenced by live intelligence (TeamT5)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-15556",
@@ -7270,14 +7270,14 @@
       "kind": "source",
       "title": "Notepad++",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_notepad-",
       "kind": "affected-software",
       "title": "Notepad++",
       "summary": "Product referenced by live intelligence (Notepad++)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-40536",
@@ -7350,7 +7350,7 @@
       "kind": "affected-software",
       "title": "Community and Enterprise Editions",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-64328",
@@ -7390,14 +7390,14 @@
       "kind": "source",
       "title": "Sangoma",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_freepbx-",
       "kind": "affected-software",
       "title": "FreePBX ",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2019-19006",
@@ -7437,7 +7437,7 @@
       "kind": "affected-software",
       "title": "FreePBX",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-40551",
@@ -7510,14 +7510,14 @@
       "kind": "source",
       "title": "GNU",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_inetutils",
       "kind": "affected-software",
       "title": "InetUtils",
       "summary": "Product referenced by live intelligence (GNU)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-68645",
@@ -7557,7 +7557,7 @@
       "kind": "affected-software",
       "title": " Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-34026",
@@ -7597,14 +7597,14 @@
       "kind": "source",
       "title": "Versa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_concerto",
       "kind": "affected-software",
       "title": "Concerto",
       "summary": "Product referenced by live intelligence (Versa)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-31125",
@@ -7644,14 +7644,14 @@
       "kind": "source",
       "title": "Vite",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_vitejs",
       "kind": "affected-software",
       "title": "Vitejs",
       "summary": "Product referenced by live intelligence (Vite)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-8110",
@@ -7691,14 +7691,14 @@
       "kind": "source",
       "title": "Gogs",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_gogs",
       "kind": "affected-software",
       "title": "Gogs",
       "summary": "Product referenced by live intelligence (Gogs)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-37164",
@@ -7738,14 +7738,14 @@
       "kind": "source",
       "title": "Hewlett Packard Enterprise (HPE)",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_oneview",
       "kind": "affected-software",
       "title": "OneView",
       "summary": "Product referenced by live intelligence (Hewlett Packard Enterprise (HPE))",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-14847",
@@ -7785,14 +7785,14 @@
       "kind": "source",
       "title": "MongoDB",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_mongodb-and-mongodb-server",
       "kind": "affected-software",
       "title": "MongoDB and MongoDB Server",
       "summary": "Product referenced by live intelligence (MongoDB)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2023-52163",
@@ -7832,14 +7832,14 @@
       "kind": "source",
       "title": "Digiever",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_ds-2105-pro",
       "kind": "affected-software",
       "title": "DS-2105 Pro",
       "summary": "Product referenced by live intelligence (Digiever)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-40602",
@@ -7879,7 +7879,7 @@
       "kind": "affected-software",
       "title": "SMA1000 appliance",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-14611",
@@ -7919,14 +7919,14 @@
       "kind": "source",
       "title": "Gladinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_centrestack-and-triofox",
       "kind": "affected-software",
       "title": "CentreStack and Triofox",
       "summary": "Product referenced by live intelligence (Gladinet)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2018-4063",
@@ -7966,14 +7966,14 @@
       "kind": "source",
       "title": "Sierra Wireless",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_airlink-aleos",
       "kind": "affected-software",
       "title": "AirLink ALEOS",
       "summary": "Product referenced by live intelligence (Sierra Wireless)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-58360",
@@ -8013,14 +8013,14 @@
       "kind": "source",
       "title": "OSGeo",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_geoserver",
       "kind": "affected-software",
       "title": "GeoServer",
       "summary": "Product referenced by live intelligence (OSGeo)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-6218",
@@ -8060,14 +8060,14 @@
       "kind": "source",
       "title": "RARLAB",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_winrar",
       "kind": "affected-software",
       "title": "WinRAR",
       "summary": "Product referenced by live intelligence (RARLAB)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2022-37055",
@@ -8107,7 +8107,7 @@
       "kind": "affected-software",
       "title": "Routers",
       "summary": "Product referenced by live intelligence (D-Link)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2025-66644",
@@ -8147,14 +8147,14 @@
       "kind": "source",
       "title": "Array Networks ",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_arrayos-ag",
       "kind": "affected-software",
       "title": "ArrayOS AG",
       "summary": "Product referenced by live intelligence (Array Networks )",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2021-26828",
@@ -8194,14 +8194,14 @@
       "kind": "source",
       "title": "OpenPLC",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_product_scadabr",
       "kind": "affected-software",
       "title": "ScadaBR",
       "summary": "Product referenced by live intelligence (OpenPLC)",
-      "updatedAt": "2026-08-12T19:20:46.446Z"
+      "updatedAt": "2026-08-13T02:47:25.531Z"
     },
     {
       "id": "cy_cve-2018-0101",
@@ -8468,53 +8468,6 @@
       "liveRecordId": "live_nvd_cve-2019-2725"
     },
     {
-      "id": "cy_cve-2026-71851",
-      "kind": "cve",
-      "title": "CVE-2026-71851",
-      "summary": "### Summary `CryptoJS.lib.WordArray.random()` in affected versions is not a cryptographically secure random number generator. Nominal requests for 128 or 256 bits of entropy produce effective search spaces of approximately 2^39 and 2^47 possibilities — small enough to enumerate on commodity hardware. Coinspect's [Ill Bloom](https://www.coinspect.com/blog/ill-bloom-investigation/) investigation confirmed that downstream wallet applications used this function as the entropy source for BIP39 recovery phrases. **An application is affected only if it uses the vulnerable function to generate securit",
-      "updatedAt": "2026-08-07T18:50:37Z",
-      "history": [
-        {
-          "at": "2026-08-07T18:48:59Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-rg76-677x-56q9",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-rg76-677x-56q9: crypto-js: Insufficient Entropy in Cryptographic Secret Generation via Vulnerable CryptoJS Dependency Chain"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Summary `CryptoJS.lib.WordArray.random()` in affected versions is not a cryptographically secure random number generator. Nominal requests for 128 or 256 bits of entropy produce effective search spaces of approximately 2^39 and 2^47 possibilities — small enough to enumerate on commodity hardware. Coinspect's [Ill Bloom](https://www.coinspect.com/blog/ill-bloom-investigation/) investigation confirmed that downstream wallet applications used this function as the entropy source for BIP39 recovery phrases. **An application is affected only if it uses the vulnerable function to generate securit",
-        "whyItMatters": "Priority 40 — Monitor. Severity labeled critical by source. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Patch or vendor fix indicated as available. Confidence: high."
-      },
-      "liveRecordId": "live_ghsa_GHSA-rg76-677x-56q9"
-    },
-    {
-      "id": "cy_vendor_npm",
-      "kind": "source",
-      "title": "npm",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
-    },
-    {
-      "id": "cy_product_crypto-js",
-      "kind": "affected-software",
-      "title": "crypto-js",
-      "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
-    },
-    {
       "id": "cy_cve-2017-3806",
       "kind": "cve",
       "title": "CVE-2017-3806",
@@ -8618,14 +8571,14 @@
       "kind": "source",
       "title": "go",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_github-com-seaweedfs-seaweedfs",
       "kind": "affected-software",
       "title": "github.com/seaweedfs/seaweedfs",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2017-12615",
@@ -8791,6 +8744,39 @@
         "whyItMatters": "Priority 37 — Monitor. CVSS base score 8.2 (technical severity, not personal exposure). Updated/published within 7 days. Official government or vendor source. Confidence: high. Widely deployed vendor/product family named — larger potential blast radius."
       },
       "liveRecordId": "live_nvd_cve-2018-0453"
+    },
+    {
+      "id": "cy_cve-2018-9206",
+      "kind": "cve",
+      "title": "CVE-2018-9206",
+      "summary": "Unauthenticated arbitrary file upload vulnerability in Blueimp jQuery-File-Upload <= v9.22.0",
+      "updatedAt": "2026-08-12T21:17:07.160",
+      "history": [
+        {
+          "at": "2018-10-11T15:29:00.640",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "NIST National Vulnerability Database",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-9206",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "CVE-2018-9206"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Unauthenticated arbitrary file upload vulnerability in Blueimp jQuery-File-Upload <= v9.22.0",
+        "whyItMatters": "Priority 37 — Monitor. CVSS base score 9.8 (technical severity, not personal exposure). Updated/published within 7 days. Official government or vendor source. Confidence: high."
+      },
+      "liveRecordId": "live_nvd_cve-2018-9206"
     },
     {
       "id": "cy_cve-2018-15454",
@@ -9123,39 +9109,6 @@
       "liveRecordId": "live_nvd_cve-2017-6625"
     },
     {
-      "id": "cy_cve-2026-73080",
-      "kind": "cve",
-      "title": "CVE-2026-73080",
-      "summary": "### Impact `VolumeServer.FetchAndWriteNeedle` fetches a caller-supplied remote endpoint and writes the response into a needle. Before 4.24 this RPC performed no authentication and no validation of the target, so anyone able to reach a volume server's gRPC port could coerce the server into issuing requests to arbitrary hosts — including loopback, link-local, RFC 1918, and cloud metadata endpoints such as `169.254.169.254` — and read the response back. On cloud deployments this discloses instance metadata and IAM credentials, and can be used to reach otherwise-unexposed internal services (SSRF w",
-      "updatedAt": "2026-08-11T15:58:24Z",
-      "history": [
-        {
-          "at": "2026-08-11T15:58:23Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-87fv-vqqr-m4jr",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-87fv-vqqr-m4jr: SeaweedFS: Unauthenticated SSRF with response read-back via VolumeServer.FetchAndWriteNeedle"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Impact `VolumeServer.FetchAndWriteNeedle` fetches a caller-supplied remote endpoint and writes the response into a needle. Before 4.24 this RPC performed no authentication and no validation of the target, so anyone able to reach a volume server's gRPC port could coerce the server into issuing requests to arbitrary hosts — including loopback, link-local, RFC 1918, and cloud metadata endpoints such as `169.254.169.254` — and read the response back. On cloud deployments this discloses instance metadata and IAM credentials, and can be used to reach otherwise-unexposed internal services (SSRF w",
-        "whyItMatters": "Priority 35 — Monitor. Severity labeled critical by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ghsa_GHSA-87fv-vqqr-m4jr"
-    },
-    {
       "id": "cy_cve-2018-15390",
       "kind": "cve",
       "title": "CVE-2018-15390",
@@ -9292,28 +9245,28 @@
       "kind": "source",
       "title": "nuget",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-windowsdesktop-app-runtime-win-arm64",
       "kind": "affected-software",
       "title": "Microsoft.WindowsDesktop.App.Runtime.win-arm64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-windowsdesktop-app-runtime-win-x64",
       "kind": "affected-software",
       "title": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-windowsdesktop-app-runtime-win-x86",
       "kind": "affected-software",
       "title": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-70354",
@@ -9646,39 +9599,6 @@
       "liveRecordId": "live_nvd_cve-2009-3960"
     },
     {
-      "id": "cy_cve-2019-1701",
-      "kind": "cve",
-      "title": "CVE-2019-1701",
-      "summary": "Multiple vulnerabilities in the WebVPN service of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the WebVPN portal of an affected device. The vulnerabilities exist because the software insufficiently validates user-supplied input on an affected device. An attacker could exploit these vulnerabilities by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the affected interface or access sensitive browser-based information. An attacker would need administrator privileges on the device to exploit these vulnerabilities.",
-      "updatedAt": "2026-08-11T19:33:44.513",
-      "history": [
-        {
-          "at": "2019-05-03T16:29:00.367",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "NIST National Vulnerability Database",
-          "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-1701",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "CVE-2019-1701"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Multiple vulnerabilities in the WebVPN service of Cisco Adaptive Security Appliance (ASA) Software and Cisco Firepower Threat Defense (FTD) Software could allow an authenticated, remote attacker to conduct a cross-site scripting (XSS) attack against a user of the WebVPN portal of an affected device. The vulnerabilities exist because the software insufficiently validates user-supplied input on an affected device. An attacker could exploit these vulnerabilities by persuading a user of the interface to click a crafted link. A successful exploit could allow the attacker to execute arbitrary script code in the context of the affected interface or access sensitive browser-based information. An attacker would need administrator privileges on the device to exploit these vulnerabilities.",
-        "whyItMatters": "Priority 31 — Informational. Updated/published within 7 days. CVSS base score 4.8 (technical severity, not personal exposure). Official government or vendor source. Confidence: high. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_nvd_cve-2019-1701"
-    },
-    {
       "id": "cy_cve-2026-52776",
       "kind": "cve",
       "title": "CVE-2026-52776",
@@ -9716,14 +9636,14 @@
       "kind": "source",
       "title": "pip",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_compliance-trestle",
       "kind": "affected-software",
       "title": "compliance-trestle",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-48798",
@@ -9763,7 +9683,7 @@
       "kind": "affected-software",
       "title": "SSH.NET",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2018-15398",
@@ -9836,28 +9756,28 @@
       "kind": "source",
       "title": "Cloudflare Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.741Z"
+      "updatedAt": "2026-08-13T02:47:25.740Z"
     },
     {
       "id": "cy_product_cloudflare-status",
       "kind": "affected-software",
       "title": "Cloudflare Status",
       "summary": "Product referenced by live intelligence (Cloudflare Status)",
-      "updatedAt": "2026-08-12T19:20:46.741Z"
+      "updatedAt": "2026-08-13T02:47:25.740Z"
     },
     {
       "id": "cy_vendor_amazon-web-services",
       "kind": "source",
       "title": "Amazon Web Services",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.575Z"
+      "updatedAt": "2026-08-13T02:47:25.646Z"
     },
     {
       "id": "cy_product_aws",
       "kind": "affected-software",
       "title": "AWS",
       "summary": "Product referenced by live intelligence (Amazon Web Services)",
-      "updatedAt": "2026-08-12T19:20:46.575Z"
+      "updatedAt": "2026-08-13T02:47:25.646Z"
     },
     {
       "id": "cy_cve-2026-21655",
@@ -9924,6 +9844,72 @@
         "whyItMatters": "Priority 19 — Informational. Updated/published within 7 days. Official government or vendor source. Confidence: high."
       },
       "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323134"
+    },
+    {
+      "id": "cy_cve-2016-10128",
+      "kind": "cve",
+      "title": "CVE-2016-10128",
+      "summary": "It was discovered that libgit2 incorrectly handled the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10128) It was discovered that libgit2 incorrectly handled empty packet lines in the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10129) It was discovered that libgit2 incorrectly handled error reporting in the HTTP trans",
+      "updatedAt": "2026-08-12T19:13:07.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:13:07.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8628-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8628-1: libgit2 vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "It was discovered that libgit2 incorrectly handled the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10128) It was discovered that libgit2 incorrectly handled empty packet lines in the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10129) It was discovered that libgit2 incorrectly handled error reporting in the HTTP trans",
+        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2016-10129",
+      "kind": "cve",
+      "title": "CVE-2016-10129",
+      "summary": "It was discovered that libgit2 incorrectly handled the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10128) It was discovered that libgit2 incorrectly handled empty packet lines in the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10129) It was discovered that libgit2 incorrectly handled error reporting in the HTTP trans",
+      "updatedAt": "2026-08-12T19:13:07.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:13:07.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8628-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8628-1: libgit2 vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "It was discovered that libgit2 incorrectly handled the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10128) It was discovered that libgit2 incorrectly handled empty packet lines in the Git Smart Protocol. A remote attacker could possibly use this issue to cause a denial of service. This issue only affected Ubuntu 14.04 LTS and Ubuntu 16.04 LTS. (CVE-2016-10129) It was discovered that libgit2 incorrectly handled error reporting in the HTTP trans",
+        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
       "id": "cy_cve-2019-1695",
@@ -10062,68 +10048,122 @@
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.win-arm64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-win-x64",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.win-x64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-win-x86",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.win-x86",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-linux-arm",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.linux-arm",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-linux-arm64",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.linux-arm64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
-      "id": "cy_cve-2026-62898",
+      "id": "cy_cve-2026-55074",
       "kind": "cve",
-      "title": "CVE-2026-62898",
-      "summary": "## Executive summary Microsoft is releasing this security advisory to provide information about a vulnerability in Microsoft QUIC. This advisory also provides guidance on what developers can do to update their applications to remove this vulnerability. A use after free in Microsoft QUIC allows an unauthorized attacker to disclose information over a network. ## Announcement Announcement for this issue can be found at https://github.com/dotnet/announcements/issues/426 ## CVSS Details - **Version:** 3.1 - **Severity:** High - **Score:** 7.5 - **Vector:** `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/",
-      "updatedAt": "2026-08-11T18:34:53Z",
+      "title": "CVE-2026-55074",
+      "summary": "Through version 1.3.0, the jailexec connection plugin's put_file resolved a transfer's destination to a path on the jail host ( + ) and ran mkdir -p and mv there as root on the host. Those commands follow symbolic links, and the path was operated on outside the jail, so a symlink existing inside the jail was followed by the host-side, root-privileged mv. A party controlling content inside a managed jail (the jail's root, or any process able to create a symlink in a directory an Ansible task later writes to) can therefore cause an arbitrary root-owned write on the host, outside the jail — a ful",
+      "updatedAt": "2026-08-12T23:21:07Z",
       "history": [
         {
-          "at": "2026-08-11T18:28:37Z",
+          "at": "2026-08-12T23:21:06Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-c494-m2fq-59mx",
+          "url": "https://github.com/advisories/GHSA-cxgv-hp74-jj7r",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "GHSA-c494-m2fq-59mx: Microsoft Security Advisory CVE-2026-62898 – .NET Information Disclosure Vulnerability"
+          "GHSA-cxgv-hp74-jj7r: Ansible FreeBSD Jail Connection Plugin: Jail escape via symlink following in put_file (host-side root mv)"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "## Executive summary Microsoft is releasing this security advisory to provide information about a vulnerability in Microsoft QUIC. This advisory also provides guidance on what developers can do to update their applications to remove this vulnerability. A use after free in Microsoft QUIC allows an unauthorized attacker to disclose information over a network. ## Announcement Announcement for this issue can be found at https://github.com/dotnet/announcements/issues/426 ## CVSS Details - **Version:** 3.1 - **Severity:** High - **Score:** 7.5 - **Vector:** `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/",
-        "whyItMatters": "Priority 34 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
+        "whatIsIt": "Through version 1.3.0, the jailexec connection plugin's put_file resolved a transfer's destination to a path on the jail host ( + ) and ran mkdir -p and mv there as root on the host. Those commands follow symbolic links, and the path was operated on outside the jail, so a symlink existing inside the jail was followed by the host-side, root-privileged mv. A party controlling content inside a managed jail (the jail's root, or any process able to create a symlink in a directory an Ansible task later writes to) can therefore cause an arbitrary root-owned write on the host, outside the jail — a ful",
+        "whyItMatters": "Priority 31 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
       },
-      "liveRecordId": "live_ghsa_GHSA-c494-m2fq-59mx"
+      "liveRecordId": "live_ghsa_GHSA-cxgv-hp74-jj7r"
+    },
+    {
+      "id": "cy_product_ansible-jailexec",
+      "kind": "affected-software",
+      "title": "ansible-jailexec",
+      "summary": "Product referenced by live intelligence (pip)",
+      "updatedAt": "2026-08-13T02:47:25.891Z"
+    },
+    {
+      "id": "cy_product_sipsorcery",
+      "kind": "affected-software",
+      "title": "SIPSorcery",
+      "summary": "Product referenced by live intelligence (nuget)",
+      "updatedAt": "2026-08-13T02:47:25.891Z"
+    },
+    {
+      "id": "cy_cve-2026-55071",
+      "kind": "cve",
+      "title": "CVE-2026-55071",
+      "summary": "## Stata Command Injection via Unsanitized `package` in `ado_package_install` ### Summary The `ado_package_install` MCP tool in `stata-mcp` concatenates user-controlled input directly into a Stata command string without any validation or sanitization. An attacker who can invoke the MCP tool or the equivalent Python API can embed newline characters in the `package` argument to inject arbitrary Stata commands. Because Stata supports a `shell` escape command, this leads to full OS-level arbitrary command execution (RCE) under the account running the Stata-MCP server. The tool is registered in the",
+      "updatedAt": "2026-08-12T19:23:39Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:23:38Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "GitHub Security Advisories",
+          "url": "https://github.com/advisories/GHSA-49m4-vp58-wgc9",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "GHSA-49m4-vp58-wgc9: MCP-for-Stata: Stata Command Injection via Unsanitized `package` in `ado_package_install`"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "## Stata Command Injection via Unsanitized `package` in `ado_package_install` ### Summary The `ado_package_install` MCP tool in `stata-mcp` concatenates user-controlled input directly into a Stata command string without any validation or sanitization. An attacker who can invoke the MCP tool or the equivalent Python API can embed newline characters in the `package` argument to inject arbitrary Stata commands. Because Stata supports a `shell` escape command, this leads to full OS-level arbitrary command execution (RCE) under the account running the Stata-MCP server. The tool is registered in the",
+        "whyItMatters": "Priority 31 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ghsa_GHSA-49m4-vp58-wgc9"
+    },
+    {
+      "id": "cy_product_stata-mcp",
+      "kind": "affected-software",
+      "title": "stata-mcp",
+      "summary": "Product referenced by live intelligence (pip)",
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-46369",
@@ -10163,14 +10203,14 @@
       "kind": "source",
       "title": "rust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_nimiq-blockchain",
       "kind": "affected-software",
       "title": "nimiq-blockchain",
       "summary": "Product referenced by live intelligence (rust)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-35445",
@@ -10210,14 +10250,14 @@
       "kind": "source",
       "title": "composer",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_winter-wn-backend-module",
       "kind": "affected-software",
       "title": "winter/wn-backend-module",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-32258",
@@ -10356,21 +10396,21 @@
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.linux-musl-arm",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-linux-musl-arm64",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.linux-musl-arm64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_product_microsoft-netcore-app-runtime-linux-musl-x64",
       "kind": "affected-software",
       "title": "Microsoft.NETCore.App.Runtime.linux-musl-x64",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-62899",
@@ -10443,7 +10483,7 @@
       "kind": "affected-software",
       "title": "github.com/fleetdm/fleet/v4",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-47132",
@@ -10483,7 +10523,7 @@
       "kind": "affected-software",
       "title": "thorsten/phpmyfaq",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-45694",
@@ -10523,7 +10563,7 @@
       "kind": "affected-software",
       "title": "librenms/librenms",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-32639",
@@ -10563,7 +10603,7 @@
       "kind": "affected-software",
       "title": "winter/wn-cms-module",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-32593",
@@ -10599,77 +10639,44 @@
       "liveRecordId": "live_ghsa_GHSA-m7jc-g4rc-jmvh"
     },
     {
-      "id": "cy_cve-2026-71870",
+      "id": "cy_cve-2026-9318",
       "kind": "cve",
-      "title": "CVE-2026-71870",
-      "summary": "### Impact An attacker who uses this vulnerability can craft a PDF which leads to large memory consumption. This requires parsing the `/ToUnicode` entry of a font with unusually large values, for example during text extraction. ### Patches This has been fixed in [pypdf==6.15.0](https://github.com/py-pdf/pypdf/releases/tag/6.15.0). ### Workarounds If you cannot upgrade yet, consider applying the changes from PR [#3944](https://github.com/py-pdf/pypdf/pull/3944).",
-      "updatedAt": "2026-08-09T05:26:55Z",
+      "title": "CVE-2026-9318",
+      "summary": "tablib prior to 3.10.0 contains a stored cross-site scripting vulnerability in the HTML export functionality that allows attackers to execute arbitrary JavaScript by embedding malicious payloads in dataset titles, which are interpolated unsanitized into HTML output via the export_book method in the _html.py format handler. Attackers can rename worksheet sheets in imported files such as XLSX, ODS, XLS, or YAML with script payloads that are assigned to the Dataset title attribute and rendered unescaped inside an HTML h3 tag, leading to session hijacking, unauthorized administrative actions, and ",
+      "updatedAt": "2026-08-12T19:32:21Z",
       "history": [
         {
-          "at": "2026-08-07T19:29:09Z",
+          "at": "2026-08-12T03:31:18Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-fp3f-mc75-235c",
+          "url": "https://github.com/advisories/GHSA-gqgw-jghv-mxwx",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "GHSA-fp3f-mc75-235c: pypdf: Possible large memory usage for large /ToUnicode streams"
+          "GHSA-gqgw-jghv-mxwx: tablib: Stored XSS in the HTML export via unescaped dataset title"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "### Impact An attacker who uses this vulnerability can craft a PDF which leads to large memory consumption. This requires parsing the `/ToUnicode` entry of a font with unusually large values, for example during text extraction. ### Patches This has been fixed in [pypdf==6.15.0](https://github.com/py-pdf/pypdf/releases/tag/6.15.0). ### Workarounds If you cannot upgrade yet, consider applying the changes from PR [#3944](https://github.com/py-pdf/pypdf/pull/3944).",
+        "whatIsIt": "tablib prior to 3.10.0 contains a stored cross-site scripting vulnerability in the HTML export functionality that allows attackers to execute arbitrary JavaScript by embedding malicious payloads in dataset titles, which are interpolated unsanitized into HTML output via the export_book method in the _html.py format handler. Attackers can rename worksheet sheets in imported files such as XLSX, ODS, XLS, or YAML with script payloads that are assigned to the Dataset title attribute and rendered unescaped inside an HTML h3 tag, leading to session hijacking, unauthorized administrative actions, and ",
         "whyItMatters": "Priority 26 — Informational. Updated/published within 7 days. Severity labeled medium by source. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
       },
-      "liveRecordId": "live_ghsa_GHSA-fp3f-mc75-235c"
+      "liveRecordId": "live_ghsa_GHSA-gqgw-jghv-mxwx"
     },
     {
-      "id": "cy_product_pypdf",
+      "id": "cy_product_tablib",
       "kind": "affected-software",
-      "title": "pypdf",
+      "title": "tablib",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-12T19:20:46.749Z"
-    },
-    {
-      "id": "cy_cve-2026-71852",
-      "kind": "cve",
-      "title": "CVE-2026-71852",
-      "summary": "### Impact An attacker who uses this vulnerability can craft a PDF which leads to long runtimes and large memory consumption. This requires parsing the font width entries of a font with unusually large values, for example during text extraction. ### Patches This has been fixed in [pypdf==6.15.0](https://github.com/py-pdf/pypdf/releases/tag/6.15.0). ### Workarounds If you cannot upgrade yet, consider applying the changes from PR [#3946](https://github.com/py-pdf/pypdf/pull/3946).",
-      "updatedAt": "2026-08-07T18:54:00Z",
-      "history": [
-        {
-          "at": "2026-08-07T18:54:00Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-fwg2-594c-jp42",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-fwg2-594c-jp42: pypdf: Possible long runtimes/large memory usage for large CID font width ranges"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Impact An attacker who uses this vulnerability can craft a PDF which leads to long runtimes and large memory consumption. This requires parsing the font width entries of a font with unusually large values, for example during text extraction. ### Patches This has been fixed in [pypdf==6.15.0](https://github.com/py-pdf/pypdf/releases/tag/6.15.0). ### Workarounds If you cannot upgrade yet, consider applying the changes from PR [#3946](https://github.com/py-pdf/pypdf/pull/3946).",
-        "whyItMatters": "Priority 26 — Informational. Updated/published within 7 days. Severity labeled medium by source. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ghsa_GHSA-fwg2-594c-jp42"
+      "updatedAt": "2026-08-13T02:47:25.891Z"
     },
     {
       "id": "cy_cve-2026-18844",
@@ -10769,6 +10776,138 @@
         "whyItMatters": "Priority 25 — Informational. Updated/published within 7 days. Source text references sectors often treated as critical infrastructure — elevate awareness; confirm applicability. Official government or vendor source. Confidence: high."
       },
       "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323635"
+    },
+    {
+      "id": "cy_cve-2026-31405",
+      "kind": "cve",
+      "title": "CVE-2026-31405",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+      "updatedAt": "2026-08-12T19:54:57.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:54:57.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8634-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8634-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+        "whyItMatters": "Priority 25 — Informational. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-31414",
+      "kind": "cve",
+      "title": "CVE-2026-31414",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+      "updatedAt": "2026-08-12T19:54:57.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:54:57.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8634-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8634-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+        "whyItMatters": "Priority 25 — Informational. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-31448",
+      "kind": "cve",
+      "title": "CVE-2026-31448",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+      "updatedAt": "2026-08-12T19:54:57.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:54:57.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8634-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8634-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+        "whyItMatters": "Priority 25 — Informational. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-31649",
+      "kind": "cve",
+      "title": "CVE-2026-31649",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+      "updatedAt": "2026-08-12T19:54:57.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:54:57.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8634-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8634-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - STMicroelectronics network drivers; - Network drivers; - Ext4 file system; - IPv4 networking; - TCP network protocol; - Locking primitives; - B.A.T.M.A.N. meshing protocol; - Ceph Core library; - IPv6 networking; - Multipath TCP; - Netfilter; - SCTP protocol; - SMC sockets; (CVE-2026-31405, CVE-2026-31414, CVE-2026-31448, CVE-2026-31649",
+        "whyItMatters": "Priority 25 — Informational. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
       "id": "cy_cve-2026-66875",
@@ -11332,68 +11471,761 @@
       "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323431"
     },
     {
-      "id": "cy_cve-2026-53354",
+      "id": "cy_cve-2020-24588",
       "kind": "cve",
-      "title": "CVE-2026-53354",
-      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - Arm Firmware Framework for ARMv8-A(FFA); (CVE-2026-53354, CVE-2026-64520)",
-      "updatedAt": "2026-07-29T13:53:58.000Z",
+      "title": "CVE-2020-24588",
+      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+      "updatedAt": "2026-08-12T20:01:49.000Z",
       "history": [
         {
-          "at": "2026-07-29T13:53:58.000Z",
+          "at": "2026-08-12T20:01:49.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8623-1",
+          "url": "https://ubuntu.com/security/notices/USN-8635-1",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8623-1: Linux kernel (NVIDIA) vulnerabilities"
+          "USN-8635-1: Linux kernel (Azure) vulnerabilities"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - Arm Firmware Framework for ARMv8-A(FFA); (CVE-2026-53354, CVE-2026-64520)",
-        "whyItMatters": "Priority 21 — Informational. Updated/published within 30 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
       },
       "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
-      "id": "cy_cve-2026-64520",
+      "id": "cy_cve-2025-27558",
       "kind": "cve",
-      "title": "CVE-2026-64520",
-      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - Arm Firmware Framework for ARMv8-A(FFA); (CVE-2026-53354, CVE-2026-64520)",
-      "updatedAt": "2026-07-29T13:53:58.000Z",
+      "title": "CVE-2025-27558",
+      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+      "updatedAt": "2026-08-12T20:01:49.000Z",
       "history": [
         {
-          "at": "2026-07-29T13:53:58.000Z",
+          "at": "2026-08-12T20:01:49.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8623-1",
+          "url": "https://ubuntu.com/security/notices/USN-8635-1",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8623-1: Linux kernel (NVIDIA) vulnerabilities"
+          "USN-8635-1: Linux kernel (Azure) vulnerabilities"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - ARM64 architecture; - Arm Firmware Framework for ARMv8-A(FFA); (CVE-2026-53354, CVE-2026-64520)",
-        "whyItMatters": "Priority 21 — Informational. Updated/published within 30 days. Supply-chain / dependency context indicated by source wording. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43503",
+      "kind": "cve",
+      "title": "CVE-2026-43503",
+      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+      "updatedAt": "2026-08-12T20:01:49.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T20:01:49.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8635-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8635-1: Linux kernel (Azure) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) It was discovered that a logic flaw existed in the XFRM ESP-in-TCP subsystem in the Linux kernel when handling socket buffer fragments. This flaw is known as Fragnesia. A local attacker could use this to escalate privileges, or possibly escape a container. (CVE-2026-43503) Several security issues ",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43083",
+      "kind": "cve",
+      "title": "CVE-2026-43083",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-12T19:43:13.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:43:13.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43197",
+      "kind": "cve",
+      "title": "CVE-2026-43197",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-12T19:43:13.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:43:13.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43198",
+      "kind": "cve",
+      "title": "CVE-2026-43198",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-12T19:43:13.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:43:13.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43465",
+      "kind": "cve",
+      "title": "CVE-2026-43465",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-12T19:43:13.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:43:13.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-46242",
+      "kind": "cve",
+      "title": "CVE-2026-46242",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-12T19:43:13.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:43:13.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-46331",
+      "kind": "cve",
+      "title": "CVE-2026-46331",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-52924",
+      "kind": "cve",
+      "title": "CVE-2026-52924",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53131",
+      "kind": "cve",
+      "title": "CVE-2026-53131",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53151",
+      "kind": "cve",
+      "title": "CVE-2026-53151",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53175",
+      "kind": "cve",
+      "title": "CVE-2026-53175",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53176",
+      "kind": "cve",
+      "title": "CVE-2026-53176",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53186",
+      "kind": "cve",
+      "title": "CVE-2026-53186",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53212",
+      "kind": "cve",
+      "title": "CVE-2026-53212",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53215",
+      "kind": "cve",
+      "title": "CVE-2026-53215",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53216",
+      "kind": "cve",
+      "title": "CVE-2026-53216",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53221",
+      "kind": "cve",
+      "title": "CVE-2026-53221",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53224",
+      "kind": "cve",
+      "title": "CVE-2026-53224",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53225",
+      "kind": "cve",
+      "title": "CVE-2026-53225",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53228",
+      "kind": "cve",
+      "title": "CVE-2026-53228",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53246",
+      "kind": "cve",
+      "title": "CVE-2026-53246",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+      "updatedAt": "2026-08-12T19:36:25.000Z",
+      "history": [
+        {
+          "at": "2026-08-12T19:36:25.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8629-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8629-1: Linux kernel vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Network traffic control; - IPv4 networking; - IPv6 networking; - Netfilter; - RxRPC session sockets; - SCTP protocol; (CVE-2026-46331, CVE-2026-52924, CVE-2026-53131, CVE-2026-53151, CVE-2026-53175, CVE-2026-53176, CVE-2026-53186, CVE-2026-53212, CVE-2026-53215, CVE-2026-53216, CVE-2026-53221, CVE-2026-53224, CVE-2026-53225, CVE-2026-53228, CVE-2026-53246",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
       },
       "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
@@ -11402,7 +12234,7 @@
       "kind": "affected-software",
       "title": "Google Cloud",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-12T19:20:46.648Z"
+      "updatedAt": "2026-08-13T02:47:25.660Z"
     },
     {
       "id": "cy_cve-2025-71409",
@@ -11735,237 +12567,39 @@
       "liveRecordId": "live_chrome-releases_7461673a626c6f676765722e"
     },
     {
-      "id": "cy_cve-2026-30936",
-      "kind": "cve",
-      "title": "CVE-2026-30936",
-      "summary": "Hao Ren discovered that ImageMagick incorrectly handled certain images when using the wavelet-denoise operation. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, and Ubuntu 24.04 LTS. (CVE-2026-30936) It was discovered that ImageMagick incorrectly handled extremely large XWD images. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. (CVE-2026-30937) It was discovered that Imag",
-      "updatedAt": "2026-08-10T20:04:52.000Z",
-      "history": [
-        {
-          "at": "2026-08-10T20:04:52.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8592-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8592-1: ImageMagick vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Hao Ren discovered that ImageMagick incorrectly handled certain images when using the wavelet-denoise operation. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, and Ubuntu 24.04 LTS. (CVE-2026-30936) It was discovered that ImageMagick incorrectly handled extremely large XWD images. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. (CVE-2026-30937) It was discovered that Imag",
-        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2026-30937",
-      "kind": "cve",
-      "title": "CVE-2026-30937",
-      "summary": "Hao Ren discovered that ImageMagick incorrectly handled certain images when using the wavelet-denoise operation. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, and Ubuntu 24.04 LTS. (CVE-2026-30936) It was discovered that ImageMagick incorrectly handled extremely large XWD images. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. (CVE-2026-30937) It was discovered that Imag",
-      "updatedAt": "2026-08-10T20:04:52.000Z",
-      "history": [
-        {
-          "at": "2026-08-10T20:04:52.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8592-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8592-1: ImageMagick vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Hao Ren discovered that ImageMagick incorrectly handled certain images when using the wavelet-denoise operation. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. This issue only affected Ubuntu 18.04 LTS, Ubuntu 20.04 LTS, Ubuntu 22.04 LTS, and Ubuntu 24.04 LTS. (CVE-2026-30936) It was discovered that ImageMagick incorrectly handled extremely large XWD images. An attacker could possibly use this issue to trigger an out-of-bounds heap write, resulting in arbitrary code execution. (CVE-2026-30937) It was discovered that Imag",
-        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2026-16742",
-      "kind": "cve",
-      "title": "CVE-2026-16742",
-      "summary": "It was discovered that systemd-homed did not properly verify the signature of home records. A local attacker could possibly use this issue to add arbitrary system groups to a logged-in user and gain elevated privileges. (CVE-2026-16742) It was discovered that systemd-machined incorrectly handled certain polkit authorization checks. A local attacker could possibly use this issue to terminate arbitrary processes, including privileged ones. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-15060) It was discovered that systemd-oomd did not properly validate certain IPC requests. A local attack",
-      "updatedAt": "2026-08-10T13:46:07.000Z",
-      "history": [
-        {
-          "at": "2026-08-10T13:46:07.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8626-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8626-1: systemd vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "It was discovered that systemd-homed did not properly verify the signature of home records. A local attacker could possibly use this issue to add arbitrary system groups to a logged-in user and gain elevated privileges. (CVE-2026-16742) It was discovered that systemd-machined incorrectly handled certain polkit authorization checks. A local attacker could possibly use this issue to terminate arbitrary processes, including privileged ones. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-15060) It was discovered that systemd-oomd did not properly validate certain IPC requests. A local attack",
-        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2026-15060",
-      "kind": "cve",
-      "title": "CVE-2026-15060",
-      "summary": "It was discovered that systemd-homed did not properly verify the signature of home records. A local attacker could possibly use this issue to add arbitrary system groups to a logged-in user and gain elevated privileges. (CVE-2026-16742) It was discovered that systemd-machined incorrectly handled certain polkit authorization checks. A local attacker could possibly use this issue to terminate arbitrary processes, including privileged ones. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-15060) It was discovered that systemd-oomd did not properly validate certain IPC requests. A local attack",
-      "updatedAt": "2026-08-10T13:46:07.000Z",
-      "history": [
-        {
-          "at": "2026-08-10T13:46:07.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8626-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8626-1: systemd vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "It was discovered that systemd-homed did not properly verify the signature of home records. A local attacker could possibly use this issue to add arbitrary system groups to a logged-in user and gain elevated privileges. (CVE-2026-16742) It was discovered that systemd-machined incorrectly handled certain polkit authorization checks. A local attacker could possibly use this issue to terminate arbitrary processes, including privileged ones. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-15060) It was discovered that systemd-oomd did not properly validate certain IPC requests. A local attack",
-        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
       "id": "cy_vendor_github-status",
       "kind": "source",
       "title": "GitHub Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.800Z"
+      "updatedAt": "2026-08-13T02:47:25.722Z"
     },
     {
       "id": "cy_product_github-status",
       "kind": "affected-software",
       "title": "GitHub Status",
       "summary": "Product referenced by live intelligence (GitHub Status)",
-      "updatedAt": "2026-08-12T19:20:46.800Z"
+      "updatedAt": "2026-08-13T02:47:25.722Z"
     },
     {
       "id": "cy_vendor_openai-status",
       "kind": "source",
       "title": "OpenAI Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-12T19:20:46.824Z"
+      "updatedAt": "2026-08-13T02:47:25.839Z"
     },
     {
       "id": "cy_product_openai-status",
       "kind": "affected-software",
       "title": "OpenAI Status",
       "summary": "Product referenced by live intelligence (OpenAI Status)",
-      "updatedAt": "2026-08-12T19:20:46.824Z"
-    },
-    {
-      "id": "cy_cve-2023-45896",
-      "kind": "cve",
-      "title": "CVE-2023-45896",
-      "summary": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-      "updatedAt": "2026-07-31T15:00:56.000Z",
-      "history": [
-        {
-          "at": "2026-07-31T15:00:56.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8620-4",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8620-4: Linux kernel (Intel IoTG) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-        "whyItMatters": "Priority 16 — Informational. Updated/published within 30 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2025-54505",
-      "kind": "cve",
-      "title": "CVE-2025-54505",
-      "summary": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-      "updatedAt": "2026-07-31T15:00:56.000Z",
-      "history": [
-        {
-          "at": "2026-07-31T15:00:56.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8620-4",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8620-4: Linux kernel (Intel IoTG) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-        "whyItMatters": "Priority 16 — Informational. Updated/published within 30 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+      "updatedAt": "2026-08-13T02:47:25.839Z"
     },
     {
       "id": "cy_product_azure",
       "kind": "affected-software",
       "title": "Azure",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-12T19:20:46.781Z"
+      "updatedAt": "2026-08-13T02:47:25.714Z"
     },
     {
       "id": "cy_cve-2026-18411",
@@ -12339,20 +12973,6 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_dd-wrt_cve-2021-27137",
-      "type": "affects",
-      "from": "cy_product_dd-wrt",
-      "to": "cy_cve-2021-27137",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_dd-wrt_cve-2021-27137",
-      "type": "affects",
-      "from": "cy_product_dd-wrt",
-      "to": "cy_cve-2021-27137",
-      "note": "Linked from live provider data"
-    },
-    {
       "id": "rel_cy_product_framework_cve-2025-48595",
       "type": "affects",
       "from": "cy_product_framework",
@@ -12567,6 +13187,13 @@
       "type": "affects",
       "from": "cy_product_langflow",
       "to": "cy_cve-2026-0770",
+      "note": "Linked from live provider data"
+    },
+    {
+      "id": "rel_cy_product_dd-wrt_cve-2021-27137",
+      "type": "affects",
+      "from": "cy_product_dd-wrt",
+      "to": "cy_cve-2021-27137",
       "note": "Linked from live provider data"
     },
     {
@@ -13480,24 +14107,10 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_crypto-js_cve-2026-71851",
-      "type": "affects",
-      "from": "cy_product_crypto-js",
-      "to": "cy_cve-2026-71851",
-      "note": "Linked from live provider data"
-    },
-    {
       "id": "rel_cy_product_github-com-se_cve-2026-54917",
       "type": "affects",
       "from": "cy_product_github-com-seaweedfs-seaweedfs",
       "to": "cy_cve-2026-54917",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_github-com-se_cve-2026-73080",
-      "type": "affects",
-      "from": "cy_product_github-com-seaweedfs-seaweedfs",
-      "to": "cy_cve-2026-73080",
       "note": "Linked from live provider data"
     },
     {
@@ -13690,38 +14303,17 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_microsoft-net_cve-2026-62898",
+      "id": "rel_cy_product_ansible-jaile_cve-2026-55074",
       "type": "affects",
-      "from": "cy_product_microsoft-netcore-app-runtime-win-arm64",
-      "to": "cy_cve-2026-62898",
+      "from": "cy_product_ansible-jailexec",
+      "to": "cy_cve-2026-55074",
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_microsoft-net_cve-2026-62898",
+      "id": "rel_cy_product_stata-mcp_cve-2026-55071",
       "type": "affects",
-      "from": "cy_product_microsoft-netcore-app-runtime-win-x64",
-      "to": "cy_cve-2026-62898",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_microsoft-net_cve-2026-62898",
-      "type": "affects",
-      "from": "cy_product_microsoft-netcore-app-runtime-win-x86",
-      "to": "cy_cve-2026-62898",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_microsoft-net_cve-2026-62898",
-      "type": "affects",
-      "from": "cy_product_microsoft-netcore-app-runtime-win-arm64",
-      "to": "cy_cve-2026-62898",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_microsoft-net_cve-2026-62898",
-      "type": "affects",
-      "from": "cy_product_microsoft-netcore-app-runtime-win-x64",
-      "to": "cy_cve-2026-62898",
+      "from": "cy_product_stata-mcp",
+      "to": "cy_cve-2026-55071",
       "note": "Linked from live provider data"
     },
     {
@@ -13893,17 +14485,10 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_pypdf_cve-2026-71870",
+      "id": "rel_cy_product_tablib_cve-2026-9318",
       "type": "affects",
-      "from": "cy_product_pypdf",
-      "to": "cy_cve-2026-71870",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_pypdf_cve-2026-71852",
-      "type": "affects",
-      "from": "cy_product_pypdf",
-      "to": "cy_cve-2026-71852",
+      "from": "cy_product_tablib",
+      "to": "cy_cve-2026-9318",
       "note": "Linked from live provider data"
     }
   ]
