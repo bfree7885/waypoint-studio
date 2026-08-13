@@ -1297,3 +1297,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep derived intelligence local and synchronous on the existing platform payload — no LLM, no extra fetches.
 - Ordinary conditions must be allowed to yield **zero** noteworthy Happening Now signals; never manufacture interest.
 - Contextual tool links hard-filter to live products with justified reasons (Scenes only today); leave Sheds/Forage dormant.
+
+## Lessons Learned — Happening Now discovery layer (2026-08-12)
+
+- Happening Now is a shell sibling between Today Outside and Workspace — not another instrument tile.
+- Empty noteworthy list must render **no DOM** (hide entirely); filler empty states fight calm product feel.
+- When exposing time windows, thread an explicit `now` through `fromPlatform` / `analyze` / shell paint so fixtures and sunset math stay aligned.
+- Deduplicate BYO vs HN: discoveries own attention (precip/wind/air/light/astro); Before You Go keeps comfort/practical dress-for-outside prose.

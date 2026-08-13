@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1|dash-depth-1|dash-refine|dash-sw-art/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1|dash-depth-1|dash-refine|dash-sw-art|dash-hn/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [

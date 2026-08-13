@@ -672,10 +672,20 @@
     var minScore = options.minScore != null ? options.minScore : 0;
     var noteworthyOnly = !!options.noteworthyOnly;
     var limit = options.limit != null ? options.limit : 8;
+    var now = asDate(options.now) || new Date();
     var list = (signals || []).slice().filter(function (s) {
       if (!s) return false;
       if (noteworthyOnly && !s.noteworthy) return false;
-      return (s.score || 0) >= minScore;
+      if ((s.score || 0) < minScore) return false;
+      if (s.validUntil) {
+        var until = asDate(s.validUntil);
+        if (until && until.getTime() < now.getTime()) return false;
+      }
+      if (s.validFrom) {
+        var from = asDate(s.validFrom);
+        if (from && from.getTime() > now.getTime()) return false;
+      }
+      return true;
     });
     list.sort(function (a, b) {
       if ((b.score || 0) !== (a.score || 0)) return (b.score || 0) - (a.score || 0);
@@ -703,17 +713,33 @@
     return chosen;
   }
 
-  function composeBeforeYouGoBrief(state, signals) {
+  function composeBeforeYouGoBrief(state, signals, options) {
     state = state || {};
+    options = options || {};
+    var happeningIds = options.happeningIds || Object.create(null);
     var w = state.weather || {};
     var chosen = pickBeforeYouGoSignals(signals || []);
     var parts = [];
+
+    function inHappening(id) {
+      return !!(happeningIds && happeningIds[id]);
+    }
+
+    function skipCategoryForDedupe(cat, id) {
+      /* Happening Now owns attention for these; Before You Go stays practical. */
+      if (!inHappening(id)) return false;
+      if (cat === "alerts") return false; /* keep brief alert lead when severe */
+      if (cat === "light" || cat === "astronomy") return true;
+      if (cat === "precipitation" || cat === "wind" || cat === "air") return true;
+      if (cat === "temperature" && id !== "comfort-humid") return true;
+      return false;
+    }
 
     var temp = w.temperatureF;
     var humidity = w.humidityPct;
     var wind = w.windMph;
     var comfort = chosen.filter(function (s) {
-      return s.category === "temperature";
+      return s.category === "temperature" && !skipCategoryForDedupe(s.category, s.id);
     })[0];
     if (comfort) {
       parts.push(comfort.summary.replace(/\.$/, ""));
@@ -726,7 +752,7 @@
     }
 
     var precip = chosen.filter(function (s) {
-      return s.category === "precipitation";
+      return s.category === "precipitation" && !skipCategoryForDedupe(s.category, s.id);
     })[0];
     if (precip && precip.id !== "precip-dry-now") {
       parts.push(precip.summary.replace(/\.$/, ""));
@@ -735,16 +761,16 @@
     }
 
     var windSig = chosen.filter(function (s) {
-      return s.category === "wind";
+      return s.category === "wind" && !skipCategoryForDedupe(s.category, s.id);
     })[0];
     if (windSig && windSig.id !== "wind-calm") {
       parts.push(windSig.summary.replace(/\.$/, ""));
-    } else if (wind != null && wind <= 6 && parts.length < 3) {
+    } else if (wind != null && wind <= 6 && parts.length < 3 && !inHappening("wind-gusts") && !inHappening("wind-breezy")) {
       parts.push("no significant wind");
     }
 
     var airSig = chosen.filter(function (s) {
-      return s.category === "air" && s.id !== "air-good";
+      return s.category === "air" && s.id !== "air-good" && !skipCategoryForDedupe(s.category, s.id);
     })[0];
     if (airSig) parts.push(airSig.summary.replace(/\.$/, ""));
 
@@ -754,12 +780,17 @@
     if (alertSig) parts.unshift(alertSig.summary.replace(/\.$/, ""));
 
     var lightSig = chosen.filter(function (s) {
-      return s.category === "light" && s.noteworthy;
+      return s.category === "light" && s.noteworthy && !skipCategoryForDedupe(s.category, s.id);
     })[0];
     if (lightSig && parts.length < 4) parts.push(lightSig.summary.replace(/\.$/, ""));
 
     var astroSig = chosen.filter(function (s) {
-      return s.category === "astronomy" && s.noteworthy && (s.score || 0) >= 40;
+      return (
+        s.category === "astronomy" &&
+        s.noteworthy &&
+        (s.score || 0) >= 40 &&
+        !skipCategoryForDedupe(s.category, s.id)
+      );
     })[0];
     if (astroSig && parts.length < 4) parts.push(astroSig.summary.replace(/\.$/, ""));
 
@@ -786,22 +817,26 @@
 
     var facts = [];
     if (alertSig) facts.push({ label: "Alerts", value: alertSig.title, note: "Live" });
-    if (precip && precip.id !== "precip-dry-now") {
+    if (precip && precip.id !== "precip-dry-now" && !skipCategoryForDedupe("precipitation", precip.id)) {
       facts.push({ label: "Precip", value: precip.title, note: "Derived" });
-    } else if (w.precipProbabilityPct != null && w.precipProbabilityPct >= 20) {
+    } else if (w.precipProbabilityPct != null && w.precipProbabilityPct >= 20 && !inHappening("precip-soon")) {
       facts.push({
         label: "Precip now",
         value: Math.round(w.precipProbabilityPct) + "%",
         note: "Live"
       });
     }
-    if (windSig && windSig.id !== "wind-calm") {
+    if (windSig && windSig.id !== "wind-calm" && !skipCategoryForDedupe("wind", windSig.id)) {
       facts.push({ label: "Wind", value: windSig.title, note: "Derived" });
     } else if (wind != null) {
       facts.push({ label: "Wind", value: Math.round(wind) + " mph", note: "Live" });
     }
-    if (airSig) facts.push({ label: "Air", value: airSig.title, note: "Derived" });
-    if (lightSig) facts.push({ label: "Light", value: lightSig.title, note: "Derived" });
+    if (airSig && !skipCategoryForDedupe("air", airSig.id)) {
+      facts.push({ label: "Air", value: airSig.title, note: "Derived" });
+    }
+    if (lightSig && !skipCategoryForDedupe("light", lightSig.id)) {
+      facts.push({ label: "Light", value: lightSig.title, note: "Derived" });
+    }
 
     var evidence = [];
     chosen.forEach(function (s) {
@@ -819,11 +854,12 @@
   }
 
   function happeningNow(state, options) {
-    var signals = deriveSignals(state);
+    var signals = deriveSignals(state, options && options.now);
     return rankSignals(signals, {
       noteworthyOnly: true,
       minScore: options && options.minScore != null ? options.minScore : 25,
-      limit: options && options.limit != null ? options.limit : 5
+      limit: options && options.limit != null ? options.limit : 4,
+      now: options && options.now
     });
   }
 
@@ -845,8 +881,12 @@
   function analyze(platform, location, now) {
     var state = normalizeEnvState(platform, location, now);
     var signals = deriveSignals(state, now);
-    var brief = composeBeforeYouGoBrief(state, signals);
-    var notable = happeningNow(state, { minScore: 25, limit: 5 });
+    var notable = happeningNow(state, { minScore: 25, limit: 4, now: now });
+    var happeningIds = Object.create(null);
+    notable.forEach(function (s) {
+      if (s && s.id) happeningIds[s.id] = true;
+    });
+    var brief = composeBeforeYouGoBrief(state, signals, { happeningIds: happeningIds });
     return {
       state: state,
       signals: signals,
@@ -858,7 +898,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildIntel = {
-    version: "1.0.0-instrument-intelligence",
+    version: "1.1.0-happening-now-layer",
     normalizeEnvState: normalizeEnvState,
     deriveSignals: deriveSignals,
     rankSignals: rankSignals,

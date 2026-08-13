@@ -97,7 +97,7 @@ const Data = sandbox.WDS.dashboardRebuildData;
 const Reg = sandbox.WDS.dashboardRebuildRegistry;
 
 assert("intel module loaded", !!(Intel && Intel.analyze && Intel.version));
-assert("intel version", /instrument-intelligence/.test(Intel.version));
+assert("intel version", /instrument-intelligence|happening-now-layer/.test(Intel.version));
 assert("data loads after intel", !!(Data && Data.fromPlatform));
 assert("wds.js includes intel before data", /rebuild-intel\.js[\s\S]*rebuild-data\.js/.test(
   fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8")
@@ -190,7 +190,12 @@ const fixtures = [
     expect: (a) => {
       assert(a.name + " precip-soon", hasId(a.signals, "precip-soon"), ids(a.signals).join(","));
       assert(a.name + " noteworthy includes rain", hasId(a.happeningNow, "precip-soon"));
-      assert(a.name + " BYO mentions rain/showers", /rain|precip|shower/i.test(a.beforeYouGo.brief));
+      /* BYO may omit precip prose when Happening Now already surfaces it */
+      assert(
+        a.name + " BYO still useful without rain echo",
+        !!(a.beforeYouGo.brief && a.beforeYouGo.brief.length > 8) &&
+          !/Enjoy your day|check the weather before/i.test(a.beforeYouGo.brief)
+      );
     }
   },
   {
@@ -230,7 +235,10 @@ const fixtures = [
     expect: (a) => {
       assert(a.name + " wind-gusts", hasId(a.signals, "wind-gusts"));
       assert(a.name + " gusts ranked high", a.happeningNow[0] && a.happeningNow[0].id === "wind-gusts");
-      assert(a.name + " BYO mentions wind/gust", /gust|wind/i.test(a.beforeYouGo.brief));
+      assert(
+        a.name + " BYO useful without gust echo",
+        !!(a.beforeYouGo.brief && a.beforeYouGo.brief.length > 8)
+      );
     }
   },
   {
@@ -329,7 +337,11 @@ const fixtures = [
       }),
     expect: (a) => {
       assert(a.name + " air-moderate", hasId(a.signals, "air-moderate"));
-      assert(a.name + " BYO air mention", /air|AQI|moderate/i.test(a.beforeYouGo.brief + JSON.stringify(a.beforeYouGo.facts)));
+      assert(
+        a.name + " air in HN or BYO",
+        hasId(a.happeningNow, "air-moderate") ||
+          /air|AQI|moderate/i.test(a.beforeYouGo.brief + JSON.stringify(a.beforeYouGo.facts))
+      );
     }
   },
   {
