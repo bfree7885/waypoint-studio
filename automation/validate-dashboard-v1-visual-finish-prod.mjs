@@ -188,28 +188,22 @@ async function main() {
     console.log("wrote", file);
   }
   async function waitReady(timeoutMs = 50000) {
-    const start = Date.now();
-    while (Date.now() - start < timeoutMs) {
-      const st = await evalJs(`(function(){
-        var host = document.querySelector('.wdb-r');
-        return {
-          ready: !!(host && host.classList.contains('wdb-r-ready')),
-          toggles: document.querySelectorAll('[data-wdb-r-depth-toggle]').length,
-          readyBodies: document.querySelectorAll('.wdb-r-widget__body--ready').length,
-          gfx: (window.WDS && window.WDS.dashboardRebuildGraphics && window.WDS.dashboardRebuildGraphics.version) || null
-        };
-      })()`);
-      if (st && st.ready && st.readyBodies >= 3) return st;
-      await delay(1000);
-    }
-    return evalJs(`(function(){
+    const probe = `(function(){
+      var host = document.querySelector('#wds-content-engine');
       return {
-        ready: !!(document.querySelector('.wdb-r') && document.querySelector('.wdb-r').classList.contains('wdb-r-ready')),
+        ready: !!(host && host.classList.contains('wdb-r-ready')),
         toggles: document.querySelectorAll('[data-wdb-r-depth-toggle]').length,
         readyBodies: document.querySelectorAll('.wdb-r-widget__body--ready').length,
         gfx: (window.WDS && window.WDS.dashboardRebuildGraphics && window.WDS.dashboardRebuildGraphics.version) || null
       };
-    })()`);
+    })()`;
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      const st = await evalJs(probe);
+      if (st && st.ready && st.readyBodies >= 3) return st;
+      await delay(1000);
+    }
+    return evalJs(probe);
   }
 
   async function probeScenes() {
@@ -264,7 +258,7 @@ async function main() {
     const ready = await waitReady();
     const scenes = await probeScenes();
     report.viewports.push({ width: w, height: h, mobile, ready, scenes });
-    if (ready && ready.readyBodies >= 3) pass("viewport " + w + " ready", JSON.stringify(ready));
+    if (ready && ready.ready && ready.readyBodies >= 3) pass("viewport " + w + " ready", JSON.stringify(ready));
     else fail("viewport " + w + " ready", JSON.stringify(ready));
     if (scenes && scenes.gfx === "5.3.0-v1-visual-finish") pass("viewport " + w + " gfx runtime", scenes.gfx);
     else fail("viewport " + w + " gfx runtime", JSON.stringify(scenes && scenes.gfx));
