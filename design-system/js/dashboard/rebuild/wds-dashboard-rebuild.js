@@ -292,6 +292,10 @@
       if (Happening && Happening.bind) {
         Happening.bind(mountState.host);
       }
+      var Depth = api("dashboardRebuildDepth");
+      if (Depth && Depth.bind) {
+        Depth.bind(mountState.host);
+      }
     }
     if (mountState.view === "workspace") {
       var Deepen = api("dashboardRebuildDeepeners");

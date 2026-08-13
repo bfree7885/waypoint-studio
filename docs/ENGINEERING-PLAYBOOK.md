@@ -1304,3 +1304,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty noteworthy list must render **no DOM** (hide entirely); filler empty states fight calm product feel.
 - When exposing time windows, thread an explicit `now` through `fromPlatform` / `analyze` / shell paint so fixtures and sunset math stay aligned.
 - Deduplicate BYO vs HN: discoveries own attention (precip/wind/air/light/astro); Before You Go keeps comfort/practical dress-for-outside prose.
+
+## Lessons Learned — Dashboard instrument depth (2026-08-12)
+
+- Prefer one in-tile disclosure pattern (Details + `aria-expanded`) over modals/side panels — least disruption to frozen layout and mobile one-column.
+- Depth must add timing/trend/evidence/source, not enlarge the same glance facts; omit empty rows instead of dash grids.
+- Feels-like and gusts earn visual weight only past small deltas (≥3°F / ≥4 mph); otherwise they clutter glance hierarchy.
+- Keep optional instruments (`ph-comfort`, `ph-day-range`) in the catalog for saved layouts even when default experience absorbs or de-emphasizes them.
+- Happening Now → `openWidget` should open depth on the related instrument so discovery connects to evidence without a new navigation model.

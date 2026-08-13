@@ -248,7 +248,7 @@
       live: true,
       catalogAvailable: true,
       kiosk: { show: false },
-      description: "Derived feel from temperature, humidity, and feels-like.",
+      description: "Comfort reading — also reflected in Conditions details when feels-like differs.",
       emptyMessage: "Comfort reading settles with temperature."
     },
     {
@@ -264,7 +264,7 @@
       live: true,
       catalogAvailable: true,
       kiosk: { show: true, chrome: "minimal" },
-      description: "Today’s high, low, and precip probability.",
+      description: "Today’s high, low, and where now sits in that range.",
       emptyMessage: "Today’s range will appear with the daily forecast.",
       offlineMessage: "Daily range needs a connection."
     }
@@ -493,12 +493,14 @@
     if (temp && /°F$/.test(String(temp))) temp = String(temp).replace(/°F$/, "°");
     var sky =
       (cur && cur.conditions) || factValue(facts, "Sky") || factValue(facts, "Conditions");
-    var feels =
-      cur && cur.feelsF != null
-        ? "Feels like " + Math.round(cur.feelsF) + "°"
-        : factValue(facts, "Feels like")
-          ? "Feels like " + factValue(facts, "Feels like")
-          : null;
+    var feels = null;
+    if (cur && cur.feelsF != null && cur.tempF != null) {
+      if (Math.abs(Math.round(cur.feelsF) - Math.round(cur.tempF)) >= 3) {
+        feels = "Feels like " + Math.round(cur.feelsF) + "°";
+      }
+    } else if (factValue(facts, "Feels like")) {
+      feels = "Feels like " + factValue(facts, "Feels like");
+    }
     var wind = cur && cur.windMph != null ? Math.round(cur.windMph) + " mph" : factValue(facts, "Wind");
     var humidity =
       cur && cur.humidity != null
@@ -555,9 +557,16 @@
     var hours = (data && data.hours) || [];
     if (!hours.length) return renderFacts(data && data.facts);
     var G = global.WDS && global.WDS.dashboardRebuildGraphics;
+    var change = data && data.changeHeadline;
+    var glance = hours.slice(0, 4);
     return (
+      (change
+        ? '<p class="wdb-r-widget__brief wdb-r-widget__brief--change" data-trust="derived">' +
+          escapeHtml(change) +
+          "</p>"
+        : "") +
       '<ul class="wdb-r-hours" role="list">' +
-      hours
+      glance
         .map(function (h) {
           var icon =
             G && G.miniSky
@@ -623,9 +632,10 @@
     return "quiet";
   }
 
-  function renderBody(widget, data) {
+  function renderBody(widget, data, options) {
     widget = widget || {};
-    data = data || getData(widget.id);
+    options = options || {};
+    data = data || getData(widget.id, { platform: options.platform || null });
     var trust = trustAttr(data.trust || "waiting");
     var state =
       trust === "offline" || trust === "unavailable"
@@ -662,6 +672,17 @@
     }
     /* graphic module now emits .wdb-r-widget__art directly */
     var art = graphic || "";
+    var depth = "";
+    if (!options.customize && state === "ready") {
+      var Depth = global.WDS && global.WDS.dashboardRebuildDepth;
+      if (Depth && typeof Depth.renderDepthPanel === "function") {
+        try {
+          depth = Depth.renderDepthPanel(widget, data, options.platform || null) || "";
+        } catch (e) {
+          depth = "";
+        }
+      }
+    }
     return (
       '<div class="wdb-r-widget__body wdb-r-widget__body--' +
       escapeHtml(state) +
@@ -675,6 +696,7 @@
       art +
       '<div class="wdb-r-widget__content">' +
       content +
+      depth +
       "</div>" +
       '<p class="wdb-r-widget__trust"><span class="wds-trust-chip" data-trust="' +
       escapeHtml(trust) +
@@ -701,7 +723,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildRegistry = {
-    version: "4.2.0-visual-target",
+    version: "4.3.0-instrument-depth",
     sizes: SIZES.slice(),
     libraryCategories: libraryCategories,
     libraryGroupOrder: libraryGroupOrder,

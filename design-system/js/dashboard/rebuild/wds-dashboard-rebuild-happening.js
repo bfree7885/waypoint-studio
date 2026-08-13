@@ -307,6 +307,10 @@
         ev.preventDefault();
         var id = focusBtn.getAttribute("data-wdb-r-hn-focus");
         if (!id) return;
+        var Depth = global.WDS && global.WDS.dashboardRebuildDepth;
+        if (Depth && typeof Depth.openWidget === "function" && Depth.openWidget(host, id)) {
+          return;
+        }
         var widget =
           host.querySelector('.wdb-r-widget[data-widget-id="' + id + '"]') ||
           document.querySelector('.wdb-r-widget[data-widget-id="' + id + '"]');
