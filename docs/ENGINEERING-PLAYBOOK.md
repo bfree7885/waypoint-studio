@@ -1333,3 +1333,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dashboard→Scenes links are navigational only today (no opportunity query params); outdoor context depends on ecosystem bridge sessionStorage, not the click.
 - Headless Chrome screenshots need unrestricted network (or local server after curl SHA/route checks); sandboxed Chrome yields false `ERR_INTERNET_DISCONNECTED` artifacts.
 
+## Lessons Learned — Photo Coach + Photo Library excellence (2026-08-13)
+
+- Authoritative Coach path is `apps/photo-coach/` UI + `apps/waypoint-scenes/js/photo-coach*.js` (analysis filename still `*-demo.js`); ignore `apps/scenes/js/engines/*` stubs.
+- Sharpness trust requires scene ambiguity gates (smooth sky/water, shallow DOF, low light) — Laplacian-on-downsample alone over-claims blur; soft language until CONF_SHARPNESS_CLAIM.
+- Product confidence language should be HIGH / REASONABLE / LOW on every surfaced critique; omit weak issues rather than hedging in place.
+- Shoot summary must prefer user Favorites/Keep labels over score-invented “favorite”; recurring patterns need count ≥ 2; progression only with EXIF timestamps.
+- Library SoT handoff: carry `shootId`, narrative summary, outdoor context source, and `?shootId=` / `?libraryId=` deep links — do not duplicate blobs.
+- Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
+- Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
+

@@ -1,7 +1,8 @@
 /**
- * Photo Coach — On-device analysis engine v4
+ * Photo Coach — On-device analysis engine v5
  * Browser-only, deterministic, confidence-gated mentoring.
  * Always labeled On-device analysis. Never invents low-confidence critique.
+ * Sharpness uses Laplacian + scene ambiguity gates (smooth sky/water, shallow DOF, low light).
  */
 (function (global) {
   "use strict";
@@ -10,7 +11,23 @@
   var SAMPLE_H = 130;
   var CONF_SHOW = 0.58;
   var CONF_STRONG = 0.72;
-  var ENGINE_VERSION = "4.0.0";
+  var CONF_SHARPNESS_CLAIM = 0.74;
+  var ENGINE_VERSION = "5.0.0";
+
+  /** Map 0–1 confidence to product language. */
+  function confidenceTier(value) {
+    var v = typeof value === "number" ? value : 0;
+    if (v >= 0.72) return "HIGH";
+    if (v >= 0.58) return "REASONABLE";
+    return "LOW";
+  }
+
+  function confidenceLabel(value) {
+    var tier = confidenceTier(value);
+    if (tier === "HIGH") return "HIGH confidence";
+    if (tier === "REASONABLE") return "REASONABLE confidence";
+    return "LOW confidence";
+  }
 
   function clamp(n, min, max) {
     return Math.max(min, Math.min(max, n));
@@ -162,8 +179,8 @@
     var meanL = sumL / n;
     var variance = sumL2 / n - meanL * meanL;
     var contrast = Math.sqrt(Math.max(0, variance));
-    var lapVar = laplacianN ? laplacianSum / laplacianN : 0;
-    var blurScore = clamp(100 - lapVar * 1.8, 0, 100);
+    var lapMean = laplacianN ? laplacianSum / laplacianN : 0;
+    var blurScore = clamp(100 - lapMean * 1.8, 0, 100);
     var edgeCells = (SAMPLE_W - 2) * (SAMPLE_H - 2);
 
     var dominant = Object.keys(colorBins).sort(function (a, b) {
@@ -224,6 +241,7 @@
       histogram: histogram.map(function (v) { return v / n; }),
       dominantColors: dominant,
       blurEstimate: blurScore,
+      laplacianMean: lapMean,
       highlightClip: bright / n,
       shadowClip: dark / n,
       megapixels: round((iw * ih) / 1000000 * 10) / 10,
@@ -233,6 +251,90 @@
 
   function conf(value) {
     return clamp(value, 0, 1);
+  }
+
+  /**
+   * Sharpness / blur honesty gate.
+   * Downsample Laplacian is a coarse proxy — never claim "blurry" when the scene
+   * is naturally smooth, likely shallow DOF, or low-light noisy.
+   */
+  function assessSharpness(signals, exif) {
+    signals = signals || {};
+    exif = exif || {};
+    var score = signals.blurEstimate != null ? signals.blurEstimate : 50;
+    var edge = signals.edgeDensity != null ? signals.edgeDensity : 0;
+    var blue = signals.blueFraction != null ? signals.blueFraction : 0;
+    var sky = signals.skyBrightness != null ? signals.skyBrightness : 0;
+    var bright = signals.brightness != null ? signals.brightness : 128;
+    var subject = signals.subjectEmphasis != null ? signals.subjectEmphasis : 0;
+    var ambiguities = [];
+    var confidence = 0.7;
+
+    var smoothSkyWater = (sky > 0.22 && edge < 0.055) || (blue > 0.18 && edge < 0.06);
+    if (smoothSkyWater) {
+      ambiguities.push("smooth-sky-or-water");
+      confidence -= 0.28;
+    }
+
+    var shallowDof =
+      (subject > 0.14 && score < 55 && edge > 0.04) ||
+      (exif.fNumber != null && exif.fNumber > 0 && exif.fNumber <= 2.8 && subject > 0.08);
+    if (shallowDof) {
+      ambiguities.push("shallow-depth-of-field");
+      confidence -= 0.22;
+    }
+
+    var lowLight =
+      bright < 48 ||
+      (exif.iso != null && exif.iso >= 3200) ||
+      (exif.exposureTimeSec != null && exif.exposureTimeSec >= 0.05 && bright < 70);
+    if (lowLight) {
+      ambiguities.push("low-light");
+      confidence -= 0.18;
+    }
+
+    var detailedLandscape = edge > 0.11 && score > 48 && (signals.greenFraction || 0) > 0.12;
+    if (detailedLandscape && score > 55) {
+      confidence = Math.max(confidence, 0.76);
+    }
+
+    // Very low edges + soft laplacian: likely textureless scene, not motion blur
+    if (edge < 0.035 && score < 45) {
+      ambiguities.push("low-texture-scene");
+      confidence -= 0.25;
+    }
+
+    // Strong edge density with low score supports a soft claim better
+    if (score < 38 && edge > 0.07 && !smoothSkyWater) {
+      confidence += 0.12;
+    }
+
+    confidence = conf(confidence);
+    var tier = confidenceTier(confidence);
+    var claimSoftness = score < 38 && confidence >= CONF_SHARPNESS_CLAIM && ambiguities.indexOf("smooth-sky-or-water") < 0;
+    var softNote = null;
+    if (score < 45 && !claimSoftness) {
+      if (ambiguities.indexOf("smooth-sky-or-water") >= 0) {
+        softNote = "Large smooth areas (sky or water) often look soft in a quick browser check — zoom the subject at 100% before judging focus.";
+      } else if (ambiguities.indexOf("shallow-depth-of-field") >= 0) {
+        softNote = "Background softness may be intentional depth of field. Check whether the intended plane is crisp at 100%.";
+      } else if (ambiguities.indexOf("low-light") >= 0) {
+        softNote = "Low light can look soft from noise or shutter — confirm the subject at 100% rather than trusting a thumbnail estimate.";
+      } else {
+        softNote = "Sharpness is ambiguous from this downsample. Check the subject at 100% before changing settings next time.";
+      }
+    }
+
+    return {
+      score: round(score),
+      confidence: confidence,
+      confidenceTier: tier,
+      confidenceLabel: confidenceLabel(confidence),
+      ambiguities: ambiguities,
+      claimSoftness: claimSoftness,
+      softNote: softNote,
+      method: "laplacian-downsample-" + SAMPLE_W + "x" + SAMPLE_H
+    };
   }
 
   function detectGenre(signals, exif) {
@@ -321,9 +423,13 @@
   function collectObservations(signals, exif, outdoor, genre) {
     var obs = [];
     var hints = outdoorHints(outdoor);
+    var sharp = assessSharpness(signals, exif);
+    signals.sharpnessAssessment = sharp;
 
     function add(o) {
       if (!o || o.confidence < CONF_SHOW) return;
+      o.confidenceTier = confidenceTier(o.confidence);
+      o.confidenceLabel = confidenceLabel(o.confidence);
       obs.push(o);
     }
 
@@ -355,12 +461,12 @@
         preserveInEdit: "Keep the subject brighter or clearer than competing edges."
       });
     }
-    if (signals.edgeDensity > 0.095 && signals.blurEstimate > 48) {
+    if (signals.edgeDensity > 0.095 && signals.blurEstimate > 48 && sharp.confidenceTier !== "LOW") {
       add({
-        kind: "strength", category: "Sharpness", confidence: conf(0.6 + signals.edgeDensity),
+        kind: "strength", category: "Sharpness", confidence: conf(Math.min(0.82, 0.55 + sharp.confidence * 0.35)),
         impact: 0.65,
         title: "Defined structure",
-        whyItWorks: "Edge detail suggests a readable subject or landscape form at this resolution.",
+        whyItWorks: "Edge detail suggests a readable subject or landscape form at this resolution — still confirm the focus plane at 100%.",
         preserveInEdit: "Sharpen for output size; check the true subject at 100% before printing large."
       });
     }
@@ -519,18 +625,31 @@
         editHints: ["crop", "local emphasis"]
       });
     }
-    if (signals.blurEstimate < 38) {
+    if (sharp.claimSoftness) {
       add({
-        kind: "issue", category: "Sharpness", confidence: conf(0.66),
+        kind: "issue", category: "Sharpness", confidence: conf(sharp.confidence),
         impact: 0.86,
-        issue: "Softness limits print and crop",
+        issue: "Subject detail may be too soft for a large print or tight crop",
         whyItMatters: "If the true subject is soft, larger prints and aggressive crops will fail.",
         whatToDo: "Verify focus at 100%. If motion is the cause, raise shutter next time; for this file, crop less and sharpen gently for screen.",
         expectedImprovement: "Honest expectations for print size and cleaner presentation.",
-        editHints: []
+        editHints: [],
+        fieldAction: "Next time: lock focus on the subject, then raise shutter until the subject stays crisp when you zoom in."
+      });
+    } else if (sharp.softNote && sharp.confidence >= CONF_SHOW) {
+      // Ambiguous soft signal — advisory only, never "this is blurry"
+      add({
+        kind: "issue", category: "Sharpness", confidence: conf(Math.min(sharp.confidence, 0.64)),
+        impact: 0.45,
+        issue: "Sharpness is uncertain from a browser check",
+        whyItMatters: "A quick downsample cannot always tell intentional softness from miss-focus.",
+        whatToDo: sharp.softNote,
+        expectedImprovement: "You decide after a 100% check — coaching will not invent a blur cause.",
+        editHints: [],
+        fieldAction: null
       });
     }
-    if (exif && exif.iso && exif.iso > 3200 && signals.blurEstimate < 55) {
+    if (exif && exif.iso && exif.iso > 3200 && signals.blurEstimate < 55 && !sharp.claimSoftness) {
       add({
         kind: "issue", category: "Noise", confidence: conf(0.7),
         impact: 0.6,
@@ -655,14 +774,25 @@
         });
       }
       if (genre.label === "Macro" || genre.label === "Mushroom" || genre.label === "Flower") {
-        if (signals.blurEstimate < 50) {
+        if (sharp.claimSoftness) {
           add({
-            kind: "issue", category: "Sharpness", confidence: conf(0.62),
+            kind: "issue", category: "Sharpness", confidence: conf(Math.max(sharp.confidence, 0.72)),
             impact: 0.8,
             issue: "Critical focus may miss the subject plane",
             whyItMatters: "In close work, a soft focus plane is the whole photograph.",
             whatToDo: "Confirm the sharpest plane at 100%. Prefer a modest crop over aggressive sharpening.",
             expectedImprovement: "Honest presentation of the subject’s texture.",
+            editHints: [],
+            fieldAction: "Next time: focus on the nearest critical detail, stop down one stop if depth is shallow, and brace or raise shutter."
+          });
+        } else if (sharp.softNote && signals.blurEstimate < 50) {
+          add({
+            kind: "issue", category: "Sharpness", confidence: conf(Math.min(sharp.confidence, 0.62)),
+            impact: 0.5,
+            issue: "Close-up sharpness needs a 100% check",
+            whyItMatters: "Macro softness is easy to misread in a small preview.",
+            whatToDo: sharp.softNote,
+            expectedImprovement: "You keep control of whether softness is intentional.",
             editHints: []
           });
         }
@@ -706,7 +836,9 @@
         whyItWorks: o.whyItWorks,
         preserveInEdit: o.preserveInEdit,
         category: o.category,
-        confidence: round(o.confidence * 100)
+        confidence: round(o.confidence * 100),
+        confidenceTier: o.confidenceTier || confidenceTier(o.confidence),
+        confidenceLabel: o.confidenceLabel || confidenceLabel(o.confidence)
       };
     });
 
@@ -719,6 +851,9 @@
         expectedImprovement: o.expectedImprovement,
         category: o.category,
         confidence: round(o.confidence * 100),
+        confidenceTier: o.confidenceTier || confidenceTier(o.confidence),
+        confidenceLabel: o.confidenceLabel || confidenceLabel(o.confidence),
+        fieldAction: o.fieldAction || null,
         priority: "secondary"
       };
     });
@@ -732,6 +867,9 @@
         expectedImprovement: primary.expectedImprovement,
         category: primary.category,
         confidence: round(primary.confidence * 100),
+        confidenceTier: primary.confidenceTier || confidenceTier(primary.confidence),
+        confidenceLabel: primary.confidenceLabel || confidenceLabel(primary.confidence),
+        fieldAction: primary.fieldAction || null,
         priority: "primary",
         editHints: primary.editHints || []
       });
@@ -745,11 +883,34 @@
         whyItWorks: "The file is readable enough to coach from, but no single strength stood out with high confidence from browser signals alone.",
         preserveInEdit: "Make one deliberate improvement first — do not stack many global edits.",
         category: "Overall",
-        confidence: 50
+        confidence: 50,
+        confidenceTier: "LOW",
+        confidenceLabel: "LOW confidence"
       });
     }
 
-    return { topStrengths: topStrengths, improvements: improvements, primary: primary, all: obs };
+    var nextTimeActions = [];
+    improvements.forEach(function (imp) {
+      if (nextTimeActions.length >= 2) return;
+      if (imp.fieldAction) {
+        nextTimeActions.push(imp.fieldAction);
+        return;
+      }
+      if (imp.whatToDo && /next time|next shoot|raise shutter|lock focus|lower the camera|return in/i.test(imp.whatToDo)) {
+        nextTimeActions.push(imp.whatToDo);
+      }
+    });
+    if (!nextTimeActions.length && primary && primary.whatToDo) {
+      nextTimeActions.push("Next time in the field: " + primary.whatToDo.replace(/^If you're curious,\s*/i, ""));
+    }
+
+    return {
+      topStrengths: topStrengths,
+      improvements: improvements,
+      nextTimeActions: nextTimeActions.slice(0, 2),
+      primary: primary,
+      all: obs
+    };
   }
 
   function buildEditPlan(signals, improvements, outdoor) {
@@ -1115,8 +1276,8 @@
       presetId: presetId,
       motion: overall >= 80 ? "orbit" : "pan-left",
       style: mood === "dramatic" ? "Dramatic" : mood === "mist" ? "Natural" : "Cinematic",
-      summary: "Demo suggestion from image tone" +
-        (outdoor && outdoor.daylight && outdoor.daylight.goldenHour ? " and golden-hour field context." : ".")
+      summary: "On-device tone suggestion" +
+        (outdoor && outdoor.daylight && outdoor.daylight.goldenHour ? " using saved golden-hour field context." : ".")
     };
   }
 
@@ -1161,6 +1322,7 @@
     var letter = letterGrade(overall);
     var strengths = prioritized.topStrengths;
     var improvements = prioritized.improvements;
+    var nextTimeActions = prioritized.nextTimeActions || [];
     var editIntelligence = buildEditPlan(signals, improvements, outdoorContext);
     var suggestedCrop = buildCrop(signals, prioritized.primary);
     var printRec = buildPrint(signals, overall);
@@ -1169,43 +1331,61 @@
     var photoBreakdown = buildPhotoBreakdown(signals, exif, outdoorContext, breakdown, genre);
     var narrativeSummary = buildNarrative(signals, exif, outdoorContext, overall, genre, prioritized);
     var learningConcept = buildLearningConcept(signals, outdoorContext, prioritized, genre);
+    var sharpAssess = signals.sharpnessAssessment || assessSharpness(signals, exif);
 
     var uncertainNote = null;
     if (genre.uncertain) {
       uncertainNote = "Genre is uncertain from browser signals alone — coaching stays general rather than inventing a subject type.";
     }
 
+    var overallConf = conf(
+      (improvements[0] ? improvements[0].confidence / 100 : 0.65) * 0.35 +
+      (strengths[0] ? strengths[0].confidence / 100 : 0.55) * 0.35 +
+      (sharpAssess.confidence || 0.6) * 0.3
+    );
+
     return {
       version: ENGINE_VERSION,
-      engineStatus: "disconnected",
-      isDemo: true,
-      isSample: true,
+      engineStatus: "on-device",
+      isDemo: false,
+      isSample: false,
       trustLabel: "On-device analysis",
+      confidenceTier: confidenceTier(overallConf),
+      confidenceLabel: confidenceLabel(overallConf),
       analyzedAt: new Date().toISOString(),
       imageName: file && file.name ? file.name : "photo.jpg",
-      outdoorContext: outdoorContext || null,
+      outdoorContext: outdoorContext
+        ? {
+            source: outdoorContext.source || "stored-context",
+            note: "Outdoor context from a saved field snapshot — not invented from the photograph.",
+            snapshot: outdoorContext
+          }
+        : null,
       signals: signals,
+      sharpnessAssessment: sharpAssess,
       genre: genre,
       coaching: {
-        philosophy: ["what is working", "what is distracting", "what to improve first", "why that helps"],
+        philosophy: ["overall read", "what worked", "what to watch", "next time in the field"],
         topStrengths: strengths,
         primaryImprovement: improvements[0] || null,
         secondaryImprovements: improvements.slice(1),
+        nextTimeActions: nextTimeActions,
         uncertainNote: uncertainNote
       },
       captureMetadata: exif && exif.hasExif ? {
-        source: "EXIF", trust: "Live",
+        source: "EXIF", trust: "From file",
         make: exif.make, model: exif.model, iso: exif.iso,
         focalLengthMm: exif.focalLengthMm, exposureTimeSec: exif.exposureTimeSec,
         fNumber: exif.fNumber, dateTime: exif.dateTime, gps: exif.gps
-      } : { source: "None", trust: "Not available" },
+      } : { source: "None", trust: "Not available — nothing invented" },
       overallGrade: {
         letter: letter,
         score: overall,
         summary: narrativeSummary,
         portfolioPotential: overall >= 78 ? "High" : overall >= 68 ? "Medium" : "Developing",
         printPotential: printRec.worthy ? "Good after edits" : "Screen-first for now",
-        confidence: "Moderate — on-device analysis with confidence gating (not cloud AI)"
+        confidence: confidenceLabel(overallConf) + " — on-device signals with gating (not cloud AI)",
+        confidenceTier: confidenceTier(overallConf)
       },
       overallScore: overall,
       narrativeSummary: narrativeSummary,
@@ -1213,6 +1393,7 @@
       photoBreakdown: photoBreakdown,
       strengths: strengths,
       improvements: improvements,
+      nextTimeActions: nextTimeActions,
       learningConcept: learningConcept,
       suggestedCrop: suggestedCrop,
       printRecommendation: printRec,
@@ -1237,8 +1418,14 @@
     analyze: analyze,
     analyzeFromSignals: analyzeFromSignals,
     samplePixels: samplePixels,
+    assessSharpness: assessSharpness,
     letterGrade: letterGrade,
     detectGenre: detectGenre,
-    CONF_SHOW: CONF_SHOW
+    confidenceTier: confidenceTier,
+    confidenceLabel: confidenceLabel,
+    CONF_SHOW: CONF_SHOW,
+    CONF_STRONG: CONF_STRONG,
+    CONF_SHARPNESS_CLAIM: CONF_SHARPNESS_CLAIM,
+    ENGINE_VERSION: ENGINE_VERSION
   };
 })(window);

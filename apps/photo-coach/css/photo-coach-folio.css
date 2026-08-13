@@ -289,6 +289,94 @@
   font-weight: 400;
 }
 
+/* Review hierarchy — photo stays dominant; coaching is readable prose */
+.pc-shell .coach-dashboard.has-results {
+  grid-template-columns: minmax(16rem, 1.15fr) minmax(18rem, 1fr) minmax(12rem, 0.75fr);
+  align-items: start;
+}
+
+.pc-shell .coach-preview-frame,
+.pc-shell #coach-preview-frame {
+  background: #05070c;
+  border-radius: 0.85rem;
+  overflow: hidden;
+}
+
+.pc-shell .coach-preview-frame img,
+.pc-shell #coach-preview-img {
+  width: 100%;
+  max-height: min(72vh, 42rem);
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.coach-review-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.coach-conf {
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0.12rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.coach-conf--high { border-color: color-mix(in srgb, var(--coach-accent) 55%, transparent); color: var(--coach-accent); }
+.coach-conf--reasonable { opacity: 0.75; }
+.coach-conf--low { opacity: 0.55; }
+.coach-conf--sm { font-size: 0.62rem; margin-left: 0.35rem; }
+
+.coach-kbd-hint {
+  margin: 0.65rem 0 0;
+  font-size: 0.85rem;
+}
+
+.coach-kbd-hint kbd {
+  font-family: inherit;
+  font-size: 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  padding: 0.05rem 0.35rem;
+}
+
+.coach-next-time {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+  line-height: 1.55;
+}
+
+.coach-deeper {
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.coach-deeper__body {
+  margin-top: 0.75rem;
+}
+
+.pc-shoot-summary__keepers {
+  font-size: 0.92rem;
+  opacity: 0.9;
+  margin: 0.35rem 0 1rem;
+}
+
+.pc-shell .coach-drop-zone {
+  background:
+    linear-gradient(165deg, rgba(168, 196, 138, 0.07), transparent 45%),
+    rgba(255, 255, 255, 0.03);
+}
+
 @media (max-width: 840px) {
   .pc-shell .coach-dashboard,
   .pc-shell .coach-dashboard.has-results {
@@ -297,6 +385,20 @@
 
   .pc-shell .coach-col--left {
     position: static;
+    order: 1;
+  }
+
+  .pc-shell .coach-col--center {
+    order: 2;
+  }
+
+  .pc-shell .coach-col--right {
+    order: 3;
+  }
+
+  .pc-shell .coach-preview-frame img,
+  .pc-shell #coach-preview-img {
+    max-height: min(55vh, 28rem);
   }
 
   .pc-shell .coach-drop-zone {
@@ -305,6 +407,10 @@
 
   .pc-filmstrip__item {
     width: 5rem;
+  }
+
+  .pc-shoot-summary__grid {
+    grid-template-columns: 1fr;
   }
 }
 

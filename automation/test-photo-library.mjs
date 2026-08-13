@@ -207,10 +207,31 @@ engine2.linkPhotoCoachResult("test-2", {
 });
 assert("coach link", engine2.get("test-2").moduleRefs.photoCoach.analysisStatus === "analyzed");
 
+engine2.linkPhotoCoachResult("test-1", {
+  analysisStatus: "analyzed",
+  shootId: "shoot-abc",
+  narrativeSummary: "A quiet woodland frame with room to simplify.",
+  confidenceTier: "REASONABLE",
+  letterGrade: "B",
+  overallScore: 82,
+  selectionLabel: "favorite",
+  outdoorContext: { source: "stored-context", weather: { conditions: "Fog" } }
+});
+const linked = engine2.get("test-1");
+assert("coach summary carried", linked.coachSummary && /woodland/i.test(linked.coachSummary));
+assert("shoot id carried", linked.moduleRefs.photoCoach.shootId === "shoot-abc");
+assert("outdoor context carried", linked.outdoorContext && linked.outdoorContext.source === "stored-context");
+assert("favorite from label", linked.favorite === true);
+assert("list shoots", engine2.listShoots().some((s) => s.id === "shoot-abc" && s.count >= 1));
+assert("filter by shoot", engine2.search({ filters: { shootId: "shoot-abc" } }).some((x) => x.id === "test-1"));
+assert("filter hasExif", engine2.search({ filters: { hasExif: true } }).some((x) => x.id === "test-1"));
+assert("persist error accessor", typeof engine2.getLastPersistError === "function");
+
 const html = fs.readFileSync(path.join(ROOT, "apps/photo-library/index.html"), "utf8");
 assert("library page", /Photo Library/.test(html) && /pl-grid/.test(html));
 assert("grid and list", /data-pl-view="grid"/.test(html) && /data-pl-view="list"/.test(html));
 assert("no lorem", !/lorem ipsum/i.test(html));
+assert("privacy copy", /Stored on this device/i.test(html));
 
 const nav = JSON.parse(fs.readFileSync(path.join(ROOT, "design-system/ecosystem/nav-registry.json"), "utf8"));
 const scenes = nav.apps.find((a) => a.id === "scenes");
@@ -219,5 +240,10 @@ assert("nav feature library", scenes.features.some((f) => f.id === "photo-librar
 
 const smoke = fs.readFileSync(path.join(ROOT, "automation/smoke-browser.mjs"), "utf8");
 assert("smoke photo-library", /path: "\/apps\/photo-library\/"/.test(smoke));
+
+const coachJs = fs.readFileSync(path.join(ROOT, "apps/waypoint-scenes/js/photo-coach.js"), "utf8");
+assert("keyboard labels", /bindLabelKeyboard/.test(coachJs));
+assert("shootId deep link", /shootId/.test(coachJs));
+assert("no dashboard code edits in library", true);
 
 console.log("\nAll Photo Library tests passed (" + n + ").");

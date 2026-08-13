@@ -40,7 +40,9 @@
         shootImageId: null,
         analyzedAt: null,
         letterGrade: null,
-        overallScore: null
+        overallScore: null,
+        narrativeSummary: null,
+        confidenceTier: null
       },
       hiddenLandscapes: {
         available: false,
@@ -106,6 +108,8 @@
 
       photographerNotes: partial.photographerNotes || null,
       aiNotes: partial.aiNotes || null,
+      outdoorContext: partial.outdoorContext || null,
+      coachSummary: partial.coachSummary || null,
 
       media: {
         hasOriginal: !!((partial.media && partial.media.hasOriginal) || partial.hasOriginal),
