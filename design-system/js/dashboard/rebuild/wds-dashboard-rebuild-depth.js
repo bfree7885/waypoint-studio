@@ -142,7 +142,7 @@
       }
     }
     if (elevated && (cur == null || cur < 40)) {
-      return "Rain chance rises around " + (elevated.label || "soon");
+      return "Chance rises around " + (elevated.label || "soon");
     }
     var last = hours[Math.min(hours.length - 1, 5)];
     if (first.tempF != null && last.tempF != null && Math.abs(last.tempF - first.tempF) >= 6) {
@@ -367,15 +367,12 @@
         var g = h.windGust != null ? h.windGust : h.windMph;
         if (g == null) return;
         if (!maxG || g > maxG.g) maxG = { g: g, label: h.label };
-        rows.push(
-          row(
-            h.label || "Hour",
-            (h.windMph != null ? Math.round(h.windMph) + " mph" : "—") +
-              (h.windGust != null && (h.windMph == null || h.windGust - h.windMph >= GUST_DELTA_MIN)
-                ? " · gust " + Math.round(h.windGust)
-                : "")
-          )
-        );
+        var windBits = [];
+        if (h.windMph != null) windBits.push(Math.round(h.windMph) + " mph");
+        if (h.windGust != null && (h.windMph == null || h.windGust - h.windMph >= GUST_DELTA_MIN)) {
+          windBits.push("gust " + Math.round(h.windGust));
+        }
+        rows.push(row(h.label || "Hour", windBits.join(" · ") || null));
       });
       if (maxG) rows.push(row("Strongest soon", Math.round(maxG.g) + " mph around " + maxG.label));
       spark = sparkline(
@@ -522,10 +519,13 @@
     });
 
     rows = rows.filter(Boolean);
-    /* Deduplicate identical labels keeping first */
+    /* Deduplicate freshness/source labels keeping first; allow repeated
+       instrument labels (e.g. per-alert Severity / Detail). */
+    var uniqueOnce = { updated: 1, freshness: 1, trust: 1, source: 1 };
     var seen = Object.create(null);
     rows = rows.filter(function (r) {
       var k = String(r.label).toLowerCase();
+      if (!uniqueOnce[k]) return true;
       if (seen[k]) return false;
       seen[k] = true;
       return true;
@@ -598,10 +598,10 @@
 
   function setOpen(article, open, opts) {
     opts = opts || {};
-    if (!article) return;
+    if (!article) return false;
     var btn = article.querySelector("[data-wdb-r-depth-toggle]");
     var panel = article.querySelector("[data-wdb-r-depth-panel]");
-    if (!btn || !panel) return;
+    if (!btn || !panel) return false;
     btn.setAttribute("aria-expanded", open ? "true" : "false");
     if (open) {
       panel.removeAttribute("hidden");
@@ -627,6 +627,7 @@
         }
       }
     }
+    return true;
   }
 
   function openWidget(host, widgetId) {
@@ -635,6 +636,7 @@
       host.querySelector('.wdb-r-widget[data-widget-id="' + widgetId + '"]') ||
       document.querySelector('.wdb-r-widget[data-widget-id="' + widgetId + '"]');
     if (!article) return false;
+    if (!setOpen(article, true, { focusClose: true })) return false;
     try {
       article.scrollIntoView({ behavior: "smooth", block: "center" });
     } catch (e) {
@@ -644,7 +646,6 @@
     global.setTimeout(function () {
       article.classList.remove("wdb-r-widget--hn-focus");
     }, 2200);
-    setOpen(article, true, { focusClose: true });
     if (!article.hasAttribute("tabindex")) article.setAttribute("tabindex", "-1");
     return true;
   }

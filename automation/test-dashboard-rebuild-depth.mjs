@@ -259,9 +259,22 @@ assert("data exports helpers", typeof Data.weatherCurrent === "function" && type
     ])
   });
   const nh = Data.buildWidgetPayload("ph-next-hours", rainSoon);
-  assert("next hours rain transition headline", /Rain chance rises/i.test(nh.changeHeadline || ""));
+  assert("next hours rain transition headline", /Chance rises/i.test(nh.changeHeadline || ""));
+  assert("next hours rain headline is precip-agnostic", !/Rain chance/i.test(nh.changeHeadline || ""));
   const nhDepth = Depth.buildDepthModel("ph-next-hours", nh, rainSoon);
   assert("next hours depth has spark + rows", !!nhDepth.spark && nhDepth.rows.length >= 3);
+
+  const snowSoon = platform({
+    current: { precipitation: { probability: 10, amount: 0 }, conditions: { summary: "Cloudy" }, temperature: 28 },
+    hourly: hoursFrom([
+      { prob: 10, temp: 28, conditions: "Cloudy" },
+      { prob: 20, temp: 27, conditions: "Cloudy" },
+      { atMin: 180, prob: 55, temp: 25, conditions: "Snow" },
+      { prob: 60, temp: 24, conditions: "Snow" }
+    ])
+  });
+  const ns = Data.buildWidgetPayload("ph-next-hours", snowSoon);
+  assert("next hours snow transition is not rain-labeled", /Chance rises/i.test(ns.changeHeadline || "") && !/Rain chance/i.test(ns.changeHeadline || ""));
 
   const stable = platform({
     hourly: hoursFrom([
@@ -321,6 +334,32 @@ assert("data exports helpers", typeof Data.weatherCurrent === "function" && type
   assert("wind strong shows gusts", (wg.facts || []).some((f) => f.label === "Gusts"));
   const wd = Depth.buildDepthModel("ph-wind", wg, gusty);
   assert("wind depth strongest soon", wd.rows.some((r) => /Strongest/i.test(r.label)) && !!wd.spark);
+
+  const gustOnly = platform({
+    current: { wind: { gust: 32, direction: 220 } },
+    hourly: [
+      {
+        time: isoOffset(60),
+        temperature: 40,
+        precipitation: { probability: 5 },
+        wind: { gust: 28 },
+        conditions: { summary: "Windy" }
+      },
+      {
+        time: isoOffset(120),
+        temperature: 39,
+        precipitation: { probability: 5 },
+        wind: { gust: 32 },
+        conditions: { summary: "Windy" }
+      }
+    ]
+  });
+  delete gustOnly.weatherRef.current.wind.speed;
+  const wgo = Depth.buildDepthModel("ph-wind", Data.buildWidgetPayload("ph-wind", gustOnly), gustOnly);
+  assert(
+    "wind gust-only hours omit dash placeholders",
+    wgo.rows.some((r) => /gust/i.test(r.value || "")) && !wgo.rows.some((r) => r.value === "—" || /—/.test(r.value || ""))
+  );
 }
 
 /* 9–10 Air */
@@ -439,13 +478,31 @@ assert("data exports helpers", typeof Data.weatherCurrent === "function" && type
     alerts: {
       status: "live",
       items: [
-        { event: "Heat Advisory", severity: "Moderate" },
-        { event: "Air Quality Alert", severity: "Minor" }
+        {
+          event: "Heat Advisory",
+          severity: "Moderate",
+          onset: NOW.toISOString(),
+          ends: isoOffset(360),
+          description: "Hot conditions expected."
+        },
+        {
+          event: "Air Quality Alert",
+          severity: "Minor",
+          onset: isoOffset(30),
+          ends: isoOffset(480),
+          description: "Sensitive groups should limit outdoor exertion."
+        }
       ]
     }
   });
   const al2 = Depth.buildDepthModel("ph-alerts", Data.buildWidgetPayload("ph-alerts", multi), multi);
   assert("alerts multiple listed", al2.rows.filter((r) => r.label === "Alert" || r.label === "Also").length >= 2);
+  assert("alerts multiple keep each severity", al2.rows.filter((r) => r.label === "Severity").length === 2);
+  assert("alerts multiple keep each detail", al2.rows.filter((r) => r.label === "Detail").length === 2);
+  assert(
+    "alerts multiple keep second severity value",
+    al2.rows.some((r) => r.label === "Severity" && /Minor/i.test(r.value || ""))
+  );
 }
 
 /* 20 Missing data */
@@ -574,6 +631,36 @@ assert("data exports helpers", typeof Data.weatherCurrent === "function" && type
   assert("HN openWidget opens depth", Depth.openWidget(host, "ph-precip-window") === true);
   assert("HN open sets aria-expanded", toggle.getAttribute("aria-expanded") === "true");
   assert("HN open removes hidden", panel.getAttribute("hidden") == null);
+
+  const skeleton = {
+    attributes: { "data-widget-id": "ph-wind", class: "wdb-r-widget", "data-lazy": "pending" },
+    classList: { _set: new Set(["wdb-r-widget"]), add(c) { this._set.add(c); }, remove(c) { this._set.delete(c); } },
+    children: [],
+    scrollIntoView() {
+      this.didScroll = true;
+    },
+    didScroll: false,
+    setAttribute(k, v) {
+      this.attributes[k] = String(v);
+    },
+    getAttribute(k) {
+      return this.attributes[k] != null ? String(this.attributes[k]) : null;
+    },
+    hasAttribute(k) {
+      return Object.prototype.hasOwnProperty.call(this.attributes, k);
+    },
+    querySelector() {
+      return null;
+    }
+  };
+  const skHost = {
+    querySelector(sel) {
+      if (sel.includes("ph-wind")) return skeleton;
+      return null;
+    }
+  };
+  assert("HN openWidget reports false when depth markup is missing", Depth.openWidget(skHost, "ph-wind") === false);
+  assert("HN openWidget does not scroll skeleton as success", skeleton.didScroll !== true);
 
   /* 23 keyboard Escape close */
   host.listeners.keydown[0]({ key: "Escape", keyCode: 27, preventDefault() {} });
