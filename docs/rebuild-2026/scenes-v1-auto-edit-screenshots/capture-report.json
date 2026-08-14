@@ -1,0 +1,113 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:35183",
+  "screenshots": [
+    "coach-handoff-1440.png",
+    "dashboard-smoke-1440.png",
+    "hl-regression-1440.png",
+    "library-1440.png",
+    "scenes-hub-1440.png",
+    "workspace-desktop-1440.png",
+    "workspace-mobile-390.png",
+    "workspace-mobile-430.png"
+  ],
+  "fixtures": 16,
+  "judgments": [
+    {
+      "fixture": "01-well-exposed-landscape.png",
+      "original": "fixtures/01-well-exposed-landscape.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "02-underexposed-landscape.png",
+      "original": "fixtures/02-underexposed-landscape.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "03-bright-sky-dark-fg.png",
+      "original": "fixtures/03-bright-sky-dark-fg.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "04-sunset.png",
+      "original": "fixtures/04-sunset.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "05-forest.png",
+      "original": "fixtures/05-forest.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "06-snow.png",
+      "original": "fixtures/06-snow.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "07-water.png",
+      "original": "fixtures/07-water.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "08-wildlife.png",
+      "original": "fixtures/08-wildlife.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "09-high-iso-wildlife.png",
+      "original": "fixtures/09-high-iso-wildlife.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "10-low-light-night.png",
+      "original": "fixtures/10-low-light-night.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "11-smooth-fog.png",
+      "original": "fixtures/11-smooth-fog.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "12-detailed-foliage.png",
+      "original": "fixtures/12-detailed-foliage.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "13-strong-sat.png",
+      "original": "fixtures/13-strong-sat.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "14-low-contrast-haze.png",
+      "original": "fixtures/14-low-contrast-haze.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "15-moody-dark.png",
+      "original": "fixtures/15-moody-dark.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    },
+    {
+      "fixture": "16-mono-candidate.png",
+      "original": "fixtures/16-mono-candidate.png",
+      "waypointChoice": "see automation/test-auto-edit.mjs fixture matrix",
+      "visualNote": "Synthetic licensed-safe fixture; strategy verified in automated tests. Browser interactive compare exercised in workspace shots."
+    }
+  ]
+}

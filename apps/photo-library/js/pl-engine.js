@@ -317,8 +317,13 @@
       Object.keys(patch || {}).forEach(function (k) {
         if (k === "id" || k === "schemaVersion") return;
         if (patch[k] === undefined) return;
-        if (k === "camera" || k === "gps" || k === "media" || k === "moduleRefs" || k === "legacy") {
+        if (k === "camera" || k === "gps" || k === "media" || k === "legacy") {
           img[k] = Object.assign({}, img[k] || {}, patch[k] || {});
+        } else if (k === "moduleRefs") {
+          img.moduleRefs = img.moduleRefs || {};
+          Object.keys(patch.moduleRefs || {}).forEach(function (mod) {
+            img.moduleRefs[mod] = Object.assign({}, img.moduleRefs[mod] || {}, patch.moduleRefs[mod] || {});
+          });
         } else {
           img[k] = patch[k];
         }
@@ -327,6 +332,33 @@
       if (img.selectionLabel === "favorite") img.favorite = true;
       persist();
       return img;
+    }
+
+    /** Insert or replace a full LibraryImage row (used for Waypoint Edit siblings). */
+    function upsertImage(record) {
+      if (!record || !record.id) return null;
+      var M = Models();
+      var normalized = M.createLibraryImage(record);
+      // Preserve role / originalAssetId after normalize
+      normalized.role = record.role || normalized.role || "original";
+      normalized.originalAssetId = record.originalAssetId || null;
+      if (record.moduleRefs) {
+        Object.keys(record.moduleRefs).forEach(function (mod) {
+          normalized.moduleRefs[mod] = Object.assign(
+            {},
+            normalized.moduleRefs[mod] || {},
+            record.moduleRefs[mod] || {}
+          );
+        });
+      }
+      var idx = -1;
+      for (var i = 0; i < images.length; i++) {
+        if (images[i].id === normalized.id) { idx = i; break; }
+      }
+      if (idx >= 0) images[idx] = normalized;
+      else images.unshift(normalized);
+      persist();
+      return normalized;
     }
 
     function deleteImage(id) {
@@ -621,6 +653,7 @@
       getCollection: collectionById,
       importFiles: importFiles,
       updateImage: updateImage,
+      upsertImage: upsertImage,
       deleteImage: deleteImage,
       createCollection: createCollection,
       updateCollection: updateCollection,

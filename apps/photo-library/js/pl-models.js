@@ -50,6 +50,16 @@
         lastModeId: null,
         lastExportAt: null
       },
+      autoEdit: {
+        hasEdit: false,
+        editAssetId: null,
+        editBlobKey: null,
+        recipeId: null,
+        editVersion: 0,
+        intent: null,
+        createdAt: null,
+        engineVersion: null
+      },
       livingScenes: {
         created: false,
         assetId: null
@@ -69,14 +79,20 @@
     var cam = Object.assign(emptyCamera(), partial.camera || {});
     var gps = Object.assign(emptyGps(), partial.gps || {});
     var mods = partial.moduleRefs || {};
-    var photoCoach = Object.assign(emptyModuleRefs().photoCoach, mods.photoCoach || {});
-    var hl = Object.assign(emptyModuleRefs().hiddenLandscapes, mods.hiddenLandscapes || {});
-    var living = Object.assign(emptyModuleRefs().livingScenes, mods.livingScenes || {});
-    var scene = Object.assign(emptyModuleRefs().sceneBuilder, mods.sceneBuilder || {});
+    var defaults = emptyModuleRefs();
+    var photoCoach = Object.assign({}, defaults.photoCoach, mods.photoCoach || {});
+    var hl = Object.assign({}, defaults.hiddenLandscapes, mods.hiddenLandscapes || {});
+    var autoEdit = Object.assign({}, defaults.autoEdit, mods.autoEdit || {});
+    var living = Object.assign({}, defaults.livingScenes, mods.livingScenes || {});
+    var scene = Object.assign({}, defaults.sceneBuilder, mods.sceneBuilder || {});
 
     return {
       schemaVersion: SCHEMA_VERSION,
       id: partial.id || uuid(),
+      /** original | waypoint-edit */
+      role: partial.role || "original",
+      /** When role is waypoint-edit, points at the preserved original Library id */
+      originalAssetId: partial.originalAssetId || null,
       filename: partial.filename || partial.originalFilename || "photo.jpg",
       originalFilename: partial.originalFilename || partial.filename || "photo.jpg",
       mimeType: partial.mimeType || null,
@@ -122,6 +138,7 @@
       moduleRefs: {
         photoCoach: photoCoach,
         hiddenLandscapes: hl,
+        autoEdit: autoEdit,
         livingScenes: living,
         sceneBuilder: scene
       },

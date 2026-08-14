@@ -96,14 +96,15 @@
       "shortTitle": "Scenes",
       "icon": "scenes",
       "route": "apps/scenes/",
-      "match": [
-        "/apps/scenes",
-        "/apps/photo-coach",
-        "/apps/waypoint-scenes",
-        "/apps/animal-vision",
-        "/apps/hidden-landscapes",
-        "/apps/photo-library"
-      ],
+        "match": [
+          "/apps/scenes",
+          "/apps/photo-coach",
+          "/apps/waypoint-scenes",
+          "/apps/animal-vision",
+          "/apps/hidden-landscapes",
+          "/apps/photo-library",
+          "/apps/auto-edit"
+        ],
       "category": "photography",
       "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
       "status": "live",
@@ -134,6 +135,15 @@
             "/apps/scenes/photo-coach",
             "/apps/photo-coach/?$",
             "/apps/photo-coach/index"
+          ]
+        },
+        {
+          "id": "auto-edit",
+          "label": "Auto Edit",
+          "href": "apps/auto-edit/",
+          "match": [
+            "/apps/scenes/auto-edit",
+            "/apps/auto-edit"
           ]
         },
         {

@@ -1278,6 +1278,12 @@
         escapeHtml(String((summary.labelCounts && summary.labelCounts.reject) || 0)) + ' Reject' +
         (summary.userKeeperCount != null ? ' · ' + escapeHtml(String(summary.userKeeperCount)) + ' keepers' : '') +
       '</p>' +
+      ((summary.userKeeperCount || 0) > 0
+        ? '<p class="pc-shoot-summary__auto-edit">' +
+            '<a class="wds-btn wds-btn--primary wds-btn--sm" href="../auto-edit/?batch=keepers">Auto Edit Keepers</a> ' +
+            '<span class="coach-muted">Finish Keep / Favorite frames on this device. Rejects stay out.</span>' +
+          "</p>"
+        : '<p class="pc-shoot-summary__auto-edit coach-muted">Mark Keep or Favorite, then finish with Auto Edit.</p>') +
       favoriteHtml +
       (summary.progression && summary.progression.note
         ? '<div class="pc-shoot-summary__block"><h3 class="pc-shoot-summary__h">Progression</h3><p>' +

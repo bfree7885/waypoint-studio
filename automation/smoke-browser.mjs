@@ -43,6 +43,8 @@ const PAGES = [
   { name: "animal-vision", path: "/apps/animal-vision/", ready: "shell" },
   { name: "hidden-landscapes", path: "/apps/hidden-landscapes/", ready: "shell" },
   { name: "photo-library", path: "/apps/photo-library/", ready: "shell" },
+  { name: "auto-edit", path: "/apps/auto-edit/", ready: "shell" },
+  { name: "scenes-auto-edit", path: "/apps/scenes/auto-edit/", ready: "shell" },
   { name: "kiosk", path: "/kiosk.html", ready: "kiosk", live: true },
   { name: "status", path: "/status.html", ready: "status" },
   { name: "debug", path: "/debug.html", ready: "debug" },
