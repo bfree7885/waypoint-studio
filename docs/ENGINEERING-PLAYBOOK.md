@@ -1346,6 +1346,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 ## Lessons Learned — Scenes V1 Auto Edit ship follow-up (2026-08-14)
 
 - CI smoke can fail with exit 2 (`Inspected target navigated or closed`) before page assertions — treat as transient CDP flake; one smoke retry is cheaper than a false red merge gate.
+- Profile migration shows the same class of flake (exit 2 in ~7s); retry once with a fresh CDP port/profile dir.
 - Local smoke false-fails if another project already owns `:8080` (Python “Error response” for `/apps/auto-edit/`); confirm server cwd before diagnosing product 404s.
 
 ## Lessons Learned — Scenes V1 Auto Edit (2026-08-13)
