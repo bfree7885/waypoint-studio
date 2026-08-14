@@ -625,10 +625,33 @@ async function main() {
     console.log("\nArtifacts:", ARTIFACT_DIR);
   }
   console.log(failed ? "\nSMOKE: FAIL" : "\nSMOKE: PASS");
-  process.exit(failed ? 1 : 0);
+  return failed ? 1 : 0;
 }
 
-main().catch((e) => {
-  console.error("Smoke runner error:", e.message);
-  process.exit(2);
-});
+function isTransientCdpError(err) {
+  const msg = err && err.message ? err.message : String(err || "");
+  return /navigated or closed|Target closed|WebSocket|ECONNREFUSED|No page CDP/i.test(msg);
+}
+
+async function run() {
+  const attempts = 2;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const code = await main();
+      process.exit(code);
+    } catch (e) {
+      const transient = isTransientCdpError(e);
+      if (!transient || i === attempts - 1) {
+        console.error("Smoke runner error:", e.message);
+        process.exit(2);
+      }
+      console.error(
+        `Smoke runner transient CDP error; retrying (${i + 1}/${attempts - 1}):`,
+        e.message
+      );
+      await delay(1500);
+    }
+  }
+}
+
+run();
