@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-product="moving-scenes">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moving Scenes — subtle environmental motion on your photograph, processed on this device. Originals preserved.">
+  <title>Moving Scenes — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="css/moving-scenes.css">
+</head>
+<body>
+  <a class="wds-skip" href="#ms-main">Skip to Moving Scenes</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <main id="ms-main" class="ms-page">
+      <header class="ms-hero">
+        <p class="wds-eyebrow">
+          <a href="../scenes/">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          Moving Scenes
+        </p>
+        <h1 class="ms-hero__title">Make it move</h1>
+        <p class="ms-hero__lead">
+          Preserve your photograph — then add quiet, believable environmental motion.
+          Clouds, water, and fog only when Waypoint is confident. Never a whole-image zoom trick.
+        </p>
+        <p class="ms-trust" role="note">Processed on this device. Original and Waypoint Edit stay untouched. No generative video.</p>
+      </header>
+
+      <p class="ms-status" id="ms-status" role="status" hidden></p>
+
+      <section class="ms-empty" id="ms-empty" aria-label="Open a photograph">
+        <div class="ms-drop" id="ms-drop" tabindex="0" role="button" aria-label="Drop a photograph or choose a file">
+          <p class="ms-drop__title">Open a photograph to animate</p>
+          <p class="ms-drop__text">JPG or PNG · Library assets open without re-upload</p>
+          <button type="button" class="wds-btn wds-btn--primary">Choose photograph</button>
+        </div>
+        <div class="ms-empty__actions">
+          <a class="wds-btn wds-btn--ghost" href="../photo-library/">Open Photo Library</a>
+          <a class="wds-btn wds-btn--ghost" href="../auto-edit/">Back to Auto Edit</a>
+        </div>
+      </section>
+
+      <section class="ms-workspace" id="ms-workspace" hidden>
+        <div class="ms-photo-first">
+          <div id="ms-compare-mount"></div>
+          <div class="ms-playback" role="group" aria-label="Playback">
+            <button type="button" class="wds-btn wds-btn--secondary" data-ms-action="play">Play</button>
+            <button type="button" class="wds-btn wds-btn--secondary" data-ms-action="pause" hidden>Pause</button>
+            <button type="button" class="wds-btn wds-btn--ghost" data-ms-action="reanalyze">Re-analyze</button>
+          </div>
+          <div class="ms-assist-wrap">
+            <p class="ms-muted">Select what should move — paint to include, erase to protect. Not a full mask studio.</p>
+            <canvas id="ms-assist-canvas" width="320" height="180" aria-label="Motion assist brush"></canvas>
+            <div class="ms-assist-tools" role="group" aria-label="Assist tools">
+              <button type="button" class="ms-chip" data-ms-action="assist-paint">Paint move</button>
+              <button type="button" class="ms-chip" data-ms-action="assist-erase">Erase</button>
+              <button type="button" class="ms-chip" data-ms-action="assist-apply">Apply assist</button>
+              <button type="button" class="ms-chip" data-ms-action="clear-motion">Clear motion</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ms-rail">
+          <section class="ms-panel" aria-labelledby="ms-source-title">
+            <h2 id="ms-source-title">Source</h2>
+            <div id="ms-source"></div>
+          </section>
+
+          <section class="ms-panel" aria-labelledby="ms-choice-title">
+            <h2 id="ms-choice-title">Waypoint Choice</h2>
+            <p class="ms-panel__lede">Automatic motion only when confidence is high. Comfortable with no motion.</p>
+            <div id="ms-choice-summary"></div>
+            <div id="ms-honesty" class="ms-honesty"></div>
+          </section>
+
+          <section class="ms-panel" aria-labelledby="ms-strength-title">
+            <h2 id="ms-strength-title">Strength</h2>
+            <div id="ms-strength" class="ms-strength" role="group" aria-label="Motion strength"></div>
+            <p class="ms-panel__lede" style="margin-top:0.75rem">Direction override</p>
+            <div class="ms-dir" role="group" aria-label="Motion direction">
+              <button type="button" class="ms-chip" data-ms-action="dir-auto">Auto</button>
+              <button type="button" class="ms-chip" data-ms-action="dir-left">Left</button>
+              <button type="button" class="ms-chip" data-ms-action="dir-right">Right</button>
+            </div>
+          </section>
+
+          <section class="ms-panel ms-panel--actions" aria-label="Save and export">
+            <button type="button" class="wds-btn wds-btn--primary" data-ms-action="save">Save Moving Scene</button>
+            <button type="button" class="wds-btn wds-btn--secondary" data-ms-action="export">Download loop</button>
+            <p class="ms-export-note">Download is typically WebM (or MP4 when the browser supports it), named like <code>originalname-moving.webm</code>. GPS is not embedded.</p>
+          </section>
+        </div>
+      </section>
+
+      <input type="file" id="ms-file-input" accept="image/jpeg,image/png,image/webp" hidden>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="1"></div>
+  </div>
+
+  <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../photo-library/js/pl-models.js" defer></script>
+  <script src="../photo-library/js/pl-store.js" defer></script>
+  <script src="../photo-library/js/pl-engine.js" defer></script>
+  <script src="../waypoint-scenes/js/photo-library-client.js" defer></script>
+  <script src="../auto-edit/js/ae-models.js" defer></script>
+  <script src="../auto-edit/js/ae-store.js" defer></script>
+  <script src="js/ms-models.js" defer></script>
+  <script src="js/ms-analyze.js" defer></script>
+  <script src="js/ms-choice.js" defer></script>
+  <script src="js/ms-render.js" defer></script>
+  <script src="js/ms-assist.js" defer></script>
+  <script src="js/ms-pipeline.js" defer></script>
+  <script src="js/ms-store.js" defer></script>
+  <script src="js/ms-export.js" defer></script>
+  <script src="js/ms-compare.js" defer></script>
+  <script src="js/ms-ui.js" defer></script>
+  <script src="js/ms-boot.js" defer></script>
+</body>
+</html>

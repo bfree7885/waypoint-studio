@@ -507,8 +507,11 @@
           if (!(img.media && (img.media.hasOriginal || img.media.hasThumbnail))) return false;
         }
       }
-      if (filters.livingScene) {
-        if (!img.moduleRefs || !img.moduleRefs.livingScenes || !img.moduleRefs.livingScenes.created) return false;
+      if (filters.livingScene || filters.movingScene) {
+        var ms = img.moduleRefs && img.moduleRefs.movingScenes;
+        var ls = img.moduleRefs && img.moduleRefs.livingScenes;
+        var created = (ms && ms.created) || (ls && ls.created) || img.role === "moving-scene";
+        if (!created) return false;
       }
       if (filters.orientation && img.orientation !== filters.orientation) return false;
       if (filters.collectionId) {

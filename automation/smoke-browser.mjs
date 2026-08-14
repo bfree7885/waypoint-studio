@@ -36,6 +36,7 @@ const PAGES = [
   { name: "scenes-photo-coach", path: "/apps/scenes/photo-coach/", ready: "shell" },
   { name: "scenes-hidden-landscapes", path: "/apps/scenes/hidden-landscapes/", ready: "shell" },
   { name: "scenes-living-scenes", path: "/apps/scenes/living-scenes/", ready: "shell" },
+  { name: "scenes-moving-scenes", path: "/apps/moving-scenes/", ready: "shell" },
   { name: "scenes-scene-builder", path: "/apps/scenes/scene-builder/", ready: "shell" },
   { name: "scenes-photographer-profile", path: "/apps/scenes/photographer-profile/", ready: "shell" },
   { name: "scenes-photo-library", path: "/apps/scenes/photo-library/", ready: "shell" },

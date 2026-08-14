@@ -60,6 +60,23 @@
         createdAt: null,
         engineVersion: null
       },
+      /** User-facing product: Moving Scenes. Key kept for Library SoT. */
+      movingScenes: {
+        created: false,
+        assetId: null,
+        blobKey: null,
+        recipeId: null,
+        sourceAssetId: null,
+        sourceRole: null,
+        classes: [],
+        durationSec: null,
+        strength: null,
+        confidence: null,
+        noMotion: false,
+        createdAt: null,
+        engineVersion: null
+      },
+      /** Legacy alias — synced when a Moving Scene is saved */
       livingScenes: {
         created: false,
         assetId: null
@@ -83,15 +100,16 @@
     var photoCoach = Object.assign({}, defaults.photoCoach, mods.photoCoach || {});
     var hl = Object.assign({}, defaults.hiddenLandscapes, mods.hiddenLandscapes || {});
     var autoEdit = Object.assign({}, defaults.autoEdit, mods.autoEdit || {});
+    var moving = Object.assign({}, defaults.movingScenes, mods.movingScenes || {});
     var living = Object.assign({}, defaults.livingScenes, mods.livingScenes || {});
     var scene = Object.assign({}, defaults.sceneBuilder, mods.sceneBuilder || {});
 
     return {
       schemaVersion: SCHEMA_VERSION,
       id: partial.id || uuid(),
-      /** original | waypoint-edit */
+      /** original | waypoint-edit | moving-scene */
       role: partial.role || "original",
-      /** When role is waypoint-edit, points at the preserved original Library id */
+      /** When role is waypoint-edit or moving-scene, points at the preserved original Library id */
       originalAssetId: partial.originalAssetId || null,
       filename: partial.filename || partial.originalFilename || "photo.jpg",
       originalFilename: partial.originalFilename || partial.filename || "photo.jpg",
@@ -139,6 +157,7 @@
         photoCoach: photoCoach,
         hiddenLandscapes: hl,
         autoEdit: autoEdit,
+        movingScenes: moving,
         livingScenes: living,
         sceneBuilder: scene
       },

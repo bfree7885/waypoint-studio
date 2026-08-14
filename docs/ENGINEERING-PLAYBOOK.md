@@ -1343,6 +1343,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
 - Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
 
+## Lessons Learned — Scenes V1 Moving Scenes (2026-08-14)
+
+- User-facing name is Moving Scenes; keep `living-scenes/` path as redirect alias — reckless renames break bookmarks and smoke routes.
+- Do not ship waypoint-scenes overlay particles as the product: inventing rain/snow/fireflies fails “preserve the photograph.” Rebuild analysis into confidence-gated localized displacement instead.
+- Waypoint Choice must be comfortable with NO MOTION FOUND; weak foliage/stars/parallax belong in deferred metadata, not mediocre auto animation.
+- Non-destructive derivatives need a third role (`moving-scene`) and `moving-{id}-v{n}` blob keys — never reuse ORIGINAL or `edit-*` keys.
+- Water heuristics fail if saturation caps are too tight or mid-frame lakes are excluded from `upperMid`; tune with fixture truth tests before shipping the class.
+- `prefers-reduced-motion: reduce` means no autoplay — explicit Play only; Still|Moving compare stays the primary judgment UI.
+
 ## Lessons Learned — Scenes V1 Auto Edit ship follow-up (2026-08-14)
 
 - CI smoke can fail with exit 2 (`Inspected target navigated or closed`) before page assertions — treat as transient CDP flake; one smoke retry is cheaper than a false red merge gate.
