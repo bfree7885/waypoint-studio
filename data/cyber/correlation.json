@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-14T07:51:14.805Z",
+  "generatedAt": "2026-08-14T13:43:44.615Z",
   "entityCount": 441,
-  "relationshipCount": 1105,
+  "relationshipCount": 1103,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -188,16 +188,6 @@
       "id": "vendor:langflow",
       "kind": "vendor",
       "title": "langflow"
-    },
-    {
-      "id": "cve:CVE-2026-63030",
-      "kind": "cve",
-      "title": "CVE-2026-63030"
-    },
-    {
-      "id": "vendor:wordpress",
-      "kind": "vendor",
-      "title": "WordPress"
     },
     {
       "id": "cve:CVE-2026-12569",
@@ -553,6 +543,16 @@
       "id": "cve:CVE-2026-60137",
       "kind": "cve",
       "title": "CVE-2026-60137"
+    },
+    {
+      "id": "vendor:wordpress",
+      "kind": "vendor",
+      "title": "WordPress"
+    },
+    {
+      "id": "cve:CVE-2026-63030",
+      "kind": "cve",
+      "title": "CVE-2026-63030"
     },
     {
       "id": "cve:CVE-2026-0770",
@@ -2643,12 +2643,6 @@
       "evidence": "entity extraction"
     },
     {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-20316",
-      "to": "vendor:cisco",
-      "evidence": "entity extraction"
-    },
-    {
       "type": "mentions-cve",
       "from": "live_kev_cve-2026-68820",
       "to": "cve:CVE-2026-68820",
@@ -2777,44 +2771,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-9198",
       "to": "vendor:langflow",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-63030",
-      "to": "cve:CVE-2026-63030",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-63030",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63030",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63030",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-63030",
-      "to": "vendor:wordpress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-63030",
-      "to": "vendor:wordpress",
       "evidence": "entity extraction"
     },
     {
@@ -4214,6 +4170,38 @@
     {
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-60137",
+      "to": "vendor:wordpress",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-63030",
+      "to": "cve:CVE-2026-63030",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-63030",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63030",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63030",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-63030",
       "to": "vendor:wordpress",
       "evidence": "entity extraction"
     },

@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0.0",
     "status": "live",
-    "generatedAt": "2026-08-14T07:51:14.831Z",
+    "generatedAt": "2026-08-14T13:43:44.640Z",
     "source": "signalterrain-cyber-live-engine",
     "disclaimer": "Derived from live public sources — not a teaching sample."
   },
@@ -45,21 +45,21 @@
       "kind": "source",
       "title": "Cisco",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_secure-firewall-adaptive-security-appliance-asa-",
       "kind": "affected-software",
       "title": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) ",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_adaptive-security-appliance-software",
       "kind": "affected-software",
       "title": "adaptive security appliance software",
       "summary": "Product referenced by live intelligence (cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-8037",
@@ -99,21 +99,21 @@
       "kind": "source",
       "title": "Progress",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_loadmaster",
       "kind": "affected-software",
       "title": "LoadMaster",
       "summary": "Product referenced by live intelligence (Progress)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_connection-manager-for-objectscale",
       "kind": "affected-software",
       "title": "connection manager for objectscale",
       "summary": "Product referenced by live intelligence (progress)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-50751",
@@ -153,14 +153,14 @@
       "kind": "source",
       "title": "Check Point",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_security-gateway",
       "kind": "affected-software",
       "title": "Security Gateway",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-0257",
@@ -200,14 +200,14 @@
       "kind": "source",
       "title": "Palo Alto Networks",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_pan-os",
       "kind": "affected-software",
       "title": "PAN-OS",
       "summary": "Product referenced by live intelligence (Palo Alto Networks)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2023-21529",
@@ -247,14 +247,14 @@
       "kind": "source",
       "title": "Microsoft",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_exchange-server",
       "kind": "affected-software",
       "title": "Exchange Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20131",
@@ -294,7 +294,7 @@
       "kind": "affected-software",
       "title": "Secure Firewall Management Center (FMC)",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-45321",
@@ -334,14 +334,14 @@
       "kind": "source",
       "title": "TanStack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_tanstack",
       "kind": "affected-software",
       "title": "TanStack",
       "summary": "Product referenced by live intelligence (TanStack)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-15409",
@@ -381,14 +381,14 @@
       "kind": "source",
       "title": "SonicWall",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_sma1000-appliances",
       "kind": "affected-software",
       "title": "SMA1000 Appliances",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-15410",
@@ -461,7 +461,7 @@
       "kind": "affected-software",
       "title": "SharePoint Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-35273",
@@ -501,14 +501,14 @@
       "kind": "source",
       "title": "Oracle",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_-peoplesoft-enterprise-peopletools",
       "kind": "affected-software",
       "title": " PeopleSoft Enterprise PeopleTools",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-33825",
@@ -548,7 +548,7 @@
       "kind": "affected-software",
       "title": "Defender",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20316",
@@ -579,16 +579,9 @@
           "Local exposure without version confirmation"
         ],
         "whatIsIt": "Cisco Secure Firewall Management Center (FMC) formerly known as Firepower Management Center contains a use of hard-coded password vulnerability that could allow an unauthenticated, remote attacker to log in to an affected device using a low-privileged account to access sensitive data within the impacted systems.",
-        "whyItMatters": "Priority 96 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 5.3 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Edge / remotely reachable software context (VPN, mail, file transfer, etc.) — often higher operational urgency."
+        "whyItMatters": "Priority 96 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Edge / remotely reachable software context (VPN, mail, file transfer, etc.) — often higher operational urgency."
       },
       "liveRecordId": "live_kev_cve-2026-20316"
-    },
-    {
-      "id": "cy_product_secure-firewall-management-center",
-      "kind": "affected-software",
-      "title": "secure firewall management center",
-      "summary": "Product referenced by live intelligence (cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
     },
     {
       "id": "cy_cve-2026-68820",
@@ -628,14 +621,14 @@
       "kind": "affected-software",
       "title": "Windows Ancillary Function Driver for WinSock ",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_windows-10-1607",
       "kind": "affected-software",
       "title": "windows 10 1607",
       "summary": "Product referenced by live intelligence (microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-72898",
@@ -675,14 +668,14 @@
       "kind": "source",
       "title": "Metabase",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_metabase",
       "kind": "affected-software",
       "title": "Metabase",
       "summary": "Product referenced by live intelligence (Metabase)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-63077",
@@ -722,14 +715,14 @@
       "kind": "source",
       "title": "JetBrains",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_teamcity",
       "kind": "affected-software",
       "title": "TeamCity",
       "summary": "Product referenced by live intelligence (JetBrains)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-9198",
@@ -769,75 +762,21 @@
       "kind": "source",
       "title": "IBM",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_langflow",
       "kind": "affected-software",
       "title": "Langflow",
       "summary": "Product referenced by live intelligence (IBM)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_vendor_langflow",
       "kind": "source",
       "title": "langflow",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
-    },
-    {
-      "id": "cy_cve-2026-63030",
-      "kind": "kev-entry",
-      "title": "CVE-2026-63030",
-      "summary": "WordPress Core contains an interpretation conflict vulnerability that could allow an attacker to perform SQL Injection and achieve Remote Code Execution. This vulnerability can be chained with CVE-2026-60137.",
-      "updatedAt": "2026-08-11T18:59:43.6861Z",
-      "history": [
-        {
-          "at": "2026-07-21T00:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Known Exploited Vulnerabilities Catalog",
-          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "WordPress Core Interpretation Conflict Vulnerability"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "WordPress Core contains an interpretation conflict vulnerability that could allow an attacker to perform SQL Injection and achieve Remote Code Execution. This vulnerability can be chained with CVE-2026-60137.",
-        "whyItMatters": "Priority 94 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 9.8 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
-      },
-      "liveRecordId": "live_kev_cve-2026-63030"
-    },
-    {
-      "id": "cy_vendor_wordpress",
-      "kind": "source",
-      "title": "WordPress",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
-    },
-    {
-      "id": "cy_product_core",
-      "kind": "affected-software",
-      "title": "Core",
-      "summary": "Product referenced by live intelligence (WordPress)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
-    },
-    {
-      "id": "cy_product_wordpress",
-      "kind": "affected-software",
-      "title": "wordpress",
-      "summary": "Product referenced by live intelligence (wordpress)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-12569",
@@ -877,14 +816,14 @@
       "kind": "source",
       "title": "PTC",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_windchill-and-flexplm",
       "kind": "affected-software",
       "title": "Windchill and FlexPLM",
       "summary": "Product referenced by live intelligence (PTC)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48027",
@@ -924,14 +863,14 @@
       "kind": "source",
       "title": "Nx",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_nx-console",
       "kind": "affected-software",
       "title": "Nx Console",
       "summary": "Product referenced by live intelligence (Nx)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-41940",
@@ -971,14 +910,14 @@
       "kind": "source",
       "title": "WebPros",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_cpanel-whm-and-wp2-wordpress-squared-",
       "kind": "affected-software",
       "title": "cPanel & WHM and WP2 (WordPress Squared)",
       "summary": "Product referenced by live intelligence (WebPros)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-1708",
@@ -1018,14 +957,14 @@
       "kind": "source",
       "title": "ConnectWise",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_screenconnect",
       "kind": "affected-software",
       "title": "ScreenConnect",
       "summary": "Product referenced by live intelligence (ConnectWise)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-57728",
@@ -1065,14 +1004,14 @@
       "kind": "source",
       "title": "SimpleHelp ",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_simplehelp",
       "kind": "affected-software",
       "title": "SimpleHelp",
       "summary": "Product referenced by live intelligence (SimpleHelp )",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-57726",
@@ -1145,14 +1084,14 @@
       "kind": "source",
       "title": "PaperCut",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_ng-mf",
       "kind": "affected-software",
       "title": "NG/MF",
       "summary": "Product referenced by live intelligence (PaperCut)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-27199",
@@ -1225,14 +1164,14 @@
       "kind": "source",
       "title": "SolarWinds",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_web-help-desk",
       "kind": "affected-software",
       "title": "Web Help Desk",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-1731",
@@ -1272,14 +1211,14 @@
       "kind": "source",
       "title": "BeyondTrust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_remote-support-rs-and-privileged-remote-access-p",
       "kind": "affected-software",
       "title": "Remote Support (RS) and Privileged Remote Access (PRA)",
       "summary": "Product referenced by live intelligence (BeyondTrust)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-24423",
@@ -1319,14 +1258,14 @@
       "kind": "source",
       "title": "SmarterTools",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_smartermail",
       "kind": "affected-software",
       "title": "SmarterMail",
       "summary": "Product referenced by live intelligence (SmarterTools)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-52691",
@@ -1432,14 +1371,14 @@
       "kind": "source",
       "title": "Meta",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_react-server-components",
       "kind": "affected-software",
       "title": "React Server Components",
       "summary": "Product referenced by live intelligence (Meta)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-34486",
@@ -1479,28 +1418,28 @@
       "kind": "source",
       "title": "Apache",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_tomcat",
       "kind": "affected-software",
       "title": "Tomcat",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_vendor_redhat",
       "kind": "source",
       "title": "redhat",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_jboss-web-server",
       "kind": "affected-software",
       "title": "jboss web server",
       "summary": "Product referenced by live intelligence (redhat)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-68686",
@@ -1540,14 +1479,14 @@
       "kind": "source",
       "title": "Fortinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_fortios",
       "kind": "affected-software",
       "title": "FortiOS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-25089",
@@ -1587,7 +1526,7 @@
       "kind": "affected-software",
       "title": "FortiSandbox",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-39808",
@@ -1660,7 +1599,7 @@
       "kind": "affected-software",
       "title": "Microsoft",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-21533",
@@ -1700,7 +1639,7 @@
       "kind": "affected-software",
       "title": "Windows",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-20393",
@@ -1740,7 +1679,7 @@
       "kind": "affected-software",
       "title": "Multiple Products",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-18577",
@@ -1780,14 +1719,14 @@
       "kind": "source",
       "title": "N-able",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_n-central",
       "kind": "affected-software",
       "title": "N-central",
       "summary": "Product referenced by live intelligence (N-able)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-48595",
@@ -1827,14 +1766,14 @@
       "kind": "source",
       "title": "Android",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_framework",
       "kind": "affected-software",
       "title": "Framework",
       "summary": "Product referenced by live intelligence (Android)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2012-1854",
@@ -1874,7 +1813,7 @@
       "kind": "affected-software",
       "title": "Visual Basic for Applications (VBA)",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-21513",
@@ -2013,7 +1952,7 @@
       "kind": "affected-software",
       "title": "SharePoint",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-58644",
@@ -2086,7 +2025,7 @@
       "kind": "affected-software",
       "title": "E-Business Suite",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-56155",
@@ -2126,7 +2065,7 @@
       "kind": "affected-software",
       "title": "Active Directory Federation Services",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-56164",
@@ -2199,7 +2138,7 @@
       "kind": "affected-software",
       "title": "IOS",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-10520",
@@ -2239,14 +2178,14 @@
       "kind": "source",
       "title": "Ivanti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_sentry",
       "kind": "affected-software",
       "title": "Sentry",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-6973",
@@ -2286,7 +2225,7 @@
       "kind": "affected-software",
       "title": "Endpoint Manager Mobile (EPMM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-0300",
@@ -2359,7 +2298,7 @@
       "kind": "affected-software",
       "title": "FortiClient EMS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-1340",
@@ -2465,14 +2404,14 @@
       "kind": "source",
       "title": "Citrix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_netscaler",
       "kind": "affected-software",
       "title": "NetScaler",
       "summary": "Product referenced by live intelligence (Citrix)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-1603",
@@ -2512,7 +2451,7 @@
       "kind": "affected-software",
       "title": " Endpoint Manager (EPM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-1281",
@@ -2618,14 +2557,14 @@
       "kind": "source",
       "title": "WatchGuard",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_firebox",
       "kind": "affected-software",
       "title": "Firebox",
       "summary": "Product referenced by live intelligence (WatchGuard)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-59718",
@@ -2698,14 +2637,14 @@
       "kind": "source",
       "title": "Aquasecurity",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_trivy",
       "kind": "affected-software",
       "title": "Trivy",
       "summary": "Product referenced by live intelligence (Aquasecurity)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-59374",
@@ -2745,14 +2684,14 @@
       "kind": "source",
       "title": "ASUS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_live-update",
       "kind": "affected-software",
       "title": "Live Update",
       "summary": "Product referenced by live intelligence (ASUS)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-16812",
@@ -2792,14 +2731,14 @@
       "kind": "source",
       "title": "Arista",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_velocloud-orchestrator",
       "kind": "affected-software",
       "title": "VeloCloud Orchestrator",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-16232",
@@ -2839,7 +2778,7 @@
       "kind": "affected-software",
       "title": "SmartConsole",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-60137",
@@ -2873,6 +2812,53 @@
         "whyItMatters": "Priority 86 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
       },
       "liveRecordId": "live_kev_cve-2026-60137"
+    },
+    {
+      "id": "cy_vendor_wordpress",
+      "kind": "source",
+      "title": "WordPress",
+      "summary": "Vendor referenced by live intelligence",
+      "updatedAt": "2026-08-14T13:43:22.454Z"
+    },
+    {
+      "id": "cy_product_core",
+      "kind": "affected-software",
+      "title": "Core",
+      "summary": "Product referenced by live intelligence (WordPress)",
+      "updatedAt": "2026-08-14T13:43:22.454Z"
+    },
+    {
+      "id": "cy_cve-2026-63030",
+      "kind": "kev-entry",
+      "title": "CVE-2026-63030",
+      "summary": "WordPress Core contains an interpretation conflict vulnerability that could allow an attacker to perform SQL Injection and achieve Remote Code Execution. This vulnerability can be chained with CVE-2026-60137.",
+      "updatedAt": "2026-08-11T18:59:43.6861Z",
+      "history": [
+        {
+          "at": "2026-07-21T00:00:00.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "WordPress Core Interpretation Conflict Vulnerability"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "WordPress Core contains an interpretation conflict vulnerability that could allow an attacker to perform SQL Injection and achieve Remote Code Execution. This vulnerability can be chained with CVE-2026-60137.",
+        "whyItMatters": "Priority 86 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
+      },
+      "liveRecordId": "live_kev_cve-2026-63030"
     },
     {
       "id": "cy_cve-2026-0770",
@@ -2945,14 +2931,14 @@
       "kind": "source",
       "title": "DD-WRT",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_dd-wrt",
       "kind": "affected-software",
       "title": "DD-WRT",
       "summary": "Product referenced by live intelligence (DD-WRT)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2023-4346",
@@ -2992,14 +2978,14 @@
       "kind": "source",
       "title": "KNX Association",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_knx-protocol-connection-authorization-option-1",
       "kind": "affected-software",
       "title": "KNX Protocol Connection Authorization Option 1",
       "summary": "Product referenced by live intelligence (KNX Association)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48282",
@@ -3039,14 +3025,14 @@
       "kind": "source",
       "title": "Adobe",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_coldfusion",
       "kind": "affected-software",
       "title": "ColdFusion",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20230",
@@ -3086,7 +3072,7 @@
       "kind": "affected-software",
       "title": "Unified Communications Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20262",
@@ -3126,7 +3112,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-11645",
@@ -3166,14 +3152,14 @@
       "kind": "source",
       "title": "Google",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_chromium-v8",
       "kind": "affected-software",
       "title": "Chromium V8",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20245",
@@ -3246,14 +3232,14 @@
       "kind": "source",
       "title": "Linux",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_kernel",
       "kind": "affected-software",
       "title": "Kernel",
       "summary": "Product referenced by live intelligence (Linux)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-21182",
@@ -3293,7 +3279,7 @@
       "kind": "affected-software",
       "title": "WebLogic Server",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2008-4250",
@@ -3366,7 +3352,7 @@
       "kind": "affected-software",
       "title": "DirectX",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2009-3459",
@@ -3406,7 +3392,7 @@
       "kind": "affected-software",
       "title": "Acrobat and Reader",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2010-0249",
@@ -3446,7 +3432,7 @@
       "kind": "affected-software",
       "title": "Internet Explorer",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2010-0806",
@@ -3585,7 +3571,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-31431",
@@ -3691,7 +3677,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manger",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20133",
@@ -3797,7 +3783,7 @@
       "kind": "affected-software",
       "title": "Office",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-32201",
@@ -3936,7 +3922,7 @@
       "kind": "affected-software",
       "title": "Acrobat",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-34621",
@@ -4009,7 +3995,7 @@
       "kind": "affected-software",
       "title": "Dawn",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-43510",
@@ -4049,7 +4035,7 @@
       "kind": "source",
       "title": "Apple",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-43520",
@@ -4221,7 +4207,7 @@
       "kind": "affected-software",
       "title": "Skia",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2021-22054",
@@ -4261,14 +4247,14 @@
       "kind": "source",
       "title": "Omnissa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_workspace-one-uem",
       "kind": "affected-software",
       "title": "Workspace One UEM",
       "summary": "Product referenced by live intelligence (Omnissa)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2023-43000",
@@ -4374,7 +4360,7 @@
       "kind": "affected-software",
       "title": "iOS and iPadOS",
       "summary": "Product referenced by live intelligence (Apple)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-22719",
@@ -4414,14 +4400,14 @@
       "kind": "source",
       "title": "Broadcom",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_vmware-aria-operations",
       "kind": "affected-software",
       "title": "VMware Aria Operations",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2022-20775",
@@ -4461,7 +4447,7 @@
       "kind": "affected-software",
       "title": "SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20127",
@@ -4501,7 +4487,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Controller and Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2008-0015",
@@ -4574,7 +4560,7 @@
       "kind": "affected-software",
       "title": "Chromium",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20700",
@@ -4647,7 +4633,7 @@
       "kind": "affected-software",
       "title": "Configuration Manager",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-21525",
@@ -4819,14 +4805,14 @@
       "kind": "source",
       "title": "React Native Community",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_cli",
       "kind": "affected-software",
       "title": "CLI",
       "summary": "Product referenced by live intelligence (React Native Community)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2018-14634",
@@ -4932,7 +4918,7 @@
       "kind": "affected-software",
       "title": "VMware vCenter Server",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-54313",
@@ -4972,14 +4958,14 @@
       "kind": "source",
       "title": "Prettier",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_eslint-config-prettier",
       "kind": "affected-software",
       "title": "eslint-config-prettier",
       "summary": "Product referenced by live intelligence (Prettier)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-20045",
@@ -5217,14 +5203,14 @@
       "kind": "source",
       "title": "Balbooa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_forms",
       "kind": "affected-software",
       "title": "Forms",
       "summary": "Product referenced by live intelligence (Balbooa)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48939",
@@ -5264,14 +5250,14 @@
       "kind": "source",
       "title": "iCagenda",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_icagenda",
       "kind": "affected-software",
       "title": "iCagenda",
       "summary": "Product referenced by live intelligence (iCagenda)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48908",
@@ -5311,14 +5297,14 @@
       "kind": "source",
       "title": "JoomShaper",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_sp-page-builder",
       "kind": "affected-software",
       "title": "SP Page Builder",
       "summary": "Product referenced by live intelligence (JoomShaper)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-55255",
@@ -5391,14 +5377,14 @@
       "kind": "source",
       "title": "Joomlack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_page-builder",
       "kind": "affected-software",
       "title": "Page Builder",
       "summary": "Product referenced by live intelligence (Joomlack)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48558",
@@ -5471,14 +5457,14 @@
       "kind": "source",
       "title": "Lantronix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_eds5000",
       "kind": "affected-software",
       "title": "EDS5000",
       "summary": "Product referenced by live intelligence (Lantronix)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-34910",
@@ -5518,14 +5504,14 @@
       "kind": "source",
       "title": "Ubiquiti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_unifi-os",
       "kind": "affected-software",
       "title": "UniFi OS",
       "summary": "Product referenced by live intelligence (Ubiquiti)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-34909",
@@ -5631,14 +5617,14 @@
       "kind": "source",
       "title": "Splunk",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_enterprise",
       "kind": "affected-software",
       "title": "Enterprise",
       "summary": "Product referenced by live intelligence (Splunk)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48907",
@@ -5678,14 +5664,14 @@
       "kind": "source",
       "title": "Widget Factory",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_joomla-content-editor-",
       "kind": "affected-software",
       "title": "Joomla Content Editor ",
       "summary": "Product referenced by live intelligence (Widget Factory)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-54420",
@@ -5725,14 +5711,14 @@
       "kind": "source",
       "title": "LiteSpeed",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_cpanel-plugin",
       "kind": "affected-software",
       "title": "cPanel Plugin",
       "summary": "Product referenced by live intelligence (LiteSpeed)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-7473",
@@ -5772,7 +5758,7 @@
       "kind": "affected-software",
       "title": "Extensible Operating System",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-42271",
@@ -5812,14 +5798,14 @@
       "kind": "source",
       "title": "BerriAI",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_litellm",
       "kind": "affected-software",
       "title": "LiteLLM",
       "summary": "Product referenced by live intelligence (BerriAI)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-28318",
@@ -5859,7 +5845,7 @@
       "kind": "affected-software",
       "title": "Serv-U",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-45247",
@@ -5899,14 +5885,14 @@
       "kind": "source",
       "title": "Mirasvit",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_mirasvit-full-page-cache-warmer",
       "kind": "affected-software",
       "title": "Mirasvit Full Page Cache Warmer",
       "summary": "Product referenced by live intelligence (Mirasvit)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-8398",
@@ -5946,14 +5932,14 @@
       "kind": "source",
       "title": "Daemon",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_daemon-tools-lite",
       "kind": "affected-software",
       "title": "Daemon Tools Lite",
       "summary": "Product referenced by live intelligence (Daemon)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-48172",
@@ -6026,7 +6012,7 @@
       "kind": "source",
       "title": "Drupal",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-34291",
@@ -6099,14 +6085,14 @@
       "kind": "source",
       "title": "Trend Micro",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_apex-one",
       "kind": "affected-software",
       "title": "Apex One",
       "summary": "Product referenced by live intelligence (Trend Micro)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-42208",
@@ -6179,14 +6165,14 @@
       "kind": "source",
       "title": "D-Link",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_dir-823x",
       "kind": "affected-software",
       "title": "DIR-823X",
       "summary": "Product referenced by live intelligence (D-Link)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-7399",
@@ -6226,14 +6212,14 @@
       "kind": "source",
       "title": "Samsung",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_magicinfo-9-server",
       "kind": "affected-software",
       "title": "MagicINFO 9 Server",
       "summary": "Product referenced by live intelligence (Samsung)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-39987",
@@ -6273,14 +6259,14 @@
       "kind": "source",
       "title": "Marimo",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_marimo",
       "kind": "affected-software",
       "title": "Marimo",
       "summary": "Product referenced by live intelligence (Marimo)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-2749",
@@ -6320,14 +6306,14 @@
       "kind": "source",
       "title": "Kentico",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_kentico-xperience",
       "kind": "affected-software",
       "title": "Kentico Xperience",
       "summary": "Product referenced by live intelligence (Kentico)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-48700",
@@ -6367,14 +6353,14 @@
       "kind": "source",
       "title": "Synacor",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_zimbra-collaboration-suite-zcs-",
       "kind": "affected-software",
       "title": "Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-32975",
@@ -6414,14 +6400,14 @@
       "kind": "source",
       "title": "Quest",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_kace-systems-management-appliance-sma-",
       "kind": "affected-software",
       "title": "KACE Systems Management Appliance (SMA)",
       "summary": "Product referenced by live intelligence (Quest)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-34197",
@@ -6461,7 +6447,7 @@
       "kind": "affected-software",
       "title": "ActiveMQ",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-3502",
@@ -6501,14 +6487,14 @@
       "kind": "source",
       "title": "TrueConf",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_client",
       "kind": "affected-software",
       "title": "Client",
       "summary": "Product referenced by live intelligence (TrueConf)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-53521",
@@ -6548,14 +6534,14 @@
       "kind": "source",
       "title": "F5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_big-ip",
       "kind": "affected-software",
       "title": "BIG-IP",
       "summary": "Product referenced by live intelligence (F5)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-33017",
@@ -6628,14 +6614,14 @@
       "kind": "source",
       "title": "Craft CMS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_craft-cms",
       "kind": "affected-software",
       "title": "Craft CMS",
       "summary": "Product referenced by live intelligence (Craft CMS)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-54068",
@@ -6675,14 +6661,14 @@
       "kind": "source",
       "title": "Laravel",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_livewire",
       "kind": "affected-software",
       "title": "Livewire",
       "summary": "Product referenced by live intelligence (Laravel)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-66376",
@@ -6755,14 +6741,14 @@
       "kind": "source",
       "title": "Wing FTP Server",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_wing-ftp-server",
       "kind": "affected-software",
       "title": "Wing FTP Server",
       "summary": "Product referenced by live intelligence (Wing FTP Server)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-68613",
@@ -6802,14 +6788,14 @@
       "kind": "source",
       "title": "n8n",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_n8n",
       "kind": "affected-software",
       "title": "n8n",
       "summary": "Product referenced by live intelligence (n8n)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2017-7921",
@@ -6849,7 +6835,7 @@
       "kind": "source",
       "title": "Hikvision",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2021-22681",
@@ -6889,7 +6875,7 @@
       "kind": "source",
       "title": "Rockwell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-21385",
@@ -6929,14 +6915,14 @@
       "kind": "source",
       "title": "Qualcomm",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_multiple-chipsets",
       "kind": "affected-software",
       "title": "Multiple Chipsets",
       "summary": "Product referenced by live intelligence (Qualcomm)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-25108",
@@ -6976,14 +6962,14 @@
       "kind": "source",
       "title": "Soliton Systems K.K",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_filezen",
       "kind": "affected-software",
       "title": "FileZen",
       "summary": "Product referenced by live intelligence (Soliton Systems K.K)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-49113",
@@ -7023,14 +7009,14 @@
       "kind": "source",
       "title": "Roundcube",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_webmail",
       "kind": "affected-software",
       "title": "Webmail",
       "summary": "Product referenced by live intelligence (Roundcube)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-68461",
@@ -7103,14 +7089,14 @@
       "kind": "source",
       "title": "GitLab",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_gitlab",
       "kind": "affected-software",
       "title": "GitLab",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2026-22769",
@@ -7150,14 +7136,14 @@
       "kind": "source",
       "title": "Dell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_recoverpoint-for-virtual-machines-rp4vms-",
       "kind": "affected-software",
       "title": "RecoverPoint for Virtual Machines (RP4VMs)",
       "summary": "Product referenced by live intelligence (Dell)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2020-7796",
@@ -7197,7 +7183,7 @@
       "kind": "affected-software",
       "title": "Zimbra Collaboration Suite",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2024-7694",
@@ -7237,14 +7223,14 @@
       "kind": "source",
       "title": "TeamT5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_threatsonar-anti-ransomware",
       "kind": "affected-software",
       "title": "ThreatSonar Anti-Ransomware",
       "summary": "Product referenced by live intelligence (TeamT5)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-15556",
@@ -7284,14 +7270,14 @@
       "kind": "source",
       "title": "Notepad++",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_notepad-",
       "kind": "affected-software",
       "title": "Notepad++",
       "summary": "Product referenced by live intelligence (Notepad++)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-40536",
@@ -7364,7 +7350,7 @@
       "kind": "affected-software",
       "title": "Community and Enterprise Editions",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-64328",
@@ -7404,14 +7390,14 @@
       "kind": "source",
       "title": "Sangoma",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_freepbx-",
       "kind": "affected-software",
       "title": "FreePBX ",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2019-19006",
@@ -7451,7 +7437,7 @@
       "kind": "affected-software",
       "title": "FreePBX",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-40551",
@@ -7524,14 +7510,14 @@
       "kind": "source",
       "title": "GNU",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_inetutils",
       "kind": "affected-software",
       "title": "InetUtils",
       "summary": "Product referenced by live intelligence (GNU)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-68645",
@@ -7571,7 +7557,7 @@
       "kind": "affected-software",
       "title": " Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-34026",
@@ -7611,14 +7597,14 @@
       "kind": "source",
       "title": "Versa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_concerto",
       "kind": "affected-software",
       "title": "Concerto",
       "summary": "Product referenced by live intelligence (Versa)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-31125",
@@ -7658,14 +7644,14 @@
       "kind": "source",
       "title": "Vite",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_vitejs",
       "kind": "affected-software",
       "title": "Vitejs",
       "summary": "Product referenced by live intelligence (Vite)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-8110",
@@ -7705,14 +7691,14 @@
       "kind": "source",
       "title": "Gogs",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_gogs",
       "kind": "affected-software",
       "title": "Gogs",
       "summary": "Product referenced by live intelligence (Gogs)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-37164",
@@ -7752,14 +7738,14 @@
       "kind": "source",
       "title": "Hewlett Packard Enterprise (HPE)",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_oneview",
       "kind": "affected-software",
       "title": "OneView",
       "summary": "Product referenced by live intelligence (Hewlett Packard Enterprise (HPE))",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-14847",
@@ -7799,14 +7785,14 @@
       "kind": "source",
       "title": "MongoDB",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_mongodb-and-mongodb-server",
       "kind": "affected-software",
       "title": "MongoDB and MongoDB Server",
       "summary": "Product referenced by live intelligence (MongoDB)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2023-52163",
@@ -7846,14 +7832,14 @@
       "kind": "source",
       "title": "Digiever",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_ds-2105-pro",
       "kind": "affected-software",
       "title": "DS-2105 Pro",
       "summary": "Product referenced by live intelligence (Digiever)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-40602",
@@ -7893,7 +7879,7 @@
       "kind": "affected-software",
       "title": "SMA1000 appliance",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-14611",
@@ -7933,14 +7919,14 @@
       "kind": "source",
       "title": "Gladinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_centrestack-and-triofox",
       "kind": "affected-software",
       "title": "CentreStack and Triofox",
       "summary": "Product referenced by live intelligence (Gladinet)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2018-4063",
@@ -7980,14 +7966,14 @@
       "kind": "source",
       "title": "Sierra Wireless",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_airlink-aleos",
       "kind": "affected-software",
       "title": "AirLink ALEOS",
       "summary": "Product referenced by live intelligence (Sierra Wireless)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-58360",
@@ -8027,14 +8013,14 @@
       "kind": "source",
       "title": "OSGeo",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_geoserver",
       "kind": "affected-software",
       "title": "GeoServer",
       "summary": "Product referenced by live intelligence (OSGeo)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-6218",
@@ -8074,14 +8060,14 @@
       "kind": "source",
       "title": "RARLAB",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_winrar",
       "kind": "affected-software",
       "title": "WinRAR",
       "summary": "Product referenced by live intelligence (RARLAB)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2022-37055",
@@ -8121,7 +8107,7 @@
       "kind": "affected-software",
       "title": "Routers",
       "summary": "Product referenced by live intelligence (D-Link)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2025-66644",
@@ -8161,14 +8147,14 @@
       "kind": "source",
       "title": "Array Networks ",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_arrayos-ag",
       "kind": "affected-software",
       "title": "ArrayOS AG",
       "summary": "Product referenced by live intelligence (Array Networks )",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2021-26828",
@@ -8208,14 +8194,14 @@
       "kind": "source",
       "title": "OpenPLC",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_product_scadabr",
       "kind": "affected-software",
       "title": "ScadaBR",
       "summary": "Product referenced by live intelligence (OpenPLC)",
-      "updatedAt": "2026-08-14T07:50:52.091Z"
+      "updatedAt": "2026-08-14T13:43:22.454Z"
     },
     {
       "id": "cy_cve-2018-0101",
@@ -8651,14 +8637,14 @@
       "kind": "source",
       "title": "go",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_github-com-seaweedfs-seaweedfs",
       "kind": "affected-software",
       "title": "github.com/seaweedfs/seaweedfs",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2015-2546",
@@ -9193,14 +9179,14 @@
       "kind": "source",
       "title": "npm",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_-trigger-dev-core",
       "kind": "affected-software",
       "title": "@trigger.dev/core",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2017-6625",
@@ -9636,14 +9622,14 @@
       "kind": "source",
       "title": "pip",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_compliance-trestle",
       "kind": "affected-software",
       "title": "compliance-trestle",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-48798",
@@ -9683,14 +9669,14 @@
       "kind": "source",
       "title": "nuget",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_ssh-net",
       "kind": "affected-software",
       "title": "SSH.NET",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2018-6882",
@@ -9829,28 +9815,28 @@
       "kind": "source",
       "title": "Cloudflare Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.391Z"
+      "updatedAt": "2026-08-14T13:43:22.637Z"
     },
     {
       "id": "cy_product_cloudflare-status",
       "kind": "affected-software",
       "title": "Cloudflare Status",
       "summary": "Product referenced by live intelligence (Cloudflare Status)",
-      "updatedAt": "2026-08-14T07:50:52.391Z"
+      "updatedAt": "2026-08-14T13:43:22.637Z"
     },
     {
       "id": "cy_vendor_amazon-web-services",
       "kind": "source",
       "title": "Amazon Web Services",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.383Z"
+      "updatedAt": "2026-08-14T13:43:22.662Z"
     },
     {
       "id": "cy_product_aws",
       "kind": "affected-software",
       "title": "AWS",
       "summary": "Product referenced by live intelligence (Amazon Web Services)",
-      "updatedAt": "2026-08-14T07:50:52.383Z"
+      "updatedAt": "2026-08-14T13:43:22.662Z"
     },
     {
       "id": "cy_cve-2026-3014",
@@ -9989,14 +9975,14 @@
       "kind": "affected-software",
       "title": "nltk",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_atomic-agents-stack",
       "kind": "affected-software",
       "title": "atomic-agents-stack",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-54526",
@@ -10036,21 +10022,21 @@
       "kind": "affected-software",
       "title": "github.com/argoproj/argo-workflows/v4",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_github-com-argoproj-argo-workflows-v3",
       "kind": "affected-software",
       "title": "github.com/argoproj/argo-workflows/v3",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_github-com-argoproj-argo-workflows",
       "kind": "affected-software",
       "title": "github.com/argoproj/argo-workflows",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-55102",
@@ -10090,7 +10076,7 @@
       "kind": "affected-software",
       "title": "hashi-vault-js",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-55088",
@@ -10130,7 +10116,7 @@
       "kind": "affected-software",
       "title": "ep_etherpad-lite",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-55086",
@@ -10236,14 +10222,14 @@
       "kind": "source",
       "title": "composer",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_pimcore-pimcore",
       "kind": "affected-software",
       "title": "pimcore/pimcore",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-55074",
@@ -10283,14 +10269,14 @@
       "kind": "affected-software",
       "title": "ansible-jailexec",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_sipsorcery",
       "kind": "affected-software",
       "title": "SIPSorcery",
       "summary": "Product referenced by live intelligence (nuget)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-55071",
@@ -10330,7 +10316,7 @@
       "kind": "affected-software",
       "title": "stata-mcp",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-46369",
@@ -10370,14 +10356,14 @@
       "kind": "source",
       "title": "rust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_nimiq-blockchain",
       "kind": "affected-software",
       "title": "nimiq-blockchain",
       "summary": "Product referenced by live intelligence (rust)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-35445",
@@ -10417,7 +10403,7 @@
       "kind": "affected-software",
       "title": "winter/wn-backend-module",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-73559",
@@ -10457,7 +10443,7 @@
       "kind": "affected-software",
       "title": "vllm",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-54249",
@@ -10497,14 +10483,14 @@
       "kind": "affected-software",
       "title": "pydantic-ai-slim",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_product_pydantic-ai",
       "kind": "affected-software",
       "title": "pydantic-ai",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-48786",
@@ -10544,7 +10530,7 @@
       "kind": "affected-software",
       "title": "github.com/fleetdm/fleet/v4",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-47132",
@@ -10584,7 +10570,7 @@
       "kind": "affected-software",
       "title": "thorsten/phpmyfaq",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-45694",
@@ -10624,7 +10610,7 @@
       "kind": "affected-software",
       "title": "librenms/librenms",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-32639",
@@ -10664,7 +10650,7 @@
       "kind": "affected-software",
       "title": "winter/wn-cms-module",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-14T07:50:52.595Z"
+      "updatedAt": "2026-08-14T13:43:22.928Z"
     },
     {
       "id": "cy_cve-2026-32593",
@@ -11793,7 +11779,7 @@
       "kind": "affected-software",
       "title": "Google Cloud",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-14T07:50:52.290Z"
+      "updatedAt": "2026-08-14T13:43:22.629Z"
     },
     {
       "id": "cy_cve-2026-64629",
@@ -12757,35 +12743,35 @@
       "kind": "source",
       "title": "GitHub Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.426Z"
+      "updatedAt": "2026-08-14T13:43:22.630Z"
     },
     {
       "id": "cy_product_github-status",
       "kind": "affected-software",
       "title": "GitHub Status",
       "summary": "Product referenced by live intelligence (GitHub Status)",
-      "updatedAt": "2026-08-14T07:50:52.426Z"
+      "updatedAt": "2026-08-14T13:43:22.630Z"
     },
     {
       "id": "cy_vendor_openai-status",
       "kind": "source",
       "title": "OpenAI Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-14T07:50:52.476Z"
+      "updatedAt": "2026-08-14T13:43:22.824Z"
     },
     {
       "id": "cy_product_openai-status",
       "kind": "affected-software",
       "title": "OpenAI Status",
       "summary": "Product referenced by live intelligence (OpenAI Status)",
-      "updatedAt": "2026-08-14T07:50:52.476Z"
+      "updatedAt": "2026-08-14T13:43:22.824Z"
     },
     {
       "id": "cy_product_azure",
       "kind": "affected-software",
       "title": "Azure",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-14T07:50:52.357Z"
+      "updatedAt": "2026-08-14T13:43:22.683Z"
     }
   ],
   "relationships": [
@@ -12895,13 +12881,6 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_secure-firewa_cve-2026-20316",
-      "type": "affects",
-      "from": "cy_product_secure-firewall-management-center",
-      "to": "cy_cve-2026-20316",
-      "note": "Linked from live provider data"
-    },
-    {
       "id": "rel_cy_product_windows-ancil_cve-2026-68820",
       "type": "affects",
       "from": "cy_product_windows-ancillary-function-driver-for-winsock-",
@@ -12955,20 +12934,6 @@
       "type": "affects",
       "from": "cy_product_langflow",
       "to": "cy_cve-2026-9198",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_core_cve-2026-63030",
-      "type": "affects",
-      "from": "cy_product_core",
-      "to": "cy_cve-2026-63030",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_wordpress_cve-2026-63030",
-      "type": "affects",
-      "from": "cy_product_wordpress",
-      "to": "cy_cve-2026-63030",
       "note": "Linked from live provider data"
     },
     {
@@ -13347,6 +13312,13 @@
       "type": "affects",
       "from": "cy_product_core",
       "to": "cy_cve-2026-60137",
+      "note": "Linked from live provider data"
+    },
+    {
+      "id": "rel_cy_product_core_cve-2026-63030",
+      "type": "affects",
+      "from": "cy_product_core",
+      "to": "cy_cve-2026-63030",
       "note": "Linked from live provider data"
     },
     {
