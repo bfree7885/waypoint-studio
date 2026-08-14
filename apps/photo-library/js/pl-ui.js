@@ -331,7 +331,7 @@
           '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
             '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(originalId) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
-            ">Explore Hidden Landscapes</a>" +
+">Open in Hidden Landscapes</a>" +
           '<span class="pl-move-note" title="Moving Scenes is Attack 3">Make it move — coming next</span>' +
         "</div>" +
         '<div class="pl-label-row" role="group" aria-label="Private labels">' +

@@ -583,13 +583,16 @@
   }
 
   function sessionDateLabel(shoot, done) {
-    var first = done && done[0];
-    var ex = first && first.exif;
-    if (ex && (ex.dateTimeOriginal || ex.dateTime)) {
-      var d = parseExifDate(ex.dateTimeOriginal || ex.dateTime);
-      if (d) {
-        return d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
-      }
+    var d = null;
+    var i;
+    for (i = 0; i < (done ? done.length : 0); i++) {
+      var ex = done[i] && done[i].exif;
+      if (!ex) continue;
+      d = parseExifDate(ex.dateTimeOriginal || ex.dateTime);
+      if (d) break;
+    }
+    if (d) {
+      return d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
     }
     if (shoot && shoot.createdAt) {
       var c = new Date(shoot.createdAt);
@@ -622,8 +625,9 @@
     if (timed.length < 3) {
       return { available: false, note: "Not enough timestamped frames to describe progression." };
     }
-    var firstHalf = timed.slice(0, Math.ceil(timed.length / 2));
-    var secondHalf = timed.slice(Math.floor(timed.length / 2));
+    var half = Math.floor(timed.length / 2);
+    var firstHalf = timed.slice(0, half);
+    var secondHalf = timed.slice(timed.length - half);
     function mean(arr) {
       return arr.reduce(function (a, b) { return a + b.score; }, 0) / arr.length;
     }

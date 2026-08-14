@@ -317,7 +317,7 @@
       Object.keys(patch || {}).forEach(function (k) {
         if (k === "id" || k === "schemaVersion") return;
         if (patch[k] === undefined) return;
-        if (k === "camera" || k === "gps" || k === "media" || k === "legacy") {
+        if (k === "camera" || k === "gps" || k === "media" || k === "moduleRefs" || k === "legacy") {
           img[k] = Object.assign({}, img[k] || {}, patch[k] || {});
         } else if (k === "moduleRefs") {
           img.moduleRefs = img.moduleRefs || {};
@@ -602,7 +602,9 @@
           : (byId(libraryId) && byId(libraryId).selectionLabel),
         favorite: payload.selectionLabel === "favorite"
           ? true
-          : (payload.favorite !== undefined ? !!payload.favorite : undefined),
+          : (payload.selectionLabel !== undefined
+            ? false
+            : (payload.favorite !== undefined ? !!payload.favorite : undefined)),
         subjectHints: payload.subjectHints || (byId(libraryId) && byId(libraryId).subjectHints) || [],
         coachSummary: payload.coachSummary || payload.narrativeSummary || null,
         outdoorContext: payload.outdoorContext !== undefined

@@ -222,6 +222,21 @@ assert("coach summary carried", linked.coachSummary && /woodland/i.test(linked.c
 assert("shoot id carried", linked.moduleRefs.photoCoach.shootId === "shoot-abc");
 assert("outdoor context carried", linked.outdoorContext && linked.outdoorContext.source === "stored-context");
 assert("favorite from label", linked.favorite === true);
+
+engine2.linkPhotoCoachResult("test-1", {
+  analysisStatus: "analyzed",
+  shootId: "shoot-abc",
+  selectionLabel: "keep"
+});
+assert("favorite cleared on keep relink", engine2.get("test-1").favorite === false);
+assert("keep label after relink", engine2.get("test-1").selectionLabel === "keep");
+
+engine2.linkPhotoCoachResult("test-1", {
+  analysisStatus: "analyzed",
+  shootId: "shoot-abc",
+  selectionLabel: "favorite"
+});
+assert("favorite restored on favorite relink", engine2.get("test-1").favorite === true);
 assert("list shoots", engine2.listShoots().some((s) => s.id === "shoot-abc" && s.count >= 1));
 assert("filter by shoot", engine2.search({ filters: { shootId: "shoot-abc" } }).some((x) => x.id === "test-1"));
 assert("filter hasExif", engine2.search({ filters: { hasExif: true } }).some((x) => x.id === "test-1"));

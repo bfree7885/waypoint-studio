@@ -309,11 +309,11 @@
   color: var(--coach-text-secondary);
 }
 
-.pp-dna {
+.pp-looking {
   margin: 0.75rem 0 0;
 }
 
-.pp-dna-row {
+.pp-looking-row {
   display: grid;
   gap: 0.2rem;
   padding: 0.65rem 0;
@@ -321,13 +321,13 @@
 }
 
 @media (min-width: 640px) {
-  .pp-dna-row {
+  .pp-looking-row {
     grid-template-columns: 11rem 1fr;
     gap: 0.75rem;
   }
 }
 
-.pp-dna-row dt {
+.pp-looking-row dt {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -335,7 +335,7 @@
   margin: 0;
 }
 
-.pp-dna-row dd {
+.pp-looking-row dd {
   margin: 0;
   line-height: 1.45;
 }
