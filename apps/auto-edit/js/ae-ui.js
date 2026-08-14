@@ -249,6 +249,13 @@
     }
   }
 
+  function failMissingOriginal() {
+    state.editedBlob = null;
+    state.originalAssetId = null;
+    setStatus("That photograph’s original is not stored locally yet.", true);
+    return null;
+  }
+
   function loadFromLibrary(libraryId) {
     var Client = global.WaypointPhotoLibraryClient;
     var engine = global.WaypointPhotoLibraryEngine && global.WaypointPhotoLibraryEngine.get();
@@ -261,15 +268,14 @@
       return Client.resolveLibraryFile(libraryId);
     }).then(function (resolved) {
       if (!resolved || !resolved.file) {
-        setStatus("That photograph’s original is not stored locally yet.", true);
-        return null;
+        return failMissingOriginal();
       }
       var img = resolved.image || {};
       // If user opened an edit sibling, finish from the true original
       var originalId = img.role === "waypoint-edit" && img.originalAssetId ? img.originalAssetId : resolved.id;
       if (originalId !== resolved.id) {
         return Client.resolveLibraryFile(originalId).then(function (orig) {
-          if (!orig) return ingestFile(resolved.file, { originalAssetId: resolved.id, filename: img.filename });
+          if (!orig || !orig.file) return failMissingOriginal();
           return ingestFile(orig.file, {
             originalAssetId: orig.id,
             filename: (orig.image && orig.image.filename) || img.filename,
@@ -343,8 +349,8 @@
     setBusy(true);
     setStatus("Editing " + (i + 1) + " of " + state.batch.total + "…");
     var id = state.batch.ids[i];
-    return loadFromLibrary(id).then(function () {
-      if (!state.editedBlob || !state.originalAssetId) {
+    return loadFromLibrary(id).then(function (result) {
+      if (!result || !state.editedBlob || state.originalAssetId !== id) {
         state.batch.index += 1;
         return runBatchStep();
       }

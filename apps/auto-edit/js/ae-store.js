@@ -69,21 +69,28 @@
 
     var version = (recipe && recipe.editVersion) || 1;
     var blobKey = M.editBlobKey(originalAssetId, version);
-    var editAssetId = meta.editAssetId || M.uuid("edit");
+    var ready = engine && !engine.isReady() ? engine.init() : Promise.resolve();
 
-    return store.putMedia(blobKey, editedBlob, "waypoint-edit").then(function () {
-      var saved = upsertRecipe(Object.assign({}, recipe, {
-        originalAssetId: originalAssetId,
-        editAssetId: editAssetId,
-        editVersion: version
-      }));
+    return ready.then(function () {
+      var existingSibling = null;
+      if (engine) {
+        existingSibling = engine.list().find(function (img) {
+          return img.role === "waypoint-edit" && img.originalAssetId === originalAssetId;
+        }) || null;
+      }
+      var editAssetId = meta.editAssetId || (existingSibling && existingSibling.id) || M.uuid("edit");
 
-      function linkLibrary() {
-        if (!engine) {
-          return { recipe: saved.recipe, editBlobKey: blobKey, editAssetId: editAssetId, persist: saved.persist };
-        }
-        var ready = engine.isReady() ? Promise.resolve() : engine.init();
-        return ready.then(function () {
+      return store.putMedia(blobKey, editedBlob, "waypoint-edit").then(function () {
+        var saved = upsertRecipe(Object.assign({}, recipe, {
+          originalAssetId: originalAssetId,
+          editAssetId: editAssetId,
+          editVersion: version
+        }));
+
+        function linkLibrary() {
+          if (!engine) {
+            return { recipe: saved.recipe, editBlobKey: blobKey, editAssetId: editAssetId, persist: saved.persist };
+          }
           var original = engine.get(originalAssetId);
           if (!original) {
             return {
@@ -112,11 +119,8 @@
 
           var ModelsLib = global.WaypointPhotoLibraryModels;
           if (ModelsLib && engine.upsertImage) {
-            var existing = engine.list().find(function (img) {
-              return img.role === "waypoint-edit" && img.originalAssetId === originalAssetId;
-            });
             var editRow = ModelsLib.createLibraryImage({
-              id: existing ? existing.id : editAssetId,
+              id: editAssetId,
               role: "waypoint-edit",
               originalAssetId: originalAssetId,
               filename: M.waypointFilename(original.filename),
@@ -157,10 +161,10 @@
             persist: saved.persist,
             warning: saved.persist.ok ? null : saved.persist.error
           };
-        });
-      }
+        }
 
-      return linkLibrary();
+        return linkLibrary();
+      });
     });
   }
 

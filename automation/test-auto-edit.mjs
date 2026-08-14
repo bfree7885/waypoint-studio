@@ -322,6 +322,23 @@ assert("stable originalAssetId on recipe", saved.recipe.originalAssetId === orig
 const latest = Store.getLatestForOriginal(originalId);
 assert("edit reload via recipe", latest && latest.id === saved.recipe.id);
 
+const firstEditAssetId = saved.editAssetId;
+const siblingAfterFirst = Engine.list().find(function (row) {
+  return row.role === "waypoint-edit" && row.originalAssetId === originalId;
+});
+assert("first save catalog id matches pointer", !!(siblingAfterFirst && siblingAfterFirst.id === firstEditAssetId));
+assert("first save original pointer matches catalog", linked.moduleRefs.autoEdit.editAssetId === firstEditAssetId);
+
+const savedAgain = await Store.persistEdit(originalId, editedBlob, recipe, { width: 32, height: 24 });
+assert("re-save keeps editAssetId", savedAgain.editAssetId === firstEditAssetId);
+const linkedAgain = Engine.get(originalId);
+assert("re-save original pointer stays on catalog row", linkedAgain.moduleRefs.autoEdit.editAssetId === firstEditAssetId);
+const siblingAfterSecond = Engine.list().find(function (row) {
+  return row.role === "waypoint-edit" && row.originalAssetId === originalId;
+});
+assert("re-save catalog id unchanged", !!(siblingAfterSecond && siblingAfterSecond.id === firstEditAssetId));
+assert("re-save recipe pointer matches catalog", savedAgain.recipe.editAssetId === firstEditAssetId);
+
 // Intent switching
 const intents = Strategy.INTENTS.map((i) => i.id);
 for (const intent of intents) {
