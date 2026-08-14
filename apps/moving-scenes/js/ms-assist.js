@@ -16,13 +16,52 @@
     var dirty = false;
 
     function resize(nw, nh) {
+      var old = mask;
+      var ow = w;
+      var oh = h;
+      var wasDirty = dirty;
       w = nw;
       h = nh;
       canvas.width = nw;
       canvas.height = nh;
       mask = new Float32Array(nw * nh);
-      dirty = false;
+      if (old && ow > 0 && oh > 0) {
+        if (ow === nw && oh === nh) {
+          mask.set(old);
+        } else {
+          var y;
+          var x;
+          for (y = 0; y < nh; y++) {
+            var sy = Math.min(oh - 1, Math.floor((y / nh) * oh));
+            for (x = 0; x < nw; x++) {
+              var sx = Math.min(ow - 1, Math.floor((x / nw) * ow));
+              mask[y * nw + x] = old[sy * ow + sx];
+            }
+          }
+        }
+        dirty = wasDirty;
+        if (!dirty) {
+          var i;
+          for (i = 0; i < mask.length; i++) {
+            if (Math.abs(mask[i]) > 0.04) {
+              dirty = true;
+              break;
+            }
+          }
+        }
+      } else {
+        dirty = false;
+      }
       redraw();
+    }
+
+    function hasInclude() {
+      if (!mask) return false;
+      var i;
+      for (i = 0; i < mask.length; i++) {
+        if (mask[i] > 0.04) return true;
+      }
+      return false;
     }
 
     function redraw() {
@@ -103,7 +142,9 @@
         redraw();
       },
       getMask: function () { return mask; },
+      getSize: function () { return { w: w, h: h }; },
       isDirty: function () { return dirty; },
+      hasInclude: hasInclude,
       canvas: canvas
     };
   }

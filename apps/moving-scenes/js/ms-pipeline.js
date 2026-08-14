@@ -9,6 +9,16 @@
   function Choice() { return global.WaypointMovingScenesChoice; }
   function Render() { return global.WaypointMovingScenesRender; }
 
+  function maskHasInclude(userMask) {
+    var data = userMask && userMask.data ? userMask.data : userMask;
+    if (!data || !data.length) return false;
+    var i;
+    for (i = 0; i < data.length; i++) {
+      if (data[i] > 0.04) return true;
+    }
+    return false;
+  }
+
   function process(blob, options) {
     options = options || {};
     return Render().loadImage(blob).then(function (img) {
@@ -34,6 +44,13 @@
         choice.noMotion = true;
         choice.summary = "No motion";
         choice.honestyNotes = ["Motion cleared — photograph stays still."];
+      }
+      if (options.userMaskDirty && maskHasInclude(options.userMask)) {
+        choice.noMotion = false;
+        if (!choice.classes.length) {
+          choice.summary = "Motion from assist brush";
+          choice.honestyNotes = ["Motion comes from regions you painted — not automatic detection."];
+        }
       }
 
       var recipe = Models().createRecipe({

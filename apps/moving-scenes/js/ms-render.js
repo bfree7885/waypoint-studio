@@ -59,7 +59,7 @@
     var haze = A.resizeMask(masks.haze, sw, sh, tw, th);
     var wildlife = A.resizeMask(masks.wildlife, sw, sh, tw, th);
     var stable = A.resizeMask(masks.stable, sw, sh, tw, th);
-    var assist = userMask || null;
+    var assist = normalizeAssistMask(userMask, tw, th);
     var i;
     var x;
     var y;
@@ -120,6 +120,34 @@
     return Math.max(a, Math.min(b, n));
   }
 
+  function maskHasInclude(userMask) {
+    var data = userMask && userMask.data ? userMask.data : userMask;
+    if (!data || !data.length) return false;
+    var i;
+    for (i = 0; i < data.length; i++) {
+      if (data[i] > 0.04) return true;
+    }
+    return false;
+  }
+
+  function normalizeAssistMask(userMask, tw, th) {
+    if (!userMask) return null;
+    var data = userMask.data || userMask;
+    var sw = userMask.width;
+    var sh = userMask.height;
+    if (sw > 0 && sh > 0 && data) {
+      if (sw === tw && sh === th) return data;
+      return Analyze().resizeMask(data, sw, sh, tw, th);
+    }
+    if (data && data.length === tw * th) return data;
+    return null;
+  }
+
+  function resolveMotionField(analysis, choice, userMask, tw, th) {
+    if (choice && choice.noMotion && !maskHasInclude(userMask)) return null;
+    return buildMotionField(analysis, choice, userMask, tw, th);
+  }
+
   /**
    * Create a live renderer bound to a canvas.
    */
@@ -174,10 +202,7 @@
       state.durationSec = (choice && choice.durationSec) || Models().DEFAULT_DURATION_SEC;
       state.strength = (choice && choice.strength) || "natural";
       state.directionDeg = choice && choice.directionDeg != null ? choice.directionDeg : null;
-      state.field =
-        choice && choice.noMotion
-          ? null
-          : buildMotionField(analysis, choice, userMask, size.w, size.h);
+      state.field = resolveMotionField(analysis, choice, userMask, size.w, size.h);
       // draw still first frame
       ctx.putImageData(state.srcData, 0, 0);
     }
@@ -330,6 +355,8 @@
     loadImage: loadImage,
     createRenderer: createRenderer,
     buildMotionField: buildMotionField,
+    resolveMotionField: resolveMotionField,
+    maskHasInclude: maskHasInclude,
     fitSize: fitSize,
     strengthScale: strengthScale
   };

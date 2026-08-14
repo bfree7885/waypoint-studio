@@ -68,7 +68,19 @@
     var ready = engine && !engine.isReady() ? engine.init() : Promise.resolve();
 
     return ready.then(function () {
-      var movingAssetId = meta.movingAssetId || M.uuid("moving");
+      var movingAssetId = meta.movingAssetId;
+      if (!movingAssetId && engine) {
+        var originalEarly = engine.get(originalAssetId);
+        var linked = originalEarly && originalEarly.moduleRefs && originalEarly.moduleRefs.movingScenes;
+        if (linked && linked.assetId) movingAssetId = linked.assetId;
+        if (!movingAssetId && engine.list) {
+          var existingSibling = engine.list().find(function (img) {
+            return img.role === "moving-scene" && img.originalAssetId === originalAssetId;
+          }) || null;
+          if (existingSibling) movingAssetId = existingSibling.id;
+        }
+      }
+      if (!movingAssetId) movingAssetId = M.uuid("moving");
       return store.putMedia(blobKey, movingBlob, "moving-scene").then(function () {
         var saved = upsertRecipe(Object.assign({}, recipe, {
           originalAssetId: originalAssetId,
