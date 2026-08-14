@@ -77,7 +77,7 @@
     ];
     const grid = document.getElementById("grid");
     grid.innerHTML = files.map(([file, title, expect]) =>
-      `<figure><img src="fixtures/${file}" alt="${title}"><figcaption><strong>${title}</strong>${expect}</figcaption></figure>`
+      '<figure><img src="fixtures/' + file + '" alt="' + title + '"><figcaption><strong>' + title + '</strong>' + expect + '</figcaption></figure>'
     ).join("");
   </script>
 </body>
