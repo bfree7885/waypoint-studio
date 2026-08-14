@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-14T13:43:44.615Z",
+  "generatedAt": "2026-08-14T19:14:35.190Z",
   "entityCount": 441,
-  "relationshipCount": 1103,
+  "relationshipCount": 1105,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -143,6 +143,11 @@
       "id": "cve:CVE-2026-33825",
       "kind": "cve",
       "title": "CVE-2026-33825"
+    },
+    {
+      "id": "cve:CVE-2025-60710",
+      "kind": "cve",
+      "title": "CVE-2025-60710"
     },
     {
       "id": "cve:CVE-2026-20316",
@@ -703,11 +708,6 @@
       "id": "cve:CVE-2026-32201",
       "kind": "cve",
       "title": "CVE-2026-32201"
-    },
-    {
-      "id": "cve:CVE-2025-60710",
-      "kind": "cve",
-      "title": "CVE-2025-60710"
     },
     {
       "id": "cve:CVE-2023-36424",
@@ -1796,6 +1796,11 @@
       "title": "CVE-2026-34496"
     },
     {
+      "id": "cve:CVE-2026-35511",
+      "kind": "cve",
+      "title": "CVE-2026-35511"
+    },
+    {
       "id": "cve:CVE-2026-12243",
       "kind": "cve",
       "title": "CVE-2026-12243"
@@ -1889,11 +1894,6 @@
       "id": "cve:CVE-2026-32639",
       "kind": "cve",
       "title": "CVE-2026-32639"
-    },
-    {
-      "id": "cve:CVE-2026-32593",
-      "kind": "cve",
-      "title": "CVE-2026-32593"
     },
     {
       "id": "cve:CVE-2025-7639",
@@ -2607,6 +2607,30 @@
     {
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-33825",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2025-60710",
+      "to": "cve:CVE-2025-60710",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2025-60710",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "ransomware-associated",
+      "from": "live_kev_cve-2025-60710",
+      "to": "theme:ransomware",
+      "evidence": "KEV ransomware flag or equivalent"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2025-60710",
       "to": "vendor:microsoft",
       "evidence": "entity extraction"
     },
@@ -4764,24 +4788,6 @@
     {
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-32201",
-      "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2025-60710",
-      "to": "cve:CVE-2025-60710",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2025-60710",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2025-60710",
       "to": "vendor:microsoft",
       "evidence": "entity extraction"
     },
@@ -7919,6 +7925,25 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
+      "to": "cve:CVE-2026-35511",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_ghsa_GHSA-m42h-3232-vpv3",
       "to": "cve:CVE-2026-12243",
       "evidence": "identifier"
@@ -8228,18 +8253,6 @@
     {
       "type": "affects-vendor",
       "from": "live_ghsa_GHSA-5c4f-9pq9-6c77",
-      "to": "vendor:composer",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-m7jc-g4rc-jmvh",
-      "to": "cve:CVE-2026-32593",
-      "evidence": "identifier"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-m7jc-g4rc-jmvh",
       "to": "vendor:composer",
       "evidence": "entity extraction"
     },

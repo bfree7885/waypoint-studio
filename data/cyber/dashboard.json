@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0.0",
-    "generatedAt": "2026-08-14T13:43:44.623Z",
+    "generatedAt": "2026-08-14T19:14:35.198Z",
     "trustState": "Live",
     "dataState": "REAL",
     "engine": "signalterrain-cyber-live-engine",
@@ -16,8 +16,8 @@
       "nvd": 40,
       "nvdEnrichedKev": 9,
       "advisories": 19,
-      "ransomwareLinkedKev": 24,
-      "changedToday": 36
+      "ransomwareLinkedKev": 25,
+      "changedToday": 29
     }
   },
   "whatChangedToday": [
@@ -252,62 +252,6 @@
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-11",
       "recordId": "live_cisa-advisories_2f6e6f64652f3235333030",
       "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:19.187",
-      "kind": "nvd-updated",
-      "text": "CVE-2018-8174 new/updated in NVD (CVSS 7.5).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-8174",
-      "recordId": "live_nvd_cve-2018-8174",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:18.967",
-      "kind": "nvd-updated",
-      "text": "CVE-2018-8120 new/updated in NVD (CVSS 7).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-8120",
-      "recordId": "live_nvd_cve-2018-8120",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:18.667",
-      "kind": "nvd-updated",
-      "text": "CVE-2018-7602 new/updated in NVD (CVSS 9.8).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-7602",
-      "recordId": "live_nvd_cve-2018-7602",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:18.420",
-      "kind": "nvd-updated",
-      "text": "CVE-2018-6882 new/updated in NVD (CVSS 6.1).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-6882",
-      "recordId": "live_nvd_cve-2018-6882",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:15.700",
-      "kind": "nvd-updated",
-      "text": "CVE-2018-11138 new/updated in NVD (CVSS 9.8).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-11138",
-      "recordId": "live_nvd_cve-2018-11138",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:15.230",
-      "kind": "nvd-updated",
-      "text": "CVE-2017-12149 new/updated in NVD (CVSS 9.8).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-12149",
-      "recordId": "live_nvd_cve-2017-12149",
-      "dataState": "REAL"
-    },
-    {
-      "at": "2026-08-13T05:17:13.357",
-      "kind": "nvd-updated",
-      "text": "CVE-2017-10271 new/updated in NVD (CVSS 7.5).",
-      "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-10271",
-      "recordId": "live_nvd_cve-2017-10271",
-      "dataState": "REAL"
     }
   ],
   "activelyExploitedKev": [
@@ -336,8 +280,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20349",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-8037",
@@ -366,8 +310,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-8037",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-50751",
@@ -391,8 +335,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50751",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-0257",
@@ -416,8 +360,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-0257",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-21529",
@@ -441,8 +385,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-21529",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20131",
@@ -466,8 +410,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20131",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-45321",
@@ -491,8 +435,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45321",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-15409",
@@ -516,8 +460,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15409",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-15410",
@@ -541,8 +485,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15410",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-45659",
@@ -566,8 +510,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45659",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-35273",
@@ -591,8 +535,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35273",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-33825",
@@ -616,8 +560,33 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33825",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
+    },
+    {
+      "id": "live_kev_cve-2025-60710",
+      "dataState": "REAL",
+      "cve": "CVE-2025-60710",
+      "title": "Microsoft Windows Link Following Vulnerability",
+      "vendor": "Microsoft",
+      "product": "Windows",
+      "dateAdded": "2026-04-13T00:00:00.000Z",
+      "requiredAction": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+      "dueDate": "2026-04-27",
+      "ransomwareCampaignAssociation": "Known",
+      "summary": "Microsoft Windows contains a link following vulnerability that allows for privilege escalation",
+      "cvssScore": null,
+      "cvssVector": null,
+      "nvdDescription": null,
+      "nvdPublishedAt": null,
+      "nvdLastModified": null,
+      "nvdReferences": [],
+      "nvdEnriched": false,
+      "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
+      "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-60710",
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20316",
@@ -641,8 +610,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20316",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-68820",
@@ -669,8 +638,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-68820",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-72898",
@@ -700,8 +669,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-72898",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-63077",
@@ -728,8 +697,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63077",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-9198",
@@ -756,8 +725,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-9198",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-12569",
@@ -781,8 +750,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12569",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48027",
@@ -806,8 +775,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48027",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-41940",
@@ -831,8 +800,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41940",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-1708",
@@ -856,8 +825,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-1708",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-57728",
@@ -881,8 +850,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-57728",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-57726",
@@ -906,8 +875,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-57726",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-27351",
@@ -931,8 +900,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-27351",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-27199",
@@ -956,8 +925,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-27199",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-26399",
@@ -981,8 +950,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-1731",
@@ -1006,8 +975,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-1731",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-24423",
@@ -1031,8 +1000,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24423",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-52691",
@@ -1056,8 +1025,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-23760",
@@ -1081,8 +1050,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-55182",
@@ -1106,8 +1075,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34486",
@@ -1144,8 +1113,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34486",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-68686",
@@ -1169,8 +1138,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68686",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-25089",
@@ -1194,8 +1163,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25089",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-39808",
@@ -1219,8 +1188,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-39808",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-42897",
@@ -1244,8 +1213,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-42897",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21533",
@@ -1269,8 +1238,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21533",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-20393",
@@ -1294,8 +1263,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-20393",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-18577",
@@ -1325,8 +1294,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18577",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-48595",
@@ -1350,8 +1319,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-48595",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2012-1854",
@@ -1375,8 +1344,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2012-1854",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21513",
@@ -1400,8 +1369,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21513",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-48633",
@@ -1425,8 +1394,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-48633",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-18556",
@@ -1454,8 +1423,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-18556",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-50522",
@@ -1479,8 +1448,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50522",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-58644",
@@ -1504,8 +1473,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-58644",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-46817",
@@ -1529,8 +1498,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-46817",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-56155",
@@ -1554,8 +1523,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56155",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-56164",
@@ -1579,8 +1548,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56164",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2008-4128",
@@ -1604,8 +1573,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2008-4128",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-10520",
@@ -1629,8 +1598,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-10520",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-6973",
@@ -1654,8 +1623,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-6973",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-0300",
@@ -1679,8 +1648,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-0300",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21643",
@@ -1704,8 +1673,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21643",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-1340",
@@ -1729,8 +1698,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-1340",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-35616",
@@ -1754,8 +1723,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35616",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-3055",
@@ -1779,8 +1748,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-3055",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-1603",
@@ -1804,8 +1773,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-1603",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-1281",
@@ -1829,8 +1798,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-1281",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-24858",
@@ -1854,8 +1823,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24858",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-14733",
@@ -1879,8 +1848,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14733",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-59718",
@@ -1904,8 +1873,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-59718",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-33634",
@@ -1929,8 +1898,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33634",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-59374",
@@ -1954,8 +1923,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-59374",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-16812",
@@ -1979,8 +1948,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16812",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-16232",
@@ -2004,8 +1973,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-16232",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-60137",
@@ -2029,8 +1998,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-60137",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-63030",
@@ -2054,8 +2023,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-63030",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-0770",
@@ -2079,8 +2048,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-0770",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-27137",
@@ -2104,8 +2073,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-27137",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-4346",
@@ -2129,8 +2098,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-4346",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48282",
@@ -2154,8 +2123,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48282",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20230",
@@ -2179,8 +2148,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20230",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20262",
@@ -2204,8 +2173,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20262",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-11645",
@@ -2229,8 +2198,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-11645",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20245",
@@ -2254,8 +2223,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20245",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2022-0492",
@@ -2279,8 +2248,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-0492",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-21182",
@@ -2304,8 +2273,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-21182",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2008-4250",
@@ -2329,8 +2298,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2008-4250",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2009-1537",
@@ -2354,8 +2323,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2009-1537",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2009-3459",
@@ -2379,8 +2348,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2009-3459",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2010-0249",
@@ -2404,8 +2373,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-0249",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2010-0806",
@@ -2429,8 +2398,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-0806",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-41091",
@@ -2454,8 +2423,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41091",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-45498",
@@ -2479,8 +2448,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45498",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20182",
@@ -2504,8 +2473,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20182",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-31431",
@@ -2529,8 +2498,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-31431",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-32202",
@@ -2554,8 +2523,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-32202",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20122",
@@ -2579,8 +2548,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20122",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20133",
@@ -2604,8 +2573,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20133",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20128",
@@ -2629,8 +2598,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20128",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2009-0238",
@@ -2654,8 +2623,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2009-0238",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-32201",
@@ -2679,33 +2648,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-32201",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
-    },
-    {
-      "id": "live_kev_cve-2025-60710",
-      "dataState": "REAL",
-      "cve": "CVE-2025-60710",
-      "title": "Microsoft Windows Link Following Vulnerability",
-      "vendor": "Microsoft",
-      "product": "Windows",
-      "dateAdded": "2026-04-13T00:00:00.000Z",
-      "requiredAction": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
-      "dueDate": "2026-04-27",
-      "ransomwareCampaignAssociation": null,
-      "summary": "Microsoft Windows contains a link following vulnerability that allows for privilege escalation",
-      "cvssScore": null,
-      "cvssVector": null,
-      "nvdDescription": null,
-      "nvdPublishedAt": null,
-      "nvdLastModified": null,
-      "nvdReferences": [],
-      "nvdEnriched": false,
-      "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
-      "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-      "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-60710",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-36424",
@@ -2729,8 +2673,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-36424",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2020-9715",
@@ -2754,8 +2698,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-9715",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34621",
@@ -2779,8 +2723,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34621",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-5281",
@@ -2804,8 +2748,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-5281",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-43510",
@@ -2829,8 +2773,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-43510",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-43520",
@@ -2854,8 +2798,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-43520",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-31277",
@@ -2879,8 +2823,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-31277",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20963",
@@ -2904,8 +2848,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20963",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-3910",
@@ -2929,8 +2873,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-3910",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-3909",
@@ -2954,8 +2898,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-3909",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-22054",
@@ -2979,8 +2923,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-22054",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-43000",
@@ -3004,8 +2948,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-43000",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-30952",
@@ -3029,8 +2973,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-30952",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-41974",
@@ -3054,8 +2998,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-41974",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-22719",
@@ -3079,8 +3023,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-22719",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2022-20775",
@@ -3104,8 +3048,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-20775",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20127",
@@ -3129,8 +3073,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20127",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2008-0015",
@@ -3154,8 +3098,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2008-0015",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-2441",
@@ -3179,8 +3123,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-2441",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20700",
@@ -3204,8 +3148,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20700",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-43468",
@@ -3229,8 +3173,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-43468",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21525",
@@ -3254,8 +3198,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21525",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21510",
@@ -3279,8 +3223,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21510",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21519",
@@ -3304,8 +3248,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21519",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21514",
@@ -3329,8 +3273,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21514",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-11953",
@@ -3354,8 +3298,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-11953",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2018-14634",
@@ -3379,8 +3323,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-14634",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21509",
@@ -3404,8 +3348,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21509",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-37079",
@@ -3429,8 +3373,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-37079",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-54313",
@@ -3454,8 +3398,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-54313",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20045",
@@ -3479,8 +3423,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20045",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20805",
@@ -3504,8 +3448,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20805",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2009-0556",
@@ -3529,8 +3473,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2009-0556",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-43529",
@@ -3554,8 +3498,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-43529",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-14174",
@@ -3579,8 +3523,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14174",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-62221",
@@ -3604,8 +3548,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-62221",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-56291",
@@ -3629,8 +3573,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56291",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48939",
@@ -3654,8 +3598,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48939",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48908",
@@ -3679,8 +3623,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48908",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-55255",
@@ -3704,8 +3648,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-55255",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-56290",
@@ -3729,8 +3673,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-56290",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48558",
@@ -3754,8 +3698,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48558",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-67038",
@@ -3779,8 +3723,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-67038",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34910",
@@ -3804,8 +3748,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34910",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34909",
@@ -3829,8 +3773,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34909",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34908",
@@ -3854,8 +3798,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34908",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-20253",
@@ -3879,8 +3823,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20253",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48907",
@@ -3904,8 +3848,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48907",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-54420",
@@ -3929,8 +3873,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-54420",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-7473",
@@ -3954,8 +3898,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-7473",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-42271",
@@ -3979,8 +3923,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-42271",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-28318",
@@ -4004,8 +3948,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-28318",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-45247",
@@ -4029,8 +3973,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45247",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-8398",
@@ -4054,8 +3998,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-8398",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-48172",
@@ -4079,8 +4023,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48172",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-9082",
@@ -4104,8 +4048,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-9082",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-34291",
@@ -4129,8 +4073,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-34291",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34926",
@@ -4154,8 +4098,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34926",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-42208",
@@ -4179,8 +4123,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-42208",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-29635",
@@ -4204,8 +4148,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-29635",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-7399",
@@ -4229,8 +4173,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-7399",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-39987",
@@ -4254,8 +4198,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-39987",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-2749",
@@ -4279,8 +4223,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-2749",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-48700",
@@ -4304,8 +4248,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-48700",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-32975",
@@ -4329,8 +4273,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32975",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-34197",
@@ -4354,8 +4298,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-34197",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-3502",
@@ -4379,8 +4323,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-3502",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-53521",
@@ -4404,8 +4348,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-53521",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-33017",
@@ -4429,8 +4373,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33017",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-32432",
@@ -4454,8 +4398,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-32432",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-54068",
@@ -4479,8 +4423,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-54068",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-66376",
@@ -4504,8 +4448,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66376",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-47813",
@@ -4529,8 +4473,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-47813",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-68613",
@@ -4554,8 +4498,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68613",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2017-7921",
@@ -4579,8 +4523,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-7921",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-22681",
@@ -4604,8 +4548,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-22681",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-21385",
@@ -4629,8 +4573,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-21385",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-25108",
@@ -4654,8 +4598,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-25108",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-49113",
@@ -4679,8 +4623,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-49113",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-68461",
@@ -4704,8 +4648,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68461",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-22175",
@@ -4729,8 +4673,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-22175",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-22769",
@@ -4754,8 +4698,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-22769",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2020-7796",
@@ -4779,8 +4723,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-7796",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2024-7694",
@@ -4804,8 +4748,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-7694",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-15556",
@@ -4829,8 +4773,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-15556",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-40536",
@@ -4854,8 +4798,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-40536",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-39935",
@@ -4879,8 +4823,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-39935",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-64328",
@@ -4904,8 +4848,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-64328",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2019-19006",
@@ -4929,8 +4873,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-19006",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-40551",
@@ -4954,8 +4898,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-40551",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2026-24061",
@@ -4979,8 +4923,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24061",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-68645",
@@ -5004,8 +4948,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-68645",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-34026",
@@ -5029,8 +4973,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-34026",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-31125",
@@ -5054,8 +4998,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-31125",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-8110",
@@ -5079,8 +5023,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-8110",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-37164",
@@ -5104,8 +5048,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-37164",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-14847",
@@ -5129,8 +5073,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14847",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2023-52163",
@@ -5154,8 +5098,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-52163",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-40602",
@@ -5179,8 +5123,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-40602",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-14611",
@@ -5204,8 +5148,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-14611",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2018-4063",
@@ -5229,8 +5173,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-4063",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-58360",
@@ -5254,8 +5198,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-58360",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-6218",
@@ -5279,8 +5223,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-6218",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2022-37055",
@@ -5304,8 +5248,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2022-37055",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2025-66644",
@@ -5329,8 +5273,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-66644",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     },
     {
       "id": "live_kev_cve-2021-26828",
@@ -5354,8 +5298,8 @@
       "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
       "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2021-26828",
-      "retrievedAt": "2026-08-14T13:43:22.454Z",
-      "updatedAt": "2026-08-11T18:59:43.6861Z"
+      "retrievedAt": "2026-08-14T19:14:14.752Z",
+      "updatedAt": "2026-08-14T16:34:49.0391Z"
     }
   ],
   "newUpdatedNvd": [
@@ -5378,7 +5322,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-11357",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-0145",
@@ -5396,7 +5340,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-0145",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-0144",
@@ -5414,7 +5358,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-0144",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2016-3351",
@@ -5432,7 +5376,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-3351",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2016-1019",
@@ -5450,7 +5394,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-1019",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2016-0034",
@@ -5468,7 +5412,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-0034",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2015-2546",
@@ -5489,7 +5433,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2015-2546",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2015-1701",
@@ -5507,7 +5451,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2015-1701",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2013-0431",
@@ -5527,7 +5471,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2013-0431",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2013-0074",
@@ -5545,7 +5489,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2013-0074",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2012-0507",
@@ -5565,7 +5509,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2012-0507",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2010-2861",
@@ -5586,7 +5530,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-2861",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2010-1428",
@@ -5606,7 +5550,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-1428",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2010-0738",
@@ -5626,7 +5570,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-0738",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2010-0188",
@@ -5644,7 +5588,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2010-0188",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-8174",
@@ -5665,7 +5609,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-8174",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-8120",
@@ -5686,7 +5630,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-8120",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-7602",
@@ -5706,7 +5650,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-7602",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-6882",
@@ -5727,7 +5671,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-6882",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-11138",
@@ -5748,7 +5692,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-11138",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-12149",
@@ -5770,7 +5714,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-12149",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-10271",
@@ -5790,7 +5734,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-10271",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0227",
@@ -5811,7 +5755,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0227",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0296",
@@ -5832,7 +5776,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0296",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0231",
@@ -5853,7 +5797,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0231",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0244",
@@ -5874,7 +5818,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0244",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0228",
@@ -5895,7 +5839,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0228",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0243",
@@ -5916,7 +5860,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0243",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0101",
@@ -5937,7 +5881,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0101",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-3806",
@@ -5957,7 +5901,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-3806",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0230",
@@ -5978,7 +5922,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0230",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0240",
@@ -5998,7 +5942,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0240",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0453",
@@ -6019,7 +5963,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0453",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-6632",
@@ -6040,7 +5984,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-6632",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-6625",
@@ -6060,7 +6004,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-6625",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-3887",
@@ -6080,7 +6024,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-3887",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2017-3822",
@@ -6100,7 +6044,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-3822",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0138",
@@ -6121,7 +6065,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0138",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0254",
@@ -6142,7 +6086,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0254",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     },
     {
       "id": "live_nvd_cve-2018-0297",
@@ -6163,7 +6107,7 @@
       "vendors": [],
       "sourceName": "NIST National Vulnerability Database",
       "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-0297",
-      "retrievedAt": "2026-08-14T13:43:24.239Z"
+      "retrievedAt": "2026-08-14T19:14:15.173Z"
     }
   ],
   "cisaAdvisories": [
@@ -6177,7 +6121,7 @@
       "description": "View CSAF Summary Successful exploitation of this vulnerability may allow an attacker to inject and execute arbitrary OS commands with root privileges. The following versions of Haiwell IoT Cloud HMI Gateway are affected: Haiwell IoT Cloud HMI Gateway 3.40.1.12 (CVE-2026-19188) CVSS Vendor Equipment Vulnerabilities v3 10 Haiwell Haiwell IoT Cloud HMI Gateway Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') Background Critical Infrastructure Sectors: Ener",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-02",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323938",
@@ -6189,7 +6133,7 @@
       "description": "View CSAF Summary Siveillance Video Management Servers contains a vulnerability that could allow a Remote Code Execution attack. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Siveillance Video are affected: Siveillance Video V2023 R3 vers:intdot/&lt;23.3.27 (CVE-2026-3014) Siveillance Video V2024 R1 vers:intdot/&lt;24.1.16 (CVE-2026-3014) Siveillance Video V2025 vers:intdot/&lt;25.1.15 (CVE-2026-3014",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-09",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235333033",
@@ -6201,7 +6145,7 @@
       "description": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker within Bluetooth range to manipulate brain stimulation parameters and override safety limits. The following versions of Flow Neuroscience FL-100 are affected: Flow Neuroscience FL-100 Halo Neuroscience FL-100 CVSS Vendor Equipment Vulnerabilities v3 8.1 Flow Neuroscience Flow Neuroscience FL-100 Use of Hard-coded Credentials Background Critical Infrastructure Sectors: Healthcare and Public Health Countries/Ar",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-225-01",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323930",
@@ -6213,7 +6157,7 @@
       "description": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to tamper with serialized data, potentially resulting in code execution during deserialization. The following versions of AVEVA Enterprise SCADA are affected: Enterprise SCADA 2025 (CVE-2025-7639) Enterprise SCADA &gt;=2024|&lt;=2024_SP1_P01 (CVE-2025-7639) Enterprise SCADA &gt;=2023|&lt;=2023_SP1 (CVE-2025-7639) Enterprise SCADA &gt;=2022|&lt;=2022_SP2_P2 (CVE-2025-7639) Enterprise SCADA &lt;=2021_SP2_P5 (CV",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-01",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323933",
@@ -6225,7 +6169,7 @@
       "description": "View CSAF Summary Hitachi Energy is aware of Dirty Frag vulnerabilities that affect APM Edge product versions listed in this document. Successful exploitation of these vulnerabilities could result in impact on confidentiality, integrity and availability of the product. Please refer to the Recommended Immediate Actions for information about the mitigation/remediation. The following versions of Hitachi Energy APM Edge Product are affected: APM Edge vers:APM_Edge/&lt;=6.10 (CVE-2026-43284, CVE-2026",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-04",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323939",
@@ -6237,7 +6181,7 @@
       "description": "View CSAF Summary Parasolid is affected by an out of bounds read vulnerability that could be triggered when the application reads files in X_T format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Parasolid are affected: Parasolid V38.0 vers:intdot/&lt;38.0.235 (CVE-2026-64629) Parasolid V38.1 vers:intdot/&lt;38.1.230 (C",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-10",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323936",
@@ -6249,7 +6193,7 @@
       "description": "View CSAF Summary Siemens License Server is affected by multiple vulnerabilities which could allow an attacker to elevate its privileges and read arbitrary files on the system. Siemens has released a new version for Siemens License Server (SLS) and recommends to update to the latest version. The following versions of Siemens License Server (SLS) are affected: Siemens License Server (SLS) vers:intdot/&lt;5.1, vers:intdot/&lt;5.3 (CVE-2026-69108, CVE-2026-69109) CVSS Vendor Equipment Vulnerabiliti",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-07",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323937",
@@ -6261,7 +6205,7 @@
       "description": "View CSAF Summary A vulnerability in Desigo DXR and PXC controllers has been identified that could allow an attacker to cause denial of service conditions by sending malformed BACnet packets. Recovery requires a device reset or reboot to restore normal functionality. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Desigo DXR and PXC Controllers are affected: Desigo DXR2 vers:intdot/&lt;01.21.233.16-786",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-08",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323932",
@@ -6273,7 +6217,7 @@
       "description": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to decrypt sensitive data, bypass authentication controls, gaining unauthorized access to read arbitrary files on the system, or gain unauthorized access to protected system resources. The following versions of Johnson Controls Inc. Airwall are affected: Airwall &lt;=4.0.4 (CVE-2026-64887, CVE-2026-34492) CVSS Vendor Equipment Vulnerabilities v3 6.8 Johnson Controls Inc. Johnson Controls Inc. Airwall Use o",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-03",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235333034",
@@ -6285,7 +6229,7 @@
       "description": "View CSAF Summary Successful exploitation of this vulnerability could allow a low-privilege user or attacker to inject a persistent malicious payload via a crafted URL that executes in the context of other users' sessions, including administrators, potentially leading to session hijacking and unauthorized access. The following versions of Johnson Controls Metasys are affected: Metasys 12 vers:all/* (CVE-2026-34491) Metasys 13 vers:all/* (CVE-2026-34491) Metasys 14 Metasys 15 CVSS Vendor Equipmen",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-14",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235333032",
@@ -6297,7 +6241,7 @@
       "description": "View CSAF Summary Siemens LOGO! Soft Comfort contains multiple vulnerabilities in its project-file encryption and password handling mechanisms. A local attacker could exploit these vulnerabilities to extract the master key, allowing them to decrypt project data or remove project passwords. The lack of password salting enables offline dictionary or brute-force attacks against the password hashes. Successful exploitation could result in unauthorized access to, or modification of, sensitive project",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-13",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323934",
@@ -6309,7 +6253,7 @@
       "description": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing P",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-05",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235333031",
@@ -6321,7 +6265,7 @@
       "description": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-202",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235333030",
@@ -6333,7 +6277,7 @@
       "description": "View CSAF Summary Simcenter Femap contains two file parsing vulnerabilities that could be triggered when the application reads files in BMP file format. If a user is tricked to open a malicious file with the affected application, this could lead the application to crash or potentially lead to arbitrary code execution. Siemens has released a new version for Simcenter Femap and recommends to update to the latest version. The following versions of Siemens Simcenter Femap are affected: Simcenter Fem",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-11",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323935",
@@ -6345,7 +6289,7 @@
       "description": "View CSAF Summary Fortinet has published information on vulnerabilities in FortiOS. This advisory lists the related Siemens Industrial products. Siemens recommends to contact customer support for additional information, and follow Fortinet advisory for workarounds and mitigation measures. The following versions of Siemens RUGGEDCOM APE1808 are affected: RUGGEDCOM APE1808 vers:all/* (CVE-2026-23573, CVE-2026-59839) CVSS Vendor Equipment Vulnerabilities v3 6.1 Siemens Siemens RUGGEDCOM APE1808 Imp",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-06",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323134",
@@ -6357,7 +6301,7 @@
       "description": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker with network access to achieve remote code execution. The following versions of Johnson Controls C-CURE 9000 and Victor application server (Update A) are affected: C-CURE 9000 &lt;=v3.10.1 (CVE-2026-21655) victor Application Server &lt;=v4.10 (CVE-2026-21655) victor &lt;=v7.0 (CVE-2026-21655) victor Web victor Web &lt;=v7.1 (CVE-2026-34496) CVSS Vendor Equipment Vulnerabilities v3 9.6 Johnson Controls John",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-204-01",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323830",
@@ -6369,7 +6313,7 @@
       "description": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to use hidden commands to disable electrical safety mechanisms or modify other stimulation output settings. The following versions of Pulsetto Vagus Nerve Stimulator are affected: Pulsetto Vagus Nerve Stimulator vers:all/* (CVE-2026-18844) CVSS Vendor Equipment Vulnerabilities v3 8.1 Pulsetto Pulsetto Vagus Nerve Stimulator Hidden Functionality Background Critical Infrastructure Sectors: Healthcare and Public",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-223-02",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323739",
@@ -6381,7 +6325,7 @@
       "description": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to access unauthorized health profile information, make changes to health information, cause a denial-of-service condition, disclose session token information, and obtain control of user accounts. The following versions of Mira Hormone Monitor, Mira Android App are affected: Mira Monitor Firmware 1.7.1.47 (CVE-2026-66875, CVE-2026-66098, CVE-2026-67558, CVE-2026-67568, CVE-2026-68067, CVE-2026-66340, CVE-2",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-223-01",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     },
     {
       "id": "live_cisa-advisories_2f6e6f64652f3235323631",
@@ -6393,7 +6337,7 @@
       "description": "Advisory at a Glance Title #StopRansomware: Gunra Ransomware Original Publication August 10, 2026 Executive Summary Gunra is a ransomware-as-a-service (RaaS) used by affiliates to target government, critical infrastructure, and other organizations. The Gunra ransomware variant first appeared in 2025 and expanded to RaaS operations in 2026. The actors leverage a double-extortion model, both encrypting data and threatening to publish exfiltrated data to a dedicated leak site (DLS) if the ransom is",
       "sourceName": "CISA Cybersecurity Advisories",
       "sourceUrl": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-222a",
-      "retrievedAt": "2026-08-14T13:43:22.419Z"
+      "retrievedAt": "2026-08-14T19:14:14.693Z"
     }
   ],
   "ransomwareSignal": {
@@ -6422,8 +6366,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-50751",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-0257",
@@ -6447,8 +6391,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-0257",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2023-21529",
@@ -6472,8 +6416,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-21529",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-20131",
@@ -6497,8 +6441,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-20131",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-45321",
@@ -6522,8 +6466,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45321",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-15409",
@@ -6547,8 +6491,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15409",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-15410",
@@ -6572,8 +6516,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-15410",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-45659",
@@ -6597,8 +6541,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-45659",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-35273",
@@ -6622,8 +6566,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-35273",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-33825",
@@ -6647,8 +6591,33 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-33825",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
+      },
+      {
+        "id": "live_kev_cve-2025-60710",
+        "dataState": "REAL",
+        "cve": "CVE-2025-60710",
+        "title": "Microsoft Windows Link Following Vulnerability",
+        "vendor": "Microsoft",
+        "product": "Windows",
+        "dateAdded": "2026-04-13T00:00:00.000Z",
+        "requiredAction": "Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.",
+        "dueDate": "2026-04-27",
+        "ransomwareCampaignAssociation": "Known",
+        "summary": "Microsoft Windows contains a link following vulnerability that allows for privilege escalation",
+        "cvssScore": null,
+        "cvssVector": null,
+        "nvdDescription": null,
+        "nvdPublishedAt": null,
+        "nvdLastModified": null,
+        "nvdReferences": [],
+        "nvdEnriched": false,
+        "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
+        "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+        "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-60710",
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-12569",
@@ -6672,8 +6641,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-12569",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-48027",
@@ -6697,8 +6666,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-48027",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-41940",
@@ -6722,8 +6691,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-41940",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2024-1708",
@@ -6747,8 +6716,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-1708",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2024-57728",
@@ -6772,8 +6741,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-57728",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2024-57726",
@@ -6797,8 +6766,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-57726",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2023-27351",
@@ -6822,8 +6791,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2023-27351",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2024-27199",
@@ -6847,8 +6816,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2024-27199",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2025-26399",
@@ -6872,8 +6841,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-26399",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-1731",
@@ -6897,8 +6866,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-1731",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-24423",
@@ -6922,8 +6891,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-24423",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2025-52691",
@@ -6947,8 +6916,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-52691",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2026-23760",
@@ -6972,8 +6941,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2026-23760",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       },
       {
         "id": "live_kev_cve-2025-55182",
@@ -6997,8 +6966,8 @@
         "sourceName": "CISA Known Exploited Vulnerabilities Catalog",
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
         "nvdUrl": "https://nvd.nist.gov/vuln/detail/CVE-2025-55182",
-        "retrievedAt": "2026-08-14T13:43:22.454Z",
-        "updatedAt": "2026-08-11T18:59:43.6861Z"
+        "retrievedAt": "2026-08-14T19:14:14.752Z",
+        "updatedAt": "2026-08-14T16:34:49.0391Z"
       }
     ]
   },
@@ -7008,8 +6977,8 @@
       "name": "CISA KEV",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 200,
@@ -7021,12 +6990,12 @@
       "name": "NIST NVD",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 40,
-      "sourceUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=40&lastModStartDate=2026-08-07T13%3A43%3A22.000&lastModEndDate=2026-08-14T13%3A43%3A22.000",
+      "sourceUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=40&lastModStartDate=2026-08-07T19%3A14%3A14.000&lastModEndDate=2026-08-14T19%3A14%3A14.000",
       "latestError": null
     },
     {
@@ -7034,8 +7003,8 @@
       "name": "CISA Cybersecurity Advisories",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 20,
@@ -7047,8 +7016,8 @@
       "name": "Google Chrome Releases",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 20,
@@ -7060,8 +7029,8 @@
       "name": "Ubuntu Security Notices",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 10,
@@ -7073,8 +7042,8 @@
       "name": "GitHub Security Advisories",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 25,
@@ -7086,8 +7055,8 @@
       "name": "AWS Service Health",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 5,
@@ -7099,8 +7068,8 @@
       "name": "Cloudflare Status",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 1,
@@ -7112,8 +7081,8 @@
       "name": "GitHub Status",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 1,
@@ -7125,8 +7094,8 @@
       "name": "OpenAI Status",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 1,
@@ -7138,8 +7107,8 @@
       "name": "Google Cloud Status",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 1,
@@ -7151,8 +7120,8 @@
       "name": "Azure Status",
       "dataState": "REAL",
       "status": "ok",
-      "lastRefresh": "2026-08-14T13:43:22.269Z",
-      "lastSuccessfulAt": "2026-08-14T13:43:22.269Z",
+      "lastRefresh": "2026-08-14T19:14:14.523Z",
+      "lastSuccessfulAt": "2026-08-14T19:14:14.523Z",
       "freshness": "fresh",
       "success": true,
       "recordCount": 1,
