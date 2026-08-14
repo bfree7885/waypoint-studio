@@ -67,4 +67,7 @@ Preserved as Attack 3. Living prototypes untouched. Library shows “Make it mov
 
 ## Ship status note
 
-Commit/push/PR/merge pending network to GitHub (credential fill available; API previously reset). Do **not** start Attack 3.
+**Local commit:** `5b1f2705` on `feat/scenes-v1-auto-edit`  
+**Push / PR / merge / Pages / prod verify:** blocked in this environment — GitHub CONNECT via local proxy resets; direct DNS to github.com fails. Credentials are available via `git credential fill`, but transport cannot reach GitHub. Owner (or a networked agent) must push, open PR, squash-merge when green, then Pages + prod Auto Edit verification + final screenshots.
+
+Do **not** start Attack 3.
