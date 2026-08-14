@@ -58,4 +58,8 @@ Fixtures — **18** under `automation/fixtures/moving-scenes/`
 
 ## Ship status
 
-Local branch ready for commit / push / PR / merge / Pages / prod verify.
+**Local commit:** `d3a08f26` on `feat/scenes-v1-moving-scenes` (base `54cbef98`)
+
+**Push / PR / merge / Pages / prod verify:** blocked in this environment — HTTPS to GitHub resets via local proxy (`Recv failure: Connection reset by peer`); DNS without proxy cannot resolve `github.com`. Credentials resolve via `git credential fill`, but transport cannot reach GitHub. Owner (or a networked agent) must push, open PR, squash-merge when green, then Pages + prod Moving Scenes verification + final screenshots under `docs/rebuild-2026/scenes-v1-moving-scenes/prod-validation/`.
+
+Do **not** start Hidden Landscapes attack.
