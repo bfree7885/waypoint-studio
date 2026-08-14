@@ -15,8 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const BASE = process.argv[2] || "http://127.0.0.1:8080";
 const CHROME = process.env.CHROME_PATH || "/usr/bin/google-chrome";
-const PORT = 9225;
-const PROFILE = path.join(os.tmpdir(), "waypoint-migration-profile-" + process.pid);
+let PORT = Number(process.env.WAYPOINT_MIG_CDP_PORT || 9225);
+let PROFILE = path.join(os.tmpdir(), "waypoint-migration-profile-" + process.pid);
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -39,6 +39,7 @@ async function startChrome() {
       "--disable-gpu",
       "--no-sandbox",
       "--disable-extensions",
+      "--disable-dev-shm-usage",
       `--user-data-dir=${PROFILE}`,
       `--remote-debugging-port=${PORT}`,
       "about:blank"
@@ -96,9 +97,10 @@ const KANSAS_OUTDOOR = JSON.stringify({
 
 async function main() {
   const { proc, wsUrl } = await startChrome();
-  const client = await cdp(wsUrl);
+  let client = null;
   let failed = false;
   try {
+    client = await cdp(wsUrl);
     await client.send("Page.enable");
     await client.send("Page.navigate", { url: BASE + "/" });
     await delay(1500);
@@ -164,17 +166,41 @@ async function main() {
     if (!failed) {
       console.log("\nPROFILE MIGRATION TEST: PASS");
       console.log("Profile path:", PROFILE);
-    } else {
-      console.log("\nPROFILE MIGRATION TEST: FAIL");
-      process.exitCode = 1;
+      return 0;
     }
+    console.log("\nPROFILE MIGRATION TEST: FAIL");
+    return 1;
   } finally {
-    client.close();
-    proc.kill("SIGTERM");
+    try { if (client) client.close(); } catch (_) { /* noop */ }
+    try { proc.kill("SIGTERM"); } catch (_) { /* noop */ }
   }
 }
 
-main().catch((err) => {
-  console.error(err.message);
-  process.exit(2);
-});
+function isTransientCdpError(err) {
+  const msg = err && err.message ? err.message : String(err || "");
+  return /navigated or closed|Target closed|WebSocket|ECONNREFUSED|No page CDP/i.test(msg);
+}
+
+async function run() {
+  const attempts = 2;
+  for (let i = 0; i < attempts; i++) {
+    PORT = Number(process.env.WAYPOINT_MIG_CDP_PORT || 9225) + i;
+    PROFILE = path.join(os.tmpdir(), `waypoint-migration-profile-${process.pid}-${i}`);
+    try {
+      const code = await main();
+      process.exit(code);
+    } catch (err) {
+      if (!isTransientCdpError(err) || i === attempts - 1) {
+        console.error(err.message);
+        process.exit(2);
+      }
+      console.error(
+        `Profile migration transient CDP error; retrying (${i + 1}/${attempts - 1}):`,
+        err.message
+      );
+      await delay(1500);
+    }
+  }
+}
+
+run();

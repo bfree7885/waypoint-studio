@@ -1,0 +1,181 @@
+[
+  {
+    "file": "01-well-exposed-landscape.png",
+    "doLess": true,
+    "alreadyGood": true,
+    "ops": [
+      "noop"
+    ],
+    "summary": "Waypoint Choice: the file already looks strong — only tiny finishing."
+  },
+  {
+    "file": "02-underexposed-landscape.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "exposure",
+      "shadows",
+      "blackPoint",
+      "contrast",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "03-bright-sky-dark-fg.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "highlights",
+      "shadows",
+      "contrast",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "04-sunset.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "shadows",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "05-forest.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "saturation",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "06-snow.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "highlights",
+      "contrast",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "07-water.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "whiteBalance",
+      "contrast",
+      "saturation",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "08-wildlife.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "09-high-iso-wildlife.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "denoise"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "10-low-light-night.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "exposure",
+      "shadows",
+      "blackPoint",
+      "contrast",
+      "saturation",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "11-smooth-fog.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "dehaze",
+      "vibrance",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "12-detailed-foliage.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "saturation",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "13-strong-sat.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "saturation",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "14-low-contrast-haze.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "dehaze"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "15-moody-dark.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "exposure",
+      "shadows",
+      "blackPoint",
+      "contrast",
+      "sharpen"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  },
+  {
+    "file": "16-mono-candidate.png",
+    "doLess": false,
+    "alreadyGood": false,
+    "ops": [
+      "contrast",
+      "dehaze"
+    ],
+    "summary": "Waypoint Choice: restrained outdoor finish from this photograph’s signals."
+  }
+]

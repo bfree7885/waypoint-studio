@@ -1343,3 +1343,17 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
 - Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
 
+## Lessons Learned — Scenes V1 Auto Edit ship follow-up (2026-08-14)
+
+- CI smoke can fail with exit 2 (`Inspected target navigated or closed`) before page assertions — treat as transient CDP flake; one smoke retry is cheaper than a false red merge gate.
+- Profile migration shows the same class of flake (exit 2 in ~7s); retry once with a fresh CDP port/profile dir.
+- Local smoke false-fails if another project already owns `:8080` (Python “Error response” for `/apps/auto-edit/`); confirm server cwd before diagnosing product 404s.
+
+## Lessons Learned — Scenes V1 Auto Edit (2026-08-13)
+
+- Auto Edit must be a sibling craft step (finish), not a replacement for Moving Scenes; keep Living/Moving prototypes untouched and label Attack 3 honestly in Library.
+- Non-destructive SoT: never reuse the original IDB media key; store `edit-{originalId}-v{n}` and link via `moduleRefs.autoEdit` + optional `role: waypoint-edit` sibling row.
+- Waypoint Choice success is DO LESS on already-good files — different≠better; oversat greens/cyan skies need per-pixel restraint after global ops.
+- Crop/straighten stays suggestion-only; subject-aware local edits defer without reliable on-device detection (no fake bokeh).
+- Export from canvas pixels omits GPS by construction — say so in UI; filename `originalname-waypoint.jpg`.
+- Reuse Library media IDB + Coach signal ideas; do not treat Hidden Landscapes creative remaps as photographic finishing.

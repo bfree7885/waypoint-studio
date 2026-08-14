@@ -110,7 +110,8 @@
           "/apps/waypoint-scenes",
           "/apps/animal-vision",
           "/apps/hidden-landscapes",
-          "/apps/photo-library"
+          "/apps/photo-library",
+          "/apps/auto-edit"
         ],
         "category": "photography",
         "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
@@ -142,6 +143,15 @@
             "match": [
               "/apps/scenes/photo-library",
               "/apps/photo-library"
+            ]
+          },
+          {
+            "id": "auto-edit",
+            "label": "Auto Edit",
+            "href": "apps/auto-edit/",
+            "match": [
+              "/apps/scenes/auto-edit",
+              "/apps/auto-edit"
             ]
           },
           {

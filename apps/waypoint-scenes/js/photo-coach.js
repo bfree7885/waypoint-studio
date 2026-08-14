@@ -637,6 +637,7 @@
       renderTechnicalDetails(critique) +
       '<div class="coach-actions coach-actions--center">' +
         '<button type="button" class="wds-btn wds-btn--secondary" id="btn-coach-save-session">Save to Library</button>' +
+        '<a class="wds-btn wds-btn--primary" id="btn-coach-auto-edit" href="../auto-edit/">Finish with Auto Edit</a>' +
         '<p class="coach-muted coach-kbd-hint">Labels: <kbd>1</kbd> Keep · <kbd>2</kbd> Maybe · <kbd>3</kbd> Reject · <kbd>4</kbd> Favorite · <kbd>0</kbd> Clear</p>' +
       "</div>" +
     "</div>";
@@ -698,6 +699,21 @@
     var saveBtn = $("btn-coach-save-session");
     if (saveBtn) {
       saveBtn.onclick = function () { saveCurrentSession(); };
+    }
+    var aeBtn = $("btn-coach-auto-edit");
+    if (aeBtn) {
+      var libId = null;
+      try {
+        var params = new URLSearchParams(global.location.search || "");
+        libId = params.get("libraryId");
+      } catch (e) { /* ignore */ }
+      if (!libId && currentCritique && currentCritique.libraryId) libId = currentCritique.libraryId;
+      aeBtn.href = libId
+        ? "../auto-edit/?libraryId=" + encodeURIComponent(libId)
+        : "../auto-edit/";
+      aeBtn.title = libId
+        ? "Finish this Library photograph with Waypoint Auto Edit"
+        : "Open Auto Edit — save to Library first for a linked original when possible";
     }
     var Bridge = global.WaypointPhotoCoachSceneBridge;
     if (Bridge && Bridge.bindActions && els.rightMount) {

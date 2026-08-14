@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Edit visual fixture runner</title>
+  <style>
+    body { margin: 1rem; background: #121410; color: #e8e6df; font-family: "Source Sans 3", system-ui, sans-serif; }
+    h1 { font-family: Georgia, serif; font-weight: 500; }
+    .row { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 0.75rem; margin: 1rem 0; padding: 0.75rem; border: 1px solid #333; }
+    canvas, img { width: 100%; height: auto; background: #000; }
+    .ok { color: #b7c9a3; } .muted { color: #a8a89c; font-size: 0.9rem; }
+    #status { margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Waypoint Choice fixture matrix</h1>
+  <p class="muted">ORIGINAL vs edited on-device. Synthetic fixtures for craft QA.</p>
+  <div id="status">Running…</div>
+  <div id="matrix"></div>
+  <script src="/apps/auto-edit/js/ae-models.js"></script>
+  <script src="/apps/auto-edit/js/ae-signals.js"></script>
+  <script src="/apps/auto-edit/js/ae-restraint.js"></script>
+  <script src="/apps/auto-edit/js/ae-strategy.js"></script>
+  <script src="/apps/auto-edit/js/ae-ops.js"></script>
+  <script>
+  (async function () {
+    const files = [
+      "01-well-exposed-landscape.png","02-underexposed-landscape.png","03-bright-sky-dark-fg.png","04-sunset.png",
+      "05-forest.png","06-snow.png","07-water.png","08-wildlife.png","09-high-iso-wildlife.png","10-low-light-night.png",
+      "11-smooth-fog.png","12-detailed-foliage.png","13-strong-sat.png","14-low-contrast-haze.png","15-moody-dark.png","16-mono-candidate.png"
+    ];
+    const host = document.getElementById("matrix");
+    const status = document.getElementById("status");
+    const results = [];
+    for (const file of files) {
+      const img = new Image();
+      img.src = "/automation/fixtures/auto-edit/" + file;
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; });
+      const c = document.createElement("canvas");
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      const ctx = c.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      const src = ctx.getImageData(0, 0, c.width, c.height);
+      const meta = /wildlife|high-iso/.test(file)
+        ? { coachObservations: { subjectHint: "wildlife" }, exif: /high-iso/.test(file) ? { iso: 3200 } : null }
+        : {};
+      const signals = WaypointAutoEditSignals.analyze(src, meta);
+      const strategy = WaypointAutoEditStrategy.buildStrategy(signals, "waypoint-choice");
+      const edited = WaypointAutoEditOps.applyOps(src, strategy.ops, signals);
+      const out = document.createElement("canvas");
+      out.width = edited.width; out.height = edited.height;
+      out.getContext("2d").putImageData(edited, 0, 0);
+      const row = document.createElement("div");
+      row.className = "row";
+      row.innerHTML = "<div><strong>ORIGINAL</strong><br></div><div><strong>WAYPOINT CHOICE</strong><br></div><div class='meta'></div>";
+      row.children[0].appendChild(img.cloneNode());
+      const outImg = new Image();
+      outImg.src = out.toDataURL("image/jpeg", 0.92);
+      row.children[1].appendChild(outImg);
+      row.children[2].innerHTML =
+        "<strong>" + file + "</strong><br>" +
+        "doLess=" + !!strategy.doLess + "<br>" +
+        "ops=" + strategy.ops.map(o => o.id).join(", ") + "<br>" +
+        "<span class='muted'>" + (strategy.summary || "") + "</span>";
+      host.appendChild(row);
+      results.push({ file, doLess: !!strategy.doLess, ops: strategy.ops.map(o => o.id), alreadyGood: !!signals.alreadyGood });
+    }
+    status.textContent = "Done — " + results.length + " fixtures. alreadyGood=" + results.filter(r => r.alreadyGood).length;
+    window.__AE_FIXTURE_RESULTS__ = results;
+  })().catch((e) => {
+    document.getElementById("status").textContent = String(e && e.message || e);
+  });
+  </script>
+</body>
+</html>
