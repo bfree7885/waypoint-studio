@@ -23,7 +23,8 @@
     strength: "natural",
     directionDeg: null,
     busy: false,
-    reducedMotion: false
+    reducedMotion: false,
+    userClearedMotion: false
   };
 
   function $(id) { return document.getElementById(id); }
@@ -194,7 +195,7 @@
       result.image,
       result.analysis,
       result.choice,
-      state.assist && state.assist.isDirty() ? state.assist.getMask() : null
+      assistMaskArg()
     );
     if (state.assist) {
       var sz = state.renderer.getSize();
@@ -223,19 +224,67 @@
     if (pause) pause.hidden = !playing;
   }
 
-  function runPipeline() {
-    if (!state.sourceBlob || !global.WaypointMovingScenesPipeline) return Promise.resolve();
-    setBusy(true);
-    setStatus("Looking for natural motion on this device…");
-    return global.WaypointMovingScenesPipeline.process(state.sourceBlob, {
+  function assistMaskArg() {
+    if (!state.assist || !state.assist.isDirty()) return null;
+    var sz = state.assist.getSize();
+    if (!sz.w || !sz.h) return null;
+    return { data: state.assist.getMask(), width: sz.w, height: sz.h };
+  }
+
+  function hasExportableMotion() {
+    if (!state.renderer || !state.choice) return false;
+    if (state.choice.noMotion && !(state.assist && state.assist.hasInclude())) return false;
+    return true;
+  }
+
+  function pipelineOptions(extra) {
+    extra = extra || {};
+    return Object.assign({
       originalAssetId: state.originalAssetId,
       sourceAssetId: state.sourceAssetId,
       sourceRole: state.sourceRole,
       strength: state.strength,
       directionDeg: state.directionDeg,
-      userMask: state.assist && state.assist.getMask(),
-      userMaskDirty: state.assist && state.assist.isDirty()
-    }).then(function (result) {
+      userMask: assistMaskArg(),
+      userMaskDirty: !!(state.assist && state.assist.isDirty()),
+      userClearedMotion: !!state.userClearedMotion
+    }, extra);
+  }
+
+  function runFinalExport() {
+    state.renderer.setPreview(false);
+    return global.WaypointMovingScenesPipeline.process(state.sourceBlob, pipelineOptions({
+      forceClasses: state.choice && state.choice.classes
+    })).then(function (result) {
+      state.analysis = result.analysis;
+      state.choice = result.choice;
+      state.recipe = result.recipe;
+      state.honesty = result.honestyNotes;
+      state.renderer.prepare(
+        result.image,
+        result.analysis,
+        result.choice,
+        assistMaskArg()
+      );
+      return global.WaypointMovingScenesExport.exportLoop(state.renderer, {
+        durationSec: result.choice.durationSec,
+        fps: 24
+      }).then(function (exported) {
+        return { exported: exported, result: result };
+      });
+    });
+  }
+
+  function restorePreviewAfterExport() {
+    if (state.renderer) state.renderer.setPreview(true);
+    return runPipeline();
+  }
+
+  function runPipeline() {
+    if (!state.sourceBlob || !global.WaypointMovingScenesPipeline) return Promise.resolve();
+    setBusy(true);
+    setStatus("Looking for natural motion on this device…");
+    return global.WaypointMovingScenesPipeline.process(state.sourceBlob, pipelineOptions()).then(function (result) {
       applyPipelineResult(result);
       setStatus(result.choice.noMotion
         ? "No natural motion confidently detected."
@@ -287,6 +336,7 @@
     state.hasWaypointEdit = !!meta.hasWaypointEdit;
     state.editBlob = meta.editBlob || null;
     state.editAssetId = meta.editAssetId || null;
+    state.userClearedMotion = false;
     return runPipeline();
   }
 
@@ -302,11 +352,11 @@
     return engine.init().then(function () {
       return Client.resolveLibraryFile(libraryId);
     }).then(function (resolved) {
-      if (!resolved || !resolved.blob) throw new Error("Could not open that Library photograph.");
-      var img = engine.get(resolved.id) || engine.get(libraryId);
+      if (!resolved || !resolved.file) throw new Error("Could not open that Library photograph.");
+      var img = resolved.image || engine.get(resolved.id) || engine.get(libraryId);
       var originalId = img && img.role === "waypoint-edit" && img.originalAssetId
         ? img.originalAssetId
-        : (img && img.id) || libraryId;
+        : (img && img.id) || resolved.id || libraryId;
       var original = engine.get(originalId) || img;
       var autoEdit = (original && original.moduleRefs && original.moduleRefs.autoEdit) || {};
       var preferEdit = !!autoEdit.hasEdit && !!autoEdit.editBlobKey;
@@ -314,19 +364,20 @@
         ? global.WaypointAutoEditStore.loadEditBlob(autoEdit.editBlobKey)
         : Promise.resolve(null);
 
-      // Always load original blob for source switcher
+      // Always load original file for source switcher
       return Client.resolveLibraryFile(originalId).then(function (origResolved) {
         return editP.then(function (editBlob) {
           var useEdit = preferEdit && editBlob;
-          return openBlob(useEdit ? editBlob : (origResolved.blob || resolved.blob), {
-            filename: (original && original.filename) || resolved.filename || "photo.jpg",
+          var originalFile = (origResolved && origResolved.file) || resolved.file;
+          return openBlob(useEdit ? editBlob : originalFile, {
+            filename: (original && original.filename) || (resolved.image && resolved.image.filename) || "photo.jpg",
             originalAssetId: originalId,
             sourceAssetId: useEdit ? autoEdit.editAssetId : originalId,
             sourceRole: useEdit ? "waypoint-edit" : "original",
             hasWaypointEdit: !!editBlob,
             editBlob: editBlob,
             editAssetId: autoEdit.editAssetId || null,
-            originalBlob: origResolved.blob || resolved.blob
+            originalBlob: originalFile
           });
         });
       });
@@ -341,7 +392,7 @@
       setStatus("Nothing to save yet.", true);
       return;
     }
-    if (state.choice && state.choice.noMotion) {
+    if (!hasExportableMotion()) {
       setStatus("No motion to save — Waypoint Choice found nothing confident.", true);
       return;
     }
@@ -351,53 +402,31 @@
     }
     setBusy(true);
     setStatus("Recording Moving Scene on this device…");
-    // Bump to final-ish preview size for save
-    state.renderer.setPreview(false);
-    global.WaypointMovingScenesPipeline.process(state.sourceBlob, {
-      originalAssetId: state.originalAssetId,
-      sourceAssetId: state.sourceAssetId,
-      sourceRole: state.sourceRole,
-      strength: state.strength,
-      directionDeg: state.directionDeg,
-      forceClasses: state.choice.classes,
-      userMask: state.assist && state.assist.getMask(),
-      userMaskDirty: state.assist && state.assist.isDirty()
-    }).then(function (result) {
-      state.renderer.prepare(
-        result.image,
-        result.analysis,
-        result.choice,
-        state.assist && state.assist.isDirty() ? state.assist.getMask() : null
-      );
-      return global.WaypointMovingScenesExport.exportLoop(state.renderer, {
-        durationSec: result.choice.durationSec,
-        fps: 24
-      }).then(function (exported) {
-        var recipe = Object.assign({}, result.recipe, {
-          classes: result.choice.classes,
-          strength: state.strength,
-          directionDeg: state.directionDeg
-        });
-        return global.WaypointMovingScenesStore.persistMoving(
-          state.originalAssetId,
-          exported.blob,
-          recipe,
-          {
-            ext: exported.ext,
-            width: state.renderer.getSize().w,
-            height: state.renderer.getSize().h,
-            posterBlob: exported.posterBlob
-          }
-        ).then(function (saved) {
-          setStatus(
-            saved.warning
-              ? saved.warning
-              : "Moving Scene saved beside your original. Original and Waypoint Edit stay untouched."
-          );
-          // Restore preview renderer
-          state.renderer.setPreview(true);
-          return runPipeline();
-        });
+    runFinalExport().then(function (pack) {
+      var result = pack.result;
+      var exported = pack.exported;
+      var recipe = Object.assign({}, result.recipe, {
+        classes: result.choice.classes,
+        strength: state.strength,
+        directionDeg: state.directionDeg
+      });
+      return global.WaypointMovingScenesStore.persistMoving(
+        state.originalAssetId,
+        exported.blob,
+        recipe,
+        {
+          ext: exported.ext,
+          width: state.renderer.getSize().w,
+          height: state.renderer.getSize().h,
+          posterBlob: exported.posterBlob
+        }
+      ).then(function (saved) {
+        setStatus(
+          saved.warning
+            ? saved.warning
+            : "Moving Scene saved beside your original. Original and Waypoint Edit stay untouched."
+        );
+        return restorePreviewAfterExport();
       });
     }).catch(function (err) {
       setStatus((err && err.message) || "Could not save Moving Scene.", true);
@@ -407,19 +436,18 @@
   }
 
   function downloadExport() {
-    if (!state.renderer || !state.choice || state.choice.noMotion) {
+    if (!hasExportableMotion()) {
       setStatus("Nothing to download — no confident motion yet.", true);
       return;
     }
     setBusy(true);
     setStatus("Preparing download…");
-    global.WaypointMovingScenesExport.exportLoop(state.renderer, {
-      durationSec: state.choice.durationSec,
-      fps: 24
-    }).then(function (exported) {
+    runFinalExport().then(function (pack) {
+      var exported = pack.exported;
       var name = global.WaypointMovingScenesModels.movingFilename(state.sourceFilename, exported.ext);
       global.WaypointMovingScenesExport.downloadBlob(exported.blob, name);
       setStatus(exported.note || "Download started — processed on this device.");
+      return restorePreviewAfterExport();
     }).catch(function (err) {
       setStatus((err && err.message) || "Export failed.", true);
     }).then(function () {
@@ -442,8 +470,10 @@
         } else if (action === "export") {
           downloadExport();
         } else if (action === "reanalyze") {
+          state.userClearedMotion = false;
           runPipeline();
         } else if (action === "clear-motion") {
+          state.userClearedMotion = true;
           if (state.choice) {
             state.choice.classes = [];
             state.choice.noMotion = true;

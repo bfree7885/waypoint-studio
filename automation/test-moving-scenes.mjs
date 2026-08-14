@@ -285,9 +285,156 @@ assert("recipe readable", Store.getLatestForOriginal("orig-1").id === recipe.id)
 // Filename helper
 assert("moving filename", Models.movingFilename("sunset-waypoint.jpg", "webm") === "sunset-moving.webm");
 
+const previewFit = Render.fitSize(4000, 3000, Models.PREVIEW_MAX);
+const finalFit = Render.fitSize(4000, 3000, Models.FINAL_MAX);
+assert("preview long edge capped at 720", Math.max(previewFit.w, previewFit.h) === Models.PREVIEW_MAX);
+assert("final long edge capped at 1920", Math.max(finalFit.w, finalFit.h) === Models.FINAL_MAX);
+assert("final export larger than preview", finalFit.w > previewFit.w);
+
+const stillField = Render.resolveMotionField(staticA, staticChoice, null, staticA.masks.width, staticA.masks.height);
+assert("noMotion without assist yields null field", stillField === null);
+
+const paintMask = new Float32Array(staticA.masks.width * staticA.masks.height);
+paintMask[Math.floor(paintMask.length / 2)] = 1;
+assert("painted mask has include", Render.maskHasInclude(paintMask) === true);
+const paintedField = Render.resolveMotionField(
+  staticA,
+  staticChoice,
+  { data: paintMask, width: staticA.masks.width, height: staticA.masks.height },
+  staticA.masks.width,
+  staticA.masks.height
+);
+const mid = Math.floor(paintMask.length / 2);
+assert("assist include creates motion on still scene", paintedField && paintedField[mid * 3 + 2] > 0.04);
+
+const smallPaint = new Float32Array(8 * 5);
+smallPaint[0] = 1;
+const resampled = Render.buildMotionField(
+  staticA,
+  { classes: [], noMotion: true },
+  { data: smallPaint, width: 8, height: 5 },
+  staticA.masks.width,
+  staticA.masks.height
+);
+let resampleMax = 0;
+for (let i = 0; i < staticA.masks.width * staticA.masks.height; i++) {
+  resampleMax = Math.max(resampleMax, resampled[i * 3 + 2]);
+}
+assert("assist mask resamples when size differs", resampleMax > 0.04);
+
+function fakeCanvas() {
+  return {
+    width: 0,
+    height: 0,
+    getContext() {
+      return {
+        clearRect() {},
+        createImageData(w, h) {
+          return new FakeImageData(w, h);
+        },
+        putImageData() {}
+      };
+    },
+    addEventListener() {},
+    setPointerCapture() {}
+  };
+}
+
+load("ms-assist.js");
+const assist = sandbox.WaypointMovingScenesAssist.createAssist(fakeCanvas());
+assist.resize(12, 8);
+const seed = assist.getMask();
+seed[0] = 0.9;
+seed[1] = 0.4;
+assist.resize(12, 8);
+assert("assist resize same size keeps brush", assist.getMask()[0] > 0.8 && assist.isDirty() === true);
+assist.resize(24, 16);
+assert("assist resize upscales brush", assist.getMask()[0] > 0.3 && assist.isDirty() === true);
+assert("assist hasInclude after preserve", assist.hasInclude() === true);
+
+load("ms-pipeline.js");
+sandbox.WaypointMovingScenesRender.loadImage = () => Promise.resolve({ width: 160, height: 100 });
+sandbox.WaypointMovingScenesAnalyze.analyzeSource = () => cloudA;
+const Pipeline = sandbox.WaypointMovingScenesPipeline;
+
+const catalog = [];
+const media = new Map();
+sandbox.WaypointPhotoLibraryStore = {
+  putMedia(key, blob, kind) {
+    media.set(key, { blob, kind });
+    return Promise.resolve();
+  },
+  getMedia(key) {
+    return Promise.resolve(media.get(key) || null);
+  }
+};
+sandbox.WaypointPhotoLibraryEngine = {
+  get() {
+    return {
+      isReady() { return true; },
+      init() { return Promise.resolve(); },
+      get(id) { return catalog.find((row) => row.id === id) || null; },
+      list() { return catalog.slice(); },
+      updateImage(id, patch) {
+        const img = catalog.find((row) => row.id === id);
+        if (!img || !patch || !patch.moduleRefs) return img;
+        img.moduleRefs = img.moduleRefs || {};
+        Object.keys(patch.moduleRefs).forEach((mod) => {
+          img.moduleRefs[mod] = Object.assign({}, img.moduleRefs[mod] || {}, patch.moduleRefs[mod]);
+        });
+        return img;
+      },
+      upsertImage(row) {
+        const i = catalog.findIndex((r) => r.id === row.id);
+        if (i >= 0) catalog[i] = row;
+        else catalog.push(row);
+        return row;
+      }
+    };
+  }
+};
+
+catalog.push(LibModels.createLibraryImage({ id: "orig-persist", filename: "lake.jpg" }));
+
 // Fixtures on disk ≥ 16
 const fixDir = path.join(ROOT, "automation/fixtures/moving-scenes");
 const pngs = fs.readdirSync(fixDir).filter((f) => f.endsWith(".png"));
 assert("fixture count >= 16", pngs.length >= 16);
 
-console.log("\n" + n + " PASS");
+Pipeline.process({}, { userClearedMotion: true }).then((cleared) => {
+  assert("userClearedMotion empties classes", cleared.choice.classes.length === 0);
+  assert("userClearedMotion sticks noMotion", cleared.choice.noMotion === true);
+  return Pipeline.process({});
+}).then((auto) => {
+  assert("without clear, automatic classes return", auto.choice.classes.indexOf("clouds") >= 0);
+  sandbox.WaypointMovingScenesAnalyze.analyzeSource = () => staticA;
+  const include = new Float32Array(8);
+  include[0] = 1;
+  return Pipeline.process({}, { userMask: include, userMaskDirty: true });
+}).then((assistOnly) => {
+  assert("assist include overrides still noMotion", assistOnly.choice.noMotion === false);
+  const blob = new sandbox.Blob(["vid"], { type: "video/webm" });
+  const movingRecipe = Models.createRecipe({
+    originalAssetId: "orig-persist",
+    classes: ["water"],
+    noMotion: false
+  });
+  return Store.persistMoving("orig-persist", blob, movingRecipe, { ext: "webm", width: 640, height: 360 });
+}).then((first) => {
+  const blob2 = new sandbox.Blob(["vid2"], { type: "video/webm" });
+  const movingRecipe2 = Models.createRecipe({
+    originalAssetId: "orig-persist",
+    classes: ["water"],
+    noMotion: false
+  });
+  return Store.persistMoving("orig-persist", blob2, movingRecipe2, { ext: "webm", width: 640, height: 360 }).then((second) => {
+    const siblings = catalog.filter((row) => row.role === "moving-scene" && row.originalAssetId === "orig-persist");
+    assert("resave reuses moving sibling id", first.movingAssetId === second.movingAssetId);
+    assert("resave does not create orphan rows", siblings.length === 1);
+  });
+}).then(() => {
+  console.log("\n" + n + " PASS");
+}).catch((err) => {
+  console.error("FAIL", err && err.message ? err.message : err);
+  process.exitCode = 1;
+});
