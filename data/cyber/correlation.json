@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-15T06:58:01.866Z",
+  "generatedAt": "2026-08-15T12:59:20.047Z",
   "entityCount": 442,
-  "relationshipCount": 1107,
+  "relationshipCount": 1108,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -350,11 +350,6 @@
       "title": "CVE-2026-39808"
     },
     {
-      "id": "cve:CVE-2026-56155",
-      "kind": "cve",
-      "title": "CVE-2026-56155"
-    },
-    {
       "id": "cve:CVE-2026-42897",
       "kind": "cve",
       "title": "CVE-2026-42897"
@@ -423,6 +418,11 @@
       "id": "cve:CVE-2026-46817",
       "kind": "cve",
       "title": "CVE-2026-46817"
+    },
+    {
+      "id": "cve:CVE-2026-56155",
+      "kind": "cve",
+      "title": "CVE-2026-56155"
     },
     {
       "id": "cve:CVE-2026-56164",
@@ -1756,6 +1756,11 @@
       "title": "CVE-2026-19188"
     },
     {
+      "id": "vendor:amazon-web-services",
+      "kind": "vendor",
+      "title": "Amazon Web Services"
+    },
+    {
       "id": "cve:CVE-2018-6882",
       "kind": "cve",
       "title": "CVE-2018-6882"
@@ -1776,19 +1781,9 @@
       "title": "CVE-2026-59839"
     },
     {
-      "id": "vendor:amazon-web-services",
-      "kind": "vendor",
-      "title": "Amazon Web Services"
-    },
-    {
       "id": "vendor:cloudflare-status",
       "kind": "vendor",
       "title": "Cloudflare Status"
-    },
-    {
-      "id": "vendor:openai-status",
-      "kind": "vendor",
-      "title": "OpenAI Status"
     },
     {
       "id": "cve:CVE-2026-3014",
@@ -2219,6 +2214,11 @@
       "id": "vendor:github-status",
       "kind": "vendor",
       "title": "GitHub Status"
+    },
+    {
+      "id": "vendor:openai-status",
+      "kind": "vendor",
+      "title": "OpenAI Status"
     }
   ],
   "relationships": [
@@ -3364,30 +3364,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-56155",
-      "to": "cve:CVE-2026-56155",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-56155",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-56155",
-      "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-56155",
-      "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-42897",
       "to": "cve:CVE-2026-42897",
       "evidence": "identifier"
@@ -3668,6 +3644,24 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-46817",
       "to": "vendor:oracle",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-56155",
+      "to": "cve:CVE-2026-56155",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-56155",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-56155",
+      "to": "vendor:microsoft",
       "evidence": "entity extraction"
     },
     {
@@ -7821,6 +7815,32 @@
       "confidence": "heuristic"
     },
     {
+      "type": "outage-affects",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "attack:T1133",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "entity extraction"
+    },
+    {
       "type": "mentions-cve",
       "from": "live_nvd_cve-2018-6882",
       "to": "cve:CVE-2018-6882",
@@ -7872,18 +7892,6 @@
     },
     {
       "type": "outage-affects",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
       "from": "live_outage_cloudflare-status_4d696e6f72205365",
       "to": "vendor:cloudflare-status",
       "evidence": "service-outage record"
@@ -7892,18 +7900,6 @@
       "type": "affects-vendor",
       "from": "live_outage_cloudflare-status_4d696e6f72205365",
       "to": "vendor:cloudflare-status",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_openai-status_5061727469616c20",
-      "to": "vendor:openai-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_openai-status_5061727469616c20",
-      "to": "vendor:openai-status",
       "evidence": "entity extraction"
     },
     {
@@ -9079,6 +9075,18 @@
       "type": "affects-vendor",
       "from": "live_outage_github-status_ok",
       "to": "vendor:github-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_openai-status_ok",
+      "to": "vendor:openai-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_openai-status_ok",
+      "to": "vendor:openai-status",
       "evidence": "entity extraction"
     },
     {
