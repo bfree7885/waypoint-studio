@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-15T01:50:37.245Z",
+  "generatedAt": "2026-08-15T06:58:01.866Z",
   "entityCount": 442,
   "relationshipCount": 1107,
   "entities": [
@@ -350,6 +350,11 @@
       "title": "CVE-2026-39808"
     },
     {
+      "id": "cve:CVE-2026-56155",
+      "kind": "cve",
+      "title": "CVE-2026-56155"
+    },
+    {
       "id": "cve:CVE-2026-42897",
       "kind": "cve",
       "title": "CVE-2026-42897"
@@ -418,11 +423,6 @@
       "id": "cve:CVE-2026-46817",
       "kind": "cve",
       "title": "CVE-2026-46817"
-    },
-    {
-      "id": "cve:CVE-2026-56155",
-      "kind": "cve",
-      "title": "CVE-2026-56155"
     },
     {
       "id": "cve:CVE-2026-56164",
@@ -1776,6 +1776,11 @@
       "title": "CVE-2026-59839"
     },
     {
+      "id": "vendor:amazon-web-services",
+      "kind": "vendor",
+      "title": "Amazon Web Services"
+    },
+    {
       "id": "vendor:cloudflare-status",
       "kind": "vendor",
       "title": "Cloudflare Status"
@@ -1784,11 +1789,6 @@
       "id": "vendor:openai-status",
       "kind": "vendor",
       "title": "OpenAI Status"
-    },
-    {
-      "id": "vendor:amazon-web-services",
-      "kind": "vendor",
-      "title": "Amazon Web Services"
     },
     {
       "id": "cve:CVE-2026-3014",
@@ -3364,6 +3364,30 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-56155",
+      "to": "cve:CVE-2026-56155",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-56155",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-56155",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-56155",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2026-42897",
       "to": "cve:CVE-2026-42897",
       "evidence": "identifier"
@@ -3644,24 +3668,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-46817",
       "to": "vendor:oracle",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-56155",
-      "to": "cve:CVE-2026-56155",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-56155",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-56155",
-      "to": "vendor:microsoft",
       "evidence": "entity extraction"
     },
     {
@@ -7866,6 +7872,18 @@
     },
     {
       "type": "outage-affects",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
       "from": "live_outage_cloudflare-status_4d696e6f72205365",
       "to": "vendor:cloudflare-status",
       "evidence": "service-outage record"
@@ -7886,25 +7904,6 @@
       "type": "affects-vendor",
       "from": "live_outage_openai-status_5061727469616c20",
       "to": "vendor:openai-status",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
       "evidence": "entity extraction"
     },
     {
