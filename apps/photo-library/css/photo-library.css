@@ -392,6 +392,16 @@
   margin-left: 0.25rem;
 }
 
+.pl-badge--moving {
+  background: rgba(158, 180, 160, 0.22);
+  border: 1px solid rgba(158, 180, 160, 0.5);
+  color: inherit;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  margin-left: 0.25rem;
+}
+
 .pl-relation {
   color: var(--wds-text-secondary);
   font-size: 0.9rem;

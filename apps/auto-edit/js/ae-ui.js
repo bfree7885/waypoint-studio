@@ -26,6 +26,15 @@
 
   function $(id) { return document.getElementById(id); }
 
+  function offerMakeItMove() {
+    var note = document.querySelector(".ae-move-note");
+    if (!note || !state.originalAssetId) return;
+    note.innerHTML =
+      'Ready for motion: <a class="wds-btn wds-btn--secondary wds-btn--sm" href="../moving-scenes/?libraryId=' +
+      encodeURIComponent(state.originalAssetId) +
+      '">Make it move</a> — opens without re-upload.';
+  }
+
   function setStatus(msg, isError) {
     var el = $("ae-status");
     if (!el) return;
@@ -208,7 +217,10 @@
       }).then(function (res) {
         setBusy(false);
         if (res.warning) setStatus(res.warning, true);
-        else setStatus("Saved. Original kept. Waypoint Edit linked in Photo Library.");
+        else {
+          setStatus("Saved. Original kept. Waypoint Edit linked in Photo Library.");
+          offerMakeItMove();
+        }
       }).catch(function (err) {
         setBusy(false);
         setStatus((err && err.message) || "Save failed.", true);
@@ -225,7 +237,10 @@
     ).then(function (res) {
       setBusy(false);
       if (res.warning) setStatus(res.warning, true);
-      else setStatus("Saved. Original kept. Waypoint Edit linked in Photo Library.");
+      else {
+        setStatus("Saved. Original kept. Waypoint Edit linked in Photo Library.");
+        offerMakeItMove();
+      }
     }).catch(function (err) {
       setBusy(false);
       setStatus((err && err.message) || "Save failed.", true);

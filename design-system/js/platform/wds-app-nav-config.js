@@ -111,7 +111,8 @@
           "/apps/animal-vision",
           "/apps/hidden-landscapes",
           "/apps/photo-library",
-          "/apps/auto-edit"
+          "/apps/auto-edit",
+          "/apps/moving-scenes"
         ],
         "category": "photography",
         "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
@@ -152,6 +153,16 @@
             "match": [
               "/apps/scenes/auto-edit",
               "/apps/auto-edit"
+            ]
+          },
+          {
+            "id": "moving-scenes",
+            "label": "Moving Scenes",
+            "href": "apps/moving-scenes/",
+            "match": [
+              "/apps/scenes/moving-scenes",
+              "/apps/scenes/living-scenes",
+              "/apps/moving-scenes"
             ]
           },
           {

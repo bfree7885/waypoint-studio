@@ -199,6 +199,10 @@
               ? '<span class="pl-badge pl-badge--edit">Edited</span>'
               : "") +
             (img.role === "waypoint-edit" ? '<span class="pl-badge pl-badge--edit">Waypoint Edit</span>' : "") +
+            ((img.moduleRefs && img.moduleRefs.movingScenes && img.moduleRefs.movingScenes.created) ||
+              img.role === "moving-scene"
+              ? '<span class="pl-badge pl-badge--moving">Moving</span>'
+              : "") +
             "</button>";
         }).join("");
       } else {
@@ -250,14 +254,19 @@
       }
       var coach = (img.moduleRefs && img.moduleRefs.photoCoach) || {};
       var autoEdit = (img.moduleRefs && img.moduleRefs.autoEdit) || {};
+      var moving = (img.moduleRefs && img.moduleRefs.movingScenes) || {};
       var cols = (img.collectionIds || []).map(function (cid) {
         var c = engine.getCollection(cid);
         return c ? c.name : null;
       }).filter(Boolean);
 
       var canOpenMedia = !!(img.media && (img.media.hasOriginal || img.media.hasThumbnail || img.media.thumbnailDataUrl));
-      var originalId = img.role === "waypoint-edit" && img.originalAssetId ? img.originalAssetId : img.id;
+      var originalId =
+        (img.role === "waypoint-edit" || img.role === "moving-scene") && img.originalAssetId
+          ? img.originalAssetId
+          : img.id;
       var finishHref = "../auto-edit/?libraryId=" + encodeURIComponent(originalId);
+      var moveHref = "../moving-scenes/?libraryId=" + encodeURIComponent(originalId);
 
       els.detail.innerHTML =
         '<div class="pl-detail__preview">' +
@@ -268,9 +277,12 @@
         "<h2 class=\"pl-detail__title\">" + esc(img.filename) + "</h2>" +
         (img.role === "waypoint-edit"
           ? '<p class="pl-relation">Waypoint Edit of a preserved original.</p>'
-          : (autoEdit.hasEdit
-            ? '<p class="pl-relation">Has a Waypoint Edit · original preserved.</p>'
-            : "")) +
+          : (img.role === "moving-scene"
+            ? '<p class="pl-relation">Moving Scene derivative · original preserved.</p>'
+            : (autoEdit.hasEdit
+              ? '<p class="pl-relation">Has a Waypoint Edit · original preserved.</p>'
+              : "") +
+              (moving.created ? '<p class="pl-relation">Has a Moving Scene · original preserved.</p>' : ""))) +
         '<dl class="pl-detail__meta">' +
           "<div><dt>Captured</dt><dd>" + esc(formatDate(img.captureDate)) + "</dd></div>" +
           "<div><dt>Imported</dt><dd>" + esc(formatDate(img.importDate)) + "</dd></div>" +
@@ -332,7 +344,10 @@
             '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(originalId) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
 ">Open in Hidden Landscapes</a>" +
-          '<span class="pl-move-note" title="Moving Scenes is Attack 3">Make it move — coming next</span>' +
+          '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
+            '" href="' + moveHref + '"' +
+            (canOpenMedia ? "" : " aria-disabled=\"true\"") +
+            ">" + (moving.created ? "Open Moving Scene" : "Make it move") + "</a>" +
         "</div>" +
         '<div class="pl-label-row" role="group" aria-label="Private labels">' +
           ["keep", "maybe", "reject", "favorite"].map(function (lab) {
@@ -356,7 +371,11 @@
                 ? "linked"
                 : canOpenMedia ? "ready to open" : "needs original") +
             "</li>" +
-            "<li>Moving Scenes — Attack 3 (not yet) · Living prototype preserved</li>" +
+            "<li>Moving Scenes — " +
+              (moving.created
+                ? "saved · " + ((moving.classes && moving.classes.length) ? moving.classes.join(", ") : "motion")
+                : canOpenMedia ? "ready to open" : "needs original") +
+            "</li>" +
             "<li>Scene Builder — " +
               (img.moduleRefs.sceneBuilder && img.moduleRefs.sceneBuilder.created ? "created" : "not yet") +
             "</li>" +

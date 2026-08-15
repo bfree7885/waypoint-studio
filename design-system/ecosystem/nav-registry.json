@@ -103,10 +103,11 @@
           "/apps/animal-vision",
           "/apps/hidden-landscapes",
           "/apps/photo-library",
-          "/apps/auto-edit"
+          "/apps/auto-edit",
+          "/apps/moving-scenes"
         ],
       "category": "photography",
-      "description": "One photography platform \u2014 Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, Photographer Profile, and Photo Library.",
+      "description": "One photography platform \u2014 Photo Coach, Auto Edit, Moving Scenes, Hidden Landscapes, Scene Builder, Photographer Profile, and Photo Library.",
       "status": "live",
       "features": [
         {
@@ -158,10 +159,12 @@
         },
         {
           "id": "living-scenes",
-          "label": "Living Scenes",
-          "href": "apps/scenes/living-scenes/",
+          "label": "Moving Scenes",
+          "href": "apps/moving-scenes/",
           "match": [
-            "/apps/scenes/living-scenes"
+            "/apps/scenes/living-scenes",
+            "/apps/scenes/moving-scenes",
+            "/apps/moving-scenes"
           ]
         },
         {

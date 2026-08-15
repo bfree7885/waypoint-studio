@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moving Scenes — Owner review gallery</title>
+  <style>
+    :root {
+      --bg: #121410;
+      --ink: #e8e6df;
+      --muted: #a8a89c;
+      --line: rgba(232,230,223,.14);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Source Sans 3", system-ui, sans-serif;
+    }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      background: radial-gradient(900px 400px at 10% 0%, rgba(70,95,80,.2), transparent), var(--bg);
+      color: var(--ink);
+      padding: 1.5rem;
+    }
+    h1 { font-family: var(--serif); font-weight: 500; font-size: 2rem; margin: 0 0 .35rem; }
+    .lede { color: var(--muted); max-width: 42rem; line-height: 1.5; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #0c0e0b;
+    }
+    img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+    figcaption { padding: .65rem .75rem; font-size: .85rem; color: var(--muted); }
+    figcaption strong { color: var(--ink); display: block; margin-bottom: .2rem; }
+    .meta { margin-top: 2rem; color: var(--muted); font-size: .9rem; }
+    code { color: #c9d6c4; }
+  </style>
+</head>
+<body>
+  <h1>Moving Scenes — owner review</h1>
+  <p class="lede">
+    Still fixture matrix for Attack 3. Motion is localized and confidence-gated in the app —
+    compare these stills with live Still|Moving in <code>/apps/moving-scenes/</code>.
+    Supported V1: clouds, water, fog/haze. Deferred: foliage, grass, invented rain/snow/stars, Ken Burns.
+  </p>
+  <div class="grid" id="grid"></div>
+  <p class="meta">
+    Fixtures live under <code>automation/fixtures/moving-scenes/</code> and are copied here for review without running the app.
+    Static rock / dry blue object / foliage should prefer <strong>no automatic motion</strong> or deferred classes.
+  </p>
+  <script>
+    const files = [
+      ["01-clouds-sky.png", "Clouds + sky", "Expect clouds"],
+      ["02-cloud-mountain.png", "Clouds + mountain", "Sky moves · mountain stable"],
+      ["03-lake-shore.png", "Lake + shore", "Water moves · shore calmer"],
+      ["04-river.png", "River", "Water channel"],
+      ["05-ocean.png", "Ocean", "Water"],
+      ["06-waterfall-rocks.png", "Falls + rocks", "Water if confident · rocks stable"],
+      ["07-fog-forest.png", "Fog", "Fog/haze if confident"],
+      ["08-haze-valley.png", "Haze", "Haze if confident"],
+      ["09-foliage-detail.png", "Foliage", "Deferred"],
+      ["10-grass-meadow.png", "Grass meadow", "Deferred grass"],
+      ["11-visible-rain.png", "Visible rain texture", "Do not invent rain particles"],
+      ["12-visible-snow.png", "Snow field", "Do not invent falling snow"],
+      ["13-wildlife-env.png", "Wildlife + environment", "Subject stable"],
+      ["14-night-stars.png", "Night", "Do not invent star motion"],
+      ["15-architecture-landscape.png", "Architecture + landscape", "Structure stable"],
+      ["16-static-rock.png", "Static rock", "No motion found"],
+      ["17-dry-blue-object.png", "Blue object", "Not water"],
+      ["18-tree-trunk-sky.png", "Trunk + sky", "Sky may move · trunk stable"]
+    ];
+    const grid = document.getElementById("grid");
+    grid.innerHTML = files.map(([file, title, expect]) =>
+      '<figure><img src="fixtures/' + file + '" alt="' + title + '"><figcaption><strong>' + title + '</strong>' + expect + '</figcaption></figure>'
+    ).join("");
+  </script>
+</body>
+</html>

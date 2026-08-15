@@ -146,6 +146,7 @@
                 photoCoach: original.moduleRefs && original.moduleRefs.photoCoach,
                 hiddenLandscapes: original.moduleRefs && original.moduleRefs.hiddenLandscapes,
                 livingScenes: original.moduleRefs && original.moduleRefs.livingScenes,
+                movingScenes: original.moduleRefs && original.moduleRefs.movingScenes,
                 sceneBuilder: original.moduleRefs && original.moduleRefs.sceneBuilder
               }
             });
