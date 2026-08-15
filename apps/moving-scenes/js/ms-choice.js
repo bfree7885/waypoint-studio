@@ -9,6 +9,66 @@
     return global.WaypointMovingScenesModels;
   }
 
+  /**
+   * Drop incompatible auto classes. False no-motion beats wrong animation.
+   * Fog/haze among trees wins over water; cloud-sea wins over lake when both weak.
+   */
+  function resolveSelectedConflicts(selected, confidence, analysis) {
+    var byId = {};
+    selected.forEach(function (s) {
+      byId[s.id] = s;
+    });
+    var cov = (analysis && analysis.coverage) || {};
+    var ev = (analysis && analysis.evidence) || {};
+    var drop = {};
+
+    if (byId.water && byId.fog) {
+      // Prefer fog when fog coverage / confidence is competitive
+      if ((confidence.fog || 0) + 0.08 >= (confidence.water || 0) * 0.7 || (cov.fog || 0) > 0.1) {
+        drop.water = true;
+      } else {
+        drop.fog = true;
+      }
+    }
+    if (byId.water && byId.clouds) {
+      var vapor =
+        (ev.waterCloudOverlap || 0) > 0.25 ||
+        (ev.waterSkyOverlap || 0) > 0.28;
+      var cloudSea =
+        (cov.clouds || 0) > 0.14 &&
+        (cov.waterCentroidY || 1) < 0.52 &&
+        (cov.foliage || 0) < 0.08;
+      // Thin water claim under dominant sky/clouds → refuse water
+      var thinSkyWater =
+        (cov.water || 0) < 0.14 &&
+        (cov.sky || 0) > 0.3 &&
+        (confidence.water || 0) < 0.65;
+      if (vapor || cloudSea || thinSkyWater) drop.water = true;
+    }
+    if (byId.clouds && byId.fog && (cov.foliage || 0) > 0.15 && (cov.sky || 0) < 0.28) {
+      // Fog among trees / forest mist — do not also animate as sky clouds
+      drop.clouds = true;
+    }
+    // Open sky + ridge (little foliage): prefer clouds over fog veiling claim
+    if (
+      byId.fog &&
+      (cov.sky || 0) > 0.35 &&
+      (cov.foliage || 0) < 0.12 &&
+      (confidence.clouds || 0) >= 0.38
+    ) {
+      drop.fog = true;
+    }
+    // Haze + fog: keep the stronger one
+    if (byId.haze && byId.fog) {
+      if ((confidence.fog || 0) >= (confidence.haze || 0)) drop.haze = true;
+      else drop.fog = true;
+    }
+
+    return selected.filter(function (s) {
+      return !drop[s.id];
+    });
+  }
+
   function choose(analysis, options) {
     options = options || {};
     var M = Models();
@@ -43,6 +103,9 @@
         );
       }
     });
+
+    // Incompatible materials: one scene should not claim lake + fog + cloud-sea together
+    selected = resolveSelectedConflicts(selected, confidence, analysis);
 
     // Explicitly list known unsupported detections as deferred
     ["foliage", "grass", "rain", "snow", "light", "stars", "parallax"].forEach(function (id) {

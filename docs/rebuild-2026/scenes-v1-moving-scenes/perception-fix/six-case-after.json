@@ -1,0 +1,274 @@
+{
+  "longEdge": 320,
+  "generatedAt": "2026-08-15T19:43:52.128Z",
+  "results": [
+    {
+      "sample": {
+        "w": 320,
+        "h": 213
+      },
+      "classes": [
+        "clouds"
+      ],
+      "summary": "Clouds",
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.803,
+        "water": 0.06,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0
+      },
+      "coverage": {
+        "clouds": 0.334,
+        "water": 0.08,
+        "fog": 0.023,
+        "sky": 0.462,
+        "foliage": 0,
+        "wildlife": 0,
+        "wood": 0,
+        "waterConnectivity": 0.655,
+        "waterCentroidY": 0.559
+      },
+      "evidence": {
+        "waterSkyOverlap": 0.003425390708627703,
+        "waterCloudOverlap": 0.002569043031470777,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.6550214183722037,
+        "waterCentroidY": 0.559485868243639
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Clouds — restrained, localized motion only."
+      ],
+      "id": "A-cloud",
+      "file": "A-cloud-DSC00745.JPG",
+      "analyzeMs": 1104,
+      "ok": true
+    },
+    {
+      "sample": {
+        "w": 320,
+        "h": 213
+      },
+      "classes": [
+        "water"
+      ],
+      "summary": "Water",
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "lake",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.92,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.016
+      },
+      "coverage": {
+        "clouds": 0,
+        "water": 0.506,
+        "fog": 0,
+        "sky": 0.006,
+        "foliage": 0.038,
+        "wildlife": 0.03,
+        "wood": 0.004,
+        "waterConnectivity": 0.988,
+        "waterCentroidY": 0.592
+      },
+      "evidence": {
+        "waterSkyOverlap": 0.00005568548836173293,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.9879364907630305,
+        "waterCentroidY": 0.5916499084866785
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Water — restrained, localized motion only."
+      ],
+      "id": "B-water",
+      "file": "B-water-DSC00314.JPG",
+      "analyzeMs": 1029,
+      "ok": true
+    },
+    {
+      "sample": {
+        "w": 320,
+        "h": 214
+      },
+      "classes": [
+        "fog"
+      ],
+      "summary": "Fog",
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.402,
+        "water": 0.03,
+        "fog": 0.442,
+        "haze": 0.05,
+        "foliage": 0.117
+      },
+      "coverage": {
+        "clouds": 0.161,
+        "water": 0.002,
+        "fog": 0.085,
+        "sky": 0.258,
+        "foliage": 0.279,
+        "wildlife": 0.003,
+        "wood": 0.002,
+        "waterConnectivity": 0.053,
+        "waterCentroidY": 0.5
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.05322128851540616,
+        "waterCentroidY": 0.5
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Fog — restrained, localized motion only.",
+        "Clouds looks possible but confidence is too low for automatic motion (40%)."
+      ],
+      "id": "C-fog",
+      "file": "C-fog-fogforest.jpg",
+      "analyzeMs": 840,
+      "ok": true
+    },
+    {
+      "sample": {
+        "w": 320,
+        "h": 213
+      },
+      "classes": [],
+      "summary": "No motion found",
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.03,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.249
+      },
+      "coverage": {
+        "clouds": 0.007,
+        "water": 0.033,
+        "fog": 0.048,
+        "sky": 0.014,
+        "foliage": 0.592,
+        "wildlife": 0.011,
+        "wood": 0.001,
+        "waterConnectivity": 0.53,
+        "waterCentroidY": 0.853
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.5296223958333334,
+        "waterCentroidY": 0.852753219975144
+      },
+      "honestyNotes": [
+        "No natural motion confidently detected. The photograph stays still."
+      ],
+      "id": "D-wildlife",
+      "file": "D-wildlife-Robin.JPG",
+      "analyzeMs": 1032,
+      "ok": true
+    },
+    {
+      "sample": {
+        "w": 320,
+        "h": 240
+      },
+      "classes": [],
+      "summary": "No motion found",
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.037,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.182
+      },
+      "coverage": {
+        "clouds": 0.026,
+        "water": 0.077,
+        "fog": 0.001,
+        "sky": 0.03,
+        "foliage": 0.433,
+        "wildlife": 0.001,
+        "wood": 0.003,
+        "waterConnectivity": 0.606,
+        "waterCentroidY": 0.77
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.6064495929868503,
+        "waterCentroidY": 0.7702784833250775
+      },
+      "honestyNotes": [
+        "No natural motion confidently detected. The photograph stays still."
+      ],
+      "id": "E-static",
+      "file": "E-static-Edited-8190413.JPG",
+      "analyzeMs": 1035,
+      "ok": true
+    },
+    {
+      "sample": {
+        "w": 320,
+        "h": 213
+      },
+      "classes": [
+        "clouds"
+      ],
+      "summary": "Clouds",
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.535,
+        "water": 0.24,
+        "fog": 0.177,
+        "haze": 0.05,
+        "foliage": 0
+      },
+      "coverage": {
+        "clouds": 0.215,
+        "water": 0.4,
+        "fog": 0.091,
+        "sky": 0.342,
+        "foliage": 0,
+        "wildlife": 0.017,
+        "wood": 0,
+        "waterConnectivity": 0.975,
+        "waterCentroidY": 0.698
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.9745364238410597,
+        "waterCentroidY": 0.6978055711825754
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Clouds — restrained, localized motion only.",
+        "Water looks possible but confidence is too low for automatic motion (24%)."
+      ],
+      "id": "F-complex",
+      "file": "F-complex-mist-valley.jpg",
+      "analyzeMs": 654,
+      "ok": true
+    }
+  ]
+}

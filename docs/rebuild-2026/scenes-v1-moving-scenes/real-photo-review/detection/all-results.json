@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2026-08-15T18:24:09.142Z",
+  "base": "http://127.0.0.1:42883",
+  "results": [
+    {
+      "id": "A-cloud",
+      "file": "A-cloud-DSC00745.JPG",
+      "category": "cloud",
+      "expect": "Textured clouds + terrain/tree edges; sky motion if confident",
+      "noMotion": false,
+      "classes": [
+        "clouds",
+        "water"
+      ],
+      "summary": "Clouds · Water",
+      "honestyNotes": [
+        "Waypoint Choice: Clouds, Water — restrained, localized motion only."
+      ],
+      "confidence": {
+        "clouds": 0.9006726616207761,
+        "water": 1,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0.000056,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.3159133310397466,
+        "water": 0.44926666666666665,
+        "fog": 0.0022,
+        "haze": 0.00046666666666666666,
+        "foliage": 0.00013333333333333334,
+        "mountain": 0.0324,
+        "rock": 0.07333333333333333,
+        "wildlife": 0,
+        "snow": 0,
+        "sky": 0.37393333333333334
+      },
+      "selected": [
+        {
+          "id": "clouds",
+          "label": "Clouds",
+          "confidence": 0.9006726616207761
+        },
+        {
+          "id": "water",
+          "label": "Water",
+          "confidence": 1
+        }
+      ],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0.000056,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": false,
+      "waterType": "lake",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 6192,
+      "sourceNaturalHeight": 4128,
+      "analysisSample": {
+        "w": 150,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1920,
+        "h": 1280
+      },
+      "mime": "video/webm;codecs=vp9",
+      "ext": "webm",
+      "note": null,
+      "error": null,
+      "videoBytes": 203350,
+      "videoFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/A-cloud-moving.webm",
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/A-cloud-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/A-cloud-mask-stable.png"
+      ]
+    },
+    {
+      "id": "B-water",
+      "file": "B-water-DSC00314.JPG",
+      "category": "water",
+      "expect": "Textured water motion; lily pads / shore calmer",
+      "noMotion": false,
+      "classes": [
+        "water"
+      ],
+      "summary": "Water",
+      "honestyNotes": [
+        "Waypoint Choice: Water — restrained, localized motion only."
+      ],
+      "confidence": {
+        "clouds": 0.05,
+        "water": 1,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0.014896,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.0014999999602635702,
+        "water": 0.4646666666666667,
+        "fog": 0,
+        "haze": 0.0012666666666666666,
+        "foliage": 0.03546666666666667,
+        "mountain": 0.029066666666666668,
+        "rock": 0.017866666666666666,
+        "wildlife": 0.0118,
+        "snow": 0,
+        "sky": 0.0033333333333333335
+      },
+      "selected": [
+        {
+          "id": "water",
+          "label": "Water",
+          "confidence": 1
+        }
+      ],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0.014896,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": false,
+      "waterType": "lake",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 6192,
+      "sourceNaturalHeight": 4128,
+      "analysisSample": {
+        "w": 150,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1920,
+        "h": 1280
+      },
+      "mime": "video/webm;codecs=vp9",
+      "ext": "webm",
+      "note": null,
+      "error": null,
+      "videoBytes": 173662,
+      "videoFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/B-water-moving.webm",
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/B-water-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/B-water-mask-stable.png"
+      ]
+    },
+    {
+      "id": "C-fog",
+      "file": "C-fog-fogforest.jpg",
+      "category": "fog",
+      "expect": "Genuine fog/mist motion if confident; trunks stable",
+      "noMotion": false,
+      "classes": [
+        "clouds",
+        "water"
+      ],
+      "summary": "Clouds · Water",
+      "honestyNotes": [
+        "Waypoint Choice: Clouds, Water — restrained, localized motion only."
+      ],
+      "confidence": {
+        "clouds": 0.6238613297351201,
+        "water": 0.8118933333333335,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0.11160799999999998,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.2
+      },
+      "coverage": {
+        "clouds": 0.2190066650311152,
+        "water": 0.3122666666666667,
+        "fog": 0.06946666666666666,
+        "haze": 0.04066666666666666,
+        "foliage": 0.2657333333333333,
+        "mountain": 0.2974,
+        "rock": 0.16246666666666668,
+        "wildlife": 0.0010666666666666667,
+        "snow": 0.0744,
+        "sky": 0.25826666666666664
+      },
+      "selected": [
+        {
+          "id": "clouds",
+          "label": "Clouds",
+          "confidence": 0.6238613297351201
+        },
+        {
+          "id": "water",
+          "label": "Water",
+          "confidence": 0.8118933333333335
+        }
+      ],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0.11160799999999998,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.2,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": false,
+      "waterType": "lake",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 3776,
+      "sourceNaturalHeight": 2520,
+      "analysisSample": {
+        "w": 150,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1920,
+        "h": 1281
+      },
+      "mime": "video/webm;codecs=vp9",
+      "ext": "webm",
+      "note": null,
+      "error": null,
+      "videoBytes": 233923,
+      "videoFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/C-fog-moving.webm",
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/C-fog-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/C-fog-mask-stable.png"
+      ]
+    },
+    {
+      "id": "D-wildlife",
+      "file": "D-wildlife-Robin.JPG",
+      "category": "wildlife",
+      "expect": "Animal stable; env may move or no-motion",
+      "noMotion": true,
+      "classes": [],
+      "summary": "No motion found",
+      "honestyNotes": [
+        "No natural motion confidently detected. The photograph stays still.",
+        "Water looks possible but confidence is too low for automatic motion (31%)."
+      ],
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.31234666666666666,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0.239624,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.0029299999912579854,
+        "water": 0.12013333333333333,
+        "fog": 0.056133333333333334,
+        "haze": 0.10753333333333333,
+        "foliage": 0.5705333333333333,
+        "mountain": 0.1196,
+        "rock": 0.20313333333333333,
+        "wildlife": 0.0038666666666666667,
+        "snow": 0,
+        "sky": 0.0007333333333333333
+      },
+      "selected": [],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0.239624,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": false,
+      "waterType": "river",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 6192,
+      "sourceNaturalHeight": 4128,
+      "analysisSample": {
+        "w": 150,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1920,
+        "h": 1280
+      },
+      "mime": null,
+      "ext": null,
+      "note": "Waypoint Choice refused automatic motion — still poster only.",
+      "error": null,
+      "videoBytes": 0,
+      "videoFile": null,
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/D-wildlife-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/D-wildlife-mask-stable.png"
+      ]
+    },
+    {
+      "id": "E-static",
+      "file": "E-static-Edited-8190413.JPG",
+      "category": "no-motion",
+      "expect": "Prefer no-motion refusal for static forest boardwalk",
+      "noMotion": false,
+      "classes": [
+        "water"
+      ],
+      "summary": "Water",
+      "honestyNotes": [
+        "Waypoint Choice: Water — restrained, localized motion only."
+      ],
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.7186165413533835,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0.18492631578947366,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.03204511269590908,
+        "water": 0.276390977443609,
+        "fog": 0.0375187969924812,
+        "haze": 0.07827067669172932,
+        "foliage": 0.44030075187969925,
+        "mountain": 0.278796992481203,
+        "rock": 0.17992481203007518,
+        "wildlife": 0.002330827067669173,
+        "snow": 0.005112781954887218,
+        "sky": 0.007443609022556391
+      },
+      "selected": [
+        {
+          "id": "water",
+          "label": "Water",
+          "confidence": 0.7186165413533835
+        }
+      ],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0.18492631578947366,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": false,
+      "waterType": "river",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 4529,
+      "sourceNaturalHeight": 3397,
+      "analysisSample": {
+        "w": 133,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1920,
+        "h": 1440
+      },
+      "mime": "video/webm;codecs=vp9",
+      "ext": "webm",
+      "note": null,
+      "error": null,
+      "videoBytes": 474969,
+      "videoFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/E-static-moving.webm",
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/E-static-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/E-static-mask-stable.png"
+      ]
+    },
+    {
+      "id": "F-complex",
+      "file": "F-complex-mist-valley.jpg",
+      "category": "complex",
+      "expect": "Sky+mountains+cloud-sea classification stress test",
+      "noMotion": false,
+      "classes": [
+        "clouds",
+        "water"
+      ],
+      "summary": "Clouds · Water",
+      "honestyNotes": [
+        "Waypoint Choice: Clouds, Water — restrained, localized motion only.",
+        "Wildlife subject kept stable — environment may move; the animal does not."
+      ],
+      "confidence": {
+        "clouds": 0.5337493283224106,
+        "water": 1,
+        "fog": 0.08,
+        "haze": 0.06,
+        "foliage": 0,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.18611333105564118,
+        "water": 0.4674,
+        "fog": 0.08033333333333334,
+        "haze": 0.043866666666666665,
+        "foliage": 0,
+        "mountain": 0.10773333333333333,
+        "rock": 0.03813333333333333,
+        "wildlife": 0.0512,
+        "snow": 0,
+        "sky": 0.226
+      },
+      "selected": [
+        {
+          "id": "clouds",
+          "label": "Clouds",
+          "confidence": 0.5337493283224106
+        },
+        {
+          "id": "water",
+          "label": "Water",
+          "confidence": 1
+        }
+      ],
+      "deferred": [
+        {
+          "id": "foliage",
+          "label": null,
+          "confidence": 0,
+          "reason": "Trunk/leaf stability not yet reliable enough"
+        },
+        {
+          "id": "grass",
+          "label": null,
+          "confidence": 0.1,
+          "reason": "Deferred until localized sway is artifact-free"
+        },
+        {
+          "id": "rain",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible rain — inventing weather deferred"
+        },
+        {
+          "id": "snow",
+          "label": null,
+          "confidence": 0,
+          "reason": "Only amplify visible snow — inventing weather deferred"
+        },
+        {
+          "id": "light",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "No fake sun or time-of-day shifts in V1"
+        },
+        {
+          "id": "stars",
+          "label": null,
+          "confidence": 0,
+          "reason": "Never invent stars; twinkle deferred"
+        },
+        {
+          "id": "parallax",
+          "label": null,
+          "confidence": 0.05,
+          "reason": "Ken Burns / depth parallax omitted when artifact-prone"
+        }
+      ],
+      "wildlifeProtected": true,
+      "waterType": "lake",
+      "threshold": 0.42,
+      "strength": "natural",
+      "directionDeg": null,
+      "durationSec": 6,
+      "sourceNaturalWidth": 1600,
+      "sourceNaturalHeight": 1067,
+      "analysisSample": {
+        "w": 150,
+        "h": 100
+      },
+      "renderSize": {
+        "w": 1600,
+        "h": 1067
+      },
+      "mime": "video/webm;codecs=vp9",
+      "ext": "webm",
+      "note": null,
+      "error": null,
+      "videoBytes": 233341,
+      "videoFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/F-complex-moving.webm",
+      "posterFile": "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/exports/F-complex-poster.png",
+      "maskFiles": [
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-clouds.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-water.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-fog.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-haze.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-wildlife.png",
+        "/home/bryan/projects/waypoint-scenes/docs/rebuild-2026/scenes-v1-moving-scenes/real-photo-review/masks/F-complex-mask-stable.png"
+      ]
+    }
+  ]
+}

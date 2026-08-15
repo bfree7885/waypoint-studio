@@ -1,0 +1,404 @@
+[
+  {
+    "longEdge": 160,
+    "cases": [
+      {
+        "id": "A-cloud",
+        "ms": 672,
+        "sample": {
+          "w": 160,
+          "h": 107
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.058,
+        "fog": 0.06,
+        "clouds": 0.79,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "B-water",
+        "ms": 684,
+        "sample": {
+          "w": 160,
+          "h": 107
+        },
+        "classes": [
+          "water"
+        ],
+        "water": 0.913,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "C-fog",
+        "ms": 410,
+        "sample": {
+          "w": 160,
+          "h": 107
+        },
+        "classes": [],
+        "water": 0.03,
+        "fog": 0.311,
+        "clouds": 0.38,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "D-wildlife",
+        "ms": 581,
+        "sample": {
+          "w": 160,
+          "h": 107
+        },
+        "classes": [],
+        "water": 0.03,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "E-static",
+        "ms": 536,
+        "sample": {
+          "w": 160,
+          "h": 120
+        },
+        "classes": [],
+        "water": 0.032,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "F-complex",
+        "ms": 234,
+        "sample": {
+          "w": 160,
+          "h": 107
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.24,
+        "fog": 0.176,
+        "clouds": 0.533,
+        "wildlifeProtected": false,
+        "ok": true
+      }
+    ],
+    "totalMs": 3117,
+    "peakMemMb": 6,
+    "wallMs": 3117,
+    "pass": 6
+  },
+  {
+    "longEdge": 320,
+    "cases": [
+      {
+        "id": "A-cloud",
+        "ms": 959,
+        "sample": {
+          "w": 320,
+          "h": 213
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.06,
+        "fog": 0.06,
+        "clouds": 0.803,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "B-water",
+        "ms": 956,
+        "sample": {
+          "w": 320,
+          "h": 213
+        },
+        "classes": [
+          "water"
+        ],
+        "water": 0.92,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "C-fog",
+        "ms": 789,
+        "sample": {
+          "w": 320,
+          "h": 214
+        },
+        "classes": [
+          "fog"
+        ],
+        "water": 0.03,
+        "fog": 0.442,
+        "clouds": 0.402,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "D-wildlife",
+        "ms": 982,
+        "sample": {
+          "w": 320,
+          "h": 213
+        },
+        "classes": [],
+        "water": 0.03,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "E-static",
+        "ms": 997,
+        "sample": {
+          "w": 320,
+          "h": 240
+        },
+        "classes": [],
+        "water": 0.037,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "F-complex",
+        "ms": 615,
+        "sample": {
+          "w": 320,
+          "h": 213
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.24,
+        "fog": 0.177,
+        "clouds": 0.535,
+        "wildlifeProtected": false,
+        "ok": true
+      }
+    ],
+    "totalMs": 5298,
+    "peakMemMb": 7.1,
+    "wallMs": 5299,
+    "pass": 6
+  },
+  {
+    "longEdge": 480,
+    "cases": [
+      {
+        "id": "A-cloud",
+        "ms": 1634,
+        "sample": {
+          "w": 480,
+          "h": 320
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.06,
+        "fog": 0.06,
+        "clouds": 0.809,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "B-water",
+        "ms": 1652,
+        "sample": {
+          "w": 480,
+          "h": 320
+        },
+        "classes": [
+          "water"
+        ],
+        "water": 0.92,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "C-fog",
+        "ms": 1471,
+        "sample": {
+          "w": 480,
+          "h": 320
+        },
+        "classes": [
+          "fog"
+        ],
+        "water": 0.03,
+        "fog": 0.454,
+        "clouds": 0.41,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "D-wildlife",
+        "ms": 1622,
+        "sample": {
+          "w": 480,
+          "h": 320
+        },
+        "classes": [],
+        "water": 0.03,
+        "fog": 0.269,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "E-static",
+        "ms": 1720,
+        "sample": {
+          "w": 480,
+          "h": 360
+        },
+        "classes": [],
+        "water": 0,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "F-complex",
+        "ms": 1269,
+        "sample": {
+          "w": 480,
+          "h": 320
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.24,
+        "fog": 0.177,
+        "clouds": 0.538,
+        "wildlifeProtected": false,
+        "ok": true
+      }
+    ],
+    "totalMs": 9368,
+    "peakMemMb": 7.3,
+    "wallMs": 9369,
+    "pass": 6
+  },
+  {
+    "longEdge": 640,
+    "cases": [
+      {
+        "id": "A-cloud",
+        "ms": 2510,
+        "sample": {
+          "w": 640,
+          "h": 427
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.061,
+        "fog": 0.06,
+        "clouds": 0.813,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "B-water",
+        "ms": 2527,
+        "sample": {
+          "w": 640,
+          "h": 427
+        },
+        "classes": [
+          "water"
+        ],
+        "water": 0.92,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "C-fog",
+        "ms": 2395,
+        "sample": {
+          "w": 640,
+          "h": 427
+        },
+        "classes": [
+          "fog"
+        ],
+        "water": 0.03,
+        "fog": 0.465,
+        "clouds": 0.413,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "D-wildlife",
+        "ms": 2589,
+        "sample": {
+          "w": 640,
+          "h": 427
+        },
+        "classes": [],
+        "water": 0.03,
+        "fog": 0.276,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "E-static",
+        "ms": 3471,
+        "sample": {
+          "w": 640,
+          "h": 480
+        },
+        "classes": [],
+        "water": 0,
+        "fog": 0.06,
+        "clouds": 0.05,
+        "wildlifeProtected": false,
+        "ok": true
+      },
+      {
+        "id": "F-complex",
+        "ms": 2634,
+        "sample": {
+          "w": 640,
+          "h": 427
+        },
+        "classes": [
+          "clouds"
+        ],
+        "water": 0.24,
+        "fog": 0.178,
+        "clouds": 0.54,
+        "wildlifeProtected": false,
+        "ok": true
+      }
+    ],
+    "totalMs": 16126,
+    "peakMemMb": 5.9,
+    "wallMs": 16127,
+    "pass": 6
+  }
+]
