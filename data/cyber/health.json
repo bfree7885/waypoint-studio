@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-15T12:59:20.083Z",
+  "generatedAt": "2026-08-15T18:48:27.272Z",
   "engineVersion": "1.4.1",
   "signalEngineVersion": "2.1.0",
-  "trustState": "Live",
+  "trustState": "Partial",
   "dataState": "REAL",
   "providers": [
     {
@@ -10,9 +10,9 @@
       "providerName": "CISA KEV",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 202,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 214,
       "recordCount": 200,
       "cacheAge": null,
       "rateLimitState": null,
@@ -23,7 +23,7 @@
         "dateReleased": "2026-08-14T16:34:49.0391Z",
         "totalInCatalog": 1665,
         "included": 200,
-        "responseMs": 202,
+        "responseMs": 214,
         "sourceUrl": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
       }
     },
@@ -32,19 +32,19 @@
       "providerName": "NIST NVD",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 554,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 582,
       "recordCount": 40,
       "cacheAge": null,
       "rateLimitState": null,
       "latestError": null,
       "resultsMode": "live",
       "meta": {
-        "totalResults": 6560,
+        "totalResults": 6757,
         "included": 40,
-        "responseMs": 554,
-        "sourceUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=40&lastModStartDate=2026-08-08T12%3A59%3A00.000&lastModEndDate=2026-08-15T12%3A59%3A00.000",
+        "responseMs": 582,
+        "sourceUrl": "https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=40&lastModStartDate=2026-08-08T18%3A48%3A07.000&lastModEndDate=2026-08-15T18%3A48%3A07.000",
         "apiKeyConfigured": false,
         "queryMode": "lastMod-7d",
         "note": "NVD CVE 2.0 last-modified window (7d), resultsPerPage capped."
@@ -55,9 +55,9 @@
       "providerName": "CISA Cybersecurity Advisories",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 112,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 99,
       "recordCount": 20,
       "cacheAge": null,
       "rateLimitState": null,
@@ -65,7 +65,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 20,
-        "responseMs": 112,
+        "responseMs": 99,
         "sourceUrl": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
       }
     },
@@ -74,9 +74,9 @@
       "providerName": "Google Chrome Releases",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 704,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 401,
       "recordCount": 20,
       "cacheAge": null,
       "rateLimitState": null,
@@ -84,7 +84,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 20,
-        "responseMs": 704,
+        "responseMs": 401,
         "sourceUrl": "https://chromereleases.googleblog.com/feeds/posts/default?alt=rss"
       }
     },
@@ -93,9 +93,9 @@
       "providerName": "Ubuntu Security Notices",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 628,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 607,
       "recordCount": 10,
       "cacheAge": null,
       "rateLimitState": null,
@@ -103,27 +103,26 @@
       "resultsMode": "live",
       "meta": {
         "included": 10,
-        "responseMs": 628,
+        "responseMs": 607,
         "sourceUrl": "https://ubuntu.com/security/notices/rss.xml"
       }
     },
     {
       "providerId": "ghsa",
-      "providerName": "GitHub Security Advisories",
-      "status": "ok",
-      "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "providerName": "ghsa",
+      "status": "error",
+      "dataState": "SOURCE UNAVAILABLE",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 615,
-      "recordCount": 25,
+      "responseMs": null,
+      "recordCount": 0,
       "cacheAge": null,
       "rateLimitState": null,
-      "latestError": null,
-      "resultsMode": "live",
+      "latestError": "ghsa HTTP 403",
+      "resultsMode": "error",
       "meta": {
-        "included": 25,
-        "responseMs": 615,
-        "sourceUrl": "https://api.github.com/advisories?per_page=25&type=reviewed"
+        "error": "ghsa HTTP 403",
+        "responseMs": null
       }
     },
     {
@@ -131,9 +130,9 @@
       "providerName": "AWS Service Health",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 300,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 253,
       "recordCount": 5,
       "cacheAge": null,
       "rateLimitState": null,
@@ -141,7 +140,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 5,
-        "responseMs": 300,
+        "responseMs": 253,
         "sourceUrl": "https://status.aws.amazon.com/rss/all.rss",
         "rssItems": 15
       }
@@ -151,9 +150,9 @@
       "providerName": "Cloudflare Status",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 370,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 357,
       "recordCount": 1,
       "cacheAge": null,
       "rateLimitState": null,
@@ -161,7 +160,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 1,
-        "responseMs": 370,
+        "responseMs": 357,
         "sourceUrl": "https://www.cloudflarestatus.com/api/v2/summary.json"
       }
     },
@@ -170,9 +169,9 @@
       "providerName": "GitHub Status",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 403,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 337,
       "recordCount": 1,
       "cacheAge": null,
       "rateLimitState": null,
@@ -180,7 +179,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 1,
-        "responseMs": 403,
+        "responseMs": 337,
         "sourceUrl": "https://www.githubstatus.com/api/v2/summary.json"
       }
     },
@@ -189,9 +188,9 @@
       "providerName": "OpenAI Status",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 414,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 415,
       "recordCount": 1,
       "cacheAge": null,
       "rateLimitState": null,
@@ -199,7 +198,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 1,
-        "responseMs": 414,
+        "responseMs": 415,
         "sourceUrl": "https://status.openai.com/api/v2/summary.json"
       }
     },
@@ -208,9 +207,9 @@
       "providerName": "Google Cloud Status",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
-      "responseMs": 272,
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
+      "responseMs": 275,
       "recordCount": 1,
       "cacheAge": null,
       "rateLimitState": null,
@@ -218,7 +217,7 @@
       "resultsMode": "live",
       "meta": {
         "included": 1,
-        "responseMs": 272,
+        "responseMs": 275,
         "sourceUrl": "https://status.cloud.google.com/incidents.json"
       }
     },
@@ -227,8 +226,8 @@
       "providerName": "Azure Status",
       "status": "ok",
       "dataState": "REAL",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
-      "lastSuccessfulAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
+      "lastSuccessfulAt": "2026-08-15T18:48:07.631Z",
       "responseMs": null,
       "recordCount": 1,
       "cacheAge": null,
@@ -245,7 +244,7 @@
       "providerName": "Mozilla Foundation Security Advisories",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -263,7 +262,7 @@
       "providerName": "Microsoft Security Response Center",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -281,7 +280,7 @@
       "providerName": "Apple Security Releases",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -298,7 +297,7 @@
       "providerName": "Cisco Security Advisories",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -315,7 +314,7 @@
       "providerName": "FIRST EPSS",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -332,7 +331,7 @@
       "providerName": "Microsoft 365 Status",
       "status": "planned",
       "dataState": "NO CURRENT DATA",
-      "lastAttemptedAt": "2026-08-15T12:59:00.592Z",
+      "lastAttemptedAt": "2026-08-15T18:48:07.631Z",
       "lastSuccessfulAt": null,
       "responseMs": null,
       "recordCount": 0,
@@ -349,7 +348,7 @@
   "livePath": "data/cyber/live.json",
   "dashboardPath": "data/cyber/dashboard.json",
   "correlationPath": "data/cyber/correlation.json",
-  "recordCount": 297,
+  "recordCount": 272,
   "nvdEnrichment": {
     "attempted": 25,
     "enriched": 9,
@@ -368,6 +367,6 @@
     ],
     "version": "1.0.0"
   },
-  "signalProcessingMs": 57,
-  "noiseHidden": 45
+  "signalProcessingMs": 51,
+  "noiseHidden": 26
 }
