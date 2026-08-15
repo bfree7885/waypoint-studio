@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-14T12:38:03.193Z",
+  "checkedAt": "2026-08-15T00:34:15.191Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 0,
       "error": "HTTP 429",
       "warnings": [],
-      "ms": 94,
+      "ms": 117,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 238,
+      "ms": 148,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 165,
+      "ms": 55,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 236,
+      "ms": 219,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 168,
+      "ms": 210,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 163,
+      "ms": 161,
       "enabled": true
     },
     {
@@ -181,17 +181,17 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 189,
+      "ms": 303,
       "enabled": true
     },
     {
       "id": "usfws-news",
       "name": "U.S. Fish and Wildlife Service News",
       "ok": true,
-      "itemCount": 24,
+      "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1730,
+      "ms": 2068,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 279,
+      "ms": 236,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 216,
+      "ms": 167,
       "enabled": true
     },
     {
@@ -230,10 +230,8 @@
       "ok": true,
       "itemCount": 3,
       "error": null,
-      "warnings": [
-        "item-missing-safe-url"
-      ],
-      "ms": 97,
+      "warnings": [],
+      "ms": 54,
       "enabled": true
     },
     {
@@ -243,7 +241,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 203,
+      "ms": 208,
       "enabled": true
     },
     {
@@ -253,10 +251,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 396,
+      "ms": 454,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-15T00:38:03.193Z"
+  "staleAfter": "2026-08-15T12:34:15.191Z"
 }
