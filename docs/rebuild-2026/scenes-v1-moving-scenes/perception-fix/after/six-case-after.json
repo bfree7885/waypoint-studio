@@ -1,0 +1,309 @@
+{
+  "edge": 320,
+  "afterSix": [
+    {
+      "id": "A-cloud",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.802825191535216,
+        "water": 0.059597324303980445,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.000024647887323943657,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.3340360919857912,
+        "water": 0.07974586119621371,
+        "fog": 0.02334800928857335,
+        "haze": 0.024492371851412204,
+        "foliage": 0.00005868544600938967,
+        "mountain": 0.02874119718309859,
+        "rock": 0.08321596244131456,
+        "wildlife": 0,
+        "snow": 0.00007335680751173709,
+        "sky": 0.46214605340375586,
+        "wood": 0,
+        "waterConnectivity": 0.6550214183722037,
+        "waterCentroidY": 0.559485868243639
+      },
+      "evidence": {
+        "waterSkyOverlap": 0.003425390708627703,
+        "waterCloudOverlap": 0.002569043031470777,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.6550214183722037,
+        "waterCentroidY": 0.559485868243639
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Clouds — restrained, localized motion only."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 213
+      }
+    },
+    {
+      "id": "B-water",
+      "classes": [
+        "water"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "lake",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.92,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.015891725352112675,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.000359069689971115,
+        "water": 0.5064970873543165,
+        "fog": 0,
+        "haze": 0.00003293033024108151,
+        "foliage": 0.03783744131455399,
+        "mountain": 0.020481220657276995,
+        "rock": 0.017194835680751173,
+        "wildlife": 0.030079958920187794,
+        "snow": 0,
+        "sky": 0.005886883802816901,
+        "wood": 0.004460093896713615,
+        "waterConnectivity": 0.9879364907630305,
+        "waterCentroidY": 0.5916499084866785
+      },
+      "evidence": {
+        "waterSkyOverlap": 0.00005568548836173293,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.9879364907630305,
+        "waterCentroidY": 0.5916499084866785
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Water — restrained, localized motion only."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 213
+      }
+    },
+    {
+      "id": "C-fog",
+      "classes": [
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.4017576220111212,
+        "water": 0.03,
+        "fog": 0.44189545109549266,
+        "haze": 0.05,
+        "foliage": 0.11705169392523362,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.2
+      },
+      "coverage": {
+        "clouds": 0.16135278759883792,
+        "water": 0.001842404546609474,
+        "fog": 0.0852868671535523,
+        "haze": 0.11640333382077689,
+        "foliage": 0.2786945093457944,
+        "mountain": 0.19472838785046728,
+        "rock": 0.14212908878504674,
+        "wildlife": 0.0027453271028037383,
+        "snow": 0.0639748831775701,
+        "sky": 0.25813741238317756,
+        "wood": 0.0016063084112149532,
+        "waterConnectivity": 0.05322128851540616,
+        "waterCentroidY": 0.5
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.05322128851540616,
+        "waterCentroidY": 0.5
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Fog — restrained, localized motion only.",
+        "Clouds looks possible but confidence is too low for automatic motion (40%)."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 214
+      }
+    },
+    {
+      "id": "D-wildlife",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.03,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.24856161971830984,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.007359838261593513,
+        "water": 0.03323378580103288,
+        "fog": 0.047598579958378566,
+        "haze": 0.1127285105036353,
+        "foliage": 0.5918133802816902,
+        "mountain": 0.06974765258215962,
+        "rock": 0.13491784037558685,
+        "wildlife": 0.010603726525821595,
+        "snow": 0.00014671361502347418,
+        "sky": 0.013981807511737089,
+        "wood": 0.0010123239436619718,
+        "waterConnectivity": 0.5296223958333334,
+        "waterCentroidY": 0.852753219975144
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.5296223958333334,
+        "waterCentroidY": 0.852753219975144
+      },
+      "honestyNotes": [
+        "No natural motion confidently detected. The photograph stays still."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 213
+      }
+    },
+    {
+      "id": "E-static",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.05,
+        "water": 0.03733826569577331,
+        "fog": 0.06,
+        "haze": 0.05,
+        "foliage": 0.18192343749999998,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.026445498869070435,
+        "water": 0.07691318582542105,
+        "fog": 0.0009237483708420768,
+        "haze": 0.011376048184756656,
+        "foliage": 0.4331510416666667,
+        "mountain": 0.226171875,
+        "rock": 0.19178385416666666,
+        "wildlife": 0.0012923177083333333,
+        "snow": 0.007356770833333333,
+        "sky": 0.030257161458333334,
+        "wood": 0.002942708333333333,
+        "waterConnectivity": 0.6064495929868503,
+        "waterCentroidY": 0.7702784833250775
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.6064495929868503,
+        "waterCentroidY": 0.7702784833250775
+      },
+      "honestyNotes": [
+        "No natural motion confidently detected. The photograph stays still."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 240
+      }
+    },
+    {
+      "id": "F-complex",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "waterType": "none",
+      "confidence": {
+        "clouds": 0.5354963080785702,
+        "water": 0.24,
+        "fog": 0.1773830514761921,
+        "haze": 0.05,
+        "foliage": 0.000006161971830985914,
+        "grass": 0.1,
+        "rain": 0,
+        "snow": 0,
+        "light": 0.05,
+        "stars": 0,
+        "parallax": 0.05
+      },
+      "coverage": {
+        "clouds": 0.21541586060331286,
+        "water": 0.3996889483717876,
+        "fog": 0.09100715686772631,
+        "haze": 0.030163403433892972,
+        "foliage": 0.000014671361502347417,
+        "mountain": 0.042106807511737086,
+        "rock": 0.051393779342723,
+        "wildlife": 0.016734521713615023,
+        "snow": 0.000044014084507042256,
+        "sky": 0.3424424149061033,
+        "wood": 0,
+        "waterConnectivity": 0.9745364238410597,
+        "waterCentroidY": 0.6978055711825754
+      },
+      "evidence": {
+        "waterSkyOverlap": 0,
+        "waterCloudOverlap": 0,
+        "waterFogOverlap": 0,
+        "waterConnectivity": 0.9745364238410597,
+        "waterCentroidY": 0.6978055711825754
+      },
+      "honestyNotes": [
+        "Waypoint Choice: Clouds — restrained, localized motion only.",
+        "Water looks possible but confidence is too low for automatic motion (24%)."
+      ],
+      "sample": {
+        "w": 320,
+        "h": 213
+      }
+    }
+  ]
+}

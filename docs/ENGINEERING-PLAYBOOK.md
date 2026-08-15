@@ -134,6 +134,14 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-14 — Moving Scenes Attack 3 ship (transport + asset false positive)
+
+**PR:** https://github.com/bfree7885/waypoint-studio/pull/37 · **prod SHA:** `2f02e6e6`
+
+1. **GitHub HTTPS can reset mid-ship** — retry `git fetch`/`git push` with unrestricted network; prefer API+credential fill when `gh auth` is unset.
+2. **Docs HTML template literals trip asset/link validators** — `src="fixtures/${file}"` is parsed as a real missing path; use string concat or static markup in owner galleries.
+3. **Bugbot Autofix may land on the PR branch while CI is red** — fetch/merge remote feature tip before pushing local CI fixes; re-run Moving Scenes automation (now 58 PASS after assist/library fixes).
+
 Append new engineering lessons after every work block so the playbook
 continuously improves.
 
@@ -1343,6 +1351,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
 - Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
 
+### Lessons Learned — Moving Scenes perception-before-motion (2026-08-15)
+
+- Water false accepts were not a global-threshold problem: sky/fog/cloud-sea still hit 100% above 0.42. Multi-cue evidence + contradictions + class competition beat raising `AUTO_CONFIDENCE`.
+- Analysis long-edge **320** (not full-res) is enough to lift fog off the ~8% floor and cut sky→water; 160 can still “pass” via no-motion while under-detecting fog.
+- Prefer false no-motion over wrong animation: thin cool patches under dominant sky must stay below auto water even when connectivity looks coherent.
+- Browser JPEG decode ≠ Pillow decode — treat Chrome Choice as the product truth; Node harness is a fast regression aid.
+- Wildlife protect must not fire on dark rock or lily-pad mud; missing a robin is acceptable if nothing animates the animal.
+
 ## Lessons Learned — Scenes V1 Moving Scenes (2026-08-14)
 
 - User-facing name is Moving Scenes; keep `living-scenes/` path as redirect alias — reckless renames break bookmarks and smoke routes.
@@ -1366,3 +1382,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Crop/straighten stays suggestion-only; subject-aware local edits defer without reliable on-device detection (no fake bokeh).
 - Export from canvas pixels omits GPS by construction — say so in UI; filename `originalname-waypoint.jpg`.
 - Reuse Library media IDB + Coach signal ideas; do not treat Hidden Landscapes creative remaps as photographic finishing.
+
+### Lessons Learned — Moving Scenes REAL photo validation (2026-08-15)
+
+- 160×100 analysis on multi-MP outdoor photos still drives Choice; real Sony/Panasonic/Olympus stills reproduce fog→water, cloud-sea→water 100%, and dry boardwalk→river false accepts — do not treat synthetic MOTION-QC as resolution-sufficient proof.
+- Headless `exportLoop` + `renderer.play()` can record near-static WebMs; for motion evidence use production `renderAt(phase)` + `requestFrame` (or live UI) and keep phase 0 vs 0.5 stills.
+- Fog confidence often floors ~8% on genuine fog; wildlife protect can miss a clear robin and false-trigger on dark rock — record, do not “fix” in a validation-only block.
+
+### Lessons Learned — Moving Scenes owner-review motion exports (2026-08-14)
+
+- Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.
+- Fog/haze fixture folders may still produce playable WebM under other Choice classes when fog/haze confidence is below threshold — document honestly in MOTION-QC rather than forcing classes.
+- CDP `Page.loadEventFired` is an event, not a callable method; poll module readiness instead. Force-exit after export writes because Chrome sockets keep Node alive.

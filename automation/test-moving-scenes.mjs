@@ -128,8 +128,15 @@ assert("parallax deferred", Models.CLASS_META.parallax.supported === false);
 // --- Fixture paints ---
 const paints = {
   cloudsSky: (x, y, w, h) => (y < h * 0.42 ? [210, 215, 230] : [70, 110, 55]),
-  cloudMountain: (x, y, w, h) =>
-    y < h * 0.35 ? [200, 205, 220] : y < h * 0.55 ? [110, 115, 120] : [55, 85, 45],
+  cloudMountain: (x, y, w, h) => {
+    if (y < h * 0.35) return [200, 205, 220];
+    if (y < h * 0.55) {
+      // Textured ridge (flat gray was read as fog/cloud)
+      const n = ((x * 17 + y * 13) % 11) - 5;
+      return [110 + n, 115 + n, 120 + n];
+    }
+    return [55, 85, 45];
+  },
   lake: (x, y, w, h) =>
     y < h * 0.35 ? [130, 160, 200] : y < h * 0.72 ? [45, 95, 150] : [90, 85, 70],
   fog: () => [170, 175, 180],
@@ -185,6 +192,22 @@ assert("wildlife mask center hot", wildA.masks.wildlife[cy * wildA.masks.width +
 
 const blueA = analyzePaint(paints.blueObject);
 assert("arbitrary blue object not auto water", blueA.confidence.water < 0.42);
+
+// Hard-negative water: bright sky band must not auto-select water
+const skyOnly = analyzePaint((x, y, w, h) =>
+  y < h * 0.55 ? [135, 170, 220] : [70, 105, 55]
+);
+const skyChoice = Choice.choose(skyOnly);
+assert("blue sky not auto water", skyChoice.classes.indexOf("water") < 0);
+
+// Cloud-sea-ish: soft bright mid band under sky
+const cloudSea = analyzePaint((x, y, w, h) => {
+  if (y < h * 0.3) return [200, 205, 220];
+  if (y < h * 0.7) return [190, 195, 210];
+  return [90, 95, 100];
+});
+const cloudSeaChoice = Choice.choose(cloudSea);
+assert("cloud-sea not auto water", cloudSeaChoice.classes.indexOf("water") < 0);
 
 const nightA = analyzePaint(paints.night);
 assert("stars never auto-animated", nightA.confidence.stars === 0);
