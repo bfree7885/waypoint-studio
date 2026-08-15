@@ -1,7 +1,53 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-14T19:14:35.198Z",
+  "updatedAt": "2026-08-15T18:48:27.246Z",
   "entries": [
+    {
+      "at": "2026-08-15T18:48:27.246Z",
+      "trustState": "Partial",
+      "recordCount": 272,
+      "briefBullets": [
+        "Day close: 200 high-signal items remain in view.",
+        "Still watching 2 status signal(s).",
+        "Re-check any Immediate recommendations before change freezes overnight."
+      ],
+      "recommendation": "Patch / update"
+    },
+    {
+      "at": "2026-08-15T12:59:20.055Z",
+      "trustState": "Live",
+      "recordCount": 297,
+      "briefBullets": [
+        "Lead item: Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability",
+        "18 KEV dateAdded entries in ~30 days deserve edge review.",
+        "2 active public cloud/SaaS status signal(s).",
+        "25 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
+    {
+      "at": "2026-08-15T06:58:01.873Z",
+      "trustState": "Live",
+      "recordCount": 297,
+      "briefBullets": [
+        "Lead item: Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability",
+        "18 KEV dateAdded entries in ~30 days deserve edge review.",
+        "3 active public cloud/SaaS status signal(s).",
+        "25 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
+    {
+      "at": "2026-08-15T01:50:37.251Z",
+      "trustState": "Live",
+      "recordCount": 297,
+      "briefBullets": [
+        "Day close: 200 high-signal items remain in view.",
+        "Still watching 3 status signal(s).",
+        "Re-check any Immediate recommendations before change freezes overnight."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-14T19:14:35.198Z",
       "trustState": "Live",
