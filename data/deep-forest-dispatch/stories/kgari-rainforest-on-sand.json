@@ -1,0 +1,130 @@
+{
+  "id": "kgari-rainforest-on-sand",
+  "slug": "kgari-rainforest-on-sand",
+  "title": "How can a rainforest grow on pure sand?",
+  "subtitle": "K'gari · Queensland, Australia",
+  "deck": "Tall forest rises from dunes that look nutrient-poor at first glance. The sand is real — so is a slow, living nutrient economy that builds with dune age.",
+  "shortDescription": "K'gari’s rainforest survives on sand through litter recycling, fungi, and dune-age succession — not rich mineral soil.",
+  "seoTitle": "How Can a Rainforest Grow on Pure Sand? K'gari Explained — Deep Forest Dispatch",
+  "metaDescription": "K'gari (Fraser Island) hosts rainforest on sand dunes through organic recycling, fungal partnerships, and succession across dune ages.",
+  "ogImage": "/assets/images/deep-forest-dispatch/kgari/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/kgari-rainforest-on-sand/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/kgari/story-hero.jpg",
+    "alt": "Astronaut photograph of Sandy Cape on K'gari showing white active dunes beside dark vegetated older dune fields",
+    "credit": "NASA / ISS (ISS017-E-16521) · EO Sandy Cape",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-35541"
+  },
+  "location": {
+    "name": "K'gari",
+    "region": "Great Sandy region · Queensland",
+    "country": "Australia",
+    "coordinates": { "lat": -25.25, "lon": 153.17 }
+  },
+  "concepts": [
+    "sand island",
+    "dune chronosequence",
+    "nutrient cycling",
+    "mycorrhiza",
+    "podzol"
+  ],
+  "sections": [
+    {
+      "id": "paradox",
+      "heading": "Forest where soil should fail",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "K'gari — formerly Fraser Island — is a vast sand island. From orbit, bright active dunes sit beside dark green older dune fields. On the ground, visitors meet a sharper surprise: rainforest canopies rising from sand that feels like it should grow almost nothing."
+        },
+        {
+          "type": "p",
+          "html": "“Pure sand” is a useful provocation, not a lab assay. Quartz-rich dunes are nutrient-poor. They are not empty of coatings, organics, water, or biology."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/kgari-dune-succession.png",
+          "alt": "Conceptual sequence from younger sand through early vegetation and soil development to mid-dune rainforest and older leached dunes"
+        }
+      ]
+    },
+    {
+      "id": "age",
+      "heading": "Age of the dunes matters",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "K'gari’s dune fields record long histories of sand movement tied to sea-level change — sequences extending hundreds of thousands of years in the wider Great Sandy region. Younger surfaces host pioneers. Given time, litter accumulates, fungi and roots partner, and a thin but working nutrient economy thickens."
+        },
+        {
+          "type": "map",
+          "lat": -25.25,
+          "lon": 153.17,
+          "zoom": 8,
+          "caption": "Queensland coast — K'gari offshore of the Great Sandy region."
+        },
+        {
+          "type": "p",
+          "html": "Tall rainforest favors protected mid- to high-dune settings where rainfall is higher and nutrients stay reachable. On some of the oldest, deeply leached dunes, nutrients can sink beyond easy root access — succession is not a simple forever-upward arrow."
+        }
+      ]
+    },
+    {
+      "id": "cycle",
+      "heading": "Recycling, not alchemy",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Plants do not invent nitrogen and phosphorus from empty quartz. They capture what rain and sand coatings offer, then <strong>recycle</strong> what falls as litter. Mycorrhizal fungi and decomposers keep scarce nutrients in circulation under a closed canopy. Break the litter loop and the forest’s advantage shrinks."
+        },
+        {
+          "type": "aside",
+          "html": "Compare Lençóis Maranhenses: sand plus rain can make lagoons without building rainforest. K'gari’s story is time, biology, and dune position — not sand alone."
+        },
+        {
+          "type": "p",
+          "html": "The paradox softens once you stop expecting mineral-rich dirt. What you are seeing is a living nutrient system balanced on ancient dunes."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NASA Earth Observatory — Sandy Cape, Fraser Island",
+      "url": "https://science.nasa.gov/earth/earth-observatory/sandy-cape-fraser-island-australia-35541/",
+      "kind": "scientific"
+    },
+    {
+      "label": "UNESCO World Heritage — Fraser Island / K'gari",
+      "url": "https://whc.unesco.org/en/list/545/",
+      "kind": "scientific"
+    },
+    {
+      "label": "Ellerton et al. context — K'gari dune chronology (ABC Science / university research coverage)",
+      "url": "https://www.abc.net.au/news/science/2022-11-15/kgari-fraser-island-age-links-to-great-barrier-reef-formation/101638104",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "Sandy Cape ISS photograph (ISS017-E-16521)",
+      "credit": "NASA / ISS Crew Earth Observations · EO #35541",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Dune-age succession diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "lencois-maranhenses",
+    "namib-dunes-moving-satellites"
+  ],
+  "waypointConnections": []
+}

@@ -1,0 +1,150 @@
+{
+  "id": "channeled-scablands-floods",
+  "slug": "channeled-scablands-floods",
+  "title": "Why does this landscape look flood-carved?",
+  "subtitle": "Channeled Scablands · Washington",
+  "deck": "Eastern Washington is laced with empty channels too large for the creeks inside them. The scars are real — left by Ice Age floods from a vanished lake.",
+  "shortDescription": "Glacial Lake Missoula outburst floods carved the coulees and dry cataracts of the Channeled Scablands.",
+  "seoTitle": "What Carved the Channeled Scablands? Missoula Floods Explained — Deep Forest Dispatch",
+  "metaDescription": "The Channeled Scablands were carved by repeated Ice Age floods from Glacial Lake Missoula — how to read coulees, Dry Falls, and flood-path evidence.",
+  "ogImage": "/assets/images/deep-forest-dispatch/scablands/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/channeled-scablands-floods/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/scablands/story-hero.jpg",
+    "alt": "Landsat mosaic of eastern Washington showing flood-scoured Channeled Scablands channels in basalt",
+    "credit": "NASA Earth Observatory / Landsat + SRTM (Channeled Scablands)",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-92025"
+  },
+  "location": {
+    "name": "Channeled Scablands",
+    "region": "Columbia Plateau · eastern Washington",
+    "country": "United States",
+    "coordinates": { "lat": 47.4, "lon": -119.0 }
+  },
+  "concepts": [
+    "Missoula floods",
+    "ice-dam outburst",
+    "coulee",
+    "Dry Falls",
+    "catastrophic erosion"
+  ],
+  "sections": [
+    {
+      "id": "oversized",
+      "heading": "Channels without enough river",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "From orbit, eastern Washington looks scratched — long coulees, basalt stripped bare, dry cataracts perched above tiny modern streams. The mismatch is the clue. Ordinary gradual erosion struggles to explain landforms this oversized."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/scablands-flood-path.png",
+          "alt": "Schematic map from Glacial Lake Missoula through ice-dam failure into the Channeled Scablands and Columbia River system"
+        }
+      ]
+    },
+    {
+      "id": "missoula",
+      "heading": "A lake held by ice — then released",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Near the end of the last Ice Age, the Cordilleran Ice Sheet dammed the Clark Fork River. Behind that ice dam, <strong>Glacial Lake Missoula</strong> grew in what is now western Montana — a volume NASA Earth Observatory compares to the combined waters of Lakes Erie and Ontario."
+        },
+        {
+          "type": "p",
+          "html": "When the dam failed, floodwater tore southwest across the Columbia Plateau. The dam rebuilt and failed again — <strong>dozens of times</strong> over thousands of years, according to Ice Age Floods syntheses. Each pulse scoured basalt into channels, potholes, giant gravel bars, and current ripples at landscape scale."
+        },
+        {
+          "type": "map",
+          "lat": 47.4,
+          "lon": -119.0,
+          "zoom": 7,
+          "caption": "Eastern Washington — coulee country between Spokane and the Columbia."
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "heading": "How to read the scars",
+      "blocks": [
+        {
+          "type": "figure",
+          "src": "../../../assets/images/deep-forest-dispatch/scablands/channels-detail.jpg",
+          "alt": "Detailed Landsat view of flood-scoured basalt channels in the Channeled Scablands",
+          "caption": "Flood-scoured channels cut into Columbia River Basalt — farmable land stops where the flood stripped soil.",
+          "credit": "NASA EO / Landsat 8 · Scars of Ice Age Floods · Public domain"
+        },
+        {
+          "type": "p",
+          "html": "<strong>Dry Falls</strong> is a scalloped cliff line — a cataract without water — hundreds of feet high and miles wide. In flood it was a waterfall of continental scale; today it is a dry signature you can stand beside. Coulees are the empty highways. Ripples and bars are the deposits."
+        },
+        {
+          "type": "aside",
+          "html": "J Harlen Bretz argued for catastrophic flooding when gradualism ruled geology. The landscape evidence — and Lake Missoula — eventually carried the case. This page is about the landforms, not a biography."
+        },
+        {
+          "type": "p",
+          "html": "Satellites make the network obvious: anastomosing channels too wide for today’s creeks. Once you see the flood path, the scablands stop looking random."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NASA Earth Observatory — Scars of Ice Age Floods",
+      "url": "https://science.nasa.gov/earth/earth-observatory/scars-of-ice-age-floods-152173/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Channeled Scablands",
+      "url": "https://science.nasa.gov/earth/earth-observatory/channeled-scablands-92025/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NPS — Ice Age Floods / Glacial Lake Missoula",
+      "url": "https://www.nps.gov/iafl/index.htm",
+      "kind": "scientific"
+    },
+    {
+      "label": "IUGS Geoheritage — Dry Falls and the Channeled Scabland",
+      "url": "https://iugs-geoheritage.org/geoheritage_sites/dry-falls-and-the-channeled-scabland/",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "Channeled Scablands Landsat+SRTM mosaic",
+      "credit": "NASA Earth Observatory / USGS Landsat / SRTM · EO #92025",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Scablands channel detail",
+      "credit": "NASA Earth Observatory / Landsat 8 · EO #152173",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Ice Age flood-path diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "eye-of-the-sahara-richat",
+    "columbia-glacier-satellite-retreat"
+  ],
+  "waypointConnections": [
+    {
+      "id": "landscape-interpretation",
+      "label": "Read a flood-scarred landscape",
+      "href": "/apps/landscape-interpretation/",
+      "note": "Coulees and dry cataracts are evidence — scale is the first clue."
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "id": "kati-thanda-lake-eyre-fills",
+  "slug": "kati-thanda-lake-eyre-fills",
+  "title": "When does the desert become a sea?",
+  "subtitle": "Kati Thanda–Lake Eyre · South Australia",
+  "deck": "Most years this basin is salt and silence. Then remote floodwaters survive a long desert journey — and the same place briefly looks like an inland sea.",
+  "shortDescription": "Rare flood pulses turn Australia’s usually dry terminal lake into a temporary inland water body.",
+  "seoTitle": "When Does Lake Eyre Fill? Kati Thanda Desert Flood Explained — Deep Forest Dispatch",
+  "metaDescription": "Kati Thanda–Lake Eyre is usually dry salt. Rare Channel Country floods can create a temporary inland sea — partial fills vs rare complete fills.",
+  "ogImage": "/assets/images/deep-forest-dispatch/kati-thanda/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/kati-thanda-lake-eyre-fills/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/kati-thanda/story-hero.jpg",
+    "alt": "Landsat view of Kati Thanda–Lake Eyre with colored residual water in Belt Bay and Madigan Gulf",
+    "credit": "NASA Earth Observatory / Landsat 8 OLI (Lake Eyre Blushes)",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-lake-eyre-blushes"
+  },
+  "location": {
+    "name": "Kati Thanda–Lake Eyre",
+    "region": "Lake Eyre Basin · South Australia",
+    "country": "Australia",
+    "coordinates": { "lat": -28.37, "lon": 137.37 }
+  },
+  "concepts": [
+    "endorheic basin",
+    "terminal lake",
+    "Channel Country",
+    "partial fill",
+    "evaporation"
+  ],
+  "sections": [
+    {
+      "id": "two-faces",
+      "heading": "The same basin, two landscapes",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Kati Thanda–Lake Eyre sits at Australia’s lowest point — usually a bright salt crust in the arid heart of the continent. Local rainfall is thin. The spectacle begins elsewhere."
+        },
+        {
+          "type": "p",
+          "html": "About one-sixth of Australia drains toward this endorheic basin. When Queensland and Channel Country flood hard enough, water can travel hundreds of kilometers across the outback. Much of it never arrives. What does can turn the pan into a temporary inland water body — sometimes called an “inland sea” in the figurative sense, not a marine sea."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/lake-eyre-desert-sea.png",
+          "alt": "Schematic of remote rain moving through Channel Country rivers into the Kati Thanda–Lake Eyre terminal basin"
+        }
+      ]
+    },
+    {
+      "id": "pulse",
+      "heading": "Partial fills vs rare complete fills",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Water reaches the lake more often than tourists’ legends suggest — but <strong>complete fills are rare</strong>. NASA Earth Observatory notes only a few full fills in roughly the last 160 years, with 1974 among the deepest (~6 meters). Partial flooding is the ordinary “wet” story."
+        },
+        {
+          "type": "compare",
+          "labelBefore": "29 Apr 2025",
+          "labelAfter": "23 May 2025",
+          "ariaLabel": "Compare early and expanding 2025 Lake Eyre flood stages",
+          "before": {
+            "src": "../../../assets/images/deep-forest-dispatch/kati-thanda/season-dry.jpg",
+            "alt": "MODIS false-color view of Lake Eyre on 29 April 2025 during early fill"
+          },
+          "after": {
+            "src": "../../../assets/images/deep-forest-dispatch/kati-thanda/season-wet.jpg",
+            "alt": "MODIS false-color view of Lake Eyre on 23 May 2025 with expanding inundation"
+          },
+          "caption": "Same MODIS Terra animation corridor from NASA EO “Water Pours Into Australia’s Lake Eyre” — early pulse versus expanding inundation in 2025. Still a filling event, not a guaranteed complete fill."
+        },
+        {
+          "type": "map",
+          "lat": -28.37,
+          "lon": 137.37,
+          "zoom": 6,
+          "caption": "South Australia — the terminal sink of the Lake Eyre Basin."
+        }
+      ]
+    },
+    {
+      "id": "loss",
+      "heading": "Why the journey usually fails",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Cooper, Diamantina, Georgina and related systems braid through Channel Country before feeding northern and eastern approaches to the lake. On the way: soak, delay, and relentless evaporation. Once inflows stall, summer heat finishes the water. After major fills, drying can take years."
+        },
+        {
+          "type": "aside",
+          "html": "When water does linger, dormant eggs hatch, fish ride the rivers, and migratory waterbirds can gather in extraordinary numbers — ecology on a temporary sea."
+        },
+        {
+          "type": "p",
+          "html": "The durable lesson is not annual flooding. It is a terminal basin waiting on rare, distant rain — and a landscape that can look like two different planets depending on whether that water survives the desert."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NASA Earth Observatory — Water Pours Into Australia’s Lake Eyre",
+      "url": "https://science.nasa.gov/earth/earth-observatory/water-pours-into-australias-lake-eyre-154451/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Cooper Creek Replenishes Lake Eyre",
+      "url": "https://science.nasa.gov/earth/earth-observatory/cooper-creek-replenishes-lake-eyre-154803/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Lake Eyre Blushes",
+      "url": "https://science.nasa.gov/earth/earth-observatory/lake-eyre-blushes/",
+      "kind": "scientific"
+    },
+    {
+      "label": "Geoscience Australia — Landsat / DEA water observations (Lake Eyre example)",
+      "url": "https://www.ga.gov.au/news/landsat-supporting-greater-international-water-security",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "MODIS 2025 fill animation frames",
+      "credit": "NASA Earth Observatory / MODIS Terra · EO #154451",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Landsat residual-water hero (Dec 2025)",
+      "credit": "NASA Earth Observatory / Landsat 8 OLI · Lake Eyre Blushes",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Desert-to-basin travel diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "okavango-dry-season-flood",
+    "great-salt-lake-two-colors"
+  ],
+  "waypointConnections": []
+}

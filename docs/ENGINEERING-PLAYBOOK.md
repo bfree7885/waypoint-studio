@@ -134,6 +134,46 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD Article Production Batch #3 (First-10 complete)
+
+**Branch:** `cursor/dfd-article-batch-3-efa3` · **Review:** `docs/deep-forest-dispatch/batch-3/OWNER-REVIEW.md` · **Portfolio:** `docs/deep-forest-dispatch/DFD-INITIAL-PORTFOLIO-REPORT.md`
+
+1. **Force the evidence gate on change stories** — Columbia kept; title adjusted to “nearly 40 years” to match 1986–2024 Landsat, not a round marketing number.
+2. **Empty Waypoint CTAs are valid** — remote terminal-basin / heritage-island stories need not invent instrument links; tests must allow zero connections.
+3. **Partial vs complete** — Lake Eyre teaching moment: registered fill stages beat “the desert becomes a sea every year.”
+4. **STOP after First-10** — portfolio diagnostic is not a backlog generator; next phase is publish → measure.
+
+### 2026-08-16 — DFD Article Production Batch #2
+
+**Branch:** `cursor/dfd-article-batch-2-efa3` · **Review:** `docs/deep-forest-dispatch/batch-2/OWNER-REVIEW.md`
+
+1. **Evidence gate before prose** — for migration/change stories, lock location + multi-date registered imagery + published rates before drafting; do not fake motion with arrows on one frame.
+2. **Landscape paradoxes need system maps** — Okavango lag is distance *and* slow fan propagation; a travel map beats “it takes months” as the sole explanation.
+3. **Geology honesty beats clickbait** — Richat must reject impact without claiming a single finished “carving” cartoon; uncertainty belongs on-page.
+4. **Hero ≠ first evidence frame** — if a compare uses Year A, do not also hero Year A; readers notice the replay.
+5. **Do not invent process** — reuse the existing quality gate and render pipeline; production batches are content, not CMS work.
+
+### 2026-08-16 — DFD Batch #1 editorial + visual QA
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW-V2.md`
+
+1. **Diagrams must appear early** — burying the original visual after mechanism prose makes the page feel like a blog with an infographic taped on.
+2. **Never duplicate the hero in the first body figure** — readers notice; it reads as padding.
+3. **Shared section templates are AI-slop** — identical Explore further / Connect to Waypoint / Show me outlines across siblings fail the reader test even when science is fine.
+4. **Six equal comic panels read as PowerPoint** — prefer one spatial explainer plus minimal stages.
+5. **≤2 Waypoint CTAs, observational copy** — third links and “detector” disclaimers still feel promotional if stacked.
+6. **Codify the floor** — `DFD-ARTICLE-QUALITY-GATE.md` is now a required workflow step, not optional taste.
+
+### 2026-08-16 — DFD Article Production Batch #1
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW.md`
+
+1. **Strategy branch ≠ library branch** — production must sit on the DFD library infra (render pipeline + CSS/JS) and carry strategy docs as reference; do not invent a third page template.
+2. **Original value is a hard gate** — each article needs a Waypoint diagram that carries the causal chain (causeway→salinity→color; drainage sequence; standing wave), not stock filler between paragraphs.
+3. **Catalog `published` shows cards immediately** — for “build but don’t deploy” batches, decide explicitly whether PR preview should list stories (`published`) or hide them (`draft`/`review`) before merge.
+4. **CDP screenshots must attach to a page target** (`/json/list` type=page), not the browser-level websocket; unique `--user-data-dir` avoids Chrome SingletonLock failures.
+5. **Tool links must be real products only** — Dashboard dew point/wind context and Scenes/Photo Coach are fine; inventing fog forecasts or lenticular detectors fails Product Standards.
+
 ### 2026-08-14 — Moving Scenes Attack 3 ship (transport + asset false positive)
 
 **PR:** https://github.com/bfree7885/waypoint-studio/pull/37 · **prod SHA:** `2f02e6e6`
@@ -1394,3 +1434,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.
 - Fog/haze fixture folders may still produce playable WebM under other Choice classes when fog/haze confidence is below threshold — document honestly in MOTION-QC rather than forcing classes.
 - CDP `Page.loadEventFired` is an event, not a callable method; poll module readiness instead. Force-exit after export writes because Chrome sockets keep Node alive.
+
+## Lessons Learned — Deep Forest Dispatch content library (2026-08-16)
+
+- DFD should be a first-class `/deep-forest-dispatch/` destination (Discover/Understand/Explore), not folded into curated RSS Articles or Side Trails experiments.
+- Keep story JSON as source of truth + `scripts/dfd/render-stories.mjs` for crawlable HTML; adding Video #3 must be content/media + catalog + render, not new page engineering.
+- `youtubeVideoId: null` must render a finished pending panel — never a broken embed; emit VideoObject JSON-LD only when a real ID exists.
+- Preserve scientific caution (Lençóis rainfall ranges; do not overclaim clay/bedrock as sole lagoon mechanism) and imagery provenance (NASA public domain + labeled educational derivatives).
