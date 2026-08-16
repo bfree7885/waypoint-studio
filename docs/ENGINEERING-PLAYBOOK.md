@@ -1439,6 +1439,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Headless `exportLoop` + `renderer.play()` can record near-static WebMs; for motion evidence use production `renderAt(phase)` + `requestFrame` (or live UI) and keep phase 0 vs 0.5 stills.
 - Fog confidence often floors ~8% on genuine fog; wildlife protect can miss a clear robin and false-trigger on dark rock — record, do not “fix” in a validation-only block.
 
+### Lessons Learned — Scenes V1 Hidden Landscapes + Animal Vision (2026-08-16)
+
+- EXPLORE is observation, not creative IR filters: retire false-color “infrared dream” modes from the production path; keep them dormant and teach UNAVAILABLE for UV/IR/thermal instead of inventing bands.
+- Animal Vision belongs under Hidden Landscapes (`?pillar=animal`); redirect `/apps/animal-vision/` so Library → Explore stays one photograph journey.
+- Ship deer + canine LMS dichromat simulations with citations; defer bee/bird UV as educational UNAVAILABLE — inventing nectar guides fails the RGB honesty gate harder than a missing species.
+- Analytic defaults must bind to Original when a Waypoint Edit exists; label the source chip so edited tone/color never silently pose as capture values.
+- Epistemic chips (MEASURED/COMPUTED/SIMULATED/INFERRED/UNAVAILABLE) plus labeled exports prevent “looks like a filter pack” trust failure on share.
+
+
 ### Lessons Learned — Moving Scenes owner-review motion exports (2026-08-14)
 
 - Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.

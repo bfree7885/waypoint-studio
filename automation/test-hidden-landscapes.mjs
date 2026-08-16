@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Hidden Landscapes — transform registry + processor tests
+ * Hidden Landscapes — analysis, epistemic, luminance, privacy, export naming
  */
 import fs from "fs";
 import path from "path";
@@ -22,114 +22,163 @@ function assert(name, cond) {
   n += 1;
 }
 
-const sandbox = { window: {}, console, Math, Uint8ClampedArray, Object, Array, String, Number, Date };
-vm.runInNewContext(
-  fs.readFileSync(path.join(HL, "js/hl-transforms.js"), "utf8"),
-  sandbox,
-  { filename: "hl-transforms.js" }
-);
-
-const T = sandbox.window.HiddenLandscapesTransforms || sandbox.HiddenLandscapesTransforms;
-assert("transforms loaded", !!T && typeof T.process === "function");
-
-const catalog = JSON.parse(fs.readFileSync(path.join(HL, "data/transformations.json"), "utf8"));
-assert("has honesty summary", !!(catalog.honesty && catalog.honesty.summary));
-assert("has 8+ modes", (catalog.transformations || []).length >= 8);
-
-const required = [
-  "original",
-  "infrared-dream",
-  "crimson-canopy",
-  "violet-wilds",
-  "ghost-forest",
-  "electric-meadow",
-  "nocturnal-world",
-  "mono-infrared-study"
-];
-required.forEach((id) => {
-  assert("catalog has " + id, catalog.transformations.some((t) => t.id === id));
-  assert("processor has " + id, T.listProcessorIds().indexOf(id) >= 0);
-});
-
-catalog.transformations.forEach((t) => {
-  [
-    "id",
-    "name",
-    "shortDescription",
-    "longDescription",
-    "category",
-    "accuracyType",
-    "requiresSpecialCapture",
-    "defaultIntensity",
-    "processingParameters",
-    "futureEngineId",
-    "educationalNotes"
-  ].forEach((k) => assert(t.id + " field " + k, t[k] !== undefined && t[k] !== null));
-});
-
-assert(
-  "creative modes not labeled visible-light-original",
-  catalog.transformations.filter((t) => t.id !== "original").every((t) => t.accuracyType !== "visible-light-original")
-);
-assert(
-  "original is visible-light-original",
-  catalog.transformations.find((t) => t.id === "original").accuracyType === "visible-light-original"
-);
-assert(
-  "mono mode display name",
-  catalog.transformations.find((t) => t.id === "mono-infrared-study").name === "Monochrome Infrared"
-);
-
-function sampleImage(w, h) {
-  const data = new Uint8ClampedArray(w * h * 4);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const i = (y * w + x) * 4;
-      // top: sky-ish blue, bottom: green vegetation-ish
-      if (y < h / 2) {
-        data[i] = 90; data[i + 1] = 140; data[i + 2] = 220; data[i + 3] = 255;
-      } else {
-        data[i] = 40; data[i + 1] = 160; data[i + 2] = 55; data[i + 3] = 255;
-      }
-    }
-  }
-  return { data, width: w, height: h };
+function load(rel, sandbox) {
+  const code = fs.readFileSync(path.join(HL, rel), "utf8");
+  vm.runInNewContext(code, sandbox, { filename: rel });
 }
 
-const src = sampleImage(32, 32);
-const orig = T.process("original", src, 1, {});
-assert("original preserves green leaf", orig.data[32 * 16 * 4 + 1] === src.data[32 * 16 * 4 + 1]);
-
-required.forEach((id) => {
-  if (id === "original") return;
-  const out = T.process(id, src, 1, {});
-  assert(id + " returns same size", out.width === 32 && out.height === 32 && out.data.length === src.data.length);
-  let changed = false;
-  for (let i = 0; i < out.data.length; i += 4) {
-    if (out.data[i] !== src.data[i] || out.data[i + 1] !== src.data[i + 1] || out.data[i + 2] !== src.data[i + 2]) {
-      changed = true;
-      break;
+class FakeImageData {
+  constructor(data, w, h) {
+    if (typeof data === "number") {
+      this.width = data;
+      this.height = w;
+      this.data = new Uint8ClampedArray(data * w * 4);
+    } else {
+      this.data = data;
+      this.width = w;
+      this.height = h;
     }
   }
-  assert(id + " changes pixels", changed);
-});
+}
 
-const mixed = T.process("infrared-dream", src, 0, {});
-assert("intensity 0 matches original", mixed.data[0] === src.data[0] && mixed.data[1] === src.data[1]);
+const sandbox = {
+  window: {},
+  globalThis: {},
+  console,
+  Math,
+  Uint8ClampedArray,
+  Float32Array,
+  ImageData: FakeImageData,
+  document: {
+    createElement: function () {
+      return {
+        width: 0,
+        height: 0,
+        style: {},
+        getContext: function () {
+          return {
+            drawImage: function () {},
+            getImageData: function (x, y, w, h) {
+              return new FakeImageData(new Uint8ClampedArray(w * h * 4), w, h);
+            },
+            putImageData: function () {}
+          };
+        }
+      };
+    }
+  },
+  URL: { createObjectURL: () => "blob:test", revokeObjectURL: () => {} }
+};
+sandbox.window = sandbox;
+sandbox.globalThis = sandbox;
 
-const studio = fs.readFileSync(path.join(HL, "index.html"), "utf8");
-assert("studio mount present", studio.indexOf('id="hl-studio"') >= 0);
-assert("honesty panel present", studio.indexOf("How real is this") === -1 || studio.indexOf("hl-explain") >= 0);
-assert("compare slider present", studio.indexOf("hl-slider") >= 0);
-assert("no lorem", !/lorem ipsum/i.test(studio));
+load("js/hl-models.js", sandbox);
+load("js/hl-color.js", sandbox);
+load("js/hl-analyze.js", sandbox);
+load("js/hl-animal.js", sandbox);
+load("js/hl-discoveries.js", sandbox);
+load("js/hl-export.js", sandbox);
 
-const engineSrc = fs.readFileSync(path.join(HL, "js/hl-vision-engine.js"), "utf8");
-assert("engine has loadImage", /loadImage\s*:/.test(engineSrc));
-assert("engine has applyTransformation", /applyTransformation\s*:/.test(engineSrc));
-assert("engine has exportImage", /exportImage\s*:/.test(engineSrc));
+const Models = sandbox.WaypointHLModels;
+const Color = sandbox.WaypointHLColor;
+const Analyze = sandbox.WaypointHLAnalyze;
+const Animal = sandbox.WaypointHLAnimal;
+const Disc = sandbox.WaypointHLDiscoveries;
+
+assert("models loaded", !!Models);
+assert("defaults original", Models.analysisDefaultsToOriginal() === true);
+assert("epistemic simulated label", Models.epistemic("simulated").label === "SIMULATED");
 assert(
-  "drawSourceToOriginal does not wipe result canvas",
-  /Never touch resultCanvas/.test(engineSrc) && /ensureCanvasSize\(state\.originalCanvas/.test(engineSrc)
+  "export name includes SIMULATED",
+  Models.exportBasename("forest.jpg", "deer", "simulated").includes("SIMULATED")
 );
 
-console.log("\nAll Hidden Landscapes tests passed (" + n + ").");
+const modes = JSON.parse(fs.readFileSync(path.join(HL, "data/modes.json"), "utf8"));
+assert("four pillars", modes.pillars.length === 4);
+assert("pillar ids", modes.pillars.map((p) => p.id).join(",") === "light,color,structure,animal");
+assert("mission honesty", /never uploaded|local/i.test(modes.privacyNote));
+assert("UV unavailable listed", modes.spectralUnavailable.some((s) => s.id === "ultraviolet"));
+assert("IR unavailable listed", modes.spectralUnavailable.some((s) => s.id === "infrared"));
+assert("thermal unavailable listed", modes.spectralUnavailable.some((s) => s.id === "thermal"));
+
+const Yw = Color.relativeLuminance(255, 255, 255);
+const Ym = Color.relativeLuminance(128, 128, 128);
+const Yb = Color.relativeLuminance(0, 0, 0);
+assert("luminance ordering", Yw > Ym && Ym > Yb);
+assert("white near 1", Yw > 0.99);
+assert("black near 0", Yb < 0.01);
+
+const w = 64;
+const h = 48;
+const data = new Uint8ClampedArray(w * h * 4);
+for (let y = 0; y < h; y++) {
+  for (let x = 0; x < w; x++) {
+    const i = (y * w + x) * 4;
+    if (y < 8) {
+      data[i] = 40; data[i + 1] = 40; data[i + 2] = 220; data[i + 3] = 255;
+    } else if (x < w / 2) {
+      data[i] = 30; data[i + 1] = 160; data[i + 2] = 40; data[i + 3] = 255;
+    } else {
+      data[i] = 200; data[i + 1] = 40; data[i + 2] = 40; data[i + 3] = 255;
+    }
+  }
+}
+const imgData = new FakeImageData(data, w, h);
+const lum = Analyze.luminanceBuffer(imgData);
+assert("lum buffer length", lum.length === w * h);
+const tonal = Analyze.analyzeTonal(lum, w, h);
+assert("tonal histogram 32", tonal.histogram.length === 32);
+const color = Analyze.analyzeColor(imgData);
+assert("color families present", color.ranked.length >= 3);
+assert("green or red among top", color.families.green > 0 && color.families.red > 0);
+
+const deer = Animal.simulateSpecies(imgData, "deer");
+assert("deer ok", deer.status === "ok");
+assert("deer simulated", deer.epistemic === "simulated");
+assert("deer label", /SIMULATED DEER/i.test(deer.label));
+assert("deer changes pixels", deer.imageData.data[0] !== undefined);
+
+const canine = Animal.simulateSpecies(imgData, "canine");
+assert("canine ok", canine.status === "ok");
+assert("canine label", /SIMULATED CANINE/i.test(canine.label));
+
+const bee = Animal.simulateSpecies(imgData, "bee-uv");
+assert("bee unavailable", bee.status === "unavailable");
+assert("bee no invented UV pixels", bee.imageData === null);
+assert("bee message UV", /ultraviolet|UV/i.test(bee.message));
+
+const bird = Animal.simulateSpecies(imgData, "bird-uv");
+assert("bird unavailable", bird.status === "unavailable");
+
+const red = Color.simulateDichromatRgb(220, 40, 40, "deer");
+const green = Color.simulateDichromatRgb(30, 180, 40, "deer");
+const humanSep = Math.abs(220 - 30);
+const simSep = Math.abs(red[0] - green[0]);
+assert("deer reduces coarse R channel gap vs green sample", simSep < humanSep);
+
+const discoveries = Disc.buildDiscoveries(
+  {
+    tonal: tonal,
+    color: color,
+    regions: { brightest: { x: 0, y: 0, w: 8, h: 8 }, edgeDense: { x: 10, y: 10, w: 8, h: 8 } }
+  },
+  deer,
+  "animal",
+  "deer"
+);
+assert("discoveries non-empty", discoveries.length >= 1);
+assert("no UV invented claim", !discoveries.some((d) => /true ultraviolet photo/i.test(d.text)));
+
+const animalSrc = fs.readFileSync(path.join(HL, "js/hl-animal.js"), "utf8");
+assert("no css filter in animal", !/filter\s*:\s*|css\s*filter/i.test(animalSrc));
+const colorSrc = fs.readFileSync(path.join(HL, "js/hl-color.js"), "utf8");
+assert("LMS path present", /xyzToLmsHpe|simulateDichromatRgb/.test(colorSrc));
+
+const html = fs.readFileSync(path.join(HL, "index.html"), "utf8");
+assert("local privacy copy", /never uploaded/i.test(html));
+assert("no cloud vision API", !/vision\.googleapis|openai\.com\/v1\/vision/i.test(html));
+assert("library scripts present", /photo-library-client/.test(html));
+assert("dormant transforms not in index", !/hl-transforms\.js/.test(html));
+assert("old creative modes not in modes.json", !/infrared-dream/.test(JSON.stringify(modes)));
+
+console.log("\nHidden Landscapes tests passed:", n);

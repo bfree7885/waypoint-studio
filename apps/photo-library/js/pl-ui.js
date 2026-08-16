@@ -343,7 +343,7 @@
           '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
             '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(originalId) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
-">Open in Hidden Landscapes</a>" +
+            ">Explore</a>" +
           '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
             '" href="' + moveHref + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
