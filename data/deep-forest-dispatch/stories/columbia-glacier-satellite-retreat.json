@@ -1,0 +1,146 @@
+{
+  "id": "columbia-glacier-satellite-retreat",
+  "slug": "columbia-glacier-satellite-retreat",
+  "title": "What nearly 40 years of satellites reveal about Columbia Glacier",
+  "subtitle": "Columbia Glacier · Alaska",
+  "deck": "Landsat has watched the same fjord since the mid-1980s. The ice front walks away — not because a glacier simply “melts backward,” but because a tidewater system lost its footing.",
+  "shortDescription": "Registered Landsat frames show Columbia Glacier’s multi-decade tidewater retreat and calving feedbacks.",
+  "seoTitle": "Columbia Glacier Retreat in Landsat — Nearly 40 Years of Change — Deep Forest Dispatch",
+  "metaDescription": "Landsat World of Change imagery (1986–2024) shows Columbia Glacier’s tidewater retreat — moraine support lost, calving feedbacks, and climate’s initial nudge.",
+  "ogImage": "/assets/images/deep-forest-dispatch/columbia-glacier/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/columbia-glacier-satellite-retreat/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/columbia-glacier/story-hero.jpg",
+    "alt": "Landsat view of Columbia Glacier’s retreated terminus and iceberg mélange in Columbia Bay, Alaska, 2024",
+    "credit": "NASA Earth Observatory / Landsat 8 OLI",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-153291"
+  },
+  "location": {
+    "name": "Columbia Glacier",
+    "region": "Chugach Mountains · Prince William Sound",
+    "country": "United States",
+    "coordinates": { "lat": 61.12, "lon": -146.9 }
+  },
+  "concepts": [
+    "tidewater glacier",
+    "calving",
+    "moraine shoal",
+    "mass balance",
+    "Landsat time series"
+  ],
+  "sections": [
+    {
+      "id": "proof",
+      "heading": "Same fjord, different decade",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Columbia Glacier descends from the Chugach into a fjord that opens toward Prince William Sound. NASA’s World of Change series holds the geometry steady while Landsat sensors change underneath — Thematic Mapper to OLI — so the terminus can be compared honestly."
+        },
+        {
+          "type": "compare",
+          "labelBefore": "1986",
+          "labelAfter": "2024",
+          "ariaLabel": "Compare Columbia Glacier Landsat views from 1986 and 2024",
+          "before": {
+            "src": "../../../assets/images/deep-forest-dispatch/columbia-glacier/year-a-labeled.jpg",
+            "alt": "False-color Landsat view of Columbia Glacier terminus in 1986"
+          },
+          "after": {
+            "src": "../../../assets/images/deep-forest-dispatch/columbia-glacier/year-b-labeled.jpg",
+            "alt": "False-color Landsat view of Columbia Glacier terminus in 2024 showing major retreat"
+          },
+          "caption": "NASA EO World of Change false-color Landsat pair (ice/snow cyan; water dark). Observation interval 1986–2024 — nearly forty years of the same corridor."
+        },
+        {
+          "type": "p",
+          "html": "Since the 1980s the Main Branch has retreated more than <strong>20 kilometers</strong>, with more than half of thickness and volume lost. Pace is uneven: constrictions and pinning points can stall the front for years before retreat resumes."
+        }
+      ]
+    },
+    {
+      "id": "tidewater",
+      "heading": "Why “it warmed” is incomplete",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "A tidewater glacier ends in the sea. For decades Columbia’s front was braced by an underwater moraine shoal — sediment piled at the terminus like a submerged bumper. Around 1980 the glacier retreated off that support. Flow and calving accelerated. Climate change likely helped deliver the initial nudge; <strong>mechanical feedbacks</strong> kept the disintegration going."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/columbia-tidewater-retreat.png",
+          "alt": "Schematic comparing a tidewater terminus grounded on a moraine shoal versus a retreated front with calving icebergs"
+        },
+        {
+          "type": "map",
+          "lat": 61.12,
+          "lon": -146.9,
+          "zoom": 8,
+          "caption": "Southern Alaska — Columbia Bay into Prince William Sound."
+        }
+      ]
+    },
+    {
+      "id": "dynamics",
+      "heading": "What the images keep teaching",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "As the glacier thinned, trimlines of freshly exposed rock widened. Parts of the front floated in deep water, changing calving style. By about 2011 the West and Main branches had effectively split into two calving fronts. Later years show pinning-point losses and continued Main Branch retreat."
+        },
+        {
+          "type": "aside",
+          "html": "Accumulation high on the icefield still feeds ice downhill; ablation and calving remove it. The Landsat story is terminus geometry — mass balance is the deeper ledger behind the pictures."
+        },
+        {
+          "type": "p",
+          "html": "When Columbia’s front reaches more stable shoreline geometry, calving should slow and a new moraine can begin to rebuild. Until then, the fjord keeps the receipt: nearly four decades of satellites watching ice trade places with open water."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NASA Earth Observatory — World of Change: Columbia Glacier",
+      "url": "https://science.nasa.gov/earth/earth-observatory/world-of-change/columbia-glacier/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Alaska’s Iconic Columbia Glacier Still Retreats",
+      "url": "https://science.nasa.gov/earth/earth-observatory/alaskas-iconic-columbia-glacier-still-retreats-153291/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Alaskan Ice in Retreat: 35 Years at Columbia Glacier",
+      "url": "https://science.nasa.gov/earth/earth-observatory/alaskan-ice-in-retreat-35-years-at-columbia-glacier-149445/",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "Landsat World of Change pair (1986 / 2024)",
+      "credit": "NASA Earth Observatory / USGS Landsat · World of Change: Columbia Glacier",
+      "license": "Public domain"
+    },
+    {
+      "asset": "2024 Landsat hero",
+      "credit": "NASA Earth Observatory / Landsat 8 · EO #153291",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Tidewater retreat diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "namib-dunes-moving-satellites",
+    "mount-hood-rain-shadow"
+  ],
+  "waypointConnections": []
+}

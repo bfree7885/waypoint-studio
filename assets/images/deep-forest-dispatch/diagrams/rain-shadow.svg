@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="rsTitle rsDesc">
+  <title id="rsTitle">Rain shadow across a mountain barrier</title>
+  <desc id="rsDesc">Moist air rises on the windward side, cools and rains, then descends dry on the leeward side.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2432"/>
+      <stop offset="100%" stop-color="#453c50"/>
+    </linearGradient>
+    <linearGradient id="wet" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5f6f56"/>
+      <stop offset="100%" stop-color="#7d8f72"/>
+    </linearGradient>
+    <linearGradient id="dry" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4a46a"/>
+      <stop offset="100%" stop-color="#c17a5a"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" fill="url(#sky)"/>
+  <text x="48" y="42" fill="#f2ebe0" font-family="Georgia, serif" font-size="22">Orographic rain shadow</text>
+  <text x="48" y="68" fill="rgba(242,235,224,0.7)" font-family="sans-serif" font-size="13">Windward rise ’ cooling ’ rain · Leeward descent ’ warming ’ dryness</text>
+
+  <!-- ocean / moisture source -->
+  <rect x="40" y="300" width="160" height="80" rx="8" fill="#7a8a9a" opacity="0.45"/>
+  <text x="120" y="345" text-anchor="middle" fill="#f2ebe0" font-size="12" font-family="sans-serif">Pacific moisture</text>
+
+  <!-- wind arrows -->
+  <path d="M70 210 H250" stroke="#c4a46a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#c4a46a"/>
+    </marker>
+  </defs>
+  <text x="150" y="198" fill="#c4a46a" font-size="12" font-family="sans-serif">Prevailing wind</text>
+
+  <!-- mountain -->
+  <path d="M280 340 L420 120 L560 340 Z" fill="#362f3f" stroke="#8b6f82" stroke-width="2"/>
+  <text x="420" y="112" text-anchor="middle" fill="#f2ebe0" font-size="13" font-family="sans-serif">Cascade barrier</text>
+
+  <!-- rising air path -->
+  <path d="M250 220 Q340 180 400 140" stroke="#95a788" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+  <text x="300" y="165" fill="#95a788" font-size="12" font-family="sans-serif">Air rises &amp; cools</text>
+
+  <!-- rain drops -->
+  <g fill="#7a8a9a">
+    <circle cx="360" cy="200" r="3"/><circle cx="380" cy="220" r="3"/><circle cx="400" cy="205" r="3"/>
+    <circle cx="370" cy="240" r="2.5"/><circle cx="395" cy="235" r="2.5"/>
+  </g>
+  <text x="350" y="270" fill="#95a788" font-size="12" font-family="sans-serif">Condensation ’ rain</text>
+
+  <!-- descending dry air -->
+  <path d="M440 150 Q520 200 600 250" stroke="#c17a5a" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
+  <text x="520" y="195" fill="#c17a5a" font-size="12" font-family="sans-serif">Air descends &amp; warms</text>
+
+  <!-- landscapes -->
+  <rect x="280" y="340" width="140" height="40" fill="url(#wet)"/>
+  <text x="350" y="365" text-anchor="middle" fill="#17131c" font-size="12" font-family="sans-serif" font-weight="600">Wet west</text>
+  <rect x="560" y="340" width="200" height="40" fill="url(#dry)"/>
+  <text x="660" y="365" text-anchor="middle" fill="#17131c" font-size="12" font-family="sans-serif" font-weight="600">Rain shadow / dry east</text>
+
+  <text x="48" y="400" fill="rgba(242,235,224,0.55)" font-size="11" font-family="sans-serif">Educational diagram · Deep Forest Dispatch · Waypoint Studio</text>
+</svg>
