@@ -86,8 +86,14 @@ jobs:
       - name: Fieldry MVP tests
         run: node automation/test-fieldry-mvp.mjs
 
+      - name: Hidden Landscapes tests
+        run: node automation/test-hidden-landscapes.mjs
+
       - name: Animal Vision tests
         run: node automation/test-animal-vision.mjs
+
+      - name: Hidden Landscapes science-claim tests
+        run: node automation/test-hl-science-claims.mjs
 
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs

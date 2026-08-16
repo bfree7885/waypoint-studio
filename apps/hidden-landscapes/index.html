@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hidden Landscapes Studio — explore creative nature transformations inspired by infrared and beyond-visible photography. Local-first. Clear about what is simulation vs specialized capture.">
-  <title>Hidden Landscapes Studio — Waypoint Scenes · Waypoint Studio</title>
+  <meta name="description" content="Hidden Landscapes — explore light, color, structure, and research-informed animal vision simulations in your outdoor photographs. Local-first. Honest about what RGB can and cannot reveal.">
+  <title>Hidden Landscapes — Waypoint Scenes · Waypoint Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="css/hidden-landscapes.css">
 </head>
@@ -24,21 +24,21 @@
           <p class="wds-eyebrow">
             <a class="hl-product-link" href="../scenes/">Waypoint Scenes</a>
             <span aria-hidden="true"> · </span>
-            Hidden Landscapes
+            Explore
           </p>
           <h1>Hidden Landscapes</h1>
           <p class="hl-hero__lead">
-            Explore how a familiar landscape can feel when remapped toward infrared-inspired false color and other creative beyond-visible moods.
-            Upload a photograph, compare modes, and read what is artistic simulation versus specialized capture.
+            What else is in this photograph? Explore light, color, structure, and research-informed animal vision —
+            revealing what is already there, and staying honest when the camera never measured it.
           </p>
         </header>
 
-        <p class="hl-honesty" id="hl-honesty" role="note">Loading scientific honesty guidance…</p>
+        <p class="hl-honesty" id="hl-honesty" role="note">Loading…</p>
         <p class="hl-privacy" role="note">Processed locally. Your photographs are never uploaded.</p>
 
         <div class="hl-layout">
-          <aside class="hl-panel" aria-labelledby="hl-controls-title">
-            <h2 id="hl-controls-title">Photograph &amp; modes</h2>
+          <aside class="hl-panel hl-panel--controls" aria-labelledby="hl-controls-title">
+            <h2 id="hl-controls-title">Photograph</h2>
 
             <div
               class="hl-drop"
@@ -48,30 +48,41 @@
               aria-controls="hl-file"
               aria-label="Upload a photograph"
             >
-              <span class="hl-drop__title">Upload a photograph</span>
-              <p class="hl-drop__hint">JPEG or PNG recommended · WebP and a few other browser-decode formats when supported · processed on this device</p>
+              <span class="hl-drop__title">Open a photograph</span>
+              <p class="hl-drop__hint">From Library or direct import · JPEG / PNG / WebP · analyzed on this device</p>
               <input class="hl-file" id="hl-file" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp" aria-label="Choose photograph file">
             </div>
 
-            <div class="hl-modes" id="hl-modes" role="group" aria-label="Creative modes"></div>
+            <p class="hl-source-badge" id="hl-source-badge">No photograph loaded</p>
+            <div class="hl-source-choice" id="hl-source-choice" hidden role="group" aria-label="Analysis source">
+              <button type="button" class="hl-chip" data-source="original" aria-pressed="true">Original</button>
+              <button type="button" class="hl-chip" data-source="edit" aria-pressed="false">Waypoint Edit</button>
+              <p class="hl-muted">Scientific modes default to Original — edits can change tone and color relationships.</p>
+            </div>
 
-            <label class="hl-intensity" for="hl-intensity">
-              <span>Intensity <span id="hl-intensity-val">85%</span></span>
-              <input id="hl-intensity" type="range" min="0" max="100" value="85" disabled>
-            </label>
+            <h2 class="hl-section-title">Explore</h2>
+            <div class="hl-pillars" id="hl-pillars" role="group" aria-label="Exploration pillars"></div>
+            <p class="hl-pillar-question" id="hl-pillar-question"></p>
+            <div class="hl-views" id="hl-views" role="group" aria-label="Views"></div>
 
             <div class="hl-actions">
-              <button type="button" class="wds-btn wds-btn--secondary" id="hl-export" disabled>Download preview</button>
+              <button type="button" class="wds-btn wds-btn--secondary" id="hl-export" disabled>Download labeled preview</button>
               <button type="button" class="wds-btn wds-btn--ghost" id="hl-reset" disabled>Reset</button>
             </div>
-            <p class="hl-status" id="hl-status" aria-live="polite"></p>
+            <p class="hl-status" id="hl-status" aria-live="polite" hidden></p>
+
+            <section class="hl-exif-block" aria-labelledby="hl-exif-title">
+              <h2 id="hl-exif-title">Camera context</h2>
+              <div id="hl-exif"><p>No camera EXIF available for this source.</p></div>
+            </section>
           </aside>
 
           <section class="hl-panel hl-panel--stage" aria-labelledby="hl-result-title">
-            <h2 id="hl-result-title">Studio</h2>
+            <h2 id="hl-result-title">Light table</h2>
 
             <div id="hl-empty" class="hl-empty">
-              <p>Your original photograph and creative transformation will appear here.</p>
+              <p>Your photograph stays dominant. Open one to begin exploring what it already contains.</p>
+              <p><a href="../photo-library/">Open Photo Library</a></p>
             </div>
 
             <div id="hl-workspace" hidden>
@@ -79,19 +90,20 @@
                 <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-hl-compare="slider" aria-pressed="true">Split slider</button>
                 <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-hl-compare="side" aria-pressed="false">Side by side</button>
                 <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" data-hl-compare="toggle" aria-pressed="false">Toggle</button>
-                <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="hl-toggle-view">Swap original / transformation</button>
+                <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="hl-toggle-view">Swap photograph / view</button>
               </div>
-              <p class="hl-view-label" id="hl-view-label">Drag the slider to compare original and transformation</p>
+              <p class="hl-view-label" id="hl-view-label">Drag the slider to compare</p>
+              <p class="hl-unavailable-banner" id="hl-unavailable-banner" role="status" hidden></p>
 
               <div class="hl-stage" id="hl-stage" data-compare="slider">
                 <div class="hl-compare--side">
                   <figure class="hl-frame">
-                    <figcaption>Original</figcaption>
+                    <figcaption>Photograph</figcaption>
                     <canvas id="hl-canvas-original" aria-label="Original photograph"></canvas>
                   </figure>
                   <figure class="hl-frame">
-                    <figcaption>Transformation</figcaption>
-                    <canvas id="hl-canvas-result" aria-label="Creative transformation"></canvas>
+                    <figcaption>Exploration</figcaption>
+                    <canvas id="hl-canvas-result" aria-label="Exploration visualization"></canvas>
                   </figure>
                 </div>
 
@@ -115,22 +127,29 @@
               </div>
 
               <div class="hl-explain" id="hl-explain"></div>
+
+              <section class="hl-discoveries-block" aria-labelledby="hl-disc-title">
+                <h3 id="hl-disc-title">Discoveries</h3>
+                <div id="hl-discoveries"></div>
+              </section>
             </div>
           </section>
         </div>
 
-        <section class="hl-learn" aria-labelledby="hl-learn-title">
-          <h2 id="hl-learn-title">A little context</h2>
-          <p class="hl-learn__lead">Curious about what spectral photography actually involves? Short notes — not a textbook.</p>
-          <div class="hl-edu-grid" id="hl-education"></div>
+        <section class="hl-learn" aria-labelledby="hl-spectral-title">
+          <h2 id="hl-spectral-title">What this RGB photograph cannot provide</h2>
+          <p class="hl-learn__lead">Unavailable is an honest answer — not a missing feature to hide.</p>
+          <div class="hl-spectral" id="hl-spectral"></div>
         </section>
 
         <p class="hl-foot-links">
-          <a href="gallery.html">Gallery</a>
+          <a href="../photo-library/">Photo Library</a>
           <span aria-hidden="true"> · </span>
-          <a href="learn.html">Learn</a>
+          <a href="../photo-coach/">Photo Coach</a>
           <span aria-hidden="true"> · </span>
-          <a href="../animal-vision/">Animal Vision</a>
+          <a href="../auto-edit/">Auto Edit</a>
+          <span aria-hidden="true"> · </span>
+          <a href="../moving-scenes/">Moving Scenes</a>
           <span aria-hidden="true"> · </span>
           <a href="../scenes/">All Waypoint Scenes</a>
         </p>
@@ -150,8 +169,13 @@
   <script src="../photo-library/js/pl-store.js" defer></script>
   <script src="../photo-library/js/pl-engine.js" defer></script>
   <script src="../waypoint-scenes/js/photo-library-client.js" defer></script>
-  <script src="js/hl-transforms.js" defer></script>
-  <script src="js/hl-vision-engine.js" defer></script>
-  <script src="js/hl-studio.js" defer></script>
+  <script src="js/hl-models.js" defer></script>
+  <script src="js/hl-color.js" defer></script>
+  <script src="js/hl-analyze.js" defer></script>
+  <script src="js/hl-animal.js" defer></script>
+  <script src="js/hl-discoveries.js" defer></script>
+  <script src="js/hl-export.js" defer></script>
+  <script src="js/hl-ui.js" defer></script>
+  <script src="js/hl-boot.js" defer></script>
 </body>
 </html>
