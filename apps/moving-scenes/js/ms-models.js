@@ -5,7 +5,7 @@
 (function (global) {
   "use strict";
 
-  var ENGINE_VERSION = "1.1.0-perception";
+  var ENGINE_VERSION = "1.2.0-natural-motion";
   var SCHEMA_VERSION = "1.0.0";
   var DEFAULT_DURATION_SEC = 6;
   var PREVIEW_MAX = 720;

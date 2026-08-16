@@ -1351,6 +1351,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
 - Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
 
+### Lessons Learned — Moving Scenes natural motion / atmospheric advection (2026-08-15)
+
+- Warped-still cloud look was not a mask failure: large dual-sinusoid UV warp of photograph pixels reads as rubber/sheet. Prefer less displacement + coherent wind field + looping low-freq density evolution.
+- Tag motion **mode** in the field (cloud/water/fog). Reusing one sinusoid recipe for every class forces water and clouds to share the wrong physics.
+- Cloud-sea after Perception Fix 1 may still live in the **water mask** while Choice correctly selects clouds — renderer may animate that orphan vapor as cloud material only when `clouds && !water && seaLike`; never when water is selected (protects lakes).
+- Headless Chrome export needs `all` permissions (or workspace `--user-data-dir`); sandboxed CDP binds often fail with “CDP not ready.”
+- Phase0/phase50 JPEG MAE on terrain bands is a better static gate than live “bottom band” MAE when cloud-sea occupies the lower mid frame.
+
 ### Lessons Learned — Moving Scenes perception-before-motion (2026-08-15)
 
 - Water false accepts were not a global-threshold problem: sky/fog/cloud-sea still hit 100% above 0.42. Multi-cue evidence + contradictions + class competition beat raising `AUTO_CONFIDENCE`.
