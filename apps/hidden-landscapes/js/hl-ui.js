@@ -64,7 +64,7 @@
       el.textContent = Models.sourceLabel(state.source);
       var choice = $("hl-source-choice");
       if (choice) {
-        choice.hidden = !state.source.hasEdit;
+        choice.hidden = !(state.source.hasEdit && state.editImg);
         var origBtn = choice.querySelector('[data-source="original"]');
         var editBtn = choice.querySelector('[data-source="edit"]');
         if (origBtn) origBtn.setAttribute("aria-pressed", state.source.sourceChoice === "original" ? "true" : "false");
@@ -377,8 +377,9 @@
       state.source.libraryId = meta.libraryId || null;
       state.source.originalAssetId = meta.originalAssetId || meta.libraryId || null;
       state.source.editAssetId = meta.editAssetId || null;
-      state.source.hasEdit = !!meta.hasEdit;
-      state.source.sourceChoice = meta.sourceChoice || "original";
+      state.editImg = null;
+      state.source.hasEdit = false;
+      state.source.sourceChoice = "original";
       state.source.exif = meta.exif || null;
       updateSourceBadge();
 
@@ -396,7 +397,7 @@
         if (meta.editFile) {
           revoke(state.editUrl);
           state.editUrl = URL.createObjectURL(meta.editFile);
-          return new Promise(function (resolve, reject) {
+          return new Promise(function (resolve) {
             var img = new Image();
             img.onload = function () { state.editImg = img; resolve(); };
             img.onerror = function () { state.editImg = null; resolve(); };
@@ -404,6 +405,18 @@
           });
         }
         state.editImg = null;
+      }).then(function () {
+        if (state.editImg) {
+          state.source.hasEdit = true;
+        } else {
+          state.source.hasEdit = false;
+          state.source.sourceChoice = "original";
+          if (state.editUrl) {
+            revoke(state.editUrl);
+            state.editUrl = null;
+          }
+        }
+        updateSourceBadge();
       }).then(runAnalysis);
     }
 
@@ -427,6 +440,10 @@
           ? img.originalAssetId
           : resolved.id;
         function fromOriginal(orig) {
+          if (!orig || !orig.file || orig.fromThumbnail) {
+            setStatus("That photograph’s original is not stored locally yet.", true);
+            return null;
+          }
           var oImg = orig.image || {};
           var auto = (oImg.moduleRefs && oImg.moduleRefs.autoEdit) || {};
           var hasEdit = !!(auto.hasEdit && auto.editAssetId);
@@ -454,7 +471,8 @@
           };
           if (!hasEdit) return loadFile(orig.file, pack);
           return Client.resolveLibraryFile(auto.editAssetId).then(function (editPack) {
-            pack.editFile = editPack && editPack.file ? editPack.file : null;
+            pack.editFile = editPack && editPack.file && !editPack.fromThumbnail ? editPack.file : null;
+            if (!pack.editFile) pack.hasEdit = false;
             return loadFile(orig.file, pack);
           }).catch(function () {
             pack.hasEdit = false;
@@ -462,13 +480,7 @@
           });
         }
         if (originalId !== resolved.id) {
-          return Client.resolveLibraryFile(originalId).then(function (orig) {
-            if (!orig || !orig.file) {
-              setStatus("That photograph’s original is not stored locally yet.", true);
-              return null;
-            }
-            return fromOriginal(orig);
-          });
+          return Client.resolveLibraryFile(originalId).then(fromOriginal);
         }
         return fromOriginal(resolved);
       }).then(function () {
@@ -522,7 +534,7 @@
         return;
       }
       t = ev.target.closest("[data-source]");
-      if (t && state.source.hasEdit) {
+      if (t && state.source.hasEdit && state.editImg) {
         state.source.sourceChoice = t.getAttribute("data-source");
         updateSourceBadge();
         runAnalysis();
@@ -648,7 +660,11 @@
           renderExplain();
         }
         var lib = q.get("libraryId") || q.get("photoId");
-        if (lib) return loadFromLibrary(lib);
+        if (lib) {
+          return loadFromLibrary(lib).catch(function (err) {
+            setStatus((err && err.message) || "Could not open that photograph from the library.", true);
+          });
+        }
       } catch (e) { /* ignore */ }
     }).catch(function (e) {
       setStatus("Could not load Hidden Landscapes catalog.", true);
