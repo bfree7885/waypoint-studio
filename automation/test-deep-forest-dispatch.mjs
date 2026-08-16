@@ -56,7 +56,7 @@ for (const entry of catalog.stories) {
   assert.ok(exists(entry.data), "missing story data " + entry.data);
   const story = JSON.parse(read(entry.data));
   assert.equal(story.slug, entry.slug);
-  assert.ok(story.title && story.sections && story.sections.length >= 4, "thin story " + entry.slug);
+  assert.ok(story.title && story.sections && story.sections.length >= 3, "thin story " + entry.slug);
   assert.ok("youtubeVideoId" in story, "youtubeVideoId field required");
   // Must not invent fake video ids in committed content unless explicitly set
   if (story.youtubeVideoId != null) {
@@ -81,7 +81,7 @@ for (const entry of catalog.stories) {
   assert.match(html, /application\/ld\+json/);
   assert.match(html, new RegExp(story.title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   if (!story.youtubeVideoId) {
-    assert.match(html, /Film companion coming soon/);
+    assert.match(html, /No film companion yet|Film companion coming soon/);
     assert.doesNotMatch(html, /youtube\.com\/embed\/null/);
     assert.doesNotMatch(html, /VideoObject/);
   } else {

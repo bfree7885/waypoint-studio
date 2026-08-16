@@ -234,7 +234,7 @@
       "license": "Waypoint Studio editorial"
     }
   ],
-  "relatedStories": ["mount-hood-rain-shadow", "great-salt-lake-two-colors", "valley-fog-at-dawn"],
+  "relatedStories": ["mount-hood-rain-shadow", "great-salt-lake-two-colors"],
   "waypointConnections": [
     {
       "id": "dashboard",

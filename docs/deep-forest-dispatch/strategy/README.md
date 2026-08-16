@@ -12,6 +12,8 @@ Strategy and research only — **no finished articles**, **no Video #3**.
 | [DFD-CONTENT-MEASUREMENT.md](./DFD-CONTENT-MEASUREMENT.md) | Checkpoints & metrics |
 | [DFD-ARTICLE-PRODUCTION-WORKFLOW.md](./DFD-ARTICLE-PRODUCTION-WORKFLOW.md) | Required production path |
 
+Also required for publish-ready articles: [`../DFD-ARTICLE-QUALITY-GATE.md`](../DFD-ARTICLE-QUALITY-GATE.md)
+
 Machine-readable dataset: `data/deep-forest-dispatch/article-candidates.json`
 
 Depends on DFD content-library infrastructure in PR #39.

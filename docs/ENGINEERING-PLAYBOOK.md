@@ -134,6 +134,17 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD Batch #1 editorial + visual QA
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW-V2.md`
+
+1. **Diagrams must appear early** — burying the original visual after mechanism prose makes the page feel like a blog with an infographic taped on.
+2. **Never duplicate the hero in the first body figure** — readers notice; it reads as padding.
+3. **Shared section templates are AI-slop** — identical Explore further / Connect to Waypoint / Show me outlines across siblings fail the reader test even when science is fine.
+4. **Six equal comic panels read as PowerPoint** — prefer one spatial explainer plus minimal stages.
+5. **≤2 Waypoint CTAs, observational copy** — third links and “detector” disclaimers still feel promotional if stacked.
+6. **Codify the floor** — `DFD-ARTICLE-QUALITY-GATE.md` is now a required workflow step, not optional taste.
+
 ### 2026-08-16 — DFD Article Production Batch #1
 
 **Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW.md`

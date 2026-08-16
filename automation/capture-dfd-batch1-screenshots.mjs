@@ -23,17 +23,17 @@ const STORIES = [
   {
     id: "great-salt-lake-two-colors",
     path: "/deep-forest-dispatch/stories/great-salt-lake-two-colors/",
-    viz: "#show-me"
+    viz: "#the-divide"
   },
   {
     id: "valley-fog-at-dawn",
     path: "/deep-forest-dispatch/stories/valley-fog-at-dawn/",
-    viz: "#show-me"
+    viz: "#white-lake"
   },
   {
     id: "lenticular-clouds-explained",
     path: "/deep-forest-dispatch/stories/lenticular-clouds-explained/",
-    viz: "#show-me"
+    viz: "#saucers"
   }
 ];
 

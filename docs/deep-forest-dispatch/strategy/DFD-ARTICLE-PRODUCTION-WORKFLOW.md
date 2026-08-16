@@ -52,7 +52,8 @@ Human-edited. Follow writing bans in blueprints doc. Place-first.
 Numbers, mechanisms, place names, image provenance.
 
 ### 8. Editorial review
-Tone, clarity, originality, no AI-farm residue.
+Tone, clarity, originality, no AI-farm residue.  
+Run the pass/fail checklist in `docs/deep-forest-dispatch/DFD-ARTICLE-QUALITY-GATE.md` before owner review.
 
 ### 9. Render / preview
 Use DFD JSON → `scripts/dfd/render-stories.mjs` pipeline (PR #39).  

@@ -16,6 +16,15 @@
   max-width: var(--dfd-max);
 }
 
+.dfd-page--story .dfd-hero h1 {
+  max-width: 22ch;
+}
+
+.dfd-page--story .dfd-hero__deck {
+  font-size: 1.12rem;
+  line-height: 1.5;
+}
+
 .dfd-eyebrow {
   margin: 0;
   font-size: 0.75rem;
@@ -213,6 +222,15 @@
   margin: 1.35rem 0;
 }
 
+.dfd-figure--diagram {
+  margin: 1.75rem -0.15rem;
+}
+
+.dfd-figure--diagram img {
+  background: #26212e;
+  border: 1px solid color-mix(in srgb, var(--wds-border, var(--wp-border)) 70%, transparent);
+}
+
 .dfd-figure img,
 .dfd-figure svg,
 .dfd-figure object {
@@ -284,27 +302,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.35rem;
-  min-height: 12rem;
-  padding: 1.5rem;
-  background:
-    linear-gradient(160deg, rgba(23, 19, 28, 0.2), rgba(193, 122, 90, 0.12)),
-    var(--wds-inset, var(--wp-inset));
+  gap: 0.3rem;
+  min-height: 7.5rem;
+  padding: 1.1rem 1.25rem;
+  background: color-mix(in srgb, var(--wds-inset, var(--wp-inset)) 92%, var(--wds-accent, var(--wp-accent)) 8%);
   border: 1px solid var(--wds-border, var(--wp-border));
 }
 
 .dfd-video__pending strong {
   font-family: var(--wds-font-display, var(--wp-font-display));
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   font-weight: 500;
-  color: var(--wds-text, var(--wp-text));
+  color: var(--wds-text-secondary, var(--wp-text-secondary));
 }
 
 .dfd-video__pending p {
   margin: 0;
   color: var(--wds-text-muted, var(--wp-text-muted));
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   line-height: 1.45;
+  max-width: 36rem;
 }
 
 /* Season compare */
@@ -560,8 +577,22 @@
     max-height: 52vh;
   }
 
+  .dfd-figure--diagram {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .dfd-article p {
+    font-size: 1.02rem;
+  }
+
   .dfd-map iframe {
     height: 220px;
+  }
+
+  .dfd-connections a {
+    min-height: 3.25rem;
+    padding: 1rem;
   }
 }
 
