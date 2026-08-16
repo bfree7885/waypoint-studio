@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD Article Production Batch #2
+
+**Branch:** `cursor/dfd-article-batch-2-efa3` · **Review:** `docs/deep-forest-dispatch/batch-2/OWNER-REVIEW.md`
+
+1. **Evidence gate before prose** — for migration/change stories, lock location + multi-date registered imagery + published rates before drafting; do not fake motion with arrows on one frame.
+2. **Landscape paradoxes need system maps** — Okavango lag is distance *and* slow fan propagation; a travel map beats “it takes months” as the sole explanation.
+3. **Geology honesty beats clickbait** — Richat must reject impact without claiming a single finished “carving” cartoon; uncertainty belongs on-page.
+4. **Hero ≠ first evidence frame** — if a compare uses Year A, do not also hero Year A; readers notice the replay.
+5. **Do not invent process** — reuse the existing quality gate and render pipeline; production batches are content, not CMS work.
+
 ### 2026-08-16 — DFD Batch #1 editorial + visual QA
 
 **Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW-V2.md`

@@ -144,6 +144,51 @@
                 <p class="dfd-card__loc">Mountain lee waves (global)</p>
               </a>
             </li>
+            <li>
+              <a class="dfd-card" href="stories/okavango-dry-season-flood/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/okavango/story-hero.jpg"
+                    alt="Sunglint view from the ISS of the Okavango River flood advancing across the delta"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Why the Okavango Delta floods in the dry season</h2>
+                <p class="dfd-card__loc">Okavango Delta, Botswana</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/eye-of-the-sahara-richat/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/richat/story-hero.jpg"
+                    alt="Landsat view of the Richat Structure’s concentric rings in the Mauritanian desert"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">What carved the Eye of the Sahara?</h2>
+                <p class="dfd-card__loc">Richat Structure, Mauritania</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/namib-dunes-moving-satellites/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/namib-dunes/story-hero.jpg"
+                    alt="Landsat view of barchan and transverse dunes in the Sperrgebiet, southern Namib Desert, from the 2022 end of a registered time series"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Satellites caught these dunes moving</h2>
+                <p class="dfd-card__loc">Sperrgebiet, Namibia</p>
+              </a>
+            </li>
           </ul>
         </div>
       </section>
@@ -170,7 +215,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       var el = document.getElementById("dfd-library");
       if (window.WDS && WDS.dfd && WDS.dfd.analytics) {
-        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 5 });
+        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 8 });
         WDS.dfd.analytics.bindClicks(el || document);
       }
       // Catalog-driven refresh keeps future stories automatic without removing crawlable HTML.

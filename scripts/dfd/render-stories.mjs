@@ -53,7 +53,10 @@ function renderBlock(block) {
   <iframe title="Map of featured location" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="${mapEmbed(block.lat, block.lon, block.zoom)}"></iframe>
   ${block.caption ? `<figcaption class="dfd-map__caption">${esc(block.caption)}</figcaption>` : ""}
 </figure>`;
-    case "compare":
+    case "compare": {
+      const compareAria =
+        block.ariaLabel ||
+        `Compare ${block.labelBefore || "before"} and ${block.labelAfter || "after"}`;
       return `<figure class="dfd-compare" data-dfd-compare>
   <div class="dfd-compare__stage">
     <img class="dfd-compare__img" src="${esc(block.before.src)}" alt="${esc(block.before.alt || "")}">
@@ -61,11 +64,12 @@ function renderBlock(block) {
       <img class="dfd-compare__img" src="${esc(block.after.src)}" alt="${esc(block.after.alt || "")}">
     </div>
     <div class="dfd-compare__handle" aria-hidden="true"></div>
-    <input class="dfd-compare__range" type="range" min="0" max="100" value="50" aria-label="Compare seasonal views">
+    <input class="dfd-compare__range" type="range" min="0" max="100" value="50" aria-label="${esc(compareAria)}">
   </div>
   <div class="dfd-compare__labels"><span>${esc(block.labelBefore || "Before")}</span><span>${esc(block.labelAfter || "After")}</span></div>
   ${block.caption ? `<figcaption>${esc(block.caption)}</figcaption>` : ""}
 </figure>`;
+    }
     default:
       return "";
   }

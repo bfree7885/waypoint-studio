@@ -24,12 +24,18 @@ const required = [
   "deep-forest-dispatch/stories/great-salt-lake-two-colors/index.html",
   "deep-forest-dispatch/stories/valley-fog-at-dawn/index.html",
   "deep-forest-dispatch/stories/lenticular-clouds-explained/index.html",
+  "deep-forest-dispatch/stories/okavango-dry-season-flood/index.html",
+  "deep-forest-dispatch/stories/eye-of-the-sahara-richat/index.html",
+  "deep-forest-dispatch/stories/namib-dunes-moving-satellites/index.html",
   "data/deep-forest-dispatch/catalog.json",
   "data/deep-forest-dispatch/stories/mount-hood-rain-shadow.json",
   "data/deep-forest-dispatch/stories/lencois-maranhenses.json",
   "data/deep-forest-dispatch/stories/great-salt-lake-two-colors.json",
   "data/deep-forest-dispatch/stories/valley-fog-at-dawn.json",
   "data/deep-forest-dispatch/stories/lenticular-clouds-explained.json",
+  "data/deep-forest-dispatch/stories/okavango-dry-season-flood.json",
+  "data/deep-forest-dispatch/stories/eye-of-the-sahara-richat.json",
+  "data/deep-forest-dispatch/stories/namib-dunes-moving-satellites.json",
   "design-system/css/wds-dfd.css",
   "design-system/js/dfd/wds-dfd-analytics.js",
   "design-system/js/dfd/wds-dfd-library.js",
@@ -40,7 +46,10 @@ const required = [
   "assets/images/deep-forest-dispatch/diagrams/lencois-water-table.png",
   "assets/images/deep-forest-dispatch/diagrams/gsl-causeway-salinity.png",
   "assets/images/deep-forest-dispatch/diagrams/valley-fog-drainage.png",
-  "assets/images/deep-forest-dispatch/diagrams/lenticular-standing-wave.png"
+  "assets/images/deep-forest-dispatch/diagrams/lenticular-standing-wave.png",
+  "assets/images/deep-forest-dispatch/diagrams/okavango-flood-pulse.png",
+  "assets/images/deep-forest-dispatch/diagrams/richat-rings-section.png",
+  "assets/images/deep-forest-dispatch/diagrams/dune-migration-mechanism.png"
 ];
 
 for (const p of required) {
@@ -49,7 +58,7 @@ for (const p of required) {
 
 const catalog = JSON.parse(read("data/deep-forest-dispatch/catalog.json"));
 assert.equal(catalog.id, "deep-forest-dispatch");
-assert.ok(Array.isArray(catalog.stories) && catalog.stories.length >= 5);
+assert.ok(Array.isArray(catalog.stories) && catalog.stories.length >= 8);
 
 for (const entry of catalog.stories) {
   assert.ok(entry.slug && entry.path && entry.data, "catalog entry incomplete");
@@ -99,6 +108,9 @@ assert.match(library, /lencois-maranhenses/);
 assert.match(library, /great-salt-lake-two-colors/);
 assert.match(library, /valley-fog-at-dawn/);
 assert.match(library, /lenticular-clouds-explained/);
+assert.match(library, /okavango-dry-season-flood/);
+assert.match(library, /eye-of-the-sahara-richat/);
+assert.match(library, /namib-dunes-moving-satellites/);
 assert.match(library, /wds-dfd-analytics/);
 
 const sitemap = read("sitemap.xml");
@@ -108,6 +120,9 @@ assert.match(sitemap, /lencois-maranhenses/);
 assert.match(sitemap, /great-salt-lake-two-colors/);
 assert.match(sitemap, /valley-fog-at-dawn/);
 assert.match(sitemap, /lenticular-clouds-explained/);
+assert.match(sitemap, /okavango-dry-season-flood/);
+assert.match(sitemap, /eye-of-the-sahara-richat/);
+assert.match(sitemap, /namib-dunes-moving-satellites/);
 
 const tokens = read("design-system/css/wds-tokens.css");
 assert.match(tokens, /data-product="deep-forest-dispatch"/);

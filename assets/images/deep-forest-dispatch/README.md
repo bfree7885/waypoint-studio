@@ -23,5 +23,12 @@ Editorial imagery for `/deep-forest-dispatch/`.
 | `great-salt-lake/causeway-annotated.jpg` | NASA base + Waypoint annotations |
 | `valley-fog/story-hero.jpg`, `satellite-dendritic.jpg` | NASA EO MODIS Terra Victorian Alps fog (2026-05-11) |
 | `lenticular/story-hero.jpg`, `taieri-pet.jpg` | NASA EO Landsat 8 Taieri Pet (EO #153312) |
-| `diagrams/*.svg` + `diagrams/*.png` | Waypoint educational diagrams (SVG source; PNG used on pages) |
+| `okavango/story-hero.jpg`, `from-orbit.jpg` | NASA ISS `ISS040-E-8209` (EO #84078) |
+| `okavango/season-*-greenness.jpg` | NASA EO MODIS Botswana pair (EO #38367) |
+| `richat/story-hero.jpg`, `from-orbit.jpg` | NASA EO Landsat Richat (2026-03-06) |
+| `namib-dunes/year-*.jpg`, `story-hero.jpg` | NASA EO Racing Dunes Landsat sequence (EO #150808) |
+| `diagrams/okavango-flood-pulse.*` | Waypoint educational flood-pulse travel map |
+| `diagrams/richat-rings-section.*` | Waypoint educational rings / cross-section |
+| `diagrams/dune-migration-mechanism.*` | Waypoint educational barchan migration mechanism |
+| `diagrams/*.svg` + `diagrams/*.png` | Waypoint educational diagrams (SVG source when present; PNG/JPG used on pages) |
 | `library/library-hero.jpg` | Waypoint atmospheric illustration |

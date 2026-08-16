@@ -1,0 +1,175 @@
+{
+  "id": "okavango-dry-season-flood",
+  "slug": "okavango-dry-season-flood",
+  "title": "Why the Okavango Delta floods in the dry season",
+  "subtitle": "Okavango Delta · Botswana",
+  "deck": "When Botswana is driest, the Okavango often looks wettest. The water did not invent itself. It fell as rain months earlier — far away in Angola — and is only now finishing a slow journey across a nearly flat fan.",
+  "shortDescription": "Angolan highland rain arrives months late as a flood pulse through the Okavango.",
+  "seoTitle": "Why the Okavango Delta Floods in the Dry Season — Flood Pulse Explained — Deep Forest Dispatch",
+  "metaDescription": "The Okavango’s dry-season flood is delayed river water from Angola — how distance, shallow gradients, and floodplains create the lag.",
+  "ogImage": "/assets/images/deep-forest-dispatch/okavango/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/okavango-dry-season-flood/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/okavango/story-hero.jpg",
+    "alt": "Sunglint view from the ISS of the Okavango River flood advancing across the delta in the Kalahari",
+    "credit": "NASA / ISS (ISS040-E-8209)",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-84078"
+  },
+  "location": {
+    "name": "Okavango Delta",
+    "region": "Northern Botswana · Kalahari endorheic basin",
+    "country": "Botswana",
+    "coordinates": { "lat": -19.25, "lon": 22.75 }
+  },
+  "concepts": [
+    "flood pulse",
+    "endorheic basin",
+    "alluvial fan",
+    "travel-time lag",
+    "Cubango–Okavango"
+  ],
+  "sections": [
+    {
+      "id": "paradox",
+      "heading": "Wet when it should be dry",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "In northern Botswana’s dry season, the Okavango Delta can expand into a glittering maze of channels and floodplains. Around it, the Kalahari looks thirsty. The paradox is only a paradox if you assume the water fell here last week."
+        },
+        {
+          "type": "p",
+          "html": "Most of the annual flood is a delayed pulse from summer rains in the Angolan highlands — water that has been traveling for months through the Cubango/Okavango system before it finishes spreading across this inland fan."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/okavango-flood-pulse.png",
+          "alt": "Map diagram showing rain in the Angolan highlands traveling down the Okavango system to flood the delta during Botswana’s dry season"
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "heading": "A river that never reaches the sea",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "The Okavango (Cubango in Angola) rises in sandy highland catchments, flows toward Namibia, and empties into northern Botswana as an <strong>endorheic</strong> alluvial fan — an inland delta. There is no ocean outlet. Water spreads, soaks, feeds wetland forests, and mostly leaves as vapor."
+        },
+        {
+          "type": "p",
+          "html": "Astronaut photographs in sunglint make the advancing flood look like a bright vein. NASA Earth Observatory notes that only a small fraction of the river’s water typically exits the delta at all."
+        },
+        {
+          "type": "map",
+          "lat": -19.25,
+          "lon": 22.75,
+          "zoom": 6,
+          "caption": "Northern Botswana — the Okavango fan sits where Angolan highland water meets the Kalahari basin."
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "heading": "Why the calendar is out of phase",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Highland rains are largely a southern-hemisphere summer story — commonly about November through March. The flood wave that reaches the delta inlet often builds later; analyses of a multi-decade hydrometric record show peak discharge at the inlet around April on average, with <strong>maximum inundated area often in August–September</strong> — deep into Botswana’s dry season."
+        },
+        {
+          "type": "p",
+          "html": "That lag is not one trick. Distance from the headwaters matters. So does the shallow gradient: water moves slowly through channels and across floodplains, soaking into sands and lingering in vegetation. Part of the delay is upstream travel; part is slow expansion inside the delta itself."
+        },
+        {
+          "type": "aside",
+          "html": "Wolski &amp; Murray-Hudson (2006) put it plainly: inundation is out of phase with the rainy season because of headwater distance <em>and</em> slow flood propagation in the delta."
+        },
+        {
+          "type": "compare",
+          "labelBefore": "After rains (greener region)",
+          "labelAfter": "Dry season (delta still active)",
+          "before": {
+            "src": "../../../assets/images/deep-forest-dispatch/okavango/season-wet-greenness.jpg",
+            "alt": "MODIS vegetation greenness map after the rainy season across Botswana"
+          },
+          "after": {
+            "src": "../../../assets/images/deep-forest-dispatch/okavango/season-dry-greenness.jpg",
+            "alt": "MODIS vegetation greenness map in the dry season showing the Okavango as a green oasis"
+          },
+          "caption": "Regional “greenness” fades in the dry season — while the Okavango can remain a living oasis on delayed floodwater. MODIS Terra maps from NASA Earth Observatory."
+        }
+      ]
+    },
+    {
+      "id": "variability",
+      "heading": "Not a metronome",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Some years the pulse arrives early or overspills into neighboring systems. Local rainfall can raise levels inside already wet areas, and rare very wet years can expand inundation with the rains. The durable story is still the delayed highland flood — not magic water, and not “no rain involved.”"
+        },
+        {
+          "type": "p",
+          "html": "Extent also varies: published ranges for seasonal expansion run from several thousand square kilometers at minimum to much larger maxima depending on the year. The fan rearranges; channels shift; the pulse is a system, not a faucet."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Wolski & Murray-Hudson 2006 — Okavango flooding dynamics (HESS)",
+      "url": "https://hess.copernicus.org/articles/10/127/2006/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Okavango Delta (ISS sunglint)",
+      "url": "https://science.nasa.gov/earth/earth-observatory/okavango-delta-84078/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Kalahari and Okavango Delta",
+      "url": "https://science.nasa.gov/earth/earth-observatory/kalahari-and-okavango-delta-38367/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Not Your Usual Flooding in Botswana",
+      "url": "https://science.nasa.gov/earth/earth-observatory/not-your-usual-flooding-in-botswana-78166/",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "ISS Okavango sunglint (ISS040-E-8209)",
+      "credit": "NASA / ISS Crew Earth Observations · EO #84078",
+      "license": "Public domain"
+    },
+    {
+      "asset": "MODIS Botswana greenness season pair",
+      "credit": "NASA Earth Observatory / MODIS Terra · EO #38367",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Flood-pulse travel map",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "great-salt-lake-two-colors",
+    "lencois-maranhenses"
+  ],
+  "waypointConnections": [
+    {
+      "id": "landscape-interpretation",
+      "label": "Read an inland delta",
+      "href": "/apps/landscape-interpretation/",
+      "note": "Practice seeing fans, channels, and floodplains as systems — not scenery."
+    }
+  ]
+}

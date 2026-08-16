@@ -82,6 +82,48 @@
       "heroAlt": "Landsat image of an elongated lenticular cloud (Taieri Pet) over New Zealand’s South Island",
       "path": "stories/lenticular-clouds-explained/",
       "data": "data/deep-forest-dispatch/stories/lenticular-clouds-explained.json"
+    },
+    {
+      "id": "okavango-dry-season-flood",
+      "slug": "okavango-dry-season-flood",
+      "title": "Why the Okavango Delta floods in the dry season",
+      "subtitle": "Okavango Delta · Botswana",
+      "shortDescription": "Angolan highland rain arrives months late as a flood pulse through the Okavango.",
+      "cardLocation": "Okavango Delta, Botswana",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/okavango/story-hero.jpg",
+      "heroAlt": "Sunglint view from the ISS of the Okavango River flood advancing across the delta",
+      "path": "stories/okavango-dry-season-flood/",
+      "data": "data/deep-forest-dispatch/stories/okavango-dry-season-flood.json"
+    },
+    {
+      "id": "eye-of-the-sahara-richat",
+      "slug": "eye-of-the-sahara-richat",
+      "title": "What carved the Eye of the Sahara?",
+      "subtitle": "Richat Structure · Mauritania",
+      "shortDescription": "The Richat Structure’s rings are uplift and differential erosion — not a meteor crater.",
+      "cardLocation": "Richat Structure, Mauritania",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/richat/story-hero.jpg",
+      "heroAlt": "Landsat view of the Richat Structure’s concentric rings in the Mauritanian desert",
+      "path": "stories/eye-of-the-sahara-richat/",
+      "data": "data/deep-forest-dispatch/stories/eye-of-the-sahara-richat.json"
+    },
+    {
+      "id": "namib-dunes-moving-satellites",
+      "slug": "namib-dunes-moving-satellites",
+      "title": "Satellites caught these dunes moving",
+      "subtitle": "Sperrgebiet · southern Namib · Namibia",
+      "shortDescription": "Registered Landsat frames show Namib barchans migrating north — measured in meters per year.",
+      "cardLocation": "Sperrgebiet, Namibia",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/namib-dunes/story-hero.jpg",
+      "heroAlt": "Landsat view of barchan and transverse dunes in the Sperrgebiet, southern Namib Desert",
+      "path": "stories/namib-dunes-moving-satellites/",
+      "data": "data/deep-forest-dispatch/stories/namib-dunes-moving-satellites.json"
     }
   ]
 }
