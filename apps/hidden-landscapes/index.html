@@ -51,6 +51,9 @@
           </p>
         </section>
 
+        <!-- Always-visible: import failures must not hide inside #hl-workspace -->
+        <p class="hl-status" id="hl-status" aria-live="polite" hidden></p>
+
         <!-- Discovery workspace: photo first -->
         <div id="hl-workspace" class="hl-discovery" hidden>
           <div class="hl-discovery__stage">
@@ -101,8 +104,6 @@
                 <button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="hl-toggle-view">Swap</button>
               </div>
             </div>
-
-            <p class="hl-status" id="hl-status" aria-live="polite" hidden></p>
           </div>
 
           <div class="hl-discovery__lenses">

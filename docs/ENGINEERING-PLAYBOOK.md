@@ -1453,6 +1453,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Author CSS `display:flex` on chips overrides the UA `[hidden]` rule — always pair interactive panels with `[hidden] { display: none !important }` or they leak empty-state chrome.
 - Scenes local nav: prefer wrap + shortLabels over `nowrap` + horizontal page scroll; rename “Other ways of seeing” to **Hidden Landscapes** so identity and overflow both improve.
 - Show the decoded photo immediately on load (before analysis settles) so “Looking closely…” never blanks the light table.
+- Keep `#hl-status` outside `#hl-workspace`: import/library/catalog failures call `setStatus` before a photo paints, and a `hidden` workspace swallows that live region.
+- Deep-link `?pillar=animal` must run the same compare defaults as `onPillar` (desktop `side`, mobile `toggle`); setting pillar/view alone leaves the slider.
 
 
 ### Lessons Learned — Moving Scenes owner-review motion exports (2026-08-14)

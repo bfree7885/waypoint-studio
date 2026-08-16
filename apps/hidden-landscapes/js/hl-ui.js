@@ -812,11 +812,7 @@
         var pillar = q.get("pillar") || q.get("mode");
         if (pillar === "animal-vision") pillar = "animal";
         if (pillar && ["light", "color", "structure", "animal"].indexOf(pillar) >= 0) {
-          state.pillar = pillar;
-          state.view = defaultViewForPillar(pillar);
-          renderPillars();
-          renderViews();
-          renderExplain();
+          onPillar(pillar);
         }
         var lib = q.get("libraryId") || q.get("photoId");
         if (lib) {
