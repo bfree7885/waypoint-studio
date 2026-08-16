@@ -1,12 +1,12 @@
 {
   "id": "mount-hood-rain-shadow",
   "slug": "mount-hood-rain-shadow",
-  "title": "Why one side of this mountain is a forest — and the other is a desert",
+  "title": "Why one side of this mountain is a forest \u2014 and the other is a desert",
   "subtitle": "Mount Hood / Cascade Range / Oregon High Desert",
-  "deck": "Stand on the wet western Cascades and the land feels endless green. Cross the range and the air thins into sage, dust, and open sky. The mountain is not magic — it is a barrier written into the weather.",
+  "deck": "Stand on the wet western Cascades and the land feels endless green. Cross the range and the air thins into sage, dust, and open sky. The mountain is not magic \u2014 it is a barrier written into the weather.",
   "shortDescription": "Pacific moisture, a mountain barrier, and the quiet geometry of a rain shadow.",
-  "seoTitle": "Why Mount Hood Is Forest on One Side and Desert on the Other — Deep Forest Dispatch",
-  "metaDescription": "Explore the Cascade rain shadow around Mount Hood: orographic lifting, cooling air, and why Oregon’s west is wet while the high desert stays dry.",
+  "seoTitle": "Why Mount Hood Is Forest on One Side and Desert on the Other \u2014 Deep Forest Dispatch",
+  "metaDescription": "Explore the Cascade rain shadow around Mount Hood: orographic lifting, cooling air, and why Oregon\u2019s west is wet while the high desert stays dry.",
   "ogImage": "/assets/images/deep-forest-dispatch/mount-hood/story-hero.jpg",
   "canonicalPath": "/deep-forest-dispatch/stories/mount-hood-rain-shadow/",
   "published": "2026-08-16",
@@ -22,9 +22,12 @@
   },
   "location": {
     "name": "Mount Hood",
-    "region": "Cascade Range · Oregon High Desert",
+    "region": "Cascade Range \u00b7 Oregon High Desert",
     "country": "United States",
-    "coordinates": { "lat": 45.3736, "lon": -121.6959 }
+    "coordinates": {
+      "lat": 45.3736,
+      "lon": -121.6959
+    }
   },
   "concepts": [
     "orographic lifting",
@@ -40,11 +43,11 @@
       "blocks": [
         {
           "type": "p",
-          "html": "West of the Cascades, moist Pacific air feeds temperate forests, deep moss, and frequent cloud. East of the range, the land opens into the Oregon High Desert and Columbia Plateau country — bright, dry, and often wind-scoured."
+          "html": "West of the Cascades, moist Pacific air feeds temperate forests, deep moss, and frequent cloud. East of the range, the land opens into the Oregon High Desert and Columbia Plateau country \u2014 bright, dry, and often wind-scoured."
         },
         {
           "type": "p",
-          "html": "Mount Hood is one of the Cascade volcanoes that make this divide visible. The mountain does not “create” two climates by itself; it stands inside a larger barrier system. Still, from trailheads to satellite views, Hood is a memorable place to feel the difference."
+          "html": "Mount Hood is one of the Cascade volcanoes that make this divide visible. The mountain does not \u201ccreate\u201d two climates by itself; it stands inside a larger barrier system. Still, from trailheads to satellite views, Hood is a memorable place to feel the difference."
         },
         {
           "type": "figure",
@@ -61,7 +64,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Follow the Cascade Range north–south through Oregon. On the west: Portland, the Willamette Valley, and forested Cascades foothills. On the east: high desert basins, sagebrush steppe, and agricultural valleys that depend on irrigation and snowmelt."
+          "html": "Follow the Cascade Range north\u2013south through Oregon. On the west: Portland, the Willamette Valley, and forested Cascades foothills. On the east: high desert basins, sagebrush steppe, and agricultural valleys that depend on irrigation and snowmelt."
         },
         {
           "type": "map",
@@ -74,8 +77,8 @@
           "type": "figure",
           "src": "../../../assets/images/deep-forest-dispatch/mount-hood/hood-columbia-perspective.jpg",
           "alt": "Perspective view of Portland, Mount Hood, and the Columbia River Gorge",
-          "caption": "Portland, Mount Hood, and the Columbia River Gorge in a NASA perspective view — west-side moisture country meeting a towering Cascade landmark.",
-          "credit": "NASA / JPL (PIA04966) · Public domain"
+          "caption": "Portland, Mount Hood, and the Columbia River Gorge in a NASA perspective view \u2014 west-side moisture country meeting a towering Cascade landmark.",
+          "credit": "NASA / JPL (PIA04966) \u00b7 Public domain"
         }
       ]
     },
@@ -113,7 +116,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Expanding air cools. Cooler air holds less water vapor. When cooling reaches the dew point, water vapor condenses into cloud droplets — and, often, precipitation."
+          "html": "Expanding air cools. Cooler air holds less water vapor. When cooling reaches the dew point, water vapor condenses into cloud droplets \u2014 and, often, precipitation."
         },
         {
           "type": "p",
@@ -134,7 +137,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "After releasing moisture on the climb, the air continues over the crest and descends on the lee side. Descending air compresses and warms. Warmer air can hold more moisture relative to what remains — so clouds thin and rainfall drops."
+          "html": "After releasing moisture on the climb, the air continues over the crest and descends on the lee side. Descending air compresses and warms. Warmer air can hold more moisture relative to what remains \u2014 so clouds thin and rainfall drops."
         },
         {
           "type": "p",
@@ -160,14 +163,14 @@
       "blocks": [
         {
           "type": "p",
-          "html": "From orbit, Cascade volcanoes puncture cloud decks and snowfields. Valleys west of the crest often look softer and greener; basins to the east read as more open and arid. The pattern is regional — Mount Hood is one vivid chapter in a longer Cascade story."
+          "html": "From orbit, Cascade volcanoes puncture cloud decks and snowfields. Valleys west of the crest often look softer and greener; basins to the east read as more open and arid. The pattern is regional \u2014 Mount Hood is one vivid chapter in a longer Cascade story."
         },
         {
           "type": "figure",
           "src": "../../../assets/images/deep-forest-dispatch/mount-hood/cascades-from-iss.jpg",
           "alt": "Earth observation of Cascade terrain from the International Space Station",
-          "caption": "ISS Earth observation across Cascade terrain — a reminder that climate contrasts can be geographic, not mysterious.",
-          "credit": "NASA / ISS (iss020e028123) · Public domain"
+          "caption": "ISS Earth observation across Cascade terrain \u2014 a reminder that climate contrasts can be geographic, not mysterious.",
+          "credit": "NASA / ISS (iss020e028123) \u00b7 Public domain"
         }
       ]
     },
@@ -177,29 +180,29 @@
       "blocks": [
         {
           "type": "p",
-          "html": "If this contrast made you want to read conditions before a trip west of the Cascades — or plan a photograph in shifting mountain light — Waypoint’s outdoor tools are built for that next step."
+          "html": "If this contrast made you want to read conditions before a trip west of the Cascades \u2014 or plan a photograph in shifting mountain light \u2014 Waypoint\u2019s outdoor tools are built for that next step."
         }
       ]
     }
   ],
   "sources": [
     {
-      "label": "NOAA JetStream — Orographic lifting & rain shadows",
+      "label": "NOAA JetStream \u2014 Orographic lifting & rain shadows",
       "url": "https://www.noaa.gov/jetstream/synoptic/orographic-lifting",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — Mountain weather & rain shadows (background)",
+      "label": "NASA Earth Observatory \u2014 Mountain weather & rain shadows (background)",
       "url": "https://earthobservatory.nasa.gov/",
       "kind": "scientific"
     },
     {
-      "label": "USGS Cascades Volcano Observatory — Mount Hood",
+      "label": "USGS Cascades Volcano Observatory \u2014 Mount Hood",
       "url": "https://www.usgs.gov/volcanoes/mount-hood",
       "kind": "scientific"
     },
     {
-      "label": "PRISM Climate Group — Pacific Northwest precipitation patterns",
+      "label": "PRISM Climate Group \u2014 Pacific Northwest precipitation patterns",
       "url": "https://prism.oregonstate.edu/",
       "kind": "dataset"
     }
@@ -217,15 +220,18 @@
     },
     {
       "asset": "Educational atmospheric illustrations & rain-shadow diagram",
-      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "credit": "Waypoint Studio \u00b7 Deep Forest Dispatch",
       "license": "Waypoint Studio editorial"
     }
   ],
-  "relatedStories": ["lenticular-clouds-explained", "valley-fog-at-dawn", "lencois-maranhenses"],
+  "relatedStories": [
+    "columbia-glacier-satellite-retreat",
+    "lenticular-clouds-explained"
+  ],
   "waypointConnections": [
     {
       "id": "dashboard",
-      "label": "See today’s conditions",
+      "label": "See today\u2019s conditions",
       "href": "/apps/dashboard/",
       "note": "Check weather, light, and outdoor context before you go."
     },
@@ -233,7 +239,7 @@
       "id": "scenes",
       "label": "Plan a photo",
       "href": "/apps/scenes/",
-      "note": "Mountain light changes fast — review and learn with Scenes."
+      "note": "Mountain light changes fast \u2014 review and learn with Scenes."
     },
     {
       "id": "landscape-interpretation",

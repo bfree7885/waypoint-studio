@@ -134,6 +134,15 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD Article Production Batch #3 (First-10 complete)
+
+**Branch:** `cursor/dfd-article-batch-3-efa3` · **Review:** `docs/deep-forest-dispatch/batch-3/OWNER-REVIEW.md` · **Portfolio:** `docs/deep-forest-dispatch/DFD-INITIAL-PORTFOLIO-REPORT.md`
+
+1. **Force the evidence gate on change stories** — Columbia kept; title adjusted to “nearly 40 years” to match 1986–2024 Landsat, not a round marketing number.
+2. **Empty Waypoint CTAs are valid** — remote terminal-basin / heritage-island stories need not invent instrument links; tests must allow zero connections.
+3. **Partial vs complete** — Lake Eyre teaching moment: registered fill stages beat “the desert becomes a sea every year.”
+4. **STOP after First-10** — portfolio diagnostic is not a backlog generator; next phase is publish → measure.
+
 ### 2026-08-16 — DFD Article Production Batch #2
 
 **Branch:** `cursor/dfd-article-batch-2-efa3` · **Review:** `docs/deep-forest-dispatch/batch-2/OWNER-REVIEW.md`

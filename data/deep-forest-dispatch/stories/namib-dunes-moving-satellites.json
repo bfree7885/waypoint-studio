@@ -2,11 +2,11 @@
   "id": "namib-dunes-moving-satellites",
   "slug": "namib-dunes-moving-satellites",
   "title": "Satellites caught these dunes moving",
-  "subtitle": "Sperrgebiet · southern Namib · Namibia",
-  "deck": "Watch a dune for a minute and it looks eternal. Watch the same corridor year by year and the crescents march. Landsat does not argue — it overlays the evidence.",
-  "shortDescription": "Registered Landsat frames show Namib barchans migrating north — measured in meters per year.",
-  "seoTitle": "Satellites Caught These Dunes Moving — Namib Migration Explained — Deep Forest Dispatch",
-  "metaDescription": "Landsat time series shows Sperrgebiet dunes in Namibia migrating meters per year — how satellites prove motion and how dunes actually advance.",
+  "subtitle": "Sperrgebiet \u00b7 southern Namib \u00b7 Namibia",
+  "deck": "Watch a dune for a minute and it looks eternal. Watch the same corridor year by year and the crescents march. Landsat does not argue \u2014 it overlays the evidence.",
+  "shortDescription": "Registered Landsat frames show Namib barchans migrating north \u2014 measured in meters per year.",
+  "seoTitle": "Satellites Caught These Dunes Moving \u2014 Namib Migration Explained \u2014 Deep Forest Dispatch",
+  "metaDescription": "Landsat time series shows Sperrgebiet dunes in Namibia migrating meters per year \u2014 how satellites prove motion and how dunes actually advance.",
   "ogImage": "/assets/images/deep-forest-dispatch/namib-dunes/story-hero.jpg",
   "canonicalPath": "/deep-forest-dispatch/stories/namib-dunes-moving-satellites/",
   "published": "2026-08-16",
@@ -16,15 +16,18 @@
   "hero": {
     "src": "../../../assets/images/deep-forest-dispatch/namib-dunes/story-hero.jpg",
     "alt": "Landsat view of barchan and transverse dunes in the Sperrgebiet, southern Namib Desert, from the 2022 end of a registered time series",
-    "credit": "NASA Earth Observatory · Landsat 8/9 sequence (Racing Dunes)",
+    "credit": "NASA Earth Observatory \u00b7 Landsat 8/9 sequence (Racing Dunes)",
     "license": "Public domain (NASA)",
     "provenance": "nasa-eo-150808"
   },
   "location": {
     "name": "Sperrgebiet dune corridors",
-    "region": "Southern Namib Desert · Namibia",
+    "region": "Southern Namib Desert \u00b7 Namibia",
     "country": "Namibia",
-    "coordinates": { "lat": -27.4, "lon": 15.6 }
+    "coordinates": {
+      "lat": -27.4,
+      "lon": 15.6
+    }
   },
   "concepts": [
     "dune migration",
@@ -40,7 +43,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "In Namibia’s Sperrgebiet — the southern Namib — crescent barchans and transverse ridges sit in a fierce south-to-southwest wind corridor. NASA Earth Observatory assembled annual Landsat 8 and 9 scenes from <strong>2013 to 2022</strong>. Drag the handle: the dunes do not stay put."
+          "html": "In Namibia\u2019s Sperrgebiet \u2014 the southern Namib \u2014 crescent barchans and transverse ridges sit in a fierce south-to-southwest wind corridor. NASA Earth Observatory assembled annual Landsat 8 and 9 scenes from <strong>2013 to 2022</strong>. Drag the handle: the dunes do not stay put."
         },
         {
           "type": "compare",
@@ -54,11 +57,11 @@
             "src": "../../../assets/images/deep-forest-dispatch/namib-dunes/year-b-labeled.jpg",
             "alt": "Landsat frame of the same Sperrgebiet corridor circa 2022 showing northward dune migration"
           },
-          "caption": "Registered Landsat corridor from NASA EO “Racing Dunes in Namibia” — first and last frames of the 2013–2022 annual sequence. North is toward the top of the frame as presented in the EO animation."
+          "caption": "Registered Landsat corridor from NASA EO \u201cRacing Dunes in Namibia\u201d \u2014 first and last frames of the 2013\u20132022 annual sequence. North is toward the top of the frame as presented in the EO animation."
         },
         {
           "type": "p",
-          "html": "Researchers using ASTER and COSI-Corr co-registration report average migration in this region on the order of <strong>~7–32 meters per year</strong>, with large dunes near ~9 m/yr and some smaller dunes much faster — locally reported up to ~83 m/yr. Forms can persist while positions shift; smaller dunes may appear and vanish."
+          "html": "Researchers using ASTER and COSI-Corr co-registration report average migration in this region on the order of <strong>~7\u201332 meters per year</strong>, with large dunes near ~9 m/yr and some smaller dunes much faster \u2014 locally reported up to ~83 m/yr. Forms can persist while positions shift; smaller dunes may appear and vanish."
         }
       ]
     },
@@ -68,20 +71,20 @@
       "blocks": [
         {
           "type": "p",
-          "html": "The southern Namib is a high-energy wind regime. Dark barchan trains march northward along sand-transport pathways feeding the Namib Sand Sea. That combination — persistent wind, measurable rates, and a clean satellite record — is why this location clears an evidence gate that a generic “dunes move” essay would fail."
+          "html": "The southern Namib is a high-energy wind regime. Dark barchan trains march northward along sand-transport pathways feeding the Namib Sand Sea. That combination \u2014 persistent wind, measurable rates, and a clean satellite record \u2014 is why this location clears an evidence gate that a generic \u201cdunes move\u201d essay would fail."
         },
         {
           "type": "map",
           "lat": -27.4,
           "lon": 15.6,
           "zoom": 8,
-          "caption": "Southern Namibia — Sperrgebiet corridors between coastal sand sources and the Namib Sand Sea."
+          "caption": "Southern Namibia \u2014 Sperrgebiet corridors between coastal sand sources and the Namib Sand Sea."
         }
       ]
     },
     {
       "id": "mechanism",
-      "heading": "Grain by grain — not a sliding pile",
+      "heading": "Grain by grain \u2014 not a sliding pile",
       "blocks": [
         {
           "type": "p",
@@ -94,7 +97,7 @@
         },
         {
           "type": "aside",
-          "html": "Size matters: larger dunes often move more slowly and keep their outline; smaller ones can race — and sometimes disappear between annual scenes."
+          "html": "Size matters: larger dunes often move more slowly and keep their outline; smaller ones can race \u2014 and sometimes disappear between annual scenes."
         }
       ]
     },
@@ -104,7 +107,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "These frames are evidence of displacement in a published, registered sequence — not a decorative wipe on one photo. Rates quoted here come from peer-reviewed remote-sensing work and NASA EO’s summary of that research, not from hand-measuring pixels on this page."
+          "html": "These frames are evidence of displacement in a published, registered sequence \u2014 not a decorative wipe on one photo. Rates quoted here come from peer-reviewed remote-sensing work and NASA EO\u2019s summary of that research, not from hand-measuring pixels on this page."
         },
         {
           "type": "p",
@@ -115,31 +118,31 @@
   ],
   "sources": [
     {
-      "label": "NASA Earth Observatory — Racing Dunes in Namibia",
+      "label": "NASA Earth Observatory \u2014 Racing Dunes in Namibia",
       "url": "https://science.nasa.gov/earth/earth-observatory/racing-dunes-in-namibia-150808/",
       "kind": "scientific"
     },
     {
-      "label": "Scheidt & Lancaster — Southern Namib dune dynamics (ASTER / COSI-Corr)",
+      "label": "Scheidt & Lancaster \u2014 Southern Namib dune dynamics (ASTER / COSI-Corr)",
       "url": "https://onlinelibrary.wiley.com/doi/10.1002/esp.3383",
       "kind": "scientific"
     }
   ],
   "credits": [
     {
-      "asset": "Landsat 8/9 Sperrgebiet annual sequence (2013–2022)",
-      "credit": "NASA Earth Observatory — Racing Dunes in Namibia (EO #150808); Landsat data from USGS",
+      "asset": "Landsat 8/9 Sperrgebiet annual sequence (2013\u20132022)",
+      "credit": "NASA Earth Observatory \u2014 Racing Dunes in Namibia (EO #150808); Landsat data from USGS",
       "license": "Public domain"
     },
     {
       "asset": "Dune migration mechanism diagram",
-      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "credit": "Waypoint Studio \u00b7 Deep Forest Dispatch",
       "license": "Waypoint Studio editorial"
     }
   ],
   "relatedStories": [
-    "lencois-maranhenses",
-    "eye-of-the-sahara-richat"
+    "kgari-rainforest-on-sand",
+    "columbia-glacier-satellite-retreat"
   ],
   "waypointConnections": [
     {

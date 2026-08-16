@@ -27,6 +27,14 @@ Editorial imagery for `/deep-forest-dispatch/`.
 | `okavango/season-*-greenness.jpg` | NASA EO MODIS Botswana pair (EO #38367) |
 | `richat/story-hero.jpg`, `from-orbit.jpg` | NASA EO Landsat Richat (2026-03-06) |
 | `namib-dunes/year-*.jpg`, `story-hero.jpg` | NASA EO Racing Dunes Landsat sequence (EO #150808) |
+| `kati-thanda/story-hero.jpg`, `season-*.jpg` | NASA EO Landsat / MODIS Lake Eyre 2025 (#154451, Blushes) |
+| `scablands/story-hero.jpg`, `channels-detail.jpg` | NASA EO Landsat Scablands (#92025, #152173) |
+| `kgari/story-hero.jpg` | NASA ISS `ISS017-E-16521` (EO #35541) |
+| `columbia-glacier/year-*.jpg`, `story-hero.jpg` | NASA EO World of Change Columbia / #153291 |
+| `diagrams/lake-eyre-desert-sea.*` | Waypoint educational basin travel map |
+| `diagrams/scablands-flood-path.*` | Waypoint educational Missoula flood-path map |
+| `diagrams/kgari-dune-succession.*` | Waypoint educational dune chronosequence |
+| `diagrams/columbia-tidewater-retreat.*` | Waypoint educational tidewater retreat schematic |
 | `diagrams/okavango-flood-pulse.*` | Waypoint educational flood-pulse travel map |
 | `diagrams/richat-rings-section.*` | Waypoint educational rings / cross-section |
 | `diagrams/dune-migration-mechanism.*` | Waypoint educational barchan migration mechanism |

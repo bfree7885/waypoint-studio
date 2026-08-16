@@ -2,11 +2,11 @@
   "id": "lencois-maranhenses",
   "slug": "lencois-maranhenses",
   "title": "It looks like a desert. It gets twice the rain of London.",
-  "subtitle": "Lençóis Maranhenses · Maranhão, Brazil",
-  "deck": "White dunes. Blue freshwater lagoons. A landscape that photographs like a desert — and receives roughly twice London’s annual rainfall. The mystery is not the sand. It is what the water is doing between the dunes.",
+  "subtitle": "Len\u00e7\u00f3is Maranhenses \u00b7 Maranh\u00e3o, Brazil",
+  "deck": "White dunes. Blue freshwater lagoons. A landscape that photographs like a desert \u2014 and receives roughly twice London\u2019s annual rainfall. The mystery is not the sand. It is what the water is doing between the dunes.",
   "shortDescription": "White dunes, freshwater lagoons, and a landscape that refuses the desert label.",
-  "seoTitle": "Lençóis Maranhenses: Looks Like a Desert, Gets Twice London’s Rain — Deep Forest Dispatch",
-  "metaDescription": "Why Lençóis Maranhenses isn’t a desert: seasonal rain, freshwater lagoons, migrating dunes, and what satellite views reveal between wet and dry seasons.",
+  "seoTitle": "Len\u00e7\u00f3is Maranhenses: Looks Like a Desert, Gets Twice London\u2019s Rain \u2014 Deep Forest Dispatch",
+  "metaDescription": "Why Len\u00e7\u00f3is Maranhenses isn\u2019t a desert: seasonal rain, freshwater lagoons, migrating dunes, and what satellite views reveal between wet and dry seasons.",
   "ogImage": "/assets/images/deep-forest-dispatch/lencois/lencois-hero.jpg",
   "canonicalPath": "/deep-forest-dispatch/stories/lencois-maranhenses/",
   "published": "2026-08-16",
@@ -15,16 +15,19 @@
   "youtubeUrl": null,
   "hero": {
     "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-hero.jpg",
-    "alt": "White dune fields of Lençóis Maranhenses photographed from the International Space Station",
+    "alt": "White dune fields of Len\u00e7\u00f3is Maranhenses photographed from the International Space Station",
     "credit": "NASA / ISS Earth observation (iss007e15177)",
     "license": "Public domain (NASA)",
     "provenance": "nasa-iss"
   },
   "location": {
-    "name": "Lençóis Maranhenses National Park",
-    "region": "Maranhão · Northeastern Brazil",
+    "name": "Len\u00e7\u00f3is Maranhenses National Park",
+    "region": "Maranh\u00e3o \u00b7 Northeastern Brazil",
     "country": "Brazil",
-    "coordinates": { "lat": -2.4858, "lon": -43.1283 }
+    "coordinates": {
+      "lat": -2.4858,
+      "lon": -43.1283
+    }
   },
   "concepts": [
     "seasonal rainfall",
@@ -40,28 +43,28 @@
       "blocks": [
         {
           "type": "p",
-          "html": "From a distance, Lençóis Maranhenses can look like emptiness: pale dunes under hard light. Walk closer in the right season and the hollows fill with startling blue-green freshwater. The scene feels impossible until you stop treating “desert” as a synonym for “sand.”"
+          "html": "From a distance, Len\u00e7\u00f3is Maranhenses can look like emptiness: pale dunes under hard light. Walk closer in the right season and the hollows fill with startling blue-green freshwater. The scene feels impossible until you stop treating \u201cdesert\u201d as a synonym for \u201csand.\u201d"
         },
         {
           "type": "p",
-          "html": "Sand is a surface texture. Climate is a water budget. Those two facts are easy to confuse in a photograph — and that confusion is exactly why this place rewards a slower look."
+          "html": "Sand is a surface texture. Climate is a water budget. Those two facts are easy to confuse in a photograph \u2014 and that confusion is exactly why this place rewards a slower look."
         },
         {
           "type": "figure",
           "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-iss-overview.jpg",
-          "alt": "ISS view of Lençóis Maranhenses dune field along Brazil’s northeastern coast",
-          "caption": "From orbit, the dune sheet reads as a pale coastal field — a place that invites the desert label until you ask about rainfall.",
-          "credit": "NASA / ISS (iss007e15177) · Public domain"
+          "alt": "ISS view of Len\u00e7\u00f3is Maranhenses dune field along Brazil\u2019s northeastern coast",
+          "caption": "From orbit, the dune sheet reads as a pale coastal field \u2014 a place that invites the desert label until you ask about rainfall.",
+          "credit": "NASA / ISS (iss007e15177) \u00b7 Public domain"
         }
       ]
     },
     {
       "id": "twice-london",
-      "heading": "Twice London’s rain",
+      "heading": "Twice London\u2019s rain",
       "blocks": [
         {
           "type": "p",
-          "html": "London’s long-term average precipitation is roughly on the order of <strong>~600 mm per year</strong>. Reported averages for the Lençóis Maranhenses region are commonly cited around <strong>~1,200–1,600+ mm per year</strong>, depending on station and period — roughly twice London’s rainfall (or more)."
+          "html": "London\u2019s long-term average precipitation is roughly on the order of <strong>~600 mm per year</strong>. Reported averages for the Len\u00e7\u00f3is Maranhenses region are commonly cited around <strong>~1,200\u20131,600+ mm per year</strong>, depending on station and period \u2014 roughly twice London\u2019s rainfall (or more)."
         },
         {
           "type": "p",
@@ -69,7 +72,7 @@
         },
         {
           "type": "aside",
-          "html": "<strong>Scientific caution:</strong> Precipitation figures depend on which stations and periods you use. Deep Forest Dispatch treats “twice London” as a fair order-of-magnitude comparison supported by commonly cited regional averages — not a single universal measurement."
+          "html": "<strong>Scientific caution:</strong> Precipitation figures depend on which stations and periods you use. Deep Forest Dispatch treats \u201ctwice London\u201d as a fair order-of-magnitude comparison supported by commonly cited regional averages \u2014 not a single universal measurement."
         }
       ]
     },
@@ -79,28 +82,28 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Lençóis Maranhenses National Park sits along Brazil’s northeastern Atlantic coast in the state of Maranhão. The name — “bedsheets of Maranhão” — nods to the ripple of white dunes that look, from above, like linens shaken out across the shore."
+          "html": "Len\u00e7\u00f3is Maranhenses National Park sits along Brazil\u2019s northeastern Atlantic coast in the state of Maranh\u00e3o. The name \u2014 \u201cbedsheets of Maranh\u00e3o\u201d \u2014 nods to the ripple of white dunes that look, from above, like linens shaken out across the shore."
         },
         {
           "type": "map",
           "lat": -2.4858,
           "lon": -43.1283,
           "zoom": 8,
-          "caption": "Northeastern Brazil coastal dune country — Atlantic moisture, trade winds, and a migrating sand sheet."
+          "caption": "Northeastern Brazil coastal dune country \u2014 Atlantic moisture, trade winds, and a migrating sand sheet."
         }
       ]
     },
     {
       "id": "not-a-desert",
-      "heading": "Why it isn’t actually a desert",
+      "heading": "Why it isn\u2019t actually a desert",
       "blocks": [
         {
           "type": "p",
-          "html": "Deserts are defined by dryness — typically very low annual precipitation and high evaporative demand — not by the presence of dunes. Many of Earth’s driest places have little sand. Many sandy places are not deserts."
+          "html": "Deserts are defined by dryness \u2014 typically very low annual precipitation and high evaporative demand \u2014 not by the presence of dunes. Many of Earth\u2019s driest places have little sand. Many sandy places are not deserts."
         },
         {
           "type": "p",
-          "html": "Lençóis Maranhenses receives a strongly seasonal rainfall regime. For part of the year, rain fills interdune depressions. For part of the year, the visible water retreats. The sand remains. The climate label should follow the water, not the Instagram palette."
+          "html": "Len\u00e7\u00f3is Maranhenses receives a strongly seasonal rainfall regime. For part of the year, rain fills interdune depressions. For part of the year, the visible water retreats. The sand remains. The climate label should follow the water, not the Instagram palette."
         }
       ]
     },
@@ -128,7 +131,7 @@
         },
         {
           "type": "p",
-          "html": "It is tempting to declare one impermeable layer as “the” mechanism. Reality is more local: water storage and movement depend on dune structure, underlying materials, and season. The honest summary is rainfall + shallow water table + interdune topography — not a single magic rock."
+          "html": "It is tempting to declare one impermeable layer as \u201cthe\u201d mechanism. Reality is more local: water storage and movement depend on dune structure, underlying materials, and season. The honest summary is rainfall + shallow water table + interdune topography \u2014 not a single magic rock."
         },
         {
           "type": "aside",
@@ -142,7 +145,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Picture the dunes as a wrinkled sheet. Rain adds water to the system. The water table rises. Where the land surface dips below that water level, a lagoon appears. Where dunes later migrate over a hollow, last year’s pool may vanish from the map and reappear elsewhere."
+          "html": "Picture the dunes as a wrinkled sheet. Rain adds water to the system. The water table rises. Where the land surface dips below that water level, a lagoon appears. Where dunes later migrate over a hollow, last year\u2019s pool may vanish from the map and reappear elsewhere."
         },
         {
           "type": "diagram",
@@ -157,7 +160,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Trade winds keep the dunes migrating. Reported movement can reach tens of meters per year in parts of the field — enough that lagoons are not permanent addresses. The park is a choreography of sand and season, not a fixed postcard."
+          "html": "Trade winds keep the dunes migrating. Reported movement can reach tens of meters per year in parts of the field \u2014 enough that lagoons are not permanent addresses. The park is a choreography of sand and season, not a fixed postcard."
         },
         {
           "type": "p",
@@ -171,21 +174,21 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Satellite and ISS views make the seasonal contrast intuitive: the same dune field can read as pale and “empty,” then suddenly laced with water. Deep Forest Dispatch’s wet/dry treatment below is an educational same-place comparison derived from NASA ISS imagery — built to preview the Landsat dry/wet storytelling used in production, with honest provenance."
+          "html": "Satellite and ISS views make the seasonal contrast intuitive: the same dune field can read as pale and \u201cempty,\u201d then suddenly laced with water. Deep Forest Dispatch\u2019s wet/dry treatment below is an educational same-place comparison derived from NASA ISS imagery \u2014 built to preview the Landsat dry/wet storytelling used in production, with honest provenance."
         },
         {
           "type": "compare",
           "before": {
             "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-dry-season-edu.jpg",
-            "alt": "Educational dry-season interpretation of Lençóis Maranhenses from ISS imagery"
+            "alt": "Educational dry-season interpretation of Len\u00e7\u00f3is Maranhenses from ISS imagery"
           },
           "after": {
             "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-wet-season-edu.jpg",
-            "alt": "Educational wet-season interpretation of Lençóis Maranhenses from ISS imagery"
+            "alt": "Educational wet-season interpretation of Len\u00e7\u00f3is Maranhenses from ISS imagery"
           },
           "labelBefore": "Drier reading",
           "labelAfter": "Wetter reading",
-          "caption": "Same place, different seasonal emphasis — educational interpretations derived from NASA ISS imagery (iss007e15177). Matched Landsat dry/wet pairs can replace these when final production assets are published."
+          "caption": "Same place, different seasonal emphasis \u2014 educational interpretations derived from NASA ISS imagery (iss007e15177). Matched Landsat dry/wet pairs can replace these when final production assets are published."
         }
       ]
     },
@@ -195,29 +198,29 @@
       "blocks": [
         {
           "type": "p",
-          "html": "If this landscape made you want to read weather honestly, study light for photography, or practice interpreting landforms, Waypoint’s tools are ready when you are."
+          "html": "If this landscape made you want to read weather honestly, study light for photography, or practice interpreting landforms, Waypoint\u2019s tools are ready when you are."
         }
       ]
     }
   ],
   "sources": [
     {
-      "label": "ICMBio — Parque Nacional dos Lençóis Maranhenses",
+      "label": "ICMBio \u2014 Parque Nacional dos Len\u00e7\u00f3is Maranhenses",
       "url": "https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/unidade-de-conservacao/unidades-de-biomas/marinho/lista-de-ucs/parna-dos-lencois-maranhenses",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — coastal dunes & seasonal lagoons (search Lençóis)",
+      "label": "NASA Earth Observatory \u2014 coastal dunes & seasonal lagoons (search Len\u00e7\u00f3is)",
       "url": "https://earthobservatory.nasa.gov/",
       "kind": "scientific"
     },
     {
-      "label": "NASA ISS Earth Observations — iss007e15177",
+      "label": "NASA ISS Earth Observations \u2014 iss007e15177",
       "url": "https://images.nasa.gov/details/iss007e15177",
       "kind": "imagery"
     },
     {
-      "label": "Met Office — UK climate averages (London precipitation context)",
+      "label": "Met Office \u2014 UK climate averages (London precipitation context)",
       "url": "https://www.metoffice.gov.uk/",
       "kind": "dataset"
     }
@@ -226,19 +229,22 @@
     {
       "asset": "ISS overview / hero / seasonal educational derivatives",
       "credit": "Base imagery: NASA / ISS (iss007e15177). Seasonal emphasis treatments: Waypoint Studio educational derivatives for DFD.",
-      "license": "NASA public domain base · Waypoint educational derivative labels required"
+      "license": "NASA public domain base \u00b7 Waypoint educational derivative labels required"
     },
     {
       "asset": "Water-table diagram",
-      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "credit": "Waypoint Studio \u00b7 Deep Forest Dispatch",
       "license": "Waypoint Studio editorial"
     }
   ],
-  "relatedStories": ["mount-hood-rain-shadow", "great-salt-lake-two-colors", "namib-dunes-moving-satellites"],
+  "relatedStories": [
+    "kgari-rainforest-on-sand",
+    "namib-dunes-moving-satellites"
+  ],
   "waypointConnections": [
     {
       "id": "dashboard",
-      "label": "See today’s conditions",
+      "label": "See today\u2019s conditions",
       "href": "/apps/dashboard/",
       "note": "Practice reading rainfall and season as decision context."
     },
@@ -246,7 +252,7 @@
       "id": "scenes",
       "label": "Plan a photo",
       "href": "/apps/scenes/",
-      "note": "High-contrast dune light is a craft problem — Scenes helps you review it."
+      "note": "High-contrast dune light is a craft problem \u2014 Scenes helps you review it."
     },
     {
       "id": "photo-coach",

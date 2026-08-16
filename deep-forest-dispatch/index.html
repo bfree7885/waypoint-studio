@@ -189,6 +189,67 @@
                 <p class="dfd-card__loc">Sperrgebiet, Namibia</p>
               </a>
             </li>
+
+            <li>
+              <a class="dfd-card" href="stories/kati-thanda-lake-eyre-fills/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/kati-thanda/story-hero.jpg"
+                    alt="Landsat view of colored residual water in Kati Thanda–Lake Eyre"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">When does the desert become a sea?</h2>
+                <p class="dfd-card__loc">Kati Thanda–Lake Eyre, Australia</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/channeled-scablands-floods/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/scablands/story-hero.jpg"
+                    alt="Landsat mosaic of flood-scoured Channeled Scablands channels"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Why does this landscape look flood-carved?</h2>
+                <p class="dfd-card__loc">Channeled Scablands, Washington</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/kgari-rainforest-on-sand/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/kgari/story-hero.jpg"
+                    alt="Astronaut view of Sandy Cape dunes and vegetated older dune fields on K'gari"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">How can a rainforest grow on pure sand?</h2>
+                <p class="dfd-card__loc">K'gari, Australia</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/columbia-glacier-satellite-retreat/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/columbia-glacier/story-hero.jpg"
+                    alt="Landsat view of Columbia Glacier’s retreated terminus in 2024"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">What nearly 40 years of satellites reveal about Columbia Glacier</h2>
+                <p class="dfd-card__loc">Columbia Glacier, Alaska</p>
+              </a>
+            </li>
           </ul>
         </div>
       </section>
@@ -215,7 +276,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       var el = document.getElementById("dfd-library");
       if (window.WDS && WDS.dfd && WDS.dfd.analytics) {
-        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 8 });
+        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 12 });
         WDS.dfd.analytics.bindClicks(el || document);
       }
       // Catalog-driven refresh keeps future stories automatic without removing crawlable HTML.

@@ -2,11 +2,11 @@
   "id": "eye-of-the-sahara-richat",
   "slug": "eye-of-the-sahara-richat",
   "title": "What carved the Eye of the Sahara?",
-  "subtitle": "Richat Structure · Mauritania",
-  "deck": "From orbit it looks like a gigantic bullseye — the sort of circle Earth makes when something hits hard. Field geology says otherwise: this is a deeply eroded dome, not a simple impact scar.",
-  "shortDescription": "The Richat Structure’s rings are uplift and differential erosion — not a meteor crater.",
-  "seoTitle": "What Carved the Eye of the Sahara? Richat Structure Explained — Deep Forest Dispatch",
-  "metaDescription": "The Eye of the Sahara is a deeply eroded geologic dome in Mauritania — why it looks like an impact crater and what evidence rules that out.",
+  "subtitle": "Richat Structure \u00b7 Mauritania",
+  "deck": "From orbit it looks like a gigantic bullseye \u2014 the sort of circle Earth makes when something hits hard. Field geology says otherwise: this is a deeply eroded dome, not a simple impact scar.",
+  "shortDescription": "The Richat Structure\u2019s rings are uplift and differential erosion \u2014 not a meteor crater.",
+  "seoTitle": "What Carved the Eye of the Sahara? Richat Structure Explained \u2014 Deep Forest Dispatch",
+  "metaDescription": "The Eye of the Sahara is a deeply eroded geologic dome in Mauritania \u2014 why it looks like an impact crater and what evidence rules that out.",
   "ogImage": "/assets/images/deep-forest-dispatch/richat/story-hero.jpg",
   "canonicalPath": "/deep-forest-dispatch/stories/eye-of-the-sahara-richat/",
   "published": "2026-08-16",
@@ -15,16 +15,19 @@
   "youtubeUrl": null,
   "hero": {
     "src": "../../../assets/images/deep-forest-dispatch/richat/story-hero.jpg",
-    "alt": "Landsat view of the Richat Structure’s concentric rings in the Mauritanian desert",
-    "credit": "NASA Earth Observatory / Lauren Dauphin · Landsat 8 OLI",
+    "alt": "Landsat view of the Richat Structure\u2019s concentric rings in the Mauritanian desert",
+    "credit": "NASA Earth Observatory / Lauren Dauphin \u00b7 Landsat 8 OLI",
     "license": "Public domain (NASA)",
     "provenance": "nasa-eo-richat-20260306"
   },
   "location": {
     "name": "Richat Structure",
-    "region": "Adrar Plateau · Mauritania",
+    "region": "Adrar Plateau \u00b7 Mauritania",
     "country": "Mauritania",
-    "coordinates": { "lat": 21.124, "lon": -11.398 }
+    "coordinates": {
+      "lat": 21.124,
+      "lon": -11.398
+    }
   },
   "concepts": [
     "geologic dome",
@@ -40,7 +43,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "About forty kilometers across, the Richat Structure sits in Mauritania’s Adrar desert as a set of nested rings. Astronauts noticed it early; the internet never forgot. Circles that large invite one story: a meteor."
+          "html": "About forty kilometers across, the Richat Structure sits in Mauritania\u2019s Adrar desert as a set of nested rings. Astronauts noticed it early; the internet never forgot. Circles that large invite one story: a meteor."
         },
         {
           "type": "p",
@@ -59,7 +62,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "In 1969, Dietz, Fudali, and Cassidy examined Richat as a possible astrobleme. They found <strong>no shock features</strong> — no shocked quartz, no shatter cones, none of the petrographic fingerprints impact leaves behind. They dismissed a meteor origin. Later work has not revived it."
+          "html": "In 1969, Dietz, Fudali, and Cassidy examined Richat as a possible astrobleme. They found <strong>no shock features</strong> \u2014 no shocked quartz, no shatter cones, none of the petrographic fingerprints impact leaves behind. They dismissed a meteor origin. Later work has not revived it."
         },
         {
           "type": "p",
@@ -70,7 +73,7 @@
           "lat": 21.124,
           "lon": -11.398,
           "zoom": 8,
-          "caption": "Central Mauritania — the Eye sits in Proterozoic–Paleozoic strata of the Taoudeni basin margin."
+          "caption": "Central Mauritania \u2014 the Eye sits in Proterozoic\u2013Paleozoic strata of the Taoudeni basin margin."
         }
       ]
     },
@@ -80,17 +83,17 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Current understanding treats Richat as a <strong>deeply eroded geologic dome</strong> — rock arched upward above intrusive and hydrothermal activity, then planed by weathering. Harder beds stand as circular ridges (cuestas); softer beds wear into the valleys between them. From above, that pattern reads as an eye."
+          "html": "Current understanding treats Richat as a <strong>deeply eroded geologic dome</strong> \u2014 rock arched upward above intrusive and hydrothermal activity, then planed by weathering. Harder beds stand as circular ridges (cuestas); softer beds wear into the valleys between them. From above, that pattern reads as an eye."
         },
         {
           "type": "p",
-          "html": "Peer-reviewed work describes an alkaline–hydrothermal complex and related intrusion history. Recent dating studies argue for a <strong>polyphase</strong> igneous story separated by long intervals — more than a single neat event. The rings you see today are the eroded expression of that architecture, not a finished “solved volcano” cartoon."
+          "html": "Peer-reviewed work describes an alkaline\u2013hydrothermal complex and related intrusion history. Recent dating studies argue for a <strong>polyphase</strong> igneous story separated by long intervals \u2014 more than a single neat event. The rings you see today are the eroded expression of that architecture, not a finished \u201csolved volcano\u201d cartoon."
         }
       ]
     },
     {
       "id": "uncertainty",
-      "heading": "What is clear — and what is still being refined",
+      "heading": "What is clear \u2014 and what is still being refined",
       "blocks": [
         {
           "type": "p",
@@ -105,27 +108,27 @@
   ],
   "sources": [
     {
-      "label": "Dietz, Fudali & Cassidy 1969 — Richat not an astrobleme (GSA Bulletin)",
+      "label": "Dietz, Fudali & Cassidy 1969 \u2014 Richat not an astrobleme (GSA Bulletin)",
       "url": "https://doi.org/10.1130/0016-7606(1969)80[1367:RASDMN]2.0.CO;2",
       "kind": "scientific"
     },
     {
-      "label": "Matton et al. 2005 — Doming above an alkaline complex (Geology)",
+      "label": "Matton et al. 2005 \u2014 Doming above an alkaline complex (Geology)",
       "url": "https://doi.org/10.1130/G21542AR.1",
       "kind": "scientific"
     },
     {
-      "label": "Matton & Jébrak 2014 — Eye of Africa alkaline–hydrothermal complex",
+      "label": "Matton & J\u00e9brak 2014 \u2014 Eye of Africa alkaline\u2013hydrothermal complex",
       "url": "https://doi.org/10.1016/j.jafrearsci.2014.04.006",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — Eyeing the Richat Structure",
+      "label": "NASA Earth Observatory \u2014 Eyeing the Richat Structure",
       "url": "https://science.nasa.gov/earth/earth-observatory/eyeing-the-richat-structure/",
       "kind": "scientific"
     },
     {
-      "label": "IUGS Geoheritage — Richat Cretaceous alkaline complex",
+      "label": "IUGS Geoheritage \u2014 Richat Cretaceous alkaline complex",
       "url": "https://iugs-geoheritage.org/geoheritage_sites/richat-structure-a-cretaceous-alkaline-complex/",
       "kind": "scientific"
     }
@@ -138,20 +141,20 @@
     },
     {
       "asset": "Richat rings / cross-section diagram",
-      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "credit": "Waypoint Studio \u00b7 Deep Forest Dispatch",
       "license": "Waypoint Studio editorial"
     }
   ],
   "relatedStories": [
-    "mount-hood-rain-shadow",
-    "great-salt-lake-two-colors"
+    "channeled-scablands-floods",
+    "mount-hood-rain-shadow"
   ],
   "waypointConnections": [
     {
       "id": "landscape-interpretation",
       "label": "Practice reading rings",
       "href": "/apps/landscape-interpretation/",
-      "note": "Circular landforms invite stories — evidence decides which ones survive."
+      "note": "Circular landforms invite stories \u2014 evidence decides which ones survive."
     }
   ]
 }

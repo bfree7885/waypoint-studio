@@ -2,11 +2,11 @@
   "id": "okavango-dry-season-flood",
   "slug": "okavango-dry-season-flood",
   "title": "Why the Okavango Delta floods in the dry season",
-  "subtitle": "Okavango Delta · Botswana",
-  "deck": "When Botswana is driest, the Okavango often looks wettest. The water did not invent itself. It fell as rain months earlier — far away in Angola — and is only now finishing a slow journey across a nearly flat fan.",
+  "subtitle": "Okavango Delta \u00b7 Botswana",
+  "deck": "When Botswana is driest, the Okavango often looks wettest. The water did not invent itself. It fell as rain months earlier \u2014 far away in Angola \u2014 and is only now finishing a slow journey across a nearly flat fan.",
   "shortDescription": "Angolan highland rain arrives months late as a flood pulse through the Okavango.",
-  "seoTitle": "Why the Okavango Delta Floods in the Dry Season — Flood Pulse Explained — Deep Forest Dispatch",
-  "metaDescription": "The Okavango’s dry-season flood is delayed river water from Angola — how distance, shallow gradients, and floodplains create the lag.",
+  "seoTitle": "Why the Okavango Delta Floods in the Dry Season \u2014 Flood Pulse Explained \u2014 Deep Forest Dispatch",
+  "metaDescription": "The Okavango\u2019s dry-season flood is delayed river water from Angola \u2014 how distance, shallow gradients, and floodplains create the lag.",
   "ogImage": "/assets/images/deep-forest-dispatch/okavango/story-hero.jpg",
   "canonicalPath": "/deep-forest-dispatch/stories/okavango-dry-season-flood/",
   "published": "2026-08-16",
@@ -22,16 +22,19 @@
   },
   "location": {
     "name": "Okavango Delta",
-    "region": "Northern Botswana · Kalahari endorheic basin",
+    "region": "Northern Botswana \u00b7 Kalahari endorheic basin",
     "country": "Botswana",
-    "coordinates": { "lat": -19.25, "lon": 22.75 }
+    "coordinates": {
+      "lat": -19.25,
+      "lon": 22.75
+    }
   },
   "concepts": [
     "flood pulse",
     "endorheic basin",
     "alluvial fan",
     "travel-time lag",
-    "Cubango–Okavango"
+    "Cubango\u2013Okavango"
   ],
   "sections": [
     {
@@ -40,16 +43,16 @@
       "blocks": [
         {
           "type": "p",
-          "html": "In northern Botswana’s dry season, the Okavango Delta can expand into a glittering maze of channels and floodplains. Around it, the Kalahari looks thirsty. The paradox is only a paradox if you assume the water fell here last week."
+          "html": "In northern Botswana\u2019s dry season, the Okavango Delta can expand into a glittering maze of channels and floodplains. Around it, the Kalahari looks thirsty. The paradox is only a paradox if you assume the water fell here last week."
         },
         {
           "type": "p",
-          "html": "Most of the annual flood is a delayed pulse from summer rains in the Angolan highlands — water that has been traveling for months through the Cubango/Okavango system before it finishes spreading across this inland fan."
+          "html": "Most of the annual flood is a delayed pulse from summer rains in the Angolan highlands \u2014 water that has been traveling for months through the Cubango/Okavango system before it finishes spreading across this inland fan."
         },
         {
           "type": "diagram",
           "src": "../../../assets/images/deep-forest-dispatch/diagrams/okavango-flood-pulse.png",
-          "alt": "Map diagram showing rain in the Angolan highlands traveling down the Okavango system to flood the delta during Botswana’s dry season"
+          "alt": "Map diagram showing rain in the Angolan highlands traveling down the Okavango system to flood the delta during Botswana\u2019s dry season"
         }
       ]
     },
@@ -59,18 +62,18 @@
       "blocks": [
         {
           "type": "p",
-          "html": "The Okavango (Cubango in Angola) rises in sandy highland catchments, flows toward Namibia, and empties into northern Botswana as an <strong>endorheic</strong> alluvial fan — an inland delta. There is no ocean outlet. Water spreads, soaks, feeds wetland forests, and mostly leaves as vapor."
+          "html": "The Okavango (Cubango in Angola) rises in sandy highland catchments, flows toward Namibia, and empties into northern Botswana as an <strong>endorheic</strong> alluvial fan \u2014 an inland delta. There is no ocean outlet. Water spreads, soaks, feeds wetland forests, and mostly leaves as vapor."
         },
         {
           "type": "p",
-          "html": "Astronaut photographs in sunglint make the advancing flood look like a bright vein. NASA Earth Observatory notes that only a small fraction of the river’s water typically exits the delta at all."
+          "html": "Astronaut photographs in sunglint make the advancing flood look like a bright vein. NASA Earth Observatory notes that only a small fraction of the river\u2019s water typically exits the delta at all."
         },
         {
           "type": "map",
           "lat": -19.25,
           "lon": 22.75,
           "zoom": 6,
-          "caption": "Northern Botswana — the Okavango fan sits where Angolan highland water meets the Kalahari basin."
+          "caption": "Northern Botswana \u2014 the Okavango fan sits where Angolan highland water meets the Kalahari basin."
         }
       ]
     },
@@ -80,7 +83,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Highland rains are largely a southern-hemisphere summer story — commonly about November through March. The flood wave that reaches the delta inlet often builds later; analyses of a multi-decade hydrometric record show peak discharge at the inlet around April on average, with <strong>maximum inundated area often in August–September</strong> — deep into Botswana’s dry season."
+          "html": "Highland rains are largely a southern-hemisphere summer story \u2014 commonly about November through March. The flood wave that reaches the delta inlet often builds later; analyses of a multi-decade hydrometric record show peak discharge at the inlet around April on average, with <strong>maximum inundated area often in August\u2013September</strong> \u2014 deep into Botswana\u2019s dry season."
         },
         {
           "type": "p",
@@ -102,7 +105,7 @@
             "src": "../../../assets/images/deep-forest-dispatch/okavango/season-dry-greenness.jpg",
             "alt": "MODIS vegetation greenness map in the dry season showing the Okavango as a green oasis"
           },
-          "caption": "Regional “greenness” fades in the dry season — while the Okavango can remain a living oasis on delayed floodwater. MODIS Terra maps from NASA Earth Observatory."
+          "caption": "Regional \u201cgreenness\u201d fades in the dry season \u2014 while the Okavango can remain a living oasis on delayed floodwater. MODIS Terra maps from NASA Earth Observatory."
         }
       ]
     },
@@ -112,7 +115,7 @@
       "blocks": [
         {
           "type": "p",
-          "html": "Some years the pulse arrives early or overspills into neighboring systems. Local rainfall can raise levels inside already wet areas, and rare very wet years can expand inundation with the rains. The durable story is still the delayed highland flood — not magic water, and not “no rain involved.”"
+          "html": "Some years the pulse arrives early or overspills into neighboring systems. Local rainfall can raise levels inside already wet areas, and rare very wet years can expand inundation with the rains. The durable story is still the delayed highland flood \u2014 not magic water, and not \u201cno rain involved.\u201d"
         },
         {
           "type": "p",
@@ -123,22 +126,22 @@
   ],
   "sources": [
     {
-      "label": "Wolski & Murray-Hudson 2006 — Okavango flooding dynamics (HESS)",
+      "label": "Wolski & Murray-Hudson 2006 \u2014 Okavango flooding dynamics (HESS)",
       "url": "https://hess.copernicus.org/articles/10/127/2006/",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — Okavango Delta (ISS sunglint)",
+      "label": "NASA Earth Observatory \u2014 Okavango Delta (ISS sunglint)",
       "url": "https://science.nasa.gov/earth/earth-observatory/okavango-delta-84078/",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — Kalahari and Okavango Delta",
+      "label": "NASA Earth Observatory \u2014 Kalahari and Okavango Delta",
       "url": "https://science.nasa.gov/earth/earth-observatory/kalahari-and-okavango-delta-38367/",
       "kind": "scientific"
     },
     {
-      "label": "NASA Earth Observatory — Not Your Usual Flooding in Botswana",
+      "label": "NASA Earth Observatory \u2014 Not Your Usual Flooding in Botswana",
       "url": "https://science.nasa.gov/earth/earth-observatory/not-your-usual-flooding-in-botswana-78166/",
       "kind": "scientific"
     }
@@ -146,30 +149,30 @@
   "credits": [
     {
       "asset": "ISS Okavango sunglint (ISS040-E-8209)",
-      "credit": "NASA / ISS Crew Earth Observations · EO #84078",
+      "credit": "NASA / ISS Crew Earth Observations \u00b7 EO #84078",
       "license": "Public domain"
     },
     {
       "asset": "MODIS Botswana greenness season pair",
-      "credit": "NASA Earth Observatory / MODIS Terra · EO #38367",
+      "credit": "NASA Earth Observatory / MODIS Terra \u00b7 EO #38367",
       "license": "Public domain"
     },
     {
       "asset": "Flood-pulse travel map",
-      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "credit": "Waypoint Studio \u00b7 Deep Forest Dispatch",
       "license": "Waypoint Studio editorial"
     }
   ],
   "relatedStories": [
-    "great-salt-lake-two-colors",
-    "lencois-maranhenses"
+    "kati-thanda-lake-eyre-fills",
+    "great-salt-lake-two-colors"
   ],
   "waypointConnections": [
     {
       "id": "landscape-interpretation",
       "label": "Read an inland delta",
       "href": "/apps/landscape-interpretation/",
-      "note": "Practice seeing fans, channels, and floodplains as systems — not scenery."
+      "note": "Practice seeing fans, channels, and floodplains as systems \u2014 not scenery."
     }
   ]
 }
