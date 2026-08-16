@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 15 Aug 2026 12:14:55 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 00:36:01 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -85,15 +85,32 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <title>Visible planets and night sky guide for August</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Fri, 14 Aug 2026 08:30:08 GMT</pubDate>
+    <pubDate>Sat, 15 Aug 2026 08:30:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Venus shines brightly after sunset on August 14 and 15, with the moon near Venus. Venus reaches greatest elongation on August 15. The post Visible planets and night sky guide for August first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Look for Venus - at its greatest distance from the sunset - shining brightly in the west next to the waxing crescent moon. The post Visible planets and night sky guide for August first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Deep partial lunar eclipse on August 27-28, 2026</title>
+    <link>https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</guid>
+    <pubDate>Sat, 15 Aug 2026 06:53:05 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A deep partial lunar eclipse takes place of the full Sturgeon Moon on August 27-28, 2026, It&apos;s well placed for the Western Hemisphere. The post Deep partial lunar eclipse on August 27-28, 2026 first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -187,23 +204,6 @@ Read the original article at the publisher: https://www.audubon.org/florida/news
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Perseid meteor shower 2026! It’s time to watch</title>
-    <link>https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</guid>
-    <pubDate>Tue, 11 Aug 2026 12:00:01 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Perseid meteor shower peaks this week! It&apos;s best between midnight and dawn. The peak is August 12 and 13 before dawn, but watch around those mornings, too. The post Perseid meteor shower 2026! It’s time to watch first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/everything-you-need-to-know-perseid-meteor-shower/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
