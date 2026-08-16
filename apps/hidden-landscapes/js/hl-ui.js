@@ -1,5 +1,6 @@
 /**
- * Hidden Landscapes Studio — museum / field-lab / light-table UI
+ * Hidden Landscapes Studio — photo-first discovery UI
+ * Museum / field guide / light table — not a workstation.
  */
 (function (global) {
   "use strict";
@@ -11,6 +12,78 @@
   var Export = null;
 
   function $(id) { return document.getElementById(id); }
+
+  /** Discovery-facing one-liners (science stays in Why?). */
+  var OBSERVE = {
+    photo: { lead: "Your photograph — the reference for every comparison.", note: null },
+    luminance: {
+      lead: "Brightness alone — form without color.",
+      note: "Where light gathers, and where it falls away."
+    },
+    tonal: {
+      lead: "Shadows, midtones, and highlights as zones.",
+      note: "See how tonal weight is distributed across the frame."
+    },
+    concentration: {
+      lead: "Where the brightest energy collects.",
+      note: "Sky, specular water, or openings often dominate."
+    },
+    families: {
+      lead: "The main color families in this scene.",
+      note: "Chromatic structure at a glance — not a palette product."
+    },
+    "warm-cool": {
+      lead: "Warm and cool regions side by side.",
+      note: "Temperature relationships that organize outdoor light."
+    },
+    saturation: {
+      lead: "Where color is vivid, and where it stays quiet.",
+      note: "Accents often hide in overall green or brown landscapes."
+    },
+    edges: {
+      lead: "The bones of the photograph — where edges hold.",
+      note: "Foliage, shoreline, and textured ground usually light up."
+    },
+    texture: {
+      lead: "Smooth versus rough — local texture richness.",
+      note: "Separates quiet sky or water from busy vegetation."
+    },
+    "local-contrast": {
+      lead: "Neighborhood contrast that global looks can miss.",
+      note: "Form often returns when you read locally."
+    },
+    "estimated-depth": {
+      lead: "A soft near/far reading from haze and height cues.",
+      note: "Inferred only — not measured distance."
+    },
+    human: {
+      lead: "How this frame reads on a human RGB display.",
+      note: "Baseline for every animal comparison."
+    },
+    deer: {
+      lead: "Simulated deer color — red–green separations soften.",
+      note: null
+    },
+    canine: {
+      lead: "Simulated canine color — many reds and greens collapse.",
+      note: null
+    },
+    "bee-uv": {
+      lead: "Ultraviolet was never in this photograph.",
+      note: "An honest unavailable state — not a missing filter."
+    },
+    "bird-uv": {
+      lead: "Bird UV cannot be recovered from ordinary RGB.",
+      note: "Deferred rather than invented."
+    }
+  };
+
+  var PILLAR_PROMISE = {
+    light: "Where does light gather in this scene?",
+    color: "How do colors organize the landscape?",
+    structure: "What are the bones of this photograph?",
+    animal: "How might another visual system read this scene?"
+  };
 
   function mount() {
     Models = global.WaypointHLModels;
@@ -35,7 +108,7 @@
       showingSim: true,
       highlightRegion: null,
       busy: false,
-      exif: null
+      photoReady: false
     };
 
     var root = $("hl-studio");
@@ -53,14 +126,11 @@
       if (url) try { URL.revokeObjectURL(url); } catch (e) { /* ignore */ }
     }
 
-    function readExifLite(file) {
-      // Best-effort: prefer library camera fields; otherwise leave null (never invent).
-      return Promise.resolve(null);
-    }
-
     function updateSourceBadge() {
       var el = $("hl-source-badge");
       if (!el) return;
+      var has = !!state.source.kind;
+      el.hidden = !has;
       el.textContent = Models.sourceLabel(state.source);
       var choice = $("hl-source-choice");
       if (choice) {
@@ -77,14 +147,32 @@
       return state.originalImg;
     }
 
+    function showWorkspace(on) {
+      var imp = $("hl-import");
+      var work = $("hl-workspace");
+      if (imp) imp.hidden = !!on;
+      if (work) work.hidden = !on;
+      state.photoReady = !!on;
+      root.classList.toggle("hl-has-photo", !!on);
+      var hero = root.querySelector(".hl-hero");
+      if (hero) {
+        if (on) {
+          hero.classList.add("hl-hero--compact");
+        } else {
+          hero.classList.remove("hl-hero--compact");
+        }
+      }
+    }
+
     function renderPillars() {
       var host = $("hl-pillars");
       if (!host || !state.catalog) return;
       host.innerHTML = state.catalog.pillars.map(function (p) {
         var on = p.id === state.pillar;
+        var name = p.id === "animal" ? "Animal Vision" : p.name;
         return '<button type="button" class="hl-pillar' + (on ? " is-active" : "") +
           '" data-pillar="' + Models.esc(p.id) + '" aria-pressed="' + on + '">' +
-          Models.esc(p.name) + "</button>";
+          Models.esc(name) + "</button>";
       }).join("");
     }
 
@@ -96,23 +184,36 @@
       return "photo";
     }
 
+    function discoveryViews(pillar) {
+      // Hide raw "Photograph / Human" from primary chips — compare handles baseline.
+      return (pillar.views || []).filter(function (v) {
+        if (pillar.id === "animal") return v.id !== "human";
+        return v.id !== "photo";
+      });
+    }
+
     function renderViews() {
       var host = $("hl-views");
       if (!host || !state.catalog) return;
       var pillar = state.catalog.pillars.find(function (p) { return p.id === state.pillar; });
       if (!pillar) return;
-      host.innerHTML = pillar.views.map(function (v) {
+      var views = discoveryViews(pillar);
+      host.innerHTML = views.map(function (v) {
         var on = v.id === state.view;
         var ep = Models.epistemic(v.epistemic);
+        var label = v.id === "deer" ? "Deer" : v.id === "canine" ? "Canine" : v.name;
+        if (v.id === "bee-uv") label = "Bee / UV";
+        if (v.id === "bird-uv") label = "Bird / UV";
+        if (v.id === "edges") label = "Edges";
+        if (v.id === "estimated-depth") label = "Depth";
         return '<button type="button" class="hl-view' + (on ? " is-active" : "") +
           '" data-view="' + Models.esc(v.id) + '" aria-pressed="' + on + '">' +
-          '<span class="hl-view__name">' + Models.esc(v.name) + "</span>" +
-          '<span class="hl-ep ' + ep.className + '">' + Models.esc(ep.label) + "</span>" +
-          '<span class="hl-view__short">' + Models.esc(v.short) + "</span>" +
+          '<span class="hl-view__name">' + Models.esc(label) + "</span>" +
+          '<span class="hl-ep hl-ep--quiet ' + ep.className + '">' + Models.esc(ep.label) + "</span>" +
           "</button>";
       }).join("");
       var q = $("hl-pillar-question");
-      if (q) q.textContent = pillar.question || "";
+      if (q) q.textContent = PILLAR_PROMISE[state.pillar] || pillar.question || "";
     }
 
     function currentViewMeta() {
@@ -121,34 +222,57 @@
 
     function renderExplain() {
       var panel = $("hl-explain");
+      var whyBody = $("hl-why-body");
       if (!panel) return;
       var meta = currentViewMeta();
-      if (!meta) { panel.innerHTML = ""; return; }
+      if (!meta) { panel.innerHTML = ""; if (whyBody) whyBody.innerHTML = ""; return; }
       var v = meta.view;
-      var ep = Models.epistemic(v.epistemic);
+      var obs = OBSERVE[v.id] || { lead: v.short || v.what, note: null };
       var animalExtra = "";
+
       if (state.pillar === "animal" && (state.view === "deer" || state.view === "canine")) {
         var sp = (state.species.shipped || []).find(function (s) { return s.id === state.view; });
+        var ar = state.animalCache[state.view];
+        var photoBits = [];
+        if (ar && ar.metrics && ar.metrics.meanRgSeparationLoss >= 0.08) {
+          photoBits.push("In this photograph, red–green separations that look clear to us are substantially reduced.");
+        }
         if (sp) {
+          var changed = (sp.whatChanged || []).filter(function (w) {
+            return w.support !== "unavailable" && w.support !== "limited";
+          }).slice(0, 3);
           animalExtra =
-            '<div class="hl-what-changed"><h4>What changed</h4><ul>' +
-            sp.whatChanged.map(function (w) {
+            '<div class="hl-what-changed"><h3>What changed</h3><ul>' +
+            (photoBits.length ? "<li>" + Models.esc(photoBits[0]) + "</li>" : "") +
+            changed.map(function (w) {
               return "<li><strong>" + Models.esc(w.aspect) + "</strong> — " + Models.esc(w.change) + "</li>";
             }).join("") +
-            "</ul><p class=\"hl-display-limit\">" + Models.esc(state.species.displayLimitation) + "</p></div>";
+            "</ul></div>";
         }
       }
       if (state.pillar === "animal" && (state.view === "bee-uv" || state.view === "bird-uv")) {
-        animalExtra = '<p class="hl-unavailable-note" role="status">Educational unavailable state — UV was not measured by this photograph.</p>';
+        animalExtra = '<p class="hl-unavailable-note" role="status">Educational unavailable — UV was not measured by this photograph.</p>';
       }
+
       panel.innerHTML =
-        '<div class="hl-explain__ep ' + ep.className + '"><span class="hl-ep">' + Models.esc(ep.label) + "</span></div>" +
-        "<h3>" + Models.esc(v.name) + "</h3>" +
-        '<dl class="hl-explain__dl">' +
-          "<div><dt>What you're seeing</dt><dd>" + Models.esc(v.what) + "</dd></div>" +
-          "<div><dt>Why it matters</dt><dd>" + Models.esc(v.why) + "</dd></div>" +
-          "<div><dt>What Waypoint measured</dt><dd>" + Models.esc(v.measured) + "</dd></div>" +
-        "</dl>" + animalExtra;
+        '<p class="hl-explain__title">' + Models.esc(v.name) + "</p>" +
+        '<p class="hl-explain__lead">' + Models.esc(obs.lead) + "</p>" +
+        (obs.note ? '<p class="hl-explain__note">' + Models.esc(obs.note) + "</p>" : "") +
+        animalExtra;
+
+      if (whyBody) {
+        var ep = Models.epistemic(v.epistemic);
+        whyBody.innerHTML =
+          '<p><span class="hl-ep ' + ep.className + '">' + Models.esc(ep.label) + "</span></p>" +
+          "<dl>" +
+            "<div><dt>What you're seeing</dt><dd>" + Models.esc(v.what) + "</dd></div>" +
+            "<div><dt>Why it matters</dt><dd>" + Models.esc(v.why) + "</dd></div>" +
+            "<div><dt>What Waypoint measured</dt><dd>" + Models.esc(v.measured) + "</dd></div>" +
+          "</dl>" +
+          (state.species && state.species.displayLimitation && state.pillar === "animal"
+            ? '<p class="hl-display-limit">' + Models.esc(state.species.displayLimitation) + "</p>"
+            : "");
+      }
     }
 
     function renderSpectralUnavailable() {
@@ -156,7 +280,7 @@
       if (!host || !state.catalog) return;
       host.innerHTML = (state.catalog.spectralUnavailable || []).map(function (s) {
         return '<article class="hl-spectral__item"><h3>' + Models.esc(s.title) +
-          ' <span class="hl-ep hl-ep--unavailable">UNAVAILABLE</span></h3><p>' +
+          ' <span class="hl-ep hl-ep--quiet hl-ep--unavailable">UNAVAILABLE</span></h3><p>' +
           Models.esc(s.summary) + "</p></article>";
       }).join("");
     }
@@ -166,19 +290,23 @@
       if (!host) return;
       var ex = state.source.exif;
       if (!ex) {
-        host.innerHTML = "<p>No camera EXIF available for this source.</p>";
+        host.hidden = true;
+        host.textContent = "";
         return;
       }
       var parts = [];
-      if (ex.make || ex.model) parts.push(Models.esc([ex.make, ex.model].filter(Boolean).join(" ")));
-      if (ex.lens) parts.push(Models.esc(ex.lens));
-      if (ex.focalLengthMm != null) parts.push(Models.esc(ex.focalLengthMm + "mm"));
-      if (ex.fNumber != null) parts.push("f/" + Models.esc(ex.fNumber));
-      if (ex.exposureTimeSec != null) parts.push(Models.esc(ex.exposureTimeSec) + "s");
-      if (ex.iso != null) parts.push("ISO " + Models.esc(ex.iso));
-      host.innerHTML = parts.length
-        ? "<p>" + parts.join(" · ") + "</p>"
-        : "<p>No camera EXIF available for this source.</p>";
+      if (ex.make || ex.model) parts.push([ex.make, ex.model].filter(Boolean).join(" "));
+      if (ex.lens) parts.push(ex.lens);
+      if (ex.focalLengthMm != null) parts.push(ex.focalLengthMm + "mm");
+      if (ex.fNumber != null) parts.push("f/" + ex.fNumber);
+      if (ex.exposureTimeSec != null) parts.push(ex.exposureTimeSec + "s");
+      if (ex.iso != null) parts.push("ISO " + ex.iso);
+      if (!parts.length) {
+        host.hidden = true;
+        return;
+      }
+      host.hidden = false;
+      host.textContent = parts.join(" · ");
     }
 
     function getAnimalResult() {
@@ -195,17 +323,20 @@
         return;
       }
       var list = Discoveries.buildDiscoveries(state.analysis, getAnimalResult(), state.pillar, state.view);
+      // One primary + up to two supporting
+      list = list.slice(0, 3);
       if (!list.length) {
-        host.innerHTML = "<p class=\"hl-muted\">No strong, evidence-backed discoveries for this view yet.</p>";
+        host.innerHTML = "<p class=\"hl-muted\">Nothing strong enough to claim yet for this view.</p>";
         return;
       }
-      host.innerHTML = '<ul class="hl-disc-list">' + list.map(function (d) {
+      host.innerHTML = '<ul class="hl-disc-list">' + list.map(function (d, i) {
         var ep = Models.epistemic(d.epistemic);
         var btn = d.region
-          ? ' <button type="button" class="hl-disc-region" data-region="' + Models.esc(d.id) + '">Highlight region</button>'
+          ? ' <button type="button" class="hl-disc-region" data-region="' + Models.esc(d.id) + '">Highlight</button>'
           : "";
-        return '<li data-disc="' + Models.esc(d.id) + '"><span class="hl-ep ' + ep.className + '">' +
-          Models.esc(ep.label) + "</span> " + Models.esc(d.text) + btn + "</li>";
+        return '<li class="' + (i === 0 ? "is-primary" : "") + '" data-disc="' + Models.esc(d.id) + '">' +
+          '<span class="hl-ep hl-ep--quiet ' + ep.className + '">' + Models.esc(ep.label) + "</span> " +
+          Models.esc(d.text) + btn + "</li>";
       }).join("") + "</ul>";
       state._discMap = {};
       list.forEach(function (d) { state._discMap[d.id] = d; });
@@ -216,6 +347,17 @@
       canvas.width = fromData.width;
       canvas.height = fromData.height;
       canvas.getContext("2d").putImageData(fromData, 0, 0);
+    }
+
+    function blitImage(img, canvas) {
+      if (!img || !canvas) return;
+      var maxEdge = Math.min(1600, global.innerWidth > 900 ? 1600 : 1100);
+      var w = img.naturalWidth || img.width;
+      var h = img.naturalHeight || img.height;
+      var scale = Math.min(1, maxEdge / Math.max(w, h));
+      canvas.width = Math.max(1, Math.round(w * scale));
+      canvas.height = Math.max(1, Math.round(h * scale));
+      canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
     }
 
     function drawHighlight(ctx, region, w, h) {
@@ -241,14 +383,10 @@
     }
 
     function syncStage() {
-      var empty = $("hl-empty");
-      var work = $("hl-workspace");
-      var has = !!state.analysis;
-      if (empty) empty.hidden = has;
-      if (work) work.hidden = !has;
-      if (!has) return;
+      if (!state.photoReady) return;
 
-      var photo = state.analysis.views.photo;
+      var img = activeImage();
+      var photo = state.analysis ? state.analysis.views.photo : null;
       var viz = currentVizData();
       var unavailable = state.pillar === "animal" && state.animalCache[state.view] &&
         state.animalCache[state.view].status === "unavailable";
@@ -263,33 +401,54 @@
         }
       }
 
-      var showViz = unavailable ? photo : (viz || photo);
       var origC = $("hl-canvas-original");
       var resultC = $("hl-canvas-result");
       var base = $("hl-canvas-slider-base");
       var top = $("hl-canvas-slider-top");
       var toggle = $("hl-canvas-toggle");
 
-      blit(photo, origC);
-      blit(showViz, resultC);
-      blit(photo, base);
-      blit(showViz, top);
-      blit(state.showingSim ? showViz : photo, toggle);
-
-      // Region overlay on result
-      if (state.highlightRegion && resultC) {
-        var ctx = resultC.getContext("2d");
-        drawHighlight(ctx, state.highlightRegion, resultC.width, resultC.height);
+      // Photo visible during / before analysis
+      if (photo) {
+        var showViz = unavailable ? photo : (viz || photo);
+        blit(photo, origC);
+        blit(showViz, resultC);
+        blit(photo, base);
+        blit(showViz, top);
+        blit(state.showingSim ? showViz : photo, toggle);
+        if (state.highlightRegion && resultC) {
+          drawHighlight(resultC.getContext("2d"), state.highlightRegion, resultC.width, resultC.height);
+        }
+      } else if (img) {
+        blitImage(img, origC);
+        blitImage(img, resultC);
+        blitImage(img, base);
+        blitImage(img, top);
+        blitImage(img, toggle);
       }
 
       var stage = $("hl-stage");
       if (stage) stage.setAttribute("data-compare", state.compare);
+
+      var cap = $("hl-result-caption");
+      if (cap) {
+        if (state.pillar === "animal" && (state.view === "deer" || state.view === "canine")) {
+          cap.textContent = state.view === "deer" ? "Simulated deer vision" : "Simulated canine vision";
+        } else {
+          cap.textContent = "Discovery";
+        }
+      }
+
       var label = $("hl-view-label");
       if (label) {
-        if (unavailable) label.textContent = "Source photograph — UV/spectral signal unavailable";
-        else if (state.compare === "side") label.textContent = "Photograph and exploration view side by side";
-        else if (state.compare === "toggle") label.textContent = state.showingSim ? "Showing exploration view" : "Showing photograph";
-        else label.textContent = "Drag the slider to compare photograph and exploration view";
+        if (!state.analysis) label.textContent = "Photograph loading…";
+        else if (unavailable) label.textContent = "Source photograph — UV unavailable from RGB";
+        else if (state.pillar === "animal" && (state.view === "deer" || state.view === "canine")) {
+          label.textContent = state.compare === "side"
+            ? "Human ↔ " + (state.view === "deer" ? "Deer" : "Canine")
+            : "Compare human view with simulated " + (state.view === "deer" ? "deer" : "canine") + " vision";
+        } else if (state.compare === "side") label.textContent = "Photograph and discovery side by side";
+        else if (state.compare === "toggle") label.textContent = state.showingSim ? "Showing discovery view" : "Showing photograph";
+        else label.textContent = "Drag to compare photograph and discovery";
       }
 
       var slider = $("hl-slider");
@@ -301,7 +460,7 @@
       }
 
       var exportBtn = $("hl-export");
-      if (exportBtn) exportBtn.disabled = unavailable || !showViz;
+      if (exportBtn) exportBtn.disabled = !state.analysis || unavailable || !(viz || photo);
     }
 
     function ensureAnimal(viewId) {
@@ -309,7 +468,6 @@
       if (state.animalCache[viewId]) return Promise.resolve(state.animalCache[viewId]);
       if (!state.analysis) return Promise.resolve(null);
       return new Promise(function (resolve) {
-        // Yield so UI can paint "Working…"
         setTimeout(function () {
           var res = Animal.simulateSpecies(state.analysis.views.photo, viewId);
           state.animalCache[viewId] = res;
@@ -323,9 +481,12 @@
       if (!img) return Promise.resolve();
       state.busy = true;
       root.setAttribute("aria-busy", "true");
-      setStatus("Analyzing on this device…");
+      setStatus("Looking closely…");
       state.animalCache = {};
       state.highlightRegion = null;
+      // Keep photo on stage while analyzing
+      showWorkspace(true);
+      syncStage();
       return new Promise(function (resolve) {
         setTimeout(function () {
           try {
@@ -336,7 +497,7 @@
             });
             setStatus("");
           } catch (e) {
-            setStatus("Analysis failed: " + (e && e.message ? e.message : "unknown"), true);
+            setStatus("Could not read this photograph: " + (e && e.message ? e.message : "unknown"), true);
             state.analysis = null;
           }
           state.busy = false;
@@ -352,17 +513,7 @@
         renderDiscoveries();
         renderExif();
         syncStage();
-        showWorkspace(!!state.analysis);
       });
-    }
-
-    function showWorkspace(on) {
-      var empty = $("hl-empty");
-      var work = $("hl-workspace");
-      if (empty) empty.hidden = !!on;
-      if (work) work.hidden = !on;
-      var resetBtn = $("hl-reset");
-      if (resetBtn) resetBtn.disabled = !on;
     }
 
     function loadFile(file, meta) {
@@ -381,6 +532,7 @@
       state.source.hasEdit = false;
       state.source.sourceChoice = "original";
       state.source.exif = meta.exif || null;
+      state.analysis = null;
       updateSourceBadge();
 
       return new Promise(function (resolve, reject) {
@@ -389,6 +541,9 @@
           state.originalImg = img;
           state.source.width = img.naturalWidth;
           state.source.height = img.naturalHeight;
+          // Show photo immediately
+          showWorkspace(true);
+          syncStage();
           resolve();
         };
         img.onerror = function () { reject(new Error("Could not decode photograph.")); };
@@ -496,6 +651,15 @@
       state.pillar = id;
       state.view = defaultViewForPillar(id);
       state.highlightRegion = null;
+      var narrow = global.matchMedia && global.matchMedia("(max-width: 719px)").matches;
+      if (id === "animal") {
+        state.compare = narrow ? "toggle" : "side";
+      } else if (!narrow && state.compare === "side") {
+        state.compare = "slider";
+      }
+      root.querySelectorAll("[data-hl-compare]").forEach(function (b) {
+        b.setAttribute("aria-pressed", b.getAttribute("data-hl-compare") === state.compare ? "true" : "false");
+      });
       renderPillars();
       renderViews();
       var p = ensureAnimal(state.view);
@@ -518,7 +682,6 @@
       });
     }
 
-    // Events
     root.addEventListener("click", function (ev) {
       var t = ev.target.closest("[data-pillar]");
       if (t) { onPillar(t.getAttribute("data-pillar")); return; }
@@ -630,15 +793,12 @@
       });
     }
 
-    // Boot: load catalogs
     Promise.all([
       fetch("data/modes.json").then(function (r) { return r.json(); }),
       fetch("data/species.json").then(function (r) { return r.json(); })
     ]).then(function (pair) {
       state.catalog = pair[0];
       state.species = pair[1];
-      var honesty = $("hl-honesty");
-      if (honesty) honesty.textContent = state.catalog.mission;
       renderPillars();
       renderViews();
       renderExplain();
@@ -647,17 +807,12 @@
       updateSourceBadge();
       root.setAttribute("aria-busy", "false");
 
-      // Deep link pillar
       try {
         var q = new URLSearchParams(global.location.search || "");
         var pillar = q.get("pillar") || q.get("mode");
         if (pillar === "animal-vision") pillar = "animal";
         if (pillar && ["light", "color", "structure", "animal"].indexOf(pillar) >= 0) {
-          state.pillar = pillar;
-          state.view = defaultViewForPillar(pillar);
-          renderPillars();
-          renderViews();
-          renderExplain();
+          onPillar(pillar);
         }
         var lib = q.get("libraryId") || q.get("photoId");
         if (lib) {
@@ -666,17 +821,19 @@
           });
         }
       } catch (e) { /* ignore */ }
-    }).catch(function (e) {
-      setStatus("Could not load Hidden Landscapes catalog.", true);
+    }).catch(function () {
+      setStatus("Could not load Hidden Landscapes.", true);
       root.setAttribute("aria-busy", "false");
     });
 
-    // Mobile default compare
+    // Mobile default compare — keep toggle unless animal side-by-side requested
     if (global.matchMedia && global.matchMedia("(max-width: 719px)").matches) {
       state.compare = "toggle";
       root.querySelectorAll("[data-hl-compare]").forEach(function (b) {
         b.setAttribute("aria-pressed", b.getAttribute("data-hl-compare") === "toggle" ? "true" : "false");
       });
+    } else {
+      state.compare = "slider";
     }
   }
 

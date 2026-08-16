@@ -195,18 +195,24 @@
         "</div>"
       );
     }
+    var useShort = !!(app && app.id === "scenes");
     var links = features.map(function (feat) {
       var href = NavApi.featureHref(feat, depth, app);
       var current = feature && feature.id === feat.id;
+      var label = useShort && feat.shortLabel ? feat.shortLabel : feat.label;
+      var titleAttr = useShort && feat.shortLabel && feat.shortLabel !== feat.label
+        ? ' title="' + esc(feat.label) + '"'
+        : "";
       return (
         '<a href="' + esc(href) + '"' +
           (current ? ' aria-current="page" class="is-current"' : "") +
-          ">" + esc(feat.label) + "</a>"
+          titleAttr +
+          ">" + esc(label) + "</a>"
       );
     }).join("");
 
     return (
-      '<div class="was-local" data-was-local>' +
+      '<div class="was-local' + (useShort ? " was-local--scenes-compact" : "") + '" data-was-local>' +
         '<div class="was-local__inner">' +
           '<p class="was-local__app">' + esc(app.title) + "</p>" +
           '<nav class="was-local__nav" aria-label="' + esc(app.title) + '">' +

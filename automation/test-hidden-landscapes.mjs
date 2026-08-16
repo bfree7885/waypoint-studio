@@ -180,5 +180,22 @@ assert("no cloud vision API", !/vision\.googleapis|openai\.com\/v1\/vision/i.tes
 assert("library scripts present", /photo-library-client/.test(html));
 assert("dormant transforms not in index", !/hl-transforms\.js/.test(html));
 assert("old creative modes not in modes.json", !/infrared-dream/.test(JSON.stringify(modes)));
+assert("photo-first import region", /id="hl-import"/.test(html));
+assert("photo-first workspace", /id="hl-workspace"/.test(html));
+assert(
+  "status outside hidden workspace",
+  html.indexOf('id="hl-status"') >= 0 &&
+    html.indexOf('id="hl-status"') < html.indexOf('id="hl-workspace"')
+);
+const uiSrc = fs.readFileSync(path.join(HL, "js/hl-ui.js"), "utf8");
+assert("animal deep-link uses onPillar", /onPillar\(pillar\)/.test(uiSrc));
+assert("choose what to reveal", /Choose what to reveal/i.test(html));
+assert("why progressive disclosure", /<details class="hl-why"/.test(html));
+assert("no workstation empty panel", !/id="hl-empty"/.test(html));
+assert("product name Hidden Landscapes", /<h1>Hidden Landscapes<\/h1>/.test(html));
+
+const navCfg = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-nav-config.js"), "utf8");
+assert("nav label Hidden Landscapes", /"label":\s*"Hidden Landscapes"/.test(navCfg));
+assert("nav not Other ways primary", !/"label":\s*"Other ways of seeing"/.test(navCfg));
 
 console.log("\nHidden Landscapes tests passed:", n);

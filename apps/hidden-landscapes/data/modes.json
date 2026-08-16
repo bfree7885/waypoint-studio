@@ -2,7 +2,8 @@
   "version": 2,
   "product": "hidden-landscapes",
   "mission": "Reveal information that is already in the photograph — light, color, structure, and research-informed animal vision simulations — without inventing UV, IR, or thermal signals.",
-  "privacyNote": "Processed locally on this device. Your photographs are never uploaded.",
+  "privacyNote": "Processed locally — never uploaded.",
+  "promise": "Look again — light, color, structure, and animal vision already waiting in your photograph.",
   "epistemicLabels": [
     {
       "id": "measured",
@@ -152,7 +153,7 @@
     {
       "id": "structure",
       "name": "Structure",
-      "question": "What edges, textures, and contrast patterns organize the scene?",
+      "question": "What are the bones of this photograph — edges, texture, and form?",
       "views": [
         {
           "id": "photo",

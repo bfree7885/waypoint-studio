@@ -10,7 +10,7 @@
       "scientificName": "Odocoileus virginianus",
       "status": "shipped",
       "epistemic": "simulated",
-      "label": "SIMULATED DEER COLOR PERCEPTION",
+      "label": "SIMULATED DEER VISION",
       "coneModel": {
         "type": "dichromat",
         "peaksNmApprox": { "S": 455, "M": 537 },
@@ -37,7 +37,7 @@
       "scientificName": "Canis lupus familiaris (model)",
       "status": "shipped",
       "epistemic": "simulated",
-      "label": "SIMULATED CANINE COLOR PERCEPTION",
+      "label": "SIMULATED CANINE VISION",
       "coneModel": {
         "type": "dichromat",
         "peaksNmApprox": { "S": 429, "L": 555 },

@@ -48,7 +48,9 @@ const FIXTURES = [
   "14-low-contrast-haze.png",
   "A-cloud-DSC00745.JPG",
   "B-water-DSC00314.JPG",
+  "C-fog-fogforest.jpg",
   "D-wildlife-Robin.JPG",
+  "E-static-Edited-8190413.JPG",
   "F-complex-mist-valley.jpg"
 ].filter((f) => fs.existsSync(path.join(FIX, f)));
 
@@ -211,7 +213,7 @@ async function selectView(send, pillar, view) {
         unavailable: !!unavailable,
         banner: unavailable ? banner.textContent : '',
         w: c ? c.width : 0,
-        ep: (document.querySelector('.hl-explain .hl-ep') || {}).textContent || ''
+        ep: (document.querySelector('#hl-why-body .hl-ep') || document.querySelector('.hl-view.is-active .hl-ep') || {}).textContent || ''
       };
     })()
   `;
@@ -256,10 +258,40 @@ async function main() {
   try {
     await navigate(send, base + "/apps/hidden-landscapes/");
     await screenshot(send, path.join(SHOTS, "desktop-empty-1440.png"), 1440, 900);
+    await screenshot(send, path.join(SHOTS, "desktop-empty-1728.png"), 1728, 1000);
     await screenshot(send, path.join(SHOTS, "mobile-empty-390.png"), 390, 844);
+    await screenshot(send, path.join(SHOTS, "mobile-empty-430.png"), 430, 932);
 
-    // Full matrix on subset for speed; at least 14 fixture types
-    const matrixFixtures = FIXTURES.slice(0, Math.max(14, Math.min(FIXTURES.length, 16)));
+    // Nav overflow QC at 390 (after mobile empty shot already set 390 metrics)
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 1,
+      mobile: true
+    });
+    await delay(200);
+    const navQc = await send("Runtime.evaluate", {
+      expression: `(() => {
+        const nav = document.querySelector('.was-local__nav');
+        const doc = document.documentElement;
+        const links = Array.from(document.querySelectorAll('.was-local__nav a')).map(a => a.textContent.trim());
+        return {
+          links,
+          navScrollWidth: nav ? nav.scrollWidth : 0,
+          navClientWidth: nav ? nav.clientWidth : 0,
+          pageScrollWidth: doc.scrollWidth,
+          pageClientWidth: doc.clientWidth,
+          pageHScroll: doc.scrollWidth > doc.clientWidth + 1,
+          hasHiddenLandscapes: links.some(t => /Hidden Landscapes/i.test(t)),
+          hasOtherWays: links.some(t => /Other ways of seeing/i.test(t))
+        };
+      })()`,
+      returnByValue: true
+    });
+    report.navQc390 = navQc.result && navQc.result.value;
+
+    // Full matrix — Attack 4 corpus + owner A–F
+    const matrixFixtures = FIXTURES;
     for (const fix of matrixFixtures) {
       const stem = fix.replace(/\.[^.]+$/, "");
       const dir = path.join(MATRIX, stem);
@@ -291,17 +323,40 @@ async function main() {
       report.fixtures.push(entry);
     }
 
-    // Desktop + mobile with a loaded photo
+    // Desktop + mobile with a loaded photo — photo-first viewports
     await navigate(send, base + "/apps/hidden-landscapes/");
     await loadFixture(send, path.join(FIX, matrixFixtures[0]));
     await selectView(send, "light", "luminance");
     await screenshot(send, path.join(SHOTS, "desktop-luminance-1440.png"), 1440, 900);
+    await screenshot(send, path.join(SHOTS, "desktop-luminance-1728.png"), 1728, 1000);
+    await selectView(send, "structure", "edges");
+    await screenshot(send, path.join(SHOTS, "desktop-structure-edges-1440.png"), 1440, 900);
     await selectView(send, "animal", "deer");
     await screenshot(send, path.join(SHOTS, "desktop-deer-1440.png"), 1440, 900);
+    await screenshot(send, path.join(SHOTS, "desktop-deer-1728.png"), 1728, 1000);
     await screenshot(send, path.join(SHOTS, "mobile-deer-390.png"), 390, 844);
+    await screenshot(send, path.join(SHOTS, "mobile-deer-430.png"), 430, 932);
     await selectView(send, "animal", "bee-uv");
     await screenshot(send, path.join(SHOTS, "desktop-bee-unavailable-1440.png"), 1440, 900);
     await screenshot(send, path.join(SHOTS, "mobile-bee-unavailable-390.png"), 390, 844);
+    await screenshot(send, path.join(SHOTS, "mobile-bee-unavailable-430.png"), 430, 932);
+
+    // Import-only empty should not show analysis chrome
+    await navigate(send, base + "/apps/hidden-landscapes/");
+    const emptyState = await send("Runtime.evaluate", {
+      expression: `(() => {
+        const imp = document.getElementById('hl-import');
+        const work = document.getElementById('hl-workspace');
+        const pillars = document.getElementById('hl-pillars');
+        return {
+          importVisible: imp && !imp.hidden,
+          workspaceHidden: work && work.hidden,
+          pillarsEmpty: !pillars || pillars.children.length === 0 || work.hidden
+        };
+      })()`,
+      returnByValue: true
+    });
+    report.emptyState = emptyState.result && emptyState.result.value;
 
     // Animal vision redirect
     await send("Page.navigate", { url: base + "/apps/animal-vision/" });
