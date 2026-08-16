@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-16T13:01:08.818Z",
-  "entityCount": 443,
-  "relationshipCount": 1108,
+  "generatedAt": "2026-08-16T18:47:19.406Z",
+  "entityCount": 442,
+  "relationshipCount": 1109,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -375,21 +375,6 @@
       "title": "N-able"
     },
     {
-      "id": "cve:CVE-2023-4346",
-      "kind": "cve",
-      "title": "CVE-2023-4346"
-    },
-    {
-      "id": "vendor:knx-association",
-      "kind": "vendor",
-      "title": "KNX Association"
-    },
-    {
-      "id": "vendor:knx",
-      "kind": "vendor",
-      "title": "knx"
-    },
-    {
       "id": "cve:CVE-2025-48595",
       "kind": "cve",
       "title": "CVE-2025-48595"
@@ -515,16 +500,6 @@
       "title": "CVE-2025-59718"
     },
     {
-      "id": "cve:CVE-2026-60137",
-      "kind": "cve",
-      "title": "CVE-2026-60137"
-    },
-    {
-      "id": "vendor:wordpress",
-      "kind": "vendor",
-      "title": "WordPress"
-    },
-    {
       "id": "cve:CVE-2026-33634",
       "kind": "cve",
       "title": "CVE-2026-33634"
@@ -560,6 +535,16 @@
       "title": "CVE-2026-16232"
     },
     {
+      "id": "cve:CVE-2026-60137",
+      "kind": "cve",
+      "title": "CVE-2026-60137"
+    },
+    {
+      "id": "vendor:wordpress",
+      "kind": "vendor",
+      "title": "WordPress"
+    },
+    {
       "id": "cve:CVE-2026-63030",
       "kind": "cve",
       "title": "CVE-2026-63030"
@@ -578,6 +563,16 @@
       "id": "vendor:dd-wrt",
       "kind": "vendor",
       "title": "DD-WRT"
+    },
+    {
+      "id": "cve:CVE-2023-4346",
+      "kind": "cve",
+      "title": "CVE-2023-4346"
+    },
+    {
+      "id": "vendor:knx-association",
+      "kind": "vendor",
+      "title": "KNX Association"
     },
     {
       "id": "cve:CVE-2026-56164",
@@ -1761,6 +1756,11 @@
       "title": "CVE-2026-19188"
     },
     {
+      "id": "vendor:amazon-web-services",
+      "kind": "vendor",
+      "title": "Amazon Web Services"
+    },
+    {
       "id": "cve:CVE-2018-6882",
       "kind": "cve",
       "title": "CVE-2018-6882"
@@ -1779,11 +1779,6 @@
       "id": "cve:CVE-2026-59839",
       "kind": "cve",
       "title": "CVE-2026-59839"
-    },
-    {
-      "id": "vendor:amazon-web-services",
-      "kind": "vendor",
-      "title": "Amazon Web Services"
     },
     {
       "id": "vendor:cloudflare-status",
@@ -2607,6 +2602,12 @@
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-20316",
+      "to": "vendor:cisco",
+      "evidence": "entity extraction"
     },
     {
       "type": "affects-vendor",
@@ -3482,30 +3483,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2023-4346",
-      "to": "cve:CVE-2023-4346",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2023-4346",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2023-4346",
-      "to": "vendor:knx-association",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2023-4346",
-      "to": "vendor:knx",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2025-48595",
       "to": "cve:CVE-2025-48595",
       "evidence": "identifier"
@@ -4030,44 +4007,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-60137",
-      "to": "cve:CVE-2026-60137",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-60137",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-60137",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-60137",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-60137",
-      "to": "vendor:wordpress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-60137",
-      "to": "vendor:wordpress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-33634",
       "to": "cve:CVE-2026-33634",
       "evidence": "identifier"
@@ -4189,6 +4128,38 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-60137",
+      "to": "cve:CVE-2026-60137",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-60137",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-60137",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-60137",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-60137",
+      "to": "vendor:wordpress",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2026-63030",
       "to": "cve:CVE-2026-63030",
       "evidence": "identifier"
@@ -4260,6 +4231,24 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2021-27137",
       "to": "vendor:dd-wrt",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2023-4346",
+      "to": "cve:CVE-2023-4346",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2023-4346",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2023-4346",
+      "to": "vendor:knx-association",
       "evidence": "entity extraction"
     },
     {
@@ -7832,6 +7821,32 @@
       "confidence": "heuristic"
     },
     {
+      "type": "outage-affects",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "attack:T1133",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "entity extraction"
+    },
+    {
       "type": "mentions-cve",
       "from": "live_nvd_cve-2018-6882",
       "to": "cve:CVE-2018-6882",
@@ -7880,18 +7895,6 @@
       "from": "live_cisa-advisories_2f6e6f64652f3235323935",
       "to": "cve:CVE-2026-59839",
       "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "entity extraction"
     },
     {
       "type": "outage-affects",
