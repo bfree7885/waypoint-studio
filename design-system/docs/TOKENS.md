@@ -2,20 +2,23 @@
 
 Canonical CSS custom properties live in `wds-tokens.css`.
 
-**Canonical API:** `--wp-*`  
+**Brand primitives:** `--waypoint-*`  
+**Canonical API:** `--wp-*` (derived from `--waypoint-*`)  
 **Compatibility:** `--wds-*` and `--ws-*` map onto `--wp-*`.
 
-Full agent guide: [`docs/DESIGN-SYSTEM-2.0.md`](../../docs/DESIGN-SYSTEM-2.0.md) · Reference: [`patterns/waypoint-2.0.html`](../patterns/waypoint-2.0.html)
+Full agent guide: [`docs/DESIGN-SYSTEM-2.0.md`](../../docs/DESIGN-SYSTEM-2.0.md) · Palette: [`docs/SOUTHWEST-COLOR-SYSTEM.md`](../../docs/SOUTHWEST-COLOR-SYSTEM.md) · Reference: [`patterns/waypoint-2.0.html`](../patterns/waypoint-2.0.html)
 
-## Color primitives (muted Southwestern)
+## Color primitives (locked Southwestern)
 
 | Token | Role |
 |-------|------|
-| `--wp-aubergine-950` … `--wp-aubergine-600` | Charcoal/aubergine ground stack |
-| `--wp-bone`, `--wp-sand-*` | Primary text / sand surfaces |
-| `--wp-terracotta`, `--wp-clay` | Warm accents |
-| `--wp-plum`, `--wp-purple` | Dusty plum / muted purple |
-| `--wp-sage`, `--wp-slate`, `--wp-dust-gold` | Sage, slate, focus/caution |
+| `--waypoint-aubergine-dark` / `--wp-aubergine-*` | Aubergine ground stack |
+| `--waypoint-bone`, `--waypoint-sand`, `--waypoint-tan` | Text / warm neutrals |
+| `--waypoint-orange`, `--waypoint-burnt-orange` | Warm accents / CTAs |
+| `--waypoint-purple` | Primary brand / editorial accent |
+| `--waypoint-gold` | Focus / highlight |
+| `--waypoint-brown` | Earth |
+| `--wp-sage`, `--wp-slate`, `--wp-info` | Data / status only |
 | `--wp-fog`, `--wp-fog-subtle` | Borders |
 | `--wp-success` / `--wp-warning` / `--wp-danger` / `--wp-info` | Status (never color-only) |
 
@@ -41,7 +44,7 @@ Same scale as WDS 1.x, now owned by `--wp-*` (`--wp-font-display` = Cormorant Ga
 
 ## Product overrides
 
-Set on `<html data-product="…">` — see Design System 2.0 doc for Home, Dashboard, Scenes, Sheds, Articles, Side Trails, SignalTerrain, Global Signals, Civic Trails.
+Set on `<html data-product="…">` — see Design System 2.0. Accents stay inside the locked purple/orange/gold/tan/brown family.
 
 ## Legacy aliases
 

@@ -74,9 +74,9 @@ function staticChecks() {
   } else pass("no cross-product deepeners");
 
   const tokens = read("design-system/css/wds-tokens.css");
-  if (!/\[data-product="dashboard"\][\s\S]*--wp-accent:\s*#c4908a/.test(tokens)) {
-    fail("dashboard accent not dusty rose SW pastel");
-  } else pass("dashboard DS 2.0 dusty-rose accent");
+  if (!/\[data-product="dashboard"\][\s\S]*--wp-accent:\s*var\(--waypoint-orange\)/.test(tokens)) {
+    fail("dashboard accent not locked southwest orange");
+  } else pass("dashboard DS 2.0 southwest orange accent");
 
   const sandbox = {
     window: {},

@@ -86,7 +86,7 @@
 
 .volunteer-page .xp-secondary__list a:hover,
 .volunteer-page .xp-secondary__list a:focus-visible {
-  color: var(--wds-accent, #c8f055);
+  color: var(--wds-accent, #d8a72e);
   outline: none;
 }
 

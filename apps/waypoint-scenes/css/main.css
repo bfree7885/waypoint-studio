@@ -1,47 +1,48 @@
 :root {
-  --forest-deep: #080f1c;
-  --forest: #0c1628;
-  --forest-mid: #112038;
-  --forest-light: #172a45;
-  --forest-glow: #1f3554;
+  /* Bound to Waypoint Southwest tokens — no parallel navy/neon system */
+  --forest-deep: var(--wp-bg, var(--waypoint-aubergine-dark, #241b25));
+  --forest: var(--wp-surface, var(--waypoint-aubergine-800, #2e2130));
+  --forest-mid: var(--wp-elevated, var(--waypoint-aubergine, #3a243d));
+  --forest-light: var(--wp-aubergine-600, #4a3050);
+  --forest-glow: var(--wp-accent-dim, rgba(201, 101, 61, 0.22));
 
-  --slate-950: #0c1628;
-  --slate-800: #172a45;
-  --slate-600: #2a4060;
-  --slate-500: #3d5270;
-  --slate-400: #6a7f9a;
-  --slate-300: #a0b0c4;
+  --slate-950: var(--wp-bg, #241b25);
+  --slate-800: var(--wp-elevated, #3a243d);
+  --slate-600: var(--waypoint-brown, #6b4937);
+  --slate-500: var(--waypoint-tan, #b88a5a);
+  --slate-400: var(--waypoint-sand, #d9c3a3);
+  --slate-300: var(--waypoint-bone, #f0e2c9);
 
-  --white-soft: #e4eaf4;
-  --white-muted: rgba(228, 234, 244, 0.72);
-  --white-dim: rgba(228, 234, 244, 0.45);
+  --white-soft: var(--wp-text, var(--waypoint-bone, #f0e2c9));
+  --white-muted: var(--wp-text-secondary, rgba(240, 226, 201, 0.88));
+  --white-dim: var(--wp-text-muted, rgba(240, 226, 201, 0.7));
 
-  --accent-warm: #9b8fd9;
-  --accent-amber: #b0a6eb;
-  --accent-sage: #c8f055;
-  --accent-copper: #a894e0;
+  --accent-warm: var(--wp-warm, var(--waypoint-purple, #70446f));
+  --accent-amber: var(--wp-focus, var(--waypoint-gold, #d8a72e));
+  --accent-sage: var(--wp-accent, var(--waypoint-gold, #d8a72e));
+  --accent-copper: var(--wp-accent-bright, var(--waypoint-orange, #c9653d));
 
-  --glass-bg: rgba(12, 22, 40, 0.72);
-  --glass-bg-strong: rgba(8, 15, 28, 0.9);
-  --glass-border: rgba(155, 143, 217, 0.12);
-  --glass-highlight: rgba(200, 240, 85, 0.04);
+  --glass-bg: color-mix(in srgb, var(--wp-bg, #241b25) 78%, transparent);
+  --glass-bg-strong: color-mix(in srgb, var(--wp-inset, #120e14) 92%, transparent);
+  --glass-border: var(--wp-border, rgba(112, 68, 111, 0.42));
+  --glass-highlight: var(--wp-accent-dim, rgba(201, 101, 61, 0.08));
 
-  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.22);
-  --shadow-glow: 0 0 80px rgba(143, 175, 154, 0.12);
+  --shadow-soft: var(--wp-shadow-md, 0 12px 40px rgba(18, 12, 20, 0.45));
+  --shadow-panel: var(--wp-shadow-sm, 0 4px 24px rgba(18, 12, 20, 0.35));
+  --shadow-glow: 0 0 80px rgba(201, 101, 61, 0.12);
 
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
-  --radius-xl: 28px;
+  --radius-sm: var(--wp-radius-sm, 6px);
+  --radius-md: var(--wp-radius-md, 10px);
+  --radius-lg: var(--wp-radius-lg, 14px);
+  --radius-xl: var(--wp-radius-xl, 18px);
 
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: var(--wp-font-display, "Cormorant Garamond", Georgia, serif);
+  --font-body: var(--wp-font-body, "Source Sans 3", system-ui, -apple-system, sans-serif);
 
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: var(--wp-ease-out, cubic-bezier(0.22, 1, 0.36, 1));
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --topbar-h: 3.75rem;
+  --topbar-h: var(--wp-topbar-h, 3.25rem);
 }
 
 *,
@@ -77,9 +78,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(155, 143, 217, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(200, 240, 85, 0.06), transparent 50%),
-    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(155, 143, 217, 0.1), transparent 45%);
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 101, 61, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 80%, rgba(112, 68, 111, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(216, 167, 46, 0.08), transparent 50%),
+    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(112, 68, 111, 0.12), transparent 45%);
   z-index: 0;
 }
 

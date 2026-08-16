@@ -4,7 +4,7 @@
  */
 
 .pc-shell {
-  --coach-accent: var(--wds-accent, #c8f055);
+  --coach-accent: var(--wds-accent, #d8a72e);
   --coach-accent-dim: var(--wds-accent-dim, rgba(200, 240, 85, 0.16));
   --coach-surface: rgba(255, 255, 255, 0.06);
   --coach-surface-raised: rgba(255, 255, 255, 0.09);
