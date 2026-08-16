@@ -134,6 +134,14 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD measurement mode scorecard
+
+**Branch:** `cursor/dfd-measurement-mode-efa3`
+
+- Prefer a fill-in scorecard + 5–10 min owner checklist over new analytics infrastructure.
+- Document honest gaps: `DFD_*` queue may have no dashboard consumer; YouTube→Waypoint is not automatic without referrers/UTMs.
+- Video #2 stays on a ~3–5 day window; near-zero early metrics must not delay the second data point or trigger a pivot.
+
 ### 2026-08-16 — Mount Hood YouTube Video #1 wire
 
 **Branch:** `cursor/dfd-mount-hood-youtube-efa3` · ID `ue74ge9Bz7U`

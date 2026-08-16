@@ -3,6 +3,9 @@
 **Goal:** Learn what earns discovery and deeper Waypoint exploration.  
 **Rule:** No invented success thresholds. Search can take weeks.
 
+**Active scorecard:** [DFD-LAUNCH-SCORECARD.md](./DFD-LAUNCH-SCORECARD.md)  
+**Owner collection:** [DFD-MEASUREMENT-CHECKLIST.md](./DFD-MEASUREMENT-CHECKLIST.md)
+
 ## Sources we can use
 
 | Source | What it gives |
