@@ -1394,3 +1394,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.
 - Fog/haze fixture folders may still produce playable WebM under other Choice classes when fog/haze confidence is below threshold — document honestly in MOTION-QC rather than forcing classes.
 - CDP `Page.loadEventFired` is an event, not a callable method; poll module readiness instead. Force-exit after export writes because Chrome sockets keep Node alive.
+
+## Lessons Learned — DFD article library strategy (2026-08-16)
+
+- Pause new DFD video production until the article library produces discovery/engagement learning; videos should follow proven stories, not lead every topic.
+- Score candidates with observable SERP/source evidence — never invent search volumes; reject topics whose only justification is “people search for it.”
+- First-10 selection is portfolio design (diversity + original visual value), not blind total-score ranking; defer near-duplicates of completed stories (e.g. Hawaiʻi rain shadow vs Mount Hood).
+- Required path remains Topic → Research → Source ledger → Blueprint → Original visual plan → Draft → Fact check → Review → Render → Publish — never keyword→AI→publish.
