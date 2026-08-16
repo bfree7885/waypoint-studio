@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD public launch (integrate → Pages → measure)
+
+**Branch:** `cursor/dfd-public-launch-efa3` · **Docs:** `docs/deep-forest-dispatch/DFD-LAUNCH-REPORT.md`, `OWNER-LAUNCH-ACTIONS.md`
+
+- Cumulative DFD content lived on Batch #3 tip; merge that tip into a launch branch off `main` rather than cherry-picking each PR.
+- Production deploy is GitHub Pages on `push` to `main` (`.github/workflows/pages.yml`); verify live `waypointstudio.org` URLs after the Actions run — do not assume green commit = live.
+- Final YouTube masters/thumbnails are not in-repo; packages document owner-local paths and keep `youtubeVideoId: null` until real public IDs exist.
+- Search Console is not implied by analytics hooks — document owner verify + sitemap submit only.
+- After launch: stop content production; measure at baseline / 2w / 30d / 60d / 90d without arbitrary failure thresholds.
+
 ### 2026-08-16 — DFD Article Production Batch #3 (First-10 complete)
 
 **Branch:** `cursor/dfd-article-batch-3-efa3` · **Review:** `docs/deep-forest-dispatch/batch-3/OWNER-REVIEW.md` · **Portfolio:** `docs/deep-forest-dispatch/DFD-INITIAL-PORTFOLIO-REPORT.md`
