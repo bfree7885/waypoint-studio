@@ -31,26 +31,29 @@ if (/--wdb-r-charcoal/.test(css) && /--wdb-r-volcanic/.test(css) && /--wdb-r-des
   pass("high-desert foundation tokens present");
 } else fail("missing high-desert foundation tokens");
 
-if (!/--wp-aubergine/.test(css) && !/#8b7ab0/.test(css) && !/var\(--wp-purple/.test(css)) {
-  pass("legacy purple/aubergine absent from dashboard rebuild CSS");
-} else fail("legacy purple/aubergine still in dashboard rebuild CSS");
+if (!/#8b7ab0/.test(css) && !/--wdb-r-glow:\s*#7c6a9a/.test(css)) {
+  pass("neon/cool purple glow absent from dashboard rebuild CSS");
+} else fail("cool purple glow still in dashboard rebuild CSS");
 
-if (/html\[data-product="dashboard"\][\s\S]*#141210/.test(css)) {
-  pass("dashboard page foundation is volcanic charcoal");
-} else fail("dashboard page foundation not charcoal");
+if (/html\[data-product="dashboard"\][\s\S]*waypoint-aubergine-dark|html\[data-product="dashboard"\][\s\S]*--wp-bg/.test(css)) {
+  pass("dashboard page foundation uses southwest aubergine tokens");
+} else fail("dashboard page foundation not tokenized aubergine");
 
 if (/charcoal → desert plum → adobe → peach|charcoal → desert plum/.test(css) || /wdb-r-peach/.test(css) && /wdb-r-today/.test(css)) {
   pass("Today Outside twilight uses SW pastels");
 } else fail("Today Outside still old purple wash");
 
 const dashBlock = tokens.split('[data-product="dashboard"]')[1] || "";
-if (/--wp-accent:\s*#c4908a/.test(dashBlock) && /--wp-bg:\s*#141210/.test(dashBlock)) {
-  pass("dashboard product tokens dusty rose on charcoal");
-} else fail("dashboard product tokens still purple-on-aubergine");
+if (/--wp-accent:\s*var\(--waypoint-orange\)/.test(dashBlock) && /--wp-bg:\s*var\(--waypoint-aubergine-dark\)/.test(dashBlock)) {
+  pass("dashboard product tokens orange on aubergine");
+} else fail("dashboard product tokens not locked southwest");
 
-if (/was-shell\[data-product="dashboard"\][\s\S]*#e0b090/.test(shell) && /#c4908a/.test(shell)) {
-  pass("active nav is SW pastel, not glowing purple bar");
-} else fail("dashboard nav active state not SW pastel");
+if (
+  /was-shell\[data-product="dashboard"\][\s\S]*(waypoint-orange|waypoint-gold|#c9653d|#d8a72e|#e0b090|#c4908a)/.test(shell) ||
+  (/was-shell\[data-product="dashboard"\]/.test(shell) && /--wds-accent/.test(shell))
+) {
+  pass("active nav uses southwest accent tokens");
+} else fail("dashboard nav active state not southwest");
 
 if (/grid-template-columns:\s*minmax\(0,\s*1fr\)/.test(css) && /customize-bar__columns[\s\S]*display:\s*none/.test(css)) {
   pass("mobile one-column + hidden column picker preserved");

@@ -371,7 +371,7 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background: var(--wp-bone, #f2ebe0);
+  background: var(--wp-bone, #f0e2c9);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -384,8 +384,8 @@
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  border: 2px solid var(--wp-bone, #f2ebe0);
-  background: color-mix(in srgb, var(--wp-aubergine-900, #1f1a26) 80%, transparent);
+  border: 2px solid var(--wp-bone, #f0e2c9);
+  background: color-mix(in srgb, var(--wp-aubergine-900, #241b25) 80%, transparent);
   transform: translate(-50%, -50%);
 }
 

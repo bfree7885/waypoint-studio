@@ -1,28 +1,28 @@
 /* Waypoint Scenes — photography landing on shared Rebuild foundation.
- * Product accents (sage / plum) on Design System 2.0 aubergine ground.
+ * Product accents from locked Southwest palette (gold/orange) on aubergine ground.
  */
 
 html[data-product="scenes"],
 .was-shell[data-product="scenes"] {
-  --scenes-ink: var(--wp-text, var(--wds-text, #f2ebe0));
+  --scenes-ink: var(--wp-text, var(--wds-text, #f0e2c9));
   --scenes-muted: var(--wp-text-secondary, var(--wds-text-secondary));
-  --scenes-navy: var(--wp-bg, var(--wds-bg, #17131c));
-  --scenes-midnight: var(--wp-aubergine-900, #1f1a26);
-  --scenes-violet: var(--wp-plum-bright, #a3889a);
-  --scenes-lime: var(--wp-sage-bright, #95a788);
-  --scenes-magenta: var(--wp-plum, #8b6f82);
+  --scenes-navy: var(--wp-bg, var(--wds-bg, #241b25));
+  --scenes-midnight: var(--wp-aubergine-900, #241b25);
+  --scenes-violet: var(--wp-purple-bright, #8a5a88);
+  --scenes-lime: var(--wp-accent, var(--waypoint-gold, #d8a72e));
+  --scenes-magenta: var(--wp-warm, var(--waypoint-purple, #70446f));
   --wds-accent: var(--wp-accent, var(--scenes-lime));
-  --wp-accent: var(--wp-sage-bright, #95a788);
-  --wds-warm: var(--wp-warm, var(--scenes-violet));
-  --wds-product-glow: rgba(125, 143, 114, 0.2);
+  --wp-accent: var(--waypoint-gold, #d8a72e);
+  --wds-warm: var(--wp-warm, var(--waypoint-orange, #c9653d));
+  --wds-product-glow: rgba(216, 167, 46, 0.22);
   background: var(--scenes-navy);
   color: var(--scenes-ink);
   font-family: var(--wds-font-body);
 }
 
 .was-shell[data-product="scenes"] .was-global {
-  background: var(--wds-topbar-bg, rgba(8, 15, 28, 0.82));
-  border-bottom-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
+  background: var(--wds-topbar-bg, rgba(36, 27, 37, 0.92));
+  border-bottom-color: var(--wds-border-subtle, rgba(112, 68, 111, 0.28));
   backdrop-filter: blur(10px);
 }
 
@@ -346,7 +346,7 @@ html[data-product="scenes"],
 .scenes-take {
   margin: clamp(2.5rem, 6vw, 3.5rem) 0 0;
   max-width: 40rem;
-  background: color-mix(in srgb, var(--wds-elevated, #112038) 80%, transparent);
+  background: color-mix(in srgb, var(--wds-elevated, #3a243d) 80%, transparent);
   border-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.12));
   border-left-color: color-mix(in srgb, var(--scenes-violet) 55%, transparent);
 }
@@ -399,7 +399,7 @@ html[data-product="scenes"],
   overflow: hidden;
   aspect-ratio: 21 / 9;
   min-height: 10rem;
-  background: var(--wds-elevated, #112038);
+  background: var(--wds-elevated, #3a243d);
 }
 
 .scenes-module-hero__visual img {
@@ -532,7 +532,7 @@ html[data-product="scenes"],
   border: 1px solid var(--wds-border-subtle, rgba(155, 143, 217, 0.1));
   text-decoration: none;
   color: inherit;
-  background: color-mix(in srgb, var(--wds-elevated, #112038) 55%, transparent);
+  background: color-mix(in srgb, var(--wds-elevated, #3a243d) 55%, transparent);
   transition: border-color 200ms ease;
 }
 
@@ -572,7 +572,7 @@ html[data-product="scenes"],
 
 .scenes-journey__item--primary a {
   border-color: color-mix(in srgb, var(--scenes-violet) 40%, transparent);
-  background: color-mix(in srgb, var(--scenes-violet) 10%, var(--wds-elevated, #112038));
+  background: color-mix(in srgb, var(--scenes-violet) 10%, var(--wds-elevated, #3a243d));
   box-shadow: 0 0 24px color-mix(in srgb, var(--scenes-violet) 12%, transparent);
 }
 
