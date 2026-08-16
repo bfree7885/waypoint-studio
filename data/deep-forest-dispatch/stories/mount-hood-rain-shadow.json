@@ -14,7 +14,7 @@
   "youtubeVideoId": null,
   "youtubeUrl": null,
   "hero": {
-    "src": "../../assets/images/deep-forest-dispatch/mount-hood/story-hero.jpg",
+    "src": "../../../assets/images/deep-forest-dispatch/mount-hood/story-hero.jpg",
     "alt": "Cascade volcanoes and surrounding terrain seen from orbit",
     "credit": "NASA / ISS Earth observation (iss020e028123)",
     "license": "Public domain (NASA)",
@@ -48,7 +48,7 @@
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/mount-hood/rain-shadow-contrast.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/mount-hood/rain-shadow-contrast.jpg",
           "alt": "Side-by-side atmospheric illustration of wet western slopes and dry eastern high desert",
           "caption": "Same latitude band, different water story: wet western slopes versus dry eastern rain-shadow country.",
           "credit": "Waypoint Studio educational illustration for Deep Forest Dispatch"
@@ -72,7 +72,7 @@
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/mount-hood/hood-columbia-perspective.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/mount-hood/hood-columbia-perspective.jpg",
           "alt": "Perspective view of Portland, Mount Hood, and the Columbia River Gorge",
           "caption": "Portland, Mount Hood, and the Columbia River Gorge in a NASA perspective view — west-side moisture country meeting a towering Cascade landmark.",
           "credit": "NASA / JPL (PIA04966) · Public domain"
@@ -121,7 +121,7 @@
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/mount-hood/west-cascades-atmosphere.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/mount-hood/west-cascades-atmosphere.jpg",
           "alt": "Atmospheric illustration of misty western Cascade forest slopes",
           "caption": "Windward slopes: rising air, cooling, condensation, and a landscape organized around water.",
           "credit": "Waypoint Studio educational illustration"
@@ -142,12 +142,12 @@
         },
         {
           "type": "diagram",
-          "src": "../../assets/images/deep-forest-dispatch/diagrams/rain-shadow.svg",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/rain-shadow.png",
           "alt": "Diagram of orographic lifting and rain shadow across a mountain barrier"
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/mount-hood/east-high-desert-atmosphere.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/mount-hood/east-high-desert-atmosphere.jpg",
           "alt": "Atmospheric illustration of Oregon high desert east of the Cascades",
           "caption": "Leeward country: brighter, drier, and shaped by air that already spent much of its water on the climb.",
           "credit": "Waypoint Studio educational illustration"
@@ -164,7 +164,7 @@
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/mount-hood/cascades-from-iss.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/mount-hood/cascades-from-iss.jpg",
           "alt": "Earth observation of Cascade terrain from the International Space Station",
           "caption": "ISS Earth observation across Cascade terrain — a reminder that climate contrasts can be geographic, not mysterious.",
           "credit": "NASA / ISS (iss020e028123) · Public domain"

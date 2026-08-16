@@ -332,15 +332,20 @@
 
 .dfd-compare__after-wrap {
   position: absolute;
-  inset: 0;
+  inset: 0 auto 0 0;
   width: 50%;
   overflow: hidden;
+  border-right: 0;
 }
 
 .dfd-compare__after-wrap .dfd-compare__img {
-  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--dfd-compare-stage-w, 100%);
   max-width: none;
   height: 100%;
+  object-fit: cover;
 }
 
 .dfd-compare__handle {

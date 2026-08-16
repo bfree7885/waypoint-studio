@@ -12,16 +12,26 @@
       var range = el.querySelector(".dfd-compare__range");
       var wrap = el.querySelector(".dfd-compare__after-wrap");
       var handle = el.querySelector(".dfd-compare__handle");
-      if (!range || !wrap) return;
+      var stage = el.querySelector(".dfd-compare__stage");
+      if (!range || !wrap || !stage) return;
+      function syncWidth() {
+        stage.style.setProperty("--dfd-compare-stage-w", stage.clientWidth + "px");
+      }
       function apply(v) {
         var pct = Math.max(0, Math.min(100, Number(v)));
         wrap.style.width = pct + "%";
         if (handle) handle.style.left = pct + "%";
       }
+      syncWidth();
       apply(range.value || 50);
       range.addEventListener("input", function () {
         apply(range.value);
       });
+      if (global.ResizeObserver) {
+        new ResizeObserver(syncWidth).observe(stage);
+      } else {
+        global.addEventListener("resize", syncWidth);
+      }
     });
   }
 

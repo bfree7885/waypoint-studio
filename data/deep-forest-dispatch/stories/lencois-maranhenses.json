@@ -14,7 +14,7 @@
   "youtubeVideoId": null,
   "youtubeUrl": null,
   "hero": {
-    "src": "../../assets/images/deep-forest-dispatch/lencois/lencois-hero.jpg",
+    "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-hero.jpg",
     "alt": "White dune fields of Lençóis Maranhenses photographed from the International Space Station",
     "credit": "NASA / ISS Earth observation (iss007e15177)",
     "license": "Public domain (NASA)",
@@ -48,7 +48,7 @@
         },
         {
           "type": "figure",
-          "src": "../../assets/images/deep-forest-dispatch/lencois/lencois-iss-overview.jpg",
+          "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-iss-overview.jpg",
           "alt": "ISS view of Lençóis Maranhenses dune field along Brazil’s northeastern coast",
           "caption": "From orbit, the dune sheet reads as a pale coastal field — a place that invites the desert label until you ask about rainfall.",
           "credit": "NASA / ISS (iss007e15177) · Public domain"
@@ -146,7 +146,7 @@
         },
         {
           "type": "diagram",
-          "src": "../../assets/images/deep-forest-dispatch/diagrams/lencois-water-table.svg",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/lencois-water-table.png",
           "alt": "Diagram of wet-season lagoons forming as the water table rises into interdune hollows"
         }
       ]
@@ -176,11 +176,11 @@
         {
           "type": "compare",
           "before": {
-            "src": "../../assets/images/deep-forest-dispatch/lencois/lencois-dry-season-edu.jpg",
+            "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-dry-season-edu.jpg",
             "alt": "Educational dry-season interpretation of Lençóis Maranhenses from ISS imagery"
           },
           "after": {
-            "src": "../../assets/images/deep-forest-dispatch/lencois/lencois-wet-season-edu.jpg",
+            "src": "../../../assets/images/deep-forest-dispatch/lencois/lencois-wet-season-edu.jpg",
             "alt": "Educational wet-season interpretation of Lençóis Maranhenses from ISS imagery"
           },
           "labelBefore": "Drier reading",

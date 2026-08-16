@@ -18,5 +18,5 @@ Editorial imagery for `/deep-forest-dispatch/`.
 | `mount-hood/*-atmosphere.jpg`, `rain-shadow-contrast.jpg` | Waypoint educational illustrations |
 | `lencois/lencois-iss-overview.jpg` (+ hero crop) | NASA ISS `iss007e15177` (public domain) |
 | `lencois/lencois-*-season-edu.jpg` | Educational seasonal emphasis derivatives of ISS base |
-| `diagrams/*.svg` | Waypoint educational diagrams |
+| `diagrams/*.svg` + `diagrams/*.png` | Waypoint educational diagrams (SVG source; PNG used on pages) |
 | `library/library-hero.jpg` | Waypoint atmospheric illustration |

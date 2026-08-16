@@ -30,8 +30,8 @@ const required = [
   "design-system/js/dfd/wds-dfd-story.js",
   "scripts/dfd/render-stories.mjs",
   "docs/deep-forest-dispatch/DFD-CONTENT-WORKFLOW.md",
-  "assets/images/deep-forest-dispatch/diagrams/rain-shadow.svg",
-  "assets/images/deep-forest-dispatch/diagrams/lencois-water-table.svg"
+  "assets/images/deep-forest-dispatch/diagrams/rain-shadow.png",
+  "assets/images/deep-forest-dispatch/diagrams/lencois-water-table.png"
 ];
 
 for (const p of required) {
