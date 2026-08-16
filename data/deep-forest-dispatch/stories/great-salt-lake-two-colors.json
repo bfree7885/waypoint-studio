@@ -1,0 +1,266 @@
+{
+  "id": "great-salt-lake-two-colors",
+  "slug": "great-salt-lake-two-colors",
+  "title": "Why the Great Salt Lake is two colors",
+  "subtitle": "Great Salt Lake · Utah",
+  "deck": "From orbit, Utah’s Great Salt Lake can look painted in two pigments — pink-red on one side of a thin line, blue-green on the other. The line is a railroad causeway. The colors are what happens when one lake is forced to become two chemistries.",
+  "shortDescription": "A railroad causeway, restricted exchange, and salinity that split one lake into two living colors.",
+  "seoTitle": "Why the Great Salt Lake Is Two Colors — Causeway, Salinity & Microbes — Deep Forest Dispatch",
+  "metaDescription": "Why Utah’s Great Salt Lake looks half pink and half blue: the railroad causeway, restricted water exchange, salinity contrast, and the microbes that tint each arm.",
+  "ogImage": "/assets/images/deep-forest-dispatch/great-salt-lake/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/great-salt-lake-two-colors/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/great-salt-lake/story-hero.jpg",
+    "alt": "Astronaut photograph of Great Salt Lake showing pink north arm and greener south arm divided by an east–west causeway",
+    "credit": "NASA / ISS Earth observation (iss043e123891)",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-87417"
+  },
+  "location": {
+    "name": "Great Salt Lake",
+    "region": "Northern Utah · remnant of Lake Bonneville",
+    "country": "United States",
+    "coordinates": { "lat": 41.15, "lon": -112.5 }
+  },
+  "concepts": [
+    "terminal lake",
+    "railroad causeway",
+    "restricted exchange",
+    "salinity gradient",
+    "halophiles",
+    "Dunaliella"
+  ],
+  "sections": [
+    {
+      "id": "the-divide",
+      "heading": "A lake with a hard edge",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "The Great Salt Lake does not fade from one color into another. On many clear days, the change is abrupt: a north arm that reads pink to red, a south arm that reads greener or blue-green, and a narrow east–west seam between them."
+        },
+        {
+          "type": "p",
+          "html": "That seam is not a trick of the camera. It is infrastructure. A rock-fill railroad causeway has restricted water exchange across the lake since 1959 — long enough for salinity, biology, and color to diverge."
+        },
+        {
+          "type": "figure",
+          "src": "../../../assets/images/deep-forest-dispatch/great-salt-lake/from-orbit.jpg",
+          "alt": "Oblique orbital view of Great Salt Lake’s two-tone waters and surrounding Bonneville landscape",
+          "caption": "From the International Space Station, the color contrast and the east–west causeway alignment are unmistakable.",
+          "credit": "NASA / ISS (iss043e123891) · Public domain"
+        }
+      ]
+    },
+    {
+      "id": "where",
+      "heading": "Where this is happening",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "The Great Salt Lake sits in northern Utah as a shallow <strong>terminal lake</strong>: water arrives from rivers, streams, precipitation, and groundwater, and leaves mainly by evaporation. It is a remnant of much larger Ice Age Lake Bonneville."
+        },
+        {
+          "type": "p",
+          "html": "Today’s main body is commonly described as a north arm (Gunnison Bay) and a south arm (Gilbert Bay), separated by the causeway that carries rail across the lake."
+        },
+        {
+          "type": "map",
+          "lat": 41.15,
+          "lon": -112.5,
+          "zoom": 8,
+          "caption": "Great Salt Lake between the Wasatch Front and the West Desert — a closed basin where salt has nowhere else to go."
+        }
+      ]
+    },
+    {
+      "id": "causeway",
+      "heading": "How the causeway remade the lake",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Before the mid-twentieth-century rock-fill causeway, the lake mixed more freely. Completing the causeway in 1959 partitioned the main body into two basins with only limited connection — historically through culverts, porous fill, and later engineered openings and a bridge span."
+        },
+        {
+          "type": "p",
+          "html": "Restricted exchange matters because freshwater does not arrive evenly. The Bear, Weber, and Jordan rivers deliver the great majority of streamflow into the <strong>south</strong> arm. The north arm receives far less direct freshwater and tends to concentrate salt."
+        },
+        {
+          "type": "aside",
+          "html": "Utah Geological Survey and USGS accounts treat the causeway as the decisive human alteration that produced the modern salinity split — not a cosmetic shoreline feature."
+        }
+      ]
+    },
+    {
+      "id": "salinity",
+      "heading": "Two salinities in one basin",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "With most freshwater locked on the south side, the north arm commonly sits at much higher salinity — often near saturation with respect to halite (rock salt). The south arm remains hypersaline by ocean standards, but typically far less extreme than the north."
+        },
+        {
+          "type": "p",
+          "html": "Peer-reviewed water-and-salt modeling of the lake has reported multi-decadal averages on the order of roughly 300+ g/L in the north versus much lower values in the south — numbers that move with lake level, season, and how open the causeway connections are. Treat them as evidence of a persistent gradient, not a permanent barcode."
+        },
+        {
+          "type": "p",
+          "html": "Dense north-arm brine can also move through deeper openings and influence stratification in the south. The physical story is exchange under constraint — not a complete seal."
+        }
+      ]
+    },
+    {
+      "id": "biology-color",
+      "heading": "Why the colors follow the chemistry",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Salinity selects the biology. In the hypersaline north arm, salt-tolerant communities — including the green alga <em>Dunaliella salina</em> and halophilic archaea such as <em>Halobacterium</em> — can dominate. Their red carotenoid pigments help the water read pink to red from above."
+        },
+        {
+          "type": "p",
+          "html": "In the less extreme south arm, greener algal communities (often including <em>Dunaliella viridis</em>) are more typical, and the water’s color shifts accordingly. Brine shrimp and brine flies are part of the same salinity-shaped food web, especially in the south."
+        },
+        {
+          "type": "figure",
+          "src": "../../../assets/images/deep-forest-dispatch/great-salt-lake/north-arm-detail.jpg",
+          "alt": "ISS detail of the reddish north arm of Great Salt Lake",
+          "caption": "North of the causeway, high salinity and pigmented microbes can paint the water a pronounced red.",
+          "credit": "NASA / ISS (ISS015-E-5815) · Public domain"
+        },
+        {
+          "type": "p",
+          "html": "So the honest chain is physical first: causeway → restricted exchange → salinity divergence → different microbial communities → visible color contrast. “Bacteria on one side” is a fragment of the last step, not the system."
+        }
+      ]
+    },
+    {
+      "id": "show-me",
+      "heading": "Causeway → salinity → color",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "This diagram compresses the system into the sequence a satellite already shows: a barrier, two chemistries, and two living colors."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/gsl-causeway-salinity.png",
+          "alt": "Diagram of Great Salt Lake north and south arms divided by a railroad causeway with salinity and microbial color keys"
+        },
+        {
+          "type": "figure",
+          "src": "../../../assets/images/deep-forest-dispatch/great-salt-lake/causeway-annotated.jpg",
+          "alt": "Annotated NASA photograph highlighting the Great Salt Lake causeway and color contrast",
+          "caption": "Same physics on the real photograph: the causeway is the hinge of the color story.",
+          "credit": "NASA ISS base image · Waypoint Studio annotations"
+        }
+      ]
+    },
+    {
+      "id": "variability",
+      "heading": "Why the colors are not permanent paint",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Lake level rises and falls with climate and water use. Culverts have been closed; openings and a bridge have changed exchange. North-arm salt crusts thicken and dissolve. Microbial blooms wax and wane with season and chemistry."
+        },
+        {
+          "type": "p",
+          "html": "That is why some years look like a hard two-tone flag and other years look softer or shifted. The causeway still structures the system; the exact pigments are weather and management written on water."
+        },
+        {
+          "type": "aside",
+          "html": "USGS satellite histories of Great Salt Lake make the same point across decades: the divide is durable, the appearance is not fixed."
+        }
+      ]
+    },
+    {
+      "id": "explore-further",
+      "heading": "Explore further",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "If you visit the Wasatch Front, high-contrast lake light rewards patience — and honest conditions matter as much as the postcard. Waypoint’s Dashboard and Scenes are built for checking weather and light before you go, not for inventing a lake-color forecast."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "USGS Utah Water Science Center — Great Salt Lake",
+      "url": "https://www.usgs.gov/centers/utah-water-science-center/science/great-salt-lake",
+      "kind": "scientific"
+    },
+    {
+      "label": "Utah Geological Survey — A Lake Divided (causeway history)",
+      "url": "https://geology.utah.gov/map-pub/survey-notes/a-lake-divided-a-history-of-the-sprr-causeway-and-its-effects/",
+      "kind": "scientific"
+    },
+    {
+      "label": "Utah Geological Survey — North arm salinity significance",
+      "url": "https://geology.utah.gov/map-pub/survey-notes/the-significance-of-great-salt-lakes-north-arm-on-lake-salinity/",
+      "kind": "scientific"
+    },
+    {
+      "label": "White et al. 2015 — Causeway water & salt flow (PLOS ONE)",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0144111",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Great Salt Lake, Oblique View",
+      "url": "https://earthobservatory.nasa.gov/images/87417/great-salt-lake-oblique-view",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Algae in Great Salt Lake",
+      "url": "https://earthobservatory.nasa.gov/images/7857/algae-in-great-salt-lake",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "ISS oblique Great Salt Lake (iss043e123891)",
+      "credit": "NASA / ISS Crew Earth Observations · EO #87417",
+      "license": "Public domain"
+    },
+    {
+      "asset": "ISS north-arm detail (ISS015-E-5815)",
+      "credit": "NASA / ISS Crew Earth Observations · EO #7857",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Causeway–salinity–microbial diagram & annotations",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "lencois-maranhenses",
+    "valley-fog-at-dawn",
+    "mount-hood-rain-shadow"
+  ],
+  "waypointConnections": [
+    {
+      "id": "dashboard",
+      "label": "See today’s conditions",
+      "href": "/apps/dashboard/",
+      "note": "Check weather and outdoor context if you are near the Wasatch Front."
+    },
+    {
+      "id": "scenes",
+      "label": "Plan a photo",
+      "href": "/apps/scenes/",
+      "note": "High-contrast lake light changes with season, haze, and time of day."
+    },
+    {
+      "id": "landscape-interpretation",
+      "label": "Explore the landscape",
+      "href": "/apps/landscape-interpretation/",
+      "note": "Practice reading shorelines, basins, and human alterations on the land."
+    }
+  ]
+}

@@ -21,9 +21,15 @@ const required = [
   "deep-forest-dispatch/index.html",
   "deep-forest-dispatch/stories/mount-hood-rain-shadow/index.html",
   "deep-forest-dispatch/stories/lencois-maranhenses/index.html",
+  "deep-forest-dispatch/stories/great-salt-lake-two-colors/index.html",
+  "deep-forest-dispatch/stories/valley-fog-at-dawn/index.html",
+  "deep-forest-dispatch/stories/lenticular-clouds-explained/index.html",
   "data/deep-forest-dispatch/catalog.json",
   "data/deep-forest-dispatch/stories/mount-hood-rain-shadow.json",
   "data/deep-forest-dispatch/stories/lencois-maranhenses.json",
+  "data/deep-forest-dispatch/stories/great-salt-lake-two-colors.json",
+  "data/deep-forest-dispatch/stories/valley-fog-at-dawn.json",
+  "data/deep-forest-dispatch/stories/lenticular-clouds-explained.json",
   "design-system/css/wds-dfd.css",
   "design-system/js/dfd/wds-dfd-analytics.js",
   "design-system/js/dfd/wds-dfd-library.js",
@@ -31,7 +37,10 @@ const required = [
   "scripts/dfd/render-stories.mjs",
   "docs/deep-forest-dispatch/DFD-CONTENT-WORKFLOW.md",
   "assets/images/deep-forest-dispatch/diagrams/rain-shadow.png",
-  "assets/images/deep-forest-dispatch/diagrams/lencois-water-table.png"
+  "assets/images/deep-forest-dispatch/diagrams/lencois-water-table.png",
+  "assets/images/deep-forest-dispatch/diagrams/gsl-causeway-salinity.png",
+  "assets/images/deep-forest-dispatch/diagrams/valley-fog-drainage.png",
+  "assets/images/deep-forest-dispatch/diagrams/lenticular-standing-wave.png"
 ];
 
 for (const p of required) {
@@ -40,7 +49,7 @@ for (const p of required) {
 
 const catalog = JSON.parse(read("data/deep-forest-dispatch/catalog.json"));
 assert.equal(catalog.id, "deep-forest-dispatch");
-assert.ok(Array.isArray(catalog.stories) && catalog.stories.length >= 2);
+assert.ok(Array.isArray(catalog.stories) && catalog.stories.length >= 5);
 
 for (const entry of catalog.stories) {
   assert.ok(entry.slug && entry.path && entry.data, "catalog entry incomplete");
@@ -87,12 +96,18 @@ const library = read("deep-forest-dispatch/index.html");
 assert.match(library, /Deep Forest Dispatch/);
 assert.match(library, /mount-hood-rain-shadow/);
 assert.match(library, /lencois-maranhenses/);
+assert.match(library, /great-salt-lake-two-colors/);
+assert.match(library, /valley-fog-at-dawn/);
+assert.match(library, /lenticular-clouds-explained/);
 assert.match(library, /wds-dfd-analytics/);
 
 const sitemap = read("sitemap.xml");
 assert.match(sitemap, /\/deep-forest-dispatch\//);
 assert.match(sitemap, /mount-hood-rain-shadow/);
 assert.match(sitemap, /lencois-maranhenses/);
+assert.match(sitemap, /great-salt-lake-two-colors/);
+assert.match(sitemap, /valley-fog-at-dawn/);
+assert.match(sitemap, /lenticular-clouds-explained/);
 
 const tokens = read("design-system/css/wds-tokens.css");
 assert.match(tokens, /data-product="deep-forest-dispatch"/);

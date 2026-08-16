@@ -99,6 +99,51 @@
                 <p class="dfd-card__loc">Lençóis Maranhenses, Brazil</p>
               </a>
             </li>
+            <li>
+              <a class="dfd-card" href="stories/great-salt-lake-two-colors/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/great-salt-lake/story-hero.jpg"
+                    alt="Astronaut photograph of Great Salt Lake showing pink north arm and greener south arm divided by an east–west causeway"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Why the Great Salt Lake is two colors</h2>
+                <p class="dfd-card__loc">Great Salt Lake, Utah</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/valley-fog-at-dawn/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/valley-fog/story-hero.jpg"
+                    alt="Satellite view of morning fog filling dendritic mountain valleys in the Victorian Alps"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Why do valleys fill with fog at dawn?</h2>
+                <p class="dfd-card__loc">Mountain valleys (global)</p>
+              </a>
+            </li>
+            <li>
+              <a class="dfd-card" href="stories/lenticular-clouds-explained/">
+                <div class="dfd-card__media">
+                  <img
+                    src="../assets/images/deep-forest-dispatch/lenticular/story-hero.jpg"
+                    alt="Landsat image of an elongated lenticular cloud (Taieri Pet) over New Zealand’s South Island"
+                    width="800"
+                    height="550"
+                    loading="lazy"
+                  >
+                </div>
+                <h2 class="dfd-card__title">Why do these clouds look like UFOs — and stay still?</h2>
+                <p class="dfd-card__loc">Mountain lee waves (global)</p>
+              </a>
+            </li>
           </ul>
         </div>
       </section>
@@ -125,7 +170,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       var el = document.getElementById("dfd-library");
       if (window.WDS && WDS.dfd && WDS.dfd.analytics) {
-        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 2 });
+        WDS.dfd.analytics.track(WDS.dfd.analytics.events.LIBRARY_VIEW, { count: 5 });
         WDS.dfd.analytics.bindClicks(el || document);
       }
       // Catalog-driven refresh keeps future stories automatic without removing crawlable HTML.

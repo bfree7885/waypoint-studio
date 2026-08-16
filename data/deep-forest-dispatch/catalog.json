@@ -40,6 +40,48 @@
       "heroAlt": "White dune fields of Lençóis Maranhenses photographed from the International Space Station",
       "path": "stories/lencois-maranhenses/",
       "data": "data/deep-forest-dispatch/stories/lencois-maranhenses.json"
+    },
+    {
+      "id": "great-salt-lake-two-colors",
+      "slug": "great-salt-lake-two-colors",
+      "title": "Why the Great Salt Lake is two colors",
+      "subtitle": "Great Salt Lake · Utah",
+      "shortDescription": "A railroad causeway, restricted exchange, and salinity that split one lake into two living colors.",
+      "cardLocation": "Great Salt Lake, Utah",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/great-salt-lake/story-hero.jpg",
+      "heroAlt": "Astronaut photograph of Great Salt Lake showing pink north arm and greener south arm divided by an east–west causeway",
+      "path": "stories/great-salt-lake-two-colors/",
+      "data": "data/deep-forest-dispatch/stories/great-salt-lake-two-colors.json"
+    },
+    {
+      "id": "valley-fog-at-dawn",
+      "slug": "valley-fog-at-dawn",
+      "title": "Why do valleys fill with fog at dawn?",
+      "subtitle": "Radiation fog · cold-air drainage · terrain",
+      "shortDescription": "Radiational cooling, cold-air drainage, and dew point — why valleys drown in white while ridges stay clear.",
+      "cardLocation": "Mountain valleys (global)",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/valley-fog/story-hero.jpg",
+      "heroAlt": "Satellite view of morning fog filling dendritic mountain valleys in the Victorian Alps",
+      "path": "stories/valley-fog-at-dawn/",
+      "data": "data/deep-forest-dispatch/stories/valley-fog-at-dawn.json"
+    },
+    {
+      "id": "lenticular-clouds-explained",
+      "slug": "lenticular-clouds-explained",
+      "title": "Why do these clouds look like UFOs — and stay still?",
+      "subtitle": "Lenticular clouds · mountain lee waves",
+      "shortDescription": "Mountain lee waves, condensation at crests, and why a standing cloud is not frozen air.",
+      "cardLocation": "Mountain lee waves (global)",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/lenticular/story-hero.jpg",
+      "heroAlt": "Landsat image of an elongated lenticular cloud (Taieri Pet) over New Zealand’s South Island",
+      "path": "stories/lenticular-clouds-explained/",
+      "data": "data/deep-forest-dispatch/stories/lenticular-clouds-explained.json"
     }
   ]
 }

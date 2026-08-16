@@ -1,0 +1,241 @@
+{
+  "id": "valley-fog-at-dawn",
+  "slug": "valley-fog-at-dawn",
+  "title": "Why do valleys fill with fog at dawn?",
+  "subtitle": "Radiation fog · cold-air drainage · terrain",
+  "deck": "From a ridge at first light, the valley below can look like a white lake — shorelines of fog following every creek and hollow. The air did not flood in from elsewhere. Overnight, the landscape drained cold air into its own low places until the valley saturated.",
+  "shortDescription": "Radiational cooling, cold-air drainage, and dew point — why valleys drown in white while ridges stay clear.",
+  "seoTitle": "Why Valleys Fill with Fog at Dawn — Cold-Air Drainage Explained — Deep Forest Dispatch",
+  "metaDescription": "Valley fog forms when overnight cooling and downslope drainage pool cold air until temperature meets the dew point — how to see it from ridges and from satellites.",
+  "ogImage": "/assets/images/deep-forest-dispatch/valley-fog/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/valley-fog-at-dawn/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/valley-fog/story-hero.jpg",
+    "alt": "Satellite view of morning fog filling dendritic mountain valleys in the Victorian Alps",
+    "credit": "NASA Earth Observatory / Lauren Dauphin · MODIS Terra",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-alpine-fog-20260511"
+  },
+  "location": {
+    "name": "Mountain valleys (global pattern)",
+    "region": "Example: Victorian Alps, Australia · mechanism worldwide",
+    "country": "Multiple",
+    "coordinates": { "lat": -36.9, "lon": 147.3 }
+  },
+  "concepts": [
+    "radiation fog",
+    "radiational cooling",
+    "cold-air drainage",
+    "dew point",
+    "temperature inversion",
+    "valley pooling"
+  ],
+  "sections": [
+    {
+      "id": "white-lake",
+      "heading": "A white lake that was never water",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Stand above a valley just after dawn and the floor may vanish under a continuous white sheet. Ridges and upper slopes often remain clear. Roads drop into a wall of cloud. From a satellite, the same event can look like white veins tracing every drainage."
+        },
+        {
+          "type": "p",
+          "html": "That pattern is a clue. The fog is not randomly scattered weather. It is collecting where cold air collects."
+        },
+        {
+          "type": "figure",
+          "src": "../../../assets/images/deep-forest-dispatch/valley-fog/satellite-dendritic.jpg",
+          "alt": "MODIS satellite image of fog filling branching valleys in eastern Victoria, Australia",
+          "caption": "From orbit, valley fog often follows terrain like spilled milk — densest in the hollows, absent on the heights.",
+          "credit": "NASA EO / MODIS Terra · Public domain"
+        }
+      ]
+    },
+    {
+      "id": "cooling",
+      "heading": "Overnight: the ground loses heat",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Under clear skies and light winds, the ground radiates heat to space after sunset. Air in contact with that cooling surface cools as well. Meteorologists call this <strong>radiational cooling</strong>."
+        },
+        {
+          "type": "p",
+          "html": "Calm conditions matter. Stronger winds mix warmer air from above and keep the surface layer from chilling as efficiently. Cloud cover acts like a lid, reducing the overnight heat loss that seeds many fog nights."
+        },
+        {
+          "type": "aside",
+          "html": "National Weather Service explainers treat classic radiation fog as a clear-night, light-wind process — the starting point for many valley events."
+        }
+      ]
+    },
+    {
+      "id": "drainage",
+      "heading": "Cold air drains downhill",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Cooler air is denser. On slopes, that density difference becomes motion: chilled air slides downhill as <strong>cold-air drainage</strong> (a gentle katabatic tendency under quiet weather)."
+        },
+        {
+          "type": "p",
+          "html": "Valleys are traps. Night after night of drainage fills the basin from the bottom up with a pool of cold air, while ridges may stay comparatively milder and clearer. A shallow temperature inversion often forms — cold air below, warmer air above."
+        }
+      ]
+    },
+    {
+      "id": "dew-point",
+      "heading": "When temperature meets the dew point",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Fog is cloud with its base on the ground. It forms when the air becomes saturated — when temperature approaches the <strong>dew point</strong> closely enough for water vapor to condense on tiny particles."
+        },
+        {
+          "type": "p",
+          "html": "In a draining valley, cooling does much of the work. Moisture evaporating from damp ground, rivers, or lakes can raise the dew point and help. That is why fog often hugs stream corridors first and then deepens through the night."
+        },
+        {
+          "type": "p",
+          "html": "Many valley fogs reach peak density near sunrise, when overnight cooling has run longest. Higher slopes may never reach saturation at all — so they stay visually clear while the basin looks flooded."
+        }
+      ]
+    },
+    {
+      "id": "show-me",
+      "heading": "Day → night → fog → burn-off",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "This sequence is the Waypoint field-guide version of the NWS story: cooling, drainage, pooling, saturation, then morning mixing."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/valley-fog-drainage.png",
+          "alt": "Six-panel diagram showing day, clear night, slope cooling, cold-air drainage, valley fog pooling, and sunrise burn-off"
+        }
+      ]
+    },
+    {
+      "id": "sunrise",
+      "heading": "Why the fog often leaves after sunrise",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Sunlight warms the ground. The surface layer heats, mixes, and relative humidity falls. Fog thins, lifts, or breaks into patches — the familiar “burn-off,” which can be quick on open flats and slower in shaded mountain valleys."
+        },
+        {
+          "type": "p",
+          "html": "Not every event ends that way. Deep winter cold pools and persistent inversions can hold fog or low stratus for hours or days. The dawn valley fill is the common, photogenic case — not the only one."
+        }
+      ]
+    },
+    {
+      "id": "not-all-fog",
+      "heading": "Not every fog is this fog",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Weather services distinguish fog types carefully. <strong>Advection fog</strong> forms when moist air moves over a colder surface. <strong>Upslope fog</strong> forms when air is forced up terrain and cools. <strong>Steam fog</strong> can rise when cold air overlies warmer water."
+        },
+        {
+          "type": "p",
+          "html": "Valley radiation fog is the story when overnight cooling plus drainage dominates. Real mornings can blend mechanisms. The useful habit is to ask what cooled, what moved, and where moisture came from — not to force every white valley into one label."
+        }
+      ]
+    },
+    {
+      "id": "waypoint",
+      "heading": "What you can notice with Waypoint tools",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Waypoint does not offer a dedicated fog forecast product. What it does offer is the outdoor context that makes fog mornings readable: temperature, humidity, dew point, and weather on the Dashboard — plus light and timing tools in Scenes and Photo Coach when you are chasing the ridge-above-the-cloud photograph."
+        },
+        {
+          "type": "p",
+          "html": "If overnight skies are clear, winds light, and temperature is falling toward the dew point in a valley setting, you are looking at the same ingredients this article describes. Treat that as observation, not a guarantee."
+        }
+      ]
+    },
+    {
+      "id": "explore-further",
+      "heading": "Explore further",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "For the mountain–air companion story — moisture forced upslope rather than drained downslope — see the Mount Hood rain-shadow dispatch. For stationary wave clouds that also trick the eye, see the lenticular explainer."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "NWS — Mountain / Valley Fog",
+      "url": "https://www.weather.gov/safety/fog-mountain-valley",
+      "kind": "scientific"
+    },
+    {
+      "label": "NWS Louisville — How Fog Forms",
+      "url": "https://www.weather.gov/lmk/fog_tutorial",
+      "kind": "scientific"
+    },
+    {
+      "label": "NWS Binghamton — Weather in Action: Valley Fog",
+      "url": "https://www.weather.gov/bgm/WeatherInActionValleyFog",
+      "kind": "scientific"
+    },
+    {
+      "label": "NWS fog types training guide (PDF)",
+      "url": "https://www.weather.gov/media/zhu/ZHU_Training_Page/fog_stuff/fog_guide/fog.pdf",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Australia’s Cloudy Beauty (valley fog)",
+      "url": "https://science.nasa.gov/earth/earth-observatory/australias-cloudy-beauty/",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "Victorian Alps valley fog (MODIS Terra, 2026-05-11)",
+      "credit": "NASA Earth Observatory image by Lauren Dauphin, using MODIS data from NASA EOSDIS LANCE and GIBS/Worldview",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Valley-fog air-drainage explainer diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "lenticular-clouds-explained",
+    "mount-hood-rain-shadow",
+    "great-salt-lake-two-colors"
+  ],
+  "waypointConnections": [
+    {
+      "id": "dashboard",
+      "label": "Check temperature & dew point",
+      "href": "/apps/dashboard/",
+      "note": "Compare overnight cooling ingredients — temperature, humidity, and weather — before a dawn outing."
+    },
+    {
+      "id": "scenes",
+      "label": "Plan the ridge photograph",
+      "href": "/apps/scenes/",
+      "note": "Valley fog is a light problem as much as a weather problem — review timing and contrast."
+    },
+    {
+      "id": "photo-coach",
+      "label": "Photo Coach",
+      "href": "/apps/photo-coach/",
+      "note": "Practice reading soft morning light when the valley is white and the ridge is clear."
+    }
+  ]
+}

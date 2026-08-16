@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD Article Production Batch #1
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW.md`
+
+1. **Strategy branch ≠ library branch** — production must sit on the DFD library infra (render pipeline + CSS/JS) and carry strategy docs as reference; do not invent a third page template.
+2. **Original value is a hard gate** — each article needs a Waypoint diagram that carries the causal chain (causeway→salinity→color; drainage sequence; standing wave), not stock filler between paragraphs.
+3. **Catalog `published` shows cards immediately** — for “build but don’t deploy” batches, decide explicitly whether PR preview should list stories (`published`) or hide them (`draft`/`review`) before merge.
+4. **CDP screenshots must attach to a page target** (`/json/list` type=page), not the browser-level websocket; unique `--user-data-dir` avoids Chrome SingletonLock failures.
+5. **Tool links must be real products only** — Dashboard dew point/wind context and Scenes/Photo Coach are fine; inventing fog forecasts or lenticular detectors fails Product Standards.
+
 ### 2026-08-14 — Moving Scenes Attack 3 ship (transport + asset false positive)
 
 **PR:** https://github.com/bfree7885/waypoint-studio/pull/37 · **prod SHA:** `2f02e6e6`
