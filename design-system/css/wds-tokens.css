@@ -396,6 +396,20 @@
   --wds-product-glow: var(--wp-product-glow);
 }
 
+[data-product="deep-forest-dispatch"] {
+  /* Forest discovery — sage accent inside southwestern aubergine field station */
+  --wp-accent: var(--wp-sage);
+  --wp-accent-dim: var(--wp-sage-dim);
+  --wp-accent-bright: var(--wp-sage-bright);
+  --wp-warm: var(--wp-terracotta);
+  --wp-warm-dim: var(--wp-terracotta-dim);
+  --wp-product-glow: rgba(125, 143, 114, 0.2);
+  --wds-accent: var(--wp-accent);
+  --wds-accent-dim: var(--wp-accent-dim);
+  --wds-warm: var(--wp-warm);
+  --wds-product-glow: var(--wp-product-glow);
+}
+
 [data-product="side-trails"] {
   --wp-accent: var(--wp-purple);
   --wp-accent-dim: var(--wp-purple-dim);

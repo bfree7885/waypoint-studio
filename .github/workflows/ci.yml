@@ -80,6 +80,9 @@ jobs:
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs
 
+      - name: Deep Forest Dispatch library
+        run: node automation/test-deep-forest-dispatch.mjs
+
       - name: Knowledge Platform tests
         run: node automation/test-knowledge-platform.mjs
 

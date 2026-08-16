@@ -1394,3 +1394,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.
 - Fog/haze fixture folders may still produce playable WebM under other Choice classes when fog/haze confidence is below threshold — document honestly in MOTION-QC rather than forcing classes.
 - CDP `Page.loadEventFired` is an event, not a callable method; poll module readiness instead. Force-exit after export writes because Chrome sockets keep Node alive.
+
+## Lessons Learned — Deep Forest Dispatch content library (2026-08-16)
+
+- DFD should be a first-class `/deep-forest-dispatch/` destination (Discover/Understand/Explore), not folded into curated RSS Articles or Side Trails experiments.
+- Keep story JSON as source of truth + `scripts/dfd/render-stories.mjs` for crawlable HTML; adding Video #3 must be content/media + catalog + render, not new page engineering.
+- `youtubeVideoId: null` must render a finished pending panel — never a broken embed; emit VideoObject JSON-LD only when a real ID exists.
+- Preserve scientific caution (Lençóis rainfall ranges; do not overclaim clay/bedrock as sole lagoon mechanism) and imagery provenance (NASA public domain + labeled educational derivatives).

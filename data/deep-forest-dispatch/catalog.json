@@ -1,0 +1,45 @@
+{
+  "version": "1.0.0",
+  "id": "deep-forest-dispatch",
+  "title": "Deep Forest Dispatch",
+  "tagline": "Visual stories about strange and interesting things happening across the real Earth.",
+  "description": "Waypoint Studio’s editorial discovery layer — landscape mysteries explained with honest science, satellite context, and paths back into outdoor tools.",
+  "routing": {
+    "library": "/deep-forest-dispatch/",
+    "story": "/deep-forest-dispatch/stories/{slug}/"
+  },
+  "placeInWaypoint": {
+    "loop": ["Observe", "Discover", "Understand", "Explore"],
+    "primary": ["Discover", "Understand", "Explore"]
+  },
+  "stories": [
+    {
+      "id": "mount-hood-rain-shadow",
+      "slug": "mount-hood-rain-shadow",
+      "title": "Why one side of this mountain is a forest — and the other is a desert",
+      "subtitle": "Mount Hood / Cascade Range / Oregon High Desert",
+      "shortDescription": "Pacific moisture, a mountain barrier, and the quiet geometry of a rain shadow.",
+      "cardLocation": "Mount Hood / Oregon High Desert",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/mount-hood/story-hero.jpg",
+      "heroAlt": "Cascade volcanoes and surrounding terrain seen from orbit",
+      "path": "stories/mount-hood-rain-shadow/",
+      "data": "data/deep-forest-dispatch/stories/mount-hood-rain-shadow.json"
+    },
+    {
+      "id": "lencois-maranhenses",
+      "slug": "lencois-maranhenses",
+      "title": "It looks like a desert. It gets twice the rain of London.",
+      "subtitle": "Lençóis Maranhenses, Maranhão, Brazil",
+      "shortDescription": "White dunes, freshwater lagoons, and a landscape that refuses the desert label.",
+      "cardLocation": "Lençóis Maranhenses, Brazil",
+      "published": "2026-08-16",
+      "status": "published",
+      "heroImage": "assets/images/deep-forest-dispatch/lencois/lencois-hero.jpg",
+      "heroAlt": "White dune fields of Lençóis Maranhenses photographed from the International Space Station",
+      "path": "stories/lencois-maranhenses/",
+      "data": "data/deep-forest-dispatch/stories/lencois-maranhenses.json"
+    }
+  ]
+}
