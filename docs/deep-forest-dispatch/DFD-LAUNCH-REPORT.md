@@ -2,7 +2,8 @@
 
 **Date:** 2026-08-16  
 **Integration branch:** `cursor/dfd-public-launch-efa3`  
-**Base:** `main`
+**Production commit:** `afeeb17a` (short build marker `afeeb17`)  
+**Deploy:** GitHub Pages workflow run `31959299822` — **success**
 
 ---
 
@@ -10,11 +11,21 @@
 
 | Item | Status |
 |------|--------|
-| Deployed | See live verification at end of this section (updated after Pages deploy) |
-| Production commit | Commit on `main` after merge/push of this launch branch |
+| Deployed | **YES** |
+| Production commit | `afeeb17a` |
 | Library URL | https://waypointstudio.org/deep-forest-dispatch/ |
 | Story count | **12** |
-| Live verification | Run after GitHub Pages deploy completes |
+| Live verification | **PASS** (2026-08-16 post-deploy) |
+
+### Live checks
+
+- Library HTTP 200; `index,follow`; canonical production URL; **12** relative story links
+- All 12 story routes HTTP 200; Article JSON-LD; OG tags; canonical; hero/media assets 200
+- Build fingerprint on production: `afeeb17`
+- Sitemap lists library + all 12 stories
+- robots.txt: `Allow: /` + Sitemap URL; DFD paths not disallowed
+- No accidental `noindex` on library/stories
+- Analytics script `wds-dfd-analytics.js` loads; all six DFD event names present
 
 ### Integration
 
@@ -41,20 +52,6 @@
 11. `kgari-rainforest-on-sand`  
 12. `columbia-glacier-satellite-retreat`
 
-### Pre-deploy validation (this environment)
-
-| Check | Result |
-|-------|--------|
-| `node scripts/dfd/render-stories.mjs` | Pass — 12 stories |
-| `node automation/test-deep-forest-dispatch.mjs` | Pass |
-| `node automation/validate-production-assets.mjs` | Pass |
-| `node automation/validate-production-links.mjs` | Pass (0 broken; pre-existing warnings on unrelated shells) |
-| Sitemap entries for DFD | Present in `sitemap.xml` |
-| robots.txt | `Allow: /` + Sitemap URL |
-| Canonical / OG / JSON-LD | Emitted by DFD renderer |
-| Analytics hooks | Present in `wds-dfd-analytics.js` |
-| `youtubeVideoId` | Remains `null` until public IDs exist |
-
 ---
 
 ## SEARCH
@@ -64,8 +61,8 @@
 | Sitemap URL | https://waypointstudio.org/sitemap.xml |
 | robots.txt | https://waypointstudio.org/robots.txt — allows crawl; points to sitemap |
 | Canonical status | Absolute `https://waypointstudio.org/...` on DFD pages |
-| Structured data | Article JSON-LD on story pages |
-| Search Console | **Not configured in repo** — owner must verify + submit sitemap |
+| Structured data | CollectionPage on library; Article JSON-LD on stories |
+| Search Console | **Not configured in repo/HTML** — owner must verify + submit sitemap |
 
 Setup doc: [GOOGLE-SEARCH-CONSOLE-SETUP.md](./GOOGLE-SEARCH-CONSOLE-SETUP.md)
 
@@ -77,6 +74,7 @@ Setup doc: [GOOGLE-SEARCH-CONSOLE-SETUP.md](./GOOGLE-SEARCH-CONSOLE-SETUP.md)
 |------|--------|
 | Implementation | CustomEvent + `__WAYPOINT_ANALYTICS_QUEUE__` (no second platform added) |
 | DFD events wired | `DFD_LIBRARY_VIEW`, `DFD_STORY_VIEW`, `DFD_RELATED_STORY_CLICK`, `DFD_WAYPOINT_TOOL_CLICK`, `DFD_VIDEO_PLAY`, `DFD_YOUTUBE_CLICK` |
+| Production | Script present on live library/story pages |
 | Owner action | Confirm queue consumer / GA4 (or equivalent) receives events if not already |
 
 ---
@@ -94,7 +92,8 @@ Setup doc: [GOOGLE-SEARCH-CONSOLE-SETUP.md](./GOOGLE-SEARCH-CONSOLE-SETUP.md)
 | Channel setup | [youtube/CHANNEL-SETUP.md](./youtube/CHANNEL-SETUP.md) — owner creates channel |
 | Video ID wiring | [YOUTUBE-VIDEO-ID-WIRING.md](./YOUTUBE-VIDEO-ID-WIRING.md) |
 
-**Release order:** Video #1 first → Video #2 several days later. Do not upload from this agent environment.
+**Release order:** Video #1 first → Video #2 several days later. Do not upload from this agent environment.  
+`youtubeVideoId` remains `null` on all stories until real public IDs exist.
 
 ---
 
@@ -104,15 +103,7 @@ See [OWNER-LAUNCH-ACTIONS.md](./OWNER-LAUNCH-ACTIONS.md) — only personal owner
 
 ---
 
-## Live verification checklist (post-deploy)
+## Notes
 
-Fill after Pages deploy:
-
-- [ ] `GET /deep-forest-dispatch/` → 200, 12 story links
-- [ ] All 12 story URLs → 200
-- [ ] Images / graphics render
-- [ ] Canonical + JSON-LD present
-- [ ] Sitemap lists library + 12 stories
-- [ ] robots.txt reachable
-- [ ] No accidental `noindex`
-- [ ] Analytics script loads / events fire in console or queue
+- Work was integrated on `cursor/dfd-public-launch-efa3` and pushed to `main` to trigger the existing Pages workflow (no alternate hosting).
+- Content production remains **paused** after this launch.
