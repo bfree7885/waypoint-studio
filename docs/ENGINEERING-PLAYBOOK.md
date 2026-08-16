@@ -134,6 +134,14 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — Mount Hood YouTube Video #1 wire
+
+**Branch:** `cursor/dfd-mount-hood-youtube-efa3` · ID `ue74ge9Bz7U`
+
+- Setting `youtubeVideoId` + re-running `scripts/dfd/render-stories.mjs` is sufficient; do not hand-edit story HTML.
+- Keep other stories at `youtubeVideoId: null` until their public IDs exist; renderer swaps pending copy for embed + VideoObject automatically.
+- `DFD_VIDEO_PLAY` is pointerdown on `.dfd-video__frame` (once); `DFD_YOUTUBE_CLICK` is `data-dfd-track` on the iframe — preserve both without redesign.
+
 ### 2026-08-16 — DFD public launch (integrate → Pages → measure)
 
 **Branch:** `cursor/dfd-public-launch-efa3` · **Docs:** `docs/deep-forest-dispatch/DFD-LAUNCH-REPORT.md`, `OWNER-LAUNCH-ACTIONS.md`
