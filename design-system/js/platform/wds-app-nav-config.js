@@ -115,12 +115,13 @@
           "/apps/moving-scenes"
         ],
         "category": "photography",
-        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
+        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then open Hidden Landscapes.",
         "status": "live",
         "features": [
           {
             "id": "overview",
             "label": "Today",
+            "shortLabel": "Today",
             "href": "apps/scenes/",
             "match": [
               "/apps/scenes/?$",
@@ -130,6 +131,7 @@
           {
             "id": "photo-coach",
             "label": "Review a shoot",
+            "shortLabel": "Review",
             "href": "apps/photo-coach/",
             "match": [
               "/apps/scenes/photo-coach",
@@ -140,6 +142,7 @@
           {
             "id": "photo-library",
             "label": "Your photographs",
+            "shortLabel": "Library",
             "href": "apps/photo-library/",
             "match": [
               "/apps/scenes/photo-library",
@@ -149,6 +152,7 @@
           {
             "id": "auto-edit",
             "label": "Auto Edit",
+            "shortLabel": "Auto Edit",
             "href": "apps/auto-edit/",
             "match": [
               "/apps/scenes/auto-edit",
@@ -158,6 +162,7 @@
           {
             "id": "moving-scenes",
             "label": "Moving Scenes",
+            "shortLabel": "Moving",
             "href": "apps/moving-scenes/",
             "match": [
               "/apps/scenes/moving-scenes",
@@ -167,7 +172,8 @@
           },
           {
             "id": "hidden-landscapes",
-            "label": "Other ways of seeing",
+            "label": "Hidden Landscapes",
+            "shortLabel": "Hidden Landscapes",
             "href": "apps/hidden-landscapes/",
             "match": [
               "/apps/scenes/hidden-landscapes",

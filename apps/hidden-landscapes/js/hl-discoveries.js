@@ -15,17 +15,21 @@
     var tonal = analysis.tonal || {};
     var color = analysis.color || {};
     var regions = analysis.regions || {};
+    var wantLight = !pillarId || pillarId === "light";
+    var wantColor = !pillarId || pillarId === "color";
+    var wantStructure = !pillarId || pillarId === "structure";
+    var wantAnimal = pillarId === "animal";
 
-    if (tonal.brightFrac != null && tonal.brightFrac >= 0.18) {
+    if (wantLight && tonal.brightFrac != null && tonal.brightFrac >= 0.18) {
       out.push({
         id: "bright-energy",
-        text: "About " + pct(tonal.brightFrac) + "% of pixels sit in the bright tonal range — much of the scene’s light energy is concentrated there.",
+        text: "About " + pct(tonal.brightFrac) + "% of the frame sits in bright tones — much of the light energy gathers there.",
         epistemic: "computed",
         regionKey: "brightest",
         region: regions.brightest || null
       });
     }
-    if (tonal.clippedHighlightFrac != null && tonal.clippedHighlightFrac >= 0.01) {
+    if (wantLight && tonal.clippedHighlightFrac != null && tonal.clippedHighlightFrac >= 0.01) {
       out.push({
         id: "clipped",
         text: "Near-clipped highlights cover about " + pct(tonal.clippedHighlightFrac) + "% of this JPEG/PNG — recoverability beyond the file is not claimed.",
@@ -34,7 +38,7 @@
         region: regions.brightest || null
       });
     }
-    if (tonal.deepShadowFrac != null && tonal.deepShadowFrac >= 0.12) {
+    if (wantLight && tonal.deepShadowFrac != null && tonal.deepShadowFrac >= 0.12) {
       out.push({
         id: "deep-shadow",
         text: "Deep shadows occupy about " + pct(tonal.deepShadowFrac) + "% of the frame; detail there is limited to what this file already holds.",
@@ -43,7 +47,7 @@
       });
     }
 
-    if (color.ranked && color.ranked[0] && color.ranked[0].family !== "neutral") {
+    if (wantColor && color.ranked && color.ranked[0] && color.ranked[0].family !== "neutral") {
       var top = color.ranked[0];
       var second = color.ranked[1];
       var text = "The strongest chromatic family is " + top.family + " (~" + pct(top.frac) + "% of pixels)";
@@ -58,14 +62,14 @@
         region: null
       });
     }
-    if (color.meanSaturation != null && color.meanSaturation < 0.22 && color.highSatFrac < 0.08) {
+    if (wantColor && color.meanSaturation != null && color.meanSaturation < 0.22 && color.highSatFrac < 0.08) {
       out.push({
         id: "low-sat",
         text: "Most of the frame is relatively low-saturation; chromatic accents are sparse.",
         epistemic: "computed",
         region: null
       });
-    } else if (color.highSatFrac >= 0.12) {
+    } else if (wantColor && color.highSatFrac >= 0.12) {
       out.push({
         id: "high-sat",
         text: "About " + pct(color.highSatFrac) + "% of pixels are strongly saturated — chromatic regions stand out against quieter surroundings.",
@@ -73,7 +77,7 @@
         region: null
       });
     }
-    if (color.warmFrac != null && color.coolFrac != null) {
+    if (wantColor && color.warmFrac != null && color.coolFrac != null) {
       if (color.warmFrac > color.coolFrac * 1.35) {
         out.push({
           id: "warm-bias",
@@ -91,17 +95,17 @@
       }
     }
 
-    if (regions.edgeDense) {
+    if (wantStructure && regions.edgeDense) {
       out.push({
         id: "edge-dense",
-        text: "Edge energy is densest in a localized region — often foliage, shoreline, or textured ground rather than open sky.",
+        text: "Edge energy is densest in one region — often foliage, shoreline, or textured ground rather than open sky.",
         epistemic: "computed",
         regionKey: "edgeDense",
         region: regions.edgeDense
       });
     }
 
-    if (viewId === "estimated-depth") {
+    if (wantStructure && viewId === "estimated-depth") {
       out.push({
         id: "depth-inferred",
         text: "Estimated depth is INFERRED from haze and vertical position cues — not measured distance.",
@@ -110,18 +114,18 @@
       });
     }
 
-    if (animalResult && animalResult.status === "ok" && animalResult.metrics) {
+    if (wantAnimal && animalResult && animalResult.status === "ok" && animalResult.metrics) {
       var loss = animalResult.metrics.meanRgSeparationLoss || 0;
       if (loss >= 0.08) {
         out.push({
           id: "rg-loss",
-          text: "In this " + (pillarId === "animal" ? "simulation" : "view") + ", red–green separations that are clear to human vision are substantially reduced (mean loss ~" + loss.toFixed(2) + ").",
+          text: "In this simulation, red–green separations that are clear to human vision are substantially reduced (mean loss ~" + loss.toFixed(2) + ").",
           epistemic: "simulated",
           region: animalResult.region || null
         });
       }
     }
-    if (animalResult && animalResult.status === "unavailable") {
+    if (wantAnimal && animalResult && animalResult.status === "unavailable") {
       out.push({
         id: "uv-unavailable",
         text: animalResult.message,
@@ -130,8 +134,8 @@
       });
     }
 
-    // Cap to a few meaningful items
-    return out.slice(0, 5);
+    // Cap: one primary + up to two supporting
+    return out.slice(0, 3);
   }
 
   global.WaypointHLDiscoveries = {

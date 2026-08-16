@@ -79,6 +79,8 @@
 .was-local {
   border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.08));
   background: var(--wds-inset, rgba(0, 0, 0, 0.02));
+  max-width: 100%;
+  overflow-x: visible;
 }
 
 .was-local__inner {
@@ -345,17 +347,23 @@
     flex: 1;
   }
 
-  /* Feature nav may scroll only if needed — prefer wrap first */
+  /* Feature nav: wrap intentionally — never clip labels, never page h-scroll */
   .was-local__nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    padding-bottom: 0.15rem;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    max-width: 100%;
+    gap: 0.25rem 0.2rem;
+  }
+
+  .was-local--scenes-compact .was-local__nav a {
+    flex: 0 1 auto;
+    min-height: 40px;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.8125rem;
   }
 
   .was-local__nav a {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
   }
 }
 

@@ -1440,6 +1440,366 @@
           "ep": "UNAVAILABLE"
         }
       }
+    },
+    {
+      "fix": "C-fog-fogforest.jpg",
+      "ok": true,
+      "views": {
+        "light/luminance": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/tonal": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/concentration": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/families": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/warm-cool": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/saturation": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/edges": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/texture": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/local-contrast": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/estimated-depth": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "INFERRED"
+        },
+        "animal/deer": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/canine": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/bee-uv": {
+          "unavailable": true,
+          "banner": "Ultraviolet reflectance was not captured in this RGB photograph. Waypoint will not invent nectar guides or UV patterns into your image.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        },
+        "animal/bird-uv": {
+          "unavailable": true,
+          "banner": "Bird ultraviolet sensitivity cannot be reconstructed from this RGB photograph. This mode is deferred rather than invented.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "fix": "D-wildlife-Robin.JPG",
+      "ok": true,
+      "views": {
+        "light/luminance": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/tonal": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/concentration": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/families": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/warm-cool": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/saturation": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/edges": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/texture": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/local-contrast": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/estimated-depth": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "INFERRED"
+        },
+        "animal/deer": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/canine": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/bee-uv": {
+          "unavailable": true,
+          "banner": "Ultraviolet reflectance was not captured in this RGB photograph. Waypoint will not invent nectar guides or UV patterns into your image.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        },
+        "animal/bird-uv": {
+          "unavailable": true,
+          "banner": "Bird ultraviolet sensitivity cannot be reconstructed from this RGB photograph. This mode is deferred rather than invented.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "fix": "E-static-Edited-8190413.JPG",
+      "ok": true,
+      "views": {
+        "light/luminance": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/tonal": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/concentration": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/families": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/warm-cool": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/saturation": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/edges": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/texture": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/local-contrast": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/estimated-depth": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "INFERRED"
+        },
+        "animal/deer": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/canine": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/bee-uv": {
+          "unavailable": true,
+          "banner": "Ultraviolet reflectance was not captured in this RGB photograph. Waypoint will not invent nectar guides or UV patterns into your image.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        },
+        "animal/bird-uv": {
+          "unavailable": true,
+          "banner": "Bird ultraviolet sensitivity cannot be reconstructed from this RGB photograph. This mode is deferred rather than invented.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        }
+      }
+    },
+    {
+      "fix": "F-complex-mist-valley.jpg",
+      "ok": true,
+      "views": {
+        "light/luminance": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/tonal": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "light/concentration": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/families": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/warm-cool": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "color/saturation": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/edges": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/texture": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/local-contrast": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "COMPUTED"
+        },
+        "structure/estimated-depth": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "INFERRED"
+        },
+        "animal/deer": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/canine": {
+          "unavailable": false,
+          "banner": "",
+          "w": 1100,
+          "ep": "SIMULATED"
+        },
+        "animal/bee-uv": {
+          "unavailable": true,
+          "banner": "Ultraviolet reflectance was not captured in this RGB photograph. Waypoint will not invent nectar guides or UV patterns into your image.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        },
+        "animal/bird-uv": {
+          "unavailable": true,
+          "banner": "Bird ultraviolet sensitivity cannot be reconstructed from this RGB photograph. This mode is deferred rather than invented.",
+          "w": 1100,
+          "ep": "UNAVAILABLE"
+        }
+      }
     }
   ],
   "views": [
@@ -1500,6 +1860,28 @@
       "view": "bird-uv"
     }
   ],
-  "capturedAt": "2026-08-16T14:01:15.412Z",
+  "capturedAt": "2026-08-16T17:26:37.561Z",
+  "navQc390": {
+    "links": [
+      "Today",
+      "Review",
+      "Library",
+      "Auto Edit",
+      "Moving",
+      "Hidden Landscapes"
+    ],
+    "navScrollWidth": 358,
+    "navClientWidth": 358,
+    "pageScrollWidth": 390,
+    "pageClientWidth": 390,
+    "pageHScroll": false,
+    "hasHiddenLandscapes": true,
+    "hasOtherWays": false
+  },
+  "emptyState": {
+    "importVisible": true,
+    "workspaceHidden": true,
+    "pillarsEmpty": true
+  },
   "animalVisionRedirect": "/apps/hidden-landscapes/?pillar=animal"
 }

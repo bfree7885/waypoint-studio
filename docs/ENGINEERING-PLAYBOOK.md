@@ -1447,6 +1447,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Analytic defaults must bind to Original when a Waypoint Edit exists; label the source chip so edited tone/color never silently pose as capture values.
 - Epistemic chips (MEASURED/COMPUTED/SIMULATED/INFERRED/UNAVAILABLE) plus labeled exports prevent “looks like a filter pack” trust failure on share.
 
+### Lessons Learned — Hidden Landscapes photo-first discovery (2026-08-16)
+
+- Honest science can still fail product feel if hierarchy is workstation-first: lead with photograph → lenses → observations → Why? disclosure; keep methods frozen behind progressive disclosure.
+- Author CSS `display:flex` on chips overrides the UA `[hidden]` rule — always pair interactive panels with `[hidden] { display: none !important }` or they leak empty-state chrome.
+- Scenes local nav: prefer wrap + shortLabels over `nowrap` + horizontal page scroll; rename “Other ways of seeing” to **Hidden Landscapes** so identity and overflow both improve.
+- Show the decoded photo immediately on load (before analysis settles) so “Looking closely…” never blanks the light table.
+
 
 ### Lessons Learned — Moving Scenes owner-review motion exports (2026-08-14)
 

@@ -112,7 +112,7 @@
       status: "ok",
       epistemic: "simulated",
       imageData: softened,
-      label: kind === "canine" ? "SIMULATED CANINE COLOR PERCEPTION" : "SIMULATED DEER COLOR PERCEPTION",
+      label: kind === "canine" ? "SIMULATED CANINE VISION" : "SIMULATED DEER VISION",
       metrics: {
         meanRgSeparationLoss: samples ? rgLoss / samples : 0,
         blueDominantFrac: blueKeep / (w * h)
