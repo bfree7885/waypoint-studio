@@ -134,6 +134,7 @@ Include:
 
 ## Lessons Learned
 
+<<<<<<< HEAD
 ### 2026-08-16 — Global Southwest palette cleanup
 
 **Branch:** `cursor/southwest-palette-cleanup-efa3` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`
@@ -142,6 +143,14 @@ Include:
 - DFD sage accent made the library feel like a separate site — bind editorial surfaces to purple/orange inside the same family.
 - Dashboard instrument **data** hues (precip/AQI/alert) stay; only chrome/framing remaps to aubergine + orange/gold.
 - Prefer remapping local `:root` aliases (`--forest`, `--accent-sage`) to tokens over mass hex search-replace inside maps/photos.
+=======
+### 2026-08-17 — About page principles (monetization-safe)
+
+**Branch:** `cursor/about-page-principles-efa3`
+
+- About must not promise “no advertising forever”; refuse selling data, deception, sponsor control of conclusions, and intrusive formats instead.
+- Remove personal “Built by a person” attribution from About; contact stays on Support/Contact.
+>>>>>>> 70422750 (fix(about): remove personal byline; keep monetization options open)
 
 ### 2026-08-16 — DFD measurement mode scorecard
 
