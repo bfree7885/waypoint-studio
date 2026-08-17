@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-17T13:06:32.096Z",
-  "entityCount": 442,
-  "relationshipCount": 1106,
+  "generatedAt": "2026-08-17T18:57:46.367Z",
+  "entityCount": 437,
+  "relationshipCount": 1096,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -138,6 +138,21 @@
       "id": "cve:CVE-2026-20316",
       "kind": "cve",
       "title": "CVE-2026-20316"
+    },
+    {
+      "id": "cve:CVE-2025-62593",
+      "kind": "cve",
+      "title": "CVE-2025-62593"
+    },
+    {
+      "id": "vendor:ray-project",
+      "kind": "vendor",
+      "title": "Ray-Project"
+    },
+    {
+      "id": "vendor:anyscale",
+      "kind": "vendor",
+      "title": "anyscale"
     },
     {
       "id": "cve:CVE-2026-68820",
@@ -365,16 +380,6 @@
       "title": "CVE-2025-20393"
     },
     {
-      "id": "cve:CVE-2026-18577",
-      "kind": "cve",
-      "title": "CVE-2026-18577"
-    },
-    {
-      "id": "vendor:n-able",
-      "kind": "vendor",
-      "title": "N-able"
-    },
-    {
       "id": "cve:CVE-2025-48595",
       "kind": "cve",
       "title": "CVE-2025-48595"
@@ -395,14 +400,14 @@
       "title": "CVE-2026-21513"
     },
     {
-      "id": "cve:CVE-2025-48633",
-      "kind": "cve",
-      "title": "CVE-2025-48633"
-    },
-    {
       "id": "cve:CVE-2026-18556",
       "kind": "cve",
       "title": "CVE-2026-18556"
+    },
+    {
+      "id": "vendor:n-able",
+      "kind": "vendor",
+      "title": "N-able"
     },
     {
       "id": "cve:CVE-2026-50522",
@@ -513,6 +518,11 @@
       "id": "vendor:asus",
       "kind": "vendor",
       "title": "ASUS"
+    },
+    {
+      "id": "cve:CVE-2026-18577",
+      "kind": "cve",
+      "title": "CVE-2026-18577"
     },
     {
       "id": "cve:CVE-2026-16812",
@@ -1551,6 +1561,21 @@
       "title": "CVE-2016-1019"
     },
     {
+      "id": "vendor:npm",
+      "kind": "vendor",
+      "title": "npm"
+    },
+    {
+      "id": "cve:CVE-2026-47698",
+      "kind": "cve",
+      "title": "CVE-2026-47698"
+    },
+    {
+      "id": "cve:CVE-2026-47686",
+      "kind": "cve",
+      "title": "CVE-2026-47686"
+    },
+    {
       "id": "cve:CVE-2017-3806",
       "kind": "cve",
       "title": "CVE-2017-3806"
@@ -1611,16 +1636,6 @@
       "title": "CVE-2018-11138"
     },
     {
-      "id": "cve:CVE-2018-7602",
-      "kind": "cve",
-      "title": "CVE-2018-7602"
-    },
-    {
-      "id": "cve:CVE-2018-0453",
-      "kind": "cve",
-      "title": "CVE-2018-0453"
-    },
-    {
       "id": "cve:CVE-2010-0188",
       "kind": "cve",
       "title": "CVE-2010-0188"
@@ -1651,19 +1666,9 @@
       "title": "CVE-2018-8174"
     },
     {
-      "id": "cve:CVE-2026-55157",
+      "id": "cve:CVE-2026-59902",
       "kind": "cve",
-      "title": "CVE-2026-55157"
-    },
-    {
-      "id": "vendor:npm",
-      "kind": "vendor",
-      "title": "npm"
-    },
-    {
-      "id": "cve:CVE-2026-55153",
-      "kind": "cve",
-      "title": "CVE-2026-55153"
+      "title": "CVE-2026-59902"
     },
     {
       "id": "vendor:maven",
@@ -1671,19 +1676,14 @@
       "title": "maven"
     },
     {
-      "id": "cve:CVE-2026-53660",
+      "id": "cve:CVE-2026-55090",
       "kind": "cve",
-      "title": "CVE-2026-53660"
+      "title": "CVE-2026-55090"
     },
     {
-      "id": "cve:CVE-2026-35219",
+      "id": "cve:CVE-2026-47683",
       "kind": "cve",
-      "title": "CVE-2026-35219"
-    },
-    {
-      "id": "cve:CVE-2026-73654",
-      "kind": "cve",
-      "title": "CVE-2026-73654"
+      "title": "CVE-2026-47683"
     },
     {
       "id": "cve:CVE-2017-6625",
@@ -1691,9 +1691,24 @@
       "title": "CVE-2017-6625"
     },
     {
+      "id": "cve:CVE-2017-11508",
+      "kind": "cve",
+      "title": "CVE-2017-11508"
+    },
+    {
       "id": "cve:CVE-2018-8120",
       "kind": "cve",
       "title": "CVE-2018-8120"
+    },
+    {
+      "id": "cve:CVE-2026-71479",
+      "kind": "cve",
+      "title": "CVE-2026-71479"
+    },
+    {
+      "id": "vendor:go",
+      "kind": "vendor",
+      "title": "go"
     },
     {
       "id": "cve:CVE-2016-3351",
@@ -1709,16 +1724,6 @@
       "id": "cve:CVE-2017-3887",
       "kind": "cve",
       "title": "CVE-2017-3887"
-    },
-    {
-      "id": "cve:CVE-2026-53708",
-      "kind": "cve",
-      "title": "CVE-2026-53708"
-    },
-    {
-      "id": "vendor:pip",
-      "kind": "vendor",
-      "title": "pip"
     },
     {
       "id": "cve:CVE-2013-0431",
@@ -1756,6 +1761,11 @@
       "title": "CVE-2026-19188"
     },
     {
+      "id": "cve:CVE-2026-45099",
+      "kind": "cve",
+      "title": "CVE-2026-45099"
+    },
+    {
       "id": "cve:CVE-2018-6882",
       "kind": "cve",
       "title": "CVE-2018-6882"
@@ -1764,6 +1774,16 @@
       "id": "cve:CVE-2010-0738",
       "kind": "cve",
       "title": "CVE-2010-0738"
+    },
+    {
+      "id": "cve:CVE-2013-5911",
+      "kind": "cve",
+      "title": "CVE-2013-5911"
+    },
+    {
+      "id": "vendor:github-status",
+      "kind": "vendor",
+      "title": "GitHub Status"
     },
     {
       "id": "cve:CVE-2026-23573",
@@ -1801,104 +1821,79 @@
       "title": "CVE-2026-34496"
     },
     {
-      "id": "cve:CVE-2026-35511",
+      "id": "cve:CVE-2026-59903",
       "kind": "cve",
-      "title": "CVE-2026-35511"
+      "title": "CVE-2026-59903"
     },
     {
-      "id": "vendor:go",
+      "id": "cve:CVE-2026-59893",
+      "kind": "cve",
+      "title": "CVE-2026-59893"
+    },
+    {
+      "id": "vendor:pip",
       "kind": "vendor",
-      "title": "go"
+      "title": "pip"
     },
     {
-      "id": "cve:CVE-2026-55156",
+      "id": "cve:CVE-2026-54284",
       "kind": "cve",
-      "title": "CVE-2026-55156"
+      "title": "CVE-2026-54284"
     },
     {
-      "id": "cve:CVE-2026-53657",
+      "id": "cve:CVE-2026-71491",
       "kind": "cve",
-      "title": "CVE-2026-53657"
+      "title": "CVE-2026-71491"
     },
     {
-      "id": "cve:CVE-2026-53653",
+      "id": "cve:CVE-2026-68519",
       "kind": "cve",
-      "title": "CVE-2026-53653"
+      "title": "CVE-2026-68519"
     },
     {
-      "id": "vendor:composer",
-      "kind": "vendor",
-      "title": "composer"
-    },
-    {
-      "id": "cve:CVE-2026-12243",
+      "id": "cve:CVE-2026-62982",
       "kind": "cve",
-      "title": "CVE-2026-12243"
+      "title": "CVE-2026-62982"
     },
     {
-      "id": "cve:CVE-2026-54526",
+      "id": "cve:CVE-2026-68518",
       "kind": "cve",
-      "title": "CVE-2026-54526"
+      "title": "CVE-2026-68518"
     },
     {
-      "id": "cve:CVE-2026-55102",
+      "id": "cve:CVE-2026-55062",
       "kind": "cve",
-      "title": "CVE-2026-55102"
+      "title": "CVE-2026-55062"
     },
     {
-      "id": "cve:CVE-2026-55088",
+      "id": "cve:CVE-2026-55061",
       "kind": "cve",
-      "title": "CVE-2026-55088"
+      "title": "CVE-2026-55061"
     },
     {
-      "id": "cve:CVE-2026-55086",
+      "id": "cve:CVE-2026-68520",
       "kind": "cve",
-      "title": "CVE-2026-55086"
+      "title": "CVE-2026-68520"
     },
     {
-      "id": "cve:CVE-2026-55087",
+      "id": "cve:CVE-2026-59894",
       "kind": "cve",
-      "title": "CVE-2026-55087"
+      "title": "CVE-2026-59894"
     },
     {
-      "id": "cve:CVE-2026-55072",
+      "id": "cve:CVE-2026-68517",
       "kind": "cve",
-      "title": "CVE-2026-55072"
+      "title": "CVE-2026-68517"
     },
     {
-      "id": "cve:CVE-2026-55074",
+      "id": "cve:CVE-2026-64865",
       "kind": "cve",
-      "title": "CVE-2026-55074"
+      "title": "CVE-2026-64865"
     },
     {
-      "id": "vendor:nuget",
-      "kind": "vendor",
-      "title": "nuget"
-    },
-    {
-      "id": "cve:CVE-2026-10740",
+      "id": "cve:CVE-2026-64866",
       "kind": "cve",
-      "title": "CVE-2026-10740"
-    },
-    {
-      "id": "vendor:rust",
-      "kind": "vendor",
-      "title": "rust"
-    },
-    {
-      "id": "cve:CVE-2026-53658",
-      "kind": "cve",
-      "title": "CVE-2026-53658"
-    },
-    {
-      "id": "cve:CVE-2026-73559",
-      "kind": "cve",
-      "title": "CVE-2026-73559"
-    },
-    {
-      "id": "cve:CVE-2026-54249",
-      "kind": "cve",
-      "title": "CVE-2026-54249"
+      "title": "CVE-2026-64866"
     },
     {
       "id": "cve:CVE-2025-7639",
@@ -1971,11 +1966,6 @@
       "title": "CVE-2025-27558"
     },
     {
-      "id": "cve:CVE-2026-43503",
-      "kind": "cve",
-      "title": "CVE-2026-43503"
-    },
-    {
       "id": "cve:CVE-2026-46331",
       "kind": "cve",
       "title": "CVE-2026-46331"
@@ -1989,31 +1979,6 @@
       "id": "cve:CVE-2026-53131",
       "kind": "cve",
       "title": "CVE-2026-53131"
-    },
-    {
-      "id": "cve:CVE-2026-53146",
-      "kind": "cve",
-      "title": "CVE-2026-53146"
-    },
-    {
-      "id": "cve:CVE-2026-53147",
-      "kind": "cve",
-      "title": "CVE-2026-53147"
-    },
-    {
-      "id": "cve:CVE-2026-53148",
-      "kind": "cve",
-      "title": "CVE-2026-53148"
-    },
-    {
-      "id": "cve:CVE-2026-53149",
-      "kind": "cve",
-      "title": "CVE-2026-53149"
-    },
-    {
-      "id": "cve:CVE-2026-53150",
-      "kind": "cve",
-      "title": "CVE-2026-53150"
     },
     {
       "id": "cve:CVE-2026-53151",
@@ -2041,29 +2006,44 @@
       "title": "CVE-2026-53212"
     },
     {
-      "id": "cve:CVE-2026-43083",
+      "id": "cve:CVE-2026-53215",
       "kind": "cve",
-      "title": "CVE-2026-43083"
+      "title": "CVE-2026-53215"
     },
     {
-      "id": "cve:CVE-2026-43197",
+      "id": "cve:CVE-2026-53216",
       "kind": "cve",
-      "title": "CVE-2026-43197"
+      "title": "CVE-2026-53216"
     },
     {
-      "id": "cve:CVE-2026-43198",
+      "id": "cve:CVE-2026-53221",
       "kind": "cve",
-      "title": "CVE-2026-43198"
+      "title": "CVE-2026-53221"
     },
     {
-      "id": "cve:CVE-2026-43465",
+      "id": "cve:CVE-2026-53224",
       "kind": "cve",
-      "title": "CVE-2026-43465"
+      "title": "CVE-2026-53224"
     },
     {
-      "id": "cve:CVE-2026-46242",
+      "id": "cve:CVE-2026-53225",
       "kind": "cve",
-      "title": "CVE-2026-46242"
+      "title": "CVE-2026-53225"
+    },
+    {
+      "id": "cve:CVE-2026-53228",
+      "kind": "cve",
+      "title": "CVE-2026-53228"
+    },
+    {
+      "id": "cve:CVE-2026-53246",
+      "kind": "cve",
+      "title": "CVE-2026-53246"
+    },
+    {
+      "id": "cve:CVE-2026-43503",
+      "kind": "cve",
+      "title": "CVE-2026-43503"
     },
     {
       "id": "cve:CVE-2026-64629",
@@ -2209,11 +2189,6 @@
       "id": "cve:CVE-2026-40175",
       "kind": "cve",
       "title": "CVE-2026-40175"
-    },
-    {
-      "id": "vendor:github-status",
-      "kind": "vendor",
-      "title": "GitHub Status"
     },
     {
       "id": "vendor:openai-status",
@@ -2607,6 +2582,30 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-20316",
       "to": "vendor:cisco",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2025-62593",
+      "to": "cve:CVE-2025-62593",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2025-62593",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2025-62593",
+      "to": "vendor:ray-project",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2025-62593",
+      "to": "vendor:anyscale",
       "evidence": "entity extraction"
     },
     {
@@ -3446,37 +3445,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-18577",
-      "to": "cve:CVE-2026-18577",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-18577",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-18577",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-18577",
-      "to": "vendor:n-able",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-18577",
-      "to": "vendor:n-able",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2025-48595",
       "to": "cve:CVE-2025-48595",
       "evidence": "identifier"
@@ -3541,24 +3509,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-21513",
       "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2025-48633",
-      "to": "cve:CVE-2025-48633",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2025-48633",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2025-48633",
-      "to": "vendor:android",
       "evidence": "entity extraction"
     },
     {
@@ -4036,6 +3986,31 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-59374",
       "to": "vendor:asus",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-18577",
+      "to": "cve:CVE-2026-18577",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-18577",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-18577",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18577",
+      "to": "vendor:n-able",
       "evidence": "entity extraction"
     },
     {
@@ -7300,6 +7275,64 @@
       "confidence": "heuristic"
     },
     {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-m5w8-4gq2-6f8x",
+      "to": "attack:T1195",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-m5w8-4gq2-6f8x",
+      "to": "vendor:npm",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-cfcw-xp6x-25gj",
+      "to": "cve:CVE-2026-47698",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-cfcw-xp6x-25gj",
+      "to": "attack:T1195",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-cfcw-xp6x-25gj",
+      "to": "vendor:npm",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-m283-3h24-438v",
+      "to": "cve:CVE-2026-47686",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-m283-3h24-438v",
+      "to": "attack:T1195",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-m283-3h24-438v",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-m283-3h24-438v",
+      "to": "vendor:npm",
+      "evidence": "entity extraction"
+    },
+    {
       "type": "mentions-cve",
       "from": "live_nvd_cve-2017-3806",
       "to": "cve:CVE-2017-3806",
@@ -7450,32 +7483,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_nvd_cve-2018-7602",
-      "to": "cve:CVE-2018-7602",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2018-7602",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2018-7602",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_nvd_cve-2018-0453",
-      "to": "cve:CVE-2018-0453",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_nvd_cve-2010-0188",
       "to": "cve:CVE-2010-0188",
       "evidence": "identifier"
@@ -7540,96 +7547,70 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-49mq-fc6q-3h46",
-      "to": "cve:CVE-2026-55157",
+      "from": "live_ghsa_GHSA-2qj4-mmr9-4v2f",
+      "to": "cve:CVE-2026-59902",
       "evidence": "identifier"
     },
     {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-49mq-fc6q-3h46",
-      "to": "attack:T1195",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-49mq-fc6q-3h46",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-49mq-fc6q-3h46",
-      "to": "vendor:npm",
+      "from": "live_ghsa_GHSA-2qj4-mmr9-4v2f",
+      "to": "vendor:maven",
       "evidence": "entity extraction"
     },
     {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-h84g-69h7-mw6v",
-      "to": "cve:CVE-2026-55153",
-      "evidence": "identifier"
-    },
-    {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-h84g-69h7-mw6v",
+      "from": "live_ghsa_GHSA-2qj4-mmr9-4v2f",
       "to": "vendor:maven",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-fpmh-vx4h-xc33",
-      "to": "cve:CVE-2026-53660",
+      "from": "live_ghsa_GHSA-2jp7-wwpg-3p9w",
+      "to": "cve:CVE-2026-55090",
       "evidence": "identifier"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-fpmh-vx4h-xc33",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-fpmh-vx4h-xc33",
-      "to": "vendor:maven",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-5fpj-28rv-84r7",
-      "to": "cve:CVE-2026-35219",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-5fpj-28rv-84r7",
+      "from": "live_ghsa_GHSA-2jp7-wwpg-3p9w",
       "to": "attack:T1195",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-5fpj-28rv-84r7",
+      "from": "live_ghsa_GHSA-2jp7-wwpg-3p9w",
+      "to": "vendor:npm",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-v836-6xw4-9cx3",
+      "to": "attack:T1195",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-v836-6xw4-9cx3",
       "to": "vendor:npm",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-p28v-f755-9qrg",
-      "to": "cve:CVE-2026-73654",
+      "from": "live_ghsa_GHSA-gmc2-2x9w-cgh9",
+      "to": "cve:CVE-2026-47683",
       "evidence": "identifier"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-p28v-f755-9qrg",
+      "from": "live_ghsa_GHSA-gmc2-2x9w-cgh9",
       "to": "attack:T1195",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-p28v-f755-9qrg",
+      "from": "live_ghsa_GHSA-gmc2-2x9w-cgh9",
       "to": "vendor:npm",
       "evidence": "entity extraction"
     },
@@ -7648,9 +7629,34 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_nvd_cve-2017-11508",
+      "to": "cve:CVE-2017-11508",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_nvd_cve-2017-11508",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_nvd_cve-2018-8120",
       "to": "cve:CVE-2018-8120",
       "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-8r8v-xf7q-rcpr",
+      "to": "cve:CVE-2026-71479",
+      "evidence": "identifier"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-8r8v-xf7q-rcpr",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
@@ -7690,25 +7696,6 @@
       "to": "attack:T1190",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-9hgc-g3w5-67cm",
-      "to": "cve:CVE-2026-53708",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-9hgc-g3w5-67cm",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-9hgc-g3w5-67cm",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
@@ -7816,6 +7803,32 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-8394-6f8r-whxg",
+      "to": "cve:CVE-2026-45099",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-8394-6f8r-whxg",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-8394-6f8r-whxg",
+      "to": "attack:T1195",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-8394-6f8r-whxg",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_nvd_cve-2018-6882",
       "to": "cve:CVE-2018-6882",
       "evidence": "identifier"
@@ -7842,6 +7855,31 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_nvd_cve-2013-5911",
+      "to": "cve:CVE-2013-5911",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_nvd_cve-2013-5911",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_github-status_5061727469616c20",
+      "to": "vendor:github-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_github-status_5061727469616c20",
+      "to": "vendor:github-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_cisa-advisories_2f6e6f64652f3235323935",
       "to": "cve:CVE-2026-23573",
       "evidence": "identifier"
@@ -7954,317 +7992,251 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
-      "to": "cve:CVE-2026-35511",
+      "from": "live_ghsa_GHSA-8c42-7qj2-3j46",
+      "to": "cve:CVE-2026-59903",
+      "evidence": "identifier"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-8c42-7qj2-3j46",
+      "to": "vendor:maven",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-8c42-7qj2-3j46",
+      "to": "vendor:maven",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-fhgh-wq4q-r37x",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-prg7-hcfm-mfcr",
+      "to": "cve:CVE-2026-59893",
       "evidence": "identifier"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
+      "from": "live_ghsa_GHSA-prg7-hcfm-mfcr",
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-29rf-f4vv-pvq6",
-      "to": "vendor:go",
+      "from": "live_ghsa_GHSA-prg7-hcfm-mfcr",
+      "to": "vendor:pip",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-76pc-mqxp-3rq5",
-      "to": "cve:CVE-2026-55156",
+      "from": "live_ghsa_GHSA-pwgv-4x5q-6m9f",
+      "to": "cve:CVE-2026-54284",
       "evidence": "identifier"
     },
     {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-pwgv-4x5q-6m9f",
+      "to": "vendor:pip",
+      "evidence": "entity extraction"
+    },
+    {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-76pc-mqxp-3rq5",
+      "from": "live_ghsa_GHSA-92hr-gmr6-h8cp",
       "to": "attack:T1195",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-76pc-mqxp-3rq5",
+      "from": "live_ghsa_GHSA-92hr-gmr6-h8cp",
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-76pc-mqxp-3rq5",
+      "from": "live_ghsa_GHSA-92hr-gmr6-h8cp",
       "to": "vendor:npm",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-2j9v-p4xj-cjw2",
-      "to": "cve:CVE-2026-53657",
+      "from": "live_ghsa_GHSA-f2ff-p2ww-7p4p",
+      "to": "cve:CVE-2026-71491",
       "evidence": "identifier"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-2j9v-p4xj-cjw2",
-      "to": "vendor:go",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-4x9g-vw65-vvf9",
-      "to": "cve:CVE-2026-53653",
-      "evidence": "identifier"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-4x9g-vw65-vvf9",
-      "to": "vendor:composer",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-4x9g-vw65-vvf9",
-      "to": "vendor:composer",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-m42h-3232-vpv3",
-      "to": "cve:CVE-2026-12243",
-      "evidence": "identifier"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-m42h-3232-vpv3",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-rm43-82j9-r4mj",
+      "from": "live_ghsa_GHSA-f2ff-p2ww-7p4p",
       "to": "vendor:pip",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-48p8-g2fx-3wwm",
-      "to": "cve:CVE-2026-54526",
+      "from": "live_ghsa_GHSA-59fj-m2j6-hcxh",
+      "to": "cve:CVE-2026-68519",
       "evidence": "identifier"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-48p8-g2fx-3wwm",
-      "to": "vendor:go",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-48p8-g2fx-3wwm",
-      "to": "vendor:go",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-48p8-g2fx-3wwm",
-      "to": "vendor:go",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-5pq8-3ffp-7w5m",
-      "to": "cve:CVE-2026-55102",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-5pq8-3ffp-7w5m",
-      "to": "attack:T1195",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-5pq8-3ffp-7w5m",
-      "to": "vendor:npm",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-vqfp-p66c-xrp9",
-      "to": "cve:CVE-2026-55088",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-vqfp-p66c-xrp9",
-      "to": "attack:T1195",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-vqfp-p66c-xrp9",
-      "to": "vendor:npm",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-2jwf-f4xq-f24h",
-      "to": "cve:CVE-2026-55086",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-2jwf-f4xq-f24h",
-      "to": "attack:T1195",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-2jwf-f4xq-f24h",
-      "to": "vendor:npm",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-fjgc-3mj7-8rg8",
-      "to": "cve:CVE-2026-55087",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-fjgc-3mj7-8rg8",
-      "to": "attack:T1195",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-fjgc-3mj7-8rg8",
-      "to": "vendor:npm",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-2mhj-fhvg-v428",
-      "to": "cve:CVE-2026-55072",
-      "evidence": "identifier"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-2mhj-fhvg-v428",
-      "to": "vendor:composer",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-2mhj-fhvg-v428",
-      "to": "vendor:composer",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-cxgv-hp74-jj7r",
-      "to": "cve:CVE-2026-55074",
-      "evidence": "identifier"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-cxgv-hp74-jj7r",
+      "from": "live_ghsa_GHSA-59fj-m2j6-hcxh",
       "to": "vendor:pip",
       "evidence": "entity extraction"
     },
     {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-73wf-9vmv-5pv9",
+      "to": "cve:CVE-2026-62982",
+      "evidence": "identifier"
+    },
+    {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-pfvm-w89x-94jw",
+      "from": "live_ghsa_GHSA-73wf-9vmv-5pv9",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-73wf-9vmv-5pv9",
+      "to": "vendor:pip",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-qcpp-8x79-hhp3",
+      "to": "cve:CVE-2026-68518",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-qcpp-8x79-hhp3",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-qcpp-8x79-hhp3",
+      "to": "vendor:pip",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-m6jg-wr9m-cg2f",
+      "to": "cve:CVE-2026-55062",
+      "evidence": "identifier"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-m6jg-wr9m-cg2f",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-qmcq-xw74-w667",
+      "to": "cve:CVE-2026-55061",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-qmcq-xw74-w667",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-qmcq-xw74-w667",
+      "to": "vendor:go",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-4h34-v6r8-mmjc",
+      "to": "cve:CVE-2026-68520",
+      "evidence": "identifier"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-4h34-v6r8-mmjc",
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-pfvm-w89x-94jw",
-      "to": "vendor:nuget",
+      "from": "live_ghsa_GHSA-4h34-v6r8-mmjc",
+      "to": "vendor:pip",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-9q54-f358-3fqf",
-      "to": "cve:CVE-2026-10740",
+      "from": "live_ghsa_GHSA-3496-9g83-7v6x",
+      "to": "cve:CVE-2026-59894",
       "evidence": "identifier"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-9q54-f358-3fqf",
-      "to": "vendor:rust",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-8rw6-p7m8-63jp",
-      "to": "vendor:rust",
+      "from": "live_ghsa_GHSA-3496-9g83-7v6x",
+      "to": "vendor:pip",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-xghw-p77p-3r7x",
-      "to": "cve:CVE-2026-53658",
+      "from": "live_ghsa_GHSA-fp27-88fp-2phg",
+      "to": "cve:CVE-2026-68517",
+      "evidence": "identifier"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_ghsa_GHSA-fp27-88fp-2phg",
+      "to": "vendor:pip",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ghsa_GHSA-j6gc-4893-qwmp",
+      "to": "cve:CVE-2026-64865",
       "evidence": "identifier"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_ghsa_GHSA-xghw-p77p-3r7x",
+      "from": "live_ghsa_GHSA-j6gc-4893-qwmp",
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-xghw-p77p-3r7x",
+      "from": "live_ghsa_GHSA-j6gc-4893-qwmp",
       "to": "vendor:go",
       "evidence": "entity extraction"
     },
     {
       "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-87x5-vmc3-756j",
-      "to": "cve:CVE-2026-73559",
+      "from": "live_ghsa_GHSA-p845-629j-rcj6",
+      "to": "cve:CVE-2026-64866",
       "evidence": "identifier"
     },
     {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-87x5-vmc3-756j",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ghsa_GHSA-h7p7-w5gc-xj3w",
-      "to": "cve:CVE-2026-54249",
-      "evidence": "identifier"
+      "type": "heuristic-attack-map",
+      "from": "live_ghsa_GHSA-p845-629j-rcj6",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-h7p7-w5gc-xj3w",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-h7p7-w5gc-xj3w",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-h7p7-w5gc-xj3w",
-      "to": "vendor:pip",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_ghsa_GHSA-h7p7-w5gc-xj3w",
-      "to": "vendor:pip",
+      "from": "live_ghsa_GHSA-p845-629j-rcj6",
+      "to": "vendor:go",
       "evidence": "entity extraction"
     },
     {
@@ -8438,18 +8410,6 @@
     {
       "type": "mentions-cve",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43503",
-      "evidence": "identifier"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43503",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "cve:CVE-2026-46331",
       "evidence": "identifier"
     },
@@ -8463,36 +8423,6 @@
       "type": "mentions-cve",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "cve:CVE-2026-53131",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53146",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53147",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53148",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53149",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53150",
       "evidence": "identifier"
     },
     {
@@ -8526,6 +8456,48 @@
       "evidence": "identifier"
     },
     {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53215",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53216",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53221",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53224",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53225",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53228",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53246",
+      "evidence": "identifier"
+    },
+    {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "cve:CVE-2026-46331",
@@ -8541,36 +8513,6 @@
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "cve:CVE-2026-53131",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53146",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53147",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53148",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53149",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-53150",
       "evidence": "CVE extracted from advisory"
     },
     {
@@ -8604,63 +8546,57 @@
       "evidence": "CVE extracted from advisory"
     },
     {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43083",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43197",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43198",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43465",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-46242",
-      "evidence": "identifier"
-    },
-    {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43083",
+      "to": "cve:CVE-2026-53215",
       "evidence": "CVE extracted from advisory"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43197",
+      "to": "cve:CVE-2026-53216",
       "evidence": "CVE extracted from advisory"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43198",
+      "to": "cve:CVE-2026-53221",
       "evidence": "CVE extracted from advisory"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-43465",
+      "to": "cve:CVE-2026-53224",
       "evidence": "CVE extracted from advisory"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-46242",
+      "to": "cve:CVE-2026-53225",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53228",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-53246",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-43503",
+      "evidence": "identifier"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-43503",
       "evidence": "CVE extracted from advisory"
     },
     {
@@ -9046,18 +8982,6 @@
     },
     {
       "type": "outage-affects",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
       "from": "live_outage_openai-status_ok",
       "to": "vendor:openai-status",
       "evidence": "service-outage record"
@@ -9079,13 +9003,6 @@
       "from": "live_outage_azure_unavailable",
       "to": "vendor:microsoft",
       "evidence": "entity extraction"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_cisa-advisories_2f6e6f64652f3235323631",
-      "to": "attack:T1486",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
     }
   ],
   "note": "Automatic correlation from identifiers and heuristics. ATT&CK links are heuristic unless marked otherwise.",
