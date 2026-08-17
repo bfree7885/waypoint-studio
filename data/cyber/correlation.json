@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-17T07:17:04.896Z",
+  "generatedAt": "2026-08-17T13:06:32.096Z",
   "entityCount": 442,
-  "relationshipCount": 1107,
+  "relationshipCount": 1106,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -34,16 +34,6 @@
       "id": "vendor:progress",
       "kind": "vendor",
       "title": "Progress"
-    },
-    {
-      "id": "cve:CVE-2026-25089",
-      "kind": "cve",
-      "title": "CVE-2026-25089"
-    },
-    {
-      "id": "vendor:fortinet",
-      "kind": "vendor",
-      "title": "Fortinet"
     },
     {
       "id": "cve:CVE-2026-50751",
@@ -343,6 +333,16 @@
       "id": "cve:CVE-2025-68686",
       "kind": "cve",
       "title": "CVE-2025-68686"
+    },
+    {
+      "id": "vendor:fortinet",
+      "kind": "vendor",
+      "title": "Fortinet"
+    },
+    {
+      "id": "cve:CVE-2026-25089",
+      "kind": "cve",
+      "title": "CVE-2026-25089"
     },
     {
       "id": "cve:CVE-2026-39808",
@@ -2279,37 +2279,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-25089",
-      "to": "cve:CVE-2026-25089",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-25089",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-25089",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-25089",
-      "to": "vendor:fortinet",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-25089",
-      "to": "vendor:fortinet",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-50751",
       "to": "cve:CVE-2026-50751",
       "evidence": "identifier"
@@ -3340,6 +3309,31 @@
     {
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-68686",
+      "to": "vendor:fortinet",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-25089",
+      "to": "cve:CVE-2026-25089",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-25089",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-25089",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-25089",
       "to": "vendor:fortinet",
       "evidence": "entity extraction"
     },
@@ -8943,155 +8937,155 @@
       "evidence": "CVE extracted from advisory"
     },
     {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19141",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-13281",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19155",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19175",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-12446",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19153",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19166",
+      "evidence": "identifier"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19141",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-13281",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19155",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19175",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-12446",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19153",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_chrome-releases_7461673a626c6f676765722e",
+      "to": "cve:CVE-2026-19166",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2025-62718",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-40175",
+      "evidence": "identifier"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2025-62718",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-40175",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_github-status_ok",
+      "to": "vendor:github-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_github-status_ok",
+      "to": "vendor:github-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_openai-status_ok",
+      "to": "vendor:openai-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_openai-status_ok",
+      "to": "vendor:openai-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_azure_unavailable",
+      "to": "vendor:microsoft",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_azure_unavailable",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
       "type": "heuristic-attack-map",
       "from": "live_cisa-advisories_2f6e6f64652f3235323631",
       "to": "attack:T1486",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19141",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-13281",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19155",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19175",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-12446",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19153",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19166",
-      "evidence": "identifier"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19141",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-13281",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19155",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19175",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-12446",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19153",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-19166",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2025-62718",
-      "evidence": "identifier"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-40175",
-      "evidence": "identifier"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2025-62718",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-40175",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_openai-status_ok",
-      "to": "vendor:openai-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_openai-status_ok",
-      "to": "vendor:openai-status",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_azure_unavailable",
-      "to": "vendor:microsoft",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_azure_unavailable",
-      "to": "vendor:microsoft",
-      "evidence": "entity extraction"
     }
   ],
   "note": "Automatic correlation from identifiers and heuristics. ATT&CK links are heuristic unless marked otherwise.",
