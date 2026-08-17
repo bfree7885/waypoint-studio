@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-16T18:47:19.406Z",
+  "generatedAt": "2026-08-17T01:56:18.489Z",
   "entityCount": 442,
   "relationshipCount": 1109,
   "entities": [
@@ -415,11 +415,6 @@
       "title": "CVE-2026-58644"
     },
     {
-      "id": "cve:CVE-2026-46817",
-      "kind": "cve",
-      "title": "CVE-2026-46817"
-    },
-    {
       "id": "cve:CVE-2026-56155",
       "kind": "cve",
       "title": "CVE-2026-56155"
@@ -573,6 +568,11 @@
       "id": "vendor:knx-association",
       "kind": "vendor",
       "title": "KNX Association"
+    },
+    {
+      "id": "cve:CVE-2026-46817",
+      "kind": "cve",
+      "title": "CVE-2026-46817"
     },
     {
       "id": "cve:CVE-2026-56164",
@@ -3636,24 +3636,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-46817",
-      "to": "cve:CVE-2026-46817",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-46817",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-46817",
-      "to": "vendor:oracle",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-56155",
       "to": "cve:CVE-2026-56155",
       "evidence": "identifier"
@@ -4249,6 +4231,24 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2023-4346",
       "to": "vendor:knx-association",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-46817",
+      "to": "cve:CVE-2026-46817",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-46817",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-46817",
+      "to": "vendor:oracle",
       "evidence": "entity extraction"
     },
     {
