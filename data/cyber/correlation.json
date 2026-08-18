@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-18T01:51:40.810Z",
+  "generatedAt": "2026-08-18T07:05:19.030Z",
   "entityCount": 436,
-  "relationshipCount": 1109,
+  "relationshipCount": 1108,
   "entities": [
     {
       "id": "cve:CVE-2026-20349",
@@ -370,6 +370,16 @@
       "title": "CVE-2025-20393"
     },
     {
+      "id": "cve:CVE-2026-18577",
+      "kind": "cve",
+      "title": "CVE-2026-18577"
+    },
+    {
+      "id": "vendor:n-able",
+      "kind": "vendor",
+      "title": "N-able"
+    },
+    {
       "id": "cve:CVE-2025-48595",
       "kind": "cve",
       "title": "CVE-2025-48595"
@@ -393,11 +403,6 @@
       "id": "cve:CVE-2026-18556",
       "kind": "cve",
       "title": "CVE-2026-18556"
-    },
-    {
-      "id": "vendor:n-able",
-      "kind": "vendor",
-      "title": "N-able"
     },
     {
       "id": "cve:CVE-2026-50522",
@@ -513,11 +518,6 @@
       "id": "vendor:asus",
       "kind": "vendor",
       "title": "ASUS"
-    },
-    {
-      "id": "cve:CVE-2026-18577",
-      "kind": "cve",
-      "title": "CVE-2026-18577"
     },
     {
       "id": "cve:CVE-2026-16812",
@@ -1781,11 +1781,6 @@
       "title": "CVE-2026-56677"
     },
     {
-      "id": "vendor:amazon-web-services",
-      "kind": "vendor",
-      "title": "Amazon Web Services"
-    },
-    {
       "id": "cve:CVE-2018-6882",
       "kind": "cve",
       "title": "CVE-2018-6882"
@@ -1809,6 +1804,11 @@
       "id": "cve:CVE-2026-59839",
       "kind": "cve",
       "title": "CVE-2026-59839"
+    },
+    {
+      "id": "vendor:amazon-web-services",
+      "kind": "vendor",
+      "title": "Amazon Web Services"
     },
     {
       "id": "vendor:cloudflare-status",
@@ -3390,6 +3390,37 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-18577",
+      "to": "cve:CVE-2026-18577",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-18577",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-18577",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18577",
+      "to": "vendor:n-able",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18577",
+      "to": "vendor:n-able",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2025-48595",
       "to": "cve:CVE-2025-48595",
       "evidence": "identifier"
@@ -3963,31 +3994,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-59374",
       "to": "vendor:asus",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-18577",
-      "to": "cve:CVE-2026-18577",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-18577",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-18577",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-18577",
-      "to": "vendor:n-able",
       "evidence": "entity extraction"
     },
     {
@@ -7904,32 +7910,6 @@
       "evidence": "entity extraction"
     },
     {
-      "type": "outage-affects",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "attack:T1133",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_aws_68747470733a2f2f",
-      "to": "vendor:amazon-web-services",
-      "evidence": "entity extraction"
-    },
-    {
       "type": "mentions-cve",
       "from": "live_nvd_cve-2018-6882",
       "to": "cve:CVE-2018-6882",
@@ -7991,6 +7971,18 @@
       "from": "live_cisa-advisories_2f6e6f64652f3235323935",
       "to": "cve:CVE-2026-59839",
       "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_aws_68747470733a2f2f",
+      "to": "vendor:amazon-web-services",
+      "evidence": "entity extraction"
     },
     {
       "type": "outage-affects",
