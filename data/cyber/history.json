@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-18T07:05:19.038Z",
+  "updatedAt": "2026-08-18T13:08:35.019Z",
   "entries": [
+    {
+      "at": "2026-08-18T13:08:35.019Z",
+      "trustState": "Live",
+      "recordCount": 297,
+      "briefBullets": [
+        "Lead item: Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Heap Inspection Vulnerability",
+        "19 KEV dateAdded entries in ~30 days deserve edge review.",
+        "2 active public cloud/SaaS status signal(s).",
+        "25 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-18T07:05:19.038Z",
       "trustState": "Live",
