@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-19T07:06:07.582Z",
+  "updatedAt": "2026-08-19T13:09:11.632Z",
   "entries": [
+    {
+      "at": "2026-08-19T13:09:11.632Z",
+      "trustState": "Live",
+      "recordCount": 298,
+      "briefBullets": [
+        "Lead item: Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability",
+        "23 KEV dateAdded entries in ~30 days deserve edge review.",
+        "2 active public cloud/SaaS status signal(s).",
+        "24 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-19T07:06:07.581Z",
       "trustState": "Live",
