@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Aug 2026 12:21:41 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 00:34:28 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>NASA&apos;s B777 Gets New Coat of Paint</title>
+    <link>https://www.nasa.gov/image-detail/jsc2026e407303/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e407303/</guid>
+    <pubDate>Tue, 18 Aug 2026 15:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA&apos;s B777 Gets New Coat of Paint. NASA&apos;s Boeing 777 returns to the agency&apos;s Langley Research Center after receiving a new paint scheme.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e407303/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Colorful Collage of Tarantula Nebula</title>
     <link>https://www.nasa.gov/image-detail/30dor-crop/</link>
@@ -58,24 +76,6 @@ Summary: 2026 Total Solar Eclipse in Spain. A total solar eclipse is seen from S
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Lion Nebula Roars in Webb&apos;s Sights</title>
-    <link>https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</guid>
-    <pubDate>Tue, 11 Aug 2026 17:03:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA’s James Webb Space Telescope imaged the planetary nebula NGC 2392, the Lion Nebula, using the observatory’s NIRCam and MIRI instruments. The central star’s remains are responsible for the nebula’s structure, including a lion face-shaped bubble of ionized gas and dust “mane.”
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -138,11 +138,11 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <title>Visible planets and night sky guide for August</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Mon, 17 Aug 2026 08:30:08 GMT</pubDate>
+    <pubDate>Tue, 18 Aug 2026 12:00:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: This evening, the waxing crescent moon will hang near brilliant Venus and the bright star Spica. Don&apos;t miss them! The post Visible planets and night sky guide for August first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Join EarthSky’s Marcy Curran for your skywatching best bets for the week of August 17 in this new video. The post Visible planets and night sky guide for August first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -167,6 +167,24 @@ Read the original article at the publisher: https://earthsky.org/space/this-date
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Lion Nebula Roars in Webb&apos;s Sights</title>
+    <link>https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</guid>
+    <pubDate>Tue, 11 Aug 2026 17:03:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope imaged the planetary nebula NGC 2392, the Lion Nebula, using the observatory’s NIRCam and MIRI instruments. The central star’s remains are responsible for the nebula’s structure, including a lion face-shaped bubble of ionized gas and dust “mane.”
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA Astronaut Jessica Meir Uses VR Goggles</title>
@@ -563,24 +581,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/55
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA Astronaut Anil Menon</title>
-    <link>https://www.nasa.gov/image-detail/jsc2026e000758/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e000758/</guid>
-    <pubDate>Mon, 13 Jul 2026 15:17:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA Astronaut Anil Menon. NASA astronaut and Expedition 75 flight engineer Anil Menon poses in a spacesuit for a portrait at NASA&apos;s Johnson Space Center in Houston, Texas.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e000758/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Mac Stone &quot;Cypress&quot; Exhibit On View at Corkscrew Swamp Sanctuary November Through March</title>
     <link>https://www.audubon.org/florida/news/mac-stone-cypress-exhibit-view-corkscrew-swamp-sanctuary-november-through-march</link>
     <guid isPermaLink="true">https://www.audubon.org/florida/news/mac-stone-cypress-exhibit-view-corkscrew-swamp-sanctuary-november-through-march</guid>
@@ -597,6 +597,23 @@ Read the original article at the publisher: https://www.audubon.org/florida/news
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Young Galaxy Cluster</title>
+    <link>https://www.nasa.gov/image-detail/55380623885-a00df544bb-o/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55380623885-a00df544bb-o/</guid>
+    <pubDate>Thu, 16 Jul 2026 14:37:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: In the Picture of the Month from the James Webb Space Telescope, we are taken on a visit to a building site of significant scale. The project is a galaxy cluster named MACS J0553.4-3342, located in the constellation Columba (the Dove).
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/55380623885-a00df544bb-o/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   </channel>
 </rss>

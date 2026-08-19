@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-18T12:21:41.121Z",
+  "checkedAt": "2026-08-19T00:34:28.590Z",
   "status": "ok",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 411,
+      "ms": 201,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 353,
+      "ms": 199,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 153,
+      "ms": 163,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 124,
+      "ms": 335,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 407,
+      "ms": 192,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 306,
+      "ms": 228,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 325,
+      "ms": 329,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 359,
+      "ms": 312,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 127,
+      "ms": 268,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 192,
+      "ms": 374,
       "enabled": true
     },
     {
@@ -233,30 +233,30 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 628,
+      "ms": 320,
       "enabled": true
     },
     {
       "id": "adirondack-explorer",
       "name": "Adirondack Explorer",
       "ok": true,
-      "itemCount": 9,
+      "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 148,
+      "ms": 181,
       "enabled": true
     },
     {
       "id": "nws-burlington",
       "name": "NWS Burlington Area Headlines",
       "ok": true,
-      "itemCount": 1,
+      "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 252,
+      "ms": 502,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-19T00:21:41.121Z"
+  "staleAfter": "2026-08-19T12:34:28.590Z"
 }
