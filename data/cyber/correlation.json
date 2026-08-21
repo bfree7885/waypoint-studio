@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-21T13:11:48.967Z",
+  "generatedAt": "2026-08-21T18:56:25.569Z",
   "entityCount": 424,
-  "relationshipCount": 1094,
+  "relationshipCount": 1088,
   "entities": [
     {
       "id": "cve:CVE-2026-33824",
@@ -30,16 +30,6 @@
       "id": "vendor:microsoft",
       "kind": "vendor",
       "title": "Microsoft"
-    },
-    {
-      "id": "cve:CVE-2026-20349",
-      "kind": "cve",
-      "title": "CVE-2026-20349"
-    },
-    {
-      "id": "vendor:cisco",
-      "kind": "vendor",
-      "title": "Cisco"
     },
     {
       "id": "cve:CVE-2026-50751",
@@ -87,6 +77,11 @@
       "id": "cve:CVE-2026-20131",
       "kind": "cve",
       "title": "CVE-2026-20131"
+    },
+    {
+      "id": "vendor:cisco",
+      "kind": "vendor",
+      "title": "Cisco"
     },
     {
       "id": "cve:CVE-2026-45321",
@@ -165,6 +160,11 @@
       "title": "TrueConf"
     },
     {
+      "id": "cve:CVE-2026-20349",
+      "kind": "cve",
+      "title": "CVE-2026-20349"
+    },
+    {
       "id": "cve:CVE-2026-20316",
       "kind": "cve",
       "title": "CVE-2026-20316"
@@ -188,6 +188,16 @@
       "id": "cve:CVE-2026-55040",
       "kind": "cve",
       "title": "CVE-2026-55040"
+    },
+    {
+      "id": "cve:CVE-2026-73570",
+      "kind": "cve",
+      "title": "CVE-2026-73570"
+    },
+    {
+      "id": "vendor:synacor",
+      "kind": "vendor",
+      "title": "Synacor"
     },
     {
       "id": "cve:CVE-2026-72530",
@@ -955,11 +965,6 @@
       "title": "CVE-2025-43529"
     },
     {
-      "id": "cve:CVE-2025-14174",
-      "kind": "cve",
-      "title": "CVE-2025-14174"
-    },
-    {
       "id": "cve:CVE-2026-56291",
       "kind": "cve",
       "title": "CVE-2026-56291"
@@ -1188,11 +1193,6 @@
       "id": "cve:CVE-2025-48700",
       "kind": "cve",
       "title": "CVE-2025-48700"
-    },
-    {
-      "id": "vendor:synacor",
-      "kind": "vendor",
-      "title": "Synacor"
     },
     {
       "id": "cve:CVE-2025-32975",
@@ -1611,11 +1611,6 @@
       "title": "CVE-2020-1061"
     },
     {
-      "id": "cve:CVE-2020-1067",
-      "kind": "cve",
-      "title": "CVE-2020-1067"
-    },
-    {
       "id": "cve:CVE-2026-63202",
       "kind": "cve",
       "title": "CVE-2026-63202"
@@ -1744,6 +1739,11 @@
       "id": "vendor:npm",
       "kind": "vendor",
       "title": "npm"
+    },
+    {
+      "id": "cve:CVE-2019-10219",
+      "kind": "cve",
+      "title": "CVE-2019-10219"
     },
     {
       "id": "cve:CVE-2020-1059",
@@ -2172,37 +2172,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-20349",
-      "to": "cve:CVE-2026-20349",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-20349",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-20349",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-20349",
-      "to": "vendor:cisco",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-20349",
-      "to": "vendor:cisco",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-50751",
       "to": "cve:CVE-2026-50751",
       "evidence": "identifier"
@@ -2589,6 +2558,31 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-20349",
+      "to": "cve:CVE-2026-20349",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-20349",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-20349",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-20349",
+      "to": "vendor:cisco",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2026-20316",
       "to": "cve:CVE-2026-20316",
       "evidence": "identifier"
@@ -2672,6 +2666,31 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-55040",
       "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-73570",
+      "to": "cve:CVE-2026-73570",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-73570",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-73570",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-73570",
+      "to": "vendor:synacor",
       "evidence": "entity extraction"
     },
     {
@@ -5563,31 +5582,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2025-14174",
-      "to": "cve:CVE-2025-14174",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2025-14174",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2025-14174",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2025-14174",
-      "to": "vendor:google",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-56291",
       "to": "cve:CVE-2026-56291",
       "evidence": "identifier"
@@ -7389,26 +7383,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_nvd_cve-2020-1067",
-      "to": "cve:CVE-2020-1067",
-      "evidence": "identifier"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2020-1067",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_nvd_cve-2020-1067",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_ghsa_GHSA-4899-mpch-38p3",
       "to": "cve:CVE-2026-63202",
       "evidence": "identifier"
@@ -7758,6 +7732,12 @@
       "from": "live_ghsa_GHSA-f4jp-rw7w-ccwg",
       "to": "vendor:npm",
       "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_nvd_cve-2019-10219",
+      "to": "cve:CVE-2019-10219",
+      "evidence": "identifier"
     },
     {
       "type": "mentions-cve",
@@ -8621,18 +8601,6 @@
       "evidence": "entity extraction"
     },
     {
-      "type": "mentions-cve",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-46242",
-      "evidence": "identifier"
-    },
-    {
-      "type": "advisory-covers",
-      "from": "live_chrome-releases_7461673a626c6f676765722e",
-      "to": "cve:CVE-2026-46242",
-      "evidence": "CVE extracted from advisory"
-    },
-    {
       "type": "outage-affects",
       "from": "live_outage_azure_unavailable",
       "to": "vendor:microsoft",
@@ -8905,13 +8873,6 @@
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "to": "live_ubuntu-usn_68747470733a2f2f7562756e",
       "via": "CVE-2025-54518",
-      "evidence": "shared CVE identifier"
-    },
-    {
-      "type": "same-cve",
-      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "live_chrome-releases_7461673a626c6f676765722e",
-      "via": "CVE-2026-46242",
       "evidence": "shared CVE identifier"
     },
     {
