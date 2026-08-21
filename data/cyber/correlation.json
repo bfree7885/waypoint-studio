@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-21T07:07:50.219Z",
+  "generatedAt": "2026-08-21T13:11:48.967Z",
   "entityCount": 424,
-  "relationshipCount": 1095,
+  "relationshipCount": 1094,
   "entities": [
     {
       "id": "cve:CVE-2026-33824",
@@ -1676,11 +1676,6 @@
       "title": "CVE-2020-1037"
     },
     {
-      "id": "vendor:cloudflare-status",
-      "kind": "vendor",
-      "title": "Cloudflare Status"
-    },
-    {
       "id": "cve:CVE-2013-5911",
       "kind": "cve",
       "title": "CVE-2013-5911"
@@ -1704,6 +1699,11 @@
       "id": "vendor:amazon-web-services",
       "kind": "vendor",
       "title": "Amazon Web Services"
+    },
+    {
+      "id": "vendor:cloudflare-status",
+      "kind": "vendor",
+      "title": "Cloudflare Status"
     },
     {
       "id": "cve:CVE-2026-3014",
@@ -7588,25 +7588,6 @@
       "confidence": "heuristic"
     },
     {
-      "type": "outage-affects",
-      "from": "live_outage_cloudflare-status_4d696e6f72205365",
-      "to": "vendor:cloudflare-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_outage_cloudflare-status_4d696e6f72205365",
-      "to": "attack:T1133",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_cloudflare-status_4d696e6f72205365",
-      "to": "vendor:cloudflare-status",
-      "evidence": "entity extraction"
-    },
-    {
       "type": "mentions-cve",
       "from": "live_nvd_cve-2013-5911",
       "to": "cve:CVE-2013-5911",
@@ -7668,6 +7649,18 @@
       "type": "affects-vendor",
       "from": "live_outage_aws_68747470733a2f2f",
       "to": "vendor:amazon-web-services",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
+      "from": "live_outage_cloudflare-status_4d696e6f72205365",
+      "to": "vendor:cloudflare-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_cloudflare-status_4d696e6f72205365",
+      "to": "vendor:cloudflare-status",
       "evidence": "entity extraction"
     },
     {
