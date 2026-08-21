@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2026 12:22:44 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2026 00:35:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>NASA is studying pyrocumulonimbus clouds by plane</title>
+    <link>https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</guid>
+    <pubDate>Thu, 20 Aug 2026 15:30:44 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: This summer, NASA is studying pyrocumulonimbus clouds, or fire-driven thunderstorms. Researchers are flying planes right into the smoke plumes for samples. The post NASA is studying pyrocumulonimbus clouds by plane first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
   <item>
     <title>Astronomers discover a black hole star, a new type of object</title>
     <link>https://earthsky.org/space/black-hole-star-new-object-little-red-dots/</link>
@@ -28,24 +46,6 @@ Read the original article at the publisher: https://earthsky.org/space/black-hol
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Voyager 2 spacecraft launched 49 years ago today</title>
-    <link>https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</guid>
-    <pubDate>Thu, 20 Aug 2026 09:45:04 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Voyager 2 realized the vision of what was originally called a Grand Tour of the outer solar system. It is the only craft that has visited all 4 outer planets. The post Voyager 2 spacecraft launched 49 years ago today first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Sun news: Two M flares… and a huge solar spider?</title>
     <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
     <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
@@ -58,6 +58,24 @@ Summary: Sun news August 20, 2026: Sun news August 20, 2026: Two M flares! Plus,
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Voyager 2 spacecraft launched 49 years ago today</title>
+    <link>https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</guid>
+    <pubDate>Thu, 20 Aug 2026 07:30:04 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Voyager 2 realized the vision of what was originally called a Grand Tour of the outer solar system. It is the only craft that has visited all 4 outer planets. The post Voyager 2 spacecraft launched 49 years ago today first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/this-date-in-science-nasa-launched-voyager-2-space-probe/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -100,24 +118,6 @@ Read the original article at the publisher: https://earthsky.org/space/super-ear
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>The Great Rift is a dark swath in the Milky Way</title>
-    <link>https://earthsky.org/clusters-nebulae-galaxies/the-great-rift-in-the-milky-way/</link>
-    <guid isPermaLink="true">https://earthsky.org/clusters-nebulae-galaxies/the-great-rift-in-the-milky-way/</guid>
-    <pubDate>Wed, 19 Aug 2026 08:30:11 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Great Rift or Dark Rift is a darkened swath of the Milky Way where new stars are forming. It&apos;s best seen from a rural location away from light pollution. The post The Great Rift is a dark swath in the Milky Way first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/clusters-nebulae-galaxies/the-great-rift-in-the-milky-way/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Detecting whispers from the early universe … from the moon</title>
     <link>https://earthsky.org/space/whispers-from-the-early-universe-cosmocube-moon/</link>
     <guid isPermaLink="true">https://earthsky.org/space/whispers-from-the-early-universe-cosmocube-moon/</guid>
@@ -130,23 +130,6 @@ Summary: A tiny UK satellite called CosmoCube is to listen for signals from the 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/whispers-from-the-early-universe-cosmocube-moon/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sagitta the Arrow lies inside the Summer Triangle</title>
-    <link>https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</guid>
-    <pubDate>Thu, 20 Aug 2026 09:39:35 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sagitta the Arrow is a dim constellation that lies inside the Summer Triangle. It contains one Messier object, a small globular cluster. The post Sagitta the Arrow lies inside the Summer Triangle first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -169,6 +152,23 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Sagitta the Arrow lies inside the Summer Triangle</title>
+    <link>https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</guid>
+    <pubDate>Thu, 20 Aug 2026 07:00:35 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sagitta the Arrow is a dim constellation that lies inside the Summer Triangle. It contains one Messier object, a small globular cluster. The post Sagitta the Arrow lies inside the Summer Triangle first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/constellations/sagitta-the-arrow-summer-triangle-m71/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>See the August 12 solar eclipse from the moon’s perspective</title>
     <link>https://earthsky.org/todays-image/aug-12-2026-solar-eclipse-image-from-moon/</link>
     <guid isPermaLink="true">https://earthsky.org/todays-image/aug-12-2026-solar-eclipse-image-from-moon/</guid>
@@ -184,41 +184,6 @@ Read the original article at the publisher: https://earthsky.org/todays-image/au
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Mac Stone &quot;Cypress&quot; Exhibit On View at Corkscrew Swamp Sanctuary November Through March</title>
-    <link>https://www.audubon.org/florida/news/mac-stone-cypress-exhibit-view-corkscrew-swamp-sanctuary-november-through-march</link>
-    <guid isPermaLink="true">https://www.audubon.org/florida/news/mac-stone-cypress-exhibit-view-corkscrew-swamp-sanctuary-november-through-march</guid>
-    <pubDate>Mon, 10 Aug 2026 13:36:27 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Set beneath the living canopy of Corkscrew Swamp Sanctuary’s ancient cypress forest, this outdoor exhibit brings large-format photography into the landscape that inspired it. On view from November...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: consider whether the scene is about timing, patience, or technique rather than gear alone. Keep the publisher’s claims provisional until you read the original. Scenes or Photo Coach can hold craft questions raised by the reporting — without turning it into a tutorial mandate.
-
-Read the original article at the publisher: https://www.audubon.org/florida/news/mac-stone-cypress-exhibit-view-corkscrew-swamp-sanctuary-november-through-march</description>
-    <category>Forests and Plants</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Cities are getting hotter: &apos;Thermal Justice&apos; offers a fairer way to adapt</title>
-    <link>https://phys.org/news/2026-08-cities-hotter-thermal-justice-fairer.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-cities-hotter-thermal-justice-fairer.html</guid>
-    <pubDate>Wed, 19 Aug 2026 17:40:06 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: When temperatures rise, public advice is familiar: drink water, avoid strenuous activity during the hottest hours, keep homes cool and check on older or isolated people. These recommendations are reflected in the latest heat-health guidance from the WHO Regional Office for Europe.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — ask what the camera clarifies that a walk alone might miss. Keep the publisher’s claims provisional until you read the original. If you photograph related subjects, keep one technique question for a quiet Scenes review afterward.
-
-Read the original article at the publisher: https://phys.org/news/2026-08-cities-hotter-thermal-justice-fairer.html</description>
-    <category>Hidden Landscapes</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   </channel>
 </rss>
