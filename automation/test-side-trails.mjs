@@ -48,6 +48,7 @@ assert.match(openroadPage, /OpenRoad PA/);
 assert.match(openroadPage, /In development/);
 assert.match(openroadPage, /Tracking Pennsylvania's public road projects/);
 assert.match(openroadPage, /never a guilt score/i);
+assert.match(openroadPage, /design-system\/css\/wds-contact\.css/);
 assert.doesNotMatch(openroadPage, /\b(corrupt|wasteful|criminal)\b/i);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
