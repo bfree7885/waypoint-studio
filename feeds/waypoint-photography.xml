@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Aug 2026 12:22:23 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2026 00:33:30 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -82,20 +82,19 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/30
     <author>NASA</author>
   </item>
   <item>
-    <title>Total Solar Eclipse in Sunflower Field</title>
-    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</guid>
-    <pubDate>Fri, 14 Aug 2026 14:49:00 GMT</pubDate>
+    <title>Webb Opens Treasure Chest</title>
+    <link>https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</guid>
+    <pubDate>Fri, 21 Aug 2026 17:41:00 GMT</pubDate>
     <source url="https://www.nasa.gov/">NASA</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Total Solar Eclipse in Sunflower Field. This composite image shows the progression of a total solar eclipse over San Millán de los Caballeros, Spain on, Wednesday, Aug. 12, 2026.
+Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month takes us to a fantastical realm within our home galaxy, where piercing starlight and billowing winds sculpt dust clouds into inventive shapes. This scene is from the Carina Nebula, which lies just 7500 light-years away in the constellation Carina (the Keel).
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -161,7 +160,7 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: This summer, NASA is studying pyrocumulonimbus clouds, or fire-driven thunderstorms. Researchers are flying planes right into the smoke plumes for samples. The post Pyrocumulonimbus clouds are fire-generated thunderstorms first appeared on EarthSky .
+Summary: This summer, NASA has been studying pyrocumulonimbus clouds, or fire-driven thunderstorms. Researchers are flying planes right into the plumes for samples. The post Pyrocumulonimbus clouds are fire-generated thunderstorms first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -274,6 +273,24 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Total Solar Eclipse in Sunflower Field</title>
+    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</guid>
+    <pubDate>Fri, 14 Aug 2026 14:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Total Solar Eclipse in Sunflower Field. This composite image shows the progression of a total solar eclipse over San Millán de los Caballeros, Spain on, Wednesday, Aug. 12, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>2026 Total Solar Eclipse in Spain</title>
