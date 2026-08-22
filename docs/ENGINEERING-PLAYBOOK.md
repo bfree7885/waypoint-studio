@@ -134,6 +134,14 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-22 — Civic Trails discontinued; OpenRoad PA catalog entry
+
+**Branch:** `cursor/openroad-pa-replace-civic-efa3`
+
+- Public presentation is the catalog + HTML surfaces — remove discontinued products from those without deleting historical docs, icons, or external repos.
+- Early-stage Side Trails need an honest status (`in-development` → “In development”) and a lightweight placeholder page; do not imply a live dataset.
+- Accountability products measure facts and change-over-time; never ship “fraud scores” or accusatory framing without evidence.
+
 ### 2026-08-17 — About page principles (monetization-safe)
 
 **Branch:** `cursor/about-page-principles-efa3`

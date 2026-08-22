@@ -19,7 +19,7 @@
 ### Forbidden in app bodies
 
 - Studio directory / “explore other apps” grids
-- Promo cards whose primary purpose is sending users to another app (Scenes, Sheds, Articles, Side Trails, SignalTerrain, Global Signals, Civic Trails, Incubator, etc.)
+- Promo cards whose primary purpose is sending users to another app (Scenes, Sheds, Articles, Side Trails, SignalTerrain, Global Signals, OpenRoad PA, Incubator, etc.)
 - Mini Homepage collages that restate the studio portfolio
 
 ### Allowed

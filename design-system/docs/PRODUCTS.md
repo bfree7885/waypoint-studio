@@ -12,7 +12,7 @@ Set `data-product` on `<html>`. Accents come from the shared muted Southwestern 
 | Side Trails | `side-trails` | Muted purple | Sage |
 | SignalTerrain | `signalterrain` | Slate | Clay |
 | Global Signals | `global-signals` | Terracotta bright | Plum |
-| Civic Trails | `civic-trails` | Sage | Charcoal soft |
+| OpenRoad PA | `openroad-pa` | Brown | Gold |
 | ForageCast | `foragecast` | Dust gold | Sage |
 | Fieldry | `fieldry` | Terracotta | Sage |
 | Steepleaf | `steepleaf` | Sage deep | Slate |

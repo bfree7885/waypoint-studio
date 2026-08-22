@@ -13,8 +13,10 @@
   }
 
   function statusLabel(status) {
-    var raw = String(status || "");
-    return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "Concept";
+    var raw = String(status || "").toLowerCase();
+    if (raw === "in-development") return "In development";
+    if (!raw) return "Concept";
+    return raw.charAt(0).toUpperCase() + raw.slice(1);
   }
 
   function assetHref(rel) {

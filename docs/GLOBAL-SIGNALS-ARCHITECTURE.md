@@ -80,6 +80,6 @@ None of these ship engines or live data in the foundation branch.
 
 ## 6. Alignment with Side Trails
 
-Global Signals sits beside Civic Trails and SignalTerrain as a sister experiment.
+Global Signals sits beside OpenRoad PA and SignalTerrain as a sister experiment.
 Primary outdoor Home tools remain separate. Incubator remains “Coming later.”
 Footer and landing copy: **Part of Side Trails.**

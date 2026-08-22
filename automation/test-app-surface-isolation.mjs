@@ -49,7 +49,7 @@ const banned = [
   [/data-deepen="sheds"|Open Sheds/, "Dashboard deepeners must not promote Sheds"],
   [/data-deepen="side-trails"|View all Side Trails|SIDE_TRAILS_CARDS/, "Dashboard deepeners must not promote Side Trails"],
   [/Field Notes|Featured Photography/, "Dashboard deepeners must not promote Articles/photography portfolio"],
-  [/signalterrain|global-signals|Civic Trails/i, "Dashboard deepeners must not promote Side Trails projects"]
+  [/signalterrain|global-signals|Civic Trails|OpenRoad|openroad-pa/i, "Dashboard deepeners must not promote Side Trails projects"]
 ];
 banned.forEach(function (pair) {
   if (pair[0].test(deepen)) fail(pair[1]);

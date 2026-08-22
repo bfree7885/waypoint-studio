@@ -1,21 +1,21 @@
 {
-  "version": "1.1.0",
-  "updatedAt": "2026-08-06",
+  "version": "1.2.0",
+  "updatedAt": "2026-08-22",
   "title": "Side Trails",
   "tagline": "A laboratory of sister projects beside Waypoint Studio’s primary outdoor tools.",
   "message": "Every card is loaded from this catalog. The page never hardcodes projects.",
-  "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived"],
+  "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived", "in-development"],
   "projects": [
     {
-      "id": "civic-trails",
-      "title": "Civic Trails",
-      "tagline": "Mapping public service through public records.",
-      "description": "Evidence-first civic transparency GIS. Public records only, certainty labeled, never partisan theater.",
-      "icon": "assets/images/side-trails/civic-trails-map.svg",
-      "category": "Civic",
-      "status": "beta",
-      "ctaLabel": "Explore Civic Trails",
-      "url": "https://github.com/bfree7885/civic-trails",
+      "id": "openroad-pa",
+      "title": "OpenRoad PA",
+      "tagline": "Tracking Pennsylvania's public road projects.",
+      "description": "Follow construction projects, timelines, costs, and public records—and see how those records change over time.",
+      "icon": "assets/images/side-trails/openroad-pa.svg",
+      "category": "Public records",
+      "status": "in-development",
+      "ctaLabel": "Learn more",
+      "url": "side-trails/openroad-pa/",
       "order": 10
     },
     {

@@ -187,7 +187,7 @@ assert("deepeners omit Featured Photography", !/Featured Photography/.test(deepe
 assert("deepeners omit Scenes promo", !/Open Scenes|data-deepen="scenes"/.test(deepenHtml));
 assert("deepeners omit Sheds promo", !/Open Sheds|data-deepen="sheds"/.test(deepenHtml));
 assert("deepeners omit Side Trails promo", !/data-deepen="side-trails"|View all Side Trails/.test(deepenHtml));
-assert("deepeners omit SignalTerrain cards", !/signalterrain|SignalTerrain|global-signals|Civic Trails/i.test(deepenHtml));
+assert("deepeners omit SignalTerrain cards", !/signalterrain|SignalTerrain|global-signals|Civic Trails|OpenRoad|openroad-pa/i.test(deepenHtml));
 
 const Rebuild = sandbox.WDS.dashboardRebuild;
 const shell = Rebuild.renderShell({ view: "workspace", placeContext: { placeLabel: "Test", trust: "waiting" } });

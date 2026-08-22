@@ -21,7 +21,7 @@ project titles or CTAs.
 
 | Id | Title | Status | Open |
 | --- | --- | --- | --- |
-| `civic-trails` | Civic Trails | Beta | GitHub (`bfree7885/civic-trails`) |
+| `openroad-pa` | OpenRoad PA | In development | `/side-trails/openroad-pa/` |
 | `signalterrain` | SignalTerrain | Experimental | `/side-trails/signalterrain/` |
 | `global-signals` | Global Signals | Experimental | `/side-trails/global-signals/` |
 
@@ -29,11 +29,13 @@ project titles or CTAs.
 
 Each card shows: icon · title · tagline · short description · status badge · **Open** button.
 
-### Civic Trails
+### OpenRoad PA
 
-- Evidence-first civic transparency GIS (public records; certainty labeled).
-- Open → public GitHub repository until a hosted product URL is confirmed.
-- Civic Trails application engineering lives in a **separate repo** (`bfree7885/civic-trails`); Studio only catalogs and links out.
+- **Tagline:** Tracking Pennsylvania's public road projects.
+- Early-stage public-information project (construction timelines, costs, public records, change over time).
+- Honest “In development” status — no live dataset or application yet.
+- Open → `/side-trails/openroad-pa/`
+- Civic Trails is discontinued as a public Waypoint product; historical assets/docs may remain in-repo.
 
 ### SignalTerrain
 
@@ -60,6 +62,7 @@ Each card shows: icon · title · tagline · short description · status badge �
 
 - Search, category filters, and admin/dashboard surfaces on the Side Trails landing.
 - Live Global Signals engines (relationship / cascade / citizen-impact remain design + placeholder surfaces).
+- Civic Trails as an active/upcoming public product (discontinued).
 
 ---
 
@@ -68,6 +71,7 @@ Each card shows: icon · title · tagline · short description · status badge �
 | Path | Role |
 | --- | --- |
 | `side-trails/index.html` | Simple page shell |
+| `side-trails/openroad-pa/index.html` | OpenRoad PA early-stage placeholder |
 | `data/side-trails/catalog.json` | Three-project catalog |
 | `design-system/js/side-trails/wds-side-trails.js` | Catalog loader |
 | `design-system/js/side-trails/wds-side-trails-app.js` | Card UI |

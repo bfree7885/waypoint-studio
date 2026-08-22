@@ -12,7 +12,8 @@
     experimental: true,
     beta: true,
     stable: true,
-    archived: true
+    archived: true,
+    "in-development": true
   };
 
   function text(value) {

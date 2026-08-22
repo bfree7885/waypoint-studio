@@ -98,7 +98,7 @@
       shortName: "Side Trails",
       tier: "core",
       status: "live",
-      description: "Sister experiments catalog — Civic Trails, SignalTerrain, and future side projects.",
+      description: "Sister experiments catalog — OpenRoad PA, SignalTerrain, Global Signals, and future side projects.",
       pathFromApps: "../../side-trails/",
       pathFromRoot: "side-trails/",
       dataProduct: "side-trails",

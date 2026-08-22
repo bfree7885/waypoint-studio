@@ -55,7 +55,7 @@ Do **not** reintroduce neon lime, corporate blue, cool gray UI, cyber cyan glow,
 | Side Trails | `side-trails` | Purple bright |
 | SignalTerrain | `signalterrain` | Tan (cool blues only in data) |
 | Global Signals | `global-signals` | Orange |
-| Civic Trails | `civic-trails` | Brown |
+| OpenRoad PA | `openroad-pa` | Brown |
 
 ## Typography
 
