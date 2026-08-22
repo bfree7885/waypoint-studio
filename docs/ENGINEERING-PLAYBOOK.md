@@ -134,6 +134,13 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-17 — About page principles (monetization-safe)
+
+**Branch:** `cursor/about-page-principles-efa3`
+
+- About must not promise “no advertising forever”; refuse selling data, deception, sponsor control of conclusions, and intrusive formats instead.
+- Remove personal “Built by a person” attribution from About; contact stays on Support/Contact.
+
 ### 2026-08-16 — DFD measurement mode scorecard
 
 **Branch:** `cursor/dfd-measurement-mode-efa3`
