@@ -1,25 +1,24 @@
 /**
- * Sheds overview — morning hunt atmosphere on shared Rebuild foundation.
- * Product accents (aspen gold / burnt orange / bark / slate) stay on the stage;
- * page + shell inherit navy / off-white platform tokens.
+ * Sheds overview — southwest field station on shared Rebuild foundation.
+ * Accents: burnt orange / gold / brown from locked Waypoint palette.
  */
 
 html[data-product="shed-hunting"],
 .was-shell[data-product="shed-hunting"] {
-  --sheds-ink: var(--wds-text, #eef2f6);
-  --sheds-muted: var(--wds-text-secondary, rgba(238, 242, 246, 0.78));
-  --sheds-gold: var(--wp-accent, var(--wp-clay-bright, #c47a72));
-  --sheds-orange: var(--wp-warm, var(--wp-dust-gold, #c4a46a));
-  --sheds-bark: var(--aurora-bark, #5c4638);
-  --sheds-slate: #6e8498;
-  background: var(--wp-bg, var(--wds-bg, #17131c));
+  --sheds-ink: var(--wds-text, var(--waypoint-bone, #f0e2c9));
+  --sheds-muted: var(--wds-text-secondary, rgba(240, 226, 201, 0.88));
+  --sheds-gold: var(--wp-accent, var(--waypoint-burnt-orange, #a94e32));
+  --sheds-orange: var(--wp-warm, var(--waypoint-gold, #d8a72e));
+  --sheds-bark: var(--waypoint-brown, #6b4937);
+  --sheds-slate: var(--waypoint-tan, #b88a5a);
+  background: var(--wp-bg, var(--wds-bg, #241b25));
   color: var(--sheds-ink);
   font-family: var(--wp-font-body, var(--wds-font-body, system-ui, sans-serif));
 }
 
 .was-shell[data-product="shed-hunting"] .was-global {
-  background: var(--wds-topbar-bg, rgba(8, 15, 28, 0.82));
-  border-bottom-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
+  background: var(--wds-topbar-bg, rgba(36, 27, 37, 0.92));
+  border-bottom-color: var(--wds-border-subtle, rgba(112, 68, 111, 0.28));
   backdrop-filter: blur(10px);
 }
 
@@ -45,7 +44,7 @@ html[data-product="shed-hunting"],
 }
 
 .xp-stage--forest {
-  background-color: var(--wds-elevated, #112038);
+  background-color: var(--wds-elevated, #3a243d);
   background-image:
     linear-gradient(165deg, rgba(8, 15, 28, 0.55), rgba(8, 15, 28, 0.82)),
     radial-gradient(120% 90% at 10% 0%, color-mix(in srgb, var(--sheds-gold) 22%, transparent), transparent 55%);

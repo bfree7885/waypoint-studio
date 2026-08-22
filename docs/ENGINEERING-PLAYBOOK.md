@@ -134,6 +134,15 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — Global Southwest palette cleanup
+
+**Branch:** `cursor/southwest-palette-cleanup-efa3` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`
+
+- Authoritative brand hex lives on `--waypoint-*`; `--wp-*` derives; apps must not invent parallel navy/neon tables.
+- DFD sage accent made the library feel like a separate site — bind editorial surfaces to purple/orange inside the same family.
+- Dashboard instrument **data** hues (precip/AQI/alert) stay; only chrome/framing remaps to aubergine + orange/gold.
+- Prefer remapping local `:root` aliases (`--forest`, `--accent-sage`) to tokens over mass hex search-replace inside maps/photos.
+
 ### 2026-08-16 — DFD measurement mode scorecard
 
 **Branch:** `cursor/dfd-measurement-mode-efa3`
