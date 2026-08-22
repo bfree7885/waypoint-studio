@@ -583,28 +583,73 @@
   }
 
   function sessionDateLabel(shoot, done) {
-    var raw = null;
-    for (var i = 0; i < done.length; i++) {
-      var ex = done[i].exif || {};
-      if (ex.dateTimeOriginal || ex.dateTime) {
-        raw = ex.dateTimeOriginal || ex.dateTime;
-        break;
-      }
+    var d = null;
+    var i;
+    for (i = 0; i < (done ? done.length : 0); i++) {
+      var ex = done[i] && done[i].exif;
+      if (!ex) continue;
+      d = parseExifDate(ex.dateTimeOriginal || ex.dateTime);
+      if (d) break;
     }
-    if (raw) {
-      var normalized = String(raw).replace(/^(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3");
-      var d = new Date(normalized);
-      if (!isNaN(d.getTime())) {
-        return d.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      }
+    if (d) {
+      return d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
     }
     if (shoot && shoot.createdAt) {
-      var d2 = new Date(shoot.createdAt);
-      if (!isNaN(d2.getTime())) {
-        return d2.toLocaleDateString(undefined, { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      var c = new Date(shoot.createdAt);
+      if (!isNaN(c.getTime())) {
+        return c.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
       }
     }
-    return "Today’s session";
+    return "This session";
+  }
+
+  function parseExifDate(raw) {
+    if (!raw) return null;
+    var s = String(raw).trim();
+    // EXIF often: 2026:07:14 10:00:00
+    if (/^\d{4}:\d{2}:\d{2}/.test(s)) {
+      s = s.replace(/^(\d{4}):(\d{2}):(\d{2})/, "$1-$2-$3");
+    }
+    var d = new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  /**
+   * Progression only when EXIF/timestamps support it — never invent a story.
+   */
+  function buildCaptureProgression(done) {
+    var timed = done.map(function (img) {
+      var t = parseExifDate(img.exif && (img.exif.dateTimeOriginal || img.exif.dateTime));
+      return t ? { img: img, t: t, score: img.analysis.overallScore || 0 } : null;
+    }).filter(Boolean).sort(function (a, b) { return a.t - b.t; });
+    if (timed.length < 3) {
+      return { available: false, note: "Not enough timestamped frames to describe progression." };
+    }
+    var half = Math.floor(timed.length / 2);
+    var firstHalf = timed.slice(0, half);
+    var secondHalf = timed.slice(timed.length - half);
+    function mean(arr) {
+      return arr.reduce(function (a, b) { return a + b.score; }, 0) / arr.length;
+    }
+    var m1 = mean(firstHalf);
+    var m2 = mean(secondHalf);
+    var delta = m2 - m1;
+    if (Math.abs(delta) < 4) {
+      return {
+        available: true,
+        note: "Quality stayed fairly steady across the timed frames — a consistent session."
+      };
+    }
+    if (delta > 0) {
+      return {
+        available: true,
+        note: "Later frames read a bit stronger than early ones — you may have settled into the subject."
+      };
+    }
+    return {
+      available: true,
+      note: "Earlier frames read a bit stronger — the first responses to the place may be the keepers."
+    };
   }
 
   function stddev(values) {
@@ -688,21 +733,24 @@
     var shootScore = computeShootScore(scores);
 
     var ranked = done.slice().sort(function (a, b) {
-      var sa = a.analysis.overallScore || 0;
-      var sb = b.analysis.overallScore || 0;
+      var favA = a.selectionLabel === "favorite" ? 1000 : a.selectionLabel === "keep" ? 100 : 0;
+      var favB = b.selectionLabel === "favorite" ? 1000 : b.selectionLabel === "keep" ? 100 : 0;
+      var sa = (a.analysis.overallScore || 0) + favA;
+      var sb = (b.analysis.overallScore || 0) + favB;
       return sb - sa;
     });
     var strongest = ranked.slice(0, Math.min(3, ranked.length)).map(function (img) {
       var primaryStrength = (img.analysis.strengths && img.analysis.strengths[0])
         ? img.analysis.strengths[0].title
-        : "Strong overall read";
+        : (img.selectionLabel === "favorite" ? "Your favorite for this shoot" : "Strong overall read");
       return {
         imageId: img.id,
         fileName: img.fileName,
         score: img.analysis.overallScore,
         letter: img.analysis.overallGrade && img.analysis.overallGrade.letter,
         thumbnail: img.thumbnail,
-        why: primaryStrength
+        why: primaryStrength,
+        selectionLabel: img.selectionLabel || null
       };
     });
 
@@ -716,16 +764,6 @@
         });
       });
     });
-    var commonStrengths = countMap(strengthEntries, function (e) { return e.title; })
-      .slice(0, 5)
-      .map(function (row) {
-        return {
-          title: row.key,
-          count: row.count,
-          examples: row.examples.map(function (e) { return e.fileName; })
-        };
-      });
-
     var improveEntries = [];
     done.forEach(function (img) {
       (img.analysis.improvements || []).forEach(function (imp, idx) {
@@ -739,6 +777,7 @@
       });
     });
     var recurring = countMap(improveEntries, function (e) { return e.issue; })
+      .filter(function (row) { return row.count >= 2; })
       .slice(0, 5)
       .map(function (row) {
         return {
@@ -746,6 +785,17 @@
           count: row.count,
           examples: row.examples.map(function (e) { return e.fileName; }),
           category: row.examples[0] && row.examples[0].category
+        };
+      });
+
+    var commonStrengths = countMap(strengthEntries, function (e) { return e.title; })
+      .filter(function (row) { return row.count >= 2 || done.length === 1; })
+      .slice(0, 5)
+      .map(function (row) {
+        return {
+          title: row.key,
+          count: row.count,
+          examples: row.examples.map(function (e) { return e.fileName; })
         };
       });
 
@@ -856,8 +906,7 @@
       return { label: g.label, count: g.count };
     });
 
-    var favorite = done.filter(function (img) { return img.selectionLabel === "favorite"; })[0]
-      || (strongest[0] ? done.filter(function (img) { return img.id === strongest[0].imageId; })[0] : null);
+    var favorite = done.filter(function (img) { return img.selectionLabel === "favorite"; })[0] || null;
 
     var gear = collectGear(done);
     var insights = buildSessionInsights(done, shootScore, techNotes);
@@ -916,11 +965,27 @@
       gear: gear,
       analysisDurationMs: durationMs,
       labelCounts: labelCounts,
+      userKeeperCount: (labelCounts.keep || 0) + (labelCounts.favorite || 0),
+      memberPhotoIds: (shoot.images || []).map(function (img) { return img.id; }),
+      timeRange: (function () {
+        var times = done.map(function (img) {
+          return parseExifDate(img.exif && (img.exif.dateTimeOriginal || img.exif.dateTime));
+        }).filter(Boolean).sort(function (a, b) { return a - b; });
+        if (times.length) return { start: times[0].toISOString(), end: times[times.length - 1].toISOString() };
+        return {
+          start: shoot.analysisStartedAt || shoot.createdAt || null,
+          end: shoot.analysisFinishedAt || shoot.updatedAt || null
+        };
+      })(),
+      progression: buildCaptureProgression(done),
+      nextTimeTip: (nextFocus && nextFocus.practice) || (recurring[0] ? ("Watch for: " + recurring[0].issue) : "Take one quieter frame of the same subject before moving on."),
+      outdoorContextSummary: shoot.outdoorContext
+        ? { source: shoot.outdoorContext.source || "stored-context", available: true, note: "Outdoor context from a saved field snapshot — not invented from photographs." }
+        : null,
       groupCount: groups.length,
-      weatherPlaceholder: {
-        status: "future",
-        note: "Weather context for the session will sit here when outdoor intelligence is linked to the shoot."
-      },
+      weatherPlaceholder: shoot.outdoorContext
+        ? { status: "linked", note: "Outdoor context from a saved field snapshot — not invented from photographs." }
+        : { status: "unavailable", note: "No outdoor context was saved with this shoot — nothing invented." },
       locations: (function () {
         var locs = [];
         done.forEach(function (img) {
@@ -929,13 +994,13 @@
             locs.push({
               lat: ex.gpsLatitude,
               lon: ex.gpsLongitude,
-              imageId: img.id
+              imageId: img.id,
+              source: "exif"
             });
           }
         });
         return locs;
       })(),
-      // Future: Photographer Profiles / style / niche / matching
       profileHints: {
         dominantGenres: dominantGenres,
         styleTendencies: [
@@ -1197,10 +1262,7 @@
             ? '<img src="' + escapeHtml(summary.favoriteImage.thumbnail) + '" alt="" class="pc-shoot-summary__thumb">'
             : "") +
           "<p>" + escapeHtml(summary.favoriteImage.fileName) +
-          (summary.favoriteImage.selectionLabel === "favorite"
-            ? " · marked by you"
-            : " · strongest early candidate") +
-          "</p>" +
+          " · marked by you</p>" +
           '<button type="button" class="pc-shoot-summary__open" data-image-id="' +
             escapeHtml(summary.favoriteImage.imageId) + '">View photograph</button>' +
         "</div>";
@@ -1209,17 +1271,28 @@
     return '<section class="pc-shoot-summary coach-card" aria-labelledby="pc-shoot-summary-title">' +
       '<div class="pc-shoot-summary__head">' +
         '<h2 class="coach-card__title" id="pc-shoot-summary-title">How did today’s shoot go?</h2>' +
-        '<span class="coach-trust coach-trust--demo">On-device · private</span>' +
+        '<span class="coach-trust coach-trust--live">On-device · private</span>' +
       "</div>" +
-      '<p class="pc-shoot-summary__lede">One session, read as a whole — not a contest between single frames.</p>' +
+      '<p class="pc-shoot-summary__lede">A quiet mentor read of the outing — not a leaderboard.</p>' +
       meta +
-      '<div class="pc-shoot-summary__score pc-shoot-summary__score--quiet">' +
-        '<span class="pc-shoot-summary__letter">' + escapeHtml(summary.letter) + "</span>" +
-        '<p class="pc-shoot-summary__score-note">Session read ' +
-          escapeHtml(String(summary.overallShootScore)) +
-          "/100 — blends keepers, median quality, and consistency. Guidance only.</p>" +
-      "</div>" +
+      '<p class="pc-shoot-summary__keepers">Your labels: ' +
+        escapeHtml(String((summary.labelCounts && summary.labelCounts.keep) || 0)) + ' Keep · ' +
+        escapeHtml(String((summary.labelCounts && summary.labelCounts.favorite) || 0)) + ' Favorite · ' +
+        escapeHtml(String((summary.labelCounts && summary.labelCounts.maybe) || 0)) + ' Maybe · ' +
+        escapeHtml(String((summary.labelCounts && summary.labelCounts.reject) || 0)) + ' Reject' +
+        (summary.userKeeperCount != null ? ' · ' + escapeHtml(String(summary.userKeeperCount)) + ' keepers' : '') +
+      '</p>' +
+      ((summary.userKeeperCount || 0) > 0
+        ? '<p class="pc-shoot-summary__auto-edit">' +
+            '<a class="wds-btn wds-btn--primary wds-btn--sm" href="../auto-edit/?batch=keepers">Auto Edit Keepers</a> ' +
+            '<span class="coach-muted">Finish Keep / Favorite frames on this device. Rejects stay out.</span>' +
+          "</p>"
+        : '<p class="pc-shoot-summary__auto-edit coach-muted">Mark Keep or Favorite, then finish with Auto Edit.</p>') +
       favoriteHtml +
+      (summary.progression && summary.progression.note
+        ? '<div class="pc-shoot-summary__block"><h3 class="pc-shoot-summary__h">Progression</h3><p>' +
+          escapeHtml(summary.progression.note) + '</p></div>'
+        : '') +
       '<div class="pc-shoot-summary__block">' +
         '<h3 class="pc-shoot-summary__h">Session observations</h3>' +
         "<ul>" + insights + "</ul>" +
@@ -1251,12 +1324,11 @@
       renderGroupsHtml(shoot) +
       outingHtml +
       '<div class="pc-shoot-summary__focus">' +
-        "<h3 class=\"pc-shoot-summary__h\">A quiet focus for next time</h3>" +
-        "<p><strong>" + escapeHtml(focus.title || "") + "</strong></p>" +
-        "<p>" + escapeHtml(focus.why || "") + "</p>" +
-        "<p>" + escapeHtml(focus.practice || "") + "</p>" +
+        "<h3 class=\"pc-shoot-summary__h\">Next time</h3>" +
+        "<p>" + escapeHtml(summary.nextTimeTip || focus.practice || "") + "</p>" +
+        (focus.title ? "<p class=\"coach-muted\"><strong>" + escapeHtml(focus.title) + "</strong> — " + escapeHtml(focus.why || "") + "</p>" : "") +
       "</div>" +
-      '<p class="coach-muted">Stored privately in this browser — ready for future Photographer Profile learning.</p>' +
+      '<p class="coach-muted">Stored privately on this device. Photos are not uploaded.</p>' +
     "</section>";
   }
 

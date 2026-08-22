@@ -1,0 +1,163 @@
+{
+  "capturedAt": "2026-08-08T17:12:40.220Z",
+  "diag": {
+    "build": "9aba99f",
+    "leafletCssHref": [
+      "https://waypointstudio.org/apps/shed-hunting/vendor/leaflet/leaflet.css"
+    ],
+    "leafletCssLoaded": true,
+    "tilePosition": "absolute",
+    "tileCount": 24,
+    "coverageRatio": 1,
+    "hosts": [
+      "b.basemaps.cartocdn.com",
+      "c.basemaps.cartocdn.com",
+      "d.basemaps.cartocdn.com",
+      "a.basemaps.cartocdn.com"
+    ],
+    "hasTileStatus": true,
+    "hasProvider": true
+  },
+  "networkSample": [
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/vendor/leaflet/leaflet.js",
+      "status": 200,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/vendor/leaflet/leaflet.css",
+      "status": 200,
+      "mime": "text/css"
+    },
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/js/sheds-tile-provider.js",
+      "status": 200,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://waypointstudio.org/apps/shed-hunting/vendor/leaflet/images/layers.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/13/22.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/15/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/16/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/14/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/18/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/13/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/18/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/17/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/14/22.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/13/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/14/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/18/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/14/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/17/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/17/22.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/16/22.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/13/24.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/15/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/15/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/17/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/15/22.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/16/23.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/16/21.png",
+      "status": 200,
+      "mime": "image/png"
+    },
+    {
+      "url": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/18/22.png",
+      "status": 200,
+      "mime": "image/png"
+    }
+  ]
+}

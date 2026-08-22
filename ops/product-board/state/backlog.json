@@ -1,0 +1,435 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T23:46:51.596Z",
+  "policy": {
+    "priorities": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "productionBugsAreP0": true,
+    "failedReviewCreatesRepairWork": true,
+    "subscriberReadyBlockedBy": [
+      "P0",
+      "P1",
+      "P2"
+    ]
+  },
+  "items": [
+    {
+      "id": "WB-001",
+      "title": "Wire visual regression capture into Product Board visual_review phase",
+      "severity": "P3",
+      "area": "agent-ops",
+      "status": "ready",
+      "acceptanceCriteria": [
+        "visual_review phase invokes or records automation/capture-platform-visual-regression.mjs for scoped surfaces",
+        "Failures route through fail-review → fix → retest"
+      ],
+      "source": "foundation-seed",
+      "notes": "Capture tooling exists; not yet orchestrated by the board loop.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-09T00:00:00.000Z",
+      "failureOrigin": null,
+      "evidence": [],
+      "blocksSubscriberReady": false,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-002",
+      "title": "Install/document Playwright path or explicit non-use for visual testing",
+      "severity": "P4",
+      "area": "agent-ops",
+      "status": "backlog",
+      "acceptanceCriteria": [
+        "Either Playwright is available with a Product Board command, or inventory remains honest that it is missing",
+        "No claim of Playwright coverage without executable proof"
+      ],
+      "source": "foundation-seed",
+      "notes": "reports/playwright-capability.txt currently reports not installed.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-09T00:00:00.000Z",
+      "failureOrigin": null,
+      "evidence": [],
+      "blocksSubscriberReady": false,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-003",
+      "title": "Attestation workflow for Subscriber Ready policy criteria",
+      "severity": "P2",
+      "area": "agent-ops",
+      "status": "done",
+      "acceptanceCriteria": [
+        "board.mjs supports recording role attestations for required policy criteria",
+        "Gate can reach SUBSCRIBER READY only with attestations + passing required commands + empty P0–P2 queue"
+      ],
+      "source": "foundation-seed",
+      "notes": "Implemented: board.mjs attest + state/attestations.json; gate requires policy attestations + Commercial + Red Team.",
+      "relatedEngineeringId": null,
+      "assignedRole": "release-manager",
+      "createdAt": "2026-08-09T00:00:00.000Z",
+      "updatedAt": "2026-08-10T01:30:00.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T01:30:00.000Z",
+          "kind": "implementation",
+          "notes": "attest command + requiredAttestationsStatus wired into evaluateSubscriberReady"
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": null
+    },
+    {
+      "id": "WB-004",
+      "title": "[eng] Confirm GitHub Pages source remains GitHub Actions only",
+      "severity": "P1",
+      "area": "devops",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Repo Pages settings use GitHub Actions (not branch deploy)",
+        "Deploy workflow injects GITHUB_SHA metadata",
+        "Production marker matches origin/main"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Prevents local stub markers from briefly shipping via branch Pages.",
+      "relatedEngineeringId": "WE-001",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.747Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-005",
+      "title": "[eng] Add Engineering OS onboarding note to docs README",
+      "severity": "P2",
+      "area": "docs",
+      "status": "done",
+      "acceptanceCriteria": [
+        "docs/README links to engineering/README.md",
+        "No application code changes"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Optional documentation cross-link only.",
+      "relatedEngineeringId": "WE-002",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-006",
+      "title": "[eng] Catalog known technical debt after App Shell migration",
+      "severity": "P2",
+      "area": "architecture",
+      "status": "done",
+      "acceptanceCriteria": [
+        "engineering/knowledge/technical-debt.yaml lists top debt items",
+        "Each item has severity and suggested owner role"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Knowledge capture only.",
+      "relatedEngineeringId": "WE-003",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-007",
+      "title": "[eng] Define accessibility gate checklist for App Shell pages",
+      "severity": "P2",
+      "area": "ux",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Playbook accessibility-gate.md covers focus, contrast, skip link, launcher a11y",
+        "QA references the checklist in sprint verification"
+      ],
+      "source": "engineering-backlog",
+      "notes": "Checklist already scaffolded; keep current and enforce.",
+      "relatedEngineeringId": "WE-004",
+      "assignedRole": null,
+      "createdAt": "2026-08-10T01:09:28.748Z",
+      "updatedAt": "2026-08-10T03:35:01.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T03:35:01.000Z",
+          "kind": "verification",
+          "notes": "Completed during Sheds Subscriber Ready pilot; tagged campaign=platform."
+        }
+      ],
+      "blocksSubscriberReady": true,
+      "campaign": "platform"
+    },
+    {
+      "id": "WB-008",
+      "title": "Sheds: production deploy of Today’s Search + observation heat",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Production /apps/shed-hunting/map/ includes Today’s Search panel",
+        "Observation heat mode present without demo seed data",
+        "verify-sheds-production notes Today’s Search present"
+      ],
+      "source": "sheds-pilot-discover",
+      "notes": "Still blocking live SUBSCRIBER READY until Today’s Search is on production (merge/deploy). Local product verified.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-10T03:35:01.000Z",
+      "updatedAt": "2026-08-10T11:56:52.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T11:56:52.000Z",
+          "kind": "production",
+          "notes": "PR #2 merged; production map shows Today’s Search; verify-sheds-production PASS (396608b)."
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-009",
+      "title": "Sheds: browser product review desktop/tablet/mobile",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Desktop + mobile walkthrough evidence recorded",
+        "No console/network P0/P1 on primary journeys",
+        "Attestations possible for primary-workflows + visual-review"
+      ],
+      "source": "sheds-pilot-discover",
+      "notes": "Primary workflows: locate, Today’s Search, add note, heat modes, tools, ethics/privacy.",
+      "relatedEngineeringId": null,
+      "assignedRole": "qa",
+      "createdAt": "2026-08-10T03:35:01.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": null,
+      "evidence": [
+        {
+          "at": "2026-08-10T10:39:26.000Z",
+          "kind": "browser-review",
+          "notes": "CDP desktop/tablet/mobile review PASS; reports/sheds-subscriber-ready-review/"
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-010",
+      "title": "Sheds: Leaflet attribution/zoom overlapping expanded Today’s Search on mobile",
+      "severity": "P1",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Attribution hidden when briefing expanded",
+        "Leaflet bottom chrome lifted above expanded sheet",
+        "Field UX regression asserts CSS rules",
+        "CDP overlap check passes"
+      ],
+      "source": "browser-review",
+      "notes": "Fixed in sheds-map.css :has(#plan-card[data-expanded=true]) rules; ethics provider copy corrected to CARTO/Esri.",
+      "relatedEngineeringId": null,
+      "assignedRole": "ux-ui-lead",
+      "createdAt": "2026-08-10T10:39:26.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": "visual_review",
+      "evidence": [
+        {
+          "at": "2026-08-10T10:39:26.000Z",
+          "kind": "fix",
+          "notes": "CSS + regression + CDP pass"
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-011",
+      "title": "Sheds: ethics sheet claimed OSM/OpenTopoMap while production tiles are CARTO/Esri",
+      "severity": "P2",
+      "area": "sheds",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Ethics map-provider copy matches tile provider"
+      ],
+      "source": "commercial-red-team",
+      "notes": "Trust/honesty defect — repaired.",
+      "relatedEngineeringId": null,
+      "assignedRole": "commercial-subscriber",
+      "createdAt": "2026-08-10T10:39:26.000Z",
+      "updatedAt": "2026-08-10T10:39:26.000Z",
+      "failureOrigin": "red_team",
+      "evidence": [],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-012",
+      "title": "Sheds Today’s Search skipped map-center weather on cold start",
+      "severity": "P1",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T15:14:06.255Z",
+      "updatedAt": "2026-08-10T17:26:06.552Z",
+      "failureOrigin": {
+        "phase": "release_gate",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T15:14:06.255Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:26:06.552Z",
+          "kind": "retest_pass",
+          "notes": "Duplicate of WB-013 live-input cold-start escape; ensureWeatherForView + CDP cold-start green; same repair verified."
+        }
+      ],
+      "campaign": null,
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-013",
+      "title": "Stale Live cyber artifact presented as Live (age >24h)",
+      "severity": "P0",
+      "area": "signalterrain",
+      "status": "in_progress",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "Local refresh done + effectiveTrust Stale downgrade + MSP tests. Production still needs deploy of fresh live.json + JS.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T16:52:24.234Z",
+      "updatedAt": "2026-08-10T18:55:00.000Z",
+      "failureOrigin": {
+        "phase": "fix",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T16:52:24.234Z",
+        "findings": "P1 escaped: GPS-denied + zoom<9 skipped Open-Meteo while Today’s Search claimed map-center fallback; Limited briefing / weather unavailable on cold start (local+prod). Class: live-input cold-start honesty."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T17:25:32.264Z",
+          "kind": "retest_pass",
+          "notes": "ensureWeatherForView fetches Open-Meteo for map center on GPS-denied/zoomed-out cold start; CDP cold-start + unit contracts green; glance/status honesty updated."
+        }
+      ],
+      "campaign": "signalterrain",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-014",
+      "title": "Repair: Sheds dual markers, oscillation, chrome prototype quality",
+      "severity": "P0",
+      "area": "review",
+      "status": "done",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "Owner rejected SUBSCRIBER READY @ d5f1692 (2nd false positive). Production: dual similar location indicators (user + search target), CSS scale-pulse oscillation, truncated/cramped chrome, unexplained FAB stack, ethics overlay showing map controls, map-dominating hierarchy. Board missed because attestations cited screenshots without analysis; no dynamic visual; commercial visual gate absent.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T20:27:16.096Z",
+      "updatedAt": "2026-08-10T23:19:01.424Z",
+      "failureOrigin": {
+        "phase": "release_gate",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T20:27:16.096Z",
+        "findings": "Owner rejected SUBSCRIBER READY @ d5f1692 (2nd false positive). Production: dual similar location indicators (user + search target), CSS scale-pulse oscillation, truncated/cramped chrome, unexplained FAB stack, ethics overlay showing map controls, map-dominating hierarchy. Board missed because attestations cited screenshots without analysis; no dynamic visual; commercial visual gate absent."
+      },
+      "evidence": [
+        {
+          "at": "2026-08-10T23:19:01.424Z",
+          "kind": "retest_pass",
+          "notes": "Production b20cf0f: LOCATION_KIND user vs amber NEXT target; opacity-only pulse; horizontal labeled zoom in field rail; mobile peek fits Confidence; screenshot-analysis+dynamic-visual PASS (reports/sheds-visual-board, visual-evidence/*-latest.json). Prior dual-dot/oscillation/clip/unexplained-zoom defects closed with evidence."
+        }
+      ],
+      "campaign": "sheds",
+      "blocksSubscriberReady": true
+    },
+    {
+      "id": "WB-015",
+      "title": "Sheds desktop lower-left attribution sandwich clip",
+      "severity": "P1",
+      "area": "review",
+      "status": "fix",
+      "acceptanceCriteria": [
+        "Root cause named",
+        "Fix applied without fake functionality",
+        "Retest passes the failed assertion",
+        "Evidence recorded on the work item"
+      ],
+      "source": "failed-review-routing",
+      "notes": "Independent production spot-check @ b20cf0f (https://waypointstudio.org/apps/shed-hunting/map/).\n\nESCAPE STILL PRESENT — lower-left clip:\nOn desktop 1440/1728, Leaflet attribution sits in the gap between ESTIMATED OPPORTUNITY (heat legend) and TODAY'S SEARCH, appearing as a thin dark/yellow clipped sliver. Pixel bands on desktop-1440: legend ~y663–734, sandwich strip ~y774–816, plan ~y823–886. Geometry: attr bottom overlaps plan top (plan-attr overlap). Root cause: desktop floating plan card ignores --sheds-sheet-peek while attribution still uses mobile peek margin-bottom.\n\nOther owner escapes in this spot-check: dual location dots GONE (1 user_gps + 1 search_target, stable); oscillating marker GONE (8 samples, zero jitter under mocked geo); wrong location GONE (Pittsburgh mock); upper-left truncation GONE; unexplained FAB stack GONE (labeled Locate/In/Out/Note/Track/Tools). Console clean; network: open-meteo 429 (honest weather unavailable) + favicon 404 — not escape-class.\n\nVERDICT: SHEDS — NOT SUBSCRIBER READY. Repair authorized: raise desktop attribution above legend stack.",
+      "relatedEngineeringId": null,
+      "assignedRole": "senior-software-engineer",
+      "createdAt": "2026-08-10T23:46:51.596Z",
+      "updatedAt": "2026-08-10T23:46:51.596Z",
+      "failureOrigin": {
+        "phase": "prioritize",
+        "relatedItemId": null,
+        "routedAt": "2026-08-10T23:46:51.596Z",
+        "findings": "Independent production spot-check @ b20cf0f (https://waypointstudio.org/apps/shed-hunting/map/).\n\nESCAPE STILL PRESENT — lower-left clip:\nOn desktop 1440/1728, Leaflet attribution sits in the gap between ESTIMATED OPPORTUNITY (heat legend) and TODAY'S SEARCH, appearing as a thin dark/yellow clipped sliver. Pixel bands on desktop-1440: legend ~y663–734, sandwich strip ~y774–816, plan ~y823–886. Geometry: attr bottom overlaps plan top (plan-attr overlap). Root cause: desktop floating plan card ignores --sheds-sheet-peek while attribution still uses mobile peek margin-bottom.\n\nOther owner escapes in this spot-check: dual location dots GONE (1 user_gps + 1 search_target, stable); oscillating marker GONE (8 samples, zero jitter under mocked geo); wrong location GONE (Pittsburgh mock); upper-left truncation GONE; unexplained FAB stack GONE (labeled Locate/In/Out/Note/Track/Tools). Console clean; network: open-meteo 429 (honest weather unavailable) + favicon 404 — not escape-class.\n\nVERDICT: SHEDS — NOT SUBSCRIBER READY. Repair authorized: raise desktop attribution above legend stack."
+      },
+      "evidence": [],
+      "campaign": null,
+      "blocksSubscriberReady": true
+    }
+  ]
+}

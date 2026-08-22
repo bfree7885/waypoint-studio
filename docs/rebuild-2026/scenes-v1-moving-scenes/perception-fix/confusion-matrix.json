@@ -1,0 +1,443 @@
+{
+  "edge": 320,
+  "n": 38,
+  "water": {
+    "tp": 4,
+    "fp": 0,
+    "tn": 27,
+    "fn": 4,
+    "precision": 1,
+    "recall": 0.5
+  },
+  "results": [
+    {
+      "id": "A-cloud",
+      "kind": "real",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.059597324303980445,
+      "truthWater": false,
+      "ms": 1090
+    },
+    {
+      "id": "B-water",
+      "kind": "real",
+      "classes": [
+        "water"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.92,
+      "truthWater": true,
+      "ms": 1226
+    },
+    {
+      "id": "C-fog",
+      "kind": "real",
+      "classes": [
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 894
+    },
+    {
+      "id": "D-wildlife",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 1169
+    },
+    {
+      "id": "E-static",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03733826569577331,
+      "truthWater": false,
+      "ms": 1128
+    },
+    {
+      "id": "F-complex",
+      "kind": "real",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.24,
+      "truthWater": false,
+      "ms": 719
+    },
+    {
+      "id": "asset-wetland",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": true,
+      "confWater": 0.03,
+      "truthWater": true,
+      "ms": 993
+    },
+    {
+      "id": "asset-bog",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": true,
+      "confWater": 0.03,
+      "truthWater": true,
+      "ms": 1012
+    },
+    {
+      "id": "asset-fogforest",
+      "kind": "real",
+      "classes": [
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 922
+    },
+    {
+      "id": "asset-mist-valley",
+      "kind": "real",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.24,
+      "truthWater": false,
+      "ms": 732
+    },
+    {
+      "id": "asset-edited-boardwalk",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03733826569577331,
+      "truthWater": false,
+      "ms": 1141
+    },
+    {
+      "id": "asset-image0",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": true,
+      "confWater": 0.03,
+      "truthWater": null,
+      "ms": 998
+    },
+    {
+      "id": "asset-image4",
+      "kind": "real",
+      "classes": [
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": null,
+      "ms": 899
+    },
+    {
+      "id": "asset-hero",
+      "kind": "real",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.041702274512071535,
+      "truthWater": null,
+      "ms": 852
+    },
+    {
+      "id": "fix-01-clouds-sky",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 225
+    },
+    {
+      "id": "fix-02-cloud-mountain",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03943434592202538,
+      "truthWater": false,
+      "ms": 219
+    },
+    {
+      "id": "fix-03-lake-shore",
+      "kind": "fixture",
+      "classes": [
+        "water"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.7762666560983751,
+      "truthWater": true,
+      "ms": 232
+    },
+    {
+      "id": "fix-04-river",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": true,
+      "ms": 207
+    },
+    {
+      "id": "fix-05-ocean",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": true,
+      "ms": 202
+    },
+    {
+      "id": "fix-06-waterfall-rocks",
+      "kind": "fixture",
+      "classes": [
+        "clouds",
+        "water"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.92,
+      "truthWater": true,
+      "ms": 203
+    },
+    {
+      "id": "fix-07-fog-forest",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 238
+    },
+    {
+      "id": "fix-08-haze-valley",
+      "kind": "fixture",
+      "classes": [
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 241
+    },
+    {
+      "id": "fix-09-foliage-detail",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 205
+    },
+    {
+      "id": "fix-10-grass-meadow",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 199
+    },
+    {
+      "id": "fix-11-visible-rain",
+      "kind": "fixture",
+      "classes": [
+        "haze"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 212
+    },
+    {
+      "id": "fix-12-visible-snow",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 202
+    },
+    {
+      "id": "fix-13-wildlife-env",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": true,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 202
+    },
+    {
+      "id": "fix-14-night-stars",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 195
+    },
+    {
+      "id": "fix-15-architecture-landscape",
+      "kind": "fixture",
+      "classes": [
+        "clouds",
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 199
+    },
+    {
+      "id": "fix-16-static-rock",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 205
+    },
+    {
+      "id": "fix-17-dry-blue-object",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 200
+    },
+    {
+      "id": "fix-18-tree-trunk-sky",
+      "kind": "fixture",
+      "classes": [
+        "clouds",
+        "fog"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 201
+    },
+    {
+      "id": "ae-01-well-exposed-landscape",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 852
+    },
+    {
+      "id": "ae-02-underexposed-landscape",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.14416666666666667,
+      "truthWater": false,
+      "ms": 763
+    },
+    {
+      "id": "ae-03-bright-sky-dark-fg",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 747
+    },
+    {
+      "id": "ae-05-forest",
+      "kind": "fixture",
+      "classes": [],
+      "noMotion": true,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 758
+    },
+    {
+      "id": "ae-07-water",
+      "kind": "fixture",
+      "classes": [
+        "water"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.92,
+      "truthWater": true,
+      "ms": 756
+    },
+    {
+      "id": "ae-11-smooth-fog",
+      "kind": "fixture",
+      "classes": [
+        "clouds"
+      ],
+      "noMotion": false,
+      "wildlifeProtected": false,
+      "confWater": 0.03,
+      "truthWater": false,
+      "ms": 783
+    }
+  ]
+}

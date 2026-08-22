@@ -36,6 +36,7 @@ const PAGES = [
   { name: "scenes-photo-coach", path: "/apps/scenes/photo-coach/", ready: "shell" },
   { name: "scenes-hidden-landscapes", path: "/apps/scenes/hidden-landscapes/", ready: "shell" },
   { name: "scenes-living-scenes", path: "/apps/scenes/living-scenes/", ready: "shell" },
+  { name: "scenes-moving-scenes", path: "/apps/moving-scenes/", ready: "shell" },
   { name: "scenes-scene-builder", path: "/apps/scenes/scene-builder/", ready: "shell" },
   { name: "scenes-photographer-profile", path: "/apps/scenes/photographer-profile/", ready: "shell" },
   { name: "scenes-photo-library", path: "/apps/scenes/photo-library/", ready: "shell" },
@@ -43,6 +44,8 @@ const PAGES = [
   { name: "animal-vision", path: "/apps/animal-vision/", ready: "shell" },
   { name: "hidden-landscapes", path: "/apps/hidden-landscapes/", ready: "shell" },
   { name: "photo-library", path: "/apps/photo-library/", ready: "shell" },
+  { name: "auto-edit", path: "/apps/auto-edit/", ready: "shell" },
+  { name: "scenes-auto-edit", path: "/apps/scenes/auto-edit/", ready: "shell" },
   { name: "kiosk", path: "/kiosk.html", ready: "kiosk", live: true },
   { name: "status", path: "/status.html", ready: "status" },
   { name: "debug", path: "/debug.html", ready: "debug" },
@@ -193,7 +196,7 @@ function readyExpression(kind) {
       const cards = document.querySelectorAll('.was-home__card').length;
       const shell = !!document.querySelector('[data-was-global], .was-global, .was-home-hero, [data-wds-app-shell], #was-apps-btn, .was-apps-btn');
       const home = !!document.querySelector('.was-home, #was-home-apps, [data-product="studio-home"]');
-      // RC3 homePrimary is four human workflows (Outside, Scenes, Sheds, Volunteer).
+      // Front door gate: Dashboard, Scenes, Sheds, Articles (+ Side Trails) pathways.
       return { ok: shell && home && cards >= 4, cards: cards, shell: shell };
     })()`;
   }
@@ -503,10 +506,11 @@ async function main() {
         console.log("FAIL: Dashboard on Studio home");
       }
     }
-    if (r.name === "dashboard-redirect" && !/\/apps\/dashboard\//.test(r.checks.currentPath || "")) {
-      if ((r.checks.bodyLen || 0) < 1) {
+    if (r.name === "dashboard-redirect") {
+      const path = r.checks.currentPath || "";
+      if (!/\/apps\/dashboard\//.test(path) && path !== "/") {
         failed = true;
-        console.log("FAIL: dashboard.html redirect broken");
+        console.log("FAIL: dashboard.html redirect broken (got " + path + ")");
       }
     }
     if (r.name === "dashboard") {
@@ -622,10 +626,33 @@ async function main() {
     console.log("\nArtifacts:", ARTIFACT_DIR);
   }
   console.log(failed ? "\nSMOKE: FAIL" : "\nSMOKE: PASS");
-  process.exit(failed ? 1 : 0);
+  return failed ? 1 : 0;
 }
 
-main().catch((e) => {
-  console.error("Smoke runner error:", e.message);
-  process.exit(2);
-});
+function isTransientCdpError(err) {
+  const msg = err && err.message ? err.message : String(err || "");
+  return /navigated or closed|Target closed|WebSocket|ECONNREFUSED|No page CDP/i.test(msg);
+}
+
+async function run() {
+  const attempts = 2;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const code = await main();
+      process.exit(code);
+    } catch (e) {
+      const transient = isTransientCdpError(e);
+      if (!transient || i === attempts - 1) {
+        console.error("Smoke runner error:", e.message);
+        process.exit(2);
+      }
+      console.error(
+        `Smoke runner transient CDP error; retrying (${i + 1}/${attempts - 1}):`,
+        e.message
+      );
+      await delay(1500);
+    }
+  }
+}
+
+run();

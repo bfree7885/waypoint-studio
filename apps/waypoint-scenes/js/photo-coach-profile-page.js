@@ -457,26 +457,26 @@
 
   function renderDna(dna) {
     if (!dna) {
-      return '<p class="pp-empty">Photography DNA will form as eligible analyses accumulate.</p>';
+      return '<p class="pp-empty">Looking patterns will form as eligible analyses accumulate. Not enough history yet.</p>';
     }
     function line(title, value) {
       if (!value || (Array.isArray(value) && !value.length)) {
         return (
-          '<div class="pp-dna-row"><dt>' +
+          '<div class="pp-looking-row"><dt>' +
           esc(title) +
           '</dt><dd class="pp-muted">Still forming</dd></div>'
         );
       }
       var text = Array.isArray(value) ? value.join(" · ") : String(value);
       return (
-        '<div class="pp-dna-row"><dt>' + esc(title) + "</dt><dd>" + esc(text) + "</dd></div>"
+        '<div class="pp-looking-row"><dt>' + esc(title) + "</dt><dd>" + esc(text) + "</dd></div>"
       );
     }
     return (
       '<p class="pp-lede">' +
       esc(dna.summary || "") +
       "</p>" +
-      '<dl class="pp-dna">' +
+      '<dl class="pp-looking">' +
       line("Subjects", dna.subjects) +
       line("Visual themes", dna.visualThemes) +
       line("Preferred lighting", dna.preferredLighting) +
@@ -564,7 +564,7 @@
     var links = [
       ["pp-overview", "Overview"],
       ["pp-journey", "Photography Journey"],
-      ["pp-dna", "Photography DNA"],
+      ["pp-looking", "Looking history"],
       ["pp-observations", "Patterns"],
       ["pp-strengths", "Strengths"],
       ["pp-growth-opp", "Growth Opportunities"],
@@ -639,8 +639,8 @@
       "</p></section>";
 
     html +=
-      '<section class="pp-section" id="pp-dna" aria-labelledby="pp-dna-title">' +
-      '<h2 id="pp-dna-title">Photography DNA</h2>' +
+      '<section class="pp-section" id="pp-looking" aria-labelledby="pp-looking-title">' +
+      '<h2 id="pp-looking-title">Looking history</h2>' +
       '<p class="pp-lede">Descriptive — not evaluative. A sketch of how you seem to see.</p>' +
       renderDna(profile.photographyDna) +
       "</section>";

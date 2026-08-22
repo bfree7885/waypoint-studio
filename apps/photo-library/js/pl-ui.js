@@ -72,9 +72,17 @@
     function renderCollections() {
       if (!els.collections) return;
       var cols = engine.listCollections();
+      var shoots = engine.listShoots ? engine.listShoots() : [];
       els.collections.innerHTML =
-        '<button type="button" class="pl-chip' + (!state.filters.collectionId ? " is-active" : "") +
+        '<button type="button" class="pl-chip' + (!state.filters.collectionId && !state.filters.shootId ? " is-active" : "") +
         '" data-collection="">All photographs</button>' +
+        (shoots.length
+          ? shoots.slice(0, 8).map(function (s) {
+              var active = state.filters.shootId === s.id;
+              return '<button type="button" class="pl-chip' + (active ? " is-active" : "") +
+                '" data-shoot="' + esc(s.id) + '">Shoot · ' + s.count + "</button>";
+            }).join("")
+          : "") +
         cols.map(function (c) {
           var active = state.filters.collectionId === c.id;
           return '<button type="button" class="pl-chip' + (active ? " is-active" : "") +
@@ -86,8 +94,18 @@
       els.collections.querySelectorAll("[data-collection]").forEach(function (btn) {
         btn.addEventListener("click", function () {
           var id = btn.getAttribute("data-collection");
+          delete state.filters.shootId;
           if (!id) delete state.filters.collectionId;
           else state.filters.collectionId = id;
+          refresh();
+        });
+      });
+      els.collections.querySelectorAll("[data-shoot]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-shoot");
+          delete state.filters.collectionId;
+          if (state.filters.shootId === id) delete state.filters.shootId;
+          else state.filters.shootId = id;
           refresh();
         });
       });
@@ -105,13 +123,14 @@
     function renderFilters() {
       if (!els.filters) return;
       var defs = [
-        { key: "favorite", label: "Favorite" },
+        { key: "favorite", label: "Favorites" },
         { key: "keep", label: "Keep" },
+        { key: "maybe", label: "Maybe" },
         { key: "reject", label: "Reject" },
         { key: "analyzed", label: "Analyzed" },
         { key: "notAnalyzed", label: "Not yet analyzed" },
-        { key: "hiddenLandscapes", label: "Open in Hidden Landscapes" },
-        { key: "livingScene", label: "Living Scene created" }
+        { key: "hasExif", label: "Has EXIF" },
+        { key: "hiddenLandscapes", label: "Open in Hidden Landscapes" }
       ];
       var subjects = (engine.SUBJECT_FILTERS || []).map(function (s) {
         return { key: "subject:" + s, label: s.charAt(0).toUpperCase() + s.slice(1), subject: s };
@@ -176,6 +195,14 @@
             '<span class="pl-row__meta"><strong>' + esc(img.filename) + "</strong>" +
             "<span>" + esc(formatDate(img.captureDate || img.importDate)) + "</span></span>" +
             (img.favorite || img.selectionLabel === "favorite" ? '<span class="pl-badge">★</span>' : "") +
+            (img.moduleRefs && img.moduleRefs.autoEdit && img.moduleRefs.autoEdit.hasEdit
+              ? '<span class="pl-badge pl-badge--edit">Edited</span>'
+              : "") +
+            (img.role === "waypoint-edit" ? '<span class="pl-badge pl-badge--edit">Waypoint Edit</span>' : "") +
+            ((img.moduleRefs && img.moduleRefs.movingScenes && img.moduleRefs.movingScenes.created) ||
+              img.role === "moving-scene"
+              ? '<span class="pl-badge pl-badge--moving">Moving</span>'
+              : "") +
             "</button>";
         }).join("");
       } else {
@@ -226,12 +253,20 @@
         return;
       }
       var coach = (img.moduleRefs && img.moduleRefs.photoCoach) || {};
+      var autoEdit = (img.moduleRefs && img.moduleRefs.autoEdit) || {};
+      var moving = (img.moduleRefs && img.moduleRefs.movingScenes) || {};
       var cols = (img.collectionIds || []).map(function (cid) {
         var c = engine.getCollection(cid);
         return c ? c.name : null;
       }).filter(Boolean);
 
       var canOpenMedia = !!(img.media && (img.media.hasOriginal || img.media.hasThumbnail || img.media.thumbnailDataUrl));
+      var originalId =
+        (img.role === "waypoint-edit" || img.role === "moving-scene") && img.originalAssetId
+          ? img.originalAssetId
+          : img.id;
+      var finishHref = "../auto-edit/?libraryId=" + encodeURIComponent(originalId);
+      var moveHref = "../moving-scenes/?libraryId=" + encodeURIComponent(originalId);
 
       els.detail.innerHTML =
         '<div class="pl-detail__preview">' +
@@ -240,6 +275,14 @@
             : '<p class="pl-detail__empty">No large preview yet. Import the original to store it locally.</p>') +
         "</div>" +
         "<h2 class=\"pl-detail__title\">" + esc(img.filename) + "</h2>" +
+        (img.role === "waypoint-edit"
+          ? '<p class="pl-relation">Waypoint Edit of a preserved original.</p>'
+          : (img.role === "moving-scene"
+            ? '<p class="pl-relation">Moving Scene derivative · original preserved.</p>'
+            : (autoEdit.hasEdit
+              ? '<p class="pl-relation">Has a Waypoint Edit · original preserved.</p>'
+              : "") +
+              (moving.created ? '<p class="pl-relation">Has a Moving Scene · original preserved.</p>' : ""))) +
         '<dl class="pl-detail__meta">' +
           "<div><dt>Captured</dt><dd>" + esc(formatDate(img.captureDate)) + "</dd></div>" +
           "<div><dt>Imported</dt><dd>" + esc(formatDate(img.importDate)) + "</dd></div>" +
@@ -261,7 +304,18 @@
           "</dd></div>" +
           "<div><dt>Analysis</dt><dd>" + esc(coach.analysisStatus || "not-analyzed") +
             (coach.letterGrade ? " · " + esc(coach.letterGrade) : "") +
+            (coach.confidenceTier ? " · " + esc(coach.confidenceTier) + " confidence" : "") +
           "</dd></div>" +
+          (coach.narrativeSummary || img.coachSummary
+            ? "<div><dt>Coach summary</dt><dd>" + esc(coach.narrativeSummary || img.coachSummary) + "</dd></div>"
+            : "") +
+          (coach.shootId
+            ? "<div><dt>Shoot</dt><dd><a href=\"../photo-coach/?shootId=" + encodeURIComponent(coach.shootId) +
+              "\">Open shoot summary</a></dd></div>"
+            : "") +
+          (img.outdoorContext
+            ? "<div><dt>Outdoor context</dt><dd>Stored field snapshot (not invented)</dd></div>"
+            : "") +
           "<div><dt>Collections</dt><dd>" + esc(cols.join(", ") || "None yet") + "</dd></div>" +
           "<div><dt>Tags</dt><dd>" + esc((img.tags || []).join(", ") || "—") + "</dd></div>" +
           "<div><dt>Label</dt><dd>" + esc(img.selectionLabel || (img.favorite ? "favorite" : "—")) + "</dd></div>" +
@@ -271,14 +325,29 @@
           esc(img.photographerNotes || "") +
         "</textarea>" +
         '<div class="pl-actions" role="group" aria-label="Quick actions">' +
-          '<a class="wds-btn wds-btn--primary wds-btn--sm" href="../photo-coach/?libraryId=' +
-            encodeURIComponent(img.id) + '">Open in Photo Coach</a>' +
+          '<a class="wds-btn wds-btn--primary wds-btn--sm" href="' + finishHref + '">' +
+            (autoEdit.hasEdit || img.role === "waypoint-edit" ? "Re-edit with Waypoint" : "Finish with Auto Edit") +
+          "</a>" +
+          (autoEdit.hasEdit && img.role !== "waypoint-edit"
+            ? '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="pl-view-edit">View Waypoint Edit</button>'
+            : "") +
+          (img.role === "waypoint-edit" && img.originalAssetId
+            ? '<button type="button" class="wds-btn wds-btn--ghost wds-btn--sm" id="pl-view-original">View original</button>'
+            : "") +
+          '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="../photo-coach/?libraryId=' +
+            encodeURIComponent(originalId) + '">Open Coach result</a>' +
+          (coach.shootId
+            ? '<a class="wds-btn wds-btn--ghost wds-btn--sm" href="../photo-coach/?shootId=' +
+              encodeURIComponent(coach.shootId) + '">Return to shoot</a>'
+            : "") +
           '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
-            '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(img.id) + '"' +
+            '" href="../hidden-landscapes/?libraryId=' + encodeURIComponent(originalId) + '"' +
             (canOpenMedia ? "" : " aria-disabled=\"true\"") +
-            ">Open in Hidden Landscapes</a>" +
-          '<span class="pl-actions__future" title="Coming as Living Scenes grows">Living Scenes · future</span>' +
-          '<span class="pl-actions__future" title="Coming as Scene Builder grows">Scene Builder · future</span>' +
+            ">Explore</a>" +
+          '<a class="wds-btn wds-btn--secondary wds-btn--sm' + (canOpenMedia ? "" : " is-disabled") +
+            '" href="' + moveHref + '"' +
+            (canOpenMedia ? "" : " aria-disabled=\"true\"") +
+            ">" + (moving.created ? "Open Moving Scene" : "Make it move") + "</a>" +
         "</div>" +
         '<div class="pl-label-row" role="group" aria-label="Private labels">' +
           ["keep", "maybe", "reject", "favorite"].map(function (lab) {
@@ -292,13 +361,20 @@
           "<h3>Modules using this photograph</h3>" +
           "<ul>" +
             "<li>Photo Coach — " + esc(coach.analysisStatus || "not-analyzed") + "</li>" +
+            "<li>Auto Edit — " +
+              (autoEdit.hasEdit || img.role === "waypoint-edit"
+                ? "Waypoint Edit · " + esc(autoEdit.intent || "waypoint-choice")
+                : "not finished yet") +
+            "</li>" +
             "<li>Hidden Landscapes — " +
               (img.moduleRefs.hiddenLandscapes && img.moduleRefs.hiddenLandscapes.available
                 ? "linked"
                 : canOpenMedia ? "ready to open" : "needs original") +
             "</li>" +
-            "<li>Living Scenes — " +
-              (img.moduleRefs.livingScenes && img.moduleRefs.livingScenes.created ? "created" : "not yet") +
+            "<li>Moving Scenes — " +
+              (moving.created
+                ? "saved · " + ((moving.classes && moving.classes.length) ? moving.classes.join(", ") : "motion")
+                : canOpenMedia ? "ready to open" : "needs original") +
             "</li>" +
             "<li>Scene Builder — " +
               (img.moduleRefs.sceneBuilder && img.moduleRefs.sceneBuilder.created ? "created" : "not yet") +
@@ -310,6 +386,27 @@
       if (notes) {
         notes.addEventListener("change", function () {
           engine.updateImage(img.id, { photographerNotes: notes.value || null });
+        });
+      }
+      var viewEdit = $("pl-view-edit");
+      if (viewEdit) {
+        viewEdit.addEventListener("click", function () {
+          var editRow = engine.list().find(function (row) {
+            return row.role === "waypoint-edit" && row.originalAssetId === img.id;
+          });
+          if (editRow) {
+            state.selectedId = editRow.id;
+            refresh();
+          }
+        });
+      }
+      var viewOriginal = $("pl-view-original");
+      if (viewOriginal) {
+        viewOriginal.addEventListener("click", function () {
+          if (img.originalAssetId) {
+            state.selectedId = img.originalAssetId;
+            refresh();
+          }
         });
       }
       els.detail.querySelectorAll("[data-label]").forEach(function (btn) {

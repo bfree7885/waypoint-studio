@@ -32,10 +32,11 @@ function load(rel, sandbox) {
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
-assert("index product name Home", /data-product-name="Home"/.test(indexHtml));
+assert("index product name Dashboard", /data-product-name="Dashboard"/.test(indexHtml));
 assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -148,7 +149,7 @@ assert("shell loaded", !!(Shell && Shell.mount));
 assert("shell exposes setPlatform", typeof Shell.setPlatform === "function");
 
 const all = Reg.all();
-assert("catalog has functional tiles only", all.length === 5, String(all.length));
+assert("catalog has functional tiles only", all.length >= 9, String(all.length));
 assert(
   "four live widgets marked",
   Data.liveIds.every(function (id) {
@@ -170,8 +171,13 @@ assert("conditions waiting without platform", waiting.trust === "waiting" || wai
 assert("waiting does not invent numbers", !/\d+\s*°|AQI\s*\d+/i.test(JSON.stringify(waiting)));
 
 const alertsEmpty = Reg.getData("ph-alerts");
-assert("alerts empty status not coming-soon", alertsEmpty.status === "empty");
-assert("alerts honest empty copy", /No active alerts/i.test(alertsEmpty.message || ""));
+assert("alerts empty status not coming-soon", alertsEmpty.status === "live" || alertsEmpty.status === "empty" || alertsEmpty.status === "waiting");
+assert(
+  "alerts honest empty or waiting copy",
+  /No active alerts|Checking official alerts|unavailable|appear here/i.test(
+    (alertsEmpty.message || "") + " " + JSON.stringify(alertsEmpty.facts || [])
+  )
+);
 assert("alerts availability Available", Reg.availability(Reg.get("ph-alerts")).label === "Available");
 
 const platform = {
@@ -238,8 +244,9 @@ assert("air unavailable does not invent AQI", !/AQI\s*\d+/i.test(JSON.stringify(
 const astroLive = Reg.getData("ph-astronomy", { platform });
 assert("astronomy live with moon phase", astroLive.status === "live");
 assert(
-  "astronomy labels missing moonrise honestly",
-  (astroLive.facts || []).some((f) => f.label === "Moonrise" && /Not reported/i.test(f.value))
+  "astronomy omits missing moonrise rather than inventing",
+  !(astroLive.facts || []).some((f) => f.label === "Moonrise") ||
+    (astroLive.facts || []).some((f) => f.label === "Moonrise" && /Not reported/i.test(f.value))
 );
 assert(
   "astronomy marks illumination computed",

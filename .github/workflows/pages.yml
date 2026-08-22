@@ -46,6 +46,8 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_ACTIONS: "true"
           WAYPOINT_BUILD_SOURCE: github-pages
+          # Optional JSON override for Sheds basemap URLs (never commit keys).
+          WAYPOINT_MAP_TILE_CONFIG: ${{ secrets.WAYPOINT_MAP_TILE_CONFIG }}
 
       - name: Verify injected metadata matches deploy SHA
         env:

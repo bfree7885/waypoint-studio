@@ -1,70 +1,212 @@
 <!DOCTYPE html>
-<html lang="en" data-product="dashboard">
+<html lang="en" data-product="studio-home">
 <head>
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="description" content="Home — customizable outdoor workspace with Today Outside and modular instruments.">
+  <meta name="description" content="Waypoint Studio — Observe. Discover. Understand. Outdoor tools for attention in the field: Dashboard, Scenes, Sheds, Articles, and Side Trails.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waypoint Studio">
-  <meta property="og:title" content="Home — Waypoint Studio">
-  <meta property="og:description" content="What's happening outside today? Customizable outdoor workspace — private by default.">
+  <meta property="og:title" content="Waypoint Studio — Observe. Discover. Understand.">
+  <meta property="og:description" content="A calm outdoor studio: observe conditions, discover what matters in the field, and understand why — privacy-first.">
   <meta property="og:url" content="https://waypointstudio.org/">
-  <title>Home — Waypoint Studio</title>
+  <meta property="og:image" content="https://waypointstudio.org/assets/images/home/hero.jpg">
+  <title>Waypoint Studio — Observe. Discover. Understand.</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Non-blocking fonts: shell paints with fallbacks first -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="design-system/css/wds.css?v=dash-tile-layout-1">
-  <link rel="stylesheet" href="design-system/css/wds-app-shell.css?v=dash-tile-layout-1">
-  <link rel="stylesheet" href="design-system/css/wds-dashboard-rebuild.css?v=dash-tile-layout-1">
-  <style>
-    #wds-content-engine { min-height: 70vh; }
-  </style>
+  <link rel="preload" as="image" href="assets/images/home/hero.jpg" fetchpriority="high">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap"></noscript>
+  <link rel="stylesheet" href="design-system/css/wds.css?v=home-door-1">
+  <link rel="stylesheet" href="design-system/css/wds-app-shell.css?v=home-door-1">
+  <link rel="stylesheet" href="design-system/css/wds-studio-home.css?v=home-door-1">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="dashboard" data-product-name="Home" data-shell-depth="0" data-quiet-chrome="true">
+  <div
+    class="wds-app was-shell"
+    data-wds-app-shell
+    data-product="studio-home"
+    data-product-name="Waypoint Studio"
+    data-hide-local="true"
+    data-hide-apps="true"
+    data-shell-depth="0"
+  >
     <div data-wds-app-global data-shell-depth="0"></div>
-    <div data-wds-app-local data-shell-depth="0"></div>
 
     <div id="wds-location-prompt"></div>
 
     <main id="main">
       <noscript>
-        <section style="max-width:40rem;margin:0 auto;padding:1.5rem 1rem 2rem">
-          <p>Home</p>
-          <h1>Outdoor workspace</h1>
-          <p>Enable JavaScript to open your customizable workspace and Today Outside summary.</p>
-          <p><a href="./">Home</a> · <a href="about.html">About</a> · <a href="contact.html">Contact</a></p>
+        <section class="was-home was-home--noscript">
+          <p class="was-home__eyebrow">Waypoint Studio</p>
+          <h1>Observe. Discover. Understand.</h1>
+          <p>Independent outdoor tools — privacy-first, calm, and honest about what is ready.</p>
+          <p>
+            <a href="apps/dashboard/">Dashboard</a> ·
+            <a href="apps/scenes/">Scenes</a> ·
+            <a href="apps/shed-hunting/">Sheds</a> ·
+            <a href="articles/">Articles</a> ·
+            <a href="side-trails/">Side Trails</a> ·
+            <a href="about.html">About</a>
+          </p>
         </section>
       </noscript>
-      <h1 class="wds-sr-only">Home</h1>
-      <div id="wds-content-engine" data-wds-region="workspace" aria-busy="true">
-        <div class="wdb-r-boot" role="status">
-          <p class="wdb-r-boot__copy">Opening workspace…</p>
-          <p class="wdb-r-boot__detail">Your outdoor view appears first. Data settles as it arrives.</p>
+
+      <header class="was-home-hero" aria-labelledby="was-home-brand">
+        <div class="was-home-hero__media" aria-hidden="true">
+          <img
+            src="assets/images/home/hero.jpg"
+            alt=""
+            width="1920"
+            height="1080"
+            decoding="async"
+            fetchpriority="high"
+          >
         </div>
+        <div class="was-home-hero__overlay" aria-hidden="true"></div>
+        <div class="was-home-hero__content">
+          <p class="was-home-hero__eyebrow" id="was-home-brand">Waypoint Studio</p>
+          <h1>Observe. Discover. Understand.</h1>
+          <p class="was-home__tagline">Capture what you find. Learn why it matters.</p>
+          <p class="was-home__lead">
+            A quiet outdoor studio — tools for attention in the field, not a feed to scroll.
+          </p>
+          <div class="was-home-hero__cta">
+            <a class="was-home-hero__cta-primary" href="apps/dashboard/">Enter Dashboard</a>
+            <a class="was-home-hero__cta-secondary" href="#enter">See what’s ready</a>
+          </div>
+          <p class="was-home-hero__meta">
+            <span>Privacy-first</span>
+            <span>No ads</span>
+            <span>Facts labeled as facts</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="was-home">
+        <section class="was-home__section was-home__mission" aria-labelledby="was-home-mission">
+          <h2 id="was-home-mission" class="was-home__quiet-title">How the studio works</h2>
+          <ol class="was-home__pillars">
+            <li>
+              <strong>Observe</strong>
+              <span>Notice what the day is doing — weather, light, place — without inventing certainty.</span>
+            </li>
+            <li>
+              <strong>Discover</strong>
+              <span>Find what is worth walking toward: a frame, a habitat, a question.</span>
+            </li>
+            <li>
+              <strong>Understand</strong>
+              <span>Read context and interpretation labeled separately from raw conditions.</span>
+            </li>
+          </ol>
+        </section>
+
+        <section class="was-home__section was-home__now" aria-labelledby="was-home-now">
+          <h2 id="was-home-now">Useful now</h2>
+          <p class="was-home__journey-blurb">
+            Today’s outdoor picture lives in Dashboard. This front door does not pretend to be that workspace.
+          </p>
+          <div class="was-home__now-panel" data-was-home-now role="status" aria-live="polite">
+            <p class="was-home__now-kicker">Outside today</p>
+            <p class="was-home__now-body" data-was-home-now-body>
+              Open Dashboard for Today Outside and instruments you choose. Location stays on your device unless you share it.
+            </p>
+            <p class="was-home__now-meta" data-was-home-now-meta></p>
+            <p class="was-home__now-actions">
+              <a class="wds-btn wds-btn--primary" href="apps/dashboard/">Open Dashboard</a>
+              <button type="button" class="wds-btn wds-btn--ghost" id="was-home-loc-btn" hidden>Use my location</button>
+            </p>
+          </div>
+        </section>
+
+        <section class="was-home__section" id="enter" aria-labelledby="was-home-enter">
+          <h2 id="was-home-enter">Enter the studio</h2>
+          <p class="was-home__journey-blurb">
+            Mature outdoor tools first. Side Trails stay experimental — sister work, not the main porch.
+          </p>
+
+          <article class="was-home__pathway was-home__pathway--lead">
+            <p class="was-home__maturity">Mature · Live</p>
+            <h3>Dashboard</h3>
+            <p>What’s happening outside today? Customizable instruments — weather, light, sky — each settling honestly.</p>
+            <a class="was-home__pathway-go" href="apps/dashboard/">Enter Dashboard</a>
+          </article>
+
+          <p class="was-home__journey-then">Then</p>
+          <ul class="was-home__pathway-list">
+            <li class="was-home__pathway">
+              <p class="was-home__maturity">Mature · Live</p>
+              <h3><a href="apps/scenes/">Scenes</a></h3>
+              <p>Photography craft — review today’s shoot, then grow judgment.</p>
+            </li>
+            <li class="was-home__pathway">
+              <p class="was-home__maturity">Mature · Live</p>
+              <h3><a href="apps/shed-hunting/">Sheds</a></h3>
+              <p>Map-first shed hunting — the woods first, tools second.</p>
+            </li>
+            <li class="was-home__pathway">
+              <p class="was-home__maturity">Mature · Live</p>
+              <h3><a href="articles/">Articles</a></h3>
+              <p>Calm field reading that deepens observation — not a news chase.</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="was-home__section was-home__return" aria-labelledby="was-home-return">
+          <h2 id="was-home-return">Why return tomorrow</h2>
+          <p class="was-home__journey-blurb">
+            Conditions change. Light shifts. A place you know still has new reading. Waypoint stays quiet so attention can go outside — then come back when you want context, not when an algorithm pulls you in.
+          </p>
+        </section>
+
+        <section class="was-home__section was-home__side-trails" aria-labelledby="was-home-side-trails">
+          <h2 id="was-home-side-trails">Side Trails</h2>
+          <p class="was-home__journey-blurb">
+            <strong>Experimental</strong> — sister projects under Waypoint Studio → Side Trails. Not outdoor flagships. Useful if you are curious; optional if you are here for the field.
+          </p>
+          <ul class="was-home__quiet-list">
+            <li><a href="side-trails/signalterrain/">SignalTerrain</a> — adaptive cyber intelligence (experimental)</li>
+            <li><a href="side-trails/global-signals/">Global Signals</a> — relationship intelligence (experimental · sample/demo)</li>
+            <li><a href="side-trails/">Civic Trails</a> and the full Side Trails catalog</li>
+          </ul>
+          <p><a href="side-trails/">Browse Side Trails</a></p>
+        </section>
+
+        <section class="was-home__section was-home__take-wrap" aria-labelledby="was-home-take">
+          <h2 id="was-home-take">Waypoint’s Take</h2>
+          <div class="wds-take" data-wds-take data-take-surface="homepage">
+            <p class="wds-take__title">Waypoint’s Take</p>
+            <p class="wds-take__body">Start with the day you are in. Tools wait until attention has somewhere to land.</p>
+            <p class="wds-take__meta">Editorial · not a score · not a to-do list</p>
+          </div>
+        </section>
+
+        <section class="was-home__section was-home__incubator" aria-labelledby="was-home-later">
+          <h2 id="was-home-later" class="was-home__quiet-title">Coming later</h2>
+          <p class="was-home__journey-blurb">
+            Incubator work stays reachable without competing for the front door —
+            <a href="incubator/">Coming later</a>.
+          </p>
+        </section>
+
+        <!-- Smoke / gate mount: progressive product pathways also mirror here for automation -->
+        <div id="was-home-apps" class="was-home__gate-mount" hidden aria-hidden="true"></div>
       </div>
     </main>
 
     <div data-wds-app-footer data-shell-depth="0"></div>
   </div>
-  <script>
-    try { performance.mark("wdb-html-parsed"); } catch (e) {}
-  </script>
+
   <script src="design-system/js/wds-build.js?v=local"></script>
-  <!-- Nav/shell modules load via wds.js — do not duplicate (double-bind risk). -->
-  <script src="design-system/js/wds.js?v=dash-tile-layout-1" defer></script>
-  <script src="apps/dashboard/js/home-boot.js?v=dash-tile-layout-1" defer></script>
+  <script src="design-system/js/wds.js?v=home-door-1" defer></script>
+  <script src="js/studio-home.js?v=home-door-1" defer></script>
 </body>
 </html>

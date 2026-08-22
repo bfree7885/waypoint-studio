@@ -1,0 +1,1320 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-16",
+  "notes": "Scores are prioritization judgments from observable SERP/source research, not proprietary volume data. Do not treat totals as objective truth.",
+  "completed_stories": [
+    {
+      "id": "mount-hood-rain-shadow",
+      "title": "Why one side of this mountain is a forest \u2014 and the other is a desert",
+      "location": "Mount Hood / Oregon High Desert",
+      "status": "completed",
+      "note": "DFD Story #1 \u2014 excluded from First 10"
+    },
+    {
+      "id": "lencois-maranhenses",
+      "title": "It looks like a desert. It gets twice the rain of London.",
+      "location": "Len\u00e7\u00f3is Maranhenses, Brazil",
+      "status": "completed",
+      "note": "DFD Story #2 \u2014 excluded from First 10"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "great-salt-lake-color-divide",
+      "title": "Why the Great Salt Lake is two colors",
+      "location": "Great Salt Lake, Utah",
+      "central_question": "Why does one half of the lake look pink-red and the other blue-green?",
+      "primary_intent": "why is Great Salt Lake two colors / half red half blue",
+      "category": "water",
+      "types": [
+        "flagship",
+        "video-candidate"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 5,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 5,
+        "original": 5,
+        "assets": 5,
+        "internal": 4,
+        "effort": 4
+      },
+      "competition": "Local news + NASA EO + USGS pages answer pieces; few unified visual mechanism pages with causeway+microbiology+satellite time series.",
+      "waypoint_advantage": "USGS 50-year satellite change + NASA EO algae imagery + annotated causeway salinity map + Dashboard/Scenes outdoor Utah light context",
+      "first10": true,
+      "total": 47,
+      "status": "first10"
+    },
+    {
+      "id": "okavango-dry-season-flood",
+      "title": "Why the Okavango Delta floods in the dry season",
+      "location": "Okavango Delta, Botswana",
+      "central_question": "How can a desert wetland flood months after local rains stop?",
+      "primary_intent": "why does Okavango Delta flood in dry season",
+      "category": "water",
+      "types": [
+        "flagship",
+        "video-candidate"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 5,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 5,
+        "evergreen": 5,
+        "original": 5,
+        "assets": 4,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Safari blogs dominate; science explainers exist but visual lag/travel-time storytelling is weak.",
+      "waypoint_advantage": "Flood-pulse travel-time map from Angola highlands + seasonal satellite wet/dry compare",
+      "first10": true,
+      "total": 45,
+      "status": "first10"
+    },
+    {
+      "id": "richat-structure",
+      "title": "What carved the Eye of the Sahara?",
+      "location": "Richat Structure, Mauritania",
+      "central_question": "Why does this bullseye in the Sahara look like an impact crater \u2014 and why isn\u2019t it?",
+      "primary_intent": "what is the Eye of the Sahara / Richat Structure how formed",
+      "category": "geology",
+      "types": [
+        "flagship",
+        "video-candidate"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 5,
+        "curiosity": 5,
+        "fit": 4,
+        "visual": 5,
+        "science": 5,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 5,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Wikipedia + NASA EO + popular science; Atlantis myths clutter SERPs \u2014 opportunity for calm scientific visual page.",
+      "waypoint_advantage": "Annotated concentric-ring map + differential-erosion cross-section + ISS context image",
+      "first10": true,
+      "total": 44,
+      "status": "first10"
+    },
+    {
+      "id": "namib-racing-dunes",
+      "title": "Satellites caught these dunes moving",
+      "location": "Sperrgebiet / Namib Desert, Namibia",
+      "central_question": "How fast can sand dunes migrate \u2014 and how do we see that from space?",
+      "primary_intent": "how fast do sand dunes move / dune migration satellite",
+      "category": "satellite-change",
+      "types": [
+        "flagship",
+        "video-candidate"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 5,
+        "original": 5,
+        "assets": 5,
+        "internal": 5,
+        "effort": 3
+      },
+      "competition": "NASA EO \u2018Racing Dunes\u2019 exists; Waypoint can make interactive year-by-year compare + size-vs-speed graphic tied to Len\u00e7\u00f3is dune story.",
+      "waypoint_advantage": "Registered multi-year Landsat animation/slider + related link to Len\u00e7\u00f3is landscape-moves section",
+      "first10": true,
+      "total": 46,
+      "status": "first10"
+    },
+    {
+      "id": "kati-thanda-lake-eyre",
+      "title": "When does the desert become a sea?",
+      "location": "Kati Thanda\u2013Lake Eyre, Australia",
+      "central_question": "Why is Australia\u2019s largest lake usually empty \u2014 and what does it take to fill it?",
+      "primary_intent": "when does Lake Eyre fill / why is Lake Eyre dry",
+      "category": "seasonal",
+      "types": [
+        "flagship",
+        "core",
+        "video-candidate"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 4,
+        "original": 5,
+        "assets": 4,
+        "internal": 4,
+        "effort": 3
+      },
+      "competition": "News spikes during fills; evergreen visual basin explanation thinner.",
+      "waypoint_advantage": "Basin travel-loss map + dry/wet satellite pair + fill-frequency timeline",
+      "first10": true,
+      "total": 43,
+      "status": "first10"
+    },
+    {
+      "id": "channeled-scablands",
+      "title": "Why does this landscape look like a flood carved it?",
+      "location": "Channeled Scablands, Washington",
+      "central_question": "What left the coulees, dry falls, and scarred basalt of eastern Washington?",
+      "primary_intent": "what caused the Channeled Scablands / Missoula floods",
+      "category": "geology",
+      "types": [
+        "flagship",
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 5,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 4,
+        "internal": 4,
+        "effort": 3
+      },
+      "competition": "NPS/USGS/university pages strong; opportunity for observer-first visual narrative + map of flood path.",
+      "waypoint_advantage": "Annotated flood-path map + Dry Falls scale graphic + landscape-interpretation connection",
+      "first10": true,
+      "total": 44,
+      "status": "first10"
+    },
+    {
+      "id": "kgari-rainforest-on-sand",
+      "title": "How can a rainforest grow on pure sand?",
+      "location": "K'gari (Fraser Island), Australia",
+      "central_question": "How does tall rainforest survive on nutrient-poor sand dunes?",
+      "primary_intent": "how does rainforest grow on sand Fraser Island / K'gari",
+      "category": "ecology-landscape",
+      "types": [
+        "core",
+        "flagship"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 4,
+        "science": 4,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 3,
+        "internal": 4,
+        "effort": 3
+      },
+      "competition": "Tourism + parks pages; mechanism (mycelium/nutrient cycling/dune succession) often underserved visually.",
+      "waypoint_advantage": "Dune-age vegetation succession diagram + nutrient-loop graphic + related Len\u00e7\u00f3is sand/water contrast",
+      "first10": true,
+      "total": 41,
+      "status": "first10"
+    },
+    {
+      "id": "valley-fog-dendritic",
+      "title": "Why do valleys fill with fog at dawn?",
+      "location": "Temperate mountain/river valleys (global pattern; Appalachian/US examples)",
+      "central_question": "Why does fog pool in valleys overnight and vanish after sunrise?",
+      "primary_intent": "why does fog form in valleys / morning valley fog",
+      "category": "weather-observation",
+      "types": [
+        "core",
+        "quick"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 5,
+        "curiosity": 4,
+        "fit": 5,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 5,
+        "internal": 5,
+        "effort": 5
+      },
+      "competition": "NWS explainers exist; few pages combine satellite dendritic fog image + cold-air drainage diagram + field noticing guide.",
+      "waypoint_advantage": "NOAA satellite dendritic example + drainage diagram + Dashboard morning-conditions / photo timing link",
+      "first10": true,
+      "total": 47,
+      "status": "first10"
+    },
+    {
+      "id": "lenticular-clouds",
+      "title": "Why do these clouds look like UFOs \u2014 and stay still?",
+      "location": "Mountain lee waves (Cascades, Rockies, Andes, etc.)",
+      "central_question": "How can a cloud look solid and stationary while air is racing through it?",
+      "primary_intent": "what causes lenticular clouds / UFO clouds mountains",
+      "category": "weather-observation",
+      "types": [
+        "core",
+        "quick",
+        "video-candidate"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 5,
+        "curiosity": 5,
+        "fit": 5,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 4,
+        "internal": 5,
+        "effort": 4
+      },
+      "competition": "Met Office/Wikipedia/popular photo galleries; mechanism+standing-wave diagram under-served for photographers.",
+      "waypoint_advantage": "Standing-wave cross-section + photo-timing notes for Scenes/Photo Coach + Cascade link to rain-shadow story",
+      "first10": true,
+      "total": 46,
+      "status": "first10"
+    },
+    {
+      "id": "columbia-glacier-retreat",
+      "title": "What 40 years of satellites reveal about one glacier",
+      "location": "Columbia Glacier, Alaska",
+      "central_question": "Why did Columbia Glacier suddenly start retreating \u2014 and what do decades of images show?",
+      "primary_intent": "Columbia Glacier retreat satellite / why is Columbia Glacier shrinking",
+      "category": "satellite-change",
+      "types": [
+        "flagship",
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 5,
+        "visual": 5,
+        "science": 5,
+        "evergreen": 4,
+        "original": 5,
+        "assets": 5,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "NASA World of Change is excellent; Waypoint can add clearer tidewater-moraine mechanism + observer framing without duplicating EO essay.",
+      "waypoint_advantage": "Interactive multi-decade slider + trimline/moraine annotated explainer distinguishing climate nudge vs mechanical retreat",
+      "first10": true,
+      "total": 42,
+      "status": "first10"
+    },
+    {
+      "id": "white-sands-migration",
+      "title": "Why White Sands dunes keep moving",
+      "location": "White Sands, New Mexico",
+      "central_question": "Why White Sands dunes keep moving?",
+      "primary_intent": "how fast do White Sands dunes move",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 5,
+        "science": 3,
+        "evergreen": 4,
+        "original": 4,
+        "assets": 4,
+        "internal": 4,
+        "effort": 3
+      },
+      "competition": "Overlaps Namib racing-dunes story; keep as follow-on.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Overlaps Namib racing-dunes story; keep as follow-on.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "hawaii-trade-rain-shadow",
+      "title": "Why one side of Hawai\u02bbi is rainforest and the other is dry",
+      "location": "Hawai\u02bbi Island",
+      "central_question": "Why one side of Hawai\u02bbi is rainforest and the other is dry?",
+      "primary_intent": "why is one side of Hawaii wet",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 5,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 5,
+        "science": 4,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 5,
+        "internal": 4,
+        "effort": 4
+      },
+      "competition": "Too similar to Mount Hood rain-shadow for First 10; later island-trade-wind variant.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Too similar to Mount Hood rain-shadow for First 10; later island-trade-wind variant.",
+      "total": 43,
+      "status": "candidate"
+    },
+    {
+      "id": "salar-uyuni-mirror",
+      "title": "When does a salt flat become a sky mirror?",
+      "location": "Salar de Uyuni, Bolivia",
+      "central_question": "When does a salt flat become a sky mirror??",
+      "primary_intent": "why does Salar de Uyuni look like a mirror",
+      "category": "seasonal",
+      "types": [
+        "core"
+      ],
+      "video": "high",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 4,
+        "visual": 5,
+        "science": 3,
+        "evergreen": 4,
+        "original": 4,
+        "assets": 3,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Strong visual; compete later after salt-lake stories.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Strong visual; compete later after salt-lake stories.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "foehn-chinook-winds",
+      "title": "Why warm dry winds roar down mountain slopes",
+      "location": "Alps / Rockies lee sides",
+      "central_question": "Why warm dry winds roar down mountain slopes?",
+      "primary_intent": "what causes Chinook / foehn winds",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 3,
+        "science": 4,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 3,
+        "internal": 4,
+        "effort": 4
+      },
+      "competition": "Mechanism cousin of rain shadow; defer.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Mechanism cousin of rain shadow; defer.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "braided-rivers",
+      "title": "Why do some rivers split into braids?",
+      "location": "Glacial / mountain outwash rivers",
+      "central_question": "Why do some rivers split into braids??",
+      "primary_intent": "why do rivers braid",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 4,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Good core later; less mystery hook than First 10.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Good core later; less mystery hook than First 10.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "desert-mirage-water",
+      "title": "Why does the desert look wet when it isn\u2019t?",
+      "location": "Hot arid plains / salt pans",
+      "central_question": "Why does the desert look wet when it isn\u2019t??",
+      "primary_intent": "why do desert mirages look like water",
+      "category": "observation",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 3,
+        "internal": 3,
+        "effort": 5
+      },
+      "competition": "Physics-heavy; weaker satellite original value.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Physics-heavy; weaker satellite original value.",
+      "total": 37,
+      "status": "candidate"
+    },
+    {
+      "id": "green-flash-sunset",
+      "title": "What is the green flash at sunset?",
+      "location": "Clear ocean/desert horizons",
+      "central_question": "What is the green flash at sunset??",
+      "primary_intent": "what causes green flash sunset",
+      "category": "observation",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 2,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Weak Waypoint satellite/map advantage.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Weak Waypoint satellite/map advantage.",
+      "total": 31,
+      "status": "candidate"
+    },
+    {
+      "id": "mammatus-clouds",
+      "title": "What makes mammatus clouds hang like pouches?",
+      "location": "Thunderstorm anvils",
+      "central_question": "What makes mammatus clouds hang like pouches??",
+      "primary_intent": "what causes mammatus clouds",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 3,
+        "internal": 4,
+        "effort": 4
+      },
+      "competition": "Photo curiosity; thinner landscape mechanism.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Photo curiosity; thinner landscape mechanism.",
+      "total": 35,
+      "status": "candidate"
+    },
+    {
+      "id": "virga",
+      "title": "Why does rain fall but never reach the ground?",
+      "location": "Arid/high-base storm regions",
+      "central_question": "Why does rain fall but never reach the ground??",
+      "primary_intent": "what is virga / why rain evaporates",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 3,
+        "internal": 4,
+        "effort": 5
+      },
+      "competition": "Strong quick later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Strong quick later.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "lake-effect-snow",
+      "title": "Why does one shoreline get buried in snow?",
+      "location": "Great Lakes",
+      "central_question": "Why does one shoreline get buried in snow??",
+      "primary_intent": "what causes lake effect snow",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 5,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 4,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Competitive NWS content; defer.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Competitive NWS content; defer.",
+      "total": 39,
+      "status": "candidate"
+    },
+    {
+      "id": "inversion-layer-smog",
+      "title": "Why does a city trap a dirty air lid?",
+      "location": "Basins / valleys",
+      "central_question": "Why does a city trap a dirty air lid??",
+      "primary_intent": "what is temperature inversion pollution",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 3,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 3,
+        "internal": 2,
+        "effort": 4
+      },
+      "competition": "Weaker outdoor-joy identity.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Weaker outdoor-joy identity.",
+      "total": 30,
+      "status": "candidate"
+    },
+    {
+      "id": "oxbow-lakes",
+      "title": "How does a river abandon a bend?",
+      "location": "Meandering floodplains",
+      "central_question": "How does a river abandon a bend??",
+      "primary_intent": "how do oxbow lakes form",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 3,
+        "fit": 4,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Core later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Core later.",
+      "total": 37,
+      "status": "candidate"
+    },
+    {
+      "id": "alluvial-fans",
+      "title": "Why do mountains dump triangles of debris?",
+      "location": "Arid mountain fronts",
+      "central_question": "Why do mountains dump triangles of debris??",
+      "primary_intent": "what is an alluvial fan",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 4,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Core later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Core later.",
+      "total": 36,
+      "status": "candidate"
+    },
+    {
+      "id": "hoodoos",
+      "title": "What carves hoodoos into towers?",
+      "location": "Bryce Canyon / badlands",
+      "central_question": "What carves hoodoos into towers??",
+      "primary_intent": "how are hoodoos formed",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 5,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "NPS-heavy SERP.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "NPS-heavy SERP.",
+      "total": 38,
+      "status": "candidate"
+    },
+    {
+      "id": "slot-canyons",
+      "title": "How does flash flood carve a slot canyon?",
+      "location": "Colorado Plateau",
+      "central_question": "How does flash flood carve a slot canyon??",
+      "primary_intent": "how do slot canyons form",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 3,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Tourism competition.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Tourism competition.",
+      "total": 36,
+      "status": "candidate"
+    },
+    {
+      "id": "tidal-bore",
+      "title": "Why does a river sometimes surge upstream?",
+      "location": "Select tidal rivers",
+      "central_question": "Why does a river sometimes surge upstream??",
+      "primary_intent": "what is a tidal bore",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 3,
+        "assets": 2,
+        "internal": 2,
+        "effort": 3
+      },
+      "competition": "Narrow location set.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Narrow location set.",
+      "total": 31,
+      "status": "candidate"
+    },
+    {
+      "id": "spring-overturn-lakes",
+      "title": "Why do temperate lakes \u2018turn over\u2019?",
+      "location": "Temperate lakes",
+      "central_question": "Why do temperate lakes \u2018turn over\u2019??",
+      "primary_intent": "what is lake turnover",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 4,
+        "visual": 2,
+        "science": 4,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 2,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Less visual satellite story.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Less visual satellite story.",
+      "total": 33,
+      "status": "candidate"
+    },
+    {
+      "id": "permafrost-thermokarst",
+      "title": "Why does Arctic ground collapse into ponds?",
+      "location": "Arctic/subarctic",
+      "central_question": "Why does Arctic ground collapse into ponds??",
+      "primary_intent": "what is thermokarst",
+      "category": "satellite-change",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 4,
+        "evergreen": 4,
+        "original": 4,
+        "assets": 4,
+        "internal": 2,
+        "effort": 2
+      },
+      "competition": "Important but heavier science production.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Important but heavier science production.",
+      "total": 35,
+      "status": "candidate"
+    },
+    {
+      "id": "coral-bleaching-satellite",
+      "title": "What satellites see when reefs bleach",
+      "location": "Tropical reefs",
+      "central_question": "What satellites see when reefs bleach?",
+      "primary_intent": "coral bleaching satellite imagery",
+      "category": "satellite-change",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 3,
+        "visual": 4,
+        "science": 4,
+        "evergreen": 3,
+        "original": 3,
+        "assets": 4,
+        "internal": 2,
+        "effort": 2
+      },
+      "competition": "Edge of outdoor identity.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Edge of outdoor identity.",
+      "total": 31,
+      "status": "candidate"
+    },
+    {
+      "id": "dust-storm-haboob",
+      "title": "What builds a wall of dust?",
+      "location": "Arid plains",
+      "central_question": "What builds a wall of dust??",
+      "primary_intent": "what causes haboob dust storm",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 3,
+        "assets": 3,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Core later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Core later.",
+      "total": 35,
+      "status": "candidate"
+    },
+    {
+      "id": "crepuscular-rays",
+      "title": "Why do sunbeams look like shafts through clouds?",
+      "location": "Global skies",
+      "central_question": "Why do sunbeams look like shafts through clouds??",
+      "primary_intent": "what causes crepuscular rays",
+      "category": "observation",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 3,
+        "visual": 4,
+        "science": 2,
+        "evergreen": 5,
+        "original": 2,
+        "assets": 3,
+        "internal": 4,
+        "effort": 5
+      },
+      "competition": "Thin science depth.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Thin science depth.",
+      "total": 34,
+      "status": "candidate"
+    },
+    {
+      "id": "alpenglow",
+      "title": "Why do peaks turn pink after sunset?",
+      "location": "High mountains",
+      "central_question": "Why do peaks turn pink after sunset??",
+      "primary_intent": "what causes alpenglow",
+      "category": "observation",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 4,
+        "science": 2,
+        "evergreen": 5,
+        "original": 2,
+        "assets": 3,
+        "internal": 5,
+        "effort": 5
+      },
+      "competition": "Photo-forward quick later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Photo-forward quick later.",
+      "total": 37,
+      "status": "candidate"
+    },
+    {
+      "id": "glacial-milk",
+      "title": "Why is glacial river water milky blue?",
+      "location": "Glacier forelands",
+      "central_question": "Why is glacial river water milky blue??",
+      "primary_intent": "why is glacial water milky / rock flour",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 3,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Quick later.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Quick later.",
+      "total": 35,
+      "status": "candidate"
+    },
+    {
+      "id": "karst-sinkholes",
+      "title": "Why does the ground suddenly open?",
+      "location": "Karst regions",
+      "central_question": "Why does the ground suddenly open??",
+      "primary_intent": "what causes sinkholes",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 5,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 3,
+        "internal": 2,
+        "effort": 3
+      },
+      "competition": "High search but weaker Waypoint visual originality / disaster framing.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "High search but weaker Waypoint visual originality / disaster framing.",
+      "total": 32,
+      "status": "candidate"
+    },
+    {
+      "id": "delta-vs-estuary",
+      "title": "How can you tell a delta from an estuary?",
+      "location": "Coastal mouths",
+      "central_question": "How can you tell a delta from an estuary??",
+      "primary_intent": "difference between delta and estuary",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 2,
+        "fit": 3,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 5,
+        "original": 2,
+        "assets": 3,
+        "internal": 2,
+        "effort": 4
+      },
+      "competition": "Textbook; reject for library identity.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Textbook; reject for library identity.",
+      "total": 30,
+      "status": "candidate"
+    },
+    {
+      "id": "meander-migration",
+      "title": "Do rivers really move sideways?",
+      "location": "Floodplains",
+      "central_question": "Do rivers really move sideways??",
+      "primary_intent": "how do meanders migrate",
+      "category": "water",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 3,
+        "fit": 4,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 5,
+        "original": 4,
+        "assets": 4,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Strong later with Landsat time series.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Strong later with Landsat time series.",
+      "total": 36,
+      "status": "candidate"
+    },
+    {
+      "id": "volcanic-lightning",
+      "title": "Why do eruptions make lightning?",
+      "location": "Active volcanoes",
+      "central_question": "Why do eruptions make lightning??",
+      "primary_intent": "what causes volcanic lightning",
+      "category": "geology",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 5,
+        "fit": 3,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 3,
+        "internal": 2,
+        "effort": 3
+      },
+      "competition": "High curiosity; weaker outdoor daily observation.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "High curiosity; weaker outdoor daily observation.",
+      "total": 33,
+      "status": "candidate"
+    },
+    {
+      "id": "aurora-oval",
+      "title": "Where does the aurora actually appear?",
+      "location": "High latitudes",
+      "central_question": "Where does the aurora actually appear??",
+      "primary_intent": "where to see northern lights / aurora oval",
+      "category": "astronomy-outdoor",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 5,
+        "curiosity": 5,
+        "fit": 3,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 3,
+        "assets": 4,
+        "internal": 3,
+        "effort": 3
+      },
+      "competition": "Crowded SERP; edge of identity.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Crowded SERP; edge of identity.",
+      "total": 37,
+      "status": "candidate"
+    },
+    {
+      "id": "milky-way-season",
+      "title": "When is the Milky Way visible outdoors?",
+      "location": "Dark-sky mid-latitudes",
+      "central_question": "When is the Milky Way visible outdoors??",
+      "primary_intent": "when is milky way season",
+      "category": "astronomy-outdoor",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 3,
+        "science": 2,
+        "evergreen": 5,
+        "original": 2,
+        "assets": 2,
+        "internal": 4,
+        "effort": 4
+      },
+      "competition": "Utility page risk.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Utility page risk.",
+      "total": 33,
+      "status": "candidate"
+    },
+    {
+      "id": "tide-pools-timing",
+      "title": "How do tides make tide pools appear and vanish?",
+      "location": "Rocky coasts",
+      "central_question": "How do tides make tide pools appear and vanish??",
+      "primary_intent": "how do tide pools form / best tide for tide pooling",
+      "category": "observation",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 4,
+        "curiosity": 3,
+        "fit": 4,
+        "visual": 3,
+        "science": 2,
+        "evergreen": 5,
+        "original": 3,
+        "assets": 2,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Useful but less Earth-mystery.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Useful but less Earth-mystery.",
+      "total": 33,
+      "status": "candidate"
+    },
+    {
+      "id": "fire-rainbow",
+      "title": "What is a fire rainbow?",
+      "location": "Cirrus + sun geometry",
+      "central_question": "What is a fire rainbow??",
+      "primary_intent": "what causes circumhorizontal arc fire rainbow",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "low",
+      "scores": {
+        "search": 3,
+        "curiosity": 4,
+        "fit": 3,
+        "visual": 4,
+        "science": 3,
+        "evergreen": 4,
+        "original": 2,
+        "assets": 3,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Optics; thin landscape.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Optics; thin landscape.",
+      "total": 33,
+      "status": "candidate"
+    },
+    {
+      "id": "dry-lightning",
+      "title": "Why can lightning start fire without rain?",
+      "location": "Western US summers",
+      "central_question": "Why can lightning start fire without rain??",
+      "primary_intent": "what is dry lightning",
+      "category": "weather",
+      "types": [
+        "core"
+      ],
+      "video": "medium",
+      "scores": {
+        "search": 4,
+        "curiosity": 4,
+        "fit": 4,
+        "visual": 3,
+        "science": 3,
+        "evergreen": 4,
+        "original": 3,
+        "assets": 3,
+        "internal": 3,
+        "effort": 4
+      },
+      "competition": "Core later with Dashboard weather honesty.",
+      "waypoint_advantage": "See candidate notes",
+      "first10": false,
+      "note": "Core later with Dashboard weather honesty.",
+      "total": 35,
+      "status": "candidate"
+    }
+  ],
+  "rejects": [
+    {
+      "id": "generic-rain-shadow-definition",
+      "title": "What is a rain shadow? (generic)",
+      "reason": "Covered by Mount Hood story; no new place mystery."
+    },
+    {
+      "id": "keyword-variant-desert-vs-dunes",
+      "title": "Are all sandy places deserts?",
+      "reason": "Satisfied inside Len\u00e7\u00f3is story; thin standalone."
+    },
+    {
+      "id": "ai-farm-top-10-lakes",
+      "title": "Top 10 unusual lakes",
+      "reason": "Listicle / content farm pattern \u2014 reject."
+    }
+  ],
+  "first10_ids": [
+    "great-salt-lake-color-divide",
+    "okavango-dry-season-flood",
+    "richat-structure",
+    "namib-racing-dunes",
+    "kati-thanda-lake-eyre",
+    "channeled-scablands",
+    "kgari-rainforest-on-sand",
+    "valley-fog-dendritic",
+    "lenticular-clouds",
+    "columbia-glacier-retreat"
+  ],
+  "counts": {
+    "researched_candidates": 42,
+    "completed_excluded": 2,
+    "rejects": 3,
+    "first10": 10
+  }
+}

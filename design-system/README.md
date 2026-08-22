@@ -1,6 +1,12 @@
 # Waypoint Studio Design System (WDS)
 
+**Design System 2.0** — Contemporary Field Station · Topographic Atlas · High-Desert / Southwestern Landscape.
+
+Canonical tokens: `--wp-*` (`css/wds-tokens.css`). Compatibility: `--wds-*`.  
+Guide: [`../docs/DESIGN-SYSTEM-2.0.md`](../docs/DESIGN-SYSTEM-2.0.md) · Reference: [`patterns/waypoint-2.0.html`](patterns/waypoint-2.0.html)
+
 The official shared design language for every Waypoint Studio product.
+
 
 **North star:** *Bring Nature to Life* — tools that feel like returning home from a day outdoors: warm, quiet, precise, and respectful of the subject.
 

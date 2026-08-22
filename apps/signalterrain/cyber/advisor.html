@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SignalTerrain Adaptive Cyber Defense Advisor — what should I do differently today? Educational, defensive, explainable.">
-  <title>Adaptive Defense Advisor — SignalTerrain</title>
+  <meta name="description" content="SignalTerrain Adaptive Defense — production guidance from live public intelligence, or teaching samples when explicitly requested.">
+  <title>Adaptive Defense — SignalTerrain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,7 +19,22 @@
     .st-x-env { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin: 0.75rem 0 1rem; }
     .st-x-check { font-size: 0.9rem; color: var(--st-muted,#5a564e); }
     #st-adv-sim-out { white-space: pre-wrap; font-size: 0.8rem; max-height: 14rem; overflow: auto; }
+    .st-teaching-banner {
+      margin: 0 0 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #c4b48a;
+      background: #f7f1e2;
+      color: #5a4a20;
+      max-width: 48rem;
+    }
   </style>
+  <script>
+    (function () {
+      if (!/(?:\?|&)teaching=1(?:&|$)/.test(location.search || "")) {
+        location.replace("live.html#adaptive");
+      }
+    })();
+  </script>
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
@@ -28,24 +43,26 @@
     <div data-wds-app-local data-shell-depth="2"></div>
     <main id="main" class="wpf-page st-page">
       <p class="st-cyber-peers">
-        <a class="st-back" href="./">← Cyber Awareness</a>
+        <a class="st-back" href="live.html#adaptive">← Adaptive Defense (live)</a>
         ·
-        <a class="st-back" href="brief.html">Daily brief</a>
+        <a class="st-back" href="teaching.html">Teaching samples</a>
         ·
-        <a class="st-back" href="workspace.html">Workspace</a>
-        ·
-        <a class="st-back" href="explorer.html">Explorer</a>
-        ·
-        <a class="st-back" href="knowledge.html">Knowledge</a>
+        <a class="st-back" href="../">SignalTerrain</a>
+      </p>
+      <p class="st-teaching-banner" role="status">
+        <strong>Teaching samples only.</strong>
+        Production Adaptive Defense uses live public intelligence at
+        <a href="live.html#adaptive">live.html#adaptive</a>.
+        This page loads historical sample graphs for literacy — not current threats.
       </p>
       <noscript>
         <section>
-          <h1>Adaptive Cyber Defense Advisor</h1>
-          <p>Helps answer “What should I do differently today?” using your security profile and inventory against the shared intelligence graph. Educational and defensive only. Enable JavaScript to open the advisor.</p>
+          <h1>Adaptive Defense (teaching)</h1>
+          <p>Enable JavaScript for the teaching advisor, or open <a href="live.html#adaptive">live Adaptive Defense</a>.</p>
         </section>
       </noscript>
       <div id="st-advisor-mount" aria-busy="true">
-        <p class="st-loading">Opening Adaptive Defense Advisor…</p>
+        <p class="st-loading">Opening teaching Adaptive Defense Advisor…</p>
       </div>
     </main>
     <div data-wds-app-footer data-shell-depth="2"></div>
@@ -63,13 +80,15 @@
   <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-advisor.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      if (!/(?:\?|&)teaching=1(?:&|$)/.test(location.search || "")) return;
       if (window.WDS && WDS.appShell) {
         WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
       }
       if (window.WDS && WDS.signalTerrainCyberAdvisor) {
         WDS.signalTerrainCyberAdvisor.mountAdvisor(document.getElementById("st-advisor-mount"), {
           base: "../../../design-system/signalterrain/intelligence/cyber/",
-          advisorBase: "../../../design-system/signalterrain/intelligence/cyber/advisor/"
+          advisorBase: "../../../design-system/signalterrain/intelligence/cyber/advisor/",
+          allowSamples: true
         });
       }
     });

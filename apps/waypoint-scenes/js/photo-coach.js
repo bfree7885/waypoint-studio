@@ -125,7 +125,10 @@
       currentShoot.summary = Shoot.buildSummary(currentShoot);
     }
     var persistCopy = serializeShootForStorage(currentShoot);
-    Shoot.persistShoot(persistCopy);
+    var ok = Shoot.persistShoot(persistCopy);
+    if (ok === false) {
+      showError("Could not save this shoot to browser storage (quota or privacy mode). Your labels still apply for this session — export or free space before closing the tab.");
+    }
     refreshFilmstrip();
     refreshShootSummary();
   }
@@ -255,18 +258,19 @@
     var fi = critique && critique.fieldInsights;
     if (fi && fi.available) {
       return '<div class="coach-card coach-card--field"><h3 class="coach-card__title">Field insights ' +
-        '<span class="coach-trust coach-trust--live">From Dashboard</span></h3>' +
+        '<span class="coach-trust coach-trust--live">Stored outdoor context</span></h3>' +
         '<p class="coach-field-loc">' + escapeHtml(fi.location) + "</p>" +
         '<ul class="coach-field-list">' + (fi.lines || []).map(function (l) {
           return "<li>" + escapeHtml(l) + "</li>";
         }).join("") + "</ul>" +
-        '<p class="coach-field-impact">' + escapeHtml(fi.photoImpact) + "</p></div>";
+        '<p class="coach-field-impact">' + escapeHtml(fi.photoImpact) + "</p>" +
+        '<p class="coach-muted">From a saved field snapshot — not inferred from the photograph. EXIF GPS (if present) is separate and stays on this device.</p></div>';
     }
     if (Outdoor) {
       return Outdoor.render();
     }
     return '<div class="coach-card coach-card--field"><h3 class="coach-card__title">Field conditions</h3>' +
-      '<p class="coach-muted">Optional. Photo Coach works without the dashboard. If you have recently opened the outdoor dashboard with your location, weather and light context can appear here.</p></div>';
+      '<p class="coach-muted">Optional. Photo Coach works without outdoor context. When a field snapshot was saved earlier on this device, weather and light can appear here — nothing is invented.</p></div>';
   }
 
   function updatePreviewOverlay(critique) {
@@ -311,9 +315,10 @@
 
   function renderGradeCard(c) {
     var g = c.overallGrade || {};
-    var badge = c.isDemo || c.isSample
-      ? '<span class="coach-trust coach-trust--demo">On-device field note</span>'
-      : '<span class="coach-trust coach-trust--live">Field reading</span>';
+    var tier = c.confidenceTier || g.confidenceTier || "REASONABLE";
+    var badge = '<span class="coach-trust coach-trust--live">' + escapeHtml(c.trustLabel || "On-device analysis") + "</span>";
+    var confBadge = '<span class="coach-conf coach-conf--' + escapeHtml(String(tier).toLowerCase()) + '">' +
+      escapeHtml(c.confidenceLabel || g.confidence || confidenceTierText(tier)) + "</span>";
     var genre = c.genre && !c.genre.uncertain && c.genre.confidence >= 0.58
       ? '<p class="coach-genre">Likely genre: <strong>' + escapeHtml(c.genre.label) + "</strong></p>"
       : (c.coaching && c.coaching.uncertainNote
@@ -321,7 +326,7 @@
         : "");
     return '<section class="coach-grade-card" aria-labelledby="coach-grade-title">' +
       '<div class="coach-grade-card__head">' +
-        '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall reading</h2>' + badge +
+        '<h2 class="coach-grade-card__title" id="coach-grade-title">Overall read</h2>' + badge + confBadge +
       "</div>" +
       '<div class="coach-grade-card__score">' +
         '<span class="coach-grade-letter" aria-label="Relative reading">' + escapeHtml(g.letter || "—") + "</span>" +
@@ -330,16 +335,14 @@
       "</div>" +
       genre +
       '<p class="coach-grade-summary">' + escapeHtml(c.narrativeSummary || g.summary || "") + "</p>" +
-      '<dl class="coach-grade-meta">' +
-        "<div><dt>Portfolio</dt><dd>" + escapeHtml(g.portfolioPotential || "—") + "</dd></div>" +
-        "<div><dt>Print</dt><dd>" + escapeHtml(g.printPotential || "—") + "</dd></div>" +
-        "<div><dt>Confidence</dt><dd>" + escapeHtml(g.confidence || "On-device signals") + "</dd></div>" +
-      "</dl>" +
-      '<p class="coach-engine-note" role="note">A relative field reading of this image — not a grade of you as a photographer.</p>' +
-      (c.engineStatus === "disconnected"
-        ? '<p class="coach-engine-note" role="status">On-device analysis — guidance from image characteristics, not a cloud review.</p>'
-        : "") +
+      '<p class="coach-engine-note" role="note">A relative field reading of this image — not a grade of you as a photographer. Analysis stays on this device.</p>' +
     "</section>";
+  }
+
+  function confidenceTierText(tier) {
+    if (tier === "HIGH") return "HIGH confidence";
+    if (tier === "LOW") return "LOW confidence";
+    return "REASONABLE confidence";
   }
 
   function renderSignalsPanel(signals) {
@@ -349,12 +352,16 @@
       var h = clamp(Math.round(v * 400), 2, 100);
       return '<div class="coach-hist-bar coach-histogram__bar" style="height:' + h + '%" title="Tone bin ' + i + '"></div>';
     }).join("");
-    return '<div class="coach-card coach-card--signals"><h3 class="coach-card__title">Image signals <span class="coach-trust coach-trust--demo">Demo</span></h3>' +
+    var sharp = signals.sharpnessAssessment;
+    var sharpLine = sharp
+      ? "Sharpness est.: " + escapeHtml(String(sharp.score)) + "/100 · " + escapeHtml(sharp.confidenceLabel || "")
+      : "Sharpness est.: " + escapeHtml(String(Math.round(signals.blurEstimate))) + "/100";
+    return '<div class="coach-card coach-card--signals"><h3 class="coach-card__title">Image signals <span class="coach-trust coach-trust--live">On-device</span></h3>' +
       '<div class="coach-histogram" aria-label="Luminance histogram">' + bars + "</div>" +
       '<ul class="coach-signal-list">' +
         "<li>Brightness: " + escapeHtml(String(Math.round(signals.brightness))) + "</li>" +
         "<li>Contrast: " + escapeHtml(String(Math.round(signals.contrast))) + "</li>" +
-        "<li>Sharpness est.: " + escapeHtml(String(Math.round(signals.blurEstimate))) + "/100</li>" +
+        "<li>" + sharpLine + "</li>" +
         "<li>Highlight clip est.: " + escapeHtml(String(Math.round(signals.highlightClip * 100))) + "%</li>" +
         "<li>Shadow clip est.: " + escapeHtml(String(Math.round(signals.shadowClip * 100))) + "%</li>" +
         "<li>Colors: " + escapeHtml((signals.dominantColors || []).join(", ")) + "</li>" +
@@ -420,13 +427,18 @@
   }
 
   function renderStrengths(c) {
-    var list = c.strengths || [];
+    var list = (c.strengths || []).filter(function (s) {
+      return !s.confidenceTier || s.confidenceTier !== "LOW" || (s.confidence != null && s.confidence >= 58);
+    });
     if (!list.length) return "";
-    return '<section class="coach-card" aria-labelledby="coach-strengths-title">' +
-      '<h3 class="coach-card__title" id="coach-strengths-title">What is working</h3>' +
+    return '<section class="coach-card coach-card--worked" aria-labelledby="coach-strengths-title">' +
+      '<h3 class="coach-card__title" id="coach-strengths-title">What worked</h3>' +
       '<ul class="coach-coach-cards">' + list.map(function (s) {
+        var conf = s.confidenceLabel || (s.confidenceTier ? s.confidenceTier + " confidence" : "");
         return '<li class="coach-coach-card coach-coach-card--good">' +
-          '<h4>' + escapeHtml(s.title) + "</h4>" +
+          '<h4>' + escapeHtml(s.title) +
+          (conf ? ' <span class="coach-conf coach-conf--sm">' + escapeHtml(conf) + "</span>" : "") +
+          "</h4>" +
           '<p><strong>Why:</strong> ' + escapeHtml(s.whyItWorks) + "</p>" +
           '<p><strong>Preserve:</strong> ' + escapeHtml(s.preserveInEdit) + "</p>" +
         "</li>";
@@ -434,26 +446,49 @@
   }
 
   function renderImprovements(c) {
-    var list = c.improvements || [];
+    var list = (c.improvements || []).filter(function (s) {
+      // Omit weak critiques from the primary coaching surface
+      if (s.confidenceTier === "LOW" && s.category === "Sharpness" && !/uncertain/i.test(s.issue || "")) return false;
+      if (s.confidence != null && s.confidence < 58) return false;
+      return true;
+    });
     if (!list.length) {
-      return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
-        '<h3 class="coach-card__title" id="coach-improve-title">Worth considering</h3>' +
-        '<p class="coach-muted">Nothing loud stood out from browser signals. Refine gently if you want — no obligation to edit.</p></section>';
+      return '<section class="coach-card coach-card--watch" aria-labelledby="coach-improve-title">' +
+        '<h3 class="coach-card__title" id="coach-improve-title">What to watch</h3>' +
+        '<p class="coach-muted">Nothing stood out with enough confidence from on-device signals. Your judgment leads — keep, maybe, or reject freely.</p></section>';
     }
-    return '<section class="coach-card" aria-labelledby="coach-improve-title">' +
-      '<h3 class="coach-card__title" id="coach-improve-title">Worth considering</h3>' +
-      '<ul class="coach-coach-cards">' + list.map(function (s, idx) {
+    return '<section class="coach-card coach-card--watch" aria-labelledby="coach-improve-title">' +
+      '<h3 class="coach-card__title" id="coach-improve-title">What to watch</h3>' +
+      '<ul class="coach-coach-cards">' + list.slice(0, 3).map(function (s, idx) {
         var badge = s.priority === "primary" || idx === 0
-          ? '<span class="coach-priority-badge">Worth noticing first</span>'
-          : '<span class="coach-priority-badge coach-priority-badge--secondary">Also interesting</span>';
+          ? '<span class="coach-priority-badge">First</span>'
+          : '<span class="coach-priority-badge coach-priority-badge--secondary">Also</span>';
+        var conf = s.confidenceLabel || "";
         return '<li class="coach-coach-card coach-coach-card--grow' +
           (s.priority === "primary" || idx === 0 ? " coach-coach-card--primary" : "") + '">' +
-          '<h4>' + escapeHtml(s.issue) + " " + badge + "</h4>" +
+          '<h4>' + escapeHtml(s.issue) + " " + badge +
+          (conf ? ' <span class="coach-conf coach-conf--sm">' + escapeHtml(conf) + "</span>" : "") +
+          "</h4>" +
           '<p><strong>Why it may matter:</strong> ' + escapeHtml(s.whyItMatters) + "</p>" +
-          '<p><strong>If you\'re curious:</strong> ' + escapeHtml(s.whatToDo) + "</p>" +
-          '<p><strong>What you might see:</strong> ' + escapeHtml(s.expectedImprovement) + "</p>" +
+          '<p><strong>If you edit:</strong> ' + escapeHtml(s.whatToDo) + "</p>" +
         "</li>";
       }).join("") + "</ul></section>";
+  }
+
+  function renderNextTime(c) {
+    var actions = c.nextTimeActions || (c.coaching && c.coaching.nextTimeActions) || [];
+    if (!actions.length) {
+      var challenge = c.nextShootChallenge || c.fieldAssignment;
+      if (challenge) actions = [challenge];
+    }
+    actions = actions.slice(0, 2);
+    if (!actions.length) return "";
+    return '<section class="coach-card coach-card--next-time" aria-labelledby="coach-next-time-title">' +
+      '<h3 class="coach-card__title" id="coach-next-time-title">Next time</h3>' +
+      '<p class="coach-muted">One or two concrete field actions — optional, not homework.</p>' +
+      '<ol class="coach-next-time">' + actions.map(function (a) {
+        return "<li>" + escapeHtml(a) + "</li>";
+      }).join("") + "</ol></section>";
   }
 
   function renderCrop(c) {
@@ -592,26 +627,30 @@
   }
 
   function renderCenter(critique) {
-    return renderGradeCard(critique) +
-      renderPersonalized(critique) +
+    return '<div class="coach-review-stack">' +
+      renderGradeCard(critique) +
       renderStrengths(critique) +
       renderImprovements(critique) +
-      renderNextAction(critique) +
+      renderNextTime(critique) +
+      renderPersonalized(critique) +
       renderLearning(critique) +
       renderTechnicalDetails(critique) +
       '<div class="coach-actions coach-actions--center">' +
-        '<button type="button" class="wds-btn wds-btn--secondary" id="btn-coach-save-session">Save session</button>' +
-      "</div>";
+        '<button type="button" class="wds-btn wds-btn--secondary" id="btn-coach-save-session">Save to Library</button>' +
+        '<a class="wds-btn wds-btn--primary" id="btn-coach-auto-edit" href="../auto-edit/">Finish with Auto Edit</a>' +
+        '<p class="coach-muted coach-kbd-hint">Labels: <kbd>1</kbd> Keep · <kbd>2</kbd> Maybe · <kbd>3</kbd> Reject · <kbd>4</kbd> Favorite · <kbd>0</kbd> Clear</p>' +
+      "</div>" +
+    "</div>";
   }
 
   function renderRight(critique) {
     var edits = global.WaypointPhotoCoachEditIntel && global.WaypointPhotoCoachEditIntel.renderHtml
       ? global.WaypointPhotoCoachEditIntel.renderHtml(critique.editIntelligence)
       : "";
-    var scene = global.WaypointPhotoCoachSceneBridge && global.WaypointPhotoCoachSceneBridge.renderBringToLife
-      ? global.WaypointPhotoCoachSceneBridge.renderBringToLife(critique)
-      : "";
-    return edits + renderCrop(critique) + renderPrint(critique) + renderChallenge(critique) + scene;
+    return '<details class="coach-deeper"><summary>Deeper edit &amp; print notes</summary>' +
+      '<div class="coach-deeper__body">' +
+        edits + renderCrop(critique) + renderPrint(critique) +
+      "</div></details>";
   }
 
   function renderAnalyzing() {
@@ -661,6 +700,21 @@
     if (saveBtn) {
       saveBtn.onclick = function () { saveCurrentSession(); };
     }
+    var aeBtn = $("btn-coach-auto-edit");
+    if (aeBtn) {
+      var libId = null;
+      try {
+        var params = new URLSearchParams(global.location.search || "");
+        libId = params.get("libraryId");
+      } catch (e) { /* ignore */ }
+      if (!libId && currentCritique && currentCritique.libraryId) libId = currentCritique.libraryId;
+      aeBtn.href = libId
+        ? "../auto-edit/?libraryId=" + encodeURIComponent(libId)
+        : "../auto-edit/";
+      aeBtn.title = libId
+        ? "Finish this Library photograph with Waypoint Auto Edit"
+        : "Open Auto Edit — save to Library first for a linked original when possible";
+    }
     var Bridge = global.WaypointPhotoCoachSceneBridge;
     if (Bridge && Bridge.bindActions && els.rightMount) {
       Bridge.bindActions(els.rightMount, {
@@ -705,12 +759,14 @@
       currentSessionId = session.id;
       var btn = $("btn-coach-save-session");
       if (btn) {
-        btn.textContent = "Saved";
-        setTimeout(function () { btn.textContent = "Save session"; }, 2000);
+        btn.textContent = "Saved to Library";
+        setTimeout(function () { btn.textContent = "Save to Library"; }, 2000);
       }
       refreshHistory();
       var Skills = global.WaypointPhotoCoachSkills;
       if (Skills && Skills.buildProfile) Skills.buildProfile();
+    }).catch(function () {
+      showError("Could not save this photograph locally. Your in-session review is still available — free storage space or try again.");
     });
   }
 
@@ -849,6 +905,10 @@
                         analyzedAt: critique.analyzedAt || new Date().toISOString(),
                         letterGrade: critique.overallGrade && critique.overallGrade.letter,
                         overallScore: critique.overallScore,
+                        narrativeSummary: critique.narrativeSummary || null,
+                        confidenceTier: critique.confidenceTier || null,
+                        coachSummary: critique.narrativeSummary || null,
+                        outdoorContext: outdoorCtx || null,
                         selectionLabel: imageRec.selectionLabel || null,
                         subjectHints: (critique.genre && critique.genre.label && !critique.genre.uncertain)
                           ? [critique.genre.label]
@@ -1243,6 +1303,7 @@
     els.summaryMount = $("coach-shoot-summary-mount");
 
     bindUpload();
+    bindLabelKeyboard();
     primeWorthNoticing();
     if (els.fieldMount) {
       els.fieldMount.innerHTML = renderFieldInsights(null);
@@ -1255,7 +1316,7 @@
       Repo.ProfileRepository.load();
     }
 
-    // Future Importer handoff peek (no auto-run in Work Block 3)
+    // Future Importer handoff peek (no auto-run)
     var Bridge = global.WaypointPhotoCoachImporterBridge;
     if (Bridge && Bridge.peekHandoff && Bridge.peekHandoff()) {
       console.info("[Photo Coach] Importer handoff is staged. Ingest is not auto-started yet.");
@@ -1269,16 +1330,43 @@
         handleFiles([pack.file]);
         if (pack.image && pack.id && global.WaypointPhotoLibraryEngine) {
           try {
-            var eng = global.WaypointPhotoLibraryEngine.get();
-            if (eng && eng.markHiddenLandscapes) {
-              /* no-op for coach */
-            }
-            // Remember for write-back after analysis
             currentLibraryId = pack.id;
           } catch (e) { /* ignore */ }
         }
       }).catch(function () { /* ignore missing library */ });
     }
+
+    // Return to shoot summary: /apps/photo-coach/?shootId=
+    try {
+      var params = new URLSearchParams(global.location.search || "");
+      var shootId = params.get("shootId");
+      var ShootApi = global.WaypointPhotoCoachShoot;
+      if (shootId && ShootApi && ShootApi.getShoot) {
+        var found = ShootApi.getShoot(shootId);
+        if (found) {
+          currentShoot = found;
+          refreshFilmstrip();
+          refreshShootSummary();
+          var firstDone = (found.images || []).filter(function (i) { return i.status === "done"; })[0];
+          if (firstDone) showShootImage(firstDone.id);
+        }
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  function bindLabelKeyboard() {
+    document.addEventListener("keydown", function (e) {
+      if (!currentShoot || !currentImageId) return;
+      var t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      var map = { "1": "keep", "2": "maybe", "3": "reject", "4": "favorite", "0": null };
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      var label = map[e.key];
+      global.WaypointPhotoCoachShoot.setImageSelection(currentShoot, currentImageId, label);
+      persistCurrentShootLabels();
+      showShootImage(currentImageId);
+    });
   }
 
   global.WaypointPhotoCoach = {

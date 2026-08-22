@@ -24,7 +24,7 @@
   top: 0;
   z-index: var(--wds-z-toast, 400);
   padding: var(--wds-space-3, 0.75rem) var(--wds-space-4, 1rem);
-  background: var(--wds-surface, #0c1628);
+  background: var(--wds-surface, #1f1a26);
   color: var(--wds-text, #e4eaf4);
   text-decoration: none;
   border-radius: var(--wds-radius-md, 10px);
@@ -144,7 +144,7 @@
 }
 
 .wds-badge--live {
-  color: var(--wds-on-accent, #080f1c);
+  color: var(--wds-on-accent, #17131c);
   background: var(--wds-accent-dim);
   border-color: var(--wds-accent-border, transparent);
 }

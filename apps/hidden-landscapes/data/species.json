@@ -1,38 +1,82 @@
 {
-  "version": "0.1.0",
-  "note": "Scaffold species records for Species Vision ImageSets. Prefer linking Animal Vision research configs when implementing.",
-  "species": [
+  "version": 2,
+  "disclaimer": "Animal Vision modes are human-viewable simulations of selected perceptual differences. They are not exact recreations of an animal’s subjective experience. Your display remains a human RGB monitor.",
+  "privacyNote": "Processed locally. Your photographs are never uploaded.",
+  "displayLimitation": "Non-human sensory experiences cannot be literally displayed on a human RGB monitor. Simulations show selected differences that research supports approximating from RGB.",
+  "shipped": [
     {
-      "id": "human",
-      "commonName": "Human",
-      "scientificName": "Homo sapiens",
-      "visionSummary": "Trichromatic baseline for comparisons.",
-      "relatedAnimalVisionId": null,
-      "status": "baseline"
-    },
-    {
-      "id": "white-tailed-deer",
-      "commonName": "White-tailed deer",
+      "id": "deer",
+      "commonName": "White-tailed Deer",
       "scientificName": "Odocoileus virginianus",
-      "visionSummary": "Dichromatic ungulate vision — educational simulation via Animal Vision.",
-      "relatedAnimalVisionId": "white-tailed-deer",
-      "status": "scaffold"
+      "status": "shipped",
+      "epistemic": "simulated",
+      "label": "SIMULATED DEER VISION",
+      "coneModel": {
+        "type": "dichromat",
+        "peaksNmApprox": { "S": 455, "M": 537 },
+        "notes": "Deer lack a long-wavelength cone comparable to the human L cone; red–green discrimination is reduced."
+      },
+      "transformId": "deer-dichromat-lms",
+      "whatChanged": [
+        { "aspect": "Red–green separation", "change": "Reduced — warm reds and greens become harder to tell apart.", "support": "dichromatic physiology" },
+        { "aspect": "Blue contrast", "change": "Relatively better preserved than red–green differences.", "support": "S-cone pathway" },
+        { "aspect": "Ultraviolet", "change": "Not represented from this RGB photograph.", "support": "unavailable" },
+        { "aspect": "Acuity & motion", "change": "Not fully shown in a still frame; mild detail softening is illustrative only.", "support": "limited" }
+      ],
+      "cannotClaim": [
+        "Exact subjective deer experience",
+        "True panoramic field of view on a flat display",
+        "Motion detection over time",
+        "UV sensitivity from RGB"
+      ],
+      "citations": ["jacobs-1994-deer", "vercauteren-2003-deer", "brettel-1997-dichromat"]
     },
+    {
+      "id": "canine",
+      "commonName": "Domestic Dog / Canid",
+      "scientificName": "Canis lupus familiaris (model)",
+      "status": "shipped",
+      "epistemic": "simulated",
+      "label": "SIMULATED CANINE VISION",
+      "coneModel": {
+        "type": "dichromat",
+        "peaksNmApprox": { "S": 429, "L": 555 },
+        "notes": "Dogs are dichromats with S and L cones; green–red confusion is expected relative to typical human trichromacy."
+      },
+      "transformId": "canine-dichromat-lms",
+      "whatChanged": [
+        { "aspect": "Red–green separation", "change": "Reduced — many reds and greens collapse toward similar tones.", "support": "dichromatic physiology" },
+        { "aspect": "Blue–yellow axis", "change": "More informative relative to red–green.", "support": "S vs L contrast" },
+        { "aspect": "Ultraviolet", "change": "Not represented from this RGB photograph.", "support": "unavailable" },
+        { "aspect": "Acuity", "change": "Mild softening suggests lower fine detail than human foveal vision — illustrative, not measured.", "support": "limited" }
+      ],
+      "cannotClaim": [
+        "Exactly how your dog sees",
+        "Smell, motion, or hearing contributions",
+        "UV from RGB",
+        "Breed-specific acuity claims"
+      ],
+      "citations": ["neitz-1989-dog", "miller-murphy-1995-dog", "brettel-1997-dichromat"]
+    }
+  ],
+  "deferred": [
     {
       "id": "honeybee",
       "commonName": "Honeybee",
-      "scientificName": "Apis mellifera",
-      "visionSummary": "UV-sensitive trichromacy — educational simulation via Animal Vision.",
-      "relatedAnimalVisionId": "honeybee",
-      "status": "scaffold"
+      "reason": "True bee-relevant floral contrast often depends on ultraviolet reflectance absent from RGB. Educational UNAVAILABLE state is shown instead of inventing UV into the user’s photo.",
+      "status": "deferred-unavailable"
     },
     {
-      "id": "box-turtle",
-      "commonName": "Box turtle",
-      "scientificName": "Terrapene carolina",
-      "visionSummary": "Tetrachromatic reptile vision — educational simulation via Animal Vision.",
-      "relatedAnimalVisionId": "box-turtle",
-      "status": "scaffold"
+      "id": "bird",
+      "commonName": "Bird (UV-capable)",
+      "reason": "Many birds have UV-sensitive vision that cannot be reconstructed from ordinary RGB. Deferred rather than faked.",
+      "status": "deferred-unavailable"
+    },
+    {
+      "id": "eastern-box-turtle",
+      "commonName": "Eastern Box Turtle",
+      "reason": "Prior prototype lacked a strong, outdoor-relevant dichromat/trichromat model with clear research-backed RGB transforms for V1. Deferred.",
+      "status": "deferred"
     }
   ]
 }

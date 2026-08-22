@@ -1,0 +1,17 @@
+{
+  "id": "attestation-commercial-review",
+  "kind": "attestation",
+  "at": "2026-08-10T11:59:33.355Z",
+  "status": "pass",
+  "summary": "Attested pass by commercial-subscriber: Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "commercial-review",
+    "role": "commercial-subscriber",
+    "verdict": "pass",
+    "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+    "campaign": "sheds",
+    "at": "2026-08-10T11:56:52.115Z"
+  }
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Relationship Graph — primary Global Signals graph. Click any node to expand nearby curated relationships with why, confidence, time horizon, and evidence. Sample/demo. Not force-directed. Part of Side Trails at Waypoint Studio.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/relationship-graph/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Waypoint Studio">
+  <meta property="og:title" content="Relationship Graph — Global Signals">
+  <meta property="og:description" content="Interactive expand-on-click relationship graph with typed nodes and evidenced edges. Radial-from-focus layout — not force-directed spaghetti.">
+  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/relationship-graph/">
+  <title>Relationship Graph — Global Signals</title>
+  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
+  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-relationship-graph.css">
+</head>
+<body class="gs-landing gsg-page">
+  <a class="gs-skip" href="#main">Skip to content</a>
+
+  <header class="gs-top">
+    <a class="gs-brand-mark" href="../">Global Signals</a>
+    <nav aria-label="Product">
+      <a href="./" aria-current="page">Graph</a>
+      <a href="../relationships/">Explorer</a>
+      <a href="../articles/">Articles</a>
+      <a href="../">Global Signals</a>
+      <a href="../../">Side Trails</a>
+    </nav>
+  </header>
+
+  <main id="main" class="gsg-main">
+    <header class="gsg-hub-head">
+      <p class="gs-eyebrow">Global Signals · primary graph</p>
+      <h1>Relationship Graph</h1>
+      <p class="gsg-hub-desc">
+        Click any <strong>node</strong> to expand nearby curated relationships.
+        Every <strong>edge</strong> shows why connected, confidence, time horizon, and evidence.
+        Structured radial-from-focus layout — not a force-directed spaghetti graph.
+      </p>
+      <p class="gsg-hub-nav">
+        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
+        <a class="gs-cta" href="../relationships/">Cascade Explorer</a>
+        <a class="gs-cta" href="../articles/">Articles</a>
+        <a class="gs-cta" href="../../">Side Trails</a>
+      </p>
+    </header>
+
+    <section
+      id="gsg-app"
+      class="gsg-app"
+      aria-label="Relationship Graph"
+      data-gsg-app
+      data-gsg-state="loading"
+    >
+      <p class="gsg-loading" role="status">Loading Relationship Graph…</p>
+    </section>
+  </main>
+
+  <script src="../../../design-system/js/global-signals/wds-gs-relationship-graph.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.WDS && WDS.globalSignals && WDS.globalSignals.relationshipGraph) {
+        WDS.globalSignals.relationshipGraph.mount(document.getElementById("gsg-app"), {
+          depth: 3,
+          dataUrl: "../../../data/global-signals/relationship-graph/graph.json"
+        });
+      }
+    });
+  </script>
+
+  <footer class="gs-footer">
+    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
+    <p>Part of Side Trails.</p>
+    <p>
+      <a href="../">Global Signals</a>
+      <a href="../relationships/">Cascade Explorer</a>
+      <a href="../articles/">Articles</a>
+      <a href="../../">Side Trails</a>
+      <a href="../../../about.html">Waypoint Studio</a>
+    </p>
+  </footer>
+</body>
+</html>

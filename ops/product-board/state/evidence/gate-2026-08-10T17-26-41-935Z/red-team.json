@@ -1,0 +1,25 @@
+{
+  "id": "red-team",
+  "kind": "red_team",
+  "at": "2026-08-10T17:27:12.697Z",
+  "status": "fail",
+  "summary": "Red Team disproved readiness with 1 finding(s).",
+  "severity": null,
+  "data": {
+    "role": "red-team",
+    "evaluatedAt": "2026-08-10T17:27:12.697Z",
+    "status": "fail",
+    "disproved": true,
+    "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+    "disproofs": [
+      {
+        "id": "redteam:tests-pass-insufficient",
+        "severity": "P1",
+        "message": "Automated tests passed but policy attestations incomplete — disproves SUBSCRIBER READY."
+      }
+    ],
+    "summary": "Red Team disproved readiness with 1 finding(s).",
+    "rejectedAutoAccept": true,
+    "blocksVerdict": "NOT READY"
+  }
+}

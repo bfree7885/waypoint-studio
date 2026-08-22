@@ -115,35 +115,35 @@
   function renderGlobalHeader(options) {
     options = options || {};
     var NavApi = Nav();
-    var depth = options.depth != null ? options.depth : (NavApi ? NavApi.depthFromPath() : 1);
+    // Path detection is source of truth — legacy data-shell-depth attrs are apps-era
+    // (1 ⇒ ../../) and break /articles/ and /side-trails/ when forced to 0.
+    var depth = NavApi ? NavApi.depthFromPath() : (options.depth != null ? options.depth : 0);
+    if (options.depth != null && options.forceDepth) depth = options.depth;
     var brandHref = NavApi ? NavApi.studioHomeHref(depth) : "../../";
     var brandName = (NavApi && NavApi.config().brand && NavApi.config().brand.name) || "Waypoint Studio";
     var active = options.app || (NavApi ? NavApi.detectApp() : null);
     var activeId = active && active.id;
     var quiet = !!options.quietChrome;
-    var hideChrome = quiet || !!options.hideApps;
+    // Quiet Home: keep Explore launcher hidden, but always expose architecture primary nav
+    // so Side Trails (and peers) remain one click from the main site shell.
+    var hideExplore = quiet || !!options.hideApps;
     var cfg = NavApi && NavApi.config ? NavApi.config() : {};
-    var primary = quiet
-      ? ""
-      : (cfg.studioPrimaryNav || []).map(function (item) {
-      var href = NavApi.resolveRoute
-        ? (item.href.indexOf("apps/") === 0 || item.href.indexOf("articles") === 0 || /\.html$/.test(item.href)
-            ? NavApi.resolveRoute(item.href.indexOf("apps/") === 0 ? item.href : item.href, depth)
-            : (NavApi.studioHomeHref(depth) + item.href.replace(/^\.\//, "")))
+    var primary = (cfg.studioPrimaryNav || []).map(function (item) {
+      var href = NavApi && NavApi.resolveRoute
+        ? NavApi.resolveRoute(item.href, depth)
         : item.href;
-      // Fix non-apps routes relative to studio home
-      if (item.href.indexOf("apps/") !== 0) {
-        href = String(brandHref).replace(/\/?$/, "/") + item.href.replace(/^\.\//, "");
-        if (brandHref === "./" || brandHref === ".") href = item.href;
-      } else {
-        href = NavApi.resolveRoute(item.href, depth);
-      }
+      var pathNow = String((global.location && global.location.pathname) || "");
+      // Front door (/) is studio-home — do not mark Dashboard current there.
+      var onDashboard =
+        activeId === "dashboard" || /\/apps\/dashboard(\/|$)/i.test(pathNow);
       var current =
-        ((item.id === "home" || item.id === "dashboard") && activeId === "dashboard") ||
+        ((item.id === "home" || item.id === "dashboard") && onDashboard) ||
         (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
         (item.id === "sheds" && activeId === "sheds") ||
-        (item.id === "articles" && /\/articles(\/|$)/.test(String((global.location && global.location.pathname) || ""))) ||
-        (item.id === "about" && /about\.html$/i.test(String((global.location && global.location.pathname) || ""))) ||
+        (item.id === "articles" && /\/articles(\/|$)/.test(pathNow)) ||
+        (item.id === "side-trails" && /\/side-trails(\/|$)/.test(pathNow)) ||
+        (item.id === "support" && /support\.html$/i.test(pathNow)) ||
+        (item.id === "about" && /about\.html$/i.test(pathNow)) ||
         (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
       return (
         '<a class="was-primary-nav__link" href="' + esc(href) + '"' +
@@ -164,7 +164,7 @@
           (primary
             ? '<nav class="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
             : "") +
-          (hideChrome
+          (hideExplore
             ? ""
             : '<div class="was-global__actions">' +
               '<button type="button" class="was-apps-btn" id="was-apps-btn" aria-haspopup="dialog" aria-expanded="false" aria-controls="was-launcher">' +
@@ -172,7 +172,7 @@
               "</button>" +
             "</div>") +
         "</div>" +
-        (hideChrome ? "" : renderLauncher(depth, activeId)) +
+        (hideExplore ? "" : renderLauncher(depth, activeId)) +
       "</header>"
     );
   }
@@ -195,18 +195,24 @@
         "</div>"
       );
     }
+    var useShort = !!(app && app.id === "scenes");
     var links = features.map(function (feat) {
       var href = NavApi.featureHref(feat, depth, app);
       var current = feature && feature.id === feat.id;
+      var label = useShort && feat.shortLabel ? feat.shortLabel : feat.label;
+      var titleAttr = useShort && feat.shortLabel && feat.shortLabel !== feat.label
+        ? ' title="' + esc(feat.label) + '"'
+        : "";
       return (
         '<a href="' + esc(href) + '"' +
           (current ? ' aria-current="page" class="is-current"' : "") +
-          ">" + esc(feat.label) + "</a>"
+          titleAttr +
+          ">" + esc(label) + "</a>"
       );
     }).join("");
 
     return (
-      '<div class="was-local" data-was-local>' +
+      '<div class="was-local' + (useShort ? " was-local--scenes-compact" : "") + '" data-was-local>' +
         '<div class="was-local__inner">' +
           '<p class="was-local__app">' + esc(app.title) + "</p>" +
           '<nav class="was-local__nav" aria-label="' + esc(app.title) + '">' +
@@ -350,7 +356,12 @@
   function mount(options) {
     options = options || {};
     var NavApi = Nav();
-    var depth = options.depth != null ? options.depth : (NavApi ? NavApi.depthFromPath() : 1);
+    // Prefer live path depth. Explicit options.depth only when forceDepth is set.
+    // Legacy shellDepth / data-shell-depth used an apps-only encoding and are ignored.
+    var depth = NavApi
+      ? NavApi.depthFromPath()
+      : (options.depth != null ? options.depth : 1);
+    if (options.forceDepth && options.depth != null) depth = options.depth;
     var app = options.appId && NavApi ? NavApi.byId(options.appId) : (NavApi ? NavApi.detectApp() : null);
     if (options.appId && !app && NavApi) app = NavApi.byId(options.appId);
     options = Object.assign({}, options, { depth: depth, app: app });
@@ -409,11 +420,9 @@
     };
     var appId = map[product];
     if (appId === undefined) appId = product;
-    var depthAttr = el.getAttribute("data-shell-depth");
     mount({
       appId: appId,
       productName: el.getAttribute("data-product-name"),
-      depth: depthAttr != null ? Number(depthAttr) : undefined,
       hideLocal: el.getAttribute("data-hide-local") === "true",
       hideApps: el.getAttribute("data-hide-apps") === "true",
       quietChrome: el.getAttribute("data-quiet-chrome") === "true"

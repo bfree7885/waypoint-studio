@@ -25,28 +25,34 @@
     }
   }
 
+  /**
+   * Directory depth from site root (segment count).
+   * / → 0, /articles/ → 1, /apps/scenes/ → 2, /articles/categories/observe/ → 3
+   * File segments (about.html) do not add depth.
+   */
   function depthFromPath(path) {
     path = path || pathname();
-    var m = path.match(/\/apps\/([^/]+)\/(.+)/);
-    if (m && m[2] && m[2] !== "" && m[2] !== "index.html") {
-      // nested under an app, e.g. photo-coach/profile/
-      var rest = m[2].replace(/\/$/, "");
-      if (rest.indexOf("/") >= 0 || /profile|guide/.test(rest)) return 2;
+    var clean = String(path || "").replace(/\\/g, "/").replace(/\/index\.html$/i, "").replace(/\/$/, "");
+    var parts = clean.split("/").filter(Boolean);
+    if (parts.length && /\.[a-z0-9]+$/i.test(parts[parts.length - 1])) {
+      parts.pop();
     }
-    if (/\/apps\//.test(path)) return 1;
-    return 0;
+    return parts.length;
   }
 
   function prefixes(depth) {
-    depth = depth == null ? depthFromPath() : depth;
-    if (depth <= 0) return { root: "./", apps: "apps/" };
-    if (depth === 1) return { root: "../../", apps: "../" };
-    return { root: "../../../", apps: "../../" };
+    depth = depth == null ? depthFromPath() : Number(depth);
+    if (!isFinite(depth) || depth <= 0) return { root: "./", apps: "apps/" };
+    var up = "";
+    for (var i = 0; i < depth; i++) up += "../";
+    return { root: up, apps: up + "apps/" };
   }
 
   function resolveRoute(route, depth) {
     if (!route) return "#";
     if (route.charAt(0) === "#" || route.indexOf("http") === 0) return route;
+    // Site-root absolute paths work from any nesting (preferred for primary nav).
+    if (route.charAt(0) === "/") return route;
     var p = prefixes(depth);
     if (route.indexOf("apps/") === 0) {
       return p.root + route;

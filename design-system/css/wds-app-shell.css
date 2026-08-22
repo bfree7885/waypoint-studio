@@ -39,7 +39,7 @@
   width: 1.35rem;
   height: 1.35rem;
   border-radius: 0.35rem;
-  background: var(--wds-accent, #6ea8c9);
+  background: var(--wds-accent, #c17a5a);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
@@ -66,19 +66,21 @@
 
 .was-apps-btn:hover,
 .was-apps-btn:focus-visible {
-  border-color: var(--wds-accent, #6ea8c9);
+  border-color: var(--wds-accent, #c17a5a);
   outline: none;
 }
 
 .was-apps-btn[aria-expanded="true"] {
   background: var(--wds-accent-dim, rgba(110, 168, 201, 0.12));
-  border-color: var(--wds-accent, #6ea8c9);
+  border-color: var(--wds-accent, #c17a5a);
 }
 
 /* Local app navigation */
 .was-local {
   border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.08));
   background: var(--wds-inset, rgba(0, 0, 0, 0.02));
+  max-width: 100%;
+  overflow-x: visible;
 }
 
 .was-local__inner {
@@ -127,7 +129,7 @@
 .was-local__nav a.is-current {
   color: var(--wds-text, #1c1b19);
   background: var(--wds-surface, #fff);
-  box-shadow: inset 0 0 0 1px var(--wds-accent, #6ea8c9);
+  box-shadow: inset 0 0 0 1px var(--wds-accent, #c17a5a);
   font-weight: 550;
 }
 
@@ -229,7 +231,7 @@
 }
 
 .was-launcher__app.is-current {
-  border-color: var(--wds-accent, #6ea8c9);
+  border-color: var(--wds-accent, #c17a5a);
   background: var(--wds-accent-dim, rgba(110, 168, 201, 0.08));
 }
 
@@ -243,7 +245,7 @@
   justify-content: center;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--wds-accent, #6ea8c9);
+  color: var(--wds-accent, #c17a5a);
   background: var(--wds-accent-dim, rgba(110, 168, 201, 0.12));
 }
 
@@ -345,17 +347,23 @@
     flex: 1;
   }
 
-  /* Feature nav may scroll only if needed — prefer wrap first */
+  /* Feature nav: wrap intentionally — never clip labels, never page h-scroll */
   .was-local__nav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    padding-bottom: 0.15rem;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    max-width: 100%;
+    gap: 0.25rem 0.2rem;
+  }
+
+  .was-local--scenes-compact .was-local__nav a {
+    flex: 0 1 auto;
+    min-height: 40px;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.8125rem;
   }
 
   .was-local__nav a {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
   }
 }
 
@@ -499,7 +507,7 @@ article.was-home__card {
 
 .was-home__card:hover,
 .was-home__card:focus-visible {
-  border-color: var(--wds-accent, #6ea8c9);
+  border-color: var(--wds-accent, #c17a5a);
   outline: none;
 }
 
@@ -520,7 +528,7 @@ article.was-home__card {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--wds-accent, #6ea8c9);
+  color: var(--wds-accent, #c17a5a);
 }
 
 .was-home__search {
@@ -574,7 +582,7 @@ article.was-home__card {
 }
 
 .was-home__error a {
-  color: var(--wds-accent, #6ea8c9);
+  color: var(--wds-accent, #c17a5a);
 }
 
 /* Scene Builder secondary actions (not app navigation) */
@@ -618,7 +626,7 @@ article.was-home__card {
 
 .was-home__pillars a:hover,
 .was-home__pillars a:focus-visible {
-  border-color: var(--wds-accent, #6ea8c9);
+  border-color: var(--wds-accent, #c17a5a);
   outline: none;
 }
 
@@ -637,6 +645,7 @@ article.was-home__card {
   min-height: 2.25rem;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
+  gap: 0.65rem 1rem;
 }
 
 .was-global--quiet .was-brand__name {
@@ -652,6 +661,29 @@ article.was-home__card {
   opacity: 0.55;
 }
 
+/* Quiet Home still exposes architecture primary nav (incl. Side Trails); keep it calm */
+.was-global--quiet .was-primary-nav {
+  justify-content: flex-end;
+  gap: 0.25rem 0.65rem;
+  padding: 0;
+}
+
+.was-global--quiet .was-primary-nav__link {
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  opacity: 0.62;
+  min-height: 2.25rem;
+}
+
+.was-global--quiet .was-primary-nav__link:hover,
+.was-global--quiet .was-primary-nav__link:focus-visible {
+  opacity: 1;
+}
+
+.was-global--quiet .was-primary-nav__link[aria-current="page"] {
+  opacity: 0.9;
+}
+
 /*
  * Quiet Home keeps Workspace · Customize local feature nav visible.
  * Outdoor OS used to hide .was-local entirely; Rebuild Home depends on it
@@ -661,6 +693,21 @@ article.was-home__card {
 .was-shell--quiet[data-product="dashboard"] .was-local__app {
   opacity: 0.55;
   font-weight: 500;
+}
+
+/* Dashboard header: dark neutral; active destination is SW pastel, not a glowing bar */
+.was-shell[data-product="dashboard"] .was-global,
+.was-shell[data-product="dashboard"] .was-global--quiet {
+  background: color-mix(in srgb, var(--wp-bg, #141210) 92%, transparent);
+  box-shadow: none;
+}
+.was-shell[data-product="dashboard"] .was-primary-nav__link[aria-current="page"],
+.was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav__link[aria-current="page"] {
+  color: #e0b090;
+  box-shadow: inset 0 -2px 0 #c4908a;
+  background: none;
+  text-shadow: none;
+  filter: none;
 }
 
 .was-shell--quiet .was-footer,
@@ -673,4 +720,87 @@ article.was-home__card {
 .was-shell--quiet .wds-footer a {
   color: inherit;
   opacity: 0.85;
+}
+
+/*
+ * Dashboard quiet chrome on phone / tablet portrait:
+ * keep the Waypoint header in document flow (not sticky over Conditions),
+ * compact primary destinations, zero nav/tile collision.
+ */
+@media (max-width: 48rem) {
+  .was-shell[data-product="dashboard"] .was-global,
+  .was-shell[data-product="dashboard"] .was-global--quiet {
+    position: relative;
+    top: auto;
+    z-index: 2;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-global__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.2rem 0.5rem;
+    min-height: 0;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand {
+    min-height: 1.75rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand__name {
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-brand__mark {
+    width: 0.55rem;
+    height: 0.55rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav {
+    order: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.05rem 0.4rem;
+    padding: 0;
+  }
+
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav__link {
+    font-size: 0.6rem;
+    letter-spacing: 0.045em;
+    min-height: 1.7rem;
+    opacity: 0.58;
+  }
+
+  .was-shell[data-product="dashboard"] .was-local__inner {
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .was-shell[data-product="dashboard"] .was-local__nav a {
+    min-height: 2.25rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.875rem;
+  }
+}
+
+
+/* DS 2.0 focus + sticky header height */
+.was-global {
+  min-height: var(--wp-header-h, var(--wds-topbar-h, 3.25rem));
+}
+.was-brand:focus-visible,
+.was-apps-btn:focus-visible,
+.was-local__nav a:focus-visible,
+.was-footer__links a:focus-visible {
+  outline: none;
+  box-shadow: var(--wp-focus-ring, 0 0 0 2px var(--wp-bg), 0 0 0 4px var(--wp-focus));
+}
+.was-brand__mark {
+  background: var(--wp-accent, var(--wds-accent, #c17a5a));
 }

@@ -382,6 +382,39 @@
   padding: 0.2rem 0.35rem;
 }
 
+.pl-badge--edit {
+  background: rgba(196, 181, 154, 0.2);
+  border: 1px solid rgba(196, 181, 154, 0.45);
+  color: inherit;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  margin-left: 0.25rem;
+}
+
+.pl-badge--moving {
+  background: rgba(158, 180, 160, 0.22);
+  border: 1px solid rgba(158, 180, 160, 0.5);
+  color: inherit;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  margin-left: 0.25rem;
+}
+
+.pl-relation {
+  color: var(--wds-text-secondary);
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+.pl-move-note {
+  font-size: 0.78rem;
+  color: var(--wds-text-tertiary, var(--wds-text-secondary));
+  align-self: center;
+  padding: 0.2rem 0.35rem;
+}
+
 .pl-label-row {
   display: flex;
   flex-wrap: wrap;

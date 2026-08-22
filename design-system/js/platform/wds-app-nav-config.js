@@ -6,20 +6,24 @@
   "use strict";
   global.WDS = global.WDS || {};
   global.WDS.APP_NAV_CONFIG = {
-    "version": "2.2.0-home-rc1",
+    "version": "2.3.0-studio-nav-architecture",
     "brand": {
       "name": "Waypoint Studio",
       "homeRoute": "./"
     },
     "studioPrimaryNav": [
-      { "id": "home", "label": "Home", "href": "./", "hint": "What’s happening outside today" },
-      { "id": "scenes", "label": "Scenes", "href": "apps/scenes/", "hint": "Review today’s shoot" },
-      { "id": "sheds", "label": "Sheds", "href": "apps/shed-hunting/map/", "hint": "Where to search" },
-      { "id": "articles", "label": "Articles", "href": "articles/", "hint": "Learn while you’re out" },
-      { "id": "about", "label": "About", "href": "about.html" }
+      { "id": "dashboard", "label": "Dashboard", "href": "/apps/dashboard/", "hint": "What’s happening outside today" },
+      { "id": "scenes", "label": "Scenes", "href": "/apps/scenes/", "hint": "Review today’s shoot" },
+      { "id": "sheds", "label": "Sheds", "href": "/apps/shed-hunting/map/", "hint": "Where to search" },
+      { "id": "articles", "label": "Articles", "href": "/articles/", "hint": "Learn while you’re out" },
+      { "id": "side-trails", "label": "Side Trails", "href": "/side-trails/", "hint": "Sister experiments" },
+      { "id": "support", "label": "Support", "href": "/support.html", "hint": "Help and honest answers" },
+      { "id": "about", "label": "About", "href": "/about.html", "hint": "Studio mission" }
     ],
-    "homePrimary": ["home", "scenes", "sheds"],
-    "homeIncubator": ["signalterrain", "steepleaf", "savant-sommelier"],
+    "architectureNavLabels": ["Dashboard", "Scenes", "Sheds", "Articles", "Side Trails", "Support", "About"],
+    "homePrimary": ["dashboard", "scenes", "sheds"],
+    "homeIncubator": ["steepleaf", "savant-sommelier", "waypoint-volunteer"],
+    "homeSideTrails": ["signalterrain", "global-signals"],
     "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
     "categories": [
       {
@@ -46,14 +50,13 @@
     "apps": [
       {
         "id": "dashboard",
-        "title": "Home",
-        "shortTitle": "Home",
+        "title": "Dashboard",
+        "shortTitle": "Dashboard",
         "icon": "dashboard",
         "route": "apps/dashboard/",
         "match": [
           "/apps/dashboard",
-          "^/index\\.html$",
-          "^/$"
+          "^/apps/dashboard"
         ],
         "category": "core",
         "description": "Customizable outdoor workspace — Today Outside summary plus instruments you choose.",
@@ -68,9 +71,7 @@
             "hash": "#/",
             "match": [
               "/apps/dashboard/?$",
-              "/apps/dashboard/index",
-              "^/$",
-              "^/index\\.html$"
+              "/apps/dashboard/index"
             ]
           },
           {
@@ -85,8 +86,8 @@
           }
         ],
         "startHere": {
-          "label": "Open Home",
-          "href": "./"
+          "label": "Open Dashboard",
+          "href": "apps/dashboard/"
         },
         "journeys": [
           "observe",
@@ -109,15 +110,18 @@
           "/apps/waypoint-scenes",
           "/apps/animal-vision",
           "/apps/hidden-landscapes",
-          "/apps/photo-library"
+          "/apps/photo-library",
+          "/apps/auto-edit",
+          "/apps/moving-scenes"
         ],
         "category": "photography",
-        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then discover other ways of seeing.",
+        "description": "Flagship photography — follow a photographer’s journey: import, review, organize, learn, then open Hidden Landscapes.",
         "status": "live",
         "features": [
           {
             "id": "overview",
             "label": "Today",
+            "shortLabel": "Today",
             "href": "apps/scenes/",
             "match": [
               "/apps/scenes/?$",
@@ -127,6 +131,7 @@
           {
             "id": "photo-coach",
             "label": "Review a shoot",
+            "shortLabel": "Review",
             "href": "apps/photo-coach/",
             "match": [
               "/apps/scenes/photo-coach",
@@ -137,6 +142,7 @@
           {
             "id": "photo-library",
             "label": "Your photographs",
+            "shortLabel": "Library",
             "href": "apps/photo-library/",
             "match": [
               "/apps/scenes/photo-library",
@@ -144,8 +150,30 @@
             ]
           },
           {
+            "id": "auto-edit",
+            "label": "Auto Edit",
+            "shortLabel": "Auto Edit",
+            "href": "apps/auto-edit/",
+            "match": [
+              "/apps/scenes/auto-edit",
+              "/apps/auto-edit"
+            ]
+          },
+          {
+            "id": "moving-scenes",
+            "label": "Moving Scenes",
+            "shortLabel": "Moving",
+            "href": "apps/moving-scenes/",
+            "match": [
+              "/apps/scenes/moving-scenes",
+              "/apps/scenes/living-scenes",
+              "/apps/moving-scenes"
+            ]
+          },
+          {
             "id": "hidden-landscapes",
-            "label": "Other ways of seeing",
+            "label": "Hidden Landscapes",
+            "shortLabel": "Hidden Landscapes",
             "href": "apps/hidden-landscapes/",
             "match": [
               "/apps/scenes/hidden-landscapes",
@@ -472,41 +500,38 @@
         "icon": "signalterrain",
         "route": "apps/signalterrain/",
         "match": [
-          "/apps/signalterrain"
+          "/apps/signalterrain",
+          "/side-trails/signalterrain"
         ],
         "category": "intelligence",
-        "description": "Radio & Spectrum Intelligence and educational Cyber Awareness — observe and understand signals without offense.",
-        "status": "foundation",
+        "family": "side-trails",
+        "description": "Side Trails project — Radio & Spectrum Intelligence and educational Cyber Awareness; observe and understand signals without offense.",
+        "status": "experimental",
         "features": [
           {
-            "id": "overview",
-            "label": "Overview",
-            "href": "apps/signalterrain/"
+            "id": "product-landing",
+            "label": "Product page",
+            "href": "side-trails/signalterrain/"
           },
           {
-            "id": "topics",
-            "label": "Topics",
-            "href": "apps/signalterrain/topics.html"
+            "id": "dashboard",
+            "label": "Cyber intelligence dashboard",
+            "href": "side-trails/signalterrain/dashboard/"
           },
           {
-            "id": "graph",
-            "label": "Knowledge graph",
-            "href": "apps/signalterrain/graph.html"
-          },
-          {
-            "id": "summary",
-            "label": "Intelligence summary",
-            "href": "apps/signalterrain/summary.html"
-          },
-          {
-            "id": "cyber",
-            "label": "Cyber Awareness",
-            "href": "apps/signalterrain/cyber/"
+            "id": "cyber-live",
+            "label": "Live cyber intelligence",
+            "href": "apps/signalterrain/cyber/live.html"
           },
           {
             "id": "cyber-brief",
-            "label": "Daily cyber brief",
-            "href": "apps/signalterrain/cyber/brief.html"
+            "label": "Today’s cyber brief (live)",
+            "href": "apps/signalterrain/cyber/live.html#brief"
+          },
+          {
+            "id": "cyber-adaptive",
+            "label": "Adaptive Defense (live)",
+            "href": "apps/signalterrain/cyber/live.html#adaptive"
           },
           {
             "id": "cyber-explorer",
@@ -514,9 +539,9 @@
             "href": "apps/signalterrain/cyber/explorer.html"
           },
           {
-            "id": "cyber-advisor",
-            "label": "Adaptive defense advisor",
-            "href": "apps/signalterrain/cyber/advisor.html"
+            "id": "cyber-workspace",
+            "label": "Cyber workspace",
+            "href": "apps/signalterrain/cyber/workspace.html"
           },
           {
             "id": "cyber-knowledge",
@@ -524,22 +549,105 @@
             "href": "apps/signalterrain/cyber/knowledge.html"
           },
           {
-            "id": "cyber-ingest-health",
-            "label": "Cyber ingest (internal)",
-            "href": "apps/signalterrain/cyber/ingest-health.html"
+            "id": "overview",
+            "label": "App overview",
+            "href": "apps/signalterrain/"
           }
         ],
-        "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype.",
-        "maturity": "Foundation",
+        "purpose": "Observe and understand radio spectrum and educational cyber signals without offense or hype — under Side Trails, not a studio primary peer.",
+        "maturity": "Experimental (Side Trails)",
         "startHere": {
-          "label": "Open today’s cyber brief",
-          "href": "apps/signalterrain/cyber/live.html#brief"
+          "label": "OPEN SIGNALTERRAIN",
+          "href": "side-trails/signalterrain/dashboard/"
+        },
+        "productLanding": {
+          "label": "SignalTerrain product page",
+          "href": "side-trails/signalterrain/"
         },
         "journeys": [
           "observe",
           "understand"
         ],
         "related": [
+          "dashboard"
+        ]
+      },
+      {
+        "id": "global-signals",
+        "title": "Global Signals",
+        "shortTitle": "Global Signals",
+        "icon": "globe",
+        "route": "side-trails/global-signals/",
+        "match": [
+          "/side-trails/global-signals"
+        ],
+        "category": "intelligence",
+        "family": "side-trails",
+        "description": "Side Trails relationship intelligence — how world events shape everyday life. Opens the live dashboard (sample/demo labeled), not a marketing page.",
+        "status": "experimental",
+        "features": [
+          {
+            "id": "dashboard",
+            "label": "Intelligence dashboard",
+            "href": "side-trails/global-signals/"
+          },
+          {
+            "id": "articles",
+            "label": "Articles",
+            "href": "side-trails/global-signals/articles/"
+          },
+          {
+            "id": "explain",
+            "label": "Explain This",
+            "href": "side-trails/global-signals/explain/"
+          },
+          {
+            "id": "relationships",
+            "label": "Relationship Explorer",
+            "href": "side-trails/global-signals/relationships/"
+          },
+          {
+            "id": "relationship-graph",
+            "label": "Relationship Graph",
+            "href": "side-trails/global-signals/relationship-graph/"
+          },
+          {
+            "id": "countries",
+            "label": "Country Intelligence",
+            "href": "side-trails/global-signals/countries/"
+          },
+          {
+            "id": "industries",
+            "label": "Industry Intelligence",
+            "href": "side-trails/global-signals/industries/"
+          },
+          {
+            "id": "citizen-impact",
+            "label": "Citizen Impact",
+            "href": "side-trails/global-signals/citizen-impact/"
+          },
+          {
+            "id": "about",
+            "label": "About",
+            "href": "side-trails/global-signals/about/"
+          }
+        ],
+        "purpose": "Observe and understand how geopolitics, trade, infrastructure, and related signals ripple into citizen life — under Side Trails, not a studio primary peer.",
+        "maturity": "Experimental (Side Trails)",
+        "startHere": {
+          "label": "Open Global Signals dashboard",
+          "href": "side-trails/global-signals/"
+        },
+        "productLanding": {
+          "label": "Open Global Signals dashboard",
+          "href": "side-trails/global-signals/"
+        },
+        "journeys": [
+          "observe",
+          "understand"
+        ],
+        "related": [
+          "signalterrain",
           "dashboard"
         ]
       },

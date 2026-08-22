@@ -147,19 +147,49 @@
         : reg && reg.all
           ? reg.all()
           : [];
-    var list =
-      items.length > 0
-        ? items.map(function (w) {
-            return renderCatalogItem(w, prefs);
-          }).join("")
-        : '<li class="wdb-r-catalog__empty" role="status">No widgets in this category yet.</li>';
+
+    var list = "";
+    if (!items.length) {
+      list = '<li class="wdb-r-catalog__empty" role="status">No widgets in this category yet.</li>';
+    } else if (filter === "all" && reg && reg.libraryGroupOrder) {
+      var groups = reg.libraryGroupOrder();
+      var cats = reg.libraryCategories ? reg.libraryCategories() : [];
+      var labelFor = Object.create(null);
+      cats.forEach(function (c) {
+        labelFor[c.id] = c.label;
+      });
+      groups.forEach(function (gid) {
+        var bucket = items.filter(function (w) {
+          return (w.libraryGroup || w.libraryCategory) === gid;
+        });
+        if (!bucket.length) return;
+        list +=
+          '<li class="wdb-r-catalog__group" role="presentation">' +
+          '<p class="wdb-r-catalog__group-title">' +
+          escapeHtml(labelFor[gid] || gid) +
+          "</p>" +
+          '<ul class="wdb-r-catalog__group-list" role="list">' +
+          bucket
+            .map(function (w) {
+              return renderCatalogItem(w, prefs);
+            })
+            .join("") +
+          "</ul></li>";
+      });
+    } else {
+      list = items
+        .map(function (w) {
+          return renderCatalogItem(w, prefs);
+        })
+        .join("");
+    }
 
     return (
       '<section class="wdb-r-catalog wdb-r-library" data-wdb-r-catalog data-filter="' +
       escapeHtml(filter) +
       '" aria-labelledby="wdb-r-catalog-title">' +
-      '<h2 id="wdb-r-catalog-title">Widget library</h2>' +
-      '<p class="wdb-r-catalog__lede">Add, remove, and favorite instruments for your outdoor workspace. Every library entry is a real, selectable instrument.</p>' +
+      '<h2 id="wdb-r-catalog-title">Add instruments</h2>' +
+      '<p class="wdb-r-catalog__lede">Choose outdoor instruments for this place. Add, remove, favorite, and resize — changes stay draft until you Save.</p>' +
       renderFilterTabs(prefs, filter) +
       '<ul class="wdb-r-catalog__list" role="list">' +
       list +
@@ -168,7 +198,17 @@
     );
   }
 
+  function isMobileViewport() {
+    try {
+      return !!(global.matchMedia && global.matchMedia("(max-width: 48rem)").matches);
+    } catch (e) {
+      return false;
+    }
+  }
+
   function renderColumnPicker(prefs) {
+    /* Phones are always one column — do not offer 2/3 choices (even disabled). */
+    if (isMobileViewport()) return "";
     var cols = Number(prefs && prefs.gridColumns) || 3;
     var options = (Prefs() && Prefs().columnOptions) || [1, 2, 3];
     var buttons = options
@@ -210,9 +250,10 @@
       renderColumnPicker(prefs) +
       '<p class="wdb-r-customize-bar__hint">Preset: ' +
       escapeHtml(prefs.preset || "default") +
-      " · " +
-      escapeHtml(String(prefs.gridColumns || 3)) +
-      " columns · Favorites rise to the top · Changes save when you tap Save.</p>" +
+      (isMobileViewport()
+        ? ""
+        : " · " + escapeHtml(String(prefs.gridColumns || 3)) + " columns") +
+      " · Favorites rise to the top · Changes save when you tap Save.</p>" +
       '<div class="wdb-r-customize-bar__commit" role="group" aria-label="Save or cancel customization">' +
       '<button type="button" class="wdb-r-btn wdb-r-btn--primary" data-wdb-r-action="save">Save</button>' +
       '<button type="button" class="wdb-r-btn wdb-r-btn--quiet" data-wdb-r-action="cancel">Cancel</button>' +

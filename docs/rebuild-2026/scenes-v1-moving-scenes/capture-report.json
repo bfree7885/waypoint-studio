@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "base": "http://127.0.0.1:33993",
+  "fixtures": 18,
+  "shots": [
+    "workspace-1440.png",
+    "workspace-390.png",
+    "scenes-hub-1440.png",
+    "auto-edit-handoff-1440.png",
+    "library-1440.png",
+    "gallery-1440.png"
+  ],
+  "supportedClasses": [
+    "clouds",
+    "water",
+    "fog",
+    "haze"
+  ],
+  "deferredClasses": [
+    "foliage",
+    "grass",
+    "rain",
+    "snow",
+    "light",
+    "stars",
+    "parallax"
+  ]
+}

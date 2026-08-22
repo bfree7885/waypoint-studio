@@ -1,0 +1,336 @@
+{
+  "version": 1,
+  "runId": "gate-2026-08-10T11-59-32-638Z",
+  "createdAt": "2026-08-10T11:59:32.638Z",
+  "campaign": "sheds",
+  "target": "subscriber-ready",
+  "entries": [
+    {
+      "id": "static-probes",
+      "kind": "static_probe",
+      "at": "2026-08-10T11:59:32.646Z",
+      "status": "pass",
+      "summary": "Scanned 17 files; 1 findings",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/static-probes.json",
+      "data": {
+        "evaluatedAt": "2026-08-10T11:59:32.645Z",
+        "filesScanned": 17,
+        "findings": [
+          {
+            "id": "playwright-capability",
+            "dimension": "playwright_browser",
+            "severity": "P2",
+            "message": "Playwright not installed in repo node_modules; browser automation limited."
+          }
+        ],
+        "playwright": {
+          "id": "playwright-capability",
+          "dimension": "playwright_browser",
+          "status": "missing",
+          "message": "Playwright not installed in repo node_modules; browser automation limited.",
+          "severity": "P2"
+        },
+        "dimensionsCovered": [
+          "primary_workflows",
+          "functionality",
+          "live_data_integrity",
+          "placeholder_detection",
+          "dead_controls",
+          "broken_links_nav",
+          "raw_html_leakage",
+          "loading_empty_error",
+          "responsive",
+          "contrast",
+          "a11y",
+          "keyboard",
+          "console",
+          "network_api",
+          "performance",
+          "security",
+          "privacy",
+          "content_quality",
+          "visual_consistency",
+          "discoverability",
+          "onboarding",
+          "persistence",
+          "commercial_usefulness"
+        ],
+        "fakeAsReal": false,
+        "p0Count": 0,
+        "p1Count": 0
+      }
+    },
+    {
+      "id": "playwright-capability",
+      "kind": "playwright_browser",
+      "at": "2026-08-10T11:59:32.646Z",
+      "status": "missing",
+      "summary": "Playwright not installed in repo node_modules; browser automation limited.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/playwright-capability.json",
+      "data": {
+        "id": "playwright-capability",
+        "dimension": "playwright_browser",
+        "status": "missing",
+        "message": "Playwright not installed in repo node_modules; browser automation limited.",
+        "severity": "P2"
+      }
+    },
+    {
+      "id": "cmd-platform-foundation",
+      "kind": "automated_tests",
+      "at": "2026-08-10T11:59:32.806Z",
+      "status": "pass",
+      "summary": "Platform foundation suite: pass",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/cmd-platform-foundation.json",
+      "data": {
+        "command": "node automation/test-sheds-todays-search.mjs && node automation/test-sheds-observation-heat.mjs && node automation/test-sheds-map.mjs && node automation/test-sheds-field-ux.mjs",
+        "exitCode": 0,
+        "output": "PASS module exports build\nPASS loading status\nPASS loading has no fabricated windows\nPASS location denied status\nPASS denied discloses uncertainty\nPASS denied does not claim high certainty\nPASS ready status\nPASS three time windows\nPASS headline explains opportunity\nPASS confidence labeled\nPASS summary includes confidence\nPASS signals include weather fact\nPASS obs insufficiency honest\nPASS disclaimer present\nPASS no moon certainty claims\nPASS pattern area included\nPASS planner area estimated\nPASS best window morning-ish\nPASS Today’s Search eyebrow in map\nPASS todays-search script included\nPASS today windows container\nPASS no hard-coded sighting coordinates in map html\nPASS map uses TodaysSearch.build\nPASS open-meteo richer fetch\n\nAll Today's Search checks passed.\nPASS modules loaded\nPASS empty not sufficient\nPASS empty insufficiency reason\nPASS empty heat has zero priorities\nPASS empty heat labeled observed\nPASS empty heat honest coverage\nPASS empty heat disclaimer\nPASS create obs 0\nPASS create obs 1\nPASS create obs 2\nPASS create obs 3\nPASS create obs 4\nPASS create obs 5\nPASS store has 6 private obs\nPASS sex/class persisted\nPASS weather snapshot persisted\nPASS photoRef private string\nPASS patterns sufficient with 6 across days\nPASS pattern summary present\nPASS top time of day exists\nPASS morning filter reduces set\nPASS morning filter buckets\nPASS weather filter uses snapshot\nPASS weather filter excludes missing mismatch\nPASS heat has activity cells\nPASS heat mode observed\nPASS heat count matches filter\nPASS filtered heat count\nPASS filtered heat still no fake fill\nPASS patterns script on map\nPASS heat mode control\nPASS obs heat filters\nPASS deer sex/class fields\nPASS no seed observations in foundation\nPASS map app uses observation heat builder\nPASS map app does not inject demo sightings\nPASS no fake prod seed in sheds-map-app.js\nPASS no fake prod seed in sheds-observation-store.js\nPASS no fake prod seed in sheds-observation-patterns.js\nPASS no fake prod seed in sheds-todays-search.js\n\nAll observation-heat checks passed.\nPASS store loaded\nPASS model loaded\nPASS whitetail species id\nPASS observation create\nPASS observation persists\nPASS observation private\nPASS observation edit\nPASS shed_found details\nPASS search observation\nPASS filter by type\nPASS observation delete\nPASS default prefs balanced\nPASS grid builds without elevation\nPASS coverage limited without terrain/wx\nPASS search-completed reduces priority when enabled\nPASS heat changes when terrain weights change\nPASS explanation is textual\nPASS explanation avoids antler certainty\nPASS explanation mentions guidance or priority\nPASS reset defaults heat visible\nPASS no US geographic center leak\nPASS neutral view labeled in source\nPASS map shell progressive note\nPASS hidden overlay pattern for sheets\nPASS leaflet css present\nPASS leaflet js vendored\nPASS no broken CDN leaflet css integrity\nPASS tile provider script included\nPASS tile status banner present\nPASS no OSMF public tile URL in map app\nPASS production default is CARTO\nPASS topo default is Esri\nPASS refuses OSMF public host\nPASS ethics sheet present\nPASS map-first tools sheet\nPASS map-first more button\nPASS map-first suggest glance\nPASS skip link uses sheds-skip\nPASS closeAllSheets includes validate\nPASS followUser pan away pattern\nPASS click debounce for obs\n\nAll sheds map tests passed (41).\nPASS full-screen map shell absolute\nPASS floating FAB rail\nPASS bottom sheet field class\nPASS plan card is floating suggest\nPASS story sheet copy\nPASS plain-language confidence\nPASS presence chip\nPASS why details collapsed by default\nPASS primary intention FABs\nPASS add note on FAB for field speed\nPASS legend deferred until heat\nPASS expanded briefing hides attribution over copy\nPASS expanded briefing lifts leaflet bottom chrome\nPASS privacy honesty on obs sheet\nPASS safe-area respected\nPASS no permanent multi-row secondary deck\nPASS escape closes validate\nPASS invalidateSize on sheets\nPASS model version note v1.1\nPASS GPS accuracy +"
+      }
+    },
+    {
+      "id": "cmd-production-links",
+      "kind": "automated_tests",
+      "at": "2026-08-10T11:59:32.866Z",
+      "status": "pass",
+      "summary": "Production link / route validation: pass",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/cmd-production-links.json",
+      "data": {
+        "command": "node automation/validate-production-links.mjs",
+        "exitCode": 0,
+        "output": "Production link validation\nChecked local refs: 2314\nBroken: 0\nWarnings: 6\n\nWarnings (sample):\n- articles/categories/create/index.html — empty aria-busy mount without boot shell\n- articles/categories/field-craft/index.html — empty aria-busy mount without boot shell\n- articles/categories/observe/index.html — empty aria-busy mount without boot shell\n- articles/categories/outdoor-intelligence/index.html — empty aria-busy mount without boot shell\n- articles/categories/share/index.html — empty aria-busy mount without boot shell\n- articles/categories/understand/index.html — empty aria-busy mount without boot shell\n\nWrote docs/PRODUCTION-BROKEN-ROUTE-REPORT.md\n\nOK — no broken production links detected.\n"
+      }
+    },
+    {
+      "id": "cmd-production-build",
+      "kind": "automated_tests",
+      "at": "2026-08-10T11:59:33.017Z",
+      "status": "pass",
+      "summary": "Production build verification: pass",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/cmd-production-build.json",
+      "data": {
+        "command": "node automation/verify-sheds-production.mjs",
+        "exitCode": 0,
+        "output": "Verify Sheds production — https://waypointstudio.org\nPASS: /sheds/ redirects toward map\nPASS: map HTTP 200\nPASS: map has viewport\nPASS: map shell present\nPASS: guidance honesty present\nPASS: no placeholder TODO UI in map HTML\nPASS: no OSMF public tile URL in map HTML\nPASS: Today’s Search present on production\nPASS: map build marker 396608b\nPASS: privacy.html reachable\n\nSHEDS PRODUCTION: PASS\n"
+      }
+    },
+    {
+      "id": "cmd-browser-smoke",
+      "kind": "console",
+      "at": "2026-08-10T11:59:33.326Z",
+      "status": "optional_fail",
+      "summary": "Browser smoke (console/network journeys): optional_fail",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/cmd-browser-smoke.json",
+      "data": {
+        "command": "node automation/smoke-browser.mjs",
+        "exitCode": 2,
+        "output": "Smoke runner error: Cannot find package 'ws' imported from /home/bryan/Projects/waypoint-studio-agent-ops/automation/smoke-browser.mjs\n"
+      }
+    },
+    {
+      "id": "cmd-a11y-smoke",
+      "kind": "a11y",
+      "at": "2026-08-10T11:59:33.353Z",
+      "status": "optional_fail",
+      "summary": "Accessibility smoke: optional_fail",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/cmd-a11y-smoke.json",
+      "data": {
+        "command": "node automation/a11y-smoke.mjs",
+        "exitCode": 1,
+        "output": "Missing audits/live-site-qa deps. Run: cd audits/live-site-qa && npm install\n"
+      }
+    },
+    {
+      "id": "attestation-no-fake-functionality",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.354Z",
+      "status": "pass",
+      "summary": "Attested pass by product-director: No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-no-fake-functionality.json",
+      "data": {
+        "id": "AT-001",
+        "criterionId": "no-fake-functionality",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "No demo/sample sightings; empty observed heat asserted by tests; ethics/provider honesty corrected; placeholders not presented as finished.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:55:26.071Z"
+      }
+    },
+    {
+      "id": "attestation-primary-workflows",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.354Z",
+      "status": "pass",
+      "summary": "Attested pass by product-director: Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-primary-workflows.json",
+      "data": {
+        "id": "AT-006",
+        "criterionId": "primary-workflows",
+        "role": "product-director",
+        "verdict": "pass",
+        "notes": "Subscriber journeys live: Today’s Search, private notes, estimated vs observed heat.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.012Z"
+      }
+    },
+    {
+      "id": "attestation-honest-data",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.355Z",
+      "status": "pass",
+      "summary": "Attested pass by data-reliability: Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-honest-data.json",
+      "data": {
+        "id": "AT-006",
+        "criterionId": "honest-data",
+        "role": "data-reliability",
+        "verdict": "pass",
+        "notes": "Open-Meteo labeled; uncertainties explicit; observation heat private-only; biological heat estimated.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.052Z"
+      }
+    },
+    {
+      "id": "attestation-visual-review",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.355Z",
+      "status": "pass",
+      "summary": "Attested pass by ux-ui-lead: Desktop/tablet/mobile evidence; overlap defect repaired.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-visual-review.json",
+      "data": {
+        "id": "AT-006",
+        "criterionId": "visual-review",
+        "role": "ux-ui-lead",
+        "verdict": "pass",
+        "notes": "Desktop/tablet/mobile evidence; overlap defect repaired.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.083Z"
+      }
+    },
+    {
+      "id": "attestation-commercial-review",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.355Z",
+      "status": "pass",
+      "summary": "Attested pass by commercial-subscriber: Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-commercial-review.json",
+      "data": {
+        "id": "AT-006",
+        "criterionId": "commercial-review",
+        "role": "commercial-subscriber",
+        "verdict": "pass",
+        "notes": "Paid-today cancel risks from fake certainty, wrong providers, overlapping chrome addressed; production serves Today’s Search.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.115Z"
+      }
+    },
+    {
+      "id": "attestation-red-team-pass",
+      "kind": "attestation",
+      "at": "2026-08-10T11:59:33.356Z",
+      "status": "pass",
+      "summary": "Attested pass by red-team: Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/attestation-red-team-pass.json",
+      "data": {
+        "id": "AT-006",
+        "criterionId": "red-team-pass",
+        "role": "red-team",
+        "verdict": "pass",
+        "notes": "Disproof found ethics mislabel + mobile overlap; both fixed and rechecked. Production Today’s Search confirmed.",
+        "campaign": "sheds",
+        "at": "2026-08-10T11:56:52.147Z"
+      }
+    },
+    {
+      "id": "commercial-review",
+      "kind": "commercial_review",
+      "at": "2026-08-10T11:59:33.357Z",
+      "status": "pass",
+      "summary": "Commercial attestation recorded: paying customer would not cancel for known scoped risks.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/commercial-review.json",
+      "data": {
+        "role": "commercial-subscriber",
+        "evaluatedAt": "2026-08-10T11:59:33.357Z",
+        "status": "pass",
+        "wouldCancel": false,
+        "coreQuestion": "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+        "cancelRiskCatalog": [
+          "Broken primary workflow after payment expectation",
+          "Sample/demo/placeholder presented as finished Live product",
+          "Dead controls on the paid or primary value path",
+          "Misleading Live / estimate / cached honesty",
+          "Unreadable UI, HTML leakage, or silent failures",
+          "Data that does not persist when the product claims it does",
+          "Privacy surprise or unclear permissions",
+          "Feature that looks ready but delivers no commercial usefulness"
+        ],
+        "risks": [],
+        "summary": "Commercial attestation recorded: paying customer would not cancel for known scoped risks.",
+        "blocksVerdict": null
+      }
+    },
+    {
+      "id": "red-team",
+      "kind": "red_team",
+      "at": "2026-08-10T11:59:33.357Z",
+      "status": "pass",
+      "summary": "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/red-team.json",
+      "data": {
+        "role": "red-team",
+        "evaluatedAt": "2026-08-10T11:59:33.357Z",
+        "status": "pass",
+        "disproved": false,
+        "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+        "disproofs": [],
+        "summary": "Red Team attestation recorded after independent disproof attempt; no remaining scoped disproof.",
+        "rejectedAutoAccept": true,
+        "blocksVerdict": null
+      }
+    },
+    {
+      "id": "gate-summary-pointer",
+      "kind": "gate_summary",
+      "at": "2026-08-10T11:59:33.357Z",
+      "status": "pass",
+      "summary": "Verdict: SUBSCRIBER READY",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T11-59-32-638Z/gate-summary-pointer.json",
+      "data": {
+        "verdict": "SUBSCRIBER READY",
+        "completeness": {
+          "complete": true,
+          "missing": [],
+          "present": [
+            "static_probe",
+            "playwright_browser",
+            "automated_tests",
+            "console",
+            "a11y",
+            "attestation",
+            "commercial_review",
+            "red_team"
+          ]
+        }
+      }
+    }
+  ],
+  "summaryArtifact": "evidence/gate-2026-08-10T11-59-32-638Z/summary.json",
+  "finalizedAt": "2026-08-10T11:59:33.358Z"
+}

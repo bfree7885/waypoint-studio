@@ -2,10 +2,10 @@
 automation/week-away/.env
 automation/week-away/logs/
 
-# Local test dependencies (smoke-browser.mjs)
-node_modules/
-scripts/logs/
-automation/artifacts/
+# Local CDP / browser review artifacts (never commit Chrome profiles)
+reports/sheds-subscriber-ready-review/chrome-profile*/
+reports/sheds-subscriber-ready-review/chrome-*.log
+
 
 # Waypoint University owner secrets (never commit)
 private/university/server/.env
@@ -36,3 +36,4 @@ Thumbs.db
 private/university/server/.env.smoke
 private/university/server/.env.*
 !private/university/server/.env.example
+node_modules/

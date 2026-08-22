@@ -80,14 +80,23 @@ jobs:
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs
 
+      - name: Deep Forest Dispatch library
+        run: node automation/test-deep-forest-dispatch.mjs
+
       - name: Knowledge Platform tests
         run: node automation/test-knowledge-platform.mjs
 
       - name: Fieldry MVP tests
         run: node automation/test-fieldry-mvp.mjs
 
+      - name: Hidden Landscapes tests
+        run: node automation/test-hidden-landscapes.mjs
+
       - name: Animal Vision tests
         run: node automation/test-animal-vision.mjs
+
+      - name: Hidden Landscapes science-claim tests
+        run: node automation/test-hl-science-claims.mjs
 
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
@@ -97,6 +106,18 @@ jobs:
 
       - name: Dashboard Today Outside tests
         run: node automation/test-dashboard-today-outside.mjs
+
+      - name: Dashboard instrument intelligence tests
+        run: node automation/test-dashboard-rebuild-intel.mjs
+
+      - name: Dashboard Happening Now tests
+        run: node automation/test-dashboard-rebuild-happening.mjs
+
+      - name: Dashboard rebuild instrument depth
+        run: node automation/test-dashboard-rebuild-depth.mjs
+
+      - name: Dashboard V1 visual finish
+        run: node automation/test-dashboard-v1-visual-finish.mjs
 
       - name: Photographer profile tests
         run: node automation/test-photographer-profile.mjs

@@ -4,11 +4,11 @@
 
 /* Full-bleed home shell */
 .was-shell[data-product="studio-home"] {
-  --home-ink: #f4f1ea;
-  --home-ink-muted: rgba(244, 241, 234, 0.78);
-  --home-charcoal: #0c1018;
-  --home-midnight: #0b1a3a;
-  --home-moss: #7a9b6a;
+  --home-ink: var(--wp-bone, #f2ebe0);
+  --home-ink-muted: var(--wp-sand-muted, rgba(242, 235, 224, 0.8));
+  --home-charcoal: var(--wp-aubergine-950, #17131c);
+  --home-midnight: var(--wp-aubergine-900, #1f1a26);
+  --home-moss: var(--wp-accent, var(--wp-terracotta, #c17a5a));
   --wds-font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
   font-family: var(--wds-font-body);
 }
@@ -67,7 +67,7 @@
 
 .was-shell[data-product="studio-home"] {
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(11, 26, 58, 0.55), transparent 55%),
+    radial-gradient(120% 80% at 50% -10%, rgba(193, 122, 90, 0.16), transparent 55%),
     var(--home-charcoal);
   color: var(--home-ink);
 }
@@ -465,4 +465,257 @@
     min-height: 0;
     padding: 1.2rem 1.15rem;
   }
+}
+
+
+/* ——— Front door 2026 ——— */
+.was-home-hero__overlay {
+  background:
+    linear-gradient(180deg, rgba(23, 19, 28, 0.45) 0%, rgba(23, 19, 28, 0.2) 40%, rgba(23, 19, 28, 0.88) 100%),
+    linear-gradient(90deg, rgba(23, 19, 28, 0.55), transparent 58%);
+}
+
+.was-home-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+}
+
+.was-home-hero__cta-primary {
+  background: var(--wp-accent, var(--home-moss)) !important;
+  color: var(--wp-on-accent, #17131c) !important;
+  border-color: transparent !important;
+  font-weight: 600;
+}
+
+.was-home-hero__cta-primary:hover,
+.was-home-hero__cta-primary:focus-visible {
+  background: var(--wp-accent-bright, #d49274) !important;
+}
+
+.was-home-hero__cta-secondary {
+  background: transparent !important;
+}
+
+.was-home__pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .was-home__pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.was-home__pillars li {
+  margin: 0;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border-top: 2px solid color-mix(in srgb, var(--wp-accent, var(--home-moss)) 55%, transparent);
+  background: color-mix(in srgb, var(--wp-elevated, #2a2432) 70%, transparent);
+  border-radius: 0 0 var(--wp-radius-md, 10px) var(--wp-radius-md, 10px);
+}
+
+.was-home__pillars strong {
+  display: block;
+  font-family: var(--wp-font-display, var(--wds-font-display, Georgia, serif));
+  font-size: 1.35rem;
+  font-weight: 400;
+  margin-bottom: 0.45rem;
+  color: var(--home-ink);
+}
+
+.was-home__pillars span {
+  display: block;
+  color: var(--home-ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.was-home__now-panel {
+  padding: 1.35rem 1.35rem 1.45rem;
+  border: 1px solid var(--wp-border, rgba(139, 111, 130, 0.18));
+  border-radius: var(--wp-radius-lg, 14px);
+  background: linear-gradient(165deg, var(--wp-elevated, #2a2432), var(--wp-surface, #1f1a26));
+  max-width: 42rem;
+}
+
+.was-home__now-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wp-accent, var(--home-moss));
+  font-weight: 600;
+}
+
+.was-home__now-body {
+  margin: 0;
+  color: var(--home-ink);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+.was-home__now-meta {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--home-ink-muted);
+  letter-spacing: 0.02em;
+}
+
+.was-home__now-actions {
+  margin: 1.15rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.was-home__pathway {
+  margin: 0;
+  padding: 1.25rem 0 1.35rem;
+  border-bottom: 1px solid rgba(242, 235, 224, 0.1);
+}
+
+.was-home__pathway--lead {
+  padding: 1.5rem 1.4rem 1.55rem;
+  border: 1px solid color-mix(in srgb, var(--wp-accent, #c17a5a) 35%, transparent);
+  border-radius: var(--wp-radius-lg, 14px);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--wp-accent, #c17a5a) 12%, var(--wp-elevated, #2a2432)), var(--wp-surface, #1f1a26));
+  border-bottom: 1px solid color-mix(in srgb, var(--wp-accent, #c17a5a) 35%, transparent);
+  margin-bottom: 1.5rem;
+}
+
+.was-home__pathway h3 {
+  margin: 0.35rem 0 0.55rem;
+  font-family: var(--wp-font-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+}
+
+.was-home__pathway h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.was-home__pathway h3 a:hover,
+.was-home__pathway h3 a:focus-visible {
+  color: var(--wp-accent-bright, #d49274);
+  outline: none;
+}
+
+.was-home__pathway p {
+  margin: 0;
+  color: var(--home-ink-muted);
+  line-height: 1.55;
+  max-width: 40rem;
+}
+
+.was-home__maturity {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--wp-accent, var(--home-moss));
+  font-weight: 600;
+}
+
+.was-home__pathway-go {
+  display: inline-flex;
+  margin-top: 1rem;
+  min-height: 44px;
+  align-items: center;
+  padding: 0.45rem 1rem;
+  border-radius: var(--wp-radius-pill, 999px);
+  background: var(--wp-accent, #c17a5a);
+  color: var(--wp-on-accent, #17131c);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.was-home__pathway-go:hover,
+.was-home__pathway-go:focus-visible {
+  background: var(--wp-accent-bright, #d49274);
+  outline: none;
+}
+
+.was-home__pathway-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.was-home__quiet-list {
+  margin: 0 0 1rem;
+  padding-left: 1.15rem;
+  color: var(--home-ink-muted);
+  line-height: 1.65;
+  max-width: 40rem;
+}
+
+.was-home__quiet-list a {
+  color: var(--home-ink);
+}
+
+.was-home__gate-mount {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.was-home--noscript {
+  padding-top: 4rem;
+}
+
+@media (max-width: 430px) {
+  .was-home-hero {
+    min-height: min(78vh, 36rem);
+  }
+  .was-home-hero__content {
+    padding-bottom: 2rem;
+  }
+  .was-home-hero h1 {
+    font-size: clamp(2.1rem, 10vw, 2.8rem);
+  }
+}
+
+
+/* Mobile primary nav — horizontal scroll, not a stacked directory */
+@media (max-width: 900px) {
+  .was-shell[data-product="studio-home"] .was-global__inner {
+    flex-wrap: nowrap !important;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .was-shell[data-product="studio-home"] .was-primary-nav {
+    order: 0 !important;
+    flex: 1 1 auto !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: calc(100% - 8rem) !important;
+    width: auto !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    gap: 0.15rem 0.85rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .was-shell[data-product="studio-home"] .was-primary-nav__link {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+/* Hide location button when not needed (progressive) */
+#was-home-loc-btn[hidden] {
+  display: none !important;
 }

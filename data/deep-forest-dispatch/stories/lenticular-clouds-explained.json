@@ -1,0 +1,146 @@
+{
+  "id": "lenticular-clouds-explained",
+  "slug": "lenticular-clouds-explained",
+  "title": "Why do these clouds look like UFOs — and stay still?",
+  "subtitle": "Lenticular clouds · mountain lee waves",
+  "deck": "Smooth as a lens, sometimes stacked like plates, hanging over a ridgeline as if parked. Air can be racing through that cloud while the shape barely drifts.",
+  "shortDescription": "Mountain lee waves hold a nearly stationary cloud form while air and water keep moving.",
+  "seoTitle": "Why Lenticular Clouds Look Like UFOs and Appear to Hover — Deep Forest Dispatch",
+  "metaDescription": "Lenticular clouds form in mountain lee waves: air rises, cools, and condenses at wave crests while the cloud shape stays nearly still as air flows through.",
+  "ogImage": "/assets/images/deep-forest-dispatch/lenticular/story-hero.jpg",
+  "canonicalPath": "/deep-forest-dispatch/stories/lenticular-clouds-explained/",
+  "published": "2026-08-16",
+  "status": "published",
+  "youtubeVideoId": null,
+  "youtubeUrl": null,
+  "hero": {
+    "src": "../../../assets/images/deep-forest-dispatch/lenticular/story-hero.jpg",
+    "alt": "Landsat image of an elongated lenticular cloud (Taieri Pet) over New Zealand’s South Island",
+    "credit": "NASA Earth Observatory / Lauren Dauphin · Landsat 8 OLI",
+    "license": "Public domain (NASA)",
+    "provenance": "nasa-eo-153312"
+  },
+  "location": {
+    "name": "Mountain lee waves (global)",
+    "region": "Example imagery: Taieri Pet, New Zealand",
+    "country": "Multiple",
+    "coordinates": { "lat": -45.5, "lon": 170.1 }
+  },
+  "concepts": [
+    "lenticular clouds",
+    "lee waves",
+    "mountain waves",
+    "stable air",
+    "standing wave",
+    "condensation"
+  ],
+  "sections": [
+    {
+      "id": "saucers",
+      "heading": "The cloud that looks parked",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "Lenticular clouds can sit over or downwind of mountains for hours with edges too smooth to look like ordinary weather. Photographers chase them. Pilots watch them. Casual observers sometimes report something stranger."
+        },
+        {
+          "type": "p",
+          "html": "Stillness does not mean the air stopped. The form can stay nearly fixed while wind races through the wave that makes it. The Landsat view above shows New Zealand’s “Taieri Pet” — one famous example of a shape held in place by flow."
+        },
+        {
+          "type": "diagram",
+          "src": "../../../assets/images/deep-forest-dispatch/diagrams/lenticular-standing-wave.png",
+          "alt": "Cross-section of airflow over a mountain forming a standing wave with a lenticular cloud at the crest while air continues downstream"
+        }
+      ]
+    },
+    {
+      "id": "wave",
+      "heading": "A standing wave in the airflow",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "When strong wind meets a mountain barrier — especially with stable air aloft — the flow is forced up and over. Downwind, the atmosphere can oscillate in <strong>lee waves</strong>: crests where air rises, troughs where it sinks. The wave pattern stays nearly fixed relative to the mountain while air parcels travel through it."
+        },
+        {
+          "type": "p",
+          "html": "As air rises through a crest it expands and cools. If it reaches the dew point, vapor condenses into droplets or ice. As that same air descends into the next trough it warms and the cloud evaporates. Repeat continuously and you get a lens that appears glued to the crest."
+        },
+        {
+          "type": "aside",
+          "html": "National Weather Service guidance on standing lenticular clouds puts it plainly: they continually develop near the crest and dissipate just downwind — which is why they look stationary even when winds are swift."
+        }
+      ]
+    },
+    {
+      "id": "stacks",
+      "heading": "Plates, seasons, and what they signal",
+      "blocks": [
+        {
+          "type": "p",
+          "html": "When moist and drier layers alternate with height, only some levels of the same wave light up. That yields the stacked “pile of plates” look. Lenticulars show up most often when winds aloft are strong — frequently winter and spring in mid-latitude ranges such as the Rockies — and wherever steep terrain sits across the flow, from the Andes to New Zealand’s Southern Alps."
+        },
+        {
+          "type": "p",
+          "html": "A lenticular is a moisture marker on a mountain wave. The wave can exist without cloud if the air is too dry. When the cloud is present, it advertises rising and sinking motion strong enough to reach saturation at the crests. The same wave family can mean turbulence for aviation — including rotors beneath some crests. For everyone else, it is a readable sign of fast, stable flow over terrain."
+        },
+        {
+          "type": "p",
+          "html": "The same mountain–air relationship that builds rain shadows on the wet and dry sides of a range can, under different moisture and stability, write standing waves on the lee. Waypoint’s Dashboard can show whether strong flow and mountain weather are plausible; Scenes helps when the sky offers a stationary lens. Neither detects lenticulars automatically — and they do not need to."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "Met Office — What are Lee Waves?",
+      "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/wind/lee-waves",
+      "kind": "scientific"
+    },
+    {
+      "label": "NWS Albuquerque — Altocumulus Standing Lenticular Clouds",
+      "url": "https://www.weather.gov/abq/features_acsl",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Marvelous Lenticularis (Taieri Pet)",
+      "url": "https://science.nasa.gov/earth/earth-observatory/marvelous-lenticularis-153312/",
+      "kind": "scientific"
+    },
+    {
+      "label": "NASA Earth Observatory — Curious Clouds in the Transantarctic Mountains",
+      "url": "https://science.nasa.gov/earth/earth-observatory/curious-clouds-in-the-transantarctic-mountains-147772/",
+      "kind": "scientific"
+    }
+  ],
+  "credits": [
+    {
+      "asset": "Taieri Pet lenticular cloud (Landsat 8 OLI, 2024-09-07)",
+      "credit": "NASA Earth Observatory image by Lauren Dauphin, using Landsat data from the U.S. Geological Survey",
+      "license": "Public domain"
+    },
+    {
+      "asset": "Standing-wave / lenticular explainer diagram",
+      "credit": "Waypoint Studio · Deep Forest Dispatch",
+      "license": "Waypoint Studio editorial"
+    }
+  ],
+  "relatedStories": [
+    "mount-hood-rain-shadow",
+    "valley-fog-at-dawn"
+  ],
+  "waypointConnections": [
+    {
+      "id": "dashboard",
+      "label": "Mountain wind & weather",
+      "href": "/apps/dashboard/",
+      "note": "Context for strong flow — not a lenticular alert."
+    },
+    {
+      "id": "scenes",
+      "label": "When the sky holds still",
+      "href": "/apps/scenes/",
+      "note": "Edges, haze, and timing matter as much as the cloud."
+    }
+  ]
+}

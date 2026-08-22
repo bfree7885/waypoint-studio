@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://waypointstudio.org/ops/product-board/schemas/work-item.schema.json",
+  "title": "Product Board Work Item",
+  "type": "object",
+  "required": ["id", "title", "severity", "status", "acceptanceCriteria"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^WB-[0-9]{3,}$" },
+    "title": { "type": "string", "minLength": 3 },
+    "severity": { "enum": ["P0", "P1", "P2", "P3", "P4"] },
+    "status": {
+      "enum": [
+        "backlog",
+        "ready",
+        "in_progress",
+        "fix",
+        "test",
+        "visual_review",
+        "red_team",
+        "retest",
+        "blocked",
+        "done",
+        "cancelled"
+      ]
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "blocksSubscriberReady": { "type": "boolean" },
+    "relatedEngineeringId": { "type": ["string", "null"] },
+    "failureOrigin": { "type": ["object", "null"] }
+  }
+}

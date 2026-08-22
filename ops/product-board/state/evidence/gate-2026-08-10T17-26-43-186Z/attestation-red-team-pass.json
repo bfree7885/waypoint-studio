@@ -1,0 +1,17 @@
+{
+  "id": "attestation-red-team-pass",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.299Z",
+  "status": "pass",
+  "summary": "Attested pass by red-team: Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "red-team-pass",
+    "role": "red-team",
+    "verdict": "pass",
+    "notes": "Independent disproof found live-input cold-start P1; repaired; board probe+required browser-smoke+Attack6 added; retest failed to rediscover P0/P1 after repair. Favicon 404=P3 sitewide. Dual-primary obs GPS demoted.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.385Z"
+  }
+}

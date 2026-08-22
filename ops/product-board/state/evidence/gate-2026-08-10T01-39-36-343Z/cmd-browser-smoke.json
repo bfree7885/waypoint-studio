@@ -1,0 +1,13 @@
+{
+  "id": "cmd-browser-smoke",
+  "kind": "console",
+  "at": "2026-08-10T01:39:38.270Z",
+  "status": "fail",
+  "summary": "Browser smoke (console/network journeys): fail",
+  "severity": null,
+  "data": {
+    "command": "node automation/smoke-browser.mjs",
+    "exitCode": 2,
+    "output": "Smoke runner error: Cannot find package 'ws' imported from /home/bryan/Projects/waypoint-studio-agent-ops/automation/smoke-browser.mjs\n"
+  }
+}

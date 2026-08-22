@@ -1,0 +1,17 @@
+{
+  "id": "attestation-red-team-pass",
+  "kind": "attestation",
+  "at": "2026-08-10T20:27:16.144Z",
+  "status": "fail",
+  "summary": "Attested fail by red-team: Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+  "severity": null,
+  "data": {
+    "id": "AT-007",
+    "criterionId": "red-team-pass",
+    "role": "red-team",
+    "verdict": "fail",
+    "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+    "campaign": "sheds",
+    "at": "2026-08-10T18:00:00.000Z"
+  }
+}

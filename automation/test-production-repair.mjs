@@ -99,7 +99,23 @@ const nav = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-n
 assert("nav photo coach live path", /"href": "apps\/photo-coach\/"/.test(nav));
 
 const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-assert("home single primary lead", (home.match(/was-home__lead/g) || []).length === 1);
+const dash = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
+// Studio Homepage is the front door; outdoor workspace boots on Dashboard only.
+assert(
+  "home is studio front door",
+  /data-product="studio-home"/.test(home) &&
+    /studio-home\.js/.test(home) &&
+    !/home-boot\.js/.test(home) &&
+    !/wds-content-engine/.test(home)
+);
+assert(
+  "dashboard progressive workspace boot",
+  /was-shell/.test(dash) &&
+    /home-boot\.js/.test(dash) &&
+    /data-wds-region="workspace"/.test(dash) &&
+    /Opening instruments|Opening workspace/.test(dash)
+);
+assert("dashboard is not a mini homepage", !/was-home-hero|Enter the studio/.test(dash));
 
 const wds = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
 assert("wds loads platform-boot", /wds-platform-boot\.js/.test(wds));

@@ -5,7 +5,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "1.0.0";
+  var VERSION = "1.1.0";
 
   /**
    * Relative hrefs assume the page lives under /apps/<slug>/
@@ -37,7 +37,7 @@
       shortName: "Studio",
       tier: "core",
       status: "live",
-      description: "Home — Waypoint Studio outdoor workspace entry.",
+      description: "Studio directory and shared shell.",
       pathFromApps: "../../",
       pathFromRoot: "./",
       dataProduct: "studio-home",
@@ -45,39 +45,15 @@
     },
     {
       id: "dashboard",
-      name: "Home",
-      shortName: "Home",
+      name: "Dashboard",
+      shortName: "Dashboard",
       tier: "core",
       status: "live",
-      description: "Customizable outdoor workspace — Today Outside and instruments you choose.",
+      description: "Customizable outdoor workspace — Today Outside and instruments you choose. Quiet Home chrome may still say Home.",
       pathFromApps: "../dashboard/",
       pathFromRoot: "apps/dashboard/",
       dataProduct: "dashboard",
       navPriority: 10
-    },
-    {
-      id: "foragecast",
-      name: "ForageCast",
-      shortName: "ForageCast",
-      tier: "core",
-      status: "live",
-      description: "Seasonal land companion — foraging, orchard, garden, and today’s action plan.",
-      pathFromApps: "../foragecast/",
-      pathFromRoot: "apps/foragecast/",
-      dataProduct: "foragecast",
-      navPriority: 20
-    },
-    {
-      id: "fieldry",
-      name: "Fieldry",
-      shortName: "Fieldry",
-      tier: "core",
-      status: "live",
-      description: "Private observation ledger — a life list of the natural world.",
-      pathFromApps: "../fieldry/",
-      pathFromRoot: "apps/fieldry/",
-      dataProduct: "fieldry",
-      navPriority: 30
     },
     {
       id: "scenes",
@@ -89,7 +65,68 @@
       pathFromApps: "../scenes/",
       pathFromRoot: "apps/scenes/",
       dataProduct: "scenes",
+      navPriority: 20
+    },
+    {
+      id: "sheds",
+      slug: "shed-hunting",
+      name: "Sheds",
+      shortName: "Sheds",
+      tier: "core",
+      status: "live",
+      description: "Antler shed hunting platform — species, finds, forecasts, and ethics.",
+      pathFromApps: "../shed-hunting/",
+      pathFromRoot: "apps/shed-hunting/",
+      dataProduct: "shed-hunting",
+      navPriority: 30
+    },
+    {
+      id: "articles",
+      name: "Articles",
+      shortName: "Articles",
+      tier: "core",
+      status: "live",
+      description: "Calm field reading that deepens observation.",
+      pathFromApps: "../../articles/",
+      pathFromRoot: "articles/",
+      dataProduct: "articles",
       navPriority: 40
+    },
+    {
+      id: "side-trails",
+      name: "Side Trails",
+      shortName: "Side Trails",
+      tier: "core",
+      status: "live",
+      description: "Sister experiments catalog — Civic Trails, SignalTerrain, and future side projects.",
+      pathFromApps: "../../side-trails/",
+      pathFromRoot: "side-trails/",
+      dataProduct: "side-trails",
+      navPriority: 50
+    },
+    {
+      id: "support",
+      name: "Support",
+      shortName: "Support",
+      tier: "core",
+      status: "live",
+      description: "Honest help, FAQ, and contact paths.",
+      pathFromApps: "../../support.html",
+      pathFromRoot: "support.html",
+      dataProduct: "support",
+      navPriority: 55
+    },
+    {
+      id: "about",
+      name: "About",
+      shortName: "About",
+      tier: "core",
+      status: "live",
+      description: "Studio mission and product philosophy.",
+      pathFromApps: "../../about.html",
+      pathFromRoot: "about.html",
+      dataProduct: "about",
+      navPriority: 58
     },
     {
       id: "photo-coach",
@@ -118,47 +155,59 @@
       navPriority: 47
     },
     {
-      id: "sheds",
-      slug: "shed-hunting",
-      name: "Sheds",
-      shortName: "Sheds",
-      tier: "foundation",
-      status: "foundation",
-      description: "Antler shed hunting platform — species, finds, forecasts, and ethics.",
-      pathFromApps: "../shed-hunting/",
-      pathFromRoot: "apps/shed-hunting/",
-      dataProduct: "shed-hunting",
-      navPriority: 60
+      id: "foragecast",
+      name: "ForageCast",
+      shortName: "ForageCast",
+      tier: "supporting",
+      status: "live",
+      description: "Seasonal land companion — foraging, orchard, garden, and today’s action plan.",
+      pathFromApps: "../foragecast/",
+      pathFromRoot: "apps/foragecast/",
+      dataProduct: "foragecast",
+      navPriority: 70
+    },
+    {
+      id: "fieldry",
+      name: "Fieldry",
+      shortName: "Fieldry",
+      tier: "supporting",
+      status: "live",
+      description: "Private observation ledger — a life list of the natural world.",
+      pathFromApps: "../fieldry/",
+      pathFromRoot: "apps/fieldry/",
+      dataProduct: "fieldry",
+      navPriority: 75
     },
     {
       id: "steepleaf",
       name: "Steepleaf",
       shortName: "Steepleaf",
-      tier: "product",
+      tier: "incubator",
       status: "active",
       description: "Tea companion — today’s brew, private collection, sessions, and calm learning.",
       pathFromApps: "../steepleaf/",
       pathFromRoot: "apps/steepleaf/",
       dataProduct: "steepleaf",
-      navPriority: 70
+      navPriority: 80
     },
     {
       id: "signalterrain",
       name: "SignalTerrain",
       shortName: "SignalTerrain",
-      tier: "foundation",
-      status: "foundation",
-      description: "Radio & Spectrum Intelligence and educational Cyber Awareness.",
+      tier: "side-trails",
+      status: "experimental",
+      description: "Adaptive cyber intelligence for defenders — listed under Side Trails, not a studio flagship.",
       pathFromApps: "../signalterrain/",
       pathFromRoot: "apps/signalterrain/",
       dataProduct: "signalterrain",
-      navPriority: 80
+      parent: "side-trails",
+      navPriority: 85
     },
     {
       id: "savant-sommelier",
       name: "Savant Sommelier",
       shortName: "Savant",
-      tier: "foundation",
+      tier: "incubator",
       status: "foundation",
       description: "Vineyard intelligence — terrain, climate, and wine landscape literacy.",
       pathFromApps: "../savant-sommelier/",
@@ -170,13 +219,13 @@
       id: "waypoint-volunteer",
       name: "Waypoint Volunteer",
       shortName: "Volunteer",
-      tier: "foundation",
+      tier: "incubator",
       status: "foundation",
       description: "What good can I do today? — community opportunity discovery.",
       pathFromApps: "../waypoint-volunteer/",
       pathFromRoot: "apps/waypoint-volunteer/",
       dataProduct: "waypoint-volunteer",
-      navPriority: 85
+      navPriority: 95
     }
   ];
 

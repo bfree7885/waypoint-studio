@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Home RC1 — routing, nav, deepeners, anti-regression contracts.
- * Authority: docs/rebuild-2026/home-vision-lock-owner-review.md
+ * Home / Dashboard RC1 — routing, nav, deepeners, anti-regression contracts.
+ * Updated for Homepage front door + ONE APP = ONE PRODUCT SURFACE.
  * Run: node automation/test-home-rc1.mjs
  */
 import fs from "fs";
@@ -33,32 +33,28 @@ const rootHtml = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 const dashHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 const navCfg = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-nav-config.js"), "utf8");
 const wdsJs = fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8");
-const studioConst = fs.readFileSync(path.join(ROOT, "docs/WAYPOINT-STUDIO-CONSTITUTION.md"), "utf8");
 const supportHtml = fs.readFileSync(path.join(ROOT, "support.html"), "utf8");
 const dashRedirect = fs.readFileSync(path.join(ROOT, "dashboard.html"), "utf8");
 const manifest = fs.readFileSync(path.join(ROOT, "site.webmanifest"), "utf8");
 
-assert("root is Rebuild host", /wds-dashboard-rebuild\.css/.test(rootHtml) && /home-boot\.js/.test(rootHtml));
-assert("root labels Home", /data-product-name="Home"/.test(rootHtml) && /<title>Home/.test(rootHtml));
-assert("root canonical is /", /rel="canonical"[^>]*href="https:\/\/waypointstudio\.org\/"/.test(rootHtml));
+assert("root is studio front door", /data-product="studio-home"/.test(rootHtml) && /studio-home\.js/.test(rootHtml));
+assert("root is not outdoor Dashboard boot", !/home-boot\.js|wds-content-engine/.test(rootHtml));
+assert("root mission present", /Observe\.\s*Discover\.\s*Understand/.test(rootHtml));
 assert("root shell depth 0", /data-shell-depth="0"/.test(rootHtml));
-assert("dashboard alias same Rebuild", /wds-dashboard-rebuild\.css/.test(dashHtml) && /home-boot\.js/.test(dashHtml));
-assert("dashboard alias labels Home", /data-product-name="Home"/.test(dashHtml));
-assert("single implementation — shared boot", /apps\/dashboard\/js\/home-boot\.js/.test(rootHtml));
-assert("no marketing homepage modules on root", !/was-home-hero|studio-home\.js|wds-studio-home\.css/i.test(rootHtml));
-assert("no Outdoor OS on root", !/wds-dashboard-os\.css|Outdoor OS/i.test(rootHtml));
-assert("no Recovery briefing on root", !/building your briefing|Outdoor overview/i.test(rootHtml));
-
-assert("primary nav is Home·Scenes·Sheds·Articles·About", /"id": "home".*"Scenes".*"Sheds".*"Articles".*"About"/s.test(navCfg));
-assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 800)));
+assert("dashboard is Rebuild host", /wds-dashboard-rebuild\.css/.test(dashHtml) && /home-boot\.js/.test(dashHtml));
+assert("dashboard labels Dashboard", /data-product-name="Dashboard"/.test(dashHtml) && /<title>Dashboard/.test(dashHtml));
+assert("dashboard canonical /apps/dashboard/", /canonical[^>]*apps\/dashboard\//.test(dashHtml));
+assert("primary nav is Dashboard·Scenes·Sheds·Articles·Side Trails·Support·About", /"id": "dashboard".*"Scenes".*"Sheds".*"Articles".*"Side Trails".*"Support".*"About"/s.test(navCfg));
+assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 1200)));
 const primaryNavBlock = (navCfg.match(/"studioPrimaryNav"\s*:\s*\[[\s\S]*?\]/) || [""])[0];
-assert("primary nav omits SignalTerrain", !/signalterrain|SignalTerrain|Volunteer/i.test(primaryNavBlock));
+assert("primary nav omits SignalTerrain as peer", !/"SignalTerrain"|Volunteer|ForageCast|Fieldry|Steepleaf/i.test(primaryNavBlock));
+assert("primary nav includes Side Trails", /"Side Trails"/.test(primaryNavBlock));
+assert("primary nav Dashboard → /apps/dashboard/", /"id": "dashboard"[\s\S]*?"href": "\/apps\/dashboard\/"/.test(navCfg));
 assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
-assert("startHere is Open Home", /"label":\s*"Open Home"/.test(navCfg));
-assert("contact back link is Home", /Back to Home/.test(fs.readFileSync(path.join(ROOT, "apps/dashboard/contact.html"), "utf8")));
+assert("startHere is Open Dashboard", /"label":\s*"Open Dashboard"/.test(navCfg));
 assert("customize omits Kiosk layout button", !/Kiosk layout/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js"), "utf8")));
 assert(
-  "quiet chrome keeps Home Customize local nav",
+  "quiet chrome keeps Dashboard Customize local nav",
   !/\[data-product="dashboard"\]\s*\.was-local\s*\{[^}]*display:\s*none/s.test(
     fs.readFileSync(path.join(ROOT, "design-system/css/wds-app-shell.css"), "utf8")
   )
@@ -70,14 +66,13 @@ assert(
   )
 );
 assert("kiosk chrome has no user Kiosk label", !/>Kiosk</.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")) && !/Exit kiosk/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")));
-assert("404 links Home architecture", /<a href="\/">Home<\/a>/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")) && !/SignalTerrain|Waypoint Volunteer|ForageCast/.test(fs.readFileSync(path.join(ROOT, "404.html"), "utf8")));
-assert("about primary is Home not Dashboard", /<strong>Home<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && !/<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
-assert("support experiences are Home architecture", /<strong>Home<\/strong>/.test(supportHtml) && /<strong>Contact<\/strong>/.test(supportHtml) && !/Coming later|Waypoint Volunteer|incubator\//.test(supportHtml));
-assert("dashboard match includes root", /\^\/\$/.test(navCfg));
+assert("about primary includes Dashboard architecture", /<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && /<strong>Side Trails<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
+assert("support experiences are studio architecture", /<strong>Dashboard<\/strong>/.test(supportHtml) && /<strong>Side Trails<\/strong>/.test(supportHtml) && /<strong>Support<\/strong>/.test(supportHtml) && !/<strong>Coming later<\/strong>|<strong>Volunteer<\/strong>|<strong>SignalTerrain<\/strong>/.test(supportHtml));
+const dashMatchBlock = (navCfg.match(/"id": "dashboard"[\s\S]*?"match":\s*\[[\s\S]*?\]/) || [""])[0];
+assert("dashboard match is /apps/dashboard", /\/apps\/dashboard/.test(dashMatchBlock) && !/\^\/\$/.test(dashMatchBlock));
 assert("wds loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(wdsJs));
-assert("studio constitution Home lock", /Home is the canonical Waypoint Studio experience/.test(studioConst));
 assert("support no Outdoor overview", !/Outdoor overview/i.test(supportHtml));
-assert("dashboard.html redirects to Home root", /url=\.\/|location\.replace\("\.\/"/.test(dashRedirect));
+assert("dashboard.html redirects to apps/dashboard", /apps\/dashboard\//.test(dashRedirect));
 assert("manifest start_url Home", /"start_url":\s*"\/"/.test(manifest));
 
 const shellSrc = fs.readFileSync(path.join(ROOT, "design-system/js/platform/wds-app-shell.js"), "utf8");
@@ -97,46 +92,52 @@ const sandbox = {
   window: global,
   console,
   document: {
-    documentElement: {
-      classList: { add() {}, remove() {}, contains() { return false; } },
-      setAttribute() {},
-      removeAttribute() {},
-      getAttribute() { return null; }
+    createElement: function () {
+      return { style: {}, setAttribute: function () {}, appendChild: function () {} };
     },
-    hidden: false,
-    addEventListener() {},
-    querySelector() { return null; },
-    querySelectorAll() { return []; },
-    createElement() {
-      return { style: {}, setAttribute() {}, appendChild() {} };
+    querySelector: function () {
+      return null;
     },
-    readyState: "complete"
+    querySelectorAll: function () {
+      return [];
+    },
+    getElementById: function () {
+      return null;
+    },
+    addEventListener: function () {},
+    body: { appendChild: function () {} }
   },
-  location: { pathname: "/", hash: "", href: "http://127.0.0.1/" },
+  location: { pathname: "/apps/dashboard/", hash: "", href: "http://127.0.0.1/apps/dashboard/" },
   localStorage: {
-    _d: {},
-    getItem(k) { return this._d[k] || null; },
-    setItem(k, v) { this._d[k] = String(v); },
-    removeItem(k) { delete this._d[k]; }
+    _d: Object.create(null),
+    getItem: function (k) {
+      return this._d[k] == null ? null : this._d[k];
+    },
+    setItem: function (k, v) {
+      this._d[k] = String(v);
+    },
+    removeItem: function (k) {
+      delete this._d[k];
+    }
   },
-  CustomEvent: function () {},
-  dispatchEvent() {},
-  fetch() {
-    return Promise.reject(new Error("offline"));
+  matchMedia: function () {
+    return { matches: false, addListener: function () {}, addEventListener: function () {} };
   },
-  performance: { mark() {}, now() { return 0; } },
-  requestAnimationFrame(fn) { fn(); },
-  matchMedia() {
-    return { matches: false };
+  requestAnimationFrame: function (fn) {
+    return setTimeout(fn, 0);
+  },
+  fetch: function () {
+    return Promise.reject(new Error("offline-in-test"));
   }
 };
-sandbox.window = sandbox;
 sandbox.global = sandbox;
+sandbox.window = sandbox;
 sandbox.WDS = {};
 
 [
   "design-system/js/platform/wds-app-nav-config.js",
   "design-system/js/platform/wds-app-nav.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
@@ -151,9 +152,9 @@ sandbox.WDS = {};
 });
 
 const Nav = sandbox.WDS.appNav;
-assert("detectApp / is dashboard Home", Nav.detectApp("/", "") && Nav.detectApp("/", "").id === "dashboard");
+assert("detectApp / is not dashboard", !Nav.detectApp("/", "") || Nav.detectApp("/", "").id !== "dashboard");
 assert("detectApp /apps/dashboard/ is dashboard", Nav.detectApp("/apps/dashboard/", "") && Nav.detectApp("/apps/dashboard/", "").id === "dashboard");
-assert("detectApp /about.html is not Home", !Nav.detectApp("/about.html", "") || Nav.detectApp("/about.html", "").id !== "dashboard");
+assert("detectApp /about.html is not dashboard", !Nav.detectApp("/about.html", "") || Nav.detectApp("/about.html", "").id !== "dashboard");
 
 const Reg = sandbox.WDS.dashboardRebuildRegistry;
 const Prefs = sandbox.WDS.dashboardRebuildPrefs;
@@ -161,7 +162,7 @@ const defaults = Prefs.defaults ? Prefs.defaults() : Prefs.load();
 const enabled = defaults.enabled || [];
 assert(
   "defaults include Conditions Light Air Astronomy",
-  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy"].every(function (id) {
+  ["ph-conditions", "ph-light", "ph-air", "ph-astronomy", "ph-next-hours", "ph-doorway", "ph-alerts"].every(function (id) {
     return enabled.indexOf(id) >= 0;
   })
 );
@@ -169,15 +170,24 @@ assert("defaults include Alerts when available", enabled.indexOf("ph-alerts") >=
 assert("defaults omit coming-soon Photography", enabled.indexOf("ph-photography") < 0);
 assert("defaults omit coming-soon Rivers", enabled.indexOf("ph-rivers") < 0);
 assert("no separate Weather widget required", !Reg.get("weather") || !Reg.get("ph-weather"));
+const order = defaults.order || Reg.defaultOrderIds();
+assert(
+  "default order Light before Astronomy",
+  order.indexOf("ph-light") >= 0 &&
+    order.indexOf("ph-astronomy") >= 0 &&
+    order.indexOf("ph-light") < order.indexOf("ph-astronomy"),
+  order.join(",")
+);
 
 const Deepen = sandbox.WDS.dashboardRebuildDeepeners;
 const deepenHtml = Deepen.render();
-assert("deepeners render Field Notes", /Field Notes/.test(deepenHtml));
 assert("deepeners render Waypoint’s Take", /Waypoint.s Take/.test(deepenHtml));
-assert("deepeners render Featured Photography", /Featured Photography/.test(deepenHtml));
-assert("deepeners render Scenes intro", /Open Scenes/.test(deepenHtml));
-assert("deepeners render Sheds intro", /Open Sheds/.test(deepenHtml));
-assert("deepeners do not embed Scenes app", !/photo-coach|wds-scenes/i.test(deepenHtml));
+assert("deepeners omit Field Notes promo", !/Field Notes/.test(deepenHtml));
+assert("deepeners omit Featured Photography", !/Featured Photography/.test(deepenHtml));
+assert("deepeners omit Scenes promo", !/Open Scenes|data-deepen="scenes"/.test(deepenHtml));
+assert("deepeners omit Sheds promo", !/Open Sheds|data-deepen="sheds"/.test(deepenHtml));
+assert("deepeners omit Side Trails promo", !/data-deepen="side-trails"|View all Side Trails/.test(deepenHtml));
+assert("deepeners omit SignalTerrain cards", !/signalterrain|SignalTerrain|global-signals|Civic Trails/i.test(deepenHtml));
 
 const Rebuild = sandbox.WDS.dashboardRebuild;
 const shell = Rebuild.renderShell({ view: "workspace", placeContext: { placeLabel: "Test", trust: "waiting" } });
@@ -193,7 +203,7 @@ const primary = sandbox.WDS.APP_NAV_CONFIG.studioPrimaryNav.map(function (i) {
 });
 assert(
   "nav labels exact set",
-  primary.join("|") === "Home|Scenes|Sheds|Articles|About",
+  primary.join("|") === "Dashboard|Scenes|Sheds|Articles|Side Trails|Support|About",
   primary.join("|")
 );
 
@@ -201,4 +211,4 @@ if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");
   process.exit(1);
 }
-console.log("\nAll Home RC1 tests passed (" + passed + ").");
+console.log("\nHome RC1: PASS (" + passed + ")");

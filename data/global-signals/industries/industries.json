@@ -1,0 +1,2352 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-07T20:00:00Z",
+  "mode": "curated-baseline",
+  "modeLabel": "Curated structural baseline \u2014 not a live breaking-news feed",
+  "honesty": {
+    "banner": "Curated structural industry baseline \u2014 not a live breaking-news feed. Threats, opportunities, and Takes are labeled analysis or structural context. Live activations appear separately when evidence-backed impacts are available.",
+    "confidenceRules": "Observed is reserved for established facts. Predictive threats, opportunities, and citizen-impact hops must never use Observed. Missing or invalid confidence defaults to Unknown.",
+    "analysisRules": "Waypoint\u2019s Take is analysis and interpretation \u2014 never established fact. Do not treat curated baseline text as verified live intelligence.",
+    "liveRules": "Live developments load from live-impacts.json when present. Missing or empty live impacts must show an honest empty state \u2014 never invent activations."
+  },
+  "crossLinks": {
+    "articlesBase": "/side-trails/global-signals/articles/",
+    "countriesBase": "/side-trails/global-signals/countries/",
+    "citizenImpactBase": "/side-trails/global-signals/citizen-impact/",
+    "relationshipExplorerBase": "/side-trails/global-signals/relationship-graph/",
+    "notes": "Country Intelligence, Citizen Impact category deep-links, and Relationship Explorer may ship on parallel branches. Soft-link with stable IDs (gsc_*, gsci_*, gsa_*, gsi_*). Articles routes exist on main."
+  },
+  "taxonomies": {
+    "industryIds": [
+      "gsi_semiconductors",
+      "gsi_energy",
+      "gsi_agriculture",
+      "gsi_food",
+      "gsi_transportation",
+      "gsi_shipping",
+      "gsi_healthcare",
+      "gsi_automotive",
+      "gsi_construction",
+      "gsi_retail",
+      "gsi_technology"
+    ],
+    "articleIndustryLabelMap": {
+      "Semiconductors": "gsi_semiconductors",
+      "Energy": "gsi_energy",
+      "Agriculture": "gsi_agriculture",
+      "Food": "gsi_food",
+      "Transportation": "gsi_transportation",
+      "Shipping": "gsi_shipping",
+      "Logistics": "gsi_shipping",
+      "Healthcare": "gsi_healthcare",
+      "Automotive": "gsi_automotive",
+      "Construction": "gsi_construction",
+      "Retail": "gsi_retail",
+      "Technology": "gsi_technology",
+      "Manufacturing": null,
+      "Travel": null,
+      "Insurance": null
+    },
+    "confidenceAllowed": [
+      "Observed",
+      "High",
+      "Medium",
+      "Low",
+      "Unknown"
+    ],
+    "horizonAllowed": [
+      "Immediate",
+      "Days",
+      "Weeks",
+      "Months",
+      "Long-term",
+      "Unknown"
+    ]
+  },
+  "industries": [
+    {
+      "id": "gsi_semiconductors",
+      "slug": "semiconductors",
+      "name": "Semiconductors",
+      "tagline": "Foundries, tools, and chip design sit at the center of modern industry.",
+      "summary": "Semiconductors concentrate design, fabrication equipment, specialty chemicals, and advanced packaging into a small set of geographies and firms. Capacity, export controls, and water/energy constraints shape what other industries can ship.",
+      "whatIsHappening": {
+        "text": "Leading-edge logic capacity remains concentrated in a few foundries, while governments fund domestic fabs and tighten export controls on advanced tools and chips. Packaging, specialty gases, and EUV tool supply remain tight relative to demand for AI and automotive silicon.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Chips are an intermediate good for nearly every modern product. When lithography tools, photomasks, or advanced packaging nodes bottleneck, Automotive, Technology, Healthcare devices, and Defense electronics feel delayed availability long before consumers see a headline about \u2018chips.\u2019",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Geographic concentration of advanced fabs",
+          "detail": "A small number of sites produce most leading-edge logic; natural disaster, conflict, or energy disruption at those sites would cascade widely.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Export-control friction",
+          "detail": "Licensing regimes on tools and advanced nodes can slow technology transfer and re-route supply graphs without eliminating demand.",
+          "confidence": "High",
+          "horizon": "Months"
+        },
+        {
+          "label": "Water and power intensity",
+          "detail": "Fabs require reliable ultrapure water and stable power; drought or grid stress can constrain utilization.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Mature-node capacity for autos and industrial",
+          "detail": "Not every chip needs the newest node; expanding mature capacity can ease Automotive and industrial shortages.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Advanced packaging and chiplets",
+          "detail": "Heterogeneous integration can stretch existing silicon and create new assembly hubs.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Diversified specialty chemical routes",
+          "detail": "Alternate chemical and gas suppliers reduce single-point failure in fab inputs.",
+          "confidence": "Low",
+          "horizon": "Long-term"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_taiwan",
+          "name": "Taiwan",
+          "slug": "taiwan",
+          "role": "Leading-edge foundry capacity and packaging ecosystem"
+        },
+        {
+          "id": "gsc_south-korea",
+          "name": "South Korea",
+          "slug": "south-korea",
+          "role": "Memory and logic fabrication; equipment demand"
+        },
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Chip design, EDA software, and new fab investment"
+        },
+        {
+          "id": "gsc_netherlands",
+          "name": "Netherlands",
+          "slug": "netherlands",
+          "role": "Critical lithography equipment manufacturing"
+        },
+        {
+          "id": "gsc_japan",
+          "name": "Japan",
+          "slug": "japan",
+          "role": "Specialty materials, equipment, and sensors"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Large demand base and expanding domestic capacity"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Design IP and EDA \u2192 wafers and specialty chemicals \u2192 fab tools \u2192 fabrication \u2192 advanced packaging/test \u2192 OEMs (phones, autos, servers, medical devices).",
+        "nodes": [
+          {
+            "label": "EDA / IP",
+            "type": "design",
+            "note": "Software and IP licenses gate what can be designed."
+          },
+          {
+            "label": "Specialty chemicals & gases",
+            "type": "input",
+            "note": "Ultrapure inputs; few qualified suppliers."
+          },
+          {
+            "label": "Lithography & process tools",
+            "type": "equipment",
+            "note": "Long lead times; export-sensitive."
+          },
+          {
+            "label": "Wafer fab",
+            "type": "manufacturing",
+            "note": "Geographically concentrated leading edge."
+          },
+          {
+            "label": "Packaging & test",
+            "type": "manufacturing",
+            "note": "Often separate geography from front-end fab."
+          },
+          {
+            "label": "OEM assembly",
+            "type": "downstream",
+            "note": "Technology, Automotive, Healthcare devices."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-steel-tariff",
+          "headline": "Government announces higher tariffs on selected steel imports"
+        },
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Semiconductor risk is not a gadget story \u2014 it is a dependency story. A fab constraint shows up months later as delayed cars, servers, or imaging equipment.",
+        "analysis": "Treat leading-edge concentration as a structural fact, not a daily news pulse. Diversification of mature nodes and packaging can reduce some citizen-facing scarcity without solving geopolitics. Predicted household price effects should stay Low/Unknown confidence until inventory and contract data exist."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Electronics and vehicle availability can tighten when OEM allocations slip.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Device and auto costs may rise if shortages persist \u2014 not automatic.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_digital-access",
+          "label": "Digital access",
+          "detail": "Cloud and network capacity growth depends on server silicon availability.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Fab construction and supplier ecosystems create regional job effects.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_technology",
+          "name": "Technology",
+          "slug": "technology",
+          "relation": "Consumes logic, memory, and networking silicon",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_automotive",
+          "name": "Automotive",
+          "slug": "automotive",
+          "relation": "MCUs, sensors, and power electronics in vehicles",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Fabs need stable power; grids need industrial control chips",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_healthcare",
+          "name": "Healthcare",
+          "slug": "healthcare",
+          "relation": "Imaging, diagnostics, and connected devices",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_technology",
+        "gsi_automotive",
+        "gsi_healthcare",
+        "gsi_construction",
+        "gsi_energy"
+      ]
+    },
+    {
+      "id": "gsi_energy",
+      "slug": "energy",
+      "name": "Energy",
+      "tagline": "Fuels, grids, and generation that power every other industry.",
+      "summary": "Energy links extraction, refining, pipelines, shipping, electricity generation, and grids. Cyber incidents, weather, and corridor security can move fuel and power availability faster than most other sectors.",
+      "whatIsHappening": {
+        "text": "Oil and gas still set much of transport and industrial heat cost, while power grids absorb rising electrification and data-center load. Pipeline cyber risk, maritime corridor diversions, and weather extremes remain recurring stress tests for fuel and electricity reliability.",
+        "confidence": "Medium",
+        "horizon": "Weeks"
+      },
+      "why": {
+        "text": "Energy is the universal intermediate. When pipelines pause, tankers divert, or grids strain, Transportation, Shipping, Food cold chains, Construction materials, and households feel cost or reliability pressure.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Critical infrastructure cyber events",
+          "detail": "IT/OT incidents can pause physical flows even when malware targets billing systems.",
+          "confidence": "High",
+          "horizon": "Days"
+        },
+        {
+          "label": "Maritime fuel corridor risk",
+          "detail": "Diverted tanker routes raise voyage days and bunker burn.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Grid congestion and extreme weather",
+          "detail": "Heat, cold, or storms can force load shedding or price spikes regionally.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Grid flexibility and storage",
+          "detail": "Batteries and demand response can dampen short spikes without new baseload overnight.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Efficiency in industry and buildings",
+          "detail": "Lower intensity reduces exposure to fuel shocks.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Diversified fuel and power routes",
+          "detail": "Multiple pipelines, LNG terminals, and interconnectors reduce single chokepoints.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Oil & gas production, refining, pipelines, and large power demand"
+        },
+        {
+          "id": "gsc_saudi-arabia",
+          "name": "Saudi Arabia",
+          "slug": "saudi-arabia",
+          "role": "Major crude exporter; OPEC+ coordination relevance"
+        },
+        {
+          "id": "gsc_qatar",
+          "name": "Qatar",
+          "slug": "qatar",
+          "role": "LNG export capacity"
+        },
+        {
+          "id": "gsc_norway",
+          "name": "Norway",
+          "slug": "norway",
+          "role": "North Sea production and European supply relevance"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Largest energy importer and growing renewables fleet"
+        },
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "Industrial demand and European grid interconnection"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Upstream extraction \u2192 midstream transport (pipeline/tanker) \u2192 refining/generation \u2192 distribution \u2192 industrial and household end use.",
+        "nodes": [
+          {
+            "label": "Upstream fields",
+            "type": "extraction",
+            "note": "Geopolitically and geologically concentrated."
+          },
+          {
+            "label": "Pipelines / tankers",
+            "type": "infrastructure",
+            "note": "Chokepoints and cyber-sensitive operators."
+          },
+          {
+            "label": "Refineries / generators",
+            "type": "conversion",
+            "note": "Regional capacity constraints matter."
+          },
+          {
+            "label": "Wholesale markets",
+            "type": "market",
+            "note": "Price discovery; not advice."
+          },
+          {
+            "label": "Retail fuel & power",
+            "type": "downstream",
+            "note": "Citizen-visible layer."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-pipeline-cyber",
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        },
+        {
+          "id": "gsa_demo-canal-slots",
+          "headline": "Canal authority reduces daily transit slots after prolonged drought"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Energy shocks travel through logistics and food cold chains before they become \u2018inflation\u2019 stories. The first relationship to watch is infrastructure continuity, not spot headlines.",
+        "analysis": "Historical pipeline cyber patterns show precautionary shutdowns can create regional fuel stress within days. Treat predicted household price paths as Medium/Low confidence unless local inventory and allocation data confirm. Diversion of maritime lanes compounds fuel cost for Shipping and Transportation without implying a permanent regime."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_fuel-prices",
+          "label": "Fuel prices",
+          "detail": "Station-level shortages or price spikes are possible when product stops moving.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "id": "gsci_energy-reliability",
+          "label": "Energy reliability",
+          "detail": "Grid stress can affect heating, cooling, and medical equipment reliability.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Energy is a broad cost pass-through into goods and services \u2014 lags vary.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_transportation",
+          "label": "Transportation",
+          "detail": "Diesel availability affects freight and local transit.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Bunker fuel and tanker movements",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_transportation",
+          "name": "Transportation",
+          "slug": "transportation",
+          "relation": "Fuel for road/rail/air fleets",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_food",
+          "name": "Food",
+          "slug": "food",
+          "relation": "Cold chain and processing energy intensity",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_technology",
+          "name": "Technology",
+          "slug": "technology",
+          "relation": "Data centers and cloud power demand",
+          "confidence": "High"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_shipping",
+        "gsi_transportation",
+        "gsi_construction",
+        "gsi_food",
+        "gsi_technology"
+      ]
+    },
+    {
+      "id": "gsi_agriculture",
+      "slug": "agriculture",
+      "name": "Agriculture",
+      "tagline": "Crops, livestock, fertilizers, and weather-sensitive production.",
+      "summary": "Agriculture converts land, water, fertilizer, seed, and labor into commodities that feed Food processing and trade. Weather, ports, and fertilizer energy costs are recurring transmission channels.",
+      "whatIsHappening": {
+        "text": "Yields and planting decisions remain highly weather-dependent, while fertilizer costs track energy and export policies. Port and canal constraints affect export crop schedules; labor and water stress shape regional production capacity.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Agriculture is the upstream of Food. Disruptions in fertilizer, water, or export corridors show up later as Food prices and Availability of goods \u2014 with long lags and many offsets.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Drought and heat stress",
+          "detail": "Yield losses and livestock stress can tighten regional balances.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Fertilizer and energy cost spikes",
+          "detail": "Gas-linked fertilizer economics raise input costs for growers.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Export corridor delays",
+          "detail": "Port labor or canal constraints delay perishable and bulk shipments.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Water-efficient practices",
+          "detail": "Irrigation efficiency and drought-tolerant varieties reduce yield volatility.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Regional processing near production",
+          "detail": "Shorter cold-chain legs can cut spoilage risk.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "label": "Transparent inventory communication",
+          "detail": "Honest stock and forecast labeling reduces panic buying pressure.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Major grains, soy, and livestock exporter"
+        },
+        {
+          "id": "gsc_brazil",
+          "name": "Brazil",
+          "slug": "brazil",
+          "role": "Soy, corn, beef, and sugar export capacity"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Large production and domestic food demand"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Major importer and large producer"
+        },
+        {
+          "id": "gsc_australia",
+          "name": "Australia",
+          "slug": "australia",
+          "role": "Wheat and livestock export relevance"
+        },
+        {
+          "id": "gsc_argentina",
+          "name": "Argentina",
+          "slug": "argentina",
+          "role": "Soy and grains export corridor"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Inputs (seed, fertilizer, fuel, water) \u2192 farms \u2192 storage/elevators \u2192 ports/rail \u2192 Food processors and export markets.",
+        "nodes": [
+          {
+            "label": "Fertilizer & seed",
+            "type": "input",
+            "note": "Energy-linked and trade-policy sensitive."
+          },
+          {
+            "label": "Farms & ranches",
+            "type": "production",
+            "note": "Weather and labor intensive."
+          },
+          {
+            "label": "Storage & elevators",
+            "type": "infrastructure",
+            "note": "Inventory buffers matter."
+          },
+          {
+            "label": "Export ports",
+            "type": "logistics",
+            "note": "Shared with Shipping and Retail imports."
+          },
+          {
+            "label": "Food processing",
+            "type": "downstream",
+            "note": "Hand-off to Food industry."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        },
+        {
+          "id": "gsa_demo-canal-slots",
+          "headline": "Canal authority reduces daily transit slots after prolonged drought"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Agriculture transmits climate and logistics into Food prices slowly \u2014 skipping the farm layer makes consumer stories look mysterious.",
+        "analysis": "Port stoppages matter most for perishable and just-in-time export windows. Fertilizer cost pressure is an Energy\u2192Agriculture hop that should not be labeled Observed for household food prices until retail data confirms pass-through."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_food-prices",
+          "label": "Food prices",
+          "detail": "Farm-gate or wholesale shifts may reach retail with lags and substitutions.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Farm and processing labor markets feel regional shocks.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Export crop delays can affect processed food availability abroad.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_food",
+          "name": "Food",
+          "slug": "food",
+          "relation": "Primary downstream buyer of farm commodities",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Fertilizer, diesel, irrigation power",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Bulk and containerized ag exports",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_transportation",
+          "name": "Transportation",
+          "slug": "transportation",
+          "relation": "Truck/rail to elevators and ports",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_food",
+        "gsi_energy",
+        "gsi_shipping",
+        "gsi_retail",
+        "gsi_transportation"
+      ]
+    },
+    {
+      "id": "gsi_food",
+      "slug": "food",
+      "name": "Food",
+      "tagline": "Processing, cold chains, and retail shelves between farms and tables.",
+      "summary": "Food converts Agriculture outputs through processing, packaging, cold storage, and Retail distribution. Energy for refrigeration and Shipping/port reliability are first-order dependencies.",
+      "whatIsHappening": {
+        "text": "Processors and retailers balance inventory against logistics delays and energy costs. Perishable imports remain sensitive to port dwell time; packaging and labor constraints still shape shelf stability.",
+        "confidence": "Medium",
+        "horizon": "Weeks"
+      },
+      "why": {
+        "text": "Food is where Agriculture, Energy, Shipping, and Retail meet the household. Cold-chain breaks and port queues show up as Availability of goods and Food prices more visibly than farm reports alone.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Cold-chain energy and equipment failure",
+          "detail": "Refrigeration outages spoil inventory quickly.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "label": "Port and trucking delays for perishables",
+          "detail": "Dwell time exceeds shelf life windows.",
+          "confidence": "High",
+          "horizon": "Days"
+        },
+        {
+          "label": "Packaging and ingredient shortages",
+          "detail": "Upstream commodity or plastics constraints cascade into SKUs.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Local buffer inventory with honest labeling",
+          "detail": "Transparent stockouts beat empty-shelf surprise.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Alternate sourcing and substitution menus",
+          "detail": "Processors can reformulate within safety rules.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Energy-efficient cold storage",
+          "detail": "Lowers exposure to power and fuel spikes.",
+          "confidence": "Low",
+          "horizon": "Long-term"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Large processing and retail food system"
+        },
+        {
+          "id": "gsc_netherlands",
+          "name": "Netherlands",
+          "slug": "netherlands",
+          "role": "European agri-food trade hub"
+        },
+        {
+          "id": "gsc_brazil",
+          "name": "Brazil",
+          "slug": "brazil",
+          "role": "Processed meat and sugar export relevance"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Massive consumption and processing base"
+        },
+        {
+          "id": "gsc_thailand",
+          "name": "Thailand",
+          "slug": "thailand",
+          "role": "Seafood and processed food exports"
+        },
+        {
+          "id": "gsc_mexico",
+          "name": "Mexico",
+          "slug": "mexico",
+          "role": "Fresh produce and processed food trade with North America"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Farm commodities \u2192 processing plants \u2192 cold storage \u2192 wholesale \u2192 Retail / foodservice \u2192 households.",
+        "nodes": [
+          {
+            "label": "Ingredients & packaging",
+            "type": "input",
+            "note": "Tied to Agriculture and chemicals."
+          },
+          {
+            "label": "Processing plants",
+            "type": "manufacturing",
+            "note": "Labor and energy intensive."
+          },
+          {
+            "label": "Cold storage",
+            "type": "infrastructure",
+            "note": "Power-dependent buffer."
+          },
+          {
+            "label": "Wholesale distribution",
+            "type": "logistics",
+            "note": "Truck and rail legs."
+          },
+          {
+            "label": "Retail shelves",
+            "type": "downstream",
+            "note": "Citizen interface."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        },
+        {
+          "id": "gsa_demo-canal-slots",
+          "headline": "Canal authority reduces daily transit slots after prolonged drought"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Food security narratives often skip logistics. Port labor and canal capacity are Food stories when perishables are in the container mix.",
+        "analysis": "Sample briefs on port stoppages illustrate Days-horizon dwell risk for perishables. Household price effects remain Low confidence until retail scanners and substitution show persistent gaps \u2014 avoid treating every logistics delay as Observed inflation."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_food-prices",
+          "label": "Food prices",
+          "detail": "Retail prices and promotions adjust when wholesale costs or gaps persist.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Specific SKUs may go sparse before broad baskets move.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Food processing and grocery labor feel volume swings.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_agriculture",
+          "name": "Agriculture",
+          "slug": "agriculture",
+          "relation": "Primary commodity inputs",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_retail",
+          "name": "Retail",
+          "slug": "retail",
+          "relation": "Primary consumer distribution channel",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Processing heat and cold-chain power",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Imported ingredients and export foods",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_agriculture",
+        "gsi_retail",
+        "gsi_shipping",
+        "gsi_energy",
+        "gsi_transportation"
+      ]
+    },
+    {
+      "id": "gsi_transportation",
+      "slug": "transportation",
+      "name": "Transportation",
+      "tagline": "Road, rail, and air fleets that move people and freight inland.",
+      "summary": "Transportation connects ports, farms, factories, and cities. Fuel availability, vehicle components (including semiconductors), and labor determine how Shipping and Retail shocks propagate inland.",
+      "whatIsHappening": {
+        "text": "Freight networks absorb port queues and corridor diversions through trucking and rail. Fuel price sensitivity and vehicle component lead times continue to shape capacity. Passenger travel costs track fuel and schedule reliability.",
+        "confidence": "Medium",
+        "horizon": "Weeks"
+      },
+      "why": {
+        "text": "Without inland Transportation, Shipping arrivals and Agriculture harvests do not become Retail inventory. Fuel and labor are the binding constraints that turn distant events into local delays.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Fuel supply interruptions",
+          "detail": "Diesel shortages idle fleets and raise haul rates.",
+          "confidence": "High",
+          "horizon": "Days"
+        },
+        {
+          "label": "Driver and crew shortages",
+          "detail": "Labor limits throughput even when roads are open.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Vehicle parts lead times",
+          "detail": "Semiconductor and steel constraints delay fleet renewal.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Modal flexibility (truck \u2194 rail)",
+          "detail": "Shifting modes can relieve corridor congestion.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Idle-reduction and routing efficiency",
+          "detail": "Lowers fuel exposure without inventing capacity.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Transparent ETA communication",
+          "detail": "Honest delay labeling reduces cascading appointments failures.",
+          "confidence": "High",
+          "horizon": "Days"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Large trucking, rail, and air networks"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "High-speed rail and freight density"
+        },
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "European logistics hub and auto-linked freight"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Rapid freight growth and dense road networks"
+        },
+        {
+          "id": "gsc_mexico",
+          "name": "Mexico",
+          "slug": "mexico",
+          "role": "North American manufacturing corridor trucking"
+        },
+        {
+          "id": "gsc_poland",
+          "name": "Poland",
+          "slug": "poland",
+          "role": "European road freight corridor role"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Fuel & vehicles \u2192 carriers \u2192 hubs/terminals \u2192 last-mile \u2192 shippers (Retail, Food, Manufacturing).",
+        "nodes": [
+          {
+            "label": "Fuel & charging",
+            "type": "input",
+            "note": "Energy industry dependency."
+          },
+          {
+            "label": "Vehicles & parts",
+            "type": "equipment",
+            "note": "Automotive + Semiconductors."
+          },
+          {
+            "label": "Carriers & crews",
+            "type": "labor",
+            "note": "Capacity binding constraint."
+          },
+          {
+            "label": "Hubs & yards",
+            "type": "infrastructure",
+            "note": "Congestion amplifiers."
+          },
+          {
+            "label": "Shippers",
+            "type": "downstream",
+            "note": "Retail, Food, Construction."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-pipeline-cyber",
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        },
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Transportation is the inland amplifier. Pipeline cyber events and maritime diversions become local when trucks cannot fill or appointments slip.",
+        "analysis": "Treat fuel-related citizen impacts as potentially Medium confidence within Days when product movement pauses. Broader travel-cost predictions should stay Low until carrier fare and schedule data confirm."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_transportation",
+          "label": "Transportation",
+          "detail": "Local transit and freight reliability affect access to work and goods.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "id": "gsci_fuel-prices",
+          "label": "Fuel prices",
+          "detail": "Retail fuel follows wholesale when supply is tight.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        },
+        {
+          "id": "gsci_travel-costs",
+          "label": "Travel costs",
+          "detail": "Air and bus fares can move with fuel and schedule disruption.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Carrier and warehouse employment tracks freight volumes.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Diesel, jet fuel, and electricity for fleets",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Port handoff to inland moves",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_automotive",
+          "name": "Automotive",
+          "slug": "automotive",
+          "relation": "Fleet vehicles and parts",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_retail",
+          "name": "Retail",
+          "slug": "retail",
+          "relation": "Last-mile and DC replenishment",
+          "confidence": "High"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_energy",
+        "gsi_shipping",
+        "gsi_automotive",
+        "gsi_retail",
+        "gsi_food"
+      ]
+    },
+    {
+      "id": "gsi_shipping",
+      "slug": "shipping",
+      "name": "Shipping",
+      "tagline": "Ocean carriers, canals, straits, and port complexes.",
+      "summary": "Shipping moves bulk and containerized trade through canals, straits, and ports. Drought-limited canal slots, security diversions, and labor stoppages are primary stress modes.",
+      "whatIsHappening": {
+        "text": "Carriers continuously rebalance capacity across canals, contested corridors, and alternate Capes. Port labor actions and water-limited canal transit slots create queue dynamics that ripple into Retail, Automotive parts, and Food imports.",
+        "confidence": "Medium",
+        "horizon": "Weeks"
+      },
+      "why": {
+        "text": "Most intercontinental trade still travels by sea. A chokepoint delay is a multi-industry delay \u2014 Logistics in article tags often means this layer.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Canal capacity cuts (drought or maintenance)",
+          "detail": "Fewer daily slots lengthen waits and miss connections.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Security-driven corridor diversions",
+          "detail": "Longer routes raise voyage days and bunker use.",
+          "confidence": "High",
+          "horizon": "Days"
+        },
+        {
+          "label": "Port labor stoppages",
+          "detail": "Vessel queues and dwell time spike at terminals.",
+          "confidence": "High",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Alternate lane planning with honest ETAs",
+          "detail": "Reroutes work when shippers accept longer horizons.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Port productivity and night gates",
+          "detail": "Throughput gains reduce queue amplification.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Inventory buffers on critical SKUs",
+          "detail": "Retail and Auto parts can absorb some delay.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_singapore",
+          "name": "Singapore",
+          "slug": "singapore",
+          "role": "Major transshipment hub"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Largest container port complex throughput"
+        },
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Major import/export gateways"
+        },
+        {
+          "id": "gsc_panama",
+          "name": "Panama",
+          "slug": "panama",
+          "role": "Canal corridor relevance (illustrative drought pattern)"
+        },
+        {
+          "id": "gsc_uae",
+          "name": "United Arab Emirates",
+          "slug": "uae",
+          "role": "Gulf hub and energy shipping"
+        },
+        {
+          "id": "gsc_netherlands",
+          "name": "Netherlands",
+          "slug": "netherlands",
+          "role": "European gateway ports"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Shipper booking \u2192 ocean leg (canal/strait) \u2192 destination port \u2192 inland Transportation \u2192 consignee industries.",
+        "nodes": [
+          {
+            "label": "Booking & empty containers",
+            "type": "planning",
+            "note": "Equipment imbalances matter."
+          },
+          {
+            "label": "Ocean voyage",
+            "type": "infrastructure",
+            "note": "Canals and security corridors."
+          },
+          {
+            "label": "Port terminals",
+            "type": "infrastructure",
+            "note": "Labor and berth capacity."
+          },
+          {
+            "label": "Inland handoff",
+            "type": "logistics",
+            "note": "Trucking/rail to DCs."
+          },
+          {
+            "label": "Consignees",
+            "type": "downstream",
+            "note": "Retail, Auto, Food, Construction."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-canal-slots",
+          "headline": "Canal authority reduces daily transit slots after prolonged drought"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        },
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Shipping is a primary transmission layer for canal slots, corridor diversions, and port labor into citizen shelves \u2014 three distinct hop types that should not be collapsed into a single inflation story.",
+        "analysis": "Do not collapse every maritime delay into \u2018inflation.\u2019 Slot cuts and diversions are High confidence for voyage time; Low confidence for household prices until Retail and Food inventory confirm pass-through. Align article industry tag Logistics with this Shipping node when building graph edges."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Imported goods restock more slowly when queues persist.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Freight cost pass-through is possible but not automatic.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_fuel-prices",
+          "label": "Fuel prices",
+          "detail": "Longer voyages can pressure bunker markets \u2014 weak household link.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Port and warehouse labor hours swing with vessel arrivals.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Bunker fuel and tanker trades",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_retail",
+          "name": "Retail",
+          "slug": "retail",
+          "relation": "Containerized consumer goods",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_automotive",
+          "name": "Automotive",
+          "slug": "automotive",
+          "relation": "Parts and CKD movements",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_food",
+          "name": "Food",
+          "slug": "food",
+          "relation": "Perishable and packaged imports/exports",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_energy",
+        "gsi_retail",
+        "gsi_transportation",
+        "gsi_agriculture",
+        "gsi_automotive"
+      ],
+      "taxonomyAliases": [
+        "Logistics"
+      ]
+    },
+    {
+      "id": "gsi_healthcare",
+      "slug": "healthcare",
+      "name": "Healthcare",
+      "tagline": "Care delivery, devices, medicines, and cold-chain logistics.",
+      "summary": "Healthcare depends on medicines, devices, semiconductors in equipment, energy for facilities, and Shipping for APIs and consumables. Access and medicine availability are the citizen-facing outcomes.",
+      "whatIsHappening": {
+        "text": "Hospital and clinic operations remain sensitive to device lead times, pharmaceutical API geography, and staffing. Cold-chain integrity for some medicines tracks Energy and Shipping reliability. Digital health systems add Technology dependencies.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Healthcare failures are citizen-visible quickly. Upstream Semiconductor and Shipping delays become Imaging backlog or Medicine availability issues when buffers are thin.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "API and sterile injectable shortages",
+          "detail": "Concentrated manufacturing can halt specific therapies.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Device and semiconductor lead times",
+          "detail": "Imaging and monitoring equipment delays extend wait lists.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Facility energy reliability",
+          "detail": "Outages disrupt care and cold storage for medicines.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Diversified API and fill-finish capacity",
+          "detail": "Reduces single-country therapy risk.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Predictive inventory for critical SKUs",
+          "detail": "Honest shortage boards beat surprise stockouts.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Interoperable digital records",
+          "detail": "Care continuity when patients move \u2014 Technology hop.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Large care delivery system and device market"
+        },
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "Medical device and pharma manufacturing"
+        },
+        {
+          "id": "gsc_switzerland",
+          "name": "Switzerland",
+          "slug": "switzerland",
+          "role": "Pharma research and production"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Generic API and formulation capacity"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "API manufacturing and device supply"
+        },
+        {
+          "id": "gsc_ireland",
+          "name": "Ireland",
+          "slug": "ireland",
+          "role": "Pharma manufacturing hub role"
+        }
+      ],
+      "supplyChain": {
+        "overview": "APIs & device components \u2192 manufacturing \u2192 distribution cold chain \u2192 hospitals/pharmacies \u2192 patients.",
+        "nodes": [
+          {
+            "label": "APIs & components",
+            "type": "input",
+            "note": "Geographically concentrated for some therapies."
+          },
+          {
+            "label": "Fill-finish / device assembly",
+            "type": "manufacturing",
+            "note": "Quality-gated capacity."
+          },
+          {
+            "label": "Cold-chain logistics",
+            "type": "logistics",
+            "note": "Energy + Shipping sensitive."
+          },
+          {
+            "label": "Providers & pharmacies",
+            "type": "delivery",
+            "note": "Staffing constrained."
+          },
+          {
+            "label": "Patients",
+            "type": "citizen",
+            "note": "Access and medicine availability."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        },
+        {
+          "id": "gsa_demo-pipeline-cyber",
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Healthcare is where industrial dependencies become personal. A semiconductor delay in an imaging tube is not abstract when wait lists grow.",
+        "analysis": "Keep confidence Low on broad \u2018medicine crisis\u2019 claims without SKU-level shortage evidence. Energy reliability for clinics is a clearer Days-horizon hop when grids or fuel are stressed. Never present Waypoint\u2019s Take as clinical or medical advice."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_healthcare-access",
+          "label": "Healthcare access",
+          "detail": "Appointment and procedure wait times can lengthen when equipment or staff are constrained.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_medicine-availability",
+          "label": "Medicine availability",
+          "detail": "Specific drug shortages affect patients before averages move.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Care workforce stress affects retention and access.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_energy-reliability",
+          "label": "Energy reliability",
+          "detail": "Clinic and home medical device power reliability matters in outages.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_semiconductors",
+          "name": "Semiconductors",
+          "slug": "semiconductors",
+          "relation": "Imaging, monitors, and connected devices",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "APIs, devices, and consumables trade",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Facility power and cold chain",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_technology",
+          "name": "Technology",
+          "slug": "technology",
+          "relation": "EHR, telehealth, and cybersecurity",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_semiconductors",
+        "gsi_technology",
+        "gsi_energy",
+        "gsi_shipping",
+        "gsi_retail"
+      ]
+    },
+    {
+      "id": "gsi_automotive",
+      "slug": "automotive",
+      "name": "Automotive",
+      "tagline": "Vehicles, parts, and assembly plants spanning continents.",
+      "summary": "Automotive combines steel, semiconductors, chemicals, and logistics into assembled vehicles. Tariff, shipping, and chip constraints show up as production pauses and inventory-thin dealer lots.",
+      "whatIsHappening": {
+        "text": "Assemblers still manage semiconductor allocations, steel cost shifts, and ocean/rail parts timing. Electrification adds battery mineral and power-electronics dependencies. Just-in-time plants remain sensitive to Shipping and port delays.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Vehicles are a consumer and commercial capital good. Parts delays idle plants; plant idling becomes Employment and Transportation capacity stories.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Semiconductor allocation shortfalls",
+          "detail": "Missing MCUs halt lines despite other parts arriving.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Steel and materials cost shocks",
+          "detail": "Tariffs and input costs pressure BOM budgets.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Ocean parts delays",
+          "detail": "CKD and component containers stuck in queues.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Dual-sourcing critical electronics",
+          "detail": "Reduces single-foundry exposure.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Regionalized parts footprints",
+          "detail": "Nearshoring can cut ocean hop risk for some components.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Transparent build-slot communication",
+          "detail": "Honest wait times beat speculative delivery promises.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "Premium OEMs and supplier base"
+        },
+        {
+          "id": "gsc_japan",
+          "name": "Japan",
+          "slug": "japan",
+          "role": "Global OEM and parts networks"
+        },
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Assembly and large demand market"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Largest vehicle market and EV supply chain"
+        },
+        {
+          "id": "gsc_mexico",
+          "name": "Mexico",
+          "slug": "mexico",
+          "role": "North American assembly and parts"
+        },
+        {
+          "id": "gsc_south-korea",
+          "name": "South Korea",
+          "slug": "south-korea",
+          "role": "OEM and battery-related supply"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Raw materials & chips \u2192 tier suppliers \u2192 assembly plants \u2192 distribution \u2192 dealers / fleets.",
+        "nodes": [
+          {
+            "label": "Steel & chemicals",
+            "type": "input",
+            "note": "Construction-adjacent materials markets."
+          },
+          {
+            "label": "Semiconductors & batteries",
+            "type": "input",
+            "note": "Technology and Energy mineral links."
+          },
+          {
+            "label": "Tier 1\u20133 suppliers",
+            "type": "manufacturing",
+            "note": "Multi-country webs."
+          },
+          {
+            "label": "Assembly plants",
+            "type": "manufacturing",
+            "note": "JIT sensitive."
+          },
+          {
+            "label": "Dealers & fleets",
+            "type": "downstream",
+            "note": "Citizen and Transportation interface."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-steel-tariff",
+          "headline": "Government announces higher tariffs on selected steel imports"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        },
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Automotive is a teaching example of multi-hop dependency: steel tariffs, chip allocations, and shipping diversions can all idle the same plant for different reasons.",
+        "analysis": "Separate Observed plant notices from predicted dealer price effects. Sample steel-tariff brief is Medium confidence for manufacturing cost pressure and Low for household housing/auto sticker outcomes until contracts roll."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "New vehicle availability and options packages can thin.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Plant and supplier employment tracks build rates.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_transportation",
+          "label": "Transportation",
+          "detail": "Fleet renewal delays affect commercial transport capacity.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Transaction prices may firm when inventory is scarce \u2014 not guaranteed.",
+          "confidence": "Low",
+          "horizon": "Months"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_semiconductors",
+          "name": "Semiconductors",
+          "slug": "semiconductors",
+          "relation": "Vehicle electronics and ADAS",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Parts and finished vehicle movements",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_construction",
+          "name": "Construction",
+          "slug": "construction",
+          "relation": "Shared steel and materials markets",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Fuel use and EV charging demand",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_semiconductors",
+        "gsi_shipping",
+        "gsi_construction",
+        "gsi_retail",
+        "gsi_energy",
+        "gsi_technology"
+      ]
+    },
+    {
+      "id": "gsi_construction",
+      "slug": "construction",
+      "name": "Construction",
+      "tagline": "Materials, labor, and projects that shape housing and infrastructure.",
+      "summary": "Construction converts steel, cement, lumber, equipment, and labor into buildings and infrastructure. Material tariffs and energy costs feed project budgets; Housing is the primary citizen impact channel.",
+      "whatIsHappening": {
+        "text": "Project pipelines remain sensitive to steel, cement, and labor availability. Public infrastructure and private housing compete for crews and materials. Energy costs affect materials manufacturing and on-site operations.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Construction is how trade policy and materials shocks become Housing costs \u2014 with long lags and local variation. It also builds Energy, Shipping, and Healthcare facilities.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Steel and materials cost spikes",
+          "detail": "Tariffs or shortages pressure bids and change orders.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Labor scarcity",
+          "detail": "Skilled trades limit how fast projects absorb funding.",
+          "confidence": "High",
+          "horizon": "Months"
+        },
+        {
+          "label": "Equipment and semiconductor-enabled machinery delays",
+          "detail": "Crane and controls lead times slip schedules.",
+          "confidence": "Low",
+          "horizon": "Months"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Modular and offsite methods",
+          "detail": "Can compress schedules when logistics allow.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Materials substitution with clear codes",
+          "detail": "Alternate specs reduce single-commodity exposure.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Transparent cost escalation clauses",
+          "detail": "Honest contracts beat surprise abandonments.",
+          "confidence": "High",
+          "horizon": "Months"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Large residential and infrastructure market"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Massive materials demand and production"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Rapid urbanization and infrastructure build"
+        },
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "Engineering and materials technology"
+        },
+        {
+          "id": "gsc_turkey",
+          "name": "T\u00fcrkiye",
+          "slug": "turkey",
+          "role": "Cement and contractor export role"
+        },
+        {
+          "id": "gsc_australia",
+          "name": "Australia",
+          "slug": "australia",
+          "role": "Resources and domestic construction demand"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Materials producers \u2192 distributors \u2192 contractors \u2192 job sites \u2192 owners (housing, industry, public).",
+        "nodes": [
+          {
+            "label": "Steel, cement, lumber",
+            "type": "input",
+            "note": "Trade and Energy intensive."
+          },
+          {
+            "label": "Equipment dealers",
+            "type": "equipment",
+            "note": "Capex and lead times."
+          },
+          {
+            "label": "Contractors & trades",
+            "type": "labor",
+            "note": "Local binding constraint."
+          },
+          {
+            "label": "Job sites",
+            "type": "production",
+            "note": "Weather and permitting."
+          },
+          {
+            "label": "Owners & households",
+            "type": "downstream",
+            "note": "Housing and facilities."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-steel-tariff",
+          "headline": "Government announces higher tariffs on selected steel imports"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Construction is the slow transmitter. A steel tariff may matter for Housing months later \u2014 labeling that lag honestly is the product.",
+        "analysis": "Sample steel-tariff brief correctly keeps housing pass-through at Low confidence and Months horizon. Do not upgrade that to Observed without local bid and permit evidence."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_housing",
+          "label": "Housing",
+          "detail": "Build costs and timelines can affect rents and purchase prices with long lags.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Construction employment tracks project starts.",
+          "confidence": "High",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Shelter inflation components move slowly and locally.",
+          "confidence": "Low",
+          "horizon": "Long-term"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Materials manufacturing and site power/fuel",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_automotive",
+          "name": "Automotive",
+          "slug": "automotive",
+          "relation": "Shared steel markets and equipment",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Imported materials and machinery",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_technology",
+          "name": "Technology",
+          "slug": "technology",
+          "relation": "Building systems and project software",
+          "confidence": "Low"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_energy",
+        "gsi_automotive",
+        "gsi_shipping",
+        "gsi_retail",
+        "gsi_healthcare"
+      ]
+    },
+    {
+      "id": "gsi_retail",
+      "slug": "retail",
+      "name": "Retail",
+      "tagline": "The shelf where Shipping, Food, and household demand meet.",
+      "summary": "Retail converts wholesale inventory into household Availability of goods. It inherits Shipping delays, Food cold-chain issues, and Energy costs for stores and last-mile Transportation.",
+      "whatIsHappening": {
+        "text": "Retailers manage inventory buffers against ocean and port variability while balancing promotions and labor. E-commerce last-mile remains fuel and wage sensitive. Category shortages often appear SKU-specific before basket-wide.",
+        "confidence": "Medium",
+        "horizon": "Weeks"
+      },
+      "why": {
+        "text": "Retail is the citizen dashboard for industrial stress. Empty shelves are more legible than canal notices \u2014 Global Signals exists to reconnect them without panic.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Inbound container delays",
+          "detail": "DC replenishment slips; promotions fail.",
+          "confidence": "High",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Last-mile fuel and labor cost pressure",
+          "detail": "Delivery economics tighten.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "label": "Category-specific supplier shocks",
+          "detail": "Food or electronics gaps without broad crisis.",
+          "confidence": "Medium",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Honest stock and substitution UX",
+          "detail": "Builds trust when SKUs are sparse.",
+          "confidence": "High",
+          "horizon": "Days"
+        },
+        {
+          "label": "Flexible DC networks",
+          "detail": "Reroute inventory around congested gateways.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Supplier diversification for critical categories",
+          "detail": "Reduces single-port exposure.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Large retail and e-commerce demand"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Manufacturing-linked retail exports and domestic market"
+        },
+        {
+          "id": "gsc_united-kingdom",
+          "name": "United Kingdom",
+          "slug": "united-kingdom",
+          "role": "Import-reliant retail system"
+        },
+        {
+          "id": "gsc_germany",
+          "name": "Germany",
+          "slug": "germany",
+          "role": "European retail and discounter networks"
+        },
+        {
+          "id": "gsc_japan",
+          "name": "Japan",
+          "slug": "japan",
+          "role": "Dense retail and convenience logistics"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Growing modern retail and digital commerce"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Suppliers \u2192 ocean/air Shipping \u2192 DCs \u2192 stores / last-mile \u2192 households.",
+        "nodes": [
+          {
+            "label": "Suppliers & importers",
+            "type": "upstream",
+            "note": "Multi-industry mix."
+          },
+          {
+            "label": "Ports & DCs",
+            "type": "logistics",
+            "note": "Shipping + Transportation."
+          },
+          {
+            "label": "Stores & dark stores",
+            "type": "delivery",
+            "note": "Labor and energy."
+          },
+          {
+            "label": "Last-mile",
+            "type": "logistics",
+            "note": "Fuel sensitive."
+          },
+          {
+            "label": "Households",
+            "type": "citizen",
+            "note": "Availability and prices."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-canal-slots",
+          "headline": "Canal authority reduces daily transit slots after prolonged drought"
+        },
+        {
+          "id": "gsa_demo-shipping-diversion",
+          "headline": "Carriers divert sailings away from a contested maritime corridor"
+        },
+        {
+          "id": "gsa_demo-port-labor",
+          "headline": "Labor stoppage slows cargo handling at a major coastal port complex"
+        },
+        {
+          "id": "gsa_demo-pipeline-cyber",
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Retail is where relationship intelligence becomes everyday literacy. The goal is calm connection \u2014 not a doom shelf feed.",
+        "analysis": "When sample canal or port briefs tag Retail, treat Weeks-horizon goods availability as plausible Medium/Low \u2014 never Observed \u2014 until shelf and DC data exist. Prefer SKU-level honesty over national averages."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Primary interface for noticing delayed restocks.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_inflation-household-costs",
+          "label": "Inflation / household costs",
+          "detail": "Posted prices and promotions reflect cost pressure unevenly.",
+          "confidence": "Low",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Store and warehouse hours track volume.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_food-prices",
+          "label": "Food prices",
+          "detail": "Grocery categories inherit Food and Agriculture shocks.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Inbound containers for many categories",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_food",
+          "name": "Food",
+          "slug": "food",
+          "relation": "Grocery assortment",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_transportation",
+          "name": "Transportation",
+          "slug": "transportation",
+          "relation": "DC and last-mile moves",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Store operations and delivery fuel",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_shipping",
+        "gsi_food",
+        "gsi_transportation",
+        "gsi_technology",
+        "gsi_automotive"
+      ]
+    },
+    {
+      "id": "gsi_technology",
+      "slug": "technology",
+      "name": "Technology",
+      "tagline": "Cloud, software, devices, and digital infrastructure.",
+      "summary": "Technology products and cloud services depend on Semiconductors, Energy for data centers, and Shipping for hardware. Digital access and employment in tech-enabled sectors are citizen outcomes.",
+      "whatIsHappening": {
+        "text": "Cloud and AI workloads raise power and advanced silicon demand. Device OEMs still manage memory/logic availability and logistics. Cybersecurity incidents in adjacent critical infrastructure illustrate Technology\u2019s dual role as enabler and risk surface.",
+        "confidence": "Medium",
+        "horizon": "Months"
+      },
+      "why": {
+        "text": "Technology multiplies other industries\u2019 productivity and their fragility. When silicon or power constrains cloud growth, Digital access and business continuity feel it; when OT-connected systems fail, Energy and Shipping can pause.",
+        "confidence": "High",
+        "horizon": "Long-term"
+      },
+      "threats": [
+        {
+          "label": "Advanced silicon and memory constraints",
+          "detail": "Server and device refresh cycles slip.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Data-center power availability",
+          "detail": "Interconnection queues limit new capacity.",
+          "confidence": "High",
+          "horizon": "Months"
+        },
+        {
+          "label": "Cyber risk to dependent infrastructure",
+          "detail": "IT compromise can cascade into physical operations.",
+          "confidence": "High",
+          "horizon": "Days"
+        }
+      ],
+      "opportunities": [
+        {
+          "label": "Efficiency in compute and cooling",
+          "detail": "Same silicon goes further; lowers Energy intensity.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "label": "Open standards and portable workloads",
+          "detail": "Reduces lock-in during regional outages.",
+          "confidence": "Medium",
+          "horizon": "Long-term"
+        },
+        {
+          "label": "Honest capability labeling",
+          "detail": "Separate demo features from production SLAs.",
+          "confidence": "High",
+          "horizon": "Immediate"
+        }
+      ],
+      "majorCountries": [
+        {
+          "id": "gsc_united-states",
+          "name": "United States",
+          "slug": "united-states",
+          "role": "Cloud hyperscalers, software, and design leadership"
+        },
+        {
+          "id": "gsc_china",
+          "name": "China",
+          "slug": "china",
+          "role": "Large platform market and hardware manufacturing"
+        },
+        {
+          "id": "gsc_taiwan",
+          "name": "Taiwan",
+          "slug": "taiwan",
+          "role": "Foundry link via Semiconductors"
+        },
+        {
+          "id": "gsc_south-korea",
+          "name": "South Korea",
+          "slug": "south-korea",
+          "role": "Memory and consumer electronics"
+        },
+        {
+          "id": "gsc_india",
+          "name": "India",
+          "slug": "india",
+          "role": "Services and growing digital market"
+        },
+        {
+          "id": "gsc_ireland",
+          "name": "Ireland",
+          "slug": "ireland",
+          "role": "European data-center and tech hub role"
+        },
+        {
+          "id": "gsc_singapore",
+          "name": "Singapore",
+          "slug": "singapore",
+          "role": "Regional digital and data hub"
+        }
+      ],
+      "supplyChain": {
+        "overview": "Chip & component supply \u2192 OEM/ODM assembly \u2192 cloud/data centers & devices \u2192 software/services \u2192 users and dependent industries.",
+        "nodes": [
+          {
+            "label": "Semiconductors",
+            "type": "input",
+            "note": "Core physical constraint."
+          },
+          {
+            "label": "OEM/ODM assembly",
+            "type": "manufacturing",
+            "note": "Shipping sensitive."
+          },
+          {
+            "label": "Data centers",
+            "type": "infrastructure",
+            "note": "Energy intensive."
+          },
+          {
+            "label": "Networks",
+            "type": "infrastructure",
+            "note": "Shared with telecom."
+          },
+          {
+            "label": "Applications & users",
+            "type": "downstream",
+            "note": "Digital access."
+          }
+        ]
+      },
+      "relatedArticles": [
+        {
+          "id": "gsa_demo-pipeline-cyber",
+          "headline": "Ransomware disrupts a major fuel pipeline operator\u2019s billing systems"
+        },
+        {
+          "id": "gsa_demo-steel-tariff",
+          "headline": "Government announces higher tariffs on selected steel imports"
+        }
+      ],
+      "waypointsTake": {
+        "whyItMatters": "Technology is both a consumer industry and an invisible dependency inside Energy, Healthcare, and Retail. Relationship maps should show both faces.",
+        "analysis": "Pipeline cyber sample shows Technology-adjacent risk becoming fuel Availability within Days. Keep predictive claims about digital-service outages Medium/Low unless operator notices confirm scope. Never imply investment advice from cloud demand narratives."
+      },
+      "citizenImpacts": [
+        {
+          "id": "gsci_digital-access",
+          "label": "Digital access",
+          "detail": "Broadband and cloud service quality affect work, learning, and care access.",
+          "confidence": "Medium",
+          "horizon": "Weeks"
+        },
+        {
+          "id": "gsci_employment",
+          "label": "Employment",
+          "detail": "Tech and tech-enabled jobs track investment cycles.",
+          "confidence": "Medium",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_availability-of-goods",
+          "label": "Availability of goods",
+          "detail": "Device availability follows silicon and Shipping.",
+          "confidence": "Low",
+          "horizon": "Months"
+        },
+        {
+          "id": "gsci_energy-reliability",
+          "label": "Energy reliability",
+          "detail": "Data-center growth competes for regional power \u2014 local effects vary.",
+          "confidence": "Low",
+          "horizon": "Long-term"
+        }
+      ],
+      "topDependencies": [
+        {
+          "industryId": "gsi_semiconductors",
+          "name": "Semiconductors",
+          "slug": "semiconductors",
+          "relation": "Logic, memory, networking silicon",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_energy",
+          "name": "Energy",
+          "slug": "energy",
+          "relation": "Data-center and network power",
+          "confidence": "High"
+        },
+        {
+          "industryId": "gsi_shipping",
+          "name": "Shipping",
+          "slug": "shipping",
+          "relation": "Hardware and component logistics",
+          "confidence": "Medium"
+        },
+        {
+          "industryId": "gsi_healthcare",
+          "name": "Healthcare",
+          "slug": "healthcare",
+          "relation": "Digital health and device software",
+          "confidence": "Medium"
+        }
+      ],
+      "relatedIndustries": [
+        "gsi_semiconductors",
+        "gsi_energy",
+        "gsi_healthcare",
+        "gsi_retail",
+        "gsi_automotive"
+      ]
+    }
+  ]
+}

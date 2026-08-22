@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "note": "Authoritative sources used to ground Animal Vision and honesty language. Prefer peer-reviewed and university/wildlife research over popular summaries.",
+  "citations": [
+    {
+      "id": "jacobs-1994-deer",
+      "authors": "Jacobs GH, Deegan JF II, Neitz J, Anderson DH",
+      "year": 1994,
+      "title": "Photopigments and color vision in the white-tailed deer (Odocoileus virginianus)",
+      "venue": "Investigative Ophthalmology & Visual Science",
+      "type": "peer-reviewed",
+      "use": "Deer dichromatic cone peaks and reduced long-wavelength discrimination."
+    },
+    {
+      "id": "vercauteren-2003-deer",
+      "authors": "VerCauteren KC, Pipas MJ",
+      "year": 2003,
+      "title": "A review of color vision in white-tailed deer",
+      "venue": "Wildlife Society Bulletin",
+      "type": "peer-reviewed-review",
+      "use": "Outdoor-relevant synthesis of deer color vision implications."
+    },
+    {
+      "id": "neitz-1989-dog",
+      "authors": "Neitz J, Geist T, Jacobs GH",
+      "year": 1989,
+      "title": "Color vision in the dog",
+      "venue": "Visual Neuroscience",
+      "type": "peer-reviewed",
+      "use": "Canine dichromacy and behavioral color discrimination."
+    },
+    {
+      "id": "miller-murphy-1995-dog",
+      "authors": "Miller PE, Murphy CJ",
+      "year": 1995,
+      "title": "Vision in dogs",
+      "venue": "Journal of the American Veterinary Medical Association",
+      "type": "peer-reviewed-review",
+      "use": "Clinical/veterinary summary of canine visual system limits."
+    },
+    {
+      "id": "brettel-1997-dichromat",
+      "authors": "Brettel H, Viénot F, Mollon JD",
+      "year": 1997,
+      "title": "Computerized simulation of color appearance for dichromats",
+      "venue": "Journal of the Optical Society of America A",
+      "type": "peer-reviewed",
+      "use": "Methodological basis for LMS-plane dichromat simulation on RGB displays."
+    },
+    {
+      "id": "cie-1931",
+      "authors": "CIE",
+      "year": 1931,
+      "title": "Commission Internationale de l’Éclairage colorimetric standards (XYZ)",
+      "venue": "CIE",
+      "type": "standard",
+      "use": "sRGB ↔ XYZ foundation for luminance and color-space transforms."
+    },
+    {
+      "id": "rec709",
+      "authors": "ITU-R",
+      "year": 2015,
+      "title": "Recommendation ITU-R BT.709 — Parameter values for HDTV",
+      "venue": "ITU",
+      "type": "standard",
+      "use": "Relative luminance weights used in Light views."
+    },
+    {
+      "id": "chittka-1992-bee",
+      "authors": "Chittka L, Beier W, Hertel H, Steinmann E, Menzel R",
+      "year": 1992,
+      "title": "Opponent colour coding is a universal strategy to evaluate the photoreceptor inputs in Hymenoptera",
+      "venue": "Journal of Comparative Physiology A",
+      "type": "peer-reviewed",
+      "use": "Supports why bee-relevant contrast often needs UV — cited for UNAVAILABLE rationale, not for inventing UV."
+    }
+  ]
+}

@@ -1,19 +1,20 @@
 /* Waypoint Scenes — photography landing on shared Rebuild foundation.
- * Product accents (violet / midnight / lime / magenta) only — no olive/moss shell.
+ * Product accents (sage / plum) on Design System 2.0 aubergine ground.
  */
 
 html[data-product="scenes"],
 .was-shell[data-product="scenes"] {
-  --scenes-ink: var(--wds-text, #eef2f6);
-  --scenes-muted: var(--wds-text-secondary, rgba(238, 242, 246, 0.78));
-  --scenes-navy: var(--wds-bg, #080f1c);
-  --scenes-midnight: var(--aurora-midnight, #0b1a3a);
-  --scenes-violet: var(--aurora-violet, #9b7ed4);
-  --scenes-lime: var(--aurora-lime, #c6ff4d);
-  --scenes-magenta: var(--aurora-magenta, #d46ba8);
-  --wds-accent: var(--scenes-lime);
-  --wds-warm: var(--scenes-violet);
-  --wds-product-glow: rgba(155, 126, 212, 0.22);
+  --scenes-ink: var(--wp-text, var(--wds-text, #f2ebe0));
+  --scenes-muted: var(--wp-text-secondary, var(--wds-text-secondary));
+  --scenes-navy: var(--wp-bg, var(--wds-bg, #17131c));
+  --scenes-midnight: var(--wp-aubergine-900, #1f1a26);
+  --scenes-violet: var(--wp-plum-bright, #a3889a);
+  --scenes-lime: var(--wp-sage-bright, #95a788);
+  --scenes-magenta: var(--wp-plum, #8b6f82);
+  --wds-accent: var(--wp-accent, var(--scenes-lime));
+  --wp-accent: var(--wp-sage-bright, #95a788);
+  --wds-warm: var(--wp-warm, var(--scenes-violet));
+  --wds-product-glow: rgba(125, 143, 114, 0.2);
   background: var(--scenes-navy);
   color: var(--scenes-ink);
   font-family: var(--wds-font-body);

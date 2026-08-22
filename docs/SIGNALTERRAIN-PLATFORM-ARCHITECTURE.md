@@ -1,10 +1,13 @@
 # SignalTerrain — Platform Architecture
 
-**Status:** Active foundation  
+**Status:** Experimental (Side Trails)  
+**Studio IA:** Waypoint Studio → Side Trails → SignalTerrain  
 **Vision:** [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md)  
 **Studio map:** [PLATFORM-ARCHITECTURE.md](PLATFORM-ARCHITECTURE.md) (Waypoint Studio layers — not replaced by this file)
 
 This document describes SignalTerrain’s **product platform architecture**: workspaces, shared systems, topic graph, and how Signal Intelligence contracts plug in.
+
+SignalTerrain is **not** a studio primary peer of Dashboard, Scenes, or Sheds. Listings and architecture registries place it under Side Trails. Existing app URLs under `/apps/signalterrain/` remain valid; the product landing is `/side-trails/signalterrain/`.
 
 ---
 

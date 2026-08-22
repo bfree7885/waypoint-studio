@@ -61,6 +61,7 @@ Not every cyber event. Adaptive recommendations from current intelligence × env
 
 ## Related docs
 
+- [SIGNALTERRAIN-DYNAMIC-DEFENSIVE-POSTURE-ENGINE.md](SIGNALTERRAIN-DYNAMIC-DEFENSIVE-POSTURE-ENGINE.md) — architecture for dynamic daily posture deltas (**design only; not implemented in that doc’s branch**)  
 - [SECURITY-PROFILES.md](SECURITY-PROFILES.md)  
 - [EXPOSURE-ANALYSIS.md](EXPOSURE-ANALYSIS.md)  
 - [CYBER-SEASONS.md](CYBER-SEASONS.md)  

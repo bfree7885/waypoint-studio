@@ -1,0 +1,23 @@
+{
+  "baseline": "00f9a909",
+  "viewports": [
+    320,
+    375,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "acceptance": {
+    "mobileHeaderInFlow": true,
+    "conditionsHeaderNowOutside": true,
+    "oneColumnThrough768": true,
+    "moonPhaseSource": "open-meteo moon_phase / daylight moonPhaseValue + computed illumination; local synodic fallback via moonPhaseFromDate",
+    "luminousEdges": "domain-colored corner washes + --wdb-r-glow-strength",
+    "limitations": [
+      "Near-new moon (~4% illum) renders as thin crescent matching illumination rather than a fully dark disc",
+      "Desktop sticky header retained above 768",
+      "Live weather/astronomy values vary by capture time"
+    ]
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "version": 2,
+  "product": "hidden-landscapes",
+  "mission": "Reveal information that is already in the photograph — light, color, structure, and research-informed animal vision simulations — without inventing UV, IR, or thermal signals.",
+  "privacyNote": "Processed locally — never uploaded.",
+  "promise": "Look again — light, color, structure, and animal vision already waiting in your photograph.",
+  "epistemicLabels": [
+    {
+      "id": "measured",
+      "label": "MEASURED",
+      "meaning": "Taken from values present in the file or EXIF when available."
+    },
+    {
+      "id": "computed",
+      "label": "COMPUTED",
+      "meaning": "Derived mathematically from RGB pixel values in the photograph."
+    },
+    {
+      "id": "simulated",
+      "label": "SIMULATED",
+      "meaning": "A human-viewable approximation grounded in research, not a claim of exact non-human experience."
+    },
+    {
+      "id": "inferred",
+      "label": "INFERRED",
+      "meaning": "Estimated from visual cues; not directly measured."
+    },
+    {
+      "id": "unavailable",
+      "label": "UNAVAILABLE",
+      "meaning": "The required signal was not captured in this RGB photograph."
+    }
+  ],
+  "spectralUnavailable": [
+    {
+      "id": "ultraviolet",
+      "title": "Ultraviolet",
+      "status": "unavailable",
+      "summary": "Ordinary RGB photographs do not contain ultraviolet reflectance. Waypoint will not invent UV nectar guides or UV plumage patterns into your image."
+    },
+    {
+      "id": "infrared",
+      "title": "Near-infrared",
+      "status": "unavailable",
+      "summary": "Stock cameras block most near-infrared. Creative IR looks are not offered as if they were captured IR."
+    },
+    {
+      "id": "thermal",
+      "title": "Thermal",
+      "status": "unavailable",
+      "summary": "Thermal radiance is a different measurement. RGB luminance is not heat."
+    },
+    {
+      "id": "polarization",
+      "title": "Polarization",
+      "status": "unavailable",
+      "summary": "Polarization requires dedicated capture. It is not recoverable from a standard photograph."
+    },
+    {
+      "id": "hyperspectral",
+      "title": "Hyperspectral",
+      "status": "unavailable",
+      "summary": "Hyperspectral bands beyond RGB are not present in this file."
+    }
+  ],
+  "pillars": [
+    {
+      "id": "light",
+      "name": "Light",
+      "question": "Where is light concentrated, and how is tonal information distributed?",
+      "views": [
+        {
+          "id": "photo",
+          "name": "Photograph",
+          "epistemic": "measured",
+          "short": "Your source frame as decoded.",
+          "what": "The photograph you opened — the reference for every comparison.",
+          "why": "Discovery starts from what the camera actually recorded in visible light.",
+          "measured": "Decoded RGB pixels from the selected source (Original or Waypoint Edit)."
+        },
+        {
+          "id": "luminance",
+          "name": "Luminance",
+          "epistemic": "computed",
+          "short": "Relative brightness of each pixel.",
+          "what": "A grayscale map of relative luminance (Rec. 709 weights on linearized sRGB).",
+          "why": "Human vision and photography both lean on luminance structure more than hue alone.",
+          "measured": "Per-pixel Y computed from sRGB → linear → Rec. 709 luminance."
+        },
+        {
+          "id": "tonal",
+          "name": "Tonal structure",
+          "epistemic": "computed",
+          "short": "Shadow, midtone, and highlight regions.",
+          "what": "Zones classified from the luminance histogram of this JPEG/PNG — not RAW recovery.",
+          "why": "Shows where detail is compressed versus open, within what this file contains.",
+          "measured": "Luminance histogram bins; clipped highlights counted from near-255 samples."
+        },
+        {
+          "id": "concentration",
+          "name": "Light concentration",
+          "epistemic": "computed",
+          "short": "Where the brightest energy gathers.",
+          "what": "A soft map emphasizing regions that contribute most of the scene’s bright energy.",
+          "why": "Helps you notice sky dominance, specular water, or bright openings you may overlook.",
+          "measured": "Spatial weighting of high-luminance pixels on a downsampled analysis grid."
+        }
+      ]
+    },
+    {
+      "id": "color",
+      "name": "Color",
+      "question": "How do color families and relationships organize this landscape?",
+      "views": [
+        {
+          "id": "photo",
+          "name": "Photograph",
+          "epistemic": "measured",
+          "short": "Your source frame as decoded.",
+          "what": "The photograph you opened.",
+          "why": "Color exploration is relative to what was actually recorded.",
+          "measured": "Decoded RGB pixels."
+        },
+        {
+          "id": "families",
+          "name": "Color families",
+          "epistemic": "computed",
+          "short": "Dominant hue families in the frame.",
+          "what": "A posterized reading of major hue families by pixel share — observation, not a palette product.",
+          "why": "Makes the scene’s chromatic structure easier to notice at a glance.",
+          "measured": "Hue histogram in HSL space with saturation/value gates."
+        },
+        {
+          "id": "warm-cool",
+          "name": "Warm / cool",
+          "epistemic": "computed",
+          "short": "Warm versus cool balance.",
+          "what": "A split view tinting warm and cool regions for comparison.",
+          "why": "Temperature relationships often organize outdoor light more than we consciously register.",
+          "measured": "Per-pixel warm/cool classification from hue angle."
+        },
+        {
+          "id": "saturation",
+          "name": "Saturation",
+          "epistemic": "computed",
+          "short": "Where chroma is strong or quiet.",
+          "what": "A map of relative saturation; low-chroma areas stay muted.",
+          "why": "Chromatic accents (understory, flowers, signs) often hide in overall green or brown scenes.",
+          "measured": "HSL saturation from RGB."
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "name": "Structure",
+      "question": "What are the bones of this photograph — edges, texture, and form?",
+      "views": [
+        {
+          "id": "photo",
+          "name": "Photograph",
+          "epistemic": "measured",
+          "short": "Your source frame as decoded.",
+          "what": "The photograph you opened.",
+          "why": "Structure views are overlays on real detail, not invented geometry.",
+          "measured": "Decoded RGB pixels."
+        },
+        {
+          "id": "edges",
+          "name": "Edge density",
+          "epistemic": "computed",
+          "short": "Where spatial change is strongest.",
+          "what": "A Sobel magnitude map — brighter means stronger local edge energy.",
+          "why": "Edge density often concentrates in foliage, shoreline, or built edges you skim past.",
+          "measured": "Sobel gradient magnitude on luminance."
+        },
+        {
+          "id": "texture",
+          "name": "Texture",
+          "epistemic": "computed",
+          "short": "Local variance / roughness.",
+          "what": "Local luminance variance — a proxy for texture richness, not a material classifier.",
+          "why": "Helps separate smooth sky/water from busy vegetation or ground cover.",
+          "measured": "Sliding-window variance on analysis-resolution luminance."
+        },
+        {
+          "id": "local-contrast",
+          "name": "Local contrast",
+          "epistemic": "computed",
+          "short": "Neighborhood contrast strength.",
+          "what": "How strongly each neighborhood differs from its local mean.",
+          "why": "Local contrast often reveals form when global contrast looks flat.",
+          "measured": "Absolute deviation from local mean luminance."
+        },
+        {
+          "id": "estimated-depth",
+          "name": "Estimated depth",
+          "epistemic": "inferred",
+          "short": "INFERRED depth cues only.",
+          "what": "A soft near/far estimate from haze and vertical position cues — not a depth map from stereo or LiDAR.",
+          "why": "Useful as a reading aid; never treat as measured distance.",
+          "measured": "Heuristic from relative luminance haze and image Y position (INFERRED)."
+        }
+      ]
+    },
+    {
+      "id": "animal",
+      "name": "Animal Vision",
+      "question": "How might selected differences appear under another visual system?",
+      "views": [
+        {
+          "id": "human",
+          "name": "Human (source)",
+          "epistemic": "measured",
+          "short": "Your RGB photograph as humans view it on this display.",
+          "what": "The source photograph on a human RGB display.",
+          "why": "Comparison baseline for every simulation.",
+          "measured": "Decoded RGB pixels."
+        },
+        {
+          "id": "deer",
+          "name": "White-tailed deer",
+          "epistemic": "simulated",
+          "short": "SIMULATED dichromatic deer color approximation.",
+          "what": "A research-informed dichromatic remap — not exact deer subjective vision.",
+          "why": "Red–green separation collapses in ways that matter for trail markers, berries, and clothing.",
+          "measured": "LMS projection onto a deer-like dichromat plane (SIMULATED)."
+        },
+        {
+          "id": "canine",
+          "name": "Canine",
+          "epistemic": "simulated",
+          "short": "SIMULATED dichromatic canine color approximation.",
+          "what": "A research-informed dichromatic remap for dog/canid cone assumptions.",
+          "why": "Shows which color contrasts remain informative versus collapsed.",
+          "measured": "LMS projection onto a canine-like dichromat plane (SIMULATED)."
+        },
+        {
+          "id": "bee-uv",
+          "name": "Bee / UV",
+          "epistemic": "unavailable",
+          "short": "UV reflectance UNAVAILABLE from RGB.",
+          "what": "Educational state: this photograph cannot reconstruct ultraviolet flower patterns.",
+          "why": "Honesty beats inventing nectar guides the camera never measured.",
+          "measured": "No UV channel in source — UNAVAILABLE."
+        },
+        {
+          "id": "bird-uv",
+          "name": "Bird / UV",
+          "epistemic": "unavailable",
+          "short": "Bird UV deferred — UNAVAILABLE from RGB.",
+          "what": "Many birds sense UV; ordinary RGB files do not record it. Mode deferred rather than faked.",
+          "why": "Deferring weak models protects scientific trust.",
+          "measured": "No UV channel in source — UNAVAILABLE."
+        }
+      ]
+    }
+  ]
+}

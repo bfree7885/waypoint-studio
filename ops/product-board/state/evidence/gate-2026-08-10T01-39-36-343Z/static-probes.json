@@ -1,0 +1,131 @@
+{
+  "id": "static-probes",
+  "kind": "static_probe",
+  "at": "2026-08-10T01:39:36.379Z",
+  "status": "fail",
+  "summary": "Scanned 273 files; 11 findings",
+  "severity": null,
+  "data": {
+    "evaluatedAt": "2026-08-10T01:39:36.379Z",
+    "filesScanned": 273,
+    "findings": [
+      {
+        "id": "placeholder_detection:todo-ui",
+        "dimension": "placeholder_detection",
+        "severity": "P3",
+        "message": "todo-ui in apps/scenes/js/engines/scene-engine.js",
+        "file": "apps/scenes/js/engines/scene-engine.js",
+        "labeledSample": true
+      },
+      {
+        "id": "placeholder_detection:coming-soon-as-feature",
+        "dimension": "placeholder_detection",
+        "severity": "P2",
+        "message": "coming-soon-as-feature in side-trails/global-signals/about/index.html",
+        "file": "side-trails/global-signals/about/index.html",
+        "labeledSample": false
+      },
+      {
+        "id": "placeholder_detection:coming-soon-as-feature",
+        "dimension": "placeholder_detection",
+        "severity": "P2",
+        "message": "coming-soon-as-feature in side-trails/global-signals/scenario-explorer/index.html",
+        "file": "side-trails/global-signals/scenario-explorer/index.html",
+        "labeledSample": false
+      },
+      {
+        "id": "placeholder_detection:coming-soon-as-feature",
+        "dimension": "placeholder_detection",
+        "severity": "P2",
+        "message": "coming-soon-as-feature in side-trails/global-signals/supply-chains/index.html",
+        "file": "side-trails/global-signals/supply-chains/index.html",
+        "labeledSample": false
+      },
+      {
+        "id": "placeholder_detection:coming-soon-as-feature",
+        "dimension": "placeholder_detection",
+        "severity": "P2",
+        "message": "coming-soon-as-feature in side-trails/global-signals/waypoint-take/index.html",
+        "file": "side-trails/global-signals/waypoint-take/index.html",
+        "labeledSample": false
+      },
+      {
+        "id": "dead_controls:disabled-primary-no-reason",
+        "dimension": "dead_controls",
+        "severity": "P2",
+        "message": "disabled-primary-no-reason in apps/waypoint-scenes/index.html",
+        "file": "apps/waypoint-scenes/index.html",
+        "labeledSample": false
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+        "file": "apps/scenes/hidden-landscapes/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+        "file": "apps/scenes/photo-coach/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: apps/scenes/photo-library/index.html",
+        "file": "apps/scenes/photo-library/index.html"
+      },
+      {
+        "id": "responsive:missing-viewport",
+        "dimension": "responsive",
+        "severity": "P1",
+        "message": "Missing viewport meta: sheds/index.html",
+        "file": "sheds/index.html"
+      },
+      {
+        "id": "playwright-capability",
+        "dimension": "playwright_browser",
+        "severity": "P2",
+        "message": "Playwright not installed in repo node_modules; browser automation limited."
+      }
+    ],
+    "playwright": {
+      "id": "playwright-capability",
+      "dimension": "playwright_browser",
+      "status": "missing",
+      "message": "Playwright not installed in repo node_modules; browser automation limited.",
+      "severity": "P2"
+    },
+    "dimensionsCovered": [
+      "primary_workflows",
+      "functionality",
+      "live_data_integrity",
+      "placeholder_detection",
+      "dead_controls",
+      "broken_links_nav",
+      "raw_html_leakage",
+      "loading_empty_error",
+      "responsive",
+      "contrast",
+      "a11y",
+      "keyboard",
+      "console",
+      "network_api",
+      "performance",
+      "security",
+      "privacy",
+      "content_quality",
+      "visual_consistency",
+      "discoverability",
+      "onboarding",
+      "persistence",
+      "commercial_usefulness"
+    ],
+    "fakeAsReal": false,
+    "p0Count": 0,
+    "p1Count": 4
+  }
+}

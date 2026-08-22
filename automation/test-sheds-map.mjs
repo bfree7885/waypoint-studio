@@ -195,8 +195,19 @@ assert("hidden overlay pattern for sheets", /\.sheds-sheet\.is-open/.test(
 ));
 
 const html = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8");
-assert("leaflet css present", /leaflet@1\.9\.4/.test(html));
-assert("opentopo attribution path ready", /OpenTopoMap|opentopomap/.test(appSrc) || /OpenTopoMap/.test(html));
+assert("leaflet css present", /vendor\/leaflet\/leaflet\.css/.test(html));
+assert("leaflet js vendored", /vendor\/leaflet\/leaflet\.js/.test(html));
+assert("no broken CDN leaflet css integrity", !/leaflet@1\.9\.4\/dist\/leaflet\.css/.test(html));
+assert("tile provider script included", /sheds-tile-provider\.js/.test(html));
+assert("tile status banner present", /id="map-tile-status"/.test(html));
+assert(
+  "no OSMF public tile URL in map app",
+  !/tile\.openstreetmap\.org/.test(appSrc)
+);
+const tileSrc = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-tile-provider.js"), "utf8");
+assert("production default is CARTO", /basemaps\.cartocdn\.com/.test(tileSrc));
+assert("topo default is Esri", /arcgisonline\.com/.test(tileSrc));
+assert("refuses OSMF public host", /assertNotOsmPublic|tile\.openstreetmap\.org/.test(tileSrc));
 assert("ethics sheet present", /Field ethics/.test(html));
 assert("map-first tools sheet", /id="sheet-tools"/.test(html));
 assert("map-first more button", /id="btn-more"/.test(html));

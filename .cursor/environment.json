@@ -1,0 +1,17 @@
+{
+  "name": "Waypoint Studio",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8080",
+      "description": "Serves the static site at http://localhost:8080 (dashboard, ForageCast, Fieldry, Scenes). Base for the Node smoke/automation tests."
+    }
+  ],
+  "ports": [
+    {
+      "name": "static server",
+      "port": 8080
+    }
+  ]
+}

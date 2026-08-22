@@ -1,27 +1,39 @@
 /**
- * Waypoint Articles feed styles — calm field reading cards.
+ * Waypoint Articles feed — shared WDS / WCS field-reading surface.
+ * Uses design-system tokens; Waypoint’s Take uses the official .wds-take pattern.
  */
 .waf {
-  --waf-ink: #1a2218;
-  --waf-muted: #5c6b58;
-  --waf-paper: #f7f5ef;
-  --waf-moss: #3f5d3a;
-  --waf-line: rgba(26, 34, 24, 0.12);
-  --waf-take: #eef3ea;
+  --waf-ink: var(--wds-text, #1c1a16);
+  --waf-muted: var(--wds-text-secondary, #4a4740);
+  --waf-paper: var(--wds-elevated, #f7f5ef);
+  --waf-moss: var(--wds-accent, #3f5d3a);
+  --waf-line: var(--wds-border, rgba(26, 34, 24, 0.12));
+  --waf-take: color-mix(in srgb, var(--waf-moss) 10%, var(--waf-paper));
   color: var(--waf-ink);
   max-width: 52rem;
   margin: 0 auto;
 }
 
+/* Dark home / deepeners: inherit ambient tokens when nested in night shell */
 .was-home .waf,
-.was-shell[data-product="studio-home"] .waf {
+.was-shell[data-product="studio-home"] .was-home .waf {
   color: inherit;
-  --waf-ink: var(--home-ink, #f4f1ea);
-  --waf-muted: var(--home-ink-muted, rgba(244, 241, 234, 0.78));
+  --waf-ink: var(--home-ink, var(--wds-text, #f4f1ea));
+  --waf-muted: var(--home-ink-muted, var(--wds-text-muted, rgba(244, 241, 234, 0.78)));
   --waf-paper: rgba(255, 255, 255, 0.04);
-  --waf-moss: var(--home-moss, #7a9b6a);
+  --waf-moss: var(--home-moss, var(--wds-accent, #7a9b6a));
   --waf-line: rgba(244, 241, 234, 0.14);
   --waf-take: rgba(122, 155, 106, 0.12);
+}
+
+/* Light studio pages (About / Support / Articles hub) */
+.wcs-page .waf {
+  --waf-ink: var(--wds-text, #1c1a16);
+  --waf-muted: var(--wds-text-secondary, #4a4740);
+  --waf-paper: var(--wds-elevated, #f7f5ef);
+  --waf-moss: var(--wds-accent, #3f5d3a);
+  --waf-line: var(--wds-border, rgba(28, 26, 22, 0.14));
+  --waf-take: color-mix(in srgb, var(--waf-moss) 12%, #fff);
 }
 
 .waf-lede {
@@ -84,7 +96,8 @@
   letter-spacing: 0.04em;
   padding: 0.4rem 0.7rem;
   cursor: pointer;
-  border-radius: 0.2rem;
+  border-radius: var(--wds-radius-sm, 0.2rem);
+  min-height: 2.5rem;
 }
 
 .waf-view.is-active,
@@ -118,7 +131,8 @@
   background: var(--waf-paper);
   border: 1px solid var(--waf-line);
   padding: 0.55rem 0.65rem;
-  border-radius: 0.2rem;
+  border-radius: var(--wds-radius-sm, 0.2rem);
+  min-height: 2.75rem;
 }
 
 .waf-count {
@@ -139,7 +153,7 @@
 .waf-card {
   background: var(--waf-paper);
   border: 1px solid var(--waf-line);
-  border-radius: 0.35rem;
+  border-radius: var(--wds-radius-md, 0.35rem);
   padding: 1.15rem 1.2rem 1.25rem;
 }
 
@@ -165,10 +179,15 @@
   color: var(--waf-moss);
 }
 
+.waf-chip--project {
+  border-color: color-mix(in srgb, var(--waf-moss) 35%, var(--waf-line));
+}
+
 .waf-card__title {
-  font-size: 1.25rem;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
   line-height: 1.3;
-  font-weight: 560;
+  font-weight: 500;
   margin: 0 0 0.45rem;
   overflow-wrap: anywhere;
   hyphens: auto;
@@ -180,37 +199,87 @@
   margin: 0 0 0.9rem;
 }
 
+.waf-card__summary-label {
+  margin: 0 0 0.35rem !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--waf-muted);
+  font-family: var(--wds-font-body, inherit);
+  font-style: normal;
+  font-weight: 600;
+}
+
 .waf-card__summary p,
-.waf-card__take p {
+.waf-card__take p,
+.wds-take--article p {
   margin: 0 0 0.45rem;
   line-height: 1.55;
 }
 
-.waf-card__take {
-  margin-top: 0.85rem;
-  padding: 0.85rem 0.9rem;
-  background: var(--waf-take);
-  border-radius: 0.25rem;
-  border-left: 3px solid var(--waf-moss);
-}
-
+/* Summary = source facts (plain body). Take = official editorial component. */
 .waf-card__summary {
   border-top: 1px solid var(--waf-line);
   padding-top: 0.75rem;
 }
 
-.waf-card__take h3 {
-  margin: 0 0 0.4rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+.waf-card__summary > p:not(.waf-card__summary-label):not(.waf-card__prov) {
+  font-family: var(--wds-font-body, inherit);
+  font-style: normal;
+  color: var(--waf-ink);
 }
 
+/* Official Waypoint’s Take — visually distinct from Summary */
+.waf-card .wds-take--article,
+.waf-card__take.wds-take {
+  margin-top: 0.95rem;
+  max-width: none;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(
+    160deg,
+    var(--waf-take),
+    color-mix(in srgb, var(--waf-paper) 80%, transparent)
+  );
+  border: 1px solid var(--waf-line);
+  border-left: 3px solid color-mix(in srgb, var(--waf-moss) 65%, transparent);
+  border-radius: 0 var(--wds-radius-md, 0.35rem) var(--wds-radius-md, 0.35rem) 0;
+}
+
+.waf-card .wds-take__title,
+.waf-card__take h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--wds-font-body, inherit);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--waf-moss);
+}
+
+.waf-card .wds-take__body {
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-style: italic;
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  line-height: 1.5;
+  color: var(--waf-ink);
+  margin: 0 0 0.45rem;
+}
+
+.waf-card .wds-take__meta,
 .waf-card__prov {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--waf-muted);
   margin: 0 !important;
+  font-family: var(--wds-font-body, inherit);
+  font-style: normal;
+}
+
+.waf-card .wds-take--restrained {
+  border-left-color: var(--waf-muted);
+  opacity: 0.95;
 }
 
 .waf-card__related {
@@ -274,7 +343,9 @@
 }
 
 .waf-related__card h3 {
-  font-size: 1rem;
+  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: 1.05rem;
+  font-weight: 500;
   margin: 0 0 0.25rem;
 }
 
@@ -284,12 +355,30 @@
   margin: 0 0 0.45rem;
 }
 
+/* Articles hub hero (wcs-page alignment) */
+.waf-hub-hero .was-home__tagline {
+  max-width: 36ch;
+}
+
+.waf-hub-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  color: var(--wds-text-secondary, #4a4740);
+}
+
+.waf-hub-meta a {
+  color: inherit;
+}
+
 @media (max-width: 640px) {
   .waf-card {
     padding: 1rem;
   }
   .waf-card__title {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
   .waf-card__cta .wds-btn {
     width: 100%;

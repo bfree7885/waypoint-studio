@@ -43,6 +43,14 @@
     );
   }
 
+  function isMobileViewport() {
+    try {
+      return !!(global.matchMedia && global.matchMedia("(max-width: 48rem)").matches);
+    } catch (e) {
+      return false;
+    }
+  }
+
   function openFamilySection(family, columns) {
     var id = family && family.id ? family.id : "instruments";
     return (
@@ -98,7 +106,10 @@
         : { trust: "waiting", message: "Data will appear here." };
       body =
         reg && reg.render
-          ? reg.render(widget, data)
+          ? reg.render(widget, data, {
+              customize: !!options.customize,
+              platform: options.platform || null
+            })
           : reg && reg.renderPlaceholder
             ? reg.renderPlaceholder(widget, data)
             : '<p class="wdb-r-widget__status">Data will appear here.</p>';
@@ -110,6 +121,21 @@
       reg && reg.familyFor
         ? reg.familyFor(widget)
         : { id: widget.category || "", label: widget.category || "" };
+    var Gfx = global.WDS && global.WDS.dashboardRebuildGraphics;
+    var illum = "quiet";
+    var alertActive = false;
+    if (data && data.graphic) {
+      if (data.graphic.illum) illum = String(data.graphic.illum);
+      else if (Gfx && Gfx.illumFromGraphic) {
+        try {
+          illum = Gfx.illumFromGraphic(data.graphic) || "quiet";
+        } catch (e) {
+          illum = "quiet";
+        }
+      }
+      if (data.graphic.kind === "alert" && data.graphic.active) alertActive = true;
+      if (data.alerts && data.alerts.count > 0) alertActive = true;
+    }
     var icon =
       reg && reg.iconHtml
         ? '<span class="wdb-r-widget__icon" aria-hidden="true">' + reg.iconHtml(widget) + "</span>"
@@ -166,7 +192,10 @@
       escapeHtml(family.id || "") +
       '" data-size="' +
       escapeHtml(size) +
+      '" data-illum="' +
+      escapeHtml(illum) +
       '"' +
+      (alertActive ? ' data-alert-active="true"' : "") +
       (fav ? ' data-favorite="true"' : "") +
       (lazy ? ' data-lazy="pending"' : ' data-lazy="ready"') +
       ">" +
@@ -196,7 +225,9 @@
     var slot = article.querySelector("[data-lazy-slot]");
     if (!widget || !slot || !reg) return;
     var data = reg.getData(id, { platform: platform || null });
-    var html = reg.render ? reg.render(widget, data) : "";
+    var html = reg.render
+      ? reg.render(widget, data, { customize: false, platform: platform || null })
+      : "";
     slot.outerHTML = html;
     article.setAttribute("data-lazy", "ready");
     article.removeAttribute("aria-busy");
@@ -265,6 +296,8 @@
     var customize = !!options.customize;
     var columns = Number((prefs && prefs.gridColumns) || 3);
     if ([1, 2, 3].indexOf(columns) < 0) columns = 3;
+    /* Critical mobile rule: always one column regardless of saved preference */
+    if (isMobileViewport()) columns = 1;
     var reduce = prefersReducedMotion();
     var animate = !!options.animate && !reduce;
     var lazy = options.lazy === true;
@@ -330,7 +363,7 @@
       '<header class="wdb-r-workspace__header">' +
       "<div>" +
       '<h2 id="wdb-r-workspace-title" class="wdb-r-workspace__title">Workspace</h2>' +
-      '<p class="wdb-r-workspace__lede">Outdoor instruments for this place — facts first, each settling on its own.</p>' +
+      '<p class="wdb-r-workspace__lede">What is happening outside now, what comes soon, and what is worth knowing before you go.</p>' +
       "</div>" +
       customizeEntry +
       "</header>" +

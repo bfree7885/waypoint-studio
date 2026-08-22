@@ -1,0 +1,17 @@
+{
+  "id": "attestation-primary-workflows",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.298Z",
+  "status": "pass",
+  "summary": "Attested pass by product-director: Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "primary-workflows",
+    "role": "product-director",
+    "verdict": "pass",
+    "notes": "Today’s Search cold-start live weather restored; private note save verified; map tiles CARTO; locate/track/tools/explain operable.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.324Z"
+  }
+}

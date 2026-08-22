@@ -53,7 +53,7 @@
 }
 
 .wdb-v2-status--live {
-  color: var(--wds-lime-bright, #d8f878);
+  color: var(--wds-lime-bright, #d49274);
   font-weight: 600;
 }
 .wdb-v2-status--cached {

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard V1 visual finish — owner matrix</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      padding: 1.25rem;
+      background: #120e0c;
+      color: #e8e2d6;
+      font: 14px/1.45 "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    }
+    h1 { font-size: 1.4rem; font-weight: 500; margin: 0 0 0.25rem; }
+    .lede { opacity: 0.7; margin: 0 0 1.4rem; max-width: 46rem; }
+    h2 {
+      margin: 1.6rem 0 0.7rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(232, 226, 214, 0.62);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      position: relative;
+      min-height: 148px;
+      border-radius: 14px;
+      border: 1px solid color-mix(in srgb, #c4908a 35%, transparent);
+      background: #1a1614;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(226, 176, 144, 0.08), 0 0 22px rgba(122, 160, 184, 0.1);
+    }
+    .card h3 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      padding: 0.85rem 0.95rem 0.15rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .card .meta {
+      position: relative;
+      z-index: 2;
+      padding: 0 0.95rem 0.85rem;
+      font-size: 0.72rem;
+      opacity: 0.62;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+    }
+    .wdb-r-widget__art {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .wdb-r-widget__art-svg {
+      position: absolute;
+      right: -4%;
+      top: -4%;
+      width: min(48%, 16rem);
+      height: 110%;
+      opacity: 0.92;
+    }
+    .wdb-r-widget__art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #1a1614 22%, transparent 68%);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>V1 visual finish — deterministic art matrix</h1>
+  <p class="lede">Owner gate fixtures for Conditions, Next Hours, Alerts, Air, Rain, UV, Light, Astronomy. Local / non-production inspection only.</p>
+  <div id="sections"></div>
+  <script src="/design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js"></script>
+  <script>
+    var G = window.WDS.dashboardRebuildGraphics;
+    var groups = [
+      {
+        title: "Conditions",
+        cases: [
+          { title: "Clear", graphic: { kind: "sky", state: "clear" } },
+          { title: "Partly", graphic: { kind: "sky", state: "partly" } },
+          { title: "Overcast", graphic: { kind: "sky", state: "cloudy" } },
+          { title: "Rain", graphic: { kind: "sky", state: "rain" } },
+          { title: "Night", graphic: { kind: "sky", state: "clear-night" } }
+        ]
+      },
+      {
+        title: "Next Hours",
+        cases: [
+          { title: "Stable", graphic: { kind: "hours", transition: "stable" } },
+          { title: "Clearing", graphic: { kind: "hours", transition: "clearing" } },
+          { title: "Rain approaching", graphic: { kind: "hours", transition: "rain-approaching" } },
+          { title: "Day → evening", graphic: { kind: "hours", transition: "day-evening" } }
+        ]
+      },
+      {
+        title: "Alerts",
+        cases: [
+          { title: "None (quiet)", graphic: { kind: "alert", active: false } },
+          { title: "Active storm", graphic: { kind: "alert", active: true, event: "Severe Thunderstorm Warning" } }
+        ]
+      },
+      {
+        title: "Air",
+        cases: [
+          { title: "Good", graphic: { kind: "aqi", value: 32 } },
+          { title: "Moderate", graphic: { kind: "aqi", value: 78 } }
+        ]
+      },
+      {
+        title: "Rain",
+        cases: [
+          { title: "Dry (NOW 1%)", graphic: { kind: "precip", nowProbability: 1, probability: 40 } },
+          { title: "Low (NOW 22%)", graphic: { kind: "precip", nowProbability: 22, probability: 40 } },
+          { title: "Active", graphic: { kind: "precip", nowProbability: 78, intensity: "moderate" } }
+        ]
+      },
+      {
+        title: "UV",
+        cases: [
+          { title: "Low", graphic: { kind: "uv", value: 1.2 } },
+          { title: "High", graphic: { kind: "uv", value: 8.4 } }
+        ]
+      },
+      {
+        title: "Light",
+        cases: [
+          { title: "Daylight", graphic: { kind: "sun", state: "day" } },
+          { title: "Golden", graphic: { kind: "sun", state: "golden" } },
+          { title: "Blue / night", graphic: { kind: "sun", state: "blue-hour" } }
+        ]
+      },
+      {
+        title: "Astronomy",
+        cases: [
+          { title: "Thin crescent", graphic: { kind: "moon", value: 4, phase: "waxing crescent", phaseValue: 0.05 } },
+          { title: "Quarter", graphic: { kind: "moon", value: 50, phase: "first quarter", phaseValue: 0.25 } },
+          { title: "Full", graphic: { kind: "moon", value: 100, phase: "full moon", phaseValue: 0.5 } }
+        ]
+      }
+    ];
+    var root = document.getElementById("sections");
+    groups.forEach(function (g) {
+      var h = document.createElement("h2");
+      h.textContent = g.title;
+      root.appendChild(h);
+      var grid = document.createElement("div");
+      grid.className = "grid";
+      g.cases.forEach(function (c) {
+        var el = document.createElement("article");
+        el.className = "card";
+        el.innerHTML =
+          G.render(c.graphic) +
+          "<h3>" +
+          c.title +
+          "</h3><div class=\"meta\">" +
+          (c.graphic.kind || "") +
+          " · " +
+          G.version +
+          "</div>";
+        grid.appendChild(el);
+      });
+      root.appendChild(grid);
+    });
+  </script>
+</body>
+</html>

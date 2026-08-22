@@ -13,6 +13,8 @@
   var Planner = window.WaypointShedsPlanner;
   var Presets = window.WaypointShedsPresets;
   var Validation = window.WaypointShedsValidation;
+  var Patterns = window.WaypointShedsObservationPatterns;
+  var TodaysSearch = window.WaypointShedsTodaysSearch;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -22,9 +24,20 @@
   var SPECIES_LABEL = "Whitetail deer";
   var DEFAULT_HEAT_OPACITY = 0.42;
   var GPS_DENIED_KEY = "waypoint-sheds-gps-denied-v1";
+  /** Explicit location SOT — never conflate these into similar map dots. */
+  var LOCATION_KIND = Object.freeze({
+    USER_GPS: "user_gps",
+    USER_APPROXIMATE: "user_approximate",
+    SEARCH_TARGET: "search_target",
+    MAP_CENTER: "map_center",
+    NONE: "none"
+  });
+  var GPS_MOVE_MIN_M = 8; // ignore sub-threshold GPS jitter (stable input → stable marker)
+  var GPS_APPROX_M = 80;
 
   var state = {
     locationStatus: "idle",
+    locationKind: LOCATION_KIND.NONE,
     userLatLng: null,
     accuracyM: null,
     headingDeg: null,
@@ -35,20 +48,26 @@
     elevKey: "",
     elevAbort: null,
     weather: null,
+    weatherStatus: "idle",
+    weatherFetchGen: 0,
     recomputeTimer: null,
     recomputeGen: 0,
     heatPhase: "idle",
+    heatMode: "biological",
+    heatFilters: null,
     firstEthicsShown: false,
     tracking: false,
     activeSessionId: null,
     lastPlan: null,
+    lastToday: null,
     lastGrid: null,
     lastPerf: {},
     offlineForced: false,
     followUser: true,
     planExpanded: false,
     lastClickAt: 0,
-    lastFocusEl: null
+    lastFocusEl: null,
+    tileStatus: null
   };
 
   var els = {};
@@ -86,6 +105,9 @@
     }
     updateNavMeta();
     syncRecenterBtn();
+    if (state.lastPlan != null || state.lastToday) {
+      try { renderPlanCard(state.lastPlan); } catch (e) { /* boot order */ }
+    }
   }
 
   function syncRecenterBtn() {
@@ -97,10 +119,17 @@
 
   function setFabLabel(btn, label) {
     if (!btn) return;
+    var text = String(label || "").trim();
+    btn.setAttribute("aria-label", text);
+    btn.title = text;
     var span = btn.querySelector(".sheds-fab__label");
-    if (span) span.textContent = label;
-    btn.setAttribute("aria-label", label);
-    btn.title = label;
+    if (span) {
+      span.textContent = /^stop/i.test(text)
+        ? "Stop"
+        : /^(start|resume)/i.test(text)
+          ? "Track"
+          : text.split(/\s+/)[0];
+    }
   }
 
   function syncSessionPill(text, show) {
@@ -221,14 +250,125 @@
     if (!legend) return;
     var on = !!(state.prefs && state.prefs.heatVisible !== false && state.lastGrid);
     legend.hidden = !on;
+    var modeEl = $("heat-legend-mode");
+    if (modeEl) {
+      modeEl.textContent = state.heatMode === "observed"
+        ? "Observed activity"
+        : "Estimated opportunity";
+    }
     var status = $("heat-legend-status");
     if (status) {
-      if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
+      if (state.heatMode === "observed") {
+        var n = state.lastGrid && state.lastGrid.observationCount != null
+          ? state.lastGrid.observationCount : 0;
+        status.textContent = n
+          ? (n + " private note" + (n === 1 ? "" : "s") + " in filter")
+          : "Empty — log observations to build heat";
+      } else if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
       else if (state.heatPhase === "refine") status.textContent = "Updated for this view";
       else if (state.heatPhase === "zoom") status.textContent = "Zoom in for heat";
       else if (state.offlineForced || navigator.onLine === false) status.textContent = "Limited / offline scoring";
-      else status.textContent = "Lower → higher walk priority";
+      else status.textContent = "Lower → higher estimated priority";
     }
+  }
+
+  function locationStatusForToday() {
+    if (state.locationStatus === "denied") return "denied";
+    if (state.locationStatus === "finding") return state.userLatLng ? "ready" : "loading";
+    if (state.locationStatus === "unavailable" || state.locationStatus === "timeout") {
+      return state.userLatLng ? "ready" : "unavailable";
+    }
+    if (state.userLatLng || state.locationStatus === "available") return "ready";
+    if (state.locationStatus === "idle" || state.locationStatus === "neutral") return "loading";
+    return state.userLatLng ? "ready" : "unavailable";
+  }
+
+  function currentHeatFilters() {
+    var base = Patterns && Patterns.defaultHeatFilters
+      ? Patterns.defaultHeatFilters()
+      : { timeOfDay: "all", season: "all", weather: "any", sinceMs: null, untilMs: null };
+    var f = Object.assign({}, base, state.heatFilters || {});
+    var range = f.rangeDays;
+    if (range && range !== "all") {
+      var days = Number(range);
+      if (isFinite(days) && days > 0) f.sinceMs = Date.now() - days * 86400000;
+    }
+    return f;
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderTodayWindows(brief) {
+    var el = $("today-windows");
+    if (!el) return;
+    if (!brief || !brief.timeWindows || !brief.timeWindows.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = brief.timeWindows.map(function (w) {
+      var active = w.id === brief.bestWindowId ? " is-best" : "";
+      return "<div class=\"sheds-today__window" + active + "\" data-band=\"" + escapeHtml(w.band) + "\">" +
+        "<span class=\"sheds-today__window-label\">" + escapeHtml(w.label) + "</span>" +
+        "<span class=\"sheds-today__window-band\">" + escapeHtml(w.band) + "</span>" +
+        "<span class=\"sheds-today__window-why\">" + escapeHtml((w.why && w.why[0]) || "") + "</span>" +
+        "</div>";
+    }).join("");
+  }
+
+  function renderTodayAreas(brief) {
+    var el = $("today-areas");
+    if (!el) return;
+    if (!brief || !brief.areas || !brief.areas.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = "<p class=\"sheds-today__section-label\">Areas / terrain to consider</p><ul>" +
+      brief.areas.map(function (a) {
+        var tag = a.epistemic === "observed" || a.kind === "observation" ? "Pattern"
+          : a.epistemic === "estimated" || a.kind === "planner" ? "Estimated"
+          : a.epistemic === "fact" ? "Fact" : "Analysis";
+        return "<li><strong>" + escapeHtml(a.label) + "</strong> " +
+          "<span class=\"sheds-today__tag\">" + tag + "</span>" +
+          "<span class=\"sheds-today__area-why\">" + escapeHtml(a.why || "") + "</span></li>";
+      }).join("") + "</ul>";
+  }
+
+  function renderTodaySignals(brief) {
+    var el = $("today-signals");
+    if (!el) return;
+    if (!brief || !brief.signals || !brief.signals.length) {
+      el.innerHTML = "";
+      return;
+    }
+    el.innerHTML = brief.signals.map(function (s) {
+      return "<li data-kind=\"" + escapeHtml(s.kind) + "\"><span class=\"sheds-today__tag\">" +
+        escapeHtml(s.kind) + "</span> <strong>" + escapeHtml(s.label) + ":</strong> " +
+        escapeHtml(s.text) + "</li>";
+    }).join("");
+  }
+
+  function refreshTodaysSearch(plan) {
+    if (!TodaysSearch || !els.planCard) return null;
+    var patterns = Patterns ? Patterns.aggregatePatterns(Store.list()) : null;
+    var brief = TodaysSearch.build({
+      weather: state.offlineForced ? null : state.weather,
+      weatherStatus: state.offlineForced ? "unavailable"
+        : (state.weatherStatus === "loading" ? "loading"
+          : (state.weather ? "ready" : state.weatherStatus || "unavailable")),
+      season: currentSeasonProfile(),
+      locationStatus: locationStatusForToday(),
+      patterns: patterns,
+      plan: plan || state.lastPlan,
+      now: new Date()
+    });
+    state.lastToday = brief;
+    return brief;
   }
 
   function updateNavMeta() {
@@ -238,12 +378,8 @@
     var targetEl = $("nav-to-target");
     if (!meta) return;
     var bits = 0;
-    if (accEl) {
-      if (state.accuracyM != null && isFinite(state.accuracyM)) {
-        accEl.textContent = "±" + Math.round(state.accuracyM) + " m";
-        bits++;
-      } else accEl.textContent = "";
-    }
+    // Accuracy lives in the here chip ("You are here · ±N m") — do not duplicate under it.
+    if (accEl) accEl.textContent = "";
     if (headEl) {
       if (state.headingDeg != null && isFinite(state.headingDeg)) {
         var dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
@@ -252,71 +388,134 @@
         bits++;
       } else headEl.textContent = "";
     }
-    if (targetEl) {
-      var plan = state.lastPlan && state.lastPlan.recommendation;
-      if (plan && state.userLatLng && Planner && Planner.formatDistance) {
-        var dist = plan.distanceM;
-        if (dist == null && typeof L !== "undefined") {
-          dist = state.userLatLng.distanceTo(L.latLng(plan.lat, plan.lng));
-        }
-        var dir = plan.bearingLabel || "";
-        targetEl.textContent = dist != null
-          ? ((dir ? dir + " · " : "") + Planner.formatDistance(dist))
-          : "";
-        if (targetEl.textContent) bits++;
-      } else targetEl.textContent = "";
-    }
+    // Target bearing/distance is owned by Today's Search — keep HUD from competing with briefing.
+    if (targetEl) targetEl.textContent = "";
     meta.hidden = bits === 0;
   }
 
+  function metersBetween(a, b) {
+    if (!a || !b) return Infinity;
+    var R = 6371000;
+    var toRad = Math.PI / 180;
+    var dLat = (b.lat - a.lat) * toRad;
+    var dLng = (b.lng - a.lng) * toRad;
+    var lat1 = a.lat * toRad;
+    var lat2 = b.lat * toRad;
+    var h =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+
+  function publishLocationDebug() {
+    try {
+      window.__SHEDS_LOCATION__ = {
+        kind: state.locationKind,
+        lat: state.userLatLng ? state.userLatLng.lat : null,
+        lng: state.userLatLng ? state.userLatLng.lng : null,
+        accuracyM: state.accuracyM,
+        status: state.locationStatus
+      };
+    } catch (e) { /* */ }
+  }
+
+  /**
+   * USER LOCATION marker only — never used for search target / map center.
+   * Approximate GPS uses a hollow ring + honest tooltip (not a precise “you are here” pin).
+   */
   function upsertUserMarker(ll, accuracyM, headingDeg) {
     if (!map || !ll) return;
+    var approximate =
+      accuracyM != null && isFinite(accuracyM) && accuracyM > GPS_APPROX_M;
+    state.locationKind = approximate
+      ? LOCATION_KIND.USER_APPROXIMATE
+      : LOCATION_KIND.USER_GPS;
+    var fill = approximate ? "#8ec0ff" : "#f5f8f4";
+    var stroke = approximate ? "#8ec0ff" : "#d8ec5c";
+    var tip = approximate
+      ? "Approximate location (±" + Math.round(accuracyM) + " m) — not precise"
+      : "You";
     if (!userMarker) {
       userMarker = L.circleMarker(ll, {
-        radius: 9,
-        color: "#0a1410",
+        radius: approximate ? 8 : 7,
+        color: stroke,
         weight: 2,
-        fillColor: "#d4e85a",
-        fillOpacity: 0.98,
-        className: "sheds-user-pulse"
+        fillColor: fill,
+        fillOpacity: approximate ? 0.25 : 0.95,
+        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : "")
       }).addTo(map);
-      userMarker.bindTooltip("You (approximate)", { direction: "top" });
+      userMarker.bindTooltip(tip, { direction: "top", className: "sheds-map-tip" });
     } else {
       userMarker.setLatLng(ll);
+      userMarker.setStyle({
+        radius: approximate ? 8 : 7,
+        color: stroke,
+        fillColor: fill,
+        fillOpacity: approximate ? 0.25 : 0.95,
+        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : "")
+      });
+      userMarker.setTooltipContent(tip);
     }
     if (accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM < 5000) {
       if (!accuracyCircle) {
         accuracyCircle = L.circle(ll, {
           radius: accuracyM,
-          color: "#7eb6ff",
-          weight: 1,
-          fillColor: "#7eb6ff",
-          fillOpacity: 0.12,
-          interactive: false
+          color: "#8ec0ff",
+          weight: 1.5,
+          dashArray: "4 6",
+          fillColor: "#8ec0ff",
+          fillOpacity: 0.04,
+          interactive: false,
+          className: "sheds-user-accuracy"
         }).addTo(map);
       } else {
         accuracyCircle.setLatLng(ll);
         accuracyCircle.setRadius(accuracyM);
       }
+    } else if (accuracyCircle) {
+      map.removeLayer(accuracyCircle);
+      accuracyCircle = null;
     }
     if (headingLine) {
       map.removeLayer(headingLine);
       headingLine = null;
     }
-    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng) {
+    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng && !approximate) {
       var rad = (headingDeg * Math.PI) / 180;
       var len = 0.00045;
-      var tip = L.latLng(
+      var tipPt = L.latLng(
         ll.lat + Math.cos(rad) * len,
         ll.lng + (Math.sin(rad) * len) / Math.cos((ll.lat * Math.PI) / 180)
       );
-      headingLine = L.polyline([ll, tip], {
-        color: "#d4e85a",
-        weight: 3,
-        opacity: 0.9,
-        interactive: false
+      headingLine = L.polyline([ll, tipPt], {
+        color: "#8ec0ff",
+        weight: 2,
+        opacity: 0.85,
+        interactive: false,
+        className: "sheds-user-heading"
       }).addTo(map);
     }
+    publishLocationDebug();
+  }
+
+  /** Apply GPS only when movement exceeds threshold (or forced). Prevents oscillation. */
+  function applyUserPosition(ll, accuracyM, headingDeg, opts) {
+    opts = opts || {};
+    if (
+      !opts.force &&
+      state.userLatLng &&
+      metersBetween(state.userLatLng, ll) < GPS_MOVE_MIN_M &&
+      state.accuracyM != null &&
+      accuracyM != null &&
+      Math.abs(state.accuracyM - accuracyM) < 15
+    ) {
+      return false;
+    }
+    state.userLatLng = ll;
+    state.accuracyM = accuracyM;
+    if (headingDeg != null && isFinite(headingDeg)) state.headingDeg = headingDeg;
+    upsertUserMarker(ll, accuracyM, state.headingDeg);
+    return true;
   }
 
   function setMapLoading(done) {
@@ -347,6 +546,35 @@
     } else {
       el.setAttribute("hidden", "");
     }
+  }
+
+  function setTileStatus(status) {
+    var el = $("map-tile-status");
+    if (!el) return;
+    state.tileStatus = status || null;
+    if (!status) {
+      el.setAttribute("hidden", "");
+      el.textContent = "";
+      return;
+    }
+    if (status.degraded) {
+      el.removeAttribute("hidden");
+      el.setAttribute("data-level", "error");
+      el.textContent =
+        "Map tiles aren’t loading from " +
+        (status.providerLabel || "the basemap provider") +
+        ". Check your connection, then pan or zoom to retry. Gray gaps mean the tile request failed — not missing terrain.";
+      return;
+    }
+    if (status.struggling) {
+      el.removeAttribute("hidden");
+      el.setAttribute("data-level", "warn");
+      el.textContent =
+        "Some map tiles are slow or failing. Retrying automatically…";
+      return;
+    }
+    el.setAttribute("hidden", "");
+    el.textContent = "";
   }
 
   function invalidateMapSize() {
@@ -381,38 +609,42 @@
       fadeAnimation: false,
       zoomAnimation: !!(window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     });
-    L.control.zoom({ position: "bottomright" }).addTo(map);
+    // Zoom lives in the labeled field rail — avoid a second unexplained Leaflet stack.
+    if (map.attributionControl && map.attributionControl.setPosition) {
+      map.attributionControl.setPosition("bottomleft");
+    }
 
-    var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a>",
-      updateWhenIdle: false,
-      keepBuffer: 3
+    var Tiles = window.WaypointShedsTiles;
+    if (!Tiles || !Tiles.createBasemaps) {
+      throw new Error("WaypointShedsTiles missing — load sheds-tile-provider.js before sheds-map-app.js");
+    }
+    var basemaps = Tiles.createBasemaps(L);
+    var street = basemaps.street;
+    var topo = basemaps.topo;
+    Tiles.attachReliability(street, { onStatus: setTileStatus });
+    Tiles.attachReliability(topo, { onStatus: setTileStatus });
+    // CARTO/Esri production tiles — not OSMF public raster (blocked gray placeholders)
+    street.addTo(map);
+    L.control.layers(basemaps.baseLayers, null, {
+      position: "topright",
+      collapsed: true
+    }).addTo(map);
+    map.on("baselayerchange", function () {
+      setTileStatus(null);
     });
-    var topo = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-      maxZoom: 17,
-      attribution:
-        "Map data: &copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors, " +
-        "<a href=\"http://viewfinderpanoramas.org\">SRTM</a> | " +
-        "Map style: &copy; <a href=\"https://opentopomap.org\">OpenTopoMap</a> " +
-        "(<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">CC-BY-SA</a>)",
-      updateWhenIdle: false,
-      keepBuffer: 2
-    });
-    // OSM fills reliably at overview; switch to Topo via Layers for field contours
-    osm.addTo(map);
-    L.control.layers(
-      { "Street (reliable)": osm, "Topographic (OpenTopoMap)": topo },
-      null,
-      { position: "topright", collapsed: true }
-    ).addTo(map);
 
     var firstTile = false;
-    osm.on("load", function () {
+    function afterBasemapSettles() {
+      forceMapLayout({ resetView: true });
+      try {
+        if (street && typeof street.redraw === "function" && map.hasLayer(street)) street.redraw();
+      } catch (e) { /* */ }
+    }
+    street.on("load", function () {
       if (!firstTile) {
         firstTile = true;
         setMapLoading(true);
-        forceMapLayout();
+        afterBasemapSettles();
       }
     });
 
@@ -435,13 +667,25 @@
     heatLayer = null;
 
     map.whenReady(function () {
-      forceMapLayout({ resetView: true });
+      afterBasemapSettles();
       invalidateMapSize();
     });
-    [100, 400, 1000].forEach(function (ms) {
-      setTimeout(function () { forceMapLayout(); }, ms);
+    [120, 480, 1200].forEach(function (ms) {
+      setTimeout(afterBasemapSettles, ms);
     });
-    setTimeout(function () { forceMapLayout({ resetView: true }); setMapLoading(true); }, 1800);
+    setTimeout(function () { afterBasemapSettles(); setMapLoading(true); }, 1800);
+
+    if (typeof ResizeObserver === "function") {
+      var shellEl = document.getElementById("sheds-map-shell");
+      if (shellEl) {
+        var resizeTimer = null;
+        var ro = new ResizeObserver(function () {
+          if (resizeTimer) clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () { forceMapLayout({ resetView: true }); }, 80);
+        });
+        ro.observe(shellEl);
+      }
+    }
 
     map.on("dragstart", function () {
       state.followUser = false;
@@ -599,11 +843,90 @@
     });
   }
 
+  function formatLocalClock(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+    try {
+      return d.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      return d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+  }
+
+  function hourFromIso(iso) {
+    if (!iso) return null;
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return null;
+    return d.getHours() + d.getMinutes() / 60;
+  }
+
+  function weatherAnchorLatLng() {
+    if (state.userLatLng && isFinite(state.userLatLng.lat) && isFinite(state.userLatLng.lng)) {
+      return { lat: state.userLatLng.lat, lng: state.userLatLng.lng, source: "gps" };
+    }
+    if (map) {
+      var c = map.getCenter();
+      if (c && isFinite(c.lat) && isFinite(c.lng)) {
+        return { lat: c.lat, lng: c.lng, source: "map-center" };
+      }
+    }
+    return null;
+  }
+
+  function weatherNeedsRefresh(lat, lng) {
+    if (!state.weather || state.weatherStatus !== "ready") return true;
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) return false;
+    var prevLat = state.weather.fetchLat;
+    var prevLng = state.weather.fetchLng;
+    if (typeof prevLat !== "number" || typeof prevLng !== "number") return true;
+    // ~55 km at mid-latitudes — refetch when the view/anchor moved meaningfully
+    return Math.abs(prevLat - lat) > 0.5 || Math.abs(prevLng - lng) > 0.5;
+  }
+
+  /**
+   * Today's Search must get live weather for the GPS fix OR the map center —
+   * including cold-start / GPS-denied / zoomed-out views where heat is skipped.
+   */
+  function ensureWeatherForView(opts) {
+    opts = opts || {};
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
+      state.weatherStatus = state.weather ? state.weatherStatus : "unavailable";
+      return Promise.resolve(state.weather || null);
+    }
+    var anchor = weatherAnchorLatLng();
+    if (!anchor) {
+      state.weatherStatus = "unavailable";
+      return Promise.resolve(null);
+    }
+    if (!opts.force && !weatherNeedsRefresh(anchor.lat, anchor.lng)) {
+      return Promise.resolve(state.weather);
+    }
+    var gen = ++state.weatherFetchGen;
+    return fetchWeatherSoft(anchor.lat, anchor.lng).then(function (w) {
+      if (gen !== state.weatherFetchGen) return state.weather;
+      if (w) {
+        w.fetchLat = anchor.lat;
+        w.fetchLng = anchor.lng;
+        w.anchorSource = anchor.source;
+        state.weather = w;
+      }
+      if (opts.refreshBriefing !== false) {
+        updatePlanner(state.lastGrid || null);
+      }
+      return w;
+    });
+  }
+
   function fetchWeatherSoft(lat, lng) {
     if (!isFinite(lat) || !isFinite(lng)) return Promise.resolve(null);
+    state.weatherStatus = "loading";
     var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat.toFixed(4) +
       "&longitude=" + lng.toFixed(4) +
-      "&daily=snowfall_sum&current=temperature_2m,wind_speed_10m&timezone=auto&forecast_days=3";
+      "&current=temperature_2m,wind_speed_10m,surface_pressure,precipitation" +
+      "&hourly=temperature_2m,wind_speed_10m,precipitation,surface_pressure" +
+      "&daily=snowfall_sum,sunrise,sunset,precipitation_sum" +
+      "&timezone=auto&forecast_days=3&past_days=1";
     return fetch(url, { credentials: "omit" }).then(function (res) {
       if (!res.ok) throw new Error("wx");
       return res.json();
@@ -612,7 +935,6 @@
       if (data.daily && data.daily.snowfall_sum) {
         snow = data.daily.snowfall_sum.reduce(function (a, b) { return a + (b || 0); }, 0);
       }
-      // Light snow can help visibility of sheds; deep snow can reduce walkability — soft factor only
       var influence = 1;
       if (snow > 25) influence = 0.7;
       else if (snow > 8) influence = 0.88;
@@ -621,14 +943,63 @@
         ? data.current.temperature_2m : null;
       var windSpeedMs = data.current && typeof data.current.wind_speed_10m === "number"
         ? data.current.wind_speed_10m : null;
-      return {
+      var pressureHpa = data.current && typeof data.current.surface_pressure === "number"
+        ? data.current.surface_pressure : null;
+      var precipMm24h = null;
+      if (data.daily && data.daily.precipitation_sum && data.daily.precipitation_sum.length) {
+        // past_days=1 puts yesterday first; sum recent ~24–48h honestly as available
+        var sums = data.daily.precipitation_sum;
+        precipMm24h = Number(sums[sums.length > 1 ? 1 : 0] || 0);
+        if (sums.length > 1) precipMm24h = Number(sums[0] || 0) + Number(sums[1] || 0);
+      }
+      var pressureTrend = null;
+      if (data.hourly && data.hourly.surface_pressure && data.hourly.surface_pressure.length >= 6) {
+        var arr = data.hourly.surface_pressure.filter(function (v) { return typeof v === "number"; });
+        if (arr.length >= 6) {
+          var early = arr[Math.max(0, arr.length - 12)];
+          var late = arr[arr.length - 1];
+          var delta = late - early;
+          if (delta <= -1.5) pressureTrend = "falling";
+          else if (delta >= 1.5) pressureTrend = "rising";
+          else pressureTrend = "steady";
+        }
+      }
+      var sunriseIso = data.daily && data.daily.sunrise ? data.daily.sunrise[data.daily.sunrise.length > 1 ? 1 : 0] : null;
+      var sunsetIso = data.daily && data.daily.sunset ? data.daily.sunset[data.daily.sunset.length > 1 ? 1 : 0] : null;
+      // With past_days=1, index 1 is typically "today"
+      if (data.daily && data.daily.time && data.daily.time.length) {
+        var todayStr = new Date().toISOString().slice(0, 10);
+        var ix = data.daily.time.indexOf(todayStr);
+        if (ix < 0 && data.daily.time.length > 1) ix = 1;
+        if (ix < 0) ix = 0;
+        sunriseIso = data.daily.sunrise && data.daily.sunrise[ix];
+        sunsetIso = data.daily.sunset && data.daily.sunset[ix];
+      }
+      var pkg = {
         snowInfluence: influence,
         snowMm: snow,
         tempC: tempC,
         windSpeedMs: windSpeedMs,
-        source: "weather-provider"
+        pressureHpa: pressureHpa,
+        pressureTrend: pressureTrend,
+        precipMm24h: precipMm24h,
+        sunriseIso: sunriseIso || null,
+        sunsetIso: sunsetIso || null,
+        sunriseLocal: formatLocalClock(sunriseIso),
+        sunsetLocal: formatLocalClock(sunsetIso),
+        sunriseHour: hourFromIso(sunriseIso),
+        sunsetHour: hourFromIso(sunsetIso),
+        utcOffsetMinutes: typeof data.utc_offset_seconds === "number"
+          ? data.utc_offset_seconds / 60 : null,
+        source: "open-meteo",
+        fetchedAt: new Date().toISOString()
       };
-    }).catch(function () { return null; });
+      state.weatherStatus = "ready";
+      return pkg;
+    }).catch(function () {
+      state.weatherStatus = "unavailable";
+      return null;
+    });
   }
 
   function modelStamp() {
@@ -697,6 +1068,22 @@
     };
   }
 
+  function recomputeObservedHeat(bounds, gen) {
+    if (!Patterns) return;
+    var filters = currentHeatFilters();
+    var grid = Patterns.buildObservationHeatGrid(
+      bounds, GRID_ROWS, GRID_COLS, Store.list(), filters, { nowMs: Date.now() }
+    );
+    if (gen !== state.recomputeGen) return;
+    state.heatPhase = "refine";
+    applyGridToUi(grid, {
+      label: "Observed activity (private notes only)",
+      elevNote: grid.observationCount
+        ? ("Filter: " + (grid.filterSummary || "all") + ".")
+        : "No matching private observations — heat intentionally empty (no demo data)."
+    });
+  }
+
   function recomputeHeat() {
     if (!map || !Model) return;
     var gen = ++state.recomputeGen;
@@ -717,8 +1104,29 @@
         heatLayer.setGrid({ cells: [], bounds: { west: 0, east: 0, south: 0, north: 0 }, rows: 0, cols: 0 });
       }
       updateCoverageUi({ level: "limited", label: "Limited input coverage — zoom for local analysis" });
+      // Heat waits for zoom, but Today's Search still needs map-center weather/daylight.
+      ensureWeatherForView({ refreshBriefing: true });
       updatePlanner(null);
       syncHeatLegend();
+      return;
+    }
+
+    // Keep weather fresh for Today's Search even in observed-heat mode
+    var center = map.getCenter();
+    var wxPromise = state.offlineForced ? Promise.resolve(null)
+      : ensureWeatherForView({ refreshBriefing: false });
+
+    if (state.heatMode === "observed") {
+      try {
+        recomputeObservedHeat(bounds, gen);
+      } catch (e) {
+        console.error("sheds observed heat", e);
+      }
+      wxPromise.then(function (w) {
+        if (gen !== state.recomputeGen) return;
+        if (w) state.weather = w;
+        updatePlanner(state.lastGrid);
+      });
       return;
     }
 
@@ -736,11 +1144,9 @@
       console.error("sheds coarse heat", e);
     }
 
-    var center = map.getCenter();
     Promise.all([
       state.offlineForced ? Promise.resolve(null) : fetchElevations(bounds),
-      state.offlineForced ? Promise.resolve(null)
-        : (state.weather ? Promise.resolve(state.weather) : fetchWeatherSoft(center.lat, center.lng))
+      wxPromise
     ]).then(function (pair) {
       if (gen !== state.recomputeGen) return;
       var elev = pair[0];
@@ -750,7 +1156,7 @@
       if (gen !== state.recomputeGen) return;
       state.heatPhase = "refine";
       applyGridToUi(grid, {
-        label: "Refined biological heat",
+        label: "Refined biological heat (estimated opportunity)",
         elevNote: elev
           ? "Elevation sampled for this view."
           : (state.offlineForced || navigator.onLine === false
@@ -817,59 +1223,95 @@
     var glance = els.planGlance || els.planBody;
     var conf = $("plan-stars");
     var stats = $("plan-stats");
-    var season = currentSeasonProfile();
+    var brief = refreshTodaysSearch(plan);
+    var statusEl = $("today-status");
+    var uncertainEl = $("today-uncertain");
+    var whyWrap = document.querySelector(".sheds-plan__why-wrap");
+    if (whyWrap) whyWrap.hidden = false;
+
+    if (brief) {
+      renderTodayWindows(brief);
+      renderTodayAreas(brief);
+      renderTodaySignals(brief);
+      if (statusEl) {
+        var st = brief.status;
+        if (st === "loading") statusEl.textContent = "Loading today’s conditions…";
+        else if (st === "location_denied") {
+          statusEl.textContent = state.weather
+            ? "Location denied — weather and daylight use the map center until you locate."
+            : (state.weatherStatus === "loading"
+              ? "Location denied — reading weather for the map center…"
+              : "Location denied — map stays usable; weather for the map center is unavailable.");
+        }
+        else if (st === "weather_unavailable") statusEl.textContent = "Weather unavailable — seasonal / note-based briefing only.";
+        else if (st === "partial") statusEl.textContent = "Partial inputs — some signals missing.";
+        else statusEl.textContent = brief.summaryLine || brief.headline;
+      }
+      if (uncertainEl) {
+        uncertainEl.textContent = (brief.uncertainties || []).join(" ");
+      }
+      if (els.planTitle) els.planTitle.textContent = brief.headline;
+      if (conf) {
+        conf.textContent = "Confidence: " + brief.confidence;
+        conf.setAttribute("aria-label", brief.confidenceWhy || ("Confidence " + brief.confidence));
+      }
+    }
+
     if (!plan || !plan.ok || !plan.recommendation) {
       els.planCard.dataset.hasPlan = "false";
-      if (els.planTitle) els.planTitle.textContent = "Start here";
       var empty = "Find yourself on the map";
       if (plan && plan.reason) {
         if (/zoom/i.test(plan.reason)) empty = "Zoom in on your land";
         else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
       }
-      if (glance) glance.textContent = empty;
-      var emptyBrief = fieldConditionLines(state.weather, season);
+      if (glance) {
+        if (brief && brief.timeWindows && brief.timeWindows[0]) {
+          var winLabel = brief.timeWindows[0].label;
+          var wxReady = brief.weatherStatus === "ready" || !!state.weather;
+          var winPrefix = wxReady
+            ? ("Best window: " + winLabel)
+            : ("Seasonal window guess: " + winLabel);
+          glance.textContent = winPrefix + " · " + empty;
+        } else {
+          glance.textContent = empty;
+        }
+      }
       if (els.planBody) {
-        els.planBody.textContent =
-          emptyBrief[0] +
-          " Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee of antlers.";
+        els.planBody.textContent = (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
+          "Locate yourself, or pan to your land and zoom in for an estimated pocket. Never a guarantee of antlers.";
       }
-      if (els.planWhy) els.planWhy.textContent = emptyBrief.slice(1).join(" ");
+      if (els.planWhy) {
+        els.planWhy.textContent = brief && brief.disclaimer
+          ? brief.disclaimer
+          : "Relative guidance only.";
+      }
       if (els.planMeta) {
-        els.planMeta.textContent = state.weather
-          ? "Field briefing from season + recent weather context."
-          : "Field briefing uses season and what you have already marked.";
-      }
-      if (conf) {
-        conf.textContent = "We’ll suggest where to look";
-        conf.setAttribute("aria-label", "No recommendation yet");
+        els.planMeta.textContent = brief && brief.epistemicNote
+          ? brief.epistemicNote
+          : "Facts vs analysis vs uncertainty are labeled in signals.";
       }
       if (stats) stats.hidden = true;
       var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
       if (actions) actions.hidden = true;
-      var whyWrap = document.querySelector(".sheds-plan__why-wrap");
-      if (whyWrap) whyWrap.hidden = true;
-      els.planCard.setAttribute("aria-label", "No suggestion yet. " + empty);
+      els.planCard.setAttribute("aria-label", "Today’s Search. " + (brief && brief.headline ? brief.headline + ". " : "") + empty);
       updateNavMeta();
       syncHeatLegend();
       return;
     }
+
     els.planCard.dataset.hasPlan = "true";
     var actionsOn = $("plan-actions") || document.querySelector(".sheds-plan__actions");
     if (actionsOn) actionsOn.hidden = false;
-    var whyOn = document.querySelector(".sheds-plan__why-wrap");
-    if (whyOn) whyOn.hidden = false;
     var r = plan.recommendation;
-    var coverage = plan.coverage || (state.lastGrid && state.lastGrid.coverage);
-    if (els.planTitle) els.planTitle.textContent = dayQualityLine(coverage, r.band, state.weather, season);
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
     var glanceText = [dir, dist].filter(Boolean).join(" · ");
     if (!glanceText) glanceText = r.walkingHint || "Nearby pocket";
-    if (glance) glance.textContent = glanceText;
-    if (conf) {
-      var phrase = confidencePhrase(coverage, r.band);
-      conf.textContent = phrase;
-      conf.setAttribute("aria-label", phrase);
+    if (glance) {
+      var win = brief && brief.timeWindows && brief.timeWindows[0]
+        ? brief.timeWindows[0].label + " · "
+        : "";
+      glance.textContent = win + glanceText;
     }
     if (stats) {
       stats.hidden = false;
@@ -884,30 +1326,34 @@
         $("plan-stat-band").textContent = bandLabel;
       }
     }
-    var conditions = fieldConditionLines(state.weather, season);
     if (els.planBody) {
       var walk = r.walkingHint || glanceText;
       els.planBody.textContent =
-        conditions[0] +
-        " " +
+        (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
         walk +
-        " Relative walk guidance only — not a claim that antlers are present.";
+        " Estimated opportunity only — not a claim that antlers or deer are present.";
     }
     var whyParts = [];
-    if (conditions.length > 1) whyParts = whyParts.concat(conditions.slice(1));
-    if (r.explanation) whyParts.push(r.explanation);
-    whyParts.push(confidencePhrase(coverage, r.band) + ".");
+    if (r.why && r.why.length) whyParts = whyParts.concat(r.why.slice(0, 3));
+    else if (r.explanation) whyParts.push(r.explanation);
+    if (brief && brief.observationInsight) {
+      if (brief.observationInsight.sufficient && brief.observationInsight.summary) {
+        whyParts.push(brief.observationInsight.summary);
+      } else if (brief.observationInsight.insufficiencyReason) {
+        whyParts.push(brief.observationInsight.insufficiencyReason);
+      }
+    }
     if (els.planWhy) els.planWhy.textContent = whyParts.join(" ");
     var meta = [];
-    meta.push("Why: " + (conditions[0] || "local terrain and notes"));
-    meta.push("Confidence: " + confidencePhrase(coverage, r.band));
+    if (brief) meta.push("Confidence: " + brief.confidence + " — " + (brief.confidenceWhy || ""));
     if (plan.remainingHighCount != null && plan.remainingHighCount > 0) {
       meta.push(plan.remainingHighCount + " higher pockets still unmarked thorough");
     }
+    meta.push("Layer: " + (state.heatMode === "observed" ? "Observed activity" : "Estimated opportunity"));
     if (els.planMeta) els.planMeta.textContent = meta.join(" · ");
     els.planCard.setAttribute(
       "aria-label",
-      "Suggested place: " + glanceText + ". " + (conditions[0] || "") + " " + (r.explanation || "")
+      "Today’s Search: " + (brief && brief.headline ? brief.headline + ". " : "") + glanceText
     );
     updateNavMeta();
     syncHeatLegend();
@@ -919,22 +1365,31 @@
     recMarker = null;
     if (!plan || !plan.recommendation) return;
     var r = plan.recommendation;
+    // SEARCH area ring — soft amber, not a second “you” pin
     recMarker = L.circle([r.lat, r.lng], {
       radius: r.suggestedRadiusM,
-      color: "#d4e85a",
-      weight: 2,
-      fillColor: "#d4e85a",
-      fillOpacity: 0.12,
-      className: "sheds-target-ring"
+      color: "#e0a046",
+      weight: 1.5,
+      dashArray: "6 8",
+      fillColor: "#e0a046",
+      fillOpacity: 0.06,
+      className: "sheds-target-ring",
+      interactive: false
     }).addTo(planLayer);
-    var marker = L.circleMarker([r.lat, r.lng], {
-      radius: 8,
-      color: "#0a1410",
-      weight: 2,
-      fillColor: "#d4e85a",
-      fillOpacity: 1,
-      className: "sheds-target-dot"
-    }).bindTooltip("Suggested next search", { permanent: false });
+    // SEARCH TARGET — amber mark + label — never the same “you” lime dot.
+    var marker = L.marker([r.lat, r.lng], {
+      icon: L.divIcon({
+        className: "sheds-search-target",
+        html: "<span class=\"sheds-search-target__mark\" title=\"Suggested next search\"></span><span class=\"sheds-search-target__label\">Next</span>",
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      }),
+      keyboard: false,
+      riseOnHover: true
+    }).bindTooltip("Suggested next search (not your location)", {
+      permanent: false,
+      className: "sheds-map-tip"
+    });
     marker.addTo(planLayer);
     if (state.userLatLng) {
       L.polyline([
@@ -984,15 +1439,21 @@
     state.watchId = navigator.geolocation.watchPosition(function (pos) {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
-      state.userLatLng = L.latLng(lat, lng);
-      state.accuracyM = pos.coords.accuracy;
-      if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
-      setLocStatus("available", "tracking");
-      upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
+      var ll = L.latLng(lat, lng);
+      var moved = applyUserPosition(
+        ll,
+        pos.coords.accuracy,
+        pos.coords.heading != null && !isNaN(pos.coords.heading) ? pos.coords.heading : null,
+        { force: false }
+      );
+      setLocStatus(
+        "available",
+        state.locationKind === LOCATION_KIND.USER_APPROXIMATE ? "tracking · approximate" : "tracking"
+      );
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
       if (updated) syncSessionPill("Tracking · " + Math.round(updated.distanceM || 0) + " m", true);
-      scheduleRecompute(800);
+      if (moved) scheduleRecompute(1200);
     }, function (err) {
       if (err && err.code === 1) setLocStatus("denied", "tracking stopped");
       else setLocStatus("unavailable", "tracking error");
@@ -1084,15 +1545,17 @@
     navigator.geolocation.getCurrentPosition(function (pos) {
       rememberGpsDenied(false);
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
-      state.userLatLng = ll;
-      state.accuracyM = pos.coords.accuracy;
       if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
+      applyUserPosition(ll, pos.coords.accuracy, state.headingDeg, { force: true });
       var accDetail = state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "";
-      if (state.accuracyM != null && state.accuracyM > 80) {
-        accDetail += " · approximate";
+      if (state.locationKind === LOCATION_KIND.USER_APPROXIMATE) {
+        accDetail = (accDetail ? accDetail + " · " : "") + "approximate — not precise";
+        setLocStatus("available", accDetail);
+        var locEl = $("loc-status");
+        if (locEl) locEl.textContent = "Approx. location" + (accDetail ? " · " + accDetail : "");
+      } else {
+        setLocStatus("available", accDetail);
       }
-      setLocStatus("available", accDetail);
-      upsertUserMarker(ll, state.accuracyM, state.headingDeg);
       if (opts.center !== false) {
         state.followUser = true;
         map.setView(ll, Math.max(map.getZoom(), 13), { animate: !document.documentElement.classList.contains("reduced-motion") });
@@ -1102,8 +1565,7 @@
       if (typeof opts.onSuccess === "function") {
         try { opts.onSuccess(ll, pos); } catch (e) { /* */ }
       }
-      fetchWeatherSoft(ll.lat, ll.lng).then(function (w) {
-        state.weather = w;
+      ensureWeatherForView({ force: true, refreshBriefing: true }).then(function () {
         scheduleRecompute(100);
       });
       scheduleRecompute(100);
@@ -1119,6 +1581,8 @@
       if (!Store.loadMapView() && state.locationStatus !== "denied") {
         setLocStatus(state.locationStatus === "timeout" ? "timeout" : "manual");
       }
+      // GPS failed — still read weather/daylight for the visible map center.
+      ensureWeatherForView({ refreshBriefing: true });
     }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 30000 });
   }
 
@@ -1183,6 +1647,21 @@
     el.setAttribute("aria-hidden", "true");
   }
 
+  function toDatetimeLocalValue(iso) {
+    if (!iso) return "";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "";
+    var pad = function (n) { return String(n).padStart(2, "0"); };
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) +
+      "T" + pad(d.getHours()) + ":" + pad(d.getMinutes());
+  }
+
+  function fromDatetimeLocalValue(v) {
+    if (!v) return null;
+    var d = new Date(v);
+    return isNaN(d.getTime()) ? null : d.toISOString();
+  }
+
   function openNewObservation(latlng) {
     clickLatLng = latlng;
     els.obsForm.reset();
@@ -1191,11 +1670,21 @@
     $("obs-type").value = "deer_sign";
     $("obs-confidence").value = "probable";
     $("sheds-extra").hidden = true;
+    if ($("deer-extra")) $("deer-extra").hidden = true;
     if ($("obs-habitat")) $("obs-habitat").value = "";
+    if ($("obs-sex")) $("obs-sex").value = "unknown";
+    if ($("obs-class")) $("obs-class").value = "unknown";
+    if ($("obs-photo-ref")) $("obs-photo-ref").value = "";
+    if ($("obs-when")) $("obs-when").value = toDatetimeLocalValue(new Date().toISOString());
     $("obs-form-title").textContent = "Add observation";
     $("obs-delete").hidden = true;
+    toggleObsExtras("deer_sign");
     syncObsLocationHint();
     openSheet(els.sheetObs);
+    var typeField = $("obs-type");
+    if (typeField && typeof typeField.focus === "function") {
+      try { typeField.focus(); } catch (e) { /* */ }
+    }
   }
 
   function openViewObservation(id) {
@@ -1211,7 +1700,11 @@
     if ($("obs-habitat")) {
       $("obs-habitat").value = (obs.details && obs.details.habitat) || "";
     }
-    toggleShedExtra(obs.type);
+    if ($("obs-when")) $("obs-when").value = toDatetimeLocalValue(obs.observedAt);
+    if ($("obs-sex")) $("obs-sex").value = (obs.details && obs.details.sex) || "unknown";
+    if ($("obs-class")) $("obs-class").value = (obs.details && obs.details.class) || "unknown";
+    if ($("obs-photo-ref")) $("obs-photo-ref").value = obs.photoRef || "";
+    toggleObsExtras(obs.type);
     if (obs.type === "shed_found" && obs.details) {
       $("shed-side").value = obs.details.side || "unknown";
       $("shed-freshness").value = obs.details.freshness || "unknown";
@@ -1228,13 +1721,46 @@
     $("sheds-extra").hidden = type !== "shed_found";
   }
 
+  function toggleObsExtras(type) {
+    toggleShedExtra(type);
+    if ($("deer-extra")) {
+      $("deer-extra").hidden = !(type === "deer_seen" || type === "deer_sign");
+    }
+  }
+
+  function weatherSnapshotForSave() {
+    if (!state.weather) return null;
+    return {
+      capturedAt: new Date().toISOString(),
+      source: state.weather.source || "open-meteo",
+      tempC: state.weather.tempC,
+      windSpeedMs: state.weather.windSpeedMs,
+      snowMm: state.weather.snowMm,
+      precipMm24h: state.weather.precipMm24h,
+      pressureHpa: state.weather.pressureHpa
+    };
+  }
+
   function saveObservation(ev) {
     ev.preventDefault();
+    if (!clickLatLng) {
+      var fallback = state.userLatLng || (map && map.getCenter());
+      if (!fallback) {
+        var hintEl = $("obs-location-hint");
+        if (hintEl) {
+          hintEl.textContent = "Pick a map point or locate yourself before saving.";
+        }
+        return;
+      }
+      clickLatLng = fallback;
+      syncObsLocationHint();
+    }
     var type = $("obs-type").value;
     var habitat = $("obs-habitat") ? $("obs-habitat").value : "";
     var atMe = !!(state.userLatLng && clickLatLng &&
       Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
       Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6);
+    var whenIso = $("obs-when") ? fromDatetimeLocalValue($("obs-when").value) : null;
     var payload = {
       type: type,
       speciesId: Store.SPECIES_WHITETAIL,
@@ -1243,12 +1769,19 @@
         lng: clickLatLng.lng,
         precision: atMe ? "gps" : "map"
       },
+      observedAt: whenIso || new Date().toISOString(),
       note: $("obs-note").value.trim(),
       confidence: $("obs-confidence").value,
       quantity: $("obs-quantity").value,
+      photoRef: $("obs-photo-ref") ? $("obs-photo-ref").value.trim() : "",
+      weatherSnapshot: weatherSnapshotForSave(),
       details: {}
     };
     if (habitat) payload.details.habitat = habitat;
+    if (type === "deer_seen" || type === "deer_sign") {
+      payload.details.sex = $("obs-sex") ? $("obs-sex").value : "unknown";
+      payload.details.class = $("obs-class") ? $("obs-class").value : "unknown";
+    }
     if (type === "shed_found") {
       payload.details = Object.assign({}, payload.details, {
         side: $("shed-side").value,
@@ -1513,6 +2046,16 @@
     if ($("btn-here-chip")) {
       $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     }
+    if ($("btn-zoom-in")) {
+      $("btn-zoom-in").addEventListener("click", function () {
+        if (map) map.zoomIn();
+      });
+    }
+    if ($("btn-zoom-out")) {
+      $("btn-zoom-out").addEventListener("click", function () {
+        if (map) map.zoomOut();
+      });
+    }
     els.btnTrack = $("btn-track");
     if (els.btnTrack) {
       els.btnTrack.addEventListener("click", function () {
@@ -1652,7 +2195,7 @@
     });
 
     $("obs-type").addEventListener("change", function () {
-      toggleShedExtra($("obs-type").value);
+      toggleObsExtras($("obs-type").value);
     });
     els.obsForm.addEventListener("submit", saveObservation);
     $("obs-delete").addEventListener("click", deleteObservation);
@@ -1663,6 +2206,29 @@
       Store.saveModelPrefs(state.prefs);
       syncHeatLegend();
       scheduleRecompute(50);
+    });
+    function readHeatFilterControls() {
+      state.heatMode = $("heat-mode") ? $("heat-mode").value : "biological";
+      state.heatFilters = {
+        timeOfDay: $("heat-tod") ? $("heat-tod").value : "all",
+        season: $("heat-season") ? $("heat-season").value : "all",
+        weather: $("heat-wx") ? $("heat-wx").value : "any",
+        rangeDays: $("heat-range") ? $("heat-range").value : "all"
+      };
+      try {
+        localStorage.setItem("waypoint-sheds-heat-ui-v1", JSON.stringify({
+          heatMode: state.heatMode,
+          heatFilters: state.heatFilters
+        }));
+      } catch (e) { /* ignore */ }
+    }
+    ["heat-mode", "heat-tod", "heat-season", "heat-wx", "heat-range"].forEach(function (id) {
+      if (!$(id)) return;
+      $(id).addEventListener("change", function () {
+        readHeatFilterControls();
+        syncHeatLegend();
+        scheduleRecompute(80);
+      });
     });
     $("obs-visible").addEventListener("change", function () {
       state.prefs.obsVisible = $("obs-visible").checked;
@@ -1781,6 +2347,12 @@
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
     if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
     if ($("offline-forced")) $("offline-forced").checked = !!state.offlineForced;
+    if ($("heat-mode")) $("heat-mode").value = state.heatMode || "biological";
+    var hf = state.heatFilters || {};
+    if ($("heat-tod")) $("heat-tod").value = hf.timeOfDay || "all";
+    if ($("heat-season")) $("heat-season").value = hf.season || "all";
+    if ($("heat-wx")) $("heat-wx").value = hf.weather || "any";
+    if ($("heat-range")) $("heat-range").value = hf.rangeDays || "all";
     if ($("model-preset") && Presets) {
       var pid = state.prefs.activePreset || "balanced";
       if (!Presets.PRESETS[pid]) pid = "balanced";
@@ -1794,6 +2366,20 @@
       var el = document.querySelector('[data-weight="' + k + '"]');
       if (el) el.value = state.prefs.weights[k];
     });
+  }
+
+  function loadHeatUiPrefs() {
+    try {
+      var raw = localStorage.getItem("waypoint-sheds-heat-ui-v1");
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (parsed.heatMode === "observed" || parsed.heatMode === "biological") {
+        state.heatMode = parsed.heatMode;
+      }
+      if (parsed.heatFilters && typeof parsed.heatFilters === "object") {
+        state.heatFilters = parsed.heatFilters;
+      }
+    } catch (e) { /* ignore */ }
   }
 
   function fillTypeSelects() {
@@ -1817,7 +2403,7 @@
   }
 
   function boot() {
-    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !Bio || !Presets || !Validation) {
+    if (!window.L || !Store || !Model || !Heat || !Sessions || !Planner || !Bio || !Presets || !Validation || !Patterns || !TodaysSearch) {
       requestAnimationFrame(boot);
       return;
     }
@@ -1858,6 +2444,8 @@
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
     if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
     if (state.prefs.opacity == null) state.prefs.opacity = DEFAULT_HEAT_OPACITY;
+    state.heatFilters = Patterns.defaultHeatFilters();
+    loadHeatUiPrefs();
     fillTypeSelects();
     if ($("model-preset") && Presets) {
       $("model-preset").innerHTML = Presets.listPresets().map(function (p) {
@@ -1890,6 +2478,7 @@
     }
     if (wasGpsDenied()) {
       setLocStatus("denied", "permission was denied — tap Locate to try again");
+      ensureWeatherForView({ refreshBriefing: true });
     } else {
       locateUser({ center: !Store.loadMapView() });
     }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-product="auto-edit">
+<head>
+  <meta charset="UTF-8">
+  <meta name="waypoint-build" content="local">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Waypoint Auto Edit — finishes outdoor photographs on this device while preserving originals.">
+  <title>Auto Edit — Waypoint Scenes · Waypoint Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../design-system/css/wds.css">
+  <link rel="stylesheet" href="css/auto-edit.css">
+</head>
+<body>
+  <a class="wds-skip" href="#ae-main">Skip to Auto Edit</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="scenes" data-product-name="Scenes" data-shell-depth="1">
+    <div data-wds-app-global data-shell-depth="1"></div>
+    <div data-wds-app-local data-shell-depth="1"></div>
+
+    <main id="ae-main" class="ae-page">
+      <header class="ae-hero">
+        <p class="wds-eyebrow">
+          <a href="../scenes/">Waypoint Scenes</a>
+          <span aria-hidden="true"> · </span>
+          Auto Edit
+        </p>
+        <h1 class="ae-hero__title">Finish the photograph</h1>
+        <p class="ae-hero__lead">
+          Waypoint automatically finishes outdoor photographs while keeping results natural and preserving originals.
+        </p>
+        <p class="ae-trust" role="note">Processed on this device. No cloud upload. JPEG and PNG for V1 — not a RAW developer.</p>
+      </header>
+
+      <p class="ae-status" id="ae-status" role="status" hidden></p>
+
+      <section class="ae-empty" id="ae-empty" aria-label="Open a photograph">
+        <div class="ae-drop" id="ae-drop" tabindex="0" role="button" aria-label="Drop a photograph or choose a file">
+          <p class="ae-drop__title">Open a keeper to finish</p>
+          <p class="ae-drop__text">JPG or PNG · original stays untouched</p>
+          <button type="button" class="wds-btn wds-btn--primary">Choose photograph</button>
+        </div>
+        <div class="ae-empty__actions">
+          <button type="button" class="wds-btn wds-btn--secondary" data-ae-action="batch">Auto Edit Keepers</button>
+          <a class="wds-btn wds-btn--ghost" href="../photo-library/">Open Photo Library</a>
+          <a class="wds-btn wds-btn--ghost" href="../photo-coach/">Back to Photo Coach</a>
+        </div>
+      </section>
+
+      <section class="ae-workspace" id="ae-workspace" hidden>
+        <div class="ae-photo-first">
+          <div id="ae-compare-mount"></div>
+        </div>
+
+        <div class="ae-rail">
+          <section class="ae-panel" aria-labelledby="ae-choice-title">
+            <h2 id="ae-choice-title">Waypoint Choice</h2>
+            <p class="ae-panel__lede">Default finishing — no exposure or contrast sliders required.</p>
+            <div id="ae-intents" class="ae-intents" role="group" aria-label="Finishing intents"></div>
+          </section>
+
+          <section class="ae-panel" aria-labelledby="ae-recipe-title">
+            <h2 id="ae-recipe-title">What Waypoint did</h2>
+            <div id="ae-recipe-summary"></div>
+            <div id="ae-honesty" class="ae-honesty"></div>
+          </section>
+
+          <section class="ae-panel" aria-labelledby="ae-refine-title">
+            <h2 id="ae-refine-title">Refine without sliders</h2>
+            <div class="ae-refine" role="group" aria-label="Refine edit">
+              <button type="button" class="ae-chip" data-ae-action="refine:more-natural">More natural</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:brighter">Brighter</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:darker">Darker</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:warmer">Warmer</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:cooler">Cooler</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:less-saturated">Less saturated</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:more-contrast">More contrast</button>
+              <button type="button" class="ae-chip" data-ae-action="refine:less-contrast">Less contrast</button>
+              <button type="button" class="ae-chip" data-ae-action="reset">Reset to Waypoint Choice</button>
+            </div>
+          </section>
+
+          <section class="ae-panel ae-panel--actions" aria-label="Save and export">
+            <button type="button" class="wds-btn wds-btn--primary" data-ae-action="save">Save Waypoint Edit</button>
+            <button type="button" class="wds-btn wds-btn--secondary" data-ae-action="export">Download edit</button>
+            <button type="button" class="wds-btn wds-btn--ghost" data-ae-action="batch">Auto Edit Keepers</button>
+            <p class="ae-export-note">Download is a new JPEG named like <code>originalname-waypoint.jpg</code>. Precise GPS is not embedded.</p>
+            <p class="ae-move-note">Next craft step: <a href="../moving-scenes/">Make it move</a> — subtle environmental motion without replacing this finish.</p>
+          </section>
+        </div>
+      </section>
+
+      <input type="file" id="ae-file-input" accept="image/jpeg,image/png,image/webp" hidden>
+    </main>
+
+    <div data-wds-app-footer data-shell-depth="1"></div>
+  </div>
+
+  <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
+  <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../photo-library/js/pl-models.js" defer></script>
+  <script src="../photo-library/js/pl-store.js" defer></script>
+  <script src="../photo-library/js/pl-engine.js" defer></script>
+  <script src="../waypoint-scenes/js/photo-library-client.js" defer></script>
+  <script src="js/ae-models.js" defer></script>
+  <script src="js/ae-signals.js" defer></script>
+  <script src="js/ae-restraint.js" defer></script>
+  <script src="js/ae-strategy.js" defer></script>
+  <script src="js/ae-ops.js" defer></script>
+  <script src="js/ae-pipeline.js" defer></script>
+  <script src="js/ae-store.js" defer></script>
+  <script src="js/ae-export.js" defer></script>
+  <script src="js/ae-compare.js" defer></script>
+  <script src="js/ae-ui.js" defer></script>
+  <script src="js/ae-boot.js" defer></script>
+</body>
+</html>

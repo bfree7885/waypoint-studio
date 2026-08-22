@@ -1,0 +1,398 @@
+{
+  "version": 1,
+  "runId": "gate-2026-08-10T01-39-36-343Z",
+  "createdAt": "2026-08-10T01:39:36.343Z",
+  "campaign": null,
+  "target": "subscriber-ready",
+  "entries": [
+    {
+      "id": "static-probes",
+      "kind": "static_probe",
+      "at": "2026-08-10T01:39:36.379Z",
+      "status": "fail",
+      "summary": "Scanned 273 files; 11 findings",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/static-probes.json",
+      "data": {
+        "evaluatedAt": "2026-08-10T01:39:36.379Z",
+        "filesScanned": 273,
+        "findings": [
+          {
+            "id": "placeholder_detection:todo-ui",
+            "dimension": "placeholder_detection",
+            "severity": "P3",
+            "message": "todo-ui in apps/scenes/js/engines/scene-engine.js",
+            "file": "apps/scenes/js/engines/scene-engine.js",
+            "labeledSample": true
+          },
+          {
+            "id": "placeholder_detection:coming-soon-as-feature",
+            "dimension": "placeholder_detection",
+            "severity": "P2",
+            "message": "coming-soon-as-feature in side-trails/global-signals/about/index.html",
+            "file": "side-trails/global-signals/about/index.html",
+            "labeledSample": false
+          },
+          {
+            "id": "placeholder_detection:coming-soon-as-feature",
+            "dimension": "placeholder_detection",
+            "severity": "P2",
+            "message": "coming-soon-as-feature in side-trails/global-signals/scenario-explorer/index.html",
+            "file": "side-trails/global-signals/scenario-explorer/index.html",
+            "labeledSample": false
+          },
+          {
+            "id": "placeholder_detection:coming-soon-as-feature",
+            "dimension": "placeholder_detection",
+            "severity": "P2",
+            "message": "coming-soon-as-feature in side-trails/global-signals/supply-chains/index.html",
+            "file": "side-trails/global-signals/supply-chains/index.html",
+            "labeledSample": false
+          },
+          {
+            "id": "placeholder_detection:coming-soon-as-feature",
+            "dimension": "placeholder_detection",
+            "severity": "P2",
+            "message": "coming-soon-as-feature in side-trails/global-signals/waypoint-take/index.html",
+            "file": "side-trails/global-signals/waypoint-take/index.html",
+            "labeledSample": false
+          },
+          {
+            "id": "dead_controls:disabled-primary-no-reason",
+            "dimension": "dead_controls",
+            "severity": "P2",
+            "message": "disabled-primary-no-reason in apps/waypoint-scenes/index.html",
+            "file": "apps/waypoint-scenes/index.html",
+            "labeledSample": false
+          },
+          {
+            "id": "responsive:missing-viewport",
+            "dimension": "responsive",
+            "severity": "P1",
+            "message": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+            "file": "apps/scenes/hidden-landscapes/index.html"
+          },
+          {
+            "id": "responsive:missing-viewport",
+            "dimension": "responsive",
+            "severity": "P1",
+            "message": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+            "file": "apps/scenes/photo-coach/index.html"
+          },
+          {
+            "id": "responsive:missing-viewport",
+            "dimension": "responsive",
+            "severity": "P1",
+            "message": "Missing viewport meta: apps/scenes/photo-library/index.html",
+            "file": "apps/scenes/photo-library/index.html"
+          },
+          {
+            "id": "responsive:missing-viewport",
+            "dimension": "responsive",
+            "severity": "P1",
+            "message": "Missing viewport meta: sheds/index.html",
+            "file": "sheds/index.html"
+          },
+          {
+            "id": "playwright-capability",
+            "dimension": "playwright_browser",
+            "severity": "P2",
+            "message": "Playwright not installed in repo node_modules; browser automation limited."
+          }
+        ],
+        "playwright": {
+          "id": "playwright-capability",
+          "dimension": "playwright_browser",
+          "status": "missing",
+          "message": "Playwright not installed in repo node_modules; browser automation limited.",
+          "severity": "P2"
+        },
+        "dimensionsCovered": [
+          "primary_workflows",
+          "functionality",
+          "live_data_integrity",
+          "placeholder_detection",
+          "dead_controls",
+          "broken_links_nav",
+          "raw_html_leakage",
+          "loading_empty_error",
+          "responsive",
+          "contrast",
+          "a11y",
+          "keyboard",
+          "console",
+          "network_api",
+          "performance",
+          "security",
+          "privacy",
+          "content_quality",
+          "visual_consistency",
+          "discoverability",
+          "onboarding",
+          "persistence",
+          "commercial_usefulness"
+        ],
+        "fakeAsReal": false,
+        "p0Count": 0,
+        "p1Count": 4
+      }
+    },
+    {
+      "id": "playwright-capability",
+      "kind": "playwright_browser",
+      "at": "2026-08-10T01:39:36.379Z",
+      "status": "missing",
+      "summary": "Playwright not installed in repo node_modules; browser automation limited.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/playwright-capability.json",
+      "data": {
+        "id": "playwright-capability",
+        "dimension": "playwright_browser",
+        "status": "missing",
+        "message": "Playwright not installed in repo node_modules; browser automation limited.",
+        "severity": "P2"
+      }
+    },
+    {
+      "id": "cmd-platform-foundation",
+      "kind": "automated_tests",
+      "at": "2026-08-10T01:39:36.423Z",
+      "status": "pass",
+      "summary": "Platform foundation suite: pass",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/cmd-platform-foundation.json",
+      "data": {
+        "command": "node automation/test-platform-foundation.mjs",
+        "exitCode": 0,
+        "output": "PASS catalog has core products\nPASS catalog has incubator/supporting\nPASS catalog demotes ForageCast from core\nPASS catalog lists Side Trails as core\nPASS resolve sheds href\nPASS resolve studio home\nPASS resolve dashboard app\nPASS nav config has apps\nPASS nav categories\nPASS shell explore launcher control\nPASS shell local nav\nPASS shell marks current feature\nPASS profile private default\nPASS profile saves\nPASS locations save\nPASS collections favorites\nPASS settings sync off\nPASS subscription readiness\nPASS foundation render\nPASS envelope id\nPASS envelope privacy\nPASS extension set\nPASS future data disabled\nPASS future gis blocked\nPASS no marketplace hook name\nPASS sheds species count\nPASS shed find private\nPASS steepleaf tea store\nPASS signalterrain receiver\nPASS savant site\nPASS fieldry categories\nPASS life list empty total\nPASS foundation json apps/shed-hunting/data/foundation.json\nPASS foundation json apps/steepleaf/data/foundation.json\nPASS foundation json apps/signalterrain/data/foundation.json\nPASS foundation json apps/savant-sommelier/data/foundation.json\n\nAll platform foundation tests passed.\n"
+      }
+    },
+    {
+      "id": "cmd-production-links",
+      "kind": "automated_tests",
+      "at": "2026-08-10T01:39:36.483Z",
+      "status": "pass",
+      "summary": "Production link / route validation: pass",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/cmd-production-links.json",
+      "data": {
+        "command": "node automation/validate-production-links.mjs",
+        "exitCode": 0,
+        "output": "Production link validation\nChecked local refs: 2312\nBroken: 0\nWarnings: 6\n\nWarnings (sample):\n- articles/categories/create/index.html — empty aria-busy mount without boot shell\n- articles/categories/field-craft/index.html — empty aria-busy mount without boot shell\n- articles/categories/observe/index.html — empty aria-busy mount without boot shell\n- articles/categories/outdoor-intelligence/index.html — empty aria-busy mount without boot shell\n- articles/categories/share/index.html — empty aria-busy mount without boot shell\n- articles/categories/understand/index.html — empty aria-busy mount without boot shell\n\nWrote docs/PRODUCTION-BROKEN-ROUTE-REPORT.md\n\nOK — no broken production links detected.\n"
+      }
+    },
+    {
+      "id": "cmd-production-build",
+      "kind": "automated_tests",
+      "at": "2026-08-10T01:39:37.969Z",
+      "status": "fail",
+      "summary": "Production build verification: fail",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/cmd-production-build.json",
+      "data": {
+        "command": "node automation/verify-production-build.mjs",
+        "exitCode": 1,
+        "output": "Verify production build — https://waypointstudio.org expect 6548846\nPASS: marker matches build-info\nPASS: Dashboard App Shell present\n"
+      }
+    },
+    {
+      "id": "cmd-browser-smoke",
+      "kind": "console",
+      "at": "2026-08-10T01:39:38.270Z",
+      "status": "fail",
+      "summary": "Browser smoke (console/network journeys): fail",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/cmd-browser-smoke.json",
+      "data": {
+        "command": "node automation/smoke-browser.mjs",
+        "exitCode": 2,
+        "output": "Smoke runner error: Cannot find package 'ws' imported from /home/bryan/Projects/waypoint-studio-agent-ops/automation/smoke-browser.mjs\n"
+      }
+    },
+    {
+      "id": "cmd-a11y-smoke",
+      "kind": "a11y",
+      "at": "2026-08-10T01:39:38.295Z",
+      "status": "fail",
+      "summary": "Accessibility smoke: fail",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/cmd-a11y-smoke.json",
+      "data": {
+        "command": "node automation/a11y-smoke.mjs",
+        "exitCode": 1,
+        "output": "Missing audits/live-site-qa deps. Run: cd audits/live-site-qa && npm install\n"
+      }
+    },
+    {
+      "id": "commercial-review",
+      "kind": "commercial_review",
+      "at": "2026-08-10T01:39:38.296Z",
+      "status": "fail",
+      "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/commercial-review.json",
+      "data": {
+        "role": "commercial-subscriber",
+        "evaluatedAt": "2026-08-10T01:39:38.296Z",
+        "status": "fail",
+        "wouldCancel": true,
+        "coreQuestion": "If a customer paid today, what would cause cancel, refund, or loss of trust?",
+        "cancelRiskCatalog": [
+          "Broken primary workflow after payment expectation",
+          "Sample/demo/placeholder presented as finished Live product",
+          "Dead controls on the paid or primary value path",
+          "Misleading Live / estimate / cached honesty",
+          "Unreadable UI, HTML leakage, or silent failures",
+          "Data that does not persist when the product claims it does",
+          "Privacy surprise or unclear permissions",
+          "Feature that looks ready but delivers no commercial usefulness"
+        ],
+        "risks": [
+          {
+            "id": "commercial:open-p0-p1-work",
+            "severity": "P1",
+            "reason": "1 open P0–P1 item(s) automatically prevent SUBSCRIBER READY",
+            "cancelRisk": "Feature that looks ready but delivers no commercial usefulness"
+          },
+          {
+            "id": "commercial:responsive:missing-viewport",
+            "severity": "P1",
+            "reason": "Missing viewport meta: apps/scenes/hidden-landscapes/index.html",
+            "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+          },
+          {
+            "id": "commercial:responsive:missing-viewport",
+            "severity": "P1",
+            "reason": "Missing viewport meta: apps/scenes/photo-coach/index.html",
+            "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+          },
+          {
+            "id": "commercial:responsive:missing-viewport",
+            "severity": "P1",
+            "reason": "Missing viewport meta: apps/scenes/photo-library/index.html",
+            "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+          },
+          {
+            "id": "commercial:responsive:missing-viewport",
+            "severity": "P1",
+            "reason": "Missing viewport meta: sheds/index.html",
+            "cancelRisk": "Unreadable UI, HTML leakage, or silent failures"
+          },
+          {
+            "id": "commercial:check:board-blockers",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Board blocker posture (P0–P2 / repair queue)",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:production-build",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Production build verification",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          },
+          {
+            "id": "commercial:check:probe-responsive",
+            "severity": "P1",
+            "reason": "Required readiness check not green: Responsive viewport basics",
+            "cancelRisk": "Broken primary workflow after payment expectation"
+          }
+        ],
+        "summary": "Commercial reviewer would expect cancel/refund/trust loss from open P0/P1 risks.",
+        "blocksVerdict": "NOT READY"
+      }
+    },
+    {
+      "id": "red-team",
+      "kind": "red_team",
+      "at": "2026-08-10T01:39:38.296Z",
+      "status": "fail",
+      "summary": "Red Team disproved readiness with 9 finding(s).",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/red-team.json",
+      "data": {
+        "role": "red-team",
+        "evaluatedAt": "2026-08-10T01:39:38.296Z",
+        "status": "fail",
+        "disproved": true,
+        "mission": "Independently DISPROVE Subscriber Ready; do not rubber-stamp QA.",
+        "disproofs": [
+          {
+            "id": "redteam:backlog:WB-004",
+            "severity": "P1",
+            "message": "Open P1 work disproves readiness: [eng] Confirm GitHub Pages source remains GitHub Actions only"
+          },
+          {
+            "id": "redteam:probe:responsive:missing-viewport",
+            "severity": "P1",
+            "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/hidden-landscapes/index.html"
+          },
+          {
+            "id": "redteam:probe:responsive:missing-viewport",
+            "severity": "P1",
+            "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/photo-coach/index.html"
+          },
+          {
+            "id": "redteam:probe:responsive:missing-viewport",
+            "severity": "P1",
+            "message": "Probe finding disproves readiness: Missing viewport meta: apps/scenes/photo-library/index.html"
+          },
+          {
+            "id": "redteam:probe:responsive:missing-viewport",
+            "severity": "P1",
+            "message": "Probe finding disproves readiness: Missing viewport meta: sheds/index.html"
+          },
+          {
+            "id": "redteam:commercial-cancel",
+            "severity": "P0",
+            "message": "Commercial reviewer cancel/refund risk present — Red Team treats as disproof."
+          },
+          {
+            "id": "redteam:qa:production-build",
+            "severity": "P1",
+            "message": "Required check not passing: Production build verification"
+          },
+          {
+            "id": "redteam:qa:browser-smoke",
+            "severity": "P1",
+            "message": "Required check not passing: Browser smoke (console/network journeys)"
+          },
+          {
+            "id": "redteam:qa:a11y-smoke",
+            "severity": "P1",
+            "message": "Required check not passing: Accessibility smoke"
+          }
+        ],
+        "summary": "Red Team disproved readiness with 9 finding(s).",
+        "rejectedAutoAccept": true,
+        "blocksVerdict": "NOT READY"
+      }
+    },
+    {
+      "id": "gate-summary-pointer",
+      "kind": "gate_summary",
+      "at": "2026-08-10T01:39:38.299Z",
+      "status": "recorded",
+      "summary": "Verdict: NOT READY",
+      "severity": null,
+      "artifact": "evidence/gate-2026-08-10T01-39-36-343Z/gate-summary-pointer.json",
+      "data": {
+        "verdict": "NOT READY",
+        "completeness": {
+          "complete": true,
+          "missing": [],
+          "present": [
+            "static_probe",
+            "playwright_browser",
+            "automated_tests",
+            "console",
+            "a11y",
+            "commercial_review",
+            "red_team"
+          ]
+        }
+      }
+    }
+  ],
+  "summaryArtifact": "evidence/gate-2026-08-10T01-39-36-343Z/summary.json",
+  "finalizedAt": "2026-08-10T01:39:38.300Z"
+}

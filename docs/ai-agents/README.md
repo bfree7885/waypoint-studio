@@ -1,5 +1,10 @@
 # Waypoint Studio — AI Agents
 
+> **Obsolete for Agent Ops runtime.** Prefer
+> [`ops/product-board/`](../../ops/product-board/README.md) and
+> [`engineering/`](../../engineering/README.md). See
+> [`OBSOLETE.md`](./OBSOLETE.md). Constitutions linked below remain authoritative.
+
 **Mission:** Observe. Understand. Create. Share.
 
 This folder defines focused AI roles for building **Waypoint Studio** products inside Cursor. Copy an agent file into context (`@.ai-agents/product-lead.md`) or paste its example prompt to stay on mission.

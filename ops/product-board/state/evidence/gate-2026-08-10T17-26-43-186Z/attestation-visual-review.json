@@ -1,0 +1,17 @@
+{
+  "id": "attestation-visual-review",
+  "kind": "attestation",
+  "at": "2026-08-10T17:26:50.299Z",
+  "status": "pass",
+  "summary": "Attested pass by ux-ui-lead: Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+  "severity": null,
+  "data": {
+    "id": "AT-006",
+    "criterionId": "visual-review",
+    "role": "ux-ui-lead",
+    "verdict": "pass",
+    "notes": "Mobile/desktop CDP screenshots; obs focus on type field; GPS button no longer competing primary.",
+    "campaign": "sheds",
+    "at": "2026-08-10T17:25:32.447Z"
+  }
+}

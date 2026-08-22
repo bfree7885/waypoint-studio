@@ -1,25 +1,33 @@
 {
-  "version": "1.2.2",
-  "description": "Waypoint Studio product registry \u2014 core instruments, content tracks, shared modules, and planned shared engines.",
+  "version": "1.3.0",
+  "description": "Waypoint Studio product registry \u2014 core architecture, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": [
       "studio",
-      "foragecast",
-      "fieldry",
+      "dashboard",
       "scenes",
-      "photo-coach"
+      "shed-hunting",
+      "articles",
+      "side-trails"
+    ],
+    "studioChrome": [
+      "support",
+      "about"
     ],
     "foundations": [
-      "shed-hunting",
       "steepleaf",
-      "signalterrain",
       "savant-sommelier",
-      "waypoint-volunteer"
+      "waypoint-volunteer",
+      "foragecast",
+      "fieldry"
     ],
     "contentTracks": [],
     "modules": [],
     "retired": [
       "terrainbound"
+    ],
+    "sideTrails": [
+      "signalterrain"
     ]
   },
   "sharedEngines": {
@@ -790,15 +798,15 @@
     },
     "signalterrain": {
       "slug": "signalterrain",
-      "portfolioTier": "module",
-      "portfolioRole": "Intelligence platform home \u2014 Radio & Spectrum + Cyber Awareness",
+      "portfolioTier": "side-trails",
+      "portfolioRole": "Side Trails project \u2014 Radio & Spectrum + Cyber Awareness (not a studio primary peer)",
       "dataProduct": "signalterrain",
       "name": "SignalTerrain",
       "hero": "Understand the world's signals",
-      "eyebrow": "Signal Intelligence",
+      "eyebrow": "Side Trails \u00b7 Signal Intelligence",
       "lead": "Two major areas: Radio & Spectrum Intelligence (SDR, receivers, propagation, monitoring, RF observations) and Cyber Awareness (ransomware, vulnerabilities, attacks, outages, advisories, defensive guidance) \u2014 educational and defensive only.",
-      "description": "SignalTerrain is the studio home for Signal Intelligence: Radio & Spectrum Intelligence and educational Cyber Awareness connected through topics and a living knowledge graph. Not a scanner, SIEM, penetration-testing tool, or RSS reader.",
-      "studioHref": "../../",
+      "description": "SignalTerrain lives under Side Trails in Waypoint Studio. It is the product home for Signal Intelligence: Radio & Spectrum Intelligence and educational Cyber Awareness connected through topics and a living knowledge graph. Not a scanner, SIEM, penetration-testing tool, or RSS reader.",
+      "studioHref": "side-trails/signalterrain/",
       "toolHref": "apps/signalterrain/",
       "toolLabel": "Open SignalTerrain",
       "contentDomains": [

@@ -1,0 +1,263 @@
+{
+  "rawKeys": [
+    "result"
+  ],
+  "value": {
+    "viewport": {
+      "w": 1280,
+      "h": 657
+    },
+    "tileCount": 24,
+    "coverageRatio": 1,
+    "samples": 190,
+    "covered": 190,
+    "hosts": [
+      "b.basemaps.cartocdn.com",
+      "c.basemaps.cartocdn.com",
+      "d.basemaps.cartocdn.com",
+      "a.basemaps.cartocdn.com"
+    ],
+    "tiles": [
+      {
+        "x": 498,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/15/22.png"
+      },
+      {
+        "x": 754,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/16/22.png"
+      },
+      {
+        "x": 498,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/15/23.png"
+      },
+      {
+        "x": 754,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/16/23.png"
+      },
+      {
+        "x": 498,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/15/21.png"
+      },
+      {
+        "x": 754,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/16/21.png"
+      },
+      {
+        "x": 242,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/14/22.png"
+      },
+      {
+        "x": 1010,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/17/22.png"
+      },
+      {
+        "x": 242,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/14/23.png"
+      },
+      {
+        "x": 1010,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/17/23.png"
+      },
+      {
+        "x": 498,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/15/24.png"
+      },
+      {
+        "x": 754,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/16/24.png"
+      },
+      {
+        "x": 242,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/14/21.png"
+      },
+      {
+        "x": 1010,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/17/21.png"
+      },
+      {
+        "x": 242,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/14/24.png"
+      },
+      {
+        "x": 1010,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/17/24.png"
+      },
+      {
+        "x": -14,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/13/22.png"
+      },
+      {
+        "x": 1266,
+        "y": 35,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/18/22.png"
+      },
+      {
+        "x": -14,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://a.basemaps.cartocdn.com/rastertiles/voyager/6/13/23.png"
+      },
+      {
+        "x": 1266,
+        "y": 291,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/18/23.png"
+      },
+      {
+        "x": -14,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/13/21.png"
+      },
+      {
+        "x": 1266,
+        "y": -221,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://d.basemaps.cartocdn.com/rastertiles/voyager/6/18/21.png"
+      },
+      {
+        "x": -14,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://b.basemaps.cartocdn.com/rastertiles/voyager/6/13/24.png"
+      },
+      {
+        "x": 1266,
+        "y": 547,
+        "w": 256,
+        "h": 256,
+        "opacity": "1",
+        "complete": true,
+        "natural": 256,
+        "src": "https://c.basemaps.cartocdn.com/rastertiles/voyager/6/18/24.png"
+      }
+    ]
+  }
+}

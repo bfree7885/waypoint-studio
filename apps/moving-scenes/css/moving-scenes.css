@@ -1,0 +1,316 @@
+/* Waypoint Moving Scenes — quiet photographic craft workspace */
+:root {
+  --ms-bg: #10130f;
+  --ms-bg-elev: #181c16;
+  --ms-ink: #e7e5de;
+  --ms-muted: #a3a396;
+  --ms-line: rgba(231, 229, 222, 0.12);
+  --ms-accent: #9eb4a0;
+  --ms-danger: #d9897a;
+  --ms-pad: clamp(1rem, 3vw, 2rem);
+  --ms-serif: "Cormorant Garamond", Georgia, serif;
+  --ms-sans: "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
+}
+
+[data-product="moving-scenes"] body,
+.ms-page {
+  background:
+    radial-gradient(1100px 520px at 15% -8%, rgba(70, 95, 80, 0.2), transparent 55%),
+    radial-gradient(900px 480px at 95% 0%, rgba(50, 55, 40, 0.22), transparent 50%),
+    var(--ms-bg);
+  color: var(--ms-ink);
+  font-family: var(--ms-sans);
+}
+
+.ms-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: var(--ms-pad);
+  padding-bottom: 4rem;
+}
+
+.ms-hero__title {
+  font-family: var(--ms-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.01em;
+  margin: 0.35rem 0;
+}
+
+.ms-hero__lead {
+  max-width: 40rem;
+  color: var(--ms-muted);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.ms-trust {
+  color: var(--ms-muted);
+  font-size: 0.92rem;
+  border-left: 2px solid var(--ms-accent);
+  padding-left: 0.75rem;
+  margin-top: 1rem;
+}
+
+.ms-status {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--ms-bg-elev);
+  border: 1px solid var(--ms-line);
+  border-radius: 4px;
+}
+.ms-status.is-error {
+  border-color: var(--ms-danger);
+  color: #f0c4bc;
+}
+
+.ms-drop {
+  border: 1px dashed var(--ms-line);
+  border-radius: 6px;
+  padding: 2.5rem 1.25rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+}
+.ms-drop.is-drag {
+  border-color: var(--ms-accent);
+  background: rgba(158, 180, 160, 0.08);
+}
+.ms-drop__title {
+  font-family: var(--ms-serif);
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem;
+}
+.ms-drop__text {
+  color: var(--ms-muted);
+  margin-bottom: 1.25rem;
+}
+.ms-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.ms-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.ms-photo-first {
+  position: relative;
+  min-width: 0;
+}
+
+.ms-compare__stage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #0a0c09;
+  border-radius: 4px;
+  overflow: hidden;
+  outline: none;
+}
+.ms-compare__still,
+.ms-compare__moving {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.ms-compare[data-mode="side"] .ms-compare__stage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  aspect-ratio: auto;
+  min-height: 280px;
+}
+.ms-compare[data-mode="side"] .ms-compare__still,
+.ms-compare[data-mode="side"] .ms-compare__moving {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+}
+.ms-compare__label {
+  position: absolute;
+  top: 0.65rem;
+  z-index: 3;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.45rem;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.ms-compare__label--s { left: 0.65rem; }
+.ms-compare__label--m { right: 0.65rem; }
+.ms-compare[data-mode="side"] .ms-compare__label--m { left: calc(50% + 0.65rem); right: auto; }
+
+.ms-compare__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+.ms-assist-wrap {
+  position: relative;
+  margin-top: 0.75rem;
+}
+.ms-assist-wrap canvas {
+  width: 100%;
+  max-height: 180px;
+  border: 1px dashed var(--ms-line);
+  border-radius: 4px;
+  touch-action: none;
+  cursor: crosshair;
+}
+.ms-assist-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.ms-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.ms-panel {
+  background: var(--ms-bg-elev);
+  border: 1px solid var(--ms-line);
+  border-radius: 6px;
+  padding: 0.95rem 1rem;
+}
+.ms-panel h2 {
+  font-family: var(--ms-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+}
+.ms-panel__lede,
+.ms-muted {
+  color: var(--ms-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+}
+
+.ms-chip {
+  appearance: none;
+  border: 1px solid var(--ms-line);
+  background: transparent;
+  color: var(--ms-ink);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.ms-chip.is-active,
+.ms-chip[aria-pressed="true"] {
+  border-color: var(--ms-accent);
+  background: rgba(158, 180, 160, 0.12);
+}
+.ms-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ms-source-row {
+  display: grid;
+  gap: 0.5rem;
+}
+.ms-source-btn {
+  text-align: left;
+  border: 1px solid var(--ms-line);
+  background: rgba(255, 255, 255, 0.02);
+  color: inherit;
+  border-radius: 6px;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+}
+.ms-source-btn strong { display: block; }
+.ms-source-btn span { color: var(--ms-muted); font-size: 0.85rem; }
+.ms-source-btn.is-active {
+  border-color: var(--ms-accent);
+  background: rgba(158, 180, 160, 0.1);
+}
+.ms-source-btn.is-disabled,
+.ms-source-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ms-summary-lead {
+  margin: 0 0 0.5rem;
+  line-height: 1.45;
+}
+.ms-badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--ms-line);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  color: var(--ms-muted);
+}
+.ms-class-list,
+.ms-honesty ul,
+.ms-deferred ul {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--ms-muted);
+  font-size: 0.92rem;
+}
+.ms-deferred {
+  margin-top: 0.65rem;
+  color: var(--ms-muted);
+  font-size: 0.88rem;
+}
+
+.ms-strength,
+.ms-dir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ms-panel--actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.ms-export-note {
+  color: var(--ms-muted);
+  font-size: 0.85rem;
+  margin: 0.35rem 0 0;
+}
+
+.ms-playback {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.65rem;
+}
+
+@media (max-width: 880px) {
+  .ms-workspace {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-compare__moving {
+    /* renderer also pauses; no CSS animation loops here */
+  }
+}

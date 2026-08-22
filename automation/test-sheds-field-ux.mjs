@@ -39,20 +39,25 @@ assert("full-screen map shell absolute", /#sheds-map-shell[\s\S]*position:\s*abs
 assert("floating FAB rail", /sheds-fab-rail/.test(html) && /sheds-fab-rail/.test(css));
 assert("bottom sheet field class", /sheds-sheet-field/.test(html) && /sheds-sheet-field/.test(css));
 assert("plan card is floating suggest", /class="[^"]*sheds-suggest/.test(html) && /id="plan-card"/.test(html));
-assert("story sheet copy", /Start here/.test(html) && /sheds-story/.test(html));
-assert("plain-language confidence", /id="plan-stars"/.test(html) && /We’ll suggest where to look|We.ll suggest where to look/.test(html));
+assert("story sheet copy", /Today.?s Search/.test(html) && /sheds-story/.test(html) && /data-todays-search/.test(html));
+assert("plain-language confidence", /id="plan-stars"/.test(html) && /Confidence pending|Confidence/.test(html) && /aria-label="Confidence"/.test(html));
 assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
 assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
+assert("labeled zoom in field rail (not Leaflet stack)", /btn-zoom-in/.test(html) && /btn-zoom-out/.test(html) && /sheds-zoom-pair/.test(css));
+assert("no Leaflet zoom control added", !/L\.control\.zoom\(/.test(app));
 assert("add note on FAB for field speed", (() => {
-  const fab = html.match(/<div class="sheds-fab-rail"[\s\S]*?<\/div>/);
+  const fabStart = html.indexOf('class="sheds-fab-rail"');
+  const fabChunk = fabStart >= 0 ? html.slice(fabStart, fabStart + 2500) : "";
   const tools = html.match(/id="sheet-tools"[\s\S]*?<\/div>\s*<\/div>/);
-  if (!fab || !tools) return false;
-  return /btn-add-obs-fab/.test(fab[0]) && /btn-locate/.test(fab[0]) &&
-    !/btn-layers/.test(fab[0]) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
+  if (!fabChunk || !tools) return false;
+  return /btn-add-obs-fab/.test(fabChunk) && /btn-locate/.test(fabChunk) &&
+    !/btn-layers/.test(fabChunk) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
 })());
 assert("legend deferred until heat", /id="heat-legend"/.test(html) && /hidden/.test(html.match(/id="heat-legend"[^>]*/)[0]));
-assert("ethics mentions tile providers", /Map providers|OpenTopoMap|tile/i.test(html));
+assert("expanded briefing hides attribution over copy", /plan-card\[data-expanded="true"\].*leaflet-control-attribution[\s\S]*display:\s*none/i.test(css.replace(/\s+/g, " ")) || /#sheds-map-shell:has\(#plan-card\[data-expanded="true"\]\)\s+\.leaflet-control-attribution\s*\{[^}]*display:\s*none/i.test(css));
+assert("field rail owns zoom chrome", /sheds-zoom-pair/.test(html) && /leaflet-bottom\.leaflet-right[\s\S]{0,80}display:\s*none/i.test(css));
+
 assert("privacy honesty on obs sheet", /Map tiles still leave provider/i.test(html));
 assert("safe-area respected", /safe-area-inset-bottom/.test(css) && /safe-area-inset-top/.test(css));
 assert("no permanent multi-row secondary deck", /sheet-tools/.test(html));

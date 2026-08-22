@@ -134,8 +134,479 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-16 — DFD measurement mode scorecard
+
+**Branch:** `cursor/dfd-measurement-mode-efa3`
+
+- Prefer a fill-in scorecard + 5–10 min owner checklist over new analytics infrastructure.
+- Document honest gaps: `DFD_*` queue may have no dashboard consumer; YouTube→Waypoint is not automatic without referrers/UTMs.
+- Video #2 stays on a ~3–5 day window; near-zero early metrics must not delay the second data point or trigger a pivot.
+
+### 2026-08-16 — Mount Hood YouTube Video #1 wire
+
+**Branch:** `cursor/dfd-mount-hood-youtube-efa3` · ID `ue74ge9Bz7U`
+
+- Setting `youtubeVideoId` + re-running `scripts/dfd/render-stories.mjs` is sufficient; do not hand-edit story HTML.
+- Keep other stories at `youtubeVideoId: null` until their public IDs exist; renderer swaps pending copy for embed + VideoObject automatically.
+- `DFD_VIDEO_PLAY` is pointerdown on `.dfd-video__frame` (once); `DFD_YOUTUBE_CLICK` is `data-dfd-track` on the iframe — preserve both without redesign.
+
+### 2026-08-16 — DFD public launch (integrate → Pages → measure)
+
+**Branch:** `cursor/dfd-public-launch-efa3` · **Docs:** `docs/deep-forest-dispatch/DFD-LAUNCH-REPORT.md`, `OWNER-LAUNCH-ACTIONS.md`
+
+- Cumulative DFD content lived on Batch #3 tip; merge that tip into a launch branch off `main` rather than cherry-picking each PR.
+- Production deploy is GitHub Pages on `push` to `main` (`.github/workflows/pages.yml`); verify live `waypointstudio.org` URLs after the Actions run — do not assume green commit = live.
+- Final YouTube masters/thumbnails are not in-repo; packages document owner-local paths and keep `youtubeVideoId: null` until real public IDs exist.
+- Search Console is not implied by analytics hooks — document owner verify + sitemap submit only.
+- After launch: stop content production; measure at baseline / 2w / 30d / 60d / 90d without arbitrary failure thresholds.
+
+### 2026-08-16 — DFD Article Production Batch #3 (First-10 complete)
+
+**Branch:** `cursor/dfd-article-batch-3-efa3` · **Review:** `docs/deep-forest-dispatch/batch-3/OWNER-REVIEW.md` · **Portfolio:** `docs/deep-forest-dispatch/DFD-INITIAL-PORTFOLIO-REPORT.md`
+
+1. **Force the evidence gate on change stories** — Columbia kept; title adjusted to “nearly 40 years” to match 1986–2024 Landsat, not a round marketing number.
+2. **Empty Waypoint CTAs are valid** — remote terminal-basin / heritage-island stories need not invent instrument links; tests must allow zero connections.
+3. **Partial vs complete** — Lake Eyre teaching moment: registered fill stages beat “the desert becomes a sea every year.”
+4. **STOP after First-10** — portfolio diagnostic is not a backlog generator; next phase is publish → measure.
+
+### 2026-08-16 — DFD Article Production Batch #2
+
+**Branch:** `cursor/dfd-article-batch-2-efa3` · **Review:** `docs/deep-forest-dispatch/batch-2/OWNER-REVIEW.md`
+
+1. **Evidence gate before prose** — for migration/change stories, lock location + multi-date registered imagery + published rates before drafting; do not fake motion with arrows on one frame.
+2. **Landscape paradoxes need system maps** — Okavango lag is distance *and* slow fan propagation; a travel map beats “it takes months” as the sole explanation.
+3. **Geology honesty beats clickbait** — Richat must reject impact without claiming a single finished “carving” cartoon; uncertainty belongs on-page.
+4. **Hero ≠ first evidence frame** — if a compare uses Year A, do not also hero Year A; readers notice the replay.
+5. **Do not invent process** — reuse the existing quality gate and render pipeline; production batches are content, not CMS work.
+
+### 2026-08-16 — DFD Batch #1 editorial + visual QA
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW-V2.md`
+
+1. **Diagrams must appear early** — burying the original visual after mechanism prose makes the page feel like a blog with an infographic taped on.
+2. **Never duplicate the hero in the first body figure** — readers notice; it reads as padding.
+3. **Shared section templates are AI-slop** — identical Explore further / Connect to Waypoint / Show me outlines across siblings fail the reader test even when science is fine.
+4. **Six equal comic panels read as PowerPoint** — prefer one spatial explainer plus minimal stages.
+5. **≤2 Waypoint CTAs, observational copy** — third links and “detector” disclaimers still feel promotional if stacked.
+6. **Codify the floor** — `DFD-ARTICLE-QUALITY-GATE.md` is now a required workflow step, not optional taste.
+
+### 2026-08-16 — DFD Article Production Batch #1
+
+**Branch:** `cursor/dfd-article-batch-1-efa3` · **Review:** `docs/deep-forest-dispatch/batch-1/OWNER-REVIEW.md`
+
+1. **Strategy branch ≠ library branch** — production must sit on the DFD library infra (render pipeline + CSS/JS) and carry strategy docs as reference; do not invent a third page template.
+2. **Original value is a hard gate** — each article needs a Waypoint diagram that carries the causal chain (causeway→salinity→color; drainage sequence; standing wave), not stock filler between paragraphs.
+3. **Catalog `published` shows cards immediately** — for “build but don’t deploy” batches, decide explicitly whether PR preview should list stories (`published`) or hide them (`draft`/`review`) before merge.
+4. **CDP screenshots must attach to a page target** (`/json/list` type=page), not the browser-level websocket; unique `--user-data-dir` avoids Chrome SingletonLock failures.
+5. **Tool links must be real products only** — Dashboard dew point/wind context and Scenes/Photo Coach are fine; inventing fog forecasts or lenticular detectors fails Product Standards.
+
+### 2026-08-14 — Moving Scenes Attack 3 ship (transport + asset false positive)
+
+**PR:** https://github.com/bfree7885/waypoint-studio/pull/37 · **prod SHA:** `2f02e6e6`
+
+1. **GitHub HTTPS can reset mid-ship** — retry `git fetch`/`git push` with unrestricted network; prefer API+credential fill when `gh auth` is unset.
+2. **Docs HTML template literals trip asset/link validators** — `src="fixtures/${file}"` is parsed as a real missing path; use string concat or static markup in owner galleries.
+3. **Bugbot Autofix may land on the PR branch while CI is red** — fetch/merge remote feature tip before pushing local CI fixes; re-run Moving Scenes automation (now 58 PASS after assist/library fixes).
+
 Append new engineering lessons after every work block so the playbook
 continuously improves.
+
+### 2026-08-07 — Side Trails discovery release
+
+**Artifact:** `docs/releases/side-trails-discovery-owner-review.md`  
+**Branch:** `release/side-trails-discovery`
+
+1. **Quiet Home hid architecture nav** — config already listed Side Trails, but
+   `data-quiet-chrome` suppressed the whole primary row. Keep Explore hidden; keep
+   the seven-item architecture nav visible with calm quiet styles.
+2. **Homepage deepeners ≠ studio-home.js** — Rebuild Home mounts
+   `wds-dashboard-rebuild-deepeners.js`; teaser cards must land there (and CSS), not
+   only in the older `js/studio-home.js` directory surface.
+3. **Prefer smallest GS stack for discovery** — home-dashboard + direct-entry cover
+   the primary board; skip unfinished live-data/entity/story and skip homepage GS
+   teasers when the board is sample/demo only.
+4. **Site-root absolute primary hrefs** — nested `/articles/` + apps-era
+   `data-shell-depth` invented peer-relative dead links; directory-segment depth +
+   `/side-trails/` absolute paths fix discovery from every shell page.
+5. **Local static servers need the release cwd** — an orphan listener on the port
+   can serve stale deepeners without Side Trails; restart from the worktree before
+   screenshot/DOM gates.
+
+### 2026-08-07 — Global Signals direct entry (dashboard first)
+
+**Artifact:** `docs/global-signals/direct-entry-owner-review.md`  
+**Branch:** `feature/global-signals-direct-entry`
+
+1. **Integrate the home-dashboard tip before link surgery** — otherwise “direct
+   entry” only moves traffic onto an empty marketing page. Base from `origin/main`,
+   merge `feature/global-signals-home-dashboard`, then audit entry points.
+2. **Homepage Side Trails is nav-config driven** — catalog URL alone is not enough;
+   add `global-signals` to `homeSideTrails` + `productLanding`/`startHere` so Home
+   lists open the dashboard without a detour.
+3. **Park mission copy on `/about/`** — keep `/side-trails/global-signals/` as the
+   board; footer “About” is secondary. Do not restore hero marketing on the primary route.
+4. **Superseded shells get redirects, not “coming soon”** —
+   `global-dashboard/` → `../` once a real dashboard exists; leave unfinished modules
+   as honest empty shells only when they are still planned work.
+5. **Assert entry matrix in automation** — catalog URL, nav `homeSideTrails`, About
+   studio link, primary `gsh-board`, and redirect meta/`location.replace` in one
+   `test-global-signals-direct-entry.mjs` so regressions cannot reintroduce friction.
+
+### 2026-08-07 — Global Signals home application dashboard
+
+**Artifact:** `docs/global-signals/home-dashboard-owner-review.md`  
+**Branch:** `feature/global-signals-home-dashboard`
+
+1. **Dashboard ≠ landing.** Once modules exist, `/side-trails/global-signals/`
+   must open into composed intelligence — not mission copy or a module catalog.
+   Keep “coming soon” shells off the entry surface even if routes still exist.
+2. **Integrate sibling feature tips before wiring links.** Conservative merges of
+   Explorer, Graph, Explain, Countries, Industries, and Citizen Impact avoid
+   dashboard deep-links into empty shells.
+3. **Curated `home.json` + module JSON composition** beats inventing a live risk
+   engine; featured picks must resolve to existing ids and keep sample/demo labels.
+4. **Foundation smoke tests that require every roadmap href on the landing freeze
+   product progress** — graduate assertions when the entry experience becomes a
+   board (require live module links; assert placeholders are *absent*).
+5. **Relationship search belongs on the home board** as a first-class entry
+   (`?entity=`), not a buried module CTA.
+
+### 2026-08-07 — Global Signals Industry Intelligence
+
+**Artifact:** `docs/global-signals/industry-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-industry-intelligence`
+
+1. **Curated baseline ≠ live news.** Dense industry pages can feel like a real
+   intelligence platform while still labeling `mode: curated-baseline` and never
+   fabricating breaking events as Observed.
+2. **Stable entity IDs enable parallel modules.** `gsi_*` / `gsc_*` / `gsci_*` /
+   `gsa_*` soft-links let Country Intelligence, Citizen Impact, and Relationship
+   Explorer land on other worktrees without colliding on this branch.
+3. **Articles taxonomy aliases matter.** Map `Logistics → Shipping` so sample
+   briefs interconnect without renaming existing Articles strings.
+4. **Detail-page relative depth.** Cross-module links from
+   `/industries/<slug>/` need `../../articles/` (not `../articles/`) — catch in
+   interconnect tests.
+5. **Seed script + JSON** keeps 11 full pages maintainable; regenerate via
+   `scripts/build-industry-intelligence-seed.mjs` rather than hand-editing
+   megabytes of duplicated HTML.
+
+### 2026-08-07 — Global Signals Relationship Graph (primary)
+
+**Artifact:** `docs/global-signals/relationship-graph-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-graph`
+
+1. **Radial-from-focus + neighbor list beats force-directed for literacy** — stable equal-angle rings and progressive expand keep “why this edge” readable; physics layouts obscure evidence.
+2. **Assemble edges only from curated source datasets** — Relationship Explorer, Citizen Impact cause chains, Industry `topDependencies` / `citizenImpacts`, and Country citizen pathways. Do not invent hops to fill the graph.
+3. **Mobile must drop the canvas when cramped** — stacked expand panels preserve edge facets; hiding SVG under `40rem` is a readability choice, not a missing feature.
+4. **Promote Graph without deleting Cascade Explorer** — keep `/relationships/` as the linear companion; elevate `/relationship-graph/` as the primary CTA and update “coming soon” suite assertions accordingly.
+5. **Negative UI copy still trips library-name tests if the regex includes the denied phrase** — keep asserting `cytoscape|d3.force|…`, not `force-directed`, when the page honestly rejects that layout.
+
+### 2026-08-07 — Global Signals Explain This
+
+**Artifact:** `docs/global-signals/explain-this-owner-review.md`  
+**Branch:** `feature/global-signals-explain-this`
+
+1. **Signature explainer = curated match + graph walk, never an LLM** — prompts / keywords / aliases / labels are enough for V1 demos and keep trust boundaries testable.
+2. **Prefer curated cascades; BFS only as fallback** — deterministic Taiwan / drought / tariff stories screenshot cleanly; BFS must still refuse to invent edges.
+3. **Waypoint’s Take is sourced or absent** — pull `waypointsTake` from linked industry JSON only; honest empty beats paraphrased filler.
+4. **Label seed extensions that exist only for demo prompts** — `gsn_travel` / `gsc_airlines` carry `provenance: explain-this-seed-extension` so owners can accept or relocate them.
+5. **Soft-link parallel modules by stable IDs** — inline linked excerpts now; deep-link `gsc_*` / `gsi_*` / citizen section anchors so Countries / Industries / Citizen Impact can land later without rewiring Explain This.
+
+### 2026-08-07 — Global Signals Relationship Explorer
+
+**Artifact:** `docs/global-signals/relationship-explorer-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-explorer`
+
+1. **Cascade UX ≠ graph UX** — ship an ordered downward path with edge facets first; leave force-directed / network canvas for Relationship Graph so owners can review literacy without layout noise.
+2. **Reuse Articles confidence / horizon normalizers with `predicted: true` on every edge** — prevents Observed leaking into dependency hops even when seed JSON is wrong.
+3. **Curated `cascades[].edgeIds` beats ad-hoc BFS for V1 demos** — deterministic Taiwan → … → Consumer Products stories are easier to test and screenshot than algorithmic walks.
+4. **Selectable roots must cover every advertised entity type** — product copy that lists Country…Weather Event needs at least one selectable of each, or the picker feels incomplete.
+5. **Negative UI copy can trip “must not mention X” tests** — assert against library names (`cytoscape`), not the phrase “force-directed” when the page honestly denies that pattern.
+
+### 2026-08-07 — Global Signals Citizen Impact (eight-category sample/demo shell)
+
+**Artifact:** `docs/global-signals/citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Align Citizen Impact to Articles confidence/horizon + Rel Explorer `gsn_*` ids**
+   instead of inventing a parallel schema — soft-link Explorer routes only when
+   they exist on main; otherwise document intended join keys.
+2. **Treat statement-level impact claims as predicted surfaces** — coerce Observed
+   away the same way Articles path hops do; reserve Observed for established facts.
+3. **Graduate foundation smoke tests when a module leaves “Coming soon”** —
+   `test-global-signals.mjs` must exclude Citizen Impact once the live shell ships,
+   same lesson as Articles Sprint 1.
+4. **Eight owner-requested categories beat shipping the full eleven-card design
+   grid unfinished** — keep the broader design doc directional; V1 UI matches the
+   brief.
+5. **Reuse GS landing chrome (`gs-landing` + IBM Plex)** for module pages; keep
+   outdoor Articles / WCS skins out of Side Trails.
+
+### 2026-08-07 — Global Signals Country Intelligence
+
+**Artifact:** `docs/global-signals/country-intelligence-owner-review.md`  
+**Branch:** `feature/global-signals-country-intelligence`
+
+1. **Clean slug pages + shared mount beat query-only detail for country sets** —
+   thin `/countries/<slug>/index.html` shells keep shareable URLs while one JS
+   module owns normalize/render; still accept `?id=` for Articles parity.
+2. **Reuse Articles confidence/horizon normalizers with a `predicted` flag** —
+   country risks and citizen-impact links must coerce Observed → Unknown the
+   same way impact-path hops do.
+3. **Cross-module hrefs must be depth-aware** — links from `/countries/<slug>/`
+   need `../../articles/` and `../../citizen-impact/#…`; dataset-relative
+   `../citizen-impact` is wrong on slug pages.
+4. **Foundation smoke tests that assume every non-Articles module is
+   “Coming soon” must be updated when Country Intelligence graduates** —
+   otherwise CI freezes new modules in placeholder state.
+5. **Soft-link stable ids even when sibling modules are still shells** —
+   `gsa_*` article ids, citizen category anchors, and `relationship-graph`
+   routes keep parallel worktrees integrable without schema forks.
+
+### 2026-08-07 — Homepage Side Trails section (deepeners teaser)
+
+**Artifact:** `docs/releases/homepage-side-trails-section-owner-review.md`  
+**Branch:** `feature/homepage-side-trails-section`
+
+1. **Homepage Side Trails belongs in Rebuild deepeners after Scenes/Sheds**, not a
+   marketing `studio-home.js` surface — root Home remains the outdoor workspace.
+2. **Homepage card hrefs can differ from catalog Open URLs** when the product
+   requires the working app (`/apps/signalterrain/`) or an outlink (Civic Trails
+   GitHub) rather than the Side Trails product landing alone.
+3. **Keep Side Trails visually lighter than primary deepen panels** so Home does
+   not read as a second flagship catalog.
+
+### 2026-08-07 — Global Signals Sprint 1 release (cherry-pick onto newer main)
+
+**Artifact:** `docs/releases/global-signals-sprint-1-release.md`  
+**Branch:** `release/global-signals-sprint-1`
+
+1. **When feature branched from an older main tip, cherry-pick the five unique
+   commits onto current `origin/main`** — preserves newer production work
+   (here: outdoor Articles feed refresh `4fd33cc`) without a reverse-merge.
+2. **Pre-existing SignalTerrain suite failures on main do not block an additive
+   GS release** when the changed file set does not touch those surfaces and the
+   failures reproduce on `origin/main` alone.
+3. **`pages.yml` + live SHA verification remain mandatory** — production was
+   still on Side Trails `70412af` while main already held the articles refresh.
+
+### 2026-08-06 — Global Signals Articles Sprint 1 (five commit slices)
+
+**Artifact:** `docs/global-signals/articles-owner-review.md`  
+**Branch:** `feature/global-signals-articles-sprint-1`
+
+1. **Slice commits beat monoliths for reviewable GS work** — route shell → cards →
+   Take → metadata → path/detail keeps each push owner-reviewable and avoids
+   shipping half-built parallel schemas.
+2. **`sample-demo` mode must be a first-class dataset flag**, not a footnote —
+   banner + mode field prevent demo briefs from being misread as live news.
+3. **Confidence normalizers need a `predicted` flag** — Observed is facts-only;
+   impact-path hops must coerce Observed → Unknown.
+4. **Reuse Global Signals landing chrome** (`gs-landing` + IBM Plex) for module
+   pages; do not fork outdoor Articles WCS skin into Side Trails.
+5. **Foundation smoke tests that assert “Coming soon” on every module** must be
+   updated when the first module graduates to a live shell — otherwise CI locks
+   the product in placeholder state.
+
+
+### 2026-08-06 — Side Trails release integration (ordered rebase)
+
+**Artifact:** `docs/releases/side-trails-integration-owner-review.md`  
+**Branch:** `release/side-trails-integration`
+
+1. **Merge Side Trails production + ST IA first**, then cherry-pick nav/articles/GS unique commits — parallel lineages conflict if merged whole.
+2. **Nav architecture can reintroduce SignalTerrain into `portfolio.foundations`** — re-assert `sideTrails` after rebase.
+3. **`GITHUB_TOKEN` pushes do not retrigger Pages** — always `workflow_dispatch` `pages.yml` after main updates that must go live.
+
+### 2026-08-06 — Articles design modernization (Take + shared nav)
+
+**Artifact:** `docs/articles/articles-modernization-owner-review.md`  
+**Branch:** `feature/articles-design-modernization`
+
+1. **Reuse WCS page chrome for Articles** — `wcs-page` / `wcs-hero` + shared shell
+   beats a one-off dark `was-home` skin; drop duplicate pill menus when primary
+   nav already carries Dashboard → About.
+2. **Waypoint’s Take is a component, not a card subsection** — shared
+   `wds-take.js` / `.wds-take` markup; Articles must call `renderArticleHtml` and
+   keep Summary visually plain.
+3. **Honest empty beats fake editorial** — when Take is missing, unavailable, or
+   only repeats Summary, render restrained empty; never invent Takes on live RSS.
+4. **Side Trails publishing is schema extension, not a CMS** — document
+   reserved `origin` / `projectId` / `projectLabel` and `dataUrl` overrides;
+   do not fork the feed renderer.
+5. **Align Home RC1 nav asserts when architecture labels change** — Dashboard /
+   Side Trails / Support belong in `studioPrimaryNav` and smoke tests together.
+
+### 2026-08-06 — Studio nav architecture alignment
+
+**Artifact:** `docs/product/waypoint-studio-nav-architecture-owner-review.md`  
+**Branch:** `feature/studio-nav-architecture-alignment`
+
+1. **One architecture contract, many surfaces** — `studioPrimaryNav` alone is not enough; About, Support, 404, incubator, sitemap, product-registry, and platform-catalog drift independently and must be audited together.
+2. **Quiet Home is an exception, not a second architecture** — do not force Side Trails/Support into quiet first viewport; document the exception and keep secondary/global directories honest.
+3. **Demote, don’t delete** — Volunteer / SignalTerrain / ForageCast remain reachable under Side Trails, Incubator, or supporting tiers; primary peers must match the seven-item set.
+4. **Keep nav-registry and embedded JS in sync** — `wds-app-nav-config.js` is the runtime embed; edit both or regenerate from `nav-registry.json`.
+5. **Smoke-test labels as the contract** — assert exact primary label set and absence of old peer names on directory HTML, not only JSON keys.
+
+### 2026-08-06 — SignalTerrain IA move into Side Trails
+
+**Artifact:** `docs/product/signalterrain-side-trails-move-owner-review.md`  
+**Branch:** `feature/signalterrain-move-to-side-trails`
+
+1. **Catalog membership ≠ architecture placement** — listing SignalTerrain on Side Trails
+   is incomplete until nav `homeIncubator`, platform catalog tier, and product-registry
+   portfolio also stop treating it as an incubator/foundation peer.
+2. **Preserve both URLs** — keep `/apps/signalterrain/` working and keep
+   `/side-trails/signalterrain/` as the product landing; dual entry beats broken bookmarks.
+3. **Assert non-peer explicitly in smoke tests** — check `homePrimary` /
+   `studioPrimaryNav` / `homeIncubator` do not list SignalTerrain beside Dashboard/Scenes.
+4. **Incubator should point, not host** — after the move, Incubator keeps a “Looking for
+   SignalTerrain?” pointer rather than a peer product section.
+5. **Use a fresh worktree from the Side Trails tip** when other worktrees carry unrelated
+   dirty WIP so the IA move does not ship mixed branches.
+
+### 2026-08-06 — Side Trails production integration (simple landing)
+
+**Artifact:** `docs/product/side-trails-production-integration-owner-review.md`  
+**Branch:** `feature/side-trails-production-integration`
+
+1. **Production Side Trails stays a short card list** — Civic Trails + SignalTerrain
+   only for the first ship; omit search, filters, categories UI, and dashboards
+   even if earlier catalog drafts had them.
+2. **Soft-exclude Global Signals from the primary set** until product explicitly
+   adds it; keep the catalog subset honest rather than carrying research WIP.
+3. **Open → landing for SignalTerrain** (`/side-trails/signalterrain/`), GitHub
+   for Civic Trails; do not modify `apps/signalterrain/` in the integration block.
+4. **Branch from `origin/main` in a fresh worktree** and cherry-pick only the
+   Side Trails + landing commits so Global Signals / design-doc WIP never rides
+   the production review branch.
+### 2026-08-06 — Global Signals Side Trails project
+### 2026-08-06 — Global Signals Citizen Impact Dashboard (design only)
+
+**Artifact:** `docs/product/global-signals-citizen-impact-owner-review.md`  
+**Branch:** `feature/global-signals-citizen-impact`
+
+1. **Citizen framing is a lens, not a news desk** — ask “what could this mean for
+   ordinary people?” with conditional language; never guarantee outcomes.
+2. **Impacts are graph paths** — category cards without origin nodes / edge paths
+   are orphan claims and must not publish.
+3. **Empty categories are success** — filling eleven cards without evidence
+   violates trust; quiet days beat fabricated household drama.
+4. **Cross-link sibling engines early** — Relationship Engine, Cascading Impact
+   Explorer, and Articles share the same citizen-literacy end nodes; document
+   deep-link contracts before any runtime.
+5. **No surveillance framing** — citizen nodes are impact literacy, never
+   dossiers or targeting.
+
+### 2026-08-06 — Global Signals Cascading Impact Explorer (design only)
+
+**Artifact:** `docs/product/global-signals-cascading-impact-owner-review.md`  
+**Branch:** `feature/global-signals-cascading-impact` (consolidated into foundation)
+
+1. **Cascades need four edge facets** — reason, confidence, evidence, and timeframe
+   on every hop; never imply certainty.
+2. **Expand-on-demand beats wall graphs** — first hop limited; deeper branches open
+   intentionally so literacy stays calm.
+3. **Examples are patterns, not forecasts** — tariff and conflict cascade specimens
+   teach structure without live prediction theater.
+4. **Reuse Relationship Engine honesty** — cascade views are projections over
+   evidenced edges, not a second invented graph.
+
+### 2026-08-06 — Global Signals Side Trails foundation
+
+**Artifact:** `docs/product/global-signals-owner-review.md`  
+**Branch:** `feature/global-signals-foundation`
+
+1. **Intelligence platform ≠ news site ≠ financial advice** — state boundaries on
+   the landing and in docs so the product cannot drift into feed or trading theater.
+2. **Catalog + landing + honest placeholders together** — new Side Trails projects
+   need JSON card, public story page, and empty module shells in the same block.
+3. **Relationships before headlines** — citizen impact is the through-line; keep
+   sections focused on why links matter.
+4. **Consolidate WIP on one foundation branch** — finish partial Global Signals
+   files rather than forking duplicate landings across sibling worktrees.
+5. **Schematic specimens must say mock** — labeled SVG art prevents owners from
+   mistaking foundation review for live intelligence.
+
+### 2026-08-06 — SignalTerrain Intelligence Map (design only)
+
+**Artifact:** `docs/product/signalterrain-intelligence-map-owner-review.md`  
+**Branch:** `feature/signalterrain-intelligence-map-design`
+
+1. **No evidence → no marker** — geographic drama without citations violates trust.
+2. **Dossier is the product of a click** — summary/evidence/timeline/CVEs/advisories/news/recs
+   beat floating tooltips that hide provenance.
+3. **Extend Cyber Map ethics** — coarse precision and never-precise-victim stay mandatory
+   when adding BGP/DNS/cloud/attack layers.
+4. **Clustering is aggregation, not invention** — clusters must dissolve to sourced children.
+
+### 2026-08-06 — Global Signals Relationship Engine (design only)
+
+**Artifact:** `docs/product/global-signals-relationship-engine-owner-review.md`  
+**Branch:** `feature/global-signals-relationship-engine`
+
+1. **Everything is a node** — Global Signals literacy starts from typed entities
+   (ports, tariffs, weather, citizens-as-impact, …), not headline cards.
+2. **Five facets on every edge** — why, strength, confidence, direction, and time
+   delay; strength ≠ confidence; delay is a class, not fake precision.
+3. **Cascades are views over evidenced hops** — 1°/2°/3° narration must not invent
+   intermediate nodes; confidence should degrade along a chain by default.
+4. **Citizens mean impact literacy, never surveillance** — third-order household
+   effects explain kinds of impact, not people.
+5. **Leave unrelated Side Trails landing WIP unstaged** when the ask is design-only
+   docs + push.
+
+### 2026-08-06 — Dynamic Defensive Posture Engine (architecture only)
+
+**Artifact:** `docs/product/signalterrain-dynamic-defensive-posture-owner-review.md`  
+**Branch:** `feature/signalterrain-posture-engine-arch`
+
+1. **Name the daily delta explicitly** — “What should I do differently today?” is a
+   posture diff, not a static best-practices list.
+2. **Separate climate drivers from context** — zero-days / ransomware / KEV / advisories
+   are climate; stack / region / industry are context filters.
+3. **Quiet days are success** — inventing filler recommendations violates trust.
+4. **Relate, don’t silently fork** — cross-link Adaptive Defense Advisor and
+   recommendation schemas so future implementation has one contract.
+
+### 2026-08-06 — SignalTerrain dashboard mockup (no implementation)
+
+**Artifact:** `docs/product/signalterrain-dashboard-mockup-owner-review.md`  
+**Branch:** `feature/signalterrain-dashboard-mockup`
+
+1. **Mockups need a persistent SAMPLE banner** — owners must never confuse layout
+   review with live intelligence.
+2. **Use SAMPLE CVE/actor labels** — realistic density without inventing real
+   attribution or victim sets.
+3. **Ship screenshot SVGs beside the HTML mockup** — reviewable without a browser
+   walkthrough script.
+
+### 2026-08-06 — SignalTerrain public landing (no app functionality)
+
+**Artifact:** `docs/product/signalterrain-landing-owner-review.md`  
+**Branch:** `feature/signalterrain-landing`
+
+1. **Product page ≠ app** — keep `/side-trails/signalterrain/` as marketing/story;
+   leave `/apps/signalterrain/` as the existing experience.
+2. **Schematic illustrations only** — label threat map / timeline / globe / posture
+   art as non-live so we never imply fabricated incidents.
+3. **Point Side Trails CTA at the landing** when the ask is product introduction,
+   not deep-link into live briefs.
+
+### 2026-08-06 — Side Trails catalog (SignalTerrain second project)
+
+**Artifact:** `docs/product/side-trails-signalterrain-owner-review.md`  
+**Branch:** `feature/side-trails-signalterrain`
+
+1. **Side Trails ≠ Incubator** — Side Trails is a catalog of sister experiments;
+   Incubator remains Coming later. Link between them; don’t merge the IA.
+2. **Catalog-only cards** — never hardcode project titles/CTAs in HTML when the
+   contract is JSON-driven; tests should assert the shell stays empty of titles.
+3. **Integrate without rebuilding** — listing SignalTerrain means CTA to the
+   existing app path, not a new cyber feature surface in the same block.
+4. **Use a clean worktree from `origin/main`** when the primary workspace has
+   unrelated dirty WIP so Side Trails ships without noise.
 
 ### 2026-07-24 — Sprint 6 polish merge-gate recovery
 
@@ -618,3 +1089,399 @@ captures; verdict unchanged (**READY TO SHIP**, no blockers).
 5. **Bust Home HTML asset queries** when Rebuild CSS/JS layout contracts change
    (`dash-tile-layout-1`), then verify live Pages `build-info` + cache-bust URL.
 
+### 2026-08-07 — Sheds Today’s Search + observation heatmaps
+
+**Branch:** `feature/sheds-todays-search`  
+**Report:** `docs/SHEDS-TODAYS-SEARCH-OWNER-REVIEW.md`
+
+1. **Separate epistemic layers on one map.** Biological heat = *estimated
+   opportunity*; observation heat = *observed activity* from private notes only.
+   Mixing them silently destroys trust — label the mode in the legend and briefing.
+2. **Empty observed heat is a feature.** Never seed demo sightings for first-run
+   polish. Tests must assert zero priorities with zero observations.
+3. **Today’s Search needs facts vs analysis vs uncertainty tags.** Weather numbers
+   are facts; dawn/dusk preference and fence-line wind notes are analysis; missing
+   pressure/location are uncertain. Confidence text must name the gaps.
+4. **Patterns need a sufficiency gate.** Do not whisper “your deer usually…” from
+   two notes. Require a minimum count + distinct days, then say when insufficient.
+5. **Rich Open-Meteo fetch stays fail-soft.** Sunrise/pressure/precip improve the
+   briefing; if the request fails, seasonal + note-based copy must still render.
+
+### 2026-08-08 — Sheds map tile reliability
+
+**Branch:** `fix/sheds-map-reliability`  
+**Report:** `docs/sheds/map-reliability-owner-review.md`
+
+1. **Wrong Subresource Integrity on Leaflet CSS is a silent map-killer.** The
+   browser blocks the stylesheet; JS still runs; tiles stay `position: static`
+   and leave large gray gaps that look like “failed tiles.” Verify SRI digests
+   or vendor Leaflet locally (preferred for Pages).
+2. **OSMF public raster (`tile.openstreetmap.org`) is not a production basemap.**
+   It may return HTTP 200 placeholder PNGs with `x-blocked` (“Access blocked”).
+   Migrate to a production-capable CDN (CARTO / Esri / keyed provider) and keep
+   attribution honest.
+3. **DOM tile coverage sampling beats screenshot-only QA** for headless CDP
+   (composited transforms can under-paint in captures). Gate on viewport sample
+   hits + host allowlist (no OSMF public hosts).
+4. **Optional keyed tile URLs belong in deploy inject / secrets**, never in
+   committed HTML (`WAYPOINT_MAP_TILE_CONFIG` → `waypoint-map-tiles` meta).
+
+### 2026-08-09 — Global Signals industry loader termination
+
+**Branch:** `fix/gs-shipping-industry-loader`
+
+1. **Silent `if (WDS…) mount` with no else is an infinite loader.** Static HTML
+   says “Loading Shipping…”. If the deferred module 404s/parses wrong, DOMContentLoaded
+   still fires and the page never leaves loading. Auto-boot inside the module plus an
+   8s watchdog that errors when `WDS.globalSignals.industries` is missing.
+2. **Fetch without timeout can hang at “Loading industry…” forever.** Use AbortController
+   / race timeout and always map failure to `data-gsi-state=error|empty|ready`.
+3. **Resolve industry JSON from script base + nested relative + absolute candidates.**
+   GH Pages nested routes and missing trailing slashes break single relative `../../../../data/...`
+   assumptions; try multiple candidates before failing honestly.
+4. **Live impacts are optional and must not invent Shipping activations.** Overlay
+   `live-impacts.json` when present; empty/missing → honest empty Live developments
+   section while structural baseline still renders.
+
+### 2026-08-09 — Agent Ops Product Board foundation
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/`
+
+1. **Recover before inventing.** Waypoint already had an Engineering OS
+   (`engineering/orchestrator`, agents, backlog, gates). Agent Ops work should
+   extend that substrate; `docs/ai-agents/` is Scenes-era and obsolete for runtime.
+2. **Subscriber Ready ≠ tests pass.** Encode a formal gate with P0–P2 blockers,
+   repair-queue checks, required commands, and manual attestations that stay
+   `manual_required` until honestly recorded — never auto-APPROVE.
+3. **Failed review must route.** Visual/red-team/QA failure creates a fix-status
+   work item and blocks the gate; “write report and stop” is a process defect.
+4. **Prefer a clean worktree** when the main checkout is dirty with unrelated
+   HTML/docs noise; keep Agent Ops commits free of dirty-tree staging.
+
+### 2026-08-10 — Subscriber Ready executable gate
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `ops/product-board/` (gate + evidence + Commercial + Red Team)
+
+1. **Exact verdicts matter.** Use only `NOT READY` | `CONDITIONALLY READY` |
+   `SUBSCRIBER READY`. Synonyms like `NOT_SUBSCRIBER_READY` break board consumers
+   and weaken the standing bar.
+2. **P0/P1 are automatic hard stops; P2 is not a free pass.** Open P0–P1 (or
+   repair queue) ⇒ `NOT READY`. Open P2 may yield `CONDITIONALLY READY` but never
+   `SUBSCRIBER READY`. Do not weaken this.
+3. **Commercial + Red Team must be independent modules.** Tests-pass alone must
+   bottom out at conditional/not-ready until commercial cancel-risk review and an
+   adversarial Red Team disproof pass are recorded. Red Team must never
+   auto-accept engineering self-certification.
+4. **Evidence belongs in board state.** Persist machine-readable packages under
+   `ops/product-board/state/evidence/<runId>/` (commands, probes, commercial,
+   red-team, Playwright capability honesty). A gate without evidence is theater.
+5. **Policy criterion IDs are not probe failures.** Matching
+   `primary-workflows` attestation-pending as “primary workflow broken” falsely
+   forces `NOT READY`; keep workflow-broken detection separate from attestation ids.
+
+### 2026-08-10 — Sheds Subscriber Ready pilot (Product Board)
+
+**Branch:** `feature/agent-ops-product-board`  
+**Surface:** `apps/shed-hunting/`, `ops/product-board/`
+
+1. **Campaign scope must not weaken severity.** Filter backlog/probes by
+   campaign tag; in-scope P0–P2 still block. Do not lower the bar to pass.
+2. **Wrong HTTP root silently audits the wrong product.** Confirm the static
+   server cwd before browser review — another worktree on the same port can
+   make Today’s Search appear “missing.”
+3. **Expanded bottom sheets need Leaflet chrome rules.** Attribution/zoom at
+   peek-height will float through expanded copy; use `:has([data-expanded])`
+   to hide/lift controls and add an overlap CDP assertion.
+4. **Ethics copy must match the real tile provider.** Claiming OSM/OpenTopoMap
+   while shipping CARTO/Esri is a trust defect, not copy polish.
+
+### 2026-08-10 — Sheds live-input cold-start escape (adversarial)
+
+**Branch:** `adversarial/sheds-subscriber-ready`  
+**Surface:** Today’s Search / Open-Meteo / Product Board gate
+
+1. **GPS-denied + zoom &lt; 9 skipped live weather.** Heat early-return never
+   called Open-Meteo; status still said “uses map center when possible.” Paying
+   users saw Limited briefing / weather unavailable on the default continental
+   view — a P1 honesty + primary-workflow defect.
+2. **Why the board missed it.** Prior SUBSCRIBER READY leaned on attestations;
+   browser-smoke was optional and failed on missing `ws`; Red Team did not treat
+   optional live/browser gaps as disproof; static probes never asserted
+   map-center weather fetch on cold start.
+3. **Repair + system fix.** `ensureWeatherForView()` fetches for GPS or map
+   center even when heat is skipped; glance softens “Best window” without weather;
+   new CDP cold-start test; sheds campaign forces `browser-smoke`; probe
+   `probeLiveInputColdStart`; Red Team Attack 6 flags optional live gaps.
+
+### 2026-08-10 — Sheds dual false-positive SUBSCRIBER READY (visual/dynamic)
+
+**Branch:** `fix/sheds-board-false-positive`  
+**Surface:** Product Board gate + Sheds map chrome / location markers  
+**Owner:** Rejected prior SUBSCRIBER READY @ `d5f1692` (second false positive)
+
+1. **Root cause of both board passes.** Policy attestations could pass with thin
+   notes (“CDP screenshots”); dimension criteria auto-`covered`; Commercial/Red
+   Team rubber-stamped attestation theater; no required screenshot *analysis*,
+   no dynamic marker-stability sampling, no commercial visual gate (pricing
+   support + finished vs prototype), and production visual defects were never
+   asserted. Escaped class: generating screenshots ≠ review.
+2. **Production defects missed.** Dual similar lime dots (user pulse + search
+   target); CSS `transform:scale` pulse oscillating screen bounds under stable
+   GPS; truncated/cramped status + Today’s Search; unexplained FAB icon stack;
+   ethics sheet showing Leaflet zoom through copy; map dominating product
+   hierarchy.
+3. **Board permanent repair.** `visual-review.mjs` + `dynamic-visual.mjs` +
+   `commercial-visual.mjs`; gate criteria `screenshot-analysis`,
+   `dynamic-visual`, `production-inspection`; attestation anti-theater rules;
+   Red Team attacks 7–10; sheds remap + `automation/test-sheds-visual-board.mjs`;
+   dimensions no longer auto-covered; fail-review routes visual/dynamic P0s.
+4. **Sheds location SOT.** Explicit `LOCATION_KIND` (USER_GPS /
+   USER_APPROXIMATE / SEARCH_TARGET / MAP_CENTER); distinct user vs amber “Next”
+   search marker; GPS jitter filter; opacity-only pulse; labeled FAB rail;
+   sheets hide map chrome at z-index 2400.
+
+### 2026-08-10 — Sheds commercial chrome + visual harness reliability (b20cf0f)
+
+**Surface:** Sheds map field chrome + Product Board visual CDP harness  
+**Production:** `b20cf0f` — gate **SUBSCRIBER READY** with screenshot_analysis +
+dynamic_visual + commercial visual + production inspection evidence.
+
+1. **Harness false fails.** Case-sensitive `"Today" in "TODAY’S SEARCH"` failed
+   hierarchy checks while UI was fine; overflow:hidden sheet containers flagged
+   as truncation; sticky Chrome `--user-data-dir` served stale `a193fa1` assets
+   after deploy. Fix: case-insensitive Today+Confidence; truncate only visible
+   copy / confidence-vs-peek; ephemeral profile + `Network.setCacheDisabled` +
+   probe cache-bust query.
+2. **Commercial chrome.** Horizontal labeled zoom pair; remove square FAB squash
+   at ≤480px; raise mobile sheet peek so Confidence fits; legend max-width clears
+   FAB rail; HUD drops duplicate accuracy/target lines (briefing owns next cue).
+3. **Gate env.** `browser-smoke` (live-weather coldstart) needs `npm install` for
+   root `ws`. Sheds-scoped axe on production `b20cf0f` returned 0 serious/critical.
+4. **Do not** restore SUBSCRIBER READY from attestations alone — required visual
+   evidence packages must green on the live build SHA.
+
+### 2026-08-10 — SignalTerrain real-data pipeline (first production dashboard)
+
+**Surface:** SignalTerrain Side Trails dashboard + cyber live engine  
+**Goal:** Replace mockup-primary CTA with real read-only KEV / NVD / CISA advisory intelligence.
+
+1. **Pipeline.** `signalterrain-cyber-live-engine` v1.4 writes `live.json`, `health.json`, and
+   curated `dashboard.json`. Scheduled refresh via `.github/workflows/signalterrain-cyber-refresh.yml`
+   (every 6h). KEV→NVD enrichment is rate-limited and optional-key-friendly.
+2. **Honesty.** Panels use REAL / CACHED REAL / SOURCE UNAVAILABLE / NO CURRENT DATA. No fabricated
+   threat level or world attack map. Failure retains last-known-good rather than wiping.
+3. **Product entry.** Landing CTA is **OPEN SIGNALTERRAIN** → `side-trails/signalterrain/dashboard/`.
+   Schematic threat/world maps removed from the landing primary story.
+4. **Tests.** `automation/test-signalterrain-real-data-pipeline.mjs` rejects sample markers in the
+   production ST data path and asserts KEV/NVD/advisory contracts.
+
+### 2026-08-10 — SignalTerrain product reality (click-depth honesty)
+
+**Surface:** Entire user-reachable SignalTerrain product path  
+**Issue:** Real dashboard shipped, but deeper nav (app shell, explorer, advisor, brief, topics) reverted to sample/mock intelligence.
+
+1. **Root cause.** Product nav and peer strips still pointed at sample-backed HTML/JS (`brief.html`, `advisor.html`, topics/graph/summary, explorer sample graph + world map layers, workspace silent sample fallback).
+2. **Repair.** Nav/features → live dashboard + live.html panels; explorer/knowledge/workspace load `data/cyber/graph.json` only (teaching via `?teaching=1`); advisor/brief redirect to live unless teaching; world map is honest NO CURRENT DATA in live mode; mockups/teaching removed from ordinary product nav; archive section isolated.
+3. **Gate.** `automation/test-signalterrain-click-depth.mjs` is the permanent depth 0–3 release gate.
+
+## Lessons Learned — Design System 2.0 (2026-08-10)
+
+- Prefer a single `--wp-*` semantic layer with `--wds-*` aliases over a parallel token file that drifts.
+- Remap legacy neon names (`--wds-lime`) to muted accents so residual `var(--wds-lime)` call sites stop leaking lime without a mass rewrite.
+- Product identity belongs on `[data-product]` accents drawn from one Southwestern palette — do not flatten apps to one accent.
+- SignalTerrain/Global Signals may keep distinctive chrome; shared surfaces should still resolve through tokens so ST agents can adopt without fighting the shell.
+- Replace hardcoded lime/navy hex fallbacks and Inter on major routes when migrating visual identity.
+
+## Lessons Learned — Homepage front door (2026-08-10)
+
+- `/` must be a studio front door; outdoor Dashboard belongs at `/apps/dashboard/` — do not boot `home-boot.js` on the root.
+- When splitting Home from Dashboard, update `studioPrimaryNav` Dashboard href and shell `aria-current` so `/` does not mark Dashboard active.
+- Mobile primary nav on the front door must not stack into a directory — prefer horizontal scroll over wrapping all architecture links.
+- Smoke “studio app cards” can use a hidden gate mount; visible IA should stay editorial pathways, not identical SaaS cards.
+
+## Lessons Learned — ONE APP + Dashboard instrument panel (2026-08-10)
+
+- **ONE APP = ONE PRODUCT SURFACE:** app bodies are not mini Studio homepages; cross-product discovery stays in global nav. Document in `docs/APP-SURFACE-ARCHITECTURE.md` and gate with `test-app-surface-isolation.mjs`.
+- Dashboard deepeners that promoted Scenes/Sheds/Articles/Side Trails violated the rule after Homepage became the portfolio door — strip them; keep only Dashboard-native briefing (Take).
+- When `/` stops being Dashboard, update stale RC1 asserts (`detectApp /`, `dashboard.html` redirect, product-name Home) or they silently fight the architecture.
+- Corrupt `$HOME` (e.g. HTML dumped into env) makes every `git` path resolve to ENAMETOOLONG — fix `HOME=/home/bryan` before blaming the repo.
+
+## Lessons Learned — Dashboard depth attack (2026-08-11)
+
+- A tile marked `live: false` never calls `buildWidgetPayload` — Alerts sat empty while OIP already fetched NWS. Wire `live: true` + adapter, or the catalog lies.
+- Do not set `estimated = (dl.status === "live")` for daylight — that inverted honesty labels.
+- Depth without forecast tiles cannot answer “what happens soon”; hourly precip/UV adapters from existing `weatherRef` beat inventing new providers.
+- Derived tiles (Before you go / How it feels) must use trust `derived` and never coach (“you should”).
+- Customize library filters need group headers when the catalog grows past a handful — otherwise Add Tile becomes a flat scroll.
+
+## Lessons Learned — Dashboard visual refinement (2026-08-11)
+
+- Enlarged UI icons read as generic widgets; field-guide SVGs with shared horizon/stroke and `viewBox="0 0 96 56"` read as one instrument panel when parked in negative space (`.wdb-r-widget__atmosphere`).
+- Rainbow category outlines (`#4da3e0` / `#8fd14a` / full-card glow) fight Aubergine/Bone/Sand — map categories to muted `--wp-*` and drive presence via quiet borders + state `data-illum` washes instead.
+- Document illustration / illumination / surface rules in `docs/DASHBOARD-VISUAL-LANGUAGE.md` so depth attacks do not reintroduce neon.
+
+## Lessons Learned — Dashboard visual target (2026-08-11)
+
+- Eliminating neon entirely made cards blend into aubergine — restore **crisp edge + soft outer diffusion** via `--wdb-r-glow` semantic domain colors (not RGB gaming hexes).
+- Atmospheric SVG scenes behind data (with overlay) beat tiny line icons for outdoor instrument feel; keep art data-honest (alerts calm when clear; moon phase real).
+- Mobile Customize must **omit** column controls entirely (not disabled 2/3) — phones are always one column; force `columns=1` in workspace + CSS.
+
+## Lessons Learned — Dashboard cinematic atmospheric art (2026-08-11)
+
+- Oval/ellipse cloud stacks read as placeholder UI; path-based cumulus + layered ridges/pines reads as field-guide landscape.
+- Keep a reusable layer library (sky, ridges, terrain, pines, weather overlays) so Conditions/Air/Light/Astronomy stay coherent without photo payloads.
+- Moon phases need mask-based terminator geometry — not a single offset circle for every phase.
+
+## Lessons Learned — Dashboard refinement pass (2026-08-11)
+
+- Sticky quiet chrome on iPhone makes the desktop primary-nav row float over Conditions when scrolling — keep dashboard header `position: relative` at ≤768.
+- `max-width: 47.99rem` excludes 768px; one-column mobile must use `48rem` in CSS + `matchMedia` or tablet 2-up leaks onto iPad portrait.
+- Aggressive right-shift/opacity for “text over art” can shove Astronomy’s moon disc off-canvas — carve an astronomy exception.
+- Illumination % alone cannot choose waxing vs waning; pass `moonPhaseValue` (synodic fraction) into graphics for honest orientation.
+- Uniform `0 0 16px/36px` glow reads as neon rectangles; corner radial washes + `--wdb-r-glow-strength` per domain keep luminous edges atmospheric.
+
+## Lessons Learned — Dashboard Southwestern pastel + unique instrument art (2026-08-11)
+
+- Recoloring the same alpine ridge + sun for every tile is not unique art. Conditions keep high-desert mesas; Light is a flat horizon; Air is receding haze planes; Moon is a close-up cratered disc; Wind is grass + directional flow; Precipitation is a probability curtain; Snow is winter drifts — not a tinted rain scene.
+- Dashboard product tokens were muted purple on aubergine; `[data-product="dashboard"]` must override `--wp-bg` **and** `--wds-bg` (root `--wds-bg: var(--wp-bg)` computes on `:root` and will not follow a later `--wp-bg` change).
+- Mobile art-shift that hides Astronomy’s moon also hides Light/Air/Wind/Precip subjects — carve those categories out of the aggressive right crop.
+- Live adapters must pass precip probability/intensity and wind speed/direction into `render()` or the unique scenes cannot be data-honest.
+
+## Lessons Learned — Moon/rain visual-gate ship (2026-08-12)
+
+- Open-Meteo / Dashboard illumination is 0–100 percent: never treat `1` as a unit fraction or a 1% New Moon paints Full.
+- Near-new pastel moons must not draw unmasked maria/crater ellipses — lit-path crescent only on a dark disc.
+- Rain art must follow NOW probability/observed precip, not the 12-hour peak alone; 0–10% NOW ⇒ zero streak paths (`precip-dry`).
+- After merge, confirm production serves `wds-dashboard-rebuild-graphics.js` with version `5.1.0-moon-rain-visual-gate` (Pages cache can lag briefly).
+
+## Lessons Learned — Semi-realistic Dashboard field art (2026-08-12)
+
+- Semi-realistic SVG art still needs distinct instrument subjects: mesa weather ≠ horizon light ≠ terrain haze ≠ lunar close-up.
+- Moon surface detail must live inside the lit clipPath; never unmasked maria at 1–3% illumination.
+- Soft solar bloom (blurred radials) reads more outdoor than a hard sun disc + ring icons.
+- Air haze = irregular ridge silhouettes + particulate + far blur, not stacked ellipses.
+- Keep precip NOW honesty while upgrading streak atmosphere; dry scenes still need depth without rain.
+
+## Lessons Learned — Dashboard instrument intelligence (2026-08-12)
+
+- Stale product-surface asserts (Outdoor OS CSS/title/nav) fail CI after Rebuild Home ships — update contracts to `wds-dashboard-rebuild.css` + `dashboardRebuild.mount`, do not weaken or delete.
+- Before You Go must synthesize from evidence-backed signals; restating temp/precip/wind facts alone is OBSERVE, not DISCOVER/UNDERSTAND.
+- Keep derived intelligence local and synchronous on the existing platform payload — no LLM, no extra fetches.
+- Ordinary conditions must be allowed to yield **zero** noteworthy Happening Now signals; never manufacture interest.
+- Contextual tool links hard-filter to live products with justified reasons (Scenes only today); leave Sheds/Forage dormant.
+
+## Lessons Learned — Happening Now discovery layer (2026-08-12)
+
+- Happening Now is a shell sibling between Today Outside and Workspace — not another instrument tile.
+- Empty noteworthy list must render **no DOM** (hide entirely); filler empty states fight calm product feel.
+- When exposing time windows, thread an explicit `now` through `fromPlatform` / `analyze` / shell paint so fixtures and sunset math stay aligned.
+- Deduplicate BYO vs HN: discoveries own attention (precip/wind/air/light/astro); Before You Go keeps comfort/practical dress-for-outside prose.
+
+## Lessons Learned — Dashboard instrument depth (2026-08-12)
+
+- Prefer one in-tile disclosure pattern (Details + `aria-expanded`) over modals/side panels — least disruption to frozen layout and mobile one-column.
+- Depth must add timing/trend/evidence/source, not enlarge the same glance facts; omit empty rows instead of dash grids.
+- Feels-like and gusts earn visual weight only past small deltas (≥3°F / ≥4 mph); otherwise they clutter glance hierarchy.
+- Keep optional instruments (`ph-comfort`, `ph-day-range`) in the catalog for saved layouts even when default experience absorbs or de-emphasizes them.
+- Happening Now → `openWidget` should open depth on the related instrument so discovery connects to evidence without a new navigation model.
+
+## Lessons Learned — Dashboard V1 visual finish (2026-08-13)
+
+- Quiet Alerts and dry Rain must not reuse “light cloud” banks — weather-icon clouds read as placeholder UI; calm horizon + atmosphere communicates status without fabricating weather.
+- Soft-edge SVG cloud families need *distinct* silhouettes (cirrus strokes vs soft cumulus variants vs stratus sheets vs storm anvil vs fog veils); one reusable blob stamps sameness.
+- Next Hours art should encode upcoming transition subtly (`stable` / `clearing` / `clouds-building` / `rain-approaching` / `day-evening`) and never as tick-mark mini-infographics.
+- Micro-type bumps belong only on secondary labels (family, WIND/HUMIDITY/PRECIP, Details) — enlarging everything flattens hierarchy.
+- Art footprint ~right 30–40% with stronger left wash keeps text primary; quality-reference tiles (Air/UV/Light/Astronomy) may keep a slightly fuller plane.
+- Moon geometry/illumination/waxing-waning must stay untouched in visual-finish passes — assert limb + lit-path gates separately from cloud work.
+- Feature opportunities noted (not built): richer hours transition from solar altitude; optional per-instrument `data-art-span` wiring from registry; fixture-driven visual regression screenshots in CI.
+
+
+## Lessons Learned — Scenes V1 product audit (2026-08-13)
+
+- Production truth beats pillar slides: Scenes live spine is Photo Coach + Library + Hidden Landscapes/Animal Vision; journals/books/Year in Nature are absent (404), Living Scenes hub is placeholder while `waypoint-scenes` is a separate prototype.
+- `/build-info.json` may 404 — confirm deploy via `<meta name="waypoint-build">` (here `b615963`). `/scenes/` skip-hub redirect to Coach diverges from hub IA.
+- Parallel trees are normal debt: hub redirects + engine stubs under `apps/scenes/` vs real tools in sibling apps; audit which path production loads before planning rebuilds.
+- “Demo” filenames can hide real on-device heuristic CV — treat trust labels and confidence gates as product risks, not as proof the feature is fake.
+- Dashboard→Scenes links are navigational only today (no opportunity query params); outdoor context depends on ecosystem bridge sessionStorage, not the click.
+- Headless Chrome screenshots need unrestricted network (or local server after curl SHA/route checks); sandboxed Chrome yields false `ERR_INTERNET_DISCONNECTED` artifacts.
+
+## Lessons Learned — Photo Coach + Photo Library excellence (2026-08-13)
+
+- Authoritative Coach path is `apps/photo-coach/` UI + `apps/waypoint-scenes/js/photo-coach*.js` (analysis filename still `*-demo.js`); ignore `apps/scenes/js/engines/*` stubs.
+- Sharpness trust requires scene ambiguity gates (smooth sky/water, shallow DOF, low light) — Laplacian-on-downsample alone over-claims blur; soft language until CONF_SHARPNESS_CLAIM.
+- Product confidence language should be HIGH / REASONABLE / LOW on every surfaced critique; omit weak issues rather than hedging in place.
+- Shoot summary must prefer user Favorites/Keep labels over score-invented “favorite”; recurring patterns need count ≥ 2; progression only with EXIF timestamps.
+- Library SoT handoff: carry `shootId`, narrative summary, outdoor context source, and `?shootId=` / `?libraryId=` deep links — do not duplicate blobs.
+- Headless Chrome needs `--user-data-dir` inside the workspace (or `all` permissions); default unique profile dirs fail in restricted sandboxes.
+- Empty-state “example preview” copy must match live hierarchy (Overall → What worked → What to watch → Next time) or audits read as product drift.
+
+### Lessons Learned — Moving Scenes perception-before-motion (2026-08-15)
+
+- Water false accepts were not a global-threshold problem: sky/fog/cloud-sea still hit 100% above 0.42. Multi-cue evidence + contradictions + class competition beat raising `AUTO_CONFIDENCE`.
+- Analysis long-edge **320** (not full-res) is enough to lift fog off the ~8% floor and cut sky→water; 160 can still “pass” via no-motion while under-detecting fog.
+- Prefer false no-motion over wrong animation: thin cool patches under dominant sky must stay below auto water even when connectivity looks coherent.
+- Browser JPEG decode ≠ Pillow decode — treat Chrome Choice as the product truth; Node harness is a fast regression aid.
+- Wildlife protect must not fire on dark rock or lily-pad mud; missing a robin is acceptable if nothing animates the animal.
+
+## Lessons Learned — Scenes V1 Moving Scenes (2026-08-14)
+
+- User-facing name is Moving Scenes; keep `living-scenes/` path as redirect alias — reckless renames break bookmarks and smoke routes.
+- Do not ship waypoint-scenes overlay particles as the product: inventing rain/snow/fireflies fails “preserve the photograph.” Rebuild analysis into confidence-gated localized displacement instead.
+- Waypoint Choice must be comfortable with NO MOTION FOUND; weak foliage/stars/parallax belong in deferred metadata, not mediocre auto animation.
+- Non-destructive derivatives need a third role (`moving-scene`) and `moving-{id}-v{n}` blob keys — never reuse ORIGINAL or `edit-*` keys.
+- Water heuristics fail if saturation caps are too tight or mid-frame lakes are excluded from `upperMid`; tune with fixture truth tests before shipping the class.
+- `prefers-reduced-motion: reduce` means no autoplay — explicit Play only; Still|Moving compare stays the primary judgment UI.
+
+## Lessons Learned — Scenes V1 Auto Edit ship follow-up (2026-08-14)
+
+- CI smoke can fail with exit 2 (`Inspected target navigated or closed`) before page assertions — treat as transient CDP flake; one smoke retry is cheaper than a false red merge gate.
+- Profile migration shows the same class of flake (exit 2 in ~7s); retry once with a fresh CDP port/profile dir.
+- Local smoke false-fails if another project already owns `:8080` (Python “Error response” for `/apps/auto-edit/`); confirm server cwd before diagnosing product 404s.
+
+## Lessons Learned — Scenes V1 Auto Edit (2026-08-13)
+
+- Auto Edit must be a sibling craft step (finish), not a replacement for Moving Scenes; keep Living/Moving prototypes untouched and label Attack 3 honestly in Library.
+- Non-destructive SoT: never reuse the original IDB media key; store `edit-{originalId}-v{n}` and link via `moduleRefs.autoEdit` + optional `role: waypoint-edit` sibling row.
+- Waypoint Choice success is DO LESS on already-good files — different≠better; oversat greens/cyan skies need per-pixel restraint after global ops.
+- Crop/straighten stays suggestion-only; subject-aware local edits defer without reliable on-device detection (no fake bokeh).
+- Export from canvas pixels omits GPS by construction — say so in UI; filename `originalname-waypoint.jpg`.
+- Reuse Library media IDB + Coach signal ideas; do not treat Hidden Landscapes creative remaps as photographic finishing.
+
+### Lessons Learned — Moving Scenes REAL photo validation (2026-08-15)
+
+- 160×100 analysis on multi-MP outdoor photos still drives Choice; real Sony/Panasonic/Olympus stills reproduce fog→water, cloud-sea→water 100%, and dry boardwalk→river false accepts — do not treat synthetic MOTION-QC as resolution-sufficient proof.
+- Headless `exportLoop` + `renderer.play()` can record near-static WebMs; for motion evidence use production `renderAt(phase)` + `requestFrame` (or live UI) and keep phase 0 vs 0.5 stills.
+- Fog confidence often floors ~8% on genuine fog; wildlife protect can miss a clear robin and false-trigger on dark rock — record, do not “fix” in a validation-only block.
+
+### Lessons Learned — Scenes V1 Hidden Landscapes + Animal Vision (2026-08-16)
+
+- EXPLORE is observation, not creative IR filters: retire false-color “infrared dream” modes from the production path; keep them dormant and teach UNAVAILABLE for UV/IR/thermal instead of inventing bands.
+- Animal Vision belongs under Hidden Landscapes (`?pillar=animal`); redirect `/apps/animal-vision/` so Library → Explore stays one photograph journey.
+- Ship deer + canine LMS dichromat simulations with citations; defer bee/bird UV as educational UNAVAILABLE — inventing nectar guides fails the RGB honesty gate harder than a missing species.
+- Analytic defaults must bind to Original when a Waypoint Edit exists; label the source chip so edited tone/color never silently pose as capture values.
+- Epistemic chips (MEASURED/COMPUTED/SIMULATED/INFERRED/UNAVAILABLE) plus labeled exports prevent “looks like a filter pack” trust failure on share.
+
+### Lessons Learned — Hidden Landscapes photo-first discovery (2026-08-16)
+
+- Honest science can still fail product feel if hierarchy is workstation-first: lead with photograph → lenses → observations → Why? disclosure; keep methods frozen behind progressive disclosure.
+- Author CSS `display:flex` on chips overrides the UA `[hidden]` rule — always pair interactive panels with `[hidden] { display: none !important }` or they leak empty-state chrome.
+- Scenes local nav: prefer wrap + shortLabels over `nowrap` + horizontal page scroll; rename “Other ways of seeing” to **Hidden Landscapes** so identity and overflow both improve.
+- Show the decoded photo immediately on load (before analysis settles) so “Looking closely…” never blanks the light table.
+- Keep `#hl-status` outside `#hl-workspace`: import/library/catalog failures call `setStatus` before a photo paints, and a `hidden` workspace swallows that live region.
+- Deep-link `?pillar=animal` must run the same compare defaults as `onPillar` (desktop `side`, mobile `toggle`); setting pillar/view alone leaves the slider.
+
+
+### Lessons Learned — Moving Scenes owner-review motion exports (2026-08-14)
+
+- Empty `exports/`/`masks/`/`prod-validation/` meant prior owner ZIP could not support motion QC; regenerate via headless Chrome + as-shipped `ms-export.js` MediaRecorder (`automation/export-moving-scenes-owner-clips.mjs`), not by inventing clips.
+- Fog/haze fixture folders may still produce playable WebM under other Choice classes when fog/haze confidence is below threshold — document honestly in MOTION-QC rather than forcing classes.
+- CDP `Page.loadEventFired` is an event, not a callable method; poll module readiness instead. Force-exit after export writes because Chrome sockets keep Node alive.
+
+## Lessons Learned — Deep Forest Dispatch content library (2026-08-16)
+
+- DFD should be a first-class `/deep-forest-dispatch/` destination (Discover/Understand/Explore), not folded into curated RSS Articles or Side Trails experiments.
+- Keep story JSON as source of truth + `scripts/dfd/render-stories.mjs` for crawlable HTML; adding Video #3 must be content/media + catalog + render, not new page engineering.
+- `youtubeVideoId: null` must render a finished pending panel — never a broken embed; emit VideoObject JSON-LD only when a real ID exists.
+- Preserve scientific caution (Lençóis rainfall ranges; do not overclaim clay/bedrock as sole lagoon mechanism) and imagery provenance (NASA public domain + labeled educational derivatives).

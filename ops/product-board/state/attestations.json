@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T18:00:00.000Z",
+  "records": [
+    {
+      "id": "AT-007",
+      "criterionId": "visual-review",
+      "role": "ux-ui-lead",
+      "verdict": "fail",
+      "notes": "OWNER REJECTION of prior SUBSCRIBER READY @ d5f1692 (second false positive). Production evidence: dual similar location indicators (user pulse + target dot), CSS scale pulse oscillation under stable GPS, truncated/cramped chrome, unexplained FAB stack, ethics sheet showing map controls through content, map-dominating hierarchy. Generating CDP screenshots ≠ analysis. Gate repaired: screenshot_analysis + dynamic_visual required.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "commercial-review",
+      "role": "commercial-subscriber",
+      "verdict": "fail",
+      "notes": "Production visuals would not support asking customers to pay. Feels like functional prototype: unexplained icon stack, dual ambiguous dots, clipped briefing. Commercial visual gate unanswered on prior false pass.",
+      "campaign": "sheds",
+      "commercialVisual": {
+        "wouldSupportPricing": false,
+        "productFeel": "prototype"
+      },
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "red-team-pass",
+      "role": "red-team",
+      "verdict": "fail",
+      "notes": "Prior adversarial pass missed static visual + dynamic marker defects. Independent disproof now includes attacks 7–10 (visual theater, missing dynamic, non-production visual, commercial visual unanswered).",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "primary-workflows",
+      "role": "product-director",
+      "verdict": "fail",
+      "notes": "Locate/Today’s Search operable but location SOT incoherent (user vs search target indistinguishable). Not subscriber-primary until marker semantics + chrome clarity repaired.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "honest-data",
+      "role": "data-reliability",
+      "verdict": "fail",
+      "notes": "Approximate GPS presented with same ‘You are here’ treatment as precise; search target read as second user location. Honesty requires LOCATION_KIND separation.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    },
+    {
+      "id": "AT-007",
+      "criterionId": "no-fake-functionality",
+      "role": "product-director",
+      "verdict": "fail",
+      "notes": "Controls and location indicators implied finished commercial map UX while behaving as prototype chrome.",
+      "campaign": "sheds",
+      "at": "2026-08-10T18:00:00.000Z"
+    }
+  ]
+}
