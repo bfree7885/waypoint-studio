@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-22T18:49:11.018Z",
+  "generatedAt": "2026-08-23T02:00:40.289Z",
   "entityCount": 410,
-  "relationshipCount": 1065,
+  "relationshipCount": 1063,
   "entities": [
     {
       "id": "cve:CVE-2026-33824",
@@ -150,16 +150,6 @@
       "title": "CVE-2025-60710"
     },
     {
-      "id": "cve:CVE-2026-72529",
-      "kind": "cve",
-      "title": "CVE-2026-72529"
-    },
-    {
-      "id": "vendor:trueconf",
-      "kind": "vendor",
-      "title": "TrueConf"
-    },
-    {
       "id": "cve:CVE-2026-20349",
       "kind": "cve",
       "title": "CVE-2026-20349"
@@ -205,24 +195,14 @@
       "title": "CVE-2026-72530"
     },
     {
-      "id": "cve:CVE-2026-72898",
-      "kind": "cve",
-      "title": "CVE-2026-72898"
-    },
-    {
-      "id": "vendor:metabase",
+      "id": "vendor:trueconf",
       "kind": "vendor",
-      "title": "Metabase"
+      "title": "TrueConf"
     },
     {
-      "id": "cve:CVE-2025-68686",
+      "id": "cve:CVE-2026-72529",
       "kind": "cve",
-      "title": "CVE-2025-68686"
-    },
-    {
-      "id": "vendor:fortinet",
-      "kind": "vendor",
-      "title": "Fortinet"
+      "title": "CVE-2026-72529"
     },
     {
       "id": "cve:CVE-2026-15409",
@@ -353,6 +333,16 @@
       "id": "cve:CVE-2026-23760",
       "kind": "cve",
       "title": "CVE-2026-23760"
+    },
+    {
+      "id": "cve:CVE-2025-68686",
+      "kind": "cve",
+      "title": "CVE-2025-68686"
+    },
+    {
+      "id": "vendor:fortinet",
+      "kind": "vendor",
+      "title": "Fortinet"
     },
     {
       "id": "cve:CVE-2025-62593",
@@ -525,6 +515,16 @@
       "title": "ASUS"
     },
     {
+      "id": "cve:CVE-2026-72898",
+      "kind": "cve",
+      "title": "CVE-2026-72898"
+    },
+    {
+      "id": "vendor:metabase",
+      "kind": "vendor",
+      "title": "Metabase"
+    },
+    {
       "id": "cve:CVE-2026-8037",
       "kind": "cve",
       "title": "CVE-2026-8037"
@@ -598,31 +598,6 @@
       "id": "vendor:wordpress",
       "kind": "vendor",
       "title": "WordPress"
-    },
-    {
-      "id": "cve:CVE-2026-63030",
-      "kind": "cve",
-      "title": "CVE-2026-63030"
-    },
-    {
-      "id": "cve:CVE-2026-0770",
-      "kind": "cve",
-      "title": "CVE-2026-0770"
-    },
-    {
-      "id": "vendor:langflow",
-      "kind": "vendor",
-      "title": "Langflow"
-    },
-    {
-      "id": "cve:CVE-2021-27137",
-      "kind": "cve",
-      "title": "CVE-2021-27137"
-    },
-    {
-      "id": "vendor:dd-wrt",
-      "kind": "vendor",
-      "title": "DD-WRT"
     },
     {
       "id": "cve:CVE-2023-4346",
@@ -963,6 +938,31 @@
       "id": "cve:CVE-2025-43529",
       "kind": "cve",
       "title": "CVE-2025-43529"
+    },
+    {
+      "id": "cve:CVE-2026-63030",
+      "kind": "cve",
+      "title": "CVE-2026-63030"
+    },
+    {
+      "id": "cve:CVE-2026-0770",
+      "kind": "cve",
+      "title": "CVE-2026-0770"
+    },
+    {
+      "id": "vendor:langflow",
+      "kind": "vendor",
+      "title": "Langflow"
+    },
+    {
+      "id": "cve:CVE-2021-27137",
+      "kind": "cve",
+      "title": "CVE-2021-27137"
+    },
+    {
+      "id": "vendor:dd-wrt",
+      "kind": "vendor",
+      "title": "DD-WRT"
     },
     {
       "id": "cve:CVE-2026-56291",
@@ -2457,37 +2457,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-72529",
-      "to": "cve:CVE-2026-72529",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-72529",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-72529",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72529",
-      "to": "vendor:trueconf",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72529",
-      "to": "vendor:trueconf",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-20349",
       "to": "cve:CVE-2026-20349",
       "evidence": "identifier"
@@ -2662,64 +2631,33 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-72898",
-      "to": "cve:CVE-2026-72898",
+      "from": "live_kev_cve-2026-72529",
+      "to": "cve:CVE-2026-72529",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-72898",
+      "from": "cve:CVE-2026-72529",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-72898",
-      "to": "attack:T1190",
+      "from": "live_kev_cve-2026-72529",
+      "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72898",
-      "to": "vendor:metabase",
+      "from": "live_kev_cve-2026-72529",
+      "to": "vendor:trueconf",
       "evidence": "entity extraction"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72898",
-      "to": "vendor:metabase",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2025-68686",
-      "to": "cve:CVE-2025-68686",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2025-68686",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2025-68686",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2025-68686",
-      "to": "vendor:fortinet",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2025-68686",
-      "to": "vendor:fortinet",
+      "from": "live_kev_cve-2026-72529",
+      "to": "vendor:trueconf",
       "evidence": "entity extraction"
     },
     {
@@ -3192,6 +3130,31 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-23760",
       "to": "vendor:smartertools",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2025-68686",
+      "to": "cve:CVE-2025-68686",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2025-68686",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2025-68686",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2025-68686",
+      "to": "vendor:fortinet",
       "evidence": "entity extraction"
     },
     {
@@ -3866,6 +3829,31 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-72898",
+      "to": "cve:CVE-2026-72898",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-72898",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-72898",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-72898",
+      "to": "vendor:metabase",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2026-8037",
       "to": "cve:CVE-2026-8037",
       "evidence": "identifier"
@@ -4115,81 +4103,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-60137",
       "to": "vendor:wordpress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-63030",
-      "to": "cve:CVE-2026-63030",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-63030",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63030",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63030",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-63030",
-      "to": "vendor:wordpress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-0770",
-      "to": "cve:CVE-2026-0770",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-0770",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-0770",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-0770",
-      "to": "vendor:langflow",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2021-27137",
-      "to": "cve:CVE-2021-27137",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2021-27137",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2021-27137",
-      "to": "vendor:dd-wrt",
       "evidence": "entity extraction"
     },
     {
@@ -5526,6 +5439,81 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-43529",
       "to": "vendor:apple",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-63030",
+      "to": "cve:CVE-2026-63030",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-63030",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63030",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63030",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-63030",
+      "to": "vendor:wordpress",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-0770",
+      "to": "cve:CVE-2026-0770",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-0770",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-0770",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-0770",
+      "to": "vendor:langflow",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2021-27137",
+      "to": "cve:CVE-2021-27137",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2021-27137",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2021-27137",
+      "to": "vendor:dd-wrt",
       "evidence": "entity extraction"
     },
     {
