@@ -326,8 +326,16 @@ const freshObs = [
     observedAt: new Date().toISOString()
   }
 ];
-const oldSc = HabitatGis.scorePoint({ sample: forestSample, lat: center.lat, lng: center.lng, observations: oldObs, Bio });
-const freshSc = HabitatGis.scorePoint({ sample: forestSample, lat: center.lat, lng: center.lng, observations: freshObs, Bio });
+const oldSc = HabitatGis.scorePoint({
+  sample: forestSample, lat: center.lat, lng: center.lng, observations: oldObs, Bio, includeObservations: true
+});
+const freshSc = HabitatGis.scorePoint({
+  sample: forestSample, lat: center.lat, lng: center.lng, observations: freshObs, Bio, includeObservations: true
+});
+const defaultOff = HabitatGis.scorePoint({
+  sample: forestSample, lat: center.lat, lng: center.lng, observations: freshObs, Bio
+});
+assert("Phase3 default excludes observations from MODEL", defaultOff.includeObservations === false && defaultOff.observed.cappedInterest === 0);
 assert("observation decay still functional", freshSc.observed.cappedInterest >= oldSc.observed.cappedInterest);
 assert(
   "observation influence capped",
@@ -347,7 +355,8 @@ const dominated = HabitatGis.scorePoint({
   lat: center.lat,
   lng: center.lng,
   observations: manyFinds,
-  Bio
+  Bio,
+  includeObservations: true
 });
 assert(
   "one/many finds cannot dominate via OBS_CAP",
@@ -361,8 +370,23 @@ const oneObsGrid = HabitatGis.buildSearchGrid({
   rows: 10,
   cols: 10,
   observations: freshObs,
-  Bio
+  Bio,
+  includeObservations: true
 });
+const oneObsOff = HabitatGis.buildSearchGrid({
+  center,
+  radiusM: 500,
+  pack,
+  rows: 10,
+  cols: 10,
+  observations: freshObs,
+  Bio,
+  includeObservations: false
+});
+assert(
+  "default-off grid matches no-obs priorities",
+  oneObsOff.cells.map((c) => c.priority).join(",") === noObsGrid.cells.map((c) => c.priority).join(",")
+);
 const bandIds = new Set(oneObsGrid.cells.filter((c) => !c.outsideArea).map((c) => c.band));
 assert(
   "one observation does not paint whole SEARCH as stronger",

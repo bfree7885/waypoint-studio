@@ -1,0 +1,50 @@
+{
+  "generatedAt": "2026-08-24T06:14:08.449Z",
+  "place": "Pike/Milford",
+  "you": {
+    "lat": 41.35,
+    "lng": -74.85
+  },
+  "search": {
+    "lat": 41.3226,
+    "lng": -74.8027
+  },
+  "steps": [
+    {
+      "step": 3,
+      "ok": true,
+      "detail": "Saved Search Area with GIS available"
+    },
+    {
+      "step": 5,
+      "ok": true,
+      "detail": "SEARCH restored ≠ YOU"
+    },
+    {
+      "step": 6,
+      "ok": true,
+      "detail": "MODEL habitat renders"
+    },
+    {
+      "step": 8,
+      "ok": true,
+      "detail": "MODEL unchanged with obs when toggle OFF"
+    },
+    {
+      "step": 10,
+      "ok": true,
+      "detail": "Opt-in capped influence"
+    },
+    {
+      "step": 13,
+      "ok": true,
+      "detail": "Session summary accurate"
+    },
+    {
+      "step": 16,
+      "ok": true,
+      "detail": "Field Plan MODEL vs OBSERVED + offline honesty"
+    }
+  ],
+  "allOk": true
+}

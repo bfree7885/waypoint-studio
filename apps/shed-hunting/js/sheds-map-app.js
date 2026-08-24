@@ -23,6 +23,9 @@
   var GisPack = window.WaypointShedsGisPack;
   var HabitatGis = window.WaypointShedsHabitatGis;
   var SglOverlay = window.WaypointShedsSglOverlay;
+  var AreaStore = window.WaypointShedsSearchAreaStore;
+  var FieldPlan = window.WaypointShedsFieldPlan;
+  var FieldUi = window.WaypointShedsFieldUi;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -89,6 +92,8 @@
     /** Phase 2 SEARCH LOCATION — never auto-set from coarse YOU. */
     searchLocation: null,
     searchRadiusKey: SEARCH_RADIUS_KEY,
+    activeSearchAreaId: null,
+    activeSearchAreaName: null,
     gisPacks: [],
     activeGisPack: null,
     gisLoadStatus: "idle",
@@ -316,6 +321,7 @@
     legend.hidden = !on;
     var modeEl = $("heat-legend-mode");
     if (modeEl) {
+      syncGuidanceModeLabel();
       modeEl.textContent = state.heatMode === "observed"
         ? "Your observations"
         : (state.lastGrid && state.lastGrid.unavailable
@@ -539,13 +545,18 @@
     return mapR[state.searchRadiusKey] || 600;
   }
 
-  function setSearchLocation(lat, lng, source) {
+  function setSearchLocation(lat, lng, source, opts) {
+    opts = opts || {};
     if (!isFinite(lat) || !isFinite(lng)) return null;
     var loc = SearchArea
       ? SearchArea.createSearchLocation(lat, lng, source || "map-tap")
       : { lat: lat, lng: lng, source: source || "map-tap", kind: "search_location", updatedAt: new Date().toISOString() };
     state.searchLocation = loc;
     state.lastSearchSnapshot = { lat: loc.lat, lng: loc.lng, updatedAt: loc.updatedAt };
+    if (!opts.keepArea) {
+      state.activeSearchAreaId = null;
+      state.activeSearchAreaName = null;
+    }
     drawSearchOnMap();
     syncSearchPrompt();
     scheduleRecompute(80);
@@ -554,9 +565,147 @@
 
   function clearSearchLocation() {
     state.searchLocation = null;
+    state.activeSearchAreaId = null;
+    state.activeSearchAreaName = null;
     drawSearchOnMap();
     syncSearchPrompt();
     scheduleRecompute(80);
+  }
+
+  function openSavedSearchArea(id) {
+    if (!AreaStore) return;
+    var area = AreaStore.getById(id);
+    if (!area || !area.center) return;
+    state.activeSearchAreaId = area.id;
+    state.activeSearchAreaName = area.name;
+    if (area.radiusKey) state.searchRadiusKey = area.radiusKey;
+    if ($("search-radius")) $("search-radius").value = state.searchRadiusKey;
+    if ($("search-radius-tools")) $("search-radius-tools").value = state.searchRadiusKey;
+    setSearchLocation(area.center.lat, area.center.lng, "saved-area", { keepArea: true });
+    if (area.mapView && map) {
+      map.setView([area.mapView.lat, area.mapView.lng], area.mapView.zoom || map.getZoom(), { animate: false });
+    } else if (map) {
+      map.setView([area.center.lat, area.center.lng], Math.max(map.getZoom(), 13), { animate: false });
+    }
+    refreshSglOverlay();
+    scheduleRecompute(100);
+  }
+
+  function promptSaveSearchArea() {
+    if (!state.searchLocation) {
+      alert("Set a SEARCH location on the map first (tap the area to analyze).");
+      return;
+    }
+    var pack = packForSearch();
+    var meta = $("save-area-meta");
+    if (meta) {
+      meta.textContent = "Center " + state.searchLocation.lat.toFixed(4) + ", " +
+        state.searchLocation.lng.toFixed(4) + " · ~" + searchRadiusM() + " m · GIS: " +
+        (pack ? ("available (" + pack.packId + ")") : "unavailable for this SEARCH");
+    }
+    if ($("save-area-name")) $("save-area-name").value = state.activeSearchAreaName || "";
+    if ($("save-area-notes")) $("save-area-notes").value = "";
+    openSheet($("sheet-save-area"));
+  }
+
+  function confirmSaveSearchArea() {
+    if (!AreaStore || !state.searchLocation) return;
+    var name = $("save-area-name") ? $("save-area-name").value.trim() : "";
+    if (!name) {
+      alert("Name required.");
+      return;
+    }
+    var pack = packForSearch();
+    var view = map ? { lat: map.getCenter().lat, lng: map.getCenter().lng, zoom: map.getZoom() } : null;
+    var res = AreaStore.create(AreaStore.fromSearchState({
+      name: name,
+      lat: state.searchLocation.lat,
+      lng: state.searchLocation.lng,
+      radiusKey: state.searchRadiusKey,
+      radiusM: searchRadiusM(),
+      mapView: view,
+      notes: $("save-area-notes") ? $("save-area-notes").value.trim() : "",
+      gisPackId: pack ? pack.packId : null,
+      gisStatus: pack ? "available" : "unavailable"
+    }));
+    if (!res.ok) {
+      alert(res.error || "Could not save.");
+      return;
+    }
+    state.activeSearchAreaId = res.area.id;
+    state.activeSearchAreaName = res.area.name;
+    closeSheetQuiet($("sheet-save-area"));
+  }
+
+  function refreshAreasList() {
+    if (!AreaStore || !FieldUi) return;
+    var areas = AreaStore.list({ includeArchived: true });
+    FieldUi.renderAreasList($("areas-list"), areas, {
+      open: function (id) {
+        openSavedSearchArea(id);
+        closeSheetQuiet($("sheet-areas"));
+      },
+      rename: function (id) {
+        var a = AreaStore.getById(id);
+        var n = prompt("Rename Search Area", a ? a.name : "");
+        if (n == null) return;
+        AreaStore.rename(id, n);
+        refreshAreasList();
+      },
+      archive: function (id) {
+        AreaStore.archive(id);
+        refreshAreasList();
+      },
+      unarchive: function (id) {
+        AreaStore.unarchive(id);
+        refreshAreasList();
+      },
+      delete: function (id) {
+        var a = AreaStore.getById(id);
+        if (!a) return;
+        if (!confirm('Delete Search Area "' + a.name + '"? Observations and sessions are kept.')) return;
+        AreaStore.remove(id);
+        if (state.activeSearchAreaId === id) {
+          state.activeSearchAreaId = null;
+          state.activeSearchAreaName = null;
+        }
+        refreshAreasList();
+      }
+    });
+  }
+
+  function openFieldPlanSheet() {
+    if (!FieldPlan || !FieldUi) return;
+    var area = activeAreaRecord();
+    var ch = evaluateChannels(state.lastPlan || null);
+    var obsIn = [];
+    if (Store.listForSearchArea && area) {
+      obsIn = Store.listForSearchArea(area);
+    }
+    var inspect = null;
+    if (state.lastPlan && state.lastPlan.ok && state.lastPlan.recommendation) {
+      inspect = {
+        summary: state.lastPlan.recommendation.summary || state.lastPlan.recommendation.label,
+        label: state.lastPlan.recommendation.label,
+        lat: state.lastPlan.recommendation.lat,
+        lng: state.lastPlan.recommendation.lng
+      };
+    }
+    var plan = FieldPlan.build({
+      area: area,
+      timing: ch && ch.timing,
+      habitat: ch && ch.habitat,
+      searchability: ch && ch.searchability,
+      evidenceSupport: ch && ch.confidence,
+      observationsInArea: obsIn,
+      inspectSuggestion: inspect,
+      includeObservationsInHabitat: !!(state.prefs && state.prefs.includeObservationsInHabitat),
+      offline: !!(state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)),
+      weatherAvailable: !!(state.weather && state.weatherStatus === "ready"),
+      userNotes: area && area.notes
+    });
+    FieldUi.renderFieldPlan($("field-plan-body"), plan);
+    openSheet($("sheet-field-plan"));
   }
 
   /** GPS / weather / date must not mutate SEARCH LOCATION. */
@@ -1731,6 +1880,7 @@
           pack: pack,
           observations: Store.list(),
           Bio: Bio,
+          includeObservations: !!(state.prefs && state.prefs.includeObservationsInHabitat),
           rows: 22,
           cols: 22
         });
@@ -1745,7 +1895,8 @@
             : "Habitat structure (SEARCH AREA · ~30 m)",
           elevNote: grid.unavailable
             ? "No GIS pack covers this SEARCH LOCATION — no decorative fallback."
-            : ("Pack " + (grid.packId || "?") + " · radius ~" + grid.radiusM + " m · not find %")
+            : ("Pack " + (grid.packId || "?") + " · radius ~" + grid.radiusM + " m · " +
+              (grid.guidanceMode === "combined" ? "COMBINED guidance" : "MODEL only") + " · not find %")
         });
         wxPromise.then(function (w) {
           if (gen !== state.recomputeGen) return;
@@ -2044,14 +2195,50 @@
     trackLine = L.polyline(latlngs, { color: "#7eb6ff", weight: 4, opacity: 0.85 }).addTo(trackLayer);
   }
 
+  function activeAreaRecord() {
+    if (state.activeSearchAreaId && AreaStore) {
+      var a = AreaStore.getById(state.activeSearchAreaId);
+      if (a) return a;
+    }
+    if (!state.searchLocation) return null;
+    var pack = packForSearch && packForSearch();
+    return {
+      id: state.activeSearchAreaId || null,
+      name: state.activeSearchAreaName || "Current SEARCH",
+      center: { lat: state.searchLocation.lat, lng: state.searchLocation.lng },
+      radiusM: searchRadiusM(),
+      radiusKey: state.searchRadiusKey,
+      notes: "",
+      gisPackId: pack ? pack.packId : null,
+      gisStatus: pack ? "available" : (state.gisPacks && state.gisPacks.length ? "unavailable" : "unknown")
+    };
+  }
+
+  function syncGuidanceModeLabel() {
+    var el = $("guidance-mode-label");
+    if (!el) return;
+    if (state.heatMode === "observed") {
+      el.textContent = "OBSERVED — your private notes (not Habitat MODEL)";
+      return;
+    }
+    if (state.prefs && state.prefs.includeObservationsInHabitat) {
+      el.textContent = "COMBINED — GIS MODEL + capped observations";
+    } else {
+      el.textContent = "MODEL — GIS Habitat (observations excluded)";
+    }
+  }
+
   function startTracking() {
-    if (!Sessions || !navigator.geolocation) {
-      setLocStatus("unavailable", "cannot track without geolocation");
+    if (!Sessions) {
+      setLocStatus("unavailable", "sessions unavailable");
       return;
     }
     var stamp = modelStamp();
+    var area = activeAreaRecord();
     var session = Sessions.startSession({
       speciesId: Store.SPECIES_WHITETAIL,
+      searchAreaId: area && area.id ? area.id : null,
+      searchAreaName: area ? area.name : null,
       weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null,
       modelVersion: stamp.modelVersion,
       factorConfigVersion: stamp.factorConfigVersion,
@@ -2064,13 +2251,19 @@
     state.tracking = true;
     redrawTrack(session);
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Stop track");
+      setFabLabel(els.btnTrack, "End Search");
       els.btnTrack.setAttribute("aria-pressed", "true");
+      els.btnTrack.title = "End Search";
+      els.btnTrack.setAttribute("aria-label", "End Search");
     }
-    syncSessionPill("Tracking · " + Math.round(session.distanceM || 0) + " m", true);
+    syncSessionPill("Searching · " + Math.round(session.distanceM || 0) + " m", true);
     if (els.sessionPill) els.sessionPill.dataset.state = "available";
     var navDot = $("nav-dot");
     if (navDot) navDot.dataset.state = "tracking";
+    if (!navigator.geolocation) {
+      syncSessionPill("Searching · distance unavailable", true);
+      return;
+    }
     if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
     state.watchId = navigator.geolocation.watchPosition(function (pos) {
       var lat = pos.coords.latitude;
@@ -2084,15 +2277,17 @@
       );
       setLocStatus(
         "available",
-        state.locationKind === LOCATION_KIND.USER_APPROXIMATE ? "tracking · approximate" : "tracking"
+        state.locationKind === LOCATION_KIND.USER_APPROXIMATE ? "searching · approximate" : "searching"
       );
+      preserveSearchAcrossSideEffects();
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
-      if (updated) syncSessionPill("Tracking · " + Math.round(updated.distanceM || 0) + " m", true);
+      if (updated) syncSessionPill("Searching · " + Math.round(updated.distanceM || 0) + " m", true);
       if (moved) scheduleRecompute(1200);
     }, function (err) {
-      if (err && err.code === 1) setLocStatus("denied", "tracking stopped");
-      else setLocStatus("unavailable", "tracking error");
+      if (err && err.code === 1) setLocStatus("denied", "GPS denied — session continues without distance");
+      else setLocStatus("unavailable", "GPS error — session continues without distance");
+      syncSessionPill("Searching · distance unavailable", true);
     }, { enableHighAccuracy: true, maximumAge: 3000, timeout: 15000 });
   }
 
@@ -2102,21 +2297,31 @@
       state.watchId = null;
     }
     state.tracking = false;
+    var summary = null;
     if (state.activeSessionId && Sessions) {
       var noteEl = $("session-note");
-      Sessions.endSession(state.activeSessionId, {
+      var ended = Sessions.endSession(state.activeSessionId, {
         notes: noteEl ? String(noteEl.value || "").trim() : "",
         weatherSummary: state.weather ? { snowMm: state.weather.snowMm, source: state.weather.source } : null
       });
       if (noteEl) noteEl.value = "";
+      if (ended && Sessions.summarizeSession) {
+        summary = Sessions.summarizeSession(ended, Store.list());
+      }
     }
     state.activeSessionId = null;
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Start track");
+      setFabLabel(els.btnTrack, "Start Search");
       els.btnTrack.setAttribute("aria-pressed", "false");
+      els.btnTrack.title = "Start Search";
+      els.btnTrack.setAttribute("aria-label", "Start Search");
     }
     syncSessionPill("", false);
     scheduleRecompute(200);
+    if (summary && FieldUi && FieldUi.renderSessionSummary) {
+      FieldUi.renderSessionSummary($("session-summary-body"), summary);
+      openSheet($("sheet-session-summary"));
+    }
   }
 
   function markCoverageAtUser(level) {
@@ -2313,7 +2518,11 @@
       els.sheetEthics,
       els.sheetHistory,
       els.sheetValidate,
-      els.sheetTools
+      els.sheetTools,
+      $("sheet-areas"),
+      $("sheet-save-area"),
+      $("sheet-field-plan"),
+      $("sheet-session-summary")
     ].forEach(function (s) {
       if (s && s !== opts.except) closeSheetQuiet(s);
     });
@@ -2401,6 +2610,9 @@
   }
 
   function toggleObsExtras(type) {
+    var signWrap = $("sign-detail-wrap");
+    if (signWrap) signWrap.hidden = type !== "deer_sign";
+
     toggleShedExtra(type);
     if ($("deer-extra")) {
       $("deer-extra").hidden = !(type === "deer_seen" || type === "deer_sign");
@@ -2440,13 +2652,27 @@
       Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
       Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6);
     var whenIso = $("obs-when") ? fromDatetimeLocalValue($("obs-when").value) : null;
+    var precision = atMe ? "gps" : "map-tap";
+    var accuracyM = atMe && state.accuracyM != null ? state.accuracyM : null;
+    if (atMe && Store.canPlaceFromGps && !Store.canPlaceFromGps(accuracyM)) {
+      $("obs-error").textContent = "YOU GPS is too approximate (±" +
+        (accuracyM != null ? Math.round(accuracyM) + " m" : "?") +
+        "). Tap the map to place this observation.";
+      $("obs-error").hidden = false;
+      return;
+    }
+    if (atMe && accuracyM != null && accuracyM > (Store.OBS_GPS_ACCURACY_MAX_M || 80)) {
+      precision = "approximate";
+    }
     var payload = {
       type: type,
       speciesId: Store.SPECIES_WHITETAIL,
+      searchAreaId: state.activeSearchAreaId || null,
       location: {
         lat: clickLatLng.lat,
         lng: clickLatLng.lng,
-        precision: atMe ? "gps" : "map"
+        precision: precision,
+        accuracyM: accuracyM
       },
       observedAt: whenIso || new Date().toISOString(),
       note: $("obs-note").value.trim(),
@@ -2460,6 +2686,9 @@
     if (type === "deer_seen" || type === "deer_sign") {
       payload.details.sex = $("obs-sex") ? $("obs-sex").value : "unknown";
       payload.details.class = $("obs-class") ? $("obs-class").value : "unknown";
+    }
+    if (type === "deer_sign" && $("obs-sign-detail")) {
+      payload.details.signDetail = $("obs-sign-detail").value || "unknown";
     }
     if (type === "shed_found") {
       payload.details = Object.assign({}, payload.details, {
@@ -2820,11 +3049,29 @@
           center: false,
           force: true,
           onSuccess: function (ll) {
+            if (Store.canPlaceFromGps && !Store.canPlaceFromGps(state.accuracyM)) {
+              var hint = $("obs-location-hint");
+              if (hint) {
+                hint.textContent = "YOU is too approximate (±" +
+                  (state.accuracyM != null ? Math.round(state.accuracyM) + " m" : "?") +
+                  ") — tap the map to place this observation.";
+              }
+              return;
+            }
             clickLatLng = ll;
             syncObsLocationHint();
           }
         });
         if (state.userLatLng && state.locationStatus === "available") {
+          if (Store.canPlaceFromGps && !Store.canPlaceFromGps(state.accuracyM)) {
+            var hint2 = $("obs-location-hint");
+            if (hint2) {
+              hint2.textContent = "YOU is too approximate (±" +
+                (state.accuracyM != null ? Math.round(state.accuracyM) + " m" : "?") +
+                ") — tap the map to place this observation.";
+            }
+            return;
+          }
           clickLatLng = state.userLatLng;
           syncObsLocationHint();
         }
@@ -2895,10 +3142,48 @@
       var btn = $("btn-mark-" + level);
       if (btn) btn.addEventListener("click", function () { markCoverageAtUser(level); });
     });
+
+    if ($("btn-save-area")) {
+      $("btn-save-area").addEventListener("click", function () {
+        closeAllSheets();
+        promptSaveSearchArea();
+      });
+    }
+    if ($("btn-my-areas")) {
+      $("btn-my-areas").addEventListener("click", function () {
+        closeAllSheets();
+        refreshAreasList();
+        openSheet($("sheet-areas"));
+      });
+    }
+    if ($("btn-field-plan")) {
+      $("btn-field-plan").addEventListener("click", function () {
+        closeAllSheets();
+        openFieldPlanSheet();
+      });
+    }
+    if ($("btn-save-area-confirm")) {
+      $("btn-save-area-confirm").addEventListener("click", confirmSaveSearchArea);
+    }
+    if ($("btn-field-plan-start")) {
+      $("btn-field-plan-start").addEventListener("click", function () {
+        closeSheetQuiet($("sheet-field-plan"));
+        if (!state.tracking) startTracking();
+      });
+    }
+    if ($("include-obs-habitat")) {
+      $("include-obs-habitat").addEventListener("change", function () {
+        state.prefs.includeObservationsInHabitat = !!$("include-obs-habitat").checked;
+        Store.saveModelPrefs(state.prefs);
+        syncGuidanceModeLabel();
+        scheduleRecompute(120);
+      });
+    }
     $("btn-export").addEventListener("click", function () {
       var payload = {
         observations: Store.exportJson(),
         sessions: Sessions ? Sessions.exportBundle() : null,
+        searchAreas: AreaStore ? AreaStore.exportJson() : null,
         validations: Validation ? Validation.list() : [],
         modelPrefs: state.prefs,
         modelStamp: modelStamp(),
@@ -3111,6 +3396,8 @@
     if ($("search-radius-tools")) $("search-radius-tools").value = state.searchRadiusKey || "medium";
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
     if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
+    if ($("include-obs-habitat")) $("include-obs-habitat").checked = !!state.prefs.includeObservationsInHabitat;
+    syncGuidanceModeLabel();
     if ($("offline-forced")) $("offline-forced").checked = !!state.offlineForced;
     if ($("heat-mode")) $("heat-mode").value = state.heatMode === "biological" ? "habitat" : (state.heatMode || "habitat");
     var hf = state.heatFilters || {};
@@ -3209,6 +3496,9 @@
     if (state.prefs.showConfidence == null) state.prefs.showConfidence = false;
     if (state.prefs.coverageVisible == null) state.prefs.coverageVisible = true;
     if (state.prefs.opacity == null) state.prefs.opacity = DEFAULT_HEAT_OPACITY;
+    if (state.prefs.includeObservationsInHabitat == null) state.prefs.includeObservationsInHabitat = false;
+    if (Store.migrateIfNeeded) Store.migrateIfNeeded();
+    if (Sessions.migrateSessionsIfNeeded) Sessions.migrateSessionsIfNeeded();
     state.heatFilters = Patterns.defaultHeatFilters();
     loadHeatUiPrefs();
     fillTypeSelects();
@@ -3237,7 +3527,7 @@
       var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
       syncSessionPill("Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver, true);
       if (els.sessionPill) els.sessionPill.dataset.state = "available";
-      if (els.btnTrack) setFabLabel(els.btnTrack, "Resume track");
+      if (els.btnTrack) setFabLabel(els.btnTrack, "End Search");
     } else {
       syncSessionPill("", false);
     }

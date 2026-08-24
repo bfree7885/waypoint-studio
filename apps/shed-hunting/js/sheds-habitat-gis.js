@@ -105,9 +105,13 @@
   /**
    * Score one lat/lng using GIS sample + optional observations.
    */
+  /**
+   * Phase 3: includeObservations defaults OFF — MODEL = GIS only unless explicitly enabled.
+   */
   function scorePoint(opts) {
     opts = opts || {};
     var sample = opts.sample;
+    var includeObs = opts.includeObservations === true;
     if (!sample) {
       return {
         empty: true,
@@ -121,15 +125,62 @@
           "Landscape structure does not mean an antler is present.",
           "Season and weather are not used as habitat heat."
         ],
-        weights: { structure: W_STRUCTURE, terrain: W_TERRAIN, observed: W_OBSERVED, class: "WAYPOINT_HEURISTIC" }
+        includeObservations: includeObs,
+        mode: includeObs ? "combined" : "model",
+        weights: {
+          structure: W_STRUCTURE,
+          terrain: W_TERRAIN,
+          observed: includeObs ? W_OBSERVED : 0,
+          class: "WAYPOINT_HEURISTIC"
+        }
       };
     }
 
     var st = structureScore(sample);
     var te = terrainScore(sample);
-    var ob = observedScore(opts.lat, opts.lng, opts.observations, opts.Bio || global.WaypointShedsBiological);
-    var score = clamp(W_STRUCTURE * st.score + W_TERRAIN * te.score + W_OBSERVED * ob.score, 0, 1);
+    var ob = includeObs
+      ? observedScore(opts.lat, opts.lng, opts.observations, opts.Bio || global.WaypointShedsBiological)
+      : { score: 0, cappedInterest: 0, why: "Observations excluded from Habitat MODEL (toggle off)." };
+    var wObs = includeObs ? W_OBSERVED : 0;
+    var wStruct = includeObs ? W_STRUCTURE : W_STRUCTURE / (W_STRUCTURE + W_TERRAIN);
+    var wTerr = includeObs ? W_TERRAIN : W_TERRAIN / (W_STRUCTURE + W_TERRAIN);
+    var score = clamp(wStruct * st.score + wTerr * te.score + wObs * ob.score, 0, 1);
     var band = bandFrom(score);
+    var factors = [
+      {
+        id: "structure",
+        label: "Landscape structure",
+        value: st.score,
+        contribution: wStruct * st.score,
+        rationale: st.why,
+        class: "WAYPOINT_HEURISTIC",
+        source: "NLCD + derived edge"
+      },
+      {
+        id: "terrain",
+        label: "Terrain (slope)",
+        value: te.score,
+        contribution: wTerr * te.score,
+        rationale: te.why,
+        class: "WAYPOINT_HEURISTIC",
+        source: "USGS 3DEP"
+      }
+    ];
+    if (includeObs) {
+      factors.push({
+        id: "observed",
+        label: "Observed evidence",
+        value: ob.score,
+        contribution: wObs * ob.score,
+        rationale: ob.why,
+        class: "WAYPOINT_HEURISTIC",
+        source: "Private observations (capped)"
+      });
+    }
+    var why = [st.why, te.why];
+    if (includeObs) why.push(ob.why);
+    else why.push("MODEL only — observations not included in Habitat score.");
+    why.push("Not a find probability — landscape inspection guidance only.");
     return {
       empty: false,
       unavailable: false,
@@ -140,42 +191,21 @@
       terrain: te,
       observed: ob,
       sample: sample,
-      factors: [
-        {
-          id: "structure",
-          label: "Landscape structure",
-          value: st.score,
-          contribution: W_STRUCTURE * st.score,
-          rationale: st.why,
-          class: "WAYPOINT_HEURISTIC",
-          source: "NLCD + derived edge"
-        },
-        {
-          id: "terrain",
-          label: "Terrain (slope)",
-          value: te.score,
-          contribution: W_TERRAIN * te.score,
-          rationale: te.why,
-          class: "WAYPOINT_HEURISTIC",
-          source: "USGS 3DEP"
-        },
-        {
-          id: "observed",
-          label: "Observed evidence",
-          value: ob.score,
-          contribution: W_OBSERVED * ob.score,
-          rationale: ob.why,
-          class: "WAYPOINT_HEURISTIC",
-          source: "Private observations (capped)"
-        }
-      ],
-      why: [st.why, te.why, ob.why, "Not a find probability — landscape inspection guidance only."],
+      factors: factors,
+      why: why,
+      includeObservations: includeObs,
+      mode: includeObs ? "combined" : "model",
       limitations: [
         "Landscape structure does not mean an antler is present.",
         "Source resolution ~30 m (NLCD) — not meter-precise.",
         "Weights are Waypoint heuristics, not calibrated encounter rates."
       ],
-      weights: { structure: W_STRUCTURE, terrain: W_TERRAIN, observed: W_OBSERVED, class: "WAYPOINT_HEURISTIC" }
+      weights: {
+        structure: wStruct,
+        terrain: wTerr,
+        observed: wObs,
+        class: "WAYPOINT_HEURISTIC"
+      }
     };
   }
 
@@ -245,7 +275,8 @@
               lat: lat,
               lng: lng,
               observations: opts.observations,
-              Bio: opts.Bio
+              Bio: opts.Bio,
+              includeObservations: opts.includeObservations === true
               /* intentionally omit weather / season / sgl / roads */
             });
         if (scored && !scored.unavailable) scoredCount += 1;
@@ -267,7 +298,7 @@
       unavailable: scoredCount === 0,
       hasStructure: scoredCount > 0,
       hasTerrain: scoredCount > 0,
-      hasObservations: !!(opts.observations && opts.observations.length)
+      hasObservations: !!(opts.includeObservations === true && opts.observations && opts.observations.length)
     });
     return {
       cells: cells,
@@ -284,12 +315,16 @@
       sourceResolutionM: 30,
       renderMode: "gis-bands",
       modelVersion: "habitat-gis-2.0",
+      includeObservations: opts.includeObservations === true,
+      guidanceMode: opts.includeObservations === true ? "combined" : "model",
       disclaimer: "Landscape structure guidance — not find probability.",
       evidenceSupport: support,
       coverage: {
         level: scoredCount ? "moderate" : "limited",
         label: scoredCount
-          ? "GIS pack · ~30 m land cover · SEARCH AREA only"
+          ? (opts.includeObservations === true
+            ? "GIS pack + optional observations · SEARCH AREA only"
+            : "GIS MODEL · ~30 m land cover · SEARCH AREA only")
           : "Habitat data unavailable for this area"
       }
     };

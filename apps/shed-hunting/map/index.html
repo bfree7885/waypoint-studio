@@ -88,9 +88,9 @@
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
           <span class="sheds-fab__label">Note</span>
         </button>
-        <button type="button" class="sheds-fab" id="btn-track" aria-pressed="false" title="Start track" aria-label="Start track">
+        <button type="button" class="sheds-fab" id="btn-track" aria-pressed="false" title="Start Search" aria-label="Start Search">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c2-6 6-10 8-10s6 4 8 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="6" r="2" fill="currentColor"/></svg>
-          <span class="sheds-fab__label">Track</span>
+          <span class="sheds-fab__label">Search</span>
         </button>
         <button type="button" class="sheds-fab" id="btn-more" aria-expanded="false" aria-controls="sheet-tools" title="Tools" aria-label="Tools">
           <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18" cy="12" r="1.8" fill="currentColor"/></svg>
@@ -167,7 +167,7 @@
             <button type="button" class="sheds-btn" id="btn-mark-thorough">Mark thorough</button>
             <button type="button" class="sheds-btn" id="btn-mark-revisit">Revisit later</button>
           </div>
-          <label class="sheds-plan__note-label" for="session-note">Field note (saved when you stop tracking)</label>
+          <label class="sheds-plan__note-label" for="session-note">Field note (saved when you End Search)</label>
           <input class="sheds-plan__note" id="session-note" type="text" maxlength="400" autocomplete="off" enterkeyhint="done" placeholder="Optional — only if useful">
         </div>
       </aside>
@@ -182,6 +182,9 @@
       <p class="sheds-sheet__lede">Map layers, history, and records. Quick notes also live on the + button.</p>
       <div class="sheds-tools-grid">
         <button type="button" class="sheds-btn sheds-btn--primary" id="btn-add-obs">Add note</button>
+        <button type="button" class="sheds-btn" id="btn-save-area">Save Search Area</button>
+        <button type="button" class="sheds-btn" id="btn-my-areas">My Search Areas</button>
+        <button type="button" class="sheds-btn" id="btn-field-plan">Field Plan</button>
         <button type="button" class="sheds-btn" id="btn-layers" aria-controls="sheet-controls">Map &amp; layers</button>
         <button type="button" class="sheds-btn" id="btn-controls">Model weights</button>
         <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
@@ -195,6 +198,69 @@
         <a class="sheds-btn" href="../../../about.html">About</a>
         <a class="sheds-btn" href="../../../privacy.html">Privacy</a>
       </div>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Done</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Saved Search Areas -->
+  <div class="sheds-sheet" id="sheet-areas" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="areas-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="areas-title">My Search Areas</h2>
+      <p class="sheds-sheet__lede">Private on this device. Opening restores SEARCH — not YOU. These are not hotspots or find probabilities.</p>
+      <ul class="sheds-area-list" id="areas-list"></ul>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Save Search Area -->
+  <div class="sheds-sheet" id="sheet-save-area" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="save-area-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="save-area-title">Save Search Area</h2>
+      <p class="sheds-sheet__lede">Names the current SEARCH center and radius. Private / local-only.</p>
+      <div class="sheds-field">
+        <label for="save-area-name">Name</label>
+        <input id="save-area-name" type="text" maxlength="80" autocomplete="off" placeholder="e.g. North ridge · Milford">
+      </div>
+      <div class="sheds-field">
+        <label for="save-area-notes">Notes (optional)</label>
+        <textarea id="save-area-notes" maxlength="800" rows="2" placeholder="Access, parking, reminders…"></textarea>
+      </div>
+      <p class="sheds-note" id="save-area-meta"></p>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-save-area-confirm">Save</button>
+        <button type="button" class="sheds-btn" data-close-sheet>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Field Plan -->
+  <div class="sheds-sheet" id="sheet-field-plan" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="field-plan-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="field-plan-title">Field Plan</h2>
+      <p class="sheds-sheet__lede" id="field-plan-lede">Decision support for the active Search Area — not a find probability.</p>
+      <div id="field-plan-body" class="sheds-field-plan"></div>
+      <div class="sheds-actions">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-field-plan-start">Start Search</button>
+        <button type="button" class="sheds-btn" data-close-sheet>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session summary -->
+  <div class="sheds-sheet" id="sheet-session-summary" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="session-summary-title">
+    <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
+    <div class="sheds-sheet__panel">
+      <h2 class="sheds-sheet__title" id="session-summary-title">Search summary</h2>
+      <div id="session-summary-body" class="sheds-session-summary"></div>
+      <p class="sheds-note">Past search does not prove an area is empty of sheds.</p>
       <div class="sheds-actions">
         <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Done</button>
       </div>
@@ -241,7 +307,18 @@
           </select>
         </div>
         <div id="deer-extra" hidden>
-          <p class="sheds-sheet__lede">Deer details (optional)</p>
+          <p class="sheds-sheet__lede">Deer details (optional) — user-reported, not proof beyond what you recorded.</p>
+          <div class="sheds-field" id="sign-detail-wrap" hidden>
+            <label for="obs-sign-detail">Sign detail</label>
+            <select id="obs-sign-detail">
+              <option value="unknown">Unknown / general</option>
+              <option value="tracks">Tracks</option>
+              <option value="scat">Scat</option>
+              <option value="rub">Rub</option>
+              <option value="scrape">Scrape</option>
+              <option value="other_sign">Other sign</option>
+            </select>
+          </div>
           <div class="sheds-grid-2">
             <div class="sheds-field">
               <label for="obs-sex">Sex</label>
@@ -327,7 +404,18 @@
       <h2 class="sheds-sheet__title" id="controls-title">Map &amp; model</h2>
       <p class="sheds-sheet__lede">Adjust influences for the relative surface. This is guidance for where to walk — not a probability of antlers.</p>
       <p class="sheds-note" id="inputs-summary"></p>
-      <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show habitat structure overlay</label>
+      
+        <div class="sheds-field">
+          <span class="sheds-field__label">Guidance mode</span>
+          <p class="sheds-note" id="guidance-mode-label">MODEL — GIS Habitat (observations excluded)</p>
+          <label class="sheds-check">
+            <input type="checkbox" id="include-obs-habitat">
+            Include my observations in guidance
+          </label>
+          <p class="sheds-note">Off by default. When on, private notes use capped/decayed influence — not find %. One find cannot dominate the Search Area.</p>
+        </div>
+
+        <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show habitat structure overlay</label>
       <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
       <label class="sheds-check"><input type="checkbox" id="coverage-visible" checked> Show search-coverage marks</label>
       <label class="sheds-check"><input type="checkbox" id="sgl-visible"> Show State Game Lands (access context only)</label>
@@ -559,7 +647,7 @@
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="ethics-title">Field ethics &amp; honesty</h2>
       <ul class="sheds-ethics-list">
-        <li><strong>Privacy.</strong> GPS stays on-device; coordinates are not placed in share URLs or analytics. Weather/elevation queries send approximate lat/lng to Open-Meteo.</li>
+        <li><strong>Privacy.</strong> GPS, Search Areas, observations, and sessions stay on-device; coordinates are not placed in share URLs or analytics. Weather/elevation queries send approximate lat/lng to Open-Meteo.</li>
         <li><strong>Property &amp; law.</strong> This map does not grant legal access. Confirm permission and local shed seasons.</li>
         <li><strong>Wildlife.</strong> Do not chase, harass, or displace wintering deer. Approach bedding notes carefully.</li>
         <li><strong>Habitat.</strong> Avoid trampling sensitive areas; leave no trash; respect closures.</li>
@@ -590,9 +678,12 @@
   <script src="../js/sheds-likelihood-model.js"></script>
   <script src="../js/sheds-search-planner.js"></script>
   <script src="../js/sheds-search-area.js"></script>
+  <script src="../js/sheds-search-area-store.js"></script>
   <script src="../js/sheds-gis-pack.js"></script>
   <script src="../js/sheds-habitat-gis.js"></script>
   <script src="../js/sheds-sgl-overlay.js"></script>
+  <script src="../js/sheds-field-plan.js"></script>
+  <script src="../js/sheds-field-ui.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
   <script src="../js/sheds-tile-provider.js"></script>
   <script src="../js/sheds-map-app.js"></script>
