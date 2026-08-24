@@ -1531,3 +1531,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Calm offline copy (“live conditions unavailable; saved area and records still work”) beats tile/weather failure looking like total app death.
 - Keep YOU ≠ SEARCH ≠ INSPECT ≠ OBS visually distinct with a short legend; never invent another location concept.
 - Field validation protocol measures usability (time-to-Search-Area, wrong interpretations, degradation comprehension) — never shed-find counts; log stays empty until real walks.
+
+### Lessons Learned — Sheds mobile field chrome (2026-08-24)
+
+- Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.
+- Session strip + YOU chip + header chips collide unless the strip becomes a full-width stack and `sheds-session-active` pushes presence chrome down.
+- Outdoor-readability `.sheds-fab { background… }` after `.sheds-fab--primary` made Locate look disabled — re-assert primary contrast after that block.
+- Collapsed Field Briefing peek (~8rem) plus legend ate the map; peek should show kicker+glance only (~4.5rem) with expand for the rest; landscape legend should collapse to a chip on mobile.
