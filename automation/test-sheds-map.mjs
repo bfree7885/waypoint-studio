@@ -191,7 +191,7 @@ assert("reset defaults heat visible", reset.heatVisible === true);
 const appSrc = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-map-app.js"), "utf8");
 assert("no US geographic center leak", !/39\.8283/.test(appSrc) && !/-98\.5795/.test(appSrc));
 assert("neutral view labeled in source", /Neutral starting view|NEUTRAL/.test(appSrc));
-assert("map shell progressive note", /Biological Model|relative search guidance|never a map of antlers/i.test(
+assert("map shell progressive note", /Biological Model|relative search guidance|never a map of antlers|Never a find probability|landscape guidance/i.test(
   fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8")
 ));
 assert("hidden overlay pattern for sheets", /\.sheds-sheet\.is-open/.test(

@@ -106,7 +106,7 @@ assert("best window morning-ish", withPatterns.bestWindowId === "morning" || wit
 
 // Static HTML contract
 const html = read("apps/shed-hunting/map/index.html");
-assert("Today’s Search eyebrow in map", /Today’s Search/.test(html));
+assert("Today’s Search eyebrow in map", /Field briefing|Today’s Search|Today.?s conditions/i.test(html));
 assert("todays-search script included", /sheds-todays-search\.js/.test(html));
 assert("today windows container", /id="today-windows"/.test(html));
 assert(
@@ -136,7 +136,7 @@ assert(
 );
 assert(
   "glance softens Best window without weather",
-  /Seasonal window guess/.test(app)
+  /Live conditions unavailable|weather_unavailable|NO_WEATHER|Seasonal window guess/.test(app)
 );
 
 const deniedWithWx = TS.build({

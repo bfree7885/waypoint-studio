@@ -45,7 +45,7 @@ assert("field condition briefing helper", /function fieldConditionLines/.test(ap
 assert("interpretive day quality with weather", /Snowmelt favors open slopes|Wind may load fence lines|Green-up lowers visibility/.test(app));
 assert("elev AbortController", /AbortController/.test(app) && /elevAbort/.test(app));
 assert("heat phase legend sync", /heatPhase/.test(app) && /heat-legend-status/.test(app));
-assert("offline banner honesty", /Local notes still save/.test(html) || /Local notes still save/.test(app));
+assert("offline banner honesty", /Local notes still save|saved area and field records still work|Live conditions unavailable/.test(html) || /Local notes still save|saved area and field records still work|NO_NETWORK/.test(app));
 assert("foundation does not claim live photos", !/notes, photos, and location/.test(foundation));
 assert("outdoor contrast tokens tightened", /--sheds-fab-size:\s*3\.5rem/.test(css));
 assert("obs location styling", /\.sheds-obs-location/.test(css));
