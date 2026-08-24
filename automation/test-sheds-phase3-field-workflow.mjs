@@ -242,7 +242,7 @@ for (let i = 0; i < 10; i++) {
 }
 const dom = HabitatGis.scorePoint({ sample, lat: 41.36, lng: -74.8, observations: many, Bio, includeObservations: true });
 assert("one/many finds cannot dominate via cap", dom.observed.cappedInterest <= HabitatGis.OBS_CAP + 0.001);
-assert("UI guidance mode label", /Include my observations in guidance/.test(mapHtml));
+assert("UI guidance mode label", /Include my observations in (guidance|landscape guidance)/.test(mapHtml));
 assert("no find % in field plan", !/find %|shed probability/i.test(FieldPlan.build({ area: area2, observationsInArea: [] }).disclaimer) || /not a find probability/i.test(FieldPlan.build({ area: area2 }).disclaimer));
 
 const gOff = HabitatGis.buildSearchGrid({
@@ -305,7 +305,7 @@ assert("field plan habitat model", !!plan.habitatModel);
 assert("field plan searchability", !!plan.searchability);
 assert("field plan evidence", plan.evidenceSupport.level === "Moderate");
 assert("field plan observed summary", /observation/i.test(plan.observed.summary));
-assert("offline degradation honesty", plan.degradations.some((d) => /offline|weather/i.test(d)));
+assert("offline degradation honesty", plan.degradations.some((d) => /offline|weather|network|Live conditions|still work/i.test(d)));
 
 // —— Privacy ——
 assert("no coords in share URL patterns", /not placed in share URLs/i.test(mapHtml));

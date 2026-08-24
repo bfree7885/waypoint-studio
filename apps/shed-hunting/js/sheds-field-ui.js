@@ -65,28 +65,32 @@
 
   function renderFieldPlan(el, plan) {
     if (!el || !plan) return;
+    var Ux = global.WaypointShedsUxPolish;
     var area = plan.area;
     var html = "";
     html += "<h3>Search Area</h3>";
     if (area) {
       html += "<p><strong>" + escapeText(area.name) + "</strong> · ~" + Math.round(area.radiusM || 0) + " m</p>";
-      html += "<p class=\"sheds-field-plan__gis\">GIS: " + escapeText(area.gisStatus || "unknown") +
+      html += "<p class=\"sheds-field-plan__gis\">Landscape pack: " + escapeText(area.gisStatus || "unknown") +
         (area.gisPackId ? " (" + escapeText(area.gisPackId) + ")" : "") + "</p>";
     } else {
-      html += "<p>No Search Area — set SEARCH on the map first.</p>";
+      html += "<p>" + escapeText((Ux && Ux.EMPTY.NO_SEARCH) || "Tap the map to choose an area to inspect.") + "</p>";
     }
-    html += "<h3>Timing</h3><p>" + escapeText((plan.timing && (plan.timing.label || plan.timing.headline)) || "—") + "</p>";
-    html += "<h3>Habitat — MODEL</h3>";
-    html += "<p>" + escapeText((plan.habitatModel && plan.habitatModel.label) || "—") + "</p>";
+    html += "<h3>When</h3><p>" + escapeText(
+      (plan.timing && (plan.timing.plainLabel || plan.timing.label || plan.timing.headline)) || "—"
+    ) + "</p>";
+    html += "<h3>Landscape <span class=\"sheds-guidance-pill\">MODEL</span></h3>";
+    html += "<p>" + escapeText((plan.habitatModel && plan.habitatModel.label) ||
+      ((Ux && Ux.EMPTY.NO_GIS) || "Landscape guidance isn’t available for this area yet.")) + "</p>";
     if (plan.includeObservationsInHabitat) {
       html += "<p><span class=\"sheds-guidance-pill sheds-guidance-pill--combined\">COMBINED</span> Observations included in guidance (capped).</p>";
     } else {
-      html += "<p><span class=\"sheds-guidance-pill\">MODEL</span> Observations excluded from Habitat score.</p>";
+      html += "<p><span class=\"sheds-guidance-pill\">MODEL</span> Observations excluded from landscape score.</p>";
     }
-    html += "<h3>Searchability</h3><p>" + escapeText((plan.searchability && (plan.searchability.headline || plan.searchability.label)) || "—") + "</p>";
+    html += "<h3>Today’s conditions</h3><p>" + escapeText((plan.searchability && (plan.searchability.headline || plan.searchability.label)) || "—") + "</p>";
     html += "<h3>Evidence support</h3><p>" + escapeText((plan.evidenceSupport && (plan.evidenceSupport.level || plan.evidenceSupport.label)) || "—") +
       " — evidence support, not find %</p>";
-    html += "<h3>Observed</h3><p>" + escapeText(plan.observed && plan.observed.summary) + "</p>";
+    html += "<h3>My observations</h3><p>" + escapeText(plan.observed && plan.observed.summary) + "</p>";
     html += "<h3>Areas to inspect</h3>";
     if (plan.areasToInspect && plan.areasToInspect.ok && plan.areasToInspect.suggestion) {
       var sug = plan.areasToInspect.suggestion;

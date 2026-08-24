@@ -17,9 +17,9 @@
   var DEFAULT_RADIUS_KEY = "medium";
 
   var PROMPT_COARSE =
-    "Tap the area you want to analyze. Your location (YOU) is too approximate for fine habitat GIS.";
+    "Your location is approximate. Choose a Search Area manually for detailed landscape guidance.";
 
-  var PROMPT_DEFAULT = "Tap the area you want to analyze.";
+  var PROMPT_DEFAULT = "Tap the map to choose an area to inspect.";
 
   function haversineM(lat1, lng1, lat2, lng2) {
     var R = 6371000;

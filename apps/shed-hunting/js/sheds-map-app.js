@@ -26,6 +26,7 @@
   var AreaStore = window.WaypointShedsSearchAreaStore;
   var FieldPlan = window.WaypointShedsFieldPlan;
   var FieldUi = window.WaypointShedsFieldUi;
+  var Ux = window.WaypointShedsUxPolish;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -323,14 +324,14 @@
     if (modeEl) {
       syncGuidanceModeLabel();
       modeEl.textContent = state.heatMode === "observed"
-        ? "Your observations"
+        ? "My observations"
         : (state.lastGrid && state.lastGrid.unavailable
-          ? "Habitat unavailable"
+          ? "Landscape unavailable"
           : (state.lastGrid && state.lastGrid.habitatEmpty
-            ? "No habitat guidance yet"
+            ? "No landscape guidance yet"
             : (state.lastGrid && state.lastGrid.renderMode === "gis-bands"
-              ? "Habitat structure"
-              : "Habitat walk-interest")));
+              ? "Landscape · MODEL"
+              : "Landscape guidance")));
     }
     var status = $("heat-legend-status");
     if (status) {
@@ -339,16 +340,16 @@
           ? state.lastGrid.observationCount : 0;
         status.textContent = n
           ? (n + " private note" + (n === 1 ? "" : "s") + " in filter")
-          : "Empty — log observations to build heat";
+          : "Empty — log observations to build this view";
       } else if (state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
         status.textContent = state.lastGrid.unavailable
-          ? "Habitat data unavailable for this area"
-          : "Structure / edge / slope inside SEARCH (~30 m) — not find %";
+          ? ((Ux && Ux.EMPTY.NO_GIS) || "Landscape guidance isn’t available for this area yet.")
+          : "Mapped structure / edge / slope inside SEARCH — not find %";
       } else if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
       else if (state.heatPhase === "refine") status.textContent = "Updated for this view";
-      else if (state.heatPhase === "zoom") status.textContent = "Zoom in for heat";
+      else if (state.heatPhase === "zoom") status.textContent = "Zoom in for guidance";
       else if (state.offlineForced || navigator.onLine === false) status.textContent = "Limited / offline scoring";
-      else status.textContent = "Landscape structure guidance (not find %)";
+      else status.textContent = "Mapped landscape guidance (not find %)";
     }
   }
 
@@ -1024,11 +1025,79 @@
     var forced = !!state.offlineForced;
     if (offline || forced) {
       el.removeAttribute("hidden");
-      el.textContent = offline
-        ? "You’re offline. Cached tiles/packs may still show; weather needs a connection. Local notes and cached habitat packs still work."
-        : "Limited-data mode on. Habitat uses SEARCH AREA GIS packs + local notes — weather/searchability may be limited.";
+      el.textContent = (Ux && Ux.EMPTY && Ux.EMPTY.NO_NETWORK) ||
+        "No network. Live conditions unavailable. Your saved area and field records still work.";
+      if (forced && !offline) {
+        el.textContent = "Limited-data mode on. Live conditions may be unavailable; saved area and field records still work.";
+      }
     } else {
       el.setAttribute("hidden", "");
+    }
+  }
+
+  function syncSessionStrip() {
+    var strip = $("session-strip");
+    var meta = $("session-strip-meta");
+    var stateEl = $("session-strip-state");
+    if (!strip) return;
+    if (!state.tracking) {
+      strip.setAttribute("hidden", "");
+      return;
+    }
+    strip.removeAttribute("hidden");
+    var session = state.activeSessionId && Sessions && Sessions.getSession
+      ? Sessions.getSession(state.activeSessionId)
+      : null;
+    if (!session && Sessions && Sessions.getActiveSession) session = Sessions.getActiveSession();
+    var obsN = 0;
+    if (session && Store) {
+      var sid = session.id;
+      obsN = Store.list().filter(function (o) {
+        return o && o.sessionId === sid;
+      }).length;
+    }
+    var elapsed = "";
+    if (session && session.startedAt) {
+      var ms = Date.now() - Date.parse(session.startedAt);
+      if (FieldUi && FieldUi.formatDuration) elapsed = FieldUi.formatDuration(ms);
+      else elapsed = Math.max(0, Math.round(ms / 60000)) + " m";
+    }
+    if (stateEl) stateEl.textContent = "Search active";
+    if (meta) {
+      meta.textContent = [elapsed, obsN ? (obsN + " note" + (obsN === 1 ? "" : "s")) : "0 notes"]
+        .filter(Boolean).join(" · ");
+    }
+  }
+
+  function initFirstRunCoach() {
+    var coach = $("first-run-coach");
+    if (!coach || !Ux) return;
+    if (Ux.shouldShowCoach()) {
+      coach.removeAttribute("hidden");
+    } else {
+      coach.setAttribute("hidden", "");
+    }
+    var btn = $("btn-coach-dismiss");
+    if (btn && !btn._shedsBound) {
+      btn._shedsBound = true;
+      btn.addEventListener("click", function () {
+        Ux.dismissCoach();
+        coach.setAttribute("hidden", "");
+      });
+    }
+  }
+
+  function toggleMapLegend() {
+    var legend = $("map-marker-legend");
+    var btn = $("btn-map-legend");
+    if (!legend) return;
+    var open = legend.hasAttribute("hidden");
+    if (open) {
+      legend.removeAttribute("hidden");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    } else {
+      legend.setAttribute("hidden", "");
+      if (btn) btn.setAttribute("aria-expanded", "false");
     }
   }
 
@@ -1694,23 +1763,65 @@
     var habitatEl = $("channel-habitat");
     var searchEl = $("channel-searchability");
     var confEl = $("channel-confidence");
+    var whereEl = $("channel-where");
+    var obsEl = $("channel-observed");
+    var nextEl = $("channel-next");
     var whyTiming = $("why-timing");
     var whySearch = $("why-searchability");
     var whyHabitat = $("why-habitat");
     var limitsEl = $("channel-limitations");
+    var area = activeAreaRecord();
+    var hasSearch = !!state.searchLocation;
+    var offline = !!(state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false));
+
     if (timingEl && ch.timing) {
-      timingEl.textContent = ch.timing.label + " — " + ch.timing.supportLine;
+      var plain = (Ux && Ux.timingPlain) ? Ux.timingPlain(ch.timing) : (ch.timing.plainLabel || ch.timing.label);
+      timingEl.textContent = plain + (ch.timing.supportLine ? " — " + ch.timing.supportLine : "");
+    }
+    if (whereEl) {
+      whereEl.textContent = (Ux && Ux.whereLine)
+        ? Ux.whereLine(
+          state.searchLocation,
+          area && area.name,
+          area ? area.radiusM : searchRadiusM()
+        )
+        : (hasSearch ? "Search Area set" : "Tap the map to choose an area to inspect.");
     }
     if (habitatEl && ch.habitat) {
-      habitatEl.textContent = ch.habitat.empty
-        ? (ch.habitat.label || "No habitat-specific guidance yet")
-        : (ch.habitat.label + (ch.habitat.band ? " · " + ch.habitat.band : ""));
+      habitatEl.textContent = (Ux && Ux.landscapeLine)
+        ? Ux.landscapeLine(ch.habitat)
+        : (ch.habitat.empty
+          ? (ch.habitat.label || "Landscape guidance isn’t available for this area yet.")
+          : (ch.habitat.label + (ch.habitat.band ? " · " + ch.habitat.band : "")));
     }
     if (searchEl && ch.searchability) {
-      searchEl.textContent = ch.searchability.headline || "Search conditions";
+      var wxLine = Ux && Ux.weatherStatusLine
+        ? Ux.weatherStatusLine(state.weatherStatus === "ready" ? "ready" : (offline || !state.weather ? "weather_unavailable" : state.weatherStatus), offline)
+        : null;
+      searchEl.textContent = wxLine || ch.searchability.headline || "Field conditions";
+    }
+    if (obsEl) {
+      var obsSum = Ux && Ux.summarizeObservationsForArea
+        ? Ux.summarizeObservationsForArea(
+          Store.list(),
+          state.searchLocation,
+          hasSearch ? searchRadiusM() : null
+        )
+        : { summary: "No field observations recorded here yet." };
+      obsEl.textContent = obsSum.summary;
+    }
+    if (nextEl) {
+      nextEl.textContent = (Ux && Ux.nextLine)
+        ? Ux.nextLine({
+          tracking: !!state.tracking,
+          hasSearch: hasSearch,
+          gisUnavailable: !!(ch.habitat && (ch.habitat.unavailable || ch.habitat.empty)),
+          weatherUnavailable: offline || !state.weather
+        })
+        : "Open Field Plan or Start Search when ready.";
     }
     if (confEl && ch.confidence) {
-      confEl.textContent = ch.confidence.level + " — evidence support, not find probability";
+      confEl.textContent = "Evidence support: " + ch.confidence.level + " — not find probability";
     }
     if (whyTiming && ch.timing) {
       whyTiming.textContent = (ch.timing.why || []).slice(0, 2).join(" ");
@@ -1720,15 +1831,12 @@
     }
     if (whyHabitat && ch.habitat) {
       whyHabitat.textContent = ch.habitat.empty
-        ? (ch.habitat.detail || ch.habitat.label)
+        ? (ch.habitat.detail || ch.habitat.label || "")
         : (ch.habitat.why || []).slice(0, 2).join(" ");
     }
     if (limitsEl) {
-      var lim = [];
-      if (ch.timing && ch.timing.limitations) lim = lim.concat(ch.timing.limitations.slice(0, 2));
-      if (ch.habitat && ch.habitat.limitations) lim = lim.concat(ch.habitat.limitations.slice(0, 1));
-      lim.push("Does not predict individual bucks, density, exact cast dates, or presence certainty.");
-      limitsEl.textContent = lim.slice(0, 4).join(" ");
+      limitsEl.textContent =
+        "Guidance only — not exact cast dates, density, or find probability.";
     }
   }
 
@@ -2009,6 +2117,17 @@
     var uncertainEl = $("today-uncertain");
     var whyWrap = document.querySelector(".sheds-plan__why-wrap");
     if (whyWrap) whyWrap.hidden = false;
+    var hasSearch = !!state.searchLocation;
+    var offline = !!(state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false));
+    var timingPlain = channels && channels.timing
+      ? ((Ux && Ux.timingPlain) ? Ux.timingPlain(channels.timing) : channels.timing.plainLabel || channels.timing.label)
+      : "Season";
+    var landscapeShort = "Landscape";
+    if (channels && channels.habitat) {
+      if (channels.habitat.unavailable || channels.habitat.empty) landscapeShort = "No landscape yet";
+      else if (channels.habitat.band) landscapeShort = "Landscape · " + channels.habitat.band;
+      else landscapeShort = channels.habitat.label || "Landscape · MODEL";
+    }
 
     if (brief) {
       renderTodayWindows(brief);
@@ -2016,52 +2135,69 @@
       renderTodaySignals(brief);
       if (statusEl) {
         var st = brief.status;
-        if (st === "loading") statusEl.textContent = "Loading today’s conditions…";
+        if (st === "loading") statusEl.textContent = "Reading today’s field conditions…";
         else if (st === "location_denied") {
           statusEl.textContent = state.weather
             ? "Location denied — weather and daylight use the map center until you locate."
-            : (state.weatherStatus === "loading"
-              ? "Location denied — reading weather for the map center…"
-              : "Location denied — map stays usable; weather for the map center is unavailable.");
+            : "Location denied — map stays usable; live conditions for the map center may be unavailable.";
         }
-        else if (st === "weather_unavailable") statusEl.textContent = "Weather unavailable — seasonal / note-based briefing only.";
+        else if (st === "weather_unavailable") {
+          statusEl.textContent = (Ux && Ux.EMPTY.NO_WEATHER) ||
+            "Live conditions unavailable. Your saved area and field records still work.";
+        }
         else if (st === "partial") statusEl.textContent = "Partial inputs — some signals missing.";
         else statusEl.textContent = brief.summaryLine || brief.headline;
       }
       if (uncertainEl) {
         uncertainEl.textContent = (brief.uncertainties || []).join(" ");
       }
-      if (els.planTitle) els.planTitle.textContent = brief.headline;
-      if (conf) {
-        var confLabel = (channels && channels.confidence && channels.confidence.level) || brief.confidence;
-        conf.textContent = "Evidence support: " + confLabel + " (not find %)";
-        conf.setAttribute("aria-label", brief.confidenceWhy || ("Evidence support " + confLabel + " — not find probability"));
+    }
+
+    if (els.planTitle) {
+      els.planTitle.textContent = hasSearch
+        ? (timingPlain + " · " + landscapeShort)
+        : "Choose a Search Area";
+    }
+    if (glance) {
+      if (!hasSearch) {
+        glance.textContent = (Ux && Ux.EMPTY.NO_SEARCH) || "Tap the map to choose an area to inspect.";
+      } else if (brief && (brief.status === "weather_unavailable" || offline)) {
+        glance.textContent = (Ux && Ux.EMPTY.NO_WEATHER) ||
+          "Live conditions unavailable. Your saved area and field records still work.";
+      } else if (brief && brief.headline) {
+        glance.textContent = brief.headline;
+      } else {
+        glance.textContent = "Review Field Plan, then Start Search when ready.";
       }
     }
+    if (conf) {
+      if (state.tracking) {
+        conf.textContent = "Search active — End Search when done";
+      } else if (!hasSearch) {
+        conf.textContent = "Next: set Search Area";
+      } else {
+        conf.textContent = "Next: Field Plan or Start Search";
+      }
+      conf.setAttribute("aria-label", conf.textContent);
+    }
+
+    var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
+    if (actions) actions.hidden = false;
+    var gotoBtn = $("btn-goto-plan");
+    var markPartial = $("btn-mark-partial");
+    var markThorough = $("btn-mark-thorough");
+    var markRevisit = $("btn-mark-revisit");
 
     if (!plan || !plan.ok || !plan.recommendation) {
       els.planCard.dataset.hasPlan = "false";
-      var empty = "Find yourself on the map";
-      if (plan && plan.reason) {
-        if (/zoom/i.test(plan.reason)) empty = "Zoom in on your land";
-        else if (/habitat/i.test(plan.reason)) empty = "No habitat guidance yet — add notes";
-        else if (/locate|location/i.test(plan.reason)) empty = "Place yourself, then look nearby";
-      }
-      if (glance) {
-        if (brief && brief.timeWindows && brief.timeWindows[0]) {
-          var winLabel = brief.timeWindows[0].label;
-          var wxReady = brief.weatherStatus === "ready" || !!state.weather;
-          var winPrefix = wxReady
-            ? ("Best window: " + winLabel)
-            : ("Seasonal window guess: " + winLabel);
-          glance.textContent = winPrefix + " · " + empty;
-        } else {
-          glance.textContent = empty;
-        }
-      }
+      if (gotoBtn) gotoBtn.hidden = true;
+      if (markPartial) markPartial.hidden = true;
+      if (markThorough) markThorough.hidden = true;
+      if (markRevisit) markRevisit.hidden = true;
       if (els.planBody) {
-        els.planBody.textContent = (brief && brief.summaryLine ? brief.summaryLine + " " : "") +
-          "Locate yourself, or pan to your land and zoom in. Walk targets need habitat notes (or weak terrain) — never a find probability.";
+        els.planBody.textContent = hasSearch
+          ? "Search Area set. Open Field Plan for the full checklist, or Start Search to record a session."
+          : ((Ux && Ux.EMPTY.NO_SEARCH) || "Tap the map to choose an area to inspect.");
       }
       if (els.planWhy) {
         els.planWhy.textContent = brief && brief.disclaimer
@@ -2074,17 +2210,21 @@
           : "Facts vs analysis vs uncertainty are labeled in signals.";
       }
       if (stats) stats.hidden = true;
-      var actions = $("plan-actions") || document.querySelector(".sheds-plan__actions");
-      if (actions) actions.hidden = true;
-      els.planCard.setAttribute("aria-label", "Today’s Search. " + (brief && brief.headline ? brief.headline + ". " : "") + empty);
+      els.planCard.setAttribute(
+        "aria-label",
+        "Field briefing. " + (els.planTitle ? els.planTitle.textContent + ". " : "") +
+          (glance ? glance.textContent : "")
+      );
       updateNavMeta();
       syncHeatLegend();
       return;
     }
 
     els.planCard.dataset.hasPlan = "true";
-    var actionsOn = $("plan-actions") || document.querySelector(".sheds-plan__actions");
-    if (actionsOn) actionsOn.hidden = false;
+    if (gotoBtn) gotoBtn.hidden = false;
+    if (markPartial) markPartial.hidden = false;
+    if (markThorough) markThorough.hidden = false;
+    if (markRevisit) markRevisit.hidden = false;
     var r = plan.recommendation;
     var dist = r.distanceM != null && Planner ? Planner.formatDistance(r.distanceM) : "";
     var dir = r.bearingLabel || "";
@@ -2164,14 +2304,14 @@
     var marker = L.marker([r.lat, r.lng], {
       icon: L.divIcon({
         className: "sheds-search-target",
-        html: "<span class=\"sheds-search-target__mark\" title=\"Suggested walk target\"></span><span class=\"sheds-search-target__label\">TARGET</span>",
+        html: "<span class=\"sheds-search-target__mark\" title=\"Area to inspect\"></span><span class=\"sheds-search-target__label\">INSPECT</span>",
         iconSize: [36, 36],
         iconAnchor: [18, 18]
       }),
       keyboard: false,
       riseOnHover: true,
       zIndexOffset: 200
-    }).bindTooltip("TARGET — suggested walk (not YOU)", {
+    }).bindTooltip("AREA TO INSPECT — model suggestion (not an antler pin, not YOU)", {
       permanent: true,
       direction: "left",
       offset: [-12, 0],
@@ -2251,12 +2391,13 @@
     state.tracking = true;
     redrawTrack(session);
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "End Search");
+      setFabLabel(els.btnTrack, "End");
       els.btnTrack.setAttribute("aria-pressed", "true");
       els.btnTrack.title = "End Search";
       els.btnTrack.setAttribute("aria-label", "End Search");
     }
     syncSessionPill("Searching · " + Math.round(session.distanceM || 0) + " m", true);
+    syncSessionStrip();
     if (els.sessionPill) els.sessionPill.dataset.state = "available";
     var navDot = $("nav-dot");
     if (navDot) navDot.dataset.state = "tracking";
@@ -2282,7 +2423,10 @@
       preserveSearchAcrossSideEffects();
       var updated = Sessions.appendTrackPoint(state.activeSessionId, lat, lng, Date.now());
       redrawTrack(updated);
-      if (updated) syncSessionPill("Searching · " + Math.round(updated.distanceM || 0) + " m", true);
+      if (updated) {
+        syncSessionPill("Searching · " + Math.round(updated.distanceM || 0) + " m", true);
+        syncSessionStrip();
+      }
       if (moved) scheduleRecompute(1200);
     }, function (err) {
       if (err && err.code === 1) setLocStatus("denied", "GPS denied — session continues without distance");
@@ -2311,12 +2455,13 @@
     }
     state.activeSessionId = null;
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Start Search");
+      setFabLabel(els.btnTrack, "Start");
       els.btnTrack.setAttribute("aria-pressed", "false");
       els.btnTrack.title = "Start Search";
       els.btnTrack.setAttribute("aria-label", "Start Search");
     }
     syncSessionPill("", false);
+    syncSessionStrip();
     scheduleRecompute(200);
     if (summary && FieldUi && FieldUi.renderSessionSummary) {
       FieldUi.renderSessionSummary($("session-summary-body"), summary);
@@ -3162,6 +3307,26 @@
         openFieldPlanSheet();
       });
     }
+    if ($("btn-field-plan-fab")) {
+      $("btn-field-plan-fab").addEventListener("click", function () {
+        openFieldPlanSheet();
+      });
+    }
+    if ($("btn-open-field-plan")) {
+      $("btn-open-field-plan").addEventListener("click", function () {
+        openFieldPlanSheet();
+      });
+    }
+    if ($("btn-end-search-strip")) {
+      $("btn-end-search-strip").addEventListener("click", function () {
+        if (state.tracking) stopTracking();
+      });
+    }
+    if ($("btn-map-legend")) {
+      $("btn-map-legend").addEventListener("click", function () {
+        toggleMapLegend();
+      });
+    }
     if ($("btn-save-area-confirm")) {
       $("btn-save-area-confirm").addEventListener("click", confirmSaveSearchArea);
     }
@@ -3527,9 +3692,11 @@
       var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
       syncSessionPill("Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver, true);
       if (els.sessionPill) els.sessionPill.dataset.state = "available";
-      if (els.btnTrack) setFabLabel(els.btnTrack, "End Search");
+      if (els.btnTrack) setFabLabel(els.btnTrack, "End");
+      syncSessionStrip();
     } else {
       syncSessionPill("", false);
+      syncSessionStrip();
     }
     // Phase 1 location truth: always attempt locate. Sticky denial is reconciled
     // against live Permissions API inside locateUser. Center on initial GPS even
@@ -3538,6 +3705,7 @@
     setPlanExpanded(false);
     syncHeatLegend();
     syncSearchPrompt();
+    initFirstRunCoach();
     ensureGisPacks().then(function () {
       scheduleRecompute(200);
     });

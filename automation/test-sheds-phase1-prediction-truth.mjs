@@ -263,7 +263,7 @@ assert("map app bans find-probability hero language", !/82%\s*chance|shed probab
 assert("home bans fake probability", !banned.test(homeHtml));
 assert("channel panel in html", /id="sheds-channels"/.test(mapHtml) && /id="channel-timing"/.test(mapHtml));
 assert("channel scripts loaded", /sheds-timing\.js/.test(mapHtml) && /sheds-habitat\.js/.test(mapHtml));
-assert("today framing search conditions", /Is today a good day to go search/i.test(mapHtml));
+assert("today framing search conditions", /field conditions|Today’s conditions|Field briefing/i.test(mapHtml));
 
 // Marker SOT / recenter policy encoded
 assert("YOU tip class", /sheds-map-tip--you/.test(mapApp));

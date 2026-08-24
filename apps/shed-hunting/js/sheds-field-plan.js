@@ -35,19 +35,19 @@
     var shedCount = byType.shed_found || 0;
     var habitat = opts.habitat || {
       empty: true,
-      label: "Habitat data unavailable for this area",
+      label: "Landscape guidance isn’t available for this area yet.",
       channel: "habitat",
       mode: "model"
     };
     var degradations = [];
     if (opts.offline) {
-      degradations.push("Offline or limited-data: basemap/weather/SGL may be incomplete.");
+      degradations.push("No network. Live conditions unavailable. Your saved area and field records still work.");
     }
     if (!opts.weatherAvailable) {
-      degradations.push("Searchability weather unavailable — Timing and local notes still work.");
+      degradations.push("Live conditions unavailable. Timing and local notes still work.");
     }
     if (area && area.gisStatus === "unavailable") {
-      degradations.push("No GIS pack for this Search Area — Habitat MODEL empty.");
+      degradations.push("No GIS pack for this Search Area — Landscape MODEL empty.");
     }
 
     return {

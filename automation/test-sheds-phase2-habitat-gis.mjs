@@ -437,7 +437,7 @@ assert(
 
 // —— 21. SEARCH marker separate from YOU/TARGET ——
 assert("YOU tip class retained", /sheds-map-tip--you/.test(mapApp));
-assert("TARGET tip retained", /TARGET — suggested walk \(not YOU\)/.test(mapApp));
+assert("TARGET tip retained", /AREA TO INSPECT|TARGET — suggested walk \(not YOU\)|INSPECT/.test(mapApp));
 assert("SEARCH tip class", /sheds-map-tip--search|SEARCH — analysis center/.test(mapApp));
 assert(
   "distinct MarkerKind values",
@@ -476,7 +476,7 @@ S.localStorage.setItem(GisPack.CACHE_PREFIX + pack.packId, JSON.stringify(stale)
 assert("stale version detectable", GisPack.cacheGet(pack.packId).version !== pack.version);
 GisPack.cacheSet(pack);
 assert("preferCacheOnly path exists", /preferCacheOnly/.test(fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-gis-pack.js"), "utf8")));
-assert("offline banner mentions cached packs", /cached habitat packs|Cached tiles\/packs/i.test(mapApp));
+assert("offline banner mentions cached packs", /still work|cached habitat packs|Cached tiles\/packs|Live conditions unavailable/i.test(mapApp));
 
 // —— 28. External metadata/content safety ——
 const evilName = "<script>alert(1)</script>";

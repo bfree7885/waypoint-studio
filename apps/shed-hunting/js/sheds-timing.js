@@ -36,6 +36,17 @@
     unknown: "Unknown"
   };
 
+  /** Phase 4 hunter-facing seasonal answers (no cast-date precision). */
+  var CATEGORY_PLAIN = {
+    early: "Approaching season",
+    building: "Approaching season",
+    peak: "Main search window",
+    late: "Late season",
+    mostly_past: "Late season",
+    outside: "Outside main window",
+    unknown: "Season timing unclear"
+  };
+
   function getBio() {
     return global.WaypointShedsBiological || null;
   }
@@ -65,6 +76,7 @@
         channel: "timing",
         category: CATEGORY.UNKNOWN,
         label: CATEGORY_LABEL.unknown,
+        plainLabel: CATEGORY_PLAIN.unknown,
         phaseId: "unknown",
         phaseLabel: "Unknown",
         supportLine: "Season timing unavailable.",
@@ -80,6 +92,7 @@
     var season = Bio.seasonProfile(date, lat, prefs);
     var category = PHASE_TO_CATEGORY[season.phaseId] || CATEGORY.UNKNOWN;
     var label = CATEGORY_LABEL[category] || CATEGORY_LABEL.unknown;
+    var plainLabel = CATEGORY_PLAIN[category] || CATEGORY_PLAIN.unknown;
 
     var supportLine;
     if (category === CATEGORY.PEAK) {
@@ -119,6 +132,7 @@
       channel: "timing",
       category: category,
       label: label,
+      plainLabel: plainLabel,
       phaseId: season.phaseId,
       phaseLabel: season.phase,
       supportLine: supportLine,
@@ -137,6 +151,7 @@
   global.WaypointShedsTiming = {
     CATEGORY: CATEGORY,
     CATEGORY_LABEL: CATEGORY_LABEL,
+    CATEGORY_PLAIN: CATEGORY_PLAIN,
     evaluate: evaluate
   };
 })(typeof window !== "undefined" ? window : globalThis);

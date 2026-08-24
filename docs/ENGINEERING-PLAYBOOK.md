@@ -1522,3 +1522,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Sticky `waypoint-sheds-gps-denied-v1` must not outrank live Permissions API `granted`/`prompt` — reconcile before skipping locate; never rewrite GPS failures into “manual exploring” success theater.
 - Owner live validate (±~4.8 km browser accuracy): approximate labeling + empty habitat is a Phase 1 PASS; Phase 2 must not treat coarse YOU as fine-scale SEARCH LOCATION for GIS.
 
+
+### Lessons Learned — Sheds 2.0 Phase 4 UX polish (2026-08-24)
+
+- Architecture was already trustworthy after Phase 3; hunters still needed When/Where/Landscape/Today/Observations/Next hierarchy — not more GIS or weights.
+- Demote Model weights / Validate / diagnostics into Advanced; promote Field Plan + Start/End Search into the primary field loop.
+- First-run coach must be dismissible and local-persisted; map must remain usable without completing it.
+- Calm offline copy (“live conditions unavailable; saved area and records still work”) beats tile/weather failure looking like total app death.
+- Keep YOU ≠ SEARCH ≠ INSPECT ≠ OBS visually distinct with a short legend; never invent another location concept.
+- Field validation protocol measures usability (time-to-Search-Area, wrong interpretations, degradation comprehension) — never shed-find counts; log stays empty until real walks.
