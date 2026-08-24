@@ -40,7 +40,7 @@ assert("floating FAB rail", /sheds-fab-rail/.test(html) && /sheds-fab-rail/.test
 assert("bottom sheet field class", /sheds-sheet-field/.test(html) && /sheds-sheet-field/.test(css));
 assert("plan card is floating suggest", /class="[^"]*sheds-suggest/.test(html) && /id="plan-card"/.test(html));
 assert("story sheet copy", /Today.?s Search/.test(html) && /sheds-story/.test(html) && /data-todays-search/.test(html));
-assert("plain-language confidence", /id="plan-stars"/.test(html) && /Confidence pending|Confidence/.test(html) && /aria-label="Confidence"/.test(html));
+assert("plain-language confidence", /id="plan-stars"/.test(html) && /Evidence support|Confidence/.test(html) && /aria-label="(Evidence support|Confidence)"/.test(html));
 assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
 assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
@@ -63,7 +63,7 @@ assert("safe-area respected", /safe-area-inset-bottom/.test(css) && /safe-area-i
 assert("no permanent multi-row secondary deck", /sheet-tools/.test(html));
 assert("escape closes validate", /sheetValidate/.test(app));
 assert("invalidateSize on sheets", /invalidateSize/.test(app));
-assert("model version note v1.1", /Biological Model v1\.1/.test(html));
+assert("model version note v2.0", /Biological Model v2\.0/.test(html));
 assert("GPS accuracy + heading helpers", /accuracyCircle|upsertUserMarker|updateNavMeta/.test(app));
 assert("map loading state", /map-loading/.test(html) && /setMapLoading/.test(app));
 assert("offline banner", /map-offline/.test(html) && /syncOfflineBanner/.test(app));

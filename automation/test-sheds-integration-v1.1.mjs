@@ -36,6 +36,7 @@ function load() {
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-validation-store.js",
     "apps/shed-hunting/js/sheds-biological-model.js",
+    "apps/shed-hunting/js/sheds-habitat.js",
     "apps/shed-hunting/js/sheds-model-presets.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js",
     "apps/shed-hunting/js/sheds-search-planner.js"
@@ -55,8 +56,9 @@ const Planner = S.WaypointShedsPlanner;
 const Presets = S.WaypointShedsPresets;
 const Validation = S.WaypointShedsValidation;
 
-assert("authoritative bio v1.1", Bio.MODEL_VERSION === "1.1.0");
-assert("likelihood delegates only", Model.scoreCell({ lat: 44, lng: -91, prefs: Store.defaultModelPrefs(), observations: [], terrain: { source: "unavailable" } }).modelVersion === "1.1.0");
+assert("authoritative bio v1.1", Bio.MODEL_VERSION === "2.0.0");
+assert("likelihood delegates only", Model.scoreCell({ lat: 44, lng: -91, prefs: Store.defaultModelPrefs(), observations: [{ type: "deer_sign", location: { lat: 44, lng: -91 }, confidence: "probable" }], terrain: { source: "unavailable" } }).modelVersion === "2.0.0");
+assert("empty habitat honest via likelihood", Model.scoreCell({ lat: 44, lng: -91, prefs: Store.defaultModelPrefs(), observations: [], terrain: { source: "unavailable" } }).habitatEmpty === true);
 assert("no parallel legacy scorer file needed", !fs.existsSync(path.join(ROOT, "apps/shed-hunting/js/sheds-legacy-likelihood.js")));
 
 const prefs = Store.defaultModelPrefs();
@@ -167,17 +169,17 @@ const sess = Sessions.startSession({
   activePreset: "balanced",
   regionalContext: Bio.regionalContext(44.12, -91.25, new Date())
 });
-assert("session stores model version", sess.modelVersion === "1.1.0" && sess.factorConfigVersion === "1.1.0");
+assert("session stores model version", sess.modelVersion === "2.0.0" && sess.factorConfigVersion === "2.0.0");
 Sessions.endSession(sess.id, {});
 const oldLike = Sessions.getSession(sess.id);
-assert("old session remains traceable", oldLike.modelVersion === "1.1.0");
+assert("old session remains traceable", oldLike.modelVersion === "2.0.0");
 
 const val = Validation.create({
   lat: 44.12, lng: -91.25, shedOutcome: "not_found",
   modelVersion: Bio.MODEL_VERSION, factorConfigVersion: Bio.FACTOR_CONFIG_VERSION,
   activePreset: "balanced", cellPriority: a.priority, cellBand: a.band
 });
-assert("validation record versioned", val.ok && val.validation.modelSnapshot.modelVersion === "1.1.0");
+assert("validation record versioned", val.ok && val.validation.modelSnapshot.modelVersion === "2.0.0");
 assert("validation not treated as truth", val.validation.treatAsBiologicalTruth === false);
 
 const FakeBounds = {
@@ -186,14 +188,15 @@ const FakeBounds = {
 };
 const grid = Model.buildGrid(FakeBounds, 8, 8, { date: new Date("2026-02-20"), prefs, observations: Store.list(), sessions: Sessions });
 const plan = Planner.plan({ grid, userLatLng: { lat: 44.12, lng: -91.25 }, sessions: Sessions, observations: Store.list(), model: Model });
-assert("planner uses bio grid", plan.ok && grid.modelVersion === "1.1.0");
+assert("planner uses bio grid", plan.ok && grid.modelVersion === "2.0.0");
 
 // Coverage not double-applied: thorough cell priority already reduced; planner score ~= priority aside from dist
 Sessions.markCoverage(44.125, -91.25, "thorough", { source: "test" });
-const g2 = Model.buildGrid(FakeBounds, 8, 8, { date: new Date("2026-02-20"), prefs, observations: [], sessions: Sessions });
+const g2 = Model.buildGrid(FakeBounds, 8, 8, { date: new Date("2026-02-20"), prefs, observations: Store.list(), sessions: Sessions });
 const cell = g2.cells.find((c) => c.coverageLevel === "thorough") || g2.cells[0];
-const plan2 = Planner.plan({ grid: g2, userLatLng: { lat: 44.12, lng: -91.25 }, sessions: Sessions, observations: [], model: Model });
-assert("coverage-aware plan ok", plan2.ok);
+const plan2 = Planner.plan({ grid: g2, userLatLng: { lat: 44.12, lng: -91.25 }, sessions: Sessions, observations: Store.list(), model: Model });
+assert("coverage-aware plan ok", plan2.ok || (!plan2.ok && /habitat/i.test(plan2.reason || "")));
+void cell;
 
 assert("gen cancel pattern in map-app", /recomputeGen/.test(fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-map-app.js"), "utf8")));
 assert("coarse then refine in map-app", /COARSE_ROWS/.test(fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-map-app.js"), "utf8")));

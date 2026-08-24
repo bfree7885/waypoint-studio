@@ -1,17 +1,20 @@
 /**
- * Sheds — Whitetail Biological Model v1.1 (map-integrated)
+ * Sheds — Whitetail Biological Model v2.0 (Phase 1 prediction truth)
  *
- * Authoritative transparent scorer for field heat / planner.
- * NOT machine learning. NOT a probability of finding an antler.
+ * Authoritative transparent scorer. NOT machine learning.
+ * NOT a probability of finding an antler.
+ * Phase 1: spatial habitat interest excludes season/weather wash.
  *
- * See docs/BIOLOGICAL_MODEL.md
+ * See docs/BIOLOGICAL_MODEL.md and docs/sheds/SHEDS-2-PHASE-1-PREDICTION-TRUTH.md
  */
 (function (global) {
   "use strict";
 
-  var MODEL_VERSION = "1.1.0";
-  var FACTOR_CONFIG_VERSION = "1.1.0";
+  var MODEL_VERSION = "2.0.0";
+  var FACTOR_CONFIG_VERSION = "2.0.0";
   var SPECIES_ID = "odocoileus-virginianus";
+  /** Soft cap on prior-find hotspot implication (Phase 1 honesty). */
+  var SHED_FIND_INTEREST_CAP = 0.35;
 
   var WEIGHT_SCALE = {
     off: 0,
@@ -480,12 +483,12 @@
       : clamp(autoScore * (0.55 + 0.45 * meta.scoreBias), 0.1, 1);
 
     var supportLine = seasonScore >= 0.72
-      ? "Seasonal timing currently supports higher search priority."
+      ? "Regional photoperiod window is nearer typical peak casting for this latitude."
       : seasonScore >= 0.45
-        ? "Seasonal timing currently supports moderate search priority."
+        ? "Regional photoperiod window is open enough to search — not a find probability."
         : phaseId === "pre_shed" || phaseId === "early_shed"
           ? "This area may be early for typical regional shedding."
-          : "Seasonal timing currently supports lower search priority.";
+          : "Regional photoperiod window is weaker for typical casting at this latitude.";
 
     return {
       score: seasonScore,
@@ -497,6 +500,7 @@
       region: broadRegion(lat),
       supportLine: supportLine,
       source: overridden ? "user_preference_override" : "ecological_assumption",
+      provenanceClass: overridden ? "WAYPOINT_HEURISTIC" : "MODEL_ASSUMPTION",
       note: "Timing varies by animal, age, health, nutrition, weather, and local conditions. Date alone cannot predict exact antler drop. " +
         (overridden ? "Season phase was user-adjusted and is not established fact." : "")
     };
@@ -731,7 +735,8 @@
       rationale: meta.rationale,
       evidenceIds: meta.evidenceIds.slice(),
       note: extras.note || null,
-      labelDetail: extras.labelDetail || null
+      labelDetail: extras.labelDetail || null,
+      provenanceClass: extras.provenanceClass || "WAYPOINT_HEURISTIC"
     };
   }
 
@@ -814,10 +819,17 @@
   function explainBiological(result) {
     if (!result) return "No biological model result.";
     var lines = [];
-    var bandLabel = result.band === "higher" ? "Higher modeled search priority"
-      : result.band === "moderate" ? "Moderate modeled search priority"
-        : "Lower modeled search priority";
-    lines.push(bandLabel + " under Whitetail Biological Model v" + MODEL_VERSION + ".");
+    var habitatMode = result.channelMode === "habitat";
+    var bandLabel = habitatMode
+      ? (result.band === "higher" ? "Higher relative walk interest"
+        : result.band === "moderate" ? "Moderate relative walk interest"
+          : result.band === "neutral" ? "No habitat-specific guidance"
+            : "Lower relative walk interest")
+      : (result.band === "higher" ? "Higher relative walk interest"
+        : result.band === "moderate" ? "Moderate relative walk interest"
+          : "Lower relative walk interest");
+    lines.push(bandLabel + " under Whitetail Biological Model v" + MODEL_VERSION +
+      (habitatMode ? " (habitat channel)." : "."));
 
     if (result.influences && result.influences.positive && result.influences.positive.length) {
       lines.push("Primary positive influences: " + result.influences.positive.map(function (x) {
@@ -829,9 +841,12 @@
         return x.label;
       }).join("; ") + ".");
     }
-    if (result.seasonContext && result.seasonContext.supportLine) {
+    if (!habitatMode && result.seasonContext && result.seasonContext.supportLine) {
       lines.push(result.seasonContext.supportLine);
       lines.push(result.seasonContext.note || "Timing varies by animal, age, health, nutrition, weather, and local conditions.");
+    }
+    if (habitatMode) {
+      lines.push("Timing is reported separately — season does not paint this habitat surface.");
     }
     if (result.nearbyObservations && result.nearbyObservations.length) {
       lines.push("Nearby observations: " + result.nearbyObservations.slice(0, 3).map(function (n) {
@@ -839,7 +854,7 @@
       }).join("; ") + ".");
     }
     if (result.parts && result.parts.searchPenalty > 0.2) {
-      lines.push("Priority is reduced slightly because nearby search-completed notes reduce revisit urgency — not biological emptiness.");
+      lines.push("Walk interest is reduced slightly because nearby search-completed notes reduce revisit urgency — not biological emptiness.");
     }
     if (result.parts && result.parts.coverageFactor < 0.95) {
       lines.push("Search-coverage marks also temper ranking for already-walked ground.");
@@ -856,7 +871,7 @@
     if (result.taxonomy && result.taxonomy.uncertainty && result.taxonomy.uncertainty.length) {
       lines.push("Unavailable or uncertain: " + result.taxonomy.uncertainty.slice(0, 3).join(" "));
     }
-    lines.push("This is relative search guidance for whitetail shed walking — not a map of antlers.");
+    lines.push("This is relative walk guidance for whitetail shed searching — not a map of antlers and not a find probability.");
     return lines.join(" ");
   }
 
@@ -921,12 +936,19 @@
 
   /**
    * Core scorer — used by the heat / planner pipeline.
+   * Phase 1: channelMode "habitat" excludes season + weather from spatial interest.
+   * `priority` remains for legacy callers but is documented as relative walk interest,
+   * never find probability. Prefer habitatInterest / channels for new UI.
    */
   function scoreCell(opts) {
     opts = opts || {};
     var prefs = opts.prefs || { weights: {} };
     var lat = opts.lat;
     var lng = opts.lng;
+    var habitatMode =
+      opts.channelMode === "habitat" ||
+      opts.excludeSeasonFromSpatial === true ||
+      opts.excludeWeatherFromSpatial === true;
     var season = seasonProfile(opts.date, lat, prefs);
     var region = regionalContext(lat, lng, opts.date);
     var terrain = opts.terrain || { slope: null, aspect: null, source: "unavailable" };
@@ -934,6 +956,10 @@
     var aspect = aspectPreferenceScore(terrain.aspect, lat);
     var form = terrainFormScore(terrain.morphology);
     var obs = observationSignals(lat, lng, opts.observations, prefs, opts.nowMs);
+    // Cap prior-find hotspot implication (Phase 1).
+    if (obs.shedBoost > SHED_FIND_INTEREST_CAP) {
+      obs.shedBoost = SHED_FIND_INTEREST_CAP;
+    }
     var wx = weatherModifiers(opts.weather, prefs);
     var habitatLc = habitatFromLandCover(opts.landCoverCategory);
 
@@ -962,70 +988,84 @@
 
     var factors = [
       buildFactorEntry("season_timing", season.score, {
-        weightScale: weightOf(prefs, "season"),
-        available: true,
+        weightScale: habitatMode ? 0 : weightOf(prefs, "season"),
+        available: !habitatMode,
         labelDetail: season.phase,
-        dataKind: season.overridden ? "user_preference" : "ecological_assumption"
+        dataKind: season.overridden ? "user_preference" : "ecological_assumption",
+        provenanceClass: season.overridden ? "WAYPOINT_HEURISTIC" : "MODEL_ASSUMPTION"
       }),
       buildFactorEntry("slope", slope.score, {
         weightScale: weightOf(prefs, "slope"),
         available: slope.available,
-        labelDetail: slope.label
+        labelDetail: slope.label,
+        provenanceClass: "WAYPOINT_HEURISTIC"
       }),
       buildFactorEntry("aspect_sun", aspect.score, {
         weightScale: weightOf(prefs, "aspect"),
         available: aspect.available,
         labelDetail: aspect.label,
-        note: aspect.disagreementNote
+        note: aspect.disagreementNote,
+        provenanceClass: "WAYPOINT_HEURISTIC"
       }),
       buildFactorEntry("terrain_form", form.score, {
         weightScale: weightOf(prefs, "terrainForm"),
         available: form.available,
-        labelDetail: form.label
+        labelDetail: form.label,
+        provenanceClass: "WAYPOINT_HEURISTIC"
       }),
       buildFactorEntry("thermal_cover", thermalScore, {
         weightScale: weightOf(prefs, "thermalCover"),
         available: thermalAvail,
         labelDetail: thermalAvail ? "winter/thermal cover signal" : null,
-        dataKind: thermalAvail ? "observed" : "inferred"
+        dataKind: thermalAvail ? "observed" : "inferred",
+        provenanceClass: thermalAvail ? "SOURCE_FACT" : "WAYPOINT_HEURISTIC"
       }),
       buildFactorEntry("feeding", obs.feeding, {
         weightScale: weightOf(prefs, "feeding"),
         available: obs.feeding > 0.02,
-        dataKind: "observed"
+        dataKind: "observed",
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("bedding", obs.bedding, {
         weightScale: weightOf(prefs, "bedding"),
         available: obs.bedding > 0.02,
-        dataKind: "observed"
+        dataKind: "observed",
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("edge_transition", edgeScore, {
         weightScale: weightOf(prefs, "edges"),
         available: edgeAvail,
         labelDetail: habitatLc.available ? habitatLc.label : null,
-        dataKind: edgeAvail ? (habitatLc.available || opts.edgeHint != null ? "inferred" : "observed") : "inferred"
+        dataKind: edgeAvail ? (habitatLc.available || opts.edgeHint != null ? "inferred" : "observed") : "inferred",
+        provenanceClass: edgeAvail && !habitatLc.available ? "SOURCE_FACT" : "WAYPOINT_HEURISTIC"
       }),
       buildFactorEntry("corridors", obs.corridors, {
         weightScale: weightOf(prefs, "corridors"),
-        available: obs.corridors > 0.02
+        available: obs.corridors > 0.02,
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("fence_crossing", obs.fences, {
         weightScale: weightOf(prefs, "fences"),
-        available: obs.fences > 0.02
+        available: obs.fences > 0.02,
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("deer_sign", obs.deerSign, {
         weightScale: weightOf(prefs, "deerSign"),
-        available: obs.deerSign > 0.02
+        available: obs.deerSign > 0.02,
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("shed_find_interest", obs.shedBoost, {
         weightScale: weightOf(prefs, "shedFinds"),
-        available: obs.shedBoost > 0.02
+        available: obs.shedBoost > 0.02,
+        note: "Prior-find interest capped at " + SHED_FIND_INTEREST_CAP + " — not a hotspot guarantee.",
+        provenanceClass: "SOURCE_FACT"
       }),
       buildFactorEntry("human_pressure", humanAttract, {
         weightScale: weightOf(prefs, "humanPressure"),
         available: humanAvail,
         dataKind: humanAvail ? "observed" : "inferred",
-        labelDetail: humanAvail ? "lower attractiveness under recorded disturbance" : null
+        labelDetail: humanAvail ? "lower attractiveness under recorded disturbance" : null,
+        provenanceClass: humanAvail ? "SOURCE_FACT" : "WAYPOINT_HEURISTIC"
       })
     ];
 
@@ -1041,8 +1081,9 @@
     var searchPenalty = obs.searchPenalty;
     var afterSearch = additive * (1 - 0.55 * searchPenalty * (searchW > 0 ? 1 : 0));
 
+    // Weather multipliers belong to SEARCHABILITY — not habitat spatial heat (Phase 1).
     var wxMul = 1;
-    if (weightOf(prefs, "snow") > 0) {
+    if (!habitatMode && weightOf(prefs, "snow") > 0) {
       wxMul = wx.snowFactor * wx.coldFactor * wx.windFactor;
       if ((wx.snowMm || 0) > 15 && !thermalAvail) wxMul *= 0.92;
       if ((wx.snowMm || 0) > 15 && obs.thermal > 0.25) wxMul *= 1.06;
@@ -1061,6 +1102,7 @@
     afterSearch *= accessFactor;
 
     var priority = clamp(afterSearch / 0.85, 0, 1);
+    var habitatInterest = habitatMode ? priority : clamp(additive / 0.85, 0, 1);
 
     var band = "lower";
     if (priority >= 0.72) band = "higher";
@@ -1072,9 +1114,12 @@
     if (aspect.disagreementNote) uncertaintyNotes.push(aspect.disagreementNote);
     if (!habitatLc.available) uncertaintyNotes.push("Land-cover / habitat polygons are not loaded; edge influence stays generalized.");
     if (season.overridden) uncertaintyNotes.push("Season phase override is a user preference, not established timing fact.");
+    if (habitatMode) {
+      uncertaintyNotes.push("Habitat channel excludes season timing and weather from spatial interest.");
+    }
 
     var parts = {
-      season: season.score * weightOf(prefs, "season"),
+      season: habitatMode ? 0 : season.score * weightOf(prefs, "season"),
       slope: slope.score,
       aspect: aspect.score,
       terrainForm: form.score,
@@ -1087,10 +1132,11 @@
       shedBoost: obs.shedBoost,
       humanPressure: obs.humanPressure,
       searchPenalty: searchPenalty,
-      snowFactor: wx.snowFactor,
+      snowFactor: habitatMode ? 1 : wx.snowFactor,
       coverageFactor: coverageFactor,
       accessFactor: accessFactor,
-      biologicalSuitability: biologicalSuitability
+      biologicalSuitability: biologicalSuitability,
+      habitatInterest: habitatInterest
     };
 
     var influences = deriveInfluences(factors, parts);
@@ -1106,14 +1152,22 @@
     else if (terrainAvailable) inputMode = "season-and-terrain-only";
     if (opts.offlineForced) inputMode = "offline";
 
+    var habitatFactors = factors.filter(function (f) {
+      return f.id !== "season_timing" && f.available && f.weightScale > 0;
+    });
+
     var result = {
       modelVersion: MODEL_VERSION,
       factorConfigVersion: FACTOR_CONFIG_VERSION,
       speciesId: SPECIES_ID,
+      /** @deprecated Phase 1 — relative walk interest, NEVER find probability */
       priority: priority,
+      habitatInterest: habitatInterest,
       biologicalSuitability: biologicalSuitability,
       band: band,
+      channelMode: habitatMode ? "habitat" : "legacy-blended",
       factors: factors,
+      habitatFactors: habitatFactors,
       parts: parts,
       influences: influences,
       nearbyObservations: obs.nearby,
@@ -1123,7 +1177,8 @@
         supportLine: season.supportLine,
         note: season.note,
         overridden: season.overridden,
-        region: season.region
+        region: season.region,
+        provenanceClass: season.provenanceClass
       },
       regionalContext: region,
       activePreset: prefs.activePreset || "balanced",
@@ -1148,12 +1203,15 @@
         method: terrain.source === "map-derived" ? "finite-difference slope/aspect + 3x3 morphology hints" : "none",
         resolution: opts.cellMetersApprox ? ("~" + opts.cellMetersApprox + " m cells") : "viewport grid",
         liveOrCached: opts.terrainCacheState || "unknown",
-        limitations: "Morphology hints are coarse elevation-neighborhood proxies, not surveyed landforms."
+        limitations: "Morphology hints are coarse elevation-neighborhood proxies, not surveyed landforms.",
+        provenanceClass: "WAYPOINT_HEURISTIC"
       },
       seasonNote: season.note,
       confidence: confidence,
       taxonomy: taxonomy,
-      weatherNotes: wx.notes,
+      weatherNotes: habitatMode
+        ? ["Weather excluded from habitat spatial scoring (searchability channel)."]
+        : wx.notes,
       contributionBreakdown: factors.map(function (f) {
         return {
           key: f.id,
@@ -1161,7 +1219,8 @@
           value: Math.round(f.contribution * 1000) / 1000,
           direction: f.score >= 0.55 ? "positive" : f.score <= 0.4 ? "limiting" : "neutral",
           dataKind: f.dataKind,
-          evidenceIds: f.evidenceIds
+          evidenceIds: f.evidenceIds,
+          provenanceClass: f.provenanceClass || null
         };
       }),
       calibration: {
@@ -1174,7 +1233,12 @@
           "user_weight_profiles_by_region",
           "field_validation_evidence_v1"
         ],
-        note: "Hooks only — no learning implemented in v1.1."
+        note: "Hooks only — no learning implemented in v2.0 Phase 1."
+      },
+      honesty: {
+        priorityIsNotFindProbability: true,
+        habitatExcludesSeasonWeather: !!habitatMode,
+        shedFindInterestCap: SHED_FIND_INTEREST_CAP
       }
     };
     result.explanation = explainBiological(result);
@@ -1249,6 +1313,7 @@
     WEIGHT_SCALE: WEIGHT_SCALE,
     BASE_SHARE: BASE_SHARE,
     MAX_FACTOR_FRACTION: MAX_FACTOR_FRACTION,
+    SHED_FIND_INTEREST_CAP: SHED_FIND_INTEREST_CAP,
     INFLUENCE: INFLUENCE,
     SEASON_PHASES: SEASON_PHASES,
     EVIDENCE: EVIDENCE,

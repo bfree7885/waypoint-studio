@@ -1,11 +1,11 @@
-# Whitetail Biological Model v1.1
+# Whitetail Biological Model v2.0 (Phase 1 prediction truth)
 
 **Species:** *Odocoileus virginianus* (white-tailed deer)  
 **Product:** Sheds field intelligence — Waypoint Studio  
-**Implementation:** `apps/shed-hunting/js/sheds-biological-model.js`  
-**Factor config version:** `1.1.0`  
-**Commit status:** **Not committed. Not pushed.** Owner review required.  
-**This is not machine learning.** Scores are transparent ecological heuristics for relative search guidance — **never** a probability that an antler is present.
+**Implementation:** `apps/shed-hunting/js/sheds-biological-model.js` (+ `sheds-timing.js`, `sheds-habitat.js`, `sheds-searchability.js`, `sheds-confidence.js`)  
+**Factor config version:** `2.0.0`  
+**Owner review:** `docs/sheds/SHEDS-2-PHASE-1-PREDICTION-TRUTH.md`  
+**This is not machine learning.** Scores are transparent ecological heuristics for relative walk guidance — **never** a probability that an antler is present.
 
 ---
 
@@ -14,18 +14,20 @@
 | Version | Notes |
 |---------|-------|
 | 1.0.0 | Initial factor catalog, evidence index, confidence channels |
-| **1.1.0** | Map integration: season phases + override, observation recency + diminishing returns, presets, field validation store, session model stamps, coarse→refine heat, retired planner coverage double-apply |
+| 1.1.0 | Map integration: season phases + override, observation recency + diminishing returns, presets, field validation store, session model stamps, coarse→refine heat, retired planner coverage double-apply |
+| **2.0.0** | Phase 1 prediction truth: habitat channel excludes season/weather from spatial heat; timing/searchability/confidence separated; shed-find interest capped; provenance classes |
 
 ---
 
-## Authoritative pipeline
+## Authoritative pipeline (Phase 1)
 
 ```
-map-app.recomputeHeat (gen token; coarse 10×10 then refine 18×18)
-  → Likelihood.buildGrid (terrain slope/aspect/morphology)
-  → Biological.scoreCell   ← ONLY scorer
-  → heat layer (priority) + Explain (influences from contributions)
-  → Planner.plan (distance bias; coverage already in cell priority — not re-multiplied)
+map-app.recomputeHeat (gen token; coarse then refine)
+  → Likelihood.buildGrid (habitat-only; empty when no notes/elev)
+  → Biological.scoreCell({ channelMode: "habitat" })
+  → heat layer (habitatInterest) + channel panel + Explain
+  → Planner.plan (requires habitat signal; distance bias)
+Timing / Searchability / Confidence evaluated separately for UI
 ```
 
 Legacy independent likelihood formulas are not active. `WaypointShedsLikelihood` is a grid wrapper only.

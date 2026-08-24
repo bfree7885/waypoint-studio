@@ -41,6 +41,7 @@ function load() {
   [
     "apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-biological-model.js",
+    "apps/shed-hunting/js/sheds-habitat.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js"
   ].forEach((f) => {
     vm.runInNewContext(fs.readFileSync(path.join(ROOT, f), "utf8"), sandbox, { filename: f });
@@ -53,7 +54,7 @@ const Bio = S.WaypointShedsBiological;
 const Store = S.WaypointShedsObservations;
 const Model = S.WaypointShedsLikelihood;
 
-assert("bio module", !!Bio && Bio.MODEL_VERSION === "1.1.0");
+assert("bio module", !!Bio && Bio.MODEL_VERSION === "2.0.0");
 assert("catalog non-empty", Bio.listFactors().length >= 10);
 assert("evidence present", !!Bio.getEvidence("E08") && !!Bio.getEvidence("E14"));
 assert("base shares documented", Object.keys(Bio.BASE_SHARE).length >= 10);
@@ -75,7 +76,7 @@ const baseOpts = {
 const baseline = Bio.scoreCell(baseOpts);
 assert("baseline scores", baseline.priority > 0 && baseline.confidence);
 assert("taxonomy present", baseline.taxonomy && baseline.taxonomy.ecologicalAssumptions.length);
-assert("explanation honest", /not a map of antlers|not.*probability|Confidence \(not probability\)/i.test(baseline.explanation));
+assert("explanation honest", /not a map of antlers|not.*probability|walk guidance|Confidence \(not probability\)|Evidence support/i.test(baseline.explanation));
 assert("calibration hooks", baseline.calibration && baseline.calibration.readyFor.length >= 3);
 
 // Every prefs weight key that maps to a factor should change output when toggled strong vs off
@@ -177,7 +178,7 @@ assert("jan more peak-like in south", south.score >= north.score);
 assert("aspect disagreement noted in evidence", /DISAGREEMENT/i.test(Bio.EVIDENCE.E14.summary));
 
 // Likelihood wrappers
-assert("likelihood delegates", Model.scoreCell(baseOpts).modelVersion === "1.1.0");
+assert("likelihood delegates", Model.scoreCell(baseOpts).modelVersion === "2.0.0");
 const FakeBounds = {
   getWest() { return -91.3; },
   getEast() { return -91.2; },
@@ -189,7 +190,7 @@ const grid = Model.buildGrid(FakeBounds, 6, 6, {
   prefs: prefs,
   observations: []
 });
-assert("grid uses bio model", grid.modelVersion === "1.1.0" && grid.cells.length === 36);
+assert("grid uses bio model", grid.modelVersion === "2.0.0" && grid.cells.length === 36);
 
 const html = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8");
 assert("bio script in map", /sheds-biological-model\.js/.test(html));

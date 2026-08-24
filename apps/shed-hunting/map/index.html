@@ -61,7 +61,7 @@
         <span class="sheds-pill" id="coverage-pill" data-level="limited">Limited input coverage</span>
         <span class="sheds-pill" id="season-pill" data-phase="unknown">Season context…</span>
         <span class="sheds-pill" id="obs-count">0 private observations</span>
-        <p class="sheds-note" id="model-note">Whitetail Biological Model v1.1 — relative walk guidance. Never a map of antlers. Observations stay on this device; basemap providers (CARTO / Esri) still see approximate map tile requests.</p>
+        <p class="sheds-note" id="model-note">Whitetail Biological Model v2.0 — Timing / Habitat / Searchability / Evidence support separated. Never a find probability. Observations stay on this device; weather/elev/tiles are third-party (Open-Meteo, CARTO/Esri).</p>
       </div>
 
       <!-- One explained field rail — locate, zoom, note, track, tools (no second Leaflet zoom stack). -->
@@ -100,32 +100,39 @@
 
       <!-- Legend: Later — revealed only when heat is active -->
       <div class="sheds-legend-float" id="heat-legend" hidden aria-label="Heat layer legend">
-        <span class="sheds-legend-float__mode" id="heat-legend-mode">Estimated opportunity</span>
+        <span class="sheds-legend-float__mode" id="heat-legend-mode">Habitat walk-interest</span>
         <span><i class="sheds-swatch sheds-swatch--low" aria-hidden="true"></i>Lower</span>
         <span><i class="sheds-swatch sheds-swatch--mid" aria-hidden="true"></i>Mod</span>
         <span><i class="sheds-swatch sheds-swatch--high" aria-hidden="true"></i>Higher</span>
-        <span class="sheds-legend-float__status" id="heat-legend-status">Lower → higher walk priority</span>
+        <span class="sheds-legend-float__status" id="heat-legend-status">Lower → higher walk interest (not find %)</span>
       </div>
 
       <!-- TODAY'S SEARCH — primary field briefing over the map -->
       <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" aria-live="polite" data-expanded="false" data-has-plan="false" data-todays-search="true">
         <div class="sheds-sheet-field__grab" aria-hidden="true"></div>
         <button type="button" class="sheds-suggest__summary" id="btn-toggle-plan" aria-expanded="false" aria-controls="plan-details">
-          <span class="sheds-suggest__eyebrow">Today’s Search</span>
-          <span class="sheds-suggest__kicker" id="plan-title">Reading conditions…</span>
-          <span class="sheds-suggest__glance" id="plan-glance">Live weather and season when available</span>
-          <span class="sheds-suggest__conf" id="plan-stars" aria-label="Confidence">Confidence pending</span>
+          <span class="sheds-suggest__eyebrow">Today’s Search · field conditions</span>
+          <span class="sheds-suggest__kicker" id="plan-title">Reading search conditions…</span>
+          <span class="sheds-suggest__glance" id="plan-glance">Is today a good day to go search?</span>
+          <span class="sheds-suggest__conf" id="plan-stars" aria-label="Evidence support">Evidence support pending</span>
           <span class="sheds-suggest__chev" aria-hidden="true"></span>
         </button>
         <div class="sheds-suggest__details" id="plan-details" hidden>
-          <p class="sheds-today__status" id="today-status" role="status">Loading today’s conditions…</p>
+          <p class="sheds-today__status" id="today-status" role="status">Loading today’s search conditions…</p>
+          <div class="sheds-channels" id="sheds-channels" aria-label="Separated guidance channels">
+            <div class="sheds-channel"><span class="sheds-channel__k">Timing</span><p id="channel-timing">Regional season…</p><p class="sheds-channel__why" id="why-timing"></p></div>
+            <div class="sheds-channel"><span class="sheds-channel__k">Searchability</span><p id="channel-searchability">Field conditions…</p><p class="sheds-channel__why" id="why-searchability"></p></div>
+            <div class="sheds-channel"><span class="sheds-channel__k">Habitat</span><p id="channel-habitat">No habitat-specific guidance yet</p><p class="sheds-channel__why" id="why-habitat"></p></div>
+            <div class="sheds-channel"><span class="sheds-channel__k">Evidence support</span><p id="channel-confidence">Low — not find probability</p></div>
+            <p class="sheds-channel__limits" id="channel-limitations">Decision support only — no individual bucks, density, exact cast dates, or presence certainty.</p>
+          </div>
           <div class="sheds-today__windows" id="today-windows" aria-label="Time windows today"></div>
           <div class="sheds-today__areas" id="today-areas" aria-label="Areas and terrain to consider"></div>
           <div class="sheds-plan__stats" id="plan-stats" hidden>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Direction</span><span id="plan-stat-dir">—</span></div>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Distance</span><span id="plan-stat-dist">—</span></div>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Search radius</span><span id="plan-stat-area">—</span></div>
-            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Priority</span><span id="plan-stat-band">—</span></div>
+            <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Walk interest</span><span id="plan-stat-band">—</span></div>
           </div>
           <p class="sheds-plan__body" id="plan-body">Locate yourself, or pan to your land and zoom in. Sheds will offer a place worth considering — never a guarantee.</p>
           <p class="sheds-plan__meta" id="plan-meta"></p>
@@ -310,10 +317,11 @@
       <div class="sheds-field">
         <label for="heat-mode">Heat layer mode</label>
         <select id="heat-mode">
-          <option value="biological" selected>Estimated opportunity (biological model)</option>
+          <option value="habitat" selected>Habitat walk-interest (notes + weak elev)</option>
+          <option value="biological">Habitat walk-interest (legacy id)</option>
           <option value="observed">Observed activity (your notes only)</option>
         </select>
-        <p class="sheds-note" id="heat-mode-hint">Biological mode is estimated walk priority. Observed mode uses only your private notes — empty until you log activity.</p>
+        <p class="sheds-note" id="heat-mode-hint">Habitat mode uses private notes + optional weak elev only — empty when neither exists. Season/weather do not paint heat. Observed mode is your notes only.</p>
       </div>
       <fieldset class="sheds-fieldset" id="obs-heat-filters">
         <legend>Observed-activity filters</legend>
@@ -524,12 +532,13 @@
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="ethics-title">Field ethics &amp; honesty</h2>
       <ul class="sheds-ethics-list">
+        <li><strong>Privacy.</strong> GPS stays on-device; coordinates are not placed in share URLs or analytics. Weather/elevation queries send approximate lat/lng to Open-Meteo.</li>
         <li><strong>Property &amp; law.</strong> This map does not grant legal access. Confirm permission and local shed seasons.</li>
         <li><strong>Wildlife.</strong> Do not chase, harass, or displace wintering deer. Approach bedding notes carefully.</li>
         <li><strong>Habitat.</strong> Avoid trampling sensitive areas; leave no trash; respect closures.</li>
         <li><strong>Privacy.</strong> Observations, tracks, and validations stay in this browser’s storage. Export creates a file you control.</li>
         <li><strong>Map providers.</strong> Basemap tile requests (CARTO / Esri by default; never OSMF public raster) and optional Open-Meteo elevation/weather reveal approximate location to those services.</li>
-        <li><strong>Model honesty.</strong> Biological heat is estimated opportunity (relative walk priority). Observed-activity heat is only your private notes. Neither predicts exact deer locations or guarantees sheds.</li>
+        <li><strong>Model honesty.</strong> Timing, habitat, searchability, and evidence support are separate. Habitat heat is notes + weak elev only (or empty). Never a find probability.</li>
         <li><strong>Sensitive places.</strong> Do not publish precise private or protected locations from this tool.</li>
       </ul>
       <div class="sheds-actions">
@@ -546,6 +555,10 @@
   <script src="../js/sheds-session-store.js"></script>
   <script src="../js/sheds-validation-store.js"></script>
   <script src="../js/sheds-biological-model.js"></script>
+  <script src="../js/sheds-timing.js"></script>
+  <script src="../js/sheds-habitat.js"></script>
+  <script src="../js/sheds-searchability.js"></script>
+  <script src="../js/sheds-confidence.js"></script>
   <script src="../js/sheds-model-presets.js"></script>
   <script src="../js/sheds-likelihood-model.js"></script>
   <script src="../js/sheds-search-planner.js"></script>

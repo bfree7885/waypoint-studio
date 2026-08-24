@@ -1589,3 +1589,73 @@ html.sheds-sheet-open .leaflet-control-attribution {
     bottom: calc(5.1rem + var(--sheds-safe-bottom));
   }
 }
+
+
+/* Sheds 2.0 Phase 1 — channel panel + YOU vs TARGET */
+.sheds-channels {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.35rem 0 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--sheds-border, rgba(255,255,255,0.12));
+  border-radius: 12px;
+  background: rgba(8, 14, 22, 0.35);
+}
+.sheds-channel__k {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 0.12rem;
+}
+.sheds-channel p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+.sheds-channel__why {
+  margin-top: 0.2rem !important;
+  font-size: 0.75rem !important;
+  opacity: 0.8;
+}
+.sheds-channel__limits {
+  margin: 0.15rem 0 0;
+  font-size: 0.72rem;
+  opacity: 0.78;
+  line-height: 1.35;
+}
+.sheds-map-tip--you {
+  background: #d8ec5c !important;
+  color: #0a1220 !important;
+  border: none !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.65rem !important;
+}
+.sheds-map-tip--target {
+  background: #e0a046 !important;
+  color: #1a1208 !important;
+  border: none !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.65rem !important;
+}
+.sheds-user-marker {
+  filter: drop-shadow(0 0 0 2px rgba(10, 18, 32, 0.85));
+}
+.sheds-search-target__label {
+  min-width: 3.2rem;
+}
+@media (max-width: 520px) {
+  .sheds-channels {
+    gap: 0.45rem;
+    padding: 0.45rem 0.55rem;
+  }
+  .sheds-channel p {
+    font-size: 0.82rem;
+  }
+}

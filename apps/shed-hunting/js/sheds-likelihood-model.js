@@ -1,7 +1,8 @@
 /**
- * Sheds — search-priority grid wrapper.
- * Scoring delegates to Whitetail Biological Model v1.0 when loaded.
+ * Sheds — habitat-interest grid wrapper (Phase 1 prediction truth).
+ * Scoring delegates to Whitetail Biological Model habitat channel.
  * Deterministic. Explainable. Never claims "probability of finding an antler."
+ * Season/weather do not paint spatial heat when habitat evidence is absent.
  */
 (function (global) {
   "use strict";
@@ -11,6 +12,10 @@
   function getBio() {
     if (!Bio) Bio = global.WaypointShedsBiological || null;
     return Bio;
+  }
+
+  function getHabitat() {
+    return global.WaypointShedsHabitat || null;
   }
 
   var WEIGHT_SCALE = {
@@ -104,15 +109,46 @@
     var B = getBio();
     if (!B || !B.scoreCell) {
       return {
-        priority: 0.35,
-        band: "lower",
+        priority: 0,
+        habitatInterest: null,
+        band: "neutral",
+        habitatEmpty: true,
         parts: {},
         labels: {},
         sources: { season: "unavailable", terrain: "unavailable", observations: "unavailable", weather: "unavailable", landCover: "unavailable" },
         explanation: "Biological model unavailable."
       };
     }
-    return B.scoreCell(opts);
+    var Habitat = getHabitat();
+    var scoreOpts = Object.assign({}, opts, {
+      channelMode: "habitat",
+      excludeSeasonFromSpatial: true,
+      excludeWeatherFromSpatial: true
+    });
+    if (Habitat && !Habitat.hasSpatialEvidence(scoreOpts)) {
+      return {
+        priority: 0,
+        habitatInterest: null,
+        band: "neutral",
+        habitatEmpty: true,
+        channelMode: "habitat",
+        parts: {},
+        labels: {},
+        sources: {
+          season: "excluded-from-habitat",
+          terrain: (opts.terrain && opts.terrain.source) || "unavailable",
+          observations: "unavailable",
+          weather: "excluded-from-habitat",
+          landCover: "unavailable"
+        },
+        explanation: Habitat.EMPTY_DETAIL || "No habitat-specific guidance yet.",
+        honesty: { priorityIsNotFindProbability: true, habitatExcludesSeasonWeather: true }
+      };
+    }
+    var scored = B.scoreCell(scoreOpts);
+    scored.habitatEmpty = false;
+    if (scored.habitatInterest != null) scored.priority = scored.habitatInterest;
+    return scored;
   }
 
   function explain(result, extras) {
@@ -141,14 +177,23 @@
     var c;
     var Sessions = context.sessions || global.WaypointShedsSessions;
     var covMap = Sessions && Sessions.coverageMap ? Sessions.coverageMap() : null;
+    var Habitat = getHabitat();
     var coverageProbe = {
-      season: "seasonal-rule",
+      season: "timing-separate",
       terrain: elev ? "map-derived" : "unavailable",
       observations: (context.observations && context.observations.length) ? "user-observation" : "unavailable",
-      weather: (context.weather && context.weather.source) || "unavailable"
+      weather: "searchability-separate"
     };
     var coverage = coverageFrom(coverageProbe);
     var B = getBio();
+
+    // Viewport-level empty: no observations and no elevation → honest blank heat
+    var viewportHasEvidence = false;
+    if (Habitat) {
+      viewportHasEvidence = Habitat.hasObservationEvidence(context.observations) || !!elev;
+    } else {
+      viewportHasEvidence = !!(context.observations && context.observations.length) || !!elev;
+    }
 
     for (r = 0; r < rows; r++) {
       for (c = 0; c < cols; c++) {
@@ -166,37 +211,58 @@
             covFactor = Sessions.coveragePenaltyFactor(hit.level);
           }
         }
-        var scored = scoreCell({
-          lat: lat,
-          lng: lng,
-          date: context.date,
-          prefs: context.prefs,
-          observations: context.observations,
-          terrain: terrain,
-          weather: context.weather,
-          edgeHint: context.edgeHint,
-          landCoverCategory: context.landCoverCategory,
-          coverageLevel: covLevel,
-          coverageFactor: covFactor,
-          offlineForced: context.offlineForced,
-          terrainCacheState: context.terrainCacheState,
-          cellMetersApprox: Math.round(cellM),
-          nowMs: context.nowMs
-        });
+        var scored;
+        if (!viewportHasEvidence) {
+          scored = {
+            priority: 0,
+            habitatInterest: null,
+            band: "neutral",
+            habitatEmpty: true,
+            explanation: Habitat
+              ? Habitat.EMPTY_DETAIL
+              : "No habitat-specific guidance yet."
+          };
+        } else {
+          scored = scoreCell({
+            lat: lat,
+            lng: lng,
+            date: context.date,
+            prefs: context.prefs,
+            observations: context.observations,
+            terrain: terrain,
+            weather: null, // weather never paints habitat heat
+            edgeHint: context.edgeHint,
+            landCoverCategory: context.landCoverCategory,
+            coverageLevel: covLevel,
+            coverageFactor: covFactor,
+            offlineForced: context.offlineForced,
+            terrainCacheState: context.terrainCacheState,
+            cellMetersApprox: Math.round(cellM),
+            nowMs: context.nowMs
+          });
+        }
         cells.push({
           row: r,
           col: c,
           lat: lat,
           lng: lng,
-          priority: scored.priority,
+          priority: scored.habitatEmpty ? 0 : (scored.habitatInterest != null ? scored.habitatInterest : scored.priority),
+          habitatInterest: scored.habitatInterest,
+          habitatEmpty: !!scored.habitatEmpty,
           biologicalSuitability: scored.biologicalSuitability,
           band: scored.band,
           coverageLevel: covLevel,
+          layerKind: scored.habitatEmpty
+            ? "habitat-empty"
+            : (Habitat && Habitat.hasObservationEvidence(context.observations)
+              ? "habitat-observed"
+              : "habitat-weak-terrain"),
           result: scored
         });
       }
     }
 
+    var emptyCount = cells.filter(function (cell) { return cell.habitatEmpty; }).length;
     return {
       rows: rows,
       cols: cols,
@@ -204,18 +270,21 @@
       cellMetersApprox: Math.round(cellM),
       coverage: coverage,
       cells: cells,
+      habitatEmpty: !viewportHasEvidence || emptyCount === cells.length,
+      habitatMode: "habitat-only",
       speciesId: "odocoileus-virginianus",
       modelVersion: B ? B.MODEL_VERSION : null,
-      disclaimer: "Relative search priority from Whitetail Biological Model v" +
-        (B ? B.MODEL_VERSION : "?") +
-        " for the visible area only. Not a probability of finding sheds."
+      disclaimer:
+        "Habitat walk-interest from private notes and optional weak elev heuristics only. " +
+        "Season and weather do not paint this surface. Not a probability of finding sheds."
     };
   }
 
   function bandLabel(band) {
-    if (band === "higher") return "Higher search priority";
-    if (band === "moderate") return "Moderate search priority";
-    return "Lower search priority";
+    if (band === "higher") return "Higher walk interest";
+    if (band === "moderate") return "Moderate walk interest";
+    if (band === "neutral") return "No habitat guidance";
+    return "Lower walk interest";
   }
 
   global.WaypointShedsLikelihood = {
