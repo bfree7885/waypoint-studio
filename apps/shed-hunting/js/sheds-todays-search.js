@@ -7,8 +7,8 @@
   "use strict";
 
   var DISCLAIMER =
-    "Today’s Search is relative field guidance for when and where to walk — " +
-    "not a prediction of deer locations or that sheds are present.";
+    "Today’s Search answers whether field conditions favor going out to search — " +
+    "not whether deer are more likely to drop antlers today, and never a find probability.";
 
   function clamp(n, a, b) {
     return Math.max(a, Math.min(b, n));
@@ -37,11 +37,15 @@
     return "uncertain";
   }
 
+  /**
+   * Evidence-support for search conditions — not find probability.
+   * High requires documented completeness; missing inputs drop the label.
+   */
   function confidenceLabel(score, missingCount) {
-    if (missingCount >= 3) return "Low";
-    if (missingCount >= 1 || score < 0.35) return "Medium";
-    if (score >= 0.7 && missingCount === 0) return "High";
-    return "Medium";
+    if (missingCount >= 2) return "Low";
+    if (missingCount >= 1 || score < 0.35) return "Moderate";
+    if (score >= 0.7 && missingCount === 0) return "Moderate"; // Phase 1: no High theater on search windows alone
+    return "Moderate";
   }
 
   function signal(id, label, kind, text) {
@@ -162,20 +166,25 @@
       uncertain.push("Pressure trend unavailable.");
     }
 
-    if (season && season.phaseId === "peak_shed") {
-      score += 0.08;
-      why.push("Seasonal timing heuristic is nearer peak shed for this latitude.");
-    } else if (season && (season.phaseId === "early_shed" || season.phaseId === "late_shed")) {
-      score += 0.04;
-      why.push("Seasonal timing is in an active shed-search window for this latitude.");
-    } else if (season && season.phaseId === "pre_shed") {
-      score -= 0.04;
-      why.push("Early seasonal window — treat marks as reconnaissance.");
-    } else if (season && season.phaseId === "post_shed") {
-      why.push("Post-peak seasonal window — leftover finds favor overlooked cover.");
-    } else {
-      missing++;
-      uncertain.push("Seasonal phase uncertain.");
+    // Phase 1: season is a separate Timing badge — do not mix into searchability windows
+    // unless explicitly requested (legacy). Default exclude.
+    var excludeSeason = opts.excludeSeasonFromWindows !== false;
+    if (!excludeSeason) {
+      if (season && season.phaseId === "peak_shed") {
+        score += 0.08;
+        why.push("Seasonal timing heuristic is nearer peak shed for this latitude.");
+      } else if (season && (season.phaseId === "early_shed" || season.phaseId === "late_shed")) {
+        score += 0.04;
+        why.push("Seasonal timing is in an active shed-search window for this latitude.");
+      } else if (season && season.phaseId === "pre_shed") {
+        score -= 0.04;
+        why.push("Early seasonal window — treat marks as reconnaissance.");
+      } else if (season && season.phaseId === "post_shed") {
+        why.push("Post-peak seasonal window — leftover finds favor overlooked cover.");
+      } else {
+        missing++;
+        uncertain.push("Seasonal phase uncertain.");
+      }
     }
 
     // Soft boost if this window is "now" or soon
@@ -359,13 +368,16 @@
 
     var windows = [
       scoreWindow("morning", "Morning", {
-        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH
+        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH,
+        excludeSeasonFromWindows: opts.excludeSeasonFromWindows !== false
       }),
       scoreWindow("midday", "Midday", {
-        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH
+        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH,
+        excludeSeasonFromWindows: opts.excludeSeasonFromWindows !== false
       }),
       scoreWindow("evening", "Evening", {
-        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH
+        weather: wx, season: season, nowHour: nowH, sunriseHour: sunriseH, sunsetHour: sunsetH,
+        excludeSeasonFromWindows: opts.excludeSeasonFromWindows !== false
       })
     ];
     windows.sort(function (a, b) { return b.score - a.score; });
@@ -380,26 +392,26 @@
       if (sunriseH == null) missing++;
     }
     if (locationStatus === "denied" || locationStatus === "unavailable") missing++;
-    if (!season) missing++;
+    // Season is Timing channel — do not count as searchability missing input
 
     var favorability = best ? best.band : "uncertain";
     if (!wx && weatherStatus === "unavailable") favorability = "uncertain";
 
     var confidence = confidenceLabel(best ? best.score : 0.2, missing);
     var confidenceWhy = missing
-      ? ("Confidence " + confidence + " — " + missing + " input gap(s) (weather, daylight, location, or season).")
-      : ("Confidence " + confidence + " — live weather and daylight context available; still not find certainty.");
+      ? ("Evidence support " + confidence + " — " + missing + " search-condition gap(s) (weather, daylight, or location). Not find probability.")
+      : ("Evidence support " + confidence + " — live weather and daylight context available; still not find certainty.");
 
     var areas = terrainHints(season, wx, patterns);
     if (plan && plan.ok && plan.recommendation) {
       var r = plan.recommendation;
       areas.unshift({
-        label: "Suggested pocket " +
+        label: "Suggested walk " +
           (r.bearingLabel ? r.bearingLabel + " " : "") +
           (r.distanceM != null ? ("~" + Math.round(r.distanceM) + " m") : "nearby"),
         kind: "planner",
-        epistemic: "estimated",
-        why: "Estimated opportunity from the biological walk-priority model + your coverage marks — not a deer GPS."
+        epistemic: "guidance",
+        why: "Guidance from habitat notes/terrain cues + coverage marks — not a biological hotspot or deer GPS."
       });
       areas = areas.slice(0, 4);
     }
@@ -415,32 +427,33 @@
       uncertainties.push("Location denied — nearby suggestions use map center.");
     }
     if (!wx) {
-      uncertainties.push("Without live weather, time-window ranking is mostly seasonal and daylight heuristics.");
+      uncertainties.push("Without live weather, time-window ranking leans on daylight heuristics only.");
     }
     if (!patterns || !patterns.sufficient) {
       uncertainties.push("Observation patterns need more private deer/sign notes before they influence Today’s Search.");
     }
     uncertainties.push("Deer movement and shed locations are never certain from weather alone.");
+    uncertainties.push("Season timing is reported separately and does not score these windows.");
 
     var headline;
     if (locationStatus === "denied" && !wx) {
-      headline = "Limited briefing — location denied, weather unavailable";
+      headline = "Limited search conditions — location denied, weather unavailable";
     } else if (locationStatus === "denied" && wx) {
       headline = best.band === "favorable"
-        ? ("Good " + best.label.toLowerCase() + " opportunity (map-center weather)")
+        ? ("Favorable " + best.label.toLowerCase() + " search window (map-center weather)")
         : best.band === "moderate"
-          ? (best.label + " looks workable (map-center weather)")
-          : ("Limited briefing — location off; using map-center weather");
+          ? (best.label + " search window looks workable (map-center weather)")
+          : ("Limited search conditions — location off; using map-center weather");
     } else if (!wx) {
-      headline = "Seasonal briefing — weather unavailable";
+      headline = "Search conditions incomplete — weather unavailable";
     } else if (best.band === "favorable") {
-      headline = "Good " + best.label.toLowerCase() + " opportunity";
+      headline = "Favorable " + best.label.toLowerCase() + " to go search";
     } else if (best.band === "moderate") {
-      headline = best.label + " looks workable";
+      headline = best.label + " search window looks workable";
     } else if (best.band === "limited") {
-      headline = "Limited window — " + best.label.toLowerCase() + " still best among today";
+      headline = "Limited conditions — " + best.label.toLowerCase() + " still best among today";
     } else {
-      headline = "Uncertain conditions — proceed carefully";
+      headline = "Uncertain search conditions — proceed carefully";
     }
 
     var whyLead = (best.why && best.why[0]) || "Mixed inputs.";
@@ -455,7 +468,7 @@
       weatherStatus: weatherStatus || (wx ? "ready" : "unavailable"),
       locationStatus: locationStatus || "unknown",
       headline: headline,
-      summaryLine: whyLead + " — Confidence: " + confidence + ".",
+      summaryLine: whyLead + " — Evidence support: " + confidence + " (not find probability).",
       favorability: favorability,
       confidence: confidence,
       confidenceWhy: confidenceWhy,
@@ -467,9 +480,14 @@
       observationInsight: patterns,
       recommendation: plan && plan.ok ? plan.recommendation : null,
       disclaimer: DISCLAIMER,
+      framing: "searchability",
+      seasonBadge: season
+        ? { phase: season.phase, phaseId: season.phaseId, supportLine: season.supportLine }
+        : null,
       epistemicNote:
         "Labels: fact = measured/fetched · analysis = interpreted · pattern = from your notes · " +
-        "estimated = model guidance · uncertain = missing or weak."
+        "estimated = model guidance · uncertain = missing or weak. Timing is a separate channel. " +
+        "Evidence support is not find probability."
     };
   }
 

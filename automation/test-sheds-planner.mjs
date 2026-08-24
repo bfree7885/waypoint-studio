@@ -43,6 +43,7 @@ function load(rel) {
     "apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-biological-model.js",
+    "apps/shed-hunting/js/sheds-habitat.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js",
     "apps/shed-hunting/js/sheds-search-planner.js"
   ];
@@ -76,12 +77,32 @@ let grid = Model.buildGrid(FakeBounds, 10, 10, {
   sessions: Sessions
 });
 assert("grid builds", grid.cells.length === 100);
+assert("empty habitat without notes/elev", grid.habitatEmpty === true);
 
 let plan = Planner.plan({
   grid: grid,
   userLatLng: { lat: 44.12, lng: -91.25 },
   sessions: Sessions,
   observations: [],
+  model: Model
+});
+assert("no recommendation without habitat", !plan.ok && /habitat/i.test(plan.reason || ""));
+
+// Seed a note so habitat channel can suggest a walk
+const seedObs = Store.create({ type: "deer_sign", location: { lat: 44.12, lng: -91.25 } });
+assert("seed observation", seedObs.ok);
+grid = Model.buildGrid(FakeBounds, 10, 10, {
+  date: new Date("2026-02-20T12:00:00Z"),
+  prefs: prefs,
+  observations: Store.list(),
+  elevations: null,
+  sessions: Sessions
+});
+plan = Planner.plan({
+  grid: grid,
+  userLatLng: { lat: 44.12, lng: -91.25 },
+  sessions: Sessions,
+  observations: Store.list(),
   model: Model
 });
 assert("recommendation generated", plan.ok && plan.recommendation);
@@ -181,6 +202,7 @@ function loadWith(seed) {
   ["apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-biological-model.js",
+    "apps/shed-hunting/js/sheds-habitat.js",
     "apps/shed-hunting/js/sheds-likelihood-model.js",
     "apps/shed-hunting/js/sheds-search-planner.js"].forEach((f) => {
     vm.runInNewContext(fs.readFileSync(path.join(ROOT, f), "utf8"), sandbox);
@@ -213,8 +235,8 @@ assert(
   planWhy.ok && Array.isArray(planWhy.recommendation.why) && planWhy.recommendation.why.length >= 2
 );
 
-// Offline-friendly: planner works with no elevation/weather
-assert("offline grid plan ok", plan.ok);
+// Offline-friendly: planner works with notes but no elevation/weather
+assert("offline grid plan ok", planAfterObs.ok);
 
 assert("gps track API present", typeof Sessions.appendTrackPoint === "function");
 assert("start/stop session API", typeof Sessions.startSession === "function" && typeof Sessions.endSession === "function");

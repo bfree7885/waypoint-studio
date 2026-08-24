@@ -29,7 +29,7 @@
 
   /**
    * @param {object} opts
-   * @param {object} opts.grid - from WaypointShedsLikelihood.buildGrid
+   * @param {object} opts.grid - from WaypointShedsLikelihood.buildGrid (habitat channel)
    * @param {{lat:number,lng:number}|null} opts.userLatLng
    * @param {object} opts.sessions - WaypointShedsSessions
    * @param {Array} opts.observations
@@ -40,15 +40,39 @@
     var user = opts.userLatLng;
     var Sessions = opts.sessions || global.WaypointShedsSessions;
     var Model = opts.model || global.WaypointShedsLikelihood;
+    var Habitat = global.WaypointShedsHabitat || null;
     var observations = opts.observations || [];
 
     if (!grid || !grid.cells || !grid.cells.length) {
       return {
         ok: false,
-        reason: "Zoom in to build a local priority surface before planning a next search.",
+        reason: "Zoom in to build a local habitat surface before planning a next walk.",
         recommendation: null,
         remainingHigh: [],
         coverage: null
+      };
+    }
+
+    // Phase 1: planner requires habitat signal — never suggest from season wash alone
+    var hasHabitat =
+      (Habitat && Habitat.hasSpatialEvidence({
+        observations: observations,
+        terrain: grid.habitatEmpty === false ? { source: "map-derived" } : null
+      })) ||
+      (grid.habitatEmpty === false &&
+        grid.cells.some(function (c) {
+          return !c.habitatEmpty && c.priority > 0.05;
+        }));
+
+    if (!hasHabitat || grid.habitatEmpty) {
+      return {
+        ok: false,
+        reason:
+          "No habitat-specific guidance yet — add private observations (or wait for elevation terrain). Season alone does not suggest a walk target.",
+        recommendation: null,
+        remainingHigh: [],
+        coverage: null,
+        habitatRequired: true
       };
     }
 
@@ -59,9 +83,7 @@
         var hit = covMap[Sessions.cellKey(cell.lat, cell.lng)];
         level = hit ? hit.level : null;
       }
-      // Coverage already applied inside Biological.scoreCell via coverageFactor.
-      // Do NOT multiply coverage again here (v1.1 — retired double application).
-      var plannerScore = cell.priority;
+      var plannerScore = cell.habitatEmpty ? 0 : cell.priority;
       if (level === "revisit") plannerScore *= 1.05;
       if (user && Model && Model.haversineM) {
         var dist = Model.haversineM(user.lat, user.lng, cell.lat, cell.lng);
@@ -82,22 +104,34 @@
     scored.sort(function (a, b) { return b.plannerScore - a.plannerScore; });
 
     var remainingHigh = scored.filter(function (s) {
-      return s.cell.band === "higher" && s.coverageLevel !== "thorough";
+      return s.cell.band === "higher" && s.coverageLevel !== "thorough" && !s.cell.habitatEmpty;
     });
 
     var primary = null;
     var i;
     for (i = 0; i < scored.length; i++) {
       if (scored[i].coverageLevel === "thorough") continue;
+      if (scored[i].cell.habitatEmpty || scored[i].plannerScore <= 0) continue;
       primary = scored[i];
       break;
     }
-    if (!primary) primary = scored[0];
+
+    if (!primary) {
+      return {
+        ok: false,
+        reason: "No habitat-specific walk target in view yet.",
+        recommendation: null,
+        remainingHigh: [],
+        coverage: null,
+        habitatRequired: true
+      };
+    }
 
     var alts = [];
     for (i = 0; i < scored.length && alts.length < 3; i++) {
       if (primary && scored[i].cell === primary.cell) continue;
       if (scored[i].coverageLevel === "thorough") continue;
+      if (scored[i].cell.habitatEmpty || scored[i].plannerScore <= 0) continue;
       if (primary && Model && Model.haversineM) {
         var sep = Model.haversineM(
           primary.cell.lat, primary.cell.lng,
@@ -125,7 +159,7 @@
     var radiusM = Math.round((grid.cellMetersApprox || 80) * 2.2);
     radiusM = Math.max(60, Math.min(220, radiusM));
 
-    var recommendation = primary ? {
+    var recommendation = {
       lat: primary.cell.lat,
       lng: primary.cell.lng,
       priority: primary.cell.priority,
@@ -136,6 +170,7 @@
       bearingDeg: bearing,
       bearingLabel: bearingLabel,
       suggestedRadiusM: radiusM,
+      kind: "search_target",
       walkingHint: bearingLabel
         ? ("Walk roughly " + bearingLabel +
           (primary.distanceM != null ? (" about " + formatDistance(primary.distanceM)) : "") +
@@ -145,10 +180,10 @@
       explanation: why.join(" "),
       parts: primary.cell.result && primary.cell.result.parts,
       sources: primary.cell.result && primary.cell.result.sources
-    } : null;
+    };
 
     return {
-      ok: !!recommendation,
+      ok: true,
       recommendation: recommendation,
       alternatives: alts.map(function (a) {
         return {
@@ -170,9 +205,10 @@
         thoroughCells: thorough,
         searchedShare: searchedShare,
         searchedPercentLabel: Math.round(searchedShare * 100) + "% of visible cells have some search mark",
-        note: "Search marks reduce relative priority for planning. They do not prove an area is empty of sheds."
+        note: "Search marks reduce relative walk interest for planning. They do not prove an area is empty of sheds."
       },
-      disclaimer: "Suggested next area is relative search guidance for whitetail walking — not a prediction that sheds are present."
+      disclaimer:
+        "Suggested next walk is habitat guidance from your notes / weak terrain — not a biological hotspot claim and not a find probability."
     };
   }
 

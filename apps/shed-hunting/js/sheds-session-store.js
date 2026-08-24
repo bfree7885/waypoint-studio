@@ -93,6 +93,8 @@
       startedAt: now,
       endedAt: null,
       speciesId: meta.speciesId || "odocoileus-virginianus",
+      searchAreaId: meta.searchAreaId || null,
+      searchAreaName: meta.searchAreaName || null,
       path: [],
       distanceM: 0,
       durationMs: 0,
@@ -173,6 +175,53 @@
     session.updatedAt = session.endedAt;
     saveSession(session);
     return session;
+  }
+
+  /** Build end-of-search summary — never claims area empty of sheds. */
+  function summarizeSession(session, observations) {
+    if (!session) return null;
+    observations = observations || [];
+    var ids = session.observationIds || [];
+    var linked = observations.filter(function (o) { return ids.indexOf(o.id) >= 0; });
+    var byType = Object.create(null);
+    linked.forEach(function (o) {
+      byType[o.type] = (byType[o.type] || 0) + 1;
+    });
+    var hasPath = !!(session.path && session.path.length >= 2);
+    return {
+      sessionId: session.id,
+      searchAreaId: session.searchAreaId || null,
+      searchAreaName: session.searchAreaName || null,
+      startedAt: session.startedAt,
+      endedAt: session.endedAt,
+      durationMs: session.durationMs || 0,
+      distanceM: hasPath ? (session.distanceM || 0) : null,
+      distanceAvailable: hasPath,
+      observationCount: linked.length,
+      shedsFound: session.shedsFound || 0,
+      byType: byType,
+      notes: session.notes || "",
+      disclaimer: "Past search does not prove an area is empty of sheds."
+    };
+  }
+
+  /** Ensure legacy sessions have searchAreaId:null without changing ids. */
+  function migrateSessionsIfNeeded() {
+    var all = listSessions();
+    var changed = false;
+    all.forEach(function (s) {
+      if (!s) return;
+      if (s.searchAreaId === undefined) {
+        s.searchAreaId = null;
+        changed = true;
+      }
+      if (s.searchAreaName === undefined) {
+        s.searchAreaName = null;
+        changed = true;
+      }
+    });
+    if (changed) writeList(SESSIONS_KEY, all, MAX_SESSIONS);
+    return { migrated: changed, count: all.length };
   }
 
   function listCoverage() {
@@ -286,6 +335,8 @@
     appendTrackPoint: appendTrackPoint,
     attachObservation: attachObservation,
     endSession: endSession,
+    summarizeSession: summarizeSession,
+    migrateSessionsIfNeeded: migrateSessionsIfNeeded,
     listCoverage: listCoverage,
     coverageMap: coverageMap,
     markCoverage: markCoverage,

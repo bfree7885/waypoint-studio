@@ -128,7 +128,7 @@ async function main() {
   const ok = v.hasLeaflet && v.leafMap && v.store && v.model &&
     v.sessions && v.planner && v.biological && v.presets && v.validation &&
     v.seasonPill && v.validateSheet && v.planCard && v.trackBtn && v.historySheet &&
-    v.modelVersion === "1.1.0" && !v.kansas;
+    v.modelVersion === "2.0.0" && !v.kansas;
   if (!ok) {
     console.error("SHEDS MAP CDP: FAIL");
     process.exit(1);

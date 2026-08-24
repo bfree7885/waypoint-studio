@@ -9,28 +9,33 @@
   var STORAGE_KEY = "waypoint-sheds-observations-v1";
   var VIEW_KEY = "waypoint-sheds-map-view-v1";
   var MODEL_KEY = "waypoint-sheds-model-prefs-v1";
-  var SCHEMA_VERSION = 1;
+  var SCHEMA_VERSION = 2;
   var MAX_OBS = 500;
 
   var SPECIES_WHITETAIL = "odocoileus-virginianus";
+
+  /** Prefer map-tap; YOU placement only when accuracy ≤ this (meters). */
+  var OBS_GPS_ACCURACY_MAX_M = 80;
 
   var OBSERVATION_TYPES = [
     { id: "shed_found", label: "Shed found", group: "find", marker: "shed" },
     { id: "deer_seen", label: "Deer seen", group: "wildlife", marker: "deer" },
     { id: "deer_sign", label: "Deer sign", group: "sign", marker: "sign" },
     { id: "trail_crossing", label: "Trail or crossing", group: "travel", marker: "trail" },
-    { id: "bedding_area", label: "Bedding area", group: "habitat", marker: "bed" },
-    { id: "feeding_area", label: "Feeding area", group: "habitat", marker: "feed" },
+    { id: "bedding_area", label: "Bedding evidence", group: "habitat", marker: "bed" },
+    { id: "feeding_area", label: "Feeding evidence", group: "habitat", marker: "feed" },
     { id: "fence_crossing", label: "Fence crossing", group: "travel", marker: "fence" },
     { id: "winter_concentration", label: "Winter concentration area", group: "habitat", marker: "winter" },
     { id: "hunting_pressure", label: "Hunting pressure", group: "disturbance", marker: "hunt" },
     { id: "hiking_pressure", label: "Hiking / recreation pressure", group: "disturbance", marker: "hike" },
-    { id: "human_disturbance", label: "Other human disturbance", group: "disturbance", marker: "disturb" },
+    { id: "human_disturbance", label: "Other human activity / pressure", group: "disturbance", marker: "disturb" },
     { id: "search_completed", label: "Search completed", group: "effort", marker: "search" },
-    { id: "access_issue", label: "Access issue", group: "access", marker: "access" },
+    { id: "access_issue", label: "Access note", group: "access", marker: "access" },
     { id: "habitat_note", label: "Habitat note", group: "habitat", marker: "note" },
-    { id: "other", label: "Other", group: "other", marker: "other" }
+    { id: "other", label: "General field note", group: "other", marker: "other" }
   ];
+
+  var SIGN_DETAIL = ["unknown", "tracks", "scat", "rub", "scrape", "other_sign"];
 
   function uuid() {
     if (global.crypto && global.crypto.randomUUID) return global.crypto.randomUUID();
@@ -99,6 +104,16 @@
     var now = new Date().toISOString();
     var type = raw.type || "other";
     var details = raw.details && typeof raw.details === "object" ? Object.assign({}, raw.details) : {};
+    var precision = (raw.location && raw.location.precision) || "exact";
+    if (precision !== "map-tap" && precision !== "gps" && precision !== "approximate" && precision !== "exact") {
+      precision = "exact";
+    }
+    var accuracyM = raw.location && typeof raw.location.accuracyM === "number" && isFinite(raw.location.accuracyM)
+      ? raw.location.accuracyM
+      : (typeof raw.accuracyM === "number" && isFinite(raw.accuracyM) ? raw.accuracyM : null);
+    if (accuracyM != null && accuracyM > OBS_GPS_ACCURACY_MAX_M && precision === "gps") {
+      precision = "approximate";
+    }
     var obs = {
       schemaVersion: SCHEMA_VERSION,
       id: raw.id || ("obs_" + uuid()),
@@ -107,10 +122,14 @@
       location: {
         lat: Number(raw.location && raw.location.lat),
         lng: Number(raw.location && raw.location.lng),
-        precision: (raw.location && raw.location.precision) || "exact",
+        precision: precision,
+        accuracyM: accuracyM,
         privacy: "private"
       },
       privacy: "private",
+      searchAreaId: raw.searchAreaId != null && String(raw.searchAreaId).trim()
+        ? String(raw.searchAreaId).trim()
+        : null,
       observedAt: raw.observedAt || now,
       note: raw.note != null ? String(raw.note) : "",
       confidence: raw.confidence || "uncertain",
@@ -126,6 +145,10 @@
     if (type === "deer_seen" || type === "deer_sign") {
       obs.details.sex = normalizeSex(details.sex);
       obs.details.class = normalizeClass(details.class);
+    }
+    if (type === "deer_sign") {
+      var sd = details.signDetail != null ? String(details.signDetail) : "unknown";
+      obs.details.signDetail = SIGN_DETAIL.indexOf(sd) >= 0 ? sd : "unknown";
     }
     if (type === "shed_found") {
       obs.details = Object.assign({
@@ -222,43 +245,95 @@
     };
   }
 
-  function loadMapView() {
-    try {
-      var raw = localStorage.getItem(VIEW_KEY);
-      if (!raw) return null;
-      var v = JSON.parse(raw);
-      if (!v || !isFiniteCoord(v.lat) || !isFiniteCoord(v.lng)) return null;
-      return {
-        lat: v.lat,
-        lng: v.lng,
-        zoom: isFiniteCoord(v.zoom) ? v.zoom : 12
-      };
-    } catch (e) {
-      return null;
-    }
+  function canPlaceFromGps(accuracyM) {
+    return accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM <= OBS_GPS_ACCURACY_MAX_M;
   }
 
-  function saveMapView(view) {
-    if (!view || !isFiniteCoord(view.lat) || !isFiniteCoord(view.lng)) return;
+  /**
+   * Observations for a Search Area — linked OR inside radius; each id counted once.
+   */
+  function listForSearchArea(area, opts) {
+    opts = opts || {};
+    if (!area || !area.center) return [];
+    var radiusM = area.radiusM || 600;
+    var SearchArea = global.WaypointShedsSearchArea;
+    var haversine = SearchArea && SearchArea.haversineM
+      ? SearchArea.haversineM
+      : function (a, b, c, d) {
+          var R = 6371000;
+          var toRad = Math.PI / 180;
+          var dLat = (c - a) * toRad;
+          var dLng = (d - b) * toRad;
+          var x =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(a * toRad) * Math.cos(c * toRad) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+          return 2 * R * Math.asin(Math.min(1, Math.sqrt(x)));
+        };
+    var seen = Object.create(null);
+    var out = [];
+    list().forEach(function (o) {
+      if (!o || !o.id || seen[o.id]) return;
+      var linked = area.id && o.searchAreaId === area.id;
+      var inside = false;
+      if (o.location && isFiniteCoord(o.location.lat) && isFiniteCoord(o.location.lng)) {
+        inside = haversine(area.center.lat, area.center.lng, o.location.lat, o.location.lng) <= radiusM;
+      }
+      if (opts.linkedOnly && !linked) return;
+      if (opts.insideOnly && !inside) return;
+      if (!opts.linkedOnly && !opts.insideOnly && !(linked || inside)) return;
+      seen[o.id] = true;
+      out.push(o);
+    });
+    return out;
+  }
+
+  /** Migrate v1→v2 in place: ensure searchAreaId null, schemaVersion 2 — no id changes. */
+  function migrateIfNeeded() {
+    var raw;
     try {
-      localStorage.setItem(VIEW_KEY, JSON.stringify({
-        lat: view.lat,
-        lng: view.lng,
-        zoom: view.zoom || 12,
-        savedAt: new Date().toISOString()
-      }));
-    } catch (e) { /* ignore */ }
+      raw = localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      return { migrated: false, count: 0 };
+    }
+    if (!raw) return { migrated: false, count: 0 };
+    var data;
+    try {
+      data = JSON.parse(raw);
+    } catch (e2) {
+      return { migrated: false, count: 0 };
+    }
+    if (!Array.isArray(data)) return { migrated: false, count: 0 };
+    var changed = false;
+    var next = data.map(function (o) {
+      if (!o || typeof o !== "object") return o;
+      var needs =
+        o.schemaVersion !== SCHEMA_VERSION ||
+        o.searchAreaId === undefined ||
+        !(o.location && Object.prototype.hasOwnProperty.call(o.location, "accuracyM"));
+      if (needs) {
+        changed = true;
+        return normalize(Object.assign({}, o, {
+          searchAreaId: o.searchAreaId != null ? o.searchAreaId : null,
+          schemaVersion: SCHEMA_VERSION
+        }));
+      }
+      return normalize(o);
+    }).filter(Boolean);
+    if (changed) persist(next);
+    return { migrated: changed, count: next.length };
   }
 
   function defaultModelPrefs() {
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       heatVisible: true,
       obsVisible: true,
       coverageVisible: true,
       showConfidence: false,
       diagnosticMode: false,
       compareMode: false,
+      /** Phase 3: observations do NOT modify Habitat MODEL unless explicitly enabled. */
+      includeObservationsInHabitat: false,
       opacity: 0.42,
       activePreset: "balanced",
       seasonPhaseOverride: null,
@@ -289,13 +364,14 @@
       var parsed = JSON.parse(raw);
       var base = defaultModelPrefs();
       return {
-        schemaVersion: 1,
+        schemaVersion: 2,
         heatVisible: parsed.heatVisible !== false,
         obsVisible: parsed.obsVisible !== false,
         coverageVisible: parsed.coverageVisible !== false,
         showConfidence: !!parsed.showConfidence,
         diagnosticMode: !!parsed.diagnosticMode,
         compareMode: !!parsed.compareMode,
+        includeObservationsInHabitat: parsed.includeObservationsInHabitat === true,
         opacity: typeof parsed.opacity === "number" ? parsed.opacity : 0.42,
         activePreset: parsed.activePreset || "balanced",
         seasonPhaseOverride: parsed.seasonPhaseOverride || null,
@@ -304,6 +380,34 @@
     } catch (e) {
       return defaultModelPrefs();
     }
+  }
+
+  function loadMapView() {
+    try {
+      var raw = localStorage.getItem(VIEW_KEY);
+      if (!raw) return null;
+      var v = JSON.parse(raw);
+      if (!v || !isFiniteCoord(v.lat) || !isFiniteCoord(v.lng)) return null;
+      return {
+        lat: v.lat,
+        lng: v.lng,
+        zoom: isFiniteCoord(v.zoom) ? v.zoom : 12
+      };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveMapView(view) {
+    if (!view || !isFiniteCoord(view.lat) || !isFiniteCoord(view.lng)) return;
+    try {
+      localStorage.setItem(VIEW_KEY, JSON.stringify({
+        lat: view.lat,
+        lng: view.lng,
+        zoom: view.zoom || 12,
+        savedAt: new Date().toISOString()
+      }));
+    } catch (e) { /* ignore */ }
   }
 
   function saveModelPrefs(prefs) {
@@ -321,7 +425,9 @@
     MODEL_KEY: MODEL_KEY,
     SCHEMA_VERSION: SCHEMA_VERSION,
     SPECIES_WHITETAIL: SPECIES_WHITETAIL,
+    OBS_GPS_ACCURACY_MAX_M: OBS_GPS_ACCURACY_MAX_M,
     OBSERVATION_TYPES: OBSERVATION_TYPES,
+    SIGN_DETAIL: SIGN_DETAIL,
     SEX_VALUES: SEX_VALUES,
     CLASS_VALUES: CLASS_VALUES,
     typeMeta: typeMeta,
@@ -338,6 +444,9 @@
     saveMapView: saveMapView,
     defaultModelPrefs: defaultModelPrefs,
     loadModelPrefs: loadModelPrefs,
-    saveModelPrefs: saveModelPrefs
+    saveModelPrefs: saveModelPrefs,
+    canPlaceFromGps: canPlaceFromGps,
+    listForSearchArea: listForSearchArea,
+    migrateIfNeeded: migrateIfNeeded
   };
 })(typeof window !== "undefined" ? window : globalThis);

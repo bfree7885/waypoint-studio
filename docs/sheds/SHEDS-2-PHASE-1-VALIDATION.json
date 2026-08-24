@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-08-24T08:13:27.849Z",
+  "rows": [
+    {
+      "place": "Milford PA",
+      "date": "2025-11-01",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    },
+    {
+      "place": "Milford PA",
+      "date": "2026-02-10",
+      "timing": "Peak",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Regional photoperiod window is near typical peak casting for this latitude."
+    },
+    {
+      "place": "Milford PA",
+      "date": "2026-04-15",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    },
+    {
+      "place": "State College PA",
+      "date": "2025-11-01",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    },
+    {
+      "place": "State College PA",
+      "date": "2026-02-10",
+      "timing": "Peak",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Regional photoperiod window is near typical peak casting for this latitude."
+    },
+    {
+      "place": "State College PA",
+      "date": "2026-04-15",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    },
+    {
+      "place": "Denver CO",
+      "date": "2025-11-01",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    },
+    {
+      "place": "Denver CO",
+      "date": "2026-02-10",
+      "timing": "Peak",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Regional photoperiod window is near typical peak casting for this latitude."
+    },
+    {
+      "place": "Denver CO",
+      "date": "2026-04-15",
+      "timing": "Outside primary window",
+      "searchability": "Search conditions incomplete — weather unavailable",
+      "habitat": "No habitat-specific guidance yet",
+      "confidence": "Low",
+      "explanation": "Outside the primary regional casting window for this latitude."
+    }
+  ]
+}

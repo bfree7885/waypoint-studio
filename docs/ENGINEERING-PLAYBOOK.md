@@ -1509,3 +1509,25 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep story JSON as source of truth + `scripts/dfd/render-stories.mjs` for crawlable HTML; adding Video #3 must be content/media + catalog + render, not new page engineering.
 - `youtubeVideoId: null` must render a finished pending panel — never a broken embed; emit VideoObject JSON-LD only when a real ID exists.
 - Preserve scientific caution (Lençóis rainfall ranges; do not overclaim clay/bedrock as sole lagoon mechanism) and imagery provenance (NASA public domain + labeled educational derivatives).
+
+### Lessons Learned — Sheds 2.0 Phase 1 prediction + location truth (2026-08-24)
+
+- Collapsed `priority` heat invited find-% misread even with disclaimers — split Timing / Habitat / Searchability / Evidence support and keep habitat heat empty when only season/weather exist.
+- Weather multipliers and season shares must not paint spatial habitat; Today’s Search windows must exclude season (badge only) or searchability becomes cast theater.
+- Map “jumps” were mostly layout `setView` storms + boot locate — prefer `invalidateSize` without resetView; recenter only on Locate / Recenter / Go to plan; preserve pan/zoom with `userPanned`.
+- Dual dots were USER vs TARGET (plus accuracy ring) — permanent YOU/TARGET labels beat similar-scale circleMarkers alone.
+- Async races need generation tokens on locate, weather, elevation, and recompute — abort alone is not enough when responses reorder.
+- Planner without habitat signal must refuse; empty guidance is more trustworthy than decorative next-pocket geometry.
+- Mid-latitude photoperiod heuristics can report the same Timing category across distant US sites on one date — document as coarse regional honesty, not a bug to “fix” with fake precision.
+- Sticky `waypoint-sheds-gps-denied-v1` must not outrank live Permissions API `granted`/`prompt` — reconcile before skipping locate; never rewrite GPS failures into “manual exploring” success theater.
+- Owner live validate (±~4.8 km browser accuracy): approximate labeling + empty habitat is a Phase 1 PASS; Phase 2 must not treat coarse YOU as fine-scale SEARCH LOCATION for GIS.
+
+
+### Lessons Learned — Sheds 2.0 Phase 4 UX polish (2026-08-24)
+
+- Architecture was already trustworthy after Phase 3; hunters still needed When/Where/Landscape/Today/Observations/Next hierarchy — not more GIS or weights.
+- Demote Model weights / Validate / diagnostics into Advanced; promote Field Plan + Start/End Search into the primary field loop.
+- First-run coach must be dismissible and local-persisted; map must remain usable without completing it.
+- Calm offline copy (“live conditions unavailable; saved area and records still work”) beats tile/weather failure looking like total app death.
+- Keep YOU ≠ SEARCH ≠ INSPECT ≠ OBS visually distinct with a short legend; never invent another location concept.
+- Field validation protocol measures usability (time-to-Search-Area, wrong interpretations, degradation comprehension) — never shed-find counts; log stays empty until real walks.

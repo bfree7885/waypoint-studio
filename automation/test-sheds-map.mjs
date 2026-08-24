@@ -118,7 +118,11 @@ const baseGrid = Model.buildGrid(FakeBounds, 8, 8, {
   elevations: null
 });
 assert("grid builds without elevation", baseGrid.cells.length === 64);
-assert("coverage limited without terrain/wx", baseGrid.coverage.level === "limited" || baseGrid.coverage.level === "moderate");
+assert("coverage without terrain/wx still reports a level", !!baseGrid.coverage && !!baseGrid.coverage.level);
+assert(
+  "coverage can use observations without elev/weather",
+  ["limited", "moderate", "strong"].includes(baseGrid.coverage.level)
+);
 
 const center = baseGrid.cells[Math.floor(baseGrid.cells.length / 2)];
 const withSearchStrong = Model.buildGrid(FakeBounds, 8, 8, {

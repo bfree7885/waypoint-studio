@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2026-08-24T05:50:25.856Z",
+  "pack": {
+    "path": "apps/shed-hunting/gis/packs/pa-pike-milford-v1.json",
+    "bytes": 130731,
+    "packId": "pa-pike-milford-v1",
+    "version": "1.0.0",
+    "bounds": {
+      "west": -74.9,
+      "south": 41.26,
+      "east": -74.7,
+      "north": 41.4
+    },
+    "rows": 180,
+    "cols": 180,
+    "cellSizeMApprox": 89.7
+  },
+  "performance": {
+    "note": "Node harness (not browser). Load=disk read; parse=JSON.parse; inflate=base64 decode; analysis=buildSearchGrid 22x22; render=band iteration.",
+    "packReadMs": 0.17,
+    "jsonParseMs": 0.84,
+    "inflateDecodeMs": 2.56,
+    "analysisMs_22x22": 5.06,
+    "renderIterateMs": 0.13,
+    "paintOps": 484,
+    "heapUsedMB": 5.5,
+    "rssMB": 47.7,
+    "mobileConcern": "Pack ~128KB + 3×Uint8(180²≈32KB each) ≈ modest. Avoid decoding many statewide packs at once; SEARCH AREA grid 22×22 is light. Basemap tiles dominate network/memory when offline tiles missing."
+  },
+  "landscape": {
+    "structurePct": {
+      "forest": 74,
+      "wetland": 7.7,
+      "water": 2.1,
+      "developed": 11.4,
+      "agriculture": 4.2,
+      "open": 0.5,
+      "other": 0.2
+    },
+    "edgeWithin90mPct": 59.3,
+    "slopeBinsPct": {
+      "flat_lt2": 12.5,
+      "moderate_2_12": 76.3,
+      "steeper_12_25": 10.2,
+      "steep_ge25": 1
+    },
+    "spots": [
+      {
+        "name": "Milford vicinity",
+        "lat": 41.3226,
+        "lng": -74.8027,
+        "nlcd": 23,
+        "structure": "developed",
+        "edgeM": 255,
+        "slopeDeg": 2
+      },
+      {
+        "name": "N forest AOI",
+        "lat": 41.36,
+        "lng": -74.8,
+        "nlcd": 41,
+        "structure": "forest",
+        "edgeM": 89,
+        "slopeDeg": 7
+      },
+      {
+        "name": "S AOI",
+        "lat": 41.28,
+        "lng": -74.8,
+        "nlcd": 95,
+        "structure": "wetland",
+        "edgeM": 0,
+        "slopeDeg": 1
+      },
+      {
+        "name": "W AOI",
+        "lat": 41.32,
+        "lng": -74.88,
+        "nlcd": 41,
+        "structure": "forest",
+        "edgeM": 89,
+        "slopeDeg": 7
+      },
+      {
+        "name": "E AOI",
+        "lat": 41.32,
+        "lng": -74.72,
+        "nlcd": 41,
+        "structure": "forest",
+        "edgeM": 0,
+        "slopeDeg": 6
+      }
+    ],
+    "verdict": "Pike/Milford AOI is forest-dominated with wetland and developed fractions, measurable forest/open transitions, and slope variation — landscape structure only, not shed prediction."
+  },
+  "gridSample": {
+    "unavailable": false,
+    "insideScored": 384,
+    "bands": {
+      "limited": 325,
+      "some": 59,
+      "stronger": 0,
+      "unavailable": 0
+    }
+  }
+}

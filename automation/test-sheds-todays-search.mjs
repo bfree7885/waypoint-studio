@@ -76,12 +76,12 @@ const ready = TS.build({
 });
 assert("ready status", ready.status === "ready" || ready.status === "partial");
 assert("three time windows", ready.timeWindows.length === 3);
-assert("headline explains opportunity", /opportunity|workable|window|uncertain|limited/i.test(ready.headline));
-assert("confidence labeled", ["High", "Medium", "Low"].includes(ready.confidence));
-assert("summary includes confidence", /Confidence:/i.test(ready.summaryLine));
+assert("headline explains opportunity", /opportunity|workable|window|uncertain|limited|search|Favorable|conditions/i.test(ready.headline));
+assert("confidence labeled", ["High", "Medium", "Moderate", "Low"].includes(ready.confidence));
+assert("summary includes confidence", /Confidence:|Evidence support/i.test(ready.summaryLine));
 assert("signals include weather fact", ready.signals.some((s) => s.kind === "fact" && /temp|wind|weather|daylight/i.test(s.label + s.text)));
 assert("obs insufficiency honest", ready.signals.some((s) => /not enough|need/i.test(s.text)));
-assert("disclaimer present", /not a prediction/i.test(ready.disclaimer));
+assert("disclaimer present", /not a prediction|not whether deer are more likely|find probability/i.test(ready.disclaimer));
 assert("no moon certainty claims", !/moon.?phase predicts|guaranteed deer/i.test(JSON.stringify(ready).toLowerCase()));
 
 const withPatterns = TS.build({
@@ -101,7 +101,7 @@ const withPatterns = TS.build({
   now: new Date("2026-02-15T07:30:00")
 });
 assert("pattern area included", withPatterns.areas.some((a) => a.kind === "observation"));
-assert("planner area estimated", withPatterns.areas.some((a) => a.kind === "planner" && a.epistemic === "estimated"));
+assert("planner area estimated", withPatterns.areas.some((a) => a.kind === "planner" && (a.epistemic === "estimated" || a.epistemic === "guidance")));
 assert("best window morning-ish", withPatterns.bestWindowId === "morning" || withPatterns.timeWindows[0].score >= withPatterns.timeWindows[1].score);
 
 // Static HTML contract
@@ -127,11 +127,12 @@ assert(
 );
 assert(
   "GPS deny path fetches map-center weather",
-  /permission denied[\s\S]{0,900}ensureWeatherForView/.test(app)
+  /Permission denied[\s\S]{0,1200}ensureWeatherForView/i.test(app)
 );
 assert(
   "remembered GPS deny boot fetches weather",
-  /wasGpsDenied\(\)[\s\S]{0,280}ensureWeatherForView/.test(app)
+  /wasGpsDenied\(\)[\s\S]{0,1200}probeGeolocationPermission[\s\S]{0,1200}ensureWeatherForView/.test(app) ||
+    /Location was blocked earlier[\s\S]{0,400}ensureWeatherForView/.test(app)
 );
 assert(
   "glance softens Best window without weather",
