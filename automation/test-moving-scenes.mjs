@@ -227,6 +227,7 @@ assert("foliage listed deferred", foliageChoice.deferred.some((d) => d.id === "f
 const cmA = analyzePaint(paints.cloudMountain);
 const cmChoice = Choice.choose(cmA);
 const field = Render.buildMotionField(cmA, cmChoice, null, cmA.masks.width, cmA.masks.height);
+const stride = Render.FIELD_STRIDE || 3;
 let mountainAmp = 0;
 let skyAmp = 0;
 let skyN = 0;
@@ -234,7 +235,7 @@ let mtN = 0;
 for (let y = 0; y < cmA.masks.height; y++) {
   for (let x = 0; x < cmA.masks.width; x++) {
     const i = y * cmA.masks.width + x;
-    const amp = field[i * 3 + 2];
+    const amp = field[i * stride + 2];
     if (y > cmA.masks.height * 0.4 && y < cmA.masks.height * 0.55) {
       mountainAmp += amp;
       mtN++;
@@ -256,7 +257,7 @@ let waterAmp = 0, shoreAmp = 0, wN = 0, sN = 0;
 for (let y = 0; y < lakeA.masks.height; y++) {
   for (let x = 0; x < lakeA.masks.width; x++) {
     const i = y * lakeA.masks.width + x;
-    const amp = lakeField[i * 3 + 2];
+    const amp = lakeField[i * stride + 2];
     if (y > lakeA.masks.height * 0.4 && y < lakeA.masks.height * 0.65) {
       waterAmp += amp; wN++;
     }
@@ -270,7 +271,32 @@ assert("water mid moves more than bottom shore/rocks", (waterAmp / Math.max(wN, 
 // Wildlife body amp near center should be low even if sky moves
 const wildField = Render.buildMotionField(wildA, wildChoice, null, wildA.masks.width, wildA.masks.height);
 const wi = cy * wildA.masks.width + cx;
-assert("wildlife center amp near zero", wildField[wi * 3 + 2] < 0.15);
+assert("wildlife center amp near zero", wildField[wi * stride + 2] < 0.15);
+
+// Natural motion: cloud field uses MODE_CLOUD + coherent wind (not rubber UV-only)
+assert("field stride is 4 (mode channel)", stride === 4);
+assert("MODE_CLOUD exported", Render.MODE_CLOUD === 1);
+assert("MODE_WATER exported", Render.MODE_WATER === 2);
+let cloudModeN = 0;
+let cloudModeOk = 0;
+for (let y = 0; y < cmA.masks.height; y++) {
+  for (let x = 0; x < cmA.masks.width; x++) {
+    const i = y * cmA.masks.width + x;
+    const amp = field[i * stride + 2];
+    const mode = field[i * stride + 3];
+    if (amp > 0.2 && y < cmA.masks.height * 0.3) {
+      cloudModeN++;
+      if (mode === Render.MODE_CLOUD) cloudModeOk++;
+    }
+  }
+}
+assert("sky-band motion tagged MODE_CLOUD", cloudModeN === 0 || cloudModeOk / cloudModeN > 0.7);
+
+// Perception Fix 1 freeze — do not regress analyze constants
+assert("ANALYZE_LONG_EDGE frozen at 320", Analyze.ANALYZE_LONG_EDGE === 320);
+assert("AUTO_CONFIDENCE frozen at 0.42", Analyze.AUTO_CONFIDENCE === 0.42);
+assert("CONF_CAP frozen at 0.92", Analyze.CONF_CAP === 0.92);
+assert("engine natural-motion version", Models.ENGINE_VERSION.indexOf("natural-motion") >= 0);
 
 // Seamless loop phase identity: sin(0)==sin(2π) — displacement factor equal
 assert("strength natural scale 1", Render.strengthScale("natural") === 1);
@@ -328,7 +354,7 @@ const paintedField = Render.resolveMotionField(
   staticA.masks.height
 );
 const mid = Math.floor(paintMask.length / 2);
-assert("assist include creates motion on still scene", paintedField && paintedField[mid * 3 + 2] > 0.04);
+assert("assist include creates motion on still scene", paintedField && paintedField[mid * stride + 2] > 0.04);
 
 const smallPaint = new Float32Array(8 * 5);
 smallPaint[0] = 1;
@@ -341,7 +367,7 @@ const resampled = Render.buildMotionField(
 );
 let resampleMax = 0;
 for (let i = 0; i < staticA.masks.width * staticA.masks.height; i++) {
-  resampleMax = Math.max(resampleMax, resampled[i * 3 + 2]);
+  resampleMax = Math.max(resampleMax, resampled[i * stride + 2]);
 }
 assert("assist mask resamples when size differs", resampleMax > 0.04);
 
