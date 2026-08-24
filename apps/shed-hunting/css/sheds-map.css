@@ -1650,6 +1650,109 @@ html.sheds-sheet-open .leaflet-control-attribution {
 .sheds-search-target__label {
   min-width: 3.2rem;
 }
+
+/* Phase 2 — SEARCH LOCATION (distinct from YOU / TARGET) */
+.sheds-search-prompt {
+  position: absolute;
+  z-index: 620;
+  left: 0.75rem;
+  right: 0.75rem;
+  top: 3.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.75rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  background: rgba(12, 18, 28, 0.92);
+  border: 1px solid rgba(120, 190, 220, 0.35);
+  color: #e8eef6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  pointer-events: auto;
+}
+.sheds-search-prompt[hidden] {
+  display: none !important;
+}
+.sheds-search-prompt__text {
+  margin: 0;
+  flex: 1 1 12rem;
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+.sheds-search-prompt__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.55rem;
+}
+.sheds-search-prompt__radius {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+.sheds-search-prompt__radius select {
+  font: inherit;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: inherit;
+  padding: 0.25rem 0.4rem;
+}
+.sheds-search-loc {
+  background: transparent !important;
+  border: none !important;
+}
+.sheds-search-loc__mark {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 0 auto;
+  border: 2.5px solid #5ec8e8;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 3px rgba(14, 22, 34, 0.85),
+    inset 0 0 0 3px rgba(14, 22, 34, 0.9);
+  background:
+    linear-gradient(#5ec8e8, #5ec8e8) center/2px 100% no-repeat,
+    linear-gradient(#5ec8e8, #5ec8e8) center/100% 2px no-repeat;
+}
+.sheds-search-loc__label {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #0a1220;
+  background: #5ec8e8;
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+  text-align: center;
+  line-height: 1.2;
+}
+.sheds-map-tip--search {
+  background: #5ec8e8 !important;
+  color: #0a1220 !important;
+  border: none !important;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.65rem !important;
+}
+.sheds-search-area-ring {
+  /* Leaflet path class hook */
+}
+@media (max-width: 520px) {
+  .sheds-search-prompt {
+    top: 3.2rem;
+    padding: 0.45rem 0.55rem;
+  }
+  .sheds-search-prompt__text {
+    font-size: 0.82rem;
+  }
+}
 @media (max-width: 520px) {
   .sheds-channels {
     gap: 0.45rem;

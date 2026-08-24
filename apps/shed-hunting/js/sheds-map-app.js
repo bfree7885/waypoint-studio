@@ -19,6 +19,10 @@
   var Habitat = window.WaypointShedsHabitat;
   var Searchability = window.WaypointShedsSearchability;
   var Confidence = window.WaypointShedsConfidence;
+  var SearchArea = window.WaypointShedsSearchArea;
+  var GisPack = window.WaypointShedsGisPack;
+  var HabitatGis = window.WaypointShedsHabitatGis;
+  var SglOverlay = window.WaypointShedsSglOverlay;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -32,12 +36,16 @@
   var LOCATION_KIND = Object.freeze({
     USER_GPS: "user_gps",
     USER_APPROXIMATE: "user_approximate",
+    SEARCH_LOCATION: "search_location",
     SEARCH_TARGET: "search_target",
     MAP_CENTER: "map_center",
     NONE: "none"
   });
   var GPS_MOVE_MIN_M = 8; // ignore sub-threshold GPS jitter (stable input → stable marker)
   var GPS_APPROX_M = 80;
+  /** Phase 2: deliberate Analyze-at-YOU only when accuracy ≤ this (documented in SHEDS-2-PHASE-2-HABITAT-GIS.md). */
+  var SEARCH_YOU_ACCURACY_MAX_M = (SearchArea && SearchArea.YOU_ACCURACY_MAX_M) || 500;
+  var SEARCH_RADIUS_KEY = (SearchArea && SearchArea.DEFAULT_RADIUS_KEY) || "medium";
 
   var state = {
     locationStatus: "idle",
@@ -77,12 +85,24 @@
     planExpanded: false,
     lastClickAt: 0,
     lastFocusEl: null,
-    tileStatus: null
+    tileStatus: null,
+    /** Phase 2 SEARCH LOCATION — never auto-set from coarse YOU. */
+    searchLocation: null,
+    searchRadiusKey: SEARCH_RADIUS_KEY,
+    gisPacks: [],
+    activeGisPack: null,
+    gisLoadStatus: "idle",
+    sglVisible: false,
+    sglLayer: null,
+    searchMarker: null,
+    searchAreaCircle: null,
+    lastSearchSnapshot: null
   };
 
   var els = {};
   var map, heatLayer, userMarker, accuracyCircle, headingLine, obsLayer, clickLatLng;
   var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
+  var searchLayer, sglLayerGroup;
 
   function $(id) { return document.getElementById(id); }
 
@@ -298,9 +318,13 @@
     if (modeEl) {
       modeEl.textContent = state.heatMode === "observed"
         ? "Your observations"
-        : (state.lastGrid && state.lastGrid.habitatEmpty
-          ? "No habitat guidance yet"
-          : "Habitat walk-interest");
+        : (state.lastGrid && state.lastGrid.unavailable
+          ? "Habitat unavailable"
+          : (state.lastGrid && state.lastGrid.habitatEmpty
+            ? "No habitat guidance yet"
+            : (state.lastGrid && state.lastGrid.renderMode === "gis-bands"
+              ? "Habitat structure"
+              : "Habitat walk-interest")));
     }
     var status = $("heat-legend-status");
     if (status) {
@@ -310,11 +334,15 @@
         status.textContent = n
           ? (n + " private note" + (n === 1 ? "" : "s") + " in filter")
           : "Empty — log observations to build heat";
+      } else if (state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
+        status.textContent = state.lastGrid.unavailable
+          ? "Habitat data unavailable for this area"
+          : "Structure / edge / slope inside SEARCH (~30 m) — not find %";
       } else if (state.heatPhase === "coarse") status.textContent = "Coarse · refining…";
       else if (state.heatPhase === "refine") status.textContent = "Updated for this view";
       else if (state.heatPhase === "zoom") status.textContent = "Zoom in for heat";
       else if (state.offlineForced || navigator.onLine === false) status.textContent = "Limited / offline scoring";
-      else status.textContent = "Lower → higher walk interest (not find %)";
+      else status.textContent = "Landscape structure guidance (not find %)";
     }
   }
 
@@ -503,6 +531,199 @@
     return null;
   }
 
+  function searchRadiusM() {
+    if (SearchArea && SearchArea.radiusMForKey) {
+      return SearchArea.radiusMForKey(state.searchRadiusKey || SEARCH_RADIUS_KEY);
+    }
+    var mapR = { small: 400, medium: 600, large: 1000 };
+    return mapR[state.searchRadiusKey] || 600;
+  }
+
+  function setSearchLocation(lat, lng, source) {
+    if (!isFinite(lat) || !isFinite(lng)) return null;
+    var loc = SearchArea
+      ? SearchArea.createSearchLocation(lat, lng, source || "map-tap")
+      : { lat: lat, lng: lng, source: source || "map-tap", kind: "search_location", updatedAt: new Date().toISOString() };
+    state.searchLocation = loc;
+    state.lastSearchSnapshot = { lat: loc.lat, lng: loc.lng, updatedAt: loc.updatedAt };
+    drawSearchOnMap();
+    syncSearchPrompt();
+    scheduleRecompute(80);
+    return loc;
+  }
+
+  function clearSearchLocation() {
+    state.searchLocation = null;
+    drawSearchOnMap();
+    syncSearchPrompt();
+    scheduleRecompute(80);
+  }
+
+  /** GPS / weather / date must not mutate SEARCH LOCATION. */
+  function preserveSearchAcrossSideEffects() {
+    if (!state.lastSearchSnapshot || !state.searchLocation) return;
+    if (
+      state.searchLocation.lat !== state.lastSearchSnapshot.lat ||
+      state.searchLocation.lng !== state.lastSearchSnapshot.lng
+    ) {
+      state.searchLocation.lat = state.lastSearchSnapshot.lat;
+      state.searchLocation.lng = state.lastSearchSnapshot.lng;
+      state.searchLocation.updatedAt = state.lastSearchSnapshot.updatedAt;
+      drawSearchOnMap();
+    }
+  }
+
+  function syncSearchPrompt() {
+    var prompt = $("search-prompt");
+    var textEl = $("search-prompt-text");
+    var btnYou = $("btn-analyze-you");
+    if (!prompt) return;
+    var hasSearch = !!state.searchLocation;
+    var needs = SearchArea
+      ? SearchArea.needsSearchPrompt(state.accuracyM, hasSearch)
+      : !hasSearch;
+    if (needs) {
+      prompt.removeAttribute("hidden");
+      if (textEl) {
+        textEl.textContent = SearchArea
+          ? SearchArea.promptText(state.accuracyM)
+          : "Tap the area you want to analyze.";
+      }
+    } else if (hasSearch) {
+      prompt.removeAttribute("hidden");
+      if (textEl) {
+        textEl.textContent =
+          "SEARCH set · area ~" + searchRadiusM() + " m — tap map to move · notes via +";
+      }
+    } else {
+      prompt.removeAttribute("hidden");
+      if (textEl) textEl.textContent = "Tap the area you want to analyze.";
+    }
+    if (btnYou) {
+      var ok = SearchArea
+        ? SearchArea.canAnalyzeAtYou(state.accuracyM)
+        : state.accuracyM != null && state.accuracyM <= SEARCH_YOU_ACCURACY_MAX_M;
+      if (ok && state.userLatLng && !hasSearch) btnYou.removeAttribute("hidden");
+      else btnYou.setAttribute("hidden", "");
+    }
+    var rad = $("search-radius");
+    var radTools = $("search-radius-tools");
+    if (rad) rad.value = state.searchRadiusKey || "medium";
+    if (radTools) radTools.value = state.searchRadiusKey || "medium";
+  }
+
+  function drawSearchOnMap() {
+    if (!map) return;
+    if (!searchLayer) {
+      searchLayer = L.layerGroup().addTo(map);
+    }
+    searchLayer.clearLayers();
+    state.searchMarker = null;
+    state.searchAreaCircle = null;
+    if (!state.searchLocation) return;
+    var ll = L.latLng(state.searchLocation.lat, state.searchLocation.lng);
+    state.searchAreaCircle = L.circle(ll, {
+      radius: searchRadiusM(),
+      color: "#5ec8e8",
+      weight: 2,
+      dashArray: "2 8",
+      fillColor: "#5ec8e8",
+      fillOpacity: 0.05,
+      interactive: false,
+      className: "sheds-search-area-ring"
+    }).addTo(searchLayer);
+    state.searchMarker = L.marker(ll, {
+      icon: L.divIcon({
+        className: "sheds-search-loc",
+        html:
+          "<span class=\"sheds-search-loc__mark\" title=\"Search location\"></span>" +
+          "<span class=\"sheds-search-loc__label\">SEARCH</span>",
+        iconSize: [44, 40],
+        iconAnchor: [22, 18]
+      }),
+      keyboard: false,
+      zIndexOffset: 450
+    })
+      .bindTooltip("SEARCH — analysis center (not YOU)", {
+        permanent: true,
+        direction: "right",
+        offset: [12, 0],
+        className: "sheds-map-tip sheds-map-tip--search"
+      })
+      .addTo(searchLayer);
+  }
+
+  function ensureGisPacks() {
+    if (!GisPack) return Promise.resolve(null);
+    if (state.gisPacks.length) {
+      return Promise.resolve(state.activeGisPack || GisPack.findCoveringPack(state.gisPacks, 0, 0));
+    }
+    state.gisLoadStatus = "loading";
+    var entries = GisPack.listBundled();
+    return Promise.all(
+      entries.map(function (e) {
+        return GisPack.loadPack(e).catch(function () {
+          return GisPack.loadPack(e, { preferCacheOnly: true });
+        });
+      })
+    ).then(function (packs) {
+      state.gisPacks = packs.filter(Boolean);
+      state.gisLoadStatus = state.gisPacks.length ? "ready" : "unavailable";
+      return state.gisPacks[0] || null;
+    });
+  }
+
+  function packForSearch() {
+    if (!GisPack || !state.searchLocation) return null;
+    var pack = GisPack.findCoveringPack(state.gisPacks, state.searchLocation.lat, state.searchLocation.lng);
+    state.activeGisPack = pack;
+    return pack;
+  }
+
+  function refreshSglOverlay() {
+    if (!map || !SglOverlay) return;
+    if (!sglLayerGroup) sglLayerGroup = L.layerGroup().addTo(map);
+    sglLayerGroup.clearLayers();
+    if (!state.sglVisible) return;
+    var b;
+    if (state.searchLocation) {
+      var r = searchRadiusM();
+      var latM = 111320;
+      var lonM = 111320 * Math.cos((state.searchLocation.lat * Math.PI) / 180);
+      b = {
+        west: state.searchLocation.lng - r / lonM,
+        east: state.searchLocation.lng + r / lonM,
+        south: state.searchLocation.lat - r / latM,
+        north: state.searchLocation.lat + r / latM
+      };
+    } else if (map) {
+      var mb = map.getBounds();
+      b = { west: mb.getWest(), south: mb.getSouth(), east: mb.getEast(), north: mb.getNorth() };
+    } else return;
+    SglOverlay.fetchSgl(b).then(function (res) {
+      if (!state.sglVisible || !sglLayerGroup) return;
+      sglLayerGroup.clearLayers();
+      if (!res || !res.geojson || res.unavailable) {
+        setModelCoverageNote(
+          (SglOverlay.LABEL || "State Game Lands") + " — boundaries unavailable right now."
+        );
+        return;
+      }
+      L.geoJSON(res.geojson, {
+        style: {
+          color: "#c4a574",
+          weight: 1.5,
+          dashArray: "4 6",
+          fillColor: "#c4a574",
+          fillOpacity: 0.06
+        },
+        onEachFeature: function (feat, layer) {
+          layer.bindTooltip(SglOverlay.LABEL, { sticky: true, className: "sheds-map-tip" });
+        }
+      }).addTo(sglLayerGroup);
+    });
+  }
+
   /** Explicit recenter only — never from weather/model/date/panel/resize timers. */
   function recenterToUser(opts) {
     opts = opts || {};
@@ -626,6 +847,9 @@
       updatedAt: new Date().toISOString()
     });
     upsertUserMarker(ll, accuracyM, state.headingDeg);
+    // Phase 2: YOU updates never move SEARCH LOCATION.
+    preserveSearchAcrossSideEffects();
+    syncSearchPrompt();
     return true;
   }
 
@@ -652,8 +876,8 @@
     if (offline || forced) {
       el.removeAttribute("hidden");
       el.textContent = offline
-        ? "You’re offline. Cached tiles may still show; heat refinement and weather need a connection. Local notes still save."
-        : "Limited-data mode on. Heat uses local notes and season rules only — not live elevation or weather.";
+        ? "You’re offline. Cached tiles/packs may still show; weather needs a connection. Local notes and cached habitat packs still work."
+        : "Limited-data mode on. Habitat uses SEARCH AREA GIS packs + local notes — weather/searchability may be limited.";
     } else {
       el.setAttribute("hidden", "");
     }
@@ -821,7 +1045,12 @@
       var now = Date.now();
       if (now - state.lastClickAt < 450) return;
       state.lastClickAt = now;
-      openNewObservation(e.latlng);
+      // Phase 2: map tap sets SEARCH LOCATION — observations via Add note FAB.
+      setSearchLocation(e.latlng.lat, e.latlng.lng, "map-tap");
+      if (map.getZoom() < 12) {
+        state.followUser = false;
+        map.setView(e.latlng, 13, { animate: !document.documentElement.classList.contains("reduced-motion") });
+      }
     });
 
     map.whenReady(function () {
@@ -1173,22 +1402,72 @@
     var timing = Timing
       ? Timing.evaluate({ date: new Date(), lat: lat, prefs: state.prefs || {} })
       : null;
-    var habitat = Habitat
-      ? Habitat.scoreCell({
-          lat: lat,
-          lng: lng,
-          date: new Date(),
-          prefs: state.prefs || {},
-          observations: Store.list(),
-          terrain: state.elevCache
-            ? { source: "map-derived", slope: 10, morphology: { source: "map-derived" } }
-            : { source: "unavailable" },
-          weather: null
-        })
-      : Habitat
-        ? Habitat.emptyState()
+    var habitat;
+    if (state.searchLocation && HabitatGis && state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
+      if (state.lastGrid.unavailable || state.lastGrid.habitatEmpty) {
+        habitat = {
+          channel: "habitat",
+          empty: true,
+          label: "Habitat data unavailable for this area",
+          detail: "No GIS pack covers this SEARCH LOCATION — no decorative fallback.",
+          interest: null,
+          band: "neutral",
+          why: ["Tap a SEARCH LOCATION inside a packed PA region (e.g. Pike/Milford)."],
+          limitations: ["Landscape structure does not mean an antler is present."],
+          provenance: [{ factor: "gis-pack", class: "SOURCE_FACT", missing: true }]
+        };
+      } else {
+        var mid = heatLayer && heatLayer.nearestCell
+          ? heatLayer.nearestCell({ lat: state.searchLocation.lat, lng: state.searchLocation.lng })
+          : null;
+        var scored = mid && mid.result ? mid.result : null;
+        habitat = {
+          channel: "habitat",
+          empty: false,
+          label: scored && scored.label ? scored.label : "Habitat structure in SEARCH AREA",
+          band: scored && scored.band ? scored.band.id : "some",
+          interest: scored ? scored.score : null,
+          why: scored && scored.why ? scored.why.slice(0, 3) : ["NLCD structure + edge + slope inside SEARCH AREA."],
+          limitations: (scored && scored.limitations) || [
+            "Landscape structure does not mean an antler is present.",
+            "~30 m land-cover resolution — not meter-precise."
+          ],
+          provenance: [
+            { factor: "nlcd", class: "SOURCE_FACT" },
+            { factor: "edge", class: "WAYPOINT_HEURISTIC" },
+            { factor: "slope", class: "SOURCE_FACT" }
+          ],
+          gis: true
+        };
+      }
+    } else if (!state.searchLocation) {
+      habitat = {
+        channel: "habitat",
+        empty: true,
+        label: "Tap the area you want to analyze",
+        detail: "Fine habitat GIS uses SEARCH LOCATION — not coarse YOU.",
+        interest: null,
+        band: "neutral",
+        why: ["Set a SEARCH LOCATION to analyze landscape structure."],
+        limitations: ["Coarse YOU (±km) must not drive fine GIS."],
+        provenance: []
+      };
+    } else {
+      habitat = Habitat
+        ? Habitat.scoreCell({
+            lat: lat,
+            lng: lng,
+            date: new Date(),
+            prefs: state.prefs || {},
+            observations: Store.list(),
+            terrain: state.elevCache
+              ? { source: "map-derived", slope: 10, morphology: { source: "map-derived" } }
+              : { source: "unavailable" },
+            weather: null
+          })
         : { empty: true, label: "No habitat-specific guidance yet", channel: "habitat" };
-    if (state.lastGrid && state.lastGrid.habitatEmpty) {
+    }
+    if (state.lastGrid && state.lastGrid.habitatEmpty && !(state.lastGrid.renderMode === "gis-bands")) {
       habitat = Object.assign({}, habitat, {
         empty: true,
         label: (Habitat && Habitat.EMPTY_MESSAGE) || "No habitat-specific guidance yet",
@@ -1232,9 +1511,23 @@
           searchability: searchability,
           weatherStatus: state.weatherStatus,
           envFailed: state.weatherStatus === "unavailable",
-          elevFailed: !state.elevCache
+          elevFailed: !state.elevCache && !(state.lastGrid && state.lastGrid.renderMode === "gis-bands" && !state.lastGrid.unavailable)
         })
       : { level: "Low", label: "Low", why: ["Confidence module unavailable."] };
+    if (HabitatGis && state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
+      var gisSupport = state.lastGrid.evidenceSupport || HabitatGis.evidenceSupport({
+        unavailable: !!state.lastGrid.unavailable,
+        hasStructure: !state.lastGrid.unavailable,
+        hasTerrain: !state.lastGrid.unavailable,
+        hasObservations: Store.list().length > 0
+      });
+      confidence = Object.assign({}, confidence, {
+        level: gisSupport.level,
+        label: gisSupport.level,
+        why: [gisSupport.detail].concat(confidence.why || []).slice(0, 4),
+        meaning: "evidence_support"
+      });
+    }
     state.lastChannels = {
       timing: timing,
       habitat: habitat,
@@ -1390,7 +1683,81 @@
       return;
     }
 
-    // Coarse first pass — local observations + season, no elevation wait
+    // Phase 2: Habitat GIS only when SEARCH LOCATION is set — never from coarse YOU alone.
+    if (HabitatGis && GisPack) {
+      preserveSearchAcrossSideEffects();
+      if (!state.searchLocation) {
+        state.heatPhase = "idle";
+        if (heatLayer) {
+          heatLayer.setGrid({
+            cells: [],
+            bounds: { west: 0, east: 0, south: 0, north: 0 },
+            rows: 0,
+            cols: 0,
+            habitatEmpty: true,
+            unavailable: true,
+            renderMode: "gis-bands",
+            modelVersion: "habitat-gis-2.0",
+            coverage: { level: "limited", label: "Tap a SEARCH LOCATION to analyze habitat" }
+          });
+        }
+        setModelCoverageNote("Tap the area you want to analyze — coarse YOU does not drive fine habitat GIS.");
+        updateCoverageUi({ level: "limited", label: "No SEARCH LOCATION yet" });
+        state.lastGrid = {
+          cells: [],
+          habitatEmpty: true,
+          unavailable: true,
+          modelVersion: "habitat-gis-2.0",
+          coverage: { level: "limited", label: "No SEARCH LOCATION yet" }
+        };
+        syncHeatLegend();
+        syncSearchPrompt();
+        wxPromise.then(function (w) {
+          if (gen !== state.recomputeGen) return;
+          if (w) state.weather = w;
+          updatePlanner(null);
+          evaluateChannels(null);
+        });
+        return;
+      }
+
+      ensureGisPacks().then(function () {
+        if (gen !== state.recomputeGen) return;
+        var pack = packForSearch();
+        var tGis = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+        var grid = HabitatGis.buildSearchGrid({
+          center: { lat: state.searchLocation.lat, lng: state.searchLocation.lng },
+          radiusM: searchRadiusM(),
+          pack: pack,
+          observations: Store.list(),
+          Bio: Bio,
+          rows: 22,
+          cols: 22
+        });
+        // Never pass weather/season into GIS grid (already omitted in HabitatGis).
+        if (gen !== state.recomputeGen) return;
+        state.heatPhase = "refine";
+        state.lastPerf.gisMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - tGis;
+        state.lastPerf.refineMs = state.lastPerf.gisMs;
+        applyGridToUi(grid, {
+          label: grid.unavailable
+            ? "Habitat data unavailable for this area"
+            : "Habitat structure (SEARCH AREA · ~30 m)",
+          elevNote: grid.unavailable
+            ? "No GIS pack covers this SEARCH LOCATION — no decorative fallback."
+            : ("Pack " + (grid.packId || "?") + " · radius ~" + grid.radiusM + " m · not find %")
+        });
+        wxPromise.then(function (w) {
+          if (gen !== state.recomputeGen) return;
+          if (w) state.weather = w;
+          preserveSearchAcrossSideEffects();
+          updatePlanner(state.lastGrid);
+        });
+      });
+      return;
+    }
+
+    // Legacy Phase 1 fallback if GIS modules missing — Coarse first pass
     try {
       var coarse = Model.buildGrid(bounds, COARSE_ROWS, COARSE_COLS, buildContext(null, COARSE_ROWS, COARSE_COLS, "unavailable"));
       if (gen !== state.recomputeGen) return;
@@ -1793,7 +2160,12 @@
     bits.push("Terrain: " + (grid && state.elevCache ? "elevation-derived" : "unavailable"));
     bits.push("Observations: " + Store.list().length + " local");
     bits.push("Weather snow: " + (state.weather ? "provider" : "unavailable"));
-    bits.push("Land cover: unavailable");
+    bits.push(
+      "Land cover: " +
+        (state.lastGrid && state.lastGrid.renderMode === "gis-bands" && !state.lastGrid.unavailable
+          ? ("GIS pack " + (state.lastGrid.packId || "yes") + " (~30 m)")
+          : (state.searchLocation ? "unavailable for SEARCH" : "needs SEARCH LOCATION"))
+    );
     els.inputsSummary.textContent = bits.join(" · ");
   }
 
@@ -2142,8 +2514,61 @@
     var cell = heatLayer && heatLayer.nearestCell(latlng);
     var text;
     state.lastExplainLatLng = latlng;
+    var gisGrid = state.lastGrid && state.lastGrid.renderMode === "gis-bands";
+    if (gisGrid && (!cell || cell.outsideArea || !cell.result || cell.result.unavailable)) {
+      text = state.searchLocation
+        ? "Habitat data unavailable for this area — or tap inside the SEARCH AREA circle."
+        : "Tap the map to set a SEARCH LOCATION first.";
+      if (els.explainBreakdown) els.explainBreakdown.textContent = "";
+      if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
+      if (els.explainCompare) els.explainCompare.textContent = "";
+      if (els.explainTech) els.explainTech.textContent = "";
+      els.explainBody.textContent = text;
+      state.lastPerf.explainMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
+      openSheet(els.sheetExplain);
+      return;
+    }
+    if (gisGrid && cell && cell.result && !cell.result.unavailable) {
+      var r = cell.result;
+      text = (r.label || "Habitat structure") + "\n\nWhy:\n• " + (r.why || []).join("\n• ");
+      text += "\n\nEvidence: NLCD land cover · derived edge · USGS slope · private observations (capped).";
+      text += "\n\nLimit: landscape structure does not mean an antler is present (~30 m source honesty).";
+      if (els.explainBreakdown) {
+        els.explainBreakdown.textContent = (r.factors || []).map(function (f) {
+          return f.label + ": " + (Math.round((f.contribution || 0) * 1000) / 1000) + " — " + (f.rationale || "");
+        }).join(" · ");
+      }
+      if (els.explainTaxonomy) {
+        els.explainTaxonomy.textContent = [
+          "Band: " + (r.band && r.band.label) + " (relative score " + (r.score != null ? Math.round(r.score * 100) / 100 : "—") + " — not find %)",
+          "Structure: " + (r.structure && r.structure.why),
+          "Terrain: " + (r.terrain && r.terrain.why),
+          "Observed: " + (r.observed && r.observed.why),
+          "NLCD class: " + (r.sample && r.sample.nlcd) + " → " + (r.sample && r.sample.structureLabel),
+          "Weights: structure " + HabitatGis.W_STRUCTURE + " · terrain " + HabitatGis.W_TERRAIN + " · observed " + HabitatGis.W_OBSERVED + " (WAYPOINT_HEURISTIC)"
+        ].join("\n");
+      }
+      if (els.explainCompare) {
+        els.explainCompare.textContent = "Evidence support — not chance of finding a shed.";
+      }
+      if (els.explainTech) {
+        els.explainTech.textContent = JSON.stringify({
+          modelVersion: "habitat-gis-2.0",
+          band: r.band,
+          score: r.score,
+          sample: r.sample,
+          factors: r.factors,
+          weights: r.weights,
+          limitations: r.limitations
+        }, null, 2);
+      }
+      els.explainBody.textContent = text;
+      state.lastPerf.explainMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
+      openSheet(els.sheetExplain);
+      return;
+    }
     if (!cell || !cell.result) {
-      text = "No local search-priority cell here. Zoom in with the heat map on to analyze the visible area.";
+      text = "No local habitat cell here. Set a SEARCH LOCATION and tap inside the SEARCH AREA.";
       if (els.explainBreakdown) els.explainBreakdown.textContent = "";
       if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
       if (els.explainCompare) els.explainCompare.textContent = "";
@@ -2636,6 +3061,36 @@
       refreshObservations();
     });
 
+    function onRadiusChange(ev) {
+      var v = ev.target.value;
+      state.searchRadiusKey = v === "small" || v === "large" ? v : "medium";
+      if ($("search-radius")) $("search-radius").value = state.searchRadiusKey;
+      if ($("search-radius-tools")) $("search-radius-tools").value = state.searchRadiusKey;
+      drawSearchOnMap();
+      scheduleRecompute(80);
+    }
+    if ($("search-radius")) $("search-radius").addEventListener("change", onRadiusChange);
+    if ($("search-radius-tools")) $("search-radius-tools").addEventListener("change", onRadiusChange);
+    if ($("btn-analyze-you")) {
+      $("btn-analyze-you").addEventListener("click", function () {
+        if (!state.userLatLng) return;
+        var ok = SearchArea
+          ? SearchArea.canAnalyzeAtYou(state.accuracyM)
+          : state.accuracyM != null && state.accuracyM <= SEARCH_YOU_ACCURACY_MAX_M;
+        if (!ok) {
+          syncSearchPrompt();
+          return;
+        }
+        setSearchLocation(state.userLatLng.lat, state.userLatLng.lng, "analyze-at-you");
+      });
+    }
+    if ($("sgl-visible")) {
+      $("sgl-visible").addEventListener("change", function () {
+        state.sglVisible = !!$("sgl-visible").checked;
+        refreshSglOverlay();
+      });
+    }
+
     map.on("contextmenu", function (e) {
       L.DomEvent.preventDefault(e);
       openExplain(e.latlng);
@@ -2651,6 +3106,9 @@
     }
     if ($("confidence-overlay")) $("confidence-overlay").checked = !!state.prefs.showConfidence;
     if ($("coverage-visible")) $("coverage-visible").checked = state.prefs.coverageVisible !== false;
+    if ($("sgl-visible")) $("sgl-visible").checked = !!state.sglVisible;
+    if ($("search-radius")) $("search-radius").value = state.searchRadiusKey || "medium";
+    if ($("search-radius-tools")) $("search-radius-tools").value = state.searchRadiusKey || "medium";
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
     if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
     if ($("offline-forced")) $("offline-forced").checked = !!state.offlineForced;
@@ -2789,6 +3247,10 @@
     locateUser({ center: true });
     setPlanExpanded(false);
     syncHeatLegend();
+    syncSearchPrompt();
+    ensureGisPacks().then(function () {
+      scheduleRecompute(200);
+    });
     $("ethics-ack").addEventListener("click", onEthicsAck);
     maybeEthics();
     syncOfflineBanner();
