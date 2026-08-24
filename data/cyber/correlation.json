@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-24T01:58:28.616Z",
-  "entityCount": 410,
-  "relationshipCount": 1063,
+  "generatedAt": "2026-08-24T07:21:55.512Z",
+  "entityCount": 411,
+  "relationshipCount": 1072,
   "entities": [
     {
       "id": "cve:CVE-2026-33824",
@@ -30,6 +30,32 @@
       "id": "vendor:microsoft",
       "kind": "vendor",
       "title": "Microsoft"
+    },
+    {
+      "id": "cve:CVE-2026-20349",
+      "kind": "cve",
+      "title": "CVE-2026-20349"
+    },
+    {
+      "id": "vendor:cisco",
+      "kind": "vendor",
+      "title": "Cisco"
+    },
+    {
+      "id": "cve:CVE-2026-8037",
+      "kind": "cve",
+      "title": "CVE-2026-8037"
+    },
+    {
+      "id": "attack:T1059",
+      "kind": "attack-technique",
+      "title": "T1059 Command and Scripting Interpreter",
+      "note": "Keyword heuristic from public record text — not a confirmed ATT&CK mapping from MITRE."
+    },
+    {
+      "id": "vendor:progress",
+      "kind": "vendor",
+      "title": "Progress"
     },
     {
       "id": "cve:CVE-2026-50751",
@@ -68,20 +94,9 @@
       "title": "CVE-2023-21529"
     },
     {
-      "id": "attack:T1059",
-      "kind": "attack-technique",
-      "title": "T1059 Command and Scripting Interpreter",
-      "note": "Keyword heuristic from public record text — not a confirmed ATT&CK mapping from MITRE."
-    },
-    {
       "id": "cve:CVE-2026-20131",
       "kind": "cve",
       "title": "CVE-2026-20131"
-    },
-    {
-      "id": "vendor:cisco",
-      "kind": "vendor",
-      "title": "Cisco"
     },
     {
       "id": "cve:CVE-2026-45321",
@@ -115,16 +130,6 @@
       "title": "vmware"
     },
     {
-      "id": "cve:CVE-2026-65400",
-      "kind": "cve",
-      "title": "CVE-2026-65400"
-    },
-    {
-      "id": "vendor:apple",
-      "kind": "vendor",
-      "title": "Apple"
-    },
-    {
       "id": "cve:CVE-2026-45659",
       "kind": "cve",
       "title": "CVE-2026-45659"
@@ -148,11 +153,6 @@
       "id": "cve:CVE-2025-60710",
       "kind": "cve",
       "title": "CVE-2025-60710"
-    },
-    {
-      "id": "cve:CVE-2026-20349",
-      "kind": "cve",
-      "title": "CVE-2026-20349"
     },
     {
       "id": "cve:CVE-2026-20316",
@@ -190,9 +190,44 @@
       "title": "TrueConf"
     },
     {
-      "id": "cve:CVE-2026-72529",
+      "id": "cve:CVE-2026-68820",
       "kind": "cve",
-      "title": "CVE-2026-72529"
+      "title": "CVE-2026-68820"
+    },
+    {
+      "id": "cve:CVE-2026-72898",
+      "kind": "cve",
+      "title": "CVE-2026-72898"
+    },
+    {
+      "id": "vendor:metabase",
+      "kind": "vendor",
+      "title": "Metabase"
+    },
+    {
+      "id": "cve:CVE-2026-63077",
+      "kind": "cve",
+      "title": "CVE-2026-63077"
+    },
+    {
+      "id": "vendor:jetbrains",
+      "kind": "vendor",
+      "title": "JetBrains"
+    },
+    {
+      "id": "cve:CVE-2026-9198",
+      "kind": "cve",
+      "title": "CVE-2026-9198"
+    },
+    {
+      "id": "vendor:ibm",
+      "kind": "vendor",
+      "title": "IBM"
+    },
+    {
+      "id": "vendor:langflow",
+      "kind": "vendor",
+      "title": "langflow"
     },
     {
       "id": "cve:CVE-2026-15409",
@@ -280,11 +315,6 @@
       "title": "CVE-2024-27199"
     },
     {
-      "id": "vendor:jetbrains",
-      "kind": "vendor",
-      "title": "JetBrains"
-    },
-    {
       "id": "cve:CVE-2025-26399",
       "kind": "cve",
       "title": "CVE-2025-26399"
@@ -323,6 +353,21 @@
       "id": "cve:CVE-2026-23760",
       "kind": "cve",
       "title": "CVE-2026-23760"
+    },
+    {
+      "id": "cve:CVE-2026-34486",
+      "kind": "cve",
+      "title": "CVE-2026-34486"
+    },
+    {
+      "id": "vendor:apache",
+      "kind": "vendor",
+      "title": "Apache"
+    },
+    {
+      "id": "vendor:redhat",
+      "kind": "vendor",
+      "title": "redhat"
     },
     {
       "id": "cve:CVE-2025-68686",
@@ -375,9 +420,14 @@
       "title": "CVE-2025-20393"
     },
     {
-      "id": "cve:CVE-2026-68820",
+      "id": "cve:CVE-2026-18577",
       "kind": "cve",
-      "title": "CVE-2026-68820"
+      "title": "CVE-2026-18577"
+    },
+    {
+      "id": "vendor:n-able",
+      "kind": "vendor",
+      "title": "N-able"
     },
     {
       "id": "cve:CVE-2025-48595",
@@ -398,6 +448,21 @@
       "id": "cve:CVE-2026-21513",
       "kind": "cve",
       "title": "CVE-2026-21513"
+    },
+    {
+      "id": "cve:CVE-2026-65400",
+      "kind": "cve",
+      "title": "CVE-2026-65400"
+    },
+    {
+      "id": "vendor:apple",
+      "kind": "vendor",
+      "title": "Apple"
+    },
+    {
+      "id": "cve:CVE-2026-18556",
+      "kind": "cve",
+      "title": "CVE-2026-18556"
     },
     {
       "id": "cve:CVE-2026-25089",
@@ -510,64 +575,9 @@
       "title": "ASUS"
     },
     {
-      "id": "cve:CVE-2026-72898",
+      "id": "cve:CVE-2026-72529",
       "kind": "cve",
-      "title": "CVE-2026-72898"
-    },
-    {
-      "id": "vendor:metabase",
-      "kind": "vendor",
-      "title": "Metabase"
-    },
-    {
-      "id": "cve:CVE-2026-8037",
-      "kind": "cve",
-      "title": "CVE-2026-8037"
-    },
-    {
-      "id": "vendor:progress",
-      "kind": "vendor",
-      "title": "Progress"
-    },
-    {
-      "id": "cve:CVE-2026-63077",
-      "kind": "cve",
-      "title": "CVE-2026-63077"
-    },
-    {
-      "id": "cve:CVE-2026-18556",
-      "kind": "cve",
-      "title": "CVE-2026-18556"
-    },
-    {
-      "id": "vendor:n-able",
-      "kind": "vendor",
-      "title": "N-able"
-    },
-    {
-      "id": "cve:CVE-2026-34486",
-      "kind": "cve",
-      "title": "CVE-2026-34486"
-    },
-    {
-      "id": "vendor:apache",
-      "kind": "vendor",
-      "title": "Apache"
-    },
-    {
-      "id": "cve:CVE-2026-9198",
-      "kind": "cve",
-      "title": "CVE-2026-9198"
-    },
-    {
-      "id": "vendor:ibm",
-      "kind": "vendor",
-      "title": "IBM"
-    },
-    {
-      "id": "cve:CVE-2026-18577",
-      "kind": "cve",
-      "title": "CVE-2026-18577"
+      "title": "CVE-2026-72529"
     },
     {
       "id": "cve:CVE-2026-16812",
@@ -948,11 +958,6 @@
       "id": "cve:CVE-2026-0770",
       "kind": "cve",
       "title": "CVE-2026-0770"
-    },
-    {
-      "id": "vendor:langflow",
-      "kind": "vendor",
-      "title": "Langflow"
     },
     {
       "id": "cve:CVE-2021-27137",
@@ -1736,6 +1741,11 @@
       "title": "Cloudflare Status"
     },
     {
+      "id": "vendor:github-status",
+      "kind": "vendor",
+      "title": "GitHub Status"
+    },
+    {
       "id": "vendor:amazon-web-services",
       "kind": "vendor",
       "title": "Amazon Web Services"
@@ -1956,11 +1966,6 @@
       "title": "CVE-2026-19671"
     },
     {
-      "id": "vendor:github-status",
-      "kind": "vendor",
-      "title": "GitHub Status"
-    },
-    {
       "id": "vendor:openai-status",
       "kind": "vendor",
       "title": "OpenAI Status"
@@ -2098,6 +2103,68 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-33824",
       "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-20349",
+      "to": "cve:CVE-2026-20349",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-20349",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-20349",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-20349",
+      "to": "vendor:cisco",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-20349",
+      "to": "vendor:cisco",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-8037",
+      "to": "cve:CVE-2026-8037",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-8037",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-8037",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-8037",
+      "to": "vendor:progress",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-8037",
+      "to": "vendor:progress",
       "evidence": "entity extraction"
     },
     {
@@ -2323,37 +2390,6 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-65400",
-      "to": "cve:CVE-2026-65400",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-65400",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-65400",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-65400",
-      "to": "vendor:apple",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-65400",
-      "to": "vendor:apple",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
       "from": "live_kev_cve-2026-45659",
       "to": "cve:CVE-2026-45659",
       "evidence": "identifier"
@@ -2453,31 +2489,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2025-60710",
       "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-20349",
-      "to": "cve:CVE-2026-20349",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-20349",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-20349",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-20349",
-      "to": "vendor:cisco",
       "evidence": "entity extraction"
     },
     {
@@ -2600,33 +2611,133 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-72529",
-      "to": "cve:CVE-2026-72529",
+      "from": "live_kev_cve-2026-68820",
+      "to": "cve:CVE-2026-68820",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-72529",
+      "from": "cve:CVE-2026-68820",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-68820",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-68820",
+      "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-72898",
+      "to": "cve:CVE-2026-72898",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-72898",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-72529",
-      "to": "attack:T1078",
+      "from": "live_kev_cve-2026-72898",
+      "to": "attack:T1190",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72529",
-      "to": "vendor:trueconf",
+      "from": "live_kev_cve-2026-72898",
+      "to": "vendor:metabase",
       "evidence": "entity extraction"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72529",
-      "to": "vendor:trueconf",
+      "from": "live_kev_cve-2026-72898",
+      "to": "vendor:metabase",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-63077",
+      "to": "cve:CVE-2026-63077",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-63077",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63077",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-63077",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-63077",
+      "to": "vendor:jetbrains",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-63077",
+      "to": "vendor:jetbrains",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-9198",
+      "to": "cve:CVE-2026-9198",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-9198",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-9198",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-9198",
+      "to": "attack:T1059",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-9198",
+      "to": "vendor:ibm",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-9198",
+      "to": "vendor:langflow",
       "evidence": "entity extraction"
     },
     {
@@ -3103,6 +3214,43 @@
     },
     {
       "type": "mentions-cve",
+      "from": "live_kev_cve-2026-34486",
+      "to": "cve:CVE-2026-34486",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-34486",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-34486",
+      "to": "attack:T1190",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-34486",
+      "to": "vendor:apache",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-34486",
+      "to": "vendor:apache",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-34486",
+      "to": "vendor:redhat",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
       "from": "live_kev_cve-2025-68686",
       "to": "cve:CVE-2025-68686",
       "evidence": "identifier"
@@ -3265,20 +3413,33 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-68820",
-      "to": "cve:CVE-2026-68820",
+      "from": "live_kev_cve-2026-18577",
+      "to": "cve:CVE-2026-18577",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-68820",
+      "from": "cve:CVE-2026-18577",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-18577",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-68820",
-      "to": "vendor:microsoft",
+      "from": "live_kev_cve-2026-18577",
+      "to": "vendor:n-able",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18577",
+      "to": "vendor:n-able",
       "evidence": "entity extraction"
     },
     {
@@ -3347,6 +3508,62 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-21513",
       "to": "vendor:microsoft",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-65400",
+      "to": "cve:CVE-2026-65400",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-65400",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-65400",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-65400",
+      "to": "vendor:apple",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-18556",
+      "to": "cve:CVE-2026-18556",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-18556",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-18556",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18556",
+      "to": "vendor:n-able",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-18556",
+      "to": "vendor:n-able",
       "evidence": "entity extraction"
     },
     {
@@ -3811,184 +4028,27 @@
     },
     {
       "type": "mentions-cve",
-      "from": "live_kev_cve-2026-72898",
-      "to": "cve:CVE-2026-72898",
+      "from": "live_kev_cve-2026-72529",
+      "to": "cve:CVE-2026-72529",
       "evidence": "identifier"
     },
     {
       "type": "listed-in-kev",
-      "from": "cve:CVE-2026-72898",
+      "from": "cve:CVE-2026-72529",
       "to": "catalog:cisa-kev",
       "evidence": "exploitation.knownExploited"
     },
     {
       "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-72898",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-72898",
-      "to": "vendor:metabase",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-8037",
-      "to": "cve:CVE-2026-8037",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-8037",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-8037",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-8037",
-      "to": "vendor:progress",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-63077",
-      "to": "cve:CVE-2026-63077",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-63077",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63077",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-63077",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-63077",
-      "to": "vendor:jetbrains",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-18556",
-      "to": "cve:CVE-2026-18556",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-18556",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-18556",
+      "from": "live_kev_cve-2026-72529",
       "to": "attack:T1078",
       "evidence": "keyword heuristic",
       "confidence": "heuristic"
     },
     {
       "type": "affects-vendor",
-      "from": "live_kev_cve-2026-18556",
-      "to": "vendor:n-able",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-34486",
-      "to": "cve:CVE-2026-34486",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-34486",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-34486",
-      "to": "vendor:apache",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-9198",
-      "to": "cve:CVE-2026-9198",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-9198",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-9198",
-      "to": "attack:T1190",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-9198",
-      "to": "attack:T1059",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-9198",
-      "to": "vendor:ibm",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-18577",
-      "to": "cve:CVE-2026-18577",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-18577",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-18577",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-18577",
-      "to": "vendor:n-able",
+      "from": "live_kev_cve-2026-72529",
+      "to": "vendor:trueconf",
       "evidence": "entity extraction"
     },
     {
@@ -7706,6 +7766,18 @@
     },
     {
       "type": "outage-affects",
+      "from": "live_outage_github-status_4d696e6f72205365",
+      "to": "vendor:github-status",
+      "evidence": "service-outage record"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_outage_github-status_4d696e6f72205365",
+      "to": "vendor:github-status",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "outage-affects",
       "from": "live_outage_aws_68747470733a2f2f",
       "to": "vendor:amazon-web-services",
       "evidence": "service-outage record"
@@ -8374,18 +8446,6 @@
       "from": "live_cisa-advisories_2f6e6f64652f3235333234",
       "to": "cve:CVE-2026-19671",
       "evidence": "CVE extracted from advisory"
-    },
-    {
-      "type": "outage-affects",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "service-outage record"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_outage_github-status_ok",
-      "to": "vendor:github-status",
-      "evidence": "entity extraction"
     },
     {
       "type": "outage-affects",

@@ -1,7 +1,19 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-24T01:58:28.623Z",
+  "updatedAt": "2026-08-24T07:21:55.519Z",
   "entries": [
+    {
+      "at": "2026-08-24T07:21:55.519Z",
+      "trustState": "Live",
+      "recordCount": 292,
+      "briefBullets": [
+        "Lead item: Microsoft Internet Key Exchange (IKE) Service Extensions Double Free Vulnerability",
+        "21 KEV dateAdded entries in ~30 days deserve edge review.",
+        "3 active public cloud/SaaS status signal(s).",
+        "24 ransomware-associated KEV flags present."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-24T01:58:28.623Z",
       "trustState": "Live",
@@ -677,22 +689,6 @@
         "Re-check any Immediate recommendations before change freezes overnight."
       ],
       "recommendation": "Patch immediately"
-    },
-    {
-      "at": "2026-07-19T01:32:58.643Z",
-      "trustState": "Live",
-      "recordCount": 294,
-      "briefBullets": [
-        "Recommended priority today: patch or mitigate internet-facing appliances (VPN / mail / file-transfer / gateway) before routine workstation updates.",
-        "AWS: Service impact: Inaccurate Estimated Billing Data",
-        "Cloudflare Status status: Minor Service Outage",
-        "CISA added or listed 24 known-exploited vulnerabilities in the last ~30 days (by KEV dateAdded) — review edge and internet-facing systems first.",
-        "18 KEV-linked vulnerabilities are associated with ransomware campaigns — treat those as elevated operational risk.",
-        "2+ high-severity vulnerabilities are under known exploitation per official sources.",
-        "CISA Cybersecurity Advisories: ABB Ability Edgenius",
-        "CISA Cybersecurity Advisories: Rockwell Automation CompactLogix, ControlLogix, Compact GuardLogix and GuardLogix"
-      ],
-      "recommendation": "Patch VPN / edge appliances before workstation rollouts."
     }
   ]
 }
