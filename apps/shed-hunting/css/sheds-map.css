@@ -2054,11 +2054,16 @@ html.sheds-sheet-open .leaflet-control-attribution {
 @media (max-width: 719px), (max-height: 500px) {
   :root {
     --sheds-sheet-peek: 4.35rem;
-    --sheds-dock-h: 3.4rem;
-    --sheds-map-ctrl-size: 2.5rem;
-    --sheds-mobile-header-end: calc(3.7rem + var(--sheds-safe-top));
-    /* Compact single-row strip (~2.9–3.2rem) under header */
-    --sheds-mobile-strip-end: calc(7.15rem + var(--sheds-safe-top));
+    --sheds-dock-h: 3.45rem;
+    /* >= 42px touch target for Locate / zoom */
+    --sheds-map-ctrl-size: 2.65rem;
+    --sheds-mobile-chrome-gap: 0.45rem;
+    /* Below header chips with intentional air */
+    --sheds-mobile-header-end: calc(3.95rem + var(--sheds-safe-top));
+    /* Single-row strip under header + chrome gap; keep ≥8px air below strip */
+    --sheds-mobile-strip-end: calc(8.35rem + var(--sheds-safe-top));
+    /* Reserve full wrapped SEARCH prompt height + ≥8px before YOU chip (390px wraps ~8rem) */
+    --sheds-prompt-stack: 8.85rem;
   }
 
   .sheds-hud-brand {
@@ -2080,7 +2085,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
   .sheds-session-strip {
     left: calc(0.5rem + var(--sheds-safe-left));
     right: calc(0.5rem + var(--sheds-safe-right));
-    top: var(--sheds-mobile-header-end);
+    top: calc(var(--sheds-mobile-header-end) + var(--sheds-mobile-chrome-gap));
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
@@ -2097,6 +2102,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   .sheds-session-strip__state {
     font-size: 0.78rem;
+    flex: 0 0 auto;
   }
 
   .sheds-session-strip__meta {
@@ -2104,21 +2110,24 @@ html.sheds-sheet-open .leaflet-control-attribution {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    min-width: 0;
   }
 
   .sheds-session-strip .sheds-btn {
     width: auto;
     flex: 0 0 auto;
     justify-content: center;
-    min-height: 2.35rem;
-    padding: 0.3rem 0.7rem;
+    min-height: 2.625rem;
+    min-width: 5.75rem;
+    padding: 0.35rem 0.75rem;
     font-size: 0.82rem;
+    white-space: nowrap;
   }
 
   /* Default map ctrls / prompt below header (clear of ? / i chips) */
   .sheds-map-ctrls {
     position: absolute;
-    top: var(--sheds-mobile-header-end);
+    top: calc(var(--sheds-mobile-header-end) + var(--sheds-mobile-chrome-gap));
     right: calc(0.5rem + var(--sheds-safe-right));
     gap: 0.3rem;
     align-items: flex-end;
@@ -2126,8 +2135,8 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   .sheds-search-prompt {
     left: calc(0.5rem + var(--sheds-safe-left));
-    right: calc(3.85rem + var(--sheds-safe-right));
-    top: var(--sheds-mobile-header-end);
+    right: calc(4.05rem + var(--sheds-safe-right));
+    top: calc(var(--sheds-mobile-header-end) + var(--sheds-mobile-chrome-gap));
     z-index: 535;
     padding: 0.4rem 0.5rem;
     gap: 0.35rem 0.5rem;
@@ -2140,7 +2149,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   /* Presence chip sits under prompt when the SEARCH prompt is open */
   #sheds-map-shell:has(#search-prompt:not([hidden])) .sheds-here {
-    top: calc(var(--sheds-mobile-header-end) + 5.75rem);
+    top: calc(var(--sheds-mobile-header-end) + var(--sheds-mobile-chrome-gap) + var(--sheds-prompt-stack));
     max-width: min(55vw, 12.5rem);
   }
 
@@ -2158,7 +2167,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   /* ID :has beats class-only session rule — keep presence below prompt while searching */
   html.sheds-session-active #sheds-map-shell:has(#search-prompt:not([hidden])) .sheds-here {
-    top: calc(var(--sheds-mobile-strip-end) + 5.75rem);
+    top: calc(var(--sheds-mobile-strip-end) + var(--sheds-prompt-stack));
   }
 
   html.sheds-session-active .sheds-here__track {
@@ -2346,7 +2355,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
   /* Collapsible landscape legend */
   .sheds-legend-float {
     left: calc(0.5rem + var(--sheds-safe-left));
-    bottom: calc(var(--sheds-sheet-peek) + var(--sheds-dock-h) + 0.45rem + var(--sheds-safe-bottom));
+    bottom: calc(var(--sheds-sheet-peek) + var(--sheds-dock-h) + 0.65rem + var(--sheds-safe-bottom));
     max-width: min(10.75rem, calc(100vw - 5rem));
     padding: 0;
     overflow: hidden;
@@ -2405,7 +2414,14 @@ html.sheds-sheet-open .leaflet-control-attribution {
   }
 }
 
-/* Very narrow phones: keep End Search full-width so it stays easy to tap */
+/* Very narrow phones: keep End Search full-width so it stays easy to tap;
+   SEARCH prompt actions wrap — reserve more stack for YOU chip. */
+@media (max-width: 380px) {
+  :root {
+    --sheds-prompt-stack: 10.25rem;
+  }
+}
+
 @media (max-width: 359px) {
   .sheds-session-strip {
     flex-direction: column;
@@ -2415,10 +2431,12 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   .sheds-session-strip .sheds-btn {
     width: 100%;
+    min-width: 0;
   }
 
   :root {
-    --sheds-mobile-strip-end: calc(8.6rem + var(--sheds-safe-top));
+    --sheds-mobile-strip-end: calc(9.65rem + var(--sheds-safe-top));
+    --sheds-prompt-stack: 10.35rem;
   }
 }
 
@@ -2426,8 +2444,10 @@ html.sheds-sheet-open .leaflet-control-attribution {
   :root {
     --sheds-sheet-peek: 3.2rem;
     --sheds-dock-h: 3rem;
-    --sheds-mobile-header-end: calc(3.7rem + var(--sheds-safe-top));
-    --sheds-mobile-strip-end: calc(6.5rem + var(--sheds-safe-top));
+    --sheds-mobile-header-end: calc(3.75rem + var(--sheds-safe-top));
+    --sheds-mobile-strip-end: calc(8.15rem + var(--sheds-safe-top));
+    --sheds-prompt-stack: 6.25rem;
+    --sheds-mobile-chrome-gap: 0.4rem;
   }
 
   .sheds-app-dock {
@@ -2435,7 +2455,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
   }
 
   .sheds-app-dock .sheds-fab {
-    min-height: 2.35rem;
+    min-height: 2.4rem;
   }
 
   .sheds-suggest:not([data-expanded="true"]) .sheds-suggest__glance {

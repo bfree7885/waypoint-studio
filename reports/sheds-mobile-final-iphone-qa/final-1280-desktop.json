@@ -1,0 +1,47 @@
+{
+  "collisions": [
+    "prompt×here overlap=20.6"
+  ],
+  "tight": [],
+  "locate": {
+    "w": 81.6,
+    "h": 38.4
+  },
+  "endH": 44,
+  "endClipped": false,
+  "dockVis": "visible",
+  "mapCtrlVis": "visible",
+  "legendVis": "visible",
+  "lede": "Field tools for this trip — including Map & layers. Quick notes also live on the + button.",
+  "meta": null,
+  "rects": {
+    "hud": {
+      "t": 55,
+      "b": 116.2,
+      "h": 61.2
+    },
+    "strip": null,
+    "prompt": {
+      "t": 57.6,
+      "b": 121.2,
+      "h": 63.6
+    },
+    "here": {
+      "t": 100.6,
+      "b": 167.8,
+      "h": 67.2
+    },
+    "mapCtrls": {
+      "t": 488.7,
+      "b": 578.3
+    }
+  },
+  "css": {
+    "hereTop": "100.6px",
+    "promptTop": "57.6px",
+    "promptHidden": false,
+    "session": false,
+    "stack": "",
+    "stripEnd": ""
+  }
+}

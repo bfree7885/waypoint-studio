@@ -1,0 +1,37 @@
+{
+  "branch": "release/sheds-2-field-validation",
+  "validatedAt": "2026-08-24",
+  "safeAreaSim": { "top": "47px", "bottom": "34px" },
+  "primaryState": "390-active-prompt-you",
+  "primaryCollisionFree": true,
+  "mapLayersDiscoverable": true,
+  "mapLayersNotes": "More sheet lede names Map & layers; Leaflet MAP control remains hidden on field chrome",
+  "mobileMatrix": {
+    "390-initial": { "collisions": [], "tight": [] },
+    "390-active": { "collisions": [], "tight": [] },
+    "390-active-prompt-you": { "collisions": [], "tight": [], "locate": [42.4, 42.4], "endSearchH": 42 },
+    "390-briefing-expanded": { "collisions": [], "dockHidden": true, "mapCtrlsHidden": true, "legendHidden": true },
+    "320-strip-long": { "collisions": [], "tight": [], "endClipped": false },
+    "375-active-prompt": { "collisions": [], "tight": [] },
+    "430-active-prompt": { "collisions": [], "tight": [] },
+    "844x390-landscape": { "collisions": [], "tight": [] },
+    "1280-desktop": { "collisions": ["prompt×here overlap=20.6"], "note": "pre-existing; out of mobile scope" }
+  },
+  "tests": {
+    "field-ux-static": "PASS 36",
+    "field-ux-cdp": "PASS 48",
+    "phase4-ux-polish": "PASS 64",
+    "sheds-map": "PASS 42",
+    "todays-search": "PASS",
+    "sprint6": "PASS",
+    "app-surface-isolation": "PASS",
+    "js-syntax-check": "PASS",
+    "platform-consistency": "FAIL 1 (unrelated: error timeout kind — pre-existing, not Sheds mobile)"
+  },
+  "filesChanged": [
+    "apps/shed-hunting/css/sheds-map.css",
+    "apps/shed-hunting/map/index.html",
+    "reports/sheds-mobile-final-iphone-qa/",
+    "docs/ENGINEERING-PLAYBOOK.md"
+  ]
+}

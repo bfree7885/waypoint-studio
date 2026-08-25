@@ -1,0 +1,45 @@
+{
+  "collisions": [],
+  "tight": [],
+  "locate": {
+    "w": 42.4,
+    "h": 42.4
+  },
+  "endH": 42,
+  "endClipped": false,
+  "dockVis": "visible",
+  "mapCtrlVis": "visible",
+  "legendVis": "visible",
+  "lede": "Field tools for this trip — including Map & layers. Quick notes also live on the + button.",
+  "meta": null,
+  "rects": {
+    "hud": {
+      "t": 55,
+      "b": 104.5,
+      "h": 49.5
+    },
+    "strip": null,
+    "prompt": {
+      "t": 117.4,
+      "b": 232.4,
+      "h": 115
+    },
+    "here": {
+      "t": 259,
+      "b": 309,
+      "h": 50
+    },
+    "mapCtrls": {
+      "t": 117.4,
+      "b": 259.3
+    }
+  },
+  "css": {
+    "hereTop": "259px",
+    "promptTop": "117.4px",
+    "promptHidden": false,
+    "session": false,
+    "stack": "8.85rem",
+    "stripEnd": "calc(8.35rem + 47px)"
+  }
+}

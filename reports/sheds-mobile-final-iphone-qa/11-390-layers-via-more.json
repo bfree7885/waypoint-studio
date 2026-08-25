@@ -1,0 +1,141 @@
+{
+  "vw": 390,
+  "vh": 844,
+  "safeTop": "47px",
+  "planExpanded": "false",
+  "sessionActive": false,
+  "collisions": [],
+  "tight": [
+    "mapCtrls×hud gap=1.7",
+    "legend×dock gap=5.4"
+  ],
+  "endInfo": {
+    "label": "End Search",
+    "w": 94,
+    "h": 37.6,
+    "overflowX": false,
+    "textClipped": false
+  },
+  "metaText": "",
+  "dockVis": "visible",
+  "mapCtrlVis": "visible",
+  "legendVis": "visible",
+  "layersLabel": "Map & layers",
+  "moreTitle": "More",
+  "toolsOpen": false,
+  "locateSize": {
+    "w": 40,
+    "h": 40
+  },
+  "dockH": 51.4,
+  "promptH": 81.6,
+  "items": {
+    "hud": {
+      "t": 55,
+      "b": 104.5,
+      "l": 8,
+      "r": 382,
+      "w": 374,
+      "h": 49.5
+    },
+    "brand": {
+      "t": 55,
+      "b": 104.5,
+      "l": 8,
+      "r": 87.6,
+      "w": 79.6,
+      "h": 49.5
+    },
+    "chips": {
+      "t": 60.2,
+      "b": 99.3,
+      "l": 298,
+      "r": 382,
+      "w": 84,
+      "h": 39.2
+    },
+    "strip": null,
+    "stripState": {
+      "t": 123.1,
+      "b": 139.1,
+      "l": 17.8,
+      "r": 97,
+      "w": 79.2,
+      "h": 16
+    },
+    "stripMeta": null,
+    "endBtn": {
+      "t": 112.3,
+      "b": 149.9,
+      "l": 280.6,
+      "r": 374.6,
+      "w": 94,
+      "h": 37.6
+    },
+    "prompt": {
+      "t": 106.2,
+      "b": 187.8,
+      "l": 8,
+      "r": 328.4,
+      "w": 320.4,
+      "h": 81.6
+    },
+    "here": {
+      "t": 198.2,
+      "b": 275.3,
+      "l": 8,
+      "r": 208,
+      "w": 200,
+      "h": 77.1
+    },
+    "mapCtrls": {
+      "t": 106.2,
+      "b": 241,
+      "l": 335.2,
+      "r": 382,
+      "w": 46.8,
+      "h": 134.8
+    },
+    "locate": {
+      "t": 106.2,
+      "b": 146.2,
+      "l": 342,
+      "r": 382,
+      "w": 40,
+      "h": 40
+    },
+    "dock": {
+      "t": 684.2,
+      "b": 735.6,
+      "l": 6.4,
+      "r": 383.6,
+      "w": 377.2,
+      "h": 51.4
+    },
+    "plan": {
+      "t": 757.4,
+      "b": 844,
+      "l": 0,
+      "r": 390,
+      "w": 390,
+      "h": 86.6
+    },
+    "legend": {
+      "t": 641.6,
+      "b": 678.8,
+      "l": 8,
+      "r": 157.4,
+      "w": 149.4,
+      "h": 37.2
+    },
+    "moreBtn": {
+      "t": 688.7,
+      "b": 731.1,
+      "l": 289.4,
+      "r": 379.1,
+      "w": 89.7,
+      "h": 42.4
+    },
+    "layersBtn": null
+  }
+}

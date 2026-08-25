@@ -1539,6 +1539,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Expanded Field Briefing should hide dock/map-ctrls/legend with `:has([data-expanded=true])` so chrome does not show through the sheet.
 - Prompt `right` clearance must exceed compact map-ctrl width; a 3–7px collision still reads as overlap on phone.
 
+### Lessons Learned — Sheds final iPhone field validation (2026-08-24)
+
+- Measure real wrapped SEARCH prompt height under safe-area sims (`--sheds-safe-top/bottom`); 390px wraps ~115px while ≤380px needs a taller `--sheds-prompt-stack` override — fixed rem offsets that look fine on one width fail the next.
+- Raising Locate/End Search to ≥42px lengthens the session strip; bump `--sheds-mobile-strip-end` in the same change or you reintroduce 0–1px “kiss” overlaps.
+- Prefer naming Map & layers in the More lede over restoring a permanent Leaflet MAP control — keeps the map clean while fixing first-time discoverability.
+- Desktop `prompt×here` stacking is a separate layout; do not “fix” it during mobile clearance work unless the mobile CSS regresses it.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.
