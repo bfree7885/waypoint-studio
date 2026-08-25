@@ -28,6 +28,7 @@
   var FieldUi = window.WaypointShedsFieldUi;
   var Ux = window.WaypointShedsUxPolish;
   var FieldTools = window.WaypointShedsFieldTools;
+  var InspectIntel = window.WaypointShedsInspectIntel;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -111,7 +112,10 @@
     inspectLatLng: null,
     inspectElevGen: 0,
     inspectElevM: null,
-    inspectElevStatus: "idle"
+    inspectElevStatus: "idle",
+    inspectTerrainDerived: null,
+    inspectTerrainStatus: "idle",
+    inspectReport: null
   };
 
   var els = {};
@@ -3364,6 +3368,9 @@
     state.inspectLatLng = null;
     state.inspectElevM = null;
     state.inspectElevStatus = "idle";
+    state.inspectTerrainDerived = null;
+    state.inspectTerrainStatus = "idle";
+    state.inspectReport = null;
     state.inspectElevGen += 1;
     if (inspectMarker && map) {
       try {
@@ -3391,59 +3398,110 @@
     if (prompt) prompt.setAttribute("hidden", "");
   }
 
+  function inspectRelationLines() {
+    var FT = FieldTools;
+    var ll = state.inspectLatLng;
+    var fromYou = null;
+    var fromSearch = null;
+    if (!ll || !FT) return { fromYou: fromYou, fromSearch: fromSearch };
+    if (state.userLatLng) {
+      var dYou = FT.distanceM(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
+      var bYou = FT.bearingDeg(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
+      fromYou =
+        "From YOU: " +
+        FT.formatFieldDistance(dYou) +
+        " · " +
+        FT.cardinalFromBearing(bYou) +
+        " " +
+        Math.round(bYou) +
+        "°";
+    } else {
+      fromYou = "From YOU: locate first";
+    }
+    if (state.searchLocation) {
+      var dS = FT.distanceM(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
+      var bS = FT.bearingDeg(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
+      fromSearch =
+        "From SEARCH: " +
+        FT.formatFieldDistance(dS) +
+        " · " +
+        FT.cardinalFromBearing(bS) +
+        " " +
+        Math.round(bS) +
+        "°";
+    }
+    return { fromYou: fromYou, fromSearch: fromSearch };
+  }
+
+  function buildCurrentInspectReport() {
+    if (!state.inspectLatLng) return null;
+    if (!InspectIntel || !InspectIntel.buildInspectReport) return null;
+    var ll = state.inspectLatLng;
+    var pack =
+      GisPack && state.gisPacks && state.gisPacks.length
+        ? GisPack.findCoveringPack(state.gisPacks, ll.lat, ll.lng)
+        : null;
+    var sample = pack && GisPack.sample ? GisPack.sample(pack, ll.lat, ll.lng) : null;
+    var habitatScore = null;
+    if (HabitatGis && HabitatGis.scorePoint) {
+      habitatScore = HabitatGis.scorePoint({
+        sample: sample,
+        lat: ll.lat,
+        lng: ll.lng,
+        observations: [],
+        includeObservations: false,
+        Bio: Bio
+      });
+    }
+    var packMeta = null;
+    if (pack) {
+      var nlcdYear =
+        pack.sources && pack.sources.nlcd && (pack.sources.nlcd.year || pack.sources.nlcd.vintage);
+      packMeta = { packId: pack.packId, nlcdYear: nlcdYear || 2021, region: pack.region };
+    }
+    var rel = inspectRelationLines();
+    return InspectIntel.buildInspectReport({
+      lat: ll.lat,
+      lng: ll.lng,
+      elevM: state.inspectElevM,
+      elevStatus: state.inspectElevStatus,
+      terrainDerived: state.inspectTerrainDerived,
+      gisSample: sample,
+      habitatScore: habitatScore,
+      packMeta: packMeta,
+      fromYou: rel.fromYou,
+      fromSearch: rel.fromSearch
+    });
+  }
+
   function renderInspectHud() {
     var body = $("inspect-body");
     var hud = $("inspect-hud");
     if (!body || !hud || !state.inspectLatLng) return;
-    var ll = state.inspectLatLng;
-    var FT = FieldTools;
-    var lines = [];
-    lines.push(ll.lat.toFixed(5) + ", " + ll.lng.toFixed(5));
-    if (state.inspectElevStatus === "loading") {
-      lines.push("Elevation: loading…");
-    } else if (state.inspectElevStatus === "ready" && state.inspectElevM != null) {
-      lines.push(
-        "Elevation: ~" +
-          Math.round(state.inspectElevM) +
-          " m (" +
-          Math.round(state.inspectElevM * 3.28084) +
-          " ft) — network sample"
-      );
-    } else if (state.inspectElevStatus === "unavailable") {
-      lines.push("Elevation: unavailable");
+    var report = buildCurrentInspectReport();
+    state.inspectReport = report;
+    if (report && report.hudText) {
+      body.textContent = report.hudText;
     } else {
-      lines.push("Elevation: not requested");
+      var ll = state.inspectLatLng;
+      var lines = [];
+      lines.push(ll.lat.toFixed(5) + ", " + ll.lng.toFixed(5));
+      if (state.inspectElevStatus === "loading") lines.push("Elevation: loading…");
+      else if (state.inspectElevStatus === "ready" && state.inspectElevM != null) {
+        lines.push(
+          "Elevation: ~" +
+            Math.round(state.inspectElevM) +
+            " m (" +
+            Math.round(state.inspectElevM * 3.28084) +
+            " ft) — network sample"
+        );
+      } else if (state.inspectElevStatus === "unavailable") lines.push("Elevation: unavailable");
+      var rel = inspectRelationLines();
+      if (rel.fromYou) lines.push(rel.fromYou);
+      if (rel.fromSearch) lines.push(rel.fromSearch);
+      lines.push("Context only — not habitat proof.");
+      body.textContent = lines.join("\n");
     }
-    if (state.userLatLng && FT) {
-      var dYou = FT.distanceM(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
-      var bYou = FT.bearingDeg(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
-      lines.push(
-        "From YOU: " +
-          FT.formatFieldDistance(dYou) +
-          " · " +
-          FT.cardinalFromBearing(bYou) +
-          " " +
-          Math.round(bYou) +
-          "°"
-      );
-    } else {
-      lines.push("From YOU: locate first");
-    }
-    if (state.searchLocation && FT) {
-      var dS = FT.distanceM(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
-      var bS = FT.bearingDeg(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
-      lines.push(
-        "From SEARCH: " +
-          FT.formatFieldDistance(dS) +
-          " · " +
-          FT.cardinalFromBearing(bS) +
-          " " +
-          Math.round(bS) +
-          "°"
-      );
-    }
-    lines.push("Context only — not habitat proof.");
-    body.textContent = lines.join("\n");
     hud.removeAttribute("hidden");
   }
 
@@ -3498,10 +3556,70 @@
       });
   }
 
+  /** Neighborhood elev → derived slope/aspect for Inspect (physical geography). */
+  function fetchInspectTerrain(lat, lng, gen) {
+    state.inspectTerrainStatus = "loading";
+    state.inspectTerrainDerived = null;
+    renderInspectHud();
+    if (!InspectIntel || !InspectIntel.elevationNeighborhoodUrl) {
+      state.inspectTerrainStatus = "unavailable";
+      renderInspectHud();
+      return;
+    }
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
+      state.inspectTerrainStatus = "unavailable";
+      renderInspectHud();
+      return;
+    }
+    var nb = InspectIntel.elevationNeighborhoodUrl(lat, lng);
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = null;
+    if (ctrl) {
+      timer = setTimeout(function () {
+        try {
+          ctrl.abort();
+        } catch (e) { /* */ }
+      }, 8000);
+    }
+    fetch(nb.url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (res) {
+        if (!res.ok) throw new Error("terrain elev " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (timer) clearTimeout(timer);
+        if (gen !== state.inspectElevGen) return;
+        var elev = (data && data.elevation) || [];
+        var derived = InspectIntel.terrainFromElevationArray(elev, nb.stepM);
+        if (!derived || derived.slopeDeg == null) {
+          state.inspectTerrainStatus = "unavailable";
+          state.inspectTerrainDerived = null;
+        } else {
+          state.inspectTerrainStatus = "ready";
+          state.inspectTerrainDerived = derived;
+          if (state.inspectElevStatus !== "ready" && derived.elevM != null) {
+            state.inspectElevStatus = "ready";
+            state.inspectElevM = derived.elevM;
+          }
+        }
+        renderInspectHud();
+      })
+      .catch(function () {
+        if (timer) clearTimeout(timer);
+        if (gen !== state.inspectElevGen) return;
+        state.inspectTerrainStatus = "unavailable";
+        state.inspectTerrainDerived = null;
+        renderInspectHud();
+      });
+  }
+
   function showInspectAt(latlng) {
     if (!latlng || !map) return;
     state.inspectArmed = false;
     state.inspectLatLng = { lat: latlng.lat, lng: latlng.lng };
+    state.inspectTerrainDerived = null;
+    state.inspectTerrainStatus = "idle";
+    state.inspectReport = null;
     shellModeClass(false, false);
     if (inspectMarker) {
       try {
@@ -3513,10 +3631,23 @@
       color: "#f0c14a",
       fillColor: "#f0c14a",
       fillOpacity: 0.9,
-      weight: 2
+      weight: 2,
+      className: "sheds-inspect-marker"
     }).addTo(map);
+    try {
+      inspectMarker.bindTooltip("INSPECT — landscape context (not YOU, not OBS)", {
+        permanent: false,
+        direction: "top",
+        className: "sheds-inspect-tip"
+      });
+    } catch (e2) { /* */ }
     var gen = ++state.inspectElevGen;
+    ensureGisPacks().then(function () {
+      if (gen !== state.inspectElevGen) return;
+      renderInspectHud();
+    });
     fetchInspectElevation(latlng.lat, latlng.lng, gen);
+    fetchInspectTerrain(latlng.lat, latlng.lng, gen);
     renderInspectHud();
   }
 

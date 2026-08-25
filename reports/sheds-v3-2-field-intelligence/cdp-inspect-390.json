@@ -1,0 +1,18 @@
+{
+  "armed": {
+    "type": "string",
+    "value": "armed"
+  },
+  "hud": {
+    "type": "object",
+    "value": {
+      "hidden": false,
+      "text": "42.90816, -94.92188\nElevation: ~409 m (1342 ft) — network sample\nSlope: ~0° (open-meteo-neighborhood)\nHabitat: unavailable (no GIS pack for this point)\nFrom YOU: locate first\nEvidence: Moderate supporting signals\nWhy this area may matter:\n· Nearly flat terrain (~0°).\nLimits:\n· This is habitat/terrain suitability context — not a shed prediction.\n· No claim that deer, trails, bedding, or antlers are present.\n· No GIS habitat pack covers this point — land-cover guidance unavailable.\nContext only — not habitat proof from satellite pixels alone.\nModeled suitability ≠ observed wildlife.",
+      "overflow": false,
+      "mapShare": 1,
+      "hasWhy": true,
+      "hasLimits": true,
+      "banned": false
+    }
+  }
+}

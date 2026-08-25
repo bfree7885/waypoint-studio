@@ -31,7 +31,8 @@ One Waypoint ecosystem. Multiple specialized experiences.
 | **Sheds** | **Go / field exploration** — specialized map-first shed hunting: terrain, habitat, observations, field tools. Keep the specialty; do not dilute it into generic outdoor GIS. |
 
 Implementation detail for Discover (sources, ranking, honesty): `docs/DASHBOARD-DISCOVER.md`.  
-Scenes + Publishing (stories, DFD series, handoffs): `docs/SCENES-PUBLISHING.md`.
+Scenes + Publishing (stories, DFD series, handoffs): `docs/SCENES-PUBLISHING.md`.  
+Sheds field intelligence (Inspect / terrain / habitat honesty): `docs/sheds/SHEDS-V3-2-FIELD-INTELLIGENCE.md`.
 
 ### Shared platform (not separate consumer products)
 

@@ -1575,6 +1575,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
 - Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
 
+### Lessons Learned — Sheds V3.2 Inspect Field Intelligence (2026-08-25)
+
+- Inspect is the right doorway for landscape reading: enrich the existing HUD rather than adding a GIS control tower.
+- Derive aspect from Open-Meteo neighborhood elevations when packs lack aspect rasters; label solar notes as physical geography, never bedding claims.
+- Confidence labels must key off **input presence** (elev / slope-aspect / habitat), not invented certainty.
+- Keep Inspect scrollable + Done on mobile so the map stays the primary surface.
+
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
 - Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
