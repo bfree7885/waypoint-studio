@@ -1,4 +1,8 @@
 {
+  "verdict": "CONDITIONAL_PASS",
+  "base": "fead5bb3cbf90b1815e9169942dc7bd3a0392070",
+  "tip": "6b2b35beaf96bfa0e82e822d8284f646a5135f0f",
+  "docs_tip": "d01cb65cda02726d985666d6e4cc1e24067fa793",
   "fails": 0,
   "warns": 1,
   "findings": [
@@ -65,7 +69,7 @@
     {
       "level": "PASS",
       "id": "measure-still-active",
-      "detail": "4 points · 213.6 mi"
+      "detail": "4 points \u00b7 213.6 mi"
     },
     {
       "level": "PASS",
@@ -75,7 +79,7 @@
     {
       "level": "PASS",
       "id": "measure-points-landed",
-      "detail": "4 points · 213.6 mi"
+      "detail": "4 points \u00b7 213.6 mi"
     },
     {
       "level": "PASS",
@@ -100,7 +104,7 @@
     {
       "level": "PASS",
       "id": "inspect-elev-honest",
-      "detail": "44.54351, -94.89990\nElevation: ~296 m (971 ft) — network sample\nFrom YOU: locate first\nContext only — not habitat proof."
+      "detail": "44.54351, -94.89990\nElevation: ~296 m (971 ft) \u2014 network sample\nFrom YOU: locate first\nContext only \u2014 not habitat proof."
     },
     {
       "level": "PASS",
@@ -170,9 +174,7 @@
     {
       "level": "WARN",
       "id": "collision-15-1280-desktop",
-      "detail": "prompt×here=20.6 (known pre-existing desktop; deferred)"
+      "detail": "prompt\u00d7here=20.6 (known pre-existing desktop; deferred)"
     }
-  ],
-  "base": "fead5bb3cbf90b1815e9169942dc7bd3a0392070",
-  "verdict": "CONDITIONAL_PASS"
+  ]
 }
