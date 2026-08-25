@@ -1,0 +1,180 @@
+{
+  "verdict": "CONDITIONAL_PASS",
+  "base": "fead5bb3cbf90b1815e9169942dc7bd3a0392070",
+  "tip": "6b2b35beaf96bfa0e82e822d8284f646a5135f0f",
+  "docs_tip": "d01cb65cda02726d985666d6e4cc1e24067fa793",
+  "fails": 0,
+  "warns": 1,
+  "findings": [
+    {
+      "level": "PASS",
+      "id": "units-ft-boundary",
+      "detail": "899 ft"
+    },
+    {
+      "level": "PASS",
+      "id": "units-yd-boundary",
+      "detail": "301 yd"
+    },
+    {
+      "level": "PASS",
+      "id": "units-mi-boundary",
+      "detail": "1.00 mi"
+    },
+    {
+      "level": "PASS",
+      "id": "haversine-sanity",
+      "detail": "111.19508023327376"
+    },
+    {
+      "level": "PASS",
+      "id": "satellite-honesty-lede",
+      "detail": "present"
+    },
+    {
+      "level": "PASS",
+      "id": "no-banned-biology-lede",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "basemap-cycle-final",
+      "detail": "street"
+    },
+    {
+      "level": "PASS",
+      "id": "basemap-layer-count-after-cycle",
+      "detail": "layers=1"
+    },
+    {
+      "level": "PASS",
+      "id": "basemap-persist-restore",
+      "detail": "\"satellite\""
+    },
+    {
+      "level": "PASS",
+      "id": "basemap-invalid-fallback",
+      "detail": "street"
+    },
+    {
+      "level": "PASS",
+      "id": "session-survives-basemap",
+      "detail": "active"
+    },
+    {
+      "level": "PASS",
+      "id": "measure-during-session",
+      "detail": "measuring+session"
+    },
+    {
+      "level": "PASS",
+      "id": "measure-still-active",
+      "detail": "4 points \u00b7 213.6 mi"
+    },
+    {
+      "level": "PASS",
+      "id": "session-during-measure-taps",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "measure-points-landed",
+      "detail": "4 points \u00b7 213.6 mi"
+    },
+    {
+      "level": "PASS",
+      "id": "area-approx-label",
+      "detail": "Approx. enclosed area: 3435959.9 ac (not survey-grade)"
+    },
+    {
+      "level": "PASS",
+      "id": "measure-done-session-ok",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "measure-survives-basemap",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "session-survives-measure-basemap",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "inspect-elev-honest",
+      "detail": "44.54351, -94.89990\nElevation: ~296 m (971 ft) \u2014 network sample\nFrom YOU: locate first\nContext only \u2014 not habitat proof."
+    },
+    {
+      "level": "PASS",
+      "id": "inspect-context-disclaimer",
+      "detail": "ok"
+    },
+    {
+      "level": "PASS",
+      "id": "inspect-offline-no-fabricate",
+      "detail": "43.43697, -92.08740 | Elevation: unavailable"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-06-320-initial",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-07-390-street",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-08-390-satellite",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-09-390-hybrid",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-10-390-map-layers",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-11-390-active-prompt-you",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-12-390-active-hybrid",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-12b-390-active-measure",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-12c-390-field-briefing",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-13-430-portrait",
+      "detail": "clean"
+    },
+    {
+      "level": "PASS",
+      "id": "collision-14-844x390-landscape",
+      "detail": "clean"
+    },
+    {
+      "level": "WARN",
+      "id": "collision-15-1280-desktop",
+      "detail": "prompt\u00d7here=20.6 (known pre-existing desktop; deferred)"
+    }
+  ]
+}

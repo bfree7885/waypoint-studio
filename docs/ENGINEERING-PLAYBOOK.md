@@ -1546,6 +1546,20 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Prefer naming Map & layers in the More lede over restoring a permanent Leaflet MAP control — keeps the map clean while fixing first-time discoverability.
 - Desktop `prompt×here` stacking is a separate layout; do not “fix” it during mobile clearance work unless the mobile CSS regresses it.
 
+### Lessons Learned — Sheds V3.1 mapping foundation (2026-08-24)
+
+- Esri World Imagery fits the existing World Topo host family; Hybrid must be imagery + Esri reference labels as a LayerGroup — not a brittle multi-CDN mashup.
+- Measure/Inspect must short-circuit map clicks ahead of SEARCH so field tools never steal intentional search placement.
+- Do not scrape imagery into offline packs under public ArcGIS tile URLs — offline needs a licensed export path (see SHEDS-V3-OFFLINE-MAP-ARCHITECTURE.md).
+- DeviceOrientation compass is not “just add a needle”; defer until permission + stationary honesty are solved; GPS course + inspect bearings are enough for V3.1.
+
+### Lessons Learned — Sheds V3.1 hostile acceptance (2026-08-24)
+
+- SEARCH placement debounce (450ms) must **not** apply to Measure/Inspect — field users tap vertices faster than that; use a short double-fire guard only.
+- Hybrid reliability belongs on imagery, not reference labels — label tile failure must not paint the whole basemap “degraded.”
+- `window` `offline` events do not flip `navigator.onLine` in Chromium CDP; stub `onLine` (or Network conditions) when validating offline elevation honesty.
+- Desktop `prompt×here` remains a known deferred layout; classify as WARN in mobile-field acceptance, not a V3.1 hold unless owners expand scope.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.

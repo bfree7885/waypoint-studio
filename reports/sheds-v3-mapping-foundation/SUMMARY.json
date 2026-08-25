@@ -1,0 +1,19 @@
+{
+  "slice": "V3.1 Field Map Foundation",
+  "primaryCollisionFree": true,
+  "basemaps": ["street", "topo", "satellite", "hybrid"],
+  "provider": "Esri World Imagery (+ Reference for Hybrid); CARTO Voyager street; Esri World Topo",
+  "desktopPromptHere": "pre-existing overlap ~20.6 — deferred",
+  "screenshots": [
+    "01-320-portrait.png",
+    "02-390-portrait.png",
+    "03-390-active.png",
+    "04-390-active-prompt-you-PRIMARY.png",
+    "05-390-briefing-expanded.png",
+    "06-390-map-layers.png",
+    "07-390-measure.png",
+    "08-844x390-landscape.png",
+    "09-1280-desktop.png",
+    "10-390-satellite.png"
+  ]
+}

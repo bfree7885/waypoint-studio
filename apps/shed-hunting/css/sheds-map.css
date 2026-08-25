@@ -189,6 +189,108 @@ html, body {
   display: none;
 }
 
+.sheds-tools-grid--compact {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.sheds-measure-hud,
+.sheds-inspect-hud {
+  position: absolute;
+  z-index: 580;
+  left: calc(0.5rem + var(--sheds-safe-left));
+  right: calc(0.5rem + var(--sheds-safe-right));
+  top: calc(4.85rem + var(--sheds-safe-top));
+  max-width: 22rem;
+  padding: 0.55rem 0.7rem 0.65rem;
+  border-radius: 14px;
+  border: 1px solid var(--sheds-border);
+  background: rgba(8, 18, 14, 0.92);
+  backdrop-filter: var(--sheds-blur);
+  -webkit-backdrop-filter: var(--sheds-blur);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  color: var(--sheds-text);
+  pointer-events: auto;
+}
+
+html.sheds-session-active .sheds-measure-hud,
+html.sheds-session-active .sheds-inspect-hud {
+  top: calc(7.85rem + var(--sheds-safe-top));
+}
+
+.sheds-measure-hud[hidden],
+.sheds-inspect-hud[hidden] {
+  display: none !important;
+}
+
+.sheds-measure-hud__kicker,
+.sheds-inspect-hud__kicker {
+  margin: 0 0 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sheds-accent);
+}
+
+.sheds-measure-hud__dist,
+.sheds-inspect-hud__body {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.sheds-measure-hud__area {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: var(--sheds-muted);
+}
+
+.sheds-measure-hud__area[hidden] {
+  display: none !important;
+}
+
+.sheds-measure-hud__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+}
+
+.sheds-measure-hud__actions .sheds-btn {
+  min-height: 2.4rem;
+  flex: 1 1 auto;
+}
+
+#sheds-map-shell.is-measuring,
+#sheds-map-shell.is-inspecting {
+  cursor: crosshair;
+}
+
+.sheds-measure-vertex {
+  background: var(--sheds-accent) !important;
+  border: 2px solid #0a1410 !important;
+  border-radius: 50%;
+  width: 12px !important;
+  height: 12px !important;
+  margin-left: -6px !important;
+  margin-top: -6px !important;
+}
+
+@media (max-width: 719px), (max-height: 500px) {
+  .sheds-measure-hud,
+  .sheds-inspect-hud {
+    top: calc(var(--sheds-mobile-header-end, 3.95rem) + var(--sheds-mobile-chrome-gap, 0.45rem));
+    max-width: min(20rem, calc(100vw - 5.5rem));
+  }
+
+  html.sheds-session-active .sheds-measure-hud,
+  html.sheds-session-active .sheds-inspect-hud {
+    top: var(--sheds-mobile-strip-end, calc(8.35rem + var(--sheds-safe-top)));
+  }
+}
+
 @keyframes sheds-spin {
   to { transform: rotate(360deg); }
 }

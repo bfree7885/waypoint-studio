@@ -1,0 +1,11 @@
+{
+  "collisions": [
+    "prompt×here overlap=20.6"
+  ],
+  "tight": [],
+  "basemap": "street",
+  "measureHidden": true,
+  "inspectHidden": true,
+  "hasBasemapSelect": true,
+  "hasMeasureBtn": true
+}

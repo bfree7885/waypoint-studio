@@ -5,14 +5,22 @@
  * is donation-funded, has no SLA, and blocks production web apps by returning
  * HTTP 200 placeholder PNGs with `x-blocked` (gray gaps with no tileerror).
  *
- * Defaults: CARTO Voyager (street) + Esri World Topo (contours).
+ * Defaults: CARTO Voyager (street) + Esri World Topo + Esri World Imagery
+ * (+ Imagery Hybrid = imagery + Esri reference labels).
  * Optional override via window.WAYPOINT_MAP_TILE_CONFIG or
  * <meta name="waypoint-map-tiles" content='{"streetUrl":"..."}'>.
+ *
+ * Licensing note: Esri ArcGIS Online basemap tiles require on-map attribution
+ * and must not be systematically harvested for redistribution/offline packs.
+ * Sheds already ships Esri World Topo; World Imagery uses the same host family.
+ * See docs/sheds/SHEDS-V3-MAPPING-FOUNDATION.md.
  */
 (function (global) {
   "use strict";
 
   var OSM_PUBLIC_HOST_RE = /(^|\.)tile\.openstreetmap\.org$/i;
+  var BASEMAP_STORAGE_KEY = "waypoint-sheds-basemap-v1";
+  var VALID_BASEMAP_IDS = ["street", "topo", "satellite", "hybrid"];
 
   var DEFAULTS = {
     streetId: "carto-voyager",
@@ -28,7 +36,23 @@
     topoUrl: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
     topoMaxZoom: 19,
     topoAttribution:
-      "Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community"
+      "Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community",
+    satelliteId: "esri-world-imagery",
+    satelliteLabel: "Satellite",
+    satelliteUrl:
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    satelliteMaxZoom: 19,
+    satelliteAttribution:
+      "Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+    /* Reference labels for Hybrid — same Esri family, not a scraped mashup */
+    hybridRefId: "esri-world-reference",
+    hybridRefUrl:
+      "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}",
+    hybridRefMaxZoom: 19,
+    hybridRefAttribution:
+      "Reference &copy; Esri &mdash; Esri, HERE, Garmin, and the GIS User Community",
+    hybridId: "esri-imagery-hybrid",
+    hybridLabel: "Hybrid"
   };
 
   function readMetaConfig() {
@@ -88,6 +112,7 @@
     var layer = L.tileLayer(opts.url, layerOpts);
     layer._shedsProviderId = opts.id || "custom";
     layer._shedsProviderLabel = opts.label || opts.id || "Map";
+    layer._shedsBasemapId = opts.basemapId || null;
     return layer;
   }
 
@@ -147,6 +172,39 @@
     return layer;
   }
 
+  function normalizeBasemapId(id) {
+    var s = String(id || "").toLowerCase();
+    if (VALID_BASEMAP_IDS.indexOf(s) >= 0) return s;
+    return null;
+  }
+
+  function loadSavedBasemapId() {
+    try {
+      var raw = global.localStorage && global.localStorage.getItem(BASEMAP_STORAGE_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      var id = normalizeBasemapId(parsed && parsed.id);
+      return id;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function saveBasemapId(id) {
+    var norm = normalizeBasemapId(id);
+    if (!norm) return false;
+    try {
+      if (!global.localStorage) return false;
+      global.localStorage.setItem(
+        BASEMAP_STORAGE_KEY,
+        JSON.stringify({ id: norm, savedAt: new Date().toISOString() })
+      );
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   function createBasemaps(L) {
     if (!L || !L.tileLayer) throw new Error("Leaflet required");
     var cfg = mergeConfig();
@@ -157,7 +215,8 @@
       subdomains: cfg.streetSubdomains,
       maxZoom: cfg.streetMaxZoom,
       attribution: cfg.streetAttribution,
-      keepBuffer: 3
+      keepBuffer: 3,
+      basemapId: "street"
     });
     var topo = createLayer(L, {
       id: cfg.topoId,
@@ -165,27 +224,138 @@
       url: cfg.topoUrl,
       maxZoom: cfg.topoMaxZoom,
       attribution: cfg.topoAttribution,
-      keepBuffer: 2
+      keepBuffer: 2,
+      basemapId: "topo"
     });
+    var satellite = createLayer(L, {
+      id: cfg.satelliteId,
+      label: cfg.satelliteLabel,
+      url: cfg.satelliteUrl,
+      maxZoom: cfg.satelliteMaxZoom,
+      attribution: cfg.satelliteAttribution,
+      keepBuffer: 2,
+      basemapId: "satellite"
+    });
+    var hybridRef = createLayer(L, {
+      id: cfg.hybridRefId,
+      label: "Reference labels",
+      url: cfg.hybridRefUrl,
+      maxZoom: cfg.hybridRefMaxZoom,
+      attribution: cfg.hybridRefAttribution,
+      keepBuffer: 1,
+      basemapId: "hybrid"
+    });
+    /* Imagery + reference labels as one selectable basemap (legal Esri hybrid pattern). */
+    var hybridImagery = createLayer(L, {
+      id: cfg.satelliteId + "-hybrid-base",
+      label: cfg.hybridLabel,
+      url: cfg.satelliteUrl,
+      maxZoom: cfg.satelliteMaxZoom,
+      attribution: cfg.satelliteAttribution,
+      keepBuffer: 2,
+      basemapId: "hybrid"
+    });
+    var hybrid =
+      L.layerGroup && typeof L.layerGroup === "function"
+        ? L.layerGroup([hybridImagery, hybridRef])
+        : hybridImagery;
+    hybrid._shedsProviderId = cfg.hybridId;
+    hybrid._shedsProviderLabel = cfg.hybridLabel;
+    hybrid._shedsBasemapId = "hybrid";
+
+    var byId = {
+      street: street,
+      topo: topo,
+      satellite: satellite,
+      hybrid: hybrid
+    };
+
+    var baseLayers = {};
+    baseLayers[cfg.streetLabel] = street;
+    baseLayers[cfg.topoLabel] = topo;
+    baseLayers[cfg.satelliteLabel] = satellite;
+    baseLayers[cfg.hybridLabel] = hybrid;
+
     return {
       config: cfg,
       street: street,
       topo: topo,
-      baseLayers: (function () {
-        var o = {};
-        o[cfg.streetLabel] = street;
-        o[cfg.topoLabel] = topo;
-        return o;
-      })()
+      satellite: satellite,
+      hybrid: hybrid,
+      hybridRef: hybridRef,
+      hybridImagery: hybridImagery,
+      byId: byId,
+      baseLayers: baseLayers,
+      ids: VALID_BASEMAP_IDS.slice()
     };
+  }
+
+  function listBasemapOptions(basemaps) {
+    var cfg = (basemaps && basemaps.config) || mergeConfig();
+    return [
+      { id: "street", label: cfg.streetLabel },
+      { id: "topo", label: cfg.topoLabel },
+      { id: "satellite", label: cfg.satelliteLabel },
+      { id: "hybrid", label: cfg.hybridLabel }
+    ];
+  }
+
+  /**
+   * Swap active basemap. Removes other Sheds basemap layers first.
+   * Returns the applied id (may fall back to street).
+   */
+  function applyBasemap(map, basemaps, id, hooks) {
+    hooks = hooks || {};
+    if (!map || !basemaps || !basemaps.byId) return null;
+    var want = normalizeBasemapId(id) || "street";
+    if (!basemaps.byId[want]) want = "street";
+    var ids = VALID_BASEMAP_IDS;
+    var i;
+    for (i = 0; i < ids.length; i += 1) {
+      var layer = basemaps.byId[ids[i]];
+      if (layer && map.hasLayer(layer)) {
+        try {
+          map.removeLayer(layer);
+        } catch (e) { /* */ }
+      }
+    }
+    /* Guard against orphaned Hybrid children if a prior path added them bare. */
+    ["hybridRef", "hybridImagery"].forEach(function (key) {
+      var orphan = basemaps[key];
+      if (orphan && map.hasLayer(orphan)) {
+        try {
+          map.removeLayer(orphan);
+        } catch (e2) { /* */ }
+      }
+    });
+    var next = basemaps.byId[want];
+    if (!next) return null;
+    next.addTo(map);
+    saveBasemapId(want);
+    if (typeof hooks.onApplied === "function") hooks.onApplied(want, next);
+    return want;
+  }
+
+  function resolveInitialBasemapId(basemaps) {
+    var saved = loadSavedBasemapId();
+    if (saved && basemaps && basemaps.byId && basemaps.byId[saved]) return saved;
+    return "street";
   }
 
   global.WaypointShedsTiles = {
     DEFAULTS: DEFAULTS,
+    BASEMAP_STORAGE_KEY: BASEMAP_STORAGE_KEY,
+    VALID_BASEMAP_IDS: VALID_BASEMAP_IDS.slice(),
     mergeConfig: mergeConfig,
     createBasemaps: createBasemaps,
     attachReliability: attachReliability,
     assertNotOsmPublic: assertNotOsmPublic,
+    normalizeBasemapId: normalizeBasemapId,
+    loadSavedBasemapId: loadSavedBasemapId,
+    saveBasemapId: saveBasemapId,
+    listBasemapOptions: listBasemapOptions,
+    applyBasemap: applyBasemap,
+    resolveInitialBasemapId: resolveInitialBasemapId,
     isOsmPublicHost: function (host) {
       return OSM_PUBLIC_HOST_RE.test(String(host || ""));
     }
