@@ -89,7 +89,9 @@
     var acres = m2 / 4046.8564224;
     if (acres < 0.1) return Math.round(m2 * 10.76391) + " ft²";
     if (acres < 20) return acres.toFixed(2) + " ac";
-    return acres.toFixed(1) + " ac";
+    if (acres < 1000) return acres.toFixed(1) + " ac";
+    /* Large field polygons: whole acres — avoid pathological 7-digit .1 noise. */
+    return Math.round(acres).toLocaleString("en-US") + " ac";
   }
 
   global.WaypointShedsFieldTools = {

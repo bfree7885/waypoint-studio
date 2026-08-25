@@ -1196,11 +1196,18 @@
       var layer = basemapsBundle.byId[id];
       if (layer) Tiles.attachReliability(layer, { onStatus: setTileStatus });
     });
-    /* Hybrid group: attach reliability to imagery child if present */
+    /* Hybrid group: reliability on imagery only — label-tile failures must not
+       mark the whole basemap degraded while imagery still works. */
     try {
-      if (basemapsBundle.hybrid && basemapsBundle.hybrid.eachLayer) {
+      if (basemapsBundle.hybridImagery) {
+        Tiles.attachReliability(basemapsBundle.hybridImagery, { onStatus: setTileStatus });
+      } else if (basemapsBundle.hybrid && basemapsBundle.hybrid.eachLayer) {
+        var first = true;
         basemapsBundle.hybrid.eachLayer(function (lyr) {
-          if (lyr && lyr.on) Tiles.attachReliability(lyr, { onStatus: setTileStatus });
+          if (first && lyr && lyr.on) {
+            Tiles.attachReliability(lyr, { onStatus: setTileStatus });
+            first = false;
+          }
         });
       }
     } catch (e) { /* */ }
@@ -1320,7 +1327,10 @@
     map.on("click", function (e) {
       if (document.querySelector(".sheds-sheet.is-open")) return;
       var now = Date.now();
-      if (now - state.lastClickAt < 450) return;
+      /* SEARCH placement uses a 450ms debounce against accidental double-taps.
+         Measure/Inspect need quick successive vertices — only guard true doubles. */
+      var minGap = state.measureActive || state.inspectArmed ? 80 : 450;
+      if (now - state.lastClickAt < minGap) return;
       state.lastClickAt = now;
       if (state.measureActive) {
         addMeasurePoint(e.latlng);
@@ -3269,7 +3279,7 @@
         var areaLabel = FT.formatFieldArea(area);
         if (areaLabel) {
           areaEl.removeAttribute("hidden");
-          areaEl.textContent = "Approx. area (if closed): " + areaLabel;
+          areaEl.textContent = "Approx. enclosed area: " + areaLabel + " (not survey-grade)";
         } else {
           areaEl.setAttribute("hidden", "");
         }
@@ -3316,6 +3326,9 @@
     shellModeClass(true, false);
     updateMeasureHud();
     closeAllSheets();
+    /* Hide SEARCH prompt while measuring — taps are measure vertices, not SEARCH. */
+    var prompt = $("search-prompt");
+    if (prompt) prompt.setAttribute("hidden", "");
   }
 
   function stopMeasureMode() {
@@ -3325,6 +3338,7 @@
     var hud = $("measure-hud");
     if (hud) hud.setAttribute("hidden", "");
     shellModeClass(false, state.inspectArmed);
+    if (!state.inspectArmed) syncSearchPrompt();
   }
 
   function addMeasurePoint(latlng) {
@@ -3360,6 +3374,7 @@
     var hud = $("inspect-hud");
     if (hud && !opts.keepHud) hud.setAttribute("hidden", "");
     shellModeClass(state.measureActive, false);
+    if (!state.measureActive) syncSearchPrompt();
   }
 
   function armInspectMode() {
@@ -3371,6 +3386,9 @@
     var hud = $("inspect-hud");
     if (body) body.textContent = "Tap the map to inspect a point.";
     if (hud) hud.removeAttribute("hidden");
+    /* Hide SEARCH prompt while armed — next tap is INSPECT, not SEARCH. */
+    var prompt = $("search-prompt");
+    if (prompt) prompt.setAttribute("hidden", "");
   }
 
   function renderInspectHud() {
@@ -3433,17 +3451,33 @@
     state.inspectElevStatus = "loading";
     state.inspectElevM = null;
     renderInspectHud();
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
+      state.inspectElevStatus = "unavailable";
+      state.inspectElevM = null;
+      renderInspectHud();
+      return;
+    }
     var url =
       "https://api.open-meteo.com/v1/elevation?latitude=" +
       encodeURIComponent(lat.toFixed(5)) +
       "&longitude=" +
       encodeURIComponent(lng.toFixed(5));
-    fetch(url)
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = null;
+    if (ctrl) {
+      timer = setTimeout(function () {
+        try {
+          ctrl.abort();
+        } catch (e) { /* */ }
+      }, 8000);
+    }
+    fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
       .then(function (res) {
         if (!res.ok) throw new Error("elev " + res.status);
         return res.json();
       })
       .then(function (data) {
+        if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
         var elev = data && data.elevation && data.elevation[0];
         if (elev == null || !isFinite(elev)) {
@@ -3456,6 +3490,7 @@
         renderInspectHud();
       })
       .catch(function () {
+        if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
         state.inspectElevStatus = "unavailable";
         state.inspectElevM = null;

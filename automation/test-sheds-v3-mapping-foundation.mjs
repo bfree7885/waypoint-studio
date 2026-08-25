@@ -61,10 +61,16 @@ const area = FT.polygonAreaM2([
 ]);
 assert("polygon area computed", area != null && area > 0);
 assert("area format", !!FT.formatFieldArea(area));
+const largeLabel = FT.formatFieldArea(1234 * 4046.8564224);
+assert("large area whole acres", /1,?234 ac/.test(largeLabel), largeLabel);
 
 const app = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-map-app.js"), "utf8");
 assert("measure ignores SEARCH while active", /if \(state\.measureActive\)/.test(app));
 assert("inspect ignores SEARCH while armed", /if \(state\.inspectArmed\)/.test(app));
+assert("measure click debounce relaxed", /measureActive \|\| state\.inspectArmed \? 80 : 450/.test(app));
+assert("inspect elev offline short-circuit", /offlineForced[\s\S]{0,120}navigator\.onLine === false/.test(app));
+assert("inspect elev generation guard", /gen !== state\.inspectElevGen/.test(app));
+assert("approx area honesty copy", /Approx\. enclosed area:/.test(app) && /not survey-grade/.test(app));
 
 if (failures.length) {
   console.error("\nField tools tests failed (" + failures.length + ").");

@@ -283,6 +283,7 @@
       satellite: satellite,
       hybrid: hybrid,
       hybridRef: hybridRef,
+      hybridImagery: hybridImagery,
       byId: byId,
       baseLayers: baseLayers,
       ids: VALID_BASEMAP_IDS.slice()
@@ -318,6 +319,15 @@
         } catch (e) { /* */ }
       }
     }
+    /* Guard against orphaned Hybrid children if a prior path added them bare. */
+    ["hybridRef", "hybridImagery"].forEach(function (key) {
+      var orphan = basemaps[key];
+      if (orphan && map.hasLayer(orphan)) {
+        try {
+          map.removeLayer(orphan);
+        } catch (e2) { /* */ }
+      }
+    });
     var next = basemaps.byId[want];
     if (!next) return null;
     next.addTo(map);

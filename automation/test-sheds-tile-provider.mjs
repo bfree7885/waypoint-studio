@@ -193,6 +193,10 @@ assert("map app has tile status UI", /setTileStatus|map-tile-status/.test(appSrc
 assert("map app applies basemap helper", /applyBasemap|setBasemapFromUi/.test(appSrc));
 assert("map app measure mode", /startMeasureMode|measureActive/.test(appSrc));
 assert("map app inspect mode", /armInspectMode|inspectArmed/.test(appSrc));
+assert("hybrid imagery reliability target", /hybridImagery/.test(appSrc));
+assert("applyBasemap orphan hybrid guard", /hybridRef[\s\S]{0,80}hybridImagery/.test(
+  fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-tile-provider.js"), "utf8")
+));
 
 const html = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8");
 assert("html basemap select", /id="basemap-select"/.test(html));
