@@ -315,13 +315,21 @@
     }
     if (mountState.view === "workspace") {
       var Deepen = api("dashboardRebuildDeepeners");
-      if (Deepen && Deepen.bind) {
-        Deepen.bind(mountState.host, {
-          platform: mountState.platform || null,
-          placeContext: mountState.placeContext || null,
-          location: mountState.placeContext || null,
-          now: null
-        });
+      var deepenCtx = {
+        platform: mountState.platform || null,
+        placeContext: mountState.placeContext || null,
+        location: mountState.placeContext || null,
+        now: null
+      };
+      var runDeepen = function () {
+        if (Deepen && Deepen.bind) {
+          Deepen.bind(mountState.host, deepenCtx);
+        }
+      };
+      if (Deepen && Deepen.ensureCatalog) {
+        Deepen.ensureCatalog(runDeepen);
+      } else {
+        runDeepen();
       }
     }
     try {

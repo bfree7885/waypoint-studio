@@ -291,6 +291,16 @@ html[data-product="scenes"],
   padding: clamp(1.75rem, 4vw, 2.35rem) 0 0;
 }
 
+.scenes-stories {
+  padding: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--scenes-ink) 12%, transparent);
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.scenes-stories .scenes-elsewhere__list {
+  margin-top: 1rem;
+}
+
 .scenes-elsewhere__title {
   margin: 0 0 1rem;
   font-size: 0.72rem !important;

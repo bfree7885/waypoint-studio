@@ -1,0 +1,414 @@
+{
+  "version": "1.0.0",
+  "id": "waypoint-publishing-relationships",
+  "description": "Deterministic content relationships for Scenes + Publishing. Editorial matches only — never invent relevance.",
+  "series": {
+    "deep-forest-dispatch": {
+      "label": "Deep Forest Dispatch",
+      "role": "editorial-series",
+      "libraryHref": "/deep-forest-dispatch/",
+      "note": "Waypoint Publishing visual Earth stories — not a fourth Studio product."
+    },
+    "articles": {
+      "label": "Articles",
+      "role": "curated-reading",
+      "libraryHref": "/articles/",
+      "note": "Mostly third-party curated field reading with Waypoint Take."
+    },
+    "scenes": {
+      "label": "Scenes",
+      "role": "explore-understand",
+      "libraryHref": "/apps/scenes/",
+      "note": "Craft tools + visual exploration; Publishing handoffs land here when justified."
+    }
+  },
+  "stories": [
+    {
+      "id": "valley-fog-at-dawn",
+      "slug": "valley-fog-at-dawn",
+      "title": "Why do valleys fill with fog at dawn?",
+      "href": "/deep-forest-dispatch/stories/valley-fog-at-dawn/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "fog",
+        "valley-fog",
+        "radiation-fog",
+        "atmosphere",
+        "weather",
+        "dew-point"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "lenticular-clouds-explained",
+        "mount-hood-rain-shadow"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "fog",
+          "mist",
+          "valley fog"
+        ],
+        "conditionRule": "quiet-humid-cool",
+        "why": "Explains how overnight cooling and cold-air drainage fill valleys with fog — not a fog forecast."
+      }
+    },
+    {
+      "id": "lenticular-clouds-explained",
+      "slug": "lenticular-clouds-explained",
+      "title": "Why do these clouds look like UFOs — and stay still?",
+      "href": "/deep-forest-dispatch/stories/lenticular-clouds-explained/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "lenticular",
+        "lee-wave",
+        "clouds",
+        "mountain-wave",
+        "atmosphere"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "mount-hood-rain-shadow",
+        "valley-fog-at-dawn"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "lenticular",
+          "lee wave",
+          "mountain wave"
+        ],
+        "conditionRule": null,
+        "why": "Explains stacked lee-wave clouds over mountains."
+      }
+    },
+    {
+      "id": "mount-hood-rain-shadow",
+      "slug": "mount-hood-rain-shadow",
+      "title": "Why one side of this mountain is a forest — and the other is a desert",
+      "href": "/deep-forest-dispatch/stories/mount-hood-rain-shadow/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "rain-shadow",
+        "orographic",
+        "mount-hood",
+        "cascades",
+        "precipitation"
+      ],
+      "videoHref": "https://www.youtube.com/watch?v=ue74ge9Bz7U",
+      "youtubeVideoId": "ue74ge9Bz7U",
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "columbia-glacier-satellite-retreat",
+        "lenticular-clouds-explained"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "rain shadow",
+          "orographic"
+        ],
+        "conditionRule": null,
+        "why": "Explains orographic lifting and rain shadows around Mount Hood."
+      }
+    },
+    {
+      "id": "lencois-maranhenses",
+      "slug": "lencois-maranhenses",
+      "title": "It looks like a desert. It gets twice the rain of London.",
+      "href": "/deep-forest-dispatch/stories/lencois-maranhenses/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "dunes",
+        "lagoons",
+        "seasonal-rainfall",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "kgari-rainforest-on-sand",
+        "namib-dunes-moving-satellites"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "lençóis",
+          "lencois"
+        ],
+        "conditionRule": null,
+        "why": "Explains seasonal lagoons among coastal dunes."
+      }
+    },
+    {
+      "id": "great-salt-lake-two-colors",
+      "slug": "great-salt-lake-two-colors",
+      "title": "Why the Great Salt Lake is two colors",
+      "href": "/deep-forest-dispatch/stories/great-salt-lake-two-colors/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "salinity",
+        "terminal-lake",
+        "water",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "kati-thanda-lake-eyre-fills",
+        "okavango-dry-season-flood"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "great salt lake",
+          "salinity"
+        ],
+        "conditionRule": null,
+        "why": "Explains the causeway-split colors of Great Salt Lake."
+      }
+    },
+    {
+      "id": "okavango-dry-season-flood",
+      "slug": "okavango-dry-season-flood",
+      "title": "Why the Okavango Delta floods in the dry season",
+      "href": "/deep-forest-dispatch/stories/okavango-dry-season-flood/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "flood-pulse",
+        "wetland",
+        "water",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "kati-thanda-lake-eyre-fills",
+        "great-salt-lake-two-colors"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "okavango"
+        ],
+        "conditionRule": null,
+        "why": "Explains the delayed flood pulse of the Okavango."
+      }
+    },
+    {
+      "id": "eye-of-the-sahara-richat",
+      "slug": "eye-of-the-sahara-richat",
+      "title": "What carved the Eye of the Sahara?",
+      "href": "/deep-forest-dispatch/stories/eye-of-the-sahara-richat/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "richat",
+        "geology",
+        "earth",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "channeled-scablands-floods",
+        "mount-hood-rain-shadow"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "richat",
+          "eye of the sahara"
+        ],
+        "conditionRule": null,
+        "why": "Explains the Richat Structure as eroded dome, not impact."
+      }
+    },
+    {
+      "id": "namib-dunes-moving-satellites",
+      "slug": "namib-dunes-moving-satellites",
+      "title": "Satellites caught these dunes moving",
+      "href": "/deep-forest-dispatch/stories/namib-dunes-moving-satellites/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "dunes",
+        "migration",
+        "satellites",
+        "earth"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "kgari-rainforest-on-sand",
+        "columbia-glacier-satellite-retreat"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "namib",
+          "dune migration"
+        ],
+        "conditionRule": null,
+        "why": "Explains dune migration seen in Landsat time series."
+      }
+    },
+    {
+      "id": "kati-thanda-lake-eyre-fills",
+      "slug": "kati-thanda-lake-eyre-fills",
+      "title": "When does the desert become a sea?",
+      "href": "/deep-forest-dispatch/stories/kati-thanda-lake-eyre-fills/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "terminal-lake",
+        "endorheic",
+        "water",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "okavango-dry-season-flood",
+        "great-salt-lake-two-colors"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "lake eyre",
+          "kati thanda"
+        ],
+        "conditionRule": null,
+        "why": "Explains rare fills of Australia’s great inland lake."
+      }
+    },
+    {
+      "id": "channeled-scablands-floods",
+      "slug": "channeled-scablands-floods",
+      "title": "Why does this landscape look flood-carved?",
+      "href": "/deep-forest-dispatch/stories/channeled-scablands-floods/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "megaflood",
+        "geology",
+        "earth",
+        "scablands"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "eye-of-the-sahara-richat",
+        "columbia-glacier-satellite-retreat"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "scablands",
+          "missoula floods"
+        ],
+        "conditionRule": null,
+        "why": "Explains Channeled Scablands as ice-dam outburst country."
+      }
+    },
+    {
+      "id": "kgari-rainforest-on-sand",
+      "slug": "kgari-rainforest-on-sand",
+      "title": "How can a rainforest grow on pure sand?",
+      "href": "/deep-forest-dispatch/stories/kgari-rainforest-on-sand/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "rainforest",
+        "sand-island",
+        "ecology",
+        "unusual-places"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "lencois-maranhenses",
+        "namib-dunes-moving-satellites"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "k'gari",
+          "fraser island",
+          "kgari"
+        ],
+        "conditionRule": null,
+        "why": "Explains how rainforest persists on a sand island."
+      }
+    },
+    {
+      "id": "columbia-glacier-satellite-retreat",
+      "slug": "columbia-glacier-satellite-retreat",
+      "title": "What nearly 40 years of satellites reveal about Columbia Glacier",
+      "href": "/deep-forest-dispatch/stories/columbia-glacier-satellite-retreat/",
+      "format": "story",
+      "series": "deep-forest-dispatch",
+      "topics": [
+        "glacier",
+        "satellites",
+        "earth",
+        "climate"
+      ],
+      "videoHref": null,
+      "scenesHref": "/apps/scenes/",
+      "relatedStoryIds": [
+        "namib-dunes-moving-satellites",
+        "mount-hood-rain-shadow"
+      ],
+      "discovery": {
+        "signalKeywords": [
+          "columbia glacier",
+          "glacier retreat"
+        ],
+        "conditionRule": null,
+        "why": "Explains Columbia Glacier retreat in satellite records."
+      }
+    }
+  ],
+  "browseTaxonomy": [
+    {
+      "id": "weather-atmosphere",
+      "label": "Weather & atmosphere",
+      "topics": [
+        "fog",
+        "lenticular",
+        "clouds",
+        "atmosphere",
+        "weather"
+      ]
+    },
+    {
+      "id": "water",
+      "label": "Water",
+      "topics": [
+        "salinity",
+        "flood-pulse",
+        "terminal-lake",
+        "lagoons",
+        "wetland"
+      ]
+    },
+    {
+      "id": "earth",
+      "label": "Earth & ice",
+      "topics": [
+        "geology",
+        "glacier",
+        "megaflood",
+        "dunes",
+        "orographic"
+      ]
+    },
+    {
+      "id": "unusual-places",
+      "label": "Unusual places",
+      "topics": [
+        "unusual-places",
+        "richat",
+        "rainforest"
+      ]
+    }
+  ]
+}

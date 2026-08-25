@@ -195,7 +195,7 @@
         ],
         "related": [
           "dashboard",
-          "fieldry"
+          "sheds"
         ]
       },
       {
@@ -360,8 +360,8 @@
           "/apps/terrainbound"
         ],
         "category": "outdoor",
-        "description": "A private life list for what you encounter outdoors.",
-        "status": "live",
+        "description": "A private life list for what you encounter outdoors. Paused indefinitely — not an active Studio product.",
+        "status": "paused",
         "features": [
           {
             "id": "overview",
