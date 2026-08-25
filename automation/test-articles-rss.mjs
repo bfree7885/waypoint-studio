@@ -178,11 +178,11 @@ const take = buildWaypointTake({
   cleanedExcerpt: stripHtml(rss.items[0].description),
   categories: ["Birds"],
   geographicScopes: ["Hudson Valley"],
-  relatedProducts: [{ id: "fieldry", label: "Fieldry" }],
+  relatedProducts: [{ id: "dashboard", label: "Dashboard" }],
   id: "warbler-take"
 });
 assert("take provenance fallback", take.takeProvenance === "fallback");
-assert("take titled section text exists", /outside|observ|bird|migrat|Fieldry|Hudson/i.test(take.waypointTake));
+assert("take titled section text exists", /outside|observ|bird|migrat|Dashboard|Hudson/i.test(take.waypointTake));
 
 // Take variation — not identical boilerplate across categories
 const takeWeather = buildWaypointTake({
@@ -198,7 +198,7 @@ const takeBirds = buildWaypointTake({
   cleanedExcerpt: "Observers reported increased overnight calls before dawn. Researchers note cold fronts often concentrate migrants, though counts remain provisional.",
   categories: ["Birds"],
   geographicScopes: ["Hudson Valley"],
-  relatedProducts: [{ id: "fieldry", label: "Fieldry" }],
+  relatedProducts: [{ id: "dashboard", label: "Dashboard" }],
   id: "t-birds"
 });
 assert("take provenance fallback", takeWeather.takeProvenance === "fallback");
@@ -206,7 +206,7 @@ assert(
   "takes differ by category",
   takeWeather.waypointTake !== takeBirds.waypointTake &&
     /condition|forecast|wind|precip|route|Dashboard/i.test(takeWeather.waypointTake) &&
-    /bird|migrat|habitat|Fieldry|call/i.test(takeBirds.waypointTake),
+    /bird|migrat|habitat|call|observ/i.test(takeBirds.waypointTake),
   takeWeather.waypointTake + " || " + takeBirds.waypointTake
 );
 assert(
@@ -221,12 +221,20 @@ assert("take unavailable when sparse", takeNone.takeProvenance === "unavailable"
 // ——— Related products / sheds discipline ———
 const related = relatedProductsFor(["Nature Photography"], ["National"], { textBlob: "lens technique" });
 assert("photography relates to scenes", related.some((p) => p.id === "scenes" || p.id === "photo-coach"));
-const shedsRelated = relatedProductsFor(["Wildlife"], ["Catskills"], {
+const wildlifeRelated = relatedProductsFor(["Wildlife"], ["Catskills"], {
   textBlob: "celebrity hunting contest leaderboard"
 });
 assert(
+  "paused Fieldry is not promoted for wildlife",
+  !wildlifeRelated.some((p) => p.id === "fieldry")
+);
+assert(
+  "wildlife relates to active Studio products",
+  wildlifeRelated.some((p) => p.id === "dashboard" || p.id === "scenes")
+);
+assert(
   "sheds not forced for generic wildlife without habitat cues",
-  !shedsRelated.some((p) => p.id === "sheds") || shedsRelated.some((p) => p.id === "fieldry")
+  !wildlifeRelated.some((p) => p.id === "sheds")
 );
 
 // ——— RSS export ———

@@ -16,15 +16,16 @@
       { "id": "scenes", "label": "Scenes", "href": "/apps/scenes/", "hint": "Review today’s shoot" },
       { "id": "sheds", "label": "Sheds", "href": "/apps/shed-hunting/map/", "hint": "Where to search" },
       { "id": "articles", "label": "Articles", "href": "/articles/", "hint": "Learn while you’re out" },
-      { "id": "side-trails", "label": "Side Trails", "href": "/side-trails/", "hint": "Sister experiments" },
+      { "id": "side-trails", "label": "Side Trails", "href": "/side-trails/", "hint": "Deck + archived experiments" },
       { "id": "support", "label": "Support", "href": "/support.html", "hint": "Help and honest answers" },
       { "id": "about", "label": "About", "href": "/about.html", "hint": "Studio mission" }
     ],
     "architectureNavLabels": ["Dashboard", "Scenes", "Sheds", "Articles", "Side Trails", "Support", "About"],
     "homePrimary": ["dashboard", "scenes", "sheds"],
     "homeIncubator": ["steepleaf", "savant-sommelier", "waypoint-volunteer"],
-    "homeSideTrails": ["signalterrain", "global-signals"],
-    "homeSupporting": ["foragecast", "fieldry", "landscape-interpretation"],
+    "homeSideTrails": ["waypoint-deck"],
+    "homeSupporting": [],
+    "homePaused": ["fieldry", "savant-sommelier"],
     "categories": [
       {
         "id": "core",

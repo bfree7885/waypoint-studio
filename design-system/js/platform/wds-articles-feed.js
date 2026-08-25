@@ -140,8 +140,23 @@
     }).filter(Boolean);
   }
 
+  /** Paused / retired / inactive — do not promote via article related chips. */
+  var RELATED_BLOCKED = {
+    fieldry: 1,
+    "openroad-pa": 1,
+    openroad: 1,
+    "savant-sommelier": 1,
+    savant: 1,
+    signalterrain: 1,
+    cyber: 1,
+    "global-signals": 1
+  };
+
   function relatedAction(article, depth) {
-    var products = article.relatedProducts || [];
+    var products = (article.relatedProducts || []).filter(function (item) {
+      var id = String((item && item.id) || "").toLowerCase();
+      return id && !RELATED_BLOCKED[id];
+    });
     if (!products.length) return "";
     var p = products[0];
     var href = p.href || "#";

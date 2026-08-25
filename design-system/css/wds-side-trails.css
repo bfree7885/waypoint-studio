@@ -1,5 +1,37 @@
 /* Side Trails — laboratory catalog (not a storefront) */
 
+.wst-section-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.wst-archive {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--wds-border, #d9c3a3) 55%, transparent);
+}
+
+.wst-grid--featured {
+  margin-top: 0.75rem;
+}
+
+.wst-card--featured {
+  border: 1px solid color-mix(in srgb, var(--waypoint-orange, #c9653d) 35%, transparent);
+  box-shadow: 0 8px 28px rgba(42, 31, 46, 0.08);
+}
+
+.wst-deck__list {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  line-height: 1.55;
+  max-width: 40rem;
+}
+
+.wst-deck__list li {
+  margin: 0.4rem 0;
+}
+
 .wst-page {
   max-width: 56rem;
 }

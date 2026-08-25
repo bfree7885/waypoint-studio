@@ -266,12 +266,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -688,12 +682,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -1015,12 +1003,6 @@
       ],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -1098,12 +1080,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -1179,14 +1155,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -1579,12 +1548,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -1661,12 +1624,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "dashboard",
           "label": "Dashboard",
@@ -1745,12 +1702,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -1826,12 +1777,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "dashboard",
           "label": "Dashboard",
@@ -1983,14 +1928,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -2925,12 +2863,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -3237,12 +3169,6 @@
           "reason": "Check current conditions beside this reporting."
         },
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "foragecast",
           "label": "ForageCast",
           "href": "/apps/foragecast/",
@@ -3320,12 +3246,6 @@
           "label": "Dashboard",
           "href": "/apps/dashboard/",
           "reason": "Check current conditions beside this reporting."
-        },
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
         },
         {
           "id": "foragecast",
@@ -4288,12 +4208,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -4530,12 +4444,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -4980,14 +4888,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -5051,14 +4952,7 @@
       "placeReferences": [
         "adirondack"
       ],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": "https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/06/Water-Chestnut_invasive-plant.png?fit=1024%2C644&amp;ssl=1",
       "imageCredit": null,
       "status": "active",
@@ -5123,14 +5017,7 @@
         "adirondack",
         "saranac"
       ],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": "https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/nb2026EagleIslandHR-5438-scaled.jpg?fit=2560%2C1707&amp;ssl=1",
       "imageCredit": null,
       "status": "active",
@@ -5194,12 +5081,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -5272,12 +5153,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -5348,12 +5223,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -5428,12 +5297,6 @@
       ],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -5503,12 +5366,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -6849,12 +6706,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "dashboard",
           "label": "Dashboard",
           "href": "/apps/dashboard/",
@@ -6931,12 +6782,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -7006,12 +6851,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -7083,12 +6922,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -7159,12 +6992,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -7377,14 +7204,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -7446,14 +7266,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -7515,14 +7328,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -7584,14 +7390,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -7735,12 +7534,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -7811,12 +7604,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -7886,12 +7673,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -7964,12 +7745,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -8041,12 +7816,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -8116,12 +7885,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -8343,14 +8106,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2026/can-satellites-detect.jpg",
       "imageCredit": null,
       "status": "active",
@@ -8412,14 +8168,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": "https://scx1.b-cdn.net/csz/news/tmb/2019/7-forestfire.jpg",
       "imageCredit": null,
       "status": "active",
@@ -8556,12 +8305,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -8631,12 +8374,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -8709,12 +8446,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -8784,12 +8515,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -8861,12 +8586,6 @@
       "placeReferences": [],
       "relatedProducts": [
         {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
-        {
           "id": "articles",
           "label": "Articles",
           "href": "/articles/",
@@ -8936,12 +8655,6 @@
       ],
       "placeReferences": [],
       "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        },
         {
           "id": "articles",
           "label": "Articles",
@@ -9014,14 +8727,7 @@
       "placeReferences": [
         "national park"
       ],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -9233,14 +8939,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -9302,14 +9001,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -9371,14 +9063,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
@@ -9441,14 +9126,7 @@
         "National"
       ],
       "placeReferences": [],
-      "relatedProducts": [
-        {
-          "id": "fieldry",
-          "label": "Fieldry",
-          "href": "/apps/fieldry/",
-          "reason": "Record a field observation when you verify it outside."
-        }
-      ],
+      "relatedProducts": [],
       "imageUrl": null,
       "imageCredit": null,
       "status": "active",
