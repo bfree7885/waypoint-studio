@@ -5,10 +5,29 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 12:23:08 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 00:34:38 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Birds and Community Welcome &apos;Flags Across America&apos; at Bear River Migratory Bird Refuge</title>
+    <link>https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</guid>
+    <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Just like you would expect from its name, Bear River Migratory Bird Refuge provides critical resting and feeding habitat for millions of birds migrating through Utah annually. Some birds stay to breed, nest, and raise their young across the refuge wetlands. At the Flags Across America event in
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
   <item>
     <title>Adirondack Stories: Ned Buntline</title>
     <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-ned-buntline/</link>
@@ -86,37 +105,73 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>After 18 years, Common Ground Alliance to end its annual coalition-building conference</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/common-ground-alliance-to-end-annual-conference/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/common-ground-alliance-to-end-annual-conference/</guid>
-    <pubDate>Sat, 22 Aug 2026 13:43:00 GMT</pubDate>
+    <title>Birding at Rowe Sanctuary</title>
+    <link>https://www.audubon.org/great-plains/news/birding-rowe-sanctuary</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/birding-rowe-sanctuary</guid>
+    <pubDate>Mon, 24 Aug 2026 20:20:10 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Every spring, thousands of people flock to Rowe Sanctuary to witness one of Nebraska’s greatest wildlife spectacles: large concentrations of Sandhill Cranes gathering along the Platte River during...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/birding-rowe-sanctuary</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>A forecast is not a decision: Design engineering for drought preparedness</title>
+    <link>https://phys.org/news/2026-08-decision-drought-preparedness.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-decision-drought-preparedness.html</guid>
+    <pubDate>Mon, 24 Aug 2026 15:40:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: More than 80 countries face chronic drought, yet only a third have systems in place to act before a drought arrives rather than after. The gap is costly. According to the United Nations Food and Agriculture Organization, every $1 invested in anticipatory action can save up to $7 in averted losses, while also helping protect lives and livelihoods before crisis conditions take hold.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-08-decision-drought-preparedness.html</description>
+    <category>Weather</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>OurStoryBridge Listens documents Americans’ experiences in real time</title>
+    <link>https://www.adirondackexplorer.org/communities/ourstorybridge-listens-documents-americans-experiences-in-real-time/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/ourstorybridge-listens-documents-americans-experiences-in-real-time/</guid>
+    <pubDate>Mon, 24 Aug 2026 16:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Adirondack Common Ground Alliance Forum group photo in 2016 &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2020/06/Adirondack-Common-Ground-Alliance-Forum-group-photo-2016.png?fit=780%2C342&amp;ssl=1&quot; /&gt; Popular forum heralded for fostering collaboration across the Adirondack Park for nearly 2 decades
+Summary: OurStoryBridge Listens documents Americans’ experiences in real time. OurStoryBridge Listens covers a variety of topics including democracy, food insecurity, affordability and more
 
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/common-ground-alliance-to-end-annual-conference/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/ourstorybridge-listens-documents-americans-experiences-in-real-time/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Free workshops for homeowners looking to upgrade septic systems</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/septic-workshops/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/septic-workshops/</guid>
-    <pubDate>Sat, 22 Aug 2026 16:15:00 GMT</pubDate>
+    <title>State Police suspensions tied to crash involving off-duty trooper’s son</title>
+    <link>https://www.adirondackexplorer.org/communities/state-police-suspensions-tied-to-crash-involving-off-duty-troopers-son/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/state-police-suspensions-tied-to-crash-involving-off-duty-troopers-son/</guid>
+    <pubDate>Mon, 24 Aug 2026 14:30:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Gov. Kathy Hochul at a signing ceremony in 2025 for a law that boosts reimbursement rates for homeowners who upgrade septic systems near sensitive waterways. Photo courtesy the governor’s office &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/07/Hochul_septic.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Workshops Aug. 26 and 27 in Essex and Franklin counties will help connect homeowners to state funding for replacing septic
+Summary: Entrance to the State Police Troop B barracks on Route 86 in Ray Brook. Photo by Elizabeth Izzo/Times Union &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/ratio4x3_960-2.webp?fit=780%2C585&amp;ssl=1&quot; /&gt; A car crash has prompted multiple suspensions and an investigation.
 
 Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/septic-workshops/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/state-police-suspensions-tied-to-crash-involving-off-duty-troopers-son/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -181,21 +236,76 @@ Read the original article at the publisher: https://www.audubon.org/great-lakes/
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Should chain saws be allowed in trail work in Wilderness Areas?</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</guid>
-    <pubDate>Sat, 22 Aug 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>NASA Astronaut Reid Wiseman at Freedom 250 Grand Prix</title>
+    <link>https://www.nasa.gov/image-detail/freedom-250-grand-prix/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/freedom-250-grand-prix/</guid>
+    <pubDate>Mon, 24 Aug 2026 17:35:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The Adirondack Mountain Club trail crew works on Mount Colden in July 2019. Photo by Mike Lynch &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2021/06/Z4A4298.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Opposing views on using chain saws as part of trail maintenance in the Adirondack Park
+Summary: NASA astronaut Reid Wiseman, Artemis II commander, is seen in the two-seat IndyCar as he prepares for driver Conor Daly to take him on a lap in the fastest seat in sport ahead of the start of the Freedom 250 Grand Prix, Sunday, Aug. 23, 2026, in Washington, D.C.
 
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</description>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/freedom-250-grand-prix/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis Mission Patches</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
+    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Ancient Milky Way Merger</title>
+    <link>https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</guid>
+    <pubDate>Wed, 19 Aug 2026 16:20:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: About 12 billion years ago, a dwarf galaxy known as LKH collided with a young Milky Way and merged with it. This artist’s concept portrays that collision. NASA’s Hubble Space Telescope uncovered definitive evidence of this collision by studying globular star clusters.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s B777 Gets New Coat of Paint</title>
+    <link>https://www.nasa.gov/image-detail/jsc2026e407303/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e407303/</guid>
+    <pubDate>Tue, 18 Aug 2026 15:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA&apos;s B777 Gets New Coat of Paint. NASA&apos;s Boeing 777 returns to the agency&apos;s Langley Research Center after receiving a new paint scheme.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e407303/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>A Boat Full of Trout</title>
@@ -308,36 +418,36 @@ Read the original article at the publisher: https://www.audubon.org/vermont/news
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Heat wave-hit Europe logs over 30,000 excess summer deaths: First figures</title>
-    <link>https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</guid>
-    <pubDate>Sat, 22 Aug 2026 16:20:03 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+    <title>Northville–Placid Trail rerouted to avoid remote beaver-flooded section</title>
+    <link>https://www.adirondackexplorer.org/recreation/hiking/northville-placid-trail-rerouted-to-avoid-remote-beaver-flooded-section/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/northville-placid-trail-rerouted-to-avoid-remote-beaver-flooded-section/</guid>
+    <pubDate>Mon, 24 Aug 2026 19:54:19 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Europe saw at least 30,000 excess deaths across a blistering summer of back-to-back heat waves and drought that scientists have blamed on man-made climate change, according to provisional figures.
+Summary: A section of the Northville-Placid Trail in West Canada Wilderness was rerouted to avoid a muddy section. Photo by Zachary Matson &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/reroute_signs-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Trail along Mud Lake in West Canada Lake Wilderness moved to higher ground
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</description>
-    <category>Climate</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/northville-placid-trail-rerouted-to-avoid-remote-beaver-flooded-section/</description>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Thawing Arctic riverbeds may erode up to 10 times faster than unfrozen ground</title>
-    <link>https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</guid>
-    <pubDate>Sat, 22 Aug 2026 15:20:05 GMT</pubDate>
+    <title>Floating wetlands slash wastewater greenhouse gas emissions, according to study</title>
+    <link>https://phys.org/news/2026-08-wetlands-slash-wastewater-greenhouse-gas.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-wetlands-slash-wastewater-greenhouse-gas.html</guid>
+    <pubDate>Mon, 24 Aug 2026 16:20:07 GMT</pubDate>
     <source url="https://phys.org/">Phys.org</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: Sometimes science throws up the unexpected. When a team of researchers set out to model river erosion in Canada&apos;s High Arctic, they did not expect the findings to defy common sense.
+Summary: A world-first trial of floating wetland pods in wastewater lagoons shows they cut greenhouse gas emissions by more than a quarter, highlighting their potential as a nature-based solution for decarbonizing the water sector.
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: notice water level, clarity, and bank conditions as living field signals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</description>
+Read the original article at the publisher: https://phys.org/news/2026-08-wetlands-slash-wastewater-greenhouse-gas.html</description>
+    <category>Climate</category>
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
@@ -379,6 +489,23 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
+    <title>Should chain saws be allowed in trail work in Wilderness Areas?</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</guid>
+    <pubDate>Sat, 22 Aug 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Adirondack Mountain Club trail crew works on Mount Colden in July 2019. Photo by Mike Lynch &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2021/06/Z4A4298.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Opposing views on using chain saws as part of trail maintenance in the Adirondack Park
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/chain-saws-in-adirondack-park-debated/</description>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Hiking or camping? Get your Mountain Forecasts for the Adirondacks, Catskills, Berkshires, and Greens</title>
     <link>https://www.weather.gov/aly/mountain</link>
     <guid isPermaLink="true">https://www.weather.gov/aly/mountain</guid>
@@ -396,6 +523,24 @@ Read the original article at the publisher: https://www.weather.gov/aly/mountain
     <category domain="geographic">Adirondacks</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Albany</author>
+  </item>
+  <item>
+    <title>Sun news: Quiet sun, but fast solar winds to come</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Mon, 24 Aug 2026 10:20:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news August 24, 2026: The sun is currently quiet, but fast solar wind from a coronal hole should arrive later this week, possibly bringing auroras! The post Sun news: Quiet sun, but fast solar winds to come first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Pluto demoted to dwarf planet 20 years ago today</title>
@@ -416,34 +561,16 @@ Read the original article at the publisher: https://earthsky.org/human-world/plu
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Quiet sun, but fast solar winds to come</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Mon, 24 Aug 2026 09:39:53 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news August 24, 2026: The sun is currently quiet, but fast solar wind from a coronal hole should arrive later this week, possibly bringing auroras! The post Sun news: Quiet sun, but fast solar winds to come first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pluto’s atmosphere update! It’s thinning</title>
+    <title>Pluto’s atmosphere is thinning toward a collapse</title>
     <link>https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</link>
     <guid isPermaLink="true">https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</guid>
     <pubDate>Sun, 23 Aug 2026 12:00:54 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Scientists detected Pluto&apos;s atmosphere is thinning as it moves farther away from the sun in its orbit. They did so when Pluto passed in front of distant stars. The post Pluto’s atmosphere update! It’s thinning first appeared on EarthSky .
+Summary: Scientists detected that Pluto&apos;s atmosphere is thinning as it moves farther away from the sun in its orbit. Is its atmospheric collapse already happening? The post Pluto’s atmosphere is thinning toward a collapse first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</description>
     <category>Astronomy and Night Sky</category>
@@ -509,35 +636,16 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-08/se
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Nebraska community college works with the U.S. Fish and Wildlife Service to reduce bird collisions</title>
-    <link>https://www.fws.gov/story/2026-07/nebraska-community-college-works-us-fish-and-wildlife-service-reduce-bird-collisions</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-07/nebraska-community-college-works-us-fish-and-wildlife-service-reduce-bird-collisions</guid>
-    <pubDate>Tue, 28 Jul 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Spring migration is winding down and many of our favorite birds have returned to back yard feeders for their summer stay. But those long journeys can include navigating hazards both enroute and once they have arrived for the season. Among those hazards are the very windows we look out from to
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-07/nebraska-community-college-works-us-fish-and-wildlife-service-reduce-bird-collisions</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for August</title>
+    <title>Visible planets and night sky guide for August and September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
     <pubDate>Mon, 24 Aug 2026 10:30:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Love eclipses? Don’t miss these tips for making the most of the upcoming lunar eclipse! The post Visible planets and night sky guide for August first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Love eclipses? Don’t miss these tips for making the most of the upcoming lunar eclipse! The post Visible planets and night sky guide for August and September first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
@@ -617,313 +725,201 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Panama Canal to reduce shipping over El Niño-fueled drought</title>
-    <link>https://phys.org/news/2026-08-panama-canal-shipping-el-nio.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-panama-canal-shipping-el-nio.html</guid>
-    <pubDate>Fri, 21 Aug 2026 08:24:16 GMT</pubDate>
+    <title>Heat wave-hit Europe logs over 30,000 excess summer deaths: First figures</title>
+    <link>https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</guid>
+    <pubDate>Sat, 22 Aug 2026 16:20:03 GMT</pubDate>
     <source url="https://phys.org/">Phys.org</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: The Panama Canal will cut the number of ships passing through it starting next month because of drought caused by the El Niño phenomenon, the operator of the strategic waterway linking the Atlantic and Pacific said Thursday.
+Summary: Europe saw at least 30,000 excess deaths across a blistering summer of back-to-back heat waves and drought that scientists have blamed on man-made climate change, according to provisional figures.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://phys.org/news/2026-08-panama-canal-shipping-el-nio.html</description>
+Read the original article at the publisher: https://phys.org/news/2026-08-europe-excess-summer-deaths-figures.html</description>
+    <category>Climate</category>
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
   <item>
-    <title>Sea and Shorebird’s Nesting Strategies, Why the Beach is the Best Place</title>
-    <link>https://www.audubon.org/florida/news/sea-and-shorebirds-nesting-strategies-why-beach-best-place</link>
-    <guid isPermaLink="true">https://www.audubon.org/florida/news/sea-and-shorebirds-nesting-strategies-why-beach-best-place</guid>
-    <pubDate>Fri, 21 Aug 2026 14:26:05 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>Thawing Arctic riverbeds may erode up to 10 times faster than unfrozen ground</title>
+    <link>https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</guid>
+    <pubDate>Sat, 22 Aug 2026 15:20:05 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: 23436The extreme environmental nesting conditions that shorebirds face seem less than ideal for sea and shorebird species raising their families — like the Black Skimmer, Least Tern, and Wilson&apos;s...
+Summary: Sometimes science throws up the unexpected. When a team of researchers set out to model river erosion in Canada&apos;s High Arctic, they did not expect the findings to defy common sense.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
+Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.audubon.org/florida/news/sea-and-shorebirds-nesting-strategies-why-beach-best-place</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
+Read the original article at the publisher: https://phys.org/news/2026-08-arctic-riverbeds-erode-faster-unfrozen.html</description>
+    <category>Rivers and Water</category>
     <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+    <author>Phys.org</author>
   </item>
   <item>
-    <title>A first! 3 supermassive black holes discovered in 1 galaxy</title>
-    <link>https://earthsky.org/space/3-supermassive-black-holes-discovered-in-1-galaxy/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/3-supermassive-black-holes-discovered-in-1-galaxy/</guid>
-    <pubDate>Fri, 21 Aug 2026 12:00:40 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Colorful Collage of Tarantula Nebula</title>
+    <link>https://www.nasa.gov/image-detail/30dor-crop/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/30dor-crop/</guid>
+    <pubDate>Mon, 17 Aug 2026 16:03:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: For the first time, astronomers have discovered 3 supermassive black holes in a single galaxy in the early universe. Two of them are merging! The post A first! 3 supermassive black holes discovered in 1 galaxy first appeared on EarthSky .
+Summary: Like a collage made of layered sheets of colored cellophane, a vibrant new image layers observations of a famous star-forming nebula from NASA space telescopes. The resulting cosmic “craft” reveals new details about the star formation region known as 30 Doradus, or the Tarantula Nebula.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/30dor-crop/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Total Solar Eclipse in Sunflower Field</title>
+    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</guid>
+    <pubDate>Fri, 14 Aug 2026 14:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Total Solar Eclipse in Sunflower Field. This composite image shows the progression of a total solar eclipse over San Millán de los Caballeros, Spain on, Wednesday, Aug. 12, 2026.
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/3-supermassive-black-holes-discovered-in-1-galaxy/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
-    <title>Voyager 2 confirms Neptune’s rings on August 22 in 1989</title>
-    <link>https://earthsky.org/space/this-date-in-science-the-definitive-discovery-of-neptunes-rings/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/this-date-in-science-the-definitive-discovery-of-neptunes-rings/</guid>
-    <pubDate>Fri, 21 Aug 2026 10:00:48 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>2026 Total Solar Eclipse in Spain</title>
+    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-2/</guid>
+    <pubDate>Wed, 12 Aug 2026 20:17:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: NASA&apos;s Voyager 2 confirmed the discovery of Neptune&apos;s rings on August 22, 1989, when it took images of a faint, continuous ring system around the planet. The post Voyager 2 confirms Neptune’s rings on August 22 in 1989 first appeared on EarthSky .
+Summary: 2026 Total Solar Eclipse in Spain. A total solar eclipse is seen from San Millán de los Caballeros, Spain, Wednesday, Aug. 12, 2026.
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/this-date-in-science-the-definitive-discovery-of-neptunes-rings/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-2/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
-    <title>Congressional Leaders Get Firsthand Look at Forest Conservation</title>
-    <link>https://www.audubon.org/news/congressional-leaders-get-firsthand-look-forest-conservation</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/congressional-leaders-get-firsthand-look-forest-conservation</guid>
-    <pubDate>Thu, 20 Aug 2026 20:17:55 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>Lion Nebula Roars in Webb&apos;s Sights</title>
+    <link>https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</guid>
+    <pubDate>Tue, 11 Aug 2026 17:03:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The nation’s forest birds are in decline, their populations dropping in 65% of states since 1970. Even once-common birds are disappearing. The Wood Thrush, for example, has declined by 60...
+Summary: NASA’s James Webb Space Telescope imaged the planetary nebula NGC 2392, the Lion Nebula, using the observatory’s NIRCam and MIRI instruments. The central star’s remains are responsible for the nebula’s structure, including a lion face-shaped bubble of ionized gas and dust “mane.”
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.audubon.org/news/congressional-leaders-get-firsthand-look-forest-conservation</description>
-    <category>Birds</category>
-    <category>Forests and Plants</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Pyrocumulonimbus clouds are fire-generated thunderstorms</title>
-    <link>https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</guid>
-    <pubDate>Thu, 20 Aug 2026 15:30:44 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: This summer, NASA has been studying pyrocumulonimbus clouds, or fire-driven thunderstorms. Researchers are flying planes right into the plumes for samples. The post Pyrocumulonimbus clouds are fire-generated thunderstorms first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/what-are-pyrocumulonimbus-clouds-fire-thunderstorms/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
-    <title>Gambling With Gulls, Beleaguered Bogs, and Other Stories</title>
-    <link>https://www.audubon.org/alaska/news/gambling-gulls-beleaguered-bogs-and-other-stories</link>
-    <guid isPermaLink="true">https://www.audubon.org/alaska/news/gambling-gulls-beleaguered-bogs-and-other-stories</guid>
-    <pubDate>Mon, 17 Aug 2026 18:46:07 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>NASA Astronaut Jessica Meir Uses VR Goggles</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0000191/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0000191/</guid>
+    <pubDate>Mon, 10 Aug 2026 15:50:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: All around Cook Inlet, young shorebirds are strengthening their wings. They’re the survivors, the chicks who made it to fledging. As they prepare for the next big challenge—their first...
+Summary: NASA astronaut and Expedition 75 commander Jessica Meir wears a set of virtual reality goggles, also called the Nevada Screening Vision System, for a test that measures visual function using a series of vision screening apps testing visual acuity, contrast sensitivity, and more.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.audubon.org/alaska/news/gambling-gulls-beleaguered-bogs-and-other-stories</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</guid>
-    <pubDate>Wed, 10 Jun 2026 18:06:39 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: This story was featured in the Winter/Spring 2026 issue of Appalachia Journal. We rose early, while it was cool, for our nine-mile hike. We wanted to beat the heat and thunderstorms forecast for late that... Read More The post The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</description>
-    <category>Weather</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
-  </item>
-  <item>
-    <title>How Cutting Down Trees Helps a Unique Owl in Utah</title>
-    <link>https://www.audubon.org/rockies/news/how-cutting-down-trees-helps-unique-owl-utah</link>
-    <guid isPermaLink="true">https://www.audubon.org/rockies/news/how-cutting-down-trees-helps-unique-owl-utah</guid>
-    <pubDate>Thu, 20 Aug 2026 19:49:17 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: At Audubon’s Gillmor Sanctuary at Great Salt Lake in Utah, the grass and scattered shrubs of the uplands serve as ideal habitat for Burrowing Owls. While most owls are tree dwellers, this...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.audubon.org/rockies/news/how-cutting-down-trees-helps-unique-owl-utah</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Adirondack Invasive Species Summit expands to two days</title>
-    <link>https://www.adirondackexplorer.org/environment/invasive-species/adirondack-invasive-species-summit-expands-to-two-days/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/invasive-species/adirondack-invasive-species-summit-expands-to-two-days/</guid>
-    <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Water chestnut, an invasive species. &quot; data-image-caption=&quot; The summit will inform how to manage a variety of invasive species, including aquatic plants. Photo courtesy of the Adirondack Lakes Alliance, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/06/Water-Chestnut_invasive-plant.png?fit=540%2C339&amp;ssl=1&quot; /&gt; This year&apos;s summit will provide participants with hands-on practice to help demonstrate the complexities of managing invasives
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/invasive-species/adirondack-invasive-species-summit-expands-to-two-days/</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Beyond the summer escape: Redefining Adirondack camp for NYC youth</title>
-    <link>https://www.adirondackexplorer.org/communities/beyond-the-summer-escape-redefining-adirondack-camp-for-nyc-youth/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/beyond-the-summer-escape-redefining-adirondack-camp-for-nyc-youth/</guid>
-    <pubDate>Mon, 24 Aug 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Eagle Island campers kayak on Upper Saranac Lake. Photo by Nancie Battaglia &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/nb2026EagleIslandHR-7610-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; A new wave of targeted summer camp experiences are redefining what access to the Adirondacks looks like
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/beyond-the-summer-escape-redefining-adirondack-camp-for-nyc-youth/</description>
-    <category>Birds</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Cooperative Agriculture Opportunity at Ruby Lake National Wildlife Refuge</title>
-    <link>https://www.fws.gov/story/2026-08/cooperative-agriculture-opportunity-ruby-lake-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/cooperative-agriculture-opportunity-ruby-lake-national-wildlife-refuge</guid>
-    <pubDate>Fri, 21 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Ruby Lake National Wildlife Refuge announces a cooperative agriculture opportunity for fall livestock grazing on one unit, totaling approximately 414 acres, for a period of up to five years.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/cooperative-agriculture-opportunity-ruby-lake-national-wildlife-refuge</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Urban oasis celebrates 50 years of conservation</title>
-    <link>https://www.fws.gov/story/2026-08/urban-oasis-celebrates-50-years-conservation</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/urban-oasis-celebrates-50-years-conservation</guid>
-    <pubDate>Wed, 19 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Minnesota Valley National Wildlife Refuge, one of the National Wildlife Refuge System&apos;s best kept secrets, is celebrating its 50th birthday! We&apos;re focused on providing quality access to public lands and waters, and we wanted to highlight this milestone. Take a minute to learn more about this
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/urban-oasis-celebrates-50-years-conservation</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Regional News</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>SkillBridge: From Service to Stewardship</title>
-    <link>https://www.fws.gov/story/2026-08/skillbridge-service-stewardship</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/skillbridge-service-stewardship</guid>
-    <pubDate>Mon, 10 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Norfork National Fish Hatchery has welcomed Ryan Luczkowiak, a 21-year member of the Air force to the hatchery for a 6-month work detail through the SkillBridge program.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/skillbridge-service-stewardship</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Oklahoma&apos;s Only National Fish Hatchery Celebrates Freedom 250</title>
-    <link>https://www.fws.gov/story/2026-08/oklahomas-only-national-fish-hatchery-celebrates-freedom-250</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/oklahomas-only-national-fish-hatchery-celebrates-freedom-250</guid>
-    <pubDate>Mon, 10 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Small jobs don’t exist at Tishomingo National Fish Hatchery, and in some cases we mean that literally. The hatchery in Oklahoma, where the flags visited in April 2026, raises paddlefish and alligator gar, two of the largest freshwater fish in the United States.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. A Fieldry note is enough when you verify something outside — no need to force a log.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/oklahomas-only-national-fish-hatchery-celebrates-freedom-250</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Scientists left this farm field alone. Thousands of orchids appeared</title>
-    <link>https://www.sciencedaily.com/releases/2026/08/260822015208.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/08/260822015208.htm</guid>
-    <pubDate>Sun, 23 Aug 2026 15:01:34 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: An abandoned farm field became a flourishing wildflower meadow within little more than a decade, with plant diversity doubling and thousands of orchids appearing naturally. The discovery suggests that simply giving nature time to recover could be a powerful and inexpensive tool for restoring biodiversity.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you confirm a field signal, Fieldry can hold a private observation.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/08/260822015208.htm</description>
-    <category>Forests and Plants</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Teapot of Sagittarius points to the Milky Way’s center</title>
-    <link>https://earthsky.org/favorite-star-patterns/teapot-of-sagittarius-points-to-galactic-center/</link>
-    <guid isPermaLink="true">https://earthsky.org/favorite-star-patterns/teapot-of-sagittarius-points-to-galactic-center/</guid>
-    <pubDate>Fri, 21 Aug 2026 08:00:04 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: As you gaze toward the famous Teapot asterism in the constellation Sagittarius, you are looking toward the center of our Milky Way galaxy. The post Teapot of Sagittarius points to the Milky Way’s center first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/favorite-star-patterns/teapot-of-sagittarius-points-to-galactic-center/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0000191/</description>
     <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s IXPE Studies Magnetar</title>
+    <link>https://www.nasa.gov/image-detail/ixpemagnetarartistsconcept-web/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/ixpemagnetarartistsconcept-web/</guid>
+    <pubDate>Fri, 07 Aug 2026 14:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A first of its kind measurement of a magnetar may have captured empty space behaving in a way physicists have predicted for 90 years, but never directly observed. The results published Wednesday in Nature.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/ixpemagnetarartistsconcept-web/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Taking Flight to Prepare for Space</title>
+    <link>https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</guid>
+    <pubDate>Thu, 06 Aug 2026 15:20:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Taking Flight to Prepare for Space. NASA astronaut candidate Adam Fuhrmann prepares for a training flight aboard NASA’s WB-57 aircraft.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis III Orion Crew and Service Modules Joined</title>
+    <link>https://www.nasa.gov/image-detail/ksc-20260730-ph-as01-6583-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/ksc-20260730-ph-as01-6583-2/</guid>
+    <pubDate>Wed, 05 Aug 2026 17:31:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Engineers connect the Orion crew and service modules for the Artemis III mission inside the Neil A. Armstrong Operations and Checkout Building at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/ksc-20260730-ph-as01-6583-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Roman Space Telescope Plaque Install</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1303/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1303/</guid>
+    <pubDate>Tue, 04 Aug 2026 15:54:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Technicians inside the Payload Hazardous Servicing Facility at NASA’s Kennedy Space Center complete installation of a commemorative plaque on the agency’s Nancy Grace Roman Space Telescope, as photographed on Tuesday, July 28, 2026.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1303/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   </channel>
 </rss>
