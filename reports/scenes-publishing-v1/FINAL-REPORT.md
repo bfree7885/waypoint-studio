@@ -3,7 +3,7 @@
 **Date:** 2026-08-25  
 **Branch:** `chore/product-direction-reconciliation`  
 **Starting commit:** `58836e76` (Dashboard Discover tip)  
-**Final commit:** *(set at commit time)*
+**Final commit:** `d378e95d`
 
 ---
 
@@ -13,7 +13,7 @@
 |--|--|
 | Branch | `chore/product-direction-reconciliation` |
 | Start | `58836e76` |
-| Feature commit | recorded after commit |
+| Feature commit | `d378e95d` |
 
 ### Key files added
 - `docs/SCENES-PUBLISHING.md`
