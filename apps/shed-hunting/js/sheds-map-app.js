@@ -1186,6 +1186,9 @@
       fadeAnimation: false,
       zoomAnimation: !!(window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     });
+    try {
+      window.__SHEDS_MAP__ = map;
+    } catch (eMap) { /* */ }
     // Zoom lives in the labeled field rail — avoid a second unexplained Leaflet stack.
     if (map.attributionControl && map.attributionControl.setPosition) {
       map.attributionControl.setPosition("bottomleft");
@@ -3465,6 +3468,7 @@
       lng: ll.lng,
       elevM: state.inspectElevM,
       elevStatus: state.inspectElevStatus,
+      terrainStatus: state.inspectTerrainStatus,
       terrainDerived: state.inspectTerrainDerived,
       gisSample: sample,
       habitatScore: habitatScore,
@@ -3550,7 +3554,7 @@
       .catch(function () {
         if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
-        state.inspectElevStatus = "unavailable";
+        state.inspectElevStatus = "failed";
         state.inspectElevM = null;
         renderInspectHud();
       });
@@ -3607,7 +3611,7 @@
       .catch(function () {
         if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
-        state.inspectTerrainStatus = "unavailable";
+        state.inspectTerrainStatus = "failed";
         state.inspectTerrainDerived = null;
         renderInspectHud();
       });

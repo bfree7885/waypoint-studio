@@ -1581,6 +1581,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Derive aspect from Open-Meteo neighborhood elevations when packs lack aspect rasters; label solar notes as physical geography, never bedding claims.
 - Confidence labels must key off **input presence** (elev / slope-aspect / habitat), not invented certainty.
 - Keep Inspect scrollable + Done on mobile so the map stays the primary surface.
+- A full V3.2 roadmap run can stall on leftover headless Chrome/CDP servers and SHA-updating the acceptance report. Recover by classifying existing commits, finishing **one** slice, and stopping.
+- Inspect Intelligence HUD must separate FACT (Terrain/Habitat) from INTERPRETATION (Why) from LIMITATION. Habitat suitability bands must not be phrased as wildlife presence.
 
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 

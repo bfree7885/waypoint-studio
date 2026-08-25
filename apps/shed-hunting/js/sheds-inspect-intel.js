@@ -1,16 +1,56 @@
 /**
  * Sheds V3.2 — Inspect Field Intelligence (pure helpers).
  * Decision support only — never invents sheds, deer, or find probability.
+ *
+ * HUD hierarchy: Terrain (FACT) · Habitat (FACT) · Why this may matter (INTERPRETATION) · Limits (LIMITATION)
  */
 (function (global) {
   "use strict";
 
   var ASPECT_DIRS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+  var ASPECT_FACING = {
+    N: "north-facing",
+    NE: "northeast-facing",
+    E: "east-facing",
+    SE: "southeast-facing",
+    S: "south-facing",
+    SW: "southwest-facing",
+    W: "west-facing",
+    NW: "northwest-facing"
+  };
+
+  var NO_INTEL_UNAVAILABLE =
+    "Detailed terrain/habitat information isn't available for this location.";
+  var NO_INTEL_FAILED =
+    "Terrain and habitat details couldn't be retrieved for this location.";
+  var LIMIT_WILDLIFE =
+    "This describes terrain and habitat suitability. It does not indicate that deer or shed antlers are present.";
+  var LIMIT_NOT_OBS =
+    "Modeled suitability is not an observation of wildlife.";
+
+  var BANNED_PHRASES = [
+    "shed found",
+    "antler here",
+    "deer are here",
+    "deer present",
+    "bedding here",
+    "bedding area",
+    "feeding area",
+    "deer trail",
+    "deer movement",
+    "find probability",
+    "chance of finding"
+  ];
 
   function aspectCardinal(deg) {
     if (deg == null || !isFinite(deg)) return null;
     var ix = Math.round((((deg % 360) + 360) % 360) / 45) % 8;
     return ASPECT_DIRS[ix];
+  }
+
+  function aspectFacingPhrase(cardinal) {
+    if (!cardinal) return null;
+    return ASPECT_FACING[cardinal] || null;
   }
 
   /**
@@ -75,7 +115,6 @@
         class: "EDITORIAL_HEURISTIC"
       };
     }
-    // Facing south ≈ 180°
     var sun = Math.cos(((aspectDeg - 180) * Math.PI) / 180);
     var label;
     var note;
@@ -100,10 +139,27 @@
     };
   }
 
+  function slopeClassLabel(slopeDeg) {
+    if (slopeDeg == null || !isFinite(slopeDeg)) return null;
+    if (slopeDeg < 2) return "nearly flat";
+    if (slopeDeg < 12) return "moderate slope";
+    if (slopeDeg < 25) return "steeper slope";
+    return "steep terrain";
+  }
+
+  function formatElevationFt(elevM) {
+    if (elevM == null || !isFinite(elevM)) return null;
+    var ft = Math.round(elevM * 3.28084);
+    var s = String(ft);
+    if (s.length > 3) {
+      s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    return s + " ft";
+  }
+
   function coverageLabel(parts) {
     parts = parts || {};
     var bits = 0;
-    var max = 3;
     if (parts.elev) bits += 1;
     if (parts.aspectOrSlope) bits += 1;
     if (parts.habitat) bits += 1;
@@ -135,6 +191,18 @@
     };
   }
 
+  function pushUnique(list, item) {
+    if (!item) return;
+    if (list.indexOf(item) === -1) list.push(item);
+  }
+
+  function textContainsBanned(text) {
+    var lower = String(text || "").toLowerCase();
+    return BANNED_PHRASES.some(function (p) {
+      return lower.indexOf(p) !== -1;
+    });
+  }
+
   /**
    * Build a structured Inspect report for HUD rendering / tests.
    */
@@ -144,6 +212,7 @@
     var lng = opts.lng;
     var elevM = opts.elevM;
     var elevStatus = opts.elevStatus || "idle";
+    var terrainStatus = opts.terrainStatus || "idle";
     var terrainDerived = opts.terrainDerived || null;
     var gisSample = opts.gisSample || null;
     var habitatScore = opts.habitatScore || null;
@@ -151,23 +220,17 @@
     var fromYou = opts.fromYou || null;
     var fromSearch = opts.fromSearch || null;
 
-    var why = [];
-    var limits = [
-      "This is habitat/terrain suitability context — not a shed prediction.",
-      "No claim that deer, trails, bedding, or antlers are present."
-    ];
+    var facts = [];
+    var interpretation = [];
+    var limitation = [LIMIT_WILDLIFE, LIMIT_NOT_OBS];
 
     var elevLine = null;
     if (elevStatus === "loading") elevLine = "Elevation: loading…";
     else if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
-      elevLine =
-        "Elevation: ~" +
-        Math.round(elevM) +
-        " m (" +
-        Math.round(elevM * 3.28084) +
-        " ft) — network sample";
-    } else if (elevStatus === "unavailable") elevLine = "Elevation: unavailable";
-    else elevLine = "Elevation: not requested";
+      elevLine = "Elevation: " + formatElevationFt(elevM) + " (network sample)";
+    } else if (elevStatus === "failed") elevLine = "Elevation: couldn't be retrieved";
+    else if (elevStatus === "unavailable") elevLine = "Elevation: unavailable";
+    else if (elevStatus === "idle") elevLine = null;
 
     var slopeDeg =
       terrainDerived && terrainDerived.slopeDeg != null
@@ -188,43 +251,99 @@
       aspectDeg = null;
     }
 
-    if (slopeDeg != null) {
-      if (slopeDeg < 2) why.push("Nearly flat terrain (~" + slopeDeg + "°).");
-      else if (slopeDeg < 12) why.push("Moderate slope (~" + slopeDeg + "°) — generally walkable.");
-      else if (slopeDeg < 25) why.push("Steeper slope (~" + slopeDeg + "°) — slower walking.");
-      else why.push("Steep terrain (~" + slopeDeg + "°) — limited walkability.");
+    var solar = solarExposureNote(aspectDeg, lat);
+    var cardinal = aspectCardinal(aspectDeg);
+    var facing = aspectFacingPhrase(cardinal);
+    var slopeLabel = slopeClassLabel(slopeDeg);
+
+    var terrainBits = [];
+    if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
+      terrainBits.push(formatElevationFt(elevM));
+    }
+    if (slopeLabel) terrainBits.push(slopeLabel);
+    if (facing) terrainBits.push(facing);
+
+    var terrainFact = null;
+    var terrainKind = "none";
+    if (elevStatus === "loading" || terrainStatus === "loading") {
+      terrainFact = "Loading terrain…";
+      terrainKind = "loading";
+    } else if (terrainBits.length) {
+      terrainFact = terrainBits.join(" · ");
+      terrainKind = "ready";
+      facts.push("Terrain: " + terrainFact);
+    } else if (elevStatus === "failed" || terrainStatus === "failed") {
+      terrainFact = "Terrain details couldn't be retrieved for this location.";
+      terrainKind = "failed";
+    } else if (elevStatus === "unavailable" || terrainStatus === "unavailable") {
+      terrainFact = "Elevation, slope, and aspect aren't available for this location.";
+      terrainKind = "unavailable";
     }
 
-    var solar = solarExposureNote(aspectDeg, lat);
-    if (solar.available && solar.label) {
-      why.push(solar.label + " (" + (aspectCardinal(aspectDeg) || "?") + ").");
+    if (slopeDeg != null && slopeDeg >= 12) {
+      interpretation.push("Steeper terrain may slow walking.");
+    } else if (slopeDeg != null && slopeDeg >= 2 && slopeDeg < 12) {
+      interpretation.push("Moderate slope is generally walkable.");
+    }
+
+    if (solar.available && facing) {
+      var facingSentence =
+        facing.charAt(0).toUpperCase() + facing.slice(1) + " terrain ";
+      if (solar.label === "More south-facing") {
+        interpretation.push(facingSentence + "receives relatively strong afternoon solar exposure.");
+      } else if (solar.label === "More north-facing") {
+        interpretation.push(facingSentence + "receives less direct winter sun and may hold snow longer.");
+      } else if (solar.label === "Mixed / east–west aspect") {
+        interpretation.push("East–west aspect means solar exposure differences are modest here.");
+      } else if (solar.note) {
+        interpretation.push(solar.note);
+      }
     }
 
     var habitatUnavailable = !gisSample;
+    var habitatFact = null;
+    var habitatKind = "none";
     if (gisSample) {
-      why.push(
-        (gisSample.structureLabel || gisSample.structure || "Land cover") +
-          (gisSample.edgeM != null && gisSample.edgeM <= 90
-            ? " · habitat transition nearby (~" + Math.round(gisSample.edgeM) + " m)"
-            : "")
-      );
-      if (gisSample.resolutionNote) {
-        limits.push("Land-cover resolution: " + gisSample.resolutionNote + ".");
-      }
-      if (packMeta && packMeta.nlcdYear) {
-        limits.push("Land-cover vintage: NLCD " + packMeta.nlcdYear + ".");
+      var cover = gisSample.structureLabel || gisSample.structure || "Land cover";
+      var nearEdge = gisSample.edgeM != null && gisSample.edgeM <= 90;
+      if (nearEdge && gisSample.edgeM === 0) {
+        habitatFact = cover + " at a habitat transition";
+      } else if (nearEdge) {
+        habitatFact = cover + " near a habitat transition (~" + Math.round(gisSample.edgeM) + " m)";
       } else {
-        limits.push("Land-cover vintage: see GIS pack provenance (NLCD).");
+        habitatFact = cover;
+      }
+      habitatKind = "ready";
+      facts.push("Habitat: " + habitatFact);
+      if (nearEdge) {
+        interpretation.push("The nearby habitat transition may make this area worth inspecting.");
+      }
+      var nlcdYear = packMeta && packMeta.nlcdYear ? packMeta.nlcdYear : null;
+      var res = gisSample.resolutionNote || "~30 m";
+      if (nlcdYear) {
+        pushUnique(limitation, "Land cover: NLCD " + nlcdYear + " (" + res + ").");
+      } else {
+        pushUnique(limitation, "Land cover source: NLCD (" + res + ").");
       }
     } else {
-      limits.push("No GIS habitat pack covers this point — land-cover guidance unavailable.");
+      habitatFact = "Detailed habitat information isn't available for this location.";
+      habitatKind = "unavailable";
+      pushUnique(
+        limitation,
+        "No GIS habitat pack covers this point — land-cover guidance unavailable."
+      );
     }
 
-    if (habitatScore && !habitatScore.unavailable && habitatScore.band) {
-      why.push("Search potential band: " + habitatScore.band.label + " (heuristic).");
-      (habitatScore.limitations || []).forEach(function (L) {
-        if (limits.indexOf(L) === -1) limits.push(L);
-      });
+    if (slopeSource === "open-meteo-neighborhood") {
+      pushUnique(
+        limitation,
+        "Slope and aspect are derived from a neighborhood elevation sample (~60 m), not a surveyed contour."
+      );
+    } else if (slopeSource === "gis-pack-slope") {
+      pushUnique(
+        limitation,
+        "Slope is from the bundled GIS pack (3DEP-derived). Aspect is unavailable without a neighborhood elevation sample."
+      );
     }
 
     var coverage = coverageLabel({
@@ -233,57 +352,70 @@
       habitat: !!gisSample
     });
 
-    var bannedPhrases = [
-      "shed found",
-      "antler here",
-      "deer are here",
-      "bedding here",
-      "find probability",
-      "chance of finding"
-    ];
+    var hasTerrainIntel = terrainKind === "ready";
+    var hasHabitatIntel = habitatKind === "ready";
+    var failedIntel =
+      !hasTerrainIntel &&
+      !hasHabitatIntel &&
+      (elevStatus === "failed" || terrainStatus === "failed");
+    var noIntel = !hasTerrainIntel && !hasHabitatIntel && !failedIntel && terrainKind !== "loading";
+
+    if (!interpretation.length && hasTerrainIntel && !hasHabitatIntel) {
+      /* Facts only — do not invent landscape meaning. */
+    }
 
     var report = {
-      version: "3.2.0",
+      version: "3.2.1",
       lat: lat,
       lng: lng,
-      elev: { status: elevStatus, meters: elevM, line: elevLine },
+      elev: { status: elevStatus, meters: elevM, line: elevLine, ftLabel: formatElevationFt(elevM) },
       terrain: {
         slopeDeg: slopeDeg,
         aspectDeg: aspectDeg,
-        aspectCardinal: aspectCardinal(aspectDeg),
+        aspectCardinal: cardinal,
+        aspectFacing: facing,
+        slopeClass: slopeLabel,
         slopeSource: slopeSource,
-        solar: solar
+        solar: solar,
+        factLine: terrainFact,
+        kind: terrainKind,
+        status: terrainStatus
       },
       habitat: {
         unavailable: habitatUnavailable,
         sample: gisSample,
         score: habitatScore,
+        factLine: habitatFact,
+        kind: habitatKind,
         bandLabel:
           habitatScore && habitatScore.band ? habitatScore.band.label : habitatUnavailable
             ? "Habitat data unavailable for this area"
             : null
       },
       relation: { fromYou: fromYou, fromSearch: fromSearch },
-      why: why,
-      limits: limits,
+      facts: facts,
+      why: interpretation,
+      limits: limitation,
       coverage: coverage,
-      honesty: [
-        "Context only — not habitat proof from satellite pixels alone.",
-        "Modeled suitability ≠ observed wildlife."
-      ],
+      honesty: [LIMIT_WILDLIFE, LIMIT_NOT_OBS],
+      noIntel: noIntel,
+      failedIntel: failedIntel,
       class: {
         elev: "REAL",
         slopePack: "DERIVED",
         aspectNeighborhood: "DERIVED",
         habitatScore: "EDITORIAL_HEURISTIC",
-        solarNote: "EDITORIAL_HEURISTIC"
+        solarNote: "EDITORIAL_HEURISTIC",
+        why: "INTERPRETATION",
+        limits: "LIMITATION"
       }
     };
 
     report.hudText = formatHudText(report);
-    report.containsBannedLanguage = bannedPhrases.some(function (p) {
-      return report.hudText.toLowerCase().indexOf(p) !== -1;
-    });
+    report.containsBannedLanguage = textContainsBanned(report.hudText);
+    report.containsWildlifeInference = textContainsBanned(
+      facts.concat(interpretation).join("\n")
+    );
     return report;
   }
 
@@ -292,66 +424,46 @@
     if (report.lat != null && report.lng != null) {
       lines.push(Number(report.lat).toFixed(5) + ", " + Number(report.lng).toFixed(5));
     }
-    if (report.elev && report.elev.line) lines.push(report.elev.line);
-    if (report.terrain) {
-      if (report.terrain.slopeDeg != null) {
-        lines.push(
-          "Slope: ~" +
-            report.terrain.slopeDeg +
-            "°" +
-            (report.terrain.slopeSource ? " (" + report.terrain.slopeSource + ")" : "")
-        );
-      }
-      if (report.terrain.aspectDeg != null) {
-        lines.push(
-          "Aspect: " +
-            report.terrain.aspectDeg +
-            "° " +
-            (report.terrain.aspectCardinal || "") +
-            (report.terrain.solar && report.terrain.solar.label
-              ? " — " + report.terrain.solar.label
-              : "")
-        );
-      }
-    }
-    if (report.habitat) {
-      if (report.habitat.unavailable) {
-        lines.push("Habitat: unavailable (no GIS pack for this point)");
-      } else if (report.habitat.sample) {
-        var s = report.habitat.sample;
-        lines.push(
-          "Land cover: " +
-            (s.structureLabel || s.structure) +
-            (s.nlcd != null ? " (NLCD " + s.nlcd + ")" : "")
-        );
-        if (s.edgeM != null) lines.push("Habitat transition: ~" + Math.round(s.edgeM) + " m");
-        if (report.habitat.bandLabel) lines.push("Search potential: " + report.habitat.bandLabel);
-      }
-    }
     if (report.relation) {
       if (report.relation.fromYou) lines.push(report.relation.fromYou);
       if (report.relation.fromSearch) lines.push(report.relation.fromSearch);
     }
-    if (report.coverage) lines.push("Evidence: " + report.coverage.label);
-    if (report.why && report.why.length) {
-      lines.push("Why this area may matter:");
-      report.why.slice(0, 4).forEach(function (w) {
-        lines.push("· " + w);
+
+    if (report.noIntel) {
+      lines.push("");
+      lines.push(NO_INTEL_UNAVAILABLE);
+    } else if (report.failedIntel) {
+      lines.push("");
+      lines.push(NO_INTEL_FAILED);
+    } else {
+      if (report.terrain && report.terrain.factLine) {
+        lines.push("");
+        lines.push("Terrain");
+        lines.push(report.terrain.factLine);
+      }
+      if (report.habitat && report.habitat.factLine) {
+        lines.push("");
+        lines.push("Habitat");
+        lines.push(report.habitat.factLine);
+      }
+    }
+
+    if (report.why && report.why.length && !report.noIntel && !report.failedIntel) {
+      lines.push("");
+      lines.push("Why this may matter");
+      report.why.forEach(function (w) {
+        lines.push(w);
       });
     }
-    if (report.terrain && report.terrain.solar && report.terrain.solar.note) {
-      lines.push(report.terrain.solar.note);
-    }
+
     if (report.limits && report.limits.length) {
-      lines.push("Limits:");
-      report.limits.slice(0, 4).forEach(function (L) {
-        lines.push("· " + L);
+      lines.push("");
+      lines.push("Limits");
+      report.limits.forEach(function (L) {
+        lines.push(L);
       });
     }
-    (report.honesty || []).forEach(function (h) {
-      lines.push(h);
-    });
-    return lines.join("\n");
+    return lines.join("\n").replace(/^\n+/, "");
   }
 
   /** Open-Meteo multi-point URL helper (lat,lng pairs). */
@@ -395,13 +507,19 @@
 
   global.WaypointShedsInspectIntel = {
     aspectCardinal: aspectCardinal,
+    aspectFacingPhrase: aspectFacingPhrase,
     slopeAspectFromElevNeighbors: slopeAspectFromElevNeighbors,
+    slopeClassLabel: slopeClassLabel,
+    formatElevationFt: formatElevationFt,
     solarExposureNote: solarExposureNote,
     coverageLabel: coverageLabel,
     buildInspectReport: buildInspectReport,
     formatHudText: formatHudText,
     elevationNeighborhoodUrl: elevationNeighborhoodUrl,
     terrainFromElevationArray: terrainFromElevationArray,
-    VERSION: "3.2.0"
+    NO_INTEL_UNAVAILABLE: NO_INTEL_UNAVAILABLE,
+    NO_INTEL_FAILED: NO_INTEL_FAILED,
+    LIMIT_WILDLIFE: LIMIT_WILDLIFE,
+    VERSION: "3.2.1"
   };
 })(typeof window !== "undefined" ? window : globalThis);
