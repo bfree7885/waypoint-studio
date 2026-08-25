@@ -1,8 +1,24 @@
 # Waypoint Studio
 
-**Learn · Go outside · Observe.**
+**Observe. Discover. Understand.**
 
-Digital field laboratories for people who love nature — an outdoor intelligence and environmental education platform, not a collection of utility apps.
+*Capture what you find. Learn why it matters.*
+
+Outdoor tools for attention in the field — a coherent Studio, not a pile of unrelated apps.
+
+## Canonical product direction
+
+**Read first:** [`docs/PRODUCT-DIRECTION.md`](docs/PRODUCT-DIRECTION.md)
+
+| Experience | Job |
+|------------|-----|
+| **Dashboard** | Discover — what’s interesting outdoors / worth exploring |
+| **Scenes** | Explore & understand — craft, stories, articles & video |
+| **Sheds** | Go — specialized shed-hunting field map & habitat tools |
+
+**Publishing** (articles, Deep Forest Dispatch, content engine) is shared Studio infrastructure, not a fourth consumer product.
+
+**Paused / retired:** Fieldry (paused), OpenRoad PA (retired), Savant (not a priority). Cyber / Global Signals are not standalone Studio apps (research may feed a separate **Waypoint Deck** project later).
 
 ## Run locally
 
@@ -14,56 +30,43 @@ python3 -m http.server 8080
 
 | URL | What you see |
 |-----|----------------|
-| [http://localhost:8080/](http://localhost:8080/) | **Regional dashboard** — Pike County Preview trailhead |
-| [http://localhost:8080/apps/foragecast/](http://localhost:8080/apps/foragecast/) | **ForageCast** — flagship habitat & season laboratory |
-| [http://localhost:8080/apps/fieldry/](http://localhost:8080/apps/fieldry/) | **Fieldry** — private WOS field notebook (local MVP) |
-| [http://localhost:8080/design-system/species/profile.html?id=morchella-americana](http://localhost:8080/design-system/species/profile.html?id=morchella-americana) | **WSKB** — species profile (shared knowledge base) |
-| [http://localhost:8080/apps/scenes/](http://localhost:8080/apps/scenes/) | **Waypoint Scenes** — photography & visual observation (Photo Coach available now) |
-| [http://localhost:8080/apps/photo-coach/](http://localhost:8080/apps/photo-coach/) | **Photo Coach** — upload & critique (first tool in Waypoint Scenes) |
-| [http://localhost:8080/apps/waypoint-scenes/](http://localhost:8080/apps/waypoint-scenes/) | **Scene Builder studio** — Living Scenes experiments (planned product) |
+| [http://localhost:8080/](http://localhost:8080/) | Studio front door |
+| [http://localhost:8080/apps/dashboard/](http://localhost:8080/apps/dashboard/) | **Dashboard** |
+| [http://localhost:8080/apps/scenes/](http://localhost:8080/apps/scenes/) | **Scenes** |
+| [http://localhost:8080/apps/shed-hunting/map/](http://localhost:8080/apps/shed-hunting/map/) | **Sheds** field map |
+| [http://localhost:8080/articles/](http://localhost:8080/articles/) | Articles (publishing) |
+| [http://localhost:8080/deep-forest-dispatch/](http://localhost:8080/deep-forest-dispatch/) | Visual Earth stories (publishing) |
 
-Other directories under `apps/` hold **content track concepts** and shared-module previews — not equal standalone products. See [Strategic Direction](docs/STRATEGIC-DIRECTION.md).
-
-## Core platform
-
-One regional laboratory with specialized instruments:
-
-1. **Dashboard** — what is happening outdoors this week  
-2. **ForageCast** — why species appear where and when they do  
-3. **Fieldry** — structured observations building toward research-grade records  
-4. **Scenes** — honest photography and visual storytelling  
-
-Beginning with **Pike County Preview** until county-specific bundles and observation capture ship.
-
-## Repository structure
+## Repository structure (simplified)
 
 ```
 /
-├── index.html              # Regional outdoor dashboard
-├── design-system/          # WDS, OIP, WOS, WSKB, WEF, ethics, integrity
-├── docs/                   # Constitution, strategic direction, architecture
-└── apps/
-    ├── foragecast/         # Flagship application
-    ├── fieldry/            # WOS field notebook (local MVP)
-    ├── waypoint-scenes/    # Creative studio (live)
-    └── …                   # Content track & module previews (not equal products)
+├── index.html                 # Studio front door
+├── apps/dashboard/            # Discover
+├── apps/scenes/               # Explore & understand
+├── apps/shed-hunting/         # Field exploration (Sheds)
+├── articles/                  # Publishing entry
+├── deep-forest-dispatch/      # Owned visual stories
+├── design-system/             # Shared WDS + platform
+├── docs/PRODUCT-DIRECTION.md  # Canonical strategy
+└── side-trails/               # Archived / research (not flagships)
 ```
 
 ## Governance
 
 | Document | Path |
 |----------|------|
-| Strategic direction | [`docs/STRATEGIC-DIRECTION.md`](docs/STRATEGIC-DIRECTION.md) |
-| Theory of change | [`docs/WAYPOINT-THEORY-OF-CHANGE.md`](docs/WAYPOINT-THEORY-OF-CHANGE.md) |
-| Platform architecture | [`docs/PLATFORM-ARCHITECTURE.md`](docs/PLATFORM-ARCHITECTURE.md) |
-| Product portfolio audit | [`docs/PRODUCT-PORTFOLIO-AUDIT.md`](docs/PRODUCT-PORTFOLIO-AUDIT.md) |
+| **Product direction (canonical)** | [`docs/PRODUCT-DIRECTION.md`](docs/PRODUCT-DIRECTION.md) |
+| Product standards | [`docs/PRODUCT_STANDARDS.md`](docs/PRODUCT_STANDARDS.md) |
+| App surface architecture | [`docs/APP-SURFACE-ARCHITECTURE.md`](docs/APP-SURFACE-ARCHITECTURE.md) |
+| Engineering playbook | [`docs/ENGINEERING-PLAYBOOK.md`](docs/ENGINEERING-PLAYBOOK.md) |
+| Content / publishing engine | [`docs/WAYPOINT-CONTENT-ENGINE.md`](docs/WAYPOINT-CONTENT-ENGINE.md) |
 | Constitution | [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](docs/WAYPOINT-STUDIO-CONSTITUTION.md) |
-| Observation standard (WOS) | [`docs/WAYPOINT-OBSERVATION-STANDARD.md`](docs/WAYPOINT-OBSERVATION-STANDARD.md) |
-| Outdoor ethics (WOES) | [`docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md`](docs/WAYPOINT-OUTDOOR-ETHICS-STANDARD.md) |
-| Research integrity | [`docs/RESEARCH-INTEGRITY.md`](docs/RESEARCH-INTEGRITY.md) |
+
+Older roadmaps that describe a “four-instrument” ForageCast/Fieldry portfolio are **historical** — use `PRODUCT-DIRECTION.md` instead.
 
 ## Requirements
 
 - Modern browser  
-- No build step  
+- No build step for static surfaces  
 - `python3 -m http.server` or any static file server from repo root

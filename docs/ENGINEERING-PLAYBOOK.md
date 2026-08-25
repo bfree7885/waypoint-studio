@@ -1560,6 +1560,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `window` `offline` events do not flip `navigator.onLine` in Chromium CDP; stub `onLine` (or Network conditions) when validating offline elevation honesty.
 - Desktop `prompt×here` remains a known deferred layout; classify as WARN in mobile-field acceptance, not a V3.1 hold unless owners expand scope.
 
+### Lessons Learned — Product direction reconciliation (2026-08-25)
+
+- One canonical file (`docs/PRODUCT-DIRECTION.md`) beats five conflicting roadmaps; point STRATEGIC-DIRECTION / README / MASTER roadmap at it instead of rewriting history in place.
+- Retiring OpenRoad publicly means homepage + about + catalog status + honest retired page — not necessarily deleting GIS experiments.
+- Side Trails stays in primary nav as **archive**, not as a promise of sister flagships; update gates that required “Experimental” sister marketing.
+- Preserve DFD/articles pipelines as Publishing infrastructure; do not delete them while simplifying the consumer portfolio to Dashboard · Scenes · Sheds.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.

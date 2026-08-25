@@ -1,10 +1,15 @@
 # Waypoint Content Engine
 
-**Regional field-guide publishing for the entire Waypoint Studio ecosystem.**
+**Regional field-guide publishing for the Waypoint Studio ecosystem.**
+
+Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).  
+Publishing is **shared Studio infrastructure** (articles, videos, visual stories, Dashboard/Scenes content) — not a fourth consumer product peer to Dashboard · Scenes · Sheds.
 
 *Supreme law:* [`WAYPOINT-STUDIO-CONSTITUTION.md`](WAYPOINT-STUDIO-CONSTITUTION.md)  
 *Teaching philosophy:* [`WAYPOINT-METHOD.md`](WAYPOINT-METHOD.md)  
 *Implementation:* `design-system/content-engine/` + `design-system/js/wds-content-engine.js`
+
+Deep Forest Dispatch story rendering and article pipelines are part of this capability.
 
 ---
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Side Trails catalog + page smoke checks.
+ * Side Trails catalog + page smoke checks (archive / retired framing).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -28,9 +28,7 @@ for (const rel of [
   "assets/images/side-trails/openroad-pa.svg",
   "assets/images/side-trails/global-signals-globe.svg",
   "docs/side-trails/README.md",
-  "docs/side-trails/global-signals.md",
-  "docs/product/side-trails-signalterrain-owner-review.md",
-  "docs/product/global-signals-owner-review.md"
+  "docs/PRODUCT-DIRECTION.md"
 ]) {
   assert.ok(exists(rel), "missing " + rel);
 }
@@ -38,16 +36,19 @@ for (const rel of [
 const html = read("side-trails/index.html");
 assert.match(html, /id="wst-grid"/);
 assert.match(html, /wds-side-trails-app\.js/);
+assert.match(html, /Archive|archived|Retired/i);
 assert.match(html, /OpenRoad PA/);
 assert.doesNotMatch(html, /Civic Trails|civic-trails|CivicTrails/i);
 assert.doesNotMatch(html, /SignalTerrain<\/h2>|OpenRoad PA<\/h2>/);
 assert.doesNotMatch(html, /Explore SignalTerrain/);
+assert.doesNotMatch(html, /sister projects beside Waypoint Studio’s primary outdoor tools/i);
 
 const openroadPage = read("side-trails/openroad-pa/index.html");
 assert.match(openroadPage, /OpenRoad PA/);
-assert.match(openroadPage, /In development/);
+assert.match(openroadPage, /Retired/);
 assert.match(openroadPage, /Tracking Pennsylvania's public road projects/);
 assert.match(openroadPage, /never a guilt score/i);
+assert.doesNotMatch(openroadPage, /In development/);
 assert.doesNotMatch(openroadPage, /\b(corrupt|wasteful|criminal)\b/i);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
@@ -67,25 +68,18 @@ assert.ok(signal, "signalterrain missing");
 assert.ok(globalSignals, "global-signals missing");
 
 assert.equal(openroad.title, "OpenRoad PA");
-assert.equal(openroad.tagline, "Tracking Pennsylvania's public road projects.");
-assert.match(openroad.description, /public records/);
-assert.equal(openroad.status, "in-development");
-assert.equal(openroad.ctaLabel, "Learn more");
+assert.match(openroad.tagline, /[Rr]etired/);
+assert.equal(openroad.status, "retired");
 assert.equal(openroad.url, "side-trails/openroad-pa/");
 assert.ok(exists(openroad.icon), openroad.icon);
-assert.match(read(openroad.icon), /svg/i);
 
 assert.equal(signal.title, "SignalTerrain");
-assert.equal(signal.tagline, "Adaptive cyber intelligence for defenders.");
-assert.match(signal.description, /trusted public intelligence/);
-assert.equal(signal.status, "experimental");
-assert.equal(signal.ctaLabel, "Explore SignalTerrain");
+assert.equal(signal.status, "archived");
+assert.match(signal.tagline, /[Nn]ot a standalone Studio product/);
 assert.equal(signal.url, "side-trails/signalterrain/");
-assert.ok(exists(signal.icon), signal.icon);
-assert.match(read(signal.icon), /circle|network|svg/i);
 
 assert.equal(globalSignals.title, "Global Signals");
-assert.equal(globalSignals.status, "experimental");
+assert.equal(globalSignals.status, "archived");
 assert.equal(globalSignals.url, "side-trails/global-signals/");
 
 assert.equal(openroad.order < signal.order, true, "SignalTerrain should follow OpenRoad PA by order");
@@ -95,19 +89,31 @@ const about = read("about.html");
 assert.match(about, /side-trails\//);
 assert.match(about, /Side Trails/);
 assert.match(about, /OpenRoad PA/);
+assert.match(about, /[Rr]etired/);
 assert.doesNotMatch(about, /Civic Trails|civic-trails/i);
 
 const home = read("index.html");
-assert.match(home, /OpenRoad PA/);
+assert.match(home, /Side Trails/);
+assert.match(home, /Archive/i);
+assert.doesNotMatch(home, /side-trails\/openroad-pa/);
 assert.doesNotMatch(home, /Civic Trails|civic-trails/i);
+assert.doesNotMatch(home, /side-trails\/signalterrain\/|side-trails\/global-signals\//);
 
 const support = read("support.html");
 assert.match(support, /side-trails\//);
 
 const loader = read("design-system/js/side-trails/wds-side-trails.js");
-assert.match(loader, /in-development/);
+assert.match(loader, /retired:\s*true/);
+assert.match(loader, /archived:\s*true/);
 
 const app = read("design-system/js/side-trails/wds-side-trails-app.js");
-assert.match(app, /In development/);
+assert.match(app, /Retired/);
+
+const direction = read("docs/PRODUCT-DIRECTION.md");
+assert.match(direction, /OpenRoad PA/);
+assert.match(direction, /[Rr]etired/);
+assert.match(direction, /Fieldry/);
+assert.match(direction, /[Pp]aused/);
+assert.match(direction, /Waypoint Deck/);
 
 console.log("Side Trails checks passed (" + catalog.projects.length + " projects).");

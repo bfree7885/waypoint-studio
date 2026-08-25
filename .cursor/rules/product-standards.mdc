@@ -5,12 +5,24 @@ alwaysApply: true
 
 # Product Standards (agent contract)
 
-Canonical detail: `docs/PRODUCT_STANDARDS.md`. Engineering process:
+Canonical detail: `docs/PRODUCT_STANDARDS.md`. Product portfolio:
+`docs/PRODUCT-DIRECTION.md`. Engineering process:
 `docs/ENGINEERING-PLAYBOOK.md`.
 
 ## Mission
 
-**Observe. Understand. Create. Share.** Deepen curiosity—do not replace it.
+**Observe. Discover. Understand.** Deepen curiosity—do not replace it.
+
+## Active Studio
+
+Dashboard (Discover) · Scenes (Explore & understand) · Sheds (Go).
+Publishing + shared intelligence are infrastructure, not a fourth consumer product.
+
+## Not active Studio products
+
+Fieldry (paused) · OpenRoad PA (retired) · Savant (not a priority) ·
+Cyber / Global Signals (not standalone Studio apps). Waypoint Deck is a
+**separate** offline Linux/AI project — do not build it as a Studio web app.
 
 ## Feel
 
