@@ -1575,6 +1575,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
 - Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
 
+### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
+
+- Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
+- Distinguish **planned / exploring** Deck language from shipping claims; Global Signals concepts may feed Deck SA later without being a standalone product.
+- Article `relatedProducts` must not promote paused/retired apps (Fieldry, OpenRoad, Savant, Cyber, GS); filter at generation and in the feed renderer.
+- Keep `homeSideTrails` aligned with portfolio truth (`waypoint-deck`), not leftover SignalTerrain/Global Signals IDs from older IA moves.
+
 ### Lessons Learned — Scenes + Publishing unification (2026-08-25)
 
 - Publishing is infrastructure; Deep Forest Dispatch stays an **editorial series**, not a fourth flagship — say so on the library page.

@@ -1,39 +1,40 @@
-# Global Signals (Side Trails)
+# Global Signals (Side Trails · Archive)
 
 **Route:** `/side-trails/global-signals/`  
-**Status:** Experimental (Side Trails)  
-**Role:** Application intelligence dashboard at `/side-trails/global-signals/` — primary entry from Home, Side Trails catalog, and About. Explain This + Articles + Relationship Graph + Relationship Explorer + Citizen Impact + Country Intelligence + Industry Intelligence are sample/demo live. Explanatory copy lives at `/about/`. Unused roadmap shells remain off the primary surface — **no engines, no live fabricated data**.
+**Status:** **Archived research** — not a standalone active Side Trail or Studio product.  
+**Portfolio role:** Preserved concepts may later feed **Waypoint Deck** situational awareness when connectivity exists (alongside weather, GPS, radio, sensors, offline knowledge). Do not promote Global Signals as a peer of Deck or of Dashboard · Scenes · Sheds.
+
+**Active Side Trail:** Waypoint Deck — `/side-trails/waypoint-deck/`
+
+Canonical portfolio: [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md) · [`README.md`](README.md)
 
 ---
 
-## Messaging
+## Messaging (historical surface)
 
 | Element | Copy |
 | --- | --- |
 | Title | Global Signals |
 | Tagline | Understanding how world events shape everyday life. |
-| Purpose | Global Signals is an intelligence platform that explores how geopolitics, trade, infrastructure, policy, weather, cyber events, conflict, and economics ripple through industries and eventually affect citizens. |
-| Positioning | Relationship intelligence platform — **not** a news website, **not** financial advice |
-| Footer | Part of Side Trails. |
+| Purpose | Explores how geopolitics, trade, infrastructure, policy, weather, cyber events, conflict, and economics ripple through industries and eventually affect citizens. |
+| Positioning | Relationship intelligence research — **not** a news website, **not** financial advice, **not** an active Studio flagship |
+| Footer | Archived Side Trail research. |
 
 ---
 
-## Direct entry
+## Direct entry (archive)
 
 | Entry | Target |
 | --- | --- |
-| Side Trails catalog CTA | `side-trails/global-signals/` (dashboard) |
-| Homepage Side Trails list | `productLanding` → `side-trails/global-signals/` |
-| Side Trails hero link | `./global-signals/` |
-| Studio About | `side-trails/global-signals/` |
-| Global nav (Side Trails) | Catalog → card → dashboard |
+| Side Trails catalog (Archive section) | `side-trails/global-signals/` |
+| Not on Home as an active Side Trail | Homepage points to Deck + Side Trails index |
 
-Secondary: `/side-trails/global-signals/about/` (mission / philosophy / roadmap).  
+Secondary: `/side-trails/global-signals/about/`.  
 Redirect: `/side-trails/global-signals/global-dashboard/` → dashboard.
 
 ---
 
-## Dashboard sections (primary experience)
+## Dashboard sections (preserved surface)
 
 1. Relationship Explorer search  
 2. Current Events  

@@ -1,28 +1,29 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "updatedAt": "2026-08-25",
   "title": "Side Trails",
-  "tagline": "Archived research and retired experiments — not Waypoint Studio flagships.",
-  "message": "Every card is loaded from this catalog. The page never hardcodes projects. Active Studio work is Dashboard, Scenes, and Sheds.",
+  "tagline": "Experiments and independent projects from Waypoint.",
+  "message": "Waypoint Deck is the active Side Trail. Older experiments remain archived below — not Studio flagships.",
   "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived", "in-development", "retired"],
   "projects": [
     {
-      "id": "openroad-pa",
-      "title": "OpenRoad PA",
-      "tagline": "Retired — not an active Waypoint Studio product.",
-      "description": "Pennsylvania public road-project tracking was explored here. It is retired from Studio direction. Reusable mapping/GIS ideas may live elsewhere; this is not a flagship.",
-      "icon": "assets/images/side-trails/openroad-pa.svg",
-      "category": "Retired",
-      "status": "retired",
-      "ctaLabel": "Retirement note",
-      "url": "side-trails/openroad-pa/",
-      "order": 10
+      "id": "waypoint-deck",
+      "title": "Waypoint Deck",
+      "tagline": "Offline-first Linux field computer · local AI · maps, weather, radio, knowledge.",
+      "description": "An independent Side Trail exploring resilient field computing when connectivity is poor or gone. Planned capabilities include offline maps/GPS, local AI, weather, radio/SDR, offline reference knowledge, sensors, and situational awareness (including Global Signals concepts when online). Early-stage — do not assume these systems already ship.",
+      "icon": "assets/images/side-trails/waypoint-deck.svg",
+      "category": "Active",
+      "status": "in-development",
+      "ctaLabel": "Read the direction",
+      "url": "side-trails/waypoint-deck/",
+      "order": 1,
+      "featured": true
     },
     {
       "id": "signalterrain",
       "title": "SignalTerrain",
-      "tagline": "Archived research — not a standalone Studio product.",
-      "description": "Cyber / situational awareness research preserved for possible Waypoint Deck inputs. Not a Waypoint Studio application or subscription surface.",
+      "tagline": "Archived research — possible Deck situational-awareness input.",
+      "description": "Cyber / network situational research preserved for possible Waypoint Deck inputs. Not a standalone Studio product or equal peer to Deck.",
       "icon": "assets/images/side-trails/signalterrain-network.svg",
       "category": "Archive",
       "status": "archived",
@@ -33,14 +34,26 @@
     {
       "id": "global-signals",
       "title": "Global Signals",
-      "tagline": "Archived research — not a standalone Studio product.",
-      "description": "Relationship-intelligence experiments preserved for possible Waypoint Deck inputs. Not a Studio flagship or news product.",
+      "tagline": "Archived research — intended Deck input when connectivity exists.",
+      "description": "Relationship-intelligence experiments preserved as a conceptual information source for Waypoint Deck when online — alongside weather, GPS, radio, and local knowledge. Not a standalone Studio product.",
       "icon": "assets/images/side-trails/global-signals-globe.svg",
       "category": "Archive",
       "status": "archived",
       "ctaLabel": "View archive",
       "url": "side-trails/global-signals/",
       "order": 30
+    },
+    {
+      "id": "openroad-pa",
+      "title": "OpenRoad PA",
+      "tagline": "Retired — not an active Waypoint product.",
+      "description": "Pennsylvania public road-project tracking was explored here. It is retired. Reusable mapping ideas may live elsewhere; this is not a flagship or active Side Trail peer to Deck.",
+      "icon": "assets/images/side-trails/openroad-pa.svg",
+      "category": "Archive",
+      "status": "retired",
+      "ctaLabel": "Retirement note",
+      "url": "side-trails/openroad-pa/",
+      "order": 40
     }
   ]
 }

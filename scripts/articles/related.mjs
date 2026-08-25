@@ -2,9 +2,10 @@
  * Related Waypoint product suggestions — quiet, category-driven, no marketing filler.
  */
 
-import { RELATED_PRODUCTS } from "./constants.mjs";
+import { RELATED_PRODUCTS, RELATED_PRODUCTS_BLOCKED } from "./constants.mjs";
 
 const byId = Object.fromEntries(RELATED_PRODUCTS.map((p) => [p.id, p]));
+const blocked = new Set(RELATED_PRODUCTS_BLOCKED);
 
 export function relatedProductsFor(categories, geographicScopes, options = {}) {
   const cats = new Set(categories || []);
@@ -12,7 +13,7 @@ export function relatedProductsFor(categories, geographicScopes, options = {}) {
   const picks = [];
 
   function add(id, reason) {
-    if (!byId[id] || picks.find((p) => p.id === id)) return;
+    if (blocked.has(id) || !byId[id] || picks.find((p) => p.id === id)) return;
     picks.push({ ...byId[id], reason });
   }
 
@@ -37,7 +38,8 @@ export function relatedProductsFor(categories, geographicScopes, options = {}) {
     cats.has("Fungi") ||
     cats.has("Seasonal Nature")
   ) {
-    add("fieldry", "Record a field observation when you verify it outside.");
+    add("dashboard", "Pair field reporting with live conditions on Dashboard.");
+    add("scenes", "Explore related craft and stories in Scenes.");
   }
   if (
     cats.has("Wildlife") &&

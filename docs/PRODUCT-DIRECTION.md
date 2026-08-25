@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-08-24  
+**Last updated:** 2026-08-25  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint Studio is building now.
@@ -61,11 +61,17 @@ One **subscription** across the Studio ecosystem — not unrelated paywalls per 
 
 **Waypoint Deck is not a Waypoint Studio web application.**
 
-Long-term: offline-first Linux field/resilience computer with **local AI** at the center (maps, GPS, weather, radio/SDR, reference library, sensors, Global Signals when connected, graceful degradation offline).
+**Public Side Trail:** `/side-trails/waypoint-deck/` · catalog featured as **in development**.
+
+Long-term: offline-first Linux field/resilience computer with **local AI** at the center (maps, GPS, weather, radio/SDR, reference library, sensors, Global Signals concepts when connected, graceful degradation offline).
+
+**Information sources (conceptual):** weather · GPS/maps · radio/SDR · sensors · offline knowledge · system status · cached data · **Global Signals when online** (archived research feeding Deck situational awareness — not a standalone product). AI is the intended synthesis/interface layer.
 
 Commercial intent (Deck): one-time OS purchase + optional one-time packs — **not** the Studio subscription.
 
-Do not implement Deck inside this Studio cleanup. Do not treat Deck requirements as active Studio backlog.
+Do not implement Deck OS, local AI, SDR, or Global Signals integration unless explicitly instructed. Public pages must distinguish **planned / exploring** from **shipping**.
+
+Do not treat Deck requirements as active Studio backlog.
 
 ---
 
@@ -74,7 +80,7 @@ Do not implement Deck inside this Studio cleanup. Do not treat Deck requirements
 **Dashboard · Scenes · Sheds · Articles · Side Trails · Support · About**
 
 - **Articles** — public entry to Publishing (not a fourth “instrument” peer to Dashboard/Scenes/Sheds; a content surface).
-- **Side Trails** — research / archived sister work. Must not read as active Studio flagships. OpenRoad PA is **retired** there.
+- **Side Trails** — independent experiments. The **active** Side Trail is **Waypoint Deck** (offline-first Linux field computer). Older work (OpenRoad PA retired; SignalTerrain / Global Signals archived research) stays subordinate. Not Studio flagships.
 
 Homepage may introduce mature tools. App bodies stay one product (`APP-SURFACE-ARCHITECTURE.md`).
 

@@ -2,34 +2,41 @@
 
 **Route:** `/side-trails/`  
 **Catalog:** `data/side-trails/catalog.json`  
-**Status:** Archive / research catalog (not Studio flagships)  
 **Canonical portfolio:** [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md)
 
-Side Trails holds **retired and archived** experiments beside Waypoint Studio’s
-active experiences (Dashboard · Scenes · Sheds). It is **not** a laboratory for
-new Studio products.
+Side Trails holds **independent experiments** beside Waypoint Studio
+(Dashboard · Scenes · Sheds + Publishing).
 
 Cards render from a JSON catalog only. The page never invents projects.
 
 ---
 
-## Projects (catalog)
+## Hierarchy
+
+### Active Side Trail
 
 | Id | Title | Status | Open |
 | --- | --- | --- | --- |
-| `openroad-pa` | OpenRoad PA | **Retired** | `/side-trails/openroad-pa/` |
+| `waypoint-deck` | Waypoint Deck | **In development** | `/side-trails/waypoint-deck/` |
+
+Offline-first Linux field computer (local AI, maps/GPS, weather, radio, offline knowledge, situational awareness). Public page describes **direction**, not shipping claims.
+
+### Archive · past experiments
+
+| Id | Title | Status | Open |
+| --- | --- | --- | --- |
 | `signalterrain` | SignalTerrain | **Archived** research | `/side-trails/signalterrain/` |
 | `global-signals` | Global Signals | **Archived** research | `/side-trails/global-signals/` |
+| `openroad-pa` | OpenRoad PA | **Retired** | `/side-trails/openroad-pa/` |
 
-### OpenRoad PA
+**Global Signals / Cyber (SignalTerrain)** are not standalone active products. Useful concepts may later feed **Waypoint Deck** situational awareness when connectivity exists. Do not promote them as peers of Deck.
 
-Retired from Waypoint Studio. Not an active product. Page remains so old links
-do not look live. Civic Trails remains discontinued.
+### Not Side Trails
 
-### SignalTerrain / Global Signals / Cyber
-
-Not standalone Studio applications. Code and docs may be preserved for possible
-**Waypoint Deck** inputs. Do not promote as Studio subscription surfaces.
+| Item | Status |
+| --- | --- |
+| Fieldry | **Paused** (Studio history / incubator — not an active Side Trail) |
+| Savant Sommelier | **Not active** (do not feature beside Deck) |
 
 ---
 
@@ -37,4 +44,5 @@ Not standalone Studio applications. Code and docs may be preserved for possible
 
 - Do not hardcode project lists in HTML.
 - Do not invent projects when the catalog fails.
-- Do not present Side Trails entries as peers of Dashboard / Scenes / Sheds.
+- Do not present archived/retired entries as peers of Dashboard / Scenes / Sheds or as equal to Deck.
+- Do not claim unfinished Deck capabilities already work.

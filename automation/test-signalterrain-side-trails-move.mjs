@@ -56,7 +56,7 @@ const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 const signal = catalog.projects.find((p) => p.id === "signalterrain");
 assert.ok(signal, "SignalTerrain must appear in Side Trails catalog");
 assert.equal(signal.title, "SignalTerrain");
-assert.equal(signal.status, "experimental");
+assert.equal(signal.status, "archived");
 assert.match(String(signal.url), /side-trails\/signalterrain\/?|apps\/signalterrain\/?/);
 
 const nav = loadNavConfig();
@@ -85,13 +85,23 @@ assert.equal(
   false,
   "SignalTerrain must not remain in homeIncubator"
 );
-assert.ok(nav.homeSideTrails.includes("signalterrain"), "SignalTerrain must remain in homeSideTrails");
 assert.equal(
-  nav.homeSideTrails.includes("signalterrain") && !nav.homePrimary.includes("signalterrain"),
-  true,
-  "SignalTerrain stays Side Trails-only on Home"
+  nav.homeSideTrails.includes("signalterrain"),
+  false,
+  "SignalTerrain must not be promoted as an active home Side Trail"
 );
-// Global Signals may also appear in homeSideTrails after direct-entry integration.
+assert.ok(
+  Array.isArray(nav.homeSideTrails) &&
+    (nav.homeSideTrails.length === 0 || nav.homeSideTrails.includes("waypoint-deck")),
+  "homeSideTrails should feature Waypoint Deck (or stay empty), not archived ST/GS"
+);
+assert.equal(nav.homePrimary.includes("signalterrain"), false);
+
+const catalogStatus = JSON.parse(read("data/side-trails/catalog.json"));
+const stCatalog = catalogStatus.projects.find((p) => p.id === "signalterrain");
+assert.ok(stCatalog);
+assert.equal(stCatalog.status, "archived", "SignalTerrain is archived research, not an active peer of Deck");
+// Global Signals may remain in catalog as archived research.
 
 const stApp = (nav.apps || []).find((a) => a.id === "signalterrain");
 assert.ok(stApp, "nav apps entry for SignalTerrain must remain (app chrome)");
@@ -132,16 +142,15 @@ assert.match(incubator, /side-trails\//);
 const about = read("about.html");
 assert.match(about, /Side Trails/);
 assert.match(about, /SignalTerrain/);
-assert.match(about, /Waypoint Studio → Side Trails → project/);
-assert.match(about, /side-trails\/signalterrain\//);
+assert.match(about, /archived|not peers|Waypoint Deck/i);
+assert.doesNotMatch(about, /SignalTerrain<\/strong>\s*—\s*In development/i);
 
 const support = read("support.html");
 assert.match(support, /side-trails\//);
-assert.match(support, /SignalTerrain/);
 
-const studioHome = read("js/studio-home.js");
-assert.match(studioHome, /homeSideTrails/);
-assert.doesNotMatch(studioHome, /homeIncubator", \["signalterrain"/);
+const navCfgSrc = read("design-system/js/platform/wds-app-nav-config.js");
+assert.match(navCfgSrc, /homeSideTrails/);
+assert.doesNotMatch(navCfgSrc, /"homeSideTrails":\s*\[[^\]]*signalterrain/);
 
 const sitemap = read("sitemap.xml");
 assert.match(sitemap, /\/apps\/signalterrain\//);

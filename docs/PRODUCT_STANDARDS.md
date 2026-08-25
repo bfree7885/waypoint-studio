@@ -210,12 +210,16 @@ Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 - Waypoint Publishing / content engine (Articles, Deep Forest Dispatch, content pipeline)
 - Waypoint Intelligence, mapping, weather, design system, navigation, subscription platform
 
+**Active Side Trail (not Studio)**
+
+- **Waypoint Deck** — offline-first Linux field computer (independent; not a Studio subscription app)
+
 **Paused / retired / not Studio flagships**
 
-- Fieldry — paused indefinitely
+- Fieldry — paused indefinitely (not an active Side Trail)
 - OpenRoad PA — retired
 - Savant Sommelier — not an active priority
-- Cyber / SignalTerrain / Global Signals — not standalone Studio products (research may inform Waypoint Deck separately)
+- Cyber / SignalTerrain / Global Signals — not standalone active products (archived research; may inform Waypoint Deck situational awareness later)
 - ForageCast, Steepleaf, Volunteer — supporting or incubator only
 
 Each active experience keeps its own purpose while sharing philosophy, design
