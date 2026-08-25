@@ -1,0 +1,21 @@
+41.32000, -74.80000
+Elevation: ~320 m (1050 ft) — network sample
+Slope: ~9.5° (open-meteo-neighborhood)
+Aspect: 180° S — More south-facing
+Land cover: Forest cover (NLCD 41)
+Habitat transition: ~50 m
+Search potential: Stronger habitat signal
+Evidence: Strong supporting terrain signals
+Why this area may matter:
+· Moderate slope (~9.5°) — generally walkable.
+· More south-facing (S).
+· Forest cover · habitat transition nearby (~50 m)
+· Search potential band: Stronger habitat signal (heuristic).
+South-facing slopes generally receive more solar energy in the Northern Hemisphere and may lose snow sooner. Physical geography only — not a claim that deer or sheds are present.
+Limits:
+· This is habitat/terrain suitability context — not a shed prediction.
+· No claim that deer, trails, bedding, or antlers are present.
+· Land-cover resolution: ~30 m.
+· Land-cover vintage: NLCD 2021.
+Context only — not habitat proof from satellite pixels alone.
+Modeled suitability ≠ observed wildlife.

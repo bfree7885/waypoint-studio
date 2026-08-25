@@ -213,6 +213,49 @@ html, body {
   pointer-events: auto;
 }
 
+.sheds-inspect-hud {
+  max-height: min(42vh, 22rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sheds-inspect-hud__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sheds-inspect-hud__head .sheds-inspect-hud__kicker {
+  margin: 0;
+}
+
+.sheds-inspect-hud__close {
+  min-height: 2.2rem;
+  flex: 0 0 auto;
+  padding: 0.25rem 0.65rem;
+}
+
+.sheds-inspect-hud__lede {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  color: var(--sheds-muted);
+}
+
+.sheds-inspect-hud__body {
+  margin: 0;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  overflow: auto;
+  max-height: min(32vh, 16rem);
+  -webkit-overflow-scrolling: touch;
+}
+
 html.sheds-session-active .sheds-measure-hud,
 html.sheds-session-active .sheds-inspect-hud {
   top: calc(7.85rem + var(--sheds-safe-top));
@@ -233,8 +276,7 @@ html.sheds-session-active .sheds-inspect-hud {
   color: var(--sheds-accent);
 }
 
-.sheds-measure-hud__dist,
-.sheds-inspect-hud__body {
+.sheds-measure-hud__dist {
   margin: 0;
   font-size: 0.92rem;
   font-weight: 600;
