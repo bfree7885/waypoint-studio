@@ -27,6 +27,7 @@
   var FieldPlan = window.WaypointShedsFieldPlan;
   var FieldUi = window.WaypointShedsFieldUi;
   var Ux = window.WaypointShedsUxPolish;
+  var FieldTools = window.WaypointShedsFieldTools;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -102,13 +103,26 @@
     sglLayer: null,
     searchMarker: null,
     searchAreaCircle: null,
-    lastSearchSnapshot: null
+    lastSearchSnapshot: null,
+    basemapId: "street",
+    measureActive: false,
+    measurePoints: [],
+    inspectArmed: false,
+    inspectLatLng: null,
+    inspectElevGen: 0,
+    inspectElevM: null,
+    inspectElevStatus: "idle"
   };
 
   var els = {};
   var map, heatLayer, userMarker, accuracyCircle, headingLine, obsLayer, clickLatLng;
   var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
   var searchLayer, sglLayerGroup;
+  var basemapsBundle = null;
+  var basemapLayersControl = null;
+  var measureLayer = null;
+  var measureLine = null;
+  var inspectMarker = null;
 
   function $(id) { return document.getElementById(id); }
 
@@ -1177,35 +1191,75 @@
     if (!Tiles || !Tiles.createBasemaps) {
       throw new Error("WaypointShedsTiles missing — load sheds-tile-provider.js before sheds-map-app.js");
     }
-    var basemaps = Tiles.createBasemaps(L);
-    var street = basemaps.street;
-    var topo = basemaps.topo;
-    Tiles.attachReliability(street, { onStatus: setTileStatus });
-    Tiles.attachReliability(topo, { onStatus: setTileStatus });
-    // CARTO/Esri production tiles — not OSMF public raster (blocked gray placeholders)
-    street.addTo(map);
-    L.control.layers(basemaps.baseLayers, null, {
+    basemapsBundle = Tiles.createBasemaps(L);
+    ["street", "topo", "satellite"].forEach(function (id) {
+      var layer = basemapsBundle.byId[id];
+      if (layer) Tiles.attachReliability(layer, { onStatus: setTileStatus });
+    });
+    /* Hybrid group: attach reliability to imagery child if present */
+    try {
+      if (basemapsBundle.hybrid && basemapsBundle.hybrid.eachLayer) {
+        basemapsBundle.hybrid.eachLayer(function (lyr) {
+          if (lyr && lyr.on) Tiles.attachReliability(lyr, { onStatus: setTileStatus });
+        });
+      }
+    } catch (e) { /* */ }
+
+    var initialBasemap = Tiles.resolveInitialBasemapId(basemapsBundle);
+    state.basemapId = Tiles.applyBasemap(map, basemapsBundle, initialBasemap) || "street";
+    syncBasemapSelect();
+
+    basemapLayersControl = L.control.layers(basemapsBundle.baseLayers, null, {
       position: "topright",
       collapsed: true
     }).addTo(map);
-    map.on("baselayerchange", function () {
+    map.on("baselayerchange", function (ev) {
       setTileStatus(null);
+      var nextId = null;
+      var ids = basemapsBundle.ids || [];
+      for (var i = 0; i < ids.length; i += 1) {
+        if (basemapsBundle.byId[ids[i]] === ev.layer) {
+          nextId = ids[i];
+          break;
+        }
+      }
+      if (nextId) {
+        state.basemapId = nextId;
+        Tiles.saveBasemapId(nextId);
+        syncBasemapSelect();
+      }
     });
 
     var firstTile = false;
     function afterBasemapSettles() {
       forceMapLayout({ resetView: false });
       try {
-        if (street && typeof street.redraw === "function" && map.hasLayer(street)) street.redraw();
+        var active = basemapsBundle.byId[state.basemapId];
+        if (active && typeof active.redraw === "function" && map.hasLayer(active)) active.redraw();
       } catch (e) { /* */ }
     }
-    street.on("load", function () {
+    function bindFirstLoad(layer) {
+      if (!layer || !layer.on) return;
+      layer.on("load", function () {
+        if (!firstTile) {
+          firstTile = true;
+          setMapLoading(true);
+          afterBasemapSettles();
+        }
+      });
+    }
+    bindFirstLoad(basemapsBundle.byId[state.basemapId]);
+    if (state.basemapId === "hybrid" && basemapsBundle.hybrid && basemapsBundle.hybrid.eachLayer) {
+      basemapsBundle.hybrid.eachLayer(bindFirstLoad);
+    }
+    // Safety: clear loading even if tiles are cached and 'load' is quiet
+    setTimeout(function () {
       if (!firstTile) {
         firstTile = true;
         setMapLoading(true);
         afterBasemapSettles();
       }
-    });
+    }, 2500);
 
     obsLayer = L.layerGroup().addTo(map);
     coverageLayer = L.layerGroup().addTo(map);
@@ -1268,6 +1322,14 @@
       var now = Date.now();
       if (now - state.lastClickAt < 450) return;
       state.lastClickAt = now;
+      if (state.measureActive) {
+        addMeasurePoint(e.latlng);
+        return;
+      }
+      if (state.inspectArmed) {
+        showInspectAt(e.latlng);
+        return;
+      }
       // Phase 2: map tap sets SEARCH LOCATION — observations via Add note FAB.
       setSearchLocation(e.latlng.lat, e.latlng.lng, "map-tap");
       if (map.getZoom() < 12) {
@@ -3150,6 +3212,279 @@
     if (ll) openNewObservation(ll);
   }
 
+  function syncBasemapSelect() {
+    var sel = $("basemap-select");
+    if (sel && state.basemapId) sel.value = state.basemapId;
+  }
+
+  function setBasemapFromUi(id) {
+    var Tiles = window.WaypointShedsTiles;
+    if (!Tiles || !basemapsBundle || !map) return;
+    setTileStatus(null);
+    state.basemapId = Tiles.applyBasemap(map, basemapsBundle, id) || "street";
+    syncBasemapSelect();
+  }
+
+  function shellModeClass(measuring, inspecting) {
+    var shell = document.getElementById("sheds-map-shell");
+    if (!shell) return;
+    shell.classList.toggle("is-measuring", !!measuring);
+    shell.classList.toggle("is-inspecting", !!inspecting);
+  }
+
+  function ensureMeasureLayer() {
+    if (!map) return;
+    if (!measureLayer) measureLayer = L.layerGroup().addTo(map);
+  }
+
+  function clearMeasureGraphics() {
+    if (measureLayer) measureLayer.clearLayers();
+    measureLine = null;
+  }
+
+  function updateMeasureHud() {
+    var distEl = $("measure-dist");
+    var areaEl = $("measure-area");
+    var hud = $("measure-hud");
+    if (!distEl || !hud) return;
+    var pts = state.measurePoints || [];
+    if (!pts.length) {
+      distEl.textContent = "Tap the map to set points";
+      if (areaEl) {
+        areaEl.setAttribute("hidden", "");
+        areaEl.textContent = "";
+      }
+      return;
+    }
+    var FT = FieldTools;
+    var len = FT ? FT.pathLengthM(pts) : 0;
+    var label = FT ? FT.formatFieldDistance(len) : Math.round(len) + " m";
+    distEl.textContent =
+      pts.length === 1
+        ? "Point 1 set — tap next point"
+        : pts.length + " points · " + label;
+    if (areaEl) {
+      if (pts.length >= 3 && FT && FT.polygonAreaM2) {
+        var area = FT.polygonAreaM2(pts);
+        var areaLabel = FT.formatFieldArea(area);
+        if (areaLabel) {
+          areaEl.removeAttribute("hidden");
+          areaEl.textContent = "Approx. area (if closed): " + areaLabel;
+        } else {
+          areaEl.setAttribute("hidden", "");
+        }
+      } else {
+        areaEl.setAttribute("hidden", "");
+      }
+    }
+  }
+
+  function redrawMeasure() {
+    ensureMeasureLayer();
+    clearMeasureGraphics();
+    var pts = state.measurePoints || [];
+    var i;
+    for (i = 0; i < pts.length; i += 1) {
+      L.circleMarker([pts[i].lat, pts[i].lng], {
+        radius: 5,
+        className: "sheds-measure-vertex",
+        color: "#0a1410",
+        fillColor: "#d8ec5c",
+        fillOpacity: 1,
+        weight: 2
+      }).addTo(measureLayer);
+    }
+    if (pts.length >= 2) {
+      measureLine = L.polyline(
+        pts.map(function (p) {
+          return [p.lat, p.lng];
+        }),
+        { color: "#d8ec5c", weight: 3, opacity: 0.9, dashArray: "6 6" }
+      ).addTo(measureLayer);
+    }
+    updateMeasureHud();
+  }
+
+  function startMeasureMode() {
+    stopInspectMode({ silent: true });
+    state.measureActive = true;
+    state.measurePoints = [];
+    ensureMeasureLayer();
+    clearMeasureGraphics();
+    var hud = $("measure-hud");
+    if (hud) hud.removeAttribute("hidden");
+    shellModeClass(true, false);
+    updateMeasureHud();
+    closeAllSheets();
+  }
+
+  function stopMeasureMode() {
+    state.measureActive = false;
+    state.measurePoints = [];
+    clearMeasureGraphics();
+    var hud = $("measure-hud");
+    if (hud) hud.setAttribute("hidden", "");
+    shellModeClass(false, state.inspectArmed);
+  }
+
+  function addMeasurePoint(latlng) {
+    if (!latlng) return;
+    state.measurePoints.push({ lat: latlng.lat, lng: latlng.lng });
+    redrawMeasure();
+  }
+
+  function undoMeasurePoint() {
+    if (!state.measurePoints.length) return;
+    state.measurePoints.pop();
+    redrawMeasure();
+  }
+
+  function clearMeasurePoints() {
+    state.measurePoints = [];
+    redrawMeasure();
+  }
+
+  function stopInspectMode(opts) {
+    opts = opts || {};
+    state.inspectArmed = false;
+    state.inspectLatLng = null;
+    state.inspectElevM = null;
+    state.inspectElevStatus = "idle";
+    state.inspectElevGen += 1;
+    if (inspectMarker && map) {
+      try {
+        map.removeLayer(inspectMarker);
+      } catch (e) { /* */ }
+      inspectMarker = null;
+    }
+    var hud = $("inspect-hud");
+    if (hud && !opts.keepHud) hud.setAttribute("hidden", "");
+    shellModeClass(state.measureActive, false);
+  }
+
+  function armInspectMode() {
+    stopMeasureMode();
+    state.inspectArmed = true;
+    shellModeClass(false, true);
+    closeAllSheets();
+    var body = $("inspect-body");
+    var hud = $("inspect-hud");
+    if (body) body.textContent = "Tap the map to inspect a point.";
+    if (hud) hud.removeAttribute("hidden");
+  }
+
+  function renderInspectHud() {
+    var body = $("inspect-body");
+    var hud = $("inspect-hud");
+    if (!body || !hud || !state.inspectLatLng) return;
+    var ll = state.inspectLatLng;
+    var FT = FieldTools;
+    var lines = [];
+    lines.push(ll.lat.toFixed(5) + ", " + ll.lng.toFixed(5));
+    if (state.inspectElevStatus === "loading") {
+      lines.push("Elevation: loading…");
+    } else if (state.inspectElevStatus === "ready" && state.inspectElevM != null) {
+      lines.push(
+        "Elevation: ~" +
+          Math.round(state.inspectElevM) +
+          " m (" +
+          Math.round(state.inspectElevM * 3.28084) +
+          " ft) — network sample"
+      );
+    } else if (state.inspectElevStatus === "unavailable") {
+      lines.push("Elevation: unavailable");
+    } else {
+      lines.push("Elevation: not requested");
+    }
+    if (state.userLatLng && FT) {
+      var dYou = FT.distanceM(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
+      var bYou = FT.bearingDeg(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
+      lines.push(
+        "From YOU: " +
+          FT.formatFieldDistance(dYou) +
+          " · " +
+          FT.cardinalFromBearing(bYou) +
+          " " +
+          Math.round(bYou) +
+          "°"
+      );
+    } else {
+      lines.push("From YOU: locate first");
+    }
+    if (state.searchLocation && FT) {
+      var dS = FT.distanceM(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
+      var bS = FT.bearingDeg(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
+      lines.push(
+        "From SEARCH: " +
+          FT.formatFieldDistance(dS) +
+          " · " +
+          FT.cardinalFromBearing(bS) +
+          " " +
+          Math.round(bS) +
+          "°"
+      );
+    }
+    lines.push("Context only — not habitat proof.");
+    body.textContent = lines.join("\n");
+    hud.removeAttribute("hidden");
+  }
+
+  function fetchInspectElevation(lat, lng, gen) {
+    state.inspectElevStatus = "loading";
+    state.inspectElevM = null;
+    renderInspectHud();
+    var url =
+      "https://api.open-meteo.com/v1/elevation?latitude=" +
+      encodeURIComponent(lat.toFixed(5)) +
+      "&longitude=" +
+      encodeURIComponent(lng.toFixed(5));
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error("elev " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (gen !== state.inspectElevGen) return;
+        var elev = data && data.elevation && data.elevation[0];
+        if (elev == null || !isFinite(elev)) {
+          state.inspectElevStatus = "unavailable";
+          state.inspectElevM = null;
+        } else {
+          state.inspectElevStatus = "ready";
+          state.inspectElevM = elev;
+        }
+        renderInspectHud();
+      })
+      .catch(function () {
+        if (gen !== state.inspectElevGen) return;
+        state.inspectElevStatus = "unavailable";
+        state.inspectElevM = null;
+        renderInspectHud();
+      });
+  }
+
+  function showInspectAt(latlng) {
+    if (!latlng || !map) return;
+    state.inspectArmed = false;
+    state.inspectLatLng = { lat: latlng.lat, lng: latlng.lng };
+    shellModeClass(false, false);
+    if (inspectMarker) {
+      try {
+        map.removeLayer(inspectMarker);
+      } catch (e) { /* */ }
+    }
+    inspectMarker = L.circleMarker([latlng.lat, latlng.lng], {
+      radius: 7,
+      color: "#f0c14a",
+      fillColor: "#f0c14a",
+      fillOpacity: 0.9,
+      weight: 2
+    }).addTo(map);
+    var gen = ++state.inspectElevGen;
+    fetchInspectElevation(latlng.lat, latlng.lng, gen);
+    renderInspectHud();
+  }
+
   function bindControls() {
     $("btn-locate").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     if ($("btn-here-chip")) {
@@ -3183,6 +3518,41 @@
         closeSheet(els.sheetTools);
         syncControlsForm();
         openSheet(els.sheetControls);
+      });
+    }
+    if ($("basemap-select")) {
+      $("basemap-select").addEventListener("change", function () {
+        setBasemapFromUi($("basemap-select").value);
+      });
+    }
+    if ($("btn-measure")) {
+      $("btn-measure").addEventListener("click", function () {
+        startMeasureMode();
+      });
+    }
+    if ($("btn-inspect-point")) {
+      $("btn-inspect-point").addEventListener("click", function () {
+        armInspectMode();
+      });
+    }
+    if ($("btn-measure-done")) {
+      $("btn-measure-done").addEventListener("click", function () {
+        stopMeasureMode();
+      });
+    }
+    if ($("btn-measure-clear")) {
+      $("btn-measure-clear").addEventListener("click", function () {
+        clearMeasurePoints();
+      });
+    }
+    if ($("btn-measure-undo")) {
+      $("btn-measure-undo").addEventListener("click", function () {
+        undoMeasurePoint();
+      });
+    }
+    if ($("btn-inspect-close")) {
+      $("btn-inspect-close").addEventListener("click", function () {
+        stopInspectMode();
       });
     }
     if ($("btn-add-obs")) {
@@ -3571,6 +3941,7 @@
     if ($("sgl-visible")) $("sgl-visible").checked = !!state.sglVisible;
     if ($("search-radius")) $("search-radius").value = state.searchRadiusKey || "medium";
     if ($("search-radius-tools")) $("search-radius-tools").value = state.searchRadiusKey || "medium";
+    syncBasemapSelect();
     if ($("diagnostic-mode")) $("diagnostic-mode").checked = !!state.prefs.diagnosticMode;
     if ($("compare-mode")) $("compare-mode").checked = !!state.prefs.compareMode;
     if ($("include-obs-habitat")) $("include-obs-habitat").checked = !!state.prefs.includeObservationsInHabitat;

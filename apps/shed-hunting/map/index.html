@@ -30,6 +30,21 @@
           No network. Live conditions unavailable. Your saved area and field records still work.
         </div>
         <div class="sheds-map-tile-status" id="map-tile-status" hidden role="status" aria-live="polite"></div>
+        <div class="sheds-measure-hud" id="measure-hud" hidden role="status" aria-live="polite">
+          <p class="sheds-measure-hud__kicker">Measure</p>
+          <p class="sheds-measure-hud__dist" id="measure-dist">Tap the map to set points</p>
+          <p class="sheds-measure-hud__area" id="measure-area" hidden></p>
+          <div class="sheds-measure-hud__actions">
+            <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-measure-undo">Undo</button>
+            <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-measure-clear">Clear</button>
+            <button type="button" class="sheds-btn sheds-btn--primary" id="btn-measure-done">Done</button>
+          </div>
+        </div>
+        <div class="sheds-inspect-hud" id="inspect-hud" hidden role="status" aria-live="polite">
+          <p class="sheds-inspect-hud__kicker">Inspect</p>
+          <p class="sheds-inspect-hud__body" id="inspect-body"></p>
+          <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-inspect-close">Close</button>
+        </div>
       </div>
 
       <!-- Immediate: brand + quiet status -->
@@ -487,9 +502,29 @@
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel">
       <h2 class="sheds-sheet__title" id="controls-title">Map &amp; layers</h2>
-      <p class="sheds-sheet__lede">What you see on the map. Landscape guidance stays separate from your observations unless you opt in under Advanced.</p>
+      <p class="sheds-sheet__lede">What you see on the map. Landscape guidance stays separate from your observations unless you opt in under Advanced. Satellite imagery is landscape context — not proof of deer presence.</p>
       <p class="sheds-note" id="inputs-summary"></p>
-      
+
+        <div class="sheds-field">
+          <label for="basemap-select">Basemap</label>
+          <select id="basemap-select" aria-label="Basemap">
+            <option value="street">Street</option>
+            <option value="topo">Topographic</option>
+            <option value="satellite">Satellite</option>
+            <option value="hybrid">Hybrid (imagery + labels)</option>
+          </select>
+          <p class="sheds-note">Saved on this device. Imagery helps see fields, edges, and access — not biological certainty.</p>
+        </div>
+
+        <div class="sheds-field">
+          <span class="sheds-field__label">Field tools</span>
+          <div class="sheds-tools-grid sheds-tools-grid--compact">
+            <button type="button" class="sheds-btn" id="btn-measure">Measure distance</button>
+            <button type="button" class="sheds-btn" id="btn-inspect-point">Inspect next tap</button>
+          </div>
+          <p class="sheds-note">Measure and Inspect temporarily take map taps so SEARCH stays intentional. Finish or cancel to return to normal tapping.</p>
+        </div>
+
         <div class="sheds-field">
           <span class="sheds-field__label">Guidance on map</span>
           <p class="sheds-note" id="guidance-mode-label">MODEL — mapped landscape (observations excluded)</p>
@@ -778,6 +813,7 @@
   <script src="../js/sheds-ux-polish.js"></script>
   <script src="../js/sheds-heat-layer.js"></script>
   <script src="../js/sheds-tile-provider.js"></script>
+  <script src="../js/sheds-map-field-tools.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

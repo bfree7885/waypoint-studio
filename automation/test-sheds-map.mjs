@@ -211,11 +211,15 @@ assert(
 const tileSrc = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-tile-provider.js"), "utf8");
 assert("production default is CARTO", /basemaps\.cartocdn\.com/.test(tileSrc));
 assert("topo default is Esri", /arcgisonline\.com/.test(tileSrc));
+assert("satellite World Imagery present", /World_Imagery/.test(tileSrc));
 assert("refuses OSMF public host", /assertNotOsmPublic|tile\.openstreetmap\.org/.test(tileSrc));
 assert("ethics sheet present", /Field ethics/.test(html));
 assert("map-first tools sheet", /id="sheet-tools"/.test(html));
 assert("map-first more button", /id="btn-more"/.test(html));
 assert("map-first suggest glance", /id="plan-glance"/.test(html));
+assert("basemap select in Map & layers", /id="basemap-select"/.test(html));
+assert("measure control present", /id="btn-measure"/.test(html));
+assert("field tools module loaded", /sheds-map-field-tools\.js/.test(html));
 assert("skip link uses sheds-skip", /class="sheds-skip"/.test(html) && !/class="wds-skip"/.test(html));
 assert("closeAllSheets includes validate", /sheetValidate/.test(appSrc) && /sheetTools/.test(appSrc));
 assert("followUser pan away pattern", /followUser/.test(appSrc) && /dragstart/.test(appSrc));
