@@ -1532,6 +1532,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep YOU ≠ SEARCH ≠ INSPECT ≠ OBS visually distinct with a short legend; never invent another location concept.
 - Field validation protocol measures usability (time-to-Search-Area, wrong interpretations, degradation comprehension) — never shed-find counts; log stays empty until real walks.
 
+### Lessons Learned — Sheds mobile visual QA polish (2026-08-24)
+
+- Single-row session strip (`Search active | End Search`) recovers map height vs a stacked full-width End button; keep End Search flex-none so the label does not clip.
+- `#sheds-map-shell:has(#search-prompt…)` presence offsets must outrank `html.sheds-session-active .sheds-here` (ID beats classes) or YOU/GPS chip sits on the SEARCH prompt.
+- Expanded Field Briefing should hide dock/map-ctrls/legend with `:has([data-expanded=true])` so chrome does not show through the sheet.
+- Prompt `right` clearance must exceed compact map-ctrl width; a 3–7px collision still reads as overlap on phone.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.

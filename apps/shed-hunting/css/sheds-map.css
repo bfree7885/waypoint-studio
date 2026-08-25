@@ -2053,58 +2053,112 @@ html.sheds-sheet-open .leaflet-control-attribution {
  * ============================================================================= */
 @media (max-width: 719px), (max-height: 500px) {
   :root {
-    --sheds-sheet-peek: 4.5rem;
-    --sheds-dock-h: 3.65rem;
-    --sheds-map-ctrl-size: 2.65rem;
+    --sheds-sheet-peek: 4.35rem;
+    --sheds-dock-h: 3.4rem;
+    --sheds-map-ctrl-size: 2.5rem;
+    --sheds-mobile-header-end: calc(3.7rem + var(--sheds-safe-top));
+    /* Compact single-row strip (~2.9–3.2rem) under header */
+    --sheds-mobile-strip-end: calc(7.15rem + var(--sheds-safe-top));
   }
 
   .sheds-hud-brand {
-    min-height: 2.5rem;
-    padding: 0.28rem 0.6rem 0.28rem 0.35rem;
+    min-height: 2.45rem;
+    padding: 0.26rem 0.55rem 0.26rem 0.32rem;
   }
 
   .sheds-hud-brand__name {
-    font-size: 1.02rem;
+    font-size: 1rem;
   }
 
   .sheds-hud-chip {
-    width: 2.5rem;
-    height: 2.5rem;
-    min-height: 2.5rem;
+    width: 2.45rem;
+    height: 2.45rem;
+    min-height: 2.45rem;
   }
 
-  /* Session strip: full width under header — no collision with map ctrls */
+  /* Session strip: compact single row — End Search stays obvious without a giant banner */
   .sheds-session-strip {
     left: calc(0.5rem + var(--sheds-safe-left));
     right: calc(0.5rem + var(--sheds-safe-right));
-    top: calc(3.9rem + var(--sheds-safe-top));
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35rem;
-    padding: 0.45rem 0.55rem;
+    top: var(--sheds-mobile-header-end);
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.32rem 0.4rem 0.32rem 0.55rem;
     z-index: 540;
   }
 
   .sheds-session-strip__row {
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 0.3rem;
+  }
+
+  .sheds-session-strip__state {
+    font-size: 0.78rem;
+  }
+
+  .sheds-session-strip__meta {
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .sheds-session-strip .sheds-btn {
-    width: 100%;
+    width: auto;
+    flex: 0 0 auto;
     justify-content: center;
-    min-height: 2.75rem;
+    min-height: 2.35rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.82rem;
   }
 
-  /* Push presence + map ctrls below the two-row session strip */
-  html.sheds-session-active .sheds-here,
+  /* Default map ctrls / prompt below header (clear of ? / i chips) */
+  .sheds-map-ctrls {
+    position: absolute;
+    top: var(--sheds-mobile-header-end);
+    right: calc(0.5rem + var(--sheds-safe-right));
+    gap: 0.3rem;
+    align-items: flex-end;
+  }
+
+  .sheds-search-prompt {
+    left: calc(0.5rem + var(--sheds-safe-left));
+    right: calc(3.85rem + var(--sheds-safe-right));
+    top: var(--sheds-mobile-header-end);
+    z-index: 535;
+    padding: 0.4rem 0.5rem;
+    gap: 0.35rem 0.5rem;
+  }
+
+  .sheds-search-prompt__text {
+    font-size: 0.8rem;
+    flex: 1 1 8rem;
+  }
+
+  /* Presence chip sits under prompt when the SEARCH prompt is open */
+  #sheds-map-shell:has(#search-prompt:not([hidden])) .sheds-here {
+    top: calc(var(--sheds-mobile-header-end) + 5.75rem);
+    max-width: min(55vw, 12.5rem);
+  }
+
+  /* Active search: stack chrome under compact strip */
   html.sheds-session-active .sheds-map-ctrls,
   html.sheds-session-active .sheds-search-prompt,
   html.sheds-session-active .sheds-marker-legend {
-    top: calc(10.1rem + var(--sheds-safe-top));
+    top: var(--sheds-mobile-strip-end);
   }
 
   html.sheds-session-active .sheds-here {
+    top: var(--sheds-mobile-strip-end);
     max-width: min(52vw, 12rem);
+  }
+
+  /* ID :has beats class-only session rule — keep presence below prompt while searching */
+  html.sheds-session-active #sheds-map-shell:has(#search-prompt:not([hidden])) .sheds-here {
+    top: calc(var(--sheds-mobile-strip-end) + 5.75rem);
   }
 
   html.sheds-session-active .sheds-here__track {
@@ -2125,15 +2179,6 @@ html.sheds-sheet-open .leaflet-control-attribution {
   /* Hide Leaflet basemap control on field chrome — Layers lives under More */
   .leaflet-top.leaflet-right {
     display: none !important;
-  }
-
-  /* Persistent map controls — compact cluster, top-right */
-  .sheds-map-ctrls {
-    position: absolute;
-    top: calc(3.15rem + var(--sheds-safe-top));
-    right: calc(0.5rem + var(--sheds-safe-right));
-    gap: 0.35rem;
-    align-items: flex-end;
   }
 
   .sheds-map-ctrls .sheds-fab--map {
@@ -2201,15 +2246,15 @@ html.sheds-sheet-open .leaflet-control-attribution {
     position: absolute;
     left: calc(0.4rem + var(--sheds-safe-left));
     right: calc(0.4rem + var(--sheds-safe-right));
-    bottom: calc(var(--sheds-sheet-peek) + 0.35rem + var(--sheds-safe-bottom));
+    bottom: calc(var(--sheds-sheet-peek) + 0.3rem + var(--sheds-safe-bottom));
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
-    gap: 0.25rem;
-    padding: 0.28rem;
-    border-radius: 16px;
-    background: rgba(6, 16, 12, 0.94);
-    border: 1px solid rgba(220, 236, 180, 0.28);
+    gap: 0.2rem;
+    padding: 0.22rem;
+    border-radius: 14px;
+    background: rgba(6, 16, 12, 0.96);
+    border: 1px solid rgba(220, 236, 180, 0.3);
     backdrop-filter: var(--sheds-blur);
     -webkit-backdrop-filter: var(--sheds-blur);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
@@ -2219,14 +2264,14 @@ html.sheds-sheet-open .leaflet-control-attribution {
     flex: 1 1 0;
     width: auto;
     min-width: 0;
-    min-height: 2.85rem;
+    min-height: 2.65rem;
     height: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.18rem;
-    padding: 0.28rem 0.2rem;
-    border-radius: 12px;
+    gap: 0.12rem;
+    padding: 0.22rem 0.15rem;
+    border-radius: 11px;
     background: transparent;
     border-color: transparent;
     box-shadow: none;
@@ -2234,12 +2279,12 @@ html.sheds-sheet-open .leaflet-control-attribution {
   }
 
   .sheds-app-dock .sheds-fab__icon {
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1.1rem;
+    height: 1.1rem;
   }
 
   .sheds-app-dock .sheds-fab__label {
-    font-size: 0.62rem;
+    font-size: 0.58rem;
     font-weight: 650;
     letter-spacing: 0.02em;
   }
@@ -2252,6 +2297,15 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
   .sheds-app-dock .sheds-fab:focus-visible {
     outline-offset: 0;
+  }
+
+  /* Hide floating chrome while Field Briefing is expanded (map + briefing only) */
+  #sheds-map-shell:has(#plan-card[data-expanded="true"]) .sheds-app-dock,
+  #sheds-map-shell:has(#plan-card[data-expanded="true"]) .sheds-map-ctrls,
+  #sheds-map-shell:has(#plan-card[data-expanded="true"]) .sheds-legend-float {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   /* Compact Field Briefing bottom sheet */
@@ -2275,7 +2329,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
   .sheds-suggest:not([data-expanded="true"]) .sheds-suggest__glance {
     white-space: nowrap;
     font-family: "IBM Plex Sans", system-ui, sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     font-weight: 500;
     color: var(--sheds-muted);
   }
@@ -2292,16 +2346,16 @@ html.sheds-sheet-open .leaflet-control-attribution {
   /* Collapsible landscape legend */
   .sheds-legend-float {
     left: calc(0.5rem + var(--sheds-safe-left));
-    bottom: calc(var(--sheds-sheet-peek) + var(--sheds-dock-h) + 0.55rem + var(--sheds-safe-bottom));
-    max-width: min(11.5rem, calc(100vw - 5.25rem));
+    bottom: calc(var(--sheds-sheet-peek) + var(--sheds-dock-h) + 0.45rem + var(--sheds-safe-bottom));
+    max-width: min(10.75rem, calc(100vw - 5rem));
     padding: 0;
     overflow: hidden;
   }
 
   .sheds-legend-float__toggle {
     cursor: pointer;
-    padding: 0.4rem 0.55rem;
-    min-height: 2.35rem;
+    padding: 0.35rem 0.5rem;
+    min-height: 2.2rem;
   }
 
   .sheds-legend-float__toggle:focus-visible {
@@ -2331,13 +2385,7 @@ html.sheds-sheet-open .leaflet-control-attribution {
     font-size: 0.62rem;
   }
 
-  /* Search prompt — stay clear of map ctrls */
-  .sheds-search-prompt {
-    left: calc(0.5rem + var(--sheds-safe-left));
-    right: calc(3.4rem + var(--sheds-safe-right));
-    top: calc(3.15rem + var(--sheds-safe-top));
-    z-index: 535;
-  }
+  /* Search prompt positioning is set above with map ctrls */
 
   .sheds-coach {
     bottom: calc(var(--sheds-sheet-peek) + var(--sheds-dock-h) + 0.65rem + var(--sheds-safe-bottom));
@@ -2352,23 +2400,42 @@ html.sheds-sheet-open .leaflet-control-attribution {
   }
 
   .sheds-marker-legend {
-    top: calc(3.15rem + var(--sheds-safe-top));
+    top: var(--sheds-mobile-header-end);
     z-index: 650;
+  }
+}
+
+/* Very narrow phones: keep End Search full-width so it stays easy to tap */
+@media (max-width: 359px) {
+  .sheds-session-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+  }
+
+  .sheds-session-strip .sheds-btn {
+    width: 100%;
+  }
+
+  :root {
+    --sheds-mobile-strip-end: calc(8.6rem + var(--sheds-safe-top));
   }
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
   :root {
-    --sheds-sheet-peek: 3.35rem;
-    --sheds-dock-h: 3.1rem;
+    --sheds-sheet-peek: 3.2rem;
+    --sheds-dock-h: 3rem;
+    --sheds-mobile-header-end: calc(3.7rem + var(--sheds-safe-top));
+    --sheds-mobile-strip-end: calc(6.5rem + var(--sheds-safe-top));
   }
 
   .sheds-app-dock {
-    padding: 0.18rem;
+    padding: 0.14rem;
   }
 
   .sheds-app-dock .sheds-fab {
-    min-height: 2.45rem;
+    min-height: 2.35rem;
   }
 
   .sheds-suggest:not([data-expanded="true"]) .sheds-suggest__glance {
@@ -2379,14 +2446,13 @@ html.sheds-sheet-open .leaflet-control-attribution {
     max-width: 9.5rem;
   }
 
-  .sheds-map-ctrls {
-    top: calc(2.85rem + var(--sheds-safe-top));
+  .sheds-session-strip__meta {
+    display: none;
   }
 
-  html.sheds-session-active .sheds-here,
-  html.sheds-session-active .sheds-map-ctrls,
-  html.sheds-session-active .sheds-search-prompt,
-  html.sheds-session-active .sheds-marker-legend {
-    top: calc(8.5rem + var(--sheds-safe-top));
+  .sheds-hud-chip {
+    width: 2.25rem;
+    height: 2.25rem;
+    min-height: 2.25rem;
   }
 }

@@ -1,0 +1,88 @@
+{
+  "vw": 375,
+  "vh": 667,
+  "coveredChromeH": 229,
+  "coveredShare": 0.343,
+  "planExpanded": "false",
+  "legendExpanded": "false",
+  "sessionActive": false,
+  "locateBg": "rgb(216, 236, 92)",
+  "locateColor": "rgb(10, 20, 16)",
+  "dockH": 57,
+  "planH": 53,
+  "promptH": 119,
+  "legendH": 40,
+  "mapCtrlW": 49,
+  "overlaps": [
+    "prompt×mapCtrls",
+    "mapCtrls×hud"
+  ],
+  "items": {
+    "hud": {
+      "t": 8,
+      "b": 59,
+      "l": 8,
+      "r": 367,
+      "w": 359,
+      "h": 51
+    },
+    "here": {
+      "t": 54,
+      "b": 104,
+      "l": 8,
+      "r": 216,
+      "w": 208,
+      "h": 50
+    },
+    "strip": null,
+    "prompt": {
+      "t": 50,
+      "b": 169,
+      "l": 8,
+      "r": 321,
+      "w": 313,
+      "h": 119
+    },
+    "mapCtrls": {
+      "t": 50,
+      "b": 193,
+      "l": 318,
+      "r": 367,
+      "w": 49,
+      "h": 143
+    },
+    "dock": {
+      "t": 533,
+      "b": 589,
+      "l": 6,
+      "r": 369,
+      "w": 362,
+      "h": 57
+    },
+    "plan": {
+      "t": 614,
+      "b": 667,
+      "l": 0,
+      "r": 375,
+      "w": 375,
+      "h": 53
+    },
+    "legend": {
+      "t": 488,
+      "b": 528,
+      "l": 8,
+      "r": 159,
+      "w": 151,
+      "h": 40
+    },
+    "locate": {
+      "t": 50,
+      "b": 93,
+      "l": 325,
+      "r": 367,
+      "w": 42,
+      "h": 42
+    },
+    "recenter": null
+  }
+}
