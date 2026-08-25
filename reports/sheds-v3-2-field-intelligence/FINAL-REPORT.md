@@ -1,6 +1,8 @@
 # Sheds V3.2 — Field Intelligence FINAL REPORT
 
-**Verdict:** PASS for the Inspect-first V3.2 slice  
+**Recovery (2026-08-25):** The original run stalled after committing Inspect work plus three SHA-alignment commits. See [`RECOVERY.md`](./RECOVERY.md). This report’s original “full V3.2” framing is **not** a hunt-planner / Search Area / weather slice. The bounded product that shipped is **Inspect Intelligence** only.
+
+**Verdict:** PASS for the Inspect Intelligence slice  
 **Date:** 2026-08-25  
 **Product test:** Inspect explains landscape signals without inventing sheds/deer; mobile HUD dismisses and leaves the map usable.
 
