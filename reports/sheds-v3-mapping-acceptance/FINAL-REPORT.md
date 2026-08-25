@@ -4,7 +4,7 @@
 
 Date: 2026-08-24 (America/New_York)  
 Base commit under test: `fead5bb3cbf90b1815e9169942dc7bd3a0392070`  
-QA repair commit: see git tip after this package  
+QA repair commit: `6b2b35beaf96bfa0e82e822d8284f646a5135f0f`  
 Package: `reports/sheds-v3-mapping-acceptance/`  
 Harness: `automation/hostile-qa-sheds-v3-mapping.mjs`
 

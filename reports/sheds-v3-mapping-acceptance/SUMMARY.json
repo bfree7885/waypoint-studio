@@ -1,5 +1,4 @@
 {
-  "tip": null,
   "fails": 0,
   "warns": 1,
   "findings": [
@@ -173,5 +172,7 @@
       "id": "collision-15-1280-desktop",
       "detail": "prompt×here=20.6 (known pre-existing desktop; deferred)"
     }
-  ]
+  ],
+  "base": "fead5bb3cbf90b1815e9169942dc7bd3a0392070",
+  "verdict": "CONDITIONAL_PASS"
 }
