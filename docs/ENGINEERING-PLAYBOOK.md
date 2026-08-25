@@ -1567,6 +1567,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Side Trails stays in primary nav as **archive**, not as a promise of sister flagships; update gates that required “Experimental” sister marketing.
 - Preserve DFD/articles pipelines as Publishing infrastructure; do not delete them while simplifying the consumer portfolio to Dashboard · Scenes · Sheds.
 
+### Lessons Learned — Dashboard Discover v1 (2026-08-25)
+
+- Discover hierarchy: Ranked Happening Now = Right Now; quiet days need a **separate** strip (`data-wdb-r-discover-quiet`) so existing “no HN DOM” contracts stay true.
+- Waypoint’s Take must prefer live `beforeYouGo.brief` and label editorial fallback — never imply dynamic detection without evidence.
+- Today Outside should show provider provenance + optional editorial season; do not promote content-bundle wildlife lists as live discoveries.
+- Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
+- Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.

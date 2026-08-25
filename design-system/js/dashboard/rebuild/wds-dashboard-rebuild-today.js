@@ -84,17 +84,60 @@
     return defaultLines();
   }
 
+  function providerLine(ctx) {
+    ctx = ctx || {};
+    var platform = ctx.platform;
+    if (!platform) return null;
+    var bits = [];
+    var wx = platform.weatherRef;
+    if (wx && wx.meta && !wx.meta.isPlaceholder) {
+      var prov = wx.meta.provider || wx.meta.source || null;
+      if (prov) {
+        var label = String(prov);
+        if (/open-?meteo/i.test(label)) label = "Open-Meteo";
+        else if (/nws|weather\.gov/i.test(label)) label = "NWS";
+        bits.push(label);
+      }
+    }
+    if (platform.alerts && platform.alerts.items && platform.alerts.items.length) {
+      bits.push("NWS alerts");
+    }
+    if (platform.airQuality && platform.airQuality.status === "live") {
+      bits.push("air quality");
+    }
+    if (!bits.length) return null;
+    return "Based on " + bits.join(" · ");
+  }
+
+  function seasonLine(ctx) {
+    ctx = ctx || {};
+    var platform = ctx.platform;
+    if (!platform) return null;
+    var cal = platform.calendar || null;
+    var pheno = platform.phenology || null;
+    var season = (cal && cal.season) || null;
+    var stage = (pheno && pheno.stage) || null;
+    if (!season && !stage) return null;
+    if (season && stage && String(season) !== String(stage)) {
+      return "Seasonal note (editorial): " + String(season) + " — " + String(stage);
+    }
+    return "Seasonal note (editorial): " + String(season || stage);
+  }
+
   function render(ctx) {
     ctx = ctx || {};
     var place = placeLabel(ctx);
     var when = timeContext(ctx.now);
     var trust = trustAttr(ctx.trust || "waiting");
     var lines = resolveLines(ctx);
+    var source = providerLine(ctx);
+    var season = seasonLine(ctx);
     return (
       '<section class="wdb-r-today" data-wdb-r-today aria-labelledby="wdb-r-today-title">' +
       '<header class="wdb-r-today__header">' +
       "<div>" +
-      '<h2 id="wdb-r-today-title" class="wdb-r-today__title">Today Outside</h2>' +
+      '<p class="wdb-r-today__kicker">Outside today</p>' +
+      '<h2 id="wdb-r-today-title" class="wdb-r-today__title">What the day looks like</h2>' +
       "</div>" +
       '<p class="wdb-r-today__meta">' +
       '<span class="wdb-r-today__place">' +
@@ -111,6 +154,12 @@
       escapeHtml(trustLabel(trust)) +
       "</span>" +
       "</p>" +
+      (source
+        ? '<p class="wdb-r-today__source">' + escapeHtml(source) + "</p>"
+        : "") +
+      (season
+        ? '<p class="wdb-r-today__season">' + escapeHtml(season) + "</p>"
+        : "") +
       "</header>" +
       '<div class="wdb-r-today__body" data-wdb-r-today-body>' +
       '<ul class="wdb-r-today__lines">' +
@@ -134,11 +183,13 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildToday = {
-    version: "3.0.0-phase3",
+    version: "3.1.0-discover",
     render: render,
     mount: mount,
     placeLabel: placeLabel,
     timeContext: timeContext,
-    resolveLines: resolveLines
+    resolveLines: resolveLines,
+    providerLine: providerLine,
+    seasonLine: seasonLine
   };
 })(typeof window !== "undefined" ? window : global);

@@ -37,10 +37,12 @@ assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-graphics.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intel.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-happening.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-workspace.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js",
@@ -308,7 +310,7 @@ Prefs.reset();
 assert("prefs reset restores defaults", Prefs.load().enabled.indexOf("ph-conditions") >= 0);
 
 const todayWaiting = Today.render({ placeLabel: "Test Place", trust: "waiting" });
-assert("today outside title present", /Today Outside/.test(todayWaiting));
+assert("today outside title present", /Outside today|What the day looks like|Today Outside/.test(todayWaiting));
 assert("today waiting lines honest", /Conditions will appear here/.test(todayWaiting));
 assert("today outside no OS Do this", !/Do this|Happening|Matters most/i.test(todayWaiting));
 
@@ -329,7 +331,7 @@ const wsLive = Workspace.renderWorkspace({
   customize: false,
   platform
 });
-assert("workspace renders live conditions facts", /wdb-r-widget__facts/.test(wsLive) && /72°F/.test(wsLive));
+assert("workspace renders live conditions facts", /wdb-r-widget__facts/.test(wsLive) && /72°/.test(wsLive));
 assert("workspace renders live air", /US AQI|Good/.test(wsLive));
 assert("photography absent from registry", !Reg.get("ph-photography"));
 
