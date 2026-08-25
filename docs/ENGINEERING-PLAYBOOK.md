@@ -1575,6 +1575,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
 - Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
 
+### Lessons Learned — Scenes + Publishing unification (2026-08-25)
+
+- Publishing is infrastructure; Deep Forest Dispatch stays an **editorial series**, not a fourth flagship — say so on the library page.
+- Deterministic `content-relationships.json` + `publishingMatch` beats embeddings; **no match is the correct outcome** for most Dashboard days.
+- Condition→story rules must be labeled editorial (e.g. quiet-humid-cool → valley fog is not a fog forecast).
+- `/scenes/` should land on the Scenes hub; skipping to Photo Coach hid Explore & Understand + Publishing joins.
+- Re-render DFD stories after connection template changes (`node scripts/dfd/render-stories.mjs`) so Watch/Articles joins ship statically.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.

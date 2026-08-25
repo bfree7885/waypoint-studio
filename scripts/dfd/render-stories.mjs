@@ -100,7 +100,27 @@ function videoBlock(story) {
 }
 
 function connections(story) {
-  const items = story.waypointConnections || [];
+  const items = [...(story.waypointConnections || [])];
+  /* Publishing join: film + articles when present — never invent destinations. */
+  if (story.youtubeUrl || story.youtubeVideoId) {
+    const href = story.youtubeUrl || `https://www.youtube.com/watch?v=${story.youtubeVideoId}`;
+    if (!items.some((c) => c && c.id === "video")) {
+      items.push({
+        id: "video",
+        label: "Watch the story",
+        href,
+        note: "Companion film on YouTube — then return here for maps and sources."
+      });
+    }
+  }
+  if (!items.some((c) => c && c.id === "articles")) {
+    items.push({
+      id: "articles",
+      label: "Browse Articles",
+      href: "/articles/",
+      note: "Curated field reading across Waypoint Publishing."
+    });
+  }
   if (!items.length) return "";
   return `<section class="dfd-panel" aria-labelledby="dfd-wp-heading">
   <h2 id="dfd-wp-heading">Continue in Waypoint</h2>
@@ -241,7 +261,7 @@ function renderStory(story) {
 
       ${sources(story)}
 
-      <p class="dfd-back"><a href="../../">← All Deep Forest Dispatch stories</a> · <a href="../../../">Waypoint Home</a></p>
+      <p class="dfd-back"><a href="../../">← All Deep Forest Dispatch stories</a> · <a href="../../../apps/scenes/">Scenes</a> · <a href="../../../articles/">Articles</a> · <a href="../../../">Waypoint Home</a></p>
     </main>
     <div data-wds-app-footer data-shell-depth="2"></div>
   </div>

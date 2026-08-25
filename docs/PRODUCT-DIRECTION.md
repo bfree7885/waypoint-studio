@@ -30,7 +30,8 @@ One Waypoint ecosystem. Multiple specialized experiences.
 | **Scenes** | **Explore & understand** — storytelling, visual exploration, photography craft, and understanding landscapes and phenomena. **Articles and videos are first-class** here. |
 | **Sheds** | **Go / field exploration** — specialized map-first shed hunting: terrain, habitat, observations, field tools. Keep the specialty; do not dilute it into generic outdoor GIS. |
 
-Implementation detail for Discover (sources, ranking, honesty): `docs/DASHBOARD-DISCOVER.md`.
+Implementation detail for Discover (sources, ranking, honesty): `docs/DASHBOARD-DISCOVER.md`.  
+Scenes + Publishing (stories, DFD series, handoffs): `docs/SCENES-PUBLISHING.md`.
 
 ### Shared platform (not separate consumer products)
 
