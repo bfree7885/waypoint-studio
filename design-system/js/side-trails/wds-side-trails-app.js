@@ -15,6 +15,8 @@
   function statusLabel(status) {
     var raw = String(status || "").toLowerCase();
     if (raw === "in-development") return "In development";
+    if (raw === "retired") return "Retired";
+    if (raw === "archived") return "Archived";
     if (!raw) return "Concept";
     return raw.charAt(0).toUpperCase() + raw.slice(1);
   }

@@ -35,6 +35,13 @@
 2. **Local nav** — app features only (`was-local` / `data-wds-app-local`)
 3. **Body** — single product surface
 
+## Homepage specifically
+
+`/` introduces **Dashboard · Scenes · Sheds** and Publishing (Articles / Deep Forest Dispatch).
+Side Trails is an **archive** entry — not a catalog of active sister flagships.
+OpenRoad PA, Fieldry-as-promise, Savant-as-priority, and standalone Cyber/Global Signals
+must not be presented as active Studio products (see `docs/PRODUCT-DIRECTION.md`).
+
 ## Dashboard specifically
 
 `/apps/dashboard/` body = outdoor **instrument panel** for the user’s place:

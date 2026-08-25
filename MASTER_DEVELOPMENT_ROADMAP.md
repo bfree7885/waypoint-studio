@@ -1,18 +1,17 @@
 # Waypoint Studio — Master Development Roadmap
 
-**Status:** Official  
-**Last updated:** July 2026  
-**Basis:** Project Health Report (July 2026)
+**Status:** Historical (July 2026) — **not** the active portfolio definition  
+**Canonical direction:** [`docs/PRODUCT-DIRECTION.md`](docs/PRODUCT-DIRECTION.md)  
+**Active experiences:** Dashboard · Scenes · Sheds (+ Publishing infrastructure)
 
-This roadmap organizes Waypoint Studio into five phases. Each phase builds on the last. Phases 3 and 4 may overlap after Phase 1 is complete, but Phase 1 must finish first.
+> Agents: do **not** treat Fieldry Phase 4, ForageCast-as-flagship, or “four-instrument portfolio” language below as current strategy. Prefer PRODUCT-DIRECTION.md.
 
-**Guiding constraints (do not violate):**
+**Guiding constraints that still apply:**
 
-- Static-first, no-build deployment
-- OIP as the single intelligence API
+- Static-first, no-build deployment where the Studio is static
 - Research integrity labeling (editorial ≠ live ≠ verified ≠ prediction)
-- Four-instrument portfolio: Dashboard · ForageCast · Fieldry · Scenes
-- No accounts or cloud sync until explicitly scoped post–Phase 4
+- One Studio subscription intent across experiences (when monetization ships)
+- Fieldry paused; OpenRoad retired; Deck is a separate project
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * Side Trails catalog — loads sister projects from JSON only.
+ * Side Trails catalog — loads archive/research projects from JSON only.
  * Never invents projects. Empty catalogs are valid.
  */
 (function (global) {
@@ -13,6 +13,7 @@
     beta: true,
     stable: true,
     archived: true,
+    retired: true,
     "in-development": true
   };
 
