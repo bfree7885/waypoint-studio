@@ -169,11 +169,14 @@
     btn.title = text;
     var span = btn.querySelector(".sheds-fab__label");
     if (span) {
+      /* Short dock labels: Search / End — keep aria-label as the full phrase. */
       span.textContent = /^stop/i.test(text)
         ? "Stop"
-        : /^(start|resume)/i.test(text)
-          ? "Track"
-          : text.split(/\s+/)[0];
+        : /^end/i.test(text)
+          ? "End"
+          : /^(start|resume)/i.test(text)
+            ? "Search"
+            : text.split(/\s+/)[0];
     }
   }
 
@@ -1042,9 +1045,11 @@
     if (!strip) return;
     if (!state.tracking) {
       strip.setAttribute("hidden", "");
+      document.documentElement.classList.remove("sheds-session-active");
       return;
     }
     strip.removeAttribute("hidden");
+    document.documentElement.classList.add("sheds-session-active");
     var session = state.activeSessionId && Sessions && Sessions.getSession
       ? Sessions.getSession(state.activeSessionId)
       : null;
@@ -2391,10 +2396,8 @@
     state.tracking = true;
     redrawTrack(session);
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "End");
+      setFabLabel(els.btnTrack, "End Search");
       els.btnTrack.setAttribute("aria-pressed", "true");
-      els.btnTrack.title = "End Search";
-      els.btnTrack.setAttribute("aria-label", "End Search");
     }
     syncSessionPill("Searching · " + Math.round(session.distanceM || 0) + " m", true);
     syncSessionStrip();
@@ -2455,7 +2458,7 @@
     }
     state.activeSessionId = null;
     if (els.btnTrack) {
-      setFabLabel(els.btnTrack, "Start");
+      setFabLabel(els.btnTrack, "Start Search");
       els.btnTrack.setAttribute("aria-pressed", "false");
       els.btnTrack.title = "Start Search";
       els.btnTrack.setAttribute("aria-label", "Start Search");
@@ -3322,6 +3325,15 @@
         if (state.tracking) stopTracking();
       });
     }
+    if ($("btn-heat-legend-toggle")) {
+      $("btn-heat-legend-toggle").addEventListener("click", function () {
+        var legend = $("heat-legend");
+        if (!legend || legend.hidden) return;
+        var open = legend.getAttribute("data-expanded") === "true";
+        legend.setAttribute("data-expanded", open ? "false" : "true");
+        $("btn-heat-legend-toggle").setAttribute("aria-expanded", open ? "false" : "true");
+      });
+    }
     if ($("btn-map-legend")) {
       $("btn-map-legend").addEventListener("click", function () {
         toggleMapLegend();
@@ -3692,7 +3704,7 @@
       var ver = active.modelVersion ? (" · model " + active.modelVersion) : "";
       syncSessionPill("Resume ready · " + Math.round(active.distanceM || 0) + " m" + ver, true);
       if (els.sessionPill) els.sessionPill.dataset.state = "available";
-      if (els.btnTrack) setFabLabel(els.btnTrack, "End");
+      if (els.btnTrack) setFabLabel(els.btnTrack, "End Search");
       syncSessionStrip();
     } else {
       syncSessionPill("", false);

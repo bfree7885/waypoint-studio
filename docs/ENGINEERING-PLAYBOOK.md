@@ -1531,3 +1531,24 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Calm offline copy (“live conditions unavailable; saved area and records still work”) beats tile/weather failure looking like total app death.
 - Keep YOU ≠ SEARCH ≠ INSPECT ≠ OBS visually distinct with a short legend; never invent another location concept.
 - Field validation protocol measures usability (time-to-Search-Area, wrong interpretations, degradation comprehension) — never shed-find counts; log stays empty until real walks.
+
+### Lessons Learned — Sheds mobile visual QA polish (2026-08-24)
+
+- Single-row session strip (`Search active | End Search`) recovers map height vs a stacked full-width End button; keep End Search flex-none so the label does not clip.
+- `#sheds-map-shell:has(#search-prompt…)` presence offsets must outrank `html.sheds-session-active .sheds-here` (ID beats classes) or YOU/GPS chip sits on the SEARCH prompt.
+- Expanded Field Briefing should hide dock/map-ctrls/legend with `:has([data-expanded=true])` so chrome does not show through the sheet.
+- Prompt `right` clearance must exceed compact map-ctrl width; a 3–7px collision still reads as overlap on phone.
+
+### Lessons Learned — Sheds final iPhone field validation (2026-08-24)
+
+- Measure real wrapped SEARCH prompt height under safe-area sims (`--sheds-safe-top/bottom`); 390px wraps ~115px while ≤380px needs a taller `--sheds-prompt-stack` override — fixed rem offsets that look fine on one width fail the next.
+- Raising Locate/End Search to ≥42px lengthens the session strip; bump `--sheds-mobile-strip-end` in the same change or you reintroduce 0–1px “kiss” overlaps.
+- Prefer naming Map & layers in the More lede over restoring a permanent Leaflet MAP control — keeps the map clean while fixing first-time discoverability.
+- Desktop `prompt×here` stacking is a separate layout; do not “fix” it during mobile clearance work unless the mobile CSS regresses it.
+
+### Lessons Learned — Sheds mobile field chrome (2026-08-24)
+
+- Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.
+- Session strip + YOU chip + header chips collide unless the strip becomes a full-width stack and `sheds-session-active` pushes presence chrome down.
+- Outdoor-readability `.sheds-fab { background… }` after `.sheds-fab--primary` made Locate look disabled — re-assert primary contrast after that block.
+- Collapsed Field Briefing peek (~8rem) plus legend ate the map; peek should show kicker+glance only (~4.5rem) with expand for the rest; landscape legend should collapse to a chip on mobile.

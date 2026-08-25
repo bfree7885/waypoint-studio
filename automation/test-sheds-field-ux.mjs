@@ -44,6 +44,9 @@ assert("plain-language confidence", /id="plan-stars"/.test(html) && /(Evidence s
 assert("presence chip", /sheds-here/.test(html) && /id="nav-hud"/.test(html) && /btn-here-chip/.test(html));
 assert("why details collapsed by default", /sheds-plan__why-wrap/.test(html));
 assert("primary intention FABs", /btn-locate/.test(html) && /btn-track/.test(html) && /btn-more/.test(html));
+assert("map controls cluster + app dock", /sheds-map-ctrls/.test(html) && /sheds-app-dock/.test(html));
+assert("mobile field chrome breakpoint", /@media \(max-width:\s*719px\),\s*\(max-height:\s*500px\)/.test(css) && /sheds-app-dock/.test(css));
+assert("collapsible landscape legend", /btn-heat-legend-toggle/.test(html) && /data-expanded/.test(html.match(/id="heat-legend"[^>]*/)[0]));
 assert("labeled zoom in field rail (not Leaflet stack)", /btn-zoom-in/.test(html) && /btn-zoom-out/.test(html) && /sheds-zoom-pair/.test(css));
 assert("no Leaflet zoom control added", !/L\.control\.zoom\(/.test(app));
 assert("add note on FAB for field speed", (() => {
@@ -126,7 +129,14 @@ async function runCdp() {
     }).on("error", reject);
   });
   const wsUrl = tabs.find((t) => t.type === "page").webSocketDebuggerUrl;
-  const WebSocket = (await import(path.join(ROOT, "node_modules/ws/index.js"))).default;
+  const wsCandidates = [
+    path.join(ROOT, "node_modules/ws/index.js"),
+    path.join(ROOT, "../../node_modules/ws/index.js"),
+    path.join(ROOT, "../node_modules/ws/index.js")
+  ];
+  const wsPath = wsCandidates.find((p) => fs.existsSync(p));
+  if (!wsPath) throw new Error("ws module not found (install deps or link node_modules/ws)");
+  const WebSocket = (await import(wsPath)).default;
   const ws = new WebSocket(wsUrl);
   await new Promise((r) => ws.on("open", r));
   let id = 0;
@@ -163,19 +173,35 @@ async function runCdp() {
         const hud = document.querySelector(".sheds-hud-top");
         const here = document.querySelector(".sheds-here");
         const fabBtns = fab ? fab.querySelectorAll(".sheds-fab:not([hidden])").length : 0;
+        const dockBtns = document.querySelectorAll(".sheds-app-dock .sheds-fab:not([hidden])").length;
+        const mapCtrlBtns = document.querySelectorAll(".sheds-map-ctrls .sheds-fab:not([hidden])").length;
         const mr = map ? map.getBoundingClientRect() : null;
         const fr = fab ? fab.getBoundingClientRect() : null;
+        const dock = document.querySelector(".sheds-app-dock");
+        const dockRect = dock ? dock.getBoundingClientRect() : null;
+        const mapCtrls = document.querySelector(".sheds-map-ctrls");
+        const mapCtrlsRect = mapCtrls ? mapCtrls.getBoundingClientRect() : null;
         const srRect = suggest ? suggest.getBoundingClientRect() : null;
         const hr = hud ? hud.getBoundingClientRect() : null;
         const vh = window.innerHeight;
         const vw = window.innerWidth;
+        const peekH = srRect ? Math.max(0, vh - srRect.top) : 0;
+        const dockH = dockRect ? dockRect.height : 0;
+        const chromeShare = vh ? +((peekH + dockH) / vh).toFixed(3) : 0;
         return {
           label: ${JSON.stringify(label)},
           mapHeight: mr ? Math.round(mr.height) : 0,
           mapWidth: mr ? Math.round(mr.width) : 0,
           mapShare: mr && vh ? +(mr.height / vh).toFixed(3) : 0,
+          chromeShare,
+          peekHeight: Math.round(peekH),
+          dockHeight: Math.round(dockH),
           hudHeight: hr ? Math.round(hr.height) : 0,
           fabCount: fabBtns,
+          dockCount: dockBtns,
+          mapCtrlCount: mapCtrlBtns,
+          mapCtrlsTop: mapCtrlsRect ? Math.round(mapCtrlsRect.top) : 0,
+          mapCtrlsWidth: mapCtrlsRect ? Math.round(mapCtrlsRect.width) : 0,
           hasHere: !!here,
           storyGlance: (document.getElementById("plan-glance") || {}).textContent || "",
           fabBottom: fr ? Math.round(fr.bottom) : 0,
@@ -205,8 +231,13 @@ async function runCdp() {
   await send("Runtime.evaluate", {
     expression: `(() => {
       try { localStorage.setItem("waypoint-sheds-ethics-seen-v1", "1"); } catch (e) {}
+      try { localStorage.setItem("waypoint-sheds-first-run-coach-v1", "1"); } catch (e) {}
       var ack = document.getElementById("ethics-ack");
       if (ack) ack.click();
+      var coachDismiss = document.getElementById("btn-coach-dismiss");
+      if (coachDismiss) coachDismiss.click();
+      var coach = document.getElementById("first-run-coach");
+      if (coach) coach.setAttribute("hidden", "");
       document.querySelectorAll(".sheds-sheet.is-open").forEach(function (s) {
         s.classList.remove("is-open");
         s.setAttribute("aria-hidden", "true");
@@ -224,7 +255,9 @@ async function runCdp() {
 
   assert("map owns vast majority of viewport", mPhone.mapShare >= 0.85);
   assert("hud is minimal", mPhone.hudHeight > 0 && mPhone.hudHeight < 80);
-  assert("lean fab rail", mPhone.fabCount <= 4);
+  assert("lean app dock (Search/Note/Plan/More)", mPhone.dockCount === 4);
+  assert("compact map controls (not control tower)", mPhone.mapCtrlCount <= 4 && mPhone.mapCtrlsWidth < 90);
+  assert("briefing + dock leave most map visible", mPhone.chromeShare > 0 && mPhone.chromeShare <= 0.28);
   assert("presence chip present", mPhone.hasHere);
   assert("no horizontal overflow phone", !mPhone.overflowX);
   assert("tools sheet wired", mPhone.toolsSheet && mPhone.moreBtn && mPhone.layersInTools);
