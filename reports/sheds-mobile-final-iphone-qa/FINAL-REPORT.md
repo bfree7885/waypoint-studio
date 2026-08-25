@@ -93,4 +93,6 @@ Directory: `reports/sheds-mobile-final-iphone-qa/`
 
 ## 9. Commit hash
 
-Filled after commit: see `git rev-parse HEAD` on `release/sheds-2-field-validation`.
+`a5b2f1fc7320729fa00f89d593ae08986b7e49c4` — `Validate and clear Sheds iPhone field chrome collisions.`
+
+Branch remains **ahead 3**, not pushed or merged.
