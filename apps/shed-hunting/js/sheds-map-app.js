@@ -745,6 +745,11 @@
     var textEl = $("search-prompt-text");
     var btnYou = $("btn-analyze-you");
     if (!prompt) return;
+    /* Measure/Inspect hide this cue so map taps are not advertised as SEARCH. */
+    if (state.measureActive || state.inspectArmed) {
+      prompt.setAttribute("hidden", "");
+      return;
+    }
     var hasSearch = !!state.searchLocation;
     var needs = SearchArea
       ? SearchArea.needsSearchPrompt(state.accuracyM, hasSearch)
@@ -3379,6 +3384,17 @@
 
   function armInspectMode() {
     stopMeasureMode();
+    /* Invalidate a prior inspect so a late elevation response cannot rewrite the HUD. */
+    state.inspectLatLng = null;
+    state.inspectElevM = null;
+    state.inspectElevStatus = "idle";
+    state.inspectElevGen += 1;
+    if (inspectMarker && map) {
+      try {
+        map.removeLayer(inspectMarker);
+      } catch (e) { /* */ }
+      inspectMarker = null;
+    }
     state.inspectArmed = true;
     shellModeClass(false, true);
     closeAllSheets();
