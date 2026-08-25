@@ -1,0 +1,62 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "at": "2026-08-25T13:25:22.200Z",
+  "viewports": [
+    {
+      "viewport": "375",
+      "file": "reports/dashboard-discover-v1/screenshots/dashboard-discover-375.png",
+      "title": "Dashboard — Discover · Waypoint Studio",
+      "product": "dashboard",
+      "today": true,
+      "hn": false,
+      "quiet": true,
+      "deepen": true,
+      "overflow": false,
+      "banned": false,
+      "hasDiscoverCopy": true,
+      "consoleErrors": []
+    },
+    {
+      "viewport": "390",
+      "file": "reports/dashboard-discover-v1/screenshots/dashboard-discover-390.png",
+      "title": "Dashboard — Discover · Waypoint Studio",
+      "product": "dashboard",
+      "today": true,
+      "hn": false,
+      "quiet": true,
+      "deepen": true,
+      "overflow": false,
+      "banned": false,
+      "hasDiscoverCopy": true,
+      "consoleErrors": []
+    },
+    {
+      "viewport": "430",
+      "file": "reports/dashboard-discover-v1/screenshots/dashboard-discover-430.png",
+      "title": "Dashboard — Discover · Waypoint Studio",
+      "product": "dashboard",
+      "today": true,
+      "hn": false,
+      "quiet": true,
+      "deepen": true,
+      "overflow": false,
+      "banned": false,
+      "hasDiscoverCopy": true,
+      "consoleErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "file": "reports/dashboard-discover-v1/screenshots/dashboard-discover-desktop.png",
+      "title": "Dashboard — Discover · Waypoint Studio",
+      "product": "dashboard",
+      "today": true,
+      "hn": false,
+      "quiet": true,
+      "deepen": true,
+      "overflow": false,
+      "banned": false,
+      "hasDiscoverCopy": true,
+      "consoleErrors": []
+    }
+  ]
+}

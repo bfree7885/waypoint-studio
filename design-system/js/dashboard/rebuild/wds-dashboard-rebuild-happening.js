@@ -270,8 +270,9 @@
     return (
       '<section class="wdb-r-hn" data-wdb-r-hn aria-labelledby="wdb-r-hn-title">' +
       '<header class="wdb-r-hn__header">' +
-      '<h2 id="wdb-r-hn-title" class="wdb-r-hn__title-block">Happening Now</h2>' +
-      '<p class="wdb-r-hn__lede">Worth noticing outside right now or soon.</p>' +
+      '<p class="wdb-r-hn__kicker">Right now</p>' +
+      '<h2 id="wdb-r-hn-title" class="wdb-r-hn__title-block">What to notice</h2>' +
+      '<p class="wdb-r-hn__lede">Ranked from live conditions at this place — not a news feed.</p>' +
       "</header>" +
       '<ol class="wdb-r-hn__list" data-wdb-r-hn-list>' +
       signals.map(renderItem).join("") +

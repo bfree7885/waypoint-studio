@@ -30,6 +30,8 @@ One Waypoint ecosystem. Multiple specialized experiences.
 | **Scenes** | **Explore & understand** — storytelling, visual exploration, photography craft, and understanding landscapes and phenomena. **Articles and videos are first-class** here. |
 | **Sheds** | **Go / field exploration** — specialized map-first shed hunting: terrain, habitat, observations, field tools. Keep the specialty; do not dilute it into generic outdoor GIS. |
 
+Implementation detail for Discover (sources, ranking, honesty): `docs/DASHBOARD-DISCOVER.md`.
+
 ### Shared platform (not separate consumer products)
 
 - **Waypoint Publishing / content engine** — Detect → Research → Verify → Write → Illustrate → Narrate → Produce → Publish → Measure. Powers articles, videos, visual stories, Dashboard cards, Scenes content, and relevant Sheds education. Includes Deep Forest Dispatch infrastructure reframed as Studio publishing capability.

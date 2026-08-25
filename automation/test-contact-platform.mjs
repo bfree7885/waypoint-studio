@@ -28,7 +28,16 @@ function assert(name, cond) {
 function walkFiles(dir, exts, out = []) {
   if (!fs.existsSync(dir)) return out;
   for (const name of fs.readdirSync(dir)) {
-    if (name === "node_modules" || name === ".git" || name === "dist") continue;
+    if (
+      name === "node_modules" ||
+      name === ".git" ||
+      name === "dist" ||
+      name === ".worktrees" ||
+      name.startsWith(".tmp-") ||
+      name === ".tmp"
+    ) {
+      continue;
+    }
     const p = path.join(dir, name);
     const st = fs.statSync(p);
     if (st.isDirectory()) walkFiles(p, exts, out);
