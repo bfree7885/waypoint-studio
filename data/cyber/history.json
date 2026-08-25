@@ -1,7 +1,18 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-25T13:12:09.076Z",
+  "updatedAt": "2026-08-25T18:57:14.223Z",
   "entries": [
+    {
+      "at": "2026-08-25T18:57:14.223Z",
+      "trustState": "Live",
+      "recordCount": 290,
+      "briefBullets": [
+        "Day close: 200 high-signal items remain in view.",
+        "Still watching 2 status signal(s).",
+        "Re-check any Immediate recommendations before change freezes overnight."
+      ],
+      "recommendation": "Patch / update"
+    },
     {
       "at": "2026-08-25T13:12:09.075Z",
       "trustState": "Live",
@@ -680,17 +691,6 @@
         "Re-check any Immediate recommendations before change freezes overnight."
       ],
       "recommendation": "Patch / update"
-    },
-    {
-      "at": "2026-08-11T01:33:03.965Z",
-      "trustState": "Live",
-      "recordCount": 293,
-      "briefBullets": [
-        "Day close: 200 high-signal items remain in view.",
-        "Still watching 3 status signal(s).",
-        "Re-check any Immediate recommendations before change freezes overnight."
-      ],
-      "recommendation": "Patch immediately"
     }
   ]
 }
