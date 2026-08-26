@@ -1647,3 +1647,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A memoized `loadPromise` that survives HTTP/JSON/network failure permanently omits events for the page session. Clear the promise on failure (and in `setCatalog`) so later `loadCatalog` / hydrate paints can retry.
 - Quiet Discover copy that names natural events must not render while the events catalog is unknown (in-flight or failed). Empty event HTML is not a confirmed empty catalog.
 - Region-box visibility is a hard gate before lifecycle. Boxes must cover the catalog’s own visibility summary (eastern Pacific / Hawaii / Alaska), not only contiguous-Americas longitudes.
+
+### Lessons Learned — Sheds V3.2 release onto later main (2026-08-26)
+
+- Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
+- Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.

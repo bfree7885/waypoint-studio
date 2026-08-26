@@ -10,15 +10,17 @@
 
 ## 1. Branch
 
-`chore/product-direction-reconciliation`
+`release/sheds-v3-2-inspect-intelligence`
+
+Cherry-picked from preserved `chore/product-direction-reconciliation` tip `5e3cf670` onto current `main` (`77a005a1`). Original mixed branch was not rewritten.
 
 ## 2. Starting commit
 
-`bec1e9fc` (Inspect Facts)
+`bec1e9fc` (Inspect Facts) on the preserved branch; equivalent on this release branch is `2d176efb`.
 
 ## 3. Final commit
 
-Recorded in git on this branch after the Why change (do not SHA-chase this file).
+Preserved implementation tip `5e3cf670` (field UX). Equivalent on this release branch is `28d9e159`, plus this report/screenshot refresh.
 
 ## 4. Exact files changed
 
