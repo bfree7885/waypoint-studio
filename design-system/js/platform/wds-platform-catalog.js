@@ -98,7 +98,7 @@
       shortName: "Side Trails",
       tier: "core",
       status: "live",
-      description: "Sister experiments catalog — OpenRoad PA, SignalTerrain, Global Signals, and future side projects.",
+      description: "Independent Waypoint projects. Currently Waypoint Deck.",
       pathFromApps: "../../side-trails/",
       pathFromRoot: "side-trails/",
       dataProduct: "side-trails",
@@ -189,19 +189,6 @@
       pathFromRoot: "apps/steepleaf/",
       dataProduct: "steepleaf",
       navPriority: 80
-    },
-    {
-      id: "signalterrain",
-      name: "SignalTerrain",
-      shortName: "SignalTerrain",
-      tier: "side-trails",
-      status: "experimental",
-      description: "Adaptive cyber intelligence for defenders — listed under Side Trails, not a studio flagship.",
-      pathFromApps: "../signalterrain/",
-      pathFromRoot: "apps/signalterrain/",
-      dataProduct: "signalterrain",
-      parent: "side-trails",
-      navPriority: 85
     },
     {
       id: "savant-sommelier",

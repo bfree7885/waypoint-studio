@@ -355,7 +355,6 @@ const appPages = [
   "apps/fieldry/index.html",
   "apps/shed-hunting/index.html",
   "apps/steepleaf/index.html",
-  "apps/signalterrain/index.html",
   "apps/savant-sommelier/index.html"
 ];
 for (const rel of appPages) {

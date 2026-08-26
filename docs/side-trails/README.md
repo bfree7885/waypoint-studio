@@ -4,16 +4,13 @@
 **Catalog:** `data/side-trails/catalog.json`  
 **Canonical portfolio:** [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md)
 
-Side Trails holds **independent experiments** beside Waypoint Studio
-(Dashboard · Scenes · Sheds + Publishing).
+Side Trails is where independent Waypoint projects live. They are not Studio flagships.
 
 Cards render from a JSON catalog only. The page never invents projects.
 
 ---
 
-## Hierarchy
-
-### Active Side Trail
+## Current Side Trail
 
 | Id | Title | Status | Open |
 | --- | --- | --- | --- |
@@ -21,22 +18,7 @@ Cards render from a JSON catalog only. The page never invents projects.
 
 Offline-first Linux field computer (local AI, maps/GPS, weather, radio, offline knowledge, situational awareness). Public page describes **direction**, not shipping claims.
 
-### Archive · past experiments
-
-| Id | Title | Status | Open |
-| --- | --- | --- | --- |
-| `signalterrain` | SignalTerrain | **Archived** research | `/side-trails/signalterrain/` |
-| `global-signals` | Global Signals | **Archived** research | `/side-trails/global-signals/` |
-| `openroad-pa` | OpenRoad PA | **Retired** | `/side-trails/openroad-pa/` |
-
-**Global Signals / Cyber (SignalTerrain)** are not standalone active products. Useful concepts may later feed **Waypoint Deck** situational awareness when connectivity exists. Do not promote them as peers of Deck.
-
-### Not Side Trails
-
-| Item | Status |
-| --- | --- |
-| Fieldry | **Paused** (Studio history / incubator — not an active Side Trail) |
-| Savant Sommelier | **Not active** (do not feature beside Deck) |
+There is no archive, retired list, or graveyard on this surface.
 
 ---
 
@@ -44,5 +26,5 @@ Offline-first Linux field computer (local AI, maps/GPS, weather, radio, offline 
 
 - Do not hardcode project lists in HTML.
 - Do not invent projects when the catalog fails.
-- Do not present archived/retired entries as peers of Dashboard / Scenes / Sheds or as equal to Deck.
+- Do not present other experiments as products, archives, or peers of Deck.
 - Do not claim unfinished Deck capabilities already work.

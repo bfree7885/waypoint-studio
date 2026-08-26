@@ -1,8 +1,16 @@
 /**
- * Side Trails page UI — renders catalog cards only (active vs archive).
+ * Side Trails page UI — renders catalog cards (Deck only; no archive graveyard).
  */
 (function () {
   "use strict";
+
+  var FORBIDDEN_IDS = {
+    "openroad-pa": true,
+    openroad: true,
+    signalterrain: true,
+    "global-signals": true,
+    cyber: true
+  };
 
   function escapeHtml(value) {
     return String(value == null ? "" : value)
@@ -15,22 +23,16 @@
   function statusLabel(status) {
     var raw = String(status || "").toLowerCase();
     if (raw === "in-development") return "In development";
-    if (raw === "retired") return "Retired";
-    if (raw === "archived") return "Archived";
-    if (!raw) return "Concept";
+    if (!raw) return "In development";
     return raw.charAt(0).toUpperCase() + raw.slice(1);
   }
 
-  function isActiveStatus(status) {
-    var s = String(status || "").toLowerCase();
-    return (
-      s === "in-development" ||
-      s === "prototype" ||
-      s === "experimental" ||
-      s === "beta" ||
-      s === "stable" ||
-      s === "concept"
-    );
+  function isPublicProject(project) {
+    var id = String((project && project.id) || "").toLowerCase();
+    if (FORBIDDEN_IDS[id]) return false;
+    var st = String((project && project.status) || "").toLowerCase();
+    if (st === "archived" || st === "retired") return false;
+    return true;
   }
 
   function assetHref(rel) {
@@ -111,10 +113,9 @@
   function mount() {
     var statusEl = document.getElementById("wst-status");
     var gridActive = document.getElementById("wst-grid-active");
-    var grid = document.getElementById("wst-grid");
     var titleEl = document.getElementById("wst-title");
     var taglineEl = document.getElementById("wst-tagline");
-    if ((!grid && !gridActive) || !window.WDS || !WDS.sideTrails) {
+    if (!gridActive || !window.WDS || !WDS.sideTrails) {
       if (statusEl) statusEl.textContent = "Side Trails scripts did not load.";
       return;
     }
@@ -130,59 +131,31 @@
       }
 
       if (!result.ok) {
-        var fail = emptyHtml(
+        gridActive.innerHTML = emptyHtml(
           "Catalog unavailable",
           "The Side Trails JSON catalog could not be loaded. No projects were invented."
         );
-        if (gridActive) gridActive.innerHTML = fail;
-        if (grid) grid.innerHTML = "";
         return;
       }
 
-      if (!result.projects.length) {
-        var empty = emptyHtml(
+      var projects = (result.projects || []).filter(isPublicProject);
+      projects.sort(function (a, b) {
+        return (a.order || 999) - (b.order || 999);
+      });
+
+      if (!projects.length) {
+        gridActive.innerHTML = emptyHtml(
           "No projects yet",
           "Add entries to data/side-trails/catalog.json — cards are never hardcoded."
         );
-        if (gridActive) gridActive.innerHTML = empty;
-        if (grid) grid.innerHTML = "";
         return;
       }
 
-      var active = [];
-      var archive = [];
-      result.projects.forEach(function (p) {
-        var st = String(p.status || "").toLowerCase();
-        if (st === "archived" || st === "retired") archive.push(p);
-        else if (isActiveStatus(st)) active.push(p);
-        else archive.push(p);
-      });
-
-      active.sort(function (a, b) {
-        return (a.order || 999) - (b.order || 999);
-      });
-      archive.sort(function (a, b) {
-        return (a.order || 999) - (b.order || 999);
-      });
-
-      if (gridActive) {
-        gridActive.innerHTML = active.length
-          ? active
-              .map(function (p) {
-                return cardHtml(p, true);
-              })
-              .join("")
-          : emptyHtml("No active Side Trail", "Catalog has no in-development entries.");
-      }
-      if (grid) {
-        grid.innerHTML = archive.length
-          ? archive
-              .map(function (p) {
-                return cardHtml(p, false);
-              })
-              .join("")
-          : "";
-      }
+      gridActive.innerHTML = projects
+        .map(function (p) {
+          return cardHtml(p, true);
+        })
+        .join("");
     });
   }
 

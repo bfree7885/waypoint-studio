@@ -1,9 +1,15 @@
 # Signal Intelligence Vision V1
 
+**Internal architecture only.** This is not a public Waypoint product.
+Reusable schemas live under `design-system/signal-intelligence/` and may feed
+future Waypoint Deck situational awareness. Canonical portfolio:
+[`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
+
 **Status:** Active foundation (architecture — no live ingestion or production dashboard)  
 **Tagline:** Notice important changes. Explain why they matter. Then let people decide.  
-**Audience:** Product, editorial, design, and future SignalTerrain / Dashboard surfaces  
-**Primary product home:** SignalTerrain (Monitor)
+**Audience:** Product, editorial, design, and future Waypoint Deck / Dashboard surfaces  
+**Primary consumer:** Waypoint Deck (internal situational awareness — not a public product)
 
 This is the long-term product vision for Waypoint Studio’s **Signal Intelligence** platform.
 
@@ -88,14 +94,14 @@ This is an **awareness and intelligence** platform.
 ```
 Signal Intelligence (shared platform / engine)
         │
-        ├── SignalTerrain ── primary UI home (Monitor)
+        ├── Waypoint Deck ── internal consumer (situational awareness)
         ├── Dashboard ───── ambient glance (future)
         ├── Knowledge ───── research & library depth
         ├── Worth Noticing ─ calm observation cues (where relevant)
         └── Education ───── literacy modules (future)
 ```
 
-Signal Intelligence is a **shared capability**, not a second top-level nav product beside SignalTerrain.  
+Signal Intelligence is a **shared capability**, not a second top-level nav product.  
 Do not invent a parallel “Cyber” product in navigation.
 
 ---
@@ -201,10 +207,9 @@ Design language: `design-system/signal-intelligence/design-language.json`.
 | [Roadmap](SIGNAL-INTELLIGENCE-ROADMAP.md) | Phased delivery without premature claims |
 | [Engine](SIGNAL-INTELLIGENCE-ENGINE.md) | Observation contract detail (v0.1 → V1) |
 | [Integrations](SIGNAL-INTELLIGENCE-INTEGRATIONS.md) | Consumer contracts |
-| [SignalTerrain Playbook](SIGNALTERRAIN_PLAYBOOK.md) | Product home standards |
 
-Package: `design-system/signal-intelligence/`.  
-Product home package: `design-system/signalterrain/` · [SignalTerrain Vision](SIGNALTERRAIN-VISION.md).
+Package: `design-system/signal-intelligence/`.
+Internal ingest: `scripts/deck-signals/`.
 
 ---
 
@@ -215,7 +220,7 @@ Foundation V1 succeeds when:
 1. Anyone on the team can explain what Signal Intelligence **is** and **is not** in one minute.  
 2. Modules, Signal Card, sources, and nav are documented without shipping fake live feeds.  
 3. Trust, Knowledge, Constitution, and Editorial standards are explicitly inherited.  
-4. SignalTerrain remains the UI home; no parallel Cyber nav product appears.  
+4. Waypoint Deck may consume these contracts internally; no parallel Cyber nav product appears.  
 5. Future ingestion can plug into contracts without redesigning the product story.
 
 ---

@@ -113,15 +113,6 @@
       when: "always"
     },
     {
-      id: "signalterrain-to-dashboard",
-      from: "signalterrain",
-      to: "dashboard",
-      label: "Return to outdoor conditions",
-      why: "Signal literacy sits beside outdoor situational awareness.",
-      pathFromRoot: "apps/dashboard/",
-      when: "always"
-    },
-    {
       id: "volunteer-to-fieldry",
       from: "waypoint-volunteer",
       to: "fieldry",

@@ -55,16 +55,16 @@ assert("startHereHref dashboard", /dashboard/.test(Nav.startHereHref(Nav.byId("d
 assert("related sheds→dashboard", Nav.relatedApps("sheds").some((a) => a.id === "dashboard"));
 
 const home = read("index.html");
-assert("home pillars", /was-home-observe/.test(home) && /was-home-create/.test(home));
-assert("home launch volunteer discover", /waypoint-volunteer\/discover\.html/.test(home));
-assert("home launch photo coach", /apps\/photo-coach\//.test(home));
-assert("home launch sheds map", /shed-hunting\/map\//.test(home));
+assert("home pillars", /was-home__pillars/.test(home));
+assert("home names Dashboard Scenes Sheds", /Dashboard/.test(home) && /Scenes/.test(home) && /Sheds/.test(home));
+assert("home Side Trails", /side-trails/.test(home) && /Waypoint Deck|waypoint-deck/.test(home));
+assert("home omits deleted products", !/OpenRoad|SignalTerrain|Global Signals/.test(home));
 assert("home articles link", /href="articles\/"/.test(home));
 assert("home no contact in hero links", !/was-home__links"[\s\S]*href="contact\.html"/.test(home.split('was-home__search')[0]));
 
 const studioHome = read("js/studio-home.js");
-assert("studio-home uses journeys", /appsByJourney/.test(studioHome));
-assert("studio-home renders Launch", /Launch/.test(studioHome) && /startHereHref/.test(studioHome));
+assert("studio-home is front door", /data-was-home-now|Useful now/.test(studioHome));
+assert("studio-home has no Launch catalog", !/startHereHref/.test(studioHome));
 
 const workflows = read("design-system/js/platform/wds-platform-workflows.js");
 [
@@ -73,7 +73,6 @@ const workflows = read("design-system/js/platform/wds-platform-workflows.js");
   "dashboard-to-foragecast",
   "sheds-to-dashboard",
   "scenes-to-dashboard",
-  "signalterrain-to-dashboard",
   "volunteer-to-fieldry"
 ].forEach((id) => assert("workflow " + id, workflows.includes('id: "' + id + '"')));
 
@@ -94,7 +93,7 @@ assert("manifest search prep", manifest.search && manifest.search.providerId ===
 assert("docs experience", exists("docs/PLATFORM-EXPERIENCE-RC2.md"));
 assert("docs navigation", exists("docs/NAVIGATION-ARCHITECTURE.md"));
 
-["apps/shed-hunting/index.html", "apps/signalterrain/index.html", "apps/waypoint-volunteer/index.html", "apps/scenes/index.html"].forEach((f) => {
+["apps/shed-hunting/index.html", "apps/waypoint-volunteer/index.html", "apps/scenes/index.html"].forEach((f) => {
   const html = read(f);
   assert(f + " related mount", /data-wds-related-apps=/.test(html));
   assert(f + " discover script", /wds-platform-discover\.js/.test(html));

@@ -1,11 +1,11 @@
-# SignalTerrain — Living Knowledge Graph
+# Deck-internal knowledge graph notes
 
-**Status:** Active foundation  
+**Status:** Internal architecture  
 **Tagline:** Everything is connected.  
-**Package:** `design-system/signalterrain/`  
-**Vision:** [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md)
+**Package:** `design-system/deck-signals/`  
+**Not a public product.** Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 
-Information should never exist in isolation. The Living Knowledge Graph is the core intelligence engine of SignalTerrain: every durable object becomes a **topic node**, and typed **relationships** let people move from one idea into technologies, research, history, infrastructure, and future watch items — without becoming a news river or a conspiracy board.
+Information should never exist in isolation. Typed **relationships** can connect durable objects — topics, research, infrastructure — for future Waypoint Deck situational awareness. This is not a news river or a public product surface.
 
 ---
 

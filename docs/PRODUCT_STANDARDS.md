@@ -214,13 +214,13 @@ Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 
 - **Waypoint Deck** — offline-first Linux field computer (independent; not a Studio subscription app)
 
-**Paused / retired / not Studio flagships**
+**Do not feature**
 
-- Fieldry — paused indefinitely (not an active Side Trail)
-- OpenRoad PA — retired
-- Savant Sommelier — not an active priority
-- Cyber / SignalTerrain / Global Signals — not standalone active products (archived research; may inform Waypoint Deck situational awareness later)
-- ForageCast, Steepleaf, Volunteer — supporting or incubator only
+- Fieldry — paused indefinitely
+- Savant Sommelier — inactive
+- ForageCast, Steepleaf, Volunteer — supporting or incubator only; never peers of Dashboard · Scenes · Sheds
+
+Do not create public archive cards for removed work.
 
 Each active experience keeps its own purpose while sharing philosophy, design
 language, and engineering standards.

@@ -183,5 +183,5 @@ export function evaluateDynamicVisual(pkg = {}) {
 }
 
 export function isMapOrGeoCampaign(campaignId) {
-  return /sheds|map|geo|field|signalterrain/i.test(String(campaignId || ""));
+  return /sheds|map|geo|field/i.test(String(campaignId || ""));
 }

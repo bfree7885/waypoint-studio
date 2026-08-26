@@ -8,7 +8,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const out = path.join(root, "data/global-signals/industries/industries.json");
+const out = path.join(root, "data/deck-signals/relationships/industries/industries.json");
 
 const C = {
   us: { id: "gsc_united-states", name: "United States", slug: "united-states" },
@@ -856,12 +856,8 @@ const payload = {
       "Waypoint’s Take is analysis and interpretation — never established fact. Do not treat curated baseline text as verified live intelligence."
   },
   crossLinks: {
-    articlesBase: "/side-trails/global-signals/articles/",
-    countriesBase: "/side-trails/global-signals/countries/",
-    citizenImpactBase: "/side-trails/global-signals/citizen-impact/",
-    relationshipExplorerBase: "/side-trails/global-signals/relationship-graph/",
     notes:
-      "Country Intelligence, Citizen Impact category deep-links, and Relationship Explorer may ship on parallel branches. Soft-link with stable IDs (gsc_*, gsci_*, gsa_*, gsi_*). Articles routes exist on main."
+      "Industry intelligence is Deck-internal relationship data. It is not a public product surface."
   },
   taxonomies: {
     industryIds: industries.map((i) => i.id),

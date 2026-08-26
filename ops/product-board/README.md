@@ -24,9 +24,9 @@ node ops/product-board/board.mjs discover
 node ops/product-board/board.mjs prioritize
 node ops/product-board/board.mjs next
 node ops/product-board/board.mjs campaign              # list / show active
-node ops/product-board/board.mjs campaign signalterrain
+node ops/product-board/board.mjs campaign sheds
 node ops/product-board/board.mjs gate
-node ops/product-board/board.mjs gate --campaign signalterrain
+node ops/product-board/board.mjs gate --campaign sheds
 node ops/product-board/board.mjs subscriber-ready   # alias
 node ops/product-board/board.mjs attest --criterion ID --role ROLE --verdict pass --notes "…"
 node ops/product-board/board.mjs evidence
@@ -42,16 +42,6 @@ Gate options: `gate [--skip-commands] [--skip-probes] [--campaign NAME]`
 | Id | Product path | Notes |
 |----|--------------|-------|
 | `sheds` | `apps/shed-hunting` | First Subscriber Ready pilot |
-| `signalterrain` | `apps/signalterrain` | MSP freeze: [`campaigns/signalterrain-msp.md`](./campaigns/signalterrain-msp.md) |
-
-SignalTerrain MSP campaign start (when authorized — does not auto-run repairs):
-
-```bash
-node ops/product-board/board.mjs campaign signalterrain
-node ops/product-board/board.mjs discover
-node ops/product-board/board.mjs prioritize
-node ops/product-board/board.mjs gate --campaign signalterrain
-```
 
 Recovered predecessor CLI (still valid):
 

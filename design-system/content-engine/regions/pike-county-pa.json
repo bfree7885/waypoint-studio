@@ -549,11 +549,11 @@
       "href": "apps/steepleaf/"
     },
     {
-      "slug": "signalterrain",
-      "name": "SignalTerrain",
-      "track": "Maps & terrain",
-      "note": "Navigation and earth science tools.",
-      "href": "apps/signalterrain/"
+      "slug": "waypoint-deck",
+      "name": "Waypoint Deck",
+      "track": "Field computer",
+      "note": "Offline-first Linux field computer under exploration.",
+      "href": "side-trails/waypoint-deck/"
     },
     {
       "slug": "savant-sommelier",

@@ -92,8 +92,8 @@
 
         var bundle = await WDS.knowledgeCurated.loadDemo();
         var filterRoot = document.getElementById("knowledge-filter");
-        var productIds = ["", "sheds", "fieldry", "foragecast", "photo-coach", "scenes", "signalterrain"];
-        var labels = { "": "Featured", sheds: "Sheds", fieldry: "Fieldry", foragecast: "ForageCast", "photo-coach": "Photo Coach", scenes: "Scenes", signalterrain: "SignalTerrain" };
+        var productIds = ["", "sheds", "scenes", "photo-coach"];
+        var labels = { "": "Featured", sheds: "Sheds", scenes: "Scenes", "photo-coach": "Photo Coach" };
 
         function renderCards(productId) {
           var entries;

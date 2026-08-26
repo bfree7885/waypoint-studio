@@ -1,5 +1,11 @@
 # Signal Intelligence — Application Integrations
 
+**Internal architecture only.** This is not a public Waypoint product.
+Reusable schemas live under `design-system/signal-intelligence/` and may feed
+future Waypoint Deck situational awareness. Canonical portfolio:
+[`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
+
 **Engine:** Foundation V1 architecture (no shipped live UI or APIs)  
 **Package:** `design-system/signal-intelligence/`
 

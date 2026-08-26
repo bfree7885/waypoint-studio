@@ -67,7 +67,6 @@ function run() {
   load("design-system/js/observations/wds-wos-extensions.js");
   load("apps/shed-hunting/js/sheds-models.js");
   load("apps/steepleaf/js/steepleaf-models.js");
-  load("apps/signalterrain/js/signalterrain-models.js");
   load("apps/savant-sommelier/js/savant-models.js");
   load("apps/fieldry/js/fieldry-life-list.js");
 
@@ -137,10 +136,6 @@ function run() {
   global.WaypointSteepleaf.saveTea(tea);
   assert("steepleaf tea store", global.WaypointSteepleaf.listTeas().length === 1);
 
-  const rx = global.WaypointSignalTerrain.createReceiver({ label: "Scanner A" });
-  global.WaypointSignalTerrain.saveReceiver(rx);
-  assert("signalterrain receiver", global.WaypointSignalTerrain.listReceivers().length === 1);
-
   const site = global.WaypointSavant.createSite({ label: "Ridge parcel" });
   global.WaypointSavant.saveSite(site);
   assert("savant site", global.WaypointSavant.listSites().length === 1);
@@ -153,7 +148,6 @@ function run() {
   [
     "apps/shed-hunting/data/foundation.json",
     "apps/steepleaf/data/foundation.json",
-    "apps/signalterrain/data/foundation.json",
     "apps/savant-sommelier/data/foundation.json"
   ].forEach((f) => {
     const raw = fs.readFileSync(path.join(ROOT, f), "utf8");

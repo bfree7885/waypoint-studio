@@ -331,7 +331,7 @@
       "domains": ["signalterrain"],
       "categories": ["frequency-bands"],
       "names": { "common": "VHF band", "scientific": null, "aliases": ["very high frequency"] },
-      "description": "Radio spectrum region commonly used for local voice services. Sample SignalTerrain terminology entry.",
+      "description": "Radio spectrum region commonly used for local voice services. Sample RF terminology entry.",
       "taxonomy": null,
       "geography": null,
       "seasonal": null,

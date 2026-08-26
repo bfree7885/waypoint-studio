@@ -123,17 +123,6 @@
       "prohibitedPressure": ["Rank this wine", "Complete your cellar goals"]
     },
     {
-      "id": "signalterrain",
-      "name": "SignalTerrain",
-      "observe": "Spectrum context, advisories, outages, and environmental radio conditions.",
-      "understand": "Radio science, propagation, space weather, infrastructure awareness, and defensive cyber literacy.",
-      "direction": { "label": "Monitor", "description": "Awareness and interpretation only — defensive, educational, lawful, and non-operational." },
-      "knowledgeCategories": ["radio-science", "spectrum-policy", "sdr", "propagation", "space-weather", "communications-infrastructure", "cyber-advisories", "gps-interference", "outages"],
-      "exampleSources": ["official advisories", "space-weather bulletins", "standards documentation"],
-      "ctaExamples": ["Official advisory", "Background reading", "What remains uncertain"],
-      "prohibitedPressure": ["Exploit this", "Attack systems", "Act on unverified threats"]
-    },
-    {
       "id": "dashboard",
       "name": "Outdoor Intelligence Dashboard",
       "observe": "Weather, air, light, trails, safety, and seasonal change.",

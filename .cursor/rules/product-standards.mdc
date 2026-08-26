@@ -18,11 +18,11 @@ Canonical detail: `docs/PRODUCT_STANDARDS.md`. Product portfolio:
 Dashboard (Discover) · Scenes (Explore & understand) · Sheds (Go).
 Publishing + shared intelligence are infrastructure, not a fourth consumer product.
 
-## Not active Studio products
+## Not featured
 
-Fieldry (paused) · OpenRoad PA (retired) · Savant (not a priority) ·
-Cyber / Global Signals (not standalone Studio apps). Waypoint Deck is a
-**separate** offline Linux/AI project — do not build it as a Studio web app.
+Fieldry (paused indefinitely) · Savant (inactive). Do not surface them.
+Waypoint Deck is a **separate** offline Linux/AI Side Trail — do not build
+it as a Studio web app unless instructed.
 
 ## Feel
 

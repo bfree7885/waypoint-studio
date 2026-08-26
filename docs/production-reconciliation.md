@@ -1,5 +1,8 @@
 # Production reconciliation audit — Waypoint Studio
 
+**Superseded for portfolio decisions.** OpenRoad, SignalTerrain, and Global Signals
+are deleted product identities. Canonical: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
 **Date:** 2026-08-06 (audit window; live probes 2026-08-07T03:23Z UTC)  
 **Repo:** `bfree7885/waypoint-studio`  
 **Live:** https://waypointstudio.org  

@@ -96,7 +96,6 @@ const requiredApps = [
   "apps/savant-sommelier/index.html",
   "apps/fieldry/index.html",
   "apps/shed-hunting/index.html",
-  "apps/signalterrain/index.html",
   "apps/steepleaf/index.html",
   "apps/waypoint-volunteer/index.html",
   "apps/photo-coach/index.html",

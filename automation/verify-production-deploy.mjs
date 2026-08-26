@@ -37,7 +37,6 @@ const CRITICAL = [
   "/apps/fieldry/",
   "/apps/steepleaf/",
   "/apps/steepleaf/explore/",
-  "/apps/signalterrain/",
   "/apps/savant-sommelier/",
   "/apps/waypoint-volunteer/",
   "/apps/landscape-interpretation/",

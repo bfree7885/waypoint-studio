@@ -38,7 +38,6 @@
     { "id": "sheds", "label": "Sheds" },
     { "id": "shed-hunting", "label": "Sheds" },
     { "id": "steepleaf", "label": "Steepleaf" },
-    { "id": "signalterrain", "label": "SignalTerrain" },
     { "id": "savant-sommelier", "label": "Savant Sommelier" },
     { "id": "waypoint-volunteer", "label": "Waypoint Volunteer" },
     { "id": "other", "label": "Other / not sure" }

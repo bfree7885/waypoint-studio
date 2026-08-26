@@ -57,4 +57,4 @@ Every major module should help the user notice something outdoors — not fill a
 
 ## Intentionally not built (this phase)
 
-Waypoint Deck · Global Signals · Cyber · OpenRoad · Fieldry · Savant · Sheds V3.2 · accounts/preferences overhaul · social · standalone AI chatbot · Scenes rewrite.
+Waypoint Deck OS · Fieldry · Savant · Sheds V3.2 · accounts/preferences overhaul · social · standalone AI chatbot · Scenes rewrite.

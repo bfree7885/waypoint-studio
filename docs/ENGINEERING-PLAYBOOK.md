@@ -1563,8 +1563,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 ### Lessons Learned — Product direction reconciliation (2026-08-25)
 
 - One canonical file (`docs/PRODUCT-DIRECTION.md`) beats five conflicting roadmaps; point STRATEGIC-DIRECTION / README / MASTER roadmap at it instead of rewriting history in place.
-- Retiring OpenRoad publicly means homepage + about + catalog status + honest retired page — not necessarily deleting GIS experiments.
-- Side Trails stays in primary nav as **archive**, not as a promise of sister flagships; update gates that required “Experimental” sister marketing.
+- Deleted product identities should disappear from public surfaces — do not replace them with archive, retired, or graveyard pages.
+- Side Trails stays in primary nav for **independent projects**, currently Waypoint Deck only.
 - Preserve DFD/articles pipelines as Publishing infrastructure; do not delete them while simplifying the consumer portfolio to Dashboard · Scenes · Sheds.
 
 ### Lessons Learned — Dashboard Discover v1 (2026-08-25)
@@ -1577,10 +1577,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
-- Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
-- Distinguish **planned / exploring** Deck language from shipping claims; Global Signals concepts may feed Deck SA later without being a standalone product.
-- Article `relatedProducts` must not promote paused/retired apps (Fieldry, OpenRoad, Savant, Cyber, GS); filter at generation and in the feed renderer.
-- Keep `homeSideTrails` aligned with portfolio truth (`waypoint-deck`), not leftover SignalTerrain/Global Signals IDs from older IA moves.
+- Public Side Trails must feature **Waypoint Deck** as the only independent trail.
+- Distinguish **planned / exploring** Deck language from shipping claims.
+- Article `relatedProducts` must not promote paused or deleted apps; filter at generation and in the feed renderer.
+- Keep `homeSideTrails` aligned with portfolio truth (`waypoint-deck`).
 
 ### Lessons Learned — Scenes + Publishing unification (2026-08-25)
 
@@ -1600,3 +1600,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 ### Lessons Learned — Discover quiet strip live-weather gate (2026-08-26)
 
 - Gate `data-wdb-r-discover-quiet` on live (non-placeholder) `weatherRef`, not a truthy platform object. OIP `onChange` / `setPlatform` can apply packages whose weather is still a placeholder; Intel then skips weather so HN stays empty, and “Live instruments / honest weather” copy would be false while Today is still waiting.
+
+### Lessons Learned — Portfolio hyperfocus / delete old products (2026-08-26)
+
+- Deleted product identities (OpenRoad, SignalTerrain, Global Signals) must vanish from catalog, nav, sitemap, Support, About, and Side Trails — do not replace them with archive cards.
+- Keep reusable ingest/correlation code under `scripts/deck-signals/`, `data/deck-signals/`, and `design-system/deck-signals/`; never as a named product.
+- Side Trails may legally contain a single project. Empty archive sections are still a graveyard — omit them.
+- `validate-production-assets` must skip `reports/` so leftover browser profiles cannot fail CI.
