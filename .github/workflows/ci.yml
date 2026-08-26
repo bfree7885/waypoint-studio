@@ -3,6 +3,7 @@ name: CI
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
 
@@ -100,6 +101,9 @@ jobs:
 
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
+
+      - name: Sheds V3.2 Inspect Intelligence
+        run: node automation/test-sheds-v3-2-inspect-intel.mjs
 
       - name: Dashboard Discover tests
         if: ${{ !cancelled() }}

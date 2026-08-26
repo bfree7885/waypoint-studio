@@ -28,6 +28,7 @@
   var FieldUi = window.WaypointShedsFieldUi;
   var Ux = window.WaypointShedsUxPolish;
   var FieldTools = window.WaypointShedsFieldTools;
+  var InspectIntel = window.WaypointShedsInspectIntel;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -111,7 +112,10 @@
     inspectLatLng: null,
     inspectElevGen: 0,
     inspectElevM: null,
-    inspectElevStatus: "idle"
+    inspectElevStatus: "idle",
+    inspectTerrainDerived: null,
+    inspectTerrainStatus: "idle",
+    inspectReport: null
   };
 
   var els = {};
@@ -745,6 +749,11 @@
     var textEl = $("search-prompt-text");
     var btnYou = $("btn-analyze-you");
     if (!prompt) return;
+    /* Inspect owns map taps until Done — do not compete with SEARCH copy. */
+    if (state.inspectArmed || state.inspectLatLng) {
+      prompt.setAttribute("hidden", "");
+      return;
+    }
     var hasSearch = !!state.searchLocation;
     var needs = SearchArea
       ? SearchArea.needsSearchPrompt(state.accuracyM, hasSearch)
@@ -1182,6 +1191,9 @@
       fadeAnimation: false,
       zoomAnimation: !!(window.matchMedia && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     });
+    try {
+      window.__SHEDS_MAP__ = map;
+    } catch (eMap) { /* */ }
     // Zoom lives in the labeled field rail — avoid a second unexplained Leaflet stack.
     if (map.attributionControl && map.attributionControl.setPosition) {
       map.attributionControl.setPosition("bottomleft");
@@ -3364,6 +3376,9 @@
     state.inspectLatLng = null;
     state.inspectElevM = null;
     state.inspectElevStatus = "idle";
+    state.inspectTerrainDerived = null;
+    state.inspectTerrainStatus = "idle";
+    state.inspectReport = null;
     state.inspectElevGen += 1;
     if (inspectMarker && map) {
       try {
@@ -3385,66 +3400,147 @@
     var body = $("inspect-body");
     var hud = $("inspect-hud");
     if (body) body.textContent = "Tap the map to inspect a point.";
-    if (hud) hud.removeAttribute("hidden");
+    if (hud) {
+      hud.classList.remove("is-expanded");
+      hud.removeAttribute("hidden");
+    }
+    var more = $("inspect-more");
+    if (more) {
+      more.open = false;
+      more.hidden = true;
+    }
     /* Hide SEARCH prompt while armed — next tap is INSPECT, not SEARCH. */
     var prompt = $("search-prompt");
     if (prompt) prompt.setAttribute("hidden", "");
   }
 
-  function renderInspectHud() {
-    var body = $("inspect-body");
-    var hud = $("inspect-hud");
-    if (!body || !hud || !state.inspectLatLng) return;
-    var ll = state.inspectLatLng;
+  function inspectRelationLines() {
     var FT = FieldTools;
-    var lines = [];
-    lines.push(ll.lat.toFixed(5) + ", " + ll.lng.toFixed(5));
-    if (state.inspectElevStatus === "loading") {
-      lines.push("Elevation: loading…");
-    } else if (state.inspectElevStatus === "ready" && state.inspectElevM != null) {
-      lines.push(
-        "Elevation: ~" +
-          Math.round(state.inspectElevM) +
-          " m (" +
-          Math.round(state.inspectElevM * 3.28084) +
-          " ft) — network sample"
-      );
-    } else if (state.inspectElevStatus === "unavailable") {
-      lines.push("Elevation: unavailable");
-    } else {
-      lines.push("Elevation: not requested");
-    }
-    if (state.userLatLng && FT) {
+    var ll = state.inspectLatLng;
+    var fromYou = null;
+    var fromSearch = null;
+    if (!ll || !FT) return { fromYou: fromYou, fromSearch: fromSearch };
+    if (state.userLatLng) {
       var dYou = FT.distanceM(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
       var bYou = FT.bearingDeg(state.userLatLng.lat, state.userLatLng.lng, ll.lat, ll.lng);
-      lines.push(
+      fromYou =
         "From YOU: " +
-          FT.formatFieldDistance(dYou) +
-          " · " +
-          FT.cardinalFromBearing(bYou) +
-          " " +
-          Math.round(bYou) +
-          "°"
-      );
+        FT.formatFieldDistance(dYou) +
+        " · " +
+        FT.cardinalFromBearing(bYou) +
+        " " +
+        Math.round(bYou) +
+        "°";
     } else {
-      lines.push("From YOU: locate first");
+      fromYou = "From YOU: locate first";
     }
-    if (state.searchLocation && FT) {
+    if (state.searchLocation) {
       var dS = FT.distanceM(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
       var bS = FT.bearingDeg(state.searchLocation.lat, state.searchLocation.lng, ll.lat, ll.lng);
-      lines.push(
+      fromSearch =
         "From SEARCH: " +
-          FT.formatFieldDistance(dS) +
-          " · " +
-          FT.cardinalFromBearing(bS) +
-          " " +
-          Math.round(bS) +
-          "°"
-      );
+        FT.formatFieldDistance(dS) +
+        " · " +
+        FT.cardinalFromBearing(bS) +
+        " " +
+        Math.round(bS) +
+        "°";
     }
-    lines.push("Context only — not habitat proof.");
-    body.textContent = lines.join("\n");
+    return { fromYou: fromYou, fromSearch: fromSearch };
+  }
+
+  function buildCurrentInspectReport() {
+    if (!state.inspectLatLng) return null;
+    if (!InspectIntel || !InspectIntel.buildInspectReport) return null;
+    var ll = state.inspectLatLng;
+    var pack =
+      GisPack && state.gisPacks && state.gisPacks.length
+        ? GisPack.findCoveringPack(state.gisPacks, ll.lat, ll.lng)
+        : null;
+    var sample = pack && GisPack.sample ? GisPack.sample(pack, ll.lat, ll.lng) : null;
+    var packMeta = null;
+    if (pack) {
+      var nlcdYear =
+        pack.sources && pack.sources.nlcd && (pack.sources.nlcd.year || pack.sources.nlcd.vintage);
+      packMeta = { packId: pack.packId, nlcdYear: nlcdYear || 2021, region: pack.region };
+    }
+    var rel = inspectRelationLines();
+    /* Facts only: land-cover sample from the GIS pack; no habitat suitability score. */
+    return InspectIntel.buildInspectReport({
+      lat: ll.lat,
+      lng: ll.lng,
+      elevM: state.inspectElevM,
+      elevStatus: state.inspectElevStatus,
+      terrainStatus: state.inspectTerrainStatus,
+      terrainDerived: state.inspectTerrainDerived,
+      gisSample: sample,
+      packMeta: packMeta,
+      fromYou: rel.fromYou,
+      fromSearch: rel.fromSearch
+    });
+  }
+
+  function renderInspectHud() {
+    var body = $("inspect-body");
+    var moreBody = $("inspect-more-body");
+    var more = $("inspect-more");
+    var hud = $("inspect-hud");
+    if (!body || !hud || !state.inspectLatLng) return;
+    var report = buildCurrentInspectReport();
+    state.inspectReport = report;
+    if (report) {
+      body.textContent = report.hudFacts || report.hudText || "";
+      if (moreBody) moreBody.textContent = report.hudExplain || "";
+      if (more) {
+        more.hidden = !(report.hudExplain && String(report.hudExplain).trim());
+      }
+    } else {
+      var ll = state.inspectLatLng;
+      var lines = [];
+      lines.push(ll.lat.toFixed(5) + ", " + ll.lng.toFixed(5));
+      if (state.inspectElevStatus === "loading") lines.push("Elevation: loading…");
+      else if (state.inspectElevStatus === "ready" && state.inspectElevM != null) {
+        lines.push(
+          "Elevation: ~" +
+            Math.round(state.inspectElevM) +
+            " m (" +
+            Math.round(state.inspectElevM * 3.28084) +
+            " ft) — network sample"
+        );
+      } else if (state.inspectElevStatus === "unavailable") lines.push("Elevation: unavailable");
+      var rel = inspectRelationLines();
+      if (rel.fromYou) lines.push(rel.fromYou);
+      if (rel.fromSearch) lines.push(rel.fromSearch);
+      lines.push("Context only — not habitat proof.");
+      body.textContent = lines.join("\n");
+      if (moreBody) moreBody.textContent = "";
+      if (more) more.hidden = true;
+    }
     hud.removeAttribute("hidden");
+    syncSearchPrompt();
+  }
+
+  function revealInspectPoint(latlng) {
+    if (!map || !latlng) return;
+    var hud = $("inspect-hud");
+    var mapEl = document.getElementById("sheds-map");
+    if (!hud || !mapEl || hud.hasAttribute("hidden")) return;
+    try {
+      var mapBox = mapEl.getBoundingClientRect();
+      var hudBox = hud.getBoundingClientRect();
+      var pt = map.latLngToContainerPoint(L.latLng(latlng.lat, latlng.lng));
+      var minY = Math.max(0, hudBox.bottom - mapBox.top) + 28;
+      var maxY = Math.max(minY + 24, mapBox.height - 80);
+      var minX = 16;
+      var maxX = Math.max(minX + 24, mapBox.width - 64);
+      var dx = 0;
+      var dy = 0;
+      if (pt.y < minY) dy = minY - pt.y;
+      else if (pt.y > maxY) dy = maxY - pt.y;
+      if (pt.x > maxX) dx = maxX - pt.x;
+      else if (pt.x < minX) dx = minX - pt.x;
+      if (dx || dy) map.panBy([dx, dy], { animate: false });
+    } catch (e) { /* */ }
   }
 
   function fetchInspectElevation(lat, lng, gen) {
@@ -3492,17 +3588,85 @@
       .catch(function () {
         if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
-        state.inspectElevStatus = "unavailable";
+        state.inspectElevStatus = "failed";
         state.inspectElevM = null;
+        renderInspectHud();
+      });
+  }
+
+  /** Neighborhood elev → derived slope/aspect for Inspect (physical geography). */
+  function fetchInspectTerrain(lat, lng, gen) {
+    state.inspectTerrainStatus = "loading";
+    state.inspectTerrainDerived = null;
+    renderInspectHud();
+    if (!InspectIntel || !InspectIntel.elevationNeighborhoodUrl) {
+      state.inspectTerrainStatus = "unavailable";
+      renderInspectHud();
+      return;
+    }
+    if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
+      state.inspectTerrainStatus = "unavailable";
+      renderInspectHud();
+      return;
+    }
+    var nb = InspectIntel.elevationNeighborhoodUrl(lat, lng);
+    var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer = null;
+    if (ctrl) {
+      timer = setTimeout(function () {
+        try {
+          ctrl.abort();
+        } catch (e) { /* */ }
+      }, 8000);
+    }
+    fetch(nb.url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (res) {
+        if (!res.ok) throw new Error("terrain elev " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (timer) clearTimeout(timer);
+        if (gen !== state.inspectElevGen) return;
+        var elev = (data && data.elevation) || [];
+        var derived = InspectIntel.terrainFromElevationArray(elev, nb.stepM);
+        if (!derived || derived.slopeDeg == null) {
+          state.inspectTerrainStatus = "unavailable";
+          state.inspectTerrainDerived = null;
+        } else {
+          state.inspectTerrainStatus = "ready";
+          state.inspectTerrainDerived = derived;
+          if (state.inspectElevStatus !== "ready" && derived.elevM != null) {
+            state.inspectElevStatus = "ready";
+            state.inspectElevM = derived.elevM;
+          }
+        }
+        renderInspectHud();
+      })
+      .catch(function () {
+        if (timer) clearTimeout(timer);
+        if (gen !== state.inspectElevGen) return;
+        state.inspectTerrainStatus = "failed";
+        state.inspectTerrainDerived = null;
         renderInspectHud();
       });
   }
 
   function showInspectAt(latlng) {
     if (!latlng || !map) return;
-    state.inspectArmed = false;
+    /* Stay in Inspect until Done so walking taps re-inspect instead of setting SEARCH. */
+    state.inspectArmed = true;
     state.inspectLatLng = { lat: latlng.lat, lng: latlng.lng };
-    shellModeClass(false, false);
+    state.inspectTerrainDerived = null;
+    state.inspectTerrainStatus = "idle";
+    state.inspectReport = null;
+    shellModeClass(false, true);
+    var hud = $("inspect-hud");
+    var more = $("inspect-more");
+    if (more) {
+      more.open = false;
+      more.hidden = false;
+    }
+    if (hud) hud.classList.remove("is-expanded");
     if (inspectMarker) {
       try {
         map.removeLayer(inspectMarker);
@@ -3513,11 +3677,28 @@
       color: "#f0c14a",
       fillColor: "#f0c14a",
       fillOpacity: 0.9,
-      weight: 2
+      weight: 2,
+      className: "sheds-inspect-marker"
     }).addTo(map);
+    try {
+      inspectMarker.bindTooltip("INSPECT — location facts (not YOU, not SEARCH, not OBS)", {
+        permanent: false,
+        direction: "top",
+        className: "sheds-inspect-tip"
+      });
+    } catch (e2) { /* */ }
     var gen = ++state.inspectElevGen;
+    ensureGisPacks().then(function () {
+      if (gen !== state.inspectElevGen) return;
+      renderInspectHud();
+    });
     fetchInspectElevation(latlng.lat, latlng.lng, gen);
+    fetchInspectTerrain(latlng.lat, latlng.lng, gen);
     renderInspectHud();
+    setTimeout(function () {
+      if (gen !== state.inspectElevGen) return;
+      revealInspectPoint(latlng);
+    }, 50);
   }
 
   function bindControls() {
@@ -3588,6 +3769,13 @@
     if ($("btn-inspect-close")) {
       $("btn-inspect-close").addEventListener("click", function () {
         stopInspectMode();
+      });
+    }
+    if ($("inspect-more")) {
+      $("inspect-more").addEventListener("toggle", function () {
+        var hud = $("inspect-hud");
+        var more = $("inspect-more");
+        if (hud && more) hud.classList.toggle("is-expanded", !!more.open);
       });
     }
     if ($("btn-add-obs")) {

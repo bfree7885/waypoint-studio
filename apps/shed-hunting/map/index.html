@@ -40,10 +40,17 @@
             <button type="button" class="sheds-btn sheds-btn--primary" id="btn-measure-done">Done</button>
           </div>
         </div>
-        <div class="sheds-inspect-hud" id="inspect-hud" hidden role="status" aria-live="polite">
-          <p class="sheds-inspect-hud__kicker">Inspect</p>
-          <p class="sheds-inspect-hud__body" id="inspect-body"></p>
-          <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-inspect-close">Close</button>
+        <div class="sheds-inspect-hud" id="inspect-hud" hidden role="dialog" aria-label="Inspect location facts and context" aria-live="polite">
+          <div class="sheds-inspect-hud__head">
+            <p class="sheds-inspect-hud__kicker">Inspect</p>
+            <button type="button" class="sheds-btn sheds-btn--ghost sheds-inspect-hud__close" id="btn-inspect-close">Done</button>
+          </div>
+          <p class="sheds-inspect-hud__lede">What is here, and why it may matter — not a claim that deer or antlers are here.</p>
+          <pre class="sheds-inspect-hud__body" id="inspect-body"></pre>
+          <details class="sheds-inspect-hud__more" id="inspect-more">
+            <summary class="sheds-inspect-hud__more-toggle">Why this may matter and limits</summary>
+            <pre class="sheds-inspect-hud__more-body" id="inspect-more-body"></pre>
+          </details>
         </div>
       </div>
 
@@ -814,6 +821,7 @@
   <script src="../js/sheds-heat-layer.js"></script>
   <script src="../js/sheds-tile-provider.js"></script>
   <script src="../js/sheds-map-field-tools.js"></script>
+  <script src="../js/sheds-inspect-intel.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

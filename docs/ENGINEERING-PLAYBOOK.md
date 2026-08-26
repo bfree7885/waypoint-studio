@@ -1575,6 +1575,34 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
 - Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
 
+### Lessons Learned — Sheds V3.2 Inspect Field Intelligence (2026-08-25)
+
+- Inspect is the right doorway for landscape reading: enrich the existing HUD rather than adding a GIS control tower.
+- Derive aspect from Open-Meteo neighborhood elevations when packs lack aspect rasters; label solar notes as physical geography, never bedding claims.
+- Confidence labels must key off **input presence** (elev / slope-aspect / habitat), not invented certainty.
+- Keep Inspect scrollable + Done on mobile so the map stays the primary surface.
+- A full V3.2 roadmap run can stall on leftover headless Chrome/CDP servers and SHA-updating the acceptance report. Recover by classifying existing commits, finishing **one** slice, and stopping.
+- Inspect Intelligence HUD must separate FACT (Terrain/Habitat) from INTERPRETATION (Why) from LIMITATION. Habitat suitability bands must not be phrased as wildlife presence.
+
+### Lessons Learned — Sheds V3.2 Inspect Facts (2026-08-26)
+
+- Inspect Facts is not Inspect Intelligence: omit “Why this may matter,” solar notes, walkability, and `HabitatGis.scorePoint` from the HUD so Inspect stays a readout, not a prediction.
+- Zero and flat measurements (`0 ft`, `0°`, edge `0 m`) must not share copy with unavailable or failed fetches; aspect on slope &lt; 2° is **not defined**, not north.
+- Do not SHA-chase the V3.2 acceptance report after the feature commit — that loop stalled the previous recovery pass.
+
+### Lessons Learned — Sheds V3.2 Inspect Why (2026-08-26)
+
+- Why this may matter must be a pure function of supported facts (`buildWhyLines`); missing slope/aspect/edge must not mint solar, walkability, or “nearby edge” copy.
+- Prefer inspection language (“change in cover can be worth inspecting”) over animal behavior. Label the nearby-edge line `EDITORIAL_HEURISTIC`.
+- Keep Limits visible whenever Why is shown: context can help you decide where to look more closely; it does not indicate deer or sheds are present.
+
+### Lessons Learned — Sheds V3.2 Inspect field UX (2026-08-26)
+
+- Stay in Inspect until Done: clearing `inspectArmed` after the first tap made the next tap set SEARCH and brought the SEARCH prompt back over the HUD.
+- Progressive disclosure (facts first, Why/Limits behind a 44px summary) keeps the map dominant on 375–430 without deleting intelligence.
+- After each inspect tap, pan the marker below the HUD so the inspected point stays visible beside locate/zoom.
+- Hiding `#search-prompt` is not enough: Field Briefing peek still said “Choose a Search Area” / “tap the map to inspect.” Hide `#plan-card` while `.is-inspecting` and zero `--sheds-sheet-peek` so SEARCH copy does not compete.
+
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
 - Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
@@ -1619,3 +1647,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A memoized `loadPromise` that survives HTTP/JSON/network failure permanently omits events for the page session. Clear the promise on failure (and in `setCatalog`) so later `loadCatalog` / hydrate paints can retry.
 - Quiet Discover copy that names natural events must not render while the events catalog is unknown (in-flight or failed). Empty event HTML is not a confirmed empty catalog.
 - Region-box visibility is a hard gate before lifecycle. Boxes must cover the catalog’s own visibility summary (eastern Pacific / Hawaii / Alaska), not only contiguous-Americas longitudes.
+
+### Lessons Learned — Sheds V3.2 release onto later main (2026-08-26)
+
+- Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
+- Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.
+- Draft PRs opened without a later `synchronize` push may never queue GitHub Actions `pull_request` CI (`on.pull_request` defaults to opened / synchronize / reopened, not ready_for_review). Mark the PR ready and push a follow-up commit so CI actually starts.

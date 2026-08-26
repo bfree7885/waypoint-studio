@@ -5,6 +5,7 @@ automation/week-away/logs/
 # Local CDP / browser review artifacts (never commit Chrome profiles)
 reports/sheds-subscriber-ready-review/chrome-profile*/
 reports/sheds-subscriber-ready-review/chrome-*.log
+reports/sheds-v3-2-field-intelligence/chrome-profile-cdp/
 
 
 # Waypoint University owner secrets (never commit)
