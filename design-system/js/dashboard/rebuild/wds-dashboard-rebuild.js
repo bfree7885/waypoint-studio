@@ -134,6 +134,13 @@
     }
   }
 
+  function eventsCatalogReady(options) {
+    if (options && options.catalog) return true;
+    var NE = api("naturalEvents");
+    if (!NE) return true;
+    return !!(NE.getCatalog && NE.getCatalog());
+  }
+
   function happeningContext(options) {
     options = options || {};
     var ctx = todayContext(options);
@@ -189,8 +196,15 @@
         Happening && Happening.render ? Happening.render(happeningContext(options)) : "";
       eventsHtml =
         Events && Events.render ? Events.render(eventContext(options)) : "";
-      /* Quiet Discover strip: all supported categories empty, and live weather hydrated. */
-      if (!happeningHtml && !eventsHtml && hasLiveWeather(platform) && !hasUpcomingDiscoverEvents(options)) {
+      /* Quiet Discover strip: all supported categories empty, live weather hydrated,
+         and the events catalog has actually loaded (unknown/in-flight is not “none”). */
+      if (
+        !happeningHtml &&
+        !eventsHtml &&
+        hasLiveWeather(platform) &&
+        !hasUpcomingDiscoverEvents(options) &&
+        eventsCatalogReady(options)
+      ) {
         quietHtml = renderDiscoverQuiet();
       }
     }
@@ -407,14 +421,25 @@
     paint({ animate: true });
   }
 
+  function refreshEventsCatalog() {
+    var NE = api("naturalEvents");
+    if (!NE || typeof NE.loadCatalog !== "function") return;
+    if (NE.getCatalog && NE.getCatalog()) return;
+    ensureEventsCatalog(function () {
+      if (mountState.host) paint({ animate: false });
+    });
+  }
+
   function setPlaceContext(ctx) {
     mountState.placeContext = ctx || null;
     paint();
+    refreshEventsCatalog();
   }
 
   function setPlatform(platform) {
     mountState.platform = platform || null;
     paint();
+    refreshEventsCatalog();
   }
 
   function onHashChange() {
@@ -472,9 +497,7 @@
     mountState.libraryFilter = "all";
     bindRouting();
     paint({ animate: false });
-    ensureEventsCatalog(function () {
-      if (mountState.host) paint({ animate: false });
-    });
+    refreshEventsCatalog();
     return host.querySelector("[data-wdb-r]");
   }
 

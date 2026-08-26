@@ -15,7 +15,7 @@ Weather is one instrument. Discover synthesizes the few things genuinely worth n
 |-------|---------|----------|
 | **Coming soon / tonight / happening** | Natural events (`data-wdb-r-events`) | Significant location-relevant events within the horizon. Temporal kicker is truthful — never labels a +2-day event “Right now.” |
 | **Right now** | Happening Now (`data-wdb-r-hn`) | Ranked **live weather / air / light / alert** signals from `dashboardRebuildIntel` (min score 25, max 4). Empty → **no HN DOM**. |
-| **Quiet day** | `data-wdb-r-discover-quiet` | Only when live weather is hydrated **and** every supported Discover category is empty (HN **and** natural events). Honest “nothing unusually strong” — never invents events. A quiet **weather** state is not automatically a quiet **Discover** state. |
+| **Quiet day** | `data-wdb-r-discover-quiet` | Only when live weather is hydrated **and** every supported Discover category is empty (HN **and** natural events). The events catalog must have loaded — missing or still-loading catalog is not a confirmed empty category. Honest “nothing unusually strong” — never invents events. A quiet **weather** state is not automatically a quiet **Discover** state. |
 | **Outside today** | Today Outside (`data-wdb-r-today`) | Synthesized takeaways (sky, light, alerts, notable air) — not a dump of Conditions numbers. Provider provenance. Calendar season is computed; phenology only when fresh and possible. |
 | **Look up** | Instruments (Conditions, light, astronomy, UV, …) | Raw readings. Moon/daylight from live weather + daylight utils. |
 | **Explore** | Deepeners “Go deeper” | Links to Articles, Scenes, Deep Forest Dispatch. Understand this only when `publishingMatch` finds a justified story — no filler. |
@@ -46,7 +46,7 @@ Not a full astronomy calendar. Surface only events worth noticing, with:
 
 **Horizon:** 72 hours for `significance: major` (e.g. a locally visible lunar eclipse). Two to three days of advance notice is appropriate when it improves actionability. Minor events are not listed for a week.
 
-Failed or missing catalog → omit events. Never invent times.
+Failed or missing catalog → omit events. Never invent times. Transient fetch failures are retried on later hydrate; they are not cached for the page session.
 
 ## Ranking (deterministic)
 

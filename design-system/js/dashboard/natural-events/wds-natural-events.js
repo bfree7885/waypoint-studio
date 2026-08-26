@@ -353,6 +353,7 @@
   function setCatalog(next) {
     catalog = next && typeof next === "object" ? next : null;
     loadError = null;
+    loadPromise = null;
     return catalog;
   }
 
@@ -393,6 +394,11 @@
         loadError = "fetch-failed";
         catalog = null;
         return null;
+      })
+      .then(function (result) {
+        /* Failed loads must not stick: later hydrate/paint can retry. */
+        if (!catalog) loadPromise = null;
+        return result;
       });
     return loadPromise;
   }

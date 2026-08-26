@@ -264,6 +264,23 @@ assert(
   }).length === 0
 );
 
+const HONOLULU = { lat: 21.31, lng: -157.86, timezone: "Pacific/Honolulu", placeLabel: "Honolulu" };
+const ANCHORAGE = { lat: 61.22, lng: -149.9, timezone: "America/Anchorage", placeLabel: "Anchorage" };
+const hawaii = NE.evaluateEvent(eclipse, {
+  now: AUG25,
+  lat: HONOLULU.lat,
+  lng: HONOLULU.lng,
+  timeZone: HONOLULU.timezone
+});
+assert("Hawaii is in eclipse visibility", hawaii.visible === true && hawaii.state !== "not-visible", hawaii.reason);
+const anchorage = NE.evaluateEvent(eclipse, {
+  now: AUG25,
+  lat: ANCHORAGE.lat,
+  lng: ANCHORAGE.lng,
+  timeZone: ANCHORAGE.timezone
+});
+assert("Alaska is in eclipse visibility", anchorage.visible === true && anchorage.state !== "not-visible", anchorage.reason);
+
 assert("missing event data → invalid/not shown", NE.lifecycle({ windows: {} }, AUG25, WESTFALL.timezone) === "invalid");
 
 const liveWx = {
@@ -375,6 +392,7 @@ const shellMissing = Shell.renderShell({
   now: AUG25
 });
 assert("missing catalog does not invent eclipse", !/lunar eclipse/i.test(shellMissing));
+assert("missing catalog does not claim quiet natural events", !/data-wdb-r-discover-quiet/.test(shellMissing));
 NE.setCatalog(catalog);
 
 const alertPlatform = {
@@ -440,8 +458,54 @@ assert("docs describe quiet as multi-category", /quiet weather/i.test(read("docs
 assert("docs distinguish calendar vs phenology", /Calendar season vs phenology/.test(read("docs/DASHBOARD-DISCOVER.md")));
 assert("wds.js loads season + events", /wds-dashboard-season\.js/.test(read("design-system/js/wds.js")) && /wds-natural-events\.js/.test(read("design-system/js/wds.js")));
 
-if (failed) {
-  console.error("\nDASHBOARD DISCOVER CORRECTNESS: FAIL (" + failed + ")");
-  process.exit(1);
+function finish() {
+  if (failed) {
+    console.error("\nDASHBOARD DISCOVER CORRECTNESS: FAIL (" + failed + ")");
+    process.exit(1);
+  }
+  console.log("\nDASHBOARD DISCOVER CORRECTNESS: PASS");
 }
-console.log("\nDASHBOARD DISCOVER CORRECTNESS: PASS");
+
+NE.setCatalog(null);
+let fetchCount = 0;
+sb.fetch = function () {
+  fetchCount += 1;
+  return Promise.resolve({ ok: false, status: 503 });
+};
+Promise.resolve()
+  .then(function () {
+    return NE.loadCatalog();
+  })
+  .then(function (first) {
+    assert("failed catalog fetch returns null", first == null);
+    assert("failed catalog leaves getCatalog empty", NE.getCatalog() == null);
+    return NE.loadCatalog();
+  })
+  .then(function () {
+    assert("failed catalog fetch retries", fetchCount === 2, "fetches=" + fetchCount);
+    fetchCount = 0;
+    sb.fetch = function () {
+      fetchCount += 1;
+      return Promise.resolve({
+        ok: true,
+        json: function () {
+          return Promise.resolve(catalog);
+        }
+      });
+    };
+    return NE.loadCatalog();
+  })
+  .then(function (recovered) {
+    assert(
+      "catalog fetch recovers after failure",
+      !!(recovered && recovered.events && recovered.events.length),
+      "fetches=" + fetchCount
+    );
+    NE.setCatalog(catalog);
+  })
+  .then(finish)
+  .catch(function (err) {
+    failed++;
+    console.log("FAIL catalog fetch retry", err && err.stack ? err.stack : err);
+    finish();
+  });

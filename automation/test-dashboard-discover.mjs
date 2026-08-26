@@ -133,6 +133,7 @@ assert("undated phenology omitted", !/canopy still full/i.test(todayHtml));
 const quietHn = Happening.render({ signals: [], platform: { meta: {} }, now: new Date() });
 assert("hn empty returns no hn root", quietHn === "");
 
+sb.WDS.naturalEvents.setCatalog({ version: "test", events: [] });
 const shellQuiet = Shell.renderShell({
   view: "workspace",
   placeContext: { placeLabel: "Here" },
