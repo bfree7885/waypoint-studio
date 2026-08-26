@@ -14,7 +14,7 @@ Every major module should help the user notice something outdoors — not fill a
 | Layer | Surface | Behavior |
 |-------|---------|----------|
 | **A. Right now** | Happening Now (`data-wdb-r-hn`) | Ranked live signals from `dashboardRebuildIntel` (min score 25, max 4). Empty → **no HN DOM**. |
-| **Quiet day** | `data-wdb-r-discover-quiet` | Only when platform is hydrated and HN is empty. Honest “nothing unusually strong” — never invents events. |
+| **Quiet day** | `data-wdb-r-discover-quiet` | Only when live (non-placeholder) weather is hydrated and HN is empty. Honest “nothing unusually strong” — never invents events or claims live instruments while weather is still waiting. |
 | **B / D. Outside today** | Today Outside (`data-wdb-r-today`) | Interpreted day lines + place/time/trust; provider provenance; optional **editorial** seasonal note. |
 | **C. Look up** | Instruments (`ph-light`, `ph-astronomy`, UV) + HN light/astro signals | Moon/daylight derived from live weather + daylight utils — not fabricated events. |
 | **E. Seasonal** | Editorial season line on Today | From OIP `calendar.season` / `phenology.stage`, labeled **editorial**. |

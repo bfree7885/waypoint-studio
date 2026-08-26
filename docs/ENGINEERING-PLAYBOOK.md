@@ -1596,3 +1596,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Session strip + YOU chip + header chips collide unless the strip becomes a full-width stack and `sheds-session-active` pushes presence chrome down.
 - Outdoor-readability `.sheds-fab { background… }` after `.sheds-fab--primary` made Locate look disabled — re-assert primary contrast after that block.
 - Collapsed Field Briefing peek (~8rem) plus legend ate the map; peek should show kicker+glance only (~4.5rem) with expand for the rest; landscape legend should collapse to a chip on mobile.
+
+### Lessons Learned — Discover quiet strip live-weather gate (2026-08-26)
+
+- Gate `data-wdb-r-discover-quiet` on live (non-placeholder) `weatherRef`, not a truthy platform object. OIP `onChange` / `setPlatform` can apply packages whose weather is still a placeholder; Intel then skips weather so HN stays empty, and “Live instruments / honest weather” copy would be false while Today is still waiting.

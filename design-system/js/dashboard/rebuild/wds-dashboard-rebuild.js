@@ -96,6 +96,11 @@
     };
   }
 
+  function hasLiveWeather(platform) {
+    var wx = platform && platform.weatherRef;
+    return !!(wx && wx.meta && !wx.meta.isPlaceholder);
+  }
+
   function renderDiscoverQuiet() {
     return (
       '<section class="wdb-r-discover-quiet" data-wdb-r-discover-quiet aria-labelledby="wdb-r-discover-quiet-title">' +
@@ -157,8 +162,8 @@
     if (view === "workspace" || view === "kiosk") {
       happeningHtml =
         Happening && Happening.render ? Happening.render(happeningContext(options)) : "";
-      /* Quiet Discover strip is separate from HN — never invents signals; only when hydrated. */
-      if (!happeningHtml && platform) {
+      /* Quiet Discover strip is separate from HN — never invents signals; only when live weather is hydrated. */
+      if (!happeningHtml && hasLiveWeather(platform)) {
         quietHtml = renderDiscoverQuiet();
       }
     }

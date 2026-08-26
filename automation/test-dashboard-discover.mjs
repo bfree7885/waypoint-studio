@@ -148,6 +148,20 @@ const shellWaiting = Shell.renderShell({
 });
 assert("no quiet strip before hydrate", !/data-wdb-r-discover-quiet/.test(shellWaiting));
 
+const shellPlaceholderWx = Shell.renderShell({
+  view: "workspace",
+  placeContext: { placeLabel: "Here", trust: "waiting" },
+  platform: {
+    meta: { hydratedAt: "2026-08-25T12:00:00.000Z" },
+    weatherRef: { meta: { isPlaceholder: true, provider: "open-meteo" }, current: {} }
+  },
+  now: new Date("2026-01-15T12:00:00Z")
+});
+assert(
+  "no quiet strip while weather is placeholder",
+  !/data-wdb-r-discover-quiet/.test(shellPlaceholderWx)
+);
+
 const takeLive = Deepen.resolveTake({
   platform: {
     weatherRef: {
