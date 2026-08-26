@@ -2,7 +2,7 @@
   "meta": {
     "version": "1.0.0",
     "status": "live",
-    "generatedAt": "2026-08-25T18:57:14.240Z",
+    "generatedAt": "2026-08-26T01:58:59.096Z",
     "source": "signalterrain-cyber-live-engine",
     "disclaimer": "Derived from live public sources — not a teaching sample."
   },
@@ -45,21 +45,21 @@
       "kind": "source",
       "title": "Microsoft",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_internet-key-exchange-ike-service-extensions",
       "kind": "affected-software",
       "title": "Internet Key Exchange (IKE) Service Extensions",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_windows-10-1607",
       "kind": "affected-software",
       "title": "windows 10 1607",
       "summary": "Product referenced by live intelligence (microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-50751",
@@ -99,14 +99,14 @@
       "kind": "source",
       "title": "Check Point",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_security-gateway",
       "kind": "affected-software",
       "title": "Security Gateway",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-0257",
@@ -146,14 +146,14 @@
       "kind": "source",
       "title": "Palo Alto Networks",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_pan-os",
       "kind": "affected-software",
       "title": "PAN-OS",
       "summary": "Product referenced by live intelligence (Palo Alto Networks)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2023-21529",
@@ -193,7 +193,7 @@
       "kind": "affected-software",
       "title": "Exchange Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20131",
@@ -233,14 +233,14 @@
       "kind": "source",
       "title": "Cisco",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_secure-firewall-management-center-fmc-",
       "kind": "affected-software",
       "title": "Secure Firewall Management Center (FMC)",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-21962",
@@ -280,21 +280,21 @@
       "kind": "source",
       "title": "Oracle",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_http-server-and-oracle-weblogic-server-proxy-plu",
       "kind": "affected-software",
       "title": "HTTP Server and Oracle Weblogic Server Proxy Plug-in",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_http-server",
       "kind": "affected-software",
       "title": "http server",
       "summary": "Product referenced by live intelligence (oracle)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-45321",
@@ -334,14 +334,14 @@
       "kind": "source",
       "title": "TanStack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_tanstack",
       "kind": "affected-software",
       "title": "TanStack",
       "summary": "Product referenced by live intelligence (TanStack)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-59310",
@@ -381,75 +381,28 @@
       "kind": "source",
       "title": "Broadcom",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_vmware-vcenter",
       "kind": "affected-software",
       "title": "VMware vCenter",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_vendor_vmware",
       "kind": "source",
       "title": "vmware",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_vcenter-server",
       "kind": "affected-software",
       "title": "vcenter server",
       "summary": "Product referenced by live intelligence (vmware)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
-    },
-    {
-      "id": "cy_cve-2026-65400",
-      "kind": "kev-entry",
-      "title": "CVE-2026-65400",
-      "summary": "Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.",
-      "updatedAt": "2026-08-25T17:43:58.4301Z",
-      "history": [
-        {
-          "at": "2026-08-18T00:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Known Exploited Vulnerabilities Catalog",
-          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Apple macOS Improper Authentication Vulnerability"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.",
-        "whyItMatters": "Priority 97 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 9.8 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
-      },
-      "liveRecordId": "live_kev_cve-2026-65400"
-    },
-    {
-      "id": "cy_vendor_apple",
-      "kind": "source",
-      "title": "Apple",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
-    },
-    {
-      "id": "cy_product_macos",
-      "kind": "affected-software",
-      "title": "macOS",
-      "summary": "Product referenced by live intelligence (Apple)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-45659",
@@ -489,7 +442,7 @@
       "kind": "affected-software",
       "title": "SharePoint Server",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-35273",
@@ -529,7 +482,7 @@
       "kind": "affected-software",
       "title": " PeopleSoft Enterprise PeopleTools",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-33825",
@@ -569,7 +522,7 @@
       "kind": "affected-software",
       "title": "Defender",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-60710",
@@ -609,7 +562,7 @@
       "kind": "affected-software",
       "title": "Windows",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20349",
@@ -649,7 +602,7 @@
       "kind": "affected-software",
       "title": "Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) ",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20316",
@@ -722,21 +675,21 @@
       "kind": "source",
       "title": "MLflow",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_mlflow",
       "kind": "affected-software",
       "title": "MLflow",
       "summary": "Product referenced by live intelligence (MLflow)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_vendor_lfprojects",
       "kind": "source",
       "title": "lfprojects",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-55040",
@@ -776,7 +729,7 @@
       "kind": "affected-software",
       "title": "SharePoint",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-72530",
@@ -816,21 +769,21 @@
       "kind": "source",
       "title": "TrueConf",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_server",
       "kind": "affected-software",
       "title": "Server",
       "summary": "Product referenced by live intelligence (TrueConf)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_trueconf-server",
       "kind": "affected-software",
       "title": "trueconf server",
       "summary": "Product referenced by live intelligence (trueconf)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-72529",
@@ -864,60 +817,6 @@
         "whyItMatters": "Priority 94 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 9.8 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
       },
       "liveRecordId": "live_kev_cve-2026-72529"
-    },
-    {
-      "id": "cy_cve-2026-9198",
-      "kind": "kev-entry",
-      "title": "CVE-2026-9198",
-      "summary": "Langflow contains a code injection vulnerability that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments.",
-      "updatedAt": "2026-08-25T17:43:58.4301Z",
-      "history": [
-        {
-          "at": "2026-08-04T00:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Known Exploited Vulnerabilities Catalog",
-          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "IBM Langflow Code Injection Vulnerability"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Langflow contains a code injection vulnerability that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments.",
-        "whyItMatters": "Priority 94 — Immediate. Official known-exploited evidence (e.g. CISA KEV). CVSS base score 9.8 (technical severity, not personal exposure). Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
-      },
-      "liveRecordId": "live_kev_cve-2026-9198"
-    },
-    {
-      "id": "cy_vendor_ibm",
-      "kind": "source",
-      "title": "IBM",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
-    },
-    {
-      "id": "cy_product_langflow",
-      "kind": "affected-software",
-      "title": "Langflow",
-      "summary": "Product referenced by live intelligence (IBM)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
-    },
-    {
-      "id": "cy_vendor_langflow",
-      "kind": "source",
-      "title": "langflow",
-      "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
     },
     {
       "id": "cy_cve-2026-15409",
@@ -957,14 +856,14 @@
       "kind": "source",
       "title": "SonicWall",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_sma1000-appliances",
       "kind": "affected-software",
       "title": "SMA1000 Appliances",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-15410",
@@ -1037,14 +936,14 @@
       "kind": "source",
       "title": "PTC",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_windchill-and-flexplm",
       "kind": "affected-software",
       "title": "Windchill and FlexPLM",
       "summary": "Product referenced by live intelligence (PTC)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48027",
@@ -1084,14 +983,14 @@
       "kind": "source",
       "title": "Nx",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_nx-console",
       "kind": "affected-software",
       "title": "Nx Console",
       "summary": "Product referenced by live intelligence (Nx)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-41940",
@@ -1131,14 +1030,14 @@
       "kind": "source",
       "title": "WebPros",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_cpanel-whm-and-wp2-wordpress-squared-",
       "kind": "affected-software",
       "title": "cPanel & WHM and WP2 (WordPress Squared)",
       "summary": "Product referenced by live intelligence (WebPros)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-1708",
@@ -1178,14 +1077,14 @@
       "kind": "source",
       "title": "ConnectWise",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_screenconnect",
       "kind": "affected-software",
       "title": "ScreenConnect",
       "summary": "Product referenced by live intelligence (ConnectWise)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-57728",
@@ -1225,14 +1124,14 @@
       "kind": "source",
       "title": "SimpleHelp ",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_simplehelp",
       "kind": "affected-software",
       "title": "SimpleHelp",
       "summary": "Product referenced by live intelligence (SimpleHelp )",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-57726",
@@ -1305,14 +1204,14 @@
       "kind": "source",
       "title": "PaperCut",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_ng-mf",
       "kind": "affected-software",
       "title": "NG/MF",
       "summary": "Product referenced by live intelligence (PaperCut)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-27199",
@@ -1352,14 +1251,14 @@
       "kind": "source",
       "title": "JetBrains",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_teamcity",
       "kind": "affected-software",
       "title": "TeamCity",
       "summary": "Product referenced by live intelligence (JetBrains)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-26399",
@@ -1399,14 +1298,14 @@
       "kind": "source",
       "title": "SolarWinds",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_web-help-desk",
       "kind": "affected-software",
       "title": "Web Help Desk",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-1731",
@@ -1446,14 +1345,14 @@
       "kind": "source",
       "title": "BeyondTrust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_remote-support-rs-and-privileged-remote-access-p",
       "kind": "affected-software",
       "title": "Remote Support (RS) and Privileged Remote Access (PRA)",
       "summary": "Product referenced by live intelligence (BeyondTrust)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-24423",
@@ -1493,14 +1392,14 @@
       "kind": "source",
       "title": "SmarterTools",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_smartermail",
       "kind": "affected-software",
       "title": "SmarterMail",
       "summary": "Product referenced by live intelligence (SmarterTools)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-52691",
@@ -1606,14 +1505,14 @@
       "kind": "source",
       "title": "Fortinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_fortios",
       "kind": "affected-software",
       "title": "FortiOS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-73570",
@@ -1653,21 +1552,21 @@
       "kind": "source",
       "title": "Synacor",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_zimbra-collaboration-suite-zcs-",
       "kind": "affected-software",
       "title": "Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_zimbra-collaboration-suite",
       "kind": "affected-software",
       "title": "zimbra collaboration suite",
       "summary": "Product referenced by live intelligence (synacor)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-42897",
@@ -1707,7 +1606,7 @@
       "kind": "affected-software",
       "title": "Microsoft",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-21533",
@@ -1780,7 +1679,7 @@
       "kind": "affected-software",
       "title": "Multiple Products",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-48595",
@@ -1820,14 +1719,14 @@
       "kind": "source",
       "title": "Android",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_framework",
       "kind": "affected-software",
       "title": "Framework",
       "summary": "Product referenced by live intelligence (Android)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2012-1854",
@@ -1867,7 +1766,7 @@
       "kind": "affected-software",
       "title": "Visual Basic for Applications (VBA)",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-21513",
@@ -1901,6 +1800,53 @@
         "whyItMatters": "Priority 90 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
       },
       "liveRecordId": "live_kev_cve-2026-21513"
+    },
+    {
+      "id": "cy_cve-2026-65400",
+      "kind": "kev-entry",
+      "title": "CVE-2026-65400",
+      "summary": "Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.",
+      "updatedAt": "2026-08-25T17:43:58.4301Z",
+      "history": [
+        {
+          "at": "2026-08-18T00:00:00.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "Apple macOS Improper Authentication Vulnerability"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Apple macOS contains an improper authentication vulnerability that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.",
+        "whyItMatters": "Priority 89 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
+      },
+      "liveRecordId": "live_kev_cve-2026-65400"
+    },
+    {
+      "id": "cy_vendor_apple",
+      "kind": "source",
+      "title": "Apple",
+      "summary": "Vendor referenced by live intelligence",
+      "updatedAt": "2026-08-26T01:58:38.572Z"
+    },
+    {
+      "id": "cy_product_macos",
+      "kind": "affected-software",
+      "title": "macOS",
+      "summary": "Product referenced by live intelligence (Apple)",
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-68820",
@@ -1940,7 +1886,7 @@
       "kind": "affected-software",
       "title": "Windows Ancillary Function Driver for WinSock ",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-25089",
@@ -1980,7 +1926,7 @@
       "kind": "affected-software",
       "title": "FortiSandbox",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-39808",
@@ -2053,7 +1999,7 @@
       "kind": "affected-software",
       "title": "Active Directory Federation Services",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-10520",
@@ -2093,14 +2039,14 @@
       "kind": "source",
       "title": "Ivanti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_sentry",
       "kind": "affected-software",
       "title": "Sentry",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-6973",
@@ -2140,7 +2086,7 @@
       "kind": "affected-software",
       "title": "Endpoint Manager Mobile (EPMM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-0300",
@@ -2213,7 +2159,7 @@
       "kind": "affected-software",
       "title": "FortiClient EMS",
       "summary": "Product referenced by live intelligence (Fortinet)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-1340",
@@ -2319,14 +2265,14 @@
       "kind": "source",
       "title": "Citrix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_netscaler",
       "kind": "affected-software",
       "title": "NetScaler",
       "summary": "Product referenced by live intelligence (Citrix)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-1603",
@@ -2366,7 +2312,7 @@
       "kind": "affected-software",
       "title": " Endpoint Manager (EPM)",
       "summary": "Product referenced by live intelligence (Ivanti)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-1281",
@@ -2472,14 +2418,14 @@
       "kind": "source",
       "title": "WatchGuard",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_firebox",
       "kind": "affected-software",
       "title": "Firebox",
       "summary": "Product referenced by live intelligence (WatchGuard)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-59718",
@@ -2552,14 +2498,14 @@
       "kind": "source",
       "title": "Gitea",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_gitea",
       "kind": "affected-software",
       "title": "Gitea",
       "summary": "Product referenced by live intelligence (Gitea)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-33634",
@@ -2599,14 +2545,14 @@
       "kind": "source",
       "title": "Aquasecurity",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_trivy",
       "kind": "affected-software",
       "title": "Trivy",
       "summary": "Product referenced by live intelligence (Aquasecurity)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-59374",
@@ -2646,14 +2592,14 @@
       "kind": "source",
       "title": "ASUS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_live-update",
       "kind": "affected-software",
       "title": "Live Update",
       "summary": "Product referenced by live intelligence (ASUS)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-62593",
@@ -2693,14 +2639,14 @@
       "kind": "source",
       "title": "Ray-Project",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_ray",
       "kind": "affected-software",
       "title": "Ray",
       "summary": "Product referenced by live intelligence (Ray-Project)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-72898",
@@ -2740,14 +2686,14 @@
       "kind": "source",
       "title": "Metabase",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_metabase",
       "kind": "affected-software",
       "title": "Metabase",
       "summary": "Product referenced by live intelligence (Metabase)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-8037",
@@ -2787,14 +2733,14 @@
       "kind": "source",
       "title": "Progress",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_loadmaster",
       "kind": "affected-software",
       "title": "LoadMaster",
       "summary": "Product referenced by live intelligence (Progress)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-63077",
@@ -2867,14 +2813,14 @@
       "kind": "source",
       "title": "N-able",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_n-central",
       "kind": "affected-software",
       "title": "N-central",
       "summary": "Product referenced by live intelligence (N-able)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-34486",
@@ -2914,14 +2860,61 @@
       "kind": "source",
       "title": "Apache",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_tomcat",
       "kind": "affected-software",
       "title": "Tomcat",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
+    },
+    {
+      "id": "cy_cve-2026-9198",
+      "kind": "kev-entry",
+      "title": "CVE-2026-9198",
+      "summary": "Langflow contains a code injection vulnerability that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments.",
+      "updatedAt": "2026-08-25T17:43:58.4301Z",
+      "history": [
+        {
+          "at": "2026-08-04T00:00:00.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "CISA Known Exploited Vulnerabilities Catalog",
+          "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "IBM Langflow Code Injection Vulnerability"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Langflow contains a code injection vulnerability that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments.",
+        "whyItMatters": "Priority 86 — Immediate. Official known-exploited evidence (e.g. CISA KEV). Severity labeled high by source. Updated/published within 7 days. Exploitation confirmed by an official source. Listed in CISA KEV — treated as mature/known exploitation signal."
+      },
+      "liveRecordId": "live_kev_cve-2026-9198"
+    },
+    {
+      "id": "cy_vendor_ibm",
+      "kind": "source",
+      "title": "IBM",
+      "summary": "Vendor referenced by live intelligence",
+      "updatedAt": "2026-08-26T01:58:38.572Z"
+    },
+    {
+      "id": "cy_product_langflow",
+      "kind": "affected-software",
+      "title": "Langflow",
+      "summary": "Product referenced by live intelligence (IBM)",
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-18577",
@@ -2994,14 +2987,14 @@
       "kind": "source",
       "title": "Arista",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_velocloud-orchestrator",
       "kind": "affected-software",
       "title": "VeloCloud Orchestrator",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-60137",
@@ -3041,14 +3034,14 @@
       "kind": "source",
       "title": "WordPress",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_core",
       "kind": "affected-software",
       "title": "Core",
       "summary": "Product referenced by live intelligence (WordPress)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2023-4346",
@@ -3088,14 +3081,14 @@
       "kind": "source",
       "title": "KNX Association",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_knx-protocol-connection-authorization-option-1",
       "kind": "affected-software",
       "title": "KNX Protocol Connection Authorization Option 1",
       "summary": "Product referenced by live intelligence (KNX Association)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-50522",
@@ -3201,7 +3194,7 @@
       "kind": "affected-software",
       "title": "E-Business Suite",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-56164",
@@ -3274,7 +3267,7 @@
       "kind": "affected-software",
       "title": "IOS",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48282",
@@ -3314,14 +3307,14 @@
       "kind": "source",
       "title": "Adobe",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_coldfusion",
       "kind": "affected-software",
       "title": "ColdFusion",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20230",
@@ -3361,7 +3354,7 @@
       "kind": "affected-software",
       "title": "Unified Communications Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20262",
@@ -3401,7 +3394,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-11645",
@@ -3441,14 +3434,14 @@
       "kind": "source",
       "title": "Google",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_chromium-v8",
       "kind": "affected-software",
       "title": "Chromium V8",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20245",
@@ -3521,14 +3514,14 @@
       "kind": "source",
       "title": "Linux",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_kernel",
       "kind": "affected-software",
       "title": "Kernel",
       "summary": "Product referenced by live intelligence (Linux)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-21182",
@@ -3568,7 +3561,7 @@
       "kind": "affected-software",
       "title": "WebLogic Server",
       "summary": "Product referenced by live intelligence (Oracle)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2008-4250",
@@ -3641,7 +3634,7 @@
       "kind": "affected-software",
       "title": "DirectX",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2009-3459",
@@ -3681,7 +3674,7 @@
       "kind": "affected-software",
       "title": "Acrobat and Reader",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2010-0249",
@@ -3721,7 +3714,7 @@
       "kind": "affected-software",
       "title": "Internet Explorer",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2010-0806",
@@ -3860,7 +3853,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-31431",
@@ -3966,7 +3959,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Manger",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20133",
@@ -4072,7 +4065,7 @@
       "kind": "affected-software",
       "title": "Office",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-32201",
@@ -4178,7 +4171,7 @@
       "kind": "affected-software",
       "title": "Acrobat",
       "summary": "Product referenced by live intelligence (Adobe)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-34621",
@@ -4251,7 +4244,7 @@
       "kind": "affected-software",
       "title": "Dawn",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-43510",
@@ -4456,7 +4449,7 @@
       "kind": "affected-software",
       "title": "Skia",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2021-22054",
@@ -4496,14 +4489,14 @@
       "kind": "source",
       "title": "Omnissa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_workspace-one-uem",
       "kind": "affected-software",
       "title": "Workspace One UEM",
       "summary": "Product referenced by live intelligence (Omnissa)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2023-43000",
@@ -4609,7 +4602,7 @@
       "kind": "affected-software",
       "title": "iOS and iPadOS",
       "summary": "Product referenced by live intelligence (Apple)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-22719",
@@ -4649,7 +4642,7 @@
       "kind": "affected-software",
       "title": "VMware Aria Operations",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2022-20775",
@@ -4689,7 +4682,7 @@
       "kind": "affected-software",
       "title": "SD-WAN",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20127",
@@ -4729,7 +4722,7 @@
       "kind": "affected-software",
       "title": "Catalyst SD-WAN Controller and Manager",
       "summary": "Product referenced by live intelligence (Cisco)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2008-0015",
@@ -4802,7 +4795,7 @@
       "kind": "affected-software",
       "title": "Chromium",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20700",
@@ -4875,7 +4868,7 @@
       "kind": "affected-software",
       "title": "Configuration Manager",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-21525",
@@ -5047,14 +5040,14 @@
       "kind": "source",
       "title": "React Native Community",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_cli",
       "kind": "affected-software",
       "title": "CLI",
       "summary": "Product referenced by live intelligence (React Native Community)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2018-14634",
@@ -5160,7 +5153,7 @@
       "kind": "affected-software",
       "title": "VMware vCenter Server",
       "summary": "Product referenced by live intelligence (Broadcom)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-54313",
@@ -5200,14 +5193,14 @@
       "kind": "source",
       "title": "Prettier",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_eslint-config-prettier",
       "kind": "affected-software",
       "title": "eslint-config-prettier",
       "summary": "Product referenced by live intelligence (Prettier)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-20045",
@@ -5346,7 +5339,7 @@
       "kind": "affected-software",
       "title": "SmartConsole",
       "summary": "Product referenced by live intelligence (Check Point)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-63030",
@@ -5415,6 +5408,13 @@
       "liveRecordId": "live_kev_cve-2026-0770"
     },
     {
+      "id": "cy_vendor_langflow",
+      "kind": "source",
+      "title": "Langflow",
+      "summary": "Vendor referenced by live intelligence",
+      "updatedAt": "2026-08-26T01:58:38.572Z"
+    },
+    {
       "id": "cy_cve-2021-27137",
       "kind": "kev-entry",
       "title": "CVE-2021-27137",
@@ -5452,14 +5452,14 @@
       "kind": "source",
       "title": "DD-WRT",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_dd-wrt",
       "kind": "affected-software",
       "title": "DD-WRT",
       "summary": "Product referenced by live intelligence (DD-WRT)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-56291",
@@ -5499,14 +5499,14 @@
       "kind": "source",
       "title": "Balbooa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_forms",
       "kind": "affected-software",
       "title": "Forms",
       "summary": "Product referenced by live intelligence (Balbooa)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48939",
@@ -5546,14 +5546,14 @@
       "kind": "source",
       "title": "iCagenda",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_icagenda",
       "kind": "affected-software",
       "title": "iCagenda",
       "summary": "Product referenced by live intelligence (iCagenda)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48908",
@@ -5593,14 +5593,14 @@
       "kind": "source",
       "title": "JoomShaper",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_sp-page-builder",
       "kind": "affected-software",
       "title": "SP Page Builder",
       "summary": "Product referenced by live intelligence (JoomShaper)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-55255",
@@ -5673,14 +5673,14 @@
       "kind": "source",
       "title": "Joomlack",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_page-builder",
       "kind": "affected-software",
       "title": "Page Builder",
       "summary": "Product referenced by live intelligence (Joomlack)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48558",
@@ -5753,14 +5753,14 @@
       "kind": "source",
       "title": "Lantronix",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_eds5000",
       "kind": "affected-software",
       "title": "EDS5000",
       "summary": "Product referenced by live intelligence (Lantronix)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-34910",
@@ -5800,14 +5800,14 @@
       "kind": "source",
       "title": "Ubiquiti",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_unifi-os",
       "kind": "affected-software",
       "title": "UniFi OS",
       "summary": "Product referenced by live intelligence (Ubiquiti)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-34909",
@@ -5913,14 +5913,14 @@
       "kind": "source",
       "title": "Splunk",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_enterprise",
       "kind": "affected-software",
       "title": "Enterprise",
       "summary": "Product referenced by live intelligence (Splunk)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48907",
@@ -5960,14 +5960,14 @@
       "kind": "source",
       "title": "Widget Factory",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_joomla-content-editor-",
       "kind": "affected-software",
       "title": "Joomla Content Editor ",
       "summary": "Product referenced by live intelligence (Widget Factory)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-54420",
@@ -6007,14 +6007,14 @@
       "kind": "source",
       "title": "LiteSpeed",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_cpanel-plugin",
       "kind": "affected-software",
       "title": "cPanel Plugin",
       "summary": "Product referenced by live intelligence (LiteSpeed)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-7473",
@@ -6054,7 +6054,7 @@
       "kind": "affected-software",
       "title": "Extensible Operating System",
       "summary": "Product referenced by live intelligence (Arista)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-42271",
@@ -6094,14 +6094,14 @@
       "kind": "source",
       "title": "BerriAI",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_litellm",
       "kind": "affected-software",
       "title": "LiteLLM",
       "summary": "Product referenced by live intelligence (BerriAI)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-28318",
@@ -6141,7 +6141,7 @@
       "kind": "affected-software",
       "title": "Serv-U",
       "summary": "Product referenced by live intelligence (SolarWinds)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-45247",
@@ -6181,14 +6181,14 @@
       "kind": "source",
       "title": "Mirasvit",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_mirasvit-full-page-cache-warmer",
       "kind": "affected-software",
       "title": "Mirasvit Full Page Cache Warmer",
       "summary": "Product referenced by live intelligence (Mirasvit)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-8398",
@@ -6228,14 +6228,14 @@
       "kind": "source",
       "title": "Daemon",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_daemon-tools-lite",
       "kind": "affected-software",
       "title": "Daemon Tools Lite",
       "summary": "Product referenced by live intelligence (Daemon)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-48172",
@@ -6308,7 +6308,7 @@
       "kind": "source",
       "title": "Drupal",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-34291",
@@ -6381,14 +6381,14 @@
       "kind": "source",
       "title": "Trend Micro",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_apex-one",
       "kind": "affected-software",
       "title": "Apex One",
       "summary": "Product referenced by live intelligence (Trend Micro)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-42208",
@@ -6461,14 +6461,14 @@
       "kind": "source",
       "title": "D-Link",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_dir-823x",
       "kind": "affected-software",
       "title": "DIR-823X",
       "summary": "Product referenced by live intelligence (D-Link)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2024-7399",
@@ -6508,14 +6508,14 @@
       "kind": "source",
       "title": "Samsung",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_magicinfo-9-server",
       "kind": "affected-software",
       "title": "MagicINFO 9 Server",
       "summary": "Product referenced by live intelligence (Samsung)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-39987",
@@ -6555,14 +6555,14 @@
       "kind": "source",
       "title": "Marimo",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_marimo",
       "kind": "affected-software",
       "title": "Marimo",
       "summary": "Product referenced by live intelligence (Marimo)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-2749",
@@ -6602,14 +6602,14 @@
       "kind": "source",
       "title": "Kentico",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_kentico-xperience",
       "kind": "affected-software",
       "title": "Kentico Xperience",
       "summary": "Product referenced by live intelligence (Kentico)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-48700",
@@ -6682,14 +6682,14 @@
       "kind": "source",
       "title": "Quest",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_kace-systems-management-appliance-sma-",
       "kind": "affected-software",
       "title": "KACE Systems Management Appliance (SMA)",
       "summary": "Product referenced by live intelligence (Quest)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-34197",
@@ -6729,7 +6729,7 @@
       "kind": "affected-software",
       "title": "ActiveMQ",
       "summary": "Product referenced by live intelligence (Apache)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-3502",
@@ -6769,7 +6769,7 @@
       "kind": "affected-software",
       "title": "Client",
       "summary": "Product referenced by live intelligence (TrueConf)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-53521",
@@ -6809,14 +6809,14 @@
       "kind": "source",
       "title": "F5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_big-ip",
       "kind": "affected-software",
       "title": "BIG-IP",
       "summary": "Product referenced by live intelligence (F5)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-33017",
@@ -6889,14 +6889,14 @@
       "kind": "source",
       "title": "Craft CMS",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_craft-cms",
       "kind": "affected-software",
       "title": "Craft CMS",
       "summary": "Product referenced by live intelligence (Craft CMS)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-54068",
@@ -6936,14 +6936,14 @@
       "kind": "source",
       "title": "Laravel",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_livewire",
       "kind": "affected-software",
       "title": "Livewire",
       "summary": "Product referenced by live intelligence (Laravel)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-66376",
@@ -7016,14 +7016,14 @@
       "kind": "source",
       "title": "Wing FTP Server",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_wing-ftp-server",
       "kind": "affected-software",
       "title": "Wing FTP Server",
       "summary": "Product referenced by live intelligence (Wing FTP Server)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-68613",
@@ -7063,14 +7063,14 @@
       "kind": "source",
       "title": "n8n",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_n8n",
       "kind": "affected-software",
       "title": "n8n",
       "summary": "Product referenced by live intelligence (n8n)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2017-7921",
@@ -7110,7 +7110,7 @@
       "kind": "source",
       "title": "Hikvision",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2021-22681",
@@ -7150,7 +7150,7 @@
       "kind": "source",
       "title": "Rockwell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-21385",
@@ -7190,14 +7190,14 @@
       "kind": "source",
       "title": "Qualcomm",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_multiple-chipsets",
       "kind": "affected-software",
       "title": "Multiple Chipsets",
       "summary": "Product referenced by live intelligence (Qualcomm)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-25108",
@@ -7237,14 +7237,14 @@
       "kind": "source",
       "title": "Soliton Systems K.K",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_filezen",
       "kind": "affected-software",
       "title": "FileZen",
       "summary": "Product referenced by live intelligence (Soliton Systems K.K)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-49113",
@@ -7284,14 +7284,14 @@
       "kind": "source",
       "title": "Roundcube",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_webmail",
       "kind": "affected-software",
       "title": "Webmail",
       "summary": "Product referenced by live intelligence (Roundcube)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-68461",
@@ -7364,14 +7364,14 @@
       "kind": "source",
       "title": "GitLab",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_gitlab",
       "kind": "affected-software",
       "title": "GitLab",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2026-22769",
@@ -7411,14 +7411,14 @@
       "kind": "source",
       "title": "Dell",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_recoverpoint-for-virtual-machines-rp4vms-",
       "kind": "affected-software",
       "title": "RecoverPoint for Virtual Machines (RP4VMs)",
       "summary": "Product referenced by live intelligence (Dell)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2020-7796",
@@ -7491,14 +7491,14 @@
       "kind": "source",
       "title": "TeamT5",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_threatsonar-anti-ransomware",
       "kind": "affected-software",
       "title": "ThreatSonar Anti-Ransomware",
       "summary": "Product referenced by live intelligence (TeamT5)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-15556",
@@ -7538,14 +7538,14 @@
       "kind": "source",
       "title": "Notepad++",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_notepad-",
       "kind": "affected-software",
       "title": "Notepad++",
       "summary": "Product referenced by live intelligence (Notepad++)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-40536",
@@ -7618,7 +7618,7 @@
       "kind": "affected-software",
       "title": "Community and Enterprise Editions",
       "summary": "Product referenced by live intelligence (GitLab)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-64328",
@@ -7658,14 +7658,14 @@
       "kind": "source",
       "title": "Sangoma",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_freepbx-",
       "kind": "affected-software",
       "title": "FreePBX ",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2019-19006",
@@ -7705,7 +7705,7 @@
       "kind": "affected-software",
       "title": "FreePBX",
       "summary": "Product referenced by live intelligence (Sangoma)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-40551",
@@ -7778,14 +7778,14 @@
       "kind": "source",
       "title": "GNU",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_inetutils",
       "kind": "affected-software",
       "title": "InetUtils",
       "summary": "Product referenced by live intelligence (GNU)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-68645",
@@ -7825,7 +7825,7 @@
       "kind": "affected-software",
       "title": " Zimbra Collaboration Suite (ZCS)",
       "summary": "Product referenced by live intelligence (Synacor)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-34026",
@@ -7865,14 +7865,14 @@
       "kind": "source",
       "title": "Versa",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_concerto",
       "kind": "affected-software",
       "title": "Concerto",
       "summary": "Product referenced by live intelligence (Versa)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-31125",
@@ -7912,14 +7912,14 @@
       "kind": "source",
       "title": "Vite",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_vitejs",
       "kind": "affected-software",
       "title": "Vitejs",
       "summary": "Product referenced by live intelligence (Vite)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-8110",
@@ -7959,14 +7959,14 @@
       "kind": "source",
       "title": "Gogs",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_gogs",
       "kind": "affected-software",
       "title": "Gogs",
       "summary": "Product referenced by live intelligence (Gogs)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-37164",
@@ -8006,14 +8006,14 @@
       "kind": "source",
       "title": "Hewlett Packard Enterprise (HPE)",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_oneview",
       "kind": "affected-software",
       "title": "OneView",
       "summary": "Product referenced by live intelligence (Hewlett Packard Enterprise (HPE))",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-14847",
@@ -8053,14 +8053,14 @@
       "kind": "source",
       "title": "MongoDB",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_mongodb-and-mongodb-server",
       "kind": "affected-software",
       "title": "MongoDB and MongoDB Server",
       "summary": "Product referenced by live intelligence (MongoDB)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2023-52163",
@@ -8100,14 +8100,14 @@
       "kind": "source",
       "title": "Digiever",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_ds-2105-pro",
       "kind": "affected-software",
       "title": "DS-2105 Pro",
       "summary": "Product referenced by live intelligence (Digiever)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-40602",
@@ -8147,7 +8147,7 @@
       "kind": "affected-software",
       "title": "SMA1000 appliance",
       "summary": "Product referenced by live intelligence (SonicWall)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2025-14611",
@@ -8187,14 +8187,14 @@
       "kind": "source",
       "title": "Gladinet",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_product_centrestack-and-triofox",
       "kind": "affected-software",
       "title": "CentreStack and Triofox",
       "summary": "Product referenced by live intelligence (Gladinet)",
-      "updatedAt": "2026-08-25T18:56:52.033Z"
+      "updatedAt": "2026-08-26T01:58:38.572Z"
     },
     {
       "id": "cy_cve-2019-1971",
@@ -8465,14 +8465,14 @@
       "kind": "source",
       "title": "pip",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_mcp-contextforge-gateway",
       "kind": "affected-software",
       "title": "mcp-contextforge-gateway",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2013-4730",
@@ -8673,6 +8673,46 @@
       "liveRecordId": "live_nvd_cve-2020-10683"
     },
     {
+      "id": "cy_cve-2026-55099",
+      "kind": "cve",
+      "title": "CVE-2026-55099",
+      "summary": "### Summary `Component.__eq__` compares subcomponents in `O(2^n)` time relative to nesting depth. Because the parser accepts arbitrarily nested components, a sub-kilobyte `.ics` file is enough to make a single equality check run for minutes or hang indefinitely. Any application that compares parsed components (`==`, `!=`, `in`, set/dict membership, deduplication, test assertions) against attacker-supplied calendar data is exposed to denial of service. ### Details `Component` subclasses `dict` and stores children in a separate `subcomponents` list. `__eq__` (`src/icalendar/cal/component.py:642-",
+      "updatedAt": "2026-08-25T19:27:32Z",
+      "history": [
+        {
+          "at": "2026-08-25T19:27:31Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "GitHub Security Advisories",
+          "url": "https://github.com/advisories/GHSA-cv84-9p8j-fj68",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "GHSA-cv84-9p8j-fj68: icalendar has Algorithmic Complexity in Equality"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "### Summary `Component.__eq__` compares subcomponents in `O(2^n)` time relative to nesting depth. Because the parser accepts arbitrarily nested components, a sub-kilobyte `.ics` file is enough to make a single equality check run for minutes or hang indefinitely. Any application that compares parsed components (`==`, `!=`, `in`, set/dict membership, deduplication, test assertions) against attacker-supplied calendar data is exposed to denial of service. ### Details `Component` subclasses `dict` and stores children in a separate `subcomponents` list. `__eq__` (`src/icalendar/cal/component.py:642-",
+        "whyItMatters": "Priority 37 — Monitor. Severity labeled high by source. Updated/published within 7 days. Source text references sectors often treated as critical infrastructure — elevate awareness; confirm applicability. Patch or vendor fix indicated as available. Confidence: high."
+      },
+      "liveRecordId": "live_ghsa_GHSA-cv84-9p8j-fj68"
+    },
+    {
+      "id": "cy_product_icalendar",
+      "kind": "affected-software",
+      "title": "icalendar",
+      "summary": "Product referenced by live intelligence (pip)",
+      "updatedAt": "2026-08-26T01:58:38.916Z"
+    },
+    {
       "id": "cy_cve-2026-55620",
       "kind": "cve",
       "title": "CVE-2026-55620",
@@ -8710,7 +8750,7 @@
       "kind": "affected-software",
       "title": "eml_parser",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2019-1973",
@@ -8816,14 +8856,14 @@
       "kind": "source",
       "title": "npm",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_-arikusi-deepseek-mcp-server",
       "kind": "affected-software",
       "title": "@arikusi/deepseek-mcp-server",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-55609",
@@ -8863,14 +8903,14 @@
       "kind": "affected-software",
       "title": "consciousness-explorer",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_sublinear-time-solver",
       "kind": "affected-software",
       "title": "sublinear-time-solver",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-55629",
@@ -8910,7 +8950,7 @@
       "kind": "affected-software",
       "title": "whistle",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-53430",
@@ -8950,14 +8990,14 @@
       "kind": "source",
       "title": "erlang",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_grpc",
       "kind": "affected-software",
       "title": "grpc",
       "summary": "Product referenced by live intelligence (erlang)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-55596",
@@ -8997,87 +9037,7 @@
       "kind": "affected-software",
       "title": "@platejs/media",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
-      "id": "cy_cve-2026-55557",
-      "kind": "cve",
-      "title": "CVE-2026-55557",
-      "summary": "### Impact `browser_download` wrote a fetched file to `join(save_dir, filename)` with no validation of `save_dir`, and `browser_save_state` / `browser_load_state` honored an explicit `path` unchanged. The MCP caller controls these arguments (a malicious MCP client, or an autonomous agent steered by indirect prompt injection on a visited page), so an attacker could supply an arbitrary `save_dir` (or state `path`) together with a URL whose response body became the file contents, writing attacker-controlled bytes to any path the process can reach (for example `~/.bashrc`, an autostart entry, or a",
-      "updatedAt": "2026-08-25T16:28:33Z",
-      "history": [
-        {
-          "at": "2026-08-25T16:28:32Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-m9mq-7m7q-xc6p",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-m9mq-7m7q-xc6p: browse-mcp has an arbitrary file write via unconfined download and state paths"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Impact `browser_download` wrote a fetched file to `join(save_dir, filename)` with no validation of `save_dir`, and `browser_save_state` / `browser_load_state` honored an explicit `path` unchanged. The MCP caller controls these arguments (a malicious MCP client, or an autonomous agent steered by indirect prompt injection on a visited page), so an attacker could supply an arbitrary `save_dir` (or state `path`) together with a URL whose response body became the file contents, writing attacker-controlled bytes to any path the process can reach (for example `~/.bashrc`, an autostart entry, or a",
-        "whyItMatters": "Priority 36 — Monitor. Severity labeled high by source. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Patch or vendor fix indicated as available. Confidence: high."
-      },
-      "liveRecordId": "live_ghsa_GHSA-m9mq-7m7q-xc6p"
-    },
-    {
-      "id": "cy_product_browse-mcp",
-      "kind": "affected-software",
-      "title": "browse-mcp",
-      "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
-      "id": "cy_cve-2026-55553",
-      "kind": "cve",
-      "title": "CVE-2026-55553",
-      "summary": "## Summary urllib supports redirect-following through `followRedirect`, which is expected behavior for an HTTP client. The issue is that, when following a redirect to a **different origin**, urllib preserves the caller-supplied request headers verbatim, including credential-bearing headers such as `Authorization`, `Cookie`, `Proxy-Authorization`, and custom auth headers (`x-api-key`, `x-auth-token`, `x-access-token`). If the redirect target is attacker-controlled or outside the trust boundary of the original target, credentials intended for the original origin can be delivered to the redirecte",
-      "updatedAt": "2026-08-25T16:19:34Z",
-      "history": [
-        {
-          "at": "2026-08-25T16:19:32Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-hq3h-g68c-hp78",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-hq3h-g68c-hp78: urllib's cross-origin redirects preserve credential-bearing request headers, leading to potential credential leakage"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "## Summary urllib supports redirect-following through `followRedirect`, which is expected behavior for an HTTP client. The issue is that, when following a redirect to a **different origin**, urllib preserves the caller-supplied request headers verbatim, including credential-bearing headers such as `Authorization`, `Cookie`, `Proxy-Authorization`, and custom auth headers (`x-api-key`, `x-auth-token`, `x-access-token`). If the redirect target is attacker-controlled or outside the trust boundary of the original target, credentials intended for the original origin can be delivered to the redirecte",
-        "whyItMatters": "Priority 36 — Monitor. Severity labeled high by source. Updated/published within 7 days. Supply-chain / dependency context indicated by source wording. Patch or vendor fix indicated as available. Confidence: high."
-      },
-      "liveRecordId": "live_ghsa_GHSA-hq3h-g68c-hp78"
-    },
-    {
-      "id": "cy_product_urllib",
-      "kind": "affected-software",
-      "title": "urllib",
-      "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2018-11039",
@@ -9344,6 +9304,46 @@
       "liveRecordId": "live_nvd_cve-2020-11113"
     },
     {
+      "id": "cy_cve-2026-45018",
+      "kind": "cve",
+      "title": "CVE-2026-45018",
+      "summary": "### Am I affected? Only if your deployment sets `features.mcp.enabled = true` in `.chainlit/config.toml`. **MCP has been disabled by default since v2.7.0**, so most Chainlit deployments are not affected. No authentication is required: `/mcp` is reachable by any client that can open a session. ### Summary When MCP is enabled (`features.mcp.enabled = true`), the `POST /mcp` endpoint for `stdio` transport accepts a user-controlled `fullCommand` string. The `validate_mcp_command()` function checks the executable name against a configurable allowlist but does not inspect or restrict the arguments. ",
+      "updatedAt": "2026-08-25T19:19:28Z",
+      "history": [
+        {
+          "at": "2026-08-25T19:19:28Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "GitHub Security Advisories",
+          "url": "https://github.com/advisories/GHSA-w3fx-mc44-mf6j",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "GHSA-w3fx-mc44-mf6j: Chainlit has command injection via MCP stdio transport that allows unauthenticated remote code execution"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "### Am I affected? Only if your deployment sets `features.mcp.enabled = true` in `.chainlit/config.toml`. **MCP has been disabled by default since v2.7.0**, so most Chainlit deployments are not affected. No authentication is required: `/mcp` is reachable by any client that can open a session. ### Summary When MCP is enabled (`features.mcp.enabled = true`), the `POST /mcp` endpoint for `stdio` transport accepts a user-controlled `fullCommand` string. The `validate_mcp_command()` function checks the executable name against a configurable allowlist but does not inspect or restrict the arguments. ",
+        "whyItMatters": "Priority 35 — Monitor. Severity labeled critical by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ghsa_GHSA-w3fx-mc44-mf6j"
+    },
+    {
+      "id": "cy_product_chainlit",
+      "kind": "affected-software",
+      "title": "chainlit",
+      "summary": "Product referenced by live intelligence (pip)",
+      "updatedAt": "2026-08-26T01:58:38.916Z"
+    },
+    {
       "id": "cy_cve-2026-49757",
       "kind": "cve",
       "title": "CVE-2026-49757",
@@ -9381,7 +9381,7 @@
       "kind": "affected-software",
       "title": "ash_authentication",
       "summary": "Product referenced by live intelligence (erlang)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-48853",
@@ -9582,46 +9582,6 @@
       "liveRecordId": "live_nvd_cve-2019-1961"
     },
     {
-      "id": "cy_cve-2026-55585",
-      "kind": "cve",
-      "title": "CVE-2026-55585",
-      "summary": "### Summary The `qwed` package (version 5.1.1) passes attacker-controlled input directly to SymPy's `parse_expr()` function without a restricted namespace. Because `parse_expr()` internally calls Python's `eval()`, any authenticated tenant can execute arbitrary Python code inside the API server process. The attack requires only a standard user account, which is freely obtainable through the default-enabled `/auth/signup` endpoint. Successful exploitation gives the attacker full read/write access to the filesystem and the ability to execute operating system commands, resulting in complete serve",
-      "updatedAt": "2026-08-25T16:25:20Z",
-      "history": [
-        {
-          "at": "2026-08-25T16:25:19Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-q27q-98j4-9pfv",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-q27q-98j4-9pfv: qwed Vulnerable to Authenticated Remote Code Execution via Unsafe SymPy `parse_expr()`"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Summary The `qwed` package (version 5.1.1) passes attacker-controlled input directly to SymPy's `parse_expr()` function without a restricted namespace. Because `parse_expr()` internally calls Python's `eval()`, any authenticated tenant can execute arbitrary Python code inside the API server process. The attack requires only a standard user account, which is freely obtainable through the default-enabled `/auth/signup` endpoint. Successful exploitation gives the attacker full read/write access to the filesystem and the ability to execute operating system commands, resulting in complete serve",
-        "whyItMatters": "Priority 31 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ghsa_GHSA-q27q-98j4-9pfv"
-    },
-    {
-      "id": "cy_product_qwed",
-      "kind": "affected-software",
-      "title": "qwed",
-      "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
       "id": "cy_cve-2020-9281",
       "kind": "cve",
       "title": "CVE-2020-9281",
@@ -9659,61 +9619,127 @@
       "kind": "source",
       "title": "Cloudflare Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.116Z"
+      "updatedAt": "2026-08-26T01:58:38.816Z"
     },
     {
       "id": "cy_product_cloudflare-status",
       "kind": "affected-software",
       "title": "Cloudflare Status",
       "summary": "Product referenced by live intelligence (Cloudflare Status)",
-      "updatedAt": "2026-08-25T18:56:52.116Z"
+      "updatedAt": "2026-08-26T01:58:38.816Z"
     },
     {
       "id": "cy_vendor_amazon-web-services",
       "kind": "source",
       "title": "Amazon Web Services",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.109Z"
+      "updatedAt": "2026-08-26T01:58:38.778Z"
     },
     {
       "id": "cy_product_aws",
       "kind": "affected-software",
       "title": "AWS",
       "summary": "Product referenced by live intelligence (Amazon Web Services)",
-      "updatedAt": "2026-08-25T18:56:52.109Z"
+      "updatedAt": "2026-08-26T01:58:38.778Z"
     },
     {
-      "id": "cy_cve-2026-3014",
+      "id": "cy_cve-2026-76060",
       "kind": "cve",
-      "title": "CVE-2026-3014",
-      "summary": "View CSAF Summary Siveillance Video Management Servers contains a vulnerability that could allow a Remote Code Execution attack. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Siveillance Video are affected: Siveillance Video V2023 R3 vers:intdot/&lt;23.3.27 (CVE-2026-3014) Siveillance Video V2024 R1 vers:intdot/&lt;24.1.16 (CVE-2026-3014) Siveillance Video V2025 vers:intdot/&lt;25.1.15 (CVE-2026-3014) CVSS Vendor Equipment Vulnerabilities v3 9.1 Siemens Siemens Siveillance Video Improper Neutraliza",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
+      "title": "CVE-2026-76060",
+      "summary": "View CSAF Summary Successful exploitation of this vulnerability could result in full Remote Code Execution (RCE) as the web server user. The following versions of Zoneminder are affected: Zoneminder 1.37.48|1.38.3&nbsp; CVSS Vendor Equipment Vulnerabilities v3 8.8 Zoneminder Zoneminder Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') Background Critical Infrastructure Sectors: Information Technology Countries/Areas Deployed: Worldwide Company Headquarters Location: United States Vulnerabilities Expand All + CVE-2026-76060 An authenticated OS Command In",
+      "updatedAt": "2026-08-25T12:00:00.000Z",
       "history": [
         {
-          "at": "2026-08-13T12:00:00.000Z",
+          "at": "2026-08-25T12:00:00.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-09",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-02",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "Siemens Siveillance Video"
+          "Zoneminder"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "View CSAF Summary Siveillance Video Management Servers contains a vulnerability that could allow a Remote Code Execution attack. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Siveillance Video are affected: Siveillance Video V2023 R3 vers:intdot/&lt;23.3.27 (CVE-2026-3014) Siveillance Video V2024 R1 vers:intdot/&lt;24.1.16 (CVE-2026-3014) Siveillance Video V2025 vers:intdot/&lt;25.1.15 (CVE-2026-3014) CVSS Vendor Equipment Vulnerabilities v3 9.1 Siemens Siemens Siveillance Video Improper Neutraliza",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
+        "whatIsIt": "View CSAF Summary Successful exploitation of this vulnerability could result in full Remote Code Execution (RCE) as the web server user. The following versions of Zoneminder are affected: Zoneminder 1.37.48|1.38.3&nbsp; CVSS Vendor Equipment Vulnerabilities v3 8.8 Zoneminder Zoneminder Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') Background Critical Infrastructure Sectors: Information Technology Countries/Areas Deployed: Worldwide Company Headquarters Location: United States Vulnerabilities Expand All + CVE-2026-76060 An authenticated OS Command In",
+        "whyItMatters": "Priority 19 — Informational. Updated/published within 7 days. Official government or vendor source. Confidence: high."
       },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323938"
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333533"
+    },
+    {
+      "id": "cy_cve-2026-14456",
+      "kind": "cve",
+      "title": "CVE-2026-14456",
+      "summary": "It was discovered that OpenSSL incorrectly handled the QUIC server incoming channel queue. A remote attacker could possibly use this issue to cause OpenSSL to use excessive resources, leading to a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14456) It was discovered that OpenSSL incorrectly handled signature algorithm selection when using Raw Public Keys. A remote attacker could possibly use this issue to cause OpenSSL to crash, resulting in a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14457) It was discovered that OpenSSL incorrectly han",
+      "updatedAt": "2026-08-25T17:38:49.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T17:38:49.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8678-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8678-1: OpenSSL vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "It was discovered that OpenSSL incorrectly handled the QUIC server incoming channel queue. A remote attacker could possibly use this issue to cause OpenSSL to use excessive resources, leading to a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14456) It was discovered that OpenSSL incorrectly handled signature algorithm selection when using Raw Public Keys. A remote attacker could possibly use this issue to cause OpenSSL to crash, resulting in a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14457) It was discovered that OpenSSL incorrectly han",
+        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-14457",
+      "kind": "cve",
+      "title": "CVE-2026-14457",
+      "summary": "It was discovered that OpenSSL incorrectly handled the QUIC server incoming channel queue. A remote attacker could possibly use this issue to cause OpenSSL to use excessive resources, leading to a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14456) It was discovered that OpenSSL incorrectly handled signature algorithm selection when using Raw Public Keys. A remote attacker could possibly use this issue to cause OpenSSL to crash, resulting in a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14457) It was discovered that OpenSSL incorrectly han",
+      "updatedAt": "2026-08-25T17:38:49.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T17:38:49.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8678-1",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8678-1: OpenSSL vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "It was discovered that OpenSSL incorrectly handled the QUIC server incoming channel queue. A remote attacker could possibly use this issue to cause OpenSSL to use excessive resources, leading to a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14456) It was discovered that OpenSSL incorrectly handled signature algorithm selection when using Raw Public Keys. A remote attacker could possibly use this issue to cause OpenSSL to crash, resulting in a denial of service. This issue only affected Ubuntu 26.04 LTS. (CVE-2026-14457) It was discovered that OpenSSL incorrectly han",
+        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
       "id": "cy_cve-2017-12617",
@@ -9914,6 +9940,39 @@
       "liveRecordId": "live_nvd_cve-2019-10086"
     },
     {
+      "id": "cy_cve-2026-45019",
+      "kind": "cve",
+      "title": "CVE-2026-45019",
+      "summary": "### Am I affected? Only if your deployment sets `features.mcp.enabled = true` in `.chainlit/config.toml`. **MCP has been disabled by default since v2.7.0**, so most Chainlit deployments are not affected. No authentication is required: `/mcp` is reachable by any client that can open a session. ### Summary When MCP is enabled (`features.mcp.enabled = true`), the `POST /mcp` endpoint for `sse` and `streamable-http` transports accepts a user-controlled `url` and optional `headers` dictionary without any validation. An unauthenticated attacker can force the Chainlit server to make outbound HTTP req",
+      "updatedAt": "2026-08-25T19:21:41Z",
+      "history": [
+        {
+          "at": "2026-08-25T19:21:40Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "GitHub Security Advisories",
+          "url": "https://github.com/advisories/GHSA-hvfh-5mj3-5f3j",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "GHSA-hvfh-5mj3-5f3j: Chainlist has SSRF via MCP SSE and streamable-http transports that allows unauthenticated internal network access"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "### Am I affected? Only if your deployment sets `features.mcp.enabled = true` in `.chainlit/config.toml`. **MCP has been disabled by default since v2.7.0**, so most Chainlit deployments are not affected. No authentication is required: `/mcp` is reachable by any client that can open a session. ### Summary When MCP is enabled (`features.mcp.enabled = true`), the `POST /mcp` endpoint for `sse` and `streamable-http` transports accepts a user-controlled `url` and optional `headers` dictionary without any validation. An unauthenticated attacker can force the Chainlit server to make outbound HTTP req",
+        "whyItMatters": "Priority 31 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ghsa_GHSA-hvfh-5mj3-5f3j"
+    },
+    {
       "id": "cy_cve-2026-55605",
       "kind": "cve",
       "title": "CVE-2026-55605",
@@ -10050,14 +10109,14 @@
       "kind": "affected-software",
       "title": "mediasoup",
       "summary": "Product referenced by live intelligence (npm)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_vendor_rust",
       "kind": "source",
       "title": "rust",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-48854",
@@ -10163,14 +10222,14 @@
       "kind": "source",
       "title": "go",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_github-com-geiserx-genieacs-mcp",
       "kind": "affected-software",
       "title": "github.com/geiserx/genieacs-mcp",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2026-55092",
@@ -10210,82 +10269,28 @@
       "kind": "affected-software",
       "title": "github.com/aquasecurity/trivy",
       "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_vendor_composer",
       "kind": "source",
       "title": "composer",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_phpmyfaq-phpmyfaq",
       "kind": "affected-software",
       "title": "phpmyfaq/phpmyfaq",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_product_thorsten-phpmyfaq",
       "kind": "affected-software",
       "title": "thorsten/phpmyfaq",
       "summary": "Product referenced by live intelligence (composer)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
-      "id": "cy_cve-2026-55677",
-      "kind": "cve",
-      "title": "CVE-2026-55677",
-      "summary": "### Summary Echo's router and static file handler disagree on URL path decoding. The router matches routes using the raw encoded path (preserving `%2F` as-is), while `StaticDirectoryHandler` unescapes `%2F` to `/` before resolving filesystem paths. This allows an attacker to bypass route-level access controls and read static files without authorization. ### Details **Root cause 1 — `router.go` lines 798-802:** The router uses `req.URL.RawPath` for route matching when `useEscapedPathForRouting` is false (the default). This means `/admin%2Fsecret.txt` is treated as a single path segment and does",
-      "updatedAt": "2026-08-25T16:13:29Z",
-      "history": [
-        {
-          "at": "2026-08-25T16:13:29Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "GitHub Security Advisories",
-          "url": "https://github.com/advisories/GHSA-vfp3-v2gw-7wfq",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "GHSA-vfp3-v2gw-7wfq: Echo: Encoded slash (%2F) bypasses route-level protection and exposes static files"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "### Summary Echo's router and static file handler disagree on URL path decoding. The router matches routes using the raw encoded path (preserving `%2F` as-is), while `StaticDirectoryHandler` unescapes `%2F` to `/` before resolving filesystem paths. This allows an attacker to bypass route-level access controls and read static files without authorization. ### Details **Root cause 1 — `router.go` lines 798-802:** The router uses `req.URL.RawPath` for route matching when `useEscapedPathForRouting` is false (the default). This means `/admin%2Fsecret.txt` is treated as a single path segment and does",
-        "whyItMatters": "Priority 31 — Informational. Severity labeled high by source. Updated/published within 7 days. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ghsa_GHSA-vfp3-v2gw-7wfq"
-    },
-    {
-      "id": "cy_product_github-com-labstack-echo-v5",
-      "kind": "affected-software",
-      "title": "github.com/labstack/echo/v5",
-      "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
-      "id": "cy_product_github-com-labstack-echo-v4",
-      "kind": "affected-software",
-      "title": "github.com/labstack/echo/v4",
-      "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
-    },
-    {
-      "id": "cy_product_github-com-labstack-echo",
-      "kind": "affected-software",
-      "title": "github.com/labstack/echo",
-      "summary": "Product referenced by live intelligence (go)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
       "id": "cy_cve-2019-1959",
@@ -10420,6 +10425,46 @@
       "liveRecordId": "live_nvd_cve-2019-17569"
     },
     {
+      "id": "cy_cve-2026-54338",
+      "kind": "cve",
+      "title": "CVE-2026-54338",
+      "summary": "### Impact Invalid input to login resulted in unbounded logging output. Only form-based Authenticators (the default PAM Authenticator, but not the more widely used OAuthenticator) are affected. ### Patches Upgrade to 5.5.0. ### Workarounds Use an Authenticator that doesn't use a login form, such as OAuthenticator.",
+      "updatedAt": "2026-08-25T19:29:19Z",
+      "history": [
+        {
+          "at": "2026-08-25T19:29:19Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "GitHub Security Advisories",
+          "url": "https://github.com/advisories/GHSA-p43p-whwx-q52h",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "GHSA-p43p-whwx-q52h: JupyterHub has Unauthenticated Denial of Service via Unbounded Username Logging on Failed Login"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "### Impact Invalid input to login resulted in unbounded logging output. Only form-based Authenticators (the default PAM Authenticator, but not the more widely used OAuthenticator) are affected. ### Patches Upgrade to 5.5.0. ### Workarounds Use an Authenticator that doesn't use a login form, such as OAuthenticator.",
+        "whyItMatters": "Priority 26 — Informational. Updated/published within 7 days. Severity labeled medium by source. Patch or vendor fix indicated as available. Confidence: high. Authoritative vendor/security source."
+      },
+      "liveRecordId": "live_ghsa_GHSA-p43p-whwx-q52h"
+    },
+    {
+      "id": "cy_product_jupyterhub",
+      "kind": "affected-software",
+      "title": "jupyterhub",
+      "summary": "Product referenced by live intelligence (pip)",
+      "updatedAt": "2026-08-26T01:58:38.916Z"
+    },
+    {
       "id": "cy_cve-2026-55419",
       "kind": "cve",
       "title": "CVE-2026-55419",
@@ -10457,30 +10502,261 @@
       "kind": "affected-software",
       "title": "reachy-mini",
       "summary": "Product referenced by live intelligence (pip)",
-      "updatedAt": "2026-08-25T18:56:52.141Z"
+      "updatedAt": "2026-08-26T01:58:38.916Z"
     },
     {
-      "id": "cy_cve-2026-53224",
+      "id": "cy_cve-2020-24588",
       "kind": "cve",
-      "title": "CVE-2026-53224",
-      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network drivers; - Open vSwitch; - SCTP protocol; (CVE-2026-53224, CVE-2026-53246, CVE-2026-53247, CVE-2026-64531)",
-      "updatedAt": "2026-08-21T22:02:41.000Z",
+      "title": "CVE-2020-24588",
+      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - NVIDIA Tegra memory controller drive",
+      "updatedAt": "2026-08-25T21:15:06.000Z",
       "history": [
         {
-          "at": "2026-08-21T22:02:41.000Z",
+          "at": "2026-08-25T21:15:06.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8658-2",
+          "url": "https://ubuntu.com/security/notices/USN-8666-2",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8658-2: Linux kernel (IBM) vulnerabilities"
+          "USN-8666-2: Linux kernel (Azure) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - NVIDIA Tegra memory controller drive",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2025-27558",
+      "kind": "cve",
+      "title": "CVE-2025-27558",
+      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - NVIDIA Tegra memory controller drive",
+      "updatedAt": "2026-08-25T21:15:06.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:15:06.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8666-2",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8666-2: Linux kernel (Azure) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - Cryptographic API; - InfiniBand drivers; - Media drivers; - NVIDIA Tegra memory controller drive",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43083",
+      "kind": "cve",
+      "title": "CVE-2026-43083",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-25T21:12:04.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:12:04.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-5",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-5: Linux kernel (Raspberry Pi) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43197",
+      "kind": "cve",
+      "title": "CVE-2026-43197",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-25T21:12:04.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:12:04.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-5",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-5: Linux kernel (Raspberry Pi) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43198",
+      "kind": "cve",
+      "title": "CVE-2026-43198",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-25T21:12:04.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:12:04.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-5",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-5: Linux kernel (Raspberry Pi) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-43465",
+      "kind": "cve",
+      "title": "CVE-2026-43465",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-25T21:12:04.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:12:04.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-5",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-5: Linux kernel (Raspberry Pi) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-46242",
+      "kind": "cve",
+      "title": "CVE-2026-46242",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+      "updatedAt": "2026-08-25T21:12:04.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T21:12:04.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8630-5",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8630-5: Linux kernel (Raspberry Pi) vulnerabilities"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - Mellanox network drivers; - File systems infrastructure; - IPv4 networking; - Network traffic control; - TCP network protocol; - B.A.T.M.A.N. meshing protocol; - IPv6 networking; - Multipath TCP; - Netfilter; - RxRPC session sockets; - SCTP protocol; - SMC sockets; (CVE-2026-43083, CVE-2026-43197, CVE-2026-43198, CVE-2026-43465, CVE-2026-46242, CVE-2026-4",
+        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
+      },
+      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
+    },
+    {
+      "id": "cy_cve-2026-53224",
+      "kind": "cve",
+      "title": "CVE-2026-53224",
+      "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network drivers; - Open vSwitch; - SCTP protocol; (CVE-2026-53224, CVE-2026-53246, CVE-2026-53247, CVE-2026-64531)",
+      "updatedAt": "2026-08-25T20:27:36.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T20:27:36.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "Ubuntu Security Notices",
+          "url": "https://ubuntu.com/security/notices/USN-8658-3",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "USN-8658-3: Linux kernel vulnerabilities"
         ],
         "likely": [],
         "possible": [],
@@ -10497,23 +10773,23 @@
       "kind": "cve",
       "title": "CVE-2026-53246",
       "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network drivers; - Open vSwitch; - SCTP protocol; (CVE-2026-53224, CVE-2026-53246, CVE-2026-53247, CVE-2026-64531)",
-      "updatedAt": "2026-08-21T22:02:41.000Z",
+      "updatedAt": "2026-08-25T20:27:36.000Z",
       "history": [
         {
-          "at": "2026-08-21T22:02:41.000Z",
+          "at": "2026-08-25T20:27:36.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8658-2",
+          "url": "https://ubuntu.com/security/notices/USN-8658-3",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8658-2: Linux kernel (IBM) vulnerabilities"
+          "USN-8658-3: Linux kernel vulnerabilities"
         ],
         "likely": [],
         "possible": [],
@@ -10530,23 +10806,23 @@
       "kind": "cve",
       "title": "CVE-2026-64531",
       "summary": "Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - Network drivers; - Open vSwitch; - SCTP protocol; (CVE-2026-53224, CVE-2026-53246, CVE-2026-53247, CVE-2026-64531)",
-      "updatedAt": "2026-08-21T22:02:41.000Z",
+      "updatedAt": "2026-08-25T20:27:36.000Z",
       "history": [
         {
-          "at": "2026-08-21T22:02:41.000Z",
+          "at": "2026-08-25T20:27:36.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8658-2",
+          "url": "https://ubuntu.com/security/notices/USN-8658-3",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8658-2: Linux kernel (IBM) vulnerabilities"
+          "USN-8658-3: Linux kernel vulnerabilities"
         ],
         "likely": [],
         "possible": [],
@@ -10559,143 +10835,44 @@
       "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
-      "id": "cy_cve-2020-24588",
-      "kind": "cve",
-      "title": "CVE-2020-24588",
-      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - NVME drivers; - Ext4 file system; - SMB network file sy",
-      "updatedAt": "2026-08-21T21:58:55.000Z",
-      "history": [
-        {
-          "at": "2026-08-21T21:58:55.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8661-2",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8661-2: Linux kernel (Low Latency) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - NVME drivers; - Ext4 file system; - SMB network file sy",
-        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2025-27558",
-      "kind": "cve",
-      "title": "CVE-2025-27558",
-      "summary": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - NVME drivers; - Ext4 file system; - SMB network file sy",
-      "updatedAt": "2026-08-21T21:58:55.000Z",
-      "history": [
-        {
-          "at": "2026-08-21T21:58:55.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8661-2",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8661-2: Linux kernel (Low Latency) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Siebe Devroe, Héloïse Gollier, and Mathy Vanhoef discovered that the WiFi implementation in the Linux kernel did not properly handle aggregated frames in mesh networks, due to an incorrect fix for CVE-2020-24588. A physically proximate attacker could use this issue to inject packets. (CVE-2025-27558) Several security issues were discovered in the Linux kernel. An attacker could possibly use these to compromise the system. This update corrects flaws in the following subsystems: - x86 architecture; - InfiniBand drivers; - Network drivers; - NVME drivers; - Ext4 file system; - SMB network file sy",
-        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2023-45896",
-      "kind": "cve",
-      "title": "CVE-2023-45896",
-      "summary": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-      "updatedAt": "2026-08-21T19:45:48.000Z",
-      "history": [
-        {
-          "at": "2026-08-21T19:45:48.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8668-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8668-1: Linux kernel (GCP) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2025-54505",
-      "kind": "cve",
-      "title": "CVE-2025-54505",
-      "summary": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-      "updatedAt": "2026-08-21T19:45:48.000Z",
-      "history": [
-        {
-          "at": "2026-08-21T19:45:48.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8668-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8668-1: Linux kernel (GCP) vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Maxim Suhanov discovered that the NTFS file system implementation in the Linux kernel did not properly validate file name length in certain situations, leading to an out-of-bounds read. An attacker could use this to construct a malicious NTFS image that, when mounted and operated on, could expose sensitive information (kernel memory). (CVE-2023-45896) It was discovered that some AMD processors did not properly clear data in the floating point divider unit during speculative execution. A local attacker could use this to expose sensitive information. (CVE-2025-54505) It was discovered that some ",
-        "whyItMatters": "Priority 20 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source. Widely deployed vendor/product family named — larger potential blast radius."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
       "id": "cy_product_google-cloud",
       "kind": "affected-software",
       "title": "Google Cloud",
       "summary": "Product referenced by live intelligence (Google)",
-      "updatedAt": "2026-08-25T18:56:52.125Z"
+      "updatedAt": "2026-08-26T01:58:39.479Z"
+    },
+    {
+      "id": "cy_cve-2026-75960",
+      "kind": "cve",
+      "title": "CVE-2026-75960",
+      "summary": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to access sensitive information and override user permissions. The following versions of Rently Smart Home are affected: Smart Home &lt;=20.1.0 CVSS Vendor Equipment Vulnerabilities v3 8.1 Rently Rently Smart Home Insufficiently Protected Credentials Background Critical Infrastructure Sectors: Commercial Facilities, Communications, Information Technology Countries/Areas Deployed: United States, India Company Headquarters Location: United States Vulnerabilities Expand All + CVE-2026-75960 Rently Smart Home v",
+      "updatedAt": "2026-08-25T12:00:00.000Z",
+      "history": [
+        {
+          "at": "2026-08-25T12:00:00.000Z",
+          "summary": "Published / listed by upstream source"
+        }
+      ],
+      "citations": [
+        {
+          "label": "CISA Cybersecurity Advisories",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-01",
+          "kind": "government"
+        }
+      ],
+      "explainability": {
+        "knownFacts": [
+          "Rently Smart Home"
+        ],
+        "likely": [],
+        "possible": [],
+        "unknown": [
+          "Local exposure without version confirmation"
+        ],
+        "whatIsIt": "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to access sensitive information and override user permissions. The following versions of Rently Smart Home are affected: Smart Home &lt;=20.1.0 CVSS Vendor Equipment Vulnerabilities v3 8.1 Rently Rently Smart Home Insufficiently Protected Credentials Background Critical Infrastructure Sectors: Commercial Facilities, Communications, Information Technology Countries/Areas Deployed: United States, India Company Headquarters Location: United States Vulnerabilities Expand All + CVE-2026-75960 Rently Smart Home v",
+        "whyItMatters": "Priority 19 — Informational. Updated/published within 7 days. Official government or vendor source. Confidence: high."
+      },
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333532"
     },
     {
       "id": "cy_cve-2026-27875",
@@ -10731,100 +10908,67 @@
       "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333335"
     },
     {
-      "id": "cy_cve-2026-66036",
+      "id": "cy_cve-2026-70628",
       "kind": "cve",
-      "title": "CVE-2026-66036",
-      "summary": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
-      "updatedAt": "2026-08-24T17:16:26.000Z",
+      "title": "CVE-2026-70628",
+      "summary": "Adrian Junge discovered that FFmpeg incorrectly handled certain subtitle data. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-70628) Adrian Junge discovered that FFmpeg incorrectly handled certain video files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS and Ubuntu 24.04 LTS. (CVE-2026-70632)",
+      "updatedAt": "2026-08-25T20:01:39.000Z",
       "history": [
         {
-          "at": "2026-08-24T17:16:26.000Z",
+          "at": "2026-08-25T20:01:39.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8671-1",
+          "url": "https://ubuntu.com/security/notices/USN-8680-1",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8671-1: FFmpeg vulnerabilities"
+          "USN-8680-1: FFmpeg vulnerabilities"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
+        "whatIsIt": "Adrian Junge discovered that FFmpeg incorrectly handled certain subtitle data. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-70628) Adrian Junge discovered that FFmpeg incorrectly handled certain video files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS and Ubuntu 24.04 LTS. (CVE-2026-70632)",
         "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
       },
       "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
     },
     {
-      "id": "cy_cve-2026-66039",
+      "id": "cy_cve-2026-70632",
       "kind": "cve",
-      "title": "CVE-2026-66039",
-      "summary": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
-      "updatedAt": "2026-08-24T17:16:26.000Z",
+      "title": "CVE-2026-70632",
+      "summary": "Adrian Junge discovered that FFmpeg incorrectly handled certain subtitle data. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-70628) Adrian Junge discovered that FFmpeg incorrectly handled certain video files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS and Ubuntu 24.04 LTS. (CVE-2026-70632)",
+      "updatedAt": "2026-08-25T20:01:39.000Z",
       "history": [
         {
-          "at": "2026-08-24T17:16:26.000Z",
+          "at": "2026-08-25T20:01:39.000Z",
           "summary": "Published / listed by upstream source"
         }
       ],
       "citations": [
         {
           "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8671-1",
+          "url": "https://ubuntu.com/security/notices/USN-8680-1",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "USN-8671-1: FFmpeg vulnerabilities"
+          "USN-8680-1: FFmpeg vulnerabilities"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
-        "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
-      },
-      "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
-    },
-    {
-      "id": "cy_cve-2026-66038",
-      "kind": "cve",
-      "title": "CVE-2026-66038",
-      "summary": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
-      "updatedAt": "2026-08-24T17:16:26.000Z",
-      "history": [
-        {
-          "at": "2026-08-24T17:16:26.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "Ubuntu Security Notices",
-          "url": "https://ubuntu.com/security/notices/USN-8671-1",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "USN-8671-1: FFmpeg vulnerabilities"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "Adrian Junge was discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-66036, CVE-2026-66039) Adrian Junge discovered that FFmpeg incorrectly handled certain media files. An attacker could possibly use this issue to obtain sensitive information. (CVE-2026-66038)",
+        "whatIsIt": "Adrian Junge discovered that FFmpeg incorrectly handled certain subtitle data. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. (CVE-2026-70628) Adrian Junge discovered that FFmpeg incorrectly handled certain video files. An attacker could possibly use this issue to cause a denial of service or execute arbitrary code. This issue only affected Ubuntu 22.04 LTS and Ubuntu 24.04 LTS. (CVE-2026-70632)",
         "whyItMatters": "Priority 17 — Informational. Updated/published within 7 days. Confidence: high. Authoritative vendor/security source."
       },
       "liveRecordId": "live_ubuntu-usn_68747470733a2f2f7562756e"
@@ -10834,35 +10978,35 @@
       "kind": "source",
       "title": "GitHub Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.061Z"
+      "updatedAt": "2026-08-26T01:58:38.834Z"
     },
     {
       "id": "cy_product_github-status",
       "kind": "affected-software",
       "title": "GitHub Status",
       "summary": "Product referenced by live intelligence (GitHub Status)",
-      "updatedAt": "2026-08-25T18:56:52.061Z"
+      "updatedAt": "2026-08-26T01:58:38.834Z"
     },
     {
       "id": "cy_vendor_openai-status",
       "kind": "source",
       "title": "OpenAI Status",
       "summary": "Vendor referenced by live intelligence",
-      "updatedAt": "2026-08-25T18:56:52.267Z"
+      "updatedAt": "2026-08-26T01:58:39.049Z"
     },
     {
       "id": "cy_product_openai-status",
       "kind": "affected-software",
       "title": "OpenAI Status",
       "summary": "Product referenced by live intelligence (OpenAI Status)",
-      "updatedAt": "2026-08-25T18:56:52.267Z"
+      "updatedAt": "2026-08-26T01:58:39.049Z"
     },
     {
       "id": "cy_product_azure",
       "kind": "affected-software",
       "title": "Azure",
       "summary": "Product referenced by live intelligence (Microsoft)",
-      "updatedAt": "2026-08-25T18:56:52.037Z"
+      "updatedAt": "2026-08-26T01:58:38.723Z"
     },
     {
       "id": "cy_cve-2026-55676",
@@ -11063,10 +11207,10 @@
       "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333234"
     },
     {
-      "id": "cy_cve-2026-50058",
+      "id": "cy_cve-2026-65309",
       "kind": "cve",
-      "title": "CVE-2026-50058",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+      "title": "CVE-2026-65309",
+      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
       "updatedAt": "2026-08-13T12:00:00.000Z",
       "history": [
         {
@@ -11077,29 +11221,29 @@
       "citations": [
         {
           "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-05",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "Siemens Solid Edge"
+          "ANDRITZ HIPASE-250 and 250 SCALA"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
         "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
       },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323934"
     },
     {
-      "id": "cy_cve-2026-50059",
+      "id": "cy_cve-2026-65310",
       "kind": "cve",
-      "title": "CVE-2026-50059",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+      "title": "CVE-2026-65310",
+      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
       "updatedAt": "2026-08-13T12:00:00.000Z",
       "history": [
         {
@@ -11110,29 +11254,29 @@
       "citations": [
         {
           "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-05",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "Siemens Solid Edge"
+          "ANDRITZ HIPASE-250 and 250 SCALA"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
         "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
       },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323934"
     },
     {
-      "id": "cy_cve-2026-50060",
+      "id": "cy_cve-2026-65311",
       "kind": "cve",
-      "title": "CVE-2026-50060",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+      "title": "CVE-2026-65311",
+      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
       "updatedAt": "2026-08-13T12:00:00.000Z",
       "history": [
         {
@@ -11143,29 +11287,29 @@
       "citations": [
         {
           "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-05",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "Siemens Solid Edge"
+          "ANDRITZ HIPASE-250 and 250 SCALA"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
         "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
       },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323934"
     },
     {
-      "id": "cy_cve-2026-50061",
+      "id": "cy_cve-2026-65313",
       "kind": "cve",
-      "title": "CVE-2026-50061",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+      "title": "CVE-2026-65313",
+      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
       "updatedAt": "2026-08-13T12:00:00.000Z",
       "history": [
         {
@@ -11176,320 +11320,23 @@
       "citations": [
         {
           "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
+          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-05",
           "kind": "government"
         }
       ],
       "explainability": {
         "knownFacts": [
-          "Siemens Solid Edge"
+          "ANDRITZ HIPASE-250 and 250 SCALA"
         ],
         "likely": [],
         "possible": [],
         "unknown": [
           "Local exposure without version confirmation"
         ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
+        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to read data from the device or gain access to affected workstations. The following versions of ANDRITZ HIPASE-250 and 250 SCALA are affected: HIPASE-250 &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) 250 SCALA &lt;=7.20 (CVE-2026-65309, CVE-2026-65310, CVE-2026-65311, CVE-2026-65313) CVSS Vendor Equipment Vulnerabilities v3 8.1 ANDRITZ ANDRITZ HIPASE-250 and 250 SCALA Storing Passwords in a Recoverable Format, Missing Authentication for Critical Function, Use of Hard-coded Cr",
         "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
       },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
-    },
-    {
-      "id": "cy_cve-2026-50062",
-      "kind": "cve",
-      "title": "CVE-2026-50062",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens Solid Edge"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
-    },
-    {
-      "id": "cy_cve-2026-50063",
-      "kind": "cve",
-      "title": "CVE-2026-50063",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens Solid Edge"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
-    },
-    {
-      "id": "cy_cve-2026-50064",
-      "kind": "cve",
-      "title": "CVE-2026-50064",
-      "summary": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-12",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens Solid Edge"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Solid Edge is affected by multiple file parsing vulnerabilities that could be triggered when the application reads specially crafted files in PAR, PSM or DFT format. This could allow an attacker to crash the application or execute arbitrary code. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Solid Edge are affected: Solid Edge SE2025 vers:intdot/&lt;225.0.15 (CVE-2026-50058, CVE-2026-50059, CVE-2026-50060, CVE-2026-50061, CVE-2026-50062, CVE-2026-50063, CVE-2026-50064) Solid Edge ",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333031"
-    },
-    {
-      "id": "cy_cve-2026-34491",
-      "kind": "cve",
-      "title": "CVE-2026-34491",
-      "summary": "View CSAF Summary Successful exploitation of this vulnerability could allow a low-privilege user or attacker to inject a persistent malicious payload via a crafted URL that executes in the context of other users' sessions, including administrators, potentially leading to session hijacking and unauthorized access. The following versions of Johnson Controls Metasys are affected: Metasys 12 vers:all/* (CVE-2026-34491) Metasys 13 vers:all/* (CVE-2026-34491) Metasys 14 Metasys 15 CVSS Vendor Equipment Vulnerabilities v3 8 Johnson Controls Inc Johnson Controls Metasys Improper Neutralization of Inpu",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-14",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Johnson Controls Metasys"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Successful exploitation of this vulnerability could allow a low-privilege user or attacker to inject a persistent malicious payload via a crafted URL that executes in the context of other users' sessions, including administrators, potentially leading to session hijacking and unauthorized access. The following versions of Johnson Controls Metasys are affected: Metasys 12 vers:all/* (CVE-2026-34491) Metasys 13 vers:all/* (CVE-2026-34491) Metasys 14 Metasys 15 CVSS Vendor Equipment Vulnerabilities v3 8 Johnson Controls Inc Johnson Controls Metasys Improper Neutralization of Inpu",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235333034"
-    },
-    {
-      "id": "cy_cve-2026-64887",
-      "kind": "cve",
-      "title": "CVE-2026-64887",
-      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to decrypt sensitive data, bypass authentication controls, gaining unauthorized access to read arbitrary files on the system, or gain unauthorized access to protected system resources. The following versions of Johnson Controls Inc. Airwall are affected: Airwall &lt;=4.0.4 (CVE-2026-64887, CVE-2026-34492) CVSS Vendor Equipment Vulnerabilities v3 6.8 Johnson Controls Inc. Johnson Controls Inc. Airwall Use of Hard-coded Cryptographic Key, External Control of File Name or Path Background Critical Infrastruc",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-03",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Johnson Controls Inc. Airwall"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to decrypt sensitive data, bypass authentication controls, gaining unauthorized access to read arbitrary files on the system, or gain unauthorized access to protected system resources. The following versions of Johnson Controls Inc. Airwall are affected: Airwall &lt;=4.0.4 (CVE-2026-64887, CVE-2026-34492) CVSS Vendor Equipment Vulnerabilities v3 6.8 Johnson Controls Inc. Johnson Controls Inc. Airwall Use of Hard-coded Cryptographic Key, External Control of File Name or Path Background Critical Infrastruc",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323932"
-    },
-    {
-      "id": "cy_cve-2026-34492",
-      "kind": "cve",
-      "title": "CVE-2026-34492",
-      "summary": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to decrypt sensitive data, bypass authentication controls, gaining unauthorized access to read arbitrary files on the system, or gain unauthorized access to protected system resources. The following versions of Johnson Controls Inc. Airwall are affected: Airwall &lt;=4.0.4 (CVE-2026-64887, CVE-2026-34492) CVSS Vendor Equipment Vulnerabilities v3 6.8 Johnson Controls Inc. Johnson Controls Inc. Airwall Use of Hard-coded Cryptographic Key, External Control of File Name or Path Background Critical Infrastruc",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-03",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Johnson Controls Inc. Airwall"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to decrypt sensitive data, bypass authentication controls, gaining unauthorized access to read arbitrary files on the system, or gain unauthorized access to protected system resources. The following versions of Johnson Controls Inc. Airwall are affected: Airwall &lt;=4.0.4 (CVE-2026-64887, CVE-2026-34492) CVSS Vendor Equipment Vulnerabilities v3 6.8 Johnson Controls Inc. Johnson Controls Inc. Airwall Use of Hard-coded Cryptographic Key, External Control of File Name or Path Background Critical Infrastruc",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323932"
-    },
-    {
-      "id": "cy_cve-2026-59693",
-      "kind": "cve",
-      "title": "CVE-2026-59693",
-      "summary": "View CSAF Summary A vulnerability in Desigo DXR and PXC controllers has been identified that could allow an attacker to cause denial of service conditions by sending malformed BACnet packets. Recovery requires a device reset or reboot to restore normal functionality. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Desigo DXR and PXC Controllers are affected: Desigo DXR2 vers:intdot/&lt;01.21.233.16-7862 (CVE-2026-59693) Desigo PXC3 vers:intdot/&lt;01.21.233.16-7862 (CVE-2026-59693) Desigo PXC4 vers:i",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-08",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens Desigo DXR and PXC Controllers"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary A vulnerability in Desigo DXR and PXC controllers has been identified that could allow an attacker to cause denial of service conditions by sending malformed BACnet packets. Recovery requires a device reset or reboot to restore normal functionality. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following versions of Siemens Desigo DXR and PXC Controllers are affected: Desigo DXR2 vers:intdot/&lt;01.21.233.16-7862 (CVE-2026-59693) Desigo PXC3 vers:intdot/&lt;01.21.233.16-7862 (CVE-2026-59693) Desigo PXC4 vers:i",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323937"
-    },
-    {
-      "id": "cy_cve-2026-69108",
-      "kind": "cve",
-      "title": "CVE-2026-69108",
-      "summary": "View CSAF Summary Siemens License Server is affected by multiple vulnerabilities which could allow an attacker to elevate its privileges and read arbitrary files on the system. Siemens has released a new version for Siemens License Server (SLS) and recommends to update to the latest version. The following versions of Siemens License Server (SLS) are affected: Siemens License Server (SLS) vers:intdot/&lt;5.1, vers:intdot/&lt;5.3 (CVE-2026-69108, CVE-2026-69109) CVSS Vendor Equipment Vulnerabilities v3 7.5 Siemens Siemens License Server (SLS) Incorrect Permission Assignment for Critical Resource",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-07",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens License Server (SLS)"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Siemens License Server is affected by multiple vulnerabilities which could allow an attacker to elevate its privileges and read arbitrary files on the system. Siemens has released a new version for Siemens License Server (SLS) and recommends to update to the latest version. The following versions of Siemens License Server (SLS) are affected: Siemens License Server (SLS) vers:intdot/&lt;5.1, vers:intdot/&lt;5.3 (CVE-2026-69108, CVE-2026-69109) CVSS Vendor Equipment Vulnerabilities v3 7.5 Siemens Siemens License Server (SLS) Incorrect Permission Assignment for Critical Resource",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323936"
-    },
-    {
-      "id": "cy_cve-2026-69109",
-      "kind": "cve",
-      "title": "CVE-2026-69109",
-      "summary": "View CSAF Summary Siemens License Server is affected by multiple vulnerabilities which could allow an attacker to elevate its privileges and read arbitrary files on the system. Siemens has released a new version for Siemens License Server (SLS) and recommends to update to the latest version. The following versions of Siemens License Server (SLS) are affected: Siemens License Server (SLS) vers:intdot/&lt;5.1, vers:intdot/&lt;5.3 (CVE-2026-69108, CVE-2026-69109) CVSS Vendor Equipment Vulnerabilities v3 7.5 Siemens Siemens License Server (SLS) Incorrect Permission Assignment for Critical Resource",
-      "updatedAt": "2026-08-13T12:00:00.000Z",
-      "history": [
-        {
-          "at": "2026-08-13T12:00:00.000Z",
-          "summary": "Published / listed by upstream source"
-        }
-      ],
-      "citations": [
-        {
-          "label": "CISA Cybersecurity Advisories",
-          "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-225-07",
-          "kind": "government"
-        }
-      ],
-      "explainability": {
-        "knownFacts": [
-          "Siemens License Server (SLS)"
-        ],
-        "likely": [],
-        "possible": [],
-        "unknown": [
-          "Local exposure without version confirmation"
-        ],
-        "whatIsIt": "View CSAF Summary Siemens License Server is affected by multiple vulnerabilities which could allow an attacker to elevate its privileges and read arbitrary files on the system. Siemens has released a new version for Siemens License Server (SLS) and recommends to update to the latest version. The following versions of Siemens License Server (SLS) are affected: Siemens License Server (SLS) vers:intdot/&lt;5.1, vers:intdot/&lt;5.3 (CVE-2026-69108, CVE-2026-69109) CVSS Vendor Equipment Vulnerabilities v3 7.5 Siemens Siemens License Server (SLS) Incorrect Permission Assignment for Critical Resource",
-        "whyItMatters": "Priority 15 — Informational. Updated/published within 30 days. Official government or vendor source. Confidence: high."
-      },
-      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323936"
+      "liveRecordId": "live_cisa-advisories_2f6e6f64652f3235323934"
     }
   ],
   "relationships": [
@@ -11568,20 +11415,6 @@
       "type": "affects",
       "from": "cy_product_vcenter-server",
       "to": "cy_cve-2026-59310",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_macos_cve-2026-65400",
-      "type": "affects",
-      "from": "cy_product_macos",
-      "to": "cy_cve-2026-65400",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_macos_cve-2026-65400",
-      "type": "affects",
-      "from": "cy_product_macos",
-      "to": "cy_cve-2026-65400",
       "note": "Linked from live provider data"
     },
     {
@@ -11680,20 +11513,6 @@
       "type": "affects",
       "from": "cy_product_trueconf-server",
       "to": "cy_cve-2026-72529",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_langflow_cve-2026-9198",
-      "type": "affects",
-      "from": "cy_product_langflow",
-      "to": "cy_cve-2026-9198",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_langflow_cve-2026-9198",
-      "type": "affects",
-      "from": "cy_product_langflow",
-      "to": "cy_cve-2026-9198",
       "note": "Linked from live provider data"
     },
     {
@@ -11862,6 +11681,13 @@
       "type": "affects",
       "from": "cy_product_windows",
       "to": "cy_cve-2026-21513",
+      "note": "Linked from live provider data"
+    },
+    {
+      "id": "rel_cy_product_macos_cve-2026-65400",
+      "type": "affects",
+      "from": "cy_product_macos",
+      "to": "cy_cve-2026-65400",
       "note": "Linked from live provider data"
     },
     {
@@ -12037,6 +11863,13 @@
       "type": "affects",
       "from": "cy_product_tomcat",
       "to": "cy_cve-2026-34486",
+      "note": "Linked from live provider data"
+    },
+    {
+      "id": "rel_cy_product_langflow_cve-2026-9198",
+      "type": "affects",
+      "from": "cy_product_langflow",
+      "to": "cy_cve-2026-9198",
       "note": "Linked from live provider data"
     },
     {
@@ -12964,6 +12797,13 @@
       "note": "Linked from live provider data"
     },
     {
+      "id": "rel_cy_product_icalendar_cve-2026-55099",
+      "type": "affects",
+      "from": "cy_product_icalendar",
+      "to": "cy_cve-2026-55099",
+      "note": "Linked from live provider data"
+    },
+    {
       "id": "rel_cy_product_eml-parser_cve-2026-55620",
       "type": "affects",
       "from": "cy_product_eml-parser",
@@ -13013,24 +12853,10 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_browse-mcp_cve-2026-55557",
+      "id": "rel_cy_product_chainlit_cve-2026-45018",
       "type": "affects",
-      "from": "cy_product_browse-mcp",
-      "to": "cy_cve-2026-55557",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_urllib_cve-2026-55553",
-      "type": "affects",
-      "from": "cy_product_urllib",
-      "to": "cy_cve-2026-55553",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_urllib_cve-2026-55553",
-      "type": "affects",
-      "from": "cy_product_urllib",
-      "to": "cy_cve-2026-55553",
+      "from": "cy_product_chainlit",
+      "to": "cy_cve-2026-45018",
       "note": "Linked from live provider data"
     },
     {
@@ -13055,10 +12881,10 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_qwed_cve-2026-55585",
+      "id": "rel_cy_product_chainlit_cve-2026-45019",
       "type": "affects",
-      "from": "cy_product_qwed",
-      "to": "cy_cve-2026-55585",
+      "from": "cy_product_chainlit",
+      "to": "cy_cve-2026-45019",
       "note": "Linked from live provider data"
     },
     {
@@ -13125,24 +12951,10 @@
       "note": "Linked from live provider data"
     },
     {
-      "id": "rel_cy_product_github-com-la_cve-2026-55677",
+      "id": "rel_cy_product_jupyterhub_cve-2026-54338",
       "type": "affects",
-      "from": "cy_product_github-com-labstack-echo-v5",
-      "to": "cy_cve-2026-55677",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_github-com-la_cve-2026-55677",
-      "type": "affects",
-      "from": "cy_product_github-com-labstack-echo-v4",
-      "to": "cy_cve-2026-55677",
-      "note": "Linked from live provider data"
-    },
-    {
-      "id": "rel_cy_product_github-com-la_cve-2026-55677",
-      "type": "affects",
-      "from": "cy_product_github-com-labstack-echo",
-      "to": "cy_cve-2026-55677",
+      "from": "cy_product_jupyterhub",
+      "to": "cy_cve-2026-54338",
       "note": "Linked from live provider data"
     },
     {
