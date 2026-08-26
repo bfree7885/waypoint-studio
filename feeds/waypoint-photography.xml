@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Aug 2026 00:35:35 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 12:25:53 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -82,16 +82,52 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>Sun news: Sunspot region roars with 5 M flares</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 25 Aug 2026 09:20:53 GMT</pubDate>
+    <title>‘Jellyfish’ on Mars: Image from Curiosity rover goes viral</title>
+    <link>https://earthsky.org/space/jellyfish-on-mars-curiosity-rover-anomaies/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/jellyfish-on-mars-curiosity-rover-anomaies/</guid>
+    <pubDate>Wed, 26 Aug 2026 11:55:16 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news August 25, 2026: AR4513 roared back to life with five M flares, capped by an M7. Sun-stuff from that blast could be heading our way. The post Sun news: Sunspot region roars with 5 M flares first appeared on EarthSky .
+Summary: A previously overlooked photo from the Curiosity rover shows an odd &apos;jellyfish&apos; on Mars. Is it a real anomaly or an imaging artifact? The post ‘Jellyfish’ on Mars: Image from Curiosity rover goes viral first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/jellyfish-on-mars-curiosity-rover-anomaies/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Could there be life in helium atmospheres on exoplanets?</title>
+    <link>https://earthsky.org/space/life-in-helium-atmospheres-exoplanets-habitability/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/life-in-helium-atmospheres-exoplanets-habitability/</guid>
+    <pubDate>Wed, 26 Aug 2026 11:54:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Is life in helium atmospheres on exoplanets possible? A new study says that there are no barriers to life on worlds with helium-dominated atmospheres. The post Could there be life in helium atmospheres on exoplanets? first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/life-in-helium-atmospheres-exoplanets-habitability/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Big chunk of sun-stuff coming to Earth</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Wed, 26 Aug 2026 09:20:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news August 26, 2026: The M7 flare&apos;s CME is confirmed to be Earth-bound, arriving August 28. G2 storms and auroras on the cards! The post Sun news: Big chunk of sun-stuff coming to Earth first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
@@ -112,24 +148,6 @@ Summary: On this day, August 25, 1989, Voyager 2 visited Neptune. To this day, n
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/voyager-2-neptune-flyby-august-25-1989/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pluto demoted to dwarf planet 20 years ago today</title>
-    <link>https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</guid>
-    <pubDate>Mon, 24 Aug 2026 10:15:56 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Pluto is the largest of many small bodies in the outer solar system. That&apos;s partly why it was demoted from major planet to dwarf planet in 2006. The post Pluto demoted to dwarf planet 20 years ago today first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -349,36 +367,18 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ks
     <author>NASA</author>
   </item>
   <item>
-    <title>Pluto’s atmosphere is thinning toward a collapse</title>
-    <link>https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</guid>
-    <pubDate>Sun, 23 Aug 2026 12:00:54 GMT</pubDate>
+    <title>Pluto demoted to dwarf planet 20 years ago today</title>
+    <link>https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</link>
+    <guid isPermaLink="true">https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</guid>
+    <pubDate>Mon, 24 Aug 2026 10:15:56 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Scientists detected that Pluto&apos;s atmosphere is thinning as it moves farther away from the sun in its orbit. Is its atmospheric collapse already happening? The post Pluto’s atmosphere is thinning toward a collapse first appeared on EarthSky .
+Summary: Pluto is the largest of many small bodies in the outer solar system. That&apos;s partly why it was demoted from major planet to dwarf planet in 2006. The post Pluto demoted to dwarf planet 20 years ago today first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/plutos-atmosphere-thinning-as-predicted/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Nancy Grace Roman Space Telescope launches Sunday!</title>
-    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
-    <pubDate>Sun, 23 Aug 2026 09:30:19 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The launch of the Nancy Grace Roman Space Telescope is scheduled for launch Sunday morning, August 30, from the Kennedy Space Center. More here. The post Nancy Grace Roman Space Telescope launches Sunday! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
+Read the original article at the publisher: https://earthsky.org/human-world/pluto-dwarf-planet-august-24-2006/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -400,40 +400,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/we
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>1st photo of Earth from the moon 60 years ago</title>
-    <link>https://earthsky.org/space/this-date-in-science-first-view-of-earth-from-the-moon/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/this-date-in-science-first-view-of-earth-from-the-moon/</guid>
-    <pubDate>Sun, 23 Aug 2026 10:30:10 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: As NASA plans to land astronauts on the moon with the Artemis IV mission in 2028, it&apos;s fun to see this 1st photo of Earth taken from the moon. The post 1st photo of Earth from the moon 60 years ago first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/this-date-in-science-first-view-of-earth-from-the-moon/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sagittarius the Archer is home to deep-sky wonders</title>
-    <link>https://earthsky.org/constellations/sagittarius-heres-your-constellation/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/sagittarius-heres-your-constellation/</guid>
-    <pubDate>Sun, 23 Aug 2026 10:04:47 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The zodiacal constellation Sagittarius the Archer contains the center of the Milky Way and a famous asterism known as the Teapot. The post Sagittarius the Archer is home to deep-sky wonders first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/constellations/sagittarius-heres-your-constellation/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Roman Space Telescope Plaque Install</title>
