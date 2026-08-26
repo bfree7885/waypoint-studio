@@ -41,7 +41,6 @@ const expected = {
   foragecast: "Explore",
   steepleaf: "Brew",
   "savant-sommelier": "Taste",
-  signalterrain: "Monitor",
   dashboard: "Plan",
   scenes: "Create",
   "photo-coach": "Refine",
@@ -95,8 +94,8 @@ assert(
   demo.entries.filter((e) => e.products.includes("fieldry") || e.products.includes("foragecast")).length >= 2
 );
 assert(
-  "signalterrain demos present",
-  demo.entries.filter((e) => e.products.includes("signalterrain")).length >= 1
+  "no deleted-product demos",
+  demo.entries.every((e) => !(e.products || []).includes("signalterrain"))
 );
 assert(
   "contextual hooks present",

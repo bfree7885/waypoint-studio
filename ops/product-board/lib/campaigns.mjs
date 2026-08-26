@@ -35,19 +35,6 @@ export const CAMPAIGNS = {
       "production-inspection"
     ],
     mspDoc: null
-  },
-  signalterrain: {
-    id: "signalterrain",
-    title: "SignalTerrain",
-    productPath: "apps/signalterrain",
-    scanRoots: ["apps/signalterrain", "design-system/signalterrain", "design-system/js/signalterrain"],
-    productionUrl: "https://waypointstudio.org/apps/signalterrain/",
-    commandRemap: {
-      "production-build": "node automation/verify-signalterrain-production.mjs",
-      "platform-foundation":
-        "node automation/test-signalterrain-msp.mjs && node automation/test-signalterrain-foundation.mjs && node automation/test-signalterrain-cyber-live.mjs && node automation/test-signalterrain-landing.mjs"
-    },
-    mspDoc: "ops/product-board/campaigns/signalterrain-msp.md"
   }
 };
 

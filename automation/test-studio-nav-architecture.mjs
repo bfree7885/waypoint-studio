@@ -163,7 +163,8 @@ assert("sitemap includes support", /support\.html/.test(sitemap));
 const catalog = read("design-system/js/platform/wds-platform-catalog.js");
 assert("platform catalog includes Side Trails", /id:\s*"side-trails"/.test(catalog));
 assert("platform catalog ForageCast not core", /id:\s*"foragecast"[\s\S]*?tier:\s*"supporting"/.test(catalog));
-assert("platform catalog SignalTerrain under side-trails", /id:\s*"signalterrain"[\s\S]*?tier:\s*"side-trails"/.test(catalog));
+assert("platform catalog omits SignalTerrain", !/id:\s*"signalterrain"/.test(catalog));
+assert("platform catalog omits Global Signals", !/id:\s*"global-signals"/.test(catalog));
 
 const studioHome = read("js/studio-home.js");
 assert("studio-home lists Side Trails", /side-trails\//.test(studioHome));
@@ -172,8 +173,10 @@ assert("studio-home is front door (no dashboard boot)", !/home-boot\.js|wds-dash
 assert("studio-home mounts Useful now panel", /data-was-home-now|was-home-now/.test(studioHome));
 assert("index is front door HTML", /was-home-hero/.test(read("index.html")) && !/home-boot\.js/.test(read("index.html")));
 
-
 const shell = read("design-system/js/platform/wds-app-shell.js");
+assert("no SignalTerrain landing", !fs.existsSync(path.join(ROOT, "side-trails/signalterrain/index.html")));
+assert("no Global Signals landing", !fs.existsSync(path.join(ROOT, "side-trails/global-signals/index.html")));
+assert("no OpenRoad page", !fs.existsSync(path.join(ROOT, "side-trails/openroad-pa/index.html")));
 assert("shell marks Side Trails active", /side-trails/.test(shell));
 assert("shell marks Support active", /support\\.html/.test(shell));
 assert(
@@ -181,13 +184,6 @@ assert(
   !/var primary = quiet\s*\n\s*\?/.test(shell) && /studioPrimaryNav/.test(shell)
 );
 assert("quiet chrome hides Explore only", /hideExplore/.test(shell));
-
-const stLanding = read("side-trails/signalterrain/index.html");
-assert("SignalTerrain landing links Side Trails", /href="\/side-trails\/"/.test(stLanding));
-assert("SignalTerrain landing links Articles", /href="\/articles\/"/.test(stLanding));
-const gsLanding = read("side-trails/global-signals/index.html");
-assert("Global Signals landing links Side Trails", /href="\/side-trails\/"/.test(gsLanding));
-assert("Global Signals landing links Home", /href="\/"/.test(gsLanding));
 
 const quietCss = read("design-system/css/wds-app-shell.css");
 assert("quiet chrome styles primary nav", /\.was-global--quiet \.was-primary-nav/.test(quietCss));

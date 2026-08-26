@@ -12,7 +12,6 @@
     fieldry: { href: "../fieldry/", label: "Fieldry" },
     scenes: { href: "../scenes/", label: "Scenes" },
     foragecast: { href: "../foragecast/", label: "ForageCast" },
-    signalterrain: { href: "../signalterrain/", label: "SignalTerrain" },
     dashboard: { href: "../dashboard/", label: "Dashboard" },
     "photo-coach": { href: "../photo-coach/", label: "Photo Coach" },
     sheds: { href: "../shed-hunting/", label: "Sheds" },

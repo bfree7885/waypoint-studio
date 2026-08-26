@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "updatedAt": "2026-07-16",
-  "purpose": "Intelligence information architecture inside SignalTerrain (and later Dashboard glances). Not a second Studio nav product.",
-  "productHome": "signalterrain",
+  "purpose": "Intelligence information architecture for Deck-internal situational awareness (and later Dashboard glances). Not a second Studio nav product.",
+  "productHome": "waypoint-deck",
   "rules": [
     "Do not add a parallel Cyber product to Studio primary nav.",
     "Planned routes stay labeled Planned.",

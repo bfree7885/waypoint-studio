@@ -10,9 +10,7 @@ Set `data-product` on `<html>`. Accents come from the shared muted Southwestern 
 | Sheds | `shed-hunting`, `sheds` | Clay red | Dust gold |
 | Articles | `articles` | Dusty plum | Terracotta |
 | Side Trails | `side-trails` | Muted purple | Sage |
-| SignalTerrain | `signalterrain` | Slate | Clay |
-| Global Signals | `global-signals` | Terracotta bright | Plum |
-| OpenRoad PA | `openroad-pa` | Brown | Gold |
+| Waypoint Deck | `waypoint-deck` | Muted purple | Sage |
 | ForageCast | `foragecast` | Dust gold | Sage |
 | Fieldry | `fieldry` | Terracotta | Sage |
 | Steepleaf | `steepleaf` | Sage deep | Slate |

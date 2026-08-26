@@ -7,14 +7,6 @@
       "title": "Sheds",
       "productPath": "apps/shed-hunting",
       "status": "not-subscriber-ready-visual-false-positive"
-    },
-    {
-      "id": "signalterrain",
-      "title": "SignalTerrain",
-      "productPath": "apps/signalterrain",
-      "status": "msp-campaign-ready",
-      "mspDoc": "ops/product-board/campaigns/signalterrain-msp.md",
-      "launch": "node ops/product-board/board.mjs campaign signalterrain && node ops/product-board/board.mjs discover --campaign signalterrain"
     }
   ]
 }

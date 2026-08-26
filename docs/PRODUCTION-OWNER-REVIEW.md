@@ -1,5 +1,8 @@
 # Production Owner Review — Waypoint Studio
 
+**Historical snapshot (2026-07-20).** Not current portfolio truth.
+Canonical: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
 **Date:** 2026-07-20 04:33 UTC  
 **Live site:** https://waypointstudio.org
 

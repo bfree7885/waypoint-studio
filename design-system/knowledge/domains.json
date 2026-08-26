@@ -34,14 +34,14 @@
     },
     {
       "id": "signalterrain",
-      "label": "SignalTerrain",
-      "description": "Radio services, bands, modulation, agencies, equipment, terminology — RF intelligence knowledge for SignalTerrain.",
+      "label": "Radio / spectrum",
+      "description": "Radio services, bands, modulation, agencies, equipment, terminology — RF literacy for future Deck situational awareness. Not a public product.",
       "categories": ["radio-services", "frequency-bands", "modulation", "agencies", "equipment", "terminology"]
     },
     {
       "id": "signal-intelligence",
       "label": "Signal Intelligence",
-      "description": "Shared engine architecture v0.1: educational RF, cyber, and infrastructure situational awareness (SignalTerrain home). Schemas in design-system/signal-intelligence/ — no live monitoring or SOC tooling.",
+      "description": "Shared engine architecture v0.1: educational RF, cyber, and infrastructure situational awareness for future Waypoint Deck inputs. Schemas in design-system/signal-intelligence/ — no live monitoring or SOC tooling.",
       "categories": [
         "rf-intelligence",
         "cyber-intelligence",

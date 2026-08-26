@@ -1,5 +1,11 @@
 # Signal Intelligence Roadmap V1
 
+**Internal architecture only.** This is not a public Waypoint product.
+Reusable schemas live under `design-system/signal-intelligence/` and may feed
+future Waypoint Deck situational awareness. Canonical portfolio:
+[`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
+
 **Status:** Active foundation roadmap (planning — not a shipping commitment calendar)  
 **Vision:** [SIGNAL-INTELLIGENCE-VISION.md](SIGNAL-INTELLIGENCE-VISION.md)  
 **Architecture:** [SIGNAL-INTELLIGENCE-ARCHITECTURE.md](SIGNAL-INTELLIGENCE-ARCHITECTURE.md)

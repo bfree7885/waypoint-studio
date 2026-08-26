@@ -4,7 +4,7 @@
     "generatedAt": "2026-08-26T01:58:59.077Z",
     "trustState": "Live",
     "dataState": "REAL",
-    "engine": "signalterrain-cyber-live-engine",
+    "engine": "deck-signals-live-engine",
     "principles": [
       "Every panel is REAL, CACHED REAL, SOURCE UNAVAILABLE, or NO CURRENT DATA",
       "No fabricated threat levels, attack maps, or demo CVEs",
@@ -7112,7 +7112,7 @@
     }
   ],
   "absences": {
-    "threatLevel": "NO CURRENT DATA — SignalTerrain does not invent a composite threat level without an authoritative source.",
+    "threatLevel": "NO CURRENT DATA — This ingest does not invent a composite threat level without an authoritative source.",
     "worldAttackMap": "NO CURRENT DATA — no authoritative global attack map is integrated; schematic maps are not shown as live activity."
   }
 }

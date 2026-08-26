@@ -1,0 +1,695 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-07T20:00:00Z",
+  "mode": "sample-demo",
+  "modeLabel": "Sample / demo dataset",
+  "honesty": {
+    "banner": "Sample / demo dataset — not a live citizen-impact feed. These statements are illustrative educational patterns. They are not current-event reports or household advice.",
+    "confidenceRules": "Observed is reserved for established facts. Downstream effects, why-analysis, and predicted household impacts must never use Observed. Missing or invalid confidence defaults to Unknown.",
+    "evidenceRules": "Demo evidence uses example.invalid citations and historical pattern notes. Never treat these as live news."
+  },
+  "sectionOrder": [
+    "food",
+    "fuel",
+    "utilities",
+    "housing",
+    "travel",
+    "healthcare",
+    "insurance",
+    "technology"
+  ],
+  "linkage": {
+    "articlesRoute": "",
+    "relationshipGraphRoute": "",
+    "relationshipExplorerRouteIntended": "",
+    "relationshipExplorerStatus": "Not on origin/main yet — soft-link deferred; entity IDs use stable gsn_* so Relationship Explorer can join later.",
+    "entityIdScheme": "gsn_*",
+    "articleIdScheme": "gsa_*",
+    "statementIdScheme": "gsc_*"
+  },
+  "entities": [
+    {
+      "id": "gsn_canal_corridor",
+      "type": "port",
+      "label": "Canal corridor (illustrative)"
+    },
+    {
+      "id": "gsn_container_freight",
+      "type": "commodity",
+      "label": "Container freight"
+    },
+    {
+      "id": "gsn_retail",
+      "type": "industry",
+      "label": "Retail"
+    },
+    {
+      "id": "gsn_grain",
+      "type": "commodity",
+      "label": "Grain"
+    },
+    {
+      "id": "gsn_food_processing",
+      "type": "industry",
+      "label": "Food processing"
+    },
+    {
+      "id": "gsn_household_food",
+      "type": "industry",
+      "label": "Household food costs"
+    },
+    {
+      "id": "gsn_drought",
+      "type": "weather",
+      "label": "Prolonged drought (illustrative)"
+    },
+    {
+      "id": "gsn_crude_oil",
+      "type": "commodity",
+      "label": "Crude oil"
+    },
+    {
+      "id": "gsn_transportation",
+      "type": "industry",
+      "label": "Transportation"
+    },
+    {
+      "id": "gsn_corridor_conflict",
+      "type": "conflict",
+      "label": "Corridor conflict (illustrative)"
+    },
+    {
+      "id": "gsn_steel_tariff",
+      "type": "tariff",
+      "label": "Illustrative steel tariff"
+    },
+    {
+      "id": "gsn_steel",
+      "type": "commodity",
+      "label": "Steel"
+    },
+    {
+      "id": "gsn_construction",
+      "type": "industry",
+      "label": "Construction"
+    },
+    {
+      "id": "gsn_logistics",
+      "type": "industry",
+      "label": "Logistics"
+    },
+    {
+      "id": "gsn_rotterdam",
+      "type": "port",
+      "label": "Port of Rotterdam (illustrative)"
+    },
+    {
+      "id": "gsn_semiconductors",
+      "type": "commodity",
+      "label": "Semiconductors"
+    },
+    {
+      "id": "gsn_electronics",
+      "type": "industry",
+      "label": "Electronics"
+    },
+    {
+      "id": "gsn_device_makers",
+      "type": "industry",
+      "label": "Device manufacturing"
+    },
+    {
+      "id": "gsn_advanced_chips",
+      "type": "commodity",
+      "label": "Advanced chips"
+    },
+    {
+      "id": "gsn_export_controls",
+      "type": "policy",
+      "label": "Export-control policy (illustrative)"
+    },
+    {
+      "id": "gsn_fuel_pipeline",
+      "type": "infrastructure",
+      "label": "Fuel pipeline (illustrative)"
+    },
+    {
+      "id": "gsn_refined_gasoline",
+      "type": "commodity",
+      "label": "Refined gasoline"
+    },
+    {
+      "id": "gsn_power_utility",
+      "type": "infrastructure",
+      "label": "Regional power utility (illustrative)"
+    },
+    {
+      "id": "gsn_medical_supplies",
+      "type": "commodity",
+      "label": "Medical supply shipments (illustrative)"
+    },
+    {
+      "id": "gsn_healthcare",
+      "type": "industry",
+      "label": "Healthcare providers"
+    },
+    {
+      "id": "gsn_cyber_insurance",
+      "type": "industry",
+      "label": "Cyber insurance"
+    },
+    {
+      "id": "gsn_housing_materials",
+      "type": "commodity",
+      "label": "Housing materials"
+    },
+    {
+      "id": "gsn_travel",
+      "type": "industry",
+      "label": "Travel"
+    },
+    {
+      "id": "gsn_port_complex",
+      "type": "port",
+      "label": "Coastal port complex (illustrative)"
+    }
+  ],
+  "sections": [
+    {
+      "id": "food",
+      "label": "Food",
+      "blurb": "Grocery availability, perishables, and household food-cost channels.",
+      "statements": [
+        {
+          "id": "gsc_demo-food-port-perishables",
+          "whatChanged": "In this sample scenario, a port authority reports slowed cargo handling during a labor stoppage. Time-sensitive food imports face longer dwell risk.",
+          "why": "Perishable foods and cold-chain windows are sensitive to terminal slowdowns. Households may notice thinner selection or higher prices if stoppages last — that pass-through is analysis, not an established fact.",
+          "causedBy": "Labor stoppage slows container terminals, delaying perishable imports into retail and food processing.",
+          "confidence": "Medium",
+          "timeHorizon": "Days",
+          "entityIds": [
+            "gsn_port_complex",
+            "gsn_container_freight",
+            "gsn_food_processing",
+            "gsn_household_food"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-port-labor"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-port-labor",
+              "label": "Illustrative port authority update (sample)",
+              "url": "https://example.invalid/sample/port-labor-update",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_port_complex",
+              "label": "Port labor stoppage",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Cargo handling slows or pauses during the stoppage."
+            },
+            {
+              "entityId": "gsn_container_freight",
+              "label": "Imports / perishables",
+              "type": "commodity",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Time-sensitive cargo faces dwell and spoilage risk."
+            },
+            {
+              "entityId": "gsn_food_processing",
+              "label": "Retail / food",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Restock cadence and cold-chain windows tighten."
+            },
+            {
+              "entityId": "gsn_household_food",
+              "label": "Household food costs",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Weeks",
+              "explanation": "Spot gaps and price pressure are plausible if prolonged — not Observed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fuel",
+      "label": "Fuel",
+      "blurb": "Pump availability, refined-fuel distribution, and commute-cost channels.",
+      "statements": [
+        {
+          "id": "gsc_demo-fuel-pipeline-cyber",
+          "whatChanged": "In this sample scenario based on a well-known historical pattern, a pipeline operator reports a ransomware incident affecting business systems and temporarily pauses some operations.",
+          "why": "Even when malware hits IT systems, operators may pause physical product movement as a precaution. Local station shortages can appear within days if terminals starve — price paths remain uncertain and must not be labeled Observed.",
+          "causedBy": "Ransomware disrupts pipeline billing/operations systems, leading to a precautionary pause in refined-fuel movement.",
+          "confidence": "High",
+          "timeHorizon": "Days",
+          "entityIds": [
+            "gsn_fuel_pipeline",
+            "gsn_refined_gasoline",
+            "gsn_transportation"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-pipeline-cyber"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-pipeline-cyber",
+              "label": "Illustrative cyber agency advisory (sample)",
+              "url": "https://example.invalid/sample/pipeline-cyber-advisory",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_fuel_pipeline",
+              "label": "Ransomware on pipeline operator",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Operator reports ransomware affecting business systems."
+            },
+            {
+              "entityId": "gsn_fuel_pipeline",
+              "label": "Fuel pipeline pause",
+              "type": "infrastructure",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Precautionary pause can halt product movement."
+            },
+            {
+              "entityId": "gsn_refined_gasoline",
+              "label": "Gasoline / diesel",
+              "type": "commodity",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Regional supply tightens if terminals starve."
+            },
+            {
+              "entityId": "gsn_transportation",
+              "label": "Fuel availability",
+              "type": "citizen-impact",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Local shortages possible; predicted price spikes are not Observed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "utilities",
+      "label": "Utilities",
+      "blurb": "Power, water, and heating/cooling reliability or cost notices.",
+      "statements": [
+        {
+          "id": "gsc_demo-utilities-drought-hydropower",
+          "whatChanged": "In this sample scenario, prolonged drought reduces water available for an illustrative canal and hydropower corridor. Operators publish capacity notices citing below-normal water levels.",
+          "why": "Lower reservoir or corridor water can constrain hydropower output and raise reliance on other generation. Household utility bills may shift over weeks to months depending on regional mix — that path is labeled analysis, not fact.",
+          "causedBy": "Prolonged drought reduces water available to shared corridor infrastructure that also supports generation.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "entityIds": [
+            "gsn_drought",
+            "gsn_canal_corridor",
+            "gsn_power_utility"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-canal-slots"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-canal-drought",
+              "label": "Illustrative canal / drought status notice (sample)",
+              "url": "https://example.invalid/sample/canal-drought-notice",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_drought",
+              "label": "Prolonged drought",
+              "type": "weather",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Below-normal rainfall reduces water available to shared systems."
+            },
+            {
+              "entityId": "gsn_canal_corridor",
+              "label": "Canal / hydropower corridor",
+              "type": "infrastructure",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Water management notices reduce capacity on shared infrastructure."
+            },
+            {
+              "entityId": "gsn_power_utility",
+              "label": "Regional power utility",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Weeks",
+              "explanation": "Generation mix may shift if hydropower is constrained."
+            },
+            {
+              "entityId": "gsn_power_utility",
+              "label": "Household utility costs",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Months",
+              "explanation": "Bill effects depend on contracts and regional mix — not Observed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "housing",
+      "label": "Housing",
+      "blurb": "Construction input costs and channels that can pressure rents or purchase budgets.",
+      "statements": [
+        {
+          "id": "gsc_demo-housing-steel-tariff",
+          "whatChanged": "In this sample scenario, a trade authority publishes higher tariff rates on selected steel product lines with an effective date.",
+          "why": "Steel is a common construction input. Higher landed costs can pressure project budgets over months. Pass-through to household housing costs is plausible but not automatic — contracts and inventories matter.",
+          "causedBy": "Illustrative steel tariffs raise import costs for fabricators and construction supply chains.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "entityIds": [
+            "gsn_steel_tariff",
+            "gsn_steel",
+            "gsn_construction",
+            "gsn_housing_materials"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-steel-tariff"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-steel-tariff",
+              "label": "Illustrative trade authority notice (sample)",
+              "url": "https://example.invalid/sample/steel-tariff-notice",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_steel_tariff",
+              "label": "Steel tariff",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Published tariff schedule takes effect on listed lines."
+            },
+            {
+              "entityId": "gsn_steel",
+              "label": "Steel",
+              "type": "commodity",
+              "confidence": "High",
+              "timeframe": "Days",
+              "explanation": "Landed cost of covered imports rises for importers."
+            },
+            {
+              "entityId": "gsn_construction",
+              "label": "Construction",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Months",
+              "explanation": "Project budgets may absorb higher material costs."
+            },
+            {
+              "entityId": "gsn_housing_materials",
+              "label": "Housing costs",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Months",
+              "explanation": "Pass-through to housing materials is plausible, not certain."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "label": "Travel",
+      "blurb": "Fares, delays, route friction, and fuel-sensitive travel costs.",
+      "statements": [
+        {
+          "id": "gsc_demo-travel-corridor-diversion",
+          "whatChanged": "In this sample scenario, a maritime advisory notes carriers diverting sailings away from a contested corridor after security incidents, lengthening alternate routes.",
+          "why": "Longer voyages raise bunker fuel use and schedule uncertainty. Passenger and freight travel costs can become more sensitive over days to weeks — duration depends on security conditions that are not knowable from the advisory alone.",
+          "causedBy": "Corridor security risk prompts carriers to divert onto longer sea routes.",
+          "confidence": "Medium",
+          "timeHorizon": "Weeks",
+          "entityIds": [
+            "gsn_corridor_conflict",
+            "gsn_crude_oil",
+            "gsn_transportation",
+            "gsn_travel"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-shipping-diversion"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-maritime-corridor",
+              "label": "Illustrative maritime advisory (sample)",
+              "url": "https://example.invalid/sample/maritime-corridor-advisory",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_corridor_conflict",
+              "label": "Corridor diversion",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Carriers divert sailings after security advisories."
+            },
+            {
+              "entityId": "gsn_transportation",
+              "label": "Longer sea route",
+              "type": "infrastructure",
+              "confidence": "High",
+              "timeframe": "Days",
+              "explanation": "Voyages add days via alternate Capes."
+            },
+            {
+              "entityId": "gsn_crude_oil",
+              "label": "Freight / fuel",
+              "type": "commodity",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Bunker burn and schedule cost rise."
+            },
+            {
+              "entityId": "gsn_travel",
+              "label": "Travel costs",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Weeks",
+              "explanation": "Fare and delay sensitivity are plausible — analysis only."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healthcare",
+      "label": "Healthcare",
+      "blurb": "Access friction and supply channels for common medical goods — literacy, not clinical advice.",
+      "statements": [
+        {
+          "id": "gsc_demo-healthcare-port-supplies",
+          "whatChanged": "In this sample scenario, the same coastal port stoppage that slows perishables also delays containerized medical-supply shipments reported in public port updates.",
+          "why": "Hospitals and clinics often hold buffers, but prolonged terminal delays can tighten restock windows for non-urgent supplies. Any household access effect is conditional and must stay Low/Medium — never Observed as a prediction.",
+          "causedBy": "Port labor stoppage delays containerized medical-supply shipments into healthcare logistics.",
+          "confidence": "Low",
+          "timeHorizon": "Weeks",
+          "entityIds": [
+            "gsn_port_complex",
+            "gsn_medical_supplies",
+            "gsn_logistics",
+            "gsn_healthcare"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-port-labor"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-port-labor-med",
+              "label": "Illustrative port authority update (sample)",
+              "url": "https://example.invalid/sample/port-labor-update",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_port_complex",
+              "label": "Port labor stoppage",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Cargo handling slows during the stoppage."
+            },
+            {
+              "entityId": "gsn_medical_supplies",
+              "label": "Medical supply shipments",
+              "type": "commodity",
+              "confidence": "Medium",
+              "timeframe": "Days",
+              "explanation": "Containerized medical goods face longer dwell."
+            },
+            {
+              "entityId": "gsn_healthcare",
+              "label": "Healthcare providers",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Weeks",
+              "explanation": "Restock buffers may tighten if delays persist."
+            },
+            {
+              "entityId": "gsn_healthcare",
+              "label": "Access friction",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Weeks",
+              "explanation": "Household access effects are conditional — not clinical advice."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insurance",
+      "label": "Insurance",
+      "blurb": "Premium and coverage pressure channels after public cyber or infrastructure incidents.",
+      "statements": [
+        {
+          "id": "gsc_demo-insurance-cyber-premium",
+          "whatChanged": "In this sample scenario, public reporting of a ransomware incident on critical energy infrastructure renews attention on cyber underwriting for similar operators.",
+          "why": "After visible cyber incidents, insurers may reprice cyber coverage for related sectors over months. Households usually feel this indirectly through business costs or specialized policies — treat as Low-confidence literacy, not a rate quote.",
+          "causedBy": "High-visibility ransomware on a fuel pipeline operator raises cyber underwriting attention for energy and adjacent sectors.",
+          "confidence": "Low",
+          "timeHorizon": "Months",
+          "entityIds": [
+            "gsn_fuel_pipeline",
+            "gsn_cyber_insurance",
+            "gsn_transportation"
+          ],
+          "relatedArticleIds": [
+            "gsa_demo-pipeline-cyber"
+          ],
+          "evidence": [
+            {
+              "id": "gev_demo-pipeline-cyber-ins",
+              "label": "Illustrative cyber agency advisory (sample)",
+              "url": "https://example.invalid/sample/pipeline-cyber-advisory",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_fuel_pipeline",
+              "label": "Ransomware incident",
+              "type": "event",
+              "confidence": "High",
+              "timeframe": "Immediate",
+              "explanation": "Public incident draws underwriting attention."
+            },
+            {
+              "entityId": "gsn_cyber_insurance",
+              "label": "Cyber insurance",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Months",
+              "explanation": "Underwriters may adjust terms for similar operators."
+            },
+            {
+              "entityId": "gsn_cyber_insurance",
+              "label": "Premium / coverage pressure",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Months",
+              "explanation": "Indirect household effects are possible — not Observed rate changes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "label": "Technology",
+      "blurb": "Device and component availability when chip supply chains tighten.",
+      "statements": [
+        {
+          "id": "gsc_demo-tech-chip-concentration",
+          "whatChanged": "In this sample educational scenario, illustrative export-control language and concentrated advanced-chip production highlight how device makers depend on a narrow set of inputs.",
+          "why": "When advanced chips are scarce or delayed, electronics and device makers may stretch lead times. Households might notice longer waits or higher prices for some devices over months — concentration literacy, not a geopolitical verdict.",
+          "causedBy": "Illustrative export-control policy plus concentrated advanced-chip capacity can constrain device manufacturing inputs.",
+          "confidence": "Medium",
+          "timeHorizon": "Months",
+          "entityIds": [
+            "gsn_export_controls",
+            "gsn_advanced_chips",
+            "gsn_semiconductors",
+            "gsn_device_makers",
+            "gsn_electronics"
+          ],
+          "relatedArticleIds": [],
+          "evidence": [
+            {
+              "id": "gev_demo-chip-literacy",
+              "label": "Illustrative semiconductor concentration note (sample)",
+              "url": "https://example.invalid/sample/semiconductor-concentration-note",
+              "kind": "sample-citation"
+            }
+          ],
+          "causeChain": [
+            {
+              "entityId": "gsn_export_controls",
+              "label": "Export-control policy",
+              "type": "policy",
+              "confidence": "Medium",
+              "timeframe": "Immediate",
+              "explanation": "Illustrative controls can limit certain advanced-chip flows."
+            },
+            {
+              "entityId": "gsn_advanced_chips",
+              "label": "Advanced chips",
+              "type": "commodity",
+              "confidence": "Medium",
+              "timeframe": "Weeks",
+              "explanation": "Constrained inputs raise allocation pressure."
+            },
+            {
+              "entityId": "gsn_device_makers",
+              "label": "Device manufacturing",
+              "type": "industry",
+              "confidence": "Medium",
+              "timeframe": "Months",
+              "explanation": "Lead times stretch when chip supply tightens."
+            },
+            {
+              "entityId": "gsn_electronics",
+              "label": "Device availability",
+              "type": "citizen-impact",
+              "confidence": "Low",
+              "timeframe": "Months",
+              "explanation": "Households may notice delays — literacy only, not a forecast."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

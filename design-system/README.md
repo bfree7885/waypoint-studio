@@ -25,7 +25,6 @@ The official shared design language for every Waypoint Studio product.
 | Shed Hunting | `shed-hunting` | content track | Antler tan |
 | Steepleaf | `steepleaf` | content track | Leaf green |
 | Savant Sommelier | `savant-sommelier` | editorial | Wine rose |
-| SignalTerrain | `signalterrain` | module | Slate blue |
 | Terrainbound | `terrainbound` | retired | Stone gray |
 
 See [STRATEGIC-DIRECTION.md](../docs/STRATEGIC-DIRECTION.md).

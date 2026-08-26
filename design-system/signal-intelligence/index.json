@@ -20,8 +20,7 @@
       "docs/SIGNAL-INTELLIGENCE-ROADMAP.md",
       "docs/SIGNAL-INTELLIGENCE-ENGINE.md",
       "docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md",
-      "docs/PLATFORM-ENGINES.md",
-      "docs/SIGNALTERRAIN_PLAYBOOK.md"
+      "docs/PLATFORM-ENGINES.md"
     ]
   },
   "package": {
@@ -44,9 +43,9 @@
     "sampleSignalCard": "samples/signal-card.sample.json",
     "dashboardWireframe": "../patterns/signal-intelligence-dashboard.html"
   },
-  "primaryHome": "signalterrain",
+  "primaryHome": "waypoint-deck",
   "plannedConsumers": [
-    "signalterrain",
+    "waypoint-deck",
     "studio",
     "scenes",
     "outdoor-intelligence",

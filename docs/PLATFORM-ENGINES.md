@@ -98,7 +98,7 @@ SignalTerrain is the primary product home. Signal Intelligence is the shared cap
 
 Examples for future work: SDR · NOAA · Amateur Radio · ADS-B · AIS · satellites · spectrum monitoring · signal logging · propagation
 
-Aligns with SignalTerrain’s existing foundation (receivers, incidents, private audio).
+Aligns with future Waypoint Deck radio / situational-awareness inputs when those exist.
 
 #### Cyber Intelligence (educational awareness)
 
@@ -114,22 +114,21 @@ Examples for future work: internet/cloud/CDN status · GPS interference · space
 
 | Application | Relationship |
 |-------------|--------------|
-| SignalTerrain | Primary consumer and UI home |
+| Waypoint Deck | Internal consumer when connectivity exists — not a public product |
 | Dashboard | Ambient environmental awareness (future) |
 | Waypoint Scenes | Propagation / condition context (future) |
 | Outdoor Intelligence | Weather / space-weather cross-links |
 | Landscape Interpretation | Terrain literacy for propagation teaching |
 
-**Cyber and expanded RF/infrastructure services remain architecture-only until real data paths exist — do not advertise them as available.** Topic foundation demo (`apps/signalterrain/topics.html`) uses labeled samples only.
+**Cyber and expanded RF/infrastructure services remain architecture-only until real data paths exist — do not advertise them as available.**
 
-### Product package
+### Internal package
 
 | Artifact | Path |
 |----------|------|
-| SignalTerrain foundation | `design-system/signalterrain/` |
-| Intelligence Core V0.1 | `design-system/signalterrain/intelligence/` |
-| Vision / topic / relationship / core docs | [SIGNALTERRAIN-VISION.md](SIGNALTERRAIN-VISION.md) · [SIGNALTERRAIN-INTELLIGENCE-CORE.md](SIGNALTERRAIN-INTELLIGENCE-CORE.md) |
-| Topics / graph / summary demos | `apps/signalterrain/{topics,graph,summary}.html` |
+| Deck signal schemas | `design-system/deck-signals/` |
+| Live ingest engine | `scripts/deck-signals/` |
+| Artifacts | `data/cyber/` · `data/deck-signals/` |
 
 ---
 
@@ -141,7 +140,7 @@ Shared engines (query / compose)
         ├── Outdoor Intelligence ──► Dashboard, kiosk, apps
         ├── Species Knowledge ──► Fieldry, ForageCast, Sheds, …
         ├── Landscape Interpretation (v0.1 arch) ──► Dashboard, Fieldry, ForageCast, Sheds, Scenes
-        ├── Signal Intelligence (Foundation V1 arch) ──► SignalTerrain (+ peers later)
+        ├── Signal Intelligence (Foundation V1 arch) ──► Waypoint Deck internals
         ├── Photo Intelligence ──► Scenes / Photo Coach
         └── Observation / Mapping ──► Fieldry and field apps
 ```

@@ -1,5 +1,11 @@
 # Signal Intelligence Engine
 
+**Internal architecture only.** This is not a public Waypoint product.
+Reusable schemas live under `design-system/signal-intelligence/` and may feed
+future Waypoint Deck situational awareness. Canonical portfolio:
+[`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+
+
 **Status:** Architecture / schemas (Foundation V1 blueprint; observation contract from v0.1)  
 **Package:** `design-system/signal-intelligence/`  
 **Primary product home:** SignalTerrain  

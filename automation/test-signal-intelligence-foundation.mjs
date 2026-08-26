@@ -46,7 +46,7 @@ const index = readJson("index.json");
 ok(index.meta?.foundation === "V1", "index foundation V1");
 ok(index.meta?.runtime === "none", "runtime none");
 ok(index.artifacts?.signalCardSchema === "schema-v1.json", "signal card artifact");
-ok(index.primaryHome === "signalterrain", "primary home SignalTerrain");
+ok(index.primaryHome === "waypoint-deck", "primary consumer Waypoint Deck");
 ok(
   Array.isArray(index.notInScopeV1) && index.notInScopeV1.some((x) => /scan|SOC|Exploit/i.test(x)),
   "notInScope includes scanner/SOC/exploit class"

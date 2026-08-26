@@ -19,7 +19,7 @@
 ### Forbidden in app bodies
 
 - Studio directory / “explore other apps” grids
-- Promo cards whose primary purpose is sending users to another app (Scenes, Sheds, Articles, Side Trails, SignalTerrain, Global Signals, OpenRoad PA, Incubator, etc.)
+- Promo cards whose primary purpose is sending users to another app (Scenes, Sheds, Articles, Side Trails, Incubator, etc.)
 - Mini Homepage collages that restate the studio portfolio
 
 ### Allowed
@@ -38,9 +38,8 @@
 ## Homepage specifically
 
 `/` introduces **Dashboard · Scenes · Sheds** and Publishing (Articles / Deep Forest Dispatch).
-Side Trails is an **archive** entry — not a catalog of active sister flagships.
-OpenRoad PA, Fieldry-as-promise, Savant-as-priority, and standalone Cyber/Global Signals
-must not be presented as active Studio products (see `docs/PRODUCT-DIRECTION.md`).
+Side Trails currently features **Waypoint Deck** only.
+Do not present paused or inactive experiments as Studio products (see `docs/PRODUCT-DIRECTION.md`).
 
 ## Dashboard specifically
 

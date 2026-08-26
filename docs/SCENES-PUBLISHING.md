@@ -84,4 +84,4 @@ Do not paywall discovery stories in this phase. Future free/subscriber lines sho
 
 ## Intentionally not built
 
-Deck · Cyber/GS · OpenRoad · Fieldry · Savant · Sheds V3.2 · social · giant CMS · vector search · mass filler articles · Dashboard Discover rewrite · aggressive paywalls.
+Deck OS · Fieldry · Savant · Sheds V3.2 · social · giant CMS · vector search · mass filler articles · Dashboard Discover rewrite · aggressive paywalls.

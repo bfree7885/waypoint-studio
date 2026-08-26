@@ -6,7 +6,7 @@
     "generatedAt": "2026-08-26T01:58:59.077Z",
     "trustState": "Live",
     "dataState": "REAL",
-    "engine": "signalterrain-cyber-live-engine",
+    "engine": "deck-signals-live-engine",
     "signalProcessingMs": 65,
     "nvdEnrichment": {
       "attempted": 25,
@@ -243,7 +243,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_kev_cve-2026-50751",
@@ -293,7 +293,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_kev_cve-2026-0257",
@@ -343,7 +343,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_kev_cve-2023-21529",
@@ -393,7 +393,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_kev_cve-2026-20131",
@@ -443,7 +443,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_nvd_cve-2019-1971",
@@ -489,7 +489,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1971",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_nvd_cve-2016-8735",
@@ -535,7 +535,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-8735",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       },
       {
         "id": "ad_live_nvd_cve-2019-2725",
@@ -581,7 +581,7 @@
           "This app has not inspected your devices — recommendations are general defensive awareness only."
         ],
         "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-2725",
-        "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+        "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
       }
     ],
     "byCategory": {
@@ -658,7 +658,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-50751",
@@ -708,7 +708,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-0257",
@@ -758,7 +758,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2023-21529",
@@ -808,7 +808,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-20131",
@@ -858,7 +858,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-21962",
@@ -923,7 +923,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-45321",
@@ -972,7 +972,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-59310",
@@ -1028,7 +1028,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-45659",
@@ -1078,7 +1078,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-35273",
@@ -1128,7 +1128,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-33825",
@@ -1178,7 +1178,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2025-60710",
@@ -1228,7 +1228,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-20349",
@@ -1278,7 +1278,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-20316",
@@ -1328,7 +1328,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-64849",
@@ -1391,7 +1391,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-55040",
@@ -1443,7 +1443,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-72530",
@@ -1495,7 +1495,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-72529",
@@ -1559,7 +1559,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-15409",
@@ -1609,7 +1609,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-15410",
@@ -1659,7 +1659,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-12569",
@@ -1709,7 +1709,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-48027",
@@ -1759,7 +1759,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2026-41940",
@@ -1809,7 +1809,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2024-1708",
@@ -1859,7 +1859,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_kev_cve-2024-57728",
@@ -1909,7 +1909,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         }
       ],
       "MITIGATE": [],
@@ -1958,7 +1958,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1971",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2016-8735",
@@ -2004,7 +2004,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2016-8735",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-2725",
@@ -2050,7 +2050,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-2725",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-1895",
@@ -2096,7 +2096,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1895",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-0901",
@@ -2142,7 +2142,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-0901",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2017-10039",
@@ -2188,7 +2188,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2017-10039",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2013-4730",
@@ -2234,7 +2234,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2013-4730",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2018-18861",
@@ -2280,7 +2280,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-18861",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-1938",
@@ -2326,7 +2326,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-1938",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-9546",
@@ -2372,7 +2372,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-9546",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-9548",
@@ -2418,7 +2418,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-9548",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-10683",
@@ -2464,7 +2464,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-10683",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-1973",
@@ -2510,7 +2510,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1973",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2018-11039",
@@ -2556,7 +2556,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-11039",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-w3fx-mc44-mf6j",
@@ -2606,7 +2606,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-w3fx-mc44-mf6j",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-777c-2fxx-qr28",
@@ -2655,7 +2655,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-777c-2fxx-qr28",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-grp7-v8xh-rj7h",
@@ -2704,7 +2704,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-grp7-v8xh-rj7h",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-1946",
@@ -2750,7 +2750,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1946",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-1953",
@@ -2796,7 +2796,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1953",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2019-1961",
@@ -2842,7 +2842,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2019-1961",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-9281",
@@ -2888,7 +2888,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-9281",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_cisa-advisories_2f6e6f64652f3235333536",
@@ -2933,7 +2933,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-05",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_cisa-advisories_2f6e6f64652f3235333535",
@@ -2978,7 +2978,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-04",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_cisa-advisories_2f6e6f64652f3235333533",
@@ -3025,7 +3025,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-02",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_cisa-advisories_2f6e6f64652f3235333534",
@@ -3070,7 +3070,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-237-03",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         }
       ],
       "WATCH": [
@@ -3117,7 +3117,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-1258",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2018-15756",
@@ -3162,7 +3162,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2018-15756",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-vwf3-4xxj-qg6h",
@@ -3208,7 +3208,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-vwf3-4xxj-qg6h",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-cv84-9p8j-fj68",
@@ -3257,7 +3257,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-cv84-9p8j-fj68",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-g7gc-gmgp-wgqg",
@@ -3305,7 +3305,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-g7gc-gmgp-wgqg",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-0909",
@@ -3350,7 +3350,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-0909",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-fh3r-g96v-f578",
@@ -3398,7 +3398,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-fh3r-g96v-f578",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-xc9g-j69q-37xw",
@@ -3447,7 +3447,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-xc9g-j69q-37xw",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-3vfr-4gwf-qxfp",
@@ -3495,7 +3495,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-3vfr-4gwf-qxfp",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-6ccx-9c9f-327w",
@@ -3543,7 +3543,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-6ccx-9c9f-327w",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_ghsa_GHSA-qj6x-xx2h-8hvv",
@@ -3591,7 +3591,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://github.com/advisories/GHSA-qj6x-xx2h-8hvv",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-10672",
@@ -3636,7 +3636,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-10672",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-10673",
@@ -3681,7 +3681,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-10673",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-10968",
@@ -3726,7 +3726,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-10968",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-10969",
@@ -3771,7 +3771,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-10969",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-11111",
@@ -3816,7 +3816,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-11111",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-11112",
@@ -3861,7 +3861,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-11112",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-11113",
@@ -3906,7 +3906,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-11113",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2015-7601",
@@ -3951,7 +3951,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2015-7601",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_nvd_cve-2020-9484",
@@ -3996,7 +3996,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://nvd.nist.gov/vuln/detail/CVE-2020-9484",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_outage_cloudflare-status_4d696e6f72205365",
@@ -4041,7 +4041,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://www.cloudflarestatus.com",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         },
         {
           "id": "ad_live_outage_aws_68747470733a2f2f",
@@ -4087,7 +4087,7 @@
             "This app has not inspected your devices — recommendations are general defensive awareness only."
           ],
           "sourceUrl": "https://status.aws.amazon.com/",
-          "disclaimer": "SignalTerrain has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
+          "disclaimer": "This ingest has not inspected your devices, networks, or accounts. These are general defensive recommendations derived from public threat intelligence."
         }
       ],
       "NO IMMEDIATE ACTION": []
@@ -4099,7 +4099,7 @@
         "Factors include active exploitation, KEV listing, severity, ransomware flags, vendor advisories, recency, evidence quality, and prevalence hints from named vendors/products.",
         "Categories are deterministic: PATCH / UPDATE · MITIGATE · REVIEW · WATCH · NO IMMEDIATE ACTION.",
         "Each item explains WHY THIS MOVED UP, cites evidence URLs, lists affected products from sources, and states confidence.",
-        "SignalTerrain does not inspect your devices — optional local inventory only biases scoring in the browser when you add it.",
+        "This ingest does not inspect your devices — optional local inventory only biases scoring in the browser when you add it.",
         "Recommendations are general defensive guidance, not compliance mandates or proof of compromise."
       ]
     },
@@ -60818,7 +60818,7 @@
     }
   ],
   "howToEvaluate": {
-    "title": "How SignalTerrain evaluates cyber information",
+    "title": "How this ingest evaluates cyber information",
     "points": [
       "CVSS measures technical severity, not personal exposure.",
       "KEV indicates known exploitation, not universal applicability to you.",
@@ -60832,7 +60832,7 @@
       "Recommendations explain why — they are not automated remediation.",
       "ATT&CK technique links are keyword heuristics unless marked otherwise.",
       "Persona tags are relevance hints for future personalization, not assigned roles.",
-      "SignalTerrain does not invent a composite threat level or world attack map without an authoritative source."
+      "This ingest does not invent a composite threat level or world attack map without an authoritative source."
     ]
   }
 }

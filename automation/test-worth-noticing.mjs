@@ -57,7 +57,6 @@ function run() {
   assert("covers sheds", products.has("sheds"));
   assert("covers photo-coach", products.has("photo-coach"));
   assert("covers fieldry", products.has("fieldry"));
-  assert("covers signalterrain", products.has("signalterrain"));
   assert("covers foragecast", products.has("foragecast"));
 
   const rules = JSON.parse(read("design-system/worth-noticing/rules/generation-rules.json"));

@@ -53,9 +53,7 @@ Do **not** reintroduce neon lime, corporate blue, cool gray UI, cyber cyan glow,
 | Articles | `articles` | Purple |
 | Deep Forest Dispatch | `deep-forest-dispatch` | Purple (+ orange warm) |
 | Side Trails | `side-trails` | Purple bright |
-| SignalTerrain | `signalterrain` | Tan (cool blues only in data) |
-| Global Signals | `global-signals` | Orange |
-| OpenRoad PA | `openroad-pa` | Brown |
+| Waypoint Deck | `waypoint-deck` | Purple bright |
 
 ## Typography
 

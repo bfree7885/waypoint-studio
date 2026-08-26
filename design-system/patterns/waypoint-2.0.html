@@ -152,7 +152,7 @@
         <ul>
           <li>Import <code>design-system/css/wds.css</code> (pulls tokens). Canonical docs: <code>docs/DESIGN-SYSTEM-2.0.md</code>.</li>
           <li>Use <code>--wp-*</code> for new work; do not reintroduce lime/navy hex or Inter.</li>
-          <li>SignalTerrain / Global Signals may keep product chrome, but surfaces should resolve through tokens.</li>
+          <li>Deleted products must not keep distinctive chrome in the public design system. Shared surfaces resolve through tokens.</li>
           <li>Never invent parallel design stacks. Extend product accents via <code>[data-product]</code>.</li>
         </ul>
       </section>
@@ -194,10 +194,8 @@
       ["scenes", "Scenes", "Sage — stillness / light"],
       ["shed-hunting", "Sheds", "Clay red — autumn field"],
       ["articles", "Articles", "Dusty plum — editorial"],
-      ["side-trails", "Side Trails", "Muted purple — laboratory"],
-      ["signalterrain", "SignalTerrain", "Slate + clay — geographic intel"],
-      ["global-signals", "Global Signals", "Terracotta bright — signal pulse"],
-      ["openroad-pa", "OpenRoad PA", "Brown — public roads & records"]
+      ["side-trails", "Side Trails", "Muted purple — independent projects"],
+      ["waypoint-deck", "Waypoint Deck", "Muted purple — field computer"]
     ];
     const productsEl = document.getElementById("products");
     const picker = document.getElementById("picker");

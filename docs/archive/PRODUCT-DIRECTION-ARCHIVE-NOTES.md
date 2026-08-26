@@ -1,18 +1,18 @@
-# Archived / non-Studio material (notes)
+# Non-Studio material (notes)
 
 Canonical active portfolio: [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md).
 
-## Intentionally not deleted (2026-08 product-direction reconciliation)
+Do not treat this file as a public archive of products. OpenRoad, SignalTerrain,
+and Global Signals are **deleted identities**, not postponed flagships.
+
+## Intentionally not deleted (code that is risky to remove)
 
 | Area | Why kept |
 |------|----------|
-| `apps/fieldry/` | Paused product — code preserved; no public “coming soon” |
-| `apps/savant-sommelier/` | Not active priority — code preserved under incubator honesty |
-| `apps/signalterrain/` + `side-trails/signalterrain/` + `docs/CYBER-*` + `data/cyber/` | Research / possible Waypoint Deck inputs — not Studio flagships |
-| `side-trails/global-signals/` | Same |
-| `side-trails/openroad-pa/` | Retired placeholder page for honest dead links |
-| Untracked `apps/openpa/`, `docs/openpa/`, `data/openpa/` (local) | Do not promote; treat as private/OpenRoad leftovers — reusable GIS only if extracted deliberately |
+| `apps/fieldry/` | Paused product — code preserved; do not feature |
+| `apps/savant-sommelier/` | Inactive — code preserved; do not feature |
+| `scripts/deck-signals/` + `data/cyber/` + `data/deck-signals/` + `design-system/deck-signals/` | Internal situational-awareness ingestion for future Waypoint Deck use. Not a public product. |
 
 ## Waypoint Deck
 
-Separate offline Linux / local-AI project. **Not** implemented in this Studio repo as a web app.
+Separate offline Linux / local-AI Side Trail. **Not** implemented in this Studio repo as a web app.

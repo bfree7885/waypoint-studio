@@ -1,5 +1,8 @@
 # Waypoint Studio — Product Portfolio Audit
 
+**Superseded.** Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
+OpenRoad, SignalTerrain, and Global Signals are deleted identities, not postponed products.
+
 **Date:** Strategic refactor pass  
 **Mission lenses:** Learn · Get outdoors · Research-grade observations
 

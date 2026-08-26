@@ -1,6 +1,6 @@
 {
   "version": "1.3.0",
-  "description": "Waypoint Studio product registry \u2014 core architecture, content tracks, shared modules, and planned shared engines.",
+  "description": "Waypoint Studio product registry — core architecture, content tracks, shared modules, and planned shared engines.",
   "portfolio": {
     "core": [
       "studio",
@@ -27,7 +27,7 @@
       "terrainbound"
     ],
     "sideTrails": [
-      "signalterrain"
+      "waypoint-deck"
     ]
   },
   "sharedEngines": {
@@ -35,7 +35,7 @@
       "id": "product-framework",
       "name": "Product Framework",
       "status": "active",
-      "purpose": "Observe \u2192 Understand \u2192 domain-specific direction with user autonomy.",
+      "purpose": "Observe → Understand → domain-specific direction with user autonomy.",
       "config": "ecosystem/product-framework.json",
       "consumers": [
         "studio",
@@ -44,7 +44,6 @@
         "foragecast",
         "shed-hunting",
         "steepleaf",
-        "signalterrain",
         "savant-sommelier",
         "photo-coach"
       ]
@@ -53,7 +52,7 @@
       "id": "waypoint-knowledge-curated",
       "name": "Waypoint Knowledge (curated research)",
       "status": "active",
-      "purpose": "Curated field library \u2014 Source Summary distinct from Waypoint Perspective. Quality over quantity.",
+      "purpose": "Curated field library — Source Summary distinct from Waypoint Perspective. Quality over quantity.",
       "config": "knowledge/curated/",
       "docs": [
         "docs/WAYPOINT-KNOWLEDGE-PLATFORM.md",
@@ -66,8 +65,7 @@
         "scenes",
         "photo-coach",
         "fieldry",
-        "foragecast",
-        "signalterrain"
+        "foragecast"
       ]
     },
     "outdoor-intelligence": {
@@ -119,7 +117,7 @@
       "id": "waypoint-ai-guide",
       "name": "Waypoint AI Guide",
       "status": "active",
-      "purpose": "Park-ranger product-AI voice: notice, explain, invite \u2014 never teach, grade, or assign.",
+      "purpose": "Park-ranger product-AI voice: notice, explain, invite — never teach, grade, or assign.",
       "package": "design-system/js/ai/wds-ai-guide.js",
       "docs": [
         "docs/WAYPOINT-AI-GUIDE.md",
@@ -134,7 +132,6 @@
         "foragecast",
         "shed-hunting",
         "steepleaf",
-        "signalterrain",
         "savant-sommelier"
       ]
     },
@@ -156,7 +153,6 @@
         "foragecast",
         "shed-hunting",
         "steepleaf",
-        "signalterrain",
         "savant-sommelier",
         "dashboard"
       ]
@@ -169,8 +165,7 @@
       "consumers": [
         "fieldry",
         "shed-hunting",
-        "studio",
-        "signalterrain"
+        "studio"
       ]
     },
     "landscape-interpretation": {
@@ -178,7 +173,7 @@
       "name": "Landscape Interpretation",
       "status": "experimental",
       "version": "0.1.1",
-      "purpose": "Help people understand why a landscape looks the way it does \u2014 ecology, geology, succession, and land-use history.",
+      "purpose": "Help people understand why a landscape looks the way it does — ecology, geology, succession, and land-use history.",
       "designNotes": "Sprint 9: educational field reader + offline evaluator over sample Northeast rules. No live GIS layers or AI. Hidden Landscapes remains a separate Scenes photo tool.",
       "package": "design-system/landscape-interpretation/",
       "toolHref": "apps/landscape-interpretation/",
@@ -201,7 +196,7 @@
       "name": "Signal Intelligence",
       "status": "architecture",
       "version": "1.0.0",
-      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions \u2014 not an enterprise SOC, scanner, or offensive security tool.",
+      "purpose": "Observe invisible environments: RF spectrum awareness, educational cyber awareness, and infrastructure conditions — not an enterprise SOC, scanner, or offensive security tool.",
       "designNotes": "Foundation V1: vision/architecture/roadmap, modules, Signal Card schema, nav IA, sources catalog, design language, dashboard wireframe. Observation v0.1 retained. No live ingestion, production dashboard, scanning, SDR UI, or SOC tools.",
       "package": "design-system/signal-intelligence/",
       "config": "signal-intelligence/",
@@ -260,7 +255,6 @@
         }
       },
       "plannedConsumers": [
-        "signalterrain",
         "studio",
         "scenes",
         "education"
@@ -270,7 +264,7 @@
       "id": "worth-noticing",
       "name": "Worth Noticing Engine",
       "status": "active",
-      "purpose": "Calm context-aware observations across products \u2014 never notifications, streaks, or engagement bait. Silence when nothing meaningful exists.",
+      "purpose": "Calm context-aware observations across products — never notifications, streaks, or engagement bait. Silence when nothing meaningful exists.",
       "package": "design-system/js/worth-noticing/wds-worth-noticing.js",
       "css": "design-system/css/wds-worth-noticing.css",
       "config": "worth-noticing/",
@@ -284,7 +278,6 @@
         "fieldry",
         "foragecast",
         "shed-hunting",
-        "signalterrain",
         "dashboard",
         "hidden-landscapes"
       ]
@@ -293,7 +286,7 @@
       "id": "waypoint-trust",
       "name": "Trust & Transparency",
       "status": "active",
-      "purpose": "Explainable recommendations \u2014 evidence, confidence labels, sources, and uncertainty. No fake precision.",
+      "purpose": "Explainable recommendations — evidence, confidence labels, sources, and uncertainty. No fake precision.",
       "package": "design-system/js/trust/wds-evidence-card.js",
       "css": "design-system/css/wds-evidence-card.css",
       "config": "trust/",
@@ -310,7 +303,6 @@
         "fieldry",
         "foragecast",
         "shed-hunting",
-        "signalterrain",
         "dashboard"
       ]
     }
@@ -345,7 +337,7 @@
       "name": "Waypoint Studio",
       "hero": "Waypoint Studio",
       "eyebrow": "Outdoor tools for careful observers",
-      "lead": "Weather, seasons, field notes, and photographs \u2014 calm software for people who spend time outside.",
+      "lead": "Weather, seasons, field notes, and photographs — calm software for people who spend time outside.",
       "description": "Outdoor tools for naturalists, photographers, and careful observers.",
       "studioHref": "/",
       "toolHref": "apps/scenes/",
@@ -416,7 +408,7 @@
       "hero": "Observe, understand, improve",
       "eyebrow": "Photography & visual observation",
       "lead": "Waypoint Scenes helps photographers observe an image more carefully, understand what is working, and make deliberate improvements.",
-      "description": "Photography tools for careful looking \u2014 Photo Coach and Profile available now.",
+      "description": "Photography tools for careful looking — Photo Coach and Profile available now.",
       "studioHref": "../../",
       "toolHref": "apps/scenes/",
       "toolLabel": "Open studio",
@@ -473,7 +465,7 @@
       "hero": "Read the land's calendar",
       "eyebrow": "Seasons & habitat",
       "lead": "Species, habitats, and timing for careful foragers. Learn first; harvest only with understanding.",
-      "description": "Learn when and where life offers itself \u2014 field-guide lessons, maps, and patient observation.",
+      "description": "Learn when and where life offers itself — field-guide lessons, maps, and patient observation.",
       "studioHref": "../../",
       "toolHref": null,
       "contentDomains": [
@@ -526,8 +518,8 @@
       "name": "Fieldry",
       "hero": "Record what you encounter",
       "eyebrow": "Life list & field notes",
-      "lead": "A private place to record encounters, build a life list, and keep careful notes \u2014 without competition.",
-      "description": "Your journal on the trail \u2014 meant to send you back outside.",
+      "lead": "A private place to record encounters, build a life list, and keep careful notes — without competition.",
+      "description": "Your journal on the trail — meant to send you back outside.",
       "studioHref": "../../",
       "toolHref": "apps/fieldry/",
       "contentDomains": [
@@ -573,13 +565,13 @@
     "photo-coach": {
       "slug": "photo-coach",
       "portfolioTier": "core",
-      "portfolioRole": "First tool in Waypoint Scenes \u2014 image critique",
+      "portfolioRole": "First tool in Waypoint Scenes — image critique",
       "dataProduct": "photo-coach",
       "name": "Photo Coach",
       "hero": "Upload. Notice. Understand.",
-      "eyebrow": "Waypoint Scenes \u00b7 Photo Coach",
-      "lead": "Upload a photograph for on-device analysis \u2014 a relative reading, strengths, and optional next noticing. Part of Waypoint Scenes.",
-      "description": "Photograph coaching in your browser \u2014 careful looking, clear signals, and invitations \u2014 never grades of you.",
+      "eyebrow": "Waypoint Scenes · Photo Coach",
+      "lead": "Upload a photograph for on-device analysis — a relative reading, strengths, and optional next noticing. Part of Waypoint Scenes.",
+      "description": "Photograph coaching in your browser — careful looking, clear signals, and invitations — never grades of you.",
       "studioHref": "../../",
       "toolHref": "apps/photo-coach/",
       "toolLabel": "Open Photo Coach",
@@ -627,7 +619,7 @@
       "name": "Shed Hunting",
       "hero": "The porch journal",
       "eyebrow": "Wildlife sign & seasonality",
-      "lead": "Reading sign, slope, and patience. Miles walked with empty hands still count \u2014 wildlife ethics without trophy culture.",
+      "lead": "Reading sign, slope, and patience. Miles walked with empty hands still count — wildlife ethics without trophy culture.",
       "description": "Patience, sign, slope, and the ethics of the quiet search.",
       "studioHref": "../../",
       "toolHref": null,
@@ -681,7 +673,7 @@
       "hero": "Today's Tea",
       "eyebrow": "Tea companion",
       "lead": "What should I brew today, and how can I get the best experience from it?",
-      "description": "Calm tea collection, brewing guidance, session history, practical learning, and an educational knowledge graph \u2014 private notes on-device by default.",
+      "description": "Calm tea collection, brewing guidance, session history, practical learning, and an educational knowledge graph — private notes on-device by default.",
       "studioHref": "../../",
       "toolHref": "apps/steepleaf/",
       "contentDomains": [
@@ -714,7 +706,7 @@
       "name": "Savant Sommelier",
       "hero": "The tasting room",
       "eyebrow": "Landscape & terroir",
-      "lead": "Terroir as ecology, geology, and weather in a glass \u2014 landscape literacy without pretension.",
+      "lead": "Terroir as ecology, geology, and weather in a glass — landscape literacy without pretension.",
       "description": "Connect landscape to flavor with attention and respect for place.",
       "studioHref": "../../",
       "toolHref": null,
@@ -751,12 +743,12 @@
     "waypoint-volunteer": {
       "slug": "waypoint-volunteer",
       "portfolioTier": "module",
-      "portfolioRole": "Volunteer discovery \u2014 what good can I do today?",
+      "portfolioRole": "Volunteer discovery — what good can I do today?",
       "dataProduct": "waypoint-volunteer",
       "name": "Waypoint Volunteer",
       "hero": "What good can I do today?",
       "eyebrow": "Contribute",
-      "lead": "Discover meaningful ways to contribute in your community \u2014 calmly, without rankings, streaks, or social pressure.",
+      "lead": "Discover meaningful ways to contribute in your community — calmly, without rankings, streaks, or social pressure.",
       "description": "Waypoint Volunteer is a discovery platform for community opportunities. It is not volunteer management, event registration, or social media.",
       "studioHref": "../../",
       "toolHref": "apps/waypoint-volunteer/",
@@ -796,85 +788,16 @@
         "waypoint-knowledge-curated"
       ]
     },
-    "signalterrain": {
-      "slug": "signalterrain",
-      "portfolioTier": "side-trails",
-      "portfolioRole": "Side Trails project \u2014 Radio & Spectrum + Cyber Awareness (not a studio primary peer)",
-      "dataProduct": "signalterrain",
-      "name": "SignalTerrain",
-      "hero": "Understand the world's signals",
-      "eyebrow": "Side Trails \u00b7 Signal Intelligence",
-      "lead": "Two major areas: Radio & Spectrum Intelligence (SDR, receivers, propagation, monitoring, RF observations) and Cyber Awareness (ransomware, vulnerabilities, attacks, outages, advisories, defensive guidance) \u2014 educational and defensive only.",
-      "description": "SignalTerrain lives under Side Trails in Waypoint Studio. It is the product home for Signal Intelligence: Radio & Spectrum Intelligence and educational Cyber Awareness connected through topics and a living knowledge graph. Not a scanner, SIEM, penetration-testing tool, or RSS reader.",
-      "studioHref": "side-trails/signalterrain/",
-      "toolHref": "apps/signalterrain/",
-      "toolLabel": "Open SignalTerrain",
-      "contentDomains": [
-        "geology",
-        "weather",
-        "field-skills",
-        "habitat"
-      ],
-      "homepageSections": [
-        "featured-photograph",
-        "todays-lesson",
-        "field-guide-spotlight",
-        "recent-news",
-        "featured-video",
-        "explore-nearby",
-        "outdoor-challenge",
-        "citizen-science"
-      ],
-      "fieldGuideTemplates": [
-        "geology",
-        "weather",
-        "equipment",
-        "habitat",
-        "field-investigation",
-        "research-brief"
-      ],
-      "photographyLayout": "map-horizon",
-      "citizenScience": {
-        "enabled": true,
-        "optIn": true
-      },
-      "contentEngineRegion": "pike-county-pa",
-      "package": "design-system/signalterrain/",
-      "docs": [
-        "docs/SIGNALTERRAIN-VISION.md",
-        "docs/SIGNALTERRAIN-PLATFORM-ARCHITECTURE.md",
-        "docs/SIGNALTERRAIN-TOPIC-MODEL.md",
-        "docs/SIGNALTERRAIN-RELATIONSHIP-MODEL.md",
-        "docs/SIGNALTERRAIN-EDITORIAL-STANDARDS.md",
-        "docs/KNOWLEDGE-GRAPH.md",
-        "docs/RELATIONSHIP-TYPES.md",
-        "docs/TOPIC-LIFECYCLE.md",
-        "docs/RESEARCH-INTEGRATION.md",
-        "docs/SIGNALTERRAIN-INTELLIGENCE-CORE.md",
-        "docs/SIGNALTERRAIN-INTELLIGENCE-ROADMAP.md",
-        "docs/SIGNALTERRAIN-CORRELATION-ENGINE.md",
-        "docs/SIGNALTERRAIN-RECOMMENDATIONS.md",
-        "docs/SIGNALTERRAIN_PLAYBOOK.md"
-      ],
-      "plannedSharedEngines": [],
-      "sharedEngines": [
-        "signal-intelligence",
-        "mapping-observation",
-        "waypoint-knowledge-curated",
-        "worth-noticing",
-        "waypoint-trust"
-      ]
-    },
     "terrainbound": {
       "slug": "terrainbound",
       "portfolioTier": "retired",
-      "portfolioRole": "Retired \u2014 skills absorbed into Fieldry and Dashboard",
+      "portfolioRole": "Retired — skills absorbed into Fieldry and Dashboard",
       "dataProduct": "terrainbound",
       "name": "Terrainbound",
       "hero": "The long trail shelter",
       "eyebrow": "Endurance trails",
-      "lead": "Routes, weather windows, turnaround ethics, and journals that honor turning back \u2014 endurance with humility.",
-      "description": "The long day \u2014 weather, humility, and conservation on the path.",
+      "lead": "Routes, weather windows, turnaround ethics, and journals that honor turning back — endurance with humility.",
+      "description": "The long day — weather, humility, and conservation on the path.",
       "studioHref": "../../",
       "toolHref": null,
       "contentDomains": [

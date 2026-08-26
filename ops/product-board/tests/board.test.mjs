@@ -629,21 +629,11 @@ await testAsync("fail-review routes visual defects to repair queue", async () =>
   });
 });
 
-await testAsync("signalterrain campaign is registered with product path + remaps", async () => {
-  const { getCampaign, assertCampaignProductExists, campaignCommandRemap, campaignScanRoots } =
-    await import("../lib/campaigns.mjs");
-  const c = getCampaign("signalterrain");
-  assert.ok(c, "signalterrain campaign exists");
-  assert.equal(c.productPath, "apps/signalterrain");
-  assert.ok(campaignScanRoots("signalterrain").includes("apps/signalterrain"));
-  const remap = campaignCommandRemap("signalterrain");
-  assert.ok(remap["production-build"].includes("verify-signalterrain-production"));
-  assert.ok(remap["platform-foundation"].includes("test-signalterrain-cyber-live"));
-  const abs = assertCampaignProductExists("signalterrain");
-  assert.ok(fs.existsSync(abs));
-  assert.ok(
-    fs.existsSync(path.join(REPO_ROOT, "automation/verify-signalterrain-production.mjs"))
-  );
+await testAsync("deleted product campaigns are not registered", async () => {
+  const { getCampaign } = await import("../lib/campaigns.mjs");
+  assert.equal(getCampaign("signalterrain"), null);
+  assert.equal(getCampaign("openroad-pa"), null);
+  assert.equal(getCampaign("global-signals"), null);
 });
 
 await testAsync("sheds campaign forces screenshot + dynamic visual commands", async () => {

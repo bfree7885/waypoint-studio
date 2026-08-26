@@ -10,7 +10,7 @@ Canonical docs:
 - [SIGNAL-INTELLIGENCE-ROADMAP.md](../../docs/SIGNAL-INTELLIGENCE-ROADMAP.md)
 - [SIGNAL-INTELLIGENCE-ENGINE.md](../../docs/SIGNAL-INTELLIGENCE-ENGINE.md)
 - [SIGNAL-INTELLIGENCE-INTEGRATIONS.md](../../docs/SIGNAL-INTELLIGENCE-INTEGRATIONS.md)
-- [SIGNALTERRAIN_PLAYBOOK.md](../../docs/SIGNALTERRAIN_PLAYBOOK.md)
+- [`scripts/deck-signals/README.md`](../../scripts/deck-signals/README.md)
 
 ## Quick map
 

@@ -65,7 +65,12 @@ function recordMissing(fromRel, ref, abs) {
 
 function walk(dir, pred, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (ent.name === "node_modules" || ent.name === ".git" || ent.name === "audits") continue;
+    if (
+      ent.name === "node_modules" ||
+      ent.name === ".git" ||
+      ent.name === "audits" ||
+      ent.name === "reports"
+    ) continue;
     const p = path.join(dir, ent.name);
     if (ent.isDirectory()) walk(p, pred, out);
     else if (pred(ent.name, p)) out.push(p);
@@ -164,11 +169,7 @@ function collectCssImports(cssFile, seen = new Set()) {
   "design-system/css/wds-dashboard-home.css",
   "design-system/css/wds-platform-boot.css",
   "design-system/css/wds-steepleaf.css",
-  "design-system/css/wds-volunteer.css",
-  "design-system/css/wds-signalterrain-foundation.css",
-  "design-system/css/wds-signalterrain-cyber-live.css",
-  "design-system/css/wds-signalterrain-dashboard.css",
-  "design-system/css/wds-signalterrain-landing.css"
+  "design-system/css/wds-volunteer.css"
 ].forEach((rel) => {
   const abs = path.join(ROOT, rel);
   if (!fs.existsSync(abs)) {

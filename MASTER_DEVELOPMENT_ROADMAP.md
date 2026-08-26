@@ -11,7 +11,7 @@
 - Static-first, no-build deployment where the Studio is static
 - Research integrity labeling (editorial ≠ live ≠ verified ≠ prediction)
 - One Studio subscription intent across experiences (when monetization ships)
-- Fieldry paused; OpenRoad retired; Deck is a separate project
+- Fieldry paused; Deck is a separate project
 
 ---
 

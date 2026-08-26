@@ -1,0 +1,103 @@
+name: Deck signals live refresh
+
+# Internal Waypoint Deck situational-awareness refresh (not a public product).
+# Safety:
+# - concurrency group prevents overlapping refreshes
+# - commits only known artifact paths under data/cyber/
+# - skips commit when artifacts unchanged
+# - refuses to commit an empty live set (preserves last good data in git)
+# - never substitutes sample/fixture threats
+# - 6-hour cadence bounds Pages redeploys; workflow_dispatch for manual runs
+
+on:
+  schedule:
+    - cron: "15 */6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deck-signals-live-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh live Deck signal artifacts
+        id: refresh
+        run: node scripts/deck-signals/live-engine.mjs
+        env:
+          CYBER_REFRESH_ENABLED: "true"
+          CYBER_PROVIDER_TIMEOUT_MS: "20000"
+          CYBER_MAX_KEV: "200"
+          CYBER_MAX_NVD: "40"
+          CYBER_MAX_NVD_ENRICH: "25"
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
+      - name: Real-data pipeline contract tests
+        run: |
+          node automation/test-deck-signals-live.mjs
+          node automation/test-deck-signals-pipeline.mjs
+          node automation/test-deck-signals-adaptive-defense.mjs
+
+      - name: Guard empty / sample-free dataset
+        id: guard
+        run: |
+          node <<'EOF'
+          const fs = require("fs");
+          const live = JSON.parse(fs.readFileSync("data/cyber/live.json", "utf8"));
+          const dash = JSON.parse(fs.readFileSync("data/cyber/dashboard.json", "utf8"));
+          const count = (live.records || []).length;
+          const trust = live.meta && live.meta.trustState;
+          const blob = JSON.stringify(live) + JSON.stringify(dash);
+          const sampleHit = blob.match(/cyber-intelligence\.sample|fixture.?threat|demo-threat|CVE-SAMPLE|Mockup only|SAMPLE DATA/i);
+          let safe = true;
+          let reason = "ok";
+          if (count <= 0) { safe = false; reason = "empty_records"; }
+          if (!dash.activelyExploitedKev || dash.activelyExploitedKev.length <= 0) {
+            safe = false; reason = "empty_dashboard_kev";
+          }
+          if (sampleHit) { safe = false; reason = "sample_content_detected"; }
+          if (trust === "Error" && count <= 0) { safe = false; reason = "error_empty"; }
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `record_count=${count}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `trust=${trust || "unknown"}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `safe=${safe}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `reason=${reason}\n`);
+          console.log({ count, trust, safe, reason, kev: dash.meta?.counts?.kev });
+          if (!safe) process.exit(0);
+          EOF
+
+      - name: Detect artifact changes
+        id: diff
+        if: steps.guard.outputs.safe == 'true'
+        run: |
+          if git diff --quiet -- data/cyber/live.json data/cyber/health.json data/cyber/history.json data/cyber/graph.json data/cyber/correlation.json data/cyber/dashboard.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit Deck signal artifacts
+        if: steps.guard.outputs.safe == 'true' && steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cyber/live.json data/cyber/health.json data/cyber/history.json \
+            data/cyber/graph.json data/cyber/correlation.json data/cyber/dashboard.json
+          git commit -m "chore(deck-signals): refresh situational-awareness artifacts"
+          git push
+
+      - name: Summarize
+        if: always()
+        run: |
+          echo "safe=${{ steps.guard.outputs.safe }} reason=${{ steps.guard.outputs.reason }} records=${{ steps.guard.outputs.record_count }} trust=${{ steps.guard.outputs.trust }} changed=${{ steps.diff.outputs.changed }}"

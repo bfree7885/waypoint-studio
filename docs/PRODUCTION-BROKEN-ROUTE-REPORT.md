@@ -1,10 +1,10 @@
 # Broken Route Report
 
-**Generated:** 2026-08-16
+**Generated:** 2026-08-26
 
-- Checked: **2722**
+- Checked: **1946**
 - Broken: **0**
-- Warnings: **7**
+- Warnings: **6**
 
 ## Broken
 
@@ -18,4 +18,3 @@ None.
 - `articles/categories/outdoor-intelligence/index.html` — empty aria-busy mount without boot shell
 - `articles/categories/share/index.html` — empty aria-busy mount without boot shell
 - `articles/categories/understand/index.html` — empty aria-busy mount without boot shell
-- `side-trails/signalterrain/dashboard/index.html` — empty aria-busy mount without boot shell

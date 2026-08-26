@@ -16,9 +16,11 @@ Outdoor tools for attention in the field — a coherent Studio, not a pile of un
 | **Scenes** | Explore & understand — craft, stories, articles & video |
 | **Sheds** | Go — specialized shed-hunting field map & habitat tools |
 
-**Publishing** (articles, Deep Forest Dispatch, content engine) is shared Studio infrastructure, not a fourth consumer product.
+**Publishing** (articles, videos, Deep Forest Dispatch, content engine) is shared Studio infrastructure, not a fourth consumer product.
 
-**Paused / retired:** Fieldry (paused), OpenRoad PA (retired), Savant (not a priority). Cyber / Global Signals are not standalone Studio apps (research may feed a separate **Waypoint Deck** project later).
+**Side Trails:** [Waypoint Deck](side-trails/waypoint-deck/) — independent offline-first Linux field computer (not a Studio app).
+
+**Do not feature:** Fieldry (paused), Savant (inactive).
 
 ## Run locally
 
