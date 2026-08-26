@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-26T07:09:36.898Z",
-  "entityCount": 398,
-  "relationshipCount": 1022,
+  "generatedAt": "2026-08-26T13:17:25.792Z",
+  "entityCount": 399,
+  "relationshipCount": 1025,
   "entities": [
     {
       "id": "cve:CVE-2026-33824",
@@ -123,6 +123,16 @@
       "id": "vendor:vmware",
       "kind": "vendor",
       "title": "vmware"
+    },
+    {
+      "id": "cve:CVE-2026-65400",
+      "kind": "cve",
+      "title": "CVE-2026-65400"
+    },
+    {
+      "id": "vendor:apple",
+      "kind": "vendor",
+      "title": "Apple"
     },
     {
       "id": "cve:CVE-2026-45659",
@@ -373,16 +383,6 @@
       "id": "cve:CVE-2026-21513",
       "kind": "cve",
       "title": "CVE-2026-21513"
-    },
-    {
-      "id": "cve:CVE-2026-65400",
-      "kind": "cve",
-      "title": "CVE-2026-65400"
-    },
-    {
-      "id": "vendor:apple",
-      "kind": "vendor",
-      "title": "Apple"
     },
     {
       "id": "cve:CVE-2026-68820",
@@ -1736,14 +1736,19 @@
       "title": "CVE-2026-76060"
     },
     {
-      "id": "cve:CVE-2026-14456",
+      "id": "cve:CVE-2026-46968",
       "kind": "cve",
-      "title": "CVE-2026-14456"
+      "title": "CVE-2026-46968"
     },
     {
-      "id": "cve:CVE-2026-14457",
+      "id": "cve:CVE-2026-46917",
       "kind": "cve",
-      "title": "CVE-2026-14457"
+      "title": "CVE-2026-46917"
+    },
+    {
+      "id": "cve:CVE-2026-47010",
+      "kind": "cve",
+      "title": "CVE-2026-47010"
     },
     {
       "id": "cve:CVE-2017-12617",
@@ -2284,6 +2289,37 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-59310",
       "to": "vendor:vmware",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_kev_cve-2026-65400",
+      "to": "cve:CVE-2026-65400",
+      "evidence": "identifier"
+    },
+    {
+      "type": "listed-in-kev",
+      "from": "cve:CVE-2026-65400",
+      "to": "catalog:cisa-kev",
+      "evidence": "exploitation.knownExploited"
+    },
+    {
+      "type": "heuristic-attack-map",
+      "from": "live_kev_cve-2026-65400",
+      "to": "attack:T1078",
+      "evidence": "keyword heuristic",
+      "confidence": "heuristic"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-65400",
+      "to": "vendor:apple",
+      "evidence": "entity extraction"
+    },
+    {
+      "type": "affects-vendor",
+      "from": "live_kev_cve-2026-65400",
+      "to": "vendor:apple",
       "evidence": "entity extraction"
     },
     {
@@ -3239,31 +3275,6 @@
       "type": "affects-vendor",
       "from": "live_kev_cve-2026-21513",
       "to": "vendor:microsoft",
-      "evidence": "entity extraction"
-    },
-    {
-      "type": "mentions-cve",
-      "from": "live_kev_cve-2026-65400",
-      "to": "cve:CVE-2026-65400",
-      "evidence": "identifier"
-    },
-    {
-      "type": "listed-in-kev",
-      "from": "cve:CVE-2026-65400",
-      "to": "catalog:cisa-kev",
-      "evidence": "exploitation.knownExploited"
-    },
-    {
-      "type": "heuristic-attack-map",
-      "from": "live_kev_cve-2026-65400",
-      "to": "attack:T1078",
-      "evidence": "keyword heuristic",
-      "confidence": "heuristic"
-    },
-    {
-      "type": "affects-vendor",
-      "from": "live_kev_cve-2026-65400",
-      "to": "vendor:apple",
       "evidence": "entity extraction"
     },
     {
@@ -7657,25 +7668,37 @@
     {
       "type": "mentions-cve",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-14456",
+      "to": "cve:CVE-2026-46968",
       "evidence": "identifier"
     },
     {
       "type": "mentions-cve",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-14457",
+      "to": "cve:CVE-2026-46917",
+      "evidence": "identifier"
+    },
+    {
+      "type": "mentions-cve",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-47010",
       "evidence": "identifier"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-14456",
+      "to": "cve:CVE-2026-46968",
       "evidence": "CVE extracted from advisory"
     },
     {
       "type": "advisory-covers",
       "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
-      "to": "cve:CVE-2026-14457",
+      "to": "cve:CVE-2026-46917",
+      "evidence": "CVE extracted from advisory"
+    },
+    {
+      "type": "advisory-covers",
+      "from": "live_ubuntu-usn_68747470733a2f2f7562756e",
+      "to": "cve:CVE-2026-47010",
       "evidence": "CVE extracted from advisory"
     },
     {
