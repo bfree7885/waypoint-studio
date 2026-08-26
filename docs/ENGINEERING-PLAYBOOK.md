@@ -1608,3 +1608,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Quiet weather is not quiet Discover. Natural events (eclipse horizon ~72h) must un-quiet the day even when Happening Now is empty.
 - Event times stay in UTC in the catalog and convert at display time. Defaulting display to UTC makes a Thursday-night PA eclipse look like Friday morning.
 - Clock-only editorial sunrise/sunset (`05:42`) is a seasonal snapshot, not a live clock — never use it as a weather fallback.
+
+### Lessons Learned — Smoke CDP vs redirect stubs (2026-08-26)
+
+- Headless smoke walks many `location.replace` stubs (`dashboard.html`, `scenes/photo-coach`, etc.). `Runtime.evaluate` during that navigation returns **Inspected target navigated or closed**. Treating that as a runner crash skips every later CI step, including Discover correctness.
+- Retry evaluate until the destination document exists. Keep suite-level retry for dead WebSocket / missing CDP targets. Do not skip Discover tests when smoke fails.

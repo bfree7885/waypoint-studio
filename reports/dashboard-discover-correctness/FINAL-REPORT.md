@@ -168,7 +168,7 @@ Discover (Outside Today + event) is the intelligence layer. Workspace/Conditions
 | `automation/test-studio-nav-architecture.mjs` | **PASS** |
 | `automation/validate-production-assets.mjs` | **OK** (0 missing; wds.js modules 172) |
 
-CI now runs Discover + Discover correctness.
+CI now runs Discover + Discover correctness. Those two steps keep running even if the headless smoke runner hits a CDP redirect flake, so the product assertions are not skipped.
 
 Hydrated production Westfall verification requires Pages deploy after merge (this agent cannot merge).
 
