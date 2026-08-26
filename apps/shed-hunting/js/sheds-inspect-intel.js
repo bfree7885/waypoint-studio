@@ -573,13 +573,15 @@
     };
 
     report.hudText = formatHudText(report);
+    report.hudFacts = formatHudFacts(report);
+    report.hudExplain = formatHudExplain(report);
     report.containsBannedLanguage = textContainsBanned(report.hudText);
     report.containsWildlifeInference = textContainsBanned(report.hudText);
     report.containsInterpretation = why.length > 0;
     return report;
   }
 
-  function formatHudText(report) {
+  function formatHudFacts(report) {
     var lines = [];
     if (report.lat != null && report.lng != null) {
       lines.push(Number(report.lat).toFixed(5) + ", " + Number(report.lng).toFixed(5));
@@ -590,49 +592,54 @@
     }
 
     if (report.noIntel) {
-      lines.push("");
       lines.push(NO_INTEL_UNAVAILABLE);
     } else if (report.failedIntel) {
-      lines.push("");
       lines.push(NO_INTEL_FAILED);
     } else {
-      lines.push("");
       lines.push("What is here");
       if (report.terrain && report.terrain.factLine) {
-        lines.push("");
-        lines.push("Terrain");
-        String(report.terrain.factLine)
+        var tRows = String(report.terrain.factLine)
           .split("\n")
-          .forEach(function (row) {
-            if (row) lines.push(row);
+          .filter(function (row) {
+            return !!row;
           });
+        if (tRows.length) lines.push("Terrain · " + tRows.join(" · "));
       }
       if (report.habitat && report.habitat.factLine) {
-        lines.push("");
-        lines.push("Habitat");
-        String(report.habitat.factLine)
+        var hRows = String(report.habitat.factLine)
           .split("\n")
-          .forEach(function (row) {
-            if (row) lines.push(row);
+          .filter(function (row) {
+            return !!row;
           });
-      }
-      if (report.why && report.why.length) {
-        lines.push("");
-        lines.push("Why this may matter");
-        report.why.forEach(function (w) {
-          lines.push(w);
-        });
+        if (hRows.length) lines.push("Habitat · " + hRows.join(" · "));
       }
     }
+    return lines.join("\n").replace(/^\n+/, "");
+  }
 
+  function formatHudExplain(report) {
+    var lines = [];
+    if (!report.noIntel && !report.failedIntel && report.why && report.why.length) {
+      lines.push("Why this may matter");
+      report.why.forEach(function (w) {
+        lines.push(w);
+      });
+    }
     if (report.limits && report.limits.length) {
-      lines.push("");
+      if (lines.length) lines.push("");
       lines.push("Limits");
       report.limits.forEach(function (L) {
         lines.push(L);
       });
     }
-    return lines.join("\n").replace(/^\n+/, "");
+    return lines.join("\n");
+  }
+
+  function formatHudText(report) {
+    var facts = formatHudFacts(report);
+    var more = formatHudExplain(report);
+    if (facts && more) return facts + "\n\n" + more;
+    return facts || more || "";
   }
 
   /** Open-Meteo multi-point URL helper (lat,lng pairs). */
@@ -685,6 +692,8 @@
     coverageLabel: coverageLabel,
     buildWhyLines: buildWhyLines,
     buildInspectReport: buildInspectReport,
+    formatHudFacts: formatHudFacts,
+    formatHudExplain: formatHudExplain,
     formatHudText: formatHudText,
     elevationNeighborhoodUrl: elevationNeighborhoodUrl,
     terrainFromElevationArray: terrainFromElevationArray,

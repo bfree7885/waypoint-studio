@@ -749,6 +749,11 @@
     var textEl = $("search-prompt-text");
     var btnYou = $("btn-analyze-you");
     if (!prompt) return;
+    /* Inspect owns map taps until Done — do not compete with SEARCH copy. */
+    if (state.inspectArmed || state.inspectLatLng) {
+      prompt.setAttribute("hidden", "");
+      return;
+    }
     var hasSearch = !!state.searchLocation;
     var needs = SearchArea
       ? SearchArea.needsSearchPrompt(state.accuracyM, hasSearch)
@@ -3395,7 +3400,15 @@
     var body = $("inspect-body");
     var hud = $("inspect-hud");
     if (body) body.textContent = "Tap the map to inspect a point.";
-    if (hud) hud.removeAttribute("hidden");
+    if (hud) {
+      hud.classList.remove("is-expanded");
+      hud.removeAttribute("hidden");
+    }
+    var more = $("inspect-more");
+    if (more) {
+      more.open = false;
+      more.hidden = true;
+    }
     /* Hide SEARCH prompt while armed — next tap is INSPECT, not SEARCH. */
     var prompt = $("search-prompt");
     if (prompt) prompt.setAttribute("hidden", "");
@@ -3469,12 +3482,18 @@
 
   function renderInspectHud() {
     var body = $("inspect-body");
+    var moreBody = $("inspect-more-body");
+    var more = $("inspect-more");
     var hud = $("inspect-hud");
     if (!body || !hud || !state.inspectLatLng) return;
     var report = buildCurrentInspectReport();
     state.inspectReport = report;
-    if (report && report.hudText) {
-      body.textContent = report.hudText;
+    if (report) {
+      body.textContent = report.hudFacts || report.hudText || "";
+      if (moreBody) moreBody.textContent = report.hudExplain || "";
+      if (more) {
+        more.hidden = !(report.hudExplain && String(report.hudExplain).trim());
+      }
     } else {
       var ll = state.inspectLatLng;
       var lines = [];
@@ -3494,8 +3513,34 @@
       if (rel.fromSearch) lines.push(rel.fromSearch);
       lines.push("Context only — not habitat proof.");
       body.textContent = lines.join("\n");
+      if (moreBody) moreBody.textContent = "";
+      if (more) more.hidden = true;
     }
     hud.removeAttribute("hidden");
+    syncSearchPrompt();
+  }
+
+  function revealInspectPoint(latlng) {
+    if (!map || !latlng) return;
+    var hud = $("inspect-hud");
+    var mapEl = document.getElementById("sheds-map");
+    if (!hud || !mapEl || hud.hasAttribute("hidden")) return;
+    try {
+      var mapBox = mapEl.getBoundingClientRect();
+      var hudBox = hud.getBoundingClientRect();
+      var pt = map.latLngToContainerPoint(L.latLng(latlng.lat, latlng.lng));
+      var minY = Math.max(0, hudBox.bottom - mapBox.top) + 28;
+      var maxY = Math.max(minY + 24, mapBox.height - 80);
+      var minX = 16;
+      var maxX = Math.max(minX + 24, mapBox.width - 64);
+      var dx = 0;
+      var dy = 0;
+      if (pt.y < minY) dy = minY - pt.y;
+      else if (pt.y > maxY) dy = maxY - pt.y;
+      if (pt.x > maxX) dx = maxX - pt.x;
+      else if (pt.x < minX) dx = minX - pt.x;
+      if (dx || dy) map.panBy([dx, dy], { animate: false });
+    } catch (e) { /* */ }
   }
 
   function fetchInspectElevation(lat, lng, gen) {
@@ -3608,12 +3653,20 @@
 
   function showInspectAt(latlng) {
     if (!latlng || !map) return;
-    state.inspectArmed = false;
+    /* Stay in Inspect until Done so walking taps re-inspect instead of setting SEARCH. */
+    state.inspectArmed = true;
     state.inspectLatLng = { lat: latlng.lat, lng: latlng.lng };
     state.inspectTerrainDerived = null;
     state.inspectTerrainStatus = "idle";
     state.inspectReport = null;
-    shellModeClass(false, false);
+    shellModeClass(false, true);
+    var hud = $("inspect-hud");
+    var more = $("inspect-more");
+    if (more) {
+      more.open = false;
+      more.hidden = false;
+    }
+    if (hud) hud.classList.remove("is-expanded");
     if (inspectMarker) {
       try {
         map.removeLayer(inspectMarker);
@@ -3642,6 +3695,10 @@
     fetchInspectElevation(latlng.lat, latlng.lng, gen);
     fetchInspectTerrain(latlng.lat, latlng.lng, gen);
     renderInspectHud();
+    setTimeout(function () {
+      if (gen !== state.inspectElevGen) return;
+      revealInspectPoint(latlng);
+    }, 50);
   }
 
   function bindControls() {
@@ -3712,6 +3769,13 @@
     if ($("btn-inspect-close")) {
       $("btn-inspect-close").addEventListener("click", function () {
         stopInspectMode();
+      });
+    }
+    if ($("inspect-more")) {
+      $("inspect-more").addEventListener("toggle", function () {
+        var hud = $("inspect-hud");
+        var more = $("inspect-more");
+        if (hud && more) hud.classList.toggle("is-expanded", !!more.open);
       });
     }
     if ($("btn-add-obs")) {

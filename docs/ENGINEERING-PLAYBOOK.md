@@ -1596,6 +1596,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Prefer inspection language (“change in cover can be worth inspecting”) over animal behavior. Label the nearby-edge line `EDITORIAL_HEURISTIC`.
 - Keep Limits visible whenever Why is shown: context can help you decide where to look more closely; it does not indicate deer or sheds are present.
 
+### Lessons Learned — Sheds V3.2 Inspect field UX (2026-08-26)
+
+- Stay in Inspect until Done: clearing `inspectArmed` after the first tap made the next tap set SEARCH and brought the SEARCH prompt back over the HUD.
+- Progressive disclosure (facts first, Why/Limits behind a 44px summary) keeps the map dominant on 375–430 without deleting intelligence.
+- After each inspect tap, pan the marker below the HUD so the inspected point stays visible beside locate/zoom.
+- Hiding `#search-prompt` is not enough: Field Briefing peek still said “Choose a Search Area” / “tap the map to inspect.” Hide `#plan-card` while `.is-inspecting` and zero `--sheds-sheet-peek` so SEARCH copy does not compete.
+
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
 - Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.

@@ -5,7 +5,8 @@
 **Audit:** [`reports/sheds-v3-2-field-intelligence/AUDIT.md`](../../reports/sheds-v3-2-field-intelligence/AUDIT.md)  
 **Recovery:** [`reports/sheds-v3-2-field-intelligence/RECOVERY.md`](../../reports/sheds-v3-2-field-intelligence/RECOVERY.md)  
 **Facts:** [`reports/sheds-v3-2-field-intelligence/FACTS.md`](../../reports/sheds-v3-2-field-intelligence/FACTS.md)  
-**Explainability:** [`reports/sheds-v3-2-field-intelligence/EXPLAIN.md`](../../reports/sheds-v3-2-field-intelligence/EXPLAIN.md)
+**Explainability:** [`reports/sheds-v3-2-field-intelligence/EXPLAIN.md`](../../reports/sheds-v3-2-field-intelligence/EXPLAIN.md)  
+**Field UX:** [`reports/sheds-v3-2-field-intelligence/FIELD-UX.md`](../../reports/sheds-v3-2-field-intelligence/FIELD-UX.md)
 
 ---
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sheds V3.2 — CDP Inspect Facts capture (375/390/430 + desktop).
+ * Sheds V3.2 — CDP Inspect field-UX capture (375/390/430 + desktop).
  * Usage: node automation/capture-sheds-v3-2-inspect.mjs
  */
 import fs from "fs";
@@ -15,9 +15,10 @@ import { extname, join, normalize } from "path";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "reports/sheds-v3-2-field-intelligence");
 const SCREENS = path.join(OUT, "screens");
-const PORT = 8132;
-const DBG = 9348;
+const PORT = 8159;
+const DBG = 9377;
 const PIKE = { lat: 41.33, lng: -74.8, zoom: 14 };
+const PIKE2 = { lat: 41.334, lng: -74.793 };
 
 fs.mkdirSync(SCREENS, { recursive: true });
 
@@ -134,33 +135,55 @@ try {
 
   const inspectHud = `(() => {
     const body = document.getElementById('inspect-body');
+    const moreBody = document.getElementById('inspect-more-body');
+    const more = document.getElementById('inspect-more');
     const hud = document.getElementById('inspect-hud');
-    const text = body ? body.textContent : '';
+    const prompt = document.getElementById('search-prompt');
+    const plan = document.getElementById('plan-card');
+    const closeBtn = document.getElementById('btn-inspect-close');
+    const locate = document.getElementById('btn-locate') || document.querySelector('.sheds-map-ctrls');
+    const obsFab = document.getElementById('btn-add-obs-fab');
+    const text = [body && body.textContent, moreBody && moreBody.textContent].filter(Boolean).join('\\n');
+    const facts = body ? body.textContent : '';
     const marker = document.querySelector('.sheds-inspect-marker');
     const you = document.querySelector('.sheds-user-marker');
+    const hudBox = hud && !hud.hasAttribute('hidden') ? hud.getBoundingClientRect() : null;
+    const mapBox = document.getElementById('sheds-map')?.getBoundingClientRect();
+    const locBox = locate ? locate.getBoundingClientRect() : null;
+    const closeBox = closeBtn ? closeBtn.getBoundingClientRect() : null;
     return {
       hidden: !hud || hud.hasAttribute('hidden'),
       text,
+      facts,
       overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
-      mapShare: (() => {
-        const m = document.getElementById('sheds-map');
-        return m ? +(m.getBoundingClientRect().height / window.innerHeight).toFixed(3) : 0;
-      })(),
-      hudHeight: hud && !hud.hasAttribute('hidden') ? +hud.getBoundingClientRect().height.toFixed(1) : 0,
-      hasTerrain: /(?:^|\\n)Terrain\\n/m.test(text) || /Terrain/.test(text),
-      hasHabitat: /Habitat/.test(text),
-      hasElevation: /Elevation:/.test(text),
-      hasSlope: /Slope:/.test(text),
-      hasAspect: /Aspect:/.test(text),
-      hasLandCover: /Land cover:/.test(text),
-      hasWhatIsHere: /What is here/.test(text),
+      mapShare: mapBox ? +(mapBox.height / window.innerHeight).toFixed(3) : 0,
+      hudHeight: hudBox ? +hudBox.height.toFixed(1) : 0,
+      hudMapRatio: hudBox && mapBox ? +(hudBox.height / mapBox.height).toFixed(3) : 0,
+      hasTerrain: /Terrain/.test(facts),
+      hasHabitat: /Habitat/.test(facts),
+      hasElevation: /Elevation:/.test(facts),
+      hasSlope: /Slope:/.test(facts),
+      hasAspect: /Aspect:/.test(facts),
+      hasLandCover: /Land cover:/.test(facts),
+      hasWhatIsHere: /What is here/.test(facts),
+      factsHaveWhy: /Why this may matter/i.test(facts),
       hasWhy: /Why this may matter/i.test(text),
-      hasInterpretation: /generally walkable|winter sun|worth inspecting|easy to walk|may slow walking/i.test(text),
       hasLimits: /Limits/.test(text),
+      moreOpen: !!(more && more.open),
+      promptHidden: !prompt || prompt.hasAttribute('hidden') || getComputedStyle(prompt).display === 'none',
+      planHidden: !plan || getComputedStyle(plan).display === 'none' || plan.hasAttribute('hidden'),
+      factsOverflow: !!(body && body.scrollHeight > body.clientHeight + 12),
+      bodyClient: body ? +body.clientHeight.toFixed(1) : 0,
+      bodyScroll: body ? +body.scrollHeight.toFixed(1) : 0,
+      inspecting: document.getElementById('sheds-map-shell')?.classList.contains('is-inspecting'),
+      closeMinHeight: closeBox ? +closeBox.height.toFixed(1) : 0,
+      locateClearOfHud: !hudBox || !locBox || locBox.left + 4 >= hudBox.right || locBox.top + 4 >= hudBox.bottom,
+      obsFabPresent: !!obsFab,
       banned: /shed found|antler here|find probability|deer are here|bedding area|feeding area/i.test(text),
       inspectMarker: !!marker,
       youMarker: !!you,
-      closeEnabled: !!document.getElementById('btn-inspect-close')
+      closeEnabled: !!closeBtn,
+      coords: (facts.match(/\\d+\\.\\d+, -\\d+\\.\\d+/) || [''])[0]
     };
   })()`;
 
@@ -225,6 +248,21 @@ try {
     const hud = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
     results[vp.prefix] = (hud.result && hud.result.value) || hud.result;
     await shot(`${vp.prefix}-inspect-after-tap.png`);
+    if (vp.prefix === "390") {
+      await send("Runtime.evaluate", {
+        expression: `document.getElementById('inspect-more')?.querySelector('summary')?.click(); true`,
+        returnByValue: true
+      });
+      await delay(250);
+      const expanded = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
+      results["390-expanded"] = (expanded.result && expanded.result.value) || expanded.result;
+      await shot("390-inspect-why-open.png");
+      await send("Runtime.evaluate", {
+        expression: `document.getElementById('inspect-more')?.querySelector('summary')?.click(); true`,
+        returnByValue: true
+      });
+      await delay(150);
+    }
   }
 
   await setViewport(390, 844, true);
@@ -236,6 +274,24 @@ try {
   const dismissed = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
   results.dismissed = (dismissed.result && dismissed.result.value) || dismissed.result;
   await shot("390-inspect-dismissed.png");
+
+  await setViewport(390, 844, true);
+  await openInspectAtPike();
+  const first = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
+  results.rapidFirst = (first.result && first.result.value) || first.result;
+  await send("Runtime.evaluate", {
+    expression: `(() => {
+      const map = window.__SHEDS_MAP__;
+      if (!map) return { ok: false };
+      map.fire('click', { latlng: { lat: ${PIKE2.lat}, lng: ${PIKE2.lng} } });
+      return { ok: true };
+    })()`,
+    returnByValue: true
+  });
+  await delay(5000);
+  const second = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
+  results.rapidSecond = (second.result && second.result.value) || second.result;
+  await shot("390-inspect-second-point.png");
 
   await setViewport(1280, 800, false);
   await openInspectAtPike();

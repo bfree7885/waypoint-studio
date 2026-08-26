@@ -1,6 +1,6 @@
 # Sheds V3.2 — Field Intelligence FINAL REPORT
 
-**Why this may matter (2026-08-26):** Inspect keeps the Facts HUD and adds deterministic interpretation of supported facts only. No suitability score, no wildlife/shed presence claims. See [`EXPLAIN.md`](./EXPLAIN.md), [`FACTS.md`](./FACTS.md).
+**Field UX pass (2026-08-26):** Inspect stays armed until Done; SEARCH prompt and Field Briefing hide while inspecting; Why/Limits are behind a summary; HUD is shorter so the map stays primary. See [`FIELD-UX.md`](./FIELD-UX.md).
 
 **Verdict:** PASS for the Inspect explainability slice  
 **Date:** 2026-08-26  
