@@ -1369,6 +1369,8 @@
     var out =
       '<g class="wdb-r-luna" data-illum="' +
       Math.round(k * 100) +
+      '" data-phase-key="' +
+      esc(key) +
       '" data-limb="' +
       (k <= 0.002 ? "new" : k >= 0.998 ? "full" : waxing ? "waxing" : "waning") +
       '">';

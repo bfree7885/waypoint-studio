@@ -39,7 +39,8 @@
   },
   "season": {
     "label": "late spring",
-    "weekOf": "2026-05-30"
+    "weekOf": "2026-05-30",
+    "editorialValidUntil": "2026-06-15T00:00:00.000Z"
   },
   "phenology": {
     "stage": "Late spring transition — ephemerals fading, mountain laurel opening, morels ending below 1,200 ft",

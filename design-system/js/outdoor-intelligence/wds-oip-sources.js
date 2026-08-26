@@ -43,7 +43,7 @@
         available: loc.elevationFt != null && isFinite(Number(loc.elevationFt))
       },
       geography: { bioregion: loc.bioregion || null },
-      calendar: { season: loc.seasonNote || null },
+      calendar: { season: null, editorialSeason: loc.seasonNote || null },
       weather: loc.weather
         ? {
             status: "editorial",
@@ -95,8 +95,10 @@
         available: profile.elevationFt != null && isFinite(Number(profile.elevationFt))
       },
       calendar: {
-        season: bundle.season || null,
+        season: null,
+        editorialSeason: bundle.season || null,
         weekOf: bundle.weekOf || null,
+        editorialValidUntil: bundle.editorialValidUntil || null,
         month: M.monthFromDate(null, bundle.weekOf)
       },
       phenology: {
@@ -104,6 +106,7 @@
         stage: profile.phenologyStage || bundle.season || null,
         summary: sw.title || null,
         notes: profile.phenologyStage ? [profile.phenologyStage] : [],
+        validUntil: bundle.editorialValidUntil || null,
         watch: {
           activeNow: mapSpeciesList(sw.activeNow),
           ending: mapSpeciesList(sw.ending),
@@ -143,11 +146,14 @@
     }
 
     if (profile.daylight) {
+      var clockOnly = function (v) {
+        return /^\d{1,2}:\d{2}(:\d{2})?$/.test(String(v || "").trim());
+      };
       layer.daylight = {
         status: "editorial",
-        sunrise: profile.daylight.sunrise || null,
-        sunset: profile.daylight.sunset || null,
-        dayLengthHours: profile.daylight.dayLengthHours != null ? profile.daylight.dayLengthHours : null,
+        sunrise: clockOnly(profile.daylight.sunrise) ? null : profile.daylight.sunrise || null,
+        sunset: clockOnly(profile.daylight.sunset) ? null : profile.daylight.sunset || null,
+        dayLengthHours: clockOnly(profile.daylight.sunrise) ? null : (profile.daylight.dayLengthHours != null ? profile.daylight.dayLengthHours : null),
         timezone: profile.daylight.timezone || null,
         source: profile.daylight.source || "editorial"
       };

@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "kind": "dashboard-natural-events",
+  "horizonHoursDefault": 72,
+  "notes": "Curated structured natural events for Dashboard Discover. Times are authoritative UT1/UTC. Display in the user's local timezone. Entries expire after windows.penumbralEnd / end. Do not invent times.",
+  "events": [
+    {
+      "id": "lunar-eclipse-2026-08-28",
+      "type": "lunar-eclipse",
+      "subtype": "partial",
+      "title": "Deep partial lunar eclipse",
+      "significance": "major",
+      "horizonHours": 72,
+      "windows": {
+        "start": "2026-08-28T01:23:29Z",
+        "penumbralStart": "2026-08-28T01:23:29Z",
+        "partialStart": "2026-08-28T02:33:21Z",
+        "greatest": "2026-08-28T04:12:52Z",
+        "partialEnd": "2026-08-28T05:52:09Z",
+        "penumbralEnd": "2026-08-28T07:01:59Z",
+        "end": "2026-08-28T07:01:59Z"
+      },
+      "magnitude": 0.932,
+      "obscurationPct": 96.2,
+      "visibility": {
+        "mode": "region-boxes",
+        "summary": "Visible where the Moon is above the horizon: eastern Pacific, Americas, Europe, Africa.",
+        "regions": [
+          {
+            "id": "americas",
+            "lat": [-56, 72],
+            "lng": [-180, -30]
+          },
+          {
+            "id": "europe",
+            "lat": [34, 72],
+            "lng": [-25, 45]
+          },
+          {
+            "id": "africa",
+            "lat": [-35, 38],
+            "lng": [-20, 52]
+          }
+        ]
+      },
+      "topics": ["lunar-eclipse", "moon", "astronomy"],
+      "sources": [
+        {
+          "name": "NASA GSFC / Fred Espenak EclipseWise",
+          "id": "LE2026Aug28P",
+          "url": "https://eclipsewise.com/lunar/LEprime/2001-2100/LE2026Aug28Pprime.html",
+          "role": "primary-contacts"
+        },
+        {
+          "name": "TimeandDate eclipse tables",
+          "url": "https://www.timeanddate.com/eclipse/lunar/2026-august-28",
+          "role": "corroboration"
+        }
+      ],
+      "confidence": "high"
+    }
+  ]
+}

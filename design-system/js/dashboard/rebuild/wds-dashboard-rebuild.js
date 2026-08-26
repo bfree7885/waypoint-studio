@@ -104,11 +104,41 @@
   function renderDiscoverQuiet() {
     return (
       '<section class="wdb-r-discover-quiet" data-wdb-r-discover-quiet aria-labelledby="wdb-r-discover-quiet-title">' +
-      '<p class="wdb-r-discover-quiet__kicker">Right now</p>' +
+      '<p class="wdb-r-discover-quiet__kicker">Discover</p>' +
       '<h2 id="wdb-r-discover-quiet-title" class="wdb-r-discover-quiet__title">Nothing unusually strong</h2>' +
-      '<p class="wdb-r-discover-quiet__lede">Live instruments are still worth a look — a quiet day is honest weather, not a blank Dashboard.</p>' +
+      '<p class="wdb-r-discover-quiet__lede">No significant weather, sky, or natural events are active or approaching in the near term. Live instruments are still worth a look.</p>' +
       "</section>"
     );
+  }
+
+  function eventContext(options) {
+    options = options || {};
+    var ctx = options.placeContext || {};
+    return {
+      platform: options.platform || null,
+      location: ctx,
+      placeContext: ctx,
+      now: options.now || new Date(),
+      catalog: options.catalog || null
+    };
+  }
+
+  function hasUpcomingDiscoverEvents(options) {
+    var Events = api("dashboardRebuildEvents");
+    if (!Events || typeof Events.resolveEvents !== "function") return false;
+    try {
+      var list = Events.resolveEvents(eventContext(options));
+      return Array.isArray(list) && list.length > 0;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function eventsCatalogReady(options) {
+    if (options && options.catalog) return true;
+    var NE = api("naturalEvents");
+    if (!NE) return true;
+    return !!(NE.getCatalog && NE.getCatalog());
   }
 
   function happeningContext(options) {
@@ -145,6 +175,7 @@
     var platform = options.platform || null;
     var Today = api("dashboardRebuildToday");
     var Happening = api("dashboardRebuildHappening");
+    var Events = api("dashboardRebuildEvents");
     var Workspace = api("dashboardRebuildWorkspace");
     var Customize = api("dashboardRebuildCustomize");
     var Kiosk = api("dashboardRebuildKiosk");
@@ -159,11 +190,21 @@
 
     var happeningHtml = "";
     var quietHtml = "";
+    var eventsHtml = "";
     if (view === "workspace" || view === "kiosk") {
       happeningHtml =
         Happening && Happening.render ? Happening.render(happeningContext(options)) : "";
-      /* Quiet Discover strip is separate from HN — never invents signals; only when live weather is hydrated. */
-      if (!happeningHtml && hasLiveWeather(platform)) {
+      eventsHtml =
+        Events && Events.render ? Events.render(eventContext(options)) : "";
+      /* Quiet Discover strip: all supported categories empty, live weather hydrated,
+         and the events catalog has actually loaded (unknown/in-flight is not “none”). */
+      if (
+        !happeningHtml &&
+        !eventsHtml &&
+        hasLiveWeather(platform) &&
+        !hasUpcomingDiscoverEvents(options) &&
+        eventsCatalogReady(options)
+      ) {
         quietHtml = renderDiscoverQuiet();
       }
     }
@@ -211,6 +252,7 @@
       (platform ? ' data-hydrated="true"' : "") +
       ">" +
       todayHtml +
+      eventsHtml +
       happeningHtml +
       quietHtml +
       mainHtml +
@@ -313,6 +355,10 @@
       if (Happening && Happening.bind) {
         Happening.bind(mountState.host);
       }
+      var Events = api("dashboardRebuildEvents");
+      if (Events && Events.bind) {
+        Events.bind(mountState.host);
+      }
       var Depth = api("dashboardRebuildDepth");
       if (Depth && Depth.bind) {
         Depth.bind(mountState.host);
@@ -375,14 +421,25 @@
     paint({ animate: true });
   }
 
+  function refreshEventsCatalog() {
+    var NE = api("naturalEvents");
+    if (!NE || typeof NE.loadCatalog !== "function") return;
+    if (NE.getCatalog && NE.getCatalog()) return;
+    ensureEventsCatalog(function () {
+      if (mountState.host) paint({ animate: false });
+    });
+  }
+
   function setPlaceContext(ctx) {
     mountState.placeContext = ctx || null;
     paint();
+    refreshEventsCatalog();
   }
 
   function setPlatform(platform) {
     mountState.platform = platform || null;
     paint();
+    refreshEventsCatalog();
   }
 
   function onHashChange() {
@@ -401,6 +458,35 @@
     global.addEventListener("hashchange", onHashChange);
   }
 
+  function ensureEventsCatalog(done) {
+    var NE = api("naturalEvents");
+    if (!NE || typeof NE.loadCatalog !== "function") {
+      if (done) done();
+      return;
+    }
+    if (NE.getCatalog && NE.getCatalog()) {
+      if (done) done();
+      return;
+    }
+    try {
+      var p = NE.loadCatalog();
+      if (p && typeof p.then === "function") {
+        p.then(
+          function () {
+            if (done) done();
+          },
+          function () {
+            if (done) done();
+          }
+        );
+        return;
+      }
+    } catch (e) {
+      /* omit events rather than invent */
+    }
+    if (done) done();
+  }
+
   function mount(host, options) {
     options = options || {};
     if (!host) return null;
@@ -411,6 +497,7 @@
     mountState.libraryFilter = "all";
     bindRouting();
     paint({ animate: false });
+    refreshEventsCatalog();
     return host.querySelector("[data-wdb-r]");
   }
 

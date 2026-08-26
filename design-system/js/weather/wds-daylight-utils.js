@@ -239,8 +239,14 @@
     var lng = weatherPkg && weatherPkg.meta && weatherPkg.meta.lng;
     var LC = global.WDS && global.WDS.locationContext;
 
-    var sunrise = cur.sunrise || (daily && daily.sunrise) || editorialDaylight.sunrise;
-    var sunset = cur.sunset || (daily && daily.sunset) || editorialDaylight.sunset;
+    var sunrise = cur.sunrise || (daily && daily.sunrise) || null;
+    var sunset = cur.sunset || (daily && daily.sunset) || null;
+    if (!sunrise && editorialDaylight.sunrise && !/^\d{1,2}:\d{2}/.test(String(editorialDaylight.sunrise))) {
+      sunrise = editorialDaylight.sunrise;
+    }
+    if (!sunset && editorialDaylight.sunset && !/^\d{1,2}:\d{2}/.test(String(editorialDaylight.sunset))) {
+      sunset = editorialDaylight.sunset;
+    }
     var moonPhase = daily && daily.moonPhase != null ? daily.moonPhase : moonPhaseFromDate(new Date());
     var golden = goldenHourWindows(sunrise, sunset, tz);
     var blue = blueHourWindows(sunrise, sunset, tz);

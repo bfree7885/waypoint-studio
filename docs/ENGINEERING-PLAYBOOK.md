@@ -1600,3 +1600,22 @@ dynamic_visual + commercial visual + production inspection evidence.
 ### Lessons Learned — Discover quiet strip live-weather gate (2026-08-26)
 
 - Gate `data-wdb-r-discover-quiet` on live (non-placeholder) `weatherRef`, not a truthy platform object. OIP `onChange` / `setPlatform` can apply packages whose weather is still a placeholder; Intel then skips weather so HN stays empty, and “Live instruments / honest weather” copy would be false while Today is still waiting.
+
+### Lessons Learned — Discover seasonal honesty + natural events (2026-08-26)
+
+- Editorial content-bundle `season` / `phenologyStage` without `weekOf` / `editorialValidUntil` will leak into Discover as current truth. Calendar season must be computed from date + hemisphere; phenology must expire or be omitted.
+- Do not “fix” stale copy by rewriting late spring → late summer. The failure mode is unguarded editorial overlay.
+- Quiet weather is not quiet Discover. Natural events (eclipse horizon ~72h) must un-quiet the day even when Happening Now is empty.
+- Event times stay in UTC in the catalog and convert at display time. Defaulting display to UTC makes a Thursday-night PA eclipse look like Friday morning.
+- Clock-only editorial sunrise/sunset (`05:42`) is a seasonal snapshot, not a live clock — never use it as a weather fallback.
+
+### Lessons Learned — Smoke CDP vs redirect stubs (2026-08-26)
+
+- Headless smoke walks many `location.replace` stubs (`dashboard.html`, `scenes/photo-coach`, etc.). `Runtime.evaluate` during that navigation returns **Inspected target navigated or closed**. Treating that as a runner crash skips every later CI step, including Discover correctness.
+- Retry evaluate until the destination document exists. Keep suite-level retry for dead WebSocket / missing CDP targets. Do not skip Discover tests when smoke fails.
+
+### Lessons Learned — Discover catalog retry, honest quiet, eclipse boxes (2026-08-26)
+
+- A memoized `loadPromise` that survives HTTP/JSON/network failure permanently omits events for the page session. Clear the promise on failure (and in `setCatalog`) so later `loadCatalog` / hydrate paints can retry.
+- Quiet Discover copy that names natural events must not render while the events catalog is unknown (in-flight or failed). Empty event HTML is not a confirmed empty catalog.
+- Region-box visibility is a hard gate before lifecycle. Boxes must cover the catalog’s own visibility summary (eastern Pacific / Hawaii / Alaska), not only contiguous-Americas longitudes.

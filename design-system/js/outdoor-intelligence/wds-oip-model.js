@@ -183,7 +183,7 @@
       pkg.elevation.feet = defaults.elevationFt;
       pkg.elevation.available = true;
     }
-    if (defaults.season) pkg.calendar.season = defaults.season;
+    if (defaults.season) pkg.calendar.editorialSeason = defaults.season;
     if (defaults.bioregion) pkg.geography.bioregion = defaults.bioregion;
     pkg.calendar.month = monthFromDate(new Date(), null);
     return pkg;
@@ -253,6 +253,10 @@
     if (raw.alerts) pkg.alerts = raw.alerts;
     if (raw.usgsWater) pkg.usgsWater = raw.usgsWater;
     if (raw.ebird) pkg.ebird = raw.ebird;
+    var Season = global.WDS && global.WDS.dashboardSeason;
+    if (Season && typeof Season.guardPackage === "function") {
+      Season.guardPackage(pkg);
+    }
     return pkg;
   }
 

@@ -190,6 +190,54 @@ async function cdp(wsUrl) {
   return { send, on, close };
 }
 
+function isNavigationCdpError(err) {
+  const msg = err && err.message ? err.message : String(err || "");
+  return /navigated or closed/i.test(msg);
+}
+
+function isTransientCdpError(err) {
+  const msg = err && err.message ? err.message : String(err || "");
+  return /navigated or closed|Target closed|WebSocket|ECONNREFUSED|No page CDP/i.test(msg);
+}
+
+/** Retry Runtime.evaluate while a redirect stub replaces the document. */
+async function evaluateValue(client, expression, timeoutMs = 8000) {
+  const started = Date.now();
+  let lastErr;
+  while (Date.now() - started < timeoutMs) {
+    try {
+      const { result } = await client.send("Runtime.evaluate", {
+        expression,
+        returnByValue: true
+      });
+      return result ? result.value : undefined;
+    } catch (e) {
+      lastErr = e;
+      if (!isNavigationCdpError(e)) throw e;
+      await delay(150);
+    }
+  }
+  throw lastErr || new Error("Runtime.evaluate timed out during navigation");
+}
+
+async function navigateAndSettle(client, url) {
+  try {
+    await client.send("Page.navigate", { url });
+  } catch (e) {
+    if (!isNavigationCdpError(e)) throw e;
+  }
+  const started = Date.now();
+  while (Date.now() - started < 8000) {
+    try {
+      const state = await evaluateValue(client, "document.readyState", 1500);
+      if (state === "interactive" || state === "complete") return;
+    } catch (e) {
+      if (!isNavigationCdpError(e)) throw e;
+    }
+    await delay(100);
+  }
+}
+
 function readyExpression(kind) {
   if (kind === "studio") {
     return `(() => {
@@ -246,12 +294,13 @@ async function waitReady(client, kind, timeoutMs) {
   const started = Date.now();
   let last = null;
   while (Date.now() - started < timeoutMs) {
-    const { result } = await client.send("Runtime.evaluate", {
-      expression: readyExpression(kind),
-      returnByValue: true
-    });
-    last = result.value || {};
-    if (last.ok) return last;
+    try {
+      last = (await evaluateValue(client, readyExpression(kind), 2000)) || {};
+      if (last.ok) return last;
+    } catch (e) {
+      if (!isNavigationCdpError(e)) throw e;
+      last = { ok: false, transient: String(e.message || e) };
+    }
     await delay(300);
   }
   return last || { ok: false };
@@ -264,11 +313,12 @@ async function captureFailure(client, name, serverLog) {
     fs.writeFileSync(path.join(ARTIFACT_DIR, name + ".png"), Buffer.from(shot.data, "base64"));
   } catch (_) { /* noop */ }
   try {
-    const { result } = await client.send("Runtime.evaluate", {
-      expression: `({ href: location.href, title: document.title, html: document.documentElement.outerHTML.slice(0, 20000) })`,
-      returnByValue: true
-    });
-    fs.writeFileSync(path.join(ARTIFACT_DIR, name + ".json"), JSON.stringify(result.value || {}, null, 2));
+    const dump = await evaluateValue(
+      client,
+      `({ href: location.href, title: document.title, html: document.documentElement.outerHTML.slice(0, 20000) })`,
+      3000
+    );
+    fs.writeFileSync(path.join(ARTIFACT_DIR, name + ".json"), JSON.stringify(dump || {}, null, 2));
   } catch (_) { /* noop */ }
   if (serverLog) {
     fs.writeFileSync(path.join(ARTIFACT_DIR, "server.log"), serverLog);
@@ -296,14 +346,17 @@ async function testPage(client, page, bag) {
     } catch (_) { /* noop */ }
   }
 
-  await client.send("Page.navigate", { url: BASE + page.path });
+  await navigateAndSettle(client, BASE + page.path);
 
   if (page.name === "dashboard") {
     await delay(800);
-    await client.send("Runtime.evaluate", {
-      expression: `(() => { const btn = document.getElementById('wds-loc-default'); if (btn) btn.click(); return !!btn; })()`,
-      returnByValue: true
-    });
+    try {
+      await evaluateValue(
+        client,
+        `(() => { const btn = document.getElementById('wds-loc-default'); if (btn) btn.click(); return !!btn; })()`,
+        3000
+      );
+    } catch (_) { /* loc default is optional */ }
   }
 
   const timeout =
@@ -319,22 +372,26 @@ async function testPage(client, page, bag) {
 
   if (LIVE && page.name === "dashboard") {
     for (let i = 0; i < 20; i++) {
-      const { result } = await client.send("Runtime.evaluate", {
-        expression: `({
+      let v = {};
+      try {
+        v = (await evaluateValue(
+          client,
+          `({
           notices: document.querySelectorAll('.wdb-doc__notice').length,
           busy: document.querySelectorAll('[aria-busy="true"]').length,
           hydrated: !!(window.WDS && WDS.outdoorIntelligence && WDS.outdoorIntelligence.getLast && WDS.outdoorIntelligence.getLast() && WDS.outdoorIntelligence.getLast().meta && WDS.outdoorIntelligence.getLast().meta.hydratedAt)
         })`,
-        returnByValue: true
-      });
-      const v = result.value || {};
+          3000
+        )) || {};
+      } catch (_) { /* still hydrating */ }
       if ((v.notices || 0) >= 8 && v.hydrated && (v.busy || 0) === 0) break;
       await delay(1000);
     }
   }
 
-  const { result } = await client.send("Runtime.evaluate", {
-    expression: `(() => {
+  const checks = (await evaluateValue(
+    client,
+    `(() => {
       const doc = document.documentElement;
       const trusts = Array.from(document.querySelectorAll('.wdb-doc__trust')).map(el => (el.textContent || '').trim());
       const domains = Array.from(document.querySelectorAll('.wdb-doc__domain')).map(el => (el.textContent || '').trim().toLowerCase());
@@ -394,8 +451,8 @@ async function testPage(client, page, bag) {
         banned: ['coming soon','assignment','homework','lesson','educational'].filter((w) => text.includes(w))
       };
     })()`,
-    returnByValue: true
-  });
+    8000
+  )) || {};
 
   return {
     name: page.name,
@@ -404,7 +461,7 @@ async function testPage(client, page, bag) {
     errors: [...new Set(bag.errors)],
     warnings: [...new Set(bag.warnings)].filter((w) => !/DevTools|favicon/i.test(w)),
     failedNet: bag.failedNet.filter((f) => !/favicon/i.test(f.url || "")),
-    checks: result.value || {}
+    checks
   };
 }
 
@@ -629,13 +686,8 @@ async function main() {
   return failed ? 1 : 0;
 }
 
-function isTransientCdpError(err) {
-  const msg = err && err.message ? err.message : String(err || "");
-  return /navigated or closed|Target closed|WebSocket|ECONNREFUSED|No page CDP/i.test(msg);
-}
-
 async function run() {
-  const attempts = 2;
+  const attempts = 3;
   for (let i = 0; i < attempts; i++) {
     try {
       const code = await main();
@@ -650,7 +702,7 @@ async function run() {
         `Smoke runner transient CDP error; retrying (${i + 1}/${attempts - 1}):`,
         e.message
       );
-      await delay(1500);
+      await delay(2500);
     }
   }
 }

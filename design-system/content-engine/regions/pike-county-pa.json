@@ -40,6 +40,8 @@
     "honest": "Fieldry is ready for private life lists and observation notes on this device."
   },
   "season": "late spring",
+  "weekOf": "2026-05-30",
+  "editorialValidUntil": "2026-06-15T00:00:00.000Z",
   "thisWeekOutdoors": {
     "id": "two-pike-2026-22",
     "scope": "L1-county",
