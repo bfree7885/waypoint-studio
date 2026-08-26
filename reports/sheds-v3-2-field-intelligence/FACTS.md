@@ -52,4 +52,4 @@ Limits always include: these facts do not indicate deer or shed antlers are pres
 
 YOU ≠ SEARCH ≠ INSPECT ≠ OBS.
 
-The HUD does not show “Why this may matter,” solar notes, walkability, or habitat-signal bands.
+The HUD does not score habitat suitability or claim wildlife presence. A separate explainability slice may add **Why this may matter** from these same facts.

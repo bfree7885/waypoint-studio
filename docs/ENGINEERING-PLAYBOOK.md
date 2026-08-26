@@ -1590,6 +1590,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Zero and flat measurements (`0 ft`, `0°`, edge `0 m`) must not share copy with unavailable or failed fetches; aspect on slope &lt; 2° is **not defined**, not north.
 - Do not SHA-chase the V3.2 acceptance report after the feature commit — that loop stalled the previous recovery pass.
 
+### Lessons Learned — Sheds V3.2 Inspect Why (2026-08-26)
+
+- Why this may matter must be a pure function of supported facts (`buildWhyLines`); missing slope/aspect/edge must not mint solar, walkability, or “nearby edge” copy.
+- Prefer inspection language (“change in cover can be worth inspecting”) over animal behavior. Label the nearby-edge line `EDITORIAL_HEURISTIC`.
+- Keep Limits visible whenever Why is shown: context can help you decide where to look more closely; it does not indicate deer or sheds are present.
+
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
 - Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.

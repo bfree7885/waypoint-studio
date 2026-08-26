@@ -214,7 +214,7 @@ html, body {
 }
 
 .sheds-inspect-hud {
-  max-height: min(34vh, 17rem);
+  max-height: min(38vh, 19rem);
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -253,7 +253,7 @@ html, body {
   white-space: pre-wrap;
   overflow: auto;
   overflow-x: hidden;
-  max-height: min(24vh, 12rem);
+  max-height: min(28vh, 14rem);
   -webkit-overflow-scrolling: touch;
   word-break: break-word;
 }

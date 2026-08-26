@@ -1,9 +1,8 @@
 /**
- * Sheds V3.2 — Inspect Facts (pure helpers).
- * Physical / land-cover facts only — never invents sheds, deer, or find probability.
+ * Sheds V3.2 — Inspect Facts + explainability (pure helpers).
+ * Never invents sheds, deer, or find probability. No suitability score.
  *
- * HUD hierarchy: Terrain (FACT) · Habitat / land cover (FACT) · Limits (LIMITATION)
- * Interpretation / suitability is intentionally omitted from the Inspect HUD.
+ * HUD: What is here (FACT) · Why this may matter (INTERPRETATION of supported facts) · Limits
  */
 (function (global) {
   "use strict";
@@ -25,14 +24,18 @@
   var NO_INTEL_FAILED =
     "Terrain and habitat details couldn't be retrieved for this location.";
   var LIMIT_WILDLIFE =
-    "These are physical and land-cover facts at this point. They do not indicate that deer or shed antlers are present.";
+    "Terrain and land-cover context can help you decide where to look more closely. They do not indicate that deer or shed antlers are present.";
   var LIMIT_NOT_OBS = "Inspect is not an observation of wildlife.";
+  var EDGE_NEAR_M = 90; // ~3 NLCD cells — same threshold as Habitat GIS, used only for presence of a nearby edge
 
   var BANNED_PHRASES = [
     "shed found",
     "antler here",
     "deer are here",
     "deer present",
+    "deer bed",
+    "deer feed",
+    "deer travel",
     "bedding here",
     "bedding area",
     "feeding area",
@@ -41,10 +44,10 @@
     "wildlife movement",
     "find probability",
     "chance of finding",
-    "why this may matter",
+    "sheds are likely",
+    "expect to find",
     "search potential",
-    "habitat signal",
-    "worth inspecting"
+    "habitat signal"
   ];
 
   function aspectCardinal(deg) {
@@ -101,7 +104,6 @@
 
   /**
    * Physical geography only (Northern Hemisphere solar). Not animal behavior.
-   * Kept for tests / later slices — not shown on the facts-only Inspect HUD.
    */
   function solarExposureNote(aspectDeg, lat) {
     if (aspectDeg == null || !isFinite(aspectDeg)) {
@@ -216,6 +218,104 @@
     });
   }
 
+  /**
+   * Deterministic Why lines from supported facts only.
+   * Missing / failed / loading inputs produce no corresponding line.
+   */
+  function buildWhyLines(ctx) {
+    ctx = ctx || {};
+    var items = [];
+    var slopeDeg = ctx.slopeDeg;
+    var slopeKind = ctx.slopeKind;
+    var aspectKind = ctx.aspectKind;
+    var facing = ctx.facing;
+    var solar = ctx.solar;
+    var habitatKind = ctx.habitatKind;
+    var edgeM = ctx.edgeM;
+    var elevReady = ctx.elevReady;
+    var ftLabel = ctx.ftLabel;
+
+    if (slopeKind === "ready" && slopeDeg != null && isFinite(slopeDeg)) {
+      if (slopeDeg < 2) {
+        items.push({
+          id: "slope-flat",
+          text: "Nearly flat ground is generally easy to walk.",
+          class: "PHYSICAL"
+        });
+      } else if (slopeDeg < 12) {
+        items.push({
+          id: "slope-moderate",
+          text: "Moderate slope is generally walkable.",
+          class: "PHYSICAL"
+        });
+      } else if (slopeDeg < 25) {
+        items.push({
+          id: "slope-steeper",
+          text: "Steeper terrain may slow walking.",
+          class: "PHYSICAL"
+        });
+      } else {
+        items.push({
+          id: "slope-steep",
+          text: "Steep terrain may make walking slower and more tiring.",
+          class: "PHYSICAL"
+        });
+      }
+    }
+
+    if (aspectKind === "ready" && facing && solar && solar.available) {
+      var cap = facing.charAt(0).toUpperCase() + facing.slice(1);
+      if (solar.label === "More south-facing") {
+        items.push({
+          id: "solar-south",
+          text: cap + " terrain receives relatively more winter sun in the Northern Hemisphere.",
+          class: "PHYSICAL"
+        });
+      } else if (solar.label === "More north-facing") {
+        items.push({
+          id: "solar-north",
+          text: cap + " terrain receives less direct winter sun and may hold snow longer.",
+          class: "PHYSICAL"
+        });
+      } else if (solar.label === "Mixed / east–west aspect") {
+        items.push({
+          id: "solar-mixed",
+          text: "East–west aspect means solar exposure differences are modest here.",
+          class: "PHYSICAL"
+        });
+      } else if (solar.label === "Aspect sampled") {
+        items.push({
+          id: "solar-southern",
+          text:
+            "Aspect is available. Solar notes here are tuned for Northern Hemisphere winters — treat carefully at southern latitudes.",
+          class: "PHYSICAL"
+        });
+      }
+    }
+
+    if (habitatKind === "ready" && edgeM != null && isFinite(edgeM) && edgeM <= EDGE_NEAR_M) {
+      items.push({
+        id: "edge-near",
+        text:
+          "A land-cover edge is nearby (~" +
+          Math.round(edgeM) +
+          " m). That change in cover can be worth inspecting.",
+        class: "EDITORIAL_HEURISTIC"
+      });
+    }
+
+    /* Elevation is already a fact line. Interpret it only when it is the sole supported input. */
+    if (elevReady && ftLabel && items.length === 0) {
+      items.push({
+        id: "elev-context",
+        text: "This point sits at " + ftLabel + " — geographic context only, not habitat quality.",
+        class: "PHYSICAL"
+      });
+    }
+
+    return items;
+  }
+
   function labeledFact(label, status, valueText) {
     if (status === "loading") return label + ": loading…";
     if (status === "failed") return label + ": couldn't be retrieved";
@@ -227,7 +327,7 @@
 
   /**
    * Build a structured Inspect report for HUD rendering / tests.
-   * Facts only — no walkability, solar, or habitat-suitability copy in the HUD.
+   * Facts stay facts. Why lines come only from supported inputs.
    */
   function buildInspectReport(opts) {
     opts = opts || {};
@@ -395,9 +495,28 @@
       (elevStatus === "failed" || terrainStatus === "failed");
     var noIntel = !hasTerrainIntel && !hasHabitatIntel && !failedIntel && terrainKind !== "loading";
 
+    var whyItems = [];
+    if (!noIntel && !failedIntel && terrainKind !== "loading") {
+      whyItems = buildWhyLines({
+        slopeDeg: slopeDeg,
+        slopeKind: slopeKind,
+        aspectKind: aspectKind,
+        facing: facing,
+        solar: solar,
+        habitatKind: habitatKind,
+        edgeM: gisSample && gisSample.edgeM != null ? gisSample.edgeM : null,
+        elevReady: elevStatus === "ready" && elevM != null && isFinite(elevM),
+        ftLabel: formatElevationFt(elevM)
+      });
+    }
+    var why = whyItems.map(function (item) {
+      return item.text;
+    });
+
     var report = {
-      version: "3.2.2",
-      factsOnly: true,
+      version: "3.2.3",
+      factsOnly: false,
+      explainability: true,
       lat: lat,
       lng: lng,
       elev: {
@@ -434,7 +553,8 @@
       },
       relation: { fromYou: fromYou, fromSearch: fromSearch },
       facts: facts,
-      why: [],
+      why: why,
+      whyItems: whyItems,
       limits: limitation,
       coverage: coverage,
       honesty: [LIMIT_WILDLIFE, LIMIT_NOT_OBS],
@@ -454,10 +574,8 @@
 
     report.hudText = formatHudText(report);
     report.containsBannedLanguage = textContainsBanned(report.hudText);
-    report.containsWildlifeInference = textContainsBanned(facts.join("\n"));
-    report.containsInterpretation = /why this may matter|generally walkable|may slow walking|solar exposure|may hold snow|worth inspecting|habitat signal|search potential|suitability/i.test(
-      report.hudText
-    );
+    report.containsWildlifeInference = textContainsBanned(report.hudText);
+    report.containsInterpretation = why.length > 0;
     return report;
   }
 
@@ -478,6 +596,8 @@
       lines.push("");
       lines.push(NO_INTEL_FAILED);
     } else {
+      lines.push("");
+      lines.push("What is here");
       if (report.terrain && report.terrain.factLine) {
         lines.push("");
         lines.push("Terrain");
@@ -495,6 +615,13 @@
           .forEach(function (row) {
             if (row) lines.push(row);
           });
+      }
+      if (report.why && report.why.length) {
+        lines.push("");
+        lines.push("Why this may matter");
+        report.why.forEach(function (w) {
+          lines.push(w);
+        });
       }
     }
 
@@ -556,6 +683,7 @@
     formatSlopeValue: formatSlopeValue,
     solarExposureNote: solarExposureNote,
     coverageLabel: coverageLabel,
+    buildWhyLines: buildWhyLines,
     buildInspectReport: buildInspectReport,
     formatHudText: formatHudText,
     elevationNeighborhoodUrl: elevationNeighborhoodUrl,
@@ -564,6 +692,7 @@
     NO_INTEL_FAILED: NO_INTEL_FAILED,
     LIMIT_WILDLIFE: LIMIT_WILDLIFE,
     LIMIT_NOT_OBS: LIMIT_NOT_OBS,
-    VERSION: "3.2.2"
+    EDGE_NEAR_M: EDGE_NEAR_M,
+    VERSION: "3.2.3"
   };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -1,10 +1,10 @@
 # Sheds V3.2 — Field Intelligence FINAL REPORT
 
-**Facts-only follow-up (2026-08-26):** Inspect HUD shows physical and land-cover facts only. “Why this may matter,” solar interpretation, and habitat suitability bands are omitted. See [`FACTS.md`](./FACTS.md) and [`RECOVERY.md`](./RECOVERY.md).
+**Why this may matter (2026-08-26):** Inspect keeps the Facts HUD and adds deterministic interpretation of supported facts only. No suitability score, no wildlife/shed presence claims. See [`EXPLAIN.md`](./EXPLAIN.md), [`FACTS.md`](./FACTS.md).
 
-**Verdict:** PASS for the Inspect Facts slice  
+**Verdict:** PASS for the Inspect explainability slice  
 **Date:** 2026-08-26  
-**Product test:** Inspect reports elevation / slope / aspect / land cover without inventing sheds/deer; mobile HUD dismisses and leaves the map usable.
+**Product test:** Same facts → same Why; missing facts → no Why; Limits remain; mobile HUD dismisses; map stays dominant.
 
 ---
 
@@ -14,11 +14,11 @@
 
 ## 2. Starting commit
 
-`4fa26378` (Inspect Intelligence with Terrain/Habitat/Why/Limits)
+`bec1e9fc` (Inspect Facts)
 
 ## 3. Final commit
 
-Recorded in git on this branch after the facts-only change (do not SHA-chase this file).
+Recorded in git on this branch after the Why change (do not SHA-chase this file).
 
 ## 4. Exact files changed
 
@@ -38,7 +38,7 @@ See git commit. Primary:
 
 ## 5. Exact files added/deleted
 
-**Added:** `reports/sheds-v3-2-field-intelligence/FACTS.md`  
+**Added:** `reports/sheds-v3-2-field-intelligence/EXPLAIN.md`  
 **Deleted:** none
 
 ## 6. Audit findings
@@ -51,22 +51,22 @@ Open-Meteo weather/elev; NLCD + 3DEP-derived slope packs; CARTO/Esri tiles; brow
 
 ## 8. REAL / DERIVED / INFERENCE / EDITORIAL
 
-Elevation: **REAL**. Neighborhood slope/aspect: **DERIVED**. NLCD class: **REAL**. Edge distance: **DERIVED**. Solar notes / habitat bands: **EDITORIAL/HEURISTIC** and **not shown** on Inspect.
+Elevation: **REAL**. Neighborhood slope/aspect: **DERIVED**. NLCD class: **REAL**. Edge distance: **DERIVED**. Slope/solar Why: **PHYSICAL** interpretation. Nearby-edge Why: **EDITORIAL_HEURISTIC** (inspection, not wildlife). Habitat bands: not shown.
 
 ## 9. V3.2 features selected (this pass)
 
-1. Inspect Facts HUD (elevation, slope, aspect, land cover / edge)
-2. Honest partial / unavailable / failed / zero-value distinction
-3. Limits: no wildlife presence claim; Inspect ≠ OBS
+1. Inspect Facts HUD (preserved)
+2. Deterministic Why this may matter (`buildWhyLines`)
+3. Limits: look-more-closely context; no deer/shed presence; Inspect ≠ OBS
 4. Mobile scrollable Inspect + Done
 
 ## 10. Deferred
 
-Statewide packs; aspect rasters in pack; polygon Search Area editor; Planning/Field mode split; DeviceOrientation compass; observation type expansion; LLM narratives; full offline tiles; weather duplication of Dashboard; **Inspect interpretation / suitability** (explicitly not this pass).
+Statewide packs; aspect rasters in pack; polygon Search Area editor; Planning/Field mode split; DeviceOrientation compass; observation type expansion; LLM narratives; full offline tiles; weather duplication of Dashboard; habitat suitability scoring on Inspect.
 
 ## 11. Inspect changes
 
-HUD shows labeled elevation, slope (including 0°), aspect when slope ≥ 2°, land cover / edge when pack covers, Limits / honesty, Done dismiss. No Why section. No `scorePoint`. Generation-guarded fetches; offline → unavailable (no fabricate).
+HUD: What is here (facts) · Why this may matter (supported facts only) · Limits. No `scorePoint`. Generation-guarded fetches; offline → unavailable (no fabricate).
 
 ## 12. Terrain intelligence
 
@@ -78,7 +78,7 @@ Finite-diff slope/aspect from 5-point Open-Meteo elev (~60 m). Flat terrain mark
 
 ## 14. Aspect / seasonal
 
-Aspect cardinal only on the HUD. Solar-exposure helper remains in the module for tests, not rendered.
+Aspect cardinal on the facts HUD. Why adds Northern-Hemisphere solar exposure only when aspect is defined (slope ≥ 2°).
 
 ## 15. Suitability / relevance model
 
@@ -86,7 +86,7 @@ Not shown on Inspect. Phase 2 habitat scoring unchanged for SEARCH heat.
 
 ## 16. Explainability
 
-Facts and Limits only. Provenance in Limits (NLCD year, neighborhood slope).
+Deterministic `buildWhyLines` from supported slope / aspect / nearby edge (and elevation only when it is the sole fact). See EXPLAIN.md.
 
 ## 17. Confidence / uncertainty
 
@@ -126,11 +126,11 @@ Bounded: one elev point + one 5-point neighborhood fetch per Inspect; GIS sample
 
 ## 26. Accessibility
 
-Inspect `role="dialog"`, aria-label “Inspect location facts”, Done button, aria-live content; text via `textContent`.
+Inspect `role="dialog"`, aria-label “Inspect location facts and context”, Done button, aria-live content; text via `textContent`.
 
 ## 27. Prediction-truth safeguards
 
-Banned “shed found” / find probability / Why-this-may-matter / habitat-signal language in report builder; tests assert; Inspect excludes observations and suitability scoring.
+Banned “shed found” / find probability / habitat-signal language; Why is inspection/physical only; Inspect excludes observations and suitability scoring.
 
 ## 28. YOU ≠ SEARCH ≠ INSPECT ≠ OBS
 
@@ -140,7 +140,7 @@ Inspect marker + tooltip distinct (`not YOU, not SEARCH, not OBS`); Measure/Insp
 
 | Suite | Result |
 | --- | --- |
-| `test-sheds-v3-2-inspect-intel.mjs` | PASS (facts / partial / none / failed / semantics) |
+| `test-sheds-v3-2-inspect-intel.mjs` | PASS (facts + Why determinism / missing-facts / wildlife bans / semantics) |
 | `test-sheds-phase1-prediction-truth.mjs` | PASS (68) |
 | `test-sheds-phase2-habitat-gis.mjs` | PASS (99) |
 | `test-sheds-v3-mapping-foundation.mjs` | PASS (17) |
@@ -152,7 +152,7 @@ Inspect marker + tooltip distinct (`not YOU, not SEARCH, not OBS`); Measure/Insp
 
 ## 30. Browser / CDP verification
 
-`capture-sheds-v3-2-inspect.mjs` — 375/390/430 + 1280. Pike point showed Elevation 607 ft, Slope 7.9°, southeast-facing, Land cover Developed, edge 0 m. `hasWhy=false`, `hasInterpretation=false`, `banned=false`, `overflow=false`, dismiss `hidden=true` / `hudHeight=0` / inspect marker removed.
+`capture-sheds-v3-2-inspect.mjs` — 375/390/430 + 1280 at Pike: Elevation 607 ft, Slope 7.9°, southeast-facing, Land cover Developed, edge 0 m. Why: walkable, more winter sun, nearby land-cover edge worth inspecting. `hasWhy=true`, `hasLimits=true`, `banned=false`, `overflow=false`, dismiss `hidden=true` / `hudHeight=0`.
 
 ## 31. Screenshots generated
 
@@ -166,10 +166,10 @@ Inspect marker + tooltip distinct (`not YOU, not SEARCH, not OBS`); Measure/Insp
 
 ## 33. Deferred ideas
 
-See §10; plus Field Plan discoverability polish; multi-county pack catalog; a later interpretation slice **only if** owners ask.
+See §10; plus Field Plan discoverability polish; multi-county pack catalog.
 
 ## 34. Recommended next three priorities only
 
 1. **Additional GIS packs** (NE PA counties) so Inspect land cover works beyond Pike
 2. **Field Plan discoverability** (pre-hunt planning surface without burying under Tools)
-3. Interpretation / suitability **only after** facts-only Inspect is validated in the field
+3. Habitat suitability on Inspect **only if** owners ask after field use of this Why slice

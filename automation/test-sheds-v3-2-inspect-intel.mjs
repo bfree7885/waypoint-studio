@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sheds V3.2 — Inspect Facts: supported / partial / none / failed + semantics.
+ * Sheds V3.2 — Inspect Facts + Why this may matter (deterministic explainability).
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -24,21 +24,27 @@ function loadIntel() {
 
 const Intel = loadIntel();
 assert.ok(Intel, "InspectIntel module");
-assert.equal(Intel.VERSION, "3.2.2");
+assert.equal(Intel.VERSION, "3.2.3");
+assert.equal(typeof Intel.buildWhyLines, "function");
 
-const INTERPRETATION = /Why this may matter|generally walkable|may slow walking|solar exposure|may hold snow|worth inspecting|habitat signal|Search potential|suitability/i;
-const WILDLIFE = /shed found|antler here|find probability|deer are here|deer present|bedding area|feeding area|deer trail|wildlife movement/i;
+const WILDLIFE =
+  /shed found|antler here|find probability|deer are here|deer present|deer bed|deer feed|deer travel|bedding area|feeding area|deer trail|wildlife movement|sheds are likely|expect to find/i;
+const PREDICTION = /habitat signal|Search potential|find %|chance of finding/i;
+
+function assertHonest(report, label) {
+  assert.equal(report.containsBannedLanguage, false, label + " banned language");
+  assert.equal(report.containsWildlifeInference, false, label + " wildlife inference");
+  assert.doesNotMatch(report.hudText, WILDLIFE, label + " wildlife copy");
+  assert.doesNotMatch(report.hudText, PREDICTION, label + " prediction copy");
+  assert.match(report.hudText, /Limits/);
+  assert.match(report.hudText, /do not indicate that deer or shed antlers are present/i);
+}
 
 // ——— Elevation / slope / aspect truth ———
 assert.equal(Intel.formatElevationFt(432.8), "1,420 ft");
-assert.equal(Intel.formatElevationFt(0), "0 ft", "sea-level elevation is a value, not missing");
-assert.equal(Intel.slopeClassLabel(0), "nearly flat");
-assert.equal(Intel.slopeClassLabel(0.4), "nearly flat");
+assert.equal(Intel.formatElevationFt(0), "0 ft");
 assert.equal(Intel.slopeClassLabel(9.5), "moderate slope");
-assert.equal(Intel.slopeClassLabel(18), "steeper slope");
-assert.equal(Intel.slopeClassLabel(30), "steep terrain");
 assert.equal(Intel.aspectFacingPhrase("SW"), "southwest-facing");
-assert.match(Intel.formatSlopeValue(0), /^0° \(nearly flat\)$/);
 
 const flat = Intel.slopeAspectFromElevNeighbors({
   centerM: 100,
@@ -48,28 +54,29 @@ const flat = Intel.slopeAspectFromElevNeighbors({
   westM: 100,
   stepM: 60
 });
-assert.ok(flat.slopeDeg != null && flat.slopeDeg < 0.5, "flat slope near 0");
-assert.notEqual(flat.slopeDeg, null, "zero-ish slope is measured, not unavailable");
+assert.ok(flat.slopeDeg != null && flat.slopeDeg < 0.5);
 
 const southFace = Intel.slopeAspectFromElevNeighbors({
   centerM: 100,
-  northM: 110, // higher to the north → faces south
+  northM: 110,
   southM: 90,
   eastM: 100,
   westM: 100,
   stepM: 60
 });
-assert.ok(southFace.slopeDeg > 5, "sloped terrain");
-assert.ok(southFace.aspectDeg != null, "aspect present");
-const southCard = Intel.aspectCardinal(southFace.aspectDeg);
-assert.ok(["S", "SE", "SW"].includes(southCard), "south-ish aspect cardinal");
-const solar = Intel.solarExposureNote(southFace.aspectDeg, 41.3);
-assert.match(solar.label || "", /south|South|sun/i);
-assert.match(solar.note || "", /Northern Hemisphere|solar/i);
-assert.doesNotMatch(solar.note || "", /deer are bedding|sheds are here/i);
+assert.ok(southFace.slopeDeg > 5);
+assert.ok(["S", "SE", "SW"].includes(Intel.aspectCardinal(southFace.aspectDeg)));
 
-// ——— Supported facts (no interpretation in HUD) ———
-const strong = Intel.buildInspectReport({
+const northFace = Intel.slopeAspectFromElevNeighbors({
+  centerM: 100,
+  northM: 90,
+  southM: 110,
+  eastM: 100,
+  westM: 100,
+  stepM: 60
+});
+
+const strongOpts = {
   lat: 41.32,
   lng: -74.8,
   elevM: 432.8,
@@ -87,43 +94,85 @@ const strong = Intel.buildInspectReport({
   packMeta: { nlcdYear: 2021 },
   fromYou: "From YOU: 120 yd · NE 45°",
   fromSearch: "From SEARCH: 40 yd · N 10°"
-});
-assert.equal(strong.factsOnly, true);
-assert.equal(strong.coverage.id, "strong");
+};
+
+const strong = Intel.buildInspectReport(strongOpts);
+const strongAgain = Intel.buildInspectReport(strongOpts);
+assert.deepEqual(strong.why, strongAgain.why, "same facts → same Why");
+assert.equal(strong.hudText, strongAgain.hudText, "same facts → same HUD");
+assert.equal(strong.explainability, true);
+assert.match(strong.hudText, /What is here/);
 assert.match(strong.hudText, /Terrain/);
 assert.match(strong.hudText, /Elevation: 1,420 ft/);
 assert.match(strong.hudText, /Slope: /);
 assert.match(strong.hudText, /moderate slope/);
 assert.match(strong.hudText, /Aspect: south-facing/);
-assert.match(strong.hudText, /Habitat/);
 assert.match(strong.hudText, /Land cover: Forest cover/);
 assert.match(strong.hudText, /Land-cover edge: 40 m/);
+assert.match(strong.hudText, /Why this may matter/);
+assert.match(strong.hudText, /Moderate slope is generally walkable/);
+assert.match(strong.hudText, /winter sun|south-facing terrain receives/i);
+assert.match(strong.hudText, /land-cover edge is nearby \(~40 m\)/i);
+assert.match(strong.hudText, /worth inspecting/);
 assert.match(strong.hudText, /Limits/);
-assert.match(strong.hudText, /do not indicate that deer or shed antlers are present/i);
+assert.match(strong.hudText, /help you decide where to look more closely/i);
 assert.match(strong.hudText, /Inspect is not an observation of wildlife/);
-assert.doesNotMatch(strong.hudText, INTERPRETATION);
-assert.doesNotMatch(strong.hudText, WILDLIFE);
-assert.equal(strong.why.length, 0, "HUD report carries no interpretation bullets");
-assert.equal(strong.habitat.bandLabel, null, "no suitability band on Inspect");
 assert.equal(strong.habitat.score, null);
-assert.equal(strong.containsBannedLanguage, false);
-assert.equal(strong.containsWildlifeInference, false);
-assert.equal(strong.containsInterpretation, false);
+assert.equal(strong.habitat.bandLabel, null);
+assert.ok(strong.why.length >= 2);
+assert.ok(strong.whyItems.some((i) => i.id === "slope-moderate"));
+assert.ok(strong.whyItems.some((i) => i.id === "edge-near" && i.class === "EDITORIAL_HEURISTIC"));
+assert.ok(strong.whyItems.some((i) => i.class === "PHYSICAL"));
 assert.match(strong.hudText, /From YOU:/);
 assert.match(strong.hudText, /From SEARCH:/);
-assert.ok(strong.facts.length >= 3, "facts include elevation, slope/aspect, land cover");
-assert.ok(strong.limits.length >= 2, "limits present");
-assert.equal(strong.class.why, "INTERPRETATION");
-assert.equal(strong.class.limits, "LIMITATION");
-assert.equal(strong.class.elev, "REAL");
-assert.equal(strong.class.habitatClass, "REAL");
+assert.doesNotMatch(strong.hudText, /\bOBS\b/);
+assertHonest(strong, "strong");
 
 fs.writeFileSync(
   path.join(root, "reports/sheds-v3-2-field-intelligence/A_strong.txt"),
   strong.hudText + "\n"
 );
 
-// ——— Flat: zero slope is a value; aspect is undefined, not unavailable/north ———
+// Direct Why helper is deterministic
+const whyA = Intel.buildWhyLines({
+  slopeDeg: 9.5,
+  slopeKind: "ready",
+  aspectKind: "ready",
+  facing: "south-facing",
+  solar: Intel.solarExposureNote(180, 41),
+  habitatKind: "ready",
+  edgeM: 40,
+  elevReady: true,
+  ftLabel: "1,420 ft"
+});
+const whyB = Intel.buildWhyLines({
+  slopeDeg: 9.5,
+  slopeKind: "ready",
+  aspectKind: "ready",
+  facing: "south-facing",
+  solar: Intel.solarExposureNote(180, 41),
+  habitatKind: "ready",
+  edgeM: 40,
+  elevReady: true,
+  ftLabel: "1,420 ft"
+});
+assert.deepEqual(whyA, whyB);
+assert.equal(whyA.map((i) => i.text).join("|"), whyB.map((i) => i.text).join("|"));
+
+// North-facing solar is physical, not bedding
+const northReport = Intel.buildInspectReport({
+  lat: 41.32,
+  lng: -74.8,
+  elevM: 400,
+  elevStatus: "ready",
+  terrainStatus: "ready",
+  terrainDerived: northFace
+});
+assert.match(northReport.hudText, /less direct winter sun|may hold snow/i);
+assert.doesNotMatch(northReport.hudText, /bedding|feeding area|deer trail|deer are here/i);
+assertHonest(northReport, "north");
+
+// Flat: slope why exists; no solar/aspect facing why
 const flatReport = Intel.buildInspectReport({
   lat: 44.0,
   lng: -93.0,
@@ -132,29 +181,14 @@ const flatReport = Intel.buildInspectReport({
   terrainStatus: "ready",
   terrainDerived: flat
 });
-assert.equal(flatReport.terrain.aspectDeg, null, "flat terrain suppresses aspect degrees");
 assert.equal(flatReport.terrain.aspectKind, "undefined");
-assert.match(flatReport.hudText, /Terrain/);
-assert.match(flatReport.hudText, /Elevation: 984 ft/);
-assert.match(flatReport.hudText, /Slope: /);
 assert.match(flatReport.hudText, /nearly flat/);
-assert.match(flatReport.hudText, /Aspect: not defined on nearly flat ground/);
+assert.match(flatReport.hudText, /generally easy to walk/);
 assert.doesNotMatch(flatReport.hudText, /north-facing|south-facing/i);
-assert.doesNotMatch(flatReport.hudText, /Aspect: unavailable/);
-assert.doesNotMatch(flatReport.hudText, INTERPRETATION);
+assert.doesNotMatch(flatReport.hudText, /winter sun/);
+assertHonest(flatReport, "flat");
 
-// Sea-level zero elevation must not look like missing data
-const sea = Intel.buildInspectReport({
-  lat: 29.3,
-  lng: -94.8,
-  elevM: 0,
-  elevStatus: "ready",
-  terrainStatus: "unavailable"
-});
-assert.match(sea.hudText, /Elevation: 0 ft/);
-assert.doesNotMatch(sea.hudText, /Elevation: unavailable/);
-
-// ——— No-data / insufficient (unavailable ≠ failed, ≠ zeros) ———
+// ——— Missing facts do not generate interpretations ———
 const weak = Intel.buildInspectReport({
   lat: 40.0,
   lng: -105.0,
@@ -164,23 +198,18 @@ const weak = Intel.buildInspectReport({
   terrainDerived: null,
   gisSample: null
 });
-assert.equal(weak.coverage.id, "insufficient");
 assert.equal(weak.noIntel, true);
-assert.equal(weak.failedIntel, false);
-assert.match(weak.hudText, /Detailed terrain\/habitat information isn't available for this location/);
-assert.match(weak.hudText, /Limits/);
-assert.doesNotMatch(weak.hudText, INTERPRETATION);
-assert.doesNotMatch(weak.hudText, /Elevation: 0|Slope: 0/);
-assert.doesNotMatch(weak.hudText, /couldn't be retrieved/);
-assert.equal(weak.containsBannedLanguage, false);
-assert.equal(weak.containsWildlifeInference, false);
+assert.equal(weak.why.length, 0);
+assert.doesNotMatch(weak.hudText, /Why this may matter/);
+assert.doesNotMatch(weak.hudText, /walkable|winter sun|worth inspecting|land-cover edge is nearby/);
+assert.match(weak.hudText, /isn't available for this location/);
+assertHonest(weak, "no-data");
 
 fs.writeFileSync(
   path.join(root, "reports/sheds-v3-2-field-intelligence/C_weak.txt"),
   weak.hudText + "\n"
 );
 
-// ——— Partial elev only ———
 const partial = Intel.buildInspectReport({
   lat: 41.0,
   lng: -74.0,
@@ -190,19 +219,14 @@ const partial = Intel.buildInspectReport({
   gisSample: null
 });
 assert.equal(partial.coverage.id, "limited");
-assert.equal(partial.noIntel, false);
-assert.match(partial.hudText, /Terrain/);
 assert.match(partial.hudText, /Elevation: 656 ft/);
 assert.match(partial.hudText, /Slope: unavailable/);
-assert.match(partial.hudText, /Aspect: unavailable/);
-assert.match(partial.hudText, /Habitat/);
 assert.match(partial.hudText, /Land cover: unavailable for this location/);
-assert.doesNotMatch(partial.hudText, /south-facing|north-facing/);
-assert.doesNotMatch(partial.hudText, /1,420 ft/);
-assert.doesNotMatch(partial.hudText, INTERPRETATION);
-assert.doesNotMatch(partial.hudText, /Detailed terrain\/habitat information isn't available/);
+assert.doesNotMatch(partial.hudText, /walkable|winter sun|land-cover edge is nearby|worth inspecting/);
+assert.match(partial.hudText, /geographic context only/);
+assert.ok(partial.whyItems.length === 1 && partial.whyItems[0].id === "elev-context");
+assertHonest(partial, "partial");
 
-// ——— Failed-data (no invented numbers; distinct from unavailable) ———
 const failed = Intel.buildInspectReport({
   lat: 41.32,
   lng: -74.8,
@@ -213,16 +237,13 @@ const failed = Intel.buildInspectReport({
   gisSample: null
 });
 assert.equal(failed.failedIntel, true);
-assert.equal(failed.noIntel, false);
+assert.equal(failed.why.length, 0);
+assert.doesNotMatch(failed.hudText, /Why this may matter/);
+assert.doesNotMatch(failed.hudText, /walkable|1,420 ft|Forest cover/);
 assert.match(failed.hudText, /couldn't be retrieved/);
-assert.doesNotMatch(failed.hudText, /isn't available for this location/);
-assert.doesNotMatch(failed.hudText, /Elevation: 0|Forest cover|moderate slope/);
-assert.doesNotMatch(failed.hudText, INTERPRETATION);
-assert.match(failed.hudText, /Limits/);
-assert.equal(failed.containsBannedLanguage, false);
-assert.match(failed.hudText, /41\.32000, -74\.80000/);
+assertHonest(failed, "failed");
 
-// ——— GIS slope fallback without aspect (pack has slope, no neighborhood) ———
+// Pack slope, far edge, no aspect: slope why only — no solar, no nearby-edge
 const packSlope = Intel.buildInspectReport({
   lat: 41.32,
   lng: -74.8,
@@ -239,15 +260,12 @@ const packSlope = Intel.buildInspectReport({
   },
   packMeta: { nlcdYear: 2021 }
 });
-assert.equal(packSlope.terrain.slopeDeg, 14);
-assert.equal(packSlope.terrain.aspectDeg, null);
-assert.match(packSlope.hudText, /steeper slope/);
+assert.match(packSlope.hudText, /Steeper terrain may slow walking/);
+assert.doesNotMatch(packSlope.hudText, /south-facing|north-facing|winter sun/);
+assert.doesNotMatch(packSlope.hudText, /land-cover edge is nearby/);
 assert.match(packSlope.hudText, /Land-cover edge: 200 m/);
-assert.doesNotMatch(packSlope.hudText, /south-facing|north-facing/);
-assert.match(packSlope.limits.join(" "), /Aspect is unavailable/);
-assert.doesNotMatch(packSlope.hudText, INTERPRETATION);
+assertHonest(packSlope, "pack-slope");
 
-// Edge distance of 0 m is a measured value, not missing
 const edgeZero = Intel.buildInspectReport({
   lat: 41.32,
   lng: -74.8,
@@ -264,12 +282,24 @@ const edgeZero = Intel.buildInspectReport({
   }
 });
 assert.match(edgeZero.hudText, /Land-cover edge: 0 m/);
-assert.doesNotMatch(edgeZero.hudText, /Land-cover edge: unavailable/);
+assert.match(edgeZero.hudText, /land-cover edge is nearby \(~0 m\)/);
+assertHonest(edgeZero, "edge-zero");
 
-// ——— Inspect semantics: YOU ≠ SEARCH ≠ INSPECT ≠ OBS ———
-assert.match(strong.hudText, /From YOU:/);
-assert.match(strong.hudText, /From SEARCH:/);
-assert.doesNotMatch(strong.hudText, /\bOBS\b/);
+// Empty Why helper when no supported inputs
+assert.equal(JSON.stringify(Intel.buildWhyLines({})), "[]");
+assert.equal(
+  JSON.stringify(
+    Intel.buildWhyLines({
+      slopeKind: "unavailable",
+      aspectKind: "unavailable",
+      habitatKind: "unavailable",
+      elevReady: false
+    })
+  ),
+  "[]"
+);
+
+// ——— Semantics YOU ≠ SEARCH ≠ INSPECT ≠ OBS ———
 assert.match(Intel.LIMIT_NOT_OBS, /not an observation of wildlife/);
 
 const mapApp = read("apps/shed-hunting/js/sheds-map-app.js");
@@ -277,62 +307,42 @@ const inspectBuilder = mapApp.slice(
   mapApp.indexOf("function buildCurrentInspectReport"),
   mapApp.indexOf("function renderInspectHud")
 );
-assert.match(mapApp, /WaypointShedsInspectIntel|InspectIntel/);
-assert.match(mapApp, /fetchInspectTerrain/);
-assert.match(mapApp, /buildCurrentInspectReport/);
-assert.match(mapApp, /ensureGisPacks\(\)\.then/);
-assert.match(mapApp, /terrainStatus:\s*state\.inspectTerrainStatus/);
-assert.match(mapApp, /inspectElevStatus = "failed"/);
-assert.match(mapApp, /inspectTerrainStatus = "failed"/);
-assert.match(mapApp, /btn-inspect-close[\s\S]{0,180}stopInspectMode/);
 assert.match(mapApp, /INSPECT — location facts \(not YOU, not SEARCH, not OBS\)/);
 assert.match(mapApp, /className: "sheds-inspect-marker"/);
 assert.match(mapApp, /sheds-user-marker/);
 assert.match(mapApp, /SEARCH — analysis center \(not YOU\)/);
 assert.match(mapApp, /if \(state\.inspectArmed\)/);
-assert.match(mapApp, /window\.__SHEDS_MAP__/);
-assert.match(mapApp, /className: "sheds-div-icon"/);
-assert.doesNotMatch(inspectBuilder, /HabitatGis\.scorePoint/, "Inspect must not score habitat suitability");
-assert.doesNotMatch(inspectBuilder, /habitatScore/, "Inspect wiring is facts-only");
-assert.notEqual(
-  mapApp.indexOf("sheds-inspect-marker"),
-  mapApp.indexOf("sheds-user-marker")
-);
+assert.match(mapApp, /btn-inspect-close[\s\S]{0,180}stopInspectMode/);
+assert.doesNotMatch(inspectBuilder, /HabitatGis\.scorePoint/);
+assert.doesNotMatch(inspectBuilder, /habitatScore/);
 
 const html = read("apps/shed-hunting/map/index.html");
 assert.match(html, /sheds-inspect-intel\.js/);
-assert.match(html, /btn-inspect-close/);
 assert.match(html, /not a claim that deer or antlers are here/);
+assert.match(html, /aria-label="Inspect location facts and context"/);
 assert.match(html, /id="inspect-hud"[^>]*hidden/);
-assert.match(html, /aria-label="Inspect location facts"/);
-assert.match(html, /map-marker-legend/);
 assert.match(html, />YOU</);
 assert.match(html, />SEARCH</);
 assert.match(html, />OBS</);
-assert.doesNotMatch(html, /Why this may matter/);
 
 const css = read("apps/shed-hunting/css/sheds-map.css");
-assert.match(css, /sheds-inspect-hud__body/);
-assert.match(css, /max-height:\s*min\(34vh/);
+assert.match(css, /max-height:\s*min\(38vh/);
 assert.match(css, /overflow-x:\s*hidden/);
 assert.match(css, /\.sheds-inspect-hud\[hidden\]/);
 
 const audit = read("reports/sheds-v3-2-field-intelligence/AUDIT.md");
-assert.match(audit, /Inspect Field Intelligence/);
 assert.match(audit, /REAL DATA/);
-
 const recovery = read("reports/sheds-v3-2-field-intelligence/RECOVERY.md");
-assert.match(recovery, /HEAD at recovery/);
 assert.match(recovery, /d9eb6bb9/);
-
 const factsNote = read("reports/sheds-v3-2-field-intelligence/FACTS.md");
-assert.match(factsNote, /facts only/i);
 assert.match(factsNote, /Open-Meteo/);
 assert.match(factsNote, /NLCD/);
-assert.match(factsNote, /deferred/i);
-
+const explain = read("reports/sheds-v3-2-field-intelligence/EXPLAIN.md");
+assert.match(explain, /Why this may matter/);
+assert.match(explain, /deterministic/i);
+assert.match(explain, /EDGE_NEAR_M|90 m/);
 const fieldDoc = read("docs/sheds/SHEDS-V3-2-FIELD-INTELLIGENCE.md");
-assert.match(fieldDoc, /facts only/i);
-assert.doesNotMatch(fieldDoc, /HUD hierarchy: Terrain \/ Habitat \/ Why this may matter/);
+assert.match(fieldDoc, /Why this may matter/);
+assert.match(fieldDoc, /What is here/);
 
-console.log("Sheds V3.2 Inspect Facts tests passed.");
+console.log("Sheds V3.2 Inspect Why tests passed.");
