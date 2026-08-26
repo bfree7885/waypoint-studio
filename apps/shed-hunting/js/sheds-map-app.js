@@ -3445,17 +3445,6 @@
         ? GisPack.findCoveringPack(state.gisPacks, ll.lat, ll.lng)
         : null;
     var sample = pack && GisPack.sample ? GisPack.sample(pack, ll.lat, ll.lng) : null;
-    var habitatScore = null;
-    if (HabitatGis && HabitatGis.scorePoint) {
-      habitatScore = HabitatGis.scorePoint({
-        sample: sample,
-        lat: ll.lat,
-        lng: ll.lng,
-        observations: [],
-        includeObservations: false,
-        Bio: Bio
-      });
-    }
     var packMeta = null;
     if (pack) {
       var nlcdYear =
@@ -3463,6 +3452,7 @@
       packMeta = { packId: pack.packId, nlcdYear: nlcdYear || 2021, region: pack.region };
     }
     var rel = inspectRelationLines();
+    /* Facts only: land-cover sample from the GIS pack; no habitat suitability score. */
     return InspectIntel.buildInspectReport({
       lat: ll.lat,
       lng: ll.lng,
@@ -3471,7 +3461,6 @@
       terrainStatus: state.inspectTerrainStatus,
       terrainDerived: state.inspectTerrainDerived,
       gisSample: sample,
-      habitatScore: habitatScore,
       packMeta: packMeta,
       fromYou: rel.fromYou,
       fromSearch: rel.fromSearch
@@ -3639,7 +3628,7 @@
       className: "sheds-inspect-marker"
     }).addTo(map);
     try {
-      inspectMarker.bindTooltip("INSPECT — landscape context (not YOU, not OBS)", {
+      inspectMarker.bindTooltip("INSPECT — location facts (not YOU, not SEARCH, not OBS)", {
         permanent: false,
         direction: "top",
         className: "sheds-inspect-tip"

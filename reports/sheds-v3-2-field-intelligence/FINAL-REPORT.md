@@ -1,10 +1,10 @@
 # Sheds V3.2 — Field Intelligence FINAL REPORT
 
-**Recovery (2026-08-25):** The original run stalled after committing Inspect work plus three SHA-alignment commits. See [`RECOVERY.md`](./RECOVERY.md). This report’s original “full V3.2” framing is **not** a hunt-planner / Search Area / weather slice. The bounded product that shipped is **Inspect Intelligence** only.
+**Facts-only follow-up (2026-08-26):** Inspect HUD shows physical and land-cover facts only. “Why this may matter,” solar interpretation, and habitat suitability bands are omitted. See [`FACTS.md`](./FACTS.md) and [`RECOVERY.md`](./RECOVERY.md).
 
-**Verdict:** PASS for the Inspect Intelligence slice  
-**Date:** 2026-08-25  
-**Product test:** Inspect explains landscape signals without inventing sheds/deer; mobile HUD dismisses and leaves the map usable.
+**Verdict:** PASS for the Inspect Facts slice  
+**Date:** 2026-08-26  
+**Product test:** Inspect reports elevation / slope / aspect / land cover without inventing sheds/deer; mobile HUD dismisses and leaves the map usable.
 
 ---
 
@@ -14,36 +14,36 @@
 
 ## 2. Starting commit
 
-`f26e841d`
+`4fa26378` (Inspect Intelligence with Terrain/Habitat/Why/Limits)
 
 ## 3. Final commit
 
-`ab2b545b` (feature implementation: `d9eb6bb9`)
-
+Recorded in git on this branch after the facts-only change (do not SHA-chase this file).
 
 ## 4. Exact files changed
 
 See git commit. Primary:
 
-- `apps/shed-hunting/js/sheds-inspect-intel.js` (new)
+- `apps/shed-hunting/js/sheds-inspect-intel.js`
 - `apps/shed-hunting/js/sheds-map-app.js`
 - `apps/shed-hunting/map/index.html`
-- `apps/shed-hunting/css/sheds-map.css`
-- `automation/test-sheds-v3-2-inspect-intel.mjs` (new)
-- `automation/capture-sheds-v3-2-inspect.mjs` (new)
-- `docs/sheds/SHEDS-V3-2-FIELD-INTELLIGENCE.md` (new)
-- `docs/PRODUCT-DIRECTION.md`
+- `automation/test-sheds-v3-2-inspect-intel.mjs`
+- `automation/capture-sheds-v3-2-inspect.mjs`
+- `docs/sheds/SHEDS-V3-2-FIELD-INTELLIGENCE.md`
 - `docs/ENGINEERING-PLAYBOOK.md`
-- `reports/sheds-v3-2-field-intelligence/**`
+- `reports/sheds-v3-2-field-intelligence/FACTS.md`
+- `reports/sheds-v3-2-field-intelligence/A_strong.txt`
+- `reports/sheds-v3-2-field-intelligence/C_weak.txt`
+- this report + CDP artifacts
 
 ## 5. Exact files added/deleted
 
-**Added:** inspect intel module, tests, capture harness, AUDIT, this report, docs, screenshots/JSON artifacts  
+**Added:** `reports/sheds-v3-2-field-intelligence/FACTS.md`  
 **Deleted:** none
 
 ## 6. Audit findings
 
-See [`AUDIT.md`](./AUDIT.md). Inspect was lat/elev/relations only; habitat GIS existed for SEARCH grids but not Inspect; aspect not in pack; Search Areas already shipped (Phase 3).
+See [`AUDIT.md`](./AUDIT.md). Inspect previously mixed FACT with INTERPRETATION (“Why this may matter”) and called `HabitatGis.scorePoint`. This pass removes interpretation from the HUD.
 
 ## 7. Existing data sources
 
@@ -51,67 +51,66 @@ Open-Meteo weather/elev; NLCD + 3DEP-derived slope packs; CARTO/Esri tiles; brow
 
 ## 8. REAL / DERIVED / INFERENCE / EDITORIAL
 
-Documented in AUDIT §4. Inspect adds: neighborhood elev → **DERIVED** slope/aspect; solar notes → **EDITORIAL/HEURISTIC** (physical geography); habitat bands → existing **EDITORIAL/HEURISTIC**.
+Elevation: **REAL**. Neighborhood slope/aspect: **DERIVED**. NLCD class: **REAL**. Edge distance: **DERIVED**. Solar notes / habitat bands: **EDITORIAL/HEURISTIC** and **not shown** on Inspect.
 
-## 9. V3.2 features selected
+## 9. V3.2 features selected (this pass)
 
-1. Inspect Field Intelligence report  
-2. Terrain slope/aspect at Inspect (network neighborhood)  
-3. Habitat sample + explainable `scorePoint` when GIS pack covers the point  
-4. Deterministic coverage labels + Why/Limits  
-5. Mobile scrollable Inspect + Done  
+1. Inspect Facts HUD (elevation, slope, aspect, land cover / edge)
+2. Honest partial / unavailable / failed / zero-value distinction
+3. Limits: no wildlife presence claim; Inspect ≠ OBS
+4. Mobile scrollable Inspect + Done
 
 ## 10. Deferred
 
-Statewide packs; polygon Search Area editor; Planning/Field mode split; DeviceOrientation compass; observation type expansion; LLM narratives; full offline tiles; weather duplication of Dashboard.
+Statewide packs; aspect rasters in pack; polygon Search Area editor; Planning/Field mode split; DeviceOrientation compass; observation type expansion; LLM narratives; full offline tiles; weather duplication of Dashboard; **Inspect interpretation / suitability** (explicitly not this pass).
 
 ## 11. Inspect changes
 
-HUD shows elev, slope, aspect (when slope ≥ 2°), land cover / edge / search-potential band when pack covers, Why / Limits / Evidence label, Done dismiss. Generation-guarded fetches; offline → unavailable (no fabricate).
+HUD shows labeled elevation, slope (including 0°), aspect when slope ≥ 2°, land cover / edge when pack covers, Limits / honesty, Done dismiss. No Why section. No `scorePoint`. Generation-guarded fetches; offline → unavailable (no fabricate).
 
 ## 12. Terrain intelligence
 
-Finite-diff slope/aspect from 5-point Open-Meteo elev (~60 m). Flat terrain suppresses aspect/solar claims.
+Finite-diff slope/aspect from 5-point Open-Meteo elev (~60 m). Flat terrain marks aspect **not defined**.
 
 ## 13. Habitat intelligence
 
-`GisPack.sample` + `HabitatGis.scorePoint` (MODEL only, observations off) when pack covers Inspect point.
+`GisPack.sample` land-cover class + edge meters when pack covers Inspect point. No habitat-signal band.
 
 ## 14. Aspect / seasonal
 
-Northern-Hemisphere solar exposure notes only; not bedding/wildlife. Timing channel unchanged.
+Aspect cardinal only on the HUD. Solar-exposure helper remains in the module for tests, not rendered.
 
 ## 15. Suitability / relevance model
 
-Reuses Phase 2 habitat bands (Limited / Some / Stronger) — never find %.
+Not shown on Inspect. Phase 2 habitat scoring unchanged for SEARCH heat.
 
 ## 16. Explainability
 
-Deterministic Why bullets from structure/edge/slope/solar; Limits list provenance + honesty.
+Facts and Limits only. Provenance in Limits (NLCD year, neighborhood slope).
 
 ## 17. Confidence / uncertainty
 
-Strong / Moderate / Limited / Insufficient from presence of elev, slope/aspect, habitat sample.
+Coverage ids remain internal (strong / moderate / limited / insufficient). HUD does not advertise “supporting signals.”
 
 ## 18. Hunt-planning improvements
 
-Inspect usable pre-hunt on desktop/mobile; Field Plan / Search Areas unchanged (already Phase 3). No new polygon editor.
+None in this pass (facts readout only).
 
 ## 19. Search Area decision
 
-**Preserve existing** circular Search Area — do not force polygons in V3.2.
+**Preserve existing** circular Search Area.
 
 ## 20. Observation changes
 
-None (types preserved; no auto wildlife OBS).
+None.
 
 ## 21. Weather / environmental
 
-No new weather UI; Inspect uses elev/aspect only.
+No new weather UI; Inspect uses elev/aspect/land cover only.
 
 ## 22. Mobile UX
 
-Scrollable Inspect max-height; Done; CDP 390: no overflow; mapShare stays dominant.
+Scrollable Inspect max-height; Done; CDP 375/390/430: no overflow; mapShare stays dominant.
 
 ## 23. Desktop UX
 
@@ -127,21 +126,21 @@ Bounded: one elev point + one 5-point neighborhood fetch per Inspect; GIS sample
 
 ## 26. Accessibility
 
-Inspect `role="dialog"`, aria-label, Done button, aria-live content; text via `textContent`.
+Inspect `role="dialog"`, aria-label “Inspect location facts”, Done button, aria-live content; text via `textContent`.
 
 ## 27. Prediction-truth safeguards
 
-Banned “shed found” / find probability in report builder; tests assert; MODEL excludes observations.
+Banned “shed found” / find probability / Why-this-may-matter / habitat-signal language in report builder; tests assert; Inspect excludes observations and suitability scoring.
 
 ## 28. YOU ≠ SEARCH ≠ INSPECT ≠ OBS
 
-Inspect marker + tooltip distinct; Measure/Inspect still short-circuit SEARCH; Close/Done clears Inspect.
+Inspect marker + tooltip distinct (`not YOU, not SEARCH, not OBS`); Measure/Inspect still short-circuit SEARCH; Close/Done clears Inspect.
 
 ## 29. Tests and exact results
 
 | Suite | Result |
 | --- | --- |
-| `test-sheds-v3-2-inspect-intel.mjs` | PASS |
+| `test-sheds-v3-2-inspect-intel.mjs` | PASS (facts / partial / none / failed / semantics) |
 | `test-sheds-phase1-prediction-truth.mjs` | PASS (68) |
 | `test-sheds-phase2-habitat-gis.mjs` | PASS (99) |
 | `test-sheds-v3-mapping-foundation.mjs` | PASS (17) |
@@ -149,29 +148,28 @@ Inspect marker + tooltip distinct; Measure/Inspect still short-circuit SEARCH; C
 | `test-sheds-phase3-field-workflow.mjs` | PASS (65) |
 | `test-sheds-phase4-ux-polish.mjs` | PASS (64) |
 | `test-sheds-field-ux.mjs` | PASS (36) |
-| `SHEDS_CDP=1 test-sheds-field-ux.mjs` | PASS (48) |
 | `test-sheds-map.mjs` | PASS (46) |
 
 ## 30. Browser / CDP verification
 
-`capture-sheds-v3-2-inspect.mjs` — Inspect armed; HUD showed Why/Limits; `banned=false`; `overflow=false`. Outside pack → honest Habitat unavailable.
+`capture-sheds-v3-2-inspect.mjs` — 375/390/430 + 1280. Pike point showed Elevation 607 ft, Slope 7.9°, southeast-facing, Land cover Developed, edge 0 m. `hasWhy=false`, `hasInterpretation=false`, `banned=false`, `overflow=false`, dismiss `hidden=true` / `hudHeight=0` / inspect marker removed.
 
 ## 31. Screenshots generated
 
-`reports/sheds-v3-2-field-intelligence/screens/` — 375/390/430/1280 initial; `390-inspect-after-tap.png`; `cdp-inspect-390.json`.
+`reports/sheds-v3-2-field-intelligence/screens/` — 375/390/430/1280 inspect-after-tap; `390-inspect-dismissed.png`; `cdp-inspect-390.json`.
 
 ## 32. Known issues
 
-- GIS habitat at Inspect only inside bundled Pike pack (honest elsewhere).  
-- Default map view may land outside pack — Scenario D (strong habitat) validated in unit tests + pack coverage, not always in default CDP center.  
+- GIS land cover at Inspect only inside bundled Pike pack (honest elsewhere).
+- Default map view may land outside pack — Pike point is used in CDP.
 - Desktop `prompt×here` overlap WARN from V3.1 remains deferred.
 
 ## 33. Deferred ideas
 
-See §10; plus Field Plan discoverability polish; multi-county pack catalog.
+See §10; plus Field Plan discoverability polish; multi-county pack catalog; a later interpretation slice **only if** owners ask.
 
 ## 34. Recommended next three priorities only
 
-1. **Additional GIS packs** (NE PA counties) so Inspect habitat works beyond Pike  
-2. **Field Plan discoverability** (pre-hunt planning surface without burying under Tools)  
-3. **Sheds V3.3** only after field validation of Inspect explanations with a real hunt walk
+1. **Additional GIS packs** (NE PA counties) so Inspect land cover works beyond Pike
+2. **Field Plan discoverability** (pre-hunt planning surface without burying under Tools)
+3. Interpretation / suitability **only after** facts-only Inspect is validated in the field

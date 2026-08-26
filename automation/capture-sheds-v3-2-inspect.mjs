@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sheds V3.2 — CDP Inspect Intelligence capture (375/390/430 + desktop).
+ * Sheds V3.2 — CDP Inspect Facts capture (375/390/430 + desktop).
  * Usage: node automation/capture-sheds-v3-2-inspect.mjs
  */
 import fs from "fs";
@@ -149,7 +149,12 @@ try {
       hudHeight: hud && !hud.hasAttribute('hidden') ? +hud.getBoundingClientRect().height.toFixed(1) : 0,
       hasTerrain: /(?:^|\\n)Terrain\\n/m.test(text) || /Terrain/.test(text),
       hasHabitat: /Habitat/.test(text),
+      hasElevation: /Elevation:/.test(text),
+      hasSlope: /Slope:/.test(text),
+      hasAspect: /Aspect:/.test(text),
+      hasLandCover: /Land cover:/.test(text),
       hasWhy: /Why this may matter/i.test(text),
+      hasInterpretation: /generally walkable|solar exposure|worth inspecting|habitat signal|suitability/i.test(text),
       hasLimits: /Limits/.test(text),
       banned: /shed found|antler here|find probability|deer are here|bedding area|feeding area/i.test(text),
       inspectMarker: !!marker,
@@ -217,7 +222,7 @@ try {
     await shot(`${vp.prefix}-map-initial.png`);
     await openInspectAtPike();
     const hud = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
-    results[vp.prefix] = hud.result;
+    results[vp.prefix] = (hud.result && hud.result.value) || hud.result;
     await shot(`${vp.prefix}-inspect-after-tap.png`);
   }
 
@@ -228,13 +233,13 @@ try {
   });
   await delay(400);
   const dismissed = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
-  results.dismissed = dismissed.result;
+  results.dismissed = (dismissed.result && dismissed.result.value) || dismissed.result;
   await shot("390-inspect-dismissed.png");
 
   await setViewport(1280, 800, false);
   await openInspectAtPike();
   const desk = await send("Runtime.evaluate", { expression: inspectHud, returnByValue: true });
-  results.desktop = desk.result;
+  results.desktop = (desk.result && desk.result.value) || desk.result;
   await shot("1280-inspect-after-tap.png");
 
   fs.writeFileSync(path.join(OUT, "cdp-inspect-390.json"), JSON.stringify(results, null, 2));

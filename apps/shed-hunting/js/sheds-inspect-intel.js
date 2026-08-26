@@ -1,8 +1,9 @@
 /**
- * Sheds V3.2 — Inspect Field Intelligence (pure helpers).
- * Decision support only — never invents sheds, deer, or find probability.
+ * Sheds V3.2 — Inspect Facts (pure helpers).
+ * Physical / land-cover facts only — never invents sheds, deer, or find probability.
  *
- * HUD hierarchy: Terrain (FACT) · Habitat (FACT) · Why this may matter (INTERPRETATION) · Limits (LIMITATION)
+ * HUD hierarchy: Terrain (FACT) · Habitat / land cover (FACT) · Limits (LIMITATION)
+ * Interpretation / suitability is intentionally omitted from the Inspect HUD.
  */
 (function (global) {
   "use strict";
@@ -24,9 +25,8 @@
   var NO_INTEL_FAILED =
     "Terrain and habitat details couldn't be retrieved for this location.";
   var LIMIT_WILDLIFE =
-    "This describes terrain and habitat suitability. It does not indicate that deer or shed antlers are present.";
-  var LIMIT_NOT_OBS =
-    "Modeled suitability is not an observation of wildlife.";
+    "These are physical and land-cover facts at this point. They do not indicate that deer or shed antlers are present.";
+  var LIMIT_NOT_OBS = "Inspect is not an observation of wildlife.";
 
   var BANNED_PHRASES = [
     "shed found",
@@ -38,8 +38,13 @@
     "feeding area",
     "deer trail",
     "deer movement",
+    "wildlife movement",
     "find probability",
-    "chance of finding"
+    "chance of finding",
+    "why this may matter",
+    "search potential",
+    "habitat signal",
+    "worth inspecting"
   ];
 
   function aspectCardinal(deg) {
@@ -96,6 +101,7 @@
 
   /**
    * Physical geography only (Northern Hemisphere solar). Not animal behavior.
+   * Kept for tests / later slices — not shown on the facts-only Inspect HUD.
    */
   function solarExposureNote(aspectDeg, lat) {
     if (aspectDeg == null || !isFinite(aspectDeg)) {
@@ -157,6 +163,13 @@
     return s + " ft";
   }
 
+  function formatSlopeValue(slopeDeg) {
+    if (slopeDeg == null || !isFinite(slopeDeg)) return null;
+    var cls = slopeClassLabel(slopeDeg);
+    var deg = String(slopeDeg);
+    return cls ? deg + "° (" + cls + ")" : deg + "°";
+  }
+
   function coverageLabel(parts) {
     parts = parts || {};
     var bits = 0;
@@ -203,8 +216,18 @@
     });
   }
 
+  function labeledFact(label, status, valueText) {
+    if (status === "loading") return label + ": loading…";
+    if (status === "failed") return label + ": couldn't be retrieved";
+    if (status === "unavailable") return label + ": unavailable";
+    if (status === "undefined") return label + ": not defined on nearly flat ground";
+    if (status === "ready" && valueText) return label + ": " + valueText;
+    return null;
+  }
+
   /**
    * Build a structured Inspect report for HUD rendering / tests.
+   * Facts only — no walkability, solar, or habitat-suitability copy in the HUD.
    */
   function buildInspectReport(opts) {
     opts = opts || {};
@@ -215,109 +238,116 @@
     var terrainStatus = opts.terrainStatus || "idle";
     var terrainDerived = opts.terrainDerived || null;
     var gisSample = opts.gisSample || null;
-    var habitatScore = opts.habitatScore || null;
     var packMeta = opts.packMeta || null;
     var fromYou = opts.fromYou || null;
     var fromSearch = opts.fromSearch || null;
 
     var facts = [];
-    var interpretation = [];
     var limitation = [LIMIT_WILDLIFE, LIMIT_NOT_OBS];
 
-    var elevLine = null;
-    if (elevStatus === "loading") elevLine = "Elevation: loading…";
-    else if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
-      elevLine = "Elevation: " + formatElevationFt(elevM) + " (network sample)";
-    } else if (elevStatus === "failed") elevLine = "Elevation: couldn't be retrieved";
-    else if (elevStatus === "unavailable") elevLine = "Elevation: unavailable";
-    else if (elevStatus === "idle") elevLine = null;
+    var elevKind = elevStatus;
+    var elevLine = labeledFact("Elevation", elevStatus, formatElevationFt(elevM));
+    if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
+      facts.push("Elevation: " + formatElevationFt(elevM));
+    }
 
     var slopeDeg =
-      terrainDerived && terrainDerived.slopeDeg != null
+      terrainDerived && terrainDerived.slopeDeg != null && isFinite(terrainDerived.slopeDeg)
         ? terrainDerived.slopeDeg
-        : gisSample && gisSample.slopeDeg != null
+        : gisSample && gisSample.slopeDeg != null && isFinite(gisSample.slopeDeg)
           ? gisSample.slopeDeg
           : null;
-    var aspectDeg = terrainDerived && terrainDerived.aspectDeg != null ? terrainDerived.aspectDeg : null;
+    var aspectDeg =
+      terrainDerived && terrainDerived.aspectDeg != null && isFinite(terrainDerived.aspectDeg)
+        ? terrainDerived.aspectDeg
+        : null;
     var slopeSource =
-      terrainDerived && terrainDerived.slopeDeg != null
+      terrainDerived && terrainDerived.slopeDeg != null && isFinite(terrainDerived.slopeDeg)
         ? terrainDerived.source
-        : gisSample && gisSample.slopeDeg != null
+        : gisSample && gisSample.slopeDeg != null && isFinite(gisSample.slopeDeg)
           ? "gis-pack-slope"
           : null;
 
-    /* Aspect is poorly defined on near-flat ground — do not claim solar exposure. */
+    var slopeKind;
+    if (slopeDeg != null) slopeKind = "ready";
+    else if (terrainStatus === "loading" && !(gisSample && gisSample.slopeDeg != null)) slopeKind = "loading";
+    else if (terrainStatus === "failed" && !(gisSample && gisSample.slopeDeg != null)) slopeKind = "failed";
+    else if (terrainStatus === "idle" && slopeDeg == null) slopeKind = "idle";
+    else slopeKind = "unavailable";
+
+    /* Aspect is poorly defined on near-flat ground — do not report 0° as north. */
+    var aspectKind;
+    var aspectUndefined = false;
     if (slopeDeg != null && slopeDeg < 2) {
       aspectDeg = null;
+      aspectUndefined = true;
+      aspectKind = "undefined";
+    } else if (aspectDeg != null) {
+      aspectKind = "ready";
+    } else if (terrainStatus === "loading") {
+      aspectKind = "loading";
+    } else if (terrainStatus === "failed") {
+      aspectKind = "failed";
+    } else if (terrainStatus === "idle" && !terrainDerived) {
+      aspectKind = "idle";
+    } else {
+      aspectKind = "unavailable";
     }
 
     var solar = solarExposureNote(aspectDeg, lat);
     var cardinal = aspectCardinal(aspectDeg);
     var facing = aspectFacingPhrase(cardinal);
     var slopeLabel = slopeClassLabel(slopeDeg);
+    var slopeLine = labeledFact("Slope", slopeKind, formatSlopeValue(slopeDeg));
+    var aspectLine = labeledFact("Aspect", aspectKind, facing);
+    if (slopeKind === "ready") facts.push("Slope: " + formatSlopeValue(slopeDeg));
+    if (aspectKind === "ready" && facing) facts.push("Aspect: " + facing);
 
-    var terrainBits = [];
-    if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
-      terrainBits.push(formatElevationFt(elevM));
-    }
-    if (slopeLabel) terrainBits.push(slopeLabel);
-    if (facing) terrainBits.push(facing);
+    var terrainLines = [];
+    if (elevLine) terrainLines.push(elevLine);
+    if (slopeLine) terrainLines.push(slopeLine);
+    if (aspectLine) terrainLines.push(aspectLine);
 
-    var terrainFact = null;
     var terrainKind = "none";
+    var terrainFact = null;
     if (elevStatus === "loading" || terrainStatus === "loading") {
-      terrainFact = "Loading terrain…";
       terrainKind = "loading";
-    } else if (terrainBits.length) {
-      terrainFact = terrainBits.join(" · ");
+    }
+    if (elevStatus === "ready" || slopeKind === "ready" || aspectKind === "ready") {
       terrainKind = "ready";
-      facts.push("Terrain: " + terrainFact);
+      terrainFact = terrainLines.join("\n");
     } else if (elevStatus === "failed" || terrainStatus === "failed") {
-      terrainFact = "Terrain details couldn't be retrieved for this location.";
       terrainKind = "failed";
+      terrainFact =
+        terrainLines.length > 0
+          ? terrainLines.join("\n")
+          : "Terrain details couldn't be retrieved for this location.";
     } else if (elevStatus === "unavailable" || terrainStatus === "unavailable") {
-      terrainFact = "Elevation, slope, and aspect aren't available for this location.";
       terrainKind = "unavailable";
-    }
-
-    if (slopeDeg != null && slopeDeg >= 12) {
-      interpretation.push("Steeper terrain may slow walking.");
-    } else if (slopeDeg != null && slopeDeg >= 2 && slopeDeg < 12) {
-      interpretation.push("Moderate slope is generally walkable.");
-    }
-
-    if (solar.available && facing) {
-      var facingSentence =
-        facing.charAt(0).toUpperCase() + facing.slice(1) + " terrain ";
-      if (solar.label === "More south-facing") {
-        interpretation.push(facingSentence + "receives relatively strong afternoon solar exposure.");
-      } else if (solar.label === "More north-facing") {
-        interpretation.push(facingSentence + "receives less direct winter sun and may hold snow longer.");
-      } else if (solar.label === "Mixed / east–west aspect") {
-        interpretation.push("East–west aspect means solar exposure differences are modest here.");
-      } else if (solar.note) {
-        interpretation.push(solar.note);
-      }
+      terrainFact =
+        terrainLines.length > 0
+          ? terrainLines.join("\n")
+          : "Elevation, slope, and aspect aren't available for this location.";
+    } else if (terrainLines.length) {
+      terrainFact = terrainLines.join("\n");
+      if (elevStatus === "loading" || terrainStatus === "loading") terrainKind = "loading";
     }
 
     var habitatUnavailable = !gisSample;
     var habitatFact = null;
     var habitatKind = "none";
+    var coverLine = null;
+    var edgeLine = null;
     if (gisSample) {
       var cover = gisSample.structureLabel || gisSample.structure || "Land cover";
-      var nearEdge = gisSample.edgeM != null && gisSample.edgeM <= 90;
-      if (nearEdge && gisSample.edgeM === 0) {
-        habitatFact = cover + " at a habitat transition";
-      } else if (nearEdge) {
-        habitatFact = cover + " near a habitat transition (~" + Math.round(gisSample.edgeM) + " m)";
-      } else {
-        habitatFact = cover;
+      coverLine = "Land cover: " + cover;
+      if (gisSample.edgeM != null && isFinite(gisSample.edgeM)) {
+        edgeLine = "Land-cover edge: " + Math.round(gisSample.edgeM) + " m";
       }
+      habitatFact = edgeLine ? coverLine + "\n" + edgeLine : coverLine;
       habitatKind = "ready";
-      facts.push("Habitat: " + habitatFact);
-      if (nearEdge) {
-        interpretation.push("The nearby habitat transition may make this area worth inspecting.");
-      }
+      facts.push(coverLine);
+      if (edgeLine) facts.push(edgeLine);
       var nlcdYear = packMeta && packMeta.nlcdYear ? packMeta.nlcdYear : null;
       var res = gisSample.resolutionNote || "~30 m";
       if (nlcdYear) {
@@ -326,11 +356,12 @@
         pushUnique(limitation, "Land cover source: NLCD (" + res + ").");
       }
     } else {
-      habitatFact = "Detailed habitat information isn't available for this location.";
+      coverLine = "Land cover: unavailable for this location";
+      habitatFact = coverLine;
       habitatKind = "unavailable";
       pushUnique(
         limitation,
-        "No GIS habitat pack covers this point — land-cover guidance unavailable."
+        "No GIS habitat pack covers this point — land-cover classification unavailable."
       );
     }
 
@@ -346,9 +377,13 @@
       );
     }
 
+    if (aspectUndefined && slopeKind === "ready") {
+      pushUnique(limitation, "Aspect is not defined on nearly flat ground.");
+    }
+
     var coverage = coverageLabel({
-      elev: elevStatus === "ready" && elevM != null,
-      aspectOrSlope: slopeDeg != null || aspectDeg != null,
+      elev: elevStatus === "ready" && elevM != null && isFinite(elevM),
+      aspectOrSlope: slopeDeg != null || (aspectKind === "ready" && aspectDeg != null),
       habitat: !!gisSample
     });
 
@@ -360,41 +395,46 @@
       (elevStatus === "failed" || terrainStatus === "failed");
     var noIntel = !hasTerrainIntel && !hasHabitatIntel && !failedIntel && terrainKind !== "loading";
 
-    if (!interpretation.length && hasTerrainIntel && !hasHabitatIntel) {
-      /* Facts only — do not invent landscape meaning. */
-    }
-
     var report = {
-      version: "3.2.1",
+      version: "3.2.2",
+      factsOnly: true,
       lat: lat,
       lng: lng,
-      elev: { status: elevStatus, meters: elevM, line: elevLine, ftLabel: formatElevationFt(elevM) },
+      elev: {
+        status: elevStatus,
+        meters: elevM,
+        line: elevLine,
+        ftLabel: formatElevationFt(elevM),
+        kind: elevKind
+      },
       terrain: {
         slopeDeg: slopeDeg,
         aspectDeg: aspectDeg,
         aspectCardinal: cardinal,
         aspectFacing: facing,
+        aspectKind: aspectKind,
         slopeClass: slopeLabel,
         slopeSource: slopeSource,
+        slopeKind: slopeKind,
         solar: solar,
         factLine: terrainFact,
+        lines: terrainLines,
         kind: terrainKind,
         status: terrainStatus
       },
       habitat: {
         unavailable: habitatUnavailable,
         sample: gisSample,
-        score: habitatScore,
+        score: null,
         factLine: habitatFact,
+        coverLine: coverLine,
+        edgeLine: edgeLine,
         kind: habitatKind,
-        bandLabel:
-          habitatScore && habitatScore.band ? habitatScore.band.label : habitatUnavailable
-            ? "Habitat data unavailable for this area"
-            : null
+        bandLabel: null
       },
       relation: { fromYou: fromYou, fromSearch: fromSearch },
       facts: facts,
-      why: interpretation,
+      why: [],
       limits: limitation,
       coverage: coverage,
       honesty: [LIMIT_WILDLIFE, LIMIT_NOT_OBS],
@@ -404,7 +444,8 @@
         elev: "REAL",
         slopePack: "DERIVED",
         aspectNeighborhood: "DERIVED",
-        habitatScore: "EDITORIAL_HEURISTIC",
+        habitatClass: "REAL",
+        landCoverEdge: "DERIVED",
         solarNote: "EDITORIAL_HEURISTIC",
         why: "INTERPRETATION",
         limits: "LIMITATION"
@@ -413,8 +454,9 @@
 
     report.hudText = formatHudText(report);
     report.containsBannedLanguage = textContainsBanned(report.hudText);
-    report.containsWildlifeInference = textContainsBanned(
-      facts.concat(interpretation).join("\n")
+    report.containsWildlifeInference = textContainsBanned(facts.join("\n"));
+    report.containsInterpretation = /why this may matter|generally walkable|may slow walking|solar exposure|may hold snow|worth inspecting|habitat signal|search potential|suitability/i.test(
+      report.hudText
     );
     return report;
   }
@@ -439,21 +481,21 @@
       if (report.terrain && report.terrain.factLine) {
         lines.push("");
         lines.push("Terrain");
-        lines.push(report.terrain.factLine);
+        String(report.terrain.factLine)
+          .split("\n")
+          .forEach(function (row) {
+            if (row) lines.push(row);
+          });
       }
       if (report.habitat && report.habitat.factLine) {
         lines.push("");
         lines.push("Habitat");
-        lines.push(report.habitat.factLine);
+        String(report.habitat.factLine)
+          .split("\n")
+          .forEach(function (row) {
+            if (row) lines.push(row);
+          });
       }
-    }
-
-    if (report.why && report.why.length && !report.noIntel && !report.failedIntel) {
-      lines.push("");
-      lines.push("Why this may matter");
-      report.why.forEach(function (w) {
-        lines.push(w);
-      });
     }
 
     if (report.limits && report.limits.length) {
@@ -511,6 +553,7 @@
     slopeAspectFromElevNeighbors: slopeAspectFromElevNeighbors,
     slopeClassLabel: slopeClassLabel,
     formatElevationFt: formatElevationFt,
+    formatSlopeValue: formatSlopeValue,
     solarExposureNote: solarExposureNote,
     coverageLabel: coverageLabel,
     buildInspectReport: buildInspectReport,
@@ -520,6 +563,7 @@
     NO_INTEL_UNAVAILABLE: NO_INTEL_UNAVAILABLE,
     NO_INTEL_FAILED: NO_INTEL_FAILED,
     LIMIT_WILDLIFE: LIMIT_WILDLIFE,
-    VERSION: "3.2.1"
+    LIMIT_NOT_OBS: LIMIT_NOT_OBS,
+    VERSION: "3.2.2"
   };
 })(typeof window !== "undefined" ? window : globalThis);

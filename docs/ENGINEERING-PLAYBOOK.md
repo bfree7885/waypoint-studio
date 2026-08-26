@@ -1584,6 +1584,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A full V3.2 roadmap run can stall on leftover headless Chrome/CDP servers and SHA-updating the acceptance report. Recover by classifying existing commits, finishing **one** slice, and stopping.
 - Inspect Intelligence HUD must separate FACT (Terrain/Habitat) from INTERPRETATION (Why) from LIMITATION. Habitat suitability bands must not be phrased as wildlife presence.
 
+### Lessons Learned — Sheds V3.2 Inspect Facts (2026-08-26)
+
+- Inspect Facts is not Inspect Intelligence: omit “Why this may matter,” solar notes, walkability, and `HabitatGis.scorePoint` from the HUD so Inspect stays a readout, not a prediction.
+- Zero and flat measurements (`0 ft`, `0°`, edge `0 m`) must not share copy with unavailable or failed fetches; aspect on slope &lt; 2° is **not defined**, not north.
+- Do not SHA-chase the V3.2 acceptance report after the feature commit — that loop stalled the previous recovery pass.
+
 ### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
 
 - Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
