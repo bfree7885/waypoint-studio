@@ -60,15 +60,27 @@ export const TAKE_PROVENANCE = ["generated", "editor-written", "fallback", "unav
 
 export const ARTICLE_STATUS = ["active", "duplicate", "rejected", "stale"];
 
+/** Active Studio / Publishing companions only — do not promote paused/retired apps. */
 export const RELATED_PRODUCTS = [
   { id: "dashboard", label: "Dashboard", href: "/apps/dashboard/" },
   { id: "scenes", label: "Scenes", href: "/apps/scenes/" },
   { id: "photo-coach", label: "Photo Coach", href: "/apps/scenes/" },
   { id: "hidden-landscapes", label: "Hidden Landscapes", href: "/apps/scenes/" },
   { id: "sheds", label: "Sheds", href: "/apps/shed-hunting/" },
-  { id: "fieldry", label: "Fieldry", href: "/apps/fieldry/" },
   { id: "foragecast", label: "ForageCast", href: "/apps/foragecast/" },
   { id: "articles", label: "Articles", href: "/articles/" }
+];
+
+/** Paused / retired / inactive — never suggest via related-product chips. */
+export const RELATED_PRODUCTS_BLOCKED = [
+  "fieldry",
+  "openroad-pa",
+  "openroad",
+  "savant-sommelier",
+  "savant",
+  "signalterrain",
+  "cyber",
+  "global-signals"
 ];
 
 export const REJECT_TOPIC_PATTERNS = [

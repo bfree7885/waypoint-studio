@@ -49,28 +49,42 @@ const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 const gs = catalog.projects.find((p) => p.id === "global-signals");
 assert.ok(gs);
 assert.equal(gs.url, "side-trails/global-signals/");
-assert.match(gs.ctaLabel, /Global Signals/i);
+assert.equal(gs.status, "archived", "Global Signals is archived research, not a standalone active product");
+assert.match(gs.ctaLabel, /[Aa]rchive|[Vv]iew/i);
+assert.match(gs.description + " " + gs.tagline, /Deck|archived|not a standalone/i);
 
 const navCfg = read("design-system/js/platform/wds-app-nav-config.js");
-assert.match(navCfg, /"homeSideTrails":\s*\[[^\]]*global-signals/);
+assert.doesNotMatch(navCfg, /"homeSideTrails":\s*\[[^\]]*global-signals/);
 assert.match(navCfg, /"id":\s*"global-signals"/);
 assert.match(navCfg, /"href":\s*"side-trails\/global-signals\/"/);
 
 const navReg = JSON.parse(read("design-system/ecosystem/nav-registry.json"));
-assert.ok(navReg.homeSideTrails.includes("global-signals"));
+assert.equal(
+  navReg.homeSideTrails.includes("global-signals"),
+  false,
+  "Global Signals must not be promoted on home Side Trails"
+);
+assert.ok(
+  navReg.homeSideTrails.includes("waypoint-deck") || navReg.homeSideTrails.length === 0,
+  "home Side Trails should feature Deck (or empty), not GS"
+);
 const navApp = navReg.apps.find((a) => a.id === "global-signals");
 assert.ok(navApp);
 assert.equal(navApp.productLanding.href, "side-trails/global-signals/");
 assert.equal(navApp.startHere.href, "side-trails/global-signals/");
 
-const studioHome = read("js/studio-home.js");
-assert.match(studioHome, /homeSideTrails.*global-signals|global-signals.*homeSideTrails|cfgIds\(cfg,\s*"homeSideTrails".*global-signals/);
+const studioHome = read("index.html");
+assert.match(studioHome, /side-trails\//);
+assert.doesNotMatch(studioHome, /side-trails\/global-signals\//);
 
 const sideTrailsPage = read("side-trails/index.html");
-assert.match(sideTrailsPage, /\.\/global-signals\//);
+assert.match(sideTrailsPage, /Archive|past experiments/i);
+assert.match(sideTrailsPage, /Global Signals/);
+assert.match(sideTrailsPage, /Waypoint Deck/);
 
 const studioAbout = read("about.html");
-assert.match(studioAbout, /side-trails\/global-signals\//);
+assert.match(studioAbout, /Global Signals/);
+assert.match(studioAbout, /archived|not standalone|Deck/i);
 
 // Primary surface must expose the required intelligence destinations.
 for (const href of [
@@ -137,7 +151,9 @@ assert.match(gd.text, /location\.replace/);
 
 const catalogPage = await get("/side-trails/");
 assert.equal(catalogPage.status, 200);
-assert.match(catalogPage.text, /global-signals/);
+assert.match(catalogPage.text, /Global Signals/);
+assert.match(catalogPage.text, /Waypoint Deck/);
+assert.match(catalogPage.text, /Archive|past experiments/i);
 
 const catalogJson = await get("/data/side-trails/catalog.json");
 assert.equal(catalogJson.status, 200);

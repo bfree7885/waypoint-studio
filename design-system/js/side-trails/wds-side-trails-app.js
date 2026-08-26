@@ -1,5 +1,5 @@
 /**
- * Side Trails page UI — renders catalog cards only.
+ * Side Trails page UI — renders catalog cards only (active vs archive).
  */
 (function () {
   "use strict";
@@ -15,8 +15,22 @@
   function statusLabel(status) {
     var raw = String(status || "").toLowerCase();
     if (raw === "in-development") return "In development";
+    if (raw === "retired") return "Retired";
+    if (raw === "archived") return "Archived";
     if (!raw) return "Concept";
     return raw.charAt(0).toUpperCase() + raw.slice(1);
+  }
+
+  function isActiveStatus(status) {
+    var s = String(status || "").toLowerCase();
+    return (
+      s === "in-development" ||
+      s === "prototype" ||
+      s === "experimental" ||
+      s === "beta" ||
+      s === "stable" ||
+      s === "concept"
+    );
   }
 
   function assetHref(rel) {
@@ -28,7 +42,7 @@
     return "../" + path.replace(/^\//, "");
   }
 
-  function cardHtml(project) {
+  function cardHtml(project, featured) {
     var iconSrc = assetHref(project.icon);
     var icon = iconSrc
       ? '<img class="wst-card__icon" src="' +
@@ -39,9 +53,12 @@
     var href = assetHref(project.url);
     var external = /^https?:\/\//i.test(href);
     var rel = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    var featuredClass = featured ? " wst-card--featured" : "";
 
     return (
-      '<article class="was-home__card wst-card" data-project-id="' +
+      '<article class="was-home__card wst-card' +
+      featuredClass +
+      '" data-project-id="' +
       escapeHtml(project.id) +
       '" data-status="' +
       escapeHtml(project.status) +
@@ -52,6 +69,9 @@
       '<span class="was-home__status">' +
       escapeHtml(statusLabel(project.status)) +
       "</span>" +
+      (project.category
+        ? '<span class="wst-card__category">' + escapeHtml(project.category) + "</span>"
+        : "") +
       "</div></div>" +
       '<h2 class="was-home__card-title">' +
       escapeHtml(project.title) +
@@ -90,10 +110,11 @@
 
   function mount() {
     var statusEl = document.getElementById("wst-status");
+    var gridActive = document.getElementById("wst-grid-active");
     var grid = document.getElementById("wst-grid");
     var titleEl = document.getElementById("wst-title");
     var taglineEl = document.getElementById("wst-tagline");
-    if (!grid || !window.WDS || !WDS.sideTrails) {
+    if ((!grid && !gridActive) || !window.WDS || !WDS.sideTrails) {
       if (statusEl) statusEl.textContent = "Side Trails scripts did not load.";
       return;
     }
@@ -109,22 +130,59 @@
       }
 
       if (!result.ok) {
-        grid.innerHTML = emptyHtml(
+        var fail = emptyHtml(
           "Catalog unavailable",
           "The Side Trails JSON catalog could not be loaded. No projects were invented."
         );
+        if (gridActive) gridActive.innerHTML = fail;
+        if (grid) grid.innerHTML = "";
         return;
       }
 
       if (!result.projects.length) {
-        grid.innerHTML = emptyHtml(
+        var empty = emptyHtml(
           "No projects yet",
           "Add entries to data/side-trails/catalog.json — cards are never hardcoded."
         );
+        if (gridActive) gridActive.innerHTML = empty;
+        if (grid) grid.innerHTML = "";
         return;
       }
 
-      grid.innerHTML = result.projects.map(cardHtml).join("");
+      var active = [];
+      var archive = [];
+      result.projects.forEach(function (p) {
+        var st = String(p.status || "").toLowerCase();
+        if (st === "archived" || st === "retired") archive.push(p);
+        else if (isActiveStatus(st)) active.push(p);
+        else archive.push(p);
+      });
+
+      active.sort(function (a, b) {
+        return (a.order || 999) - (b.order || 999);
+      });
+      archive.sort(function (a, b) {
+        return (a.order || 999) - (b.order || 999);
+      });
+
+      if (gridActive) {
+        gridActive.innerHTML = active.length
+          ? active
+              .map(function (p) {
+                return cardHtml(p, true);
+              })
+              .join("")
+          : emptyHtml("No active Side Trail", "Catalog has no in-development entries.");
+      }
+      if (grid) {
+        grid.innerHTML = archive.length
+          ? archive
+              .map(function (p) {
+                return cardHtml(p, false);
+              })
+              .join("")
+          : "";
+      }
     });
   }
 

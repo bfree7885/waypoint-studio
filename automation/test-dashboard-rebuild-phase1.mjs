@@ -31,20 +31,26 @@ function load(rel, sandbox) {
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
-assert("index product name Home", /data-product-name="Home"/.test(indexHtml));
-assert("index title Home", /<title>Home/.test(indexHtml));
+assert("index product name Dashboard", /data-product-name="Dashboard"/.test(indexHtml));
+assert("index title Discover", /<title>Dashboard — Discover/.test(indexHtml) || /<title>Dashboard/.test(indexHtml));
 assert("index boots home-boot", /js\/home-boot\.js/.test(indexHtml));
-assert("index keeps contact local", /href="\.\/contact\.html"/.test(indexHtml));
+assert(
+  "index keeps contact reachable",
+  /href="\.\.\/\.\.\/contact\.html"/.test(indexHtml) || /href="\.\/contact\.html"/.test(indexHtml)
+);
 assert("index no Do this / homework chrome", !/Do this|homework|You should/i.test(indexHtml));
 assert("index does not revive Outdoor OS", !/Outdoor OS|wds-dashboard-os\.css/i.test(indexHtml));
 assert("index does not revive studio-home marketing", !/was-home-hero|studio-home\.js/i.test(indexHtml));
 
 const rootHtml = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-assert("root index mounts Rebuild", /wds-dashboard-rebuild\.css/.test(rootHtml));
-assert("root index product Home", /data-product-name="Home"/.test(rootHtml));
-assert("root index boots shared home-boot", /apps\/dashboard\/js\/home-boot\.js/.test(rootHtml));
-assert("root index quiet chrome", /data-quiet-chrome="true"/.test(rootHtml));
-assert("root index no marketing hero", !/was-home-hero|studio-home\.js/i.test(rootHtml));
+assert(
+  "root index is studio front door (not Dashboard rebuild)",
+  /data-product="studio-home"/.test(rootHtml) && /wds-studio-home\.css/.test(rootHtml)
+);
+assert("root index product Waypoint Studio", /data-product-name="Waypoint Studio"/.test(rootHtml));
+assert("root index links Dashboard Discover", /apps\/dashboard\//.test(rootHtml));
+assert("root index does not mount Dashboard rebuild as home", !/wds-dashboard-rebuild\.css/.test(rootHtml));
+assert("root index does not boot dashboard home-boot", !/apps\/dashboard\/js\/home-boot\.js/.test(rootHtml));
 
 const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
@@ -178,7 +184,7 @@ Prefs.reset();
 assert("prefs reset restores defaults", Prefs.load().enabled.indexOf("ph-conditions") >= 0);
 
 const todayHtml = Today.render({ placeLabel: "Test Place", trust: "unavailable" });
-assert("today outside title present", /Today Outside/.test(todayHtml));
+assert("today outside title present", /Outside today|What the day looks like|Today Outside/.test(todayHtml));
 assert("today outside honest empty bullets", /Conditions will appear here/.test(todayHtml));
 assert("today outside no OS Do this", !/Do this|Happening|Matters most/i.test(todayHtml));
 assert("today outside product trust label", /Waiting|Unavailable/.test(todayHtml));
@@ -271,7 +277,7 @@ load("design-system/js/platform/wds-app-nav.js", navSandbox);
 
 const Nav = navSandbox.WDS.appNav;
 const dash = Nav.byId("dashboard");
-assert("nav title Home", dash && dash.title === "Home");
+assert("nav title Dashboard", dash && dash.title === "Dashboard");
 assert("nav has workspace feature", dash.features.some((f) => f.id === "workspace"));
 assert("nav has customize feature", dash.features.some((f) => f.id === "customize"));
 assert("nav omits kiosk feature", !dash.features.some((f) => f.id === "kiosk"));

@@ -48,8 +48,14 @@ async function staticChecks() {
   if (!/apps\/scenes\//.test(html) || !/apps\/shed-hunting\//.test(html) || !/articles\//.test(html)) {
     fail("missing Scenes/Sheds/Articles entries");
   } else pass("Scenes/Sheds/Articles entries");
-  if (!/Side Trails/.test(html) || !/Experimental/i.test(html)) fail("Side Trails not marked experimental");
-  else pass("Side Trails experimental");
+  if (!/Side Trails/.test(html) || !/Archive/i.test(html)) fail("Side Trails not marked as archive");
+  else pass("Side Trails archive");
+  if (/side-trails\/openroad-pa|OpenRoad PA —|SignalTerrain<\/a>|Global Signals<\/a>/.test(html) &&
+      /adaptive cyber|relationship intelligence/i.test(html)) {
+    fail("homepage still promotes OpenRoad/ST/GS as live Side Trails products");
+  } else pass("homepage does not promote retired Side Trails products");
+  if (/Fieldry.*coming soon|coming soon.*Fieldry/i.test(html)) fail("homepage promises Fieldry");
+  else pass("no Fieldry coming-soon promise");
   if (/home-boot\.js|wds-dashboard-rebuild\.css|wds-content-engine/.test(html)) {
     fail("homepage still boots outdoor dashboard workspace");
   } else pass("not embedding outdoor dashboard boot");
@@ -127,7 +133,7 @@ async function browserChecks() {
           dashIsCurrent,
           hOverflow,
           hasObserve: /Observe/.test(text),
-          hasExperimental: /Experimental/i.test(text),
+          hasArchive: /Archive/i.test(text),
           hasScenes: /Scenes/.test(text),
           hasSheds: /Sheds/.test(text),
           hasArticles: /Articles/.test(text)
@@ -145,7 +151,7 @@ async function browserChecks() {
     if (v.dashIsCurrent) fail(`Dashboard incorrectly current on front door @${w}`);
     else pass(`Dashboard not current on / @${w}`);
     if (v.hOverflow) fail(`horizontal overflow @${w}`); else pass(`no h-overflow @${w}`);
-    if (!v.hasObserve || !v.hasExperimental || !v.hasScenes || !v.hasSheds || !v.hasArticles) {
+    if (!v.hasObserve || !v.hasArchive || !v.hasScenes || !v.hasSheds || !v.hasArticles) {
       fail(`content incomplete @${w}`);
     } else pass(`content complete @${w}`);
   }

@@ -124,7 +124,15 @@
   function relatedApps(appId) {
     var app = byId(appId);
     if (!app || !app.related || !app.related.length) return [];
-    return app.related.map(byId).filter(Boolean);
+    var paused = { fieldry: 1, "savant-sommelier": 1, "openroad-pa": 1, signalterrain: 1, "global-signals": 1 };
+    return app.related
+      .map(byId)
+      .filter(Boolean)
+      .filter(function (related) {
+        if (paused[related.id]) return false;
+        var st = String(related.status || "live").toLowerCase();
+        return st !== "paused" && st !== "retired" && st !== "archived";
+      });
   }
 
   function byId(id) {

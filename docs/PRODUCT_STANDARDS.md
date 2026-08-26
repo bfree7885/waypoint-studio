@@ -197,21 +197,32 @@ Every application should share:
 
 # Product Ecosystem
 
-Waypoint Studio products form one ecosystem.
+Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 
-Current family includes:
+**Active Studio experiences**
 
-- Dashboard
-- Scenes
-- Photo Coach
-- ForageCast
-- Fieldry
-- Sheds
-- SignalTerrain
-- Steepleaf
-- Savant Sommelier
+- **Dashboard** — Discover
+- **Scenes** — Explore & understand (includes Photo Coach; articles/videos first-class)
+- **Sheds** — Go / field exploration
 
-Each product has its own purpose while sharing a consistent philosophy, design
+**Shared infrastructure (not separate consumer products)**
+
+- Waypoint Publishing / content engine (Articles, Deep Forest Dispatch, content pipeline)
+- Waypoint Intelligence, mapping, weather, design system, navigation, subscription platform
+
+**Active Side Trail (not Studio)**
+
+- **Waypoint Deck** — offline-first Linux field computer (independent; not a Studio subscription app)
+
+**Paused / retired / not Studio flagships**
+
+- Fieldry — paused indefinitely (not an active Side Trail)
+- OpenRoad PA — retired
+- Savant Sommelier — not an active priority
+- Cyber / SignalTerrain / Global Signals — not standalone active products (archived research; may inform Waypoint Deck situational awareness later)
+- ForageCast, Steepleaf, Volunteer — supporting or incubator only
+
+Each active experience keeps its own purpose while sharing philosophy, design
 language, and engineering standards.
 
 ------------------------------------------------------------------------

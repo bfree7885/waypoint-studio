@@ -255,10 +255,10 @@ function productConnection(article, category) {
       "If you photograph related subjects, keep one technique question for a quiet Scenes review afterward."
     ]);
   }
-  if (category === "Birds" || category === "Wildlife" || category === "Seasonal Nature" || ids.has("fieldry")) {
+  if (category === "Birds" || category === "Wildlife" || category === "Seasonal Nature") {
     return pickVariant(seed, [
-      "A Fieldry note is enough when you verify something outside — no need to force a log.",
-      "If you confirm a field signal, Fieldry can hold a private observation."
+      "Dashboard conditions and quiet observation outside are enough — no need to force a log.",
+      "If you confirm a field signal, keep a private note and return to the reporting with fresh eyes."
     ]);
   }
   if (

@@ -9,7 +9,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.2.0-happening-now";
+  var VERSION = "3.3.0-discover";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -96,6 +96,21 @@
     };
   }
 
+  function hasLiveWeather(platform) {
+    var wx = platform && platform.weatherRef;
+    return !!(wx && wx.meta && !wx.meta.isPlaceholder);
+  }
+
+  function renderDiscoverQuiet() {
+    return (
+      '<section class="wdb-r-discover-quiet" data-wdb-r-discover-quiet aria-labelledby="wdb-r-discover-quiet-title">' +
+      '<p class="wdb-r-discover-quiet__kicker">Right now</p>' +
+      '<h2 id="wdb-r-discover-quiet-title" class="wdb-r-discover-quiet__title">Nothing unusually strong</h2>' +
+      '<p class="wdb-r-discover-quiet__lede">Live instruments are still worth a look — a quiet day is honest weather, not a blank Dashboard.</p>' +
+      "</section>"
+    );
+  }
+
   function happeningContext(options) {
     options = options || {};
     var ctx = todayContext(options);
@@ -143,9 +158,14 @@
       Today && Today.render ? Today.render(todayContext(options)) : "";
 
     var happeningHtml = "";
+    var quietHtml = "";
     if (view === "workspace" || view === "kiosk") {
       happeningHtml =
         Happening && Happening.render ? Happening.render(happeningContext(options)) : "";
+      /* Quiet Discover strip is separate from HN — never invents signals; only when live weather is hydrated. */
+      if (!happeningHtml && hasLiveWeather(platform)) {
+        quietHtml = renderDiscoverQuiet();
+      }
     }
 
     var mainHtml = "";
@@ -192,6 +212,7 @@
       ">" +
       todayHtml +
       happeningHtml +
+      quietHtml +
       mainHtml +
       deepenHtml +
       "</div>"
@@ -299,8 +320,21 @@
     }
     if (mountState.view === "workspace") {
       var Deepen = api("dashboardRebuildDeepeners");
-      if (Deepen && Deepen.bind) {
-        Deepen.bind(mountState.host, {});
+      var deepenCtx = {
+        platform: mountState.platform || null,
+        placeContext: mountState.placeContext || null,
+        location: mountState.placeContext || null,
+        now: null
+      };
+      var runDeepen = function () {
+        if (Deepen && Deepen.bind) {
+          Deepen.bind(mountState.host, deepenCtx);
+        }
+      };
+      if (Deepen && Deepen.ensureCatalog) {
+        Deepen.ensureCatalog(runDeepen);
+      } else {
+        runDeepen();
       }
     }
     try {

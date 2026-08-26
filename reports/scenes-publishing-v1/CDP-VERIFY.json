@@ -1,0 +1,206 @@
+{
+  "base": "http://127.0.0.1:8765",
+  "at": "2026-08-25T14:10:05.043Z",
+  "shots": [
+    {
+      "page": "scenes-hub",
+      "viewport": "375",
+      "file": "reports/scenes-publishing-v1/screenshots/scenes-hub-375.png",
+      "title": "Scenes — Explore & understand · Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "articles-hub",
+      "viewport": "375",
+      "file": "reports/scenes-publishing-v1/screenshots/articles-hub-375.png",
+      "title": "Articles — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-library",
+      "viewport": "375",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-library-375.png",
+      "title": "Deep Forest Dispatch — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-valley-fog",
+      "viewport": "375",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-valley-fog-375.png",
+      "title": "Why Valleys Fill with Fog at Dawn — Cold-Air Drainage Explained — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-mount-hood",
+      "viewport": "375",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-mount-hood-375.png",
+      "title": "Why Mount Hood Is Forest on One Side and Desert on the Other — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "scenes-hub",
+      "viewport": "390",
+      "file": "reports/scenes-publishing-v1/screenshots/scenes-hub-390.png",
+      "title": "Scenes — Explore & understand · Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "articles-hub",
+      "viewport": "390",
+      "file": "reports/scenes-publishing-v1/screenshots/articles-hub-390.png",
+      "title": "Articles — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-library",
+      "viewport": "390",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-library-390.png",
+      "title": "Deep Forest Dispatch — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-valley-fog",
+      "viewport": "390",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-valley-fog-390.png",
+      "title": "Why Valleys Fill with Fog at Dawn — Cold-Air Drainage Explained — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-mount-hood",
+      "viewport": "390",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-mount-hood-390.png",
+      "title": "Why Mount Hood Is Forest on One Side and Desert on the Other — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "scenes-hub",
+      "viewport": "430",
+      "file": "reports/scenes-publishing-v1/screenshots/scenes-hub-430.png",
+      "title": "Scenes — Explore & understand · Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "articles-hub",
+      "viewport": "430",
+      "file": "reports/scenes-publishing-v1/screenshots/articles-hub-430.png",
+      "title": "Articles — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-library",
+      "viewport": "430",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-library-430.png",
+      "title": "Deep Forest Dispatch — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-valley-fog",
+      "viewport": "430",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-valley-fog-430.png",
+      "title": "Why Valleys Fill with Fog at Dawn — Cold-Air Drainage Explained — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-mount-hood",
+      "viewport": "430",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-mount-hood-430.png",
+      "title": "Why Mount Hood Is Forest on One Side and Desert on the Other — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "scenes-hub",
+      "viewport": "desktop",
+      "file": "reports/scenes-publishing-v1/screenshots/scenes-hub-desktop.png",
+      "title": "Scenes — Explore & understand · Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "articles-hub",
+      "viewport": "desktop",
+      "file": "reports/scenes-publishing-v1/screenshots/articles-hub-desktop.png",
+      "title": "Articles — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-library",
+      "viewport": "desktop",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-library-desktop.png",
+      "title": "Deep Forest Dispatch — Waypoint Studio",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-valley-fog",
+      "viewport": "desktop",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-valley-fog-desktop.png",
+      "title": "Why Valleys Fill with Fog at Dawn — Cold-Air Drainage Explained — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    },
+    {
+      "page": "dfd-mount-hood",
+      "viewport": "desktop",
+      "file": "reports/scenes-publishing-v1/screenshots/dfd-mount-hood-desktop.png",
+      "title": "Why Mount Hood Is Forest on One Side and Desert on the Other — Deep Forest Dispatch",
+      "overflow": false,
+      "banned": false,
+      "hasMain": true,
+      "sample": []
+    }
+  ]
+}

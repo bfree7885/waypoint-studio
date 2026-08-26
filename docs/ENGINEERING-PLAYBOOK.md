@@ -1560,9 +1560,43 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `window` `offline` events do not flip `navigator.onLine` in Chromium CDP; stub `onLine` (or Network conditions) when validating offline elevation honesty.
 - Desktop `prompt×here` remains a known deferred layout; classify as WARN in mobile-field acceptance, not a V3.1 hold unless owners expand scope.
 
+### Lessons Learned — Product direction reconciliation (2026-08-25)
+
+- One canonical file (`docs/PRODUCT-DIRECTION.md`) beats five conflicting roadmaps; point STRATEGIC-DIRECTION / README / MASTER roadmap at it instead of rewriting history in place.
+- Retiring OpenRoad publicly means homepage + about + catalog status + honest retired page — not necessarily deleting GIS experiments.
+- Side Trails stays in primary nav as **archive**, not as a promise of sister flagships; update gates that required “Experimental” sister marketing.
+- Preserve DFD/articles pipelines as Publishing infrastructure; do not delete them while simplifying the consumer portfolio to Dashboard · Scenes · Sheds.
+
+### Lessons Learned — Dashboard Discover v1 (2026-08-25)
+
+- Discover hierarchy: Ranked Happening Now = Right Now; quiet days need a **separate** strip (`data-wdb-r-discover-quiet`) so existing “no HN DOM” contracts stay true.
+- Waypoint’s Take must prefer live `beforeYouGo.brief` and label editorial fallback — never imply dynamic detection without evidence.
+- Today Outside should show provider provenance + optional editorial season; do not promote content-bundle wildlife lists as live discoveries.
+- Contact-platform scans must skip `.worktrees` / `.tmp-*` or obsolete docs in worktrees create false failures for the incorrect `.studio` mailbox; mailbox source of truth remains `contact@waypointstudio.org`.
+- Prefer depth over widget count; contextual Sheds stays dormant until a justified go signal exists.
+
+### Lessons Learned — Side Trails reconcile around Waypoint Deck (2026-08-25)
+
+- Public Side Trails must feature **Waypoint Deck** as the active independent trail; archived ST/GS/OpenRoad stay subordinate — never peers of Deck or Studio flagships.
+- Distinguish **planned / exploring** Deck language from shipping claims; Global Signals concepts may feed Deck SA later without being a standalone product.
+- Article `relatedProducts` must not promote paused/retired apps (Fieldry, OpenRoad, Savant, Cyber, GS); filter at generation and in the feed renderer.
+- Keep `homeSideTrails` aligned with portfolio truth (`waypoint-deck`), not leftover SignalTerrain/Global Signals IDs from older IA moves.
+
+### Lessons Learned — Scenes + Publishing unification (2026-08-25)
+
+- Publishing is infrastructure; Deep Forest Dispatch stays an **editorial series**, not a fourth flagship — say so on the library page.
+- Deterministic `content-relationships.json` + `publishingMatch` beats embeddings; **no match is the correct outcome** for most Dashboard days.
+- Condition→story rules must be labeled editorial (e.g. quiet-humid-cool → valley fog is not a fog forecast).
+- `/scenes/` should land on the Scenes hub; skipping to Photo Coach hid Explore & Understand + Publishing joins.
+- Re-render DFD stories after connection template changes (`node scripts/dfd/render-stories.mjs`) so Watch/Articles joins ship statically.
+
 ### Lessons Learned — Sheds mobile field chrome (2026-08-24)
 
 - Shrinking the desktop right-rail FABs on narrow widths still left a “control tower”; phones need map-critical controls (locate/zoom) separated from a bottom **Search | Note | Plan | More** dock.
 - Session strip + YOU chip + header chips collide unless the strip becomes a full-width stack and `sheds-session-active` pushes presence chrome down.
 - Outdoor-readability `.sheds-fab { background… }` after `.sheds-fab--primary` made Locate look disabled — re-assert primary contrast after that block.
 - Collapsed Field Briefing peek (~8rem) plus legend ate the map; peek should show kicker+glance only (~4.5rem) with expand for the rest; landscape legend should collapse to a chip on mobile.
+
+### Lessons Learned — Discover quiet strip live-weather gate (2026-08-26)
+
+- Gate `data-wdb-r-discover-quiet` on live (non-placeholder) `weatherRef`, not a truthy platform object. OIP `onChange` / `setPlatform` can apply packages whose weather is still a placeholder; Intel then skips weather so HN stays empty, and “Live instruments / honest weather” copy would be false while Today is still waiting.
