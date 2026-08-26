@@ -1600,3 +1600,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 ### Lessons Learned — Discover quiet strip live-weather gate (2026-08-26)
 
 - Gate `data-wdb-r-discover-quiet` on live (non-placeholder) `weatherRef`, not a truthy platform object. OIP `onChange` / `setPlatform` can apply packages whose weather is still a placeholder; Intel then skips weather so HN stays empty, and “Live instruments / honest weather” copy would be false while Today is still waiting.
+
+### Lessons Learned — Discover seasonal honesty + natural events (2026-08-26)
+
+- Editorial content-bundle `season` / `phenologyStage` without `weekOf` / `editorialValidUntil` will leak into Discover as current truth. Calendar season must be computed from date + hemisphere; phenology must expire or be omitted.
+- Do not “fix” stale copy by rewriting late spring → late summer. The failure mode is unguarded editorial overlay.
+- Quiet weather is not quiet Discover. Natural events (eclipse horizon ~72h) must un-quiet the day even when Happening Now is empty.
+- Event times stay in UTC in the catalog and convert at display time. Defaulting display to UTC makes a Thursday-night PA eclipse look like Friday morning.
+- Clock-only editorial sunrise/sunset (`05:42`) is a seasonal snapshot, not a live clock — never use it as a weather fallback.

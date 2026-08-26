@@ -262,8 +262,8 @@ assert(
   lines.some((l) => /Golden hour begins at/i.test(l))
 );
 assert(
-  "today observational air quality",
-  lines.some((l) => /Air quality is Good/i.test(l))
+  "today omits routine Good air quality",
+  !lines.some((l) => /Air quality is Good/i.test(l))
 );
 assert(
   "today observational wind light",
@@ -319,7 +319,8 @@ const todayLive = Today.render({
   trust: "partial",
   platform
 });
-assert("today live bullets render", /Air quality is Good/.test(todayLive));
+assert("today live bullets render", /Sky looks|Golden hour|Winds remain light/.test(todayLive));
+assert("today live does not dump instrument temperature", !/\d+°F under/.test(todayLive));
 assert("today live place label", /Pike County, PA/.test(todayLive));
 
 const wsWaiting = Workspace.renderWorkspace({ prefs: Prefs.load(), customize: false });
@@ -397,7 +398,10 @@ sandbox.document.getElementById = () => host;
 Shell.mount(host, { placeContext: { placeLabel: "Mount Place" } });
 assert("mount paints shell", /data-wdb-r/.test(host.innerHTML));
 Shell.setPlatform(platform);
-assert("setPlatform repaints live widgets", /72°F/.test(host.innerHTML));
+assert(
+  "setPlatform repaints live widgets",
+  /data-hydrated="true"/.test(host.innerHTML) && /Sky looks partly cloudy/i.test(host.innerHTML)
+);
 
 console.log("\n" + passed + " passed, " + failures.length + " failed");
 if (failures.length) {

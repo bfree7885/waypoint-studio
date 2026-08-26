@@ -113,15 +113,27 @@
     ctx = ctx || {};
     var platform = ctx.platform;
     if (!platform) return null;
-    var cal = platform.calendar || null;
-    var pheno = platform.phenology || null;
-    var season = (cal && cal.season) || null;
-    var stage = (pheno && pheno.stage) || null;
-    if (!season && !stage) return null;
-    if (season && stage && String(season) !== String(stage)) {
-      return "Seasonal note (editorial): " + String(season) + " — " + String(stage);
+    var Season = global.WDS && global.WDS.dashboardSeason;
+    var loc = ctx.location || {};
+    var now = ctx.now || null;
+    var opts = {
+      now: now,
+      lat: loc.lat != null ? loc.lat : loc.latitude,
+      timeZone: loc.timezone || platform.timezone || (platform.daylight && platform.daylight.timezone) || null
+    };
+    if (Season && typeof Season.displayLine === "function") {
+      var resolved = Season.displayLine(platform, opts);
+      if (!resolved || !resolved.text) return null;
+      return resolved.text;
     }
-    return "Seasonal note (editorial): " + String(season || stage);
+    if (Season && typeof Season.containsImpossibleSeasonCopy === "function") {
+      var blob =
+        String((platform.calendar && platform.calendar.season) || "") +
+        " " +
+        String((platform.phenology && platform.phenology.stage) || "");
+      if (Season.containsImpossibleSeasonCopy(blob, opts)) return null;
+    }
+    return null;
   }
 
   function render(ctx) {
@@ -158,7 +170,7 @@
         ? '<p class="wdb-r-today__source">' + escapeHtml(source) + "</p>"
         : "") +
       (season
-        ? '<p class="wdb-r-today__season">' + escapeHtml(season) + "</p>"
+        ? '<p class="wdb-r-today__season" data-wdb-r-today-season>' + escapeHtml(season) + "</p>"
         : "") +
       "</header>" +
       '<div class="wdb-r-today__body" data-wdb-r-today-body>' +

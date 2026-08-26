@@ -101,6 +101,12 @@ jobs:
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
 
+      - name: Dashboard Discover tests
+        run: node automation/test-dashboard-discover.mjs
+
+      - name: Dashboard Discover correctness
+        run: node automation/test-dashboard-discover-correctness.mjs
+
       - name: Dashboard reliability tests
         run: node automation/test-dashboard-reliability.mjs
 

@@ -95,11 +95,23 @@
       }
     }
     try {
+      var topics = (ctx.topics || []).slice();
+      if (!topics.length) {
+        var Events = global.WDS && global.WDS.dashboardRebuildEvents;
+        if (Events && typeof Events.resolveEvents === "function") {
+          var evs = Events.resolveEvents(ctx) || [];
+          evs.forEach(function (ev) {
+            (ev.topics || []).forEach(function (t) {
+              if (t && topics.indexOf(t) < 0) topics.push(t);
+            });
+          });
+        }
+      }
       return Match.matchDiscovery({
         signals: signals || [],
         platform: platform,
         now: ctx.now || null,
-        topics: ctx.topics || []
+        topics: topics
       });
     } catch (err) {
       return null;

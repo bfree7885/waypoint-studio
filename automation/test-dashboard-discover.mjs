@@ -88,10 +88,13 @@ assert("contact scan skips worktrees", /\.worktrees/.test(contact) && /\.tmp-/.t
 assert("contact correct mailbox", /contact@waypointstudio\.org/.test(contact));
 
 const sb = loadModules([
+  "design-system/js/dashboard/wds-dashboard-season.js",
+  "design-system/js/dashboard/natural-events/wds-natural-events.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-intel.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-data.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-registry.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-prefs.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-events.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-today.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-happening.js",
@@ -109,19 +112,23 @@ const Shell = sb.WDS.dashboardRebuild;
 const todayHtml = Today.render({
   placeLabel: "Test Place",
   trust: "partial",
+  now: new Date("2026-08-25T16:00:00-04:00"),
+  location: { lat: 41.3312, lng: -75.038, timezone: "America/New_York" },
   platform: {
     weatherRef: {
       meta: { isPlaceholder: false, provider: "open-meteo" },
       current: { temperature: 70 }
     },
     calendar: { season: "late summer" },
-    phenology: { stage: "canopy still full" }
+    phenology: { stage: "canopy still full", status: "editorial" }
   }
 });
 assert("today discover kicker", /Outside today/.test(todayHtml));
 assert("today discover title", /What the day looks like/.test(todayHtml));
 assert("today provider provenance", /Based on Open-Meteo/.test(todayHtml));
-assert("today editorial season", /Seasonal note \(editorial\)/.test(todayHtml));
+assert("today calendar season is computed not editorial spring", /Calendar: late summer/.test(todayHtml));
+assert("today does not print stale late spring", !/late spring/i.test(todayHtml));
+assert("undated phenology omitted", !/canopy still full/i.test(todayHtml));
 
 const quietHn = Happening.render({ signals: [], platform: { meta: {} }, now: new Date() });
 assert("hn empty returns no hn root", quietHn === "");

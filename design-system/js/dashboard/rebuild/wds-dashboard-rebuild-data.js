@@ -21,7 +21,7 @@
     "ph-comfort",
     "ph-day-range"
   ];
-  var MAX_TODAY_LINES = 8;
+  var MAX_TODAY_LINES = 5;
 
   function num(val) {
     if (val == null) return null;
@@ -911,7 +911,6 @@
     var astro = astronomyPayload(platform);
     var alerts = alertsPayload(platform);
     var precip = precipWindowPayload(platform);
-    var next = nextHoursPayload(platform);
 
     if (alerts.status === "live" && alerts.alerts && alerts.alerts.count > 0) {
       var top = alerts.alerts.items[0];
@@ -921,11 +920,7 @@
 
     if (cond.status === "live" && cond.current) {
       var c = cond.current;
-      if (c.tempF != null && c.conditions) {
-        lines.push(Math.round(c.tempF) + "°F under " + String(c.conditions).toLowerCase() + ".");
-      } else if (c.tempF != null) {
-        lines.push("Air temperature reads " + Math.round(c.tempF) + "°F.");
-      } else if (c.conditions) {
+      if (c.conditions) {
         lines.push("Sky looks " + String(c.conditions).toLowerCase() + ".");
       }
       if (
@@ -937,16 +932,14 @@
       }
       var wind = windLabel(c.windMph);
       if (wind === "light") lines.push("Winds remain light.");
-      else if (wind === "moderate" && c.windMph != null) {
-        lines.push("Winds around " + Math.round(c.windMph) + " mph.");
-      } else if (wind === "strong" && c.windMph != null) {
+      else if (wind === "strong" && c.windMph != null) {
         lines.push("Winds near " + Math.round(c.windMph) + " mph.");
       }
       if (c.humidity != null && c.humidity >= 70) {
-        lines.push("Humidity sits near " + Math.round(c.humidity) + "%.");
+        lines.push("The air is humid.");
       }
       if (c.cloudPct != null && c.cloudPct >= 60) {
-        lines.push("Cloud cover near " + Math.round(c.cloudPct) + "%.");
+        lines.push("Skies are mostly cloudy.");
       }
     }
 
@@ -958,33 +951,28 @@
       });
     }
 
-    if (next.status === "live" && next.hours && next.hours[0] && next.hours[0].tempF != null) {
-      lines.push(
-        "Next hour near " +
-          Math.round(next.hours[0].tempF) +
-          "°F" +
-          (next.hours[0].label ? " (" + next.hours[0].label + ")" : "") +
-          "."
-      );
-    }
-
     if (light.status === "live" && light.daylight) {
       var dl = light.daylight;
       var sunset = dl.sunsetFormatted || dl.sunset;
-      if (sunset) lines.push("Sunset is at " + String(sunset) + ".");
       var ghStart = rangeStart(dl.goldenHourEvening);
-      if (ghStart) lines.push("Golden hour begins at " + ghStart + ".");
+      if (sunset && ghStart) {
+        lines.push("Golden hour begins at " + ghStart + "; sunset " + String(sunset) + ".");
+      } else if (ghStart) {
+        lines.push("Golden hour begins at " + ghStart + ".");
+      } else if (sunset) {
+        lines.push("Sunset is at " + String(sunset) + ".");
+      }
     }
 
     if (air.status === "live" && air.air && air.air.category) {
-      lines.push("Air quality is " + String(air.air.category) + ".");
+      var cat = String(air.air.category);
+      if (!/^good$/i.test(cat)) {
+        lines.push("Air quality is " + cat + ".");
+      }
     }
 
-    if (astro.status === "live") {
-      if (astro.moon && astro.moon.phase) {
-        lines.push("The moon is a " + String(astro.moon.phase).toLowerCase() + ".");
-      }
-      if (astro.nightSky) lines.push(astro.nightSky + ".");
+    if (astro.status === "live" && astro.moon && astro.moon.phase) {
+      lines.push("The moon is a " + String(astro.moon.phase).toLowerCase() + ".");
     }
 
     var clean = [];

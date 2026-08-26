@@ -355,7 +355,7 @@
       pkg.elevation.available = true;
       pkg.elevation.status = "editorial";
     }
-    if (defaults.season) pkg.calendar.season = defaults.season;
+    if (defaults.season) pkg.calendar.editorialSeason = defaults.season;
     if (defaults.bioregion) {
       pkg.geography.bioregion = defaults.bioregion;
       pkg.geography.status = "editorial";
@@ -404,7 +404,7 @@
     }
 
     if (loc.seasonNote) {
-      pkg.calendar.season = loc.seasonNote;
+      pkg.calendar.editorialSeason = loc.seasonNote;
     }
 
     if (loc.weather) {
@@ -460,10 +460,13 @@
       pkg.geography.status = "editorial";
     }
 
-    if (bundle.season) pkg.calendar.season = bundle.season;
+    if (bundle.season) pkg.calendar.editorialSeason = bundle.season;
     if (bundle.weekOf) {
       pkg.calendar.weekOf = bundle.weekOf;
       pkg.calendar.month = monthFromDate(null, bundle.weekOf);
+    }
+    if (bundle.editorialValidUntil) {
+      pkg.calendar.editorialValidUntil = bundle.editorialValidUntil;
     }
 
     if (profile.phenologyStage || (bundle.seasonalWatch && bundle.seasonalWatch.title)) {
@@ -474,15 +477,17 @@
         : null;
       pkg.phenology.notes = [];
       if (profile.phenologyStage) pkg.phenology.notes.push(profile.phenologyStage);
+      if (bundle.editorialValidUntil) pkg.phenology.validUntil = bundle.editorialValidUntil;
     }
 
     if (profile.daylight) {
+      var clockOnly = /^\d{1,2}:\d{2}(:\d{2})?$/.test(String(profile.daylight.sunrise || "").trim());
       pkg.daylight.status = "editorial";
-      pkg.daylight.sunrise = profile.daylight.sunrise || null;
-      pkg.daylight.sunset = profile.daylight.sunset || null;
-      pkg.daylight.dayLengthHours = profile.daylight.dayLengthHours != null
-        ? profile.daylight.dayLengthHours
-        : null;
+      pkg.daylight.sunrise = clockOnly ? null : (profile.daylight.sunrise || null);
+      pkg.daylight.sunset = clockOnly ? null : (profile.daylight.sunset || null);
+      pkg.daylight.dayLengthHours = clockOnly
+        ? null
+        : (profile.daylight.dayLengthHours != null ? profile.daylight.dayLengthHours : null);
       pkg.daylight.timezone = profile.daylight.timezone || null;
       pkg.daylight.source = profile.daylight.source || "editorial";
       if (profile.daylight.timezone) pkg.timezone = profile.daylight.timezone;
@@ -548,6 +553,11 @@
     }
     if (!Array.isArray(pkg.geography.watersheds)) {
       pkg.geography.watersheds = [];
+    }
+
+    var Season = global.WDS && global.WDS.dashboardSeason;
+    if (Season && typeof Season.guardPackage === "function") {
+      Season.guardPackage(pkg);
     }
 
     return pkg;

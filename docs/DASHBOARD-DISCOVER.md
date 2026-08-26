@@ -5,32 +5,58 @@
 
 ## Question
 
-> What is interesting in the world around me right now?
+> **What should I notice outside today, tonight, and soon?**
 
-Every major module should help the user notice something outdoors — not fill a widget grid.
+Weather is one instrument. Discover synthesizes the few things genuinely worth noticing. A quiet category may remain absent.
 
 ## Hierarchy (v1)
 
 | Layer | Surface | Behavior |
 |-------|---------|----------|
-| **A. Right now** | Happening Now (`data-wdb-r-hn`) | Ranked live signals from `dashboardRebuildIntel` (min score 25, max 4). Empty → **no HN DOM**. |
-| **Quiet day** | `data-wdb-r-discover-quiet` | Only when live (non-placeholder) weather is hydrated and HN is empty. Honest “nothing unusually strong” — never invents events or claims live instruments while weather is still waiting. |
-| **B / D. Outside today** | Today Outside (`data-wdb-r-today`) | Interpreted day lines + place/time/trust; provider provenance; optional **editorial** seasonal note. |
-| **C. Look up** | Instruments (`ph-light`, `ph-astronomy`, UV) + HN light/astro signals | Moon/daylight derived from live weather + daylight utils — not fabricated events. |
-| **E. Seasonal** | Editorial season line on Today | From OIP `calendar.season` / `phenology.stage`, labeled **editorial**. |
-| **F. Explore** | Deepeners “Go deeper” | Links to Articles, Scenes, Deep Forest Dispatch. Take prefers live `beforeYouGo.brief`. |
-| **G. Sheds** | Contextual only | Not promoted on Discover v1. HN may link Scenes when intel supplies a justified `toolLinks` entry; Sheds remains dormant until a go-relevant signal exists. |
+| **Coming soon / tonight / happening** | Natural events (`data-wdb-r-events`) | Significant location-relevant events within the horizon. Temporal kicker is truthful — never labels a +2-day event “Right now.” |
+| **Right now** | Happening Now (`data-wdb-r-hn`) | Ranked **live weather / air / light / alert** signals from `dashboardRebuildIntel` (min score 25, max 4). Empty → **no HN DOM**. |
+| **Quiet day** | `data-wdb-r-discover-quiet` | Only when live weather is hydrated **and** every supported Discover category is empty (HN **and** natural events). Honest “nothing unusually strong” — never invents events. A quiet **weather** state is not automatically a quiet **Discover** state. |
+| **Outside today** | Today Outside (`data-wdb-r-today`) | Synthesized takeaways (sky, light, alerts, notable air) — not a dump of Conditions numbers. Provider provenance. Calendar season is computed; phenology only when fresh and possible. |
+| **Look up** | Instruments (Conditions, light, astronomy, UV, …) | Raw readings. Moon/daylight from live weather + daylight utils. |
+| **Explore** | Deepeners “Go deeper” | Links to Articles, Scenes, Deep Forest Dispatch. Understand this only when `publishingMatch` finds a justified story — no filler. |
+
+## Calendar season vs phenology
+
+These are not the same thing.
+
+- **Calendar season** is deterministic from local date + hemisphere (meteorological months; early / mid / late by day-of-month). Source: `computed-calendar`. High confidence.
+- **Phenology** (mushrooms, bloom, migration, leaf change) is editorial or environmental and geographically variable. It must carry `weekOf` / `editorialValidUntil`, expire, and be **omitted** when stale or impossible for the date (e.g. morels / “late spring” in Pennsylvania in August).
+
+Dashboard must never display obviously impossible seasonal language. If phenology cannot be provided confidently, omit it. Do not replace it with generic filler.
+
+Guard implementation: `WDS.dashboardSeason` (`design-system/js/dashboard/wds-dashboard-season.js`). Applied when OIP/RI packages normalize, and again at Today render.
+
+## Natural events
+
+Bounded curated catalog: `design-system/js/dashboard/natural-events/events.json`.
+
+Not a full astronomy calendar. Surface only events worth noticing, with:
+
+- structured type / UTC windows / magnitude
+- local timezone display (never UTC as the primary viewing time)
+- geographic visibility (do not recommend local viewing outside the visibility region)
+- lifecycle: **upcoming → tonight → happening → ended** (ended is not promoted)
+- provenance in a Why / “Based on what?” panel
+- optional weather context from existing Open-Meteo cloud cover (no invented viewing scores)
+
+**Horizon:** 72 hours for `significance: major` (e.g. a locally visible lunar eclipse). Two to three days of advance notice is appropriate when it improves actionability. Minor events are not listed for a week.
+
+Failed or missing catalog → omit events. Never invent times.
 
 ## Ranking (deterministic)
 
-`WDS.dashboardRebuildIntel.analyze(platform, location, now)`:
+`WDS.dashboardRebuildIntel.analyze(platform, location, now)` ranks **weather-family** signals.
 
-1. Normalize platform facts (weather, air, alerts, daylight, moon).
-2. Derive candidate signals with evidence rows + category + severity.
-3. Score by immediacy, unusualness, observability, and data confidence (threshold rules — not ML).
-4. Emit `happeningNow` (filtered) and `beforeYouGo` brief.
+`WDS.naturalEvents.activeDiscoverEvents(...)` ranks **natural events** independently.
 
-**Deterministic** thresholds and evidence. **Inferred** only where labeled (e.g. photo-opportunity language tied to light windows). Never fabricates wildlife, social trends, or sensor readings we do not have.
+Both may appear together. Neither silently erases the other.
+
+**Deterministic** thresholds and evidence. Never fabricates wildlife, social trends, or sensor readings we do not have.
 
 ## Real data sources
 
@@ -39,22 +65,24 @@ Every major module should help the user notice something outdoors — not fill a
 - NWS alerts
 - Browser / IP geolocation (`wds-location.js`)
 - Daylight / moon derived from weather + daylight helpers
-- OIP calendar / phenology (editorial season labels)
+- Computed calendar season (date + hemisphere)
+- Editorial phenology only when fresh and date-possible
+- Curated natural-event catalog (eclipse contacts from NASA GSFC / Espenak EclipseWise)
 
 ## Honesty rules
 
 - No fake discoveries to avoid empty UI.
-- Quiet days are valid product outcomes.
-- Editorial vs live vs estimate must stay readable (trust chips + “Based on” / “Seasonal note (editorial)”).
-- Publishing links are pathways into understanding — not sibling-product ads.
+- Quiet days are valid product outcomes **after** all Discover categories are checked.
+- Editorial vs live vs computed vs forecast must stay readable.
+- Publishing links are pathways into understanding — not sibling-product ads. No relevant story → show the event without a deepener.
 
 ## Known limitations
 
 - No live wildlife / trail crowd feeds on rebuild Discover.
-- Sheds not yet contextually ranked into HN.
-- Regional content-bundle seasonal lists are not surfaced as live discoveries.
-- Location denied → place waits honestly; instruments degrade without inventing coords.
+- Event catalog is curated, not an ephemeris generator.
+- Solar eclipses, meteor showers, and conjunctions are supported as catalog types but not populated beyond the current lunar-eclipse acceptance event.
+- Location denied → place waits honestly; local event visibility cannot be claimed.
 
 ## Intentionally not built (this phase)
 
-Waypoint Deck · Global Signals · Cyber · OpenRoad · Fieldry · Savant · Sheds V3.2 · accounts/preferences overhaul · social · standalone AI chatbot · Scenes rewrite.
+Full celestial calendar · notifications · subscriptions · AI-generated event discovery · Global Signals · Cyber · Sheds V3.2 · Deck OS · social · accounts overhaul.

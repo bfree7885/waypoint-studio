@@ -30,7 +30,7 @@ function load(rel, sandbox) {
 
 const indexHtml = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("index uses rebuild CSS", /wds-dashboard-rebuild\.css/.test(indexHtml));
-assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1|dash-depth-1|dash-refine|dash-sw-art|dash-hn/.test(indexHtml));
+assert("index cache-bust home-rc1", /home-rc1|rebuild-p3|dash-rc25-s6|dash-tile-layout-1|dash-instrument-1|dash-depth-1|dash-refine|dash-sw-art|dash-hn|dash-discover/.test(indexHtml));
 assert("index does not load Outdoor OS CSS as primary", !/wds-dashboard-os\.css/.test(indexHtml));
 
 const modules = [
@@ -341,8 +341,8 @@ const platform = {
 
 const lines = Data.composeTodayLines(platform);
 assert("today lines max 8", lines.length <= 8 && lines.length >= 1, String(lines.length));
-assert("today observational humidity", lines.some((l) => /Humidity sits near/i.test(l)));
-assert("today observational cloud", lines.some((l) => /Cloud cover near/i.test(l)));
+assert("today observational humidity", lines.some((l) => /The air is humid/i.test(l)));
+assert("today observational cloud", lines.some((l) => /mostly cloudy/i.test(l)));
 assert("today observational feels-like", lines.some((l) => /feels closer to/i.test(l)));
 assert(
   "today bans instructional voice",
