@@ -877,6 +877,15 @@ html.was-nav-open .was-local {
     z-index: 41;
   }
 
+  /* Quiet chrome pins desktop links to the trailing edge (flex-end).
+     That rule is 0,2,0 and beats this overlay’s 0,1,0, so open menus on
+     Dashboard / Scenes / Sheds stacked links at the bottom of the viewport. */
+  .was-global--quiet .was-primary-nav,
+  .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav {
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
   .was-global.is-nav-open .was-primary-nav {
     display: flex;
   }
@@ -913,6 +922,8 @@ html.was-nav-open .was-local {
     inset: 0;
     flex-wrap: nowrap;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
     padding: calc(4.35rem + env(safe-area-inset-top, 0px)) 0 1.5rem;
     background: #1a141c;

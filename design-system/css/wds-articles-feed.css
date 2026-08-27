@@ -10,7 +10,8 @@
   --waf-line: var(--wds-border, rgba(26, 34, 24, 0.12));
   --waf-take: color-mix(in srgb, var(--waf-moss) 10%, var(--waf-paper));
   color: var(--waf-ink);
-  max-width: 52rem;
+  max-width: min(52rem, 100%);
+  min-width: 0;
   margin: 0 auto;
 }
 
@@ -78,12 +79,16 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--waf-line);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .waf-views {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .waf-view {
@@ -139,10 +144,12 @@
   font-size: 0.8rem;
   color: var(--waf-muted);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .waf-count a {
   color: inherit;
+  overflow-wrap: anywhere;
 }
 
 .waf-grid {
@@ -356,6 +363,15 @@
 }
 
 /* Articles hub hero (wcs-page alignment) */
+.waf-hub {
+  min-width: 0;
+}
+
+.waf-hub-hero p,
+.waf-lede {
+  overflow-wrap: anywhere;
+}
+
 .waf-hub-hero .was-home__tagline {
   max-width: 36ch;
 }

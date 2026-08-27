@@ -137,6 +137,12 @@ assert("shared mobile menu CSS", /was-nav-toggle/.test(css) && /is-nav-open/.tes
 assert("mobile menu is full-viewport overlay", /position:\s*fixed/.test(css) && /inset:\s*0/.test(css));
 assert("aurora no longer wraps nav onto second sticky row", !/flex:\s*1 1 100%/.test(read("design-system/css/wds-aurora-bridge.css")));
 assert("dashboard phone chrome no longer wraps primary nav", !/\.was-global--quiet \.was-primary-nav \{[\s\S]*?flex:\s*1 1 auto/.test(css));
+assert(
+  "quiet chrome overlay stacks nav from the top",
+  /@media \(max-width: 900px\)[\s\S]*\.was-global--quiet \.was-primary-nav[\s\S]*?justify-content:\s*flex-start/.test(css)
+);
+const articlesCss = read("design-system/css/wds-articles-feed.css");
+assert("articles view chips wrap on a bounded row", /\.waf-views \{[\s\S]*?flex-wrap:\s*wrap[\s\S]*?min-width:\s*0/.test(articlesCss));
 assert("robots disallows global-signals", /Disallow: \/side-trails\/global-signals\//.test(robots));
 
 assert("fieldry JS preserved internally", fs.existsSync(path.join(ROOT, "apps/fieldry/js/fieldry-life-list.js")));
