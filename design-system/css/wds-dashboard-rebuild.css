@@ -3029,6 +3029,15 @@ html.wdb-r-kiosk .wdb-r,
   color: var(--amb-muted);
 }
 
+.wdb-r-ambient__developing[data-changes="warming"],
+.wdb-r-ambient__developing[data-changes="incomparable"] {
+  background: var(--amb-panel-quiet);
+}
+
+.wdb-r-ambient__signal[data-kind="change"] .wdb-r-ambient__signal-kicker {
+  color: var(--amb-attention);
+}
+
 .wdb-r-ambient__opp-list {
   display: grid;
   gap: 0.75rem;

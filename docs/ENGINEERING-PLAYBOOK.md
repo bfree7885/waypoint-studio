@@ -1666,3 +1666,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `#/ambient` has to short-circuit `renderShell` before Today / Happening / Workspace / deepeners. Reusing kiosk as a wrapper would drag Discover instruments onto a dedicated display.
 - Quiet DEVELOPING is only honest when weather is live, alerts are known, and the events catalog has actually loaded — the same catalog-unknown lesson as Discover’s quiet strip.
 - Foraging and Sheds stay **Unknown** on Ambient until a Dashboard-owned, validated signal exists. Importing ForageCast/Sheds scoring just to fill the column would fabricate certainty.
+
+### Lessons Learned — Dashboard Ambient Phase 1.5 local history (2026-08-27)
+
+- Persist the normalized AmbientSnapshot, never a parallel Open-Meteo/NWS feed. Comparison that hydrates again would invent both extra network and false “changes.”
+- IndexedDB plus an injectable memory backend keeps Node tests deterministic without pretending the browser storage layer does not exist.
+- Place equivalence has to be coarser than GPS (here ~5.5 km cells) or a desk-to-porch wander becomes a fake 25°F drop — and storing full-precision lat/lng would start a location-history product we do not want.
+- Valid → missing is not a environmental delta. Alert fetch failure is not “Winter Storm Warning ended.” Those two rules belong in tests, not comments.
+- First paint must not wait on IndexedDB. Show Ambient immediately; hydrate history; paint again only if the view is still Ambient.

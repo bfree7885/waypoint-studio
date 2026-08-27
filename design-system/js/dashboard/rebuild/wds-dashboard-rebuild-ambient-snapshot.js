@@ -3,8 +3,8 @@
  *
  * Pure adapter: reads already-hydrated platform + place context.
  * Does not fetch. Does not invent measurements, events, or opportunity scores.
- * Later phases may persist snapshots and compare consecutive captures.
- * Phase 1 does not persist history or detect change.
+ * Persistence and change detection live in sibling modules. This composer
+ * still does not fetch, persist, or invent measurements.
  */
 (function (global) {
   "use strict";
@@ -145,8 +145,10 @@
         stale: false,
         summary: null,
         temperatureF: null,
+        apparentTemperatureF: null,
         windMph: null,
         precipChancePct: null,
+        precipitating: null,
         headline: "Waiting for conditions",
         detail: "Live weather has not arrived yet.",
         daylight: {
@@ -168,8 +170,10 @@
         stale: stale,
         summary: null,
         temperatureF: null,
+        apparentTemperatureF: null,
         windMph: null,
         precipChancePct: null,
+        precipitating: null,
         headline: "Conditions unavailable",
         detail: unavailable
           ? "Weather is still settling for this place."
@@ -186,8 +190,14 @@
       cur.precipitation && cur.precipitation.probability != null
         ? num(cur.precipitation.probability)
         : num(cur.precipProb);
+    var precipAmt = cur.precipitation ? num(cur.precipitation.amount) : num(cur.precipAmount);
+    var apparent = num(cur.feelsLike != null ? cur.feelsLike : cur.apparentTemperature);
     var summary = (cur.conditions && cur.conditions.summary) || cur.conditions || null;
     if (summary && typeof summary !== "string") summary = summary.summary || null;
+    var precipitating = false;
+    var summaryText = summary ? String(summary) : "";
+    if (precipAmt != null && precipAmt > 0) precipitating = true;
+    else if (/rain|snow|sleet|drizzle|thunder|storm|shower|hail/i.test(summaryText)) precipitating = true;
     var status = stale ? "cached" : "live";
     var supporting = [];
     if (windMph != null) supporting.push(Math.round(windMph) + " mph wind");
@@ -205,8 +215,10 @@
       stale: stale,
       summary: summary ? String(summary) : null,
       temperatureF: tempF,
+      apparentTemperatureF: apparent,
       windMph: windMph,
       precipChancePct: precip,
+      precipitating: precipitating,
       headline: headline,
       detail: detail,
       daylight: composeDaylight(daylight, now, tz),
@@ -673,7 +685,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildAmbientSnapshot = {
-    version: "1.0.0-phase1",
+    version: "1.5.0",
     SCHEMA_VERSION: SCHEMA_VERSION,
     compose: compose
   };

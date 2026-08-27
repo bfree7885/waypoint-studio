@@ -1,6 +1,6 @@
 # Dashboard → Ambient Intelligence — Phase 0 Audit and Plan
 
-**Status:** Phase 0 accepted. Phase 1 (`#/ambient` snapshot + shell) is documented in `docs/DASHBOARD-AMBIENT.md`.  
+**Status:** Phase 0 accepted. Phase 1 shell shipped. Phase 1.5 (local history + deterministic “what changed?”) is documented in `docs/DASHBOARD-AMBIENT.md`.  
 **Date:** 2026-08-27  
 **Audit base:** `origin/main` `db159622` (includes Sheds V3.2 merge `06851649` plus later cyber refresh)  
 **Live surface:** `https://waypointstudio.org/apps/dashboard/`  

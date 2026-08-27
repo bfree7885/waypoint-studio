@@ -104,6 +104,8 @@ const MODULES = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-snapshot.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-store.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-changes.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild.js"
 ];
@@ -117,8 +119,9 @@ const wdsSrc = read("design-system/js/wds.js");
 
 assert("snapshot module does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(snapSrc));
 assert("ambient render does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(ambSrc));
-assert("no billing in ambient modules", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(snapSrc + ambSrc));
-assert("no radio/AI/history scope", !/sdr|rtl-sdr|openai|llm|indexeddb|snapshot\(t-1\)|changeDetection:\s*true/i.test(snapSrc + ambSrc));
+assert("snapshot composer still does not persist", !/indexedDB/.test(snapSrc));
+assert("no billing in ambient snapshot/render", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(snapSrc + ambSrc));
+assert("no radio/AI in snapshot/render", !/sdr|rtl-sdr|openai|\bllm\b/i.test(snapSrc + ambSrc));
 assert("wds.js loads ambient before rebuild", /rebuild-ambient-snapshot\.js/.test(wdsSrc) && /rebuild-ambient\.js/.test(wdsSrc));
 assert("home-boot skips prompt for ambient", /indexOf\("ambient"\)/.test(bootSrc));
 assert(
@@ -263,7 +266,7 @@ assert("NOW has daylight", liveSnap.conditions.daylight.status === "day" || live
 assert("NOW has moon", liveSnap.conditions.moon.status === "ready" && liveSnap.conditions.moon.phaseLabel);
 assert("live weatherLive meta", liveSnap.meta.weatherLive === true);
 assert("sources include weather", liveSnap.sources.some((s) => s.id === "weather" && /Open-Meteo/.test(s.label)));
-assert("no history in phase 1", liveSnap.meta.history === false && liveSnap.meta.changeDetection === false);
+assert("composer defaults history off", liveSnap.meta.history === false && liveSnap.meta.changeDetection === false);
 
 const liveHtml = Ambient.render(liveSnap);
 assert("NOW region populated", /data-ambient-region="now"/.test(liveHtml) && /34°/.test(liveHtml) && /Pike County/.test(liveHtml));

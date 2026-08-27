@@ -49,7 +49,9 @@
     return "Waiting";
   }
 
-  function developingKicker(state) {
+  function developingKicker(state, changesStatus) {
+    if (changesStatus === "warming" || changesStatus === "incomparable") return "Getting oriented";
+    if (changesStatus === "changed" && state !== "urgent") return "Changed";
     if (state === "urgent") return "Needs attention";
     if (state === "attention") return "Developing";
     if (state === "quiet") return "Quiet";
@@ -138,6 +140,7 @@
     var d = snapshot.developing || {};
     var state = d.state || "unknown";
     var items = d.items || [];
+    var changesStatus = (snapshot.meta && snapshot.meta.changesStatus) || "";
     var listItems = items.length > 1 ? items : [];
     var list = "";
     if (listItems.length) {
@@ -169,9 +172,13 @@
     return (
       '<section class="wdb-r-ambient__region wdb-r-ambient__developing" data-ambient-region="developing" data-state="' +
       escapeHtml(state) +
+      '" data-history="' +
+      escapeHtml((snapshot.meta && snapshot.meta.history) ? "ready" : "none") +
+      '" data-changes="' +
+      escapeHtml(changesStatus || (snapshot.meta && snapshot.meta.changesStatus) || "none") +
       '" aria-labelledby="wdb-r-ambient-dev-title">' +
       '<p class="wdb-r-ambient__kicker">' +
-      escapeHtml(developingKicker(state)) +
+      escapeHtml(developingKicker(state, snapshot.meta && snapshot.meta.changesStatus)) +
       "</p>" +
       '<h2 id="wdb-r-ambient-dev-title" class="wdb-r-ambient__region-title">Developing</h2>' +
       '<p class="wdb-r-ambient__headline">' +
@@ -274,6 +281,10 @@
       escapeHtml(state) +
       '" data-conditions="' +
       escapeHtml(cond) +
+      '" data-history="' +
+      escapeHtml((snapshot.meta && snapshot.meta.history) ? "ready" : "none") +
+      '" data-changes="' +
+      escapeHtml((snapshot.meta && snapshot.meta.changesStatus) || "none") +
       '">' +
       '<header class="wdb-r-ambient__mast">' +
       '<p class="wdb-r-ambient__brand">Ambient</p>' +
@@ -294,7 +305,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildAmbient = {
-    version: "1.0.0-phase1",
+    version: "1.5.0",
     render: render
   };
 })(typeof window !== "undefined" ? window : global);

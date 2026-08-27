@@ -219,7 +219,11 @@ async function main() {
             hasOpp: !!opp,
             bodyHasTemp: /\\d+°/.test(body),
             bodyHasUnknown: /Unknown/.test(body),
-            bodyHasDeveloping: /Developing|Quiet|Needs attention/i.test(body)
+            bodyHasDeveloping: /Developing|Quiet|Needs attention|Changed|Getting oriented/i.test(body),
+            developingText: dev ? (dev.innerText || "").slice(0, 500) : "",
+            changesAttr: (ambient && ambient.getAttribute("data-changes")) || "",
+            historyAttr: (ambient && ambient.getAttribute("data-history")) || "",
+            bodySlice: body.replace(/\\s+/g, " ").slice(0, 400)
           };
         })()`,
         returnByValue: true
@@ -307,6 +311,236 @@ async function main() {
       weatherHits.length === weatherAfterAmbient,
       "before=" + weatherAfterAmbient + " after=" + weatherHits.length + " extra=" + JSON.stringify(weatherHits.slice(weatherAfterAmbient))
     );
+
+    async function evalAwait(expression) {
+      return send("Runtime.evaluate", {
+        expression,
+        awaitPromise: true,
+        returnByValue: true
+      });
+    }
+
+    async function captureNamed(name) {
+      const png = await send("Page.captureScreenshot", { format: "png", fromSurface: true });
+      const file = path.join(ART, name + ".png");
+      fs.writeFileSync(file, Buffer.from(png.data, "base64"));
+      console.log("SHOT", file);
+      return file;
+    }
+
+    const SEED_QUIET = `(async () => {
+      const WDS = window.WDS;
+      const Store = WDS.dashboardRebuildAmbientStore;
+      const Snap = WDS.dashboardRebuildAmbientSnapshot;
+      if (!Store || !Snap) return { ok: false, reason: "missing-modules" };
+      await Store.hydrate();
+      if (Store.clear) await Store.clear();
+      const now = new Date();
+      const earlier = new Date(now.getTime() - 3 * 3600 * 1000);
+      const rise = new Date(now.getTime() - 8 * 3600 * 1000);
+      const set = new Date(now.getTime() + 2.5 * 3600 * 1000);
+      const place = {
+        placeLabel: "Pike County, PA",
+        lat: 41.3312,
+        lng: -75.038,
+        timezone: "America/New_York",
+        trust: "live",
+        source: "geo"
+      };
+      function platform(temp, wind, alerts) {
+        return {
+          meta: { hydratedAt: now.toISOString() },
+          weatherRef: {
+            meta: { isPlaceholder: false, provider: "open-meteo" },
+            current: {
+              temperature: temp,
+              feelsLike: temp - 4,
+              humidity: 48,
+              cloudCover: 55,
+              wind: { speed: wind, gust: wind + 3 },
+              conditions: { summary: "Partly cloudy" },
+              precipitation: { probability: 10, amount: 0 }
+            },
+            hourly: [],
+            daily: [{}]
+          },
+          daylight: {
+            sunrise: rise.toISOString(),
+            sunset: set.toISOString(),
+            sunriseFormatted: rise.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }),
+            sunsetFormatted: set.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }),
+            moonPhase: "Waning Crescent",
+            moonIllumination: 18,
+            timezone: "America/New_York"
+          },
+          alerts: alerts || { status: "live", items: [] },
+          airQuality: { status: "live", usAqi: 32, category: "Good" }
+        };
+      }
+      if (WDS.naturalEvents && WDS.naturalEvents.setCatalog) {
+        WDS.naturalEvents.setCatalog({ version: "test", events: [] });
+      }
+      const mode = window.__wpAmbientHistoryMode || "quiet";
+      const currentPlat = mode === "alert"
+        ? platform(34, 7, {
+            status: "live",
+            items: [{ event: "Winter Storm Warning", headline: "Winter Storm Warning", severity: "Severe" }]
+          })
+        : platform(34, 7);
+      const currentSnap = Snap.compose({
+        platform: currentPlat,
+        placeContext: place,
+        now: now,
+        catalog: { version: "test", events: [] }
+      });
+      const prior = JSON.parse(JSON.stringify(currentSnap));
+      prior.capturedAt = earlier.toISOString();
+      if (mode === "temp") {
+        prior.conditions.temperatureF = 43;
+        prior.conditions.apparentTemperatureF = 40;
+        prior.conditions.headline = "43°";
+      }
+      if (mode === "alert") {
+        prior.signals = [];
+        prior.developing = {
+          state: "quiet",
+          headline: "Nothing important is developing",
+          detail: "No significant weather, alerts, or natural events are active or approaching.",
+          items: [],
+          gaps: []
+        };
+        prior.sources = (prior.sources || []).map(function (s) {
+          if (s.id !== "nws") return s;
+          return Object.assign({}, s, { trust: "live" });
+        });
+      }
+      const written = await Store.ingest(prior, { force: true, capturedAt: earlier });
+      if (WDS.dashboardRebuild.setPlaceContext) WDS.dashboardRebuild.setPlaceContext(place);
+      if (WDS.dashboardRebuild.setPlatform) WDS.dashboardRebuild.setPlatform(currentPlat);
+      const rec = Store.reference(Snap.compose({ platform: currentPlat, placeContext: place, now: now, catalog: { version: "test", events: [] } }));
+      return { ok: true, written: written && written.persisted, hasRef: !!(rec && rec.snapshot), mode: mode };
+    })()`;
+
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
+    await send("Page.navigate", { url: `${BASE}/apps/dashboard/?ambient=${Date.now()}#/ambient` });
+    assert("phase15 first-run booted", await waitReady(`!!(window.WDS && WDS.dashboardRebuild && document.querySelector("[data-wdb-r]"))`));
+    await evalAwait(`(async () => {
+      const Store = window.WDS && WDS.dashboardRebuildAmbientStore;
+      if (Store && Store.clear) await Store.clear();
+      if (Store && Store.hydrate) await Store.hydrate();
+      return { ok: true };
+    })()`);
+    await send("Runtime.evaluate", { expression: "window.__wpAmbientAlert = false", returnByValue: true });
+    await send("Runtime.evaluate", { expression: FIXTURE, returnByValue: true });
+    await delay(500);
+    const firstRunInfo = await send("Runtime.evaluate", {
+      expression: `({
+        developing: (document.querySelector('[data-ambient-region="developing"]') || {}).innerText || "",
+        changes: (document.querySelector("[data-wdb-r-ambient]") || {}).getAttribute && document.querySelector("[data-wdb-r-ambient]").getAttribute("data-changes"),
+        hasNow: !!document.querySelector('[data-ambient-region="now"]')
+      })`,
+      returnByValue: true
+    });
+    const firstRun = firstRunInfo.result.value;
+    assert("first-run still renders Ambient", firstRun.hasNow);
+    assert(
+      "first-run developing is honest",
+      /Building recent context/i.test(firstRun.developing),
+      firstRun.developing
+    );
+    await captureNamed("ambient_phase15_first_run_1920x1080");
+
+    const weatherBeforeHistory = weatherHits.length;
+    await send("Runtime.evaluate", { expression: `window.__wpAmbientHistoryMode = "quiet"`, returnByValue: true });
+    const quietSeed = await evalAwait(SEED_QUIET);
+    const quietVal = quietSeed.result && quietSeed.result.value;
+    assert("quiet history seeded", quietVal && quietVal.ok && quietVal.hasRef, JSON.stringify(quietVal));
+    await delay(400);
+    const quietInfo = await send("Runtime.evaluate", {
+      expression: `({
+        developing: (document.querySelector('[data-ambient-region="developing"]') || {}).innerText || "",
+        temp: (document.querySelector("[data-ambient-temp]") || {}).innerText || ""
+      })`,
+      returnByValue: true
+    });
+    const quietDev = quietInfo.result.value;
+    assert(
+      "quiet history stays quiet",
+      /Nothing important is developing/i.test(quietDev.developing) && !/Temperature ↓/i.test(quietDev.developing),
+      quietDev.developing
+    );
+    await captureNamed("ambient_phase15_quiet_history_1920x1080");
+
+    await send("Runtime.evaluate", { expression: `window.__wpAmbientHistoryMode = "temp"`, returnByValue: true });
+    const tempSeed = await evalAwait(SEED_QUIET);
+    const tempVal = tempSeed.result && tempSeed.result.value;
+    assert("temp history seeded", tempVal && tempVal.ok && tempVal.hasRef, JSON.stringify(tempVal));
+    await delay(400);
+    const tempInfo = await send("Runtime.evaluate", {
+      expression: `({
+        developing: (document.querySelector('[data-ambient-region="developing"]') || {}).innerText || "",
+        temp: (document.querySelector("[data-ambient-temp]") || {}).innerText || ""
+      })`,
+      returnByValue: true
+    });
+    const tempDev = tempInfo.result.value;
+    assert("meaningful weather change surfaces", /Temperature ↓ 9°F/i.test(tempDev.developing), tempDev.developing);
+    assert("NOW still shows current temp", /34/.test(tempDev.temp), tempDev.temp);
+    await captureNamed("ambient_phase15_temp_drop_1920x1080");
+
+    await send("Runtime.evaluate", { expression: `window.__wpAmbientHistoryMode = "alert"`, returnByValue: true });
+    const alertSeed = await evalAwait(SEED_QUIET);
+    const alertVal = alertSeed.result && alertSeed.result.value;
+    assert("alert history seeded", alertVal && alertVal.ok && alertVal.hasRef, JSON.stringify(alertVal));
+    await delay(400);
+    const alertInfo = await send("Runtime.evaluate", {
+      expression: `({
+        developing: (document.querySelector('[data-ambient-region="developing"]') || {}).innerText || "",
+        state: (document.querySelector('[data-ambient-region="developing"]') || {}).getAttribute && document.querySelector('[data-ambient-region="developing"]').getAttribute("data-state")
+      })`,
+      returnByValue: true
+    });
+    const alertDev = alertInfo.result.value;
+    assert("significant alert change surfaces", /Winter Storm Warning/i.test(alertDev.developing), alertDev.developing);
+    await captureNamed("ambient_phase15_alert_issued_1920x1080");
+
+    const weatherAfterHistory = weatherHits.length;
+    assert(
+      "snapshot comparison does not add Open-Meteo/NWS requests",
+      weatherAfterHistory === weatherBeforeHistory,
+      "before=" + weatherBeforeHistory + " after=" + weatherAfterHistory + " extra=" + JSON.stringify(weatherHits.slice(weatherBeforeHistory))
+    );
+
+    const dedicated15 = await shot(
+      "ambient_phase15_dedicated_1920x1080",
+      1920,
+      1080,
+      false,
+      "#/ambient",
+      "window.__wpAmbientAlert = false"
+    );
+    assert("dedicated 1.5 no horizontal overflow", !dedicated15.info.overflowX);
+    assert(
+      "dedicated 1.5 primary regions in viewport",
+      dedicated15.info.primaryBottom <= dedicated15.info.clientHeight + 24,
+      "primaryBottom=" + dedicated15.info.primaryBottom + " client=" + dedicated15.info.clientHeight
+    );
+    assert("dedicated 1.5 no vertical page scroll", !dedicated15.info.overflowY, "scrollHeight=" + dedicated15.info.scrollHeight);
+
+    const mobile15 = await shot(
+      "ambient_phase15_mobile_390x844",
+      390,
+      844,
+      true,
+      "#/ambient",
+      "window.__wpAmbientAlert = false"
+    );
+    assert("mobile 1.5 no horizontal overflow", !mobile15.info.overflowX);
 
     await send("Emulation.setDeviceMetricsOverride", {
       width: 1440,

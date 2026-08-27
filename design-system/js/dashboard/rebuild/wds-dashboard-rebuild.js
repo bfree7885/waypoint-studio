@@ -10,7 +10,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.4.0-ambient";
+  var VERSION = "3.5.0-ambient-history";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -171,6 +171,63 @@
     };
   }
 
+  var ambientHistoryPaintQueued = false;
+
+  function queueAmbientHistoryPaint() {
+    if (ambientHistoryPaintQueued) return;
+    if (mountState.view !== "ambient" || !mountState.host) return;
+    ambientHistoryPaintQueued = true;
+    var Store = api("dashboardRebuildAmbientStore");
+    if (!Store || typeof Store.hydrate !== "function") {
+      ambientHistoryPaintQueued = false;
+      return;
+    }
+    Store.hydrate().then(
+      function () {
+        ambientHistoryPaintQueued = false;
+        if (mountState.view === "ambient" && mountState.host) paint({ animate: false });
+      },
+      function () {
+        ambientHistoryPaintQueued = false;
+      }
+    );
+  }
+
+  function attachAmbientHistory(snapshot) {
+    if (!snapshot) return snapshot;
+    snapshot.meta = snapshot.meta || {};
+    var Store = api("dashboardRebuildAmbientStore");
+    var Changes = api("dashboardRebuildAmbientChanges");
+    var previous = null;
+    if (Store) {
+      if (Store.isHydrated && Store.isHydrated()) {
+        var rec = Store.reference ? Store.reference(snapshot) : null;
+        previous = rec && rec.snapshot ? rec.snapshot : null;
+      } else {
+        queueAmbientHistoryPaint();
+      }
+      if (Store.remember) {
+        try {
+          Store.remember(snapshot);
+        } catch (e) {
+          /* fail open */
+        }
+      }
+    }
+    var changes = { status: "warming", items: [], referenceCapturedAt: null, windowLabel: "" };
+    if (Changes && typeof Changes.diff === "function") {
+      changes = Changes.diff(previous, snapshot);
+      snapshot.meta.changeDetection = true;
+      if (typeof Changes.decorateSnapshot === "function") {
+        snapshot = Changes.decorateSnapshot(snapshot, changes);
+      }
+    } else {
+      snapshot.meta.history = false;
+      snapshot.meta.changeDetection = false;
+    }
+    return snapshot;
+  }
+
   function renderShell(options) {
     options = options || {};
     var view = options.view || "workspace";
@@ -201,6 +258,7 @@
               catalog: options.catalog || null
             })
           : null;
+      if (snapshot) snapshot = attachAmbientHistory(snapshot);
       var ambientHtml =
         Ambient && Ambient.render
           ? Ambient.render(snapshot)
