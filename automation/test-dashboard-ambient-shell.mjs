@@ -318,33 +318,28 @@ const rainSnap = Snap.compose({
   catalog: { version: "test", events: [] }
 });
 assert(
-  "rain is developing or at least in signals",
-  rainSnap.developing.state !== "quiet" || rainSnap.signals.some((s) => /precip|rain/i.test(s.id + s.title))
+  "rain is developing from live precip",
+  rainSnap.developing.state !== "quiet" &&
+    rainSnap.signals.some((s) => /precip|rain/i.test(String(s.id) + " " + String(s.title))),
+  rainSnap.developing.state + " " + (rainSnap.developing.headline || "")
 );
 
+const catalog = JSON.parse(read("design-system/js/dashboard/natural-events/events.json"));
+const AUG25 = new Date("2026-08-25T20:00:00-04:00");
 const eventSnap = Snap.compose({
-  platform: livePlatform(),
+  platform: quietPlatform(),
   placeContext: place,
-  now: NOW,
-  catalog: {
-    version: "test",
-    events: [
-      {
-        id: "test-eclipse",
-        type: "lunar-eclipse",
-        title: "Total lunar eclipse",
-        startUtc: "2026-01-15T16:00:00.000Z",
-        endUtc: "2026-01-15T20:00:00.000Z",
-        visibility: { boxes: [{ minLat: 20, maxLat: 50, minLng: -90, maxLng: -60 }] }
-      }
-    ]
-  }
+  now: AUG25,
+  catalog: catalog
 });
 assert(
-  "events can populate developing when catalog says so",
-  Array.isArray(eventSnap.signals),
-  "signals missing"
+  "eclipse event populates DEVELOPING",
+  eventSnap.developing.state !== "quiet" &&
+    eventSnap.developing.items.some((it) => /eclipse/i.test(it.title + " " + (it.detail || ""))),
+  eventSnap.developing.state + " — " + JSON.stringify(eventSnap.developing.items.map((i) => i.title))
 );
+const eventHtml = Ambient.render(eventSnap);
+assert("DEVELOPING html includes eclipse", /eclipse/i.test(eventHtml));
 
 const placeholderSnap = Snap.compose({
   platform: {
@@ -357,6 +352,37 @@ const placeholderSnap = Snap.compose({
 assert("placeholder does not use fake 99°", placeholderSnap.conditions.temperatureF == null);
 assert("placeholder photography unknown", placeholderSnap.opportunities.some((o) => o.domain === "photography" && o.status === "unknown"));
 assert("placeholder developing not fabricated quiet", placeholderSnap.developing.state !== "quiet");
+
+const wxDownAlertUp = Snap.compose({
+  platform: {
+    meta: { hydratedAt: NOW.toISOString() },
+    weatherRef: { meta: { isPlaceholder: true, provider: "open-meteo" }, current: { temperature: 99 } },
+    alerts: {
+      status: "live",
+      items: [{ event: "Winter Storm Warning", headline: "Winter Storm Warning", severity: "Severe" }]
+    }
+  },
+  placeContext: place,
+  now: NOW,
+  catalog: { version: "test", events: [] }
+});
+assert("weather failure does not invent 99°", wxDownAlertUp.conditions.temperatureF == null);
+assert(
+  "alerts still surface when weather is down",
+  wxDownAlertUp.developing.items.some((it) => /Winter Storm|Active alert/i.test(it.title + " " + it.detail)),
+  wxDownAlertUp.developing.state + " " + wxDownAlertUp.developing.headline
+);
+
+const liveWxAlertDown = Snap.compose({
+  platform: quietPlatform({ alerts: { status: "unavailable" } }),
+  placeContext: place,
+  now: NOW,
+  catalog: { version: "test", events: [] }
+});
+assert(
+  "live weather with failed alerts is unknown not quiet",
+  liveWxAlertDown.developing.state === "unknown"
+);
 
 const staleSnap = Snap.compose({
   platform: livePlatform({ root: { meta: { hydratedAt: NOW.toISOString(), stale: true, fromCache: true } } }),

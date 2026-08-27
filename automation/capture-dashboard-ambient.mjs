@@ -144,6 +144,19 @@ async function main() {
 
     await send("Page.enable");
     await send("Runtime.enable");
+    await send("Network.enable");
+    const weatherHits = [];
+    session.on("message", (raw) => {
+      let msg;
+      try {
+        msg = JSON.parse(raw.toString());
+      } catch (e) {
+        return;
+      }
+      if (msg.method !== "Network.requestWillBeSent") return;
+      const url = (msg.params && msg.params.request && msg.params.request.url) || "";
+      if (/open-meteo|api\.weather\.gov/i.test(url)) weatherHits.push(url);
+    });
 
     async function waitReady(expr, tries = 50) {
       for (let i = 0; i < tries; i++) {
@@ -154,7 +167,8 @@ async function main() {
       return false;
     }
 
-    async function shot(name, width, height, mobile, hash, extraExpr) {
+    async function shot(name, width, height, mobile, hash, extraExpr, save) {
+      save = save !== false;
       await send("Emulation.setDeviceMetricsOverride", {
         width,
         height,
@@ -211,11 +225,15 @@ async function main() {
         returnByValue: true
       });
       const info = infoRes.result.value;
-      const png = await send("Page.captureScreenshot", { format: "png", fromSurface: true });
-      const file = path.join(ART, name + ".png");
-      fs.writeFileSync(file, Buffer.from(png.data, "base64"));
-      console.log("SHOT", file, JSON.stringify(info));
-      return { file, info };
+      if (save) {
+        const png = await send("Page.captureScreenshot", { format: "png", fromSurface: true });
+        const file = path.join(ART, name + ".png");
+        fs.writeFileSync(file, Buffer.from(png.data, "base64"));
+        console.log("SHOT", file, JSON.stringify(info));
+        return { file, info };
+      }
+      console.log("PROBE", name, JSON.stringify(info));
+      return { info };
     }
 
     const dedicated = await shot(
@@ -251,6 +269,26 @@ async function main() {
     assert("mobile no horizontal overflow", !mobile.info.overflowX);
     assert("mobile may stack (vertical scroll allowed)", true);
 
+    for (const vp of [
+      { name: "375", width: 375, height: 812 },
+      { name: "430", width: 430, height: 932 }
+    ]) {
+      const probe = await shot(
+        "ambient_probe_" + vp.name,
+        vp.width,
+        vp.height,
+        true,
+        "#/ambient",
+        "window.__wpAmbientAlert = false",
+        false
+      );
+      assert(
+        "responsive " + vp.name + " has three regions",
+        probe.info.hasNow && probe.info.hasDev && probe.info.hasOpp
+      );
+      assert("responsive " + vp.name + " no horizontal overflow", !probe.info.overflowX);
+    }
+
     const alertShot = await shot(
       "ambient_phase1_alert_1920x1080",
       1920,
@@ -261,28 +299,48 @@ async function main() {
     );
     assert("alert ambient still three regions", alertShot.info.hasNow && alertShot.info.hasDev && alertShot.info.hasOpp);
 
+    const weatherAfterAmbient = weatherHits.length;
+    await send("Runtime.evaluate", { expression: FIXTURE, returnByValue: true });
+    await delay(1200);
+    assert(
+      "fixture/re-paint does not duplicate weather APIs",
+      weatherHits.length === weatherAfterAmbient,
+      "before=" + weatherAfterAmbient + " after=" + weatherHits.length + " extra=" + JSON.stringify(weatherHits.slice(weatherAfterAmbient))
+    );
+
     await send("Emulation.setDeviceMetricsOverride", {
       width: 1440,
       height: 900,
       deviceScaleFactor: 1,
       mobile: false
     });
-    await send("Page.navigate", { url: `${BASE}/apps/dashboard/?discover=${Date.now()}#/` });
-    const discBoot = await waitReady(`!!document.querySelector("[data-wdb-r-today],[data-wdb-r-workspace]")`);
-    assert("discover still boots", discBoot);
+    const switched = await send("Runtime.evaluate", {
+      expression: `(() => {
+        if (!window.WDS || !WDS.dashboardRebuild || !WDS.dashboardRebuild.setView) return { ok: false };
+        WDS.dashboardRebuild.setView("workspace");
+        return { ok: true, view: WDS.dashboardRebuild.getView && WDS.dashboardRebuild.getView() };
+      })()`,
+      returnByValue: true
+    });
+    assert("setView workspace from Ambient", switched.result && switched.result.value && switched.result.value.ok);
+    await delay(400);
     const discInfo = await send("Runtime.evaluate", {
       expression: `({
         view: document.querySelector("[data-wdb-r]") && document.querySelector("[data-wdb-r]").getAttribute("data-view"),
         today: !!document.querySelector("[data-wdb-r-today]"),
         workspace: !!document.querySelector("[data-wdb-r-workspace]"),
-        ambient: !!document.querySelector("[data-wdb-r-ambient]")
+        ambient: !!document.querySelector("[data-wdb-r-ambient]"),
+        prompt: !!document.querySelector("#wds-location-prompt .wds-location-prompt, [data-wds-location-prompt]")
       })`,
       returnByValue: true
     });
     const d = discInfo.result.value;
-    assert("discover remains workspace", d.view === "workspace" && d.today && d.workspace && !d.ambient);
+    assert("discover remains workspace after Ambient", d.view === "workspace" && d.today && d.workspace && !d.ambient);
     const discPng = await send("Page.captureScreenshot", { format: "png", fromSurface: true });
-    fs.writeFileSync(path.join(ART, "discover_phase1_workspace_1440x900.png"), Buffer.from(discPng.data, "base64"));
+    fs.writeFileSync(
+      path.join(ART, "discover_after_ambient_setview_1440x900.png"),
+      Buffer.from(discPng.data, "base64")
+    );
 
     session.close();
     console.log("\nDASHBOARD AMBIENT CAPTURE: PASS");
