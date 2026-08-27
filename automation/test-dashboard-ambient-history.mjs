@@ -436,6 +436,11 @@ assert(
   )
 );
 assert("alert change is urgent or attention", decoratedAlert.developing.state === "urgent" || decoratedAlert.developing.state === "attention");
+assert(
+  "alert change does not duplicate Active alert",
+  !decoratedAlert.developing.items.some((it) => /^Active alert$/i.test(it.title)),
+  JSON.stringify(decoratedAlert.developing.items.map((i) => i.title))
+);
 
 await Store.resetForTests();
 await Store.ingest(basePrev, { force: true, capturedAt: EARLIER });
