@@ -163,6 +163,7 @@ async function startChrome() {
   const proc = spawn(CHROME, [
     "--headless=new", "--disable-gpu", "--no-sandbox",
     "--disable-extensions", "--disable-dev-shm-usage",
+    `--user-data-dir=/tmp/waypoint-mobile-layout-${process.pid}`,
     `--remote-debugging-port=${PORT}`, "about:blank"
   ], { stdio: "ignore" });
   for (let i = 0; i < 20; i++) {
