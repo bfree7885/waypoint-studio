@@ -124,7 +124,19 @@
   function relatedApps(appId) {
     var app = byId(appId);
     if (!app || !app.related || !app.related.length) return [];
-    var paused = { fieldry: 1, "savant-sommelier": 1, "openroad-pa": 1, signalterrain: 1, "global-signals": 1 };
+    var paused = {
+      fieldry: 1,
+      foragecast: 1,
+      "savant-sommelier": 1,
+      "openroad-pa": 1,
+      signalterrain: 1,
+      "global-signals": 1,
+      "waypoint-volunteer": 1,
+      steepleaf: 1,
+      "landscape-interpretation": 1,
+      terrainbound: 1,
+      volunteer: 1
+    };
     return app.related
       .map(byId)
       .filter(Boolean)

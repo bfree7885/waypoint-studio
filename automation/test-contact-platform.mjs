@@ -34,7 +34,9 @@ function walkFiles(dir, exts, out = []) {
       name === "dist" ||
       name === ".worktrees" ||
       name.startsWith(".tmp-") ||
-      name === ".tmp"
+      name === ".tmp" ||
+      name === "reports" ||
+      name === "chrome-profile-cdp"
     ) {
       continue;
     }
@@ -80,6 +82,8 @@ assert("future hooks reserved", Array.isArray(config.futureHooks) && config.futu
 assert("apps include sheds aliases", config.apps.some((a) => a.id === "sheds") && config.apps.some((a) => a.id === "shed-hunting"));
 assert("apps include scene-builder", config.apps.some((a) => a.id === "scene-builder"));
 assert("apps include dashboard", config.apps.some((a) => a.id === "dashboard"));
+assert("apps include Deck", config.apps.some((a) => a.id === "deck"));
+assert("apps omit discontinued products", !config.apps.some((a) => /fieldry|foragecast|steepleaf|signalterrain|savant|volunteer/i.test(a.id + a.label)));
 
 ["contact.html", "support.html", "about.html", "privacy.html"].forEach((p) => {
   assert(p + " exists", fs.existsSync(path.join(ROOT, p)));
@@ -351,16 +355,15 @@ const appPages = [
   "apps/scenes/index.html",
   "apps/scenes/scene-builder/index.html",
   "apps/photo-coach/index.html",
-  "apps/foragecast/index.html",
-  "apps/fieldry/index.html",
-  "apps/shed-hunting/index.html",
-  "apps/steepleaf/index.html",
-  "apps/signalterrain/index.html",
-  "apps/savant-sommelier/index.html"
+  "apps/shed-hunting/index.html"
 ];
 for (const rel of appPages) {
   const html = fs.readFileSync(path.join(ROOT, rel), "utf8");
   assert(`${rel} uses app shell footer`, /data-wds-app-footer/.test(html));
+}
+for (const rel of ["apps/foragecast/index.html", "apps/fieldry/index.html", "apps/steepleaf/index.html", "apps/signalterrain/index.html", "apps/savant-sommelier/index.html"]) {
+  const html = fs.readFileSync(path.join(ROOT, rel), "utf8");
+  assert(`${rel} silent redirect`, /location\.replace/.test(html) && /noindex/i.test(html));
 }
 
 // Local static link checks for contact/support/about/privacy
@@ -386,8 +389,8 @@ await new Promise((resolve) => {
       "/privacy.html",
       "/contact.html?category=bug&app=sheds&includeTech=1",
       "/contact.html?category=feature&app=photo-coach",
-      "/contact.html?category=scientific&app=foragecast",
-      "/contact.html?category=data&app=fieldry",
+      "/contact.html?category=scientific&app=scenes",
+      "/contact.html?category=data&app=dashboard",
       "/contact.html?category=accessibility"
     ];
     for (const p of paths) {

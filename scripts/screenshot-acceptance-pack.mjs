@@ -100,12 +100,28 @@ async function shot(filename, width, height, mobile) {
   console.log("wrote", filename);
 }
 
+async function dismissLocationAndOpenNav() {
+  await send("Runtime.evaluate", {
+    expression: `(() => {
+      const pike = [...document.querySelectorAll("button, a")].find((b) => /Pike County/i.test(b.textContent || ""));
+      if (pike) pike.click();
+      const skip = [...document.querySelectorAll("button, a")].find((b) => /not now|skip|later/i.test(b.textContent || ""));
+      if (skip) skip.click();
+      return true;
+    })()`,
+    returnByValue: true
+  }, sessionId);
+  await delay(1200);
+}
+
 for (const page of PAGES) {
   await send("Page.navigate", { url: BASE + page.path }, sessionId);
   await delay(page.name === "dashboard" ? 5000 : 2200);
+  if (page.name === "dashboard") await dismissLocationAndOpenNav();
   await shot(`${page.name}_desktop.png`, 1440, 1100, false);
   await send("Page.navigate", { url: BASE + page.path }, sessionId);
   await delay(page.name === "dashboard" ? 5000 : 2200);
+  if (page.name === "dashboard") await dismissLocationAndOpenNav();
   await shot(`${page.name}_mobile_390.png`, 390, 844, true);
 }
 
@@ -115,6 +131,7 @@ for (const page of [{ name: "home", path: "/" }, { name: "about", path: "/about.
   }, sessionId);
   await send("Page.navigate", { url: BASE + page.path }, sessionId);
   await delay(page.name === "dashboard" ? 5000 : 2200);
+  if (page.name === "dashboard") await dismissLocationAndOpenNav();
   await shot(`${page.name}_mobile_nav_closed.png`, 390, 844, true);
   await send("Runtime.evaluate", {
     expression: `document.getElementById("was-nav-toggle")?.click(); true`,
