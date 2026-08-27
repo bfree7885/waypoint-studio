@@ -159,6 +159,8 @@
 .waf-grid {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .waf-card {
@@ -166,6 +168,9 @@
   border: 1px solid var(--waf-line);
   border-radius: var(--wds-radius-md, 0.35rem);
   padding: 1.15rem 1.2rem 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .waf-card__meta {

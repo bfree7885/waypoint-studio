@@ -147,6 +147,11 @@ assert(
 );
 const articlesCss = read("design-system/css/wds-articles-feed.css");
 assert("articles view chips wrap on a bounded row", /\.waf-views \{[\s\S]*?flex-wrap:\s*wrap[\s\S]*?min-width:\s*0/.test(articlesCss));
+const contactCss = read("design-system/css/wds-contact.css");
+assert(
+  "studio pages fill the shell instead of growing to chip min-content",
+  /\.wcs-page \{[\s\S]*?width:\s*100%[\s\S]*?min-width:\s*0/.test(contactCss)
+);
 assert("robots disallows global-signals", /Disallow: \/side-trails\/global-signals\//.test(robots));
 
 assert("fieldry JS preserved internally", fs.existsSync(path.join(ROOT, "apps/fieldry/js/fieldry-life-list.js")));
