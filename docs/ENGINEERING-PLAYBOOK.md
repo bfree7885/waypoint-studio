@@ -1648,8 +1648,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Quiet Discover copy that names natural events must not render while the events catalog is unknown (in-flight or failed). Empty event HTML is not a confirmed empty catalog.
 - Region-box visibility is a hard gate before lifecycle. Boxes must cover the catalog’s own visibility summary (eastern Pacific / Hawaii / Alaska), not only contiguous-Americas longitudes.
 
-### Lessons Learned — Sheds V3.2 release onto later main (2026-08-26)
+### Lessons Learned — Public portfolio reconciliation (2026-08-27)
 
-- Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
-- Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.
-- Draft PRs opened without a later `synchronize` push may never queue GitHub Actions `pull_request` CI (`on.pull_request` defaults to opened / synchronize / reopened, not ready_for_review). Mark the PR ready and push a follow-up commit so CI actually starts.
+- With only Deck remaining, a Side Trails collection page becomes a graveyard. Put **Deck** in primary nav; keep `/side-trails/waypoint-deck/` as the canonical URL; make `/side-trails/` a silent redirect. Do not keep archive cards “so the section has something.”
+- GitHub Pages has no real HTTP redirects. Silent public retirement is `noindex` + canonical + meta refresh + `location.replace`, with **no** retired-product copy on the page.
+- Preserve engineering (JS, GIS, scoring, radio concepts) under `apps/*` and `design-system/js/*`; remove public **identity** and sitemap/nav promotion.
+- iPhone header overlap: aurora-bridge wrapped `.was-primary-nav` onto a second sticky row (`order: 3; flex: 1 1 100%`). Homepage-only compact nav left About/Support/Deck colliding. Fix the **shared** header with a one-row bar + opaque overlay menu — not per-device padding. A dropdown (`top: 100%`) is not enough: cinematic heroes still show through; the open menu must be a full-viewport opaque overlay (`position: fixed; inset: 0; background: #1a141c`).
+- Tests that required Side Trails / Archive / Incubator catalogs encode obsolete IA. Update them to the five-effort portfolio; do not delete coverage.
+

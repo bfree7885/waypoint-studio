@@ -136,15 +136,15 @@
       // Front door (/) is studio-home — do not mark Dashboard current there.
       var onDashboard =
         activeId === "dashboard" || /\/apps\/dashboard(\/|$)/i.test(pathNow);
+      var onDeck = /\/side-trails\/waypoint-deck(\/|$)/i.test(pathNow) || activeId === "waypoint-deck";
       var current =
         ((item.id === "home" || item.id === "dashboard") && onDashboard) ||
         (item.id === "scenes" && (activeId === "scenes" || activeId === "photo-coach")) ||
         (item.id === "sheds" && activeId === "sheds") ||
         (item.id === "articles" && /\/articles(\/|$)/.test(pathNow)) ||
-        (item.id === "side-trails" && /\/side-trails(\/|$)/.test(pathNow)) ||
+        (item.id === "deck" && onDeck) ||
         (item.id === "support" && /support\.html$/i.test(pathNow)) ||
-        (item.id === "about" && /about\.html$/i.test(pathNow)) ||
-        (item.id === "volunteer" && (activeId === "volunteer" || activeId === "waypoint-volunteer"));
+        (item.id === "about" && /about\.html$/i.test(pathNow));
       return (
         '<a class="was-primary-nav__link" href="' + esc(href) + '"' +
           (item.hint ? ' title="' + esc(item.hint) + '"' : "") +
@@ -162,7 +162,10 @@
             '<span class="was-brand__name">' + esc(brandName) + "</span>" +
           "</a>" +
           (primary
-            ? '<nav class="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
+            ? '<button type="button" class="was-nav-toggle" id="was-nav-toggle" aria-expanded="false" aria-controls="was-primary-nav">' +
+                '<span class="was-nav-toggle__label">Menu</span>' +
+              "</button>" +
+              '<nav class="was-primary-nav" id="was-primary-nav" aria-label="Primary">' + primary + "</nav>"
             : "") +
           (hideExplore
             ? ""
@@ -312,6 +315,57 @@
     }
   }
 
+  var navOpen = false;
+
+  function setPrimaryNav(open) {
+    navOpen = !!open;
+    var header = document.querySelector("[data-was-global], .was-global");
+    var btn = document.getElementById("was-nav-toggle");
+    var nav = document.getElementById("was-primary-nav");
+    if (header) header.classList.toggle("is-nav-open", navOpen);
+    document.documentElement.classList.toggle("was-nav-open", navOpen);
+    if (btn) {
+      btn.setAttribute("aria-expanded", navOpen ? "true" : "false");
+      var lab = btn.querySelector(".was-nav-toggle__label");
+      if (lab) lab.textContent = navOpen ? "Close" : "Menu";
+    }
+    if (nav) {
+      if (navOpen) nav.removeAttribute("hidden");
+    }
+    if (navOpen) {
+      var first = nav && nav.querySelector("a");
+      if (first) first.focus();
+    } else if (btn) {
+      btn.focus();
+    }
+  }
+
+  function bindPrimaryNav() {
+    var root = document.documentElement;
+    if (!root || root.getAttribute("data-was-nav-bound") === "1") return;
+    root.setAttribute("data-was-nav-bound", "1");
+    document.addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest && t.closest("#was-nav-toggle")) {
+        e.preventDefault();
+        setPrimaryNav(!navOpen);
+        return;
+      }
+      if (navOpen && t.closest && t.closest(".was-primary-nav__link")) {
+        setPrimaryNav(false);
+        return;
+      }
+      if (navOpen && t.closest && !t.closest(".was-global")) {
+        setPrimaryNav(false);
+      }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && navOpen) {
+        setPrimaryNav(false);
+      }
+    });
+  }
+
   function bindLauncher(root) {
     root = root && root.nodeType === 1 ? root : document.documentElement;
     if (!root || root.getAttribute("data-was-bound") === "1") return;
@@ -389,6 +443,7 @@
     }
 
     bindLauncher(document);
+    bindPrimaryNav();
     if (shell) {
       shell.classList.add("was-shell");
       if (app) shell.setAttribute("data-active-app", app.id);
@@ -408,15 +463,11 @@
       "photo-coach": "scenes",
       "animal-vision": "scenes",
       "hidden-landscapes": "scenes",
-      foragecast: "foragecast",
-      fieldry: "fieldry",
       "shed-hunting": "sheds",
-      steepleaf: "steepleaf",
-      signalterrain: "signalterrain",
-      "savant-sommelier": "savant-sommelier",
       dashboard: "dashboard",
       studio: "dashboard",
-      "studio-home": null
+      "studio-home": null,
+      "waypoint-deck": "waypoint-deck"
     };
     var appId = map[product];
     if (appId === undefined) appId = product;

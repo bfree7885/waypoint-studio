@@ -58,10 +58,10 @@
       "id": "reading-todays-conditions",
       "slug": "reading-todays-conditions",
       "title": "Reading today’s conditions",
-      "summary": "How Home, ForageCast, and Fieldry work together before you go outside.",
+      "summary": "How Dashboard, Scenes, and Sheds help you read conditions before you go outside.",
       "category": "outdoor-intelligence",
       "tags": ["dashboard", "weather", "trails"],
-      "apps": ["dashboard", "foragecast", "fieldry"],
+      "apps": ["dashboard", "scenes", "sheds"],
       "status": "sample",
       "path": "samples/reading-todays-conditions.html",
       "published": "2026-07-20"

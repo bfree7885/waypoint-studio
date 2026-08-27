@@ -225,7 +225,7 @@ const wildlifeRelated = relatedProductsFor(["Wildlife"], ["Catskills"], {
   textBlob: "celebrity hunting contest leaderboard"
 });
 assert(
-  "paused Fieldry is not promoted for wildlife",
+  "paused observation apps are not promoted for wildlife",
   !wildlifeRelated.some((p) => p.id === "fieldry")
 );
 assert(
@@ -321,7 +321,7 @@ assert(
   "shared primary nav includes Articles with site architecture peers",
   /"id": "dashboard"/.test(navCfg) &&
     /"id": "articles"/.test(navCfg) &&
-    /"id": "side-trails"/.test(navCfg) &&
+    /"id": "deck"/.test(navCfg) &&
     /"id": "support"/.test(navCfg) &&
     /"id": "about"/.test(navCfg)
 );

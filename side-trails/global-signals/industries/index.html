@@ -2,93 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Industry Intelligence — Global Signals. Interconnected industry baselines with supply chains, citizen impacts, and Waypoint’s Take. Curated baseline — not a live news feed.">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://waypointstudio.org/side-trails/global-signals/industries/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Waypoint Studio">
-  <meta property="og:title" content="Industry Intelligence — Global Signals">
-  <meta property="og:description" content="Dense, interconnected industry baselines — threats, opportunities, supply chains, and citizen impacts with honest provenance.">
-  <meta property="og:url" content="https://waypointstudio.org/side-trails/global-signals/industries/">
-  <title>Industry Intelligence — Global Signals</title>
-  <link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;650&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-landing.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-global-signals-industries.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://waypointstudio.org/">
+  <meta http-equiv="refresh" content="0;url=https://waypointstudio.org/">
+  <title>Waypoint Studio</title>
+  <script>location.replace("https://waypointstudio.org/");</script>
 </head>
-<body class="gs-landing gsi-page">
-  <a class="gs-skip" href="#main">Skip to content</a>
-
-  <header class="gs-top">
-    <a class="gs-brand-mark" href="../">Global Signals</a>
-    <nav aria-label="Product">
-      <a href="./" aria-current="page">Industries</a>
-      <a href="../articles/">Articles</a>
-      <a href="../">Global Signals</a>
-      <a href="../../">Side Trails</a>
-    </nav>
-  </header>
-
-  <main id="main" class="gsi-main">
-    <header class="gsi-hub-head">
-      <p class="gs-eyebrow">Global Signals module</p>
-      <h1>Industry Intelligence</h1>
-      <p class="gsi-hub-desc">
-        Dense, interconnected baselines for major industries — what is happening, why,
-        threats, opportunities, supply chains, citizen impacts, and Waypoint’s Take.
-        Curated structure first; not a breaking-news ticker.
-      </p>
-      <p class="gsi-hub-nav">
-        <a class="gs-cta gs-cta--primary" href="../">Back to Global Signals</a>
-        <a class="gs-cta" href="../articles/">Articles</a>
-        <a class="gs-cta" href="../../">Side Trails</a>
-      </p>
-    </header>
-
-    <section
-      id="gsi-index"
-      class="gsi-mount"
-      aria-label="Industry intelligence index"
-      data-gsi-index
-      data-gsi-state="loading"
-      data-gsi-data="../../../data/global-signals/industries/industries.json"
-      data-gsi-live="../../../data/global-signals/industries/live-impacts.json"
-      data-gsi-depth="3"
-    >
-      <p class="gsi-empty" role="status">
-        Industry intelligence will appear here when curated baselines are available.
-      </p>
-    </section>
-  </main>
-
-  <script src="../../../design-system/js/global-signals/wds-gs-loader.js" defer></script>
-  <script src="../../../design-system/js/global-signals/wds-gs-industries.js" defer></script>
-  <script>
-    (function () {
-      var el = document.getElementById("gsi-index");
-      if (!el) return;
-      setTimeout(function () {
-        var state = el.getAttribute("data-gsi-state");
-        if (state && state !== "loading") return;
-        if (window.WDS && WDS.globalSignals && WDS.globalSignals.industries) return;
-        el.setAttribute("data-gsi-state", "error");
-        el.setAttribute("aria-busy", "false");
-        el.innerHTML = '<p class="gsi-empty" role="alert">Industry module failed to load. <a href="../">Back to Global Signals</a></p>';
-      }, 8000);
-    })();
-  </script>
-
-  <footer class="gs-footer">
-    <p><strong>Global Signals</strong> — Understanding how world events shape everyday life.</p>
-    <p>Part of Side Trails.</p>
-    <p>
-      <a href="../">Global Signals</a>
-      <a href="../../">Side Trails</a>
-      <a href="../../../about.html">Waypoint Studio</a>
-    </p>
-  </footer>
+<body>
+  <p><a href="https://waypointstudio.org/">Continue to Waypoint Studio</a></p>
 </body>
 </html>

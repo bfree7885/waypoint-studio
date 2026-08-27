@@ -8,27 +8,17 @@
       "scenes",
       "shed-hunting",
       "articles",
-      "side-trails"
+      "waypoint-deck"
     ],
     "studioChrome": [
       "support",
       "about"
     ],
-    "foundations": [
-      "steepleaf",
-      "savant-sommelier",
-      "waypoint-volunteer",
-      "foragecast",
-      "fieldry"
-    ],
+    "foundations": [],
     "contentTracks": [],
     "modules": [],
-    "retired": [
-      "terrainbound"
-    ],
-    "sideTrails": [
-      "signalterrain"
-    ]
+    "retired": [],
+    "sideTrails": []
   },
   "sharedEngines": {
     "product-framework": {

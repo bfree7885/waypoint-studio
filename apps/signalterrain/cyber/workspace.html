@@ -1,128 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-product="signalterrain">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SignalTerrain Cyber Operations Workspace — personal investigation environment. Educational, defensive, local-first. Not a SOC or SIEM.">
-  <title>Cyber Operations Workspace — SignalTerrain</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../design-system/css/wds.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-signalterrain-foundation.css">
-  <style>
-    .st-ws { max-width: 56rem; }
-    .st-ws-meta { font-size: 0.85rem; color: var(--st-muted, #5a564e); }
-    .st-ws-panel {
-      margin: 0 0 1.5rem;
-      padding: 1rem 0 1.25rem;
-      border-bottom: 1px solid var(--st-line, #d2ccc0);
-    }
-    .st-ws-panel-chrome {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.5rem;
-      margin-bottom: 0.35rem;
-    }
-    .st-ws-panel-chrome h2 {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-weight: 500;
-      font-size: 1.45rem;
-      margin: 0;
-    }
-    .st-ws-panel-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-    .st-ws-panel-lead { color: var(--st-muted, #5a564e); margin: 0 0 0.75rem; max-width: 40rem; }
-    .st-ws-customize { margin: 1rem 0 1.5rem; padding: 0.75rem; background: var(--st-panel, #faf8f3); border: 1px solid var(--st-line, #d2ccc0); }
-    .st-ws-form, .st-ws-filters {
-      display: grid;
-      gap: 0.65rem;
-      margin: 1rem 0 1.5rem;
-      max-width: 36rem;
-    }
-    .st-ws-form label, .st-ws-filters label { font-size: 0.9rem; color: var(--st-muted, #5a564e); }
-    .st-ws-form input, .st-ws-form textarea, .st-ws-form select,
-    .st-ws-filters input, .st-ws-filters select {
-      display: block;
-      width: 100%;
-      margin-top: 0.25rem;
-      font: inherit;
-    }
-    .st-ws-toolbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.75rem 0; }
-    .st-ws-checklist { list-style: none; padding: 0; }
-    .st-ws-checklist li { padding: 0.35rem 0; }
-    .st-ws-checklist li.is-done { text-decoration: line-through; color: var(--st-muted, #5a564e); }
-    .st-ws-md p { margin: 0.4rem 0; }
-    .st-ws-pre {
-      white-space: pre-wrap;
-      font-size: 0.8rem;
-      background: var(--st-panel, #faf8f3);
-      padding: 0.5rem;
-      border: 1px solid var(--st-line, #d2ccc0);
-    }
-    .st-ws-ref { color: var(--st-accent, #3a5348); }
-  </style>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://waypointstudio.org/">
+  <meta http-equiv="refresh" content="0;url=https://waypointstudio.org/">
+  <title>Waypoint Studio</title>
+  <script>location.replace("https://waypointstudio.org/");</script>
 </head>
 <body>
-  <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="signalterrain" data-product-name="SignalTerrain" data-shell-depth="2">
-    <div data-wds-app-global data-shell-depth="2"></div>
-    <div data-wds-app-local data-shell-depth="2"></div>
-    <main id="main" class="wpf-page st-page">
-            <p class="st-cyber-peers">
-        <a class="st-back" href="live.html">Live intelligence</a>
-        ·
-        <a class="st-back" href="live.html#adaptive">Adaptive Defense</a>
-        ·
-        <a class="st-back" href="live.html#brief">Today’s brief</a>
-        ·
-        <a class="st-back" href="explorer.html">Explorer</a>
-        ·
-        <a class="st-back" href="workspace.html">Workspace</a>
-        ·
-        <a class="st-back" href="knowledge.html">Knowledge</a>
-        ·
-        <a class="st-back" href="../../../side-trails/signalterrain/dashboard/">Dashboard</a>
-      </p>
-      <noscript>
-        <section>
-          <h1>Cyber Operations Workspace</h1>
-          <p>Personal investigation environment for cybersecurity literacy — notes, investigations, watchlists, collections, and reading queue. Not a SOC or SIEM. Enable JavaScript to open the workspace.</p>
-        </section>
-      </noscript>
-      <div id="st-workspace-mount" aria-busy="true">
-        <p class="st-loading">Opening Cyber Operations Workspace…</p>
-      </div>
-    </main>
-    <div data-wds-app-footer data-shell-depth="2"></div>
-  </div>
-  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../../design-system/js/signalterrain/wds-signalterrain-util.js" defer></script>
-  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-graph.js" defer></script>
-  <script src="../../../design-system/js/signalterrain/wds-signalterrain-research.js" defer></script>
-  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-knowledge.js" defer></script>
-  <script src="../../../design-system/js/signalterrain/wds-signalterrain-cyber-workspace.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.appShell) {
-        WDS.appShell.mount({ appId: "signalterrain", productName: "SignalTerrain", shellDepth: 2 });
-      }
-      if (window.WDS && WDS.signalTerrainCyberWorkspace) {
-        WDS.signalTerrainCyberWorkspace.mountWorkspace(document.getElementById("st-workspace-mount"), {
-          base: "../../../design-system/signalterrain/intelligence/cyber/",
-          workspaceBase: "../../../design-system/signalterrain/intelligence/cyber/workspace/",
-          knowledgeBase: "../../../design-system/signalterrain/intelligence/cyber/knowledge/"
-        });
-      }
-    });
-  </script>
+  <p><a href="https://waypointstudio.org/">Continue to Waypoint Studio</a></p>
 </body>
 </html>

@@ -10,5 +10,20 @@ Disallow: /scripts/
 Disallow: /engineering/
 Disallow: /waypoint-importer/
 Disallow: /private/
+Disallow: /incubator/
+Disallow: /volunteer/
+Disallow: /apps/fieldry/
+Disallow: /apps/foragecast/
+Disallow: /apps/steepleaf/
+Disallow: /apps/savant-sommelier/
+Disallow: /apps/waypoint-volunteer/
+Disallow: /apps/landscape-interpretation/
+Disallow: /apps/terrainbound/
+Disallow: /apps/signalterrain/
+Disallow: /side-trails/openroad-pa/
+Disallow: /side-trails/signalterrain/
+Disallow: /side-trails/global-signals/
+Disallow: /reports/
+Disallow: /design-system/patterns/
 
 Sitemap: https://waypointstudio.org/sitemap.xml

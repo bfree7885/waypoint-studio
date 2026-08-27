@@ -73,21 +73,23 @@ function run() {
 
   const Cat = global.WDS.platformCatalog;
   assert("catalog has core products", Cat.list({ coreOnly: true }).length >= 4);
-  assert("catalog has incubator/supporting", Cat.list({ tier: "incubator" }).length + Cat.list({ tier: "supporting" }).length >= 3);
-  assert("catalog demotes ForageCast from core", Cat.byId("foragecast") && Cat.byId("foragecast").tier !== "core");
-  assert("catalog lists Side Trails as core", Cat.byId("side-trails") && Cat.byId("side-trails").tier === "core");
+  assert("catalog has no public incubator tier", Cat.list({ tier: "incubator" }).length === 0);
+  assert("catalog omits ForageCast from public list", !Cat.byId("foragecast"));
+  assert("catalog lists Deck as core", Cat.byId("deck") && Cat.byId("deck").tier === "core");
   assert("resolve sheds href", /shed-hunting/.test(Cat.resolveHref(Cat.byId("sheds"), 1)));
   assert("resolve studio home", Cat.resolveHref(Cat.byId("studio"), 0) === "./");
   assert("resolve dashboard app", /apps\/dashboard/.test(Cat.resolveHref(Cat.byId("dashboard"), 0)));
 
   const Nav = global.WDS.appNav;
-  assert("nav config has apps", Nav.listApps().length >= 8);
-  assert("nav categories", Nav.appsByCategory().length >= 4);
+  assert("nav config has apps", Nav.listApps().length >= 3);
+  assert("nav categories", Nav.appsByCategory().length >= 2);
 
-  const topbar = global.WDS.appShell.renderGlobalHeader({ depth: 1, app: Nav.byId("fieldry") });
+  const scenesApp = Nav.byId("scenes");
+  const topbar = global.WDS.appShell.renderGlobalHeader({ depth: 1, app: scenesApp });
   assert("shell explore launcher control", /was-apps-btn/.test(topbar) && /Explore/.test(topbar));
-  const local = global.WDS.appShell.renderLocalNav({ depth: 1, app: Nav.byId("fieldry"), feature: Nav.byId("fieldry").features[0] });
-  assert("shell local nav", /was-local__nav/.test(local) && /Fieldry/.test(local));
+  assert("shell mobile nav toggle", /was-nav-toggle/.test(topbar) && /was-primary-nav/.test(topbar));
+  const local = global.WDS.appShell.renderLocalNav({ depth: 1, app: scenesApp, feature: scenesApp.features[0] });
+  assert("shell local nav", /was-local__nav/.test(local) && /Scenes/.test(local));
   assert("shell marks current feature", /aria-current="page"/.test(local));
 
   const profile = global.WDS.platform.Profile.load();

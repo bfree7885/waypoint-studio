@@ -25,14 +25,9 @@ assert.ok(exists("design-system/js/global-signals/wds-gs-home.js"));
 assert.ok(exists("data/global-signals/home/home.json"));
 
 const html = read("side-trails/global-signals/index.html");
-assert.match(html, /What matters today/);
-assert.match(html, /id="gsh-board"/);
-assert.match(html, /data-gsh-board/);
-assert.match(html, /wds-gs-home\.js/);
-assert.doesNotMatch(html, /Coming soon/i);
-assert.doesNotMatch(html, /Future modules/i);
-assert.doesNotMatch(html, /gs-modules/);
-assert.doesNotMatch(html, /gs-hero__/);
+assert.match(html, /noindex/i);
+assert.match(html, /location\.replace/);
+assert.doesNotMatch(html, /Global Signals|What matters today|gsh-board/);
 
 const css = read("design-system/css/wds-global-signals-home.css");
 assert.match(css, /\.gsh-board/);

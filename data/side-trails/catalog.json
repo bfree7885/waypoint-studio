@@ -1,16 +1,16 @@
 {
-  "version": "1.4.0",
-  "updatedAt": "2026-08-25",
-  "title": "Side Trails",
-  "tagline": "Experiments and independent projects from Waypoint.",
-  "message": "Waypoint Deck is the active Side Trail. Older experiments remain archived below — not Studio flagships.",
-  "statuses": ["concept", "prototype", "experimental", "beta", "stable", "archived", "in-development", "retired"],
+  "version": "2.0.0",
+  "updatedAt": "2026-08-27",
+  "title": "Waypoint Deck",
+  "tagline": "Local-first Linux field computer.",
+  "message": "Waypoint Deck is a distinct field-computing project — not a Studio web app.",
+  "statuses": ["in-development", "planned", "existing"],
   "projects": [
     {
       "id": "waypoint-deck",
       "title": "Waypoint Deck",
-      "tagline": "Offline-first Linux field computer · local AI · maps, weather, radio, knowledge.",
-      "description": "An independent Side Trail exploring resilient field computing when connectivity is poor or gone. Planned capabilities include offline maps/GPS, local AI, weather, radio/SDR, offline reference knowledge, sensors, and situational awareness (including Global Signals concepts when online). Early-stage — do not assume these systems already ship.",
+      "tagline": "Offline-first Linux field computer · maps, weather, radio, local knowledge.",
+      "description": "A local-first field computer for when connectivity is poor or gone. Direction includes offline maps/GPS, local AI, weather, radio/SDR, offline reference knowledge, sensors, and system awareness. Early-stage — do not assume these systems already ship.",
       "icon": "assets/images/side-trails/waypoint-deck.svg",
       "category": "Active",
       "status": "in-development",
@@ -18,42 +18,6 @@
       "url": "side-trails/waypoint-deck/",
       "order": 1,
       "featured": true
-    },
-    {
-      "id": "signalterrain",
-      "title": "SignalTerrain",
-      "tagline": "Archived research — possible Deck situational-awareness input.",
-      "description": "Cyber / network situational research preserved for possible Waypoint Deck inputs. Not a standalone Studio product or equal peer to Deck.",
-      "icon": "assets/images/side-trails/signalterrain-network.svg",
-      "category": "Archive",
-      "status": "archived",
-      "ctaLabel": "View archive",
-      "url": "side-trails/signalterrain/",
-      "order": 20
-    },
-    {
-      "id": "global-signals",
-      "title": "Global Signals",
-      "tagline": "Archived research — intended Deck input when connectivity exists.",
-      "description": "Relationship-intelligence experiments preserved as a conceptual information source for Waypoint Deck when online — alongside weather, GPS, radio, and local knowledge. Not a standalone Studio product.",
-      "icon": "assets/images/side-trails/global-signals-globe.svg",
-      "category": "Archive",
-      "status": "archived",
-      "ctaLabel": "View archive",
-      "url": "side-trails/global-signals/",
-      "order": 30
-    },
-    {
-      "id": "openroad-pa",
-      "title": "OpenRoad PA",
-      "tagline": "Retired — not an active Waypoint product.",
-      "description": "Pennsylvania public road-project tracking was explored here. It is retired. Reusable mapping ideas may live elsewhere; this is not a flagship or active Side Trail peer to Deck.",
-      "icon": "assets/images/side-trails/openroad-pa.svg",
-      "category": "Archive",
-      "status": "retired",
-      "ctaLabel": "Retirement note",
-      "url": "side-trails/openroad-pa/",
-      "order": 40
     }
   ]
 }

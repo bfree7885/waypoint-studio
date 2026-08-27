@@ -1,87 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-product="waypoint-volunteer">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="waypoint-build" content="local">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Private personal impact — hours, causes, and calm progress on this device only.">
-  <title>Impact — Waypoint Volunteer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../design-system/css/wds.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-platform-foundation.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-volunteer.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://waypointstudio.org/">
+  <meta http-equiv="refresh" content="0;url=https://waypointstudio.org/">
+  <title>Waypoint Studio</title>
+  <script>location.replace("https://waypointstudio.org/");</script>
 </head>
 <body>
-  <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="waypoint-volunteer" data-product-name="Waypoint Volunteer" data-shell-depth="2">
-    <div data-wds-app-global data-shell-depth="2"></div>
-    <div data-wds-app-local data-shell-depth="2"></div>
-    <main id="main" class="wpf-page wv-page">
-      <div class="wv-discover">
-        <h1>Personal impact</h1>
-        <p class="wv-lead">A quiet record of help you marked completed. Private. No leaderboards.</p>
-        <p class="wv-honesty">private-local · estimated from sample metrics when you complete</p>
-        <div id="wv-impact-mount" aria-busy="true">
-        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
-          <p class="wds-boot__eyebrow">Waypoint Volunteer</p>
-          <p class="wds-boot__title">Impact</p>
-          <p class="wds-boot__detail">Loading your private impact notes.</p>
-          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
-          <p class="wds-boot__status">Starting…</p>
-        </div>
-      </div>
-        <button type="button" id="wv-impact-clear" class="wv-btn wv-btn-quiet">Clear local impact</button>
-      </div>
-    </main>
-    <div data-wds-app-footer data-shell-depth="2"></div>
-  </div>
-  <script src="../../../design-system/js/platform/wds-platform-catalog.js" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-stores.js" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
-  <script src="../../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="../../../design-system/js/volunteer/wds-volunteer-impact.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.appShell) {
-        WDS.appShell.mount({ appId: "waypoint-volunteer", productName: "Waypoint Volunteer", shellDepth: 2 });
-      }
-      var mount = document.getElementById("wv-impact-mount");
-      function render() {
-        var s = WDS.volunteerImpact.summary();
-        var t = s.state.totals;
-        mount.innerHTML =
-          '<ul class="wv-impact-grid">' +
-          "<li><strong>" + Math.round(t.hours * 10) / 10 + "</strong> hours</li>" +
-          "<li><strong>" + s.organizationCount + "</strong> organizations</li>" +
-          "<li><strong>" + s.causeCount + "</strong> causes</li>" +
-          "<li><strong>" + t.trailMiles + "</strong> trail miles</li>" +
-          "<li><strong>" + t.treesPlanted + "</strong> trees planted</li>" +
-          "<li><strong>" + t.mealsPacked + "</strong> meals packed</li>" +
-          "<li><strong>" + t.animalsHelped + "</strong> animals helped</li>" +
-          "<li><strong>" + t.observations + "</strong> citizen-science observations</li>" +
-          "<li><strong>" + s.weeksWithHelp + "</strong> weeks with help <span class='wv-muted'>(calm count, never a streak pressure)</span></li>" +
-          "</ul>" +
-          (s.state.events.length
-            ? "<h2>Recent</h2><ul>" +
-              s.state.events.slice(0, 12).map(function (ev) {
-                return "<li>" + ev.title + " · " + (ev.hours || 0) + "h · " + (ev.at || "").slice(0, 10) + "</li>";
-              }).join("") +
-              "</ul>"
-            : "<p class='wv-empty'>Mark an opportunity Completed on Discover to begin this private log.</p>");
-        mount.removeAttribute("aria-busy");
-      }
-      render();
-      document.getElementById("wv-impact-clear").addEventListener("click", function () {
-        WDS.volunteerImpact.clear();
-        render();
-      });
-    });
-  </script>
+  <p><a href="https://waypointstudio.org/">Continue to Waypoint Studio</a></p>
 </body>
 </html>
