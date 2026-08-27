@@ -141,6 +141,10 @@ assert(
   "quiet chrome overlay stacks nav from the top",
   /@media \(max-width: 900px\)[\s\S]*\.was-global--quiet \.was-primary-nav[\s\S]*?justify-content:\s*flex-start/.test(css)
 );
+assert(
+  "open overlay drops header backdrop-filter so fixed nav can cover the viewport",
+  /was-nav-open[\s\S]*?backdrop-filter:\s*none/.test(css)
+);
 const articlesCss = read("design-system/css/wds-articles-feed.css");
 assert("articles view chips wrap on a bounded row", /\.waf-views \{[\s\S]*?flex-wrap:\s*wrap[\s\S]*?min-width:\s*0/.test(articlesCss));
 assert("robots disallows global-signals", /Disallow: \/side-trails\/global-signals\//.test(robots));

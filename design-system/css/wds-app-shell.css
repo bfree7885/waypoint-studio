@@ -821,7 +821,8 @@ html.was-nav-open {
   overflow: hidden;
 }
 
-html.was-nav-open .was-local {
+html.was-nav-open .was-local,
+html.was-nav-open .was-global__actions {
   display: none;
 }
 
@@ -832,6 +833,18 @@ html.was-nav-open .was-local {
     top: 0;
     z-index: 40;
     background: #1a141c;
+  }
+
+  /* Product headers (Scenes / Sheds) set backdrop-filter on .was-global.
+     That creates a containing block, so position:fixed; inset:0 only
+     covers the ~94px bar. Beat those product selectors while the menu is open. */
+  html.was-nav-open .was-shell[data-product] .was-global,
+  html.was-nav-open .was-shell[data-product] .was-global--quiet,
+  html.was-nav-open .was-global,
+  html.was-nav-open .was-global--quiet {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
   }
 
   .was-global__inner {
