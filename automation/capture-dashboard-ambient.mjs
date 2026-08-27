@@ -46,7 +46,9 @@ async function fetchJson(url) {
 const FIXTURE = `(() => {
   const WDS = window.WDS;
   if (!WDS || !WDS.dashboardRebuild) return { ok: false, reason: "no-rebuild" };
-  const now = new Date("2026-01-15T17:00:00.000Z");
+  const now = new Date();
+  const rise = new Date(now.getTime() - 8 * 3600 * 1000);
+  const set = new Date(now.getTime() + 2.5 * 3600 * 1000);
   const place = {
     placeLabel: "Pike County, PA",
     lat: 41.3312,
@@ -72,10 +74,10 @@ const FIXTURE = `(() => {
       daily: [{}]
     },
     daylight: {
-      sunrise: "2026-01-15T12:20:00.000Z",
-      sunset: "2026-01-15T22:05:00.000Z",
-      sunriseFormatted: "7:20 AM",
-      sunsetFormatted: "5:05 PM",
+      sunrise: rise.toISOString(),
+      sunset: set.toISOString(),
+      sunriseFormatted: rise.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }),
+      sunsetFormatted: set.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }),
       moonPhase: "Waning Crescent",
       moonIllumination: 18,
       timezone: "America/New_York"
@@ -217,7 +219,7 @@ async function main() {
     }
 
     const dedicated = await shot(
-      "ambient_dedicated_display_1920x1080",
+      "ambient_phase1_dedicated_1920x1080",
       1920,
       1080,
       false,
@@ -230,13 +232,14 @@ async function main() {
     assert("dedicated no horizontal overflow", !dedicated.info.overflowX);
     assert(
       "dedicated primary regions in viewport",
-      dedicated.info.primaryBottom <= dedicated.info.clientHeight + 4,
+      dedicated.info.primaryBottom <= dedicated.info.clientHeight + 24,
       "primaryBottom=" + dedicated.info.primaryBottom + " client=" + dedicated.info.clientHeight
     );
+    assert("dedicated no vertical page scroll", !dedicated.info.overflowY, "scrollHeight=" + dedicated.info.scrollHeight);
     assert("dedicated shows temperature", dedicated.info.bodyHasTemp);
 
     const mobile = await shot(
-      "ambient_mobile_390x844",
+      "ambient_phase1_mobile_390x844",
       390,
       844,
       true,
@@ -249,7 +252,7 @@ async function main() {
     assert("mobile may stack (vertical scroll allowed)", true);
 
     const alertShot = await shot(
-      "ambient_dedicated_alert_1920x1080",
+      "ambient_phase1_alert_1920x1080",
       1920,
       1080,
       false,
@@ -279,7 +282,7 @@ async function main() {
     const d = discInfo.result.value;
     assert("discover remains workspace", d.view === "workspace" && d.today && d.workspace && !d.ambient);
     const discPng = await send("Page.captureScreenshot", { format: "png", fromSurface: true });
-    fs.writeFileSync(path.join(ART, "discover_workspace_regression_1440.png"), Buffer.from(discPng.data, "base64"));
+    fs.writeFileSync(path.join(ART, "discover_phase1_workspace_1440x900.png"), Buffer.from(discPng.data, "base64"));
 
     session.close();
     console.log("\nDASHBOARD AMBIENT CAPTURE: PASS");

@@ -186,7 +186,16 @@
       }
       patterns.forEach(function (pat) {
         if (matchesPattern(pat, path, h)) {
-          var score = String(pat).length + (feat.hash && h.indexOf(feat.hash) === 0 ? 50 : 0);
+          var hashBonus = 0;
+          if (feat.hash) {
+            if (feat.hash === "#/" || feat.hash === "#") {
+              hashBonus =
+                h === "#/" || h === "#" || h === "" || h === "#/workspace" ? 50 : 0;
+            } else if (h.indexOf(feat.hash) === 0) {
+              hashBonus = 50;
+            }
+          }
+          var score = String(pat).length + hashBonus;
           if (score > bestScore) {
             bestScore = score;
             best = feat;

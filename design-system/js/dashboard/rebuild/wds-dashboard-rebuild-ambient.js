@@ -138,11 +138,12 @@
     var d = snapshot.developing || {};
     var state = d.state || "unknown";
     var items = d.items || [];
+    var listItems = items.length > 1 ? items : [];
     var list = "";
-    if (items.length) {
+    if (listItems.length) {
       list =
         '<ol class="wdb-r-ambient__signals">' +
-        items
+        listItems
           .map(function (item) {
             return (
               '<li class="wdb-r-ambient__signal" data-kind="' +

@@ -3096,9 +3096,23 @@ html[data-wdb-r-ambient="true"] {
     display: none;
   }
 
+  html[data-wdb-r-ambient="true"] .was-global,
+  html.wdb-r-ambient-mode .was-global,
+  html:has(.wdb-r[data-view="ambient"]) .was-global {
+    display: none !important;
+  }
+
+  html[data-wdb-r-ambient="true"],
+  html[data-wdb-r-ambient="true"] body,
+  html.wdb-r-ambient-mode,
+  html.wdb-r-ambient-mode body {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
   .wdb-r-ambient {
-    min-height: calc(100dvh - 4.75rem);
-    height: calc(100dvh - 4.75rem);
+    min-height: calc(100dvh - 3.25rem);
+    height: calc(100dvh - 3.25rem);
     overflow: hidden;
   }
 

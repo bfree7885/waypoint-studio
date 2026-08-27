@@ -374,7 +374,10 @@
     var weatherLive = isWeatherLive(platform);
     var alerts = alertsTrust(platform);
     var catalogReady = eventsCatalogReady(options);
-    var hasUrgent = items.some(function (it) {
+    var hasAlert = items.some(function (it) {
+      return it.kind === "alert" || /warning|emergency|severe/i.test(String(it.title || "") + " " + String(it.detail || ""));
+    });
+    var hasUrgent = hasAlert || items.some(function (it) {
       return it.severity === "urgent";
     });
     var hasAttention = items.some(function (it) {
@@ -460,7 +463,8 @@
     if (sunriseMins != null && sunriseMins > -45 && sunriseMins < 150 && sky.sunriseQuality) {
       return { id: "photography-sunrise", window: "sunrise", verdict: sky.sunriseQuality };
     }
-    if (sunsetMins != null && sunsetMins > -30 && sunsetMins < 180 && sky.sunsetQuality) {
+    /* Include the hour after sunset so evening still names tonight's sky, not tomorrow's dawn. */
+    if (sunsetMins != null && sunsetMins > -120 && sunsetMins < 180 && sky.sunsetQuality) {
       return { id: "photography-sunset", window: "sunset", verdict: sky.sunsetQuality };
     }
     if (

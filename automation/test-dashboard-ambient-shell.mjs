@@ -294,14 +294,14 @@ const alertSnap = Snap.compose({
   now: NOW,
   catalog: { version: "test", events: [] }
 });
-assert("alerts surface in developing", alertSnap.developing.state === "urgent" || alertSnap.developing.state === "attention");
+assert("alerts surface in developing", alertSnap.developing.state === "urgent");
 assert(
   "alert title present",
   alertSnap.developing.items.some((it) => /alert|Winter Storm/i.test(it.title + " " + it.detail))
 );
 const alertHtml = Ambient.render(alertSnap);
 assert("DEVELOPING populated from alerts", /Winter Storm|Active alert/i.test(alertHtml));
-assert("urgent or attention chrome", /data-state="(urgent|attention)"/.test(alertHtml));
+assert("urgent or attention chrome", /data-state="urgent"/.test(alertHtml));
 
 const rainPlatform = livePlatform({
   current: {
