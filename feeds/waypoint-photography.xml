@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Aug 2026 05:30:29 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 21:23:40 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Civil Servants Sworn in at NASA Ames</title>
+    <link>https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</guid>
+    <pubDate>Thu, 27 Aug 2026 18:04:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: New civil servants and guests pose for a group photo with NASA and Center leadership in the National Full-Scale Aerodynamics Complex (NFAC) 80-by-120-foot test section, N221.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Roman Space Telescope Travels to SpaceX Hangar</title>
     <link>https://www.nasa.gov/image-detail/afs-8-101-1305/</link>
@@ -64,22 +82,40 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/fr
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis Mission Patches</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
-    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Sun news: Auroras to pair with the eclipse tonight?</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Thu, 27 Aug 2026 09:20:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+Summary: Sun news August 27, 2026: The M7 flare&apos;s sun-stuff arrives tomorrow. G2 storms are possible, and fast solar wind could spark auroras as early as tonight! The post Sun news: Auroras to pair with the eclipse tonight? first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Fastest star in the galaxy could unlock black hole secrets</title>
+    <link>https://earthsky.org/space/fastest-star-in-the-galaxy-s301-black-hole-spin/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/fastest-star-in-the-galaxy-s301-black-hole-spin/</guid>
+    <pubDate>Thu, 27 Aug 2026 09:15:03 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Astronomers have discovered the fastest star in the galaxy. It orbits the supermassive black hole at the center of our galaxy and could reveal its spin. The post Fastest star in the galaxy could unlock black hole secrets first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/fastest-star-in-the-galaxy-s301-black-hole-spin/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Could there be life in helium atmospheres on exoplanets?</title>
@@ -118,38 +154,19 @@ Read the original article at the publisher: https://earthsky.org/space/jellyfish
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Big chunk of sun-stuff coming to Earth</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 26 Aug 2026 09:20:53 GMT</pubDate>
+    <title>Deep partial lunar eclipse overnight tonight!</title>
+    <link>https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</guid>
+    <pubDate>Thu, 27 Aug 2026 11:30:05 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news August 26, 2026: The M7 flare&apos;s CME is confirmed to be Earth-bound, expected to arrive August 28. G2 storms and auroras on the cards! The post Sun news: Big chunk of sun-stuff coming to Earth first appeared on EarthSky .
+Summary: A deep partial lunar eclipse of the full Sturgeon Moon takes place on August 27-28, 2026. Will you be able to see it? Maps and details here. The post Deep partial lunar eclipse overnight tonight! first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Voyager 2: Our 1st and only visit to Neptune</title>
-    <link>https://earthsky.org/space/voyager-2-neptune-flyby-august-25-1989/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/voyager-2-neptune-flyby-august-25-1989/</guid>
-    <pubDate>Tue, 25 Aug 2026 08:00:22 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: On this day, August 25, 1989, Voyager 2 visited Neptune. To this day, no other spacecraft from Earth has returned to the faraway planet. The post Voyager 2: Our 1st and only visit to Neptune first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/voyager-2-neptune-flyby-august-25-1989/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
@@ -157,11 +174,11 @@ Read the original article at the publisher: https://earthsky.org/space/voyager-2
     <title>Visible planets and night sky guide for August and September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Wed, 26 Aug 2026 08:05:08 GMT</pubDate>
+    <pubDate>Thu, 27 Aug 2026 09:05:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Tonight, look for the bright waxing gibbous moon passing through the arrowhead shape of Capricornus the Sea-goat. The post Visible planets and night sky guide for August and September first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Tonight watch for the nearly total lunar eclipse, visible in the Americas, Europe and Africa. The post Visible planets and night sky guide for August and September first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -171,38 +188,56 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>How earthly microbes on the moon might survive in the shade</title>
-    <link>https://earthsky.org/space/microbes-on-the-moon-habitability-artemis-astronauts/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/microbes-on-the-moon-habitability-artemis-astronauts/</guid>
-    <pubDate>Tue, 25 Aug 2026 12:00:28 GMT</pubDate>
+    <title>Delphinus the Dolphin has a graceful kite shape</title>
+    <link>https://earthsky.org/constellations/delphinus-the-dolphin-summer-triangle/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/delphinus-the-dolphin-summer-triangle/</guid>
+    <pubDate>Thu, 27 Aug 2026 09:00:30 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Microbes on the moon that hitch a ride on human astronauts could survive by using little nooks and crannies for protection from the harsh environment. The post How earthly microbes on the moon might survive in the shade first appeared on EarthSky .
+Summary: Delphinus the Dolphin is a tiny dolphin-shaped constellation that leaps out of dark skies near the iconic Summer Triangle. The post Delphinus the Dolphin has a graceful kite shape first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/microbes-on-the-moon-habitability-artemis-astronauts/</description>
+Read the original article at the publisher: https://earthsky.org/constellations/delphinus-the-dolphin-summer-triangle/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Deep partial lunar eclipse on August 27-28, 2026</title>
-    <link>https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</guid>
-    <pubDate>Tue, 25 Aug 2026 10:00:05 GMT</pubDate>
+    <title>The Winter Circle: Catch in the morning before dawn</title>
+    <link>https://earthsky.org/tonight/see-the-winter-circle-before-dawn/</link>
+    <guid isPermaLink="true">https://earthsky.org/tonight/see-the-winter-circle-before-dawn/</guid>
+    <pubDate>Thu, 27 Aug 2026 08:00:03 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: A deep partial lunar eclipse of the full Sturgeon Moon takes place on August 27-28, 2026. Will you be able to see it? Maps and details here. The post Deep partial lunar eclipse on August 27-28, 2026 first appeared on EarthSky .
+Summary: The majestic Winter Circle isn&apos;t a constellation. This giant circle - or hexagon - is an asterism, or a pattern made up of stars from several constellations. The post The Winter Circle: Catch in the morning before dawn first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/partial-lunar-eclipse-of-the-august-27-28-2026/</description>
+Read the original article at the publisher: https://earthsky.org/tonight/see-the-winter-circle-before-dawn/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Artemis Mission Patches</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
+    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Ancient Milky Way Merger</title>
@@ -349,6 +384,23 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ix
     <author>NASA</author>
   </item>
   <item>
+    <title>Webb Opens Treasure Chest</title>
+    <link>https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</guid>
+    <pubDate>Fri, 21 Aug 2026 17:41:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month takes us to a fantastical realm within our home galaxy, where piercing starlight and billowing winds sculpt dust clouds into inventive shapes. This scene is from the Carina Nebula, which lies just 7500 light-years away in the constellation Carina (the Keel).
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Taking Flight to Prepare for Space</title>
     <link>https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</guid>
@@ -363,23 +415,6 @@ Waypoint’s Take: An outdoor reader can treat this as field context — treat v
 Read the original article at the publisher: https://www.nasa.gov/image-detail/55412014375-711b8f02f7-o/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Webb Opens Treasure Chest</title>
-    <link>https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</guid>
-    <pubDate>Fri, 21 Aug 2026 17:41:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month takes us to a fantastical realm within our home galaxy, where piercing starlight and billowing winds sculpt dust clouds into inventive shapes. This scene is from the Carina Nebula, which lies just 7500 light-years away in the constellation Carina (the Keel).
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</description>
-    <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -486,24 +521,6 @@ Summary: Crews at NASA’s Michoud Assembly Facility in New Orleans transport th
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/crews-move-artemis-iv-liquid-hydrogen-tank-for-proof-testing/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>A New Look – and Sound – for Messier 94</title>
-    <link>https://www.nasa.gov/image-detail/250th-ngc4736/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/250th-ngc4736/</guid>
-    <pubDate>Wed, 22 Jul 2026 16:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: A New Look – and Sound – for Messier 94. Messier 94 is a spiral galaxy with a bright inner ring around it, called a starburst ring, where new stars are forming.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/250th-ngc4736/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
