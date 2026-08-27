@@ -251,12 +251,14 @@
         useNationalFallback: true
       });
     }
-    /* Place bootstrap is non-blocking for shell; kiosk must not surprise-prompt. */
-    var kiosk =
+    /* Place bootstrap is non-blocking for shell; kiosk/Ambient must not surprise-prompt. */
+    var dedicatedDisplay =
       (location.hash || "").indexOf("kiosk") >= 0 ||
+      (location.hash || "").indexOf("ambient") >= 0 ||
       (document.documentElement &&
-        document.documentElement.getAttribute("data-wdb-r-kiosk") === "true");
-    if (kiosk) {
+        (document.documentElement.getAttribute("data-wdb-r-kiosk") === "true" ||
+          document.documentElement.getAttribute("data-wdb-r-ambient") === "true"));
+    if (dedicatedDisplay) {
       if (isSafeEarlyLocation(early)) hydratePlatform(early);
       return;
     }

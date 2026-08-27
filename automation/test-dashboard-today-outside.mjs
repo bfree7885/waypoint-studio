@@ -189,11 +189,11 @@ assert(
     /"id":\s*"dashboard"[\s\S]*?"title":\s*"Dashboard"/.test(navRegistry)
 );
 assert(
-  "dashboard nav features are Workspace/Customize only (no Recovery/V2 tabs)",
-  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"customize"/.test(
+  "dashboard nav features are Workspace/Ambient/Customize (no Recovery/V2 tabs)",
+  /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"ambient"[\s\S]*?"id":\s*"customize"/.test(
     navConfig
   ) &&
-    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"customize"/.test(
+    /"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?"id":\s*"workspace"[\s\S]*?"id":\s*"ambient"[\s\S]*?"id":\s*"customize"/.test(
       navRegistry
     ) &&
     !/"id":\s*"dashboard"[\s\S]*?"features":\s*\[[\s\S]*?(recovery|v2|v3)/i.test(navConfig)

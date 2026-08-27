@@ -76,6 +76,16 @@
             ]
           },
           {
+            "id": "ambient",
+            "label": "Ambient",
+            "href": "apps/dashboard/",
+            "hash": "#/ambient",
+            "match": [
+              "#/ambient",
+              "#ambient"
+            ]
+          },
+          {
             "id": "customize",
             "label": "Customize",
             "href": "apps/dashboard/",

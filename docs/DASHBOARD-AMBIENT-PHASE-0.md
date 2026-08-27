@@ -1,10 +1,10 @@
 # Dashboard → Ambient Intelligence — Phase 0 Audit and Plan
 
-**Status:** Planning only. Not approved for implementation.  
+**Status:** Phase 0 accepted. Phase 1 (`#/ambient` snapshot + shell) is documented in `docs/DASHBOARD-AMBIENT.md`.  
 **Date:** 2026-08-27  
 **Audit base:** `origin/main` `db159622` (includes Sheds V3.2 merge `06851649` plus later cyber refresh)  
 **Live surface:** `https://waypointstudio.org/apps/dashboard/`  
-**This document does not change production.**
+**This document is the audit/plan.** Production Discover is unchanged by the audit itself.
 
 Canonical product law still: `docs/PRODUCT-DIRECTION.md` (Dashboard · Scenes · Sheds).  
 Discover honesty still: `docs/DASHBOARD-DISCOVER.md`.  
@@ -423,7 +423,7 @@ User sketch kept, with one change: **do not collect payment before Ambient Mode 
 
 ## H. NEXT IMPLEMENTATION SLICE
 
-**Do not execute until this audit is reviewed.**
+**Phase 1 of this slice is implemented** (`docs/DASHBOARD-AMBIENT.md`, `#/ambient`). Later phases (billing, history, radio) remain unstarted.
 
 ### Slice: Dashboard Ambient Mode shell (existing data only)
 

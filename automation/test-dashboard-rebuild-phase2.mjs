@@ -59,7 +59,12 @@ assert("wds.js loads rebuild shell", /dashboard\/rebuild\/wds-dashboard-rebuild\
 const homeBoot = fs.readFileSync(path.join(ROOT, "apps/dashboard/js/home-boot.js"), "utf8");
 assert("home-boot hydrates OIP", /outdoorIntelligence\.get/.test(homeBoot));
 assert("home-boot does not mount Outdoor OS", !/dashboardOS\.mount|dashboardEngine\.renderDashboard/.test(homeBoot));
-assert("home-boot kiosk skips location prompt", /if \(kiosk\) \{[\s\S]*return;/.test(homeBoot));
+assert(
+  "home-boot kiosk skips location prompt",
+  /indexOf\("kiosk"\)/.test(homeBoot) &&
+    /indexOf\("ambient"\)/.test(homeBoot) &&
+    /if \(dedicatedDisplay\) \{[\s\S]*return;/.test(homeBoot)
+);
 
 const sandbox = {
   window: {},
@@ -339,6 +344,7 @@ assert("photography absent from registry", !Reg.get("ph-photography"));
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");
 assert("parseView kiosk", Shell.parseView("#/kiosk") === "kiosk");
+assert("parseView ambient", Shell.parseView("#/ambient") === "ambient");
 
 const shellWs = Shell.renderShell({
   view: "workspace",

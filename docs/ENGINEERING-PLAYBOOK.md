@@ -1659,3 +1659,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - GitHub Pages + `local-user` + `subscription.readiness: true` is not a billing system. First paying Ambient subscriber needs a real account + Stripe + a server that is not the static site.
 - Do not charge for the current Discover workspace. Ambient must be a Dashboard mode that adds glanceability/history/change — not a fourth app and not a Radio/Foraging product.
 - Reuse `dashboardRebuildIntel`, sky intel, kiosk remnants, and season guards. Do not revive Outdoor OS or invent lightning/radio APIs that are not in the integrations registry.
+
+### Lessons Learned — Dashboard Ambient Phase 1 shell (2026-08-27)
+
+- Ambient UI must consume a normalized snapshot (`compose` over the already-hydrated platform), not a pile of API-specific widgets. That keeps Phase 3 history as `snapshot(t-1) → snapshot(t)` instead of a second hydrate path.
+- `#/ambient` has to short-circuit `renderShell` before Today / Happening / Workspace / deepeners. Reusing kiosk as a wrapper would drag Discover instruments onto a dedicated display.
+- Quiet DEVELOPING is only honest when weather is live, alerts are known, and the events catalog has actually loaded — the same catalog-unknown lesson as Discover’s quiet strip.
+- Foraging and Sheds stay **Unknown** on Ambient until a Dashboard-owned, validated signal exists. Importing ForageCast/Sheds scoring just to fill the column would fabricate certainty.

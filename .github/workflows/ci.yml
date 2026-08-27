@@ -113,6 +113,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: node automation/test-dashboard-discover-correctness.mjs
 
+      - name: Dashboard Ambient Phase 1
+        if: ${{ !cancelled() }}
+        run: node automation/test-dashboard-ambient-shell.mjs
+
       - name: Dashboard reliability tests
         run: node automation/test-dashboard-reliability.mjs
 
