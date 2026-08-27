@@ -1655,4 +1655,5 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Preserve engineering (JS, GIS, scoring, radio concepts) under `apps/*` and `design-system/js/*`; remove public **identity** and sitemap/nav promotion.
 - iPhone header overlap: aurora-bridge wrapped `.was-primary-nav` onto a second sticky row (`order: 3; flex: 1 1 100%`). Homepage-only compact nav left About/Support/Deck colliding. Fix the **shared** header with a one-row bar + opaque overlay menu — not per-device padding. A dropdown (`top: 100%`) is not enough: cinematic heroes still show through; the open menu must be a full-viewport opaque overlay (`position: fixed; inset: 0; background: #1a141c`).
 - Tests that required Side Trails / Archive / Incubator catalogs encode obsolete IA. Update them to the five-effort portfolio; do not delete coverage.
+- Dashboard quiet-chrome `@media (max-width: 48rem)` still tried to wrap `.was-primary-nav` (`padding: 0; flex: 1 1 auto`). That zeroed overlay padding so the current link sat in the header. Neutralize those wrap rules; keep the shared overlay.
 
