@@ -129,7 +129,7 @@
       "empty",
       "No edible species flagged this week",
       "Regional phenology watch will list fungi and plants when seasons shift — not location data.",
-      "Use ForageCast to learn habitat patterns, not spot lists.",
+      "Use habitat patterns and seasonal cues — not spot lists.",
       "educational", "speciesInSeason", []
     );
   }
@@ -196,7 +196,7 @@
         "empty",
         "Humid conditions — moisture may linger in shade",
         "Humidity " + Math.round(wx.humidity) + "% — microhabitat still drives fruiting.",
-        "Log conditions in Fieldry for your own learning curve.",
+        "Log moisture and shade in your own notes — that is how a personal learning curve forms.",
         wx.live ? "live" : "expected", "habitatMoisture", []
       );
     }

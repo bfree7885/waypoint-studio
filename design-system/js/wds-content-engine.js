@@ -287,6 +287,10 @@
   function renderForagecast(data) {
     if (!data.featuredProject) return "";
     var fp = data.featuredProject;
+    var identity = String(fp.name || "") + " " + String(fp.href || "") + " " + String(fp.toolLabel || "");
+    if (/foragecast|fieldry|signalterrain|steepleaf|savant|openroad|volunteer|terrainbound|landscape interpretation|civic trails|global signals/i.test(identity)) {
+      return "";
+    }
     return (
       '<section class="' + storySection("feature", "wce-foragecast") + '" id="foragecast" aria-labelledby="wce-fc-title">' +
         '<div class="wce-foragecast__inner">' +
@@ -299,7 +303,7 @@
               : "") +
           "</div>" +
           '<div class="wce-foragecast__actions">' +
-            '<a class="wds-btn wds-btn--primary" href="' + escapeHtml(fp.href) + '">Visit ForageCast</a>' +
+            '<a class="wds-btn wds-btn--primary" href="' + escapeHtml(fp.href) + '">' + escapeHtml(fp.toolLabel || fp.ctaLabel || "Open") + "</a>" +
             (fp.toolHref
               ? '<a class="wds-btn wds-btn--ghost" href="' + escapeHtml(fp.toolHref) + '">' + escapeHtml(fp.toolLabel || "Open tool") + "</a>"
               : "") +
@@ -696,7 +700,7 @@
       '<section class="' + storySection("catalog") + '" id="experiences" aria-labelledby="wce-exp-title">' +
         blockHead("Apps", "What you can open today", "One studio with calm tools for weather, seasons, field notes, and photographs.", "catalog") +
         '<h3 class="wds-sr-only" id="wce-exp-title">Waypoint Studio apps</h3>' +
-        '<p class="wce-experiences-intro">Start with the dashboard for live conditions. Then open ForageCast, Fieldry, or Scenes for the work you care about.</p>' +
+        '<p class="wce-experiences-intro">Start with Dashboard for live conditions. Then open Scenes or Sheds for the work you care about.</p>' +
         '<div class="ws-card-grid ws-card-grid--experiences">' + cards + "</div>" +
         renderContentTracks(data) +
       "</section>"

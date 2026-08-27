@@ -115,8 +115,10 @@
         id: "collection:" + c.id,
         group: "collections",
         title: c.title,
-        subtitle: (c.kind || "collection") + (c.appId ? " · " + c.appId : ""),
-        href: c.appId === "fieldry" ? "apps/fieldry/#/collections" : null,
+        subtitle: (c.kind || "collection") + (c.appId && global.WDS && WDS.platformObservations && WDS.platformObservations.sourceLabel
+          ? " · " + WDS.platformObservations.sourceLabel(c.appId)
+          : ""),
+        href: "settings.html#collections",
         score: s,
         source: "collections",
         honesty: "Private collection on this device"
@@ -136,7 +138,7 @@
         id: "obs:" + o.sourceApp + ":" + o.id,
         group: "observations",
         title: o.title,
-        subtitle: [o.sourceApp, o.locationLabel].filter(Boolean).join(" · "),
+        subtitle: [o.sourceLabel || "notes", o.locationLabel].filter(Boolean).join(" · "),
         href: o.href,
         score: s,
         source: o.sourceApp,

@@ -141,7 +141,7 @@
     if (fieldry.length) {
       return card(
         "wildlife-activity", "🦌", "Wildlife Activity",
-        "Your Fieldry log includes " + fieldryLabel(fieldry[0]) +
+        "Your notes include " + fieldryLabel(fieldry[0]) +
           (fieldry.length > 1 ? " and " + (fieldry.length - 1) + " more recent mammal note(s)" : ""),
         "Local observations on this device suggest recent mammal activity in areas you visited.",
         "Compare your notes to trail reports — patterns may not repeat elsewhere.",
@@ -201,7 +201,7 @@
     if (fieldry.length) {
       return card(
         "bird-activity", "🐦", "Bird Activity",
-        "Fieldry log: " + fieldryLabel(fieldry[0]),
+        "Your notes: " + fieldryLabel(fieldry[0]),
         "Your recent bird observations on this device.",
         "Compare habitat and time of day — useful for your patch list, not a regional forecast.",
         "observed", "moderate"
@@ -260,7 +260,7 @@
     if (fieldry.length) {
       return card(
         "amphibian-activity", "🐸", "Amphibian Activity",
-        "Fieldry log: " + fieldryLabel(fieldry[0]),
+        "Your notes: " + fieldryLabel(fieldry[0]),
         "Local observation of amphibians on this device.",
         "Wet nights after rain — vernal pools and creek margins; minimize light and noise.",
         "observed", "moderate"
@@ -308,7 +308,7 @@
     if (fieldry.length) {
       return card(
         "reptile-activity", "🦎", "Reptile Activity",
-        "Fieldry log: " + fieldryLabel(fieldry[0]),
+        "Your notes: " + fieldryLabel(fieldry[0]),
         "Local reptile observation on this device.",
         "Watch sun-warmed rocks and logs on trail — give snakes space to retreat.",
         "observed", "moderate"
@@ -356,7 +356,7 @@
     if (fieldry.length) {
       return card(
         "insect-activity", "🦋", "Insect Activity",
-        "Fieldry log: " + fieldryLabel(fieldry[0]),
+        "Your notes: " + fieldryLabel(fieldry[0]),
         "Local invertebrate observation on this device.",
         "Pollinators cluster on blooms — macro photographers: wind matters more than gear.",
         "observed", "moderate"
