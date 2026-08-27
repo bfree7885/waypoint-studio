@@ -2912,6 +2912,95 @@ html.wdb-r-kiosk .wdb-r,
   max-width: 52rem;
 }
 
+.wdb-r-ambient__account {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 46rem;
+  padding-top: 0.15rem;
+}
+
+.wdb-r-ambient__account-lede,
+.wdb-r-ambient__account-price,
+.wdb-r-ambient__account-free,
+.wdb-r-ambient__account-status,
+.wdb-r-ambient__privacy,
+.wdb-r-ambient__account-msg,
+.wdb-r-ambient__signin-note,
+.wdb-r-ambient__paid-note {
+  margin: 0;
+  font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+  color: var(--amb-muted);
+}
+
+.wdb-r-ambient__account-price {
+  color: var(--amb-ink);
+}
+
+.wdb-r-ambient__account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+}
+
+.wdb-r-ambient__btn {
+  appearance: none;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--amb-ink);
+  background: transparent;
+  border: 1px solid var(--amb-line);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+
+.wdb-r-ambient__btn--primary {
+  background: rgba(216, 167, 46, 0.16);
+}
+
+.wdb-r-ambient__btn:focus-visible {
+  outline: 2px solid var(--amb-attention);
+  outline-offset: 2px;
+}
+
+.wdb-r-ambient__btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.wdb-r-ambient__signin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  align-items: center;
+}
+
+.wdb-r-ambient__signin-label {
+  font-size: 0.85rem;
+  color: var(--amb-faint);
+}
+
+.wdb-r-ambient__signin-input {
+  font: inherit;
+  color: var(--amb-ink);
+  background: rgba(18, 14, 20, 0.45);
+  border: 1px solid var(--amb-line);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  min-width: 16rem;
+}
+
+.wdb-r-ambient__privacy a,
+.wdb-r-ambient__magic-link {
+  color: var(--amb-attention);
+}
+
+.wdb-r-ambient__paid-note {
+  max-width: 46rem;
+}
+
 .wdb-r-ambient__grid {
   display: grid;
   grid-template-columns: 1fr;

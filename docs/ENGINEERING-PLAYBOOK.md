@@ -1674,3 +1674,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Place equivalence has to be coarser than GPS (here ~5.5 km cells) or a desk-to-porch wander becomes a fake 25°F drop — and storing full-precision lat/lng would start a location-history product we do not want.
 - Valid → missing is not a environmental delta. Alert fetch failure is not “Winter Storm Warning ended.” Those two rules belong in tests, not comments.
 - First paint must not wait on IndexedDB. Show Ambient immediately; hydrate history; paint again only if the view is still Ambient.
+
+### Lessons Learned — Dashboard Ambient Phase 2 accounts (2026-08-27)
+
+- GitHub Pages cannot own entitlement. A small Worker (D1 + Stripe TEST + hashed magic links) is enough; do not migrate the static frontend.
+- Never treat Checkout redirect as payment. Webhook signatures + insert-first idempotency are the subscription source of truth.
+- Only Stripe `active` is paid. `past_due` / `unpaid` / `canceled` / `trialing` degrade to Ambient preview. Billing failure must not blank Discover.
+- Gate `remember()` + `diff()` in the Ambient shell, not in Discover widgets. Leave IndexedDB in place when a subscription lapses.
+- SameSite=Lax HttpOnly cookies on `accounts.waypointstudio.org` work with Pages because the registrable domain is shared; do not put paid flags in localStorage.

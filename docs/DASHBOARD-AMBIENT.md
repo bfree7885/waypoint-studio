@@ -1,15 +1,16 @@
 # Dashboard Ambient
 
-**Status:** Phase 1.5 implemented (local snapshot history + deterministic change detection). Not billed. Not a standalone app.  
+**Status:** Phase 2 accounts + Stripe **test mode** implemented. Not a live-billing launch. Not a standalone app.  
 **Route:** `#/ambient` on `/apps/dashboard/`  
 **Canonical plan:** `docs/DASHBOARD-AMBIENT-PHASE-0.md`  
-**Discover (unchanged):** `docs/DASHBOARD-DISCOVER.md`
+**Accounts / entitlement:** `docs/DASHBOARD-AMBIENT-ACCOUNTS.md`  
+**Discover (unchanged, free):** `docs/DASHBOARD-DISCOVER.md`
 
 Ambient is a **Dashboard mode**. It answers, at a glance:
 
 > What is happening around me, what is changing, and what is worth my attention?
 
-Pricing intent ($4.99/month) remains documentation-only. Phase 1.5 does not implement accounts, Stripe, gating, radio, AI, or cloud history.
+**Waypoint Ambient** is **$4.99/month**. Free Dashboard (Discover) is not gated. Persistent recent context and deterministic “what changed?” require a server-verified `active` subscription. Current-state Ambient remains a restrained preview for everyone else.
 
 ---
 
@@ -76,6 +77,8 @@ Comparison never calls Open-Meteo, NWS, or any other upstream. It only reads two
 ---
 
 ## Persistence
+
+Paid subscribers only: the shell writes and diffs local history. Anonymous, free, inactive, and billing-down clients skip write/diff and keep current-state DEVELOPING. IndexedDB is **not** deleted when a subscription lapses.
 
 | | |
 |--|--|
@@ -169,4 +172,4 @@ Refresh while Ambient is open reuses the existing Outdoor Intelligence refresh (
 
 ## Out of scope (still)
 
-Stripe, auth, subscriptions, paid gating, radio / SDR / Node, LLM query, cloud history, cross-device sync, new weather providers, standalone Foraging or Radio apps, Discover redesign, production deploy of a billed product.
+Live Stripe charges, annual/founding/trial/coupons, radio / SDR / Node, LLM query, cloud history, cross-device sync, new weather providers, standalone Foraging or Radio apps, Discover redesign, production deploy of a billed product.

@@ -118,9 +118,9 @@ const cssSrc = read("design-system/css/wds-dashboard-rebuild.css");
 const wdsSrc = read("design-system/js/wds.js");
 
 assert("snapshot module does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(snapSrc));
-assert("ambient render does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(ambSrc));
 assert("snapshot composer still does not persist", !/indexedDB/.test(snapSrc));
-assert("no billing in ambient snapshot/render", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(snapSrc + ambSrc));
+assert("no billing in ambient snapshot", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(snapSrc));
+assert("ambient render does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(ambSrc));
 assert("no radio/AI in snapshot/render", !/sdr|rtl-sdr|openai|\bllm\b/i.test(snapSrc + ambSrc));
 assert("wds.js loads ambient before rebuild", /rebuild-ambient-snapshot\.js/.test(wdsSrc) && /rebuild-ambient\.js/.test(wdsSrc));
 assert("home-boot skips prompt for ambient", /indexOf\("ambient"\)/.test(bootSrc));

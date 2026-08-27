@@ -121,6 +121,14 @@ jobs:
         if: ${{ !cancelled() }}
         run: node automation/test-dashboard-ambient-history.mjs
 
+      - name: Waypoint Ambient accounts (Phase 2)
+        if: ${{ !cancelled() }}
+        run: node automation/test-waypoint-accounts.mjs
+
+      - name: Dashboard Ambient entitlement UX
+        if: ${{ !cancelled() }}
+        run: node automation/test-dashboard-ambient-accounts.mjs
+
       - name: Dashboard reliability tests
         run: node automation/test-dashboard-reliability.mjs
 

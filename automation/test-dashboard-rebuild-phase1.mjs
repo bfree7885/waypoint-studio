@@ -63,6 +63,7 @@ const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-snapshot.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-store.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-changes.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-accounts.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild.js"

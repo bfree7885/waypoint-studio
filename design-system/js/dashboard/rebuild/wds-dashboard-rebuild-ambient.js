@@ -283,6 +283,8 @@
       escapeHtml(cond) +
       '" data-history="' +
       escapeHtml((snapshot.meta && snapshot.meta.history) ? "ready" : "none") +
+      '" data-access="' +
+      escapeHtml((snapshot.meta && snapshot.meta.ambientAccess) || "none") +
       '" data-changes="' +
       escapeHtml((snapshot.meta && snapshot.meta.changesStatus) || "none") +
       '">' +
@@ -292,12 +294,22 @@
       escapeHtml(clockLabel(snapshot.capturedAt, snapshot.place && snapshot.place.timezone)) +
       "</p>" +
       '<p class="wdb-r-ambient__question">What is happening around me, what is changing, and what is worth my attention?</p>' +
+      (function () {
+        var Acc = api("waypointAccounts");
+        return Acc && Acc.renderChrome ? Acc.renderChrome() : "";
+      })() +
       "</header>" +
       '<div class="wdb-r-ambient__grid">' +
       renderNow(snapshot) +
       renderDeveloping(snapshot) +
       renderOpportunities(snapshot) +
       "</div>" +
+      (function () {
+        var AccNote = api("waypointAccounts");
+        return AccNote && AccNote.renderPreviewNote && !(snapshot.meta && snapshot.meta.ambientAccess === "paid")
+          ? AccNote.renderPreviewNote()
+          : "";
+      })() +
       renderSources(snapshot) +
       "</div>"
     );
@@ -305,7 +317,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.dashboardRebuildAmbient = {
-    version: "1.5.0",
+    version: "1.6.0",
     render: render
   };
 })(typeof window !== "undefined" ? window : global);

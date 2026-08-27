@@ -10,7 +10,7 @@
 (function (global) {
   "use strict";
 
-  var VERSION = "3.5.0-ambient-history";
+  var VERSION = "3.6.0-ambient-accounts";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -173,6 +173,18 @@
 
   var ambientHistoryPaintQueued = false;
 
+  function isAmbientEntitled() {
+    var Acc = api("waypointAccounts");
+    if (Acc && typeof Acc.isEntitled === "function") {
+      try {
+        return Acc.isEntitled() === true;
+      } catch (e) {
+        return false;
+      }
+    }
+    return false;
+  }
+
   function queueAmbientHistoryPaint() {
     if (ambientHistoryPaintQueued) return;
     if (mountState.view !== "ambient" || !mountState.host) return;
@@ -196,6 +208,13 @@
   function attachAmbientHistory(snapshot) {
     if (!snapshot) return snapshot;
     snapshot.meta = snapshot.meta || {};
+    if (!isAmbientEntitled()) {
+      snapshot.meta.history = false;
+      snapshot.meta.changeDetection = false;
+      snapshot.meta.ambientAccess = "preview";
+      return snapshot;
+    }
+    snapshot.meta.ambientAccess = "paid";
     var Store = api("dashboardRebuildAmbientStore");
     var Changes = api("dashboardRebuildAmbientChanges");
     var previous = null;
@@ -383,6 +402,7 @@
 
   var ambientRefreshTimer = null;
   var AMBIENT_REFRESH_MS = 5 * 60 * 1000;
+  var ambientAccountsNoted = false;
 
   function stopAmbientRefresh() {
     if (ambientRefreshTimer) {
@@ -424,7 +444,17 @@
         }
       }
       startAmbientRefresh();
+      if (!ambientAccountsNoted) {
+        ambientAccountsNoted = true;
+        var AccNote = api("waypointAccounts");
+        if (AccNote && typeof AccNote.noteAmbientView === "function") {
+          AccNote.noteAmbientView(function () {
+            if (mountState.view === "ambient") paint({ animate: false });
+          });
+        }
+      }
     } else {
+      ambientAccountsNoted = false;
       if (root) {
         root.removeAttribute("data-wdb-r-ambient");
         if (root.classList && typeof root.classList.remove === "function") {
@@ -470,6 +500,14 @@
     }
     applyKioskMode(mountState.view);
     applyAmbientMode(mountState.view);
+    if (mountState.view === "ambient") {
+      var AccBind = api("waypointAccounts");
+      if (AccBind && typeof AccBind.bind === "function") {
+        AccBind.bind(mountState.host, function () {
+          if (mountState.view === "ambient") paint({ animate: false });
+        });
+      }
+    }
     var Customize = api("dashboardRebuildCustomize");
     var Workspace = api("dashboardRebuildWorkspace");
     if (mountState.view === "customize" && Customize && Customize.bind) {

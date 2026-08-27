@@ -116,12 +116,11 @@ const snapSrc = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-a
 const ambSrc = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient.js");
 const rebuildSrc = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild.js");
 const wdsSrc = read("design-system/js/wds.js");
-const allAmbient = storeSrc + changeSrc + snapSrc + ambSrc;
 
 assert("store does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(storeSrc));
 assert("changes does not fetch", !/\bfetch\s*\(|XMLHttpRequest|getForecast|outdoorIntelligence\.get/.test(changeSrc));
-assert("no billing in phase 1.5 modules", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(allAmbient));
-assert("no radio/LLM APIs in phase 1.5 modules", !/rtl-sdr|openai|anthropic|speech-to-text|\bstripe\b/i.test(allAmbient));
+assert("no billing in history modules", !/stripe|paypal|\$4\.99|subscription\.active|entitlement/i.test(storeSrc + changeSrc + snapSrc));
+assert("no radio/LLM APIs in phase 1.5 modules", !/rtl-sdr|openai|anthropic|speech-to-text|\bstripe\b/i.test(storeSrc + changeSrc + snapSrc));
 assert("no server persistence", !/firebase|supabase|local-user\/sync|waypoint-cloud-history/i.test(storeSrc));
 assert(
   "wds.js loads store and changes before rebuild",
@@ -129,7 +128,7 @@ assert(
     /rebuild-ambient-changes\.js/.test(wdsSrc) &&
     wdsSrc.indexOf("rebuild-ambient-store.js") < wdsSrc.indexOf("wds-dashboard-rebuild.js")
 );
-assert("rebuild wires attachAmbientHistory", /attachAmbientHistory/.test(rebuildSrc));
+assert("rebuild gates history on entitlement", /isAmbientEntitled/.test(rebuildSrc) && /ambientAccess/.test(rebuildSrc));
 assert("store uses IndexedDB", /indexedDB/.test(storeSrc) && /waypoint-ambient-history-v1/.test(storeSrc));
 
 const sb = loadModules(MODULES);
@@ -444,6 +443,23 @@ assert(
 
 await Store.resetForTests();
 await Store.ingest(basePrev, { force: true, capturedAt: EARLIER });
+delete sb.WDS.waypointAccounts;
+const previewShell = Shell.renderShell({
+  view: "ambient",
+  placeContext: place,
+  platform: livePlatform(),
+  now: NOW,
+  catalog: { version: "test", events: [] }
+});
+assert("anonymous preview does not expose paid change", !/Temperature ↓ 9°F/.test(previewShell), previewShell.replace(/\s+/g, " ").slice(0, 400));
+assert("anonymous preview is not paid warming copy", !/Building recent context/.test(previewShell));
+assert("anonymous preview still has NOW", /Around you/.test(previewShell) && /34°/.test(previewShell));
+
+sb.WDS.waypointAccounts = {
+  isEntitled: function () {
+    return true;
+  }
+};
 const shellChanged = Shell.renderShell({
   view: "ambient",
   placeContext: place,
