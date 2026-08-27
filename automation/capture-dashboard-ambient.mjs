@@ -507,7 +507,7 @@ async function main() {
     });
     const alertDev = alertInfo.result.value;
     assert("significant alert change surfaces", /Winter Storm Warning/i.test(alertDev.developing), alertDev.developing);
-    await captureNamed("ambient_phase15_alert_issued_1920x1080");
+    await captureNamed("ambient_phase15_alert_issued_glanceable_1920x1080");
 
     const weatherAfterHistory = weatherHits.length;
     assert(

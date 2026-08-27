@@ -573,8 +573,17 @@
     changeItems.forEach(function (ch) {
       push(asDevItem(ch));
     });
+    var changeText = merged
+      .map(function (it) {
+        return String(it.title || "").toLowerCase();
+      })
+      .join(" ");
     currentItems.forEach(function (it) {
-      if (it.kind === "alert" || it.severity === "urgent") push(it);
+      if (!(it.kind === "alert" || it.severity === "urgent")) return;
+      var label = String(it.detail || it.title || "").toLowerCase();
+      if (label && changeText.indexOf(label) >= 0) return;
+      if (changeText.indexOf(String(it.title || "").toLowerCase()) >= 0) return;
+      push(it);
     });
     merged = merged.slice(0, MAX_ITEMS);
 
