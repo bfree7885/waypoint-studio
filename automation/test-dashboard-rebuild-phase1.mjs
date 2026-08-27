@@ -60,6 +60,11 @@ const modules = [
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-workspace.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-snapshot.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-store.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-changes.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient-accounts.js",
+  "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-ambient.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js",
   "design-system/js/dashboard/rebuild/wds-dashboard-rebuild.js"
 ];
@@ -71,7 +76,10 @@ assert(
   "wds.js loads rebuild modules",
   /dashboard\/rebuild\/wds-dashboard-rebuild\.js/.test(
     fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8")
-  )
+  ) &&
+    /wds-dashboard-rebuild-ambient-snapshot\.js/.test(
+      fs.readFileSync(path.join(ROOT, "design-system/js/wds.js"), "utf8")
+    )
 );
 
 const sandbox = {
@@ -205,6 +213,7 @@ assert("product waiting copy", /Waiting for weather data|Data will appear here|W
 assert("parseView workspace", Shell.parseView("#/") === "workspace");
 assert("parseView customize", Shell.parseView("#/customize") === "customize");
 assert("parseView kiosk", Shell.parseView("#/kiosk") === "kiosk");
+assert("parseView ambient", Shell.parseView("#/ambient") === "ambient");
 
 const shellWs = Shell.renderShell({ view: "workspace", placeContext: { placeLabel: "Here" } });
 assert("shell includes today + workspace", /data-wdb-r-today/.test(shellWs) && /data-wdb-r-workspace/.test(shellWs));

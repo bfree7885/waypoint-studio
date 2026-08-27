@@ -76,6 +76,9 @@ if (!/"id": "dashboard"[\s\S]*?"href": "\/apps\/dashboard\/"/.test(nav)) {
 if (!/"label": "Workspace"/.test(nav) || !/"label": "Customize"/.test(nav)) {
   fail("Dashboard local nav missing Workspace/Customize");
 } else pass("Dashboard local nav Workspace/Customize");
+if (!/"label": "Ambient"/.test(nav) || !/"hash": "#\/ambient"/.test(nav)) {
+  fail("Dashboard local nav missing Ambient hash route");
+} else pass("Dashboard local nav Ambient");
 
 const home = read("index.html");
 if (!/apps\/scenes\/|apps\/shed-hunting\/|articles\//.test(home)) {

@@ -38,3 +38,11 @@ private/university/server/.env.smoke
 private/university/server/.env.*
 !private/university/server/.env.example
 node_modules/
+
+# Waypoint Ambient accounts (Phase 2) — local secrets and wrangler state
+services/waypoint-accounts/.dev.vars
+services/waypoint-accounts/.wrangler/
+services/waypoint-accounts/.env
+services/waypoint-accounts/.env.*
+!services/waypoint-accounts/.env.example
+

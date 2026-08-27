@@ -3,13 +3,14 @@
  * Workspace + Today Outside + library Customize; OIP hydrates live widgets.
  * Below-fold briefing is Dashboard-native only (no cross-product promo).
  * Internal glance mode (#/kiosk) retained without user-facing Kiosk chrome.
+ * Ambient Mode (#/ambient) is a Dashboard view over a normalized snapshot.
  * Authority: docs/rebuild-2026/03-dashboard-architecture.md + 06-routing.md
  * + docs/APP-SURFACE-ARCHITECTURE.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "3.3.0-discover";
+  var VERSION = "3.6.0-ambient-accounts";
 
   function api(name) {
     return global.WDS && global.WDS[name] ? global.WDS[name] : null;
@@ -58,8 +59,10 @@
     if (!hash || hash === "/" || hash === "workspace") return "workspace";
     if (hash === "/customize" || hash === "customize") return "customize";
     if (hash === "/kiosk" || hash === "kiosk") return "kiosk";
+    if (hash === "/ambient" || hash === "ambient") return "ambient";
     if (hash.indexOf("customize") >= 0) return "customize";
     if (hash.indexOf("kiosk") >= 0) return "kiosk";
+    if (hash.indexOf("ambient") >= 0) return "ambient";
     return "workspace";
   }
 
@@ -168,6 +171,82 @@
     };
   }
 
+  var ambientHistoryPaintQueued = false;
+
+  function isAmbientEntitled() {
+    var Acc = api("waypointAccounts");
+    if (Acc && typeof Acc.isEntitled === "function") {
+      try {
+        return Acc.isEntitled() === true;
+      } catch (e) {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  function queueAmbientHistoryPaint() {
+    if (ambientHistoryPaintQueued) return;
+    if (mountState.view !== "ambient" || !mountState.host) return;
+    ambientHistoryPaintQueued = true;
+    var Store = api("dashboardRebuildAmbientStore");
+    if (!Store || typeof Store.hydrate !== "function") {
+      ambientHistoryPaintQueued = false;
+      return;
+    }
+    Store.hydrate().then(
+      function () {
+        ambientHistoryPaintQueued = false;
+        if (mountState.view === "ambient" && mountState.host) paint({ animate: false });
+      },
+      function () {
+        ambientHistoryPaintQueued = false;
+      }
+    );
+  }
+
+  function attachAmbientHistory(snapshot) {
+    if (!snapshot) return snapshot;
+    snapshot.meta = snapshot.meta || {};
+    if (!isAmbientEntitled()) {
+      snapshot.meta.history = false;
+      snapshot.meta.changeDetection = false;
+      snapshot.meta.ambientAccess = "preview";
+      return snapshot;
+    }
+    snapshot.meta.ambientAccess = "paid";
+    var Store = api("dashboardRebuildAmbientStore");
+    var Changes = api("dashboardRebuildAmbientChanges");
+    var previous = null;
+    if (Store) {
+      if (Store.isHydrated && Store.isHydrated()) {
+        var rec = Store.reference ? Store.reference(snapshot) : null;
+        previous = rec && rec.snapshot ? rec.snapshot : null;
+      } else {
+        queueAmbientHistoryPaint();
+      }
+      if (Store.remember) {
+        try {
+          Store.remember(snapshot);
+        } catch (e) {
+          /* fail open */
+        }
+      }
+    }
+    var changes = { status: "warming", items: [], referenceCapturedAt: null, windowLabel: "" };
+    if (Changes && typeof Changes.diff === "function") {
+      changes = Changes.diff(previous, snapshot);
+      snapshot.meta.changeDetection = true;
+      if (typeof Changes.decorateSnapshot === "function") {
+        snapshot = Changes.decorateSnapshot(snapshot, changes);
+      }
+    } else {
+      snapshot.meta.history = false;
+      snapshot.meta.changeDetection = false;
+    }
+    return snapshot;
+  }
+
   function renderShell(options) {
     options = options || {};
     var view = options.view || "workspace";
@@ -182,8 +261,35 @@
     var Prefs = api("dashboardRebuildPrefs");
     var prefs = Prefs && Prefs.load ? Prefs.load() : null;
     var kioskActive = view === "kiosk";
+    var ambientActive = view === "ambient";
     var lazy = options.lazy === true;
     var animate = options.animate === true && !prefersReducedMotion();
+
+    if (ambientActive) {
+      var Snap = api("dashboardRebuildAmbientSnapshot");
+      var Ambient = api("dashboardRebuildAmbient");
+      var snapshot =
+        Snap && typeof Snap.compose === "function"
+          ? Snap.compose({
+              platform: platform,
+              placeContext: ctx,
+              now: options.now || new Date(),
+              catalog: options.catalog || null
+            })
+          : null;
+      if (snapshot) snapshot = attachAmbientHistory(snapshot);
+      var ambientHtml =
+        Ambient && Ambient.render
+          ? Ambient.render(snapshot)
+          : '<p class="wdb-r-ambient__missing">Ambient is unavailable in this build.</p>';
+      return (
+        '<div class="wdb-r" data-wdb-r data-view="ambient"' +
+        (platform ? ' data-hydrated="true"' : "") +
+        ">" +
+        ambientHtml +
+        "</div>"
+      );
+    }
 
     var todayHtml =
       Today && Today.render ? Today.render(todayContext(options)) : "";
@@ -294,6 +400,71 @@
     }
   }
 
+  var ambientRefreshTimer = null;
+  var AMBIENT_REFRESH_MS = 5 * 60 * 1000;
+  var ambientAccountsNoted = false;
+
+  function stopAmbientRefresh() {
+    if (ambientRefreshTimer) {
+      clearInterval(ambientRefreshTimer);
+      ambientRefreshTimer = null;
+    }
+  }
+
+  function startAmbientRefresh() {
+    stopAmbientRefresh();
+    var ms = AMBIENT_REFRESH_MS;
+    var Kiosk = api("dashboardRebuildKiosk");
+    if (Kiosk && typeof Kiosk.refreshMs === "function") {
+      try {
+        ms = Kiosk.refreshMs();
+      } catch (e) {
+        ms = AMBIENT_REFRESH_MS;
+      }
+    }
+    ambientRefreshTimer = setInterval(function () {
+      if (global.document && global.document.hidden) return;
+      try {
+        var OIP = api("outdoorIntelligence");
+        if (OIP && OIP.refresh) OIP.refresh();
+        else paint({ animate: false });
+      } catch (e) {
+        paint({ animate: false });
+      }
+    }, ms);
+  }
+
+  function applyAmbientMode(view) {
+    var root = global.document && global.document.documentElement;
+    if (view === "ambient") {
+      if (root) {
+        root.setAttribute("data-wdb-r-ambient", "true");
+        if (root.classList && typeof root.classList.add === "function") {
+          root.classList.add("wdb-r-ambient-mode");
+        }
+      }
+      startAmbientRefresh();
+      if (!ambientAccountsNoted) {
+        ambientAccountsNoted = true;
+        var AccNote = api("waypointAccounts");
+        if (AccNote && typeof AccNote.noteAmbientView === "function") {
+          AccNote.noteAmbientView(function () {
+            if (mountState.view === "ambient") paint({ animate: false });
+          });
+        }
+      }
+    } else {
+      ambientAccountsNoted = false;
+      if (root) {
+        root.removeAttribute("data-wdb-r-ambient");
+        if (root.classList && typeof root.classList.remove === "function") {
+          root.classList.remove("wdb-r-ambient-mode");
+        }
+      }
+      stopAmbientRefresh();
+    }
+  }
+
   function paint(options) {
     options = options || {};
     if (!mountState.host) return;
@@ -328,6 +499,15 @@
       }
     }
     applyKioskMode(mountState.view);
+    applyAmbientMode(mountState.view);
+    if (mountState.view === "ambient") {
+      var AccBind = api("waypointAccounts");
+      if (AccBind && typeof AccBind.bind === "function") {
+        AccBind.bind(mountState.host, function () {
+          if (mountState.view === "ambient") paint({ animate: false });
+        });
+      }
+    }
     var Customize = api("dashboardRebuildCustomize");
     var Workspace = api("dashboardRebuildWorkspace");
     if (mountState.view === "customize" && Customize && Customize.bind) {
@@ -347,7 +527,12 @@
         paint({ animate: true });
       });
     }
-    if (Workspace && Workspace.bindLazy && mountState.view !== "customize") {
+    if (
+      Workspace &&
+      Workspace.bindLazy &&
+      mountState.view !== "customize" &&
+      mountState.view !== "ambient"
+    ) {
       Workspace.bindLazy(mountState.host, { platform: mountState.platform || null });
     }
     if (mountState.view === "workspace" || mountState.view === "kiosk") {
@@ -400,7 +585,7 @@
 
   function setView(view) {
     var nextView = parseView(
-      view === "workspace" || view === "customize" || view === "kiosk"
+      view === "workspace" || view === "customize" || view === "kiosk" || view === "ambient"
         ? "#/" + (view === "workspace" ? "" : view)
         : view
     );
@@ -504,6 +689,7 @@
   function unmount() {
     var Kiosk = api("dashboardRebuildKiosk");
     if (Kiosk && Kiosk.isActive()) Kiosk.exit();
+    applyAmbientMode("workspace");
     if (mountState.host) {
       mountState.host.innerHTML = "";
       mountState.host = null;

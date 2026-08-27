@@ -1,0 +1,25 @@
+# Waypoint Ambient accounts — Cloudflare Worker (Phase 2, Stripe TEST only).
+# Do not put secrets here. Use `wrangler secret put` / .dev.vars (gitignored).
+
+name = "waypoint-accounts"
+main = "src/worker.mjs"
+compatibility_date = "2026-08-01"
+
+# Owner action: wrangler d1 create waypoint-accounts
+# then replace database_id with the returned UUID.
+[[d1_databases]]
+binding = "DB"
+database_name = "waypoint-accounts"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vars]
+STRIPE_MODE = "test"
+PUBLIC_APP_ORIGIN = "https://waypointstudio.org"
+ACCOUNTS_ORIGIN = "https://accounts.waypointstudio.org"
+ALLOWED_ORIGINS = "https://waypointstudio.org,https://www.waypointstudio.org"
+COOKIE_SECURE = "1"
+EMAIL_FROM = "Waypoint Ambient <ambient@waypointstudio.org>"
+
+# Routes (owner action after DNS):
+# accounts.waypointstudio.org → this Worker
+# Do not point waypointstudio.org itself at the Worker; Pages stays the frontend.

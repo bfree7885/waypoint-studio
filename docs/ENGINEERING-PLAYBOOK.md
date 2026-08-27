@@ -1653,3 +1653,32 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
 - Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.
 - Draft PRs opened without a later `synchronize` push may never queue GitHub Actions `pull_request` CI (`on.pull_request` defaults to opened / synchronize / reopened, not ready_for_review). Mark the PR ready and push a follow-up commit so CI actually starts.
+
+### Lessons Learned — Dashboard Ambient Phase 0 audit (2026-08-27)
+
+- GitHub Pages + `local-user` + `subscription.readiness: true` is not a billing system. First paying Ambient subscriber needs a real account + Stripe + a server that is not the static site.
+- Do not charge for the current Discover workspace. Ambient must be a Dashboard mode that adds glanceability/history/change — not a fourth app and not a Radio/Foraging product.
+- Reuse `dashboardRebuildIntel`, sky intel, kiosk remnants, and season guards. Do not revive Outdoor OS or invent lightning/radio APIs that are not in the integrations registry.
+
+### Lessons Learned — Dashboard Ambient Phase 1 shell (2026-08-27)
+
+- Ambient UI must consume a normalized snapshot (`compose` over the already-hydrated platform), not a pile of API-specific widgets. That keeps Phase 3 history as `snapshot(t-1) → snapshot(t)` instead of a second hydrate path.
+- `#/ambient` has to short-circuit `renderShell` before Today / Happening / Workspace / deepeners. Reusing kiosk as a wrapper would drag Discover instruments onto a dedicated display.
+- Quiet DEVELOPING is only honest when weather is live, alerts are known, and the events catalog has actually loaded — the same catalog-unknown lesson as Discover’s quiet strip.
+- Foraging and Sheds stay **Unknown** on Ambient until a Dashboard-owned, validated signal exists. Importing ForageCast/Sheds scoring just to fill the column would fabricate certainty.
+
+### Lessons Learned — Dashboard Ambient Phase 1.5 local history (2026-08-27)
+
+- Persist the normalized AmbientSnapshot, never a parallel Open-Meteo/NWS feed. Comparison that hydrates again would invent both extra network and false “changes.”
+- IndexedDB plus an injectable memory backend keeps Node tests deterministic without pretending the browser storage layer does not exist.
+- Place equivalence has to be coarser than GPS (here ~5.5 km cells) or a desk-to-porch wander becomes a fake 25°F drop — and storing full-precision lat/lng would start a location-history product we do not want.
+- Valid → missing is not a environmental delta. Alert fetch failure is not “Winter Storm Warning ended.” Those two rules belong in tests, not comments.
+- First paint must not wait on IndexedDB. Show Ambient immediately; hydrate history; paint again only if the view is still Ambient.
+
+### Lessons Learned — Dashboard Ambient Phase 2 accounts (2026-08-27)
+
+- GitHub Pages cannot own entitlement. A small Worker (D1 + Stripe TEST + hashed magic links) is enough; do not migrate the static frontend.
+- Never treat Checkout redirect as payment. Webhook signatures + insert-first idempotency are the subscription source of truth.
+- Only Stripe `active` is paid. `past_due` / `unpaid` / `canceled` / `trialing` degrade to Ambient preview. Billing failure must not blank Discover.
+- Gate `remember()` + `diff()` in the Ambient shell, not in Discover widgets. Leave IndexedDB in place when a subscription lapses.
+- SameSite=Lax HttpOnly cookies on `accounts.waypointstudio.org` work with Pages because the registrable domain is shared; do not put paid flags in localStorage.

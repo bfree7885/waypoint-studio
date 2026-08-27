@@ -2852,3 +2852,398 @@ html.wdb-r-kiosk .wdb-r,
     margin-top: 0.85rem;
   }
 }
+
+/* -------------------------------------------------------------------------
+ * Ambient Mode — dedicated-display glance (NOW / DEVELOPING / OPPORTUNITIES)
+ * High contrast, large type, calm when quiet, elevated when urgent.
+ * ------------------------------------------------------------------------- */
+.wdb-r[data-view="ambient"] {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+}
+
+.wdb-r-ambient {
+  --amb-ink: #f6ecda;
+  --amb-muted: rgba(246, 236, 218, 0.82);
+  --amb-faint: rgba(246, 236, 218, 0.62);
+  --amb-line: rgba(216, 167, 46, 0.28);
+  --amb-panel: #231824;
+  --amb-panel-quiet: #1b141c;
+  --amb-urgent: #d08070;
+  --amb-attention: #e8c45a;
+  --amb-unknown: rgba(246, 236, 218, 0.45);
+  color: var(--amb-ink);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65rem, 1.4vh, 1.1rem);
+  min-height: calc(100dvh - 7.5rem);
+  padding: clamp(0.75rem, 1.8vw, 1.35rem);
+  box-sizing: border-box;
+}
+
+.wdb-r-ambient__mast {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.35rem 1rem;
+  align-items: baseline;
+}
+
+.wdb-r-ambient__brand {
+  margin: 0;
+  font-size: clamp(0.72rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amb-muted);
+}
+
+.wdb-r-ambient__clock {
+  margin: 0;
+  justify-self: end;
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.wdb-r-ambient__question {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+  color: var(--amb-muted);
+  max-width: 52rem;
+}
+
+.wdb-r-ambient__account {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 46rem;
+  padding-top: 0.15rem;
+}
+
+.wdb-r-ambient__account-lede,
+.wdb-r-ambient__account-price,
+.wdb-r-ambient__account-free,
+.wdb-r-ambient__account-status,
+.wdb-r-ambient__privacy,
+.wdb-r-ambient__account-msg,
+.wdb-r-ambient__signin-note,
+.wdb-r-ambient__paid-note {
+  margin: 0;
+  font-size: clamp(0.82rem, 1.05vw, 0.95rem);
+  color: var(--amb-muted);
+}
+
+.wdb-r-ambient__account-price {
+  color: var(--amb-ink);
+}
+
+.wdb-r-ambient__account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+}
+
+.wdb-r-ambient__btn {
+  appearance: none;
+  font: inherit;
+  font-size: 0.92rem;
+  color: var(--amb-ink);
+  background: transparent;
+  border: 1px solid var(--amb-line);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+}
+
+.wdb-r-ambient__btn--primary {
+  background: rgba(216, 167, 46, 0.16);
+}
+
+.wdb-r-ambient__btn:focus-visible {
+  outline: 2px solid var(--amb-attention);
+  outline-offset: 2px;
+}
+
+.wdb-r-ambient__btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.wdb-r-ambient__signin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  align-items: center;
+}
+
+.wdb-r-ambient__signin-label {
+  font-size: 0.85rem;
+  color: var(--amb-faint);
+}
+
+.wdb-r-ambient__signin-input {
+  font: inherit;
+  color: var(--amb-ink);
+  background: rgba(18, 14, 20, 0.45);
+  border: 1px solid var(--amb-line);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  min-width: 16rem;
+}
+
+.wdb-r-ambient__privacy a,
+.wdb-r-ambient__magic-link {
+  color: var(--amb-attention);
+}
+
+.wdb-r-ambient__paid-note {
+  max-width: 46rem;
+}
+
+.wdb-r-ambient__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.7rem, 1.4vw, 1.15rem);
+  flex: 1;
+  min-height: 0;
+}
+
+.wdb-r-ambient__region {
+  background: var(--amb-panel);
+  border: 1px solid var(--amb-line);
+  border-radius: 16px;
+  padding: clamp(0.85rem, 1.6vw, 1.35rem);
+  min-width: 0;
+}
+
+.wdb-r-ambient__kicker {
+  margin: 0 0 0.2rem;
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amb-faint);
+}
+
+.wdb-r-ambient__region-title {
+  margin: 0 0 0.65rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.wdb-r-ambient__place,
+.wdb-r-ambient__summary,
+.wdb-r-ambient__facts,
+.wdb-r-ambient__sun,
+.wdb-r-ambient__moon,
+.wdb-r-ambient__trust,
+.wdb-r-ambient__lede,
+.wdb-r-ambient__sources,
+.wdb-r-ambient__opp-detail,
+.wdb-r-ambient__signal-detail {
+  margin: 0.15rem 0 0;
+  color: var(--amb-muted);
+  font-size: clamp(0.95rem, 1.35vw, 1.2rem);
+  line-height: 1.35;
+}
+
+.wdb-r-ambient__place {
+  color: var(--amb-ink);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.wdb-r-ambient__temp {
+  margin: 0.15rem 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(3.4rem, 8vw, 6.4rem);
+  line-height: 0.92;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.wdb-r-ambient__temp[data-status="waiting"],
+.wdb-r-ambient__temp[data-status="unavailable"] {
+  color: var(--amb-unknown);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.wdb-r-ambient__headline {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.wdb-r-ambient__signals {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.wdb-r-ambient__signal {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.wdb-r-ambient__signal-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amb-faint);
+}
+
+.wdb-r-ambient__signal-title {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+}
+
+.wdb-r-ambient__developing[data-state="quiet"] {
+  background: var(--amb-panel-quiet);
+}
+
+.wdb-r-ambient__developing[data-state="attention"] {
+  border-color: color-mix(in srgb, var(--amb-attention) 55%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--amb-attention) 22%, transparent);
+}
+
+.wdb-r-ambient__developing[data-state="urgent"] {
+  border-color: color-mix(in srgb, var(--amb-urgent) 75%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--amb-urgent) 35%, transparent);
+  background: color-mix(in srgb, var(--amb-panel) 82%, #5a2a28 18%);
+}
+
+.wdb-r-ambient__developing[data-state="unknown"] .wdb-r-ambient__headline {
+  color: var(--amb-muted);
+}
+
+.wdb-r-ambient__developing[data-changes="warming"],
+.wdb-r-ambient__developing[data-changes="incomparable"] {
+  background: var(--amb-panel-quiet);
+}
+
+.wdb-r-ambient__signal[data-kind="change"] .wdb-r-ambient__signal-kicker {
+  color: var(--amb-attention);
+}
+
+.wdb-r-ambient__opp-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.wdb-r-ambient__opp {
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--amb-line);
+}
+
+.wdb-r-ambient__opp:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.wdb-r-ambient__opp-domain {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amb-faint);
+}
+
+.wdb-r-ambient__opp-headline {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+}
+
+.wdb-r-ambient__opp[data-status="unknown"] .wdb-r-ambient__opp-headline {
+  color: var(--amb-muted);
+}
+
+.wdb-r-ambient__sources {
+  margin: 0;
+  font-size: clamp(0.78rem, 1vw, 0.9rem);
+  color: var(--amb-faint);
+}
+
+html.wdb-r-ambient-mode,
+html[data-wdb-r-ambient="true"] {
+  background-color: #120e14;
+}
+
+@media (min-width: 1100px) {
+  .wdb-r-ambient__grid {
+    grid-template-columns: 1.12fr 1fr 0.92fr;
+    align-items: stretch;
+  }
+
+  .wdb-r-ambient__region {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Dedicated display: primary hierarchy without scrolling */
+@media (min-width: 1280px) and (min-height: 720px) {
+  html[data-wdb-r-ambient="true"] .wds-skip + .wds-app,
+  html.wdb-r-ambient-mode .wds-app {
+    min-height: 100dvh;
+  }
+
+  html[data-wdb-r-ambient="true"] [data-wds-app-footer],
+  html.wdb-r-ambient-mode [data-wds-app-footer] {
+    display: none;
+  }
+
+  html[data-wdb-r-ambient="true"] .was-global,
+  html.wdb-r-ambient-mode .was-global,
+  html:has(.wdb-r[data-view="ambient"]) .was-global {
+    display: none !important;
+  }
+
+  html[data-wdb-r-ambient="true"],
+  html[data-wdb-r-ambient="true"] body,
+  html.wdb-r-ambient-mode,
+  html.wdb-r-ambient-mode body {
+    overflow: hidden;
+    height: 100dvh;
+  }
+
+  .wdb-r-ambient {
+    min-height: calc(100dvh - 3.25rem);
+    height: calc(100dvh - 3.25rem);
+    overflow: hidden;
+  }
+
+  .wdb-r-ambient__question {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .wdb-r-ambient__opp-list {
+    gap: 0.55rem;
+  }
+
+  .wdb-r-ambient__opp-detail {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 1099px) {
+  .wdb-r-ambient__mast {
+    grid-template-columns: 1fr auto;
+  }
+
+  .wdb-r-ambient__question {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wdb-r-ambient {
+    scroll-behavior: auto;
+  }
+}
