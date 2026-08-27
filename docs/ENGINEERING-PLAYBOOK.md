@@ -1653,3 +1653,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
 - Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.
 - Draft PRs opened without a later `synchronize` push may never queue GitHub Actions `pull_request` CI (`on.pull_request` defaults to opened / synchronize / reopened, not ready_for_review). Mark the PR ready and push a follow-up commit so CI actually starts.
+
+### Lessons Learned — Dashboard Ambient Phase 0 audit (2026-08-27)
+
+- GitHub Pages + `local-user` + `subscription.readiness: true` is not a billing system. First paying Ambient subscriber needs a real account + Stripe + a server that is not the static site.
+- Do not charge for the current Discover workspace. Ambient must be a Dashboard mode that adds glanceability/history/change — not a fourth app and not a Radio/Foraging product.
+- Reuse `dashboardRebuildIntel`, sky intel, kiosk remnants, and season guards. Do not revive Outdoor OS or invent lightning/radio APIs that are not in the integrations registry.
