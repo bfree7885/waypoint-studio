@@ -10,7 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--wds-topbar-bg, var(--wds-surface, #f7f5f1));
+  background: var(--wds-topbar-bg, var(--wp-bg, #181513));
   border-bottom: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.08));
 }
 
@@ -39,8 +39,8 @@
   width: 1.35rem;
   height: 1.35rem;
   border-radius: 0.35rem;
-  background: var(--wds-accent, #c17a5a);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  background: var(--wp-brand, var(--waypoint-orange, #d46a3a));
+  box-shadow: inset 0 0 0 1px rgba(240, 225, 195, 0.12);
 }
 
 .was-brand__name {
@@ -52,9 +52,9 @@
 
 .was-apps-btn {
   appearance: none;
-  border: 1px solid var(--wds-border-subtle, rgba(0, 0, 0, 0.12));
-  background: var(--wds-surface, #fff);
-  color: var(--wds-text, #1c1b19);
+  border: 1px solid color-mix(in srgb, var(--wp-brand, var(--waypoint-orange, #d46a3a)) 42%, transparent);
+  background: var(--wp-surface-raised, var(--wp-elevated, var(--wds-surface, #251c20)));
+  color: var(--wp-text, var(--wds-text, #f0e1c3));
   border-radius: 999px;
   padding: 0.45rem 0.95rem;
   min-height: 44px;
@@ -66,13 +66,14 @@
 
 .was-apps-btn:hover,
 .was-apps-btn:focus-visible {
-  border-color: var(--wds-accent, #c17a5a);
+  border-color: var(--wp-brand, var(--waypoint-orange, #d46a3a));
+  background: color-mix(in srgb, var(--wp-surface-raised, var(--wp-elevated, #251c20)) 88%, var(--wp-brand, #d46a3a) 12%);
   outline: none;
 }
 
 .was-apps-btn[aria-expanded="true"] {
-  background: var(--wds-accent-dim, rgba(201, 101, 61, 0.16));
-  border-color: var(--wds-accent, #c17a5a);
+  background: color-mix(in srgb, var(--wp-surface-raised, var(--wp-elevated, #251c20)) 82%, var(--wp-brand, #d46a3a) 18%);
+  border-color: var(--wp-brand, var(--waypoint-orange, #d46a3a));
 }
 
 /* Local app navigation */
@@ -695,16 +696,16 @@ article.was-home__card {
   font-weight: 500;
 }
 
-/* Dashboard header: aubergine framing; active destination uses locked SW accent */
+/* Dashboard header: shared earth chrome; terracotta brand underline */
 .was-shell[data-product="dashboard"] .was-global,
 .was-shell[data-product="dashboard"] .was-global--quiet {
-  background: color-mix(in srgb, var(--wp-bg, var(--waypoint-aubergine-dark, #241b25)) 92%, transparent);
+  background: color-mix(in srgb, var(--wp-bg, var(--waypoint-charcoal, #181513)) 94%, transparent);
   box-shadow: none;
 }
 .was-shell[data-product="dashboard"] .was-primary-nav__link[aria-current="page"],
 .was-shell[data-product="dashboard"] .was-global--quiet .was-primary-nav__link[aria-current="page"] {
-  color: var(--wp-accent-bright, var(--waypoint-gold, #d8a72e));
-  box-shadow: inset 0 -2px 0 var(--wp-accent, var(--waypoint-orange, #c9653d));
+  color: var(--wp-text, var(--waypoint-bone, #f0e1c3));
+  box-shadow: inset 0 -2px 0 var(--wp-brand, var(--waypoint-orange, #d46a3a));
   background: none;
   text-shadow: none;
   filter: none;
@@ -733,7 +734,7 @@ article.was-home__card {
     position: relative;
     top: auto;
     z-index: 40;
-    background: #1a141c;
+    background: var(--wp-bg, #181513);
   }
 
   .was-shell[data-product="dashboard"] .was-global--quiet .was-global__inner {
@@ -786,7 +787,7 @@ article.was-home__card {
   box-shadow: var(--wp-focus-ring, 0 0 0 2px var(--wp-bg), 0 0 0 4px var(--wp-focus));
 }
 .was-brand__mark {
-  background: var(--wp-accent, var(--wds-accent, #c17a5a));
+  background: var(--wp-brand, var(--waypoint-orange, #d46a3a));
 }
 
 /* Shared mobile primary nav — single-row header + opaque overlay menu.
@@ -832,7 +833,7 @@ html.was-nav-open .was-global__actions {
     position: sticky;
     top: 0;
     z-index: 40;
-    background: #1a141c;
+    background: var(--wp-bg, #181513);
   }
 
   /* Product headers (Scenes / Sheds) set backdrop-filter on .was-global.
@@ -882,7 +883,7 @@ html.was-nav-open .was-global__actions {
     justify-content: flex-start;
     gap: 0;
     padding: calc(4.35rem + env(safe-area-inset-top, 0px)) 0 1.5rem;
-    background: #1a141c;
+    background: var(--wp-bg, #181513);
     border-bottom: 0;
     box-shadow: none;
     overflow-y: auto;
@@ -921,7 +922,7 @@ html.was-nav-open .was-global__actions {
   .was-shell[data-product="dashboard"] .was-global--quiet {
     position: relative;
     top: auto;
-    background: #1a141c;
+    background: var(--wp-bg, #181513);
   }
 
   .was-shell[data-product="dashboard"] .was-global--quiet .was-global__inner {
@@ -939,7 +940,7 @@ html.was-nav-open .was-global__actions {
     align-items: stretch;
     width: 100%;
     padding: calc(4.35rem + env(safe-area-inset-top, 0px)) 0 1.5rem;
-    background: #1a141c;
+    background: var(--wp-bg, #181513);
   }
 }
 

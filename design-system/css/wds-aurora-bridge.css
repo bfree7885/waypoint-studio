@@ -59,8 +59,8 @@
 }
 
 .was-primary-nav__link[aria-current="page"] {
-  color: var(--wp-accent, var(--wds-accent));
-  box-shadow: inset 0 -2px 0 var(--wp-accent, var(--wds-accent));
+  color: var(--wp-text, var(--wds-text));
+  box-shadow: inset 0 -2px 0 var(--wp-brand, var(--waypoint-orange, #d46a3a));
 }
 
 .was-home__tagline {

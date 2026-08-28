@@ -42,11 +42,11 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.55;
+  opacity: 0.42;
   background:
-    radial-gradient(ellipse 78% 48% at 48% -10%, var(--wp-product-glow, var(--wds-product-glow)), transparent 58%),
-    radial-gradient(ellipse 52% 34% at 12% 100%, var(--wp-plum-dim, var(--wds-purple-dim)), transparent 62%),
-    radial-gradient(ellipse 40% 28% at 96% 42%, var(--wp-sage-dim, var(--wds-sage-dim)), transparent 52%);
+    radial-gradient(ellipse 78% 48% at 48% -10%, var(--wp-terracotta-dim, rgba(212, 106, 58, 0.16)), transparent 58%),
+    radial-gradient(ellipse 46% 30% at 92% 8%, var(--wp-gold-dim, rgba(215, 167, 46, 0.1)), transparent 58%),
+    radial-gradient(ellipse 40% 28% at 8% 100%, var(--wp-plum-dim, rgba(121, 80, 111, 0.1)), transparent 62%);
 }
 
 body::after {

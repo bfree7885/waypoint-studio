@@ -9,7 +9,7 @@
 .wk-card {
   border: 1px solid var(--wds-border-subtle, rgba(180, 200, 180, 0.16));
   border-radius: 14px;
-  background: var(--wds-elevated, #3a243d);
+  background: var(--wds-elevated, #251c20);
   padding: 1.1rem 1.15rem 1.15rem;
   max-width: 42rem;
   box-shadow: none;
@@ -273,7 +273,7 @@
   border: 1px solid var(--wds-border-subtle, rgba(180, 200, 180, 0.16));
   border-radius: 12px;
   padding: 0.85rem 0.9rem;
-  background: var(--wds-elevated, #3a243d);
+  background: var(--wds-elevated, #251c20);
   color: var(--wds-text, #e4eaf4);
 }
 

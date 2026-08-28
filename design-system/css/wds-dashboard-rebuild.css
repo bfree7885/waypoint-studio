@@ -7,45 +7,45 @@
 
 html[data-product="dashboard"],
 html[data-product="dashboard"] body {
-  background-color: var(--wp-bg, var(--waypoint-aubergine-dark, #241b25));
+  background-color: var(--wp-bg, var(--waypoint-charcoal, #181513));
 }
 
 html[data-product="dashboard"] body::before {
   background:
-    radial-gradient(ellipse 78% 48% at 48% -10%, rgba(201, 101, 61, 0.2), transparent 58%),
-    radial-gradient(ellipse 52% 34% at 8% 100%, rgba(112, 68, 111, 0.22), transparent 62%),
-    radial-gradient(ellipse 42% 30% at 96% 38%, rgba(216, 167, 46, 0.1), transparent 52%);
+    radial-gradient(ellipse 78% 48% at 48% -10%, rgba(212, 106, 58, 0.12), transparent 58%),
+    radial-gradient(ellipse 42% 30% at 96% 38%, rgba(215, 167, 46, 0.08), transparent 52%),
+    radial-gradient(ellipse 36% 26% at 8% 100%, rgba(121, 80, 111, 0.08), transparent 62%);
 }
 
 .wdb-r {
-  /* Southwest framing — aubergine / purple / orange / gold / sand */
-  --wdb-r-charcoal: var(--wp-surface, #2e2130);
-  --wdb-r-volcanic: var(--wp-inset, #120e14);
-  --wdb-r-desert-plum: var(--wp-elevated, #3a243d);
+  /* Southwest framing — charcoal / espresso / terracotta / ochre / sand */
+  --wdb-r-charcoal: var(--wp-surface, #1e1816);
+  --wdb-r-volcanic: var(--wp-inset, #100d0c);
+  --wdb-r-desert-plum: var(--wp-elevated, #251c20);
   --wdb-r-dusty-blue: #2a4050; /* data sky only */
   --wdb-r-warm-slate: var(--waypoint-brown, #6b4937);
   /* Chrome accents from locked palette */
-  --wdb-r-dusty-rose: var(--waypoint-orange, #c9653d);
-  --wdb-r-adobe: var(--waypoint-burnt-orange, #a94e32);
-  --wdb-r-terracotta: var(--waypoint-orange, #c9653d);
-  --wdb-r-peach: var(--waypoint-gold-soft, #e8c45a);
+  --wdb-r-dusty-rose: var(--waypoint-orange, #d46a3a);
+  --wdb-r-adobe: var(--waypoint-burnt-orange, #b85a32);
+  --wdb-r-terracotta: var(--waypoint-orange, #d46a3a);
+  --wdb-r-peach: var(--waypoint-gold, #d7a72e);
   --wdb-r-coral: var(--waypoint-orange-bright, #e07a4a);
   --wdb-r-sand: var(--waypoint-sand, #d9c3a3);
   /* Natural/data domain hues (keep meaning) */
-  --wdb-r-sage: #7d8f72;
+  --wdb-r-sage: #73806a;
   --wdb-r-turquoise: #6aa8a0;
   --wdb-r-dusty-sky: #7aa0b8;
-  --wdb-r-lavender-dusk: var(--waypoint-purple-bright, #8a5a88);
-  --wdb-r-pale-amber: var(--waypoint-gold, #d8a72e);
-  --wdb-r-ink: var(--wds-text, var(--waypoint-bone, #f0e2c9));
-  --wdb-r-muted: var(--wds-text-secondary, rgba(240, 226, 201, 0.88));
-  --wdb-r-faint: var(--wds-text-tertiary, rgba(240, 226, 201, 0.72));
-  --wdb-r-line: var(--wds-border-subtle, rgba(112, 68, 111, 0.28));
-  --wdb-r-line-strong: var(--wds-border, rgba(216, 167, 46, 0.22));
-  --wdb-r-panel: var(--wds-elevated, #3a243d);
-  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #2e2130) 92%, var(--waypoint-sand, #d9c3a3) 4%);
-  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #3a243d) 88%, var(--wdb-r-adobe) 12%);
-  --wdb-r-accent: var(--wds-accent, var(--waypoint-orange, #c9653d));
+  --wdb-r-lavender-dusk: var(--waypoint-purple-bright, #a0709c);
+  --wdb-r-pale-amber: var(--waypoint-gold, #d7a72e);
+  --wdb-r-ink: var(--wds-text, var(--waypoint-bone, #f0e1c3));
+  --wdb-r-muted: var(--wds-text-secondary, var(--waypoint-tan, #bfa98c));
+  --wdb-r-faint: var(--wds-text-tertiary, #a89478);
+  --wdb-r-line: var(--wds-border-subtle, rgba(191, 169, 140, 0.12));
+  --wdb-r-line-strong: var(--wds-border, rgba(191, 169, 140, 0.22));
+  --wdb-r-panel: var(--wds-elevated, #251c20);
+  --wdb-r-surface: color-mix(in srgb, var(--wds-surface, #1e1816) 92%, var(--waypoint-sand, #d9c3a3) 4%);
+  --wdb-r-hover: color-mix(in srgb, var(--wds-elevated, #251c20) 88%, var(--wdb-r-adobe) 12%);
+  --wdb-r-accent: var(--wds-accent, var(--waypoint-orange, #d46a3a));
   --wdb-r-radius: var(--wds-radius-lg, 14px);
   --wdb-r-radius-md: var(--wds-radius-md, 10px);
   --wdb-r-radius-sm: var(--wds-radius-sm, 6px);

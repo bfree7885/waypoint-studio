@@ -1,61 +1,61 @@
 # Waypoint Studio Design System 2.0
 
-**Identity:** Contemporary Field Station · Desert Sunset · Southwest Landscape · Waypoint  
-**Feel:** high-contrast southwestern — purple + orange + gold + tan + brown + bone on aubergine  
+**Identity:** Southwestern field technology at dusk · dark desert + topographic field tool  
+**Feel:** dark earth + sand/cream + burnt orange + ochre + restrained desert purple  
 **Authoritative brand:** `--waypoint-*` in `design-system/css/wds-tokens.css`  
 **Canonical semantics:** `--wp-*` (derived from `--waypoint-*`)  
 **Compatibility:** `--wds-*` / `--ws-*` alias onto `--wp-*` (do not invent parallel values)  
 **Living reference:** [`design-system/patterns/waypoint-2.0.html`](../design-system/patterns/waypoint-2.0.html)  
-**Palette cleanup:** [`docs/SOUTHWEST-COLOR-SYSTEM.md`](./SOUTHWEST-COLOR-SYSTEM.md)
+**Palette:** [`docs/SOUTHWEST-COLOR-SYSTEM.md`](./SOUTHWEST-COLOR-SYSTEM.md)
 
 ## Mission for agents
 
-One coherent Waypoint shell (logo/wordmark, header, nav, active states, mobile nav, footer, spacing) while each application keeps a **distinct accent** drawn from the **same locked Southwestern family**.
+One coherent Waypoint shell (logo/wordmark, terracotta square, header, nav, active states, mobile nav, footer, spacing) while each application keeps a **distinct pairing** drawn from the **same locked dusk-desert family**.
 
-Do **not** reintroduce neon lime, corporate blue, cool gray UI, cyber cyan glow, Inter-as-default body, or white-dominant SaaS chrome.
+Do **not** reintroduce neon lime, corporate blue, cool gray UI, cyber cyan glow, Inter-as-default body, white-dominant SaaS chrome, or purple-as-the-ground.
 
 ## Canonical palette
 
 | Role | Token | Hex | Notes |
 |------|-------|-----|-------|
-| Deepest ground | `--waypoint-aubergine-dark` / `--wp-bg` | `#241B25` | Page background |
-| Surface | `--waypoint-aubergine` / `--wp-elevated` | `#3A243D` | Panels |
-| Bone / primary text | `--waypoint-bone` / `--wp-bone` | `#F0E2C9` | AA on aubergine |
+| Deepest ground | `--waypoint-charcoal` / `--wp-bg` | `#181513` | Warm charcoal |
+| Raised surface | `--waypoint-espresso` / `--wp-elevated` | `#251C20` | Espresso / plum-brown |
+| Bone / primary text | `--waypoint-bone` / `--wp-text` | `#F0E1C3` | AA on charcoal |
+| Tan / secondary text | `--waypoint-tan` | `#BFA98C` | Desert tan |
 | Sand | `--waypoint-sand` | `#D9C3A3` | Warm secondary |
-| Tan | `--waypoint-tan` | `#B88A5A` | Warm neutral accent |
-| Orange | `--waypoint-orange` | `#C9653D` | Default studio CTA |
-| Burnt orange | `--waypoint-burnt-orange` | `#A94E32` | Sheds / earth |
-| Purple | `--waypoint-purple` | `#70446F` | Primary brand accent / DFD |
-| Gold | `--waypoint-gold` | `#D8A72E` | Focus / highlight |
-| Brown | `--waypoint-brown` | `#6B4937` | Earth |
-| Sage / slate / info blues | `--wp-sage`, `--wp-slate`, `--wp-info` | — | **Data / status only**, not general chrome |
+| **Terracotta** | `--wp-brand` / `--waypoint-orange` | `#D46A3A` | Waypoint signature |
+| Ochre | `--wp-accent-gold` | `#D7A72E` | Secondary highlight |
+| Desert purple | `--wp-accent-purple` | `#79506F` | Supporting only |
+| Sage | `--wp-accent-field` | `#73806A` | Field context; not chrome |
+| Slate / info blues | `--wp-slate`, `--wp-info` | — | **Data / status only** |
+
+`--waypoint-aubergine-*` is a compatibility alias for the earth stack — do not paint large surfaces purple.
 
 ## Semantic color purpose
 
 | Token group | Purpose |
 |-------------|---------|
-| `--wp-bg`, `--wp-surface`, `--wp-elevated`, `--wp-inset` | Spatial hierarchy (aubergine field station) |
-| `--wp-text`, `--wp-text-secondary`, `--wp-text-tertiary`, `--wp-text-muted` | High-contrast bone/sand hierarchy |
-| `--wp-border`, `--wp-border-subtle` | Visible purple fog strokes |
-| `--wp-accent`, `--wp-accent-dim`, `--wp-accent-bright`, `--wp-on-accent` | Product CTA / active |
-| `--wp-warm`, `--wp-warm-dim` | Secondary emphasis (usually purple) |
-| `--wp-focus`, `--wp-focus-ring` | Keyboard focus (gold) |
+| `--wp-bg`, `--wp-surface`, `--wp-elevated`, `--wp-inset` | Spatial hierarchy (charcoal field station) |
+| `--wp-text`, `--wp-text-secondary`, `--wp-text-tertiary`, `--wp-text-muted` | High-contrast bone/tan hierarchy |
+| `--wp-border`, `--wp-border-subtle` | Warm tan fog strokes |
+| `--wp-brand` | Locked terracotta — header square, shared signature |
+| `--wp-accent`, `--wp-accent-dim`, `--wp-accent-bright`, `--wp-on-accent` | Product pairing / CTA (on-accent is charcoal, not cream) |
+| `--wp-accent-gold` / `--wp-accent-purple` / `--wp-accent-field` | Ochre / desert purple / sage |
+| `--wp-warm`, `--wp-warm-dim` | Secondary emphasis (usually ochre) |
+| `--wp-focus`, `--wp-focus-ring` | Keyboard focus (ochre) |
 | `--wp-success` / `--wp-warning` / `--wp-danger` / `--wp-info` | Status — **never color alone**; pair with label or icon |
 
 ## Product accents (`data-product`)
 
 | Product | `data-product` | Accent character |
 |---------|----------------|------------------|
-| Home | `studio-home` / `studio` | Orange |
-| Dashboard | `dashboard` | Orange + gold framing on aubergine (data hues separate) |
-| Scenes | `scenes` | Gold |
-| Sheds | `shed-hunting` / `sheds` | Burnt orange |
-| Articles | `articles` | Purple |
-| Deep Forest Dispatch | `deep-forest-dispatch` | Purple (+ orange warm) |
-| Side Trails | `side-trails` | Purple bright |
-| SignalTerrain | `signalterrain` | Tan (cool blues only in data) |
-| Global Signals | `global-signals` | Orange |
-| OpenRoad PA | `openroad-pa` | Brown |
+| Home | `studio-home` / `studio` | Terracotta |
+| Dashboard | `dashboard` | Terracotta + ochre (data hues separate) |
+| Scenes | `scenes` | Ochre + terracotta |
+| Sheds | `shed-hunting` / `sheds` | Terracotta + sage |
+| Articles | `articles` | Terracotta + ochre (editorial) |
+| Deep Forest Dispatch | `deep-forest-dispatch` | Same as Articles |
+| Waypoint Deck | `waypoint-deck` | Terracotta + desert purple (public shell) |
 
 ## Typography
 
@@ -65,7 +65,7 @@ Do **not** reintroduce neon lime, corporate blue, cool gray UI, cyber cyan glow,
 
 ## Shared shell
 
-Use App Shell classes (`was-global`, `was-brand`, `was-primary-nav`, `was-local`, `was-footer`) from `wds-app-shell.css` + aurora bridge helpers. Active nav uses accent color **and** underline inset — color is not the sole indicator.
+Use App Shell classes (`was-global`, `was-brand`, `was-primary-nav`, `was-local`, `was-footer`) from `wds-app-shell.css` + aurora bridge helpers. The brand square uses `--wp-brand` (terracotta) on every page. Active global nav uses cream type + terracotta underline — color is not the sole indicator.
 
 ## ONE APP = ONE PRODUCT SURFACE
 

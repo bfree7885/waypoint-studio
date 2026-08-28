@@ -134,6 +134,17 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-28 — Dusk-desert color reconciliation
+
+**Branch:** `cursor/dusk-desert-color-system-3501` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`
+
+- Purple-dominant aubergine grounds read as a boutique brand, not a field tool. Keep plum undertones in espresso surfaces; do not let purple own `--wp-bg` or borders.
+- `--wp-brand` (terracotta) must drive the header square. `--wp-accent` is product pairing and will recolor the mark if the square binds to it.
+- Cream on terracotta fails WCAG (~2.8:1). `--wp-on-accent` stays charcoal. Desert purple `#79506F` fails as small text on charcoal — supporting borders only.
+- Explore should not become a filled orange (or purple) pill. Raised espresso + terracotta border keeps the signature without shouting.
+- Publishing/DFD purple accents made editorial surfaces look like another software product. Terracotta + ochre on cream type keeps them in the family.
+- Brand color and data color stay separate: Dashboard instrument hues (precip/AQI/alert) and map layers must not be forced into terracotta.
+
 ### 2026-08-22 — Civic Trails discontinued; OpenRoad PA catalog entry
 
 **Branch:** `cursor/openroad-pa-replace-civic-efa3`
@@ -1661,4 +1672,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Articles filter chips sit in a grid item whose `min-width: auto` is the chips’ max-content (one nowrap row). `flex-wrap: wrap` never triggers, so the page grows (~496px at a 390 viewport) and hero copy clips. Bound `.waf-toolbar` / `.waf-views` with `min-width: 0; max-width: 100%`.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
+
+### Lessons Learned — Dusk-desert palette production gate (2026-08-28)
+
+- `wds.css` already `@import`s `wds-app-shell.css`. A second `<link>` after the bundle reloads shell *after* experience-v2 and is a real duplicate, not a required cascade. Dashboard, homepage, and contact should match About: one `wds.css` bundle.
+- Experience-v2 tests that required Dashboard `wds-dashboard-home.css` encoded the homepage-era CSS graph. Discover uses `wds-dashboard-rebuild.css`; experience still arrives via `wds.css`. Update the assertion; do not reintroduce the old bundle.
+- Sheds map skip is `.sheds-skip` (immersive-map alias in experience-v2), not `.wds-skip`. Keep skip-link coverage under the intentional class name.
+- Sage `#73806A` is ~4.4:1 on charcoal. Leave the master token for accents. If `--wp-warm` is sage on Sheds, shared `a { color: var(--wds-warm) }` paints in-page links sage — override that semantic use (Take sources) to terracotta rather than brightening all sage.
+
 

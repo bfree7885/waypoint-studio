@@ -74,7 +74,7 @@ const errProvider = UI.errorHtml({
 assert("provider error status", /Open-Meteo/.test(errProvider) && /data-wds-provider-status/.test(errProvider));
 assert("provider recovery links", /contact\.html/.test(errProvider) && /support\.html/.test(errProvider));
 assert("overflow clip polish", /overflow-x:\s*clip/.test(exp));
-assert("muted contrast raised", /--wds-text-muted:\s*rgba\(228,\s*234,\s*244,\s*0\.65\)/.test(tokens));
+assert("muted contrast raised", /--wp-text-muted:\s*var\(--wp-sand-dim\)/.test(tokens) && /--wp-sand-dim:\s*#a89478/i.test(tokens));
 assert("muted alias for dashboard", /--wds-muted:\s*var\(--wds-text-muted\)/.test(tokens));
 const load = UI.loadingHtml("Building outdoor summary", { skeleton: true, detail: "Using cache first." });
 assert("loading with skeleton", /wds-skeleton/.test(load) && /Building outdoor summary/.test(load));
@@ -89,10 +89,20 @@ assert("about still has wds.css", /wds\.css/.test(about));
 
 const dash = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("dashboard no duplicate app-shell link", !/wds-app-shell\.css/.test(dash));
-assert("dashboard keeps experience via dashboard-home", /wds-dashboard-home/.test(dash));
+assert("dashboard loads canonical wds.css", /wds\.css/.test(dash));
+assert("dashboard product CSS is rebuild, not dashboard-home", /wds-dashboard-rebuild/.test(dash) && !/wds-dashboard-home/.test(dash));
+
+const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+assert("homepage no duplicate app-shell link", !/wds-app-shell\.css/.test(home) && /wds\.css/.test(home));
+
+const contact = fs.readFileSync(path.join(ROOT, "apps/dashboard/contact.html"), "utf8");
+assert("dashboard contact no duplicate app-shell link", !/wds-app-shell\.css/.test(contact) && /wds\.css/.test(contact));
 
 const sheds = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8");
-assert("sheds map has wds-skip", /wds-skip/.test(sheds));
+assert(
+  "sheds map uses immersive sheds-skip",
+  /class="sheds-skip"/.test(sheds) && /href="#sheds-map"/.test(sheds)
+);
 assert("sheds map loads experience-v2", /wds-experience-v2\.css/.test(sheds));
 
 const pcProfile = fs.readFileSync(path.join(ROOT, "apps/photo-coach/profile/index.html"), "utf8");

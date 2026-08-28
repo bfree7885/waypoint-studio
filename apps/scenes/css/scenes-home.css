@@ -1,28 +1,26 @@
 /* Waypoint Scenes — photography landing on shared Rebuild foundation.
- * Product accents from locked Southwest palette (gold/orange) on aubergine ground.
+ * Product accents from locked dusk-desert palette (ochre + terracotta) on charcoal ground.
  */
 
 html[data-product="scenes"],
 .was-shell[data-product="scenes"] {
-  --scenes-ink: var(--wp-text, var(--wds-text, #f0e2c9));
+  --scenes-ink: var(--wp-text, var(--wds-text, #f0e1c3));
   --scenes-muted: var(--wp-text-secondary, var(--wds-text-secondary));
-  --scenes-navy: var(--wp-bg, var(--wds-bg, #241b25));
-  --scenes-midnight: var(--wp-aubergine-900, #241b25);
-  --scenes-violet: var(--wp-purple-bright, #8a5a88);
-  --scenes-lime: var(--wp-accent, var(--waypoint-gold, #d8a72e));
-  --scenes-magenta: var(--wp-warm, var(--waypoint-purple, #70446f));
+  --scenes-navy: var(--wp-bg, var(--wds-bg, #181513));
+  --scenes-midnight: var(--wp-aubergine-900, #181513);
+  --scenes-violet: var(--wp-accent-gold, var(--waypoint-gold, #d7a72e));
+  --scenes-lime: var(--wp-accent, var(--waypoint-gold, #d7a72e));
+  --scenes-magenta: var(--wp-warm, var(--waypoint-orange, #d46a3a));
   --wds-accent: var(--wp-accent, var(--scenes-lime));
-  --wp-accent: var(--waypoint-gold, #d8a72e);
-  --wds-warm: var(--wp-warm, var(--waypoint-orange, #c9653d));
-  --wds-product-glow: rgba(216, 167, 46, 0.22);
+  --wds-product-glow: rgba(215, 167, 46, 0.1);
   background: var(--scenes-navy);
   color: var(--scenes-ink);
   font-family: var(--wds-font-body);
 }
 
 .was-shell[data-product="scenes"] .was-global {
-  background: var(--wds-topbar-bg, rgba(36, 27, 37, 0.92));
-  border-bottom-color: var(--wds-border-subtle, rgba(112, 68, 111, 0.28));
+  background: var(--wds-topbar-bg, color-mix(in srgb, var(--wp-bg, #181513) 94%, transparent));
+  border-bottom-color: var(--wds-border-subtle, rgba(191, 169, 140, 0.12));
   backdrop-filter: blur(10px);
 }
 
@@ -36,7 +34,10 @@ html[data-product="scenes"],
   color: var(--scenes-muted);
 }
 
-.was-shell[data-product="scenes"] .was-primary-nav__link[aria-current="page"],
+.was-shell[data-product="scenes"] .was-primary-nav__link[aria-current="page"] {
+  color: var(--scenes-ink);
+}
+
 .was-shell[data-product="scenes"] .was-local a[aria-current="page"],
 .was-shell[data-product="scenes"] .was-local a.is-current {
   color: var(--scenes-lime);
@@ -77,8 +78,8 @@ html[data-product="scenes"],
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 15, 28, 0.45) 0%, rgba(8, 15, 28, 0.2) 40%, rgba(8, 15, 28, 0.88) 100%),
-    linear-gradient(90deg, rgba(11, 26, 58, 0.4), transparent 50%);
+    linear-gradient(180deg, rgba(24, 21, 19, 0.42) 0%, rgba(24, 21, 19, 0.18) 40%, rgba(24, 21, 19, 0.86) 100%),
+    linear-gradient(90deg, rgba(37, 28, 32, 0.28), transparent 50%);
 }
 
 .scenes-stage__copy {
@@ -356,7 +357,7 @@ html[data-product="scenes"],
 .scenes-take {
   margin: clamp(2.5rem, 6vw, 3.5rem) 0 0;
   max-width: 40rem;
-  background: color-mix(in srgb, var(--wds-elevated, #3a243d) 80%, transparent);
+  background: color-mix(in srgb, var(--wds-elevated, #251c20) 80%, transparent);
   border-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.12));
   border-left-color: color-mix(in srgb, var(--scenes-violet) 55%, transparent);
 }
@@ -409,7 +410,7 @@ html[data-product="scenes"],
   overflow: hidden;
   aspect-ratio: 21 / 9;
   min-height: 10rem;
-  background: var(--wds-elevated, #3a243d);
+  background: var(--wds-elevated, #251c20);
 }
 
 .scenes-module-hero__visual img {
@@ -542,7 +543,7 @@ html[data-product="scenes"],
   border: 1px solid var(--wds-border-subtle, rgba(155, 143, 217, 0.1));
   text-decoration: none;
   color: inherit;
-  background: color-mix(in srgb, var(--wds-elevated, #3a243d) 55%, transparent);
+  background: color-mix(in srgb, var(--wds-elevated, #251c20) 55%, transparent);
   transition: border-color 200ms ease;
 }
 
@@ -582,7 +583,7 @@ html[data-product="scenes"],
 
 .scenes-journey__item--primary a {
   border-color: color-mix(in srgb, var(--scenes-violet) 40%, transparent);
-  background: color-mix(in srgb, var(--scenes-violet) 10%, var(--wds-elevated, #3a243d));
+  background: color-mix(in srgb, var(--scenes-violet) 10%, var(--wds-elevated, #251c20));
   box-shadow: 0 0 24px color-mix(in srgb, var(--scenes-violet) 12%, transparent);
 }
 

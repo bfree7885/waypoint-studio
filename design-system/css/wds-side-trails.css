@@ -17,8 +17,8 @@
 }
 
 .wst-card--featured {
-  border: 1px solid color-mix(in srgb, var(--waypoint-orange, #c9653d) 35%, transparent);
-  box-shadow: 0 8px 28px rgba(42, 31, 46, 0.08);
+  border: 1px solid color-mix(in srgb, var(--waypoint-orange, #d46a3a) 32%, transparent);
+  box-shadow: 0 8px 28px rgba(16, 13, 12, 0.18);
 }
 
 .wst-deck__list {
@@ -70,8 +70,8 @@
   gap: 0.55rem;
   border-radius: 1rem 0.35rem 1rem 0.35rem;
   background:
-    linear-gradient(145deg, rgba(94, 234, 212, 0.04), transparent 42%),
-    var(--wds-surface, #fff);
+    linear-gradient(145deg, rgba(121, 80, 111, 0.08), transparent 42%),
+    var(--wds-surface, var(--wp-elevated, #251c20));
 }
 
 .wst-card__top {
