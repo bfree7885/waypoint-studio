@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 27 Aug 2026 21:23:40 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 28 Aug 2026 07:26:29 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -341,6 +341,40 @@ Read the original article at the publisher: https://www.weather.gov/media/btv/Ne
     <category>Rivers and Water</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Burlington</author>
+  </item>
+  <item>
+    <title>New Flood Stages Coming for the Little Salmon River in Bombay, New York</title>
+    <link>https://www.weather.gov/media/btv/SCN_BOMN6.pdf</link>
+    <guid isPermaLink="true">https://www.weather.gov/media/btv/SCN_BOMN6.pdf</guid>
+    <pubDate>Mon, 24 Apr 2017 17:00:19 GMT</pubDate>
+    <source url="https://www.weather.gov/btv/">National Weather Service Burlington</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Burlington.
+
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: notice water level, clarity, and bank conditions as living field signals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.weather.gov/media/btv/SCN_BOMN6.pdf</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Weather Service Burlington</author>
+  </item>
+  <item>
+    <title>New Scotland WXL-34 NWR Transmitter Remains Out of Service</title>
+    <link>https://www.weather.gov/images/aly/NewScotlandNWROutage.png</link>
+    <guid isPermaLink="true">https://www.weather.gov/images/aly/NewScotlandNWROutage.png</guid>
+    <pubDate>Sat, 13 Jun 2026 21:14:48 GMT</pubDate>
+    <source url="https://www.weather.gov/aly/">National Weather Service Albany</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Albany.
+
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.weather.gov/images/aly/NewScotlandNWROutage.png</description>
+    <category>Weather</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Weather Service Albany</author>
   </item>
   </channel>
 </rss>
