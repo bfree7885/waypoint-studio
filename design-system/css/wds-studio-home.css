@@ -204,13 +204,13 @@
   text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 0.04em;
-  background: rgba(12, 16, 24, 0.28);
+  background: rgba(24, 21, 19, 0.28);
   transition: background 220ms ease, border-color 220ms ease;
 }
 
 .was-home-hero__cta a:hover,
 .was-home-hero__cta a:focus-visible {
-  background: rgba(12, 16, 24, 0.5);
+  background: rgba(24, 21, 19, 0.5);
   border-color: rgba(244, 241, 234, 0.6);
   outline: none;
 }
@@ -283,7 +283,7 @@
   min-height: 11.5rem;
   padding: 1.75rem 1.6rem 1.5rem;
   border-color: rgba(244, 241, 234, 0.22);
-  background: linear-gradient(165deg, rgba(36, 52, 72, 0.88), rgba(12, 16, 24, 0.7));
+  background: linear-gradient(165deg, rgba(37, 28, 32, 0.88), rgba(24, 21, 19, 0.7));
 }
 
 .was-home__journey-lead .was-home__card-title {
@@ -320,7 +320,7 @@
   min-height: 8.5rem;
   padding: 1.15rem 1.2rem 1.1rem;
   border-color: rgba(244, 241, 234, 0.08);
-  background: linear-gradient(165deg, rgba(22, 30, 42, 0.55), rgba(12, 16, 24, 0.4));
+  background: linear-gradient(165deg, rgba(22, 30, 42, 0.55), rgba(24, 21, 19, 0.4));
 }
 
 .was-home__card--next .was-home__card-title {
@@ -341,7 +341,7 @@
   min-height: 10.5rem;
   border: 1px solid rgba(244, 241, 234, 0.12);
   border-radius: 1.1rem;
-  background: linear-gradient(165deg, rgba(26, 35, 50, 0.72), rgba(12, 16, 24, 0.55));
+  background: linear-gradient(165deg, rgba(26, 35, 50, 0.72), rgba(24, 21, 19, 0.55));
   text-decoration: none;
   color: inherit;
   transition: border-color 220ms ease, transform 220ms ease, background 220ms ease;
@@ -350,7 +350,7 @@
 .was-home__card--experience:hover,
 .was-home__card--experience:focus-visible {
   border-color: rgba(244, 241, 234, 0.28);
-  background: linear-gradient(165deg, rgba(32, 44, 62, 0.85), rgba(12, 16, 24, 0.65));
+  background: linear-gradient(165deg, rgba(32, 44, 62, 0.85), rgba(24, 21, 19, 0.65));
   outline: none;
 }
 
@@ -450,7 +450,7 @@
 
 .was-home__search-dock .was-home__search input[type="search"] {
   width: 100%;
-  background: rgba(12, 16, 24, 0.45);
+  background: rgba(24, 21, 19, 0.45);
   border: 1px solid rgba(244, 241, 234, 0.16);
   color: var(--home-ink);
   border-radius: 999px;
@@ -488,8 +488,8 @@
 /* ——— Front door 2026 ——— */
 .was-home-hero__overlay {
   background:
-    linear-gradient(180deg, rgba(23, 19, 28, 0.45) 0%, rgba(23, 19, 28, 0.2) 40%, rgba(23, 19, 28, 0.88) 100%),
-    linear-gradient(90deg, rgba(23, 19, 28, 0.55), transparent 58%);
+    linear-gradient(180deg, rgba(24, 21, 19, 0.45) 0%, rgba(24, 21, 19, 0.2) 40%, rgba(24, 21, 19, 0.88) 100%),
+    linear-gradient(90deg, rgba(24, 21, 19, 0.55), transparent 58%);
 }
 
 .was-home-hero__cta {

@@ -34,6 +34,10 @@ html[data-product="scenes"],
   color: var(--scenes-muted);
 }
 
+.was-shell[data-product="scenes"] .was-primary-nav__link[aria-current="page"] {
+  color: var(--scenes-ink);
+}
+
 .was-shell[data-product="scenes"] .was-local a[aria-current="page"],
 .was-shell[data-product="scenes"] .was-local a.is-current {
   color: var(--scenes-lime);
