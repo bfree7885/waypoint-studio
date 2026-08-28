@@ -184,6 +184,12 @@ html[data-product="shed-hunting"],
   border-left-color: color-mix(in srgb, var(--sheds-orange) 55%, transparent);
 }
 
+/* Sage (~4.4:1 on charcoal) is a field accent, not body copy. Shared
+   `a { color: var(--wds-warm) }` would paint these source links sage. */
+.sheds-page .wds-take__sources a {
+  color: var(--sheds-gold, var(--wp-accent, #d46a3a));
+}
+
 .sheds-workflows:empty {
   display: none;
 }

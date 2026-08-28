@@ -89,10 +89,20 @@ assert("about still has wds.css", /wds\.css/.test(about));
 
 const dash = fs.readFileSync(path.join(ROOT, "apps/dashboard/index.html"), "utf8");
 assert("dashboard no duplicate app-shell link", !/wds-app-shell\.css/.test(dash));
-assert("dashboard keeps experience via dashboard-home", /wds-dashboard-home/.test(dash));
+assert("dashboard loads canonical wds.css", /wds\.css/.test(dash));
+assert("dashboard product CSS is rebuild, not dashboard-home", /wds-dashboard-rebuild/.test(dash) && !/wds-dashboard-home/.test(dash));
+
+const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+assert("homepage no duplicate app-shell link", !/wds-app-shell\.css/.test(home) && /wds\.css/.test(home));
+
+const contact = fs.readFileSync(path.join(ROOT, "apps/dashboard/contact.html"), "utf8");
+assert("dashboard contact no duplicate app-shell link", !/wds-app-shell\.css/.test(contact) && /wds\.css/.test(contact));
 
 const sheds = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/map/index.html"), "utf8");
-assert("sheds map has wds-skip", /wds-skip/.test(sheds));
+assert(
+  "sheds map uses immersive sheds-skip",
+  /class="sheds-skip"/.test(sheds) && /href="#sheds-map"/.test(sheds)
+);
 assert("sheds map loads experience-v2", /wds-experience-v2\.css/.test(sheds));
 
 const pcProfile = fs.readFileSync(path.join(ROOT, "apps/photo-coach/profile/index.html"), "utf8");

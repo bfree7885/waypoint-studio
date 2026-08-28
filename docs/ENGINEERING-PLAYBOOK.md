@@ -1673,3 +1673,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Dusk-desert palette production gate (2026-08-28)
+
+- `wds.css` already `@import`s `wds-app-shell.css`. A second `<link>` after the bundle reloads shell *after* experience-v2 and is a real duplicate, not a required cascade. Dashboard, homepage, and contact should match About: one `wds.css` bundle.
+- Experience-v2 tests that required Dashboard `wds-dashboard-home.css` encoded the homepage-era CSS graph. Discover uses `wds-dashboard-rebuild.css`; experience still arrives via `wds.css`. Update the assertion; do not reintroduce the old bundle.
+- Sheds map skip is `.sheds-skip` (immersive-map alias in experience-v2), not `.wds-skip`. Keep skip-link coverage under the intentional class name.
+- Sage `#73806A` is ~4.4:1 on charcoal. Leave the master token for accents. If `--wp-warm` is sage on Sheds, shared `a { color: var(--wds-warm) }` paints in-page links sage — override that semantic use (Take sources) to terracotta rather than brightening all sage.
+
+
