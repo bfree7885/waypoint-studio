@@ -83,7 +83,7 @@ body::after {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 6px;
-  background: linear-gradient(145deg, #8fa898, #3d5c4e);
+  background: var(--wp-brand, var(--waypoint-orange, #d46a3a));
   box-shadow: none;
 }
 

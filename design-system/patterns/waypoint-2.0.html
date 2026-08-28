@@ -92,14 +92,14 @@
         <h1>Contemporary Field Station</h1>
         <p>
           Topographic Atlas · High-Desert / Southwestern Landscape.
-          Natural, warm, restrained, scientific, editorial — one coherent product family
-          with distinct application accents from a shared muted palette.
+          Natural, warm, restrained, scientific, editorial — southwestern field technology at dusk.
+          One earth family. Terracotta is the signature. Purple is supporting.
         </p>
       </header>
 
       <section class="wp2-section" aria-labelledby="palette">
         <h2 id="palette">Canonical palette</h2>
-        <p>Muted sand/bone, terracotta, dusty plum, muted purple, clay red, sage, charcoal/aubergine. Not neon. Not tourist-Southwest.</p>
+        <p>Muted sand/bone, terracotta, ochre, desert purple, sage, charcoal/espresso. Not neon. Not tourist-Southwest. Purple is supporting, not the ground.</p>
         <div class="wp2-swatches" id="swatches"></div>
         <div class="wp2-topo" aria-hidden="true">Contour · restraint · latitude</div>
       </section>
@@ -110,10 +110,11 @@
         <table class="wp2-table">
           <thead><tr><th>Token</th><th>Purpose</th></tr></thead>
           <tbody>
-            <tr><td><code>--wp-bg / --wp-surface / --wp-elevated</code></td><td>Page, panels, raised chrome</td></tr>
-            <tr><td><code>--wp-text / --wp-text-secondary / --wp-text-muted</code></td><td>Copy hierarchy (WCAG AA on aubergine)</td></tr>
-            <tr><td><code>--wp-accent / --wp-accent-dim / --wp-warm</code></td><td>Product accent + secondary emphasis</td></tr>
-            <tr><td><code>--wp-focus / --wp-focus-ring</code></td><td>Keyboard focus (dust-gold, never color-only status)</td></tr>
+            <tr><td><code>--wp-bg / --wp-surface / --wp-elevated</code></td><td>Page, panels, raised chrome (charcoal → espresso)</td></tr>
+            <tr><td><code>--wp-text / --wp-text-secondary / --wp-text-muted</code></td><td>Copy hierarchy (WCAG AA on charcoal)</td></tr>
+            <tr><td><code>--wp-brand</code></td><td>Locked terracotta — Waypoint square, never the product accent</td></tr>
+            <tr><td><code>--wp-accent / --wp-accent-gold / --wp-accent-purple / --wp-accent-field</code></td><td>Product pairing + supporting hues</td></tr>
+            <tr><td><code>--wp-focus / --wp-focus-ring</code></td><td>Keyboard focus (ochre, never color-only status)</td></tr>
             <tr><td><code>--wp-success / --wp-warning / --wp-danger / --wp-info</code></td><td>Status — always pair with label or icon</td></tr>
             <tr><td><code>--wp-space-* / --wp-radius-* / --wp-shadow-*</code></td><td>Spacing, radius, elevation</td></tr>
             <tr><td><code>--wp-header-h / --wp-max-content / --wp-transition-calm</code></td><td>Layout + motion</td></tr>
@@ -170,17 +171,16 @@
 
   <script>
     const palette = [
-      ["Aubergine 950", "--wp-aubergine-950", "#17131c"],
-      ["Aubergine 900", "--wp-aubergine-900", "#1f1a26"],
-      ["Bone", "--wp-bone", "#f2ebe0"],
-      ["Sand 200", "--wp-sand-200", "#e0d3c0"],
-      ["Terracotta", "--wp-terracotta", "#c17a5a"],
-      ["Clay", "--wp-clay", "#a85d52"],
-      ["Dusty plum", "--wp-plum", "#8b6f82"],
-      ["Muted purple", "--wp-purple", "#7a6b8a"],
-      ["Sage", "--wp-sage", "#7d8f72"],
-      ["Slate", "--wp-slate", "#7a8a9a"],
-      ["Dust gold", "--wp-dust-gold", "#c4a46a"]
+      ["Charcoal", "--wp-bg", "#181513"],
+      ["Espresso", "--wp-elevated", "#251c20"],
+      ["Bone", "--wp-bone", "#f0e1c3"],
+      ["Tan", "--wp-tan", "#bfa98c"],
+      ["Terracotta", "--wp-brand", "#d46a3a"],
+      ["Ochre", "--wp-accent-gold", "#d7a72e"],
+      ["Desert purple", "--wp-accent-purple", "#79506f"],
+      ["Sage", "--wp-accent-field", "#73806a"],
+      ["Sand", "--wp-sand", "#d9c3a3"],
+      ["Clay", "--wp-clay", "#b85a32"]
     ];
     document.getElementById("swatches").innerHTML = palette.map(([name, token, hex]) => `
       <div class="wp2-swatch">
@@ -189,15 +189,14 @@
       </div>`).join("");
 
     const products = [
-      ["studio-home", "Home", "Terracotta — trailhead warmth"],
-      ["dashboard", "Dashboard", "Dusty rose / peach — high-desert instruments"],
-      ["scenes", "Scenes", "Sage — stillness / light"],
-      ["shed-hunting", "Sheds", "Clay red — autumn field"],
-      ["articles", "Articles", "Dusty plum — editorial"],
-      ["side-trails", "Side Trails", "Muted purple — laboratory"],
-      ["signalterrain", "SignalTerrain", "Slate + clay — geographic intel"],
-      ["global-signals", "Global Signals", "Terracotta bright — signal pulse"],
-      ["openroad-pa", "OpenRoad PA", "Brown — public roads & records"]
+      ["studio-home", "Home", "Terracotta — Waypoint signature"],
+      ["dashboard", "Dashboard", "Terracotta + ochre — field instruments"],
+      ["scenes", "Scenes", "Ochre + terracotta — desert light"],
+      ["shed-hunting", "Sheds", "Terracotta + sage — field maps"],
+      ["articles", "Articles", "Cream + terracotta + ochre — editorial"],
+      ["deep-forest-dispatch", "Deep Forest Dispatch", "Same publishing family as Articles"],
+      ["waypoint-deck", "Waypoint Deck", "Terracotta + desert purple — field computer"],
+      ["side-trails", "Side Trails", "Terracotta + desert purple"]
     ];
     const productsEl = document.getElementById("products");
     const picker = document.getElementById("picker");

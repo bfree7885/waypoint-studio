@@ -134,6 +134,17 @@ Include:
 
 ## Lessons Learned
 
+### 2026-08-28 — Dusk-desert color reconciliation
+
+**Branch:** `cursor/dusk-desert-color-system-3501` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`
+
+- Purple-dominant aubergine grounds read as a boutique brand, not a field tool. Keep plum undertones in espresso surfaces; do not let purple own `--wp-bg` or borders.
+- `--wp-brand` (terracotta) must drive the header square. `--wp-accent` is product pairing and will recolor the mark if the square binds to it.
+- Cream on terracotta fails WCAG (~2.8:1). `--wp-on-accent` stays charcoal. Desert purple `#79506F` fails as small text on charcoal — supporting borders only.
+- Explore should not become a filled orange (or purple) pill. Raised espresso + terracotta border keeps the signature without shouting.
+- Publishing/DFD purple accents made editorial surfaces look like another software product. Terracotta + ochre on cream type keeps them in the family.
+- Brand color and data color stay separate: Dashboard instrument hues (precip/AQI/alert) and map layers must not be forced into terracotta.
+
 ### 2026-08-22 — Civic Trails discontinued; OpenRoad PA catalog entry
 
 **Branch:** `cursor/openroad-pa-replace-civic-efa3`

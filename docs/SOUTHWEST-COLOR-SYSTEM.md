@@ -1,52 +1,82 @@
-# Waypoint Southwest Color System
+# Waypoint Color System — Dark desert at dusk
 
 **Authoritative tokens:** `design-system/css/wds-tokens.css`  
 **API:** `--waypoint-*` (locked brand) → `--wp-*` (semantics) → `--wds-*` / `--ws-*` (compat)
 
-## Locked family
+**Feel:** Southwestern field technology at dusk. Dark earth + desert light + field intelligence.
 
-| Token | Hex | Role |
-|-------|-----|------|
-| `--waypoint-aubergine-dark` | `#241B25` | Primary dark background |
-| `--waypoint-aubergine` | `#3A243D` | Secondary dark surface |
-| `--waypoint-purple` | `#70446F` | Primary accent |
-| `--waypoint-orange` | `#C9653D` | Secondary accent / CTA |
-| `--waypoint-burnt-orange` | `#A94E32` | Earth / sheds accent |
-| `--waypoint-gold` | `#D8A72E` | Highlight / focus / important data chrome |
-| `--waypoint-sand` | `#D9C3A3` | Warm neutral surface |
-| `--waypoint-tan` | `#B88A5A` | Warm neutral accent |
-| `--waypoint-brown` | `#6B4937` | Earth accent |
-| `--waypoint-bone` | `#F0E2C9` | Light text |
+**Not:** a purple website, a yellow website, a green outdoor brand, tactical/military chrome, generic SaaS, or a luxury lifestyle brand.
 
-Derived scale (`--waypoint-aubergine-950` … inset, orange/purple brights) exists only for hierarchy.
+## Hierarchy (more important than any single hex)
 
-## Semantic roles (do not redefine per app)
+**dark earth → sand/cream → burnt orange → ochre → restrained desert purple**
+
+Most of an interface is warm charcoal, espresso, sand, and tan. Accent color is deliberate and sparse.
+
+| Role | Token | Target | Notes |
+|------|-------|--------|-------|
+| Main background | `--waypoint-charcoal` / `--wp-bg` | `#181513` | Warm near-black |
+| Raised surface | `--waypoint-espresso` / `--wp-elevated` | `#251C20` | Dark espresso / plum-brown |
+| Primary text | `--waypoint-bone` / `--wp-text` | `#F0E1C3` | Warm ivory |
+| Secondary text | `--waypoint-tan` / `--wp-text-secondary` | `#BFA98C` | Muted desert tan |
+| **Primary accent** | `--wp-brand` / `--waypoint-orange` | `#D46A3A` | Burnt orange / terracotta |
+| Secondary accent | `--wp-accent-gold` | `#D7A72E` | Golden ochre |
+| Tertiary | `--wp-accent-purple` | `#79506F` | Muted desert purple |
+| Field / natural | `--wp-accent-field` | `#73806A` | Muted sage |
+
+`--waypoint-aubergine-*` names remain as **compatibility aliases** for the earth stack. Do not treat aubergine as the visual identity.
+
+## Semantic roles
 
 | Role | Token |
 |------|--------|
-| Primary dark background | `--wp-bg` → aubergine-dark |
-| Secondary dark surface | `--wp-surface` / `--wp-elevated` |
-| Primary accent | `--wp-warm` / product purple where editorial |
-| Secondary accent | `--wp-accent` → orange (default studio) |
-| Highlight | `--wp-focus` → gold |
-| Warm neutrals | sand / tan |
-| Earth | brown |
-| Light text | `--wp-text` → bone |
+| Page / panels / raised | `--wp-bg` / `--wp-surface` / `--wp-elevated` (`--wp-surface-raised`) |
+| Waypoint signature | `--wp-brand` — terracotta, **does not change per product** |
+| Product accent | `--wp-accent` — pairing only (terracotta, ochre, or sage) |
+| Supporting | `--wp-accent-gold` / `--wp-accent-purple` / `--wp-accent-field` |
+| Secondary emphasis | `--wp-warm` (usually ochre; Deck may use desert purple) |
+| Focus | `--wp-focus` → ochre |
+| Status | `--wp-success` / `--wp-warning` / `--wp-danger` / `--wp-info` — always labeled |
 
-Product `data-product` blocks may pick **which** SW accent leads (orange vs purple vs gold vs burnt-orange) but must stay inside this family.
+The Waypoint Studio square (`.was-brand__mark`) uses `--wp-brand`. It represents Waypoint, not the current page.
+
+## Product personalities
+
+Stay inside this family. Pairing only — do not invent a second palette.
+
+| Product | Emphasis |
+|---------|----------|
+| Global / Home | Terracotta |
+| Dashboard | Terracotta + ochre |
+| Scenes | Ochre + terracotta (desert light, not yellow chrome) |
+| Sheds | Terracotta + restrained sage |
+| Waypoint Deck (public shell) | Terracotta + desert purple |
+| Articles / Deep Forest Dispatch | Cream type + terracotta + ochre |
+
+Instrument **data** hues (precip, AQI, alerts, map layers) stay meaningful. Brand color and data color are different systems.
+
+## Contrast (locked targets on `#181513`)
+
+| Pair | Ratio | Gate |
+|------|-------|------|
+| Bone `#F0E1C3` on charcoal | ~14:1 | AA body |
+| Tan `#BFA98C` on charcoal | ~8:1 | AA body |
+| Terracotta `#D46A3A` on charcoal | ~5.1:1 | AA small text / nav |
+| Charcoal on terracotta (buttons) | ~5.1:1 | AA — `--wp-on-accent` must stay dark |
+| Cream on terracotta | ~2.8:1 | **Fail** — never cream type on orange fills |
+| Desert purple `#79506F` on charcoal | ~2.8:1 | **Fail as text** — borders / atmosphere only |
+| Sage `#73806A` on charcoal | ~4.4:1 | AA-large only |
 
 ## Natural data exception
 
 Blue / green / red / cyan remain allowed for hydrology, vegetation, alerts, and scientific layers. They must not become general nav, button, or card chrome.
 
-## Contrast notes
-
-Bone / sand on aubergine-dark meet WCAG AA for body text. Orange on aubergine is AA-large; use bone text on orange buttons (`--wp-on-accent`). Avoid tan-on-sand and gold-on-bone for small copy.
-
 ## Cleanup scope (this pass)
 
-- Consolidated `--waypoint-*` as SoT; remapped `--wp-*` primitives
-- DFD accent: sage → purple (+ orange warm)
-- Dashboard chrome: charcoal/dusty-rose → aubergine + orange/gold (instrument data hues kept)
-- Scenes / Sheds / Volunteer / Photo Coach neon-navy fallbacks remapped
-- `apps/waypoint-scenes/css/main.css` local palette aliased to tokens
+- Shifted ground from purple aubergine to charcoal / espresso
+- Terracotta is the primary Waypoint signature; purple is tertiary
+- Brand mark locked to `--wp-brand`
+- Explore: raised espresso + terracotta border (not a purple or giant orange fill)
+- Publishing / DFD accents: purple → terracotta + ochre
+- Borders: tan fog instead of purple fog
+- Product glow / body atmosphere: restrained terracotta + ochre, faint plum only

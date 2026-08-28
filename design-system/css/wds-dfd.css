@@ -1,6 +1,6 @@
 /**
  * Deep Forest Dispatch — visual stories about the real Earth.
- * Uses Waypoint Design System 2.0 tokens (aubergine / southwestern pastel).
+ * Uses Waypoint Design System 2.0 tokens (dusk-desert earth / terracotta).
  * data-product="deep-forest-dispatch"
  */
 
@@ -385,7 +385,7 @@
   height: 2.5rem;
   border-radius: 50%;
   border: 2px solid var(--wp-bone, #f0e2c9);
-  background: color-mix(in srgb, var(--wp-aubergine-900, #241b25) 80%, transparent);
+  background: color-mix(in srgb, var(--wp-bg, #181513) 80%, transparent);
   transform: translate(-50%, -50%);
 }
 

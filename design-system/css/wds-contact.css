@@ -23,7 +23,7 @@
   font-weight: 500;
   margin: 0.35rem 0 0.65rem;
   line-height: 1.15;
-  color: var(--wds-text, var(--waypoint-bone, #f0e2c9));
+  color: var(--wds-text, var(--waypoint-bone, #f0e1c3));
 }
 
 .wcs-hero p {
@@ -207,7 +207,7 @@
 
 .wcs-card:hover,
 .wcs-card:focus-visible {
-  border-color: var(--wds-accent, var(--waypoint-purple, #70446f));
+  border-color: var(--wds-accent, var(--waypoint-orange, #d46a3a));
   outline: none;
 }
 
@@ -288,7 +288,7 @@
 
 .wcs-pill-row a:hover,
 .wcs-pill-row a:focus-visible {
-  border-color: var(--wds-accent, var(--waypoint-purple, #70446f));
+  border-color: var(--wds-accent, var(--waypoint-orange, #d46a3a));
   outline: none;
 }
 

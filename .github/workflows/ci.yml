@@ -85,6 +85,7 @@ jobs:
           node automation/test-stale-product-identity.mjs
           node automation/test-side-trails.mjs
           node automation/test-home-rc1.mjs
+          node automation/test-waypoint-color-system.mjs
 
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs

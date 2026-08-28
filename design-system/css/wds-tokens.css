@@ -1,46 +1,52 @@
 /**
  * Waypoint Studio Design System 2.0 — Tokens
- * Identity: Contemporary Field Station · Desert Sunset · Southwest Landscape · Waypoint
+ * Identity: Southwestern field technology at dusk · dark desert + topographic tool
  *
  * Authoritative brand primitives: --waypoint-*
  * Canonical semantic API: --wp-* (derived from --waypoint-*)
  * Compatibility: --wds-* / --ws-* map onto --wp-* (do not invent parallel values).
  *
- * Feel: high-contrast southwestern — purple + orange + gold + tan + brown + bone on aubergine.
- * Not: neon, corporate blue, cool gray UI, white-dominant SaaS, cyberpunk.
+ * Hierarchy: dark earth → sand/cream → burnt orange → ochre → restrained desert purple.
+ * Terracotta is the Waypoint signature. Purple is a supporting family color, not the ground.
+ * Not: neon, corporate blue, cool gray SaaS, luxury-lifestyle purple, tactical/military, tourist-Southwest.
  *
  * Natural/data exception: blue/green/red/cyan may appear in scientific layers and status
  * when hue carries meaning — never as general nav/button/card chrome.
+ *
+ * Historical note: --waypoint-aubergine-* names are compatibility aliases for the earth stack.
  */
 
 :root {
-  /* ——— Authoritative Waypoint Southwest primitives (locked family) ——— */
-  --waypoint-aubergine-dark: #241b25;
-  --waypoint-aubergine: #3a243d;
-  --waypoint-purple: #70446f;
+  /* ——— Authoritative Waypoint dusk-desert primitives (locked family) ——— */
+  --waypoint-charcoal: #181513;
+  --waypoint-espresso: #251c20;
 
-  --waypoint-orange: #c9653d;
-  --waypoint-burnt-orange: #a94e32;
+  --waypoint-orange: #d46a3a;
+  --waypoint-burnt-orange: #b85a32;
 
-  --waypoint-gold: #d8a72e;
+  --waypoint-gold: #d7a72e;
 
   --waypoint-sand: #d9c3a3;
-  --waypoint-tan: #b88a5a;
+  --waypoint-tan: #bfa98c;
 
   --waypoint-brown: #6b4937;
 
-  --waypoint-bone: #f0e2c9;
+  --waypoint-bone: #f0e1c3;
+
+  --waypoint-purple: #79506f;
 
   /* Derived scale (same family — hierarchy only) */
-  --waypoint-aubergine-950: #1a141c;
-  --waypoint-aubergine-900: var(--waypoint-aubergine-dark);
-  --waypoint-aubergine-800: #2e2130;
-  --waypoint-aubergine-700: var(--waypoint-aubergine);
-  --waypoint-aubergine-600: #4a3050;
-  --waypoint-aubergine-inset: #120e14;
+  --waypoint-aubergine-950: #100d0c;
+  --waypoint-aubergine-dark: var(--waypoint-charcoal);
+  --waypoint-aubergine: var(--waypoint-espresso);
+  --waypoint-aubergine-900: var(--waypoint-charcoal);
+  --waypoint-aubergine-800: #1e1816;
+  --waypoint-aubergine-700: var(--waypoint-espresso);
+  --waypoint-aubergine-600: #322428;
+  --waypoint-aubergine-inset: #100d0c;
   --waypoint-orange-bright: #e07a4a;
-  --waypoint-purple-bright: #8a5a88;
-  --waypoint-gold-soft: #e8c45a;
+  --waypoint-purple-bright: #a0709c;
+  --waypoint-gold-soft: #d4b45a;
 
   /* ——— WP 2.0 primitives (alias the locked system) ——— */
   --wp-aubergine-950: var(--waypoint-aubergine-950);
@@ -50,7 +56,7 @@
   --wp-aubergine-600: var(--waypoint-aubergine-600);
   --wp-aubergine-inset: var(--waypoint-aubergine-inset);
 
-  --wp-charcoal: var(--waypoint-aubergine-800);
+  --wp-charcoal: var(--waypoint-charcoal);
   --wp-charcoal-soft: var(--waypoint-aubergine-600);
 
   --wp-sand-50: #f7efe0;
@@ -69,10 +75,10 @@
   --wp-purple: var(--waypoint-purple);
   --wp-purple-bright: var(--waypoint-purple-bright);
 
-  /* Sage/slate kept for DATA / success / info meaning — not general chrome accents */
-  --wp-sage: #7d8f72;
-  --wp-sage-bright: #95a788;
-  --wp-sage-deep: #5f6f56;
+  /* Sage is a field/natural accent — not a green outdoor-brand chrome */
+  --wp-sage: #73806a;
+  --wp-sage-bright: #8a9682;
+  --wp-sage-deep: #5f6b58;
 
   --wp-slate: #7a8a9a;
   --wp-dust-gold: var(--waypoint-gold);
@@ -80,24 +86,24 @@
   --wp-tan: var(--waypoint-tan);
   --wp-sand: var(--waypoint-sand);
 
-  /* Transparent helpers — higher contrast borders than prior fog */
-  --wp-fog: rgba(112, 68, 111, 0.42);
-  --wp-fog-subtle: rgba(112, 68, 111, 0.22);
-  --wp-sand-muted: rgba(240, 226, 201, 0.88);
-  --wp-sand-dim: rgba(240, 226, 201, 0.72);
-  --wp-terracotta-dim: rgba(201, 101, 61, 0.22);
-  --wp-plum-dim: rgba(112, 68, 111, 0.22);
-  --wp-sage-dim: rgba(125, 143, 114, 0.18);
-  --wp-purple-dim: rgba(112, 68, 111, 0.22);
-  --wp-clay-dim: rgba(169, 78, 50, 0.22);
-  --wp-gold-dim: rgba(216, 167, 46, 0.2);
+  /* Transparent helpers — warm earth strokes, not purple fog */
+  --wp-fog: rgba(191, 169, 140, 0.22);
+  --wp-fog-subtle: rgba(191, 169, 140, 0.12);
+  --wp-sand-muted: var(--waypoint-tan);
+  --wp-sand-dim: #a89478;
+  --wp-terracotta-dim: rgba(212, 106, 58, 0.18);
+  --wp-plum-dim: rgba(121, 80, 111, 0.14);
+  --wp-sage-dim: rgba(115, 128, 106, 0.16);
+  --wp-purple-dim: rgba(121, 80, 111, 0.14);
+  --wp-clay-dim: rgba(184, 90, 50, 0.2);
+  --wp-gold-dim: rgba(215, 167, 46, 0.16);
   --wp-brown-dim: rgba(107, 73, 55, 0.28);
 
   /* Status (never color-only — pair with label/icon). Natural-data hues OK here. */
-  --wp-success: #95a788;
+  --wp-success: #8a9682;
   --wp-success-bg: rgba(95, 111, 86, 0.32);
   --wp-warning: var(--waypoint-gold);
-  --wp-warning-bg: rgba(216, 167, 46, 0.2);
+  --wp-warning-bg: rgba(215, 167, 46, 0.18);
   --wp-danger: #d07060;
   --wp-danger-bg: rgba(120, 48, 52, 0.36);
   --wp-danger-border: rgba(208, 112, 96, 0.4);
@@ -105,27 +111,32 @@
   --wp-info-bg: rgba(106, 154, 184, 0.18);
 
   /* ——— Semantic roles (shared across products) ——— */
-  --wp-bg: var(--waypoint-aubergine-dark);
+  --wp-bg: var(--waypoint-charcoal);
   --wp-surface: var(--waypoint-aubergine-800);
-  --wp-elevated: var(--waypoint-aubergine);
+  --wp-elevated: var(--waypoint-espresso);
+  --wp-surface-raised: var(--waypoint-espresso);
   --wp-inset: var(--waypoint-aubergine-inset);
   --wp-border: var(--wp-fog);
   --wp-border-subtle: var(--wp-fog-subtle);
   --wp-text: var(--waypoint-bone);
-  --wp-text-secondary: var(--wp-sand-muted);
+  --wp-text-secondary: var(--waypoint-tan);
   --wp-text-tertiary: var(--wp-sand-dim);
-  --wp-text-muted: rgba(240, 226, 201, 0.7);
+  --wp-text-muted: var(--wp-sand-dim);
+  --wp-brand: var(--waypoint-orange);
   --wp-accent: var(--waypoint-orange);
   --wp-accent-dim: var(--wp-terracotta-dim);
-  --wp-accent-border: rgba(201, 101, 61, 0.5);
+  --wp-accent-border: rgba(212, 106, 58, 0.45);
   --wp-accent-bright: var(--waypoint-orange-bright);
-  --wp-warm: var(--waypoint-purple);
-  --wp-warm-dim: var(--wp-plum-dim);
+  --wp-accent-gold: var(--waypoint-gold);
+  --wp-accent-purple: var(--waypoint-purple);
+  --wp-accent-field: var(--wp-sage);
+  --wp-warm: var(--waypoint-gold);
+  --wp-warm-dim: var(--wp-gold-dim);
   --wp-focus: var(--waypoint-gold);
-  --wp-on-accent: var(--waypoint-aubergine-950);
-  --wp-topbar-bg: rgba(36, 27, 37, 0.92);
-  --wp-product-glow: rgba(201, 101, 61, 0.22);
-  --wp-journal-bg: linear-gradient(165deg, var(--waypoint-aubergine-800) 0%, var(--waypoint-aubergine) 100%);
+  --wp-on-accent: var(--waypoint-charcoal);
+  --wp-topbar-bg: color-mix(in srgb, var(--waypoint-charcoal) 94%, transparent);
+  --wp-product-glow: rgba(212, 106, 58, 0.12);
+  --wp-journal-bg: linear-gradient(165deg, var(--waypoint-aubergine-800) 0%, var(--waypoint-espresso) 100%);
   --wp-journal-text: var(--wp-text-secondary);
 
 
@@ -173,9 +184,9 @@
   --wp-radius-pill: 999px;
 
   /* ——— Elevation (warm charcoal, not cold navy) ——— */
-  --wp-shadow-sm: 0 4px 16px rgba(12, 8, 16, 0.42);
-  --wp-shadow-md: 0 12px 32px rgba(12, 8, 16, 0.52);
-  --wp-shadow-lg: 0 32px 80px rgba(12, 8, 16, 0.62);
+  --wp-shadow-sm: 0 4px 16px rgba(16, 13, 12, 0.45);
+  --wp-shadow-md: 0 12px 32px rgba(16, 13, 12, 0.55);
+  --wp-shadow-lg: 0 32px 80px rgba(16, 13, 12, 0.62);
   --wp-shadow-stage: var(--wp-shadow-lg), 0 0 0 1px var(--wp-border-subtle);
 
   /* ——— Layout ——— */
@@ -228,7 +239,7 @@
   --wds-lime: var(--wp-terracotta);
   --wds-lime-bright: var(--wp-terracotta-bright);
   --wds-lime-dim: var(--wp-terracotta-dim);
-  --wds-lime-muted: rgba(201, 101, 61, 0.45);
+  --wds-lime-muted: rgba(212, 106, 58, 0.4);
   --wds-lime-deep: var(--wp-clay);
 
   --wds-ink-950: var(--wp-aubergine-950);
@@ -261,10 +272,15 @@
   --wds-text-secondary: var(--wp-text-secondary);
   --wds-text-tertiary: var(--wp-text-tertiary);
   --wds-text-muted: var(--wp-text-muted);
-  --wds-muted: var(--wp-text-muted);
+  --wds-muted: var(--wds-text-muted);
+  --wds-brand: var(--wp-brand);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-accent-border: var(--wp-accent-border);
+  --wds-accent-gold: var(--wp-accent-gold);
+  --wds-accent-purple: var(--wp-accent-purple);
+  --wds-accent-field: var(--wp-accent-field);
+  --wds-surface-raised: var(--wp-surface-raised);
   --wds-warm: var(--wp-warm);
   --wds-warm-dim: var(--wp-warm-dim);
   --wds-focus: var(--wp-focus);
@@ -342,15 +358,15 @@
   --wds-section-gap: var(--wp-section-gap);
 }
 
-/* ——— Product accents (distinct IDs from shared SW palette only) ——— */
+/* ——— Product personalities (same earth family; accent pairing only) ——— */
 [data-product="studio-home"],
 [data-product="studio"] {
   --wp-accent: var(--waypoint-orange);
   --wp-accent-dim: var(--wp-terracotta-dim);
   --wp-accent-bright: var(--waypoint-orange-bright);
-  --wp-warm: var(--waypoint-purple);
-  --wp-warm-dim: var(--wp-plum-dim);
-  --wp-product-glow: rgba(201, 101, 61, 0.24);
+  --wp-warm: var(--waypoint-gold);
+  --wp-warm-dim: var(--wp-gold-dim);
+  --wp-product-glow: rgba(212, 106, 58, 0.12);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -358,25 +374,24 @@
 }
 
 [data-product="dashboard"] {
-  /* Southwest framing — aubergine stack + orange/gold accents.
-     Instrument DATA colors stay in wds-dashboard-rebuild.css domain tokens. */
+  /* Terracotta + ochre framing. Instrument DATA colors stay in wds-dashboard-rebuild.css. */
   --wp-bg: var(--waypoint-aubergine-dark);
   --wp-surface: var(--waypoint-aubergine-800);
-  --wp-elevated: var(--waypoint-aubergine);
+  --wp-elevated: var(--waypoint-espresso);
   --wp-inset: var(--waypoint-aubergine-inset);
-  --wp-topbar-bg: rgba(36, 27, 37, 0.94);
-  --wp-border: rgba(216, 167, 46, 0.22);
-  --wp-border-subtle: rgba(112, 68, 111, 0.28);
-  --wp-fog: rgba(112, 68, 111, 0.36);
-  --wp-fog-subtle: rgba(112, 68, 111, 0.2);
-  --wp-journal-bg: linear-gradient(165deg, var(--waypoint-aubergine-800) 0%, var(--waypoint-aubergine) 55%, var(--waypoint-aubergine-dark) 100%);
-  --wp-on-accent: var(--waypoint-aubergine-950);
+  --wp-topbar-bg: color-mix(in srgb, var(--waypoint-charcoal) 94%, transparent);
+  --wp-border: rgba(191, 169, 140, 0.2);
+  --wp-border-subtle: rgba(191, 169, 140, 0.12);
+  --wp-fog: rgba(191, 169, 140, 0.2);
+  --wp-fog-subtle: rgba(191, 169, 140, 0.1);
+  --wp-journal-bg: linear-gradient(165deg, var(--waypoint-aubergine-800) 0%, var(--waypoint-espresso) 55%, var(--waypoint-charcoal) 100%);
+  --wp-on-accent: var(--waypoint-charcoal);
   --wp-accent: var(--waypoint-orange);
-  --wp-accent-dim: rgba(201, 101, 61, 0.22);
+  --wp-accent-dim: rgba(212, 106, 58, 0.16);
   --wp-accent-bright: var(--waypoint-gold);
-  --wp-warm: var(--waypoint-sand);
-  --wp-warm-dim: rgba(217, 195, 163, 0.18);
-  --wp-product-glow: rgba(216, 167, 46, 0.2);
+  --wp-warm: var(--waypoint-gold);
+  --wp-warm-dim: var(--wp-gold-dim);
+  --wp-product-glow: rgba(212, 106, 58, 0.1);
   --wds-bg: var(--wp-bg);
   --wds-surface: var(--wp-surface);
   --wds-elevated: var(--wp-elevated);
@@ -395,12 +410,13 @@
 [data-product="scenes"],
 [data-product="photo-coach"],
 [data-product="photo-library"] {
+  /* Ochre + terracotta — desert light, not yellow chrome */
   --wp-accent: var(--waypoint-gold);
   --wp-accent-dim: var(--wp-gold-dim);
   --wp-accent-bright: var(--waypoint-gold-soft);
   --wp-warm: var(--waypoint-orange);
   --wp-warm-dim: var(--wp-terracotta-dim);
-  --wp-product-glow: rgba(216, 167, 46, 0.22);
+  --wp-product-glow: rgba(215, 167, 46, 0.1);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -409,12 +425,13 @@
 
 [data-product="shed-hunting"],
 [data-product="sheds"] {
-  --wp-accent: var(--waypoint-burnt-orange);
-  --wp-accent-dim: var(--wp-clay-dim);
-  --wp-accent-bright: var(--waypoint-orange);
-  --wp-warm: var(--waypoint-gold);
-  --wp-warm-dim: var(--wp-gold-dim);
-  --wp-product-glow: rgba(169, 78, 50, 0.24);
+  /* Terracotta + restrained sage */
+  --wp-accent: var(--waypoint-orange);
+  --wp-accent-dim: var(--wp-terracotta-dim);
+  --wp-accent-bright: var(--waypoint-orange-bright);
+  --wp-warm: var(--wp-sage);
+  --wp-warm-dim: var(--wp-sage-dim);
+  --wp-product-glow: rgba(212, 106, 58, 0.1);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -423,12 +440,13 @@
 }
 
 [data-product="articles"] {
-  --wp-accent: var(--waypoint-purple);
-  --wp-accent-dim: var(--wp-plum-dim);
-  --wp-accent-bright: var(--waypoint-purple-bright);
-  --wp-warm: var(--waypoint-orange);
-  --wp-warm-dim: var(--wp-terracotta-dim);
-  --wp-product-glow: rgba(112, 68, 111, 0.24);
+  /* Cream + terracotta + ochre — editorial, not purple chrome */
+  --wp-accent: var(--waypoint-orange);
+  --wp-accent-dim: var(--wp-terracotta-dim);
+  --wp-accent-bright: var(--waypoint-orange-bright);
+  --wp-warm: var(--waypoint-gold);
+  --wp-warm-dim: var(--wp-gold-dim);
+  --wp-product-glow: rgba(212, 106, 58, 0.08);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -436,14 +454,14 @@
 }
 
 [data-product="deep-forest-dispatch"] {
-  /* Same Waypoint product — purple primary + orange warm (not a separate green site) */
-  --wp-accent: var(--waypoint-purple);
-  --wp-accent-dim: var(--wp-plum-dim);
-  --wp-accent-bright: var(--waypoint-purple-bright);
-  --wp-warm: var(--waypoint-orange);
-  --wp-warm-dim: var(--wp-terracotta-dim);
+  /* Same publishing family as Articles — terracotta + ochre on cream type */
+  --wp-accent: var(--waypoint-orange);
+  --wp-accent-dim: var(--wp-terracotta-dim);
+  --wp-accent-bright: var(--waypoint-orange-bright);
+  --wp-warm: var(--waypoint-gold);
+  --wp-warm-dim: var(--wp-gold-dim);
   --wp-focus: var(--waypoint-gold);
-  --wp-product-glow: rgba(112, 68, 111, 0.26);
+  --wp-product-glow: rgba(212, 106, 58, 0.08);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -451,13 +469,27 @@
   --wds-product-glow: var(--wp-product-glow);
 }
 
+[data-product="waypoint-deck"] {
+  /* Public marketing shell: terracotta + desert purple. No neon instrumentation. */
+  --wp-accent: var(--waypoint-orange);
+  --wp-accent-dim: var(--wp-terracotta-dim);
+  --wp-accent-bright: var(--waypoint-orange-bright);
+  --wp-warm: var(--waypoint-purple);
+  --wp-warm-dim: var(--wp-plum-dim);
+  --wp-product-glow: rgba(121, 80, 111, 0.1);
+  --wds-accent: var(--wp-accent);
+  --wds-accent-dim: var(--wp-accent-dim);
+  --wds-warm: var(--wp-warm);
+  --wds-product-glow: var(--wp-product-glow);
+}
+
 [data-product="side-trails"] {
-  --wp-accent: var(--waypoint-purple-bright);
-  --wp-accent-dim: var(--wp-purple-dim);
-  --wp-accent-bright: #a0709c;
-  --wp-warm: var(--waypoint-tan);
-  --wp-warm-dim: rgba(184, 138, 90, 0.2);
-  --wp-product-glow: rgba(112, 68, 111, 0.24);
+  --wp-accent: var(--waypoint-orange);
+  --wp-accent-dim: var(--wp-terracotta-dim);
+  --wp-accent-bright: var(--waypoint-orange-bright);
+  --wp-warm: var(--waypoint-purple);
+  --wp-warm-dim: var(--wp-plum-dim);
+  --wp-product-glow: rgba(121, 80, 111, 0.1);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -484,7 +516,7 @@
   --wp-accent-bright: var(--waypoint-orange-bright);
   --wp-warm: var(--waypoint-purple);
   --wp-warm-dim: var(--wp-plum-dim);
-  --wp-product-glow: rgba(201, 101, 61, 0.22);
+  --wp-product-glow: rgba(212, 106, 58, 0.12);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -536,7 +568,7 @@
   --wp-accent-bright: var(--waypoint-orange-bright);
   --wp-warm: var(--waypoint-tan);
   --wp-warm-dim: rgba(184, 138, 90, 0.18);
-  --wp-product-glow: rgba(201, 101, 61, 0.2);
+  --wp-product-glow: rgba(212, 106, 58, 0.1);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -562,7 +594,7 @@
   --wp-accent-bright: var(--waypoint-purple-bright);
   --wp-warm: var(--waypoint-burnt-orange);
   --wp-warm-dim: var(--wp-clay-dim);
-  --wp-product-glow: rgba(112, 68, 111, 0.24);
+  --wp-product-glow: rgba(121, 80, 111, 0.12);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -604,7 +636,7 @@
   --wp-accent: var(--waypoint-sand);
   --wp-accent-dim: rgba(217, 195, 163, 0.18);
   --wp-warm: var(--waypoint-purple);
-  --wp-product-glow: rgba(112, 68, 111, 0.16);
+  --wp-product-glow: rgba(121, 80, 111, 0.1);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
@@ -624,6 +656,7 @@
   --ws-text-tertiary: var(--wp-text-tertiary);
   --ws-accent: var(--wp-accent);
   --ws-accent-dim: var(--wp-accent-dim);
+  --ws-brand: var(--wp-brand);
   --ws-warm: var(--wp-warm);
   --ws-radius-shell: var(--wp-radius-xl);
   --ws-radius-control: var(--wp-radius-md);
