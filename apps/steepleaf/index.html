@@ -1,115 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-product="steepleaf">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Steepleaf — what should I brew today? Private tea collection, brewing guidance, and tasting journal.">
-  <title>Steepleaf — Waypoint Studio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="../../design-system/css/wds.css">
-  <link rel="stylesheet" href="../../design-system/css/wds-steepleaf.css">
-  <style>
-    #sl-mount { min-height: 70vh; }
-    .sl-boot { max-width: 72rem; margin: 0 auto; padding: 1rem; color: #5a6b60; }
-    .sl-boot__bar { height: 2.4rem; width: 11rem; background: #e7f0ea; border-radius: 4px; margin-bottom: 1rem; }
-    .sl-boot__line { height: 0.85rem; background: #e8eee9; border-radius: 4px; margin: 0.4rem 0; }
-  </style>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://waypointstudio.org/">
+  <meta http-equiv="refresh" content="0;url=https://waypointstudio.org/">
+  <title>Waypoint Studio</title>
+  <script>location.replace("https://waypointstudio.org/");</script>
 </head>
 <body>
-  <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="steepleaf" data-product-name="Steepleaf" data-shell-depth="1">
-    <div data-wds-app-global data-shell-depth="1"></div>
-    <div data-wds-app-local data-shell-depth="1"></div>
-    <main id="main" class="wpf-page sl-page">
-      <p class="sl-peers" aria-label="Steepleaf surfaces">
-        <a href="./" aria-current="page">Private companion</a>
-        <span aria-hidden="true">·</span>
-        <a href="explore/">Educational knowledge graph</a>
-        <span aria-hidden="true">·</span>
-        <a href="entity/?id=stl_tea-longjing-shifeng">Labeled sample tea</a>
-      </p>
-      <noscript>
-        <section>
-          <h1>Steepleaf</h1>
-          <p>Enable JavaScript to use your private tea collection, brewing guidance, and journal. Steepleaf does not invent tasting notes for you.</p>
-        </section>
-      </noscript>
-      <div id="sl-mount" aria-busy="true">
-        <div class="wds-boot" role="status" aria-live="polite" data-wds-boot="1">
-          <p class="wds-boot__eyebrow">Steepleaf</p>
-          <p class="wds-boot__title">Today’s tea briefing</p>
-          <p class="wds-boot__detail">Loading your private collection and brewing guidance. Steepleaf does not invent tasting notes for you.</p>
-          <div class="wds-boot__track" aria-hidden="true"><span class="wds-boot__bar"></span></div>
-          <p class="wds-boot__status">Starting Steepleaf…</p>
-        </div>
-      </div>
-    </main>
-    <div data-wds-app-footer data-shell-depth="1"></div>
-  </div>
-  <script>try { performance.mark("sl-html"); } catch (e) {}</script>
-  <script src="../../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-resilience.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-ui.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-boot.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-identity.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-workflows.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-places.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-platform-observations.js?v=local" defer></script>
-  <script src="../../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
-  <script src="js/steepleaf-models.js" defer></script>
-  <script src="js/steepleaf-guides.js" defer></script>
-  <script src="js/steepleaf-briefing.js" defer></script>
-  <script src="js/wds-steepleaf-app.js" defer></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.WDS && WDS.appShell) {
-        WDS.appShell.mount({ appId: "steepleaf", productName: "Steepleaf", shellDepth: 1 });
-      }
-      var mount = document.getElementById("sl-mount");
-      var deadline = Date.now() + 12000;
-      function start() {
-        if (window.WDS && WDS.steepleafApp && typeof WDS.steepleafApp.mount === "function") {
-          WDS.steepleafApp.mount(mount);
-          return;
-        }
-        if (Date.now() >= deadline) {
-          if (window.WDS && WDS.platformBoot && WDS.platformBoot.fail) {
-            WDS.platformBoot.fail(mount, {
-              product: "Steepleaf",
-              title: "Could not open Steepleaf",
-              detail: "Companion scripts did not load. Check your connection and retry.",
-              homeHref: "../../",
-              supportHref: "../../support.html"
-            });
-          } else if (mount) {
-            mount.innerHTML =
-              '<p role="alert">Steepleaf failed to load. <button type="button" onclick="location.reload()">Retry</button></p>';
-            mount.removeAttribute("aria-busy");
-          }
-          return;
-        }
-        if (window.WDS && WDS.platformBoot && WDS.platformBoot.status) {
-          WDS.platformBoot.status(mount, "Waiting for companion scripts…");
-        }
-        requestAnimationFrame(start);
-      }
-      if (window.WDS && WDS.platformBoot && WDS.platformBoot.watch) {
-        WDS.platformBoot.watch(mount, {
-          product: "Steepleaf",
-          title: "Could not open Steepleaf",
-          detail: "Startup took too long. You can retry or return to Studio home.",
-          homeHref: "../../",
-          supportHref: "../../support.html",
-          timeoutMs: 15000
-        });
-      }
-      start();
-    });
-  </script>
+  <p><a href="https://waypointstudio.org/">Continue to Waypoint Studio</a></p>
 </body>
 </html>

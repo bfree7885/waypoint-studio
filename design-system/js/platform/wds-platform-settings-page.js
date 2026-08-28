@@ -44,13 +44,17 @@
     if (!el || !WDS.platform || !WDS.platform.Collections) return;
     var cols = WDS.platform.Collections.list();
     if (!cols.length) {
-      el.innerHTML = '<p class="wds-honesty">No collections yet. Fieldry favorites will appear here automatically.</p>';
+      el.innerHTML = '<p class="wds-honesty">No collections yet. Favorites from your field notes appear here when you save them.</p>';
       return;
     }
     el.innerHTML = "<ul>" + cols.map(function (c) {
       return "<li><strong>" + esc(c.title) + "</strong> — " +
         (c.itemIds || []).length + " items" +
-        (c.appId ? " · " + esc(c.appId) : "") + "</li>";
+        (c.appId && WDS.platformObservations && WDS.platformObservations.sourceLabel
+          ? " · " + esc(WDS.platformObservations.sourceLabel(c.appId))
+          : c.appId && !/fieldry|foragecast|volunteer|steepleaf|savant|signalterrain|terrainbound|landscape|openroad/i.test(c.appId)
+            ? " · " + esc(c.appId)
+            : "") + "</li>";
     }).join("") + "</ul>";
   }
 
@@ -75,7 +79,7 @@
         var link = o.href
           ? '<a href="' + esc(o.href) + '">' + esc(o.title) + "</a>"
           : esc(o.title);
-        return "<li>" + link + " <span class=\"wds-honesty\">" + esc(o.sourceApp) + "</span></li>";
+        return "<li>" + link + " <span class=\"wds-honesty\">" + esc(o.sourceLabel || "notes") + "</span></li>";
       }).join("") + "</ul>";
     }
   }
@@ -177,7 +181,7 @@
         if (WDS.platformPlaces && WDS.platformPlaces.saveCurrent) {
           var place = WDS.platformPlaces.saveCurrent();
           if (!place) {
-            alert("Set a location in Dashboard or ForageCast first, then save it here.");
+            alert("Set a location in Dashboard first, then save it here.");
           }
           paintPlaces();
         }

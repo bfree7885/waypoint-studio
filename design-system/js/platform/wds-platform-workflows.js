@@ -12,77 +12,23 @@
 (function (global) {
   "use strict";
 
+  var PUBLIC_DESTINATIONS = {
+    dashboard: 1,
+    scenes: 1,
+    "shed-hunting": 1,
+    "photo-coach": 1,
+    articles: 1,
+    deck: 1
+  };
+
   var WORKFLOWS = [
-    {
-      id: "photo-coach-to-fieldry",
-      from: "photo-coach",
-      to: "fieldry",
-      label: "Log what you noticed in Fieldry",
-      why: "Careful looking often becomes a lasting observation.",
-      pathFromRoot: "apps/fieldry/",
-      when: "after-session"
-    },
-    {
-      id: "fieldry-to-scenes",
-      from: "fieldry",
-      to: "scenes",
-      label: "Explore photography in Scenes",
-      why: "Encounters can inspire how you look next time outdoors.",
-      pathFromRoot: "apps/scenes/",
-      when: "after-save"
-    },
-    {
-      id: "sheds-to-fieldry",
-      from: "shed-hunting",
-      to: "fieldry",
-      label: "Add wildlife sign to your life list",
-      why: "Sheds notes and Fieldry records both describe what you found.",
-      pathFromRoot: "apps/fieldry/",
-      when: "after-observation"
-    },
-    {
-      id: "foragecast-to-fieldry",
-      from: "foragecast",
-      to: "fieldry",
-      label: "Record a find in Fieldry",
-      why: "Seasonal guidance pairs well with a private voucher of what you saw.",
-      pathFromRoot: "apps/fieldry/",
-      when: "after-conditions"
-    },
     {
       id: "dashboard-to-scenes",
       from: "dashboard",
       to: "scenes",
       label: "Open photography in Scenes",
       why: "Light and outdoor conditions pair with careful looking.",
-      pathFromRoot: "apps/photo-coach/",
-      when: "always"
-    },
-    {
-      id: "dashboard-to-fieldry",
-      from: "dashboard",
-      to: "fieldry",
-      label: "Record a hike or trail note in Fieldry",
-      why: "Trail and hiking conditions become lasting private observations.",
-      pathFromRoot: "apps/fieldry/#/new",
-      when: "always"
-    },
-    {
-      id: "dashboard-to-foragecast",
-      from: "dashboard",
-      to: "foragecast",
-      label: "Check rivers and seasonal land cues",
-      why: "Water and weather context deepen ForageCast seasonal guidance.",
-      pathFromRoot: "apps/foragecast/",
-      when: "always"
-    },
-    {
-      id: "dashboard-to-any",
-      from: "dashboard",
-      to: "studio",
-      label: "Browse all Studio apps",
-      why: "Home is the outdoor workspace; incubator lists experiences still maturing.",
-      pathFromRoot: "./",
+      pathFromRoot: "apps/scenes/",
       when: "always"
     },
     {
@@ -113,58 +59,13 @@
       when: "always"
     },
     {
-      id: "signalterrain-to-dashboard",
-      from: "signalterrain",
-      to: "dashboard",
-      label: "Return to outdoor conditions",
-      why: "Signal literacy sits beside outdoor situational awareness.",
-      pathFromRoot: "apps/dashboard/",
-      when: "always"
-    },
-    {
-      id: "volunteer-to-fieldry",
-      from: "waypoint-volunteer",
-      to: "fieldry",
-      label: "Keep stewardship in your personal history",
-      why: "Volunteer moments can become private notes without gamification.",
-      pathFromRoot: "apps/fieldry/",
-      when: "after-save"
-    },
-    {
-      id: "savant-to-places",
-      from: "savant-sommelier",
-      to: "studio",
-      label: "Save vineyard sites as Studio places",
-      why: "Sites you study should live in one place list.",
-      pathFromRoot: "settings.html#places",
-      when: "settings"
-    },
-    {
-      id: "steepleaf-to-collections",
-      from: "steepleaf",
-      to: "studio",
-      label: "Use Studio collections for tea lists",
-      why: "Avoid a second collection system when platform collections exist.",
-      pathFromRoot: "settings.html#collections",
-      when: "settings"
-    },
-    {
-      id: "fieldry-to-sheds",
-      from: "fieldry",
-      to: "shed-hunting",
-      label: "Review deer / sign context in Sheds",
-      why: "Wildlife life-list entries may relate to winter field craft.",
-      pathFromRoot: "apps/shed-hunting/",
-      when: "taxon-cervid"
-    },
-    {
-      id: "fieldry-to-foragecast",
-      from: "fieldry",
-      to: "foragecast",
-      label: "Check seasonal foraging context",
-      why: "Flora and fungi notes pair with educational season status.",
-      pathFromRoot: "apps/foragecast/",
-      when: "taxon-flora"
+      id: "sheds-to-scenes",
+      from: "shed-hunting",
+      to: "scenes",
+      label: "Read the landscape in Scenes",
+      why: "Photographs and visual stories can deepen what a walk already showed.",
+      pathFromRoot: "apps/scenes/",
+      when: "after-observation"
     }
   ];
 
@@ -191,7 +92,7 @@
 
   function forApp(appId) {
     return WORKFLOWS.filter(function (w) {
-      return w.from === appId;
+      return w.from === appId && PUBLIC_DESTINATIONS[w.to];
     });
   }
 
@@ -237,7 +138,7 @@
 
   global.WDS = global.WDS || {};
   global.WDS.platformWorkflows = {
-    version: "1.1.0",
+    version: "1.2.0",
     list: list,
     forApp: forApp,
     href: function (id, depth) {

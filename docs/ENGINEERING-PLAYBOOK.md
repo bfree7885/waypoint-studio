@@ -1648,8 +1648,17 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Quiet Discover copy that names natural events must not render while the events catalog is unknown (in-flight or failed). Empty event HTML is not a confirmed empty catalog.
 - Region-box visibility is a hard gate before lifecycle. Boxes must cover the catalog’s own visibility summary (eastern Pacific / Hawaii / Alaska), not only contiguous-Americas longitudes.
 
-### Lessons Learned — Sheds V3.2 release onto later main (2026-08-26)
+### Lessons Learned — Public portfolio reconciliation (2026-08-27)
 
-- Preserve the mixed original branch. Cherry-pick only the Sheds Inspect sequence (`d9eb6bb9`–`5e3cf670`) onto current `main`. Studio/Discover/Publishing/Deck commits on that branch were already landed with different SHAs.
-- Do not force-push `chore/product-direction-reconciliation`. SHA-alignment report commits can come along; retarget the final report at the release branch after transfer.
-- Draft PRs opened without a later `synchronize` push may never queue GitHub Actions `pull_request` CI (`on.pull_request` defaults to opened / synchronize / reopened, not ready_for_review). Mark the PR ready and push a follow-up commit so CI actually starts.
+- With only Deck remaining, a Side Trails collection page becomes a graveyard. Put **Deck** in primary nav; keep `/side-trails/waypoint-deck/` as the canonical URL; make `/side-trails/` a silent redirect. Do not keep archive cards “so the section has something.”
+- GitHub Pages has no real HTTP redirects. Silent public retirement is `noindex` + canonical + meta refresh + `location.replace`, with **no** retired-product copy on the page.
+- Preserve engineering (JS, GIS, scoring, radio concepts) under `apps/*` and `design-system/js/*`; remove public **identity** and sitemap/nav promotion.
+- iPhone header overlap: aurora-bridge wrapped `.was-primary-nav` onto a second sticky row (`order: 3; flex: 1 1 100%`). Homepage-only compact nav left About/Support/Deck colliding. Fix the **shared** header with a one-row bar + opaque overlay menu — not per-device padding. A dropdown (`top: 100%`) is not enough: cinematic heroes still show through; the open menu must be a full-viewport opaque overlay (`position: fixed; inset: 0; background: #1a141c`).
+- Tests that required Side Trails / Archive / Incubator catalogs encode obsolete IA. Update them to the five-effort portfolio; do not delete coverage.
+- Dashboard quiet-chrome `@media (max-width: 48rem)` still tried to wrap `.was-primary-nav` (`padding: 0; flex: 1 1 auto`). That zeroed overlay padding so the current link sat in the header. Neutralize those wrap rules; keep the shared overlay.
+- Quiet chrome’s always-on `.was-global--quiet .was-primary-nav { justify-content: flex-end }` is 0,2,0 and beats the mobile overlay’s `.was-primary-nav { justify-content: flex-start }` (0,1,0). Open Dashboard (and other quiet) menus then pin links to the bottom of the viewport. Re-assert `flex-start` on quiet + dashboard overlay selectors inside the same `@media (max-width: 900px)` block.
+- Product headers that set `backdrop-filter` (Scenes / Sheds) turn the sticky bar into a containing block. `position: fixed; inset: 0` then only covers the header (~94px) and links sit in a clipped row. Drop `backdrop-filter` (and hide `.was-global__actions`) while the overlay is open.
+- Articles filter chips sit in a grid item whose `min-width: auto` is the chips’ max-content (one nowrap row). `flex-wrap: wrap` never triggers, so the page grows (~496px at a 390 viewport) and hero copy clips. Bound `.waf-toolbar` / `.waf-views` with `min-width: 0; max-width: 100%`.
+- `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
+- Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
+

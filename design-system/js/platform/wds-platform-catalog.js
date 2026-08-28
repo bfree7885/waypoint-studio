@@ -93,15 +93,15 @@
       navPriority: 40
     },
     {
-      id: "side-trails",
-      name: "Side Trails",
-      shortName: "Side Trails",
+      id: "deck",
+      name: "Waypoint Deck",
+      shortName: "Deck",
       tier: "core",
-      status: "live",
-      description: "Sister experiments catalog — OpenRoad PA, SignalTerrain, Global Signals, and future side projects.",
-      pathFromApps: "../../side-trails/",
-      pathFromRoot: "side-trails/",
-      dataProduct: "side-trails",
+      status: "in-development",
+      description: "Local-first Linux field computer — distinct from Studio web apps.",
+      pathFromApps: "../../side-trails/waypoint-deck/",
+      pathFromRoot: "side-trails/waypoint-deck/",
+      dataProduct: "waypoint-deck",
       navPriority: 50
     },
     {
@@ -153,79 +153,6 @@
       dataProduct: "hidden-landscapes",
       parent: "scenes",
       navPriority: 47
-    },
-    {
-      id: "foragecast",
-      name: "ForageCast",
-      shortName: "ForageCast",
-      tier: "supporting",
-      status: "live",
-      description: "Seasonal land companion — foraging, orchard, garden, and today’s action plan.",
-      pathFromApps: "../foragecast/",
-      pathFromRoot: "apps/foragecast/",
-      dataProduct: "foragecast",
-      navPriority: 70
-    },
-    {
-      id: "fieldry",
-      name: "Fieldry",
-      shortName: "Fieldry",
-      tier: "supporting",
-      status: "live",
-      description: "Private observation ledger — a life list of the natural world.",
-      pathFromApps: "../fieldry/",
-      pathFromRoot: "apps/fieldry/",
-      dataProduct: "fieldry",
-      navPriority: 75
-    },
-    {
-      id: "steepleaf",
-      name: "Steepleaf",
-      shortName: "Steepleaf",
-      tier: "incubator",
-      status: "active",
-      description: "Tea companion — today’s brew, private collection, sessions, and calm learning.",
-      pathFromApps: "../steepleaf/",
-      pathFromRoot: "apps/steepleaf/",
-      dataProduct: "steepleaf",
-      navPriority: 80
-    },
-    {
-      id: "signalterrain",
-      name: "SignalTerrain",
-      shortName: "SignalTerrain",
-      tier: "side-trails",
-      status: "experimental",
-      description: "Adaptive cyber intelligence for defenders — listed under Side Trails, not a studio flagship.",
-      pathFromApps: "../signalterrain/",
-      pathFromRoot: "apps/signalterrain/",
-      dataProduct: "signalterrain",
-      parent: "side-trails",
-      navPriority: 85
-    },
-    {
-      id: "savant-sommelier",
-      name: "Savant Sommelier",
-      shortName: "Savant",
-      tier: "incubator",
-      status: "foundation",
-      description: "Vineyard intelligence — terrain, climate, and wine landscape literacy.",
-      pathFromApps: "../savant-sommelier/",
-      pathFromRoot: "apps/savant-sommelier/",
-      dataProduct: "savant-sommelier",
-      navPriority: 90
-    },
-    {
-      id: "waypoint-volunteer",
-      name: "Waypoint Volunteer",
-      shortName: "Volunteer",
-      tier: "incubator",
-      status: "foundation",
-      description: "What good can I do today? — community opportunity discovery.",
-      pathFromApps: "../waypoint-volunteer/",
-      pathFromRoot: "apps/waypoint-volunteer/",
-      dataProduct: "waypoint-volunteer",
-      navPriority: 95
     }
   ];
 

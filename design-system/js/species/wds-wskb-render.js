@@ -239,7 +239,7 @@
       html += section(
         "observe-template",
         "Observation template",
-        "<p class=\"wskb-hint\">For Fieldry — suggested prompts when recording this species.</p>" +
+        "<p class=\"wskb-hint\">Suggested prompts when recording this species.</p>" +
           listItems(record.observationTemplate.prompts),
         record,
         "future"

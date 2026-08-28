@@ -14,7 +14,7 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-hide-apps="true" data-shell-depth="0">
     <div data-wds-app-global data-shell-depth="0"></div>
 
     <main id="main" class="wcs-page wcs-page--wide">
@@ -76,15 +76,17 @@
         var stages = fw.sharedStages;
         var products = fw.products || [];
         var productParam = new URLSearchParams(location.search).get("product");
+        var publicIds = { dashboard: 1, scenes: 1, sheds: 1, "photo-coach": 1, "hidden-landscapes": 1 };
+        var publicProducts = products.filter(function (p) { return publicIds[p.id]; });
         frameworkRoot.innerHTML =
           "<p class=\"wk-framework__note\">" + esc(fw.mission && fw.mission.headline ? fw.mission.headline : "") + "</p>" +
           "<div class=\"wk-framework__stages\">" +
           "<div class=\"wk-framework__stage\"><h3>Observe</h3><p>" + esc(stages.observe.meaning) + "</p></div>" +
           "<div class=\"wk-framework__stage\"><h3>Understand</h3><p>" + esc(stages.understand.meaning) + "</p></div>" +
-          "<div class=\"wk-framework__stage\"><h3>Domain direction</h3><p>Each app offers a third kind of support — Search, Record, Explore, Brew, Taste, Monitor, Plan, Create, Refine, or Reveal — without requiring action.</p></div>" +
+          "<div class=\"wk-framework__stage\"><h3>Domain direction</h3><p>Each Studio experience offers a third kind of support — Plan, Create, Search, Refine, or Reveal — without requiring action.</p></div>" +
           "</div>" +
           "<div class=\"wk-product-map\" style=\"margin-top:1rem\">" +
-          products.map(function (p) {
+          publicProducts.map(function (p) {
             return "<div class=\"wk-product-map__item\"><strong>" + esc(p.name) + "</strong><span>Observe → Understand → <em>" + esc(p.direction.label) + "</em></span></div>";
           }).join("") +
           "</div>";
@@ -92,8 +94,8 @@
 
         var bundle = await WDS.knowledgeCurated.loadDemo();
         var filterRoot = document.getElementById("knowledge-filter");
-        var productIds = ["", "sheds", "fieldry", "foragecast", "photo-coach", "scenes", "signalterrain"];
-        var labels = { "": "Featured", sheds: "Sheds", fieldry: "Fieldry", foragecast: "ForageCast", "photo-coach": "Photo Coach", scenes: "Scenes", signalterrain: "SignalTerrain" };
+        var productIds = ["", "dashboard", "scenes", "sheds", "photo-coach"];
+        var labels = { "": "Featured", dashboard: "Dashboard", scenes: "Scenes", sheds: "Sheds", "photo-coach": "Photo Coach" };
 
         function renderCards(productId) {
           var entries;

@@ -79,63 +79,8 @@
       "prohibitedPressure": ["Go find sheds now", "Complete today’s search", "Maintain a streak"]
     },
     {
-      "id": "fieldry",
-      "name": "Fieldry",
-      "observe": "Encounters, locations, timing, and personal field notes.",
-      "understand": "Ecology, taxonomy, phenology, identification context, and conservation framing.",
-      "direction": { "label": "Record", "description": "Support noticing and preserving observations. Logging is never required." },
-      "knowledgeCategories": ["ecology", "taxonomy", "phenology", "identification", "invasive-species", "habitat", "conservation", "citizen-science", "observation-methods"],
-      "exampleSources": ["field guides", "extension service ID sheets", "peer-reviewed ecology"],
-      "ctaExamples": ["Why this species may matter", "Related habitat reading"],
-      "prohibitedPressure": ["Log everything today", "Complete your life list", "Earn the next badge"]
-    },
-    {
-      "id": "foragecast",
-      "name": "ForageCast",
-      "observe": "Seasonal land conditions across foraging, orchard, garden, and stewardship contexts.",
-      "understand": "Fungal and plant ecology, phenology, weather relationships, and safety limits.",
-      "direction": { "label": "Explore", "description": "Offer practical seasonal direction while preserving choice. Food-safety warnings stay direct and prominent." },
-      "knowledgeCategories": ["fungal-ecology", "plant-ecology", "phenology", "forest-succession", "weather-relationships", "orchard-care", "permaculture", "food-forests", "soil", "land-stewardship", "toxicology"],
-      "exampleSources": ["mycology references", "extension foraging safety", "soil and phenology research"],
-      "ctaExamples": ["Why rain timing may matter", "Safety note", "Related host-tree reading"],
-      "prohibitedPressure": ["Forage today", "Finish the season checklist"]
-    },
-    {
-      "id": "steepleaf",
-      "name": "Steepleaf",
-      "observe": "Leaf, liquor, aroma, water, and preparation context.",
-      "understand": "Tea botany, processing, terroir, water chemistry, and sensory research.",
-      "direction": { "label": "Brew", "description": "An invitation to understand preparation — not a prescribed ritual." },
-      "knowledgeCategories": ["tea-botany", "processing", "terroir", "water-chemistry", "brewing-science", "sensory-research", "cultural-history"],
-      "exampleSources": ["tea science reviews", "water chemistry primers", "cultural histories"],
-      "ctaExamples": ["Why water temperature may matter", "Related processing note"],
-      "prohibitedPressure": ["Brew exactly this way", "Complete the tasting ritual"]
-    },
-    {
-      "id": "savant-sommelier",
-      "name": "Savant Sommelier",
-      "observe": "Region, grape, climate, and sensory notes.",
-      "understand": "Viticulture, fermentation, terroir, sensory science, and climate context.",
-      "direction": { "label": "Taste", "description": "Support tasting literacy without treating preferences as objective rankings." },
-      "knowledgeCategories": ["viticulture", "fermentation", "terroir", "sensory-science", "regional-history", "climate-impacts", "food-pairing"],
-      "exampleSources": ["viticulture reviews", "sensory science summaries", "regional climate notes"],
-      "ctaExamples": ["Why climate may shape this vintage", "Related terroir reading"],
-      "prohibitedPressure": ["Rank this wine", "Complete your cellar goals"]
-    },
-    {
-      "id": "signalterrain",
-      "name": "SignalTerrain",
-      "observe": "Spectrum context, advisories, outages, and environmental radio conditions.",
-      "understand": "Radio science, propagation, space weather, infrastructure awareness, and defensive cyber literacy.",
-      "direction": { "label": "Monitor", "description": "Awareness and interpretation only — defensive, educational, lawful, and non-operational." },
-      "knowledgeCategories": ["radio-science", "spectrum-policy", "sdr", "propagation", "space-weather", "communications-infrastructure", "cyber-advisories", "gps-interference", "outages"],
-      "exampleSources": ["official advisories", "space-weather bulletins", "standards documentation"],
-      "ctaExamples": ["Official advisory", "Background reading", "What remains uncertain"],
-      "prohibitedPressure": ["Exploit this", "Attack systems", "Act on unverified threats"]
-    },
-    {
       "id": "dashboard",
-      "name": "Outdoor Intelligence Dashboard",
+      "name": "Dashboard",
       "observe": "Weather, air, light, trails, safety, and seasonal change.",
       "understand": "Weather science, hydrology, air quality, fire conditions, and outdoor safety context.",
       "direction": { "label": "Plan", "description": "Inform decisions without telling users they must go outside." },

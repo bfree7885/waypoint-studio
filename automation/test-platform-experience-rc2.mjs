@@ -28,7 +28,7 @@ function exists(rel) {
 }
 
 const nav = JSON.parse(read("design-system/ecosystem/nav-registry.json"));
-assert("nav version 2.1+", /^2\.[1-9]/.test(nav.version || ""));
+assert("nav version 3+", /^3\./.test(nav.version || ""));
 assert("journeys defined", Array.isArray(nav.journeys) && nav.journeys.length === 4);
 ["observe", "understand", "create", "share"].forEach((id) => {
   assert("journey " + id, nav.journeys.some((j) => j.id === id));
@@ -43,7 +43,7 @@ nav.apps.forEach((app) => {
 
 const configJs = read("design-system/js/platform/wds-app-nav-config.js");
 assert("config embeds journeys", /"journeys"/.test(configJs) && /startHere/.test(configJs));
-assert("config has landscape", /landscape-interpretation/.test(configJs));
+assert("config omits landscape-interpretation from public nav", !/"id": "landscape-interpretation"/.test(configJs));
 
 const sandbox = { window: {}, globalThis: {}, console };
 sandbox.window = sandbox;
@@ -55,27 +55,25 @@ assert("startHereHref dashboard", /dashboard/.test(Nav.startHereHref(Nav.byId("d
 assert("related sheds→dashboard", Nav.relatedApps("sheds").some((a) => a.id === "dashboard"));
 
 const home = read("index.html");
-assert("home pillars", /was-home-observe/.test(home) && /was-home-create/.test(home));
-assert("home launch volunteer discover", /waypoint-volunteer\/discover\.html/.test(home));
-assert("home launch photo coach", /apps\/photo-coach\//.test(home));
-assert("home launch sheds map", /shed-hunting\/map\//.test(home));
+assert("home mission trio", /Observe\. Discover\. Understand/.test(home));
+assert("home Dashboard entry", /apps\/dashboard\//.test(home));
+assert("home Scenes entry", /apps\/scenes\//.test(home));
+assert("home Sheds entry", /shed-hunting/.test(home));
 assert("home articles link", /href="articles\/"/.test(home));
-assert("home no contact in hero links", !/was-home__links"[\s\S]*href="contact\.html"/.test(home.split('was-home__search')[0]));
+assert("home omits volunteer discover", !/waypoint-volunteer\/discover\.html/.test(home));
 
 const studioHome = read("js/studio-home.js");
-assert("studio-home uses journeys", /appsByJourney/.test(studioHome));
-assert("studio-home renders Launch", /Launch/.test(studioHome) && /startHereHref/.test(studioHome));
+assert("studio-home lists Studio trio", /dashboard/.test(studioHome) && /scenes/.test(studioHome) && /shed-hunting/.test(studioHome));
+assert("studio-home lists Deck", /waypoint-deck|Deck/.test(studioHome));
 
 const workflows = read("design-system/js/platform/wds-platform-workflows.js");
 [
   "dashboard-to-scenes",
-  "dashboard-to-fieldry",
-  "dashboard-to-foragecast",
   "sheds-to-dashboard",
   "scenes-to-dashboard",
-  "signalterrain-to-dashboard",
-  "volunteer-to-fieldry"
+  "photo-coach-to-dashboard"
 ].forEach((id) => assert("workflow " + id, workflows.includes('id: "' + id + '"')));
+assert("workflows omit discontinued products", !/fieldry|foragecast|signalterrain|volunteer/i.test(workflows));
 
 assert("discover module", exists("design-system/js/platform/wds-platform-discover.js"));
 assert("articles module", exists("design-system/js/platform/wds-articles.js"));
@@ -94,11 +92,13 @@ assert("manifest search prep", manifest.search && manifest.search.providerId ===
 assert("docs experience", exists("docs/PLATFORM-EXPERIENCE-RC2.md"));
 assert("docs navigation", exists("docs/NAVIGATION-ARCHITECTURE.md"));
 
-["apps/shed-hunting/index.html", "apps/signalterrain/index.html", "apps/waypoint-volunteer/index.html", "apps/scenes/index.html"].forEach((f) => {
+["apps/shed-hunting/index.html", "apps/scenes/index.html"].forEach((f) => {
   const html = read(f);
-  assert(f + " related mount", /data-wds-related-apps=/.test(html));
-  assert(f + " discover script", /wds-platform-discover\.js/.test(html));
+  assert(f + " related mount", /data-wds-related-apps=/.test(html) || /articlesFeed\.mountRelated/.test(html) || /wds-platform-discover\.js/.test(html));
+  assert(f + " discover or articles script", /wds-platform-discover\.js|wds-articles-feed\.js/.test(html));
 });
+assert("signalterrain public page is silent redirect", /location\.replace/.test(read("apps/signalterrain/index.html")));
+assert("volunteer public page is silent redirect", /location\.replace/.test(read("apps/waypoint-volunteer/index.html")));
 
 const shellCss = read("design-system/css/wds-app-shell.css");
 assert("card actions css", /\.was-home__card-actions/.test(shellCss));

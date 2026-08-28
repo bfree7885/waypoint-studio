@@ -120,7 +120,7 @@
       '<a class="was-home__card" href="apps/scenes/"><h3 class="was-home__card-title">Scenes</h3></a>' +
       '<a class="was-home__card" href="apps/shed-hunting/"><h3 class="was-home__card-title">Sheds</h3></a>' +
       '<a class="was-home__card" href="articles/"><h3 class="was-home__card-title">Articles</h3></a>' +
-      '<a class="was-home__card" href="side-trails/"><h3 class="was-home__card-title">Side Trails</h3></a>' +
+      '<a class="was-home__card" href="side-trails/waypoint-deck/"><h3 class="was-home__card-title">Deck</h3></a>' +
       "</div>";
     mount.hidden = true;
     mount.setAttribute("aria-hidden", "true");

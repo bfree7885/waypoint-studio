@@ -44,11 +44,12 @@ assert("root shell depth 0", /data-shell-depth="0"/.test(rootHtml));
 assert("dashboard is Rebuild host", /wds-dashboard-rebuild\.css/.test(dashHtml) && /home-boot\.js/.test(dashHtml));
 assert("dashboard labels Dashboard", /data-product-name="Dashboard"/.test(dashHtml) && /<title>Dashboard/.test(dashHtml));
 assert("dashboard canonical /apps/dashboard/", /canonical[^>]*apps\/dashboard\//.test(dashHtml));
-assert("primary nav is Dashboard·Scenes·Sheds·Articles·Side Trails·Support·About", /"id": "dashboard".*"Scenes".*"Sheds".*"Articles".*"Side Trails".*"Support".*"About"/s.test(navCfg));
+assert("primary nav is Dashboard·Scenes·Sheds·Deck·Articles·Support·About", /"id": "dashboard".*"Scenes".*"Sheds".*"Deck".*"Articles".*"Support".*"About"/s.test(navCfg));
 assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 1200)));
 const primaryNavBlock = (navCfg.match(/"studioPrimaryNav"\s*:\s*\[[\s\S]*?\]/) || [""])[0];
 assert("primary nav omits SignalTerrain as peer", !/"SignalTerrain"|Volunteer|ForageCast|Fieldry|Steepleaf/i.test(primaryNavBlock));
-assert("primary nav includes Side Trails", /"Side Trails"/.test(primaryNavBlock));
+assert("primary nav includes Deck", /"Deck"/.test(primaryNavBlock));
+assert("primary nav omits Side Trails catalog label", !/"Side Trails"/.test(primaryNavBlock));
 assert("primary nav Dashboard → /apps/dashboard/", /"id": "dashboard"[\s\S]*?"href": "\/apps\/dashboard\/"/.test(navCfg));
 assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
 assert("startHere is Open Dashboard", /"label":\s*"Open Dashboard"/.test(navCfg));
@@ -66,8 +67,8 @@ assert(
   )
 );
 assert("kiosk chrome has no user Kiosk label", !/>Kiosk</.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")) && !/Exit kiosk/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-kiosk.js"), "utf8")));
-assert("about primary includes Dashboard architecture", /<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && /<strong>Side Trails<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
-assert("support experiences are studio architecture", /<strong>Dashboard<\/strong>/.test(supportHtml) && /<strong>Side Trails<\/strong>/.test(supportHtml) && /<strong>Support<\/strong>/.test(supportHtml) && !/<strong>Coming later<\/strong>|<strong>Volunteer<\/strong>|<strong>SignalTerrain<\/strong>/.test(supportHtml));
+assert("about primary includes Dashboard architecture", /<strong>Dashboard<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")) && /<strong>Waypoint Deck<\/strong>/.test(fs.readFileSync(path.join(ROOT, "about.html"), "utf8")));
+assert("support experiences are studio architecture", /<strong>Dashboard<\/strong>/.test(supportHtml) && /<strong>Deck<\/strong>/.test(supportHtml) && /<strong>Support<\/strong>/.test(supportHtml) && !/<strong>Coming later<\/strong>|<strong>Volunteer<\/strong>|<strong>SignalTerrain<\/strong>/.test(supportHtml));
 const dashMatchBlock = (navCfg.match(/"id": "dashboard"[\s\S]*?"match":\s*\[[\s\S]*?\]/) || [""])[0];
 assert("dashboard match is /apps/dashboard", /\/apps\/dashboard/.test(dashMatchBlock) && !/\^\/\$/.test(dashMatchBlock));
 assert("wds loads deepeners", /wds-dashboard-rebuild-deepeners\.js/.test(wdsJs));
@@ -203,7 +204,7 @@ const primary = sandbox.WDS.APP_NAV_CONFIG.studioPrimaryNav.map(function (i) {
 });
 assert(
   "nav labels exact set",
-  primary.join("|") === "Dashboard|Scenes|Sheds|Articles|Side Trails|Support|About",
+  primary.join("|") === "Dashboard|Scenes|Sheds|Deck|Articles|Support|About",
   primary.join("|")
 );
 

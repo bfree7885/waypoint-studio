@@ -30,17 +30,14 @@
   "apps": [
     { "id": "studio", "label": "Studio home" },
     { "id": "dashboard", "label": "Dashboard" },
-    { "id": "scenes", "label": "Waypoint Scenes" },
+    { "id": "scenes", "label": "Scenes" },
     { "id": "photo-coach", "label": "Photo Coach" },
     { "id": "scene-builder", "label": "Scene Builder" },
-    { "id": "foragecast", "label": "ForageCast" },
-    { "id": "fieldry", "label": "Fieldry" },
     { "id": "sheds", "label": "Sheds" },
     { "id": "shed-hunting", "label": "Sheds" },
-    { "id": "steepleaf", "label": "Steepleaf" },
-    { "id": "signalterrain", "label": "SignalTerrain" },
-    { "id": "savant-sommelier", "label": "Savant Sommelier" },
-    { "id": "waypoint-volunteer", "label": "Waypoint Volunteer" },
+    { "id": "deck", "label": "Waypoint Deck" },
+    { "id": "articles", "label": "Articles / Publishing" },
+    { "id": "deep-forest-dispatch", "label": "Deep Forest Dispatch" },
     { "id": "other", "label": "Other / not sure" }
   ],
   "spam": {

@@ -19,6 +19,23 @@
   var FC_JOURNAL_KEY = "foragecast.journal.v1";
   var VOLUNTEER_PLAN_KEY = "waypoint-volunteer-planning-v1";
 
+  var SOURCE_LABEL = {
+    fieldry: "field notes",
+    foragecast: "journal",
+    "shed-hunting": "Sheds",
+    "waypoint-volunteer": "saved notes",
+    "savant-sommelier": "notes",
+    steepleaf: "notes",
+    signalterrain: "notes",
+    "landscape-interpretation": "notes",
+    terrainbound: "notes",
+    "openroad-pa": "notes"
+  };
+
+  function sourceLabel(appId) {
+    return SOURCE_LABEL[appId] || "notes";
+  }
+
   function readJson(key, fallback) {
     try {
       var raw = localStorage.getItem(key);
@@ -46,7 +63,8 @@
       privacy: partial.privacy || "private",
       href: partial.href || null,
       rawRef: partial.rawRef || null,
-      honesty: partial.honesty || "User-entered on this device. Not a live detection."
+      honesty: partial.honesty || "User-entered on this device. Not a live detection.",
+      sourceLabel: partial.sourceLabel || sourceLabel(partial.sourceApp)
     };
   }
 
@@ -54,7 +72,7 @@
     if (!obs) return null;
     var taxon = obs.taxon || {};
     var loc = obs.location || {};
-    var title = taxon.label || taxon.commonName || taxon.scientificName || "Fieldry observation";
+    var title = taxon.label || taxon.commonName || taxon.scientificName || "Field observation";
     return envelope({
       id: obs.id,
       sourceApp: "fieldry",
@@ -67,9 +85,9 @@
       lng: loc.longitude != null ? loc.longitude : loc.lng,
       taxonLabel: title,
       privacy: (obs.privacy && obs.privacy.visibility) || "private",
-      href: "../fieldry/#/obs/" + encodeURIComponent(obs.id),
+      href: null,
       rawRef: { store: FIELDRY_KEY, id: obs.id },
-      honesty: "Private Fieldry life-list record on this device."
+      honesty: "Private field note on this device."
     });
   }
 
@@ -101,14 +119,14 @@
       id: entry.id || ("fcj_" + String(entry.at || entry.createdAt || "")),
       sourceApp: "foragecast",
       kind: "journal-note",
-      title: entry.text ? String(entry.text).slice(0, 80) : "ForageCast journal note",
+      title: entry.text ? String(entry.text).slice(0, 80) : "Journal note",
       subtitle: entry.speciesId || null,
       recordedAt: entry.at || entry.createdAt || null,
       locationLabel: null,
       privacy: "private",
-      href: "../foragecast/journal.html",
+      href: null,
       rawRef: { store: FC_JOURNAL_KEY, id: entry.id },
-      honesty: "Private ForageCast journal note — educational context, not a detection."
+      honesty: "Private journal note — educational context, not a detection."
     });
   }
 
@@ -123,9 +141,9 @@
       recordedAt: item.savedAt || item.updatedAt || null,
       locationLabel: item.locationLabel || item.area || null,
       privacy: "private",
-      href: "../waypoint-volunteer/saved/",
+      href: null,
       rawRef: { store: VOLUNTEER_PLAN_KEY, id: item.id },
-      honesty: "Saved volunteer opportunity on this device."
+      honesty: "Saved opportunity on this device."
     });
   }
 
@@ -224,7 +242,7 @@
       speciesCount: Object.keys(species).length,
       countyCount: Object.keys(counties).length,
       recent: fieldry.slice(0, 3),
-      honesty: "Derived from your private Fieldry and Sheds records. Not a live wildlife feed."
+      honesty: "Derived from your private field notes and Sheds records. Not a live wildlife feed."
     };
   }
 
@@ -238,6 +256,7 @@
     recent: recent,
     stats: stats,
     wildlifeContext: wildlifeContext,
+    sourceLabel: sourceLabel,
     adapters: adapters,
     envelope: envelope
   };

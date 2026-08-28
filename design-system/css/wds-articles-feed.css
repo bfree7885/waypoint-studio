@@ -10,7 +10,8 @@
   --waf-line: var(--wds-border, rgba(26, 34, 24, 0.12));
   --waf-take: color-mix(in srgb, var(--waf-moss) 10%, var(--waf-paper));
   color: var(--waf-ink);
-  max-width: 52rem;
+  max-width: min(52rem, 100%);
+  min-width: 0;
   margin: 0 auto;
 }
 
@@ -78,12 +79,17 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--waf-line);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .waf-views {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 .waf-view {
@@ -133,21 +139,28 @@
   padding: 0.55rem 0.65rem;
   border-radius: var(--wds-radius-sm, 0.2rem);
   min-height: 2.75rem;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .waf-count {
   font-size: 0.8rem;
   color: var(--waf-muted);
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .waf-count a {
   color: inherit;
+  overflow-wrap: anywhere;
 }
 
 .waf-grid {
   display: grid;
   gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .waf-card {
@@ -155,6 +168,9 @@
   border: 1px solid var(--waf-line);
   border-radius: var(--wds-radius-md, 0.35rem);
   padding: 1.15rem 1.2rem 1.25rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .waf-card__meta {
@@ -356,6 +372,15 @@
 }
 
 /* Articles hub hero (wcs-page alignment) */
+.waf-hub {
+  min-width: 0;
+}
+
+.waf-hub-hero p,
+.waf-lede {
+  overflow-wrap: anywhere;
+}
+
 .waf-hub-hero .was-home__tagline {
   max-width: 36ch;
 }

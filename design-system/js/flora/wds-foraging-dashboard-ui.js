@@ -99,15 +99,6 @@
         '<footer class="wforage__foot">' +
           '<p class="wforage__attribution">' +
             escapeHtml("Regional foraging context only · not harvest advice · " + (intel.regionLabel || "regional")) +
-            ' · <a class="wforage__link" href="' +
-              (function () {
-                var Nav = global.WDS && global.WDS.appNav;
-                var depth = Nav && Nav.depthFromPath ? Nav.depthFromPath() : 1;
-                return Nav && Nav.resolveRoute
-                  ? Nav.resolveRoute("apps/foragecast/", depth)
-                  : "../foragecast/";
-              })() +
-            '">Open ForageCast</a>' +
           "</p>" +
         "</footer>" +
       "</div>"

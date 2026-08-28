@@ -149,7 +149,14 @@
     savant: 1,
     signalterrain: 1,
     cyber: 1,
-    "global-signals": 1
+    "global-signals": 1,
+    foragecast: 1,
+    steepleaf: 1,
+    "waypoint-volunteer": 1,
+    volunteer: 1,
+    "landscape-interpretation": 1,
+    terrainbound: 1,
+    "civic-trails": 1
   };
 
   function relatedAction(article, depth) {

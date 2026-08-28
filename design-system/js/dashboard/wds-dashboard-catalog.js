@@ -664,7 +664,7 @@
     category: "foraging",
     defaultOrder: 310,
     defaultVisible: false,
-    detailHref: "apps/foragecast/",
+    detailHref: "articles/",
     summary: "Fruiting conditions",
     resolve: function (ctx) {
       var b = D().bundle(ctx);
@@ -673,7 +673,7 @@
         return D().editorialReady("Regional outlook — not a harvest guarantee", null,
           fp.fruitingOutlook.slice(0, 4).map(function (row) {
             return row.species + " — " + (row.note || row.status);
-          }), { href: "apps/foragecast/", label: "Open ForageCast" });
+          }), { href: "articles/", label: "Read more" });
       }
       return null;
     },
@@ -1239,7 +1239,7 @@
     defaultOrder: 1020,
     futureProvider: "volunteer-events",
     summary: "Trail and habitat work",
-    placeholder: "Sample stewardship ideas in Waypoint Volunteer (foundation). Live calendar provider still planned."
+    placeholder: "Sample stewardship ideas for trail and habitat work. A live calendar provider is still planned."
   });
 
   educational({
@@ -1266,12 +1266,12 @@
   /* ——— My Dashboard ——— */
   educational({
     id: "recent-fieldry-observations",
-    title: "Recent Fieldry Observations",
+    title: "Recent field notes",
     icon: "Fn",
     category: "my-dashboard",
     defaultOrder: 1110,
     defaultVisible: false,
-    detailHref: "apps/fieldry/",
+    detailHref: "settings.html#observations",
     summary: "Your field notes",
     resolve: function () {
       var stats = D().fieldryLocalStats();
@@ -1291,7 +1291,7 @@
           tag: D().tagFromSource("local"),
           summary: stats.total + " observations",
           items: items,
-          link: { href: "apps/fieldry/", label: "Open Fieldry" }
+          link: { href: "settings.html#observations", label: "Review notes" }
         };
       }
       return {
@@ -1299,7 +1299,7 @@
         tag: D().tagFromSource("local"),
         summary: "No observations yet",
         body: "Record what you see in the field.",
-        link: { href: "apps/fieldry/", label: "Start in Fieldry" }
+        link: { href: "settings.html#observations", label: "Open notes" }
       };
     },
     placeholder: ""

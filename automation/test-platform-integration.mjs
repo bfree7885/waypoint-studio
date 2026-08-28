@@ -167,14 +167,15 @@ function run() {
   const derived = global.WDS.platformGraph.deriveFromObservations();
   assert("graph derives from observations", derived >= 1);
 
-  // Workflows
-  const wf = global.WDS.platformWorkflows.forApp("foragecast");
-  assert("foragecast workflows", wf.some((w) => w.to === "fieldry"));
+  // Workflows — public handoffs stay inside the five-effort portfolio
+  const wf = global.WDS.platformWorkflows.forApp("shed-hunting");
+  assert("sheds workflows point at Studio", wf.some((w) => w.to === "dashboard"));
+  assert("sheds workflows omit Fieldry", !wf.some((w) => w.to === "fieldry"));
   const html = global.WDS.platformWorkflows.renderLinksHtml("shed-hunting", {
     depth: 1,
     when: "after-observation"
   });
-  assert("workflow html", /Fieldry/i.test(html) && /wds-workflows/.test(html));
+  assert("workflow html", /Dashboard/i.test(html) && /wds-workflows/.test(html) && !/Fieldry/i.test(html));
 
   // Files / docs exist
   const required = [
@@ -204,8 +205,8 @@ function run() {
   assert("wds.js loads identity", /wds-platform-identity\.js/.test(wds));
 
   const home = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
-  assert("home has settings link", /settings\.html/.test(home));
-  assert("home has studio search", /was-studio-search/.test(home));
+  assert("home has Dashboard", /apps\/dashboard\//.test(home));
+  assert("home has Deck", /waypoint-deck/.test(home));
 
   if (failures.length) {
     console.error("\n" + failures.length + " failure(s)");

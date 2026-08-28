@@ -4,31 +4,32 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Waypoint Deck — offline-first Linux field computer exploring local AI, maps, weather, radio, and situational awareness. Early-stage Side Trail; not a Studio subscription app.">
+  <meta name="description" content="Waypoint Deck — a local-first Linux field computer for offline maps, navigation, local knowledge, and field tools. In development; distinct from Waypoint Studio.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/side-trails/waypoint-deck/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waypoint Studio">
-  <meta property="og:title" content="Waypoint Deck — Side Trails">
-  <meta property="og:description" content="Offline-first Linux field computer. Local AI, maps/GPS, weather, radio, offline knowledge, and situational awareness — planned and under exploration.">
+  <meta property="og:title" content="Waypoint Deck">
+  <meta property="og:description" content="Offline-first Linux field computer. Maps, GPS, local knowledge, radio, weather, and sensors — some existing, some in development, some planned.">
   <meta property="og:url" content="https://waypointstudio.org/side-trails/waypoint-deck/">
-  <title>Waypoint Deck — Side Trails</title>
+  <title>Waypoint Deck — Waypoint Studio</title>
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../design-system/css/wds-side-trails.css">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="waypoint-deck" data-hide-local="true" data-shell-depth="0">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="waypoint-deck" data-hide-local="true" data-hide-apps="true" data-shell-depth="0">
     <div data-wds-app-global data-shell-depth="0"></div>
     <main id="main" class="wcs-page wst-page wst-deck">
       <header class="wcs-hero wst-hero">
-        <p class="wds-eyebrow">Side Trails · Active</p>
+        <p class="wds-eyebrow">Waypoint Deck</p>
         <h1>Waypoint Deck</h1>
         <p class="was-home__purpose">
-          <strong>Offline-first Linux field computer</strong> built around local AI, navigation, communications, knowledge, and situational awareness.
+          <strong>A local-first Linux field computer</strong> for when the network is optional:
+          maps, navigation, local knowledge, communications, weather, and sensors.
         </p>
-        <p><span class="was-home__status">In development</span> — early-stage direction, not a finished product.</p>
+        <p><span class="was-home__status">In development</span> — direction is public; this page does not claim a finished product.</p>
       </header>
 
       <section class="wcs-section" aria-labelledby="deck-what">
@@ -46,29 +47,30 @@
       <section class="wcs-section" aria-labelledby="deck-vs-studio">
         <h2 id="deck-vs-studio">Not a Studio app</h2>
         <p>
-          <strong>Waypoint Studio</strong> is the consumer ecosystem —
+          <strong>Waypoint Studio</strong> is the web ecosystem —
           <a href="../../apps/dashboard/">Dashboard</a>,
           <a href="../../apps/scenes/">Scenes</a>, and
           <a href="../../apps/shed-hunting/">Sheds</a> —
-          with shared Publishing. Studio is about discovering, understanding, and exploring the world.
+          with <a href="../../articles/">Waypoint Publishing</a>.
+          Studio is about observing, discovering, and understanding the world outdoors.
         </p>
         <p>
-          <strong>Waypoint Deck</strong> is an independent Side Trail: a resilient offline field computer.
-          It shares Waypoint’s interest in geography and field information, but it is
-          <strong>not</strong> another Studio subscription application.
+          <strong>Waypoint Deck</strong> is a distinct field-computing project:
+          a resilient offline computer. It shares Waypoint’s interest in geography and field information,
+          but it is <strong>not</strong> another Studio subscription application.
         </p>
       </section>
 
       <section class="wcs-section" aria-labelledby="deck-direction">
-        <h2 id="deck-direction">Core direction</h2>
-        <p class="wst-lede">Intended capability areas — planned / being explored, not claimed as shipping features:</p>
+        <h2 id="deck-direction">Capability areas</h2>
+        <p class="wst-lede">Intended directions. Status is labeled honestly — nothing here is claimed as finished unless marked existing.</p>
         <ul class="wst-deck__list">
-          <li><strong>Navigate</strong> — offline maps, GPS, waypoints, terrain and field navigation.</li>
-          <li><strong>Understand</strong> — local AI and offline encyclopedias / reference libraries.</li>
-          <li><strong>Observe</strong> — weather, environmental information, and eventually attached sensors.</li>
-          <li><strong>Listen / communicate</strong> — radio/SDR and related communications tools.</li>
-          <li><strong>Know what’s happening</strong> — when connectivity exists, useful external signals; when it disappears, cached information and local capability.</li>
-          <li><strong>Ask the Deck</strong> — a local AI / chatbot intended as the primary interface tying systems together.</li>
+          <li><strong>Navigate</strong> — offline maps, GPS, waypoints, and field navigation. <em>In development / planned.</em></li>
+          <li><strong>Understand</strong> — local AI and offline reference libraries. <em>Planned.</em></li>
+          <li><strong>Observe</strong> — weather, environmental information, and attached sensors. <em>In development / planned.</em></li>
+          <li><strong>Listen / communicate</strong> — radio/SDR and related communications tools. <em>Planned.</em></li>
+          <li><strong>Field data</strong> — notes, observations, and incident/resilience tools on the device. <em>Planned.</em></li>
+          <li><strong>System awareness</strong> — power, connectivity, and what the Deck currently has available. <em>Planned.</em></li>
         </ul>
       </section>
 
@@ -85,13 +87,8 @@
         </ul>
         <p>
           The intended synthesis draws from whatever the Deck has:
-          weather, GPS, maps, radio/SDR, sensors, offline knowledge, system/power status,
-          cached information, and — when online — concepts from archived
-          <a href="../global-signals/">Global Signals</a> research (and related cyber/network awareness where appropriate).
-        </p>
-        <p>
-          <strong>Global Signals and Cyber are not standalone active Side Trail products.</strong>
-          Their useful ideas may feed Deck situational awareness later. That integration is not built yet.
+          weather, GPS, maps, radio, sensors, offline knowledge, system/power status,
+          and cached information when a link exists.
         </p>
       </section>
 
@@ -99,7 +96,7 @@
         <h2 id="deck-honest">Honest status</h2>
         <p>
           This page describes <strong>direction and intent</strong>. It does not ship Deck OS,
-          local AI, SDR, sensors, or Global Signals integration from this website.
+          local AI, SDR, or sensors from this website.
           No fake hardware renders or capability demos are shown here.
         </p>
         <p>
@@ -109,10 +106,11 @@
       </section>
 
       <p class="wst-footnote">
-        <a href="../">← Side Trails</a> ·
         <a href="../../">Home</a> ·
         <a href="../../apps/dashboard/">Dashboard</a> ·
-        <a href="../../docs/PRODUCT-DIRECTION.md">Product Direction</a>
+        <a href="../../apps/scenes/">Scenes</a> ·
+        <a href="../../apps/shed-hunting/">Sheds</a> ·
+        <a href="../../articles/">Articles</a>
       </p>
     </main>
     <div data-wds-app-footer data-shell-depth="0"></div>

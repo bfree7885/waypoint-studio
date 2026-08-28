@@ -244,7 +244,7 @@ function readyExpression(kind) {
       const cards = document.querySelectorAll('.was-home__card').length;
       const shell = !!document.querySelector('[data-was-global], .was-global, .was-home-hero, [data-wds-app-shell], #was-apps-btn, .was-apps-btn');
       const home = !!document.querySelector('.was-home, #was-home-apps, [data-product="studio-home"]');
-      // Front door gate: Dashboard, Scenes, Sheds, Articles (+ Side Trails) pathways.
+      // Front door gate: Dashboard, Scenes, Sheds, Articles, Deck pathways.
       return { ok: shell && home && cards >= 4, cards: cards, shell: shell };
     })()`;
   }

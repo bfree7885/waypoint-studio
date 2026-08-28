@@ -16,21 +16,21 @@
     if (sky && sky.fogPotential && /likely|possible/i.test(sky.fogPotential.headline)) {
       out.push({
         text: "Watch for fog in low valleys after sunrise — soft light and simplified backgrounds.",
-        link: { href: "../../apps/hidden-landscapes/", label: "Landscape Interpretation" },
+        link: { href: "../../apps/hidden-landscapes/", label: "Hidden Landscapes" },
         rule: "fog-potential"
       });
     }
     if (dl.sunrise && c.windMph != null && c.windMph < 10) {
       out.push({
         text: "Listen for increased bird activity during the calm morning period near sunrise.",
-        link: { href: "../../apps/fieldry/", label: "Fieldry" },
+        link: { href: "../../apps/scenes/", label: "Scenes" },
         rule: "calm-morning-birding"
       });
     }
     if (model.rainfall && model.rainfall.recent && Number(model.rainfall.recent.amount) > 0.05) {
       out.push({
         text: "Observe how streams respond after recent rainfall — note color, flow, and debris lines.",
-        link: { href: "../../apps/fieldry/", label: "Fieldry" },
+        link: { href: "../../apps/scenes/", label: "Scenes" },
         rule: "post-rain-hydrology"
       });
     }
@@ -44,7 +44,7 @@
     if (model.season === "spring" && c.tempF != null && c.tempF >= 50) {
       out.push({
         text: "Look for new plant growth following warmer nights — note species and location carefully.",
-        link: { href: "../../apps/foragecast/", label: "ForageCast" },
+        link: { href: "../../apps/scenes/", label: "Scenes" },
         rule: "spring-greenup"
       });
     }

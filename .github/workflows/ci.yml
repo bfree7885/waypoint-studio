@@ -78,6 +78,14 @@ jobs:
       - name: Platform foundation tests
         run: node automation/test-platform-foundation.mjs
 
+      - name: Public portfolio reconciliation
+        run: |
+          node automation/test-public-portfolio-reconciliation.mjs
+          node automation/test-studio-nav-architecture.mjs
+          node automation/test-stale-product-identity.mjs
+          node automation/test-side-trails.mjs
+          node automation/test-home-rc1.mjs
+
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs
 

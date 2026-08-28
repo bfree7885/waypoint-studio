@@ -2,6 +2,9 @@
 
 .wcs-page {
   max-width: 42rem;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   margin: 0 auto;
   padding: 1.25rem 1rem 3rem;
 }
@@ -28,6 +31,11 @@
   color: var(--wds-text-secondary, rgba(240, 226, 201, 0.88));
   line-height: 1.55;
   font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.wcs-hero p + p {
+  margin-top: 0.7rem;
 }
 
 .wcs-section {

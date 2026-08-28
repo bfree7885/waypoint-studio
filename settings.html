@@ -16,7 +16,7 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
-  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-shell-depth="0">
+  <div class="wds-app was-shell" data-wds-app-shell data-product="studio-home" data-hide-local="true" data-hide-apps="true" data-shell-depth="0">
     <div data-wds-app-global data-shell-depth="0"></div>
     <main id="main" class="wds-platform-settings">
       <header class="wds-platform-settings__hero">
@@ -35,7 +35,7 @@
 
       <section id="places" class="wds-platform-settings__section" aria-labelledby="places-title">
         <h2 id="places-title">Places</h2>
-        <p>Saved and recent places shared across Dashboard, ForageCast, Fieldry, Sheds, and maps.</p>
+        <p>Saved and recent places shared across Dashboard, Scenes, Sheds, and maps.</p>
         <p>
           <button type="button" class="wds-btn wds-btn--primary wds-btn--sm" id="wps-save-current">Save current location</button>
         </p>
@@ -74,12 +74,12 @@
       <section id="collections" class="wds-platform-settings__section" aria-labelledby="col-title">
         <h2 id="col-title">Collections</h2>
         <div id="wps-collections" class="wds-platform-settings__list"></div>
-        <p class="wds-honesty">Platform collections are shared. Fieldry already uses them for favorites.</p>
+        <p class="wds-honesty">Platform collections are shared across Studio experiences on this device.</p>
       </section>
 
       <section id="observations" class="wds-platform-settings__section" aria-labelledby="obs-title">
         <h2 id="obs-title">Observation history</h2>
-        <p>Private records from Fieldry, Sheds, ForageCast journal, and Volunteer planning — one ledger view.</p>
+        <p>Private records from Sheds and other Studio tools on this device — one ledger view.</p>
         <div id="wps-obs-stats" class="wds-honesty"></div>
         <div id="wps-obs-recent" class="wds-platform-settings__list"></div>
       </section>
@@ -87,7 +87,7 @@
       <section id="search" class="wds-platform-settings__section" aria-labelledby="search-title">
         <h2 id="search-title">Studio search</h2>
         <label class="wds-field"><span>Search apps, places, observations, knowledge</span>
-          <input type="search" id="wps-search" placeholder="Try: fieldry, oak, dashboard…" autocomplete="off">
+          <input type="search" id="wps-search" placeholder="Try: sheds, oak, dashboard…" autocomplete="off">
         </label>
         <div id="wps-search-results" class="wds-platform-settings__list"></div>
       </section>

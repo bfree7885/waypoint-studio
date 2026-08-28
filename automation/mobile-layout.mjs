@@ -49,8 +49,8 @@ const PAGES_FULL = [
   { name: "status", path: "/status.html", waitMs: 2500 },
   { name: "scenes", path: "/apps/scenes/", waitMs: 2500 },
   { name: "photo-coach", path: "/apps/photo-coach/", waitMs: 5000 },
-  { name: "fieldry", path: "/apps/fieldry/", waitMs: 3000 },
-  { name: "foragecast", path: "/apps/foragecast/", waitMs: 3000 }
+  { name: "support", path: "/support.html", waitMs: 1500 },
+  { name: "deck", path: "/side-trails/waypoint-deck/", waitMs: 1500 },
 ];
 const PAGES_FAST = [
   { name: "studio-home", path: "/", waitMs: 2500 },
@@ -58,7 +58,7 @@ const PAGES_FAST = [
   { name: "knowledge", path: "/knowledge.html", waitMs: 2500 },
   { name: "dashboard", path: "/apps/dashboard/", waitMs: 8000 },
   { name: "scenes", path: "/apps/scenes/", waitMs: 2500 },
-  { name: "fieldry", path: "/apps/fieldry/", waitMs: 3000 }
+  { name: "deck", path: "/side-trails/waypoint-deck/", waitMs: 1500 }
 ];
 
 const VIEWPORTS = FULL ? VIEWPORTS_FULL : VIEWPORTS_FAST;
@@ -163,6 +163,7 @@ async function startChrome() {
   const proc = spawn(CHROME, [
     "--headless=new", "--disable-gpu", "--no-sandbox",
     "--disable-extensions", "--disable-dev-shm-usage",
+    `--user-data-dir=/tmp/waypoint-mobile-layout-${process.pid}`,
     `--remote-debugging-port=${PORT}`, "about:blank"
   ], { stdio: "ignore" });
   for (let i = 0; i < 20; i++) {

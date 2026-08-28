@@ -81,16 +81,13 @@ assert(
 );
 
 const savant = fs.readFileSync(path.join(ROOT, "apps/savant-sommelier/index.html"), "utf8");
-assert("savant boot shell", /wds-boot/.test(savant) && /Savant Sommelier/.test(savant));
-assert("savant not empty busy", !/aria-busy="true"><\/div>/.test(savant.replace(/\s+/g, "")));
+assert("savant public page is silent redirect", /location\.replace/.test(savant) && /noindex/i.test(savant));
 
 const fc = fs.readFileSync(path.join(ROOT, "apps/foragecast/index.html"), "utf8");
-assert("foragecast boot shell", /wds-boot/.test(fc));
-assert("foragecast no Opening outdoor", !/Opening outdoor intelligence/.test(fc));
+assert("foragecast public page is silent redirect", /location\.replace/.test(fc) && /noindex/i.test(fc));
 
 const steepleaf = fs.readFileSync(path.join(ROOT, "apps/steepleaf/index.html"), "utf8");
-assert("steepleaf boot branded", /wds-boot__eyebrow/.test(steepleaf) && /Steepleaf/.test(steepleaf));
-assert("steepleaf no Preparing…", !/Preparing today’s tea briefing…/.test(steepleaf));
+assert("steepleaf public page is silent redirect", /location\.replace/.test(steepleaf) && /noindex/i.test(steepleaf));
 
 const stub = fs.readFileSync(path.join(ROOT, "apps/scenes/photo-coach/index.html"), "utf8");
 assert("scenes photo-coach redirects", /refresh|location\.replace/.test(stub));

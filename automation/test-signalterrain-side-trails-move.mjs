@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * SignalTerrain → Side Trails IA move smoke checks.
- * Asserts catalog membership and non-peer architecture placement.
+ * SignalTerrain is not a public Waypoint product.
+ * Engineering may remain; public routing must not present ST identity.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -13,10 +13,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 function read(rel) {
   return fs.readFileSync(path.join(root, rel), "utf8");
-}
-
-function exists(rel) {
-  return fs.existsSync(path.join(root, rel));
 }
 
 function loadNavConfig() {
@@ -41,123 +37,30 @@ function loadPlatformCatalog() {
   return sandbox.WDS.platformCatalog;
 }
 
-for (const rel of [
-  "apps/signalterrain/index.html",
-  "side-trails/signalterrain/index.html",
-  "side-trails/index.html",
-  "data/side-trails/catalog.json",
-  "docs/product/signalterrain-side-trails-move-owner-review.md",
-  "docs/side-trails/README.md"
-]) {
-  assert.ok(exists(rel), "missing " + rel);
-}
-
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
-const signal = catalog.projects.find((p) => p.id === "signalterrain");
-assert.ok(signal, "SignalTerrain must appear in Side Trails catalog");
-assert.equal(signal.title, "SignalTerrain");
-assert.equal(signal.status, "archived");
-assert.match(String(signal.url), /side-trails\/signalterrain\/?|apps\/signalterrain\/?/);
+assert.equal(catalog.projects.some((p) => p.id === "signalterrain"), false);
 
 const nav = loadNavConfig();
-assert.ok(Array.isArray(nav.homePrimary));
-assert.ok(Array.isArray(nav.studioPrimaryNav));
-assert.ok(Array.isArray(nav.homeIncubator));
-assert.ok(Array.isArray(nav.homeSideTrails));
-
-assert.equal(
-  nav.homePrimary.includes("signalterrain"),
-  false,
-  "SignalTerrain must not be in homePrimary beside Dashboard/Scenes"
-);
-assert.equal(nav.homePrimary.includes("scenes"), true);
-assert.ok(
-  nav.homePrimary.includes("home") || nav.homePrimary.includes("dashboard"),
-  "homePrimary should still list Home/Dashboard"
-);
-assert.equal(
-  nav.studioPrimaryNav.some((item) => item.id === "signalterrain" || item.label === "SignalTerrain"),
-  false,
-  "SignalTerrain must not appear in studioPrimaryNav as a primary peer"
-);
-assert.equal(
-  nav.homeIncubator.includes("signalterrain"),
-  false,
-  "SignalTerrain must not remain in homeIncubator"
-);
-assert.equal(
-  nav.homeSideTrails.includes("signalterrain"),
-  false,
-  "SignalTerrain must not be promoted as an active home Side Trail"
-);
-assert.ok(
-  Array.isArray(nav.homeSideTrails) &&
-    (nav.homeSideTrails.length === 0 || nav.homeSideTrails.includes("waypoint-deck")),
-  "homeSideTrails should feature Waypoint Deck (or stay empty), not archived ST/GS"
-);
 assert.equal(nav.homePrimary.includes("signalterrain"), false);
-
-const catalogStatus = JSON.parse(read("data/side-trails/catalog.json"));
-const stCatalog = catalogStatus.projects.find((p) => p.id === "signalterrain");
-assert.ok(stCatalog);
-assert.equal(stCatalog.status, "archived", "SignalTerrain is archived research, not an active peer of Deck");
-// Global Signals may remain in catalog as archived research.
-
-const stApp = (nav.apps || []).find((a) => a.id === "signalterrain");
-assert.ok(stApp, "nav apps entry for SignalTerrain must remain (app chrome)");
-assert.equal(stApp.family, "side-trails");
-assert.equal(stApp.route, "apps/signalterrain/");
-assert.ok(stApp.productLanding && /side-trails\/signalterrain/.test(stApp.productLanding.href));
-
-const registry = JSON.parse(read("design-system/ecosystem/product-registry.json"));
-assert.equal(
-  (registry.portfolio.foundations || []).includes("signalterrain"),
-  false,
-  "SignalTerrain must not remain in portfolio.foundations"
-);
-assert.ok(
-  (registry.portfolio.sideTrails || []).includes("signalterrain"),
-  "SignalTerrain must be in portfolio.sideTrails"
-);
-assert.equal(registry.products.signalterrain.portfolioTier, "side-trails");
-assert.equal(registry.products.signalterrain.toolHref, "apps/signalterrain/");
-assert.match(registry.products.signalterrain.studioHref, /side-trails\/signalterrain/);
+assert.equal(nav.studioPrimaryNav.some((item) => item.id === "signalterrain" || item.label === "SignalTerrain"), false);
+assert.equal((nav.apps || []).some((a) => a.id === "signalterrain"), false);
 
 const platform = loadPlatformCatalog();
-const product = platform.byId("signalterrain");
-assert.ok(product);
-assert.equal(product.tier, "side-trails");
-assert.equal(product.parent, "side-trails");
-assert.equal(product.pathFromRoot, "apps/signalterrain/");
+assert.equal(platform.byId("signalterrain"), null);
 
 const incubator = read("incubator/index.html");
-assert.doesNotMatch(
-  incubator,
-  /<h2>SignalTerrain<\/h2>/,
-  "Incubator must not list SignalTerrain as a peer product section"
-);
-assert.match(incubator, /Looking for SignalTerrain/);
-assert.match(incubator, /side-trails\//);
+assert.match(incubator, /noindex/i);
+assert.doesNotMatch(incubator, /SignalTerrain/);
 
 const about = read("about.html");
-assert.match(about, /Side Trails/);
-assert.match(about, /SignalTerrain/);
-assert.match(about, /archived|not peers|Waypoint Deck/i);
-assert.doesNotMatch(about, /SignalTerrain<\/strong>\s*—\s*In development/i);
+assert.doesNotMatch(about, /SignalTerrain/);
+assert.match(about, /Waypoint Deck/);
 
 const support = read("support.html");
-assert.match(support, /side-trails\//);
-
-const navCfgSrc = read("design-system/js/platform/wds-app-nav-config.js");
-assert.match(navCfgSrc, /homeSideTrails/);
-assert.doesNotMatch(navCfgSrc, /"homeSideTrails":\s*\[[^\]]*signalterrain/);
+assert.match(support, /waypoint-deck/);
+assert.doesNotMatch(support, /SignalTerrain/);
 
 const sitemap = read("sitemap.xml");
-assert.match(sitemap, /\/apps\/signalterrain\//);
-assert.match(sitemap, /\/side-trails\/signalterrain\//);
-assert.match(sitemap, /\/side-trails\//);
+assert.doesNotMatch(sitemap, /\/apps\/signalterrain\/|\/side-trails\/signalterrain\//);
 
-const navRegistry = read("design-system/ecosystem/nav-registry.json");
-assert.match(navRegistry, /"family": "side-trails"/);
-
-console.log("SignalTerrain Side Trails IA move checks passed.");
+console.log("SignalTerrain public-identity removal checks passed.");
