@@ -78,7 +78,7 @@ assert("no Savant promo in dashboard html", !/Savant/i.test(dashHtml));
 
 const deepenSrc = read("design-system/js/dashboard/rebuild/wds-dashboard-rebuild-deepeners.js");
 assert("explore links articles", /href="\.\.\/\.\.\/articles\/"/.test(deepenSrc));
-assert("explore links scenes", /href="\.\.\/\.\.\/apps\/scenes\/"/.test(deepenSrc));
+assert("explore omits unpublished Scenes", !/href="\.\.\/\.\.\/apps\/scenes\/"/.test(deepenSrc));
 assert("explore links dfd", /deep-forest-dispatch/.test(deepenSrc));
 assert("no sheds promo section", !/data-deepen="sheds"|Open Sheds/.test(deepenSrc));
 assert("take prefers intel brief", /beforeYouGo\.brief/.test(deepenSrc));

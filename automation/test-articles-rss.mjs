@@ -220,7 +220,7 @@ assert("take unavailable when sparse", takeNone.takeProvenance === "unavailable"
 
 // ——— Related products / sheds discipline ———
 const related = relatedProductsFor(["Nature Photography"], ["National"], { textBlob: "lens technique" });
-assert("photography relates to scenes", related.some((p) => p.id === "scenes" || p.id === "photo-coach"));
+assert("photography relates to Dashboard not unpublished Scenes", related.some((p) => p.id === "dashboard") && !related.some((p) => p.id === "scenes" || p.id === "photo-coach"));
 const wildlifeRelated = relatedProductsFor(["Wildlife"], ["Catskills"], {
   textBlob: "celebrity hunting contest leaderboard"
 });
@@ -230,7 +230,7 @@ assert(
 );
 assert(
   "wildlife relates to active Studio products",
-  wildlifeRelated.some((p) => p.id === "dashboard" || p.id === "scenes")
+  wildlifeRelated.some((p) => p.id === "dashboard") && !wildlifeRelated.some((p) => p.id === "scenes")
 );
 assert(
   "sheds not forced for generic wildlife without habitat cues",
