@@ -75,3 +75,10 @@ export function relatedActionLabel(product) {
     reason: product.reason || null
   };
 }
+
+/** Drop unpublished / retired product chips from generated article rows. */
+export function scrubRelatedProducts(list) {
+  return (list || []).filter(function (p) {
+    return p && p.id && !blocked.has(p.id);
+  });
+}

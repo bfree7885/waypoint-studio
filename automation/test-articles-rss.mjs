@@ -24,7 +24,7 @@ import {
   filterForPhotography,
   filterForScience
 } from "../scripts/articles/rss-export.mjs";
-import { relatedProductsFor } from "../scripts/articles/related.mjs";
+import { relatedProductsFor, scrubRelatedProducts } from "../scripts/articles/related.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -231,6 +231,15 @@ assert(
 assert(
   "wildlife relates to active Studio products",
   wildlifeRelated.some((p) => p.id === "dashboard") && !wildlifeRelated.some((p) => p.id === "scenes")
+);
+assert(
+  "scrubRelatedProducts drops unpublished Scenes rows",
+  scrubRelatedProducts([
+    { id: "dashboard", label: "Dashboard" },
+    { id: "scenes", label: "Scenes" },
+    { id: "photo-coach", label: "Photo Coach" }
+  ]).every((p) => p.id === "dashboard") &&
+    scrubRelatedProducts([{ id: "scenes" }]).length === 0
 );
 assert(
   "sheds not forced for generic wildlife without habitat cues",
