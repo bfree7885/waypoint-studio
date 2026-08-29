@@ -5,9 +5,10 @@
  * is donation-funded, has no SLA, and blocks production web apps by returning
  * HTTP 200 placeholder PNGs with `x-blocked` (gray gaps with no tileerror).
  *
- * Defaults: CARTO Voyager (street) + Esri World Topo + Esri World Imagery
+ * Defaults: Esri World Street Map (street) + Esri World Topo + Esri World Imagery
  * (+ Imagery Hybrid = imagery + Esri reference labels).
- * Optional override via window.WAYPOINT_MAP_TILE_CONFIG or
+ * Do not default Street to unauthenticated CARTO Voyager — those tiles paint
+ * “API KEY REQUIRED”. Optional override via window.WAYPOINT_MAP_TILE_CONFIG or
  * <meta name="waypoint-map-tiles" content='{"streetUrl":"..."}'>.
  *
  * Licensing note: Esri ArcGIS Online basemap tiles require on-map attribution
@@ -19,18 +20,19 @@
   "use strict";
 
   var OSM_PUBLIC_HOST_RE = /(^|\.)tile\.openstreetmap\.org$/i;
+  var CARTO_CDN_HOST_RE = /(^|\.)cartocdn\.com$/i;
   var BASEMAP_STORAGE_KEY = "waypoint-sheds-basemap-v1";
   var VALID_BASEMAP_IDS = ["street", "topo", "satellite", "hybrid"];
 
   var DEFAULTS = {
-    streetId: "carto-voyager",
+    streetId: "esri-world-street",
     streetLabel: "Street",
-    streetUrl: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-    streetSubdomains: "abcd",
-    streetMaxZoom: 20,
+    streetUrl:
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
+    streetSubdomains: "",
+    streetMaxZoom: 19,
     streetAttribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors ' +
-      '&copy; <a href="https://carto.com/attributions">CARTO</a>',
+      "Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community",
     topoId: "esri-world-topo",
     topoLabel: "Topographic",
     topoUrl: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
@@ -97,6 +99,50 @@
           "). Use a production tile provider. See docs/sheds/map-reliability-owner-review.md"
       );
     }
+  }
+
+  function cartoApiKeyFromUrl(url) {
+    var s = String(url || "");
+    var m = s.match(/[?&](?:api[_-]?key|apikey)=([^&]*)/i);
+    if (!m) return "";
+    var v = "";
+    try {
+      v = decodeURIComponent(m[1] || "").trim();
+    } catch (e) {
+      v = String(m[1] || "").trim();
+    }
+    if (!v || v.length < 8) return "";
+    if (/^(required|your[_-]?api[_-]?key|placeholder|changeme|api[_-]?key[_-]?required)$/i.test(v)) {
+      return "";
+    }
+    return v;
+  }
+
+  function isCartoBasemapHost(url) {
+    return CARTO_CDN_HOST_RE.test(hostOfTemplate(url));
+  }
+
+  function isUnauthenticatedCartoBasemap(url) {
+    return isCartoBasemapHost(url) && !cartoApiKeyFromUrl(url);
+  }
+
+  function isPublishableStreetUrl(url) {
+    var s = String(url || "");
+    if (!/^https:\/\//i.test(s)) return false;
+    try {
+      assertNotOsmPublic(s, "street");
+    } catch (e) {
+      return false;
+    }
+    if (isUnauthenticatedCartoBasemap(s)) return false;
+    return true;
+  }
+
+  function assertPublishableStreetUrl(url) {
+    if (isPublishableStreetUrl(url)) return;
+    throw new Error(
+      "Sheds refuses unauthenticated CARTO basemap tiles for Street (those PNGs include an API KEY REQUIRED watermark). Use Esri World Street Map or a keyed CARTO URL. Do not invent a key."
+    );
   }
 
   function createLayer(L, opts) {
@@ -208,6 +254,7 @@
   function createBasemaps(L) {
     if (!L || !L.tileLayer) throw new Error("Leaflet required");
     var cfg = mergeConfig();
+    assertPublishableStreetUrl(cfg.streetUrl);
     var street = createLayer(L, {
       id: cfg.streetId,
       label: cfg.streetLabel,
@@ -350,6 +397,11 @@
     createBasemaps: createBasemaps,
     attachReliability: attachReliability,
     assertNotOsmPublic: assertNotOsmPublic,
+    cartoApiKeyFromUrl: cartoApiKeyFromUrl,
+    isCartoBasemapHost: isCartoBasemapHost,
+    isUnauthenticatedCartoBasemap: isUnauthenticatedCartoBasemap,
+    isPublishableStreetUrl: isPublishableStreetUrl,
+    assertPublishableStreetUrl: assertPublishableStreetUrl,
     normalizeBasemapId: normalizeBasemapId,
     loadSavedBasemapId: loadSavedBasemapId,
     saveBasemapId: saveBasemapId,

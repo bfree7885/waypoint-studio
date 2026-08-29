@@ -283,6 +283,19 @@ assert("companion publish workflow is dispatch-only", /workflow_dispatch/.test(r
 assert("publish script targets sheds-site", /bfree7885\/sheds-site/.test(read("scripts/publish-shed-hunting-host.mjs")));
 assert("publish script keeps shedhunting.org CNAME", /shedhunting\.org/.test(read("scripts/publish-shed-hunting-host.mjs")) && /writeFileSync\(path\.join\(tmp, "CNAME"\)/.test(read("scripts/publish-shed-hunting-host.mjs")));
 assert("publish refuses watermarked cutover", /Refusing to publish a watermarked host/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish gate uses effective Street URL", /isPublishableStreetUrl/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish does not require tile JSON secret", !/Set WAYPOINT_MAP_TILE_CONFIG \(JSON\) on waypoint-studio, regenerate/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("host workflow does not require tile secret", !/Require tile config for public cutover/.test(read(".github/workflows/shedhunting-host.yml")));
+assert("dist street default is Esri World Street", /World_Street_Map/.test(read("dist/shedhunting/js/sheds-tile-provider.js")));
+assert(
+  "dist street is distinct from topo",
+  /World_Street_Map/.test(read("dist/shedhunting/js/sheds-tile-provider.js")) &&
+    /World_Topo_Map/.test(read("dist/shedhunting/js/sheds-tile-provider.js"))
+);
+assert(
+  "dist default street is not CARTO Voyager",
+  !/streetUrl:\s*"https:\/\/\{s\}\.basemaps\.cartocdn/.test(read("dist/shedhunting/js/sheds-tile-provider.js"))
+);
 
 function localRefs(html) {
   const out = [];
@@ -312,6 +325,22 @@ assert(
   fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/wds/wds-experience-v2.css")) &&
     fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/wds/wds-origins.js")) &&
     fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/leaflet/leaflet.js"))
+);
+
+const distTileSandbox = { document: { querySelector: function () { return null; } }, console };
+distTileSandbox.window = distTileSandbox;
+distTileSandbox.globalThis = distTileSandbox;
+vm.runInNewContext(read("dist/shedhunting/js/sheds-tile-provider.js"), distTileSandbox);
+const DistTiles = distTileSandbox.WaypointShedsTiles;
+assert(
+  "dist effective Street is publishable without tile secret",
+  DistTiles.isPublishableStreetUrl(DistTiles.mergeConfig().streetUrl)
+);
+assert(
+  "any JSON does not make Voyager publishable",
+  !DistTiles.isPublishableStreetUrl(
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+  )
 );
 
 if (failures.length) {

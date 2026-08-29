@@ -1673,6 +1673,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Street tiles (2026-08-29)
+
+- Unauthenticated `basemaps.cartocdn.com` Voyager/Positron tiles are real maps with an **API KEY REQUIRED** watermark burned in (HTTP 200). Esri World Street / Topo / Imagery do not. Do not require a GitHub secret to ship Street.
+- Cloud Agent “All repositories” on the GitHub App does not expand an already-minted token. `/installation/repositories` still showed `selected` / `waypoint-studio` only after the App change; `cursor[bot]` 403 on `sheds-site` push --dry-run.
+
 ### Lessons Learned — Shed Hunting Phase 3B resume recheck (2026-08-29)
 
 - Owner-side “secrets were added” is not enough unless this agent can **use** them. GitHub App installation was still `selected` / `waypoint-studio` only (`cursor[bot]` 403 on `sheds-site`). `SHEDHUNTING_DEPLOY_TOKEN` and `WAYPOINT_MAP_TILE_CONFIG` were unset in the agent env. Actions secrets cannot be listed (403) and `shedhunting-host.yml` is not on `main`, so `workflow_dispatch` 404s.
@@ -1682,7 +1687,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 
 - Reuse `bfree7885/sheds-site` (it already has `cname: shedhunting.org`). Do not create `bfree7885/shedhunting.org`. Keep Studio `CNAME` as `waypointstudio.org`.
 - Do not switch that repo to Actions Pages: Actions ignores the `CNAME` file. Stay on branch `main` / root.
-- Do not overwrite the live domain from an environment that cannot push, and do not ship CARTO “API KEY REQUIRED” tiles. Inject `WAYPOINT_MAP_TILE_CONFIG` at generate time from waypoint-studio secrets; refuse publish if it is missing.
+- Do not overwrite the live domain from an environment that cannot push. Unauthenticated CARTO Voyager tiles paint **API KEY REQUIRED**. Default Street to Esri World Street Map; treat `WAYPOINT_MAP_TILE_CONFIG` as an optional overlay. Publisher must check the effective Street URL, not whether some JSON exists.
 - Shallow replace commits are fine; do not force-push. Tag `238cbe15` before replacing.
 
 ### Lessons Learned — Shed Hunting Phase 3B custom domain (2026-08-29)

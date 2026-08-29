@@ -23,20 +23,6 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Require tile config for public cutover
-        env:
-          WAYPOINT_MAP_TILE_CONFIG: ${{ secrets.WAYPOINT_MAP_TILE_CONFIG }}
-        run: |
-          python3 - <<'PY'
-          import os, sys
-          raw = (os.environ.get("WAYPOINT_MAP_TILE_CONFIG") or "").strip()
-          if not raw.startswith("{"):
-            print("WAYPOINT_MAP_TILE_CONFIG is missing or not JSON.", file=sys.stderr)
-            print("Set this secret on waypoint-studio before publishing to shedhunting.org.", file=sys.stderr)
-            sys.exit(1)
-          print("tile config present")
-          PY
-
       - name: Build dedicated-host artifact
         env:
           WAYPOINT_MAP_TILE_CONFIG: ${{ secrets.WAYPOINT_MAP_TILE_CONFIG }}

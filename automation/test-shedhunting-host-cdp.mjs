@@ -178,6 +178,11 @@ async function main() {
         hasLeaflet: typeof L !== "undefined",
         leafMap: !!(window.L && document.querySelector(".leaflet-container")),
         leafletPane: !!document.querySelector(".leaflet-map-pane"),
+        streetUrl: window.WaypointShedsTiles && WaypointShedsTiles.mergeConfig().streetUrl,
+        topoUrl: window.WaypointShedsTiles && WaypointShedsTiles.mergeConfig().topoUrl,
+        satelliteUrl: window.WaypointShedsTiles && WaypointShedsTiles.mergeConfig().satelliteUrl,
+        streetPublishable: !!(window.WaypointShedsTiles && WaypointShedsTiles.isPublishableStreetUrl(WaypointShedsTiles.mergeConfig().streetUrl)),
+        attribution: (document.querySelector(".leaflet-control-attribution") || {}).textContent || "",
         today: !!document.getElementById("today-windows") || !!document.querySelector("[id*='today']"),
         todayScript: typeof window.WaypointShedsTodaysSearch !== "undefined",
         inspect: !!document.getElementById("inspect-hud"),
@@ -286,6 +291,8 @@ async function main() {
 
   const badAssets = responses.filter((r) => r.status >= 400 && !/\/favicon\.ico$/i.test(r.url) && !/^https:\/\/fonts\./.test(r.url));
   const studioRuntime = responses.filter((r) => /waypointstudio\.org\/(design-system|apps\/shed-hunting)/.test(r.url));
+  const cartoTiles = responses.filter((r) => /cartocdn\.com/i.test(r.url));
+  const esriStreetTiles = responses.filter((r) => /World_Street_Map/i.test(r.url));
 
   const report = {
     base: BASE,
@@ -298,6 +305,8 @@ async function main() {
     consoleErrors: consoleErrors.slice(0, 12),
     badAssets,
     studioRuntime,
+    cartoTiles: cartoTiles.slice(0, 8),
+    esriStreetTiles: esriStreetTiles.slice(0, 8),
     responsesSample: responses.filter((r) => r.url.startsWith(BASE)).slice(0, 20)
   };
   const reportPathTmp = path.join("/tmp", PREFIX + "_cdp_report.json");
@@ -318,6 +327,12 @@ async function main() {
     ["overview Support/Terms/Contact", ov.studioSupport && ov.terms && ov.contact],
     ["overview no ../../", !ov.traversal],
     ["map leaflet", mv.hasLeaflet && mv.leafMap],
+    ["map Street is Esri World Street", /World_Street_Map/.test(mv.streetUrl || "")],
+    ["map Street is not CARTO", !/cartocdn/.test(mv.streetUrl || "")],
+    ["map Street is publishable", mv.streetPublishable === true],
+    ["map Topo distinct from Street", /World_Topo_Map/.test(mv.topoUrl || "") && mv.topoUrl !== mv.streetUrl],
+    ["map Satellite Esri imagery", /World_Imagery/.test(mv.satelliteUrl || "")],
+    ["map attribution names Esri", /Esri/i.test(mv.attribution || "")],
     ["map Today’s Search", mv.todayScript],
     ["map inspect hud", mv.inspect],
     ["inspect next-tap control", inspectArm.result && inspectArm.result.value && inspectArm.result.value.hasBtn],
@@ -330,7 +345,9 @@ async function main() {
     ["GIS pack fetches", gis.ok && gis.hasNlcd],
     ["import merge-by-id", imp.ok && imp.listed],
     ["no 4xx local assets", badAssets.length === 0],
-    ["no Studio origin for app CSS/JS", studioRuntime.length === 0]
+    ["no Studio origin for app CSS/JS", studioRuntime.length === 0],
+    ["no CARTO tile requests", cartoTiles.length === 0],
+    ["Esri World Street tiles requested", esriStreetTiles.length > 0]
   ];
   let failedCount = 0;
   checks.forEach(function (c) {

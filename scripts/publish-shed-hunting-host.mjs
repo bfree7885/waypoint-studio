@@ -8,11 +8,13 @@
  * Env:
  *   SHEDHUNTING_HOST_REPO             default bfree7885/sheds-site
  *   SHEDHUNTING_DEPLOY_TOKEN          optional PAT with contents:write on sheds-site
+ *   WAYPOINT_MAP_TILE_CONFIG          optional JSON overlay (not required)
  *   SHEDHUNTING_ALLOW_PLACEHOLDER_TILES=1  only for non-production tests
  */
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import vm from "node:vm";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
@@ -42,10 +44,51 @@ function copyDir(from, to) {
   }
 }
 
-function hasTileOverride(html) {
-  const m = html.match(/<meta\s+name="waypoint-map-tiles"[^>]*content='(\{[^']*\})'/i)
-    || html.match(/<meta\s+name="waypoint-map-tiles"[^>]*content="(\{[^"]*\})"/i);
-  return !!(m && m[1] && m[1].charAt(0) === "{");
+function metaContentFromHtml(html) {
+  const m = String(html || "").match(/<meta\s+name="waypoint-map-tiles"[^>]*content='(\{[^']*\})'/i)
+    || String(html || "").match(/<meta\s+name="waypoint-map-tiles"[^>]*content="(\{[^"]*\})"/i);
+  return m && m[1] ? m[1] : null;
+}
+
+function parseEnvTileConfig() {
+  const raw = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
+  if (!raw || raw.charAt(0) !== "{") return null;
+  try {
+    const obj = JSON.parse(raw);
+    return obj && typeof obj === "object" ? obj : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function loadDistTiles(dist) {
+  const jsPath = path.join(dist, "js/sheds-tile-provider.js");
+  const html = fs.readFileSync(path.join(dist, "map/index.html"), "utf8");
+  const meta = metaContentFromHtml(html);
+  const sandbox = {
+    console,
+    document: {
+      querySelector: function (sel) {
+        if (String(sel || "").indexOf("waypoint-map-tiles") >= 0 && meta) {
+          return {
+            getAttribute: function () {
+              return meta;
+            }
+          };
+        }
+        return null;
+      }
+    }
+  };
+  sandbox.window = sandbox;
+  sandbox.globalThis = sandbox;
+  sandbox.WAYPOINT_MAP_TILE_CONFIG = parseEnvTileConfig();
+  vm.runInNewContext(fs.readFileSync(jsPath, "utf8"), sandbox, { filename: "sheds-tile-provider.js" });
+  return sandbox.WaypointShedsTiles;
+}
+
+function effectiveStreetUrl(tiles) {
+  return tiles.mergeConfig().streetUrl;
 }
 
 function readme() {
@@ -72,14 +115,17 @@ function main() {
     throw new Error("dist/shedhunting/ is missing. Run node scripts/prepare-shed-hunting-host.mjs first.");
   }
 
-  const mapHtml = fs.readFileSync(path.join(DIST, "map/index.html"), "utf8");
-  const envTiles = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
-  if (!ALLOW_PLACEHOLDER && !hasTileOverride(mapHtml) && !(envTiles.charAt(0) === "{")) {
+  const tiles = loadDistTiles(DIST);
+  const streetUrl = effectiveStreetUrl(tiles);
+  if (!ALLOW_PLACEHOLDER && !tiles.isPublishableStreetUrl(streetUrl)) {
     console.error("Refusing to publish a watermarked host.");
-    console.error("Set WAYPOINT_MAP_TILE_CONFIG (JSON) on waypoint-studio, regenerate, then re-run.");
+    console.error("Effective Street URL is not production-safe:", streetUrl);
+    console.error("Default Street must be Esri World Street Map (or a keyed CARTO URL).");
+    console.error("WAYPOINT_MAP_TILE_CONFIG is an optional overlay, not a required secret.");
     console.error("Do not replace live shedhunting.org with CARTO API KEY REQUIRED tiles.");
     process.exit(3);
   }
+  console.log("publish street provider:", streetUrl);
 
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "shedhunting-host-"));
   const remote = TOKEN

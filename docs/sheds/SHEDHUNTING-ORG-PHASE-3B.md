@@ -1,8 +1,14 @@
 # ShedHunting.org — Phase 3B recovery (`sheds-site`)
 
-**Status:** Stopped before live overwrite (resume recheck 2026-08-29)  
+**Status:** Street default fixed; **not published** (this Cloud Agent token still cannot write `sheds-site`)  
 **Date:** 2026-08-29  
 **Do not:** flip `shedDedicatedHostEnabled`, add Studio redirects, change `waypointstudio.org` CNAME, create `bfree7885/shedhunting.org`
+
+## 2026-08-29 — Esri Street default (this change)
+
+Default Street is **Esri World Street Map**. `WAYPOINT_MAP_TILE_CONFIG` is an **optional** overlay. Publisher refuses unauthenticated CARTO Street URLs even if some JSON is present.
+
+Write access is still the remaining publish blocker. Do not replace live `shedhunting.org` until a token that can push `sheds-site` is available.
 
 ## Resume recheck (2026-08-29, after owner said blockers were addressed)
 
@@ -25,12 +31,12 @@ Both publish prerequisites are **still missing**. No files were written to `shed
 | Live `/` | `200` title **Sheds \| Terrain Intelligence for Shed Hunting** (`Last-Modified: 10 Mar 2026`) |
 | Live `/map/` | `404` |
 
-Publisher correctly refused (`exit 3`) because dist map HTML has no `waypoint-map-tiles` meta.
+Publisher correctly refused (`exit 3`) at that time because dist map HTML had no `waypoint-map-tiles` meta and Street still defaulted to watermarked CARTO. **Superseded:** Street now defaults to Esri World Street Map; the publisher checks the effective Street URL.
 
 ### Remaining blockers (exact)
 
-1. **Write access:** add `bfree7885/sheds-site` to the Cursor GitHub App installation (selected repos), **or** put a PAT with `contents:write` on `sheds-site` in **this Cloud Agent environment** as `SHEDHUNTING_DEPLOY_TOKEN`. A GitHub Actions secret on waypoint-studio is **not** visible here. `gh secret list` is 403. The publish workflow is also not on `main`, so `gh workflow run shedhunting-host.yml` cannot run until that file exists on the default branch.
-2. **Tile config:** set `WAYPOINT_MAP_TILE_CONFIG` to **non-empty JSON** (starts with `{`) in the environment that will generate `dist/shedhunting/`. Latest Studio Pages deploy injected an empty value, and this agent has no env var. Do not publish CARTO Voyager defaults (those tiles paint **API KEY REQUIRED**).
+1. **Write access (still blocking publish):** this Cloud Agent token’s `/installation/repositories` is `selected` / `bfree7885/waypoint-studio` only. `git push --dry-run` to `sheds-site` returns `403 Permission … denied to cursor[bot]`. Tag create is 403. Pages metadata is readable. Grant `sheds-site` to a **new** token (or `SHEDHUNTING_DEPLOY_TOKEN` in the agent env). Changing the GitHub App to All repositories did not expand this run’s credentials.
+2. **Tile config:** no longer a publish requirement. Do not invent a CARTO API key.
 
 Rollback SHA to keep (do not force-push): `238cbe15b3a74ce8b278574137a82997edaeafc6`.
 
@@ -74,15 +80,13 @@ Rollback tag the publisher will try to push: `legacy-terrain-intelligence-2026-0
 
 ## Why overwrite did not run
 
-1. **No write access** to `bfree7885/sheds-site`.
-2. **Tile config** `WAYPOINT_MAP_TILE_CONFIG` is not available in this environment. Live CARTO Voyager defaults paint **API KEY REQUIRED** into tiles. Publisher refuses a watermarked public replace.
+1. **No write access** to `bfree7885/sheds-site` (this Cloud Agent token still `selected` / `waypoint-studio` only).
+2. Tile secret is **no longer required**. Street defaults to Esri World Street Map. Do not invent a CARTO API key.
 
 Owner unblock (minimum):
 
-1. Grant the Cursor GitHub App access to **`bfree7885/sheds-site`**, **or** set waypoint-studio secret `SHEDHUNTING_DEPLOY_TOKEN` with `contents:write` on `sheds-site`.
-2. Ensure waypoint-studio secret `WAYPOINT_MAP_TILE_CONFIG` is non-empty JSON (same secret Studio Pages already references). This agent cannot list secrets (403). If it is empty, set it before cutover.
-
-Then: `node scripts/prepare-shed-hunting-host.mjs` and `node scripts/publish-shed-hunting-host.mjs` (or workflow **Publish Shed Hunting host**).
+1. Issue a token that includes `bfree7885/sheds-site` (new Cloud Agent after the App actually lists that repo, **or** `SHEDHUNTING_DEPLOY_TOKEN` in the agent environment).
+2. Then: `node scripts/prepare-shed-hunting-host.mjs` and `node scripts/publish-shed-hunting-host.mjs` (or workflow **Publish Shed Hunting host**). Confirm `/installation/repositories` lists `sheds-site` before publishing.
 
 Do not change Namecheap DNS. Preserve MX/SPF. Keep `sheds-site` Pages on branch `main` (do not switch to Actions Pages — that ignores the `CNAME` file).
 
