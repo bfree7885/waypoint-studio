@@ -37,7 +37,7 @@ Thumbs.db
 private/university/server/.env.smoke
 private/university/server/.env.*
 !private/university/server/.env.example
-# Dedicated Shed Hunting host artifact (generated; do not deploy in Phase 2)
+# Dedicated Shed Hunting host artifact (generated; published to companion repo)
 dist/shedhunting/
 
 node_modules/

@@ -247,14 +247,71 @@ assert(
   "dist map Support points at Studio origin",
   /https:\/\/waypointstudio\.org\/support\.html/.test(distMapHtml)
 );
+assert(
+  "dist overview Powered by Waypoint points at Studio",
+  /data-powered-by-waypoint[^>]*href="https:\/\/waypointstudio\.org\/"/.test(distIndexHtml)
+);
+assert(
+  "dist map Powered by Waypoint points at Studio",
+  /data-powered-by-waypoint[^>]*href="https:\/\/waypointstudio\.org\/"/.test(distMapHtml)
+);
 assert("dist is not in sitemap", !/dist\/shedhunting/.test(read("sitemap.xml")));
 assert(
   "GIS pack URL stays app-relative",
   /url:\s*"\.\.\/gis\/packs\/pa-pike-milford-v1\.json"/.test(read("apps/shed-hunting/js/sheds-gis-pack.js"))
 );
 assert("export JSON still exists for class B migration", /sheds-field-private\.json/.test(read("apps/shed-hunting/js/sheds-map-app.js")));
+assert("import JSON is available on the map", /id="btn-import"/.test(mapHtml) && /sheds-import-json\.js/.test(mapHtml));
+assert("dist map includes Import JSON", /id="btn-import"/.test(distMapHtml));
+assert("dist map loads import module", /sheds-import-json\.js/.test(distMapHtml));
+assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
+assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
+assert("dist robots disallow until DNS", /Disallow: \//.test(read("dist/shedhunting/robots.txt")));
+assert("dist overview stays noindex in Phase 3A", /noindex/.test(distIndexHtml));
+assert("dist overview and map are shed hosts", /data-shed-host="1"/.test(distIndexHtml) && /data-shed-host="1"/.test(distMapHtml));
+assert("dist overview has no ../../ paths", !/\.\.\/\.\.\//.test(distIndexHtml));
+assert("dist map has no ../../ paths", !/\.\.\/\.\.\//.test(distMapHtml));
+assert("dist map Support is Studio origin, not site-root", !/href="\/support\.html"/.test(distMapHtml));
+assert("dist map Terms points at Studio", /https:\/\/waypointstudio\.org\/terms\.html/.test(distMapHtml));
+assert("dist map Contact points at Studio", /https:\/\/waypointstudio\.org\/contact\.html/.test(distMapHtml));
+assert("dist overview has no Scenes nav", !/Scenes/.test(distIndexHtml) && !/\/apps\/scenes\//.test(distIndexHtml));
+assert("dist has no paywall copy", !/Free\/Pro|paywall|subscribe now/i.test(distIndexHtml + distMapHtml));
+assert("origin flag remains false after Phase 3A", originCfg.shedDedicatedHostEnabled === false);
 assert("CNAME remains waypointstudio.org", /^\s*waypointstudio\.org\s*$/m.test(read("CNAME")));
 assert("pages workflow still deploys this repo to Pages", /Deploy GitHub Pages/.test(read(".github/workflows/pages.yml")));
+assert("companion publish workflow is dispatch-only", /workflow_dispatch/.test(read(".github/workflows/shedhunting-host.yml")) && !/branches:\s*\[main\]/.test(read(".github/workflows/shedhunting-host.yml")));
+assert("publish script targets shedhunting.org companion", /bfree7885\/shedhunting\.org/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish script strips CNAME", /unlinkSync\(path\.join\(tmp, "CNAME"\)\)/.test(read("scripts/publish-shed-hunting-host.mjs")));
+
+function localRefs(html) {
+  const out = [];
+  const re = /(?:href|src)="((?!https?:|mailto:|data:|#)[^"]+)"/gi;
+  let m;
+  while ((m = re.exec(html))) out.push(m[1].split("?")[0]);
+  return out;
+}
+const missing = [];
+[["index.html", distIndexHtml], ["map/index.html", distMapHtml]].forEach(function (pair) {
+  const fromDir = path.join(ROOT, "dist/shedhunting", path.dirname(pair[0]));
+  localRefs(pair[1]).forEach(function (ref) {
+    if (ref.startsWith("/")) return;
+    const resolved = path.normalize(path.join(fromDir, ref));
+    const distRoot = path.join(ROOT, "dist/shedhunting");
+    if (!resolved.startsWith(distRoot)) missing.push(pair[0] + " -> " + ref);
+    else if (!fs.existsSync(resolved)) missing.push(pair[0] + " -> " + ref);
+  });
+});
+assert("dist HTML local assets exist", missing.length === 0, missing.slice(0, 8).join("; "));
+assert(
+  "GIS pack file is in dist",
+  fs.existsSync(path.join(ROOT, "dist/shedhunting/gis/packs/pa-pike-milford-v1.json"))
+);
+assert(
+  "vendored WDS css/js and leaflet exist",
+  fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/wds/wds-experience-v2.css")) &&
+    fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/wds/wds-origins.js")) &&
+    fs.existsSync(path.join(ROOT, "dist/shedhunting/vendor/leaflet/leaflet.js"))
+);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");

@@ -155,7 +155,9 @@ Do **not**:
 - delete or 404 Scenes
 - rebuild Sheds
 
-**Phase 3 (later, only when asked):** activate `shedhunting.org`, flip the origin flag, deploy the dedicated-host artifact, and implement Studio redirects. Do not start Phase 3 from this document.
+**Phase 3A (hosting, no Studio cutover):** companion GitHub Pages site for the generated `dist/shedhunting/` artifact, verified on github.io. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3A.md`.
+
+**Phase 3B (later, only when asked):** attach `shedhunting.org` DNS, flip the origin flag, Studio redirects, canonicals.
 
 ---
 

@@ -64,11 +64,36 @@
     }
   }
 
+  function importFinds(records) {
+    var incoming = Array.isArray(records) ? records : [];
+    var byId = {};
+    listFinds().forEach(function (f) {
+      if (f && f.id) byId[f.id] = f;
+    });
+    var added = 0;
+    var replaced = 0;
+    incoming.forEach(function (raw) {
+      if (!raw || !raw.id) return;
+      if (byId[raw.id]) replaced += 1;
+      else added += 1;
+      byId[raw.id] = raw;
+    });
+    var merged = [];
+    Object.keys(byId).forEach(function (id) { merged.push(byId[id]); });
+    try {
+      localStorage.setItem(FINDS_KEY, JSON.stringify(merged.slice(0, 200)));
+      return { ok: true, added: added, replaced: replaced, total: merged.length };
+    } catch (e) {
+      return { ok: false, error: "Could not save imported finds.", added: 0, replaced: 0, total: listFinds().length };
+    }
+  }
+
   global.WaypointSheds = {
     SPECIES: SPECIES,
     FINDS_KEY: FINDS_KEY,
     createFind: createFind,
     listFinds: listFinds,
-    saveFind: saveFind
+    saveFind: saveFind,
+    importFinds: importFinds
   };
 })(window);

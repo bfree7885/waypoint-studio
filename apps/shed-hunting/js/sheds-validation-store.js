@@ -80,11 +80,34 @@
     return { ok: true };
   }
 
+  function importList(records) {
+    var incoming = Array.isArray(records) ? records : [];
+    var byId = {};
+    list().forEach(function (v) {
+      if (v && v.id) byId[v.id] = v;
+    });
+    var added = 0;
+    var replaced = 0;
+    incoming.forEach(function (raw) {
+      if (!raw || typeof raw !== "object") return;
+      var item = Object.assign({}, raw);
+      if (!item.id) item.id = "val_" + uuid();
+      if (byId[item.id]) replaced += 1;
+      else added += 1;
+      byId[item.id] = item;
+    });
+    var merged = [];
+    Object.keys(byId).forEach(function (id) { merged.push(byId[id]); });
+    if (!write(merged)) return { ok: false, error: "Could not save imported validations.", added: 0, replaced: 0, total: list().length };
+    return { ok: true, added: added, replaced: replaced, total: merged.length };
+  }
+
   global.WaypointShedsValidation = {
     KEY: KEY,
     SCHEMA_VERSION: SCHEMA_VERSION,
     list: list,
     create: create,
-    remove: remove
+    remove: remove,
+    importList: importList
   };
 })(typeof window !== "undefined" ? window : globalThis);

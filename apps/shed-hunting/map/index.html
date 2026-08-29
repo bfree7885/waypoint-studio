@@ -290,9 +290,14 @@
         <button type="button" class="sheds-btn" id="btn-history">History</button>
         <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
         <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
+        <button type="button" class="sheds-btn" id="btn-import">Import JSON</button>
+        <input id="import-json-file" type="file" accept="application/json,.json" hidden>
         <a class="sheds-btn" data-studio-path="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report" href="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
         <a class="sheds-btn" data-studio-path="/support.html" href="/support.html">Support</a>
+        <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
         <a class="sheds-btn" data-studio-path="/privacy.html" href="/privacy.html">Privacy</a>
+        <a class="sheds-btn" data-studio-path="/terms.html" href="/terms.html">Terms</a>
+        <a class="sheds-btn" data-studio-path="/contact.html" href="/contact.html">Contact</a>
         <a class="sheds-btn" data-powered-by-waypoint href="/">Powered by Waypoint</a>
       </div>
       <details class="sheds-advanced" id="advanced-tools">
@@ -303,7 +308,6 @@
           <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
           <button type="button" class="sheds-btn" id="btn-validate">Validate</button>
           <a class="sheds-btn" data-studio-path="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request" href="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request">Request feature</a>
-          <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
         </div>
       </details>
       <div class="sheds-actions">
@@ -799,6 +803,7 @@
 
   <script src="../vendor/wds/wds-origins.js"></script>
   <script src="../vendor/leaflet/leaflet.js"></script>
+  <script src="../js/sheds-models.js"></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-observation-patterns.js"></script>
   <script src="../js/sheds-todays-search.js"></script>
@@ -824,6 +829,7 @@
   <script src="../js/sheds-tile-provider.js"></script>
   <script src="../js/sheds-map-field-tools.js"></script>
   <script src="../js/sheds-inspect-intel.js"></script>
+  <script src="../js/sheds-import-json.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

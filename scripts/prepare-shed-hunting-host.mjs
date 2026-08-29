@@ -45,7 +45,7 @@ function rewriteHostOverview(html, origins) {
     if (/data-shed-host=/.test(attrs)) return m;
     return "<html" + attrs + ' data-shed-host="1">';
   });
-  out = out.replace(/content="noindex, nofollow"/i, 'content="index, follow"');
+  // Phase 3A: keep noindex on the github.io preview. Phase 3B flips SEO.
   out = out.replace(/\.\.\/vendor\//g, "vendor/");
   out = out.replace(/\.\.\/css\//g, "css/");
   out = out.replace(/\.\.\/js\//g, "js/");
@@ -61,6 +61,10 @@ function rewriteHostOverview(html, origins) {
     function (_, p) {
       return 'href="' + studio + p + '"';
     }
+  );
+  out = out.replace(
+    /(<a[^>]*data-powered-by-waypoint[^>]*href=")([^"]*)(")/,
+    "$1" + studio + "/$3"
   );
   return out;
 }
@@ -103,7 +107,23 @@ function main() {
   const mapSrc = fs.readFileSync(path.join(DEST, "map/index.html"), "utf8");
   fs.writeFileSync(path.join(DEST, "map/index.html"), rewriteMap(mapSrc, origins));
 
+  fs.writeFileSync(path.join(DEST, ".nojekyll"), "");
+  fs.writeFileSync(
+    path.join(DEST, "robots.txt"),
+    "User-agent: *\nDisallow: /\n\n# Phase 3A github.io preview. Do not index until shedhunting.org DNS is attached.\n"
+  );
+  fs.writeFileSync(
+    path.join(DEST, "404.html"),
+    "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta http-equiv=\"refresh\" content=\"0; url=./\"><title>Not found</title></head><body><p>That page is not on ShedHunting.org. <a href=\"./\">Return to Shed Hunting</a>.</p></body></html>\n"
+  );
+
+  if (fs.existsSync(path.join(DEST, "CNAME"))) {
+    console.error("prepare-shed-hunting-host: CNAME must not be written in Phase 3A");
+    process.exit(1);
+  }
+
   const leftover = [];
+  const deepTraversal = [];
   function scan(dir) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, ent.name);
@@ -113,12 +133,19 @@ function main() {
         if (text.includes("../../../design-system") || text.includes("../../design-system")) {
           leftover.push(path.relative(DEST, p));
         }
+        if (/\.\.\/\.\.\//.test(text) || /\.\.\/\.\.\/\.\.\//.test(text)) {
+          deepTraversal.push(path.relative(DEST, p));
+        }
       }
     }
   }
   scan(DEST);
   if (leftover.length) {
     console.error("prepare-shed-hunting-host: design-system traversal remains in", leftover);
+    process.exit(1);
+  }
+  if (deepTraversal.length) {
+    console.error("prepare-shed-hunting-host: ../../ asset paths remain in", deepTraversal);
     process.exit(1);
   }
   console.log("wrote", path.relative(ROOT, DEST));

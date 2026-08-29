@@ -112,6 +112,9 @@ jobs:
       - name: ForageCast land companion tests
         run: node automation/test-foragecast-land.mjs
 
+      - name: Sheds field JSON import
+        run: node automation/test-sheds-import-json.mjs
+
       - name: Sheds V3.2 Inspect Intelligence
         run: node automation/test-sheds-v3-2-inspect-intel.mjs
 

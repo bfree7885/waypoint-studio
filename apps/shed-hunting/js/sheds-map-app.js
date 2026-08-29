@@ -3951,10 +3951,12 @@
     }
     $("btn-export").addEventListener("click", function () {
       var payload = {
+        format: "waypoint-sheds-field-private-v1",
         observations: Store.exportJson(),
         sessions: Sessions ? Sessions.exportBundle() : null,
         searchAreas: AreaStore ? AreaStore.exportJson() : null,
         validations: Validation ? Validation.list() : [],
+        finds: window.WaypointSheds && WaypointSheds.listFinds ? WaypointSheds.listFinds() : [],
         modelPrefs: state.prefs,
         modelStamp: modelStamp(),
         privacyNote:
@@ -3969,6 +3971,50 @@
       URL.revokeObjectURL(a.href);
       closeAllSheets();
     });
+
+    if ($("btn-import") && $("import-json-file")) {
+      $("btn-import").addEventListener("click", function () {
+        $("import-json-file").click();
+      });
+      $("import-json-file").addEventListener("change", function () {
+        var input = $("import-json-file");
+        var file = input.files && input.files[0];
+        input.value = "";
+        if (!file) return;
+        var Importer = window.WaypointShedsImport;
+        if (!Importer) {
+          window.alert("Import is not available in this build.");
+          return;
+        }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var parsed = Importer.parseExport(String(reader.result || ""));
+          if (!parsed.ok) {
+            window.alert(parsed.error || "Could not read that file.");
+            return;
+          }
+          var result = Importer.importPayload(parsed);
+          if (!result.ok) {
+            window.alert(result.error || "Import failed.");
+            return;
+          }
+          try { refreshObservations(); } catch (e1) { /* map may not be ready */ }
+          try { refreshAreasList(); } catch (e2) { /* */ }
+          try { scheduleRecompute(80); } catch (e3) { /* */ }
+          var c = result.counts || {};
+          var obs = (c.observations && c.observations.added) || 0;
+          var areas = (c.searchAreas && c.searchAreas.added) || 0;
+          var sess = (c.sessions && c.sessions.added) || 0;
+          window.alert(
+            "Imported private field records into this browser only. " +
+              "Added " + obs + " notes, " + areas + " search areas, " + sess + " sessions. " +
+              "Same-id records were replaced. This does not prove a find or copy data from another website."
+          );
+          closeAllSheets();
+        };
+        reader.readAsText(file);
+      });
+    }
 
     document.querySelectorAll("[data-close-sheet]").forEach(function (btn) {
       btn.addEventListener("click", function () {
