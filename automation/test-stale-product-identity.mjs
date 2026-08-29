@@ -314,7 +314,7 @@ const experiences = engine.WDS.contentEngine.renderHome(
   { sections: ["experiences"] }
 );
 assertClean("content-engine experiences intro", experiences);
-assert("experiences intro names current products", /Scenes or Sheds/.test(experiences));
+assert("experiences intro names current products", /Dashboard/.test(experiences) && /Shed Hunting/.test(experiences));
 
 const wdsLoader = read("design-system/js/wds.js");
 const listStart = wdsLoader.indexOf('["wds-core.js"');

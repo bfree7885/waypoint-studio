@@ -16,49 +16,49 @@
     if (sky && sky.fogPotential && /likely|possible/i.test(sky.fogPotential.headline)) {
       out.push({
         text: "Watch for fog in low valleys after sunrise — soft light and simplified backgrounds.",
-        link: { href: "../../apps/hidden-landscapes/", label: "Hidden Landscapes" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "fog-potential"
       });
     }
     if (dl.sunrise && c.windMph != null && c.windMph < 10) {
       out.push({
         text: "Listen for increased bird activity during the calm morning period near sunrise.",
-        link: { href: "../../apps/scenes/", label: "Scenes" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "calm-morning-birding"
       });
     }
     if (model.rainfall && model.rainfall.recent && Number(model.rainfall.recent.amount) > 0.05) {
       out.push({
         text: "Observe how streams respond after recent rainfall — note color, flow, and debris lines.",
-        link: { href: "../../apps/scenes/", label: "Scenes" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "post-rain-hydrology"
       });
     }
     if (c.windMph != null && c.windMph < 8 && /rain|shower/.test(cond) === false) {
       out.push({
         text: "Photograph reflections on still water before winds pick up later in the day.",
-        link: { href: "../../apps/photo-coach/", label: "Photo Coach" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "calm-reflections"
       });
     }
     if (model.season === "spring" && c.tempF != null && c.tempF >= 50) {
       out.push({
         text: "Look for new plant growth following warmer nights — note species and location carefully.",
-        link: { href: "../../apps/scenes/", label: "Scenes" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "spring-greenup"
       });
     }
     if (c.cloudPct != null && c.cloudPct >= 40 && c.cloudPct <= 85) {
       out.push({
         text: "Record cloud transitions through the afternoon — useful for reading approaching fronts.",
-        link: { href: "../../apps/scenes/", label: "Scenes" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "cloud-transitions"
       });
     }
     if (model.moon.illumination != null && model.moon.illumination >= 70) {
       out.push({
         text: "Bright moonlight tonight — try a moonlit landscape exposure study.",
-        link: { href: "../../apps/photo-coach/", label: "Photo Coach" },
+        link: { href: "../../articles/", label: "Articles" },
         rule: "moonlight"
       });
     }

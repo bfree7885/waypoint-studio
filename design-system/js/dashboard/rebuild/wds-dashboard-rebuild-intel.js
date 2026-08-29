@@ -552,9 +552,7 @@
             evidence("cloudCoverPct", cloud, "weather")
           ],
           relatedInstrumentIds: ["ph-light", "ph-doorway", "ph-uv"],
-          toolLinks: photoOk
-            ? [{ id: "scenes", label: "Scenes", href: "/apps/scenes/", reason: "Favorable evening light window" }]
-            : []
+          toolLinks: []
         })
       );
     } else if (String(light.kind || "").toLowerCase().indexOf("blue") >= 0) {
@@ -568,7 +566,7 @@
           score: 40,
           evidence: [evidence("light.kind", light.kind, "daylight")],
           relatedInstrumentIds: ["ph-light", "ph-doorway"],
-          toolLinks: [{ id: "scenes", label: "Scenes", href: "/apps/scenes/", reason: "Blue-hour light" }]
+          toolLinks: []
         })
       );
     } else if (w.uvIndex != null && w.uvIndex >= 6) {
@@ -608,10 +606,7 @@
             evidence("cloudCoverPct", cloud, "weather")
           ],
           relatedInstrumentIds: ["ph-astronomy", "ph-doorway"],
-          toolLinks:
-            cloud != null && cloud <= 35
-              ? [{ id: "scenes", label: "Scenes", href: "/apps/scenes/", reason: "Dark-sky opportunity" }]
-              : []
+          toolLinks: []
         })
       );
     } else if (illum != null && illum >= 90 && cloud != null && cloud >= 70) {
@@ -659,7 +654,7 @@
           score: 38,
           evidence: [evidence("minutesToSunrise", sunriseMins, "computed")],
           relatedInstrumentIds: ["ph-light", "ph-doorway"],
-          toolLinks: [{ id: "scenes", label: "Scenes", href: "/apps/scenes/", reason: "Morning light window" }]
+          toolLinks: []
         })
       );
     }

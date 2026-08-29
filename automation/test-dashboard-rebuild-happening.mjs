@@ -281,8 +281,8 @@ function analyze(plat) {
   });
   const a = analyze(plat);
   const html = shell(plat);
-  assert("9 golden signal", a.happeningNow.some((s) => s.id === "light-golden-approaching"));
-  assert("9 Scenes action", /Explore in Scenes|Photo opportunity|Open Scenes/.test(html) && /\/apps\/scenes\//.test(html));
+assert("9 golden signal", a.happeningNow.some((s) => s.id === "light-golden-approaching"));
+  assert("9 omits unpublished Scenes action", !/Explore in Scenes|Open Scenes/.test(html) && !/\/apps\/scenes\//.test(html));
   assert("9 BYO does not duplicate golden summary", !/Sunset in about 35 minutes/i.test((a.beforeYouGo && a.beforeYouGo.brief) || ""));
 }
 
@@ -295,7 +295,7 @@ function analyze(plat) {
   const a = analyze(plat);
   const html = shell(plat);
   assert("10 blue hour", a.happeningNow.some((s) => s.id === "light-blue-hour"));
-  assert("10 Scenes on blue", /\/apps\/scenes\//.test(html));
+  assert("10 omits unpublished Scenes", !/\/apps\/scenes\//.test(html));
 }
 
 /* 11 New moon clear → dark sky + Scenes */
@@ -313,7 +313,7 @@ function analyze(plat) {
   const a = analyze(plat);
   const html = shell(plat);
   assert("11 dark-moon", a.happeningNow.some((s) => s.id === "astro-dark-moon-clear"));
-  assert("11 Scenes dark sky", /\/apps\/scenes\//.test(html));
+  assert("11 omits unpublished Scenes dark sky", !/\/apps\/scenes\//.test(html));
 }
 
 /* 12 New moon cloudy → no false dark-sky opportunity in HN */

@@ -91,7 +91,9 @@ assert("understand starts hidden", /data-deepen="understand" hidden/.test(skelet
 assert("no OpenRoad in deepeners", !/OpenRoad|Fieldry|Savant/.test(skeleton));
 
 const scenesHub = read("apps/scenes/index.html");
-assert("scenes hub explore framing", /Explore &amp; understand|See the world differently/.test(scenesHub));
+assert("scenes hub explore framing", /See the world differently/.test(scenesHub));
+assert("scenes hub unpublished note", /not currently a public/.test(scenesHub));
+assert("scenes hub is noindex", /noindex/i.test(scenesHub));
 assert("scenes hub DFD stories", /deep-forest-dispatch/.test(scenesHub) && /valley-fog-at-dawn/.test(scenesHub));
 assert("scenes hub no OpenRoad", !/OpenRoad/.test(scenesHub));
 
@@ -100,7 +102,8 @@ assert("short /scenes/ redirects to hub", /apps\/scenes\//.test(short) && !/phot
 
 const dfd = read("deep-forest-dispatch/index.html");
 assert("dfd editorial series framing", /editorial series|Waypoint Publishing/i.test(dfd));
-assert("dfd links scenes articles dashboard", /apps\/scenes\//.test(dfd) && /articles\//.test(dfd) && /dashboard\//.test(dfd));
+assert("dfd links dashboard articles", /dashboard\//.test(dfd) && /articles\//.test(dfd));
+assert("dfd omits unpublished Scenes join", !/apps\/scenes\//.test(dfd));
 
 const hood = read("deep-forest-dispatch/stories/mount-hood-rain-shadow/index.html");
 assert("hood watch the story", /Watch the story/.test(hood));
@@ -108,7 +111,7 @@ assert("hood browse articles", /Browse Articles/.test(hood));
 assert("hood youtube embed or link", /ue74ge9Bz7U|youtube/.test(hood));
 
 const articles = read("articles/index.html");
-assert("articles link scenes", /apps\/scenes\//.test(articles));
+assert("articles omit unpublished Scenes join", !/apps\/scenes\//.test(articles));
 assert("articles link dfd", /deep-forest-dispatch/.test(articles));
 
 const wds = read("design-system/js/wds.js");

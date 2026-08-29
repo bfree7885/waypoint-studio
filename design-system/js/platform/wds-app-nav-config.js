@@ -19,16 +19,10 @@
       "hint": "What’s happening outside today"
     },
     {
-      "id": "scenes",
-      "label": "Scenes",
-      "href": "/apps/scenes/",
-      "hint": "Explore and understand what you see"
-    },
-    {
       "id": "sheds",
-      "label": "Sheds",
-      "href": "/apps/shed-hunting/map/",
-      "hint": "Map-first shed hunting"
+      "label": "Shed Hunting",
+      "href": "/apps/shed-hunting/",
+      "hint": "Should I go shed hunting today?"
     },
     {
       "id": "deck",
@@ -57,8 +51,7 @@
   ],
   "architectureNavLabels": [
     "Dashboard",
-    "Scenes",
-    "Sheds",
+    "Shed Hunting",
     "Deck",
     "Articles",
     "Support",
@@ -66,7 +59,6 @@
   ],
   "homePrimary": [
     "dashboard",
-    "scenes",
     "sheds"
   ],
   "homeIncubator": [],
@@ -141,7 +133,6 @@
         "understand"
       ],
       "related": [
-        "scenes",
         "sheds"
       ],
       "publicSurface": true
@@ -164,7 +155,7 @@
       ],
       "category": "photography",
       "description": "One photography platform — Photo Coach, Auto Edit, Moving Scenes, Hidden Landscapes, Scene Builder, Photographer Profile, and Photo Library.",
-      "status": "live",
+      "status": "paused",
       "features": [
         {
           "id": "overview",
@@ -251,7 +242,7 @@
         }
       ],
       "purpose": "One photography platform for careful looking, craft feedback, and quieter visual growth.",
-      "maturity": "Live",
+      "maturity": "Unpublished",
       "startHere": {
         "label": "Open Photo Coach",
         "href": "apps/photo-coach/"
@@ -265,20 +256,20 @@
       "related": [
         "dashboard"
       ],
-      "publicSurface": true
+      "publicSurface": false
     },
     {
       "id": "sheds",
-      "title": "Sheds",
-      "shortTitle": "Sheds",
+      "title": "Shed Hunting",
+      "shortTitle": "Shed Hunting",
       "icon": "sheds",
       "route": "apps/shed-hunting/",
       "match": [
         "/apps/shed-hunting"
       ],
       "category": "outdoor",
-      "description": "Wildlife sign, seasonality, and private finds without trophy culture.",
-      "status": "foundation",
+      "description": "Should I go shed hunting today? Search conditions and habitat interest — never a claim that an antler is present.",
+      "status": "live",
       "features": [
         {
           "id": "overview",
@@ -286,11 +277,11 @@
           "href": "apps/shed-hunting/"
         }
       ],
-      "purpose": "Private antler-shed field craft — sign, seasonality, and finds without trophy culture.",
-      "maturity": "Foundation",
+      "purpose": "Today’s hunt: whether to go, then where to look — likelihood and opportunity, not a find prediction.",
+      "maturity": "Live",
       "startHere": {
-        "label": "Open field map",
-        "href": "apps/shed-hunting/map/"
+        "label": "Open Shed Hunting",
+        "href": "apps/shed-hunting/"
       },
       "journeys": [
         "observe",
@@ -332,7 +323,6 @@
       ],
       "related": [
         "dashboard",
-        "scenes",
         "sheds"
       ],
       "publicSurface": true
@@ -365,7 +355,6 @@
   ],
   "publicAppIds": [
     "dashboard",
-    "scenes",
     "sheds",
     "waypoint-deck"
   ]

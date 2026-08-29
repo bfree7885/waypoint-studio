@@ -12,21 +12,16 @@ The official shared design language for every Waypoint Studio product.
 
 ## Products
 
-**Core instruments** (public portfolio): Dashboard (`studio`), ForageCast, Fieldry, Scenes.
+Public architecture is **Dashboard (Waypoint Studio) · Shed Hunting · Deck · Publishing**.
+Scenes photography tools remain in the repo but are unpublished. See `docs/PRODUCT-DIRECTION.md`.
 
-**Themes** below include content tracks and retired concepts — accent tokens remain for editorial pages.
-
-| Product | `data-product` | Tier | Accent character |
-|---------|----------------|------|------------------|
-| Waypoint Studio Dashboard | `scenes` (home) | core | Regional trailhead |
-| ForageCast | `foragecast` | core | Amber — season, habitat |
-| Fieldry | `fieldry` | core | Field gold — journal, evidence |
-| Waypoint Scenes | `scenes` | core | Sage — stillness, light |
-| Shed Hunting | `shed-hunting` | content track | Antler tan |
-| Steepleaf | `steepleaf` | content track | Leaf green |
-| Savant Sommelier | `savant-sommelier` | editorial | Wine rose |
-| SignalTerrain | `signalterrain` | module | Slate blue |
-| Terrainbound | `terrainbound` | retired | Stone gray |
+| Product | `data-product` | Public | Accent character |
+|---------|----------------|--------|------------------|
+| Waypoint Studio / Dashboard | `dashboard`, `studio-home` | yes | Terracotta / ochre |
+| Shed Hunting | `shed-hunting` | yes (sibling) | Terracotta / sage |
+| Waypoint Scenes | `scenes` | unpublished | Ochre |
+| Articles / DFD | `articles`, `deep-forest-dispatch` | yes | Terracotta / ochre |
+| Waypoint Deck | `waypoint-deck` | yes (distinct project) | Terracotta / desert purple |
 
 See [STRATEGIC-DIRECTION.md](../docs/STRATEGIC-DIRECTION.md).
 

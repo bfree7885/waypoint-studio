@@ -82,9 +82,17 @@
     return (config().categories || []).slice();
   }
 
+  function isPublicApp(app) {
+    if (!app) return false;
+    if (app.publicSurface === false) return false;
+    var st = String(app.status || "live").toLowerCase();
+    if (st === "paused" || st === "retired" || st === "archived") return false;
+    return true;
+  }
+
   function appsByCategory() {
     var cats = listCategories();
-    var apps = listApps();
+    var apps = listApps().filter(isPublicApp);
     return cats.map(function (cat) {
       return {
         id: cat.id,
@@ -135,7 +143,8 @@
       steepleaf: 1,
       "landscape-interpretation": 1,
       terrainbound: 1,
-      volunteer: 1
+      volunteer: 1,
+      scenes: 1
     };
     return app.related
       .map(byId)
