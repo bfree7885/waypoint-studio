@@ -7,6 +7,11 @@
   global.WDS = global.WDS || {};
   global.WDS.APP_NAV_CONFIG = {
   "version": "3.0.0",
+  "origins": {
+    "studioOrigin": "https://waypointstudio.org",
+    "shedOrigin": "https://shedhunting.org",
+    "shedDedicatedHostEnabled": false
+  },
   "brand": {
     "name": "Waypoint Studio",
     "homeRoute": "./"

@@ -129,9 +129,12 @@
     var hideExplore = quiet || !!options.hideApps;
     var cfg = NavApi && NavApi.config ? NavApi.config() : {};
     var primary = (cfg.studioPrimaryNav || []).map(function (item) {
-      var href = NavApi && NavApi.resolveRoute
-        ? NavApi.resolveRoute(item.href, depth)
-        : item.href;
+      var href = item.href;
+      if (item.id === "sheds" && NavApi && NavApi.shedHuntingPublicHref) {
+        href = NavApi.shedHuntingPublicHref();
+      } else if (NavApi && NavApi.resolveRoute) {
+        href = NavApi.resolveRoute(item.href, depth);
+      }
       var pathNow = String((global.location && global.location.pathname) || "");
       // Front door (/) is studio-home — do not mark Dashboard current there.
       var onDashboard =

@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-experience-v2.css">
+  <link rel="stylesheet" href="../vendor/wds/wds-experience-v2.css">
   <link rel="stylesheet" href="../css/sheds-map.css">
 </head>
 <body>
@@ -258,7 +258,7 @@
             <p class="sheds-plan__why" id="plan-why"></p>
             <p class="sheds-today__uncertain" id="today-uncertain"></p>
             <p class="sheds-plan__meta" id="plan-knowledge-link">
-              <a href="../../../knowledge.html">Optional reading — Waypoint Knowledge</a>
+              <a data-studio-path="/knowledge.html" href="/knowledge.html">Optional reading — Waypoint Knowledge</a>
             </p>
           </details>
           <div class="sheds-plan__actions" id="plan-actions">
@@ -290,9 +290,10 @@
         <button type="button" class="sheds-btn" id="btn-history">History</button>
         <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
         <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
-        <a class="sheds-btn" href="../../../contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
-        <a class="sheds-btn" href="../../../support.html">Support</a>
-        <a class="sheds-btn" href="../../../privacy.html">Privacy</a>
+        <a class="sheds-btn" data-studio-path="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report" href="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
+        <a class="sheds-btn" data-studio-path="/support.html" href="/support.html">Support</a>
+        <a class="sheds-btn" data-studio-path="/privacy.html" href="/privacy.html">Privacy</a>
+        <a class="sheds-btn" data-powered-by-waypoint href="/">Powered by Waypoint</a>
       </div>
       <details class="sheds-advanced" id="advanced-tools">
         <summary>Advanced</summary>
@@ -301,8 +302,8 @@
           <button type="button" class="sheds-btn" id="btn-controls">Model weights</button>
           <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
           <button type="button" class="sheds-btn" id="btn-validate">Validate</button>
-          <a class="sheds-btn" href="../../../contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request">Request feature</a>
-          <a class="sheds-btn" href="../../../about.html">About</a>
+          <a class="sheds-btn" data-studio-path="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request" href="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request">Request feature</a>
+          <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
         </div>
       </details>
       <div class="sheds-actions">
@@ -796,6 +797,7 @@
     </div>
   </div>
 
+  <script src="../vendor/wds/wds-origins.js"></script>
   <script src="../vendor/leaflet/leaflet.js"></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-observation-patterns.js"></script>

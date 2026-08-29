@@ -239,6 +239,37 @@
     return brandHome(depth);
   }
 
+  function originConfig() {
+    var cfg = config();
+    return cfg.origins || {
+      studioOrigin: "https://waypointstudio.org",
+      shedOrigin: "https://shedhunting.org",
+      shedDedicatedHostEnabled: false
+    };
+  }
+
+  function shedHuntingPublicHref() {
+    if (global.WDS && global.WDS.origins && typeof global.WDS.origins.shedHuntingPublicHref === "function") {
+      return global.WDS.origins.shedHuntingPublicHref();
+    }
+    var o = originConfig();
+    if (o.shedDedicatedHostEnabled) {
+      return String(o.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "") + "/";
+    }
+    return "/apps/shed-hunting/";
+  }
+
+  function shedHuntingMapPublicHref() {
+    if (global.WDS && global.WDS.origins && typeof global.WDS.origins.shedHuntingMapHref === "function") {
+      return global.WDS.origins.shedHuntingMapHref();
+    }
+    var o = originConfig();
+    if (o.shedDedicatedHostEnabled) {
+      return String(o.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "") + "/map/";
+    }
+    return "/apps/shed-hunting/map/";
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.appNav = {
     config: config,
@@ -256,6 +287,9 @@
     featureHref: featureHref,
     brandHome: brandHome,
     studioHomeHref: studioHomeHref,
+    originConfig: originConfig,
+    shedHuntingPublicHref: shedHuntingPublicHref,
+    shedHuntingMapPublicHref: shedHuntingMapPublicHref,
     depthFromPath: depthFromPath,
     prefixes: prefixes,
     pathname: pathname,

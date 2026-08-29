@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-29",
+  "phase": "2-preparation",
+  "studioOrigin": "https://waypointstudio.org",
+  "shedOrigin": "https://shedhunting.org",
+  "shedDedicatedHostEnabled": false,
+  "shedHostnames": ["shedhunting.org", "www.shedhunting.org"],
+  "studioPaths": {
+    "home": "/",
+    "dashboard": "/apps/dashboard/",
+    "shedHunting": "/apps/shed-hunting/",
+    "shedHuntingMap": "/apps/shed-hunting/map/",
+    "shedsAlias": "/sheds/",
+    "mapAlias": "/map/",
+    "articles": "/articles/",
+    "support": "/support.html",
+    "about": "/about.html",
+    "privacy": "/privacy.html",
+    "terms": "/terms.html",
+    "contact": "/contact.html",
+    "knowledge": "/knowledge.html"
+  },
+  "shedHostPaths": {
+    "home": "/",
+    "map": "/map/"
+  },
+  "notes": "shedDedicatedHostEnabled must stay false until Phase 3 actually activates shedhunting.org. Public hrefs must stay same-origin on waypointstudio.org until then. This file is the origin-config source of truth; keep wds-origins.js, nav-registry.json origins, and wds-app-nav-config.js origins in sync."
+}

@@ -1,7 +1,8 @@
 {
   "version": "1.0.1",
-  "updatedAt": "2026-07-15",
+  "updatedAt": "2026-08-29",
   "productionSite": "https://waypointstudio.org",
+  "scenesContactCompatibility": "Scenes remains a contact/support category because unpublished Scenes URLs stay reachable for bookmarks and internal users. Do not restore Scenes to public discovery.",
   "developer": {
     "name": "Bryan",
     "studio": "Waypoint Studio",

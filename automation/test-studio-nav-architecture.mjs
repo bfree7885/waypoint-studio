@@ -176,6 +176,7 @@ assert("scenes photo-coach still exists", fs.existsSync(path.join(ROOT, "apps/ph
 assert("scenes hub is noindex", /noindex/i.test(read("apps/scenes/index.html")));
 assert("robots disallows scenes", /Disallow: \/apps\/scenes\//.test(read("robots.txt")));
 assert("no public shedhunting.org hrefs in nav", !/https?:\/\/shedhunting\.org/.test(JSON.stringify(navReg.studioPrimaryNav)));
+assert("origin flag remains off", navReg.origins && navReg.origins.shedDedicatedHostEnabled === false);
 
 const catalog = read("design-system/js/platform/wds-platform-catalog.js");
 assert("platform catalog includes Deck", /id:\s*"deck"/.test(catalog));
