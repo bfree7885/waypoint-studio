@@ -157,7 +157,7 @@ Do **not**:
 
 **Phase 3A (hosting, no Studio cutover):** companion GitHub Pages site for the generated `dist/shedhunting/` artifact, verified on github.io. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3A.md`.
 
-**Phase 3B (custom domain via `sheds-site`):** publish `dist/shedhunting/` to `bfree7885/sheds-site`, which already owns `shedhunting.org`. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. **2026-08-29: stopped before live overwrite** — no write access to `sheds-site`, and tile config is not available in this environment.
+**Phase 3B (custom domain via `sheds-site`):** publish `dist/shedhunting/` to `bfree7885/sheds-site`, which already owns `shedhunting.org`. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. **2026-08-29 resume: still stopped** — Cursor App still selected-only on `waypoint-studio` (`cursor[bot]` 403 on `sheds-site`); `WAYPOINT_MAP_TILE_CONFIG` unset here and empty in the latest Studio Pages run. Live domain still March 2026 Terrain Intelligence.
 
 **Phase 3C (later, only when asked):** flip `shedDedicatedHostEnabled`, Studio nav/redirects to the dedicated origin.
 

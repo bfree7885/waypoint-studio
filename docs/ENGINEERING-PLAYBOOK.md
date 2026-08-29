@@ -1673,6 +1673,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 3B resume recheck (2026-08-29)
+
+- Owner-side “secrets were added” is not enough unless this agent can **use** them. GitHub App installation was still `selected` / `waypoint-studio` only (`cursor[bot]` 403 on `sheds-site`). `SHEDHUNTING_DEPLOY_TOKEN` and `WAYPOINT_MAP_TILE_CONFIG` were unset in the agent env. Actions secrets cannot be listed (403) and `shedhunting-host.yml` is not on `main`, so `workflow_dispatch` 404s.
+- Latest Studio Pages run dumped `WAYPOINT_MAP_TILE_CONFIG:` as empty (not redacted). An empty Actions secret is the same as missing: do not publish. Stop, do not ship watermarked CARTO tiles.
+
 ### Lessons Learned — Shed Hunting Phase 3B sheds-site recovery (2026-08-29)
 
 - Reuse `bfree7885/sheds-site` (it already has `cname: shedhunting.org`). Do not create `bfree7885/shedhunting.org`. Keep Studio `CNAME` as `waypointstudio.org`.
