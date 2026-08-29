@@ -280,8 +280,9 @@ assert("origin flag remains false after Phase 3A", originCfg.shedDedicatedHostEn
 assert("CNAME remains waypointstudio.org", /^\s*waypointstudio\.org\s*$/m.test(read("CNAME")));
 assert("pages workflow still deploys this repo to Pages", /Deploy GitHub Pages/.test(read(".github/workflows/pages.yml")));
 assert("companion publish workflow is dispatch-only", /workflow_dispatch/.test(read(".github/workflows/shedhunting-host.yml")) && !/branches:\s*\[main\]/.test(read(".github/workflows/shedhunting-host.yml")));
-assert("publish script targets shedhunting.org companion", /bfree7885\/shedhunting\.org/.test(read("scripts/publish-shed-hunting-host.mjs")));
-assert("publish script strips CNAME", /unlinkSync\(path\.join\(tmp, "CNAME"\)\)/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish script targets sheds-site", /bfree7885\/sheds-site/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish script keeps shedhunting.org CNAME", /shedhunting\.org/.test(read("scripts/publish-shed-hunting-host.mjs")) && /writeFileSync\(path\.join\(tmp, "CNAME"\)/.test(read("scripts/publish-shed-hunting-host.mjs")));
+assert("publish refuses watermarked cutover", /Refusing to publish a watermarked host/.test(read("scripts/publish-shed-hunting-host.mjs")));
 
 function localRefs(html) {
   const out = [];

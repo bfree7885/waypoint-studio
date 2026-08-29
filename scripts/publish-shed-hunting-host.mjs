@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 /**
- * Publish dist/shedhunting/ to the companion GitHub Pages repository.
+ * Publish dist/shedhunting/ to bfree7885/sheds-site (GitHub Pages for shedhunting.org).
  *
- * Phase 3A: no custom-domain CNAME. Studio origin flag stays false.
- *
- * Usage:
- *   node scripts/prepare-shed-hunting-host.mjs
- *   node scripts/publish-shed-hunting-host.mjs
+ * Keeps the existing shedhunting.org CNAME. Does not change waypointstudio.org.
+ * Does not force-push. Tags the pre-replace HEAD for rollback.
  *
  * Env:
- *   SHEDHUNTING_HOST_REPO      default bfree7885/shedhunting.org
- *   SHEDHUNTING_DEPLOY_TOKEN  optional; otherwise uses ambient git credentials
+ *   SHEDHUNTING_HOST_REPO             default bfree7885/sheds-site
+ *   SHEDHUNTING_DEPLOY_TOKEN          optional PAT with contents:write on sheds-site
+ *   SHEDHUNTING_ALLOW_PLACEHOLDER_TILES=1  only for non-production tests
  */
 import fs from "node:fs";
 import os from "node:os";
@@ -20,8 +18,10 @@ import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = path.join(ROOT, "dist/shedhunting");
-const REPO = process.env.SHEDHUNTING_HOST_REPO || "bfree7885/shedhunting.org";
+const REPO = process.env.SHEDHUNTING_HOST_REPO || "bfree7885/sheds-site";
 const TOKEN = process.env.SHEDHUNTING_DEPLOY_TOKEN || "";
+const ALLOW_PLACEHOLDER = process.env.SHEDHUNTING_ALLOW_PLACEHOLDER_TILES === "1";
+const ROLLBACK_TAG = "legacy-terrain-intelligence-2026-03-10";
 
 function run(cmd, args, opts) {
   const res = spawnSync(cmd, args, Object.assign({ encoding: "utf8" }, opts));
@@ -42,58 +42,43 @@ function copyDir(from, to) {
   }
 }
 
-function pagesWorkflow() {
-  return `name: GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: \${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
-`;
+function hasTileOverride(html) {
+  const m = html.match(/<meta\s+name="waypoint-map-tiles"[^>]*content='(\{[^']*\})'/i)
+    || html.match(/<meta\s+name="waypoint-map-tiles"[^>]*content="(\{[^"]*\})"/i);
+  return !!(m && m[1] && m[1].charAt(0) === "{");
 }
 
 function readme() {
   return `# ShedHunting.org (generated host)
 
-This repository is the **deployable** Shed Hunting site. Application source lives in [waypoint-studio](https://github.com/bfree7885/waypoint-studio).
+This repository is the **GitHub Pages deploy target** for [https://shedhunting.org](https://shedhunting.org).
 
-Do not edit product code here. Regenerate from the source repo:
+Canonical application source: [waypoint-studio](https://github.com/bfree7885/waypoint-studio).
+
+Do not edit product code here. Publish from the source repo:
 
 \`\`\`
 node scripts/prepare-shed-hunting-host.mjs
 node scripts/publish-shed-hunting-host.mjs
 \`\`\`
 
-Phase 3A: GitHub Pages project URL only. **No custom-domain CNAME** until Phase 3B.
+Pages: branch \`main\` / root. Keep the \`CNAME\` file as \`shedhunting.org\`.
+Do not point this project at \`waypointstudio.org\`.
 `;
 }
 
 function main() {
   if (!fs.existsSync(path.join(DIST, "index.html")) || !fs.existsSync(path.join(DIST, "map/index.html"))) {
     throw new Error("dist/shedhunting/ is missing. Run node scripts/prepare-shed-hunting-host.mjs first.");
+  }
+
+  const mapHtml = fs.readFileSync(path.join(DIST, "map/index.html"), "utf8");
+  const envTiles = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
+  if (!ALLOW_PLACEHOLDER && !hasTileOverride(mapHtml) && !(envTiles.charAt(0) === "{")) {
+    console.error("Refusing to publish a watermarked host.");
+    console.error("Set WAYPOINT_MAP_TILE_CONFIG (JSON) on waypoint-studio, regenerate, then re-run.");
+    console.error("Do not replace live shedhunting.org with CARTO API KEY REQUIRED tiles.");
+    process.exit(3);
   }
 
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "shedhunting-host-"));
@@ -106,8 +91,18 @@ function main() {
   } catch (e) {
     console.error("Could not clone " + REPO + ".");
     console.error(String(e.message || e));
-    console.error("Create the public companion repository, grant this GitHub App access to it, then re-run.");
+    console.error("Grant the Cursor GitHub App access to bfree7885/sheds-site, or set SHEDHUNTING_DEPLOY_TOKEN (contents:write).");
     process.exit(2);
+  }
+
+  const prev = run("git", ["rev-parse", "HEAD"], { cwd: tmp }).trim();
+  console.log("sheds-site HEAD before replace:", prev);
+  try {
+    run("git", ["tag", "-f", ROLLBACK_TAG, prev], { cwd: tmp });
+    run("git", ["push", "origin", ROLLBACK_TAG], { cwd: tmp });
+    console.log("rollback tag:", ROLLBACK_TAG, prev);
+  } catch (e) {
+    console.error("Could not push rollback tag (history on main is still intact at " + prev + "):", String(e.message || e).slice(0, 400));
   }
 
   for (const ent of fs.readdirSync(tmp)) {
@@ -115,22 +110,19 @@ function main() {
     fs.rmSync(path.join(tmp, ent), { recursive: true, force: true });
   }
   copyDir(DIST, tmp);
-  fs.mkdirSync(path.join(tmp, ".github/workflows"), { recursive: true });
-  fs.writeFileSync(path.join(tmp, ".github/workflows/pages.yml"), pagesWorkflow());
+  fs.writeFileSync(path.join(tmp, "CNAME"), "shedhunting.org\n");
   fs.writeFileSync(path.join(tmp, "README.md"), readme());
-  if (fs.existsSync(path.join(tmp, "CNAME"))) {
-    fs.unlinkSync(path.join(tmp, "CNAME"));
-  }
 
   run("git", ["add", "-A"], { cwd: tmp });
   const status = run("git", ["status", "--porcelain"], { cwd: tmp });
   if (!status.trim()) {
-    console.log("companion already up to date");
+    console.log("sheds-site already up to date");
     return;
   }
-  run("git", ["-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com", "-c", "user.name=github-actions[bot]", "commit", "-m", "Publish Shed Hunting host artifact"], { cwd: tmp });
+  run("git", ["-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com", "-c", "user.name=github-actions[bot]", "commit", "-m", "Publish generated ShedHunting.org host from waypoint-studio"], { cwd: tmp });
   run("git", ["push", "origin", "HEAD:main"], { cwd: tmp });
-  console.log("published to https://github.com/" + REPO);
+  const next = run("git", ["rev-parse", "HEAD"], { cwd: tmp }).trim();
+  console.log("published to https://github.com/" + REPO, "commit", next, "rollback", prev);
 }
 
 try {

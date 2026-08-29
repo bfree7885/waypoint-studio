@@ -1673,6 +1673,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 3B sheds-site recovery (2026-08-29)
+
+- Reuse `bfree7885/sheds-site` (it already has `cname: shedhunting.org`). Do not create `bfree7885/shedhunting.org`. Keep Studio `CNAME` as `waypointstudio.org`.
+- Do not switch that repo to Actions Pages: Actions ignores the `CNAME` file. Stay on branch `main` / root.
+- Do not overwrite the live domain from an environment that cannot push, and do not ship CARTO “API KEY REQUIRED” tiles. Inject `WAYPOINT_MAP_TILE_CONFIG` at generate time from waypoint-studio secrets; refuse publish if it is missing.
+- Shallow replace commits are fine; do not force-push. Tag `238cbe15` before replacing.
+
 ### Lessons Learned — Shed Hunting Phase 3B custom domain (2026-08-29)
 
 - Do not attach `shedhunting.org` until `https://bfree7885.github.io/shedhunting.org/` returns the dedicated host. A 404 github.io means stop.

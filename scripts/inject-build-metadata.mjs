@@ -74,6 +74,7 @@ const HTML_FILES = [
   "apps/hidden-landscapes/gallery.html",
   "apps/hidden-landscapes/learn.html",
   "apps/shed-hunting/map/index.html",
+  "map/index.html",
   "apps/scenes/living-scenes/index.html",
   "apps/scenes/scene-builder/index.html",
   "apps/scenes/photographer-profile/index.html",
@@ -164,7 +165,7 @@ function stampHtml(file, sha) {
   // Optional production tile override (JSON). Never commit secrets into HTML —
   // pass via CI env, e.g. WAYPOINT_MAP_TILE_CONFIG='{"streetUrl":"https://..."}'
   const tileCfg = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
-  if (tileCfg && tileCfg.charAt(0) === "{" && /sheds-map|shed-hunting\/map/i.test(file)) {
+  if (tileCfg && tileCfg.charAt(0) === "{" && /sheds-map|shed-hunting\/map|\/map\/index\.html$/i.test(file)) {
     const safe = tileCfg.replace(/</g, "\\u003c");
     if (/<meta\s+name="waypoint-map-tiles"/i.test(next)) {
       next = next.replace(
