@@ -82,5 +82,9 @@ Do **not** do these now.
 
    If the DNS host supports CNAME flattening, `CNAME` `@` `bfree7885.github.io` can replace the A/AAAA set. Do **not** point the CNAME at `waypointstudio.org`.
 4. Enable HTTPS on the companion Pages project.
-5. Flip `shedDedicatedHostEnabled`, Studio redirects, and canonicals — only when asked.
+5. After HTTPS is valid on the new host: dedicated-host canonical/OG/sitemap for `https://shedhunting.org` (not Studio route removal).
 6. Change generated robots/meta from Disallow/noindex to public indexing.
+
+Flag flip and Studio redirects are **Phase 3C**, not 3B.
+
+Attempted 2026-08-29 and **stopped**: github.io host is not live. Details: `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`.
