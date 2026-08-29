@@ -1673,6 +1673,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 2 host preparation (2026-08-29)
+
+- GitHub Pages allows **one custom domain per project**. Dedicated `shedhunting.org` needs a companion Pages site + generated `dist/shedhunting/` from this repo — not a second CNAME on the Studio project and not a product rewrite.
+- Map `../../../design-system` traversal cannot survive a host-root `/map/` URL. Vendor a **small** WDS subset (`wds-experience-v2.css` + origin helper); keep production overview on the Studio shell.
+- `shedDedicatedHostEnabled` must stay false until the destination exists. Centralize hostname policy; do not scatter `shedhunting.org` checks.
+- New origin = empty localStorage. Class B field data (observations, sessions, areas) already has Export JSON; plan Import for Phase 3 rather than a silent migration.
+- `/map/` on Studio is already the Sheds map. Document the conflict before any cutover redirect; do not assume it is a free Studio route.
+- Contact may still list Scenes as a support category while Scenes stays unpublished in discovery. Those are different surfaces.
+
 ### Lessons Learned — Shed Hunting public architecture Phase 1 (2026-08-29)
 
 - Public architecture is **Dashboard = Waypoint Studio**, **Shed Hunting = sibling**, Deck and Publishing public, **Scenes unpublished**. Do not restore Dashboard · Scenes · Sheds as equal Studio apps.

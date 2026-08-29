@@ -62,7 +62,7 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 - Public entrance: `/apps/shed-hunting/` (overview) — **Should I go shed hunting today?**
 - Field interface: `/apps/shed-hunting/map/` — **Where should I look?**
 - Map HUD is immersive (no studio primary nav); escape via the overview.
-- Until `shedhunting.org` has a working destination, do not create external links to it.
+- Until `shedhunting.org` is activated (Phase 3), do not create external links to it. Phase 2 prep: `docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`.
 
 ## Scenes specifically
 

@@ -10,7 +10,8 @@ Shared global primary nav (`.was-primary-nav`) must expose:
 
 **Dashboard · Shed Hunting · Deck · Articles · Support · About**
 
-- **Shed Hunting** href is `/apps/shed-hunting/` (overview), not `/map/` and not `shedhunting.org`.
+- **Shed Hunting** href is `/apps/shed-hunting/` (overview), not `/map/` and not `shedhunting.org`, while `shedDedicatedHostEnabled` is false (`design-system/ecosystem/origin-config.json`).
+- Dedicated-host navigation (Phase 3) is documented in `docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`. Do not emit live `https://shedhunting.org` hrefs in Phase 2.
 - **Scenes is unpublished** — keep routes working; omit from primary nav, Explore public lists, homepage, About, Support, and sitemap.
 
 - Hrefs are **site-root absolute** (`/side-trails/`, …) so nested routes cannot break peers.

@@ -40,7 +40,7 @@ The site homepage (`/`) remains the Studio **front door**. It must not redirect 
 
 **ShedHunting.org** · **Powered by Waypoint**
 
-Public identity is transitioning toward ShedHunting.org. Until that domain has a working destination, **do not** link users to `https://shedhunting.org` (or any second host). Stay **same-origin** on `waypointstudio.org`.
+Public identity is transitioning toward ShedHunting.org. Until that domain is **activated in Phase 3**, **do not** link users to `https://shedhunting.org` (or any second host). Stay **same-origin** on `waypointstudio.org`. Preparation (origin helpers, vendored map assets, generated host artifact, redirect/SEO/storage plans) lives in [`docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`](sheds/SHEDHUNTING-ORG-PHASE-2.md). The dedicated-host flag stays **off**.
 
 | Surface | URL | Job |
 |----------|-----|-----|
@@ -138,21 +138,24 @@ Southwestern-inspired family palette (deep plum, burnt orange, golden yellow, de
 
 ---
 
-## Deployment / Phase 1 vs Phase 2
+## Deployment / Phase 1 vs Phase 2 vs Phase 3
 
-**Phase 1 (current):** public architecture and identity on the existing `waypointstudio.org` deployment. Same-origin only.
+**Phase 1 (current production architecture):** public architecture and identity on the existing `waypointstudio.org` deployment. Same-origin only. Dashboard-first Studio; Shed Hunting sibling; Scenes unpublished.
+
+**Phase 2 (preparation, this work):** host/path/asset independence, origin config with `shedDedicatedHostEnabled: false`, redirect/SEO/storage/hosting documentation, generated `dist/shedhunting/` artifact that is **not** deployed. See `docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`.
 
 Do **not**:
 
 - perform DNS changes
 - change the `waypointstudio.org` CNAME
-- deploy `shedhunting.org` or create a second host / Pages project
-- split repositories
+- deploy `shedhunting.org` or create the companion Pages project yet
+- split the source repository
+- implement production redirects
 - implement payments
 - delete or 404 Scenes
 - rebuild Sheds
 
-**Phase 2 (later, only when asked):** domain cutover once `shedhunting.org` has a working destination.
+**Phase 3 (later, only when asked):** activate `shedhunting.org`, flip the origin flag, deploy the dedicated-host artifact, and implement Studio redirects. Do not start Phase 3 from this document.
 
 ---
 
@@ -164,4 +167,4 @@ Do **not**:
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  
 6. Prefer incremental consolidation over theoretical rewrites.  
-7. Do not link `shedhunting.org` until that domain has a working destination.
+7. Do not link `shedhunting.org` until Phase 3 actually activates that host. Origin-config flag stays false.
