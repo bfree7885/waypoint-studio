@@ -50,6 +50,13 @@ SHEDHUNTING_HOST_URL=https://bfree7885.github.io/shedhunting.org/ \
   node scripts/verify-shed-hunting-host-url.mjs
 ```
 
+Local dedicated-host CDP (serves `dist/shedhunting/` as `/`):
+
+```
+python3 -m http.server 8770 --directory dist/shedhunting
+node automation/test-shedhunting-host-cdp.mjs http://127.0.0.1:8770/
+```
+
 ## Phase 3B (not this phase)
 
 Do **not** do these now.
