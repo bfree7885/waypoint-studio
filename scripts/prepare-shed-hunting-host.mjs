@@ -86,7 +86,23 @@ function rewriteMap(html, origins) {
     /(<a[^>]*data-powered-by-waypoint[^>]*href=")([^"]*)(")/,
     '$1' + studio + '/$3'
   );
-  return out;
+  return injectTileMeta(out);
+}
+
+function injectTileMeta(html) {
+  const tileCfg = (process.env.WAYPOINT_MAP_TILE_CONFIG || "").trim();
+  if (!tileCfg || tileCfg.charAt(0) !== "{") return html;
+  const safe = tileCfg.replace(/</g, "\\u003c");
+  if (/<meta\s+name="waypoint-map-tiles"/i.test(html)) {
+    return html.replace(
+      /<meta\s+name="waypoint-map-tiles"[^>]*>/i,
+      '<meta name="waypoint-map-tiles" content=\'' + safe + "'>"
+    );
+  }
+  return html.replace(
+    /(<meta\s+charset=[^>]*>)/i,
+    "$1\n  <meta name=\"waypoint-map-tiles\" content='" + safe + "'>"
+  );
 }
 
 function main() {

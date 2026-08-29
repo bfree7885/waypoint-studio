@@ -65,12 +65,17 @@ function loadTiles(extra) {
 const sandbox = loadTiles();
 const Tiles = sandbox.WaypointShedsTiles;
 assert("module loads", !!(Tiles && Tiles.createBasemaps));
-assert("carto default street", /cartocdn/.test(Tiles.DEFAULTS.streetUrl));
+assert("esri default street", /World_Street_Map/.test(Tiles.DEFAULTS.streetUrl));
+assert("street id is esri-world-street", Tiles.DEFAULTS.streetId === "esri-world-street");
+assert("street label stays Street", Tiles.DEFAULTS.streetLabel === "Street");
+assert("street maxZoom 19", Tiles.DEFAULTS.streetMaxZoom === 19);
+assert("street has no cartocdn subdomains", Tiles.DEFAULTS.streetSubdomains === "");
 assert("esri default topo", /World_Topo_Map/.test(Tiles.DEFAULTS.topoUrl));
+assert("street is distinct from topo", Tiles.DEFAULTS.streetUrl !== Tiles.DEFAULTS.topoUrl);
 assert("esri satellite imagery", /World_Imagery/.test(Tiles.DEFAULTS.satelliteUrl));
 assert("esri hybrid reference", /World_Boundaries_and_Places/.test(Tiles.DEFAULTS.hybridRefUrl));
 assert("detects OSMF host", Tiles.isOsmPublicHost("a.tile.openstreetmap.org"));
-assert("allows carto host", !Tiles.isOsmPublicHost("a.basemaps.cartocdn.com"));
+assert("carto host is not OSMF", !Tiles.isOsmPublicHost("a.basemaps.cartocdn.com"));
 
 let threw = false;
 try {
@@ -79,6 +84,37 @@ try {
   threw = /OSMF|refuse/i.test(String(e && e.message));
 }
 assert("assertNotOsmPublic throws for OSMF", threw);
+
+assert(
+  "default street is publishable",
+  Tiles.isPublishableStreetUrl(Tiles.DEFAULTS.streetUrl)
+);
+assert(
+  "unauthenticated voyager is not publishable",
+  !Tiles.isPublishableStreetUrl(
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+  )
+);
+assert(
+  "unauthenticated positron is not publishable",
+  !Tiles.isPublishableStreetUrl("https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png")
+);
+assert(
+  "keyed carto overlay is publishable",
+  Tiles.isPublishableStreetUrl(
+    "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?apikey=unit-test-not-a-real-key"
+  )
+);
+assert(
+  "placeholder apikey is not publishable",
+  !Tiles.isPublishableStreetUrl(
+    "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?apikey=YOUR_API_KEY"
+  )
+);
+assert(
+  "JSON-only dummy would not make voyager publishable",
+  !Tiles.isPublishableStreetUrl("{")
+);
 
 const fakeL = {
   tileLayer: function (url, opts) {
@@ -110,8 +146,10 @@ const fakeL = {
   }
 };
 const layers = Tiles.createBasemaps(fakeL);
-assert("createBasemaps street url carto", /cartocdn/.test(layers.street.url));
+assert("createBasemaps street url esri", /World_Street_Map/.test(layers.street.url));
+assert("createBasemaps street not cartocdn", !/cartocdn/.test(layers.street.url));
 assert("createBasemaps topo url esri", /World_Topo_Map/.test(layers.topo.url));
+assert("createBasemaps street !== topo", layers.street.url !== layers.topo.url);
 assert("createBasemaps satellite url", /World_Imagery/.test(layers.satellite.url));
 assert("createBasemaps hybrid present", !!layers.hybrid);
 assert("baseLayers has satellite label", !!layers.baseLayers[layers.config.satelliteLabel]);
@@ -185,6 +223,32 @@ try {
   overrideOsmThrew = true;
 }
 assert("override cannot reintroduce OSMF public tiles", overrideOsmThrew);
+
+let overrideCartoThrew = false;
+try {
+  loadTiles({
+    WAYPOINT_MAP_TILE_CONFIG: {
+      streetUrl: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+    }
+  }).WaypointShedsTiles.createBasemaps(fakeL);
+} catch (e) {
+  overrideCartoThrew = /API KEY REQUIRED|unauthenticated CARTO/i.test(String(e && e.message));
+}
+assert("override cannot reintroduce watermarked CARTO", overrideCartoThrew);
+
+let keyedCartoOk = false;
+try {
+  const keyed = loadTiles({
+    WAYPOINT_MAP_TILE_CONFIG: {
+      streetUrl:
+        "https://a.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?apikey=unit-test-not-a-real-key"
+    }
+  }).WaypointShedsTiles.createBasemaps(fakeL);
+  keyedCartoOk = /apikey=unit-test-not-a-real-key/.test(keyed.street.url);
+} catch (e) {
+  keyedCartoOk = false;
+}
+assert("keyed CARTO overlay is allowed without inventing a key", keyedCartoOk);
 
 const appSrc = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-map-app.js"), "utf8");
 assert("map app uses WaypointShedsTiles", /WaypointShedsTiles/.test(appSrc));

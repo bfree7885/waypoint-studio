@@ -1,91 +1,97 @@
-# ShedHunting.org — Phase 3B (custom domain)
+# ShedHunting.org — Phase 3B recovery (`sheds-site`)
 
-**Status:** Stopped — prerequisite not met  
+**Status:** Street default fixed; **not published** (this Cloud Agent token still cannot write `sheds-site`)  
 **Date:** 2026-08-29  
-**Do not:** flip `shedDedicatedHostEnabled`, add Studio redirects, change the `waypointstudio.org` CNAME, merge Phase 3C
+**Do not:** flip `shedDedicatedHostEnabled`, add Studio redirects, change `waypointstudio.org` CNAME, create `bfree7885/shedhunting.org`
 
-Phase 3A contract: `docs/sheds/SHEDHUNTING-ORG-PHASE-3A.md`
+## 2026-08-29 — Esri Street default (this change)
 
-## Stop condition
+Default Street is **Esri World Street Map**. `WAYPOINT_MAP_TILE_CONFIG` is an **optional** overlay. Publisher refuses unauthenticated CARTO Street URLs even if some JSON is present.
 
-Phase 3B must not attach `shedhunting.org` until the Phase 3A host is live on github.io.
+Write access is still the remaining publish blocker. Do not replace live `shedhunting.org` until a token that can push `sheds-site` is available.
 
-Checked 2026-08-29:
+## Resume recheck (2026-08-29, after owner said blockers were addressed)
+
+Both publish prerequisites are **still missing**. No files were written to `sheds-site`. Live `https://shedhunting.org/` is still the March 2026 Terrain Intelligence site.
 
 | Check | Result |
-|-------|--------|
-| Companion repo `bfree7885/shedhunting.org` | **Missing** (`createRepository` is not allowed to this GitHub App) |
-| `https://bfree7885.github.io/shedhunting.org/` | **404** GitHub Pages “Site not found” |
-| Current `https://shedhunting.org/` | Old **`bfree7885/sheds-site`** Pages project (March 2026 “Sheds \| Terrain Intelligence”), not the Phase 3A host |
-| This environment’s GitHub App repos | **`bfree7885/waypoint-studio` only** |
-| Registrar / DNS API in this environment | **None** |
+|------|--------|
+| GitHub App installation | `repository_selection: selected`, **1 repo**: `bfree7885/waypoint-studio` only |
+| `sheds-site` `permissions.push` | `false` |
+| `git push` to `sheds-site` | `403 Permission to bfree7885/sheds-site.git denied to cursor[bot]` |
+| Tag `legacy-terrain-intelligence-2026-03-10` | API 403; tag **not** created |
+| Agent env `SHEDHUNTING_DEPLOY_TOKEN` | unset |
+| Agent env `WAYPOINT_MAP_TILE_CONFIG` | unset |
+| Studio Pages secret (run `33194284224`, 2026-08-28) | workflow env dump shows `WAYPOINT_MAP_TILE_CONFIG:` **empty** (not masked `***`) |
+| `shedhunting-host.yml` on default branch | **no** — `workflow_dispatch` 404; cannot use Actions secrets from this branch |
+| `shedDedicatedHostEnabled` | `false` |
+| Studio `CNAME` | `waypointstudio.org` |
+| `sheds-site` HEAD | still `238cbe15b3a74ce8b278574137a82997edaeafc6` |
+| Pages | `legacy` / `main` / `cname: shedhunting.org` / `https_enforced: false` |
+| Live `/` | `200` title **Sheds \| Terrain Intelligence for Shed Hunting** (`Last-Modified: 10 Mar 2026`) |
+| Live `/map/` | `404` |
 
-No DNS records were changed. No Pages custom-domain was moved. Canonical/OG/sitemap on the dedicated host were **not** switched to `https://shedhunting.org` because the domain is not serving the new host.
+Publisher correctly refused (`exit 3`) at that time because dist map HTML had no `waypoint-map-tiles` meta and Street still defaulted to watermarked CARTO. **Superseded:** Street now defaults to Esri World Street Map; the publisher checks the effective Street URL.
 
-## What currently answers `shedhunting.org`
+### Remaining blockers (exact)
 
-GitHub Pages project: `bfree7885/sheds-site`
+1. **Write access (still blocking publish):** this Cloud Agent token’s `/installation/repositories` is `selected` / `bfree7885/waypoint-studio` only. `git push --dry-run` to `sheds-site` returns `403 Permission … denied to cursor[bot]`. Tag create is 403. Pages metadata is readable. Grant `sheds-site` to a **new** token (or `SHEDHUNTING_DEPLOY_TOKEN` in the agent env). Changing the GitHub App to All repositories did not expand this run’s credentials.
+2. **Tile config:** no longer a publish requirement. Do not invent a CARTO API key.
 
-- `cname`: `shedhunting.org`
-- `html_url`: `http://shedhunting.org/`
-- `https_enforced`: false
-- Certificate: Let’s Encrypt, `CN=shedhunting.org`, expires 2026-11-23, **no** `www` SAN
-- Content: legacy Sheds landing, last-modified 2026-03-10
+Rollback SHA to keep (do not force-push): `238cbe15b3a74ce8b278574137a82997edaeafc6`.
 
-GitHub allows **one custom domain per Pages project**, and a domain can only be attached to **one** Pages site. The companion cannot take `shedhunting.org` until that CNAME is removed from `sheds-site`.
+## Architecture (this recovery)
 
-## DNS observed (do not delete mail)
+| Role | Location |
+|------|----------|
+| Canonical source | `bfree7885/waypoint-studio` |
+| Generated artifact | `dist/shedhunting/` |
+| Deploy target | `bfree7885/sheds-site` |
+| Public domain | `https://shedhunting.org/` (already attached to `sheds-site`) |
 
-Nameservers: `dns1.registrar-servers.com` / `dns2.registrar-servers.com` (Namecheap parking DNS).
+Do **not** create `bfree7885/shedhunting.org`.
 
-**Keep as-is (mail):**
+## Safety audit (2026-08-29)
 
-| Type | Name | Value |
-|------|------|--------|
-| `MX` | `@` | `eforward1`–`eforward3.registrar-servers.com` (10), `eforward4` (15), `eforward5` (20) |
-| `TXT` | `@` | `v=spf1 include:spf.efwd.registrar-servers.com ~all` |
+| Item | Value |
+|------|--------|
+| Default branch | `main` |
+| HEAD SHA | `238cbe15b3a74ce8b278574137a82997edaeafc6` (2026-03-10, “Update project state for development continuity”) |
+| Pages | `legacy` / branch `main` / path `/` |
+| Custom domain | `shedhunting.org` (keep) |
+| HTTPS cert | Let’s Encrypt approved, expires 2026-11-23, apex only, **not** enforced |
+| `CNAME` file | `shedhunting.org` |
+| Workflow | `.github/workflows/publish.yml` — field-notes publisher on `publish.json` only (not Pages) |
+| This App’s access | **read/clone public only; `permissions.push: false`; tag create 403** |
 
-**Apex A records already match GitHub Pages** (no apex A change required for GitHub):
+### Unique content not in waypoint-studio
 
-| Type | Name | Value |
-|------|------|--------|
-| `A` | `@` | `185.199.108.153` |
-| `A` | `@` | `185.199.109.153` |
-| `A` | `@` | `185.199.110.153` |
-| `A` | `@` | `185.199.111.153` |
+Preserved in git history at the HEAD SHA above (no force-push):
 
-**Missing (optional follow-up, not applied):**
+- `briefs/late-winter-whitetail-movement.html`
+- `briefs/winter-weather-pressure-2026.html`
+- `heatmap/generate_heatmap.py` (and a committed `.venv` that must not be redeployed)
+- `fieldview.html`, `field-guide/`, `api/observations.json` (one dummy observation near 39.5, −98.2)
+- Legacy docs: `PRODUCT.md`, `PAYWALL.md`, `DEVELOPMENT_PLAN.md`, `PROJECT_STATE.md`
 
-| Type | Name | Value | Notes |
-|------|------|--------|--------|
-| `AAAA` | `@` | `2606:50c0:8000::153` … `:8003::153` | GitHub-recommended IPv6; none present today |
-| `CNAME` | `www` | `bfree7885.github.io` | No `www` records today; GitHub recommends this alongside the apex |
+These are the March 2026 “Terrain Intelligence” prototype, not the current Shed Hunting product. Replacing **deployed** files is intended; **history** at `238cbe15` is the rollback.
 
-Do **not** point any `shedhunting.org` record at `waypointstudio.org`. Do **not** use a wildcard `*.shedhunting.org`.
+Rollback tag the publisher will try to push: `legacy-terrain-intelligence-2026-03-10`.
 
-Source: [GitHub Pages custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+## Why overwrite did not run
 
-## GitHub-side attach sequence (when github.io is verified)
+1. **No write access** to `bfree7885/sheds-site` (this Cloud Agent token still `selected` / `waypoint-studio` only).
+2. Tile secret is **no longer required**. Street defaults to Esri World Street Map. Do not invent a CARTO API key.
 
-1. Publish `dist/shedhunting/` to `bfree7885/shedhunting.org` and verify `https://bfree7885.github.io/shedhunting.org/` and `/map/`.
-2. Remove custom domain `shedhunting.org` from **`bfree7885/sheds-site`** Pages (Settings → Pages → Remove). Do not delete MX/SPF at the registrar.
-3. On the companion Pages project, set custom domain `shedhunting.org`. For Actions-based Pages, GitHub does not require a repo `CNAME` file (it is ignored); the Pages setting is the source of truth. If publishing from a branch, add a root `CNAME` file containing `shedhunting.org`.
-4. Wait for DNS check + Let’s Encrypt. Enable **Enforce HTTPS** when GitHub permits it.
-5. Optionally add apex `AAAA` and `www` `CNAME` at Namecheap. Preserve MX/SPF.
-6. Only after HTTPS is valid on the **new** host: generate dedicated-host canonical/OG/sitemap for `https://shedhunting.org`. Still do **not** flip `shedDedicatedHostEnabled` or add Studio redirects (Phase 3C).
+Owner unblock (minimum):
 
-## Waypoint Studio (must stay untouched)
+1. Issue a token that includes `bfree7885/sheds-site` (new Cloud Agent after the App actually lists that repo, **or** `SHEDHUNTING_DEPLOY_TOKEN` in the agent environment).
+2. Then: `node scripts/prepare-shed-hunting-host.mjs` and `node scripts/publish-shed-hunting-host.mjs` (or workflow **Publish Shed Hunting host**). Confirm `/installation/repositories` lists `sheds-site` before publishing.
 
-| Check | Value |
-|-------|--------|
-| Repo `CNAME` file | `waypointstudio.org` |
-| Pages `cname` | `waypointstudio.org` |
-| HTTPS | enforced; cert SAN `waypointstudio.org` + `www.waypointstudio.org` |
-| `/apps/shed-hunting/` | still 200 |
-| Origin flag | `shedDedicatedHostEnabled: false` |
+Do not change Namecheap DNS. Preserve MX/SPF. Keep `sheds-site` Pages on branch `main` (do not switch to Actions Pages — that ignores the `CNAME` file).
 
-## Owner unblock
+## Studio (unchanged)
 
-1. Create public empty repo `bfree7885/shedhunting.org` (no README, no CNAME).
-2. Grant the Cursor GitHub App (or a PAT `SHEDHUNTING_DEPLOY_TOKEN`) access to that repo **and** `bfree7885/sheds-site` (needed only to remove the old Pages domain).
-3. Re-run Phase 3A publish, verify github.io, then resume this Phase 3B sequence.
+- `CNAME` = `waypointstudio.org`
+- `shedDedicatedHostEnabled` = `false`
+- Public Shed Hunting still `/apps/shed-hunting/`

@@ -77,7 +77,9 @@ Attribution preserved on-map (OSM contributors + CARTO; Esri / GIS User Communit
 
 ## Remaining limitations
 
-1. CARTO / Esri are third-party CDNs — still subject to their ToS and outages; optional keyed provider can be injected later via `WAYPOINT_MAP_TILE_CONFIG` (GitHub secret → Pages inject). Do not hardcode secrets.
+**Later (2026-08-29):** Unauthenticated CARTO Voyager tiles watermark **API KEY REQUIRED**. Sheds Street now defaults to Esri World Street Map. The CARTO verification below describes the 2026-08-08 OSMF fix, not the current default.
+
+1. Esri (and any remaining CARTO) CDNs are third-party — still subject to their ToS and outages; `WAYPOINT_MAP_TILE_CONFIG` remains an optional URL overlay. Do not hardcode secrets.
 2. OpenTopoMap is no longer the default topo layer (sparse/slow at overview); Esri World Topo is the Layers alternate.
 3. Headless CDP screenshots can under-report composited layers; DOM coverage sampling is the authoritative local gate used here.
 4. Volunteer `discover.html` already used a **correct** Leaflet CSS SRI on unpkg; Sheds had a **wrong** hash on jsDelivr — do not reintroduce CDN SRI for Sheds without verifying the digest.

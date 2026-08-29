@@ -157,7 +157,7 @@ Do **not**:
 
 **Phase 3A (hosting, no Studio cutover):** companion GitHub Pages site for the generated `dist/shedhunting/` artifact, verified on github.io. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3A.md`.
 
-**Phase 3B (custom domain, this work):** attach `shedhunting.org` to the companion Pages project after github.io is verified. Origin flag stays **false**. Studio redirects stay off. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. **2026-08-29: stopped** — companion github.io host is not live yet.
+**Phase 3B (custom domain via `sheds-site`):** publish `dist/shedhunting/` to `bfree7885/sheds-site`, which already owns `shedhunting.org`. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. Street default is Esri World Street Map (no tile secret required). **Do not publish until this Cloud Agent token can push `sheds-site`.** Live domain is still March 2026 Terrain Intelligence.
 
 **Phase 3C (later, only when asked):** flip `shedDedicatedHostEnabled`, Studio nav/redirects to the dedicated origin.
 
