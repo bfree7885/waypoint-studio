@@ -13,10 +13,13 @@ Canonical detail: `docs/PRODUCT_STANDARDS.md`. Product portfolio:
 
 **Observe. Discover. Understand.** Deepen curiosity—do not replace it.
 
-## Active Studio
+## Active public architecture
 
-Dashboard (Discover) · Scenes (Explore & understand) · Sheds (Go).
-Publishing + shared intelligence are infrastructure, not a fourth consumer product.
+Waypoint Studio = Dashboard (the Studio product).
+Shed Hunting = public sibling (`/apps/shed-hunting/` overview; map is the field interface).
+Deck = distinct offline project. Publishing / DFD = public editorial.
+Scenes is retained internally but unpublished — do not restore it as a Studio peer.
+Do not link `shedhunting.org` until that host has a working destination.
 
 ## Not active Studio products
 

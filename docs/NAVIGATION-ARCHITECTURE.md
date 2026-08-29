@@ -1,14 +1,17 @@
 # Navigation Architecture — Waypoint Studio
 
-**Status:** Current as of Side Trails primary-nav pass (2026-08-07)  
+**Status:** Current as of Shed Hunting public-architecture Phase 1 (2026-08-29)  
 **Sources of truth:** `design-system/ecosystem/nav-registry.json` ↔ `design-system/js/platform/wds-app-nav-config.js`  
-**Owner review:** `docs/product/side-trails-primary-nav-owner-review.md`
+**Canonical portfolio:** `docs/PRODUCT-DIRECTION.md`
 
 ## Studio primary / architecture nav
 
 Shared global primary nav (`.was-primary-nav`) must expose:
 
-**Dashboard · Scenes · Sheds · Articles · Side Trails · Support · About**
+**Dashboard · Shed Hunting · Deck · Articles · Support · About**
+
+- **Shed Hunting** href is `/apps/shed-hunting/` (overview), not `/map/` and not `shedhunting.org`.
+- **Scenes is unpublished** — keep routes working; omit from primary nav, Explore public lists, homepage, About, Support, and sitemap.
 
 - Hrefs are **site-root absolute** (`/side-trails/`, …) so nested routes cannot break peers.
 - Depth for relative app/feature links uses **directory segment count** from the pathname.
@@ -38,7 +41,7 @@ Shared global primary nav (`.was-primary-nav`) must expose:
 
 | Surface | Exception |
 |---------|-----------|
-| Sheds field map | Immersive HUD — no studio primary nav; escape via Sheds overview |
+| Shed Hunting field map | Immersive HUD — no studio primary nav; escape via Shed Hunting overview |
 | Side Trails product landings | Custom product chrome (extended with studio destinations); not a second shell |
 | Explore launcher | Secondary discovery; may still list demoted apps |
 

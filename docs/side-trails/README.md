@@ -4,8 +4,9 @@
 **Catalog:** `data/side-trails/catalog.json`  
 **Canonical portfolio:** [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md)
 
-Side Trails holds **independent experiments** beside Waypoint Studio
-(Dashboard · Scenes · Sheds + Publishing).
+Side Trails is not an active public catalog. **Deck** is the remaining distinct project
+(`/side-trails/waypoint-deck/`). Do not restore Dashboard · Scenes · Sheds as equal Studio apps
+— see [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md).
 
 Cards render from a JSON catalog only. The page never invents projects.
 

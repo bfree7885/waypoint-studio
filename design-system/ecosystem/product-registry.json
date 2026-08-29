@@ -5,7 +5,6 @@
     "core": [
       "studio",
       "dashboard",
-      "scenes",
       "shed-hunting",
       "articles",
       "waypoint-deck"

@@ -117,8 +117,7 @@
     mount.innerHTML =
       '<div class="was-home__grid was-home__grid--primary" data-home-gate="pathways">' +
       '<a class="was-home__card" href="apps/dashboard/"><h3 class="was-home__card-title">Dashboard</h3></a>' +
-      '<a class="was-home__card" href="apps/scenes/"><h3 class="was-home__card-title">Scenes</h3></a>' +
-      '<a class="was-home__card" href="apps/shed-hunting/"><h3 class="was-home__card-title">Sheds</h3></a>' +
+      '<a class="was-home__card" href="apps/shed-hunting/"><h3 class="was-home__card-title">Shed Hunting</h3></a>' +
       '<a class="was-home__card" href="articles/"><h3 class="was-home__card-title">Articles</h3></a>' +
       '<a class="was-home__card" href="side-trails/waypoint-deck/"><h3 class="was-home__card-title">Deck</h3></a>' +
       "</div>";

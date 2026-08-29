@@ -4,9 +4,10 @@
  * Authority: docs/product/waypoint-studio-nav-architecture-owner-review.md
  *
  * Asserts shared nav config + directory surfaces expose the current
- * five-effort architecture labels (Dashboard, Scenes, Sheds, Deck,
- * Articles, Support, About) and do not present discontinued products
- * as architecture equals.
+ * public architecture labels (Dashboard, Shed Hunting, Deck,
+ * Articles, Support, About). Scenes remains in-repo but unpublished.
+ * Dashboard is Waypoint Studio's core public product. Do not present
+ * discontinued products or unpublished Scenes as architecture equals.
  *
  * Run: node automation/test-studio-nav-architecture.mjs
  */
@@ -16,7 +17,7 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const REQUIRED = ["Dashboard", "Scenes", "Sheds", "Deck", "Articles", "Support", "About"];
+const REQUIRED = ["Dashboard", "Shed Hunting", "Deck", "Articles", "Support", "About"];
 const OLD_PRIMARY_PEERS = ["Volunteer", "SignalTerrain", "Steepleaf", "Savant", "Fieldry", "ForageCast", "Side Trails"];
 
 let passed = 0;
@@ -87,6 +88,11 @@ assert(
 );
 assert("nav-registry includes Deck href", /\/side-trails\/waypoint-deck\//.test(JSON.stringify(navReg.studioPrimaryNav)));
 assert(
+  "Shed Hunting nav is overview not map or external domain",
+  navReg.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "/apps/shed-hunting/" && !/shedhunting\.org/.test(i.href))
+);
+assert("Scenes omitted from primary nav", !navReg.studioPrimaryNav.some((i) => i.id === "scenes" || i.label === "Scenes"));
+assert(
   "primary nav hrefs are site-root absolute",
   (cfg.studioPrimaryNav || []).every(function (i) {
     return typeof i.href === "string" && i.href.charAt(0) === "/";
@@ -117,7 +123,8 @@ assert(
 
 const productReg = JSON.parse(read("design-system/ecosystem/product-registry.json"));
 assert("product-registry core includes waypoint-deck", productReg.portfolio.core.includes("waypoint-deck"));
-assert("product-registry core includes scenes", productReg.portfolio.core.includes("scenes"));
+assert("product-registry core includes shed-hunting", productReg.portfolio.core.includes("shed-hunting"));
+assert("product-registry core omits unpublished scenes", !productReg.portfolio.core.includes("scenes"));
 assert(
   "product-registry demotes foragecast from core",
   !productReg.portfolio.core.includes("foragecast")
@@ -136,10 +143,8 @@ REQUIRED.forEach((label) => {
   assert("about mentions " + label, about.includes(label));
 });
 assert("about links Deck", /side-trails\/waypoint-deck\//.test(about));
-assert(
-  "about does not list Volunteer as primary peer heading",
-  !/<strong>Volunteer<\/strong>/.test(about)
-);
+assert("about does not list Scenes as an active product heading", !/<strong>Scenes<\/strong>/.test(about));
+assert("about does not list Volunteer as primary peer heading", !/<strong>Volunteer<\/strong>/.test(about));
 
 const support = read("support.html");
 REQUIRED.forEach((label) => {
@@ -160,9 +165,17 @@ assert("incubator does not catalog experiments", !/Steepleaf|Savant|Fieldry|Volu
 
 const sitemap = read("sitemap.xml");
 assert("sitemap includes waypoint-deck", /waypointstudio\.org\/side-trails\/waypoint-deck\//.test(sitemap));
+assert("sitemap includes shed-hunting overview", /waypointstudio\.org\/apps\/shed-hunting\//.test(sitemap));
+assert("sitemap omits unpublished scenes", !/\/apps\/scenes\//.test(sitemap) && !/\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits incubator", !/\/incubator\//.test(sitemap));
 assert("sitemap omits discontinued apps", !/\/apps\/fieldry\/|\/apps\/foragecast\/|\/side-trails\/openroad-pa\//.test(sitemap));
 assert("sitemap includes support", /support\.html/.test(sitemap));
+
+assert("scenes hub still exists", fs.existsSync(path.join(ROOT, "apps/scenes/index.html")));
+assert("scenes photo-coach still exists", fs.existsSync(path.join(ROOT, "apps/photo-coach/index.html")));
+assert("scenes hub is noindex", /noindex/i.test(read("apps/scenes/index.html")));
+assert("robots disallows scenes", /Disallow: \/apps\/scenes\//.test(read("robots.txt")));
+assert("no public shedhunting.org hrefs in nav", !/https?:\/\/shedhunting\.org/.test(JSON.stringify(navReg.studioPrimaryNav)));
 
 const catalog = read("design-system/js/platform/wds-platform-catalog.js");
 assert("platform catalog includes Deck", /id:\s*"deck"/.test(catalog));
