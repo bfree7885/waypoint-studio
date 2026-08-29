@@ -63,15 +63,11 @@ export const ARTICLE_STATUS = ["active", "duplicate", "rejected", "stale"];
 /** Active Studio / Publishing companions only — do not promote paused/retired apps. */
 export const RELATED_PRODUCTS = [
   { id: "dashboard", label: "Dashboard", href: "/apps/dashboard/" },
-  { id: "scenes", label: "Scenes", href: "/apps/scenes/" },
-  { id: "photo-coach", label: "Photo Coach", href: "/apps/scenes/" },
-  { id: "hidden-landscapes", label: "Hidden Landscapes", href: "/apps/scenes/" },
-  { id: "sheds", label: "Sheds", href: "/apps/shed-hunting/" },
-  { id: "foragecast", label: "ForageCast", href: "/apps/foragecast/" },
+  { id: "sheds", label: "Shed Hunting", href: "/apps/shed-hunting/" },
   { id: "articles", label: "Articles", href: "/articles/" }
 ];
 
-/** Paused / retired / inactive — never suggest via related-product chips. */
+/** Paused / retired / unpublished — never suggest via related-product chips. */
 export const RELATED_PRODUCTS_BLOCKED = [
   "fieldry",
   "openroad-pa",
@@ -80,7 +76,11 @@ export const RELATED_PRODUCTS_BLOCKED = [
   "savant",
   "signalterrain",
   "cyber",
-  "global-signals"
+  "global-signals",
+  "foragecast",
+  "scenes",
+  "photo-coach",
+  "hidden-landscapes"
 ];
 
 export const REJECT_TOPIC_PATTERNS = [

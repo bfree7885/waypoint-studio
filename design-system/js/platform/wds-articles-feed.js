@@ -156,7 +156,12 @@
     volunteer: 1,
     "landscape-interpretation": 1,
     terrainbound: 1,
-    "civic-trails": 1
+    "civic-trails": 1,
+    scenes: 1,
+    "photo-coach": 1,
+    "hidden-landscapes": 1,
+    "moving-scenes": 1,
+    "auto-edit": 1
   };
 
   function relatedAction(article, depth) {

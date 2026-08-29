@@ -2,7 +2,7 @@
 
 **Status:** Historical (July 2026) — **not** the active portfolio definition  
 **Canonical direction:** [`docs/PRODUCT-DIRECTION.md`](docs/PRODUCT-DIRECTION.md)  
-**Active experiences:** Dashboard · Scenes · Sheds (+ Publishing infrastructure)
+**Active public architecture:** see PRODUCT-DIRECTION.md — Studio = Dashboard; Shed Hunting sibling; Scenes unpublished; Deck + Publishing public.
 
 > Agents: do **not** treat Fieldry Phase 4, ForageCast-as-flagship, or “four-instrument portfolio” language below as current strategy. Prefer PRODUCT-DIRECTION.md.
 
