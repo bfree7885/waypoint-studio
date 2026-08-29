@@ -1673,6 +1673,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 3B custom domain (2026-08-29)
+
+- Do not attach `shedhunting.org` until `https://bfree7885.github.io/shedhunting.org/` returns the dedicated host. A 404 github.io means stop.
+- Apex A records can already be GitHub Pages IPs while the **wrong** Pages project (`sheds-site`) still owns the custom domain. Moving the domain is a GitHub Pages setting change plus removing the old CNAME, not necessarily a registrar A rewrite. Preserve MX/SPF.
+- Actions-based Pages ignores a repo `CNAME` file; set the custom domain in Pages settings. Branch-based Pages still uses the file.
+- Never put `shedhunting.org` in this repo’s `CNAME` (that file is `waypointstudio.org`).
+- Canonical/OG/sitemap on the dedicated host wait until HTTPS is valid on the new host. Flag flip and Studio redirects are Phase 3C.
+
 ### Lessons Learned — Shed Hunting Phase 3A companion host (2026-08-29)
 
 - GitHub App installations for Cloud Agents often include only the source repo. A companion Pages repo (`shedhunting.org`) must be created by the owner and granted to the App (or a PAT secret) before `publish-shed-hunting-host.mjs` can push. Do not reuse `sheds-site` (it already has a `shedhunting.org` CNAME).
