@@ -76,12 +76,15 @@ Guiding principles:
 
 # App surfaces (ONE APP = ONE PRODUCT SURFACE)
 
-Waypoint Studio is the parent platform. Each application is a distinct product
-surface. Cross-product discovery lives in the **global nav**. App bodies must
-not become studio directories or promo grids for sibling apps. The Homepage (`/`)
-may introduce multiple products; every other app keeps one job.
+Waypoint Studio is the parent platform. **Dashboard is the Studio product.**
+Shed Hunting is a public sibling destination. Cross-product discovery lives in the
+**global nav**. App bodies must not become studio directories or promo grids.
+The Homepage (`/`) is a Dashboard-first entrance; every other app keeps one job.
+Scenes remains available at existing URLs but is unpublished — do not promote it
+as a peer Studio application.
 
-Canonical rule: `docs/APP-SURFACE-ARCHITECTURE.md`.
+Canonical rule: `docs/APP-SURFACE-ARCHITECTURE.md`. Canonical portfolio:
+`docs/PRODUCT-DIRECTION.md`.
 
 ------------------------------------------------------------------------
 

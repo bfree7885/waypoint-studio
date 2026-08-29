@@ -20,6 +20,15 @@ Disallow: /apps/waypoint-volunteer/
 Disallow: /apps/landscape-interpretation/
 Disallow: /apps/terrainbound/
 Disallow: /apps/signalterrain/
+Disallow: /apps/scenes/
+Disallow: /apps/photo-coach/
+Disallow: /apps/moving-scenes/
+Disallow: /apps/hidden-landscapes/
+Disallow: /apps/animal-vision/
+Disallow: /apps/auto-edit/
+Disallow: /apps/photo-library/
+Disallow: /apps/waypoint-scenes/
+Disallow: /scenes/
 Disallow: /side-trails/openroad-pa/
 Disallow: /side-trails/signalterrain/
 Disallow: /side-trails/global-signals/

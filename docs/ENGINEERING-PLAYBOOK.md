@@ -1673,6 +1673,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting public architecture Phase 1 (2026-08-29)
+
+- Public architecture is **Dashboard = Waypoint Studio**, **Shed Hunting = sibling**, Deck and Publishing public, **Scenes unpublished**. Do not restore Dashboard · Scenes · Sheds as equal Studio apps.
+- Same-origin only until `shedhunting.org` has a working destination. Print the identity as words; do not create broken external hrefs.
+- Shed Hunting public landing is `/apps/shed-hunting/` (Should I go today?). Map `/apps/shed-hunting/map/` is the field interface. Keep engines, storage keys, and module names.
+- Unpublish unpublished products with `noindex` + robots Disallow + nav/sitemap/CTA removal. Do not 404 working URLs.
+- Tests that encoded the old trio are the architecture contract — update them to the new public set; do not delete coverage.
+- Free/Pro is documentation only. Do not paywall working map/likelihood tools. Honesty language stays likelihood / opportunity / habitat interest — never antler presence.
+
 ### Lessons Learned — Dusk-desert palette production gate (2026-08-28)
 
 - `wds.css` already `@import`s `wds-app-shell.css`. A second `<link>` after the bundle reloads shell *after* experience-v2 and is a real duplicate, not a required cascade. Dashboard, homepage, and contact should match About: one `wds.css` bundle.

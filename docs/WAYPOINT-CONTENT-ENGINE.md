@@ -3,7 +3,7 @@
 **Regional field-guide publishing for the Waypoint Studio ecosystem.**
 
 Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).  
-Publishing is **shared Studio infrastructure** (articles, videos, visual stories, Dashboard/Scenes content) — not a fourth consumer product peer to Dashboard · Scenes · Sheds.
+Publishing is **shared Studio infrastructure** (articles, videos, visual stories, Dashboard cards, relevant Shed Hunting education) — not a fourth consumer product. Do not restore Scenes as a public Studio peer; see `docs/PRODUCT-DIRECTION.md`.
 
 *Supreme law:* [`WAYPOINT-STUDIO-CONSTITUTION.md`](WAYPOINT-STUDIO-CONSTITUTION.md)  
 *Teaching philosophy:* [`WAYPOINT-METHOD.md`](WAYPOINT-METHOD.md)  

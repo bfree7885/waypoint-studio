@@ -14,9 +14,7 @@
 
   var PUBLIC_DESTINATIONS = {
     dashboard: 1,
-    scenes: 1,
     "shed-hunting": 1,
-    "photo-coach": 1,
     articles: 1,
     deck: 1
   };

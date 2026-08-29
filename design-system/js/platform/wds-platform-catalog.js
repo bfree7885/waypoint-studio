@@ -59,9 +59,9 @@
       id: "scenes",
       name: "Waypoint Scenes",
       shortName: "Scenes",
-      tier: "core",
-      status: "live",
-      description: "One photography platform — Photo Coach, Hidden Landscapes, Living Scenes, Scene Builder, and Photographer Profile.",
+      tier: "internal",
+      status: "paused",
+      description: "Photography tools retained internally — not a current public Studio product.",
       pathFromApps: "../scenes/",
       pathFromRoot: "apps/scenes/",
       dataProduct: "scenes",
@@ -70,11 +70,11 @@
     {
       id: "sheds",
       slug: "shed-hunting",
-      name: "Sheds",
-      shortName: "Sheds",
+      name: "Shed Hunting",
+      shortName: "Shed Hunting",
       tier: "core",
       status: "live",
-      description: "Antler shed hunting platform — species, finds, forecasts, and ethics.",
+      description: "Should I go shed hunting today? Search conditions and habitat interest — never a find prediction.",
       pathFromApps: "../shed-hunting/",
       pathFromRoot: "apps/shed-hunting/",
       dataProduct: "shed-hunting",
@@ -132,9 +132,9 @@
       id: "photo-coach",
       name: "Photo Coach",
       shortName: "Photo Coach",
-      tier: "core",
-      status: "live",
-      description: "Upload, understand, and improve photographs — part of Waypoint Scenes.",
+      tier: "internal",
+      status: "paused",
+      description: "Upload, understand, and improve photographs — part of unpublished Scenes.",
       pathFromApps: "../photo-coach/",
       pathFromRoot: "apps/photo-coach/",
       dataProduct: "photo-coach",
@@ -172,6 +172,7 @@
       if (filter.status && p.status !== filter.status) return false;
       if (filter.coreOnly && p.tier !== "core") return false;
       if (filter.publicNav && p.parent) return false;
+      if (filter.publicNav && (p.publicSurface === false || p.status === "paused" || p.tier === "internal")) return false;
       return true;
     }).slice().sort(function (a, b) {
       return (a.navPriority || 100) - (b.navPriority || 100);

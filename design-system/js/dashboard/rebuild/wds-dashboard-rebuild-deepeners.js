@@ -2,7 +2,7 @@
  * Dashboard Rebuild — below-fold Discover briefing (Dashboard-native only).
  * Waypoint's Take prefers live intel briefs when available; otherwise calm editorial fallback.
  * Understand section appears only when publishingMatch finds a justified story.
- * Explore further links Publishing / Scenes — not sibling-app promo grids.
+ * Explore further links Publishing — not sibling-app promo grids.
  * Authority: docs/SCENES-PUBLISHING.md · docs/PRODUCT-DIRECTION.md
  */
 (function (global) {
@@ -41,11 +41,10 @@
       '<header class="wdb-r-deepen__header">' +
       '<p class="wdb-r-deepen__kicker">Explore &amp; understand</p>' +
       '<h2 class="wdb-r-deepen__title" id="wdb-r-explore-title">Go deeper</h2>' +
-      '<p class="wdb-r-deepen__lede">Publishing and Scenes when you want context — optional.</p>' +
+      '<p class="wdb-r-deepen__lede">Publishing when you want context — optional.</p>' +
       "</header>" +
       '<ul class="wdb-r-deepen__links" data-deepen-body="explore">' +
       '<li><a href="../../articles/">Articles</a> — calm field reading</li>' +
-      '<li><a href="../../apps/scenes/">Scenes</a> — craft and visual exploration</li>' +
       '<li><a href="../../deep-forest-dispatch/">Deep Forest Dispatch</a> — Waypoint visual Earth stories</li>' +
       "</ul>" +
       "</section>" +
