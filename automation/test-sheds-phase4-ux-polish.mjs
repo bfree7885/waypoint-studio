@@ -277,6 +277,10 @@ assert("product state after phase 3 preserved", fs.existsSync(path.join(ROOT, "d
 
 /* ---------- CSS / MOBILE polish presence ---------- */
 assert("coach/session/trip CSS", css.includes("sheds-coach") && css.includes("sheds-session-strip") && css.includes("sheds-trip"));
+assert(
+  "session strip [hidden] beats display:flex",
+  /\.sheds-session-strip\[hidden\][\s\S]{0,120}display:\s*none\s*!important/.test(css)
+);
 assert("mobile media polish", css.includes("@media (max-width: 520px)"));
 
 /* ---------- SCRIPT ORDER ---------- */

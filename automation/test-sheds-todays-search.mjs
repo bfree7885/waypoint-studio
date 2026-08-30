@@ -115,8 +115,10 @@ assert(
 );
 
 const app = read("apps/shed-hunting/js/sheds-map-app.js");
+const weatherSrc = read("apps/shed-hunting/js/sheds-weather.js");
 assert("map uses TodaysSearch.build", /TodaysSearch\.build|refreshTodaysSearch/.test(app));
-assert("open-meteo richer fetch", /surface_pressure/.test(app) && /sunrise/.test(app));
+assert("open-meteo richer fetch", /surface_pressure/.test(weatherSrc) && /sunrise/.test(weatherSrc));
+assert("map uses shared weather helper", /Weather\.fetchForecast/.test(app));
 assert(
   "ensureWeatherForView exists for map-center weather",
   /function ensureWeatherForView/.test(app)

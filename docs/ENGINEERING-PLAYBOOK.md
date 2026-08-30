@@ -1673,6 +1673,16 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting V1.1 Today’s Hunt (2026-08-30)
+
+- The dedicated-host overview can ask “Should I go shed hunting today?” and still fail to answer it if Today’s Search lives only on the map and “Today’s conditions” points at Studio Dashboard. Compose TIMING + SEARCHABILITY + weather trend on the overview; keep channels separate; do not ship a 0–100 find score.
+- Missing location or weather is **unknown**, not Low. Low means we assessed today and opportunity is poor. Use Need location / Not rated until eligible.
+- The public band is an **overall shed-hunt recommendation**. Outside the regional window stays Low even if walking weather is fine; season and weather remain separate explainable inputs.
+- Hourly `temperature_2m` was already fetched and unused. A documented 2 °C day-to-day threshold is enough for Warming / Cooling / Little change. Do not add `snow_depth` or treat SWE as depth.
+- Very good must be gated on weather + a real location. Missing either, or a zoom-6 Midwest overview center, must not produce a confident hunt band.
+- Do not send “Today’s conditions” to Dashboard on the dedicated host. Nav may still link Dashboard as Powered-by-Waypoint chrome.
+- The map session strip uses `display: flex`, which overrides the HTML `hidden` attribute. Without `[hidden] { display: none !important }`, “Search active” shows when no search is running.
+
 ### Lessons Learned — Shed Hunting Phase 3C Studio cutover (2026-08-30)
 
 - GitHub Pages still has no HTTP 301/308. Alias routes (`/map/`, `/sheds/`) can use meta refresh + `location.replace` + canonical + visible fallback. The **map HTML** is also the dedicated-host `/map/` document, so a `content=0` meta refresh there would loop on shedhunting.org. Use hostname/`data-shed-host`/`?local=1`/`loopback` guards instead.
