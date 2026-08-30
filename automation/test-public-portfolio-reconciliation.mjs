@@ -79,7 +79,7 @@ assert("primary nav exact set", labels.join("|") === REQUIRED_NAV.join("|"), lab
 assert("Deck href is waypoint-deck", nav.studioPrimaryNav.some((i) => i.id === "deck" && /waypoint-deck/.test(i.href)));
 assert("public apps are studio + sheds + deck", JSON.stringify(nav.publicAppIds) === JSON.stringify(["dashboard", "sheds", "waypoint-deck"]));
 assert("Scenes is not a publicAppId", !nav.publicAppIds.includes("scenes"));
-assert("Shed Hunting href is overview", nav.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "/apps/shed-hunting/"));
+assert("Shed Hunting href is dedicated-host overview", nav.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "https://shedhunting.org/"));
 
 for (const file of publicFiles) {
   const html = read(file);
@@ -127,7 +127,7 @@ for (const rel of trees) {
 const sitemap = read("sitemap.xml");
 assert("sitemap has DFD", /deep-forest-dispatch\//.test(sitemap));
 assert("sitemap has deck", /waypoint-deck/.test(sitemap));
-assert("sitemap has shed-hunting overview", /\/apps\/shed-hunting\//.test(sitemap));
+assert("sitemap omits legacy Studio shed-hunting", !/\/apps\/shed-hunting\//.test(sitemap));
 assert("sitemap omits unpublished scenes", !/\/apps\/scenes\/|\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits discontinued urls", !/openroad-pa|\/incubator\/|\/apps\/fieldry\/|\/apps\/foragecast\/|\/apps\/signalterrain\//.test(sitemap));
 

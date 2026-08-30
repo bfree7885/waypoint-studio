@@ -1,6 +1,6 @@
 # Navigation Architecture — Waypoint Studio
 
-**Status:** Current as of Shed Hunting public-architecture Phase 1 (2026-08-29)  
+**Status:** Current as of Shed Hunting Phase 3C (2026-08-30)  
 **Sources of truth:** `design-system/ecosystem/nav-registry.json` ↔ `design-system/js/platform/wds-app-nav-config.js`  
 **Canonical portfolio:** `docs/PRODUCT-DIRECTION.md`
 
@@ -10,8 +10,8 @@ Shared global primary nav (`.was-primary-nav`) must expose:
 
 **Dashboard · Shed Hunting · Deck · Articles · Support · About**
 
-- **Shed Hunting** href is `/apps/shed-hunting/` (overview), not `/map/` and not `shedhunting.org`, while `shedDedicatedHostEnabled` is false (`design-system/ecosystem/origin-config.json`).
-- Dedicated-host navigation (Phase 3) is documented in `docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`. Do not emit live `https://shedhunting.org` hrefs in Phase 2.
+- **Shed Hunting** href is `https://shedhunting.org/` (overview), not `/map/` and not a Studio `/apps/shed-hunting/` product page (`shedDedicatedHostEnabled` is true in `design-system/ecosystem/origin-config.json`).
+- Dedicated-host cutover is documented in `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`. Secondary map links use `https://shedhunting.org/map/`.
 - **Scenes is unpublished** — keep routes working; omit from primary nav, Explore public lists, homepage, About, Support, and sitemap.
 
 - Hrefs are **site-root absolute** (`/side-trails/`, …) so nested routes cannot break peers.

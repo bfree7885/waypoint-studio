@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-08-29  
+**Last updated:** 2026-08-30  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint is building now.
@@ -40,12 +40,14 @@ The site homepage (`/`) remains the Studio **front door**. It must not redirect 
 
 **ShedHunting.org** · **Powered by Waypoint**
 
-Public identity is transitioning toward ShedHunting.org. Until that domain is **activated in Phase 3**, **do not** link users to `https://shedhunting.org` (or any second host). Stay **same-origin** on `waypointstudio.org`. Preparation (origin helpers, vendored map assets, generated host artifact, redirect/SEO/storage plans) lives in [`docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`](sheds/SHEDHUNTING-ORG-PHASE-2.md). The dedicated-host flag stays **off**.
+Public identity is **ShedHunting.org · Powered by Waypoint**. The dedicated host is live. Waypoint Studio treats `https://shedhunting.org` as the canonical public Shed Hunting product. `shedDedicatedHostEnabled` is **true**. See [`docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`](sheds/SHEDHUNTING-ORG-PHASE-3C.md).
 
 | Surface | URL | Job |
 |----------|-----|-----|
-| **Overview (public entrance)** | `/apps/shed-hunting/` | **Should I go shed hunting today?** Today’s Hunt / current shed-hunting intelligence. |
-| **Map (field interface)** | `/apps/shed-hunting/map/` | **Where should I look?** Reached prominently from the overview. Not the primary public landing. |
+| **Overview (public entrance)** | `https://shedhunting.org/` | **Should I go shed hunting today?** Today’s Hunt / current shed-hunting intelligence. |
+| **Map (field interface)** | `https://shedhunting.org/map/` | **Where should I look?** Reached from the overview. Not the primary public landing. |
+
+Legacy Waypoint Studio URLs (`/apps/shed-hunting/`, `/apps/shed-hunting/map/`, `/sheds/`, `/map/`) are not canonical. They noindex and send visitors to the dedicated host. Field engines stay in this repo.
 
 Preserve all working Sheds engines (Leaflet, GPS, measurement, inspect, observations, sessions, Today’s Search, habitat/biological model, likelihood grid, heat layer, search areas, planner, field-plan UI, GIS packs, tile-provider architecture). Do not rename internal modules, storage keys, or implementation terminology for a public identity change.
 
@@ -123,7 +125,7 @@ One **subscription** across the Studio web ecosystem. Deck commercial intent is 
 **Dashboard · Shed Hunting · Deck · Articles · Support · About**
 
 - **Dashboard** — Waypoint Studio’s core public product (`/apps/dashboard/`).
-- **Shed Hunting** — sibling destination; currently `/apps/shed-hunting/` (overview). Not the map. Not `shedhunting.org` until that host works.
+- **Shed Hunting** — sibling destination; `https://shedhunting.org/` (overview). Not the map. Not a Studio-hosted product page.
 - **Articles** — public entry to Publishing (content surface, not a fourth Studio instrument).
 - **Deck** — distinct field-computing project.
 - Do not expose Scenes, discontinued product names, or a Side Trails catalog in primary nav, footer, homepage, About, Support, or sitemaps.
@@ -159,7 +161,7 @@ Do **not**:
 
 **Phase 3B (custom domain via `sheds-site`):** publish `dist/shedhunting/` to `bfree7885/sheds-site`, which already owns `shedhunting.org`. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. Street default is Esri World Street Map (no tile secret required). **Do not publish until this Cloud Agent token can push `sheds-site`.** Live domain is still March 2026 Terrain Intelligence.
 
-**Phase 3C (later, only when asked):** flip `shedDedicatedHostEnabled`, Studio nav/redirects to the dedicated origin.
+**Phase 3C (Studio cutover, this work):** `shedDedicatedHostEnabled: true`. Waypoint Studio primary nav and public links use `https://shedhunting.org/`. Legacy Studio Shed routes noindex and redirect with static client-side cutover (GitHub Pages cannot emit HTTP 301/308). Do not merge/deploy until the owner reviews. Do not republish `sheds-site` from this phase. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
 
 ---
 
@@ -171,4 +173,4 @@ Do **not**:
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  
 6. Prefer incremental consolidation over theoretical rewrites.  
-7. Do not link `shedhunting.org` until Phase 3 actually activates that host. Origin-config flag stays false.
+7. Public Shed Hunting links use `https://shedhunting.org`. Origin-config flag is true. Do not revert it without an explicit rollback.

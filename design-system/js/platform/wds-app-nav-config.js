@@ -10,7 +10,7 @@
   "origins": {
     "studioOrigin": "https://waypointstudio.org",
     "shedOrigin": "https://shedhunting.org",
-    "shedDedicatedHostEnabled": false
+    "shedDedicatedHostEnabled": true
   },
   "brand": {
     "name": "Waypoint Studio",
@@ -26,7 +26,7 @@
     {
       "id": "sheds",
       "label": "Shed Hunting",
-      "href": "/apps/shed-hunting/",
+      "href": "https://shedhunting.org/",
       "hint": "Should I go shed hunting today?"
     },
     {
@@ -279,14 +279,19 @@
         {
           "id": "overview",
           "label": "Overview",
-          "href": "apps/shed-hunting/"
+          "href": "https://shedhunting.org/"
+        },
+        {
+          "id": "map",
+          "label": "Map",
+          "href": "https://shedhunting.org/map/"
         }
       ],
       "purpose": "Today’s hunt: whether to go, then where to look — likelihood and opportunity, not a find prediction.",
       "maturity": "Live",
       "startHere": {
         "label": "Open Shed Hunting",
-        "href": "apps/shed-hunting/"
+        "href": "https://shedhunting.org/"
       },
       "journeys": [
         "observe",

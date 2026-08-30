@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 /**
- * Prepare a dedicated shedhunting.org static artifact (Phase 2 — do not deploy).
+ * Prepare a dedicated shedhunting.org static artifact.
  *
  * Output: dist/shedhunting/
  *   /           overview (focused product shell)
  *   /map/       field map
  *   css/, js/, gis/, data/, vendor/
  *
- * Does not change DNS, CNAME, or production redirects.
+ * Does not change DNS, CNAME, or push sheds-site.
  *
  * Usage: node scripts/prepare-shed-hunting-host.mjs
  */
@@ -28,13 +28,15 @@ function rmrf(dir) {
   fs.rmSync(dir, { recursive: true, force: true });
 }
 
-function copyDir(from, to) {
+function copyDir(from, to, depth) {
+  depth = depth || 0;
   fs.mkdirSync(to, { recursive: true });
   for (const ent of fs.readdirSync(from, { withFileTypes: true })) {
     if (ent.name === "host") continue;
+    if (depth === 0 && ent.name === "index.html") continue;
     const src = path.join(from, ent.name);
     const dst = path.join(to, ent.name);
-    if (ent.isDirectory()) copyDir(src, dst);
+    if (ent.isDirectory()) copyDir(src, dst, depth + 1);
     else fs.copyFileSync(src, dst);
   }
 }
@@ -45,17 +47,16 @@ function rewriteHostOverview(html, origins) {
     if (/data-shed-host=/.test(attrs)) return m;
     return "<html" + attrs + ' data-shed-host="1">';
   });
-  // Phase 3A: keep noindex on the github.io preview. Phase 3B flips SEO.
   out = out.replace(/\.\.\/vendor\//g, "vendor/");
   out = out.replace(/\.\.\/css\//g, "css/");
   out = out.replace(/\.\.\/js\//g, "js/");
   out = out.replace(/href="\.\.\/map\/"/g, 'href="map/"');
   out = out.replace(/href="\.\.\/"/g, 'href="./"');
-  out = out.replace(
-    /This page is the dedicated-host overview template[\s\S]*?<\/p>/,
-    "Private field notes stay on this device. Exact find coordinates stay private."
-  );
   const studio = String(origins.studioOrigin || "https://waypointstudio.org").replace(/\/+$/, "");
+  const shed = String(origins.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "");
+  if (!/rel=["']canonical["']/i.test(out)) {
+    out = out.replace(/<\/title>/i, "</title>\n  <link rel=\"canonical\" href=\"" + shed + "/\">");
+  }
   out = out.replace(
     /href="(\/(?:apps\/dashboard\/|articles\/|support\.html|about\.html|privacy\.html|terms\.html|contact\.html|knowledge\.html)[^"]*)"/g,
     function (_, p) {
@@ -76,6 +77,20 @@ function rewriteMap(html, origins) {
     return "<html" + attrs + ' data-shed-host="1">';
   });
   const studio = String(origins.studioOrigin || "https://waypointstudio.org").replace(/\/+$/, "");
+  const shed = String(origins.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "");
+  out = out.replace(
+    /<meta\s+name=["']robots["'][^>]*>/i,
+    '<meta name="robots" content="index, follow">'
+  );
+  if (!/rel=["']canonical["']/i.test(out)) {
+    out = out.replace(/<\/title>/i, "</title>\n  <link rel=\"canonical\" href=\"" + shed + "/map/\">");
+  }
+  out = out.replace(/\s*<noscript>[\s\S]*?shedhunting\.org\/map\/[\s\S]*?<\/noscript>/i, "");
+  out = out.replace(/\s*<div\b[^>]*\bid=["']sheds-studio-cutover["'][^>]*>[\s\S]*?<\/div>/i, "");
+  out = out.replace(
+    /\s*<script>\s*\(function\s*\(\)\s*\{\s*var C = window\.WaypointShedsCutover;\s*if \(C && !C\.shouldStay\(\)\) C\.showFallback\(document\.getElementById\(["']sheds-studio-cutover["']\)\);\s*\}\)\(\);\s*<\/script>/,
+    ""
+  );
   out = out.replace(
     /href="(\/(?:apps\/dashboard\/|articles\/|support\.html|about\.html|privacy\.html|terms\.html|contact\.html|knowledge\.html)[^"]*)"/g,
     function (_, p) {
@@ -126,7 +141,15 @@ function main() {
   fs.writeFileSync(path.join(DEST, ".nojekyll"), "");
   fs.writeFileSync(
     path.join(DEST, "robots.txt"),
-    "User-agent: *\nDisallow: /\n\n# Phase 3A github.io preview. Do not index until shedhunting.org DNS is attached.\n"
+    "User-agent: *\nAllow: /\n\nSitemap: https://shedhunting.org/sitemap.xml\n"
+  );
+  fs.writeFileSync(
+    path.join(DEST, "sitemap.xml"),
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+      "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" +
+      "  <url><loc>https://shedhunting.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n" +
+      "  <url><loc>https://shedhunting.org/map/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n" +
+      "</urlset>\n"
   );
   fs.writeFileSync(
     path.join(DEST, "404.html"),
@@ -134,7 +157,7 @@ function main() {
   );
 
   if (fs.existsSync(path.join(DEST, "CNAME"))) {
-    console.error("prepare-shed-hunting-host: CNAME must not be written in Phase 3A");
+    console.error("prepare-shed-hunting-host: dist must not contain a CNAME (Studio CNAME is waypointstudio.org)");
     process.exit(1);
   }
 

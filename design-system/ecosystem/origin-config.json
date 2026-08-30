@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-29",
-  "phase": "2-preparation",
+  "updatedAt": "2026-08-30",
+  "phase": "3c-cutover",
   "studioOrigin": "https://waypointstudio.org",
   "shedOrigin": "https://shedhunting.org",
-  "shedDedicatedHostEnabled": false,
+  "shedDedicatedHostEnabled": true,
   "shedHostnames": ["shedhunting.org", "www.shedhunting.org"],
   "studioPaths": {
     "home": "/",
@@ -25,5 +25,5 @@
     "home": "/",
     "map": "/map/"
   },
-  "notes": "shedDedicatedHostEnabled must stay false until Phase 3 actually activates shedhunting.org. Public hrefs must stay same-origin on waypointstudio.org until then. This file is the origin-config source of truth; keep wds-origins.js, nav-registry.json origins, and wds-app-nav-config.js origins in sync."
+  "notes": "Phase 3C: shedDedicatedHostEnabled is true. Public Shed Hunting hrefs use shedOrigin (https://shedhunting.org). Studio origin stays https://waypointstudio.org. Keep wds-origins.js, nav-registry.json origins, and wds-app-nav-config.js origins in sync."
 }

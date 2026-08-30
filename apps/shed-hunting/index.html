@@ -4,8 +4,19 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shed Hunting — should I go shed hunting today? Today’s hunt and search conditions. The map is where to look. Likelihood, not a find prediction. Powered by Waypoint.">
-  <title>Shed Hunting — Today’s hunt · Powered by Waypoint</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Shed Hunting now lives at ShedHunting.org. Should I go shed hunting today? Likelihood, not a find prediction. Powered by Waypoint.">
+  <title>Shed Hunting moved to ShedHunting.org · Powered by Waypoint</title>
+  <link rel="canonical" href="https://shedhunting.org/">
+  <meta property="og:url" content="https://shedhunting.org/">
+  <meta property="og:title" content="Shed Hunting — Today’s hunt · Powered by Waypoint">
+  <script src="js/sheds-studio-cutover.js"></script>
+  <script>
+    (function () {
+      var C = window.WaypointShedsCutover;
+      if (C) C.redirectLegacyStudio(C.OVERVIEW);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,6 +27,19 @@
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
+  <noscript>
+    <p>Shed Hunting now lives at <a href="https://shedhunting.org/">https://shedhunting.org/</a>.</p>
+  </noscript>
+  <div id="sheds-studio-cutover" hidden>
+    <p>Shed Hunting now lives at <a href="https://shedhunting.org/">ShedHunting.org</a>.</p>
+    <p>Existing field data can be moved by exporting from the old Waypoint Studio Shed Hunting page and importing it at ShedHunting.org. Notes do not move automatically. <a href="map/?local=1">Export from the old map</a>.</p>
+  </div>
+  <script>
+    (function () {
+      var C = window.WaypointShedsCutover;
+      if (C && !C.shouldStay()) C.showFallback(document.getElementById("sheds-studio-cutover"));
+    })();
+  </script>
   <div class="wds-app was-shell" data-wds-app-shell data-product="shed-hunting" data-product-name="Shed Hunting" data-shell-depth="1">
     <div data-wds-app-global data-shell-depth="1"></div>
     <div data-wds-app-local data-shell-depth="1"></div>

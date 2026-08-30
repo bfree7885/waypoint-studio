@@ -39,7 +39,7 @@
 
 ## Homepage specifically
 
-`/` is a **Dashboard-first Waypoint Studio entrance**. It introduces Dashboard as the Studio product, Shed Hunting as a public sibling (`/apps/shed-hunting/` overview), Publishing (Articles / Deep Forest Dispatch), and Deck as a distinct project.
+`/` is a **Dashboard-first Waypoint Studio entrance**. It introduces Dashboard as the Studio product, Shed Hunting as a public sibling (`https://shedhunting.org/` overview), Publishing (Articles / Deep Forest Dispatch), and Deck as a distinct project.
 
 Do **not** present Scenes as an active Studio application. Do **not** present Dashboard, Scenes, and Sheds as three equal Studio apps.
 
@@ -59,10 +59,10 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 
 ## Shed Hunting specifically
 
-- Public entrance: `/apps/shed-hunting/` (overview) — **Should I go shed hunting today?**
-- Field interface: `/apps/shed-hunting/map/` — **Where should I look?**
+- Public entrance: `https://shedhunting.org/` (overview) — **Should I go shed hunting today?**
+- Field interface: `https://shedhunting.org/map/` — **Where should I look?**
 - Map HUD is immersive (no studio primary nav); escape via the overview.
-- Until `shedhunting.org` is activated (Phase 3), do not create external links to it. Phase 2 prep: `docs/sheds/SHEDHUNTING-ORG-PHASE-2.md`.
+- Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
 
 ## Scenes specifically
 
