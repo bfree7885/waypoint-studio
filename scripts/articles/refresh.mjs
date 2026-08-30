@@ -24,7 +24,7 @@ import {
 import { deduplicateArticles } from "./dedupe.mjs";
 import { scoreArticle } from "./score.mjs";
 import { buildSummary, buildWaypointTake } from "./summarize.mjs";
-import { relatedProductsFor } from "./related.mjs";
+import { relatedProductsFor, scrubRelatedProducts } from "./related.mjs";
 import {
   buildRssFeed,
   filterForLocal,
@@ -331,6 +331,11 @@ export async function refreshArticles(userOptions = {}) {
     duplicatesOut = previous.duplicates || [];
     retainedPrevious = true;
   }
+
+  activeOut = activeOut.map((article) => ({
+    ...article,
+    relatedProducts: scrubRelatedProducts(article.relatedProducts)
+  }));
 
   const views = selectViews(activeOut);
   const picks = dashboardPicks(activeOut);

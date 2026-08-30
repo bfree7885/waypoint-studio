@@ -82,9 +82,17 @@
     return (config().categories || []).slice();
   }
 
+  function isPublicApp(app) {
+    if (!app) return false;
+    if (app.publicSurface === false) return false;
+    var st = String(app.status || "live").toLowerCase();
+    if (st === "paused" || st === "retired" || st === "archived") return false;
+    return true;
+  }
+
   function appsByCategory() {
     var cats = listCategories();
-    var apps = listApps();
+    var apps = listApps().filter(isPublicApp);
     return cats.map(function (cat) {
       return {
         id: cat.id,
@@ -115,6 +123,7 @@
   }
 
   function startHereHref(app, depth) {
+    if (app && app.id === "sheds") return shedHuntingPublicHref();
     if (!app) return "#";
     var sh = app.startHere;
     if (sh && sh.href) return resolveRoute(sh.href, depth);
@@ -135,7 +144,8 @@
       steepleaf: 1,
       "landscape-interpretation": 1,
       terrainbound: 1,
-      volunteer: 1
+      volunteer: 1,
+      scenes: 1
     };
     return app.related
       .map(byId)
@@ -230,6 +240,37 @@
     return brandHome(depth);
   }
 
+  function originConfig() {
+    var cfg = config();
+    return cfg.origins || {
+      studioOrigin: "https://waypointstudio.org",
+      shedOrigin: "https://shedhunting.org",
+      shedDedicatedHostEnabled: true
+    };
+  }
+
+  function shedHuntingPublicHref() {
+    if (global.WDS && global.WDS.origins && typeof global.WDS.origins.shedHuntingPublicHref === "function") {
+      return global.WDS.origins.shedHuntingPublicHref();
+    }
+    var o = originConfig();
+    if (o.shedDedicatedHostEnabled) {
+      return String(o.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "") + "/";
+    }
+    return "/apps/shed-hunting/";
+  }
+
+  function shedHuntingMapPublicHref() {
+    if (global.WDS && global.WDS.origins && typeof global.WDS.origins.shedHuntingMapHref === "function") {
+      return global.WDS.origins.shedHuntingMapHref();
+    }
+    var o = originConfig();
+    if (o.shedDedicatedHostEnabled) {
+      return String(o.shedOrigin || "https://shedhunting.org").replace(/\/+$/, "") + "/map/";
+    }
+    return "/apps/shed-hunting/map/";
+  }
+
   global.WDS = global.WDS || {};
   global.WDS.appNav = {
     config: config,
@@ -247,6 +288,9 @@
     featureHref: featureHref,
     brandHome: brandHome,
     studioHomeHref: studioHomeHref,
+    originConfig: originConfig,
+    shedHuntingPublicHref: shedHuntingPublicHref,
+    shedHuntingMapPublicHref: shedHuntingMapPublicHref,
     depthFromPath: depthFromPath,
     prefixes: prefixes,
     pathname: pathname,

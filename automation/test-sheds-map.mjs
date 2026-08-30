@@ -209,8 +209,9 @@ assert(
   !/tile\.openstreetmap\.org/.test(appSrc)
 );
 const tileSrc = fs.readFileSync(path.join(ROOT, "apps/shed-hunting/js/sheds-tile-provider.js"), "utf8");
-assert("production default is CARTO", /basemaps\.cartocdn\.com/.test(tileSrc));
-assert("topo default is Esri", /arcgisonline\.com/.test(tileSrc));
+assert("production default is Esri World Street", /World_Street_Map/.test(tileSrc));
+assert("default street is not watermarked CARTO", !/streetUrl:\s*"https:\/\/\{s\}\.basemaps\.cartocdn/.test(tileSrc));
+assert("topo default is Esri", /World_Topo_Map/.test(tileSrc));
 assert("satellite World Imagery present", /World_Imagery/.test(tileSrc));
 assert("refuses OSMF public host", /assertNotOsmPublic|tile\.openstreetmap\.org/.test(tileSrc));
 assert("ethics sheet present", /Field ethics/.test(html));

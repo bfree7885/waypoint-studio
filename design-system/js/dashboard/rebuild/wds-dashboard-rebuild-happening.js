@@ -203,7 +203,7 @@
     var sev = String(signal.severity || "info").toLowerCase();
     var instrument = relatedInstrument(signal);
     var scenes = ((signal.toolLinks || []).filter(function (l) {
-      return l && l.id === "scenes" && l.href;
+      return l && l.href && l.id !== "scenes" && !/\/apps\/scenes\//.test(l.href);
     })[0] || null);
 
     var actions = "";

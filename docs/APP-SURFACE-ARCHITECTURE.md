@@ -1,8 +1,9 @@
 # App Surface Architecture — ONE APP = ONE PRODUCT SURFACE
 
-**Status:** Critical platform rule (2026-08-10)  
+**Status:** Critical platform rule (2026-08-29)  
 **Applies to:** Every Waypoint Studio application under the studio shell  
-**Exception:** Studio Homepage (`/`) may introduce multiple products
+**Exception:** Studio Homepage (`/`) may introduce Dashboard plus sibling destinations  
+**Canonical portfolio:** `docs/PRODUCT-DIRECTION.md` wins if this file disagrees
 
 ## Rule
 
@@ -10,9 +11,9 @@
 
 | Layer | Role |
 |-------|------|
-| **Waypoint Studio** | Parent platform — brand, global nav, footer, shared design system |
-| **Dashboard / Scenes / Sheds / Articles / Side Trails…** | Distinct apps — each owns one job |
-| **Global nav** | Only place for cross-product discovery between apps |
+| **Waypoint Studio** | Parent platform — brand, global nav, footer, shared design system. **The Studio product is Dashboard.** |
+| **Dashboard / Shed Hunting / Articles / Deck…** | Distinct destinations — each owns one job. Scenes is retained internally, not a public peer. |
+| **Global nav** | Only place for cross-product discovery between public destinations |
 | **App-local nav** | Destinations *inside* the current app (under global nav) |
 | **App body** | Product work for *this* app only |
 
@@ -21,11 +22,12 @@
 - Studio directory / “explore other apps” grids
 - Promo cards whose primary purpose is sending users to another app (Scenes, Sheds, Articles, Side Trails, SignalTerrain, Global Signals, OpenRoad PA, Incubator, etc.)
 - Mini Homepage collages that restate the studio portfolio
+- Public promotion of unpublished Scenes
 
 ### Allowed
 
-- **Homepage (`/`)** — Observe / Discover / Understand front door; may introduce mature tools and mark Side Trails experimental
-- **Global primary nav** — Dashboard · Scenes · Sheds · Articles · Side Trails · Support · About
+- **Homepage (`/`)** — Observe / Discover / Understand front door; Dashboard-first Studio entrance; may introduce Shed Hunting as a sibling, Publishing, and Deck. Do not redirect `/` to `/apps/dashboard/`.
+- **Global primary nav** — Dashboard · Shed Hunting · Deck · Articles · Support · About
 - **In-app local nav** — e.g. Dashboard Workspace · Customize
 - **Honest outbound links** inside product workflows (e.g. “opens original publisher” on a conditions-related citation) when the *job* is still this app’s job — not portfolio marketing
 
@@ -37,8 +39,10 @@
 
 ## Homepage specifically
 
-`/` introduces **Dashboard · Scenes · Sheds** and Publishing (Articles / Deep Forest Dispatch).
-Side Trails is an **archive** entry — not a catalog of active sister flagships.
+`/` is a **Dashboard-first Waypoint Studio entrance**. It introduces Dashboard as the Studio product, Shed Hunting as a public sibling (`https://shedhunting.org/` overview), Publishing (Articles / Deep Forest Dispatch), and Deck as a distinct project.
+
+Do **not** present Scenes as an active Studio application. Do **not** present Dashboard, Scenes, and Sheds as three equal Studio apps.
+
 OpenRoad PA, Fieldry-as-promise, Savant-as-priority, and standalone Cyber/Global Signals
 must not be presented as active Studio products (see `docs/PRODUCT-DIRECTION.md`).
 
@@ -51,13 +55,25 @@ must not be presented as active Studio products (see `docs/PRODUCT-DIRECTION.md`
 - Honest trust / freshness labels
 - Customize / Workspace persistence
 
-Not marketing, not an app directory, not decorative weather cards for other products.
+Not marketing, not an app directory, not decorative weather cards for other products. Do not deep-link users into unpublished Scenes.
+
+## Shed Hunting specifically
+
+- Public entrance: `https://shedhunting.org/` (overview) — **Should I go shed hunting today?**
+- Field interface: `https://shedhunting.org/map/` — **Where should I look?**
+- Map HUD is immersive (no studio primary nav); escape via the overview.
+- Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
+
+## Scenes specifically
+
+Retained internally. URLs must keep working. Absent from primary nav, homepage, About/Support active lists, sitemap, and Dashboard public CTAs. `noindex` + robots Disallow.
 
 ## Tests
 
 - `automation/test-app-surface-isolation.mjs` — permanent regression gate
 - `automation/test-dashboard-instrument-panel.mjs` — Dashboard body + identity gate
-- Homepage may still promote products: `automation/test-homepage-front-door.mjs`
+- Homepage may introduce public destinations: `automation/test-homepage-front-door.mjs`
+- Public architecture: `automation/test-studio-nav-architecture.mjs`, `automation/test-public-portfolio-reconciliation.mjs`
 
 ## Related
 

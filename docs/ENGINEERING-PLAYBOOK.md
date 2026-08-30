@@ -1673,6 +1673,63 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 3C Studio cutover (2026-08-30)
+
+- GitHub Pages still has no HTTP 301/308. Alias routes (`/map/`, `/sheds/`) can use meta refresh + `location.replace` + canonical + visible fallback. The **map HTML** is also the dedicated-host `/map/` document, so a `content=0` meta refresh there would loop on shedhunting.org. Use hostname/`data-shed-host`/`?local=1`/`loopback` guards instead.
+- Skip loopback in the product helper so CI smoke and local `python3 -m http.server` still exercise the map. Alias pages pass `forcePublic` so `/map/` and `/sheds/` still cut over locally.
+- `copyDir` must not copy Studio `apps/shed-hunting/index.html` into `dist/shedhunting/` (design-system traversal). Host overview comes from `host/index.html`.
+- Do not republish `sheds-site` from a Studio-only cutover. Source generate can flip host robots/canonical for the *next* publish.
+- When stripping Studio-only cutover chrome from the dedicated-host map, remove the **entire** `<div id="sheds-studio-cutover">…</div>` plus the following `showFallback` script with an exact match. A replace of `id="…"…</div>` leaves `<div `, the next `<script>` is parsed as attributes, and cutover JavaScript renders as visible text on `/map/`. A non-greedy `[\s\S]*?showFallback` script replace starts at the earlier head `redirectLegacyStudio` IIFE and deletes `</head>`, CSS, and the skip link.
+- Do not run `publish-shed-hunting-host.mjs` for a metadata-only republish: it force-moves `legacy-terrain-intelligence-2026-03-10`. Replace files in an existing `sheds-site` checkout, keep `CNAME`, `--ff-only` pull, no tag rewrite, no force-push.
+
+### Lessons Learned — Shed Hunting Street tiles (2026-08-29)
+
+- Unauthenticated `basemaps.cartocdn.com` Voyager/Positron tiles are real maps with an **API KEY REQUIRED** watermark burned in (HTTP 200). Esri World Street / Topo / Imagery do not. Do not require a GitHub secret to ship Street.
+- Cloud Agent “All repositories” on the GitHub App does not expand an already-minted token. `/installation/repositories` still showed `selected` / `waypoint-studio` only after the App change; `cursor[bot]` 403 on `sheds-site` push --dry-run.
+
+### Lessons Learned — Shed Hunting Phase 3B resume recheck (2026-08-29)
+
+- Owner-side “secrets were added” is not enough unless this agent can **use** them. GitHub App installation was still `selected` / `waypoint-studio` only (`cursor[bot]` 403 on `sheds-site`). `SHEDHUNTING_DEPLOY_TOKEN` and `WAYPOINT_MAP_TILE_CONFIG` were unset in the agent env. Actions secrets cannot be listed (403) and `shedhunting-host.yml` is not on `main`, so `workflow_dispatch` 404s.
+- Latest Studio Pages run dumped `WAYPOINT_MAP_TILE_CONFIG:` as empty (not redacted). An empty Actions secret is the same as missing: do not publish. Stop, do not ship watermarked CARTO tiles.
+
+### Lessons Learned — Shed Hunting Phase 3B sheds-site recovery (2026-08-29)
+
+- Reuse `bfree7885/sheds-site` (it already has `cname: shedhunting.org`). Do not create `bfree7885/shedhunting.org`. Keep Studio `CNAME` as `waypointstudio.org`.
+- Do not switch that repo to Actions Pages: Actions ignores the `CNAME` file. Stay on branch `main` / root.
+- Do not overwrite the live domain from an environment that cannot push. Unauthenticated CARTO Voyager tiles paint **API KEY REQUIRED**. Default Street to Esri World Street Map; treat `WAYPOINT_MAP_TILE_CONFIG` as an optional overlay. Publisher must check the effective Street URL, not whether some JSON exists.
+- Shallow replace commits are fine; do not force-push. Tag `238cbe15` before replacing.
+
+### Lessons Learned — Shed Hunting Phase 3B custom domain (2026-08-29)
+
+- Do not attach `shedhunting.org` until `https://bfree7885.github.io/shedhunting.org/` returns the dedicated host. A 404 github.io means stop.
+- Apex A records can already be GitHub Pages IPs while the **wrong** Pages project (`sheds-site`) still owns the custom domain. Moving the domain is a GitHub Pages setting change plus removing the old CNAME, not necessarily a registrar A rewrite. Preserve MX/SPF.
+- Actions-based Pages ignores a repo `CNAME` file; set the custom domain in Pages settings. Branch-based Pages still uses the file.
+- Never put `shedhunting.org` in this repo’s `CNAME` (that file is `waypointstudio.org`).
+- Canonical/OG/sitemap on the dedicated host wait until HTTPS is valid on the new host. Flag flip and Studio redirects are Phase 3C.
+
+### Lessons Learned — Shed Hunting Phase 3A companion host (2026-08-29)
+
+- GitHub App installations for Cloud Agents often include only the source repo. A companion Pages repo (`shedhunting.org`) must be created by the owner and granted to the App (or a PAT secret) before `publish-shed-hunting-host.mjs` can push. Do not reuse `sheds-site` (it already has a `shedhunting.org` CNAME).
+- Dedicated-host HTML must rewrite `data-powered-by-waypoint` to `studioOrigin` at generate time, not only at runtime. `href="/"` on the new host is the Shed overview, not Waypoint.
+
+### Lessons Learned — Shed Hunting Phase 2 host preparation (2026-08-29)
+
+- GitHub Pages allows **one custom domain per project**. Dedicated `shedhunting.org` needs a companion Pages site + generated `dist/shedhunting/` from this repo — not a second CNAME on the Studio project and not a product rewrite.
+- Map `../../../design-system` traversal cannot survive a host-root `/map/` URL. Vendor a **small** WDS subset (`wds-experience-v2.css` + origin helper); keep production overview on the Studio shell.
+- `shedDedicatedHostEnabled` must stay false until the destination exists. Centralize hostname policy; do not scatter `shedhunting.org` checks.
+- New origin = empty localStorage. Class B field data (observations, sessions, areas) already has Export JSON; Phase 3A adds merge-by-id Import JSON. Plan DNS/flag flip separately from hosting.
+- `/map/` on Studio is already the Sheds map. Document the conflict before any cutover redirect; do not assume it is a free Studio route.
+- Contact may still list Scenes as a support category while Scenes stays unpublished in discovery. Those are different surfaces.
+
+### Lessons Learned — Shed Hunting public architecture Phase 1 (2026-08-29)
+
+- Public architecture is **Dashboard = Waypoint Studio**, **Shed Hunting = sibling**, Deck and Publishing public, **Scenes unpublished**. Do not restore Dashboard · Scenes · Sheds as equal Studio apps.
+- Same-origin only until `shedhunting.org` has a working destination. Print the identity as words; do not create broken external hrefs.
+- Shed Hunting public landing is `/apps/shed-hunting/` (Should I go today?). Map `/apps/shed-hunting/map/` is the field interface. Keep engines, storage keys, and module names.
+- Unpublish unpublished products with `noindex` + robots Disallow + nav/sitemap/CTA removal. Do not 404 working URLs.
+- Tests that encoded the old trio are the architecture contract — update them to the new public set; do not delete coverage.
+- Free/Pro is documentation only. Do not paywall working map/likelihood tools. Honesty language stays likelihood / opportunity / habitat interest — never antler presence.
+
 ### Lessons Learned — Dusk-desert palette production gate (2026-08-28)
 
 - `wds.css` already `@import`s `wds-app-shell.css`. A second `<link>` after the bundle reloads shell *after* experience-v2 and is a real duplicate, not a required cascade. Dashboard, homepage, and contact should match About: one `wds.css` bundle.

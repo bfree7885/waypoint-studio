@@ -71,11 +71,11 @@ Use App Shell classes (`was-global`, `was-brand`, `was-primary-nav`, `was-local`
 
 Critical architecture rule (full detail: [`docs/APP-SURFACE-ARCHITECTURE.md`](./APP-SURFACE-ARCHITECTURE.md)):
 
-- **Waypoint Studio** = parent platform (global nav + shared chrome).
-- Each app body (Dashboard, Scenes, Sheds, Articles, …) = **one product job**.
+- **Waypoint Studio** = parent platform (global nav + shared chrome). **The Studio product is Dashboard.**
+- Each public app body (Dashboard, Shed Hunting, Articles, Deck, …) = **one product job**. Scenes is unpublished.
 - Cross-product discovery belongs in **global nav only** — not in-app promo grids or studio directories inside app bodies.
 - App-local nav sits under global nav for **in-app** destinations (e.g. Dashboard Workspace · Customize).
-- **Homepage exception:** `/` may introduce multiple products; apps must not become mini Studio homepages.
+- **Homepage exception:** `/` is a Dashboard-first Studio entrance; it may introduce Shed Hunting, Publishing, and Deck. Apps must not become mini Studio homepages.
 
 Regression gates: `automation/test-app-surface-isolation.mjs`, `automation/test-dashboard-instrument-panel.mjs`.
 

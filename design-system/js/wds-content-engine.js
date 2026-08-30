@@ -700,7 +700,7 @@
       '<section class="' + storySection("catalog") + '" id="experiences" aria-labelledby="wce-exp-title">' +
         blockHead("Apps", "What you can open today", "One studio with calm tools for weather, seasons, field notes, and photographs.", "catalog") +
         '<h3 class="wds-sr-only" id="wce-exp-title">Waypoint Studio apps</h3>' +
-        '<p class="wce-experiences-intro">Start with Dashboard for live conditions. Then open Scenes or Sheds for the work you care about.</p>' +
+        '<p class="wce-experiences-intro">Start with Dashboard for live conditions. Open Shed Hunting when the day’s question is whether to search.</p>' +
         '<div class="ws-card-grid ws-card-grid--experiences">' + cards + "</div>" +
         renderContentTracks(data) +
       "</section>"

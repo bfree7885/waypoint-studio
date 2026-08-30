@@ -4,20 +4,44 @@
   <meta charset="UTF-8">
   <meta name="waypoint-build" content="local">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Sheds field intelligence — private observations, search coverage, and suggested next search areas for whitetail. Guidance, not certainty.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Shed Hunting field map — habitat interest, likelihood, and private notes. Guidance for where to look, not a claim that antlers are here. Powered by Waypoint.">
+  <link rel="canonical" href="https://shedhunting.org/map/">
+  <meta property="og:url" content="https://shedhunting.org/map/">
+  <meta property="og:title" content="Shed Hunting — field map · Powered by Waypoint">
+  <script src="../js/sheds-studio-cutover.js"></script>
+  <script>
+    (function () {
+      var C = window.WaypointShedsCutover;
+      if (C) C.redirectLegacyStudio(C.MAP);
+    })();
+  </script>
   <meta name="theme-color" content="#181513">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Sheds — Waypoint Studio</title>
+  <title>Shed Hunting — field map · Powered by Waypoint</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
-  <link rel="stylesheet" href="../../../design-system/css/wds-experience-v2.css">
+  <link rel="stylesheet" href="../vendor/wds/wds-experience-v2.css">
   <link rel="stylesheet" href="../css/sheds-map.css">
 </head>
 <body>
   <a class="sheds-skip" href="#sheds-map">Skip to map</a>
+  <noscript>
+    <p>The public field map is <a href="https://shedhunting.org/map/">https://shedhunting.org/map/</a>.</p>
+  </noscript>
+  <div id="sheds-studio-cutover" hidden>
+    <p>The public field map is <a href="https://shedhunting.org/map/">ShedHunting.org/map</a>.</p>
+    <p>Existing field data can be moved by exporting from this old Waypoint Studio page and importing it at ShedHunting.org. Notes do not move automatically. Add <code>?local=1</code> to stay here and use Export JSON.</p>
+  </div>
+  <script>
+    (function () {
+      var C = window.WaypointShedsCutover;
+      if (C && !C.shouldStay()) C.showFallback(document.getElementById("sheds-studio-cutover"));
+    })();
+  </script>
   <div class="sheds-app">
     <div id="sheds-map-shell" aria-busy="true">
       <div class="sheds-map-canvas">
@@ -56,9 +80,9 @@
 
       <!-- Immediate: brand + quiet status -->
       <header class="sheds-hud-top" role="banner">
-        <a class="sheds-hud-brand" href="../" title="Sheds home">
+        <a class="sheds-hud-brand" href="../" title="Shed Hunting overview">
           <span class="sheds-hud-brand__mark" aria-hidden="true"></span>
-          <span class="sheds-hud-brand__name">Sheds</span>
+          <span class="sheds-hud-brand__name">Shed Hunting</span>
         </a>
         <div class="sheds-hud-actions">
           <button type="button" class="sheds-hud-chip" id="btn-map-legend" aria-expanded="false" aria-controls="map-marker-legend" title="Map legend" aria-label="Map legend">
@@ -258,7 +282,7 @@
             <p class="sheds-plan__why" id="plan-why"></p>
             <p class="sheds-today__uncertain" id="today-uncertain"></p>
             <p class="sheds-plan__meta" id="plan-knowledge-link">
-              <a href="../../../knowledge.html">Optional reading — Waypoint Knowledge</a>
+              <a data-studio-path="/knowledge.html" href="/knowledge.html">Optional reading — Waypoint Knowledge</a>
             </p>
           </details>
           <div class="sheds-plan__actions" id="plan-actions">
@@ -290,9 +314,15 @@
         <button type="button" class="sheds-btn" id="btn-history">History</button>
         <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
         <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
-        <a class="sheds-btn" href="../../../contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
-        <a class="sheds-btn" href="../../../support.html">Support</a>
-        <a class="sheds-btn" href="../../../privacy.html">Privacy</a>
+        <button type="button" class="sheds-btn" id="btn-import">Import JSON</button>
+        <input id="import-json-file" type="file" accept="application/json,.json" hidden>
+        <a class="sheds-btn" data-studio-path="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report" href="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
+        <a class="sheds-btn" data-studio-path="/support.html" href="/support.html">Support</a>
+        <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
+        <a class="sheds-btn" data-studio-path="/privacy.html" href="/privacy.html">Privacy</a>
+        <a class="sheds-btn" data-studio-path="/terms.html" href="/terms.html">Terms</a>
+        <a class="sheds-btn" data-studio-path="/contact.html" href="/contact.html">Contact</a>
+        <a class="sheds-btn" data-powered-by-waypoint href="/">Powered by Waypoint</a>
       </div>
       <details class="sheds-advanced" id="advanced-tools">
         <summary>Advanced</summary>
@@ -301,8 +331,7 @@
           <button type="button" class="sheds-btn" id="btn-controls">Model weights</button>
           <button type="button" class="sheds-btn" id="btn-explain">Explain area</button>
           <button type="button" class="sheds-btn" id="btn-validate">Validate</button>
-          <a class="sheds-btn" href="../../../contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request">Request feature</a>
-          <a class="sheds-btn" href="../../../about.html">About</a>
+          <a class="sheds-btn" data-studio-path="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request" href="/contact.html?category=feature&amp;app=shed-hunting&amp;subject=Sheds%20feature%20request">Request feature</a>
         </div>
       </details>
       <div class="sheds-actions">
@@ -785,7 +814,7 @@
         <li><strong>Wildlife.</strong> Do not chase, harass, or displace wintering deer. Approach bedding notes carefully.</li>
         <li><strong>Habitat.</strong> Avoid trampling sensitive areas; leave no trash; respect closures.</li>
         <li><strong>Privacy.</strong> Observations, tracks, and validations stay in this browser’s storage. Export creates a file you control.</li>
-        <li><strong>Map providers.</strong> Basemap tile requests (CARTO / Esri by default; never OSMF public raster) and optional Open-Meteo elevation/weather reveal approximate location to those services.</li>
+        <li><strong>Map providers.</strong> Basemap tile requests (Esri World Street / Topo / Imagery by default; never OSMF public raster) and optional Open-Meteo elevation/weather reveal approximate location to those services.</li>
         <li><strong>Model honesty.</strong> Timing, habitat, searchability, and evidence support are separate. Habitat uses real land cover/edge/slope inside your SEARCH AREA (or stays empty). Never a find probability.</li>
         <li><strong>Sensitive places.</strong> Do not publish precise private or protected locations from this tool.</li>
       </ul>
@@ -796,7 +825,9 @@
     </div>
   </div>
 
+  <script src="../vendor/wds/wds-origins.js"></script>
   <script src="../vendor/leaflet/leaflet.js"></script>
+  <script src="../js/sheds-models.js"></script>
   <script src="../js/sheds-observation-store.js"></script>
   <script src="../js/sheds-observation-patterns.js"></script>
   <script src="../js/sheds-todays-search.js"></script>
@@ -822,6 +853,7 @@
   <script src="../js/sheds-tile-provider.js"></script>
   <script src="../js/sheds-map-field-tools.js"></script>
   <script src="../js/sheds-inspect-intel.js"></script>
+  <script src="../js/sheds-import-json.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>

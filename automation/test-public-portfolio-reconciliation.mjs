@@ -44,7 +44,7 @@ function isSilentRedirect(html) {
   );
 }
 
-const REQUIRED_NAV = ["Dashboard", "Scenes", "Sheds", "Deck", "Articles", "Support", "About"];
+const REQUIRED_NAV = ["Dashboard", "Shed Hunting", "Deck", "Articles", "Support", "About"];
 const DISCONTINUED = [
   "OpenRoad",
   "Civic Trails",
@@ -77,7 +77,9 @@ const nav = JSON.parse(read("design-system/ecosystem/nav-registry.json"));
 const labels = (nav.studioPrimaryNav || []).map((i) => i.label);
 assert("primary nav exact set", labels.join("|") === REQUIRED_NAV.join("|"), labels.join("|"));
 assert("Deck href is waypoint-deck", nav.studioPrimaryNav.some((i) => i.id === "deck" && /waypoint-deck/.test(i.href)));
-assert("public apps are studio + deck", JSON.stringify(nav.publicAppIds) === JSON.stringify(["dashboard", "scenes", "sheds", "waypoint-deck"]));
+assert("public apps are studio + sheds + deck", JSON.stringify(nav.publicAppIds) === JSON.stringify(["dashboard", "sheds", "waypoint-deck"]));
+assert("Scenes is not a publicAppId", !nav.publicAppIds.includes("scenes"));
+assert("Shed Hunting href is dedicated-host overview", nav.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "https://shedhunting.org/"));
 
 for (const file of publicFiles) {
   const html = read(file);
@@ -88,7 +90,8 @@ for (const file of publicFiles) {
 
 assert("homepage mission", /Observe\.\s*Discover\.\s*Understand/.test(read("index.html")));
 assert("homepage has Deck not Side Trails archive", /Waypoint Deck/.test(read("index.html")) && !/Browse Side Trails/.test(read("index.html")));
-assert("about has five efforts", /Dashboard/.test(read("about.html")) && /Scenes/.test(read("about.html")) && /Sheds/.test(read("about.html")) && /Waypoint Deck/.test(read("about.html")) && /Deep Forest Dispatch/.test(read("about.html")));
+assert("about has four public efforts", /Dashboard/.test(read("about.html")) && /Shed Hunting/.test(read("about.html")) && /Waypoint Deck/.test(read("about.html")) && /Deep Forest Dispatch/.test(read("about.html")));
+assert("about does not list Scenes as an active product heading", !/<strong>Scenes<\/strong>/.test(read("about.html")));
 assert("support Dashboard href is app", /href="apps\/dashboard\/"/.test(read("support.html")));
 assert("DFD preserved", fs.existsSync(path.join(ROOT, "deep-forest-dispatch/index.html")));
 assert("Deck honest status", /In development/.test(read("side-trails/waypoint-deck/index.html")));
@@ -124,11 +127,15 @@ for (const rel of trees) {
 const sitemap = read("sitemap.xml");
 assert("sitemap has DFD", /deep-forest-dispatch\//.test(sitemap));
 assert("sitemap has deck", /waypoint-deck/.test(sitemap));
+assert("sitemap omits legacy Studio shed-hunting", !/\/apps\/shed-hunting\//.test(sitemap));
+assert("sitemap omits unpublished scenes", !/\/apps\/scenes\/|\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits discontinued urls", !/openroad-pa|\/incubator\/|\/apps\/fieldry\/|\/apps\/foragecast\/|\/apps\/signalterrain\//.test(sitemap));
 
 const robots = read("robots.txt");
 assert("robots disallows incubator", /Disallow: \/incubator\//.test(robots));
 assert("robots disallows fieldry", /Disallow: \/apps\/fieldry\//.test(robots));
+assert("robots disallows unpublished scenes", /Disallow: \/apps\/scenes\//.test(robots));
+assert("scenes URLs still exist", fs.existsSync(path.join(ROOT, "apps/scenes/index.html")) && fs.existsSync(path.join(ROOT, "apps/photo-coach/index.html")));
 
 const shell = read("design-system/js/platform/wds-app-shell.js");
 assert("shell has mobile nav toggle", /was-nav-toggle/.test(shell) && /bindPrimaryNav/.test(shell));

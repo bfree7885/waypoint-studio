@@ -24,7 +24,7 @@ import {
   filterForPhotography,
   filterForScience
 } from "../scripts/articles/rss-export.mjs";
-import { relatedProductsFor } from "../scripts/articles/related.mjs";
+import { relatedProductsFor, scrubRelatedProducts } from "../scripts/articles/related.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -220,7 +220,7 @@ assert("take unavailable when sparse", takeNone.takeProvenance === "unavailable"
 
 // ——— Related products / sheds discipline ———
 const related = relatedProductsFor(["Nature Photography"], ["National"], { textBlob: "lens technique" });
-assert("photography relates to scenes", related.some((p) => p.id === "scenes" || p.id === "photo-coach"));
+assert("photography relates to Dashboard not unpublished Scenes", related.some((p) => p.id === "dashboard") && !related.some((p) => p.id === "scenes" || p.id === "photo-coach"));
 const wildlifeRelated = relatedProductsFor(["Wildlife"], ["Catskills"], {
   textBlob: "celebrity hunting contest leaderboard"
 });
@@ -230,7 +230,16 @@ assert(
 );
 assert(
   "wildlife relates to active Studio products",
-  wildlifeRelated.some((p) => p.id === "dashboard" || p.id === "scenes")
+  wildlifeRelated.some((p) => p.id === "dashboard") && !wildlifeRelated.some((p) => p.id === "scenes")
+);
+assert(
+  "scrubRelatedProducts drops unpublished Scenes rows",
+  scrubRelatedProducts([
+    { id: "dashboard", label: "Dashboard" },
+    { id: "scenes", label: "Scenes" },
+    { id: "photo-coach", label: "Photo Coach" }
+  ]).every((p) => p.id === "dashboard") &&
+    scrubRelatedProducts([{ id: "scenes" }]).length === 0
 );
 assert(
   "sheds not forced for generic wildlife without habitat cues",
