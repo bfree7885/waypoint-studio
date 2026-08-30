@@ -100,6 +100,30 @@
   filter: brightness(1.08);
 }
 
+button.sheds-host-btn {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+.sheds-host-btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(191, 169, 140, 0.35);
+  color: var(--wds-text, #f0e1c3);
+}
+
+.xp-stage__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.xp-stage__cta-note {
+  font-size: 0.88rem;
+  color: color-mix(in srgb, var(--wds-text, #f0e1c3) 62%, transparent);
+}
+
 .sheds-host-foot {
   margin-top: 2.5rem;
   padding-top: 1.25rem;
