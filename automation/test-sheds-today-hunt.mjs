@@ -94,6 +94,15 @@ function weatherPackage(extra) {
 const peakTiming = Timing.evaluate({ date: NOW, lat: LOC.lat, prefs: {} });
 assert("Feb at 41°N is main/peak window", peakTiming.category === "peak", peakTiming.category + " " + peakTiming.plainLabel);
 
+const loadingHunt = Hunt.compose({
+  now: NOW,
+  location: LOC,
+  weather: null,
+  weatherStatus: "loading"
+});
+assert("loading status is loading", loadingHunt.status === "loading");
+assert("loading HTML does not flash Low as the band", !/<span class="sheds-hunt__band-label">Low<\/span>/.test(Hunt.renderHuntHtml(loadingHunt)));
+
 const noLoc = Hunt.compose({
   now: NOW,
   location: null,

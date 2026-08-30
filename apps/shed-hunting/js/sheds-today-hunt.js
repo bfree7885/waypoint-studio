@@ -313,8 +313,11 @@
     var band;
     var todaySpecial = null;
 
+    var status = "ready";
+
     if (weatherStatus === "loading" && !wx) {
       band = "Low";
+      status = "loading";
       ruleIds.push("loading");
       todaySpecial = "Reading today’s conditions…";
       why.push("Waiting on live weather — not a find estimate.");
@@ -443,6 +446,7 @@
               : "Using a saved place on this device.";
 
     return {
+      status: status,
       band: band,
       today: today,
       why: why,
@@ -499,12 +503,17 @@
     view = view || {};
     if (!hunt) return "";
     var band = hunt.band || "Low";
-    var html = '<article class="sheds-hunt" data-band="' + escapeHtml(band) + '">';
+    var html = '<article class="sheds-hunt" data-band="' + escapeHtml(band) + '"' +
+      (hunt.status ? ' data-status="' + escapeHtml(hunt.status) + '"' : "") + ">";
     if (view.includeQuestion !== false) {
       html += '<p class="sheds-hunt__question">Should I go shed hunting today?</p>';
     }
-    html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">' +
-      escapeHtml(band) + "</span></p>";
+    if (hunt.status === "loading") {
+      html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">…</span></p>';
+    } else {
+      html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">' +
+        escapeHtml(band) + "</span></p>";
+    }
     html += '<p class="sheds-hunt__today">' + escapeHtml(hunt.today) + "</p>";
     if (hunt.why && hunt.why.length) {
       html += '<section class="sheds-hunt__block"><h3 class="sheds-hunt__k">Why</h3><ul class="sheds-hunt__why">';
