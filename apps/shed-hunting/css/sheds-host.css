@@ -152,3 +152,18 @@ button.sheds-host-btn {
     padding: 1rem 0.9rem 2.5rem;
   }
 }
+
+@media (max-width: 23rem) {
+  .sheds-host-brand__powered {
+    display: none;
+  }
+
+  .sheds-host-nav {
+    font-size: 0.74rem;
+    gap: 0.35rem 0.55rem;
+  }
+
+  .xp-stage {
+    padding: 1.15rem 0.9rem 1.5rem;
+  }
+}

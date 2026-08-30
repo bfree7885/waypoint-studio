@@ -447,8 +447,6 @@
       whereObj = composeWhere({ weather: wx, timing: timing, patterns: opts.patterns });
     }
 
-    why = why.slice(0, 3);
-
     if (status === "need_location") {
       whereObj = null;
     } else if (!whereObj) {
@@ -479,7 +477,9 @@
     var today = todaySpecial;
     if (!today && rated) {
       today = TODAY_LEAD[rating] + (strongest ? " " + strongest : "");
+      why = why.filter(function (line) { return line !== strongest; });
     }
+    why = why.slice(0, 3);
 
     var locLine = !known
       ? null

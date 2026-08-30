@@ -186,7 +186,14 @@ assert("late August at 41.3N is outside window", outside.season.category === "ou
 assert("outside + favorable weather is Low overall rec", outside.band === "Low" && outside.rating === "Low", outside.band);
 assert("outside is not Fair from walking weather", outside.band !== "Fair" && outside.band !== "Good");
 assert("outside is not Very good", outside.band !== "Very good");
-assert("outside why keeps walking weather secondary", /outside the main shed-search window/i.test(outside.why.join(" ")));
+assert(
+  "outside why keeps walking weather secondary",
+  /outside.{0,24}main.{0,24}window/i.test(String(outside.today) + " " + (outside.why || []).join(" ")) &&
+    /Walking weather is workable/i.test((outside.why || []).join(" ")),
+  JSON.stringify({ today: outside.today, why: outside.why })
+);
+assert("outside TODAY is the rec plus window", /poor shed-hunt day/i.test(outside.today));
+assert("outside WHY does not repeat TODAY verbatim", outside.why.indexOf(outside.today) < 0);
 assert("season labeled outside/not main", /outside|unclear/i.test(outside.season.label));
 assert("hunter-facing copy avoids searchability", !/searchability/i.test([outside.today, outside.why.join(" "), outside.where, outside.watch].join(" ")));
 
