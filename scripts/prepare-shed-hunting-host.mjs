@@ -85,8 +85,12 @@ function rewriteMap(html, origins) {
   if (!/rel=["']canonical["']/i.test(out)) {
     out = out.replace(/<\/title>/i, "</title>\n  <link rel=\"canonical\" href=\"" + shed + "/map/\">");
   }
-  out = out.replace(/id="sheds-studio-cutover"[\s\S]*?<\/div>/, "");
-  out = out.replace(/<noscript>[\s\S]*?shedhunting\.org\/map\/[\s\S]*?<\/noscript>/i, "");
+  out = out.replace(/\s*<noscript>[\s\S]*?shedhunting\.org\/map\/[\s\S]*?<\/noscript>/i, "");
+  out = out.replace(/\s*<div\b[^>]*\bid=["']sheds-studio-cutover["'][^>]*>[\s\S]*?<\/div>/i, "");
+  out = out.replace(
+    /\s*<script>\s*\(function\s*\(\)\s*\{\s*var C = window\.WaypointShedsCutover;\s*if \(C && !C\.shouldStay\(\)\) C\.showFallback\(document\.getElementById\(["']sheds-studio-cutover["']\)\);\s*\}\)\(\);\s*<\/script>/,
+    ""
+  );
   out = out.replace(
     /href="(\/(?:apps\/dashboard\/|articles\/|support\.html|about\.html|privacy\.html|terms\.html|contact\.html|knowledge\.html)[^"]*)"/g,
     function (_, p) {

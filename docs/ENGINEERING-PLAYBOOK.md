@@ -1679,6 +1679,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Skip loopback in the product helper so CI smoke and local `python3 -m http.server` still exercise the map. Alias pages pass `forcePublic` so `/map/` and `/sheds/` still cut over locally.
 - `copyDir` must not copy Studio `apps/shed-hunting/index.html` into `dist/shedhunting/` (design-system traversal). Host overview comes from `host/index.html`.
 - Do not republish `sheds-site` from a Studio-only cutover. Source generate can flip host robots/canonical for the *next* publish.
+- When stripping Studio-only cutover chrome from the dedicated-host map, remove the **entire** `<div id="sheds-studio-cutover">…</div>` plus the following `showFallback` script with an exact match. A replace of `id="…"…</div>` leaves `<div `, the next `<script>` is parsed as attributes, and cutover JavaScript renders as visible text on `/map/`. A non-greedy `[\s\S]*?showFallback` script replace starts at the earlier head `redirectLegacyStudio` IIFE and deletes `</head>`, CSS, and the skip link.
+- Do not run `publish-shed-hunting-host.mjs` for a metadata-only republish: it force-moves `legacy-terrain-intelligence-2026-03-10`. Replace files in an existing `sheds-site` checkout, keep `CNAME`, `--ff-only` pull, no tag rewrite, no force-push.
 
 ### Lessons Learned — Shed Hunting Street tiles (2026-08-29)
 

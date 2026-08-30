@@ -279,6 +279,17 @@ assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/rob
 assert("dist sitemap lists dedicated host", /https:\/\/shedhunting\.org\//.test(read("dist/shedhunting/sitemap.xml")) && /https:\/\/shedhunting\.org\/map\//.test(read("dist/shedhunting/sitemap.xml")));
 assert("dist overview is indexable", /index, follow/i.test(distIndexHtml) && !/noindex/.test(distIndexHtml));
 assert("dist map is indexable", /index, follow/i.test(distMapHtml) && !/noindex/.test(distMapHtml));
+assert(
+  "dist map strips the Studio cutover fallback chrome",
+  !/id=["']sheds-studio-cutover["']/.test(distMapHtml) && !/showFallback/.test(distMapHtml)
+);
+assert(
+  "dist map does not leave a broken cutover <div",
+  !/<div\s*<script>/i.test(distMapHtml) && !/<div \s*\n\s*<script>/.test(distMapHtml)
+);
+assert("dist map keeps document head and body", /<\/head>/i.test(distMapHtml) && /<body>/i.test(distMapHtml));
+assert("dist map still vendors leaflet css", /vendor\/leaflet\/leaflet\.css/.test(distMapHtml));
+assert("dist map still has skip link", /class="sheds-skip"/.test(distMapHtml));
 assert("dist overview canonical is shedhunting.org", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\//i.test(distIndexHtml));
 assert("dist map canonical is shedhunting.org/map/", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\/map\//i.test(distMapHtml));
 assert("dist overview and map are shed hosts", /data-shed-host="1"/.test(distIndexHtml) && /data-shed-host="1"/.test(distMapHtml));
