@@ -2250,8 +2250,12 @@
     }
 
     if (els.planTitle) {
-      if (hunt && hunt.band) {
+      if (hunt && hunt.status === "loading") {
+        els.planTitle.textContent = "Reading today…";
+      } else if (hunt && hunt.rated) {
         els.planTitle.textContent = hunt.band + " · " + (hunt.season && hunt.season.label ? hunt.season.label : "Season");
+      } else if (hunt && hunt.band) {
+        els.planTitle.textContent = hunt.band;
       } else if (hasSearch) {
         els.planTitle.textContent = timingPlain + " · " + landscapeShort;
       } else {
@@ -2275,8 +2279,10 @@
     if (conf) {
       if (state.tracking) {
         conf.textContent = "Search active — End Search when done";
-      } else if (hunt && hunt.support && hunt.support.locationSource === "unknown") {
+      } else if (hunt && hunt.status === "need_location") {
         conf.textContent = "Next: share a location";
+      } else if (hunt && hunt.status === "not_rated") {
+        conf.textContent = "Live conditions unavailable";
       } else if (!hasSearch) {
         conf.textContent = "Next: set Search Area for where to look";
       } else {

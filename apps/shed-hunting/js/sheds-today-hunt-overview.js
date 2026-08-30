@@ -19,7 +19,9 @@
   if (!root || !Hunt) return;
 
   function setStatus(text) {
-    if (statusEl) statusEl.textContent = text || "";
+    if (!statusEl) return;
+    statusEl.textContent = text || "";
+    statusEl.hidden = !text;
   }
 
   function showPrompt(show) {
@@ -49,8 +51,8 @@
 
   function render(hunt) {
     Hunt.fillHuntRoot(root, hunt, { includeQuestion: false });
-    var need = hunt && hunt.support && hunt.support.locationSource === "unknown";
-    showPrompt(!!need);
+    setStatus("");
+    showPrompt(!!(hunt && hunt.status === "need_location"));
   }
 
   function composeAt(loc, weather, weatherStatus) {
@@ -74,7 +76,7 @@
   }
 
   function runWithLocation(loc) {
-    setStatus("Reading today’s conditions…");
+    setStatus("");
     showPrompt(false);
     render(composeAt(loc, null, "loading"));
     return fetchWeather(loc).then(function (pkg) {
@@ -122,7 +124,6 @@
 
   function start() {
     render(composeAt(null, null, "loading"));
-    setStatus("Reading today’s conditions…");
 
     var saved = savedLocation();
 

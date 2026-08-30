@@ -1676,6 +1676,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 ### Lessons Learned — Shed Hunting V1.1 Today’s Hunt (2026-08-30)
 
 - The dedicated-host overview can ask “Should I go shed hunting today?” and still fail to answer it if Today’s Search lives only on the map and “Today’s conditions” points at Studio Dashboard. Compose TIMING + SEARCHABILITY + weather trend on the overview; keep channels separate; do not ship a 0–100 find score.
+- Missing location or weather is **unknown**, not Low. Low means we assessed today and opportunity is poor. Use Need location / Not rated until eligible.
+- The public band is an **overall shed-hunt recommendation**. Outside the regional window stays Low even if walking weather is fine; season and weather remain separate explainable inputs.
 - Hourly `temperature_2m` was already fetched and unused. A documented 2 °C day-to-day threshold is enough for Warming / Cooling / Little change. Do not add `snow_depth` or treat SWE as depth.
 - Very good must be gated on weather + a real location. Missing either, or a zoom-6 Midwest overview center, must not produce a confident hunt band.
 - Do not send “Today’s conditions” to Dashboard on the dedicated host. Nav may still link Dashboard as Powered-by-Waypoint chrome.

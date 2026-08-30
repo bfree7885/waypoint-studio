@@ -1,79 +1,83 @@
 # Shed Hunting V1.1 — Today’s Hunt
 
-**Starting main:** `a9b68d864a2c8b2717a52eb7d6299cf9ba9c40a6`  
 **Branch:** `cursor/sheds-v1-1-todays-hunt-3501`  
-**Status:** product build for review — do not merge or deploy from this note.
+**Starting main:** `a9b68d864a2c8b2717a52eb7d6299cf9ba9c40a6`
 
-Today’s Hunt answers *Should I go shed hunting today?* on the ShedHunting.org overview. The map remains the answer to *Where should I look?*
+Today’s Hunt answers *Should I go shed hunting today?* on the ShedHunting.org overview. The map remains *Where should I look?*
 
-This is **not** an antler probability. It is an interpreted assessment of season + current/recent search conditions + weather trend + available environmental context.
+This is **not** an antler probability.
 
-## Channels stay separate
+## What the band means
 
-The composer (`apps/shed-hunting/js/sheds-today-hunt.js`) does **not** replace:
+**Overall shed-hunt recommendation for today** — not field-searchability alone.
 
-- **TIMING** — `sheds-timing.js` / biological `seasonProfile`
-- **HABITAT MODEL**
-- **SEARCHABILITY** — `sheds-todays-search.js` + `sheds-searchability.js`
-- **OBSERVED**
+Searchability (weather, daylight, footing) is one **input**. Season is another. Excellent walking weather must not produce a high overall band when the regional shed-search window is clearly poor.
 
-It reads those channels and explains the band. `ruleIds` on the result name the rules that fired.
+Internal channels stay separate (TIMING, HABITAT MODEL, SEARCHABILITY, OBSERVED). The composer interprets them; it does not replace them with one opaque score.
 
-## Output
+## Rating eligibility
 
-- `band`: Low | Fair | Good | Very good
-- `today`: first sentence the hunter reads, then the strongest reason
-- `why`: 1–3 interpreted reasons
-- `where`: types of ground, or a clean “use the map…” line
-- `watch`: omitted when nothing meaningful is supported
-- `season`: separate timing label
-- `support.missingInputs` / `support.level`
-- `disclaimer`: not a find probability
+`Low` / `Fair` / `Good` / `Very good` are emitted only when **all** of these are true:
 
-## Band rules
+1. **Valid location** — finite lat/lng from GPS, last map view, a saved Search Area, or a zoomed map center. Never an invented town. The Midwest zoom-6 overview is not a location.
+2. **Usable weather** — a fetched forecast package with a numeric temperature. Wind and daylight gaps are listed internally; they do not turn missing data into Low.
+3. **Season/timing** is derived from date + latitude. It is **shown whenever a location exists**, including when weather failed. A missing timing module does not invent Low; season then reads unclear and Very good is blocked.
 
-Rule-based. **Not** a 0–100 score, and **not** a direct map of best-window score → hunt band.
+Missing critical inputs are **UNKNOWN**, not Low.
 
-1. Start from searchability *favorability* as conditions:
-   - favorable → **Good**
-   - moderate → **Fair**
-   - limited → **Low**
-2. Season is a visible modifier, never a same-day cast trigger.
-   - outside / early / mostly_past → cap **Fair**
-3. **Very good** requires all of:
-   - weather ready
-   - location known (GPS, saved map view, saved Search Area, or a zoomed map center)
-   - searchability favorable
-   - season peak, or building/late with an extra melt/warming signal
-   - snowfall water-equivalent ≤ 25 mm
-   - at least one extra: recent warming with snow signal, melt (SWE > 8 mm and temp > 0 °C), or peak with light SWE and not-strong wind
-4. Missing weather **or** location **always** blocks Very good.
-5. Deep SWE (> 25 mm water-equivalent; **depth still unknown**) caps at Fair.
-6. No weather: max Fair if season is peak/building/late **and** location is known; otherwise Low.
+### Unrated labels (not hunt bands)
+
+| Label | When | Today |
+| --- | --- | --- |
+| **Need location** | No valid place | Share a location or choose an area to get today’s local hunt assessment. |
+| **Not rated** | Place known; weather/field conditions unavailable | Today’s local conditions are temporarily unavailable. |
+| **…** (loading) | Waiting on weather | Reading today’s conditions… |
+
+Season still appears when a location exists (e.g. Not rated + Main search window).
+
+## Rated bands
+
+| Band | Meaning |
+| --- | --- |
+| **Low** | Enough data to assess, and today’s shed-hunt opportunity is poor (including **outside** the main regional window, even if walking weather is fine). |
+| **Fair** | Enough data; a cautious go — approaching/leftover season, or mixed field conditions in an open window. |
+| **Good** | Enough data; open seasonal window and workable-to-favorable field conditions. |
+| **Very good** | Good plus strong extras. Never without location and usable weather. |
+
+### Season caps (after field conditions suggest a base)
+
+- **outside** → **Low**. Walking weather cannot raise the overall recommendation.
+- **early** → max **Fair** (approaching).
+- **mostly_past** → max **Fair** (leftover).
+- **building / peak / late** → field conditions may raise; Very good still needs extras.
+
+### Very good extras (all required)
+
+- usable weather + location
+- favorable field conditions
+- season peak, or building/late with an extra melt/warming signal
+- snowfall water-equivalent ≤ 25 mm (depth still unknown)
+- at least one extra: recent warming with snow signal, melt (SWE > 8 mm and temp > 0 °C), or peak with light cover
+
+Deep SWE (> 25 mm water-equivalent) caps a *rated* day at Fair.
+
+## Outside-season decision (late August @ 41.3°N)
+
+**Low**, not Fair.
+
+The headline asks whether to go **shed hunting** today. Comfortable walking weather in a clearly closed regional window is not a Fair shed-hunt day. WHY may still say walking weather is workable, while the band stays Low.
+
+## Hunter-facing copy
+
+Default view: TODAY, WHY, WHERE, WATCH (omit if empty), Season, short disclaimer.
+
+Avoid architecture words in that view (`searchability`, `channel`, `model`, `support inputs`). Those stay internal / More detail.
 
 ## Temperature trend
 
-`apps/shed-hunting/js/sheds-weather.js` `deriveTempTrend`:
+`deriveTempTrend`: last 3 hours vs the same hours ~24h earlier. Threshold **2.0 °C**. Need ≥12 hourly samples spanning 12 hours.
 
-- Compare the mean of the last 3 hours to the mean of the same 3 hours ~24 hours earlier.
-- Threshold: **2.0 °C**. Smaller differences are **Little change**.
-- Need at least 12 hourly samples spanning 12 hours; otherwise unknown.
-
-Hourly `temperature_2m` is already fetched. V1.1 does **not** add `snow_depth`. SWE is never treated as depth.
-
-## Location (overview)
-
-1. Current geolocation if already granted (button to request otherwise)
-2. Last map view (`waypoint-sheds-map-view-v1`) or last Search Area
-3. Otherwise ask — the rest of the page still works
-
-No invented city. No silent Milford / Pike County default. The Midwest map overview (zoom 6) is not a hunt location.
-
-## Language
-
-Use: conditions, opportunity, searchability, worth checking, search window, evidence, higher/lower opportunity.
-
-Never: find/antler/deer probability, percent chance of finding sheds, “sheds are here”, “deer are here”, certainty theater.
+V1.1 does **not** add `snow_depth`. SWE is never treated as depth.
 
 ## Tests
 

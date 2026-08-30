@@ -50,6 +50,8 @@ const Timing = sandbox.WaypointShedsTiming;
 assert("composer exports compose", !!(Hunt && typeof Hunt.compose === "function"));
 assert("weather exports deriveTempTrend", !!(Wx && typeof Wx.deriveTempTrend === "function"));
 assert("bands are Low Fair Good Very good", Hunt.BANDS.join("|") === "Low|Fair|Good|Very good");
+assert("Need location is not a rated band", Hunt.isRatedBand("Need location") === false);
+assert("Low is a rated band", Hunt.isRatedBand("Low") === true);
 
 const NOW = new Date("2026-02-15T14:00:00");
 const LOC = { lat: 41.32, lng: -74.8, source: "gps" };
@@ -101,6 +103,7 @@ const loadingHunt = Hunt.compose({
   weatherStatus: "loading"
 });
 assert("loading status is loading", loadingHunt.status === "loading");
+assert("loading is not rated", loadingHunt.rated === false && loadingHunt.rating == null);
 assert("loading HTML does not flash Low as the band", !/<span class="sheds-hunt__band-label">Low<\/span>/.test(Hunt.renderHuntHtml(loadingHunt)));
 
 const noLoc = Hunt.compose({
@@ -109,10 +112,14 @@ const noLoc = Hunt.compose({
   weather: null,
   weatherStatus: "unavailable"
 });
-assert("no location is Low", noLoc.band === "Low");
-assert("no location asks for a place", /location/i.test(noLoc.today));
+assert("no location is Need location", noLoc.band === "Need location", noLoc.band);
+assert("no location is not rated", noLoc.rated === false && noLoc.rating == null);
+assert("no location is not Low", noLoc.band !== "Low" && noLoc.rating !== "Low");
+assert("no location asks for a place", /share a location|choose an area/i.test(noLoc.today));
 assert("no location is not Very good", noLoc.band !== "Very good");
 assert("no invented city", !/Milford|Pike County/i.test(JSON.stringify(noLoc)));
+assert("no location omits WHERE", noLoc.where == null);
+assert("Need location HTML uses that label", /Need location/.test(Hunt.renderHuntHtml(noLoc)));
 
 const noWx = Hunt.compose({
   now: NOW,
@@ -121,9 +128,12 @@ const noWx = Hunt.compose({
   weatherStatus: "unavailable",
   timing: peakTiming
 });
+assert("no weather is Not rated", noWx.band === "Not rated", noWx.band);
+assert("no weather is not a hunt band", noWx.rated === false && noWx.rating == null);
+assert("missing weather is not Low or Fair", noWx.band !== "Low" && noWx.band !== "Fair");
 assert("no weather cannot be Very good", noWx.band !== "Very good");
-assert("peak without weather is at most Fair", noWx.band === "Fair" || noWx.band === "Low");
-assert("no weather explains missing weather", /weather/i.test(noWx.why.join(" ")));
+assert("peak without weather still shows season", /Main search window|Peak/i.test(noWx.season.label));
+assert("no weather explains unavailable conditions", /unavailable|could not be read|not rated/i.test(noWx.today + noWx.why.join(" ")));
 
 const favorable = {
   favorability: "favorable",
@@ -152,7 +162,7 @@ const missingWxBlocks = Hunt.compose({
   timing: peakTiming,
   searchability: favorable
 });
-assert("missing weather blocks Very good even if searchability injected", missingWxBlocks.band !== "Very good");
+assert("missing weather blocks Very good even if searchability injected", missingWxBlocks.rated === false && missingWxBlocks.band === "Not rated");
 
 const missingLocBlocks = Hunt.compose({
   now: NOW,
@@ -162,19 +172,23 @@ const missingLocBlocks = Hunt.compose({
   timing: peakTiming,
   searchability: favorable
 });
-assert("missing location blocks Very good", missingLocBlocks.band !== "Very good");
+assert("missing location blocks Very good", missingLocBlocks.rated === false && missingLocBlocks.band === "Need location");
 
 const outside = Hunt.compose({
-  now: new Date("2026-07-15T14:00:00"),
+  now: new Date("2026-08-30T14:00:00"),
   location: LOC,
-  weather: weatherPackage({ snowMm: 0, tempC: 22 }),
+  weather: weatherPackage({ snowMm: 0, tempC: 22, recentC: 22, pastC: 21 }),
   weatherStatus: "ready",
-  timing: Timing.evaluate({ date: new Date("2026-07-15T14:00:00"), lat: LOC.lat }),
+  timing: Timing.evaluate({ date: new Date("2026-08-30T14:00:00"), lat: LOC.lat }),
   searchability: favorable
 });
-assert("outside season caps at Fair", outside.band === "Fair" || outside.band === "Low", outside.band);
+assert("late August at 41.3N is outside window", outside.season.category === "outside", outside.season.category + " " + outside.season.label);
+assert("outside + favorable weather is Low overall rec", outside.band === "Low" && outside.rating === "Low", outside.band);
+assert("outside is not Fair from walking weather", outside.band !== "Fair" && outside.band !== "Good");
 assert("outside is not Very good", outside.band !== "Very good");
+assert("outside why keeps walking weather secondary", /outside the main shed-search window/i.test(outside.why.join(" ")));
 assert("season labeled outside/not main", /outside|unclear/i.test(outside.season.label));
+assert("hunter-facing copy avoids searchability", !/searchability/i.test([outside.today, outside.why.join(" "), outside.where, outside.watch].join(" ")));
 
 const deepSnow = Hunt.compose({
   now: NOW,
@@ -217,7 +231,7 @@ const limited = Hunt.compose({
   timing: peakTiming,
   searchability: { favorability: "limited", status: "ready", headline: "Limited" }
 });
-assert("limited searchability is Low", limited.band === "Low", limited.band);
+assert("limited field conditions in peak is Low", limited.band === "Low" && limited.rated === true, limited.band);
 assert("does not copy window score into Very good", limited.band !== "Very good");
 
 const fairHunt = Hunt.compose({
@@ -228,9 +242,9 @@ const fairHunt = Hunt.compose({
   timing: peakTiming,
   searchability: { favorability: "moderate", status: "ready", headline: "Workable" }
 });
-assert("moderate searchability is Fair", fairHunt.band === "Fair", fairHunt.band);
+assert("moderate field conditions in peak is Fair", fairHunt.band === "Fair", fairHunt.band);
 
-assert("today answers first", /^Good day to search\.|^Fair conditions|^Conditions are limited|^Today looks worth|^Share a location|^Reading/i.test(fairHunt.today));
+assert("today answers first", /^Good day to search\.|^Fair day for a shed hunt\.|^Today is a poor shed-hunt day\.|^Today looks worth|^Share a location|^Reading|^Today’s local conditions/i.test(fairHunt.today));
 assert("where does not invent local terrain", !/your (south-facing|slope|ridge at)/i.test(fairHunt.where));
 assert("where is types of ground or map compare", /map|edges|benches|notes/i.test(fairHunt.where));
 
@@ -293,6 +307,8 @@ function banned(obj) {
 });
 
 assert("disclaimer says not a find probability", /not a find probability/i.test(very.disclaimer));
+assert("default HTML omits evidence-support jargon", !/Evidence support/i.test(Hunt.renderHuntHtml(very)));
+assert("default HTML omits searchability", !/searchability/i.test(Hunt.renderHuntHtml(very)));
 assert("channels keep timing", very.channels && very.channels.timing && very.channels.timing.category === "peak");
 assert("channels keep searchability", very.channels.searchability.favorability === "favorable");
 assert("HTML renderer includes Why", /Why/.test(Hunt.renderHuntHtml(very)));
@@ -324,6 +340,8 @@ assert("SWE vs depth documented in weather", /water-equivalent|not depth/.test(w
 
 const composerSrc = read("apps/shed-hunting/js/sheds-today-hunt.js");
 assert("composer documents Very good rules", /Very good requires/.test(composerSrc));
+assert("composer documents overall recommendation", /Overall shed-hunt recommendation/.test(composerSrc));
+assert("composer documents Need location", /Need location/.test(composerSrc));
 assert("composer does not emit percent chance copy", !/percent chance of finding/.test(composerSrc));
 
 if (failures.length) {

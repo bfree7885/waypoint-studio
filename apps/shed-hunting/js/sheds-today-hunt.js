@@ -1,18 +1,32 @@
 /**
  * Sheds V1.1 — Today's Hunt composer.
  *
- * Interprets existing channels for the hunter. Does NOT replace TIMING,
- * HABITAT MODEL, SEARCHABILITY, or OBSERVED with one opaque score.
+ * BAND MEANING (hunter-facing):
+ *   Overall shed-hunt recommendation for today — not field-searchability
+ *   alone, and never a find / antler / deer probability.
  *
- * Band logic is rule-based and explainable via `ruleIds`.
- * Never outputs find / antler / deer probability, percent chance, or
- * “sheds are here” / “deer are here”.
+ * Searchability (weather, daylight, footing) is one INPUT. Season is another.
+ * Excellent walking weather must not produce a high overall band when the
+ * regional shed-search window is clearly poor.
+ *
+ * RATED bands (only when eligible): Low | Fair | Good | Very good
+ * UNRATED labels (missing critical inputs — NOT Low):
+ *   Need location | Not rated
+ *
+ * Missing data is UNKNOWN, not negative evidence.
+ *
+ * Internal channels stay separate: TIMING, HABITAT MODEL, SEARCHABILITY,
+ * OBSERVED. This module is a composer, not a replacement score.
  */
 (function (global) {
   "use strict";
 
-  var BANDS = Object.freeze(["Low", "Fair", "Good", "Very good"]);
+  var RATED_BANDS = Object.freeze(["Low", "Fair", "Good", "Very good"]);
   var RANK = { Low: 0, Fair: 1, Good: 2, "Very good": 3 };
+  var LABEL = {
+    NEED_LOCATION: "Need location",
+    NOT_RATED: "Not rated"
+  };
 
   var DEEP_SWE_MM = 25;
   var MELT_SWE_MM = 8;
@@ -26,14 +40,15 @@
   var LATER_WARM_H = 6;
 
   var DISCLAIMER =
-    "Today’s Hunt is an interpreted assessment of season, searchability, and recent " +
-    "conditions — not a find probability, and never a claim that sheds or deer are at a place.";
+    "Today’s Hunt is an interpreted recommendation for going shed hunting today — " +
+    "season and field conditions together, not a find probability, and never a claim " +
+    "that sheds or deer are at a place.";
 
   var TODAY_LEAD = {
     "Very good": "Today looks worth searching.",
     Good: "Good day to search.",
-    Fair: "Fair conditions today.",
-    Low: "Conditions are limited today."
+    Fair: "Fair day for a shed hunt.",
+    Low: "Today is a poor shed-hunt day."
   };
 
   function getTiming() { return global.WaypointShedsTiming || null; }
@@ -54,6 +69,18 @@
     return !!(loc && isFiniteCoord(loc.lat) && isFiniteCoord(loc.lng));
   }
 
+  /**
+   * Usable weather for a rating: live package with a numeric temperature.
+   * Wind/daylight gaps are listed internally; they do not make missing data Low.
+   */
+  function weatherIsUsable(wx, weatherStatus) {
+    return !!(wx && weatherStatus === "ready" && typeof wx.tempC === "number" && isFinite(wx.tempC));
+  }
+
+  function isRatedBand(band) {
+    return RATED_BANDS.indexOf(band) >= 0;
+  }
+
   function seasonPlain(timing) {
     if (!timing) return "Season timing unclear";
     return timing.plainLabel || timing.label || "Season timing unclear";
@@ -64,11 +91,11 @@
   }
 
   /**
-   * Searchability favorability is a condition channel — not mapped 1:1 onto
-   * Today's Hunt bands. Favorable conditions start at Good, not Very good.
+   * Searchability favorability is a condition input into the overall
+   * recommendation — not mapped 1:1 onto hunt bands, and never a rating
+   * when weather is missing.
    */
-  function baseBandFromSearchability(favorability, weatherReady) {
-    if (!weatherReady) return "Low";
+  function baseFromSearchability(favorability) {
     if (favorability === "favorable") return "Good";
     if (favorability === "moderate") return "Fair";
     if (favorability === "limited") return "Low";
@@ -97,7 +124,7 @@
     return "";
   }
 
-  function laterHoursMean(times, values, nowMs, hours, currentVal) {
+  function laterHoursMean(times, values, nowMs, hours) {
     if (!times || !values || times.length !== values.length) return null;
     var s = 0;
     var n = 0;
@@ -131,10 +158,6 @@
     return false;
   }
 
-  /**
-   * Types of ground — never a claim that the hunter's current slope/aspect
-   * is south-facing or that sheds exist there.
-   */
   function composeWhere(opts) {
     var wx = opts.weather || {};
     var timing = opts.timing;
@@ -187,25 +210,26 @@
     var nowHour = now.getHours() + now.getMinutes() / 60;
     var items = [];
     var Wx = getWeather();
-    var laterTemp = laterHoursMean(wx.hourlyTimes, wx.hourlyTemps, nowMs, LATER_WARM_H, wx.tempC);
+    var laterTemp = laterHoursMean(wx.hourlyTimes, wx.hourlyTemps, nowMs, LATER_WARM_H);
     if (typeof wx.tempC === "number" && laterTemp != null &&
         laterTemp - wx.tempC >= (Wx ? Wx.TEMP_TREND_THRESHOLD_C : 2)) {
-      items.push("Warming later today could change searchability.");
+      items.push("Warming later today could change how the ground reads.");
     }
     if (precipArriving(wx, nowMs, wx.sunsetHour, nowHour) ||
         (typeof wx.precipNowMm === "number" && wx.precipNowMm >= PRECIP_ARRIVING_MM)) {
       items.push("Precipitation arriving — footing and visibility may shift.");
     }
-    var laterWind = laterHoursMean(wx.hourlyTimes, wx.hourlyWinds, nowMs, LATER_WARM_H, wx.windSpeedMs);
+    var laterWind = null;
+    if (wx.hourlyTimes && wx.hourlyWinds) {
+      laterWind = laterHoursMean(wx.hourlyTimes, wx.hourlyWinds, nowMs, LATER_WARM_H);
+    }
     if (typeof wx.windSpeedMs === "number" && laterWind != null &&
         laterWind >= wx.windSpeedMs + WIND_INCREASE) {
       items.push("Wind increasing later — lee edges may matter more if they exist.");
     }
     if (typeof wx.snowMm === "number" && wx.snowMm >= PERSISTENT_SWE_MM &&
         !(typeof wx.tempC === "number" && wx.tempC > 0 && wx.snowMm > MELT_SWE_MM)) {
-      items.push(
-        "Snow water equivalent remains elevated — ground depth is still unknown."
-      );
+      items.push("Snow cover may still hide ground — depth is not measured.");
     }
     if (typeof wx.sunsetHour === "number" &&
         wx.sunsetHour - nowHour < DAYLIGHT_CLOSE_H && wx.sunsetHour - nowHour > 0) {
@@ -216,21 +240,39 @@
   }
 
   /**
-   * Compose Today's Hunt from channels already in the product.
+   * Compose Today's Hunt.
    *
-   * Rules (also in docs/sheds/SHEDS-V1-1-TODAYS-HUNT.md):
+   * Rating eligibility (all required before Low/Fair/Good/Very good):
+   *   1. Valid location (finite lat/lng from GPS, saved view, Search Area, or
+   *      a zoomed map center — never an invented town).
+   *   2. Usable weather: fetched package with a numeric temperature.
+   *   3. Season/timing is derived from date + latitude. It is shown whenever
+   *      a location exists. A missing timing module does not invent Low;
+   *      season then reads unclear and Very good is blocked.
    *
-   * 1. Start from SEARCHABILITY favorability as conditions, not a 0–100 hunt score.
-   *    favorable → Good · moderate → Fair · limited → Low.
-   * 2. TIMING is a visible modifier, never a same-day cast trigger.
-   *    outside / early / mostly_past cap at Fair.
-   * 3. Very good requires strong support: weather ready, location known,
-   *    searchability favorable, season peak (or building with an extra melt/warming
-   *    signal), SWE ≤ 25 mm, and at least one extra signal. Missing weather or
-   *    location always blocks Very good.
-   * 4. Deep SWE (> 25 mm water-equivalent, depth still unknown) caps at Fair.
-   * 5. No weather: max Fair if season is peak/building/late and location is known;
-   *    otherwise Low.
+   * Unrated:
+   *   Need location — no valid place.
+   *   Not rated — place known, weather/field conditions unavailable.
+   *
+   * Rated meaning — overall shed-hunt recommendation:
+   *   Low  — enough data; seasonal opportunity and/or field conditions are poor.
+   *   Fair — enough data; a cautious go (approaching/late leftover, or mixed
+   *          conditions in an open window).
+   *   Good — enough data; open seasonal window and workable-to-favorable field
+   *          conditions.
+   *   Very good — Good plus strong extras (see below). Never without location
+   *          and usable weather.
+   *
+   * Season caps (after searchability suggests a base):
+   *   outside      → Low (weather cannot raise the overall hunt rec)
+   *   early        → max Fair (approaching)
+   *   mostly_past  → max Fair (leftover)
+   *   building/peak/late → weather may raise; Very good still needs extras
+   *
+   * Very good requires: usable weather, location, favorable field conditions,
+   * season peak (or building/late with an extra melt/warming signal),
+   * SWE ≤ 25 mm, and at least one extra (warming+snow, melt, or peak with
+   * light cover).
    */
   function compose(opts) {
     opts = opts || {};
@@ -241,15 +283,14 @@
     var locSource = known ? (loc.source || "unknown") : "unknown";
     var wx = opts.weather && opts.weather.ready !== false ? opts.weather : null;
     var weatherStatus = opts.weatherStatus || (wx ? "ready" : "unavailable");
-    var weatherReady = !!(wx && weatherStatus === "ready");
+    var usableWx = weatherIsUsable(wx, weatherStatus);
     var ruleIds = [];
     var missingInputs = [];
     var why = [];
 
     if (!known) missingInputs.push("location");
-    if (!weatherReady) missingInputs.push("weather");
-    if (weatherReady) {
-      if (typeof wx.tempC !== "number") missingInputs.push("temperature");
+    if (!usableWx) missingInputs.push("weather");
+    if (usableWx) {
       if (typeof wx.windSpeedMs !== "number") missingInputs.push("wind");
       if (typeof wx.sunriseHour !== "number" || typeof wx.sunsetHour !== "number") {
         missingInputs.push("daylight");
@@ -267,15 +308,14 @@
     }
 
     var locationStatus = !known ? "unavailable"
-      : locSource === "gps" ? "ready"
-        : locSource === "denied" ? "denied"
-          : "ready";
+      : locSource === "denied" ? "denied"
+        : "ready";
 
     var Searchability = getSearchability();
     var searchability = opts.searchability || null;
     if (!searchability && Searchability && typeof Searchability.evaluate === "function") {
       searchability = Searchability.evaluate({
-        weather: weatherReady ? wx : null,
+        weather: usableWx ? wx : null,
         weatherStatus: weatherStatus,
         locationStatus: locationStatus,
         season: timing && timing.season ? timing.season : timing,
@@ -305,51 +345,47 @@
         detail: "Hourly temperatures were not available."
       };
     }
-    if (tempTrend.status === "unknown" && weatherReady) {
+    if (tempTrend.status === "unknown" && usableWx) {
       missingInputs.push("temperature_trend");
     }
 
     var cat = seasonCategory(timing);
-    var band;
-    var todaySpecial = null;
-
+    var rating = null;
     var status = "ready";
+    var todaySpecial = null;
+    var whereObj = null;
 
     if (weatherStatus === "loading" && !wx) {
-      band = "Low";
       status = "loading";
       ruleIds.push("loading");
       todaySpecial = "Reading today’s conditions…";
-      why.push("Waiting on live weather — not a find estimate.");
+      why.push("Waiting on live weather.");
     } else if (!known) {
-      band = "Low";
-      ruleIds.push("no-location");
-      todaySpecial = "Share a location to judge today.";
+      status = "need_location";
+      ruleIds.push("need-location");
+      todaySpecial = "Share a location or choose an area to get today’s local hunt assessment.";
       why.push("Today’s Hunt needs a place to read season and weather. It does not invent a town.");
-    } else if (!weatherReady) {
-      if (known && (cat === "peak" || cat === "building" || cat === "late")) {
-        band = "Fair";
-        ruleIds.push("no-weather-season-open-fair");
-      } else {
-        band = "Low";
-        ruleIds.push("no-weather-low");
-      }
-      why.push("Live weather is unavailable, so searchability cannot be judged confidently.");
-      if (known) why.push(seasonPlain(timing) + " — regional timing, not a same-day cast.");
+    } else if (!usableWx) {
+      status = "not_rated";
+      ruleIds.push("not-rated-weather");
+      todaySpecial = "Today’s local conditions are temporarily unavailable.";
+      why.push("Weather for this place could not be read, so today is not rated.");
+      why.push(seasonPlain(timing) + " — regional timing, not a same-day cast.");
     } else {
-      band = baseBandFromSearchability(favorability, true);
-      ruleIds.push("base-searchability-" + favorability);
+      rating = baseFromSearchability(favorability);
+      ruleIds.push("base-field-" + favorability);
 
       if (typeof wx.snowMm === "number" && wx.snowMm > DEEP_SWE_MM) {
-        band = minBand(band, "Fair");
+        rating = minBand(rating, "Fair");
         ruleIds.push("cap-deep-swe");
-        why.push(
-          "Recent snowfall water-equivalent is elevated — ground depth is still unknown, so opportunity stays capped."
-        );
+        why.push("Recent snow water is elevated — ground depth is not measured, so opportunity stays cautious.");
       }
 
-      if (cat === "outside" || cat === "early" || cat === "mostly_past") {
-        band = minBand(band, "Fair");
+      if (cat === "outside") {
+        rating = "Low";
+        ruleIds.push("season-outside-low");
+      } else if (cat === "early" || cat === "mostly_past") {
+        rating = minBand(rating, "Fair");
         ruleIds.push("cap-season-" + cat);
       }
 
@@ -369,72 +405,84 @@
         ruleIds.push("extra-peak-light-cover");
       }
 
-      var hardMissing = missingInputs.filter(function (id) {
-        return id === "location" || id === "weather" || id === "temperature";
-      });
-      var canVeryGood = weatherReady && known && hardMissing.length === 0 &&
+      var canVeryGood = usableWx && known &&
         favorability === "favorable" &&
         (cat === "peak" || (cat === "building" && extra) || (cat === "late" && extra)) &&
         !(typeof wx.snowMm === "number" && wx.snowMm > DEEP_SWE_MM) &&
         extra;
 
       if (canVeryGood) {
-        band = "Very good";
+        rating = "Very good";
         ruleIds.push("very-good");
       } else {
         ruleIds.push("very-good-blocked");
       }
 
-      if (tempTrend.status === "warming") {
-        why.push("Recent warming versus yesterday — a condition trend, not a cast trigger.");
-      } else if (tempTrend.status === "cooling") {
-        why.push("Recent cooling versus yesterday — freeze-adjacent air can change how ground reads.");
+      if (cat === "outside") {
+        why.push("This is outside the main shed-search window for this latitude — not a day-by-day drop claim.");
+        if (favorability === "favorable" || favorability === "moderate") {
+          why.push("Walking weather is workable, but that does not raise today’s shed-hunt recommendation.");
+        } else if (favorability === "limited") {
+          why.push("Field conditions are limited as well.");
+        }
+      } else {
+        if (tempTrend.status === "warming") {
+          why.push("Recent warming versus yesterday — a weather trend, not a cast trigger.");
+        } else if (tempTrend.status === "cooling") {
+          why.push("Recent cooling versus yesterday — freeze-adjacent air can change how ground reads.");
+        }
+        if (favorability === "favorable") {
+          why.push("Weather and daylight look favorable for going out — opportunity, not a find chance.");
+        } else if (favorability === "moderate") {
+          why.push("Field conditions are workable, not outstanding.");
+        } else if (favorability === "limited") {
+          why.push("Field conditions are limited today.");
+        }
+        why.push(seasonPlain(timing) + " — regional timing, not proof that casting happened here.");
       }
-      if (favorability === "favorable") {
-        why.push("Search conditions look favorable for going out — opportunity, not a find chance.");
-      } else if (favorability === "moderate") {
-        why.push("Search conditions are workable, not outstanding.");
-      } else if (favorability === "limited") {
-        why.push("Searchability is limited today — still a search window, not a closed season.");
+      if (typeof wx.snowMm === "number" && wx.snowMm > 0.5 && why.length < 3) {
+        why.push("Recent snow water is noted; ground depth is not measured.");
       }
-      why.push(seasonPlain(timing) + " — regional timing, not proof that casting happened here.");
-      if (typeof wx.snowMm === "number" && wx.snowMm > 0.5) {
-        why.push(
-          "Snow signal is water-equivalent only (" +
-            (Math.round(wx.snowMm * 10) / 10) +
-            " mm SWE). Depth is not measured."
-        );
-      }
-    }
 
-    if (known && weatherReady && why.length === 0) {
-      why.push("Mixed search conditions with the available weather and season context.");
+      whereObj = composeWhere({ weather: wx, timing: timing, patterns: opts.patterns });
     }
 
     why = why.slice(0, 3);
 
-    var where = composeWhere({ weather: wx, timing: timing, patterns: opts.patterns });
-    var watch = weatherReady ? composeWatch({ weather: wx, now: now }) : null;
+    if (status === "need_location") {
+      whereObj = null;
+    } else if (!whereObj) {
+      whereObj = {
+        text: "Use the map to compare exposed and sheltered ground.",
+        supported: false
+      };
+    }
+
+    var watch = (status === "ready" && usableWx) ? composeWatch({ weather: wx, now: now }) : null;
+
+    var rated = isRatedBand(rating);
+    var band = status === "loading" ? "…"
+      : status === "need_location" ? LABEL.NEED_LOCATION
+        : status === "not_rated" ? LABEL.NOT_RATED
+          : rating;
 
     var supportLevel = "limited";
-    if (weatherReady && known && missingInputs.filter(function (id) {
+    if (rated && missingInputs.filter(function (id) {
       return id !== "temperature_trend";
     }).length === 0) {
       supportLevel = "strong";
-    } else if (weatherReady || known) {
+    } else if (usableWx || known) {
       supportLevel = "partial";
-    }
-    if (!weatherReady || !known) {
-      band = minBand(band, "Fair");
-      if (band === "Very good") band = "Fair";
-      ruleIds.push("cap-missing-weather-or-location");
     }
 
     var strongest = strongestReason(why);
-    var today = todaySpecial || (TODAY_LEAD[band] + (strongest ? " " + strongest : ""));
+    var today = todaySpecial;
+    if (!today && rated) {
+      today = TODAY_LEAD[rating] + (strongest ? " " + strongest : "");
+    }
 
     var locLine = !known
-      ? "Location is not set — GPS or a saved Search / map center is needed."
+      ? null
       : locSource === "gps"
         ? "Using current location."
         : locSource === "saved-view"
@@ -447,11 +495,13 @@
 
     return {
       status: status,
+      rated: rated,
+      rating: rated ? rating : null,
       band: band,
       today: today,
       why: why,
-      where: where.text,
-      whereSupported: where.supported,
+      where: whereObj && status !== "need_location" ? whereObj.text : null,
+      whereSupported: !!(whereObj && whereObj.supported),
       watch: watch,
       season: {
         label: seasonPlain(timing),
@@ -494,26 +544,18 @@
       .replace(/"/g, "&quot;");
   }
 
-  /**
-   * Shared markup for overview + map briefing.
-   * @param {object} hunt compose() result
-   * @param {{ includeQuestion?: boolean, compact?: boolean }} [view]
-   */
   function renderHuntHtml(hunt, view) {
     view = view || {};
     if (!hunt) return "";
-    var band = hunt.band || "Low";
+    var band = hunt.band || LABEL.NOT_RATED;
     var html = '<article class="sheds-hunt" data-band="' + escapeHtml(band) + '"' +
+      ' data-rated="' + (hunt.rated ? "true" : "false") + '"' +
       (hunt.status ? ' data-status="' + escapeHtml(hunt.status) + '"' : "") + ">";
     if (view.includeQuestion !== false) {
       html += '<p class="sheds-hunt__question">Should I go shed hunting today?</p>';
     }
-    if (hunt.status === "loading") {
-      html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">…</span></p>';
-    } else {
-      html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">' +
-        escapeHtml(band) + "</span></p>";
-    }
+    html += '<p class="sheds-hunt__band"><span class="sheds-hunt__band-label">' +
+      escapeHtml(band) + "</span></p>";
     html += '<p class="sheds-hunt__today">' + escapeHtml(hunt.today) + "</p>";
     if (hunt.why && hunt.why.length) {
       html += '<section class="sheds-hunt__block"><h3 class="sheds-hunt__k">Why</h3><ul class="sheds-hunt__why">';
@@ -531,12 +573,11 @@
         escapeHtml(hunt.watch) + "</p></section>";
     }
     html += '<p class="sheds-hunt__season">Season: ' + escapeHtml(hunt.season && hunt.season.label) + "</p>";
-    var supportBits = ["Evidence support: " + (hunt.support && hunt.support.level ? hunt.support.level : "limited")];
-    if (hunt.support && hunt.support.locationLine) supportBits.push(hunt.support.locationLine);
-    if (hunt.support && hunt.support.missingInputs && hunt.support.missingInputs.length) {
-      supportBits.push("Missing: " + hunt.support.missingInputs.join(", ") + ".");
+    if (hunt.rated && hunt.support && hunt.support.locationLine) {
+      html += '<p class="sheds-hunt__support">' + escapeHtml(hunt.support.locationLine) + "</p>";
+    } else if (hunt.status === "not_rated" && hunt.support && hunt.support.locationLine) {
+      html += '<p class="sheds-hunt__support">' + escapeHtml(hunt.support.locationLine) + "</p>";
     }
-    html += '<p class="sheds-hunt__support">' + escapeHtml(supportBits.join(" ")) + "</p>";
     html += '<p class="sheds-hunt__disclaimer">' + escapeHtml(hunt.disclaimer) + "</p>";
     html += "</article>";
     return html;
@@ -548,10 +589,14 @@
   }
 
   global.WaypointShedsTodayHunt = {
-    BANDS: BANDS,
+    BANDS: RATED_BANDS,
+    RATED_BANDS: RATED_BANDS,
+    LABEL: LABEL,
     DEEP_SWE_MM: DEEP_SWE_MM,
     MELT_SWE_MM: MELT_SWE_MM,
     DISCLAIMER: DISCLAIMER,
+    weatherIsUsable: weatherIsUsable,
+    isRatedBand: isRatedBand,
     compose: compose,
     renderHuntHtml: renderHuntHtml,
     fillHuntRoot: fillHuntRoot

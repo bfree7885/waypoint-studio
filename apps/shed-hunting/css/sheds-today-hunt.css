@@ -6,6 +6,9 @@
 .sheds-hunt {
   margin: 0 0 1.25rem;
   padding: 0;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .sheds-hunt__question {
@@ -22,12 +25,19 @@
 
 .sheds-hunt__band-label {
   display: inline-block;
+  max-width: 100%;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2rem, 7vw, 2.6rem);
+  font-size: clamp(1.55rem, 8vw, 2.6rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.15;
   color: var(--sheds-ink, #f0e1c3);
+}
+
+.sheds-hunt[data-band="Very good"] .sheds-hunt__band-label,
+.sheds-hunt[data-band="Need location"] .sheds-hunt__band-label,
+.sheds-hunt[data-band="Not rated"] .sheds-hunt__band-label {
+  font-size: clamp(1.45rem, 7.2vw, 2.35rem);
 }
 
 .sheds-hunt[data-band="Very good"] .sheds-hunt__band-label {
@@ -46,9 +56,13 @@
   color: color-mix(in srgb, var(--sheds-muted, #bfa98c) 85%, #8a6a58);
 }
 
+.sheds-hunt[data-rated="false"] .sheds-hunt__band-label {
+  color: color-mix(in srgb, var(--sheds-muted, #bfa98c) 90%, #c4b49a);
+}
+
 .sheds-hunt__today {
   margin: 0 0 1.1rem;
-  font-size: 1.15rem;
+  font-size: clamp(1.02rem, 3.6vw, 1.15rem);
   line-height: 1.4;
   color: var(--sheds-ink, #f0e1c3);
 }
