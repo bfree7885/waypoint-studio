@@ -153,7 +153,12 @@ button.sheds-host-btn {
   }
 }
 
-@media (max-width: 23rem) {
+/* Hide the duplicate Open Map under the location prompt. */
+#hunt-location-prompt:not([hidden]) ~ .xp-stage__cta {
+  display: none;
+}
+
+@media (max-width: 360px) {
   .sheds-host-brand__powered {
     display: none;
   }
@@ -164,6 +169,10 @@ button.sheds-host-btn {
   }
 
   .xp-stage {
-    padding: 1.15rem 0.9rem 1.5rem;
+    padding: 0.9rem 0.85rem 1.25rem;
+  }
+
+  .xp-stage__eyebrow {
+    display: none;
   }
 }
