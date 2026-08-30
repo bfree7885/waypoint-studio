@@ -23,7 +23,7 @@ Satellite imagery is **landscape context**, not habitat proof.
 
 | Before | After |
 | --- | --- |
-| Street (CARTO Voyager) | Street (CARTO Voyager) — default |
+| Street (CARTO Voyager) | Street (**Esri World Street Map**) — default |
 | Topographic (Esri World Topo) | Topographic (Esri World Topo) |
 | — | **Satellite (Esri World Imagery)** |
 | — | **Hybrid (World Imagery + Esri Boundaries & Places reference)** |
@@ -47,7 +47,7 @@ Persistence: `localStorage` key `waypoint-sheds-basemap-v1` `{ id, savedAt }`. I
 2. Authoritative, high-quality aerial/satellite mosaic useful for fields, edges, clearings, roads.  
 3. Attribution string documented by Esri; Leaflet attribution control already shown.  
 4. No scraping — standard XYZ/ArcGIS tile URL templates.  
-5. Configurable override via existing `WAYPOINT_MAP_TILE_CONFIG` / meta inject if a keyed provider is required later.
+5. Configurable override via existing `WAYPOINT_MAP_TILE_CONFIG` / meta inject if a keyed provider is required later. Street no longer requires that secret: the default is Esri World Street Map.
 
 **URLs**
 

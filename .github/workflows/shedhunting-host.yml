@@ -1,0 +1,36 @@
+name: Publish Shed Hunting host
+
+# Generate dist/shedhunting/ and push to bfree7885/sheds-site (shedhunting.org).
+# Does not deploy waypointstudio.org. Does not flip shedDedicatedHostEnabled.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: shedhunting-host
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build dedicated-host artifact
+        env:
+          WAYPOINT_MAP_TILE_CONFIG: ${{ secrets.WAYPOINT_MAP_TILE_CONFIG }}
+        run: node scripts/prepare-shed-hunting-host.mjs
+
+      - name: Publish to sheds-site
+        env:
+          SHEDHUNTING_HOST_REPO: bfree7885/sheds-site
+          SHEDHUNTING_DEPLOY_TOKEN: ${{ secrets.SHEDHUNTING_DEPLOY_TOKEN }}
+          WAYPOINT_MAP_TILE_CONFIG: ${{ secrets.WAYPOINT_MAP_TILE_CONFIG }}
+        run: node scripts/publish-shed-hunting-host.mjs

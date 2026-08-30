@@ -322,6 +322,55 @@
     };
   }
 
+  function importBundle(bundle) {
+    bundle = bundle || {};
+    var incomingSessions = Array.isArray(bundle.sessions) ? bundle.sessions : [];
+    var incomingCoverage = Array.isArray(bundle.coverage) ? bundle.coverage : [];
+    var sessById = {};
+    listSessions().forEach(function (s) {
+      if (s && s.id) sessById[s.id] = s;
+    });
+    var added = 0;
+    var replaced = 0;
+    incomingSessions.forEach(function (raw) {
+      if (!raw || !raw.id) return;
+      var copy = Object.assign({}, raw);
+      if (copy.status === "active") copy.status = "ended";
+      if (sessById[copy.id]) replaced += 1;
+      else added += 1;
+      sessById[copy.id] = copy;
+    });
+    var mergedSessions = [];
+    Object.keys(sessById).forEach(function (id) { mergedSessions.push(sessById[id]); });
+    if (!writeList(SESSIONS_KEY, mergedSessions, MAX_SESSIONS)) {
+      return { ok: false, error: "Could not save imported sessions.", added: 0, replaced: 0, coverageAdded: 0 };
+    }
+    var covByKey = {};
+    listCoverage().forEach(function (c) {
+      var key = (c && (c.cellKey || c.id)) || null;
+      if (key) covByKey[key] = c;
+    });
+    var coverageAdded = 0;
+    incomingCoverage.forEach(function (c) {
+      if (!c) return;
+      var key = c.cellKey || c.id;
+      if (!key) return;
+      if (!covByKey[key]) coverageAdded += 1;
+      covByKey[key] = c;
+    });
+    var mergedCov = [];
+    Object.keys(covByKey).forEach(function (k) { mergedCov.push(covByKey[k]); });
+    writeList(COVERAGE_KEY, mergedCov, MAX_COVERAGE);
+    return {
+      ok: true,
+      added: added,
+      replaced: replaced,
+      total: mergedSessions.length,
+      coverageAdded: coverageAdded,
+      coverageTotal: mergedCov.length
+    };
+  }
+
   global.WaypointShedsSessions = {
     SESSIONS_KEY: SESSIONS_KEY,
     COVERAGE_KEY: COVERAGE_KEY,
@@ -343,6 +392,7 @@
     coverageLevelAt: coverageLevelAt,
     coveragePenaltyFactor: coveragePenaltyFactor,
     summarizeHistory: summarizeHistory,
-    exportBundle: exportBundle
+    exportBundle: exportBundle,
+    importBundle: importBundle
   };
 })(window);

@@ -22,11 +22,9 @@ export function relatedProductsFor(categories, geographicScopes, options = {}) {
   }
   if (cats.has("Astronomy and Night Sky")) {
     add("dashboard", "Compare night-sky context on Dashboard.");
-    add("scenes", "Photograph clear-sky events in Scenes.");
   }
   if (cats.has("Nature Photography") || cats.has("Hidden Landscapes")) {
-    add("scenes", "Open related photography craft in Scenes.");
-    add("photo-coach", "Use Photo Coach for technique context.");
+    add("dashboard", "Pair light and place reporting with live conditions.");
   }
   if (cats.has("Hidden Landscapes")) {
     add("hidden-landscapes", "Explore infrared and non-visible light work.");
@@ -39,7 +37,6 @@ export function relatedProductsFor(categories, geographicScopes, options = {}) {
     cats.has("Seasonal Nature")
   ) {
     add("dashboard", "Pair field reporting with live conditions on Dashboard.");
-    add("scenes", "Explore related craft and stories in Scenes.");
   }
   if (
     cats.has("Wildlife") &&
@@ -52,12 +49,11 @@ export function relatedProductsFor(categories, geographicScopes, options = {}) {
         String(options.textBlob || "")
       )
     ) {
-      add("sheds", "Relevant to habitat and seasonal movement notes in Sheds.");
+      add("sheds", "Relevant to habitat and seasonal movement notes in Shed Hunting.");
     }
   }
   if (cats.has("Hiking and Trails") || cats.has("Rivers and Water")) {
     add("dashboard", "Pair trail context with live conditions.");
-    add("foragecast", "Seasonal land context when foraging literacy applies.");
   }
   if (cats.has("Conservation") || cats.has("Environmental Science")) {
     add("articles", "Stay with the curated field reading feed.");
@@ -78,4 +74,11 @@ export function relatedActionLabel(product) {
     href: product.href,
     reason: product.reason || null
   };
+}
+
+/** Drop unpublished / retired product chips from generated article rows. */
+export function scrubRelatedProducts(list) {
+  return (list || []).filter(function (p) {
+    return p && p.id && !blocked.has(p.id);
+  });
 }

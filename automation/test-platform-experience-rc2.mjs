@@ -57,13 +57,13 @@ assert("related sheds→dashboard", Nav.relatedApps("sheds").some((a) => a.id ==
 const home = read("index.html");
 assert("home mission trio", /Observe\. Discover\. Understand/.test(home));
 assert("home Dashboard entry", /apps\/dashboard\//.test(home));
-assert("home Scenes entry", /apps\/scenes\//.test(home));
-assert("home Sheds entry", /shed-hunting/.test(home));
+assert("home omits unpublished Scenes entry", !/apps\/scenes\//.test(home));
+assert("home Shed Hunting entry", /https:\/\/shedhunting\.org\//.test(home));
 assert("home articles link", /href="articles\/"/.test(home));
 assert("home omits volunteer discover", !/waypoint-volunteer\/discover\.html/.test(home));
 
 const studioHome = read("js/studio-home.js");
-assert("studio-home lists Studio trio", /dashboard/.test(studioHome) && /scenes/.test(studioHome) && /shed-hunting/.test(studioHome));
+assert("studio-home lists public destinations", /dashboard/.test(studioHome) && /shedhunting\.org/.test(studioHome) && !/apps\/scenes\//.test(studioHome));
 assert("studio-home lists Deck", /waypoint-deck|Deck/.test(studioHome));
 
 const workflows = read("design-system/js/platform/wds-platform-workflows.js");

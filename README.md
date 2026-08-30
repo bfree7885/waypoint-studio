@@ -32,8 +32,8 @@ python3 -m http.server 8080
 |-----|----------------|
 | [http://localhost:8080/](http://localhost:8080/) | Studio front door |
 | [http://localhost:8080/apps/dashboard/](http://localhost:8080/apps/dashboard/) | **Dashboard** |
-| [http://localhost:8080/apps/scenes/](http://localhost:8080/apps/scenes/) | **Scenes** |
-| [http://localhost:8080/apps/shed-hunting/map/](http://localhost:8080/apps/shed-hunting/map/) | **Sheds** field map |
+| [https://shedhunting.org/](https://shedhunting.org/) | **Shed Hunting** (canonical public product) |
+| [http://localhost:8080/apps/shed-hunting/map/?local=1](http://localhost:8080/apps/shed-hunting/map/?local=1) | Local Shed Hunting map (export / development) |
 | [http://localhost:8080/articles/](http://localhost:8080/articles/) | Articles (publishing) |
 | [http://localhost:8080/deep-forest-dispatch/](http://localhost:8080/deep-forest-dispatch/) | Visual Earth stories (publishing) |
 

@@ -4,12 +4,14 @@ Set `data-product` on `<html>`. Accents come from the shared dusk-desert family 
 
 `--wp-brand` (terracotta) is the Waypoint square on every page. Product personality is `--wp-accent` / `--wp-warm` only.
 
+Public architecture (see `docs/PRODUCT-DIRECTION.md`): Waypoint Studio = Dashboard; Shed Hunting is a sibling destination; Scenes is unpublished (keep theming; do not promote it). Do not restyle Shed Hunting as camouflage/green hunting.
+
 | Product | `data-product` | Accent | Warm |
 |---------|----------------|--------|------|
 | Home | `studio-home`, `studio` | Terracotta | Ochre |
 | Dashboard | `dashboard` | Terracotta | Ochre |
-| Scenes / Photo Coach | `scenes`, `photo-coach` | Ochre | Terracotta |
-| Sheds | `shed-hunting`, `sheds` | Terracotta | Sage |
+| Scenes / Photo Coach (unpublished) | `scenes`, `photo-coach` | Ochre | Terracotta |
+| Shed Hunting | `shed-hunting`, `sheds` | Terracotta | Sage |
 | Articles / DFD | `articles`, `deep-forest-dispatch` | Terracotta | Ochre |
 | Deck | `waypoint-deck` | Terracotta | Desert purple |
 | Side Trails | `side-trails` | Terracotta | Desert purple |

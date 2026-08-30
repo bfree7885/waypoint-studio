@@ -245,6 +245,31 @@
     };
   }
 
+  /** Merge by id. Incoming records with the same id replace existing ones. */
+  function importList(records) {
+    var incoming = Array.isArray(records) ? records : [];
+    var byId = {};
+    list().forEach(function (o) {
+      if (o && o.id) byId[o.id] = o;
+    });
+    var added = 0;
+    var replaced = 0;
+    incoming.forEach(function (raw) {
+      var obs = normalize(raw);
+      if (!obs || !obs.id) return;
+      if (byId[obs.id]) replaced += 1;
+      else added += 1;
+      byId[obs.id] = obs;
+    });
+    var merged = [];
+    Object.keys(byId).forEach(function (id) { merged.push(byId[id]); });
+    merged.sort(function (a, b) {
+      return String(b.updatedAt || b.createdAt || "").localeCompare(String(a.updatedAt || a.createdAt || ""));
+    });
+    if (!persist(merged)) return { ok: false, error: "Could not save imported observations.", added: 0, replaced: 0, total: list().length };
+    return { ok: true, added: added, replaced: replaced, total: merged.length };
+  }
+
   function canPlaceFromGps(accuracyM) {
     return accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM <= OBS_GPS_ACCURACY_MAX_M;
   }
@@ -440,6 +465,7 @@
     normalize: normalize,
     normalizeWeatherSnapshot: normalizeWeatherSnapshot,
     exportJson: exportJson,
+    importList: importList,
     loadMapView: loadMapView,
     saveMapView: saveMapView,
     defaultModelPrefs: defaultModelPrefs,

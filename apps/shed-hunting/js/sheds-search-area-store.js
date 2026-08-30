@@ -174,6 +174,27 @@
     };
   }
 
+  function importList(records) {
+    var incoming = Array.isArray(records) ? records : [];
+    var byId = {};
+    listRaw().forEach(function (a) {
+      if (a && a.id) byId[a.id] = a;
+    });
+    var added = 0;
+    var replaced = 0;
+    incoming.forEach(function (raw) {
+      var area = normalize(raw);
+      if (!area || !area.id) return;
+      if (byId[area.id]) replaced += 1;
+      else added += 1;
+      byId[area.id] = area;
+    });
+    var merged = [];
+    Object.keys(byId).forEach(function (id) { merged.push(byId[id]); });
+    if (!persist(merged)) return { ok: false, error: "Could not save imported search areas.", added: 0, replaced: 0, total: listRaw().length };
+    return { ok: true, added: added, replaced: replaced, total: merged.length };
+  }
+
   global.WaypointShedsSearchAreaStore = {
     STORAGE_KEY: STORAGE_KEY,
     SCHEMA_VERSION: SCHEMA_VERSION,
@@ -188,6 +209,7 @@
     remove: remove,
     fromSearchState: fromSearchState,
     normalize: normalize,
-    exportJson: exportJson
+    exportJson: exportJson,
+    importList: importList
   };
 })(typeof window !== "undefined" ? window : globalThis);

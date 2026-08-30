@@ -3,12 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=../apps/shed-hunting/map/">
-  <link rel="canonical" href="https://waypointstudio.org/apps/shed-hunting/map/">
-  <title>Redirecting…</title>
-  <script>location.replace("../apps/shed-hunting/map/");</script>
+  <meta name="robots" content="noindex, follow">
+  <title>Shed Hunting moved to ShedHunting.org</title>
+  <link rel="canonical" href="https://shedhunting.org/">
+  <meta property="og:url" content="https://shedhunting.org/">
+  <meta http-equiv="refresh" content="0; url=https://shedhunting.org/">
+  <script src="/apps/shed-hunting/js/sheds-studio-cutover.js"></script>
+  <script>
+    (function () {
+      var C = window.WaypointShedsCutover;
+      var dest = (C && C.OVERVIEW) || "https://shedhunting.org/";
+      if (C && C.redirectLegacyStudio) {
+        C.redirectLegacyStudio(dest, { forcePublic: true });
+      } else {
+        location.replace(dest + (location.search || "") + (location.hash || ""));
+      }
+    })();
+  </script>
 </head>
 <body>
-  <p>Redirecting to <a href="../apps/shed-hunting/map/">today’s search</a>…</p>
+  <p>Shed Hunting now lives at <a href="https://shedhunting.org/">https://shedhunting.org/</a>.</p>
+  <p>This old <code>/sheds/</code> address used to open the field map. The public entrance is now the overview; the map is <a href="https://shedhunting.org/map/">https://shedhunting.org/map/</a>.</p>
+  <p>Existing field data can be moved by exporting from the old Waypoint Studio Shed Hunting page and importing it at ShedHunting.org. Notes do not move automatically. <a href="/apps/shed-hunting/map/?local=1">Export from the old map</a>.</p>
 </body>
 </html>

@@ -44,13 +44,14 @@ assert("root shell depth 0", /data-shell-depth="0"/.test(rootHtml));
 assert("dashboard is Rebuild host", /wds-dashboard-rebuild\.css/.test(dashHtml) && /home-boot\.js/.test(dashHtml));
 assert("dashboard labels Dashboard", /data-product-name="Dashboard"/.test(dashHtml) && /<title>Dashboard/.test(dashHtml));
 assert("dashboard canonical /apps/dashboard/", /canonical[^>]*apps\/dashboard\//.test(dashHtml));
-assert("primary nav is Dashboard·Scenes·Sheds·Deck·Articles·Support·About", /"id": "dashboard".*"Scenes".*"Sheds".*"Deck".*"Articles".*"Support".*"About"/s.test(navCfg));
-assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 1200)));
 const primaryNavBlock = (navCfg.match(/"studioPrimaryNav"\s*:\s*\[[\s\S]*?\]/) || [""])[0];
+assert("primary nav is Dashboard·Shed Hunting·Deck·Articles·Support·About", /"id": "dashboard"[\s\S]*"Shed Hunting"[\s\S]*"Deck"[\s\S]*"Articles"[\s\S]*"Support"[\s\S]*"About"/s.test(navCfg) && !/"label": "Scenes"/.test(primaryNavBlock));
+assert("primary nav omits Volunteer", !/"id": "volunteer"/.test(navCfg.split("studioPrimaryNav")[1].slice(0, 1200)));
 assert("primary nav omits SignalTerrain as peer", !/"SignalTerrain"|Volunteer|ForageCast|Fieldry|Steepleaf/i.test(primaryNavBlock));
 assert("primary nav includes Deck", /"Deck"/.test(primaryNavBlock));
 assert("primary nav omits Side Trails catalog label", !/"Side Trails"/.test(primaryNavBlock));
 assert("primary nav Dashboard → /apps/dashboard/", /"id": "dashboard"[\s\S]*?"href": "\/apps\/dashboard\/"/.test(navCfg));
+assert("primary nav Shed Hunting → shedhunting.org", /"id": "sheds"[\s\S]*?"href": "https:\/\/shedhunting\.org\/"/.test(navCfg));
 assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
 assert("startHere is Open Dashboard", /"label":\s*"Open Dashboard"/.test(navCfg));
 assert("customize omits Kiosk layout button", !/Kiosk layout/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js"), "utf8")));
@@ -185,7 +186,7 @@ const deepenHtml = Deepen.render();
 assert("deepeners render Waypoint’s Take", /Waypoint.s Take/.test(deepenHtml));
 assert("deepeners omit Field Notes promo", !/Field Notes/.test(deepenHtml));
 assert("deepeners omit Featured Photography", !/Featured Photography/.test(deepenHtml));
-assert("deepeners omit Scenes promo", !/Open Scenes|data-deepen="scenes"/.test(deepenHtml));
+assert("deepeners omit Scenes promo", !/Open Scenes|data-deepen="scenes"|apps\/scenes\//.test(deepenHtml));
 assert("deepeners omit Sheds promo", !/Open Sheds|data-deepen="sheds"/.test(deepenHtml));
 assert("deepeners omit Side Trails promo", !/data-deepen="side-trails"|View all Side Trails/.test(deepenHtml));
 assert("deepeners omit SignalTerrain cards", !/signalterrain|SignalTerrain|global-signals|Civic Trails|OpenRoad|openroad-pa/i.test(deepenHtml));
@@ -204,7 +205,7 @@ const primary = sandbox.WDS.APP_NAV_CONFIG.studioPrimaryNav.map(function (i) {
 });
 assert(
   "nav labels exact set",
-  primary.join("|") === "Dashboard|Scenes|Sheds|Deck|Articles|Support|About",
+  primary.join("|") === "Dashboard|Shed Hunting|Deck|Articles|Support|About",
   primary.join("|")
 );
 
