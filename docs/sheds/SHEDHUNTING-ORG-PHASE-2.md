@@ -239,5 +239,8 @@ Exact actions for a future Phase 3:
 
 ## Tests
 
-- `automation/test-shedhunting-host-readiness.mjs` — Phase 1 production contract + dedicated-host readiness
+- `automation/test-shedhunting-host-readiness.mjs` — production contract + dedicated-host readiness (updated in Phase 3C)
+- `automation/test-shedhunting-phase3c-cutover.mjs` — Studio cutover
 - Existing `automation/test-sheds-*.mjs` suites remain the product regression gate
+
+Phase 3C runbook: `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.

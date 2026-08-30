@@ -63,7 +63,7 @@ export const ARTICLE_STATUS = ["active", "duplicate", "rejected", "stale"];
 /** Active Studio / Publishing companions only — do not promote paused/retired apps. */
 export const RELATED_PRODUCTS = [
   { id: "dashboard", label: "Dashboard", href: "/apps/dashboard/" },
-  { id: "sheds", label: "Shed Hunting", href: "/apps/shed-hunting/" },
+  { id: "sheds", label: "Shed Hunting", href: "https://shedhunting.org/" },
   { id: "articles", label: "Articles", href: "/articles/" }
 ];
 

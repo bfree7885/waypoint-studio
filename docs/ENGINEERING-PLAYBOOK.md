@@ -1673,6 +1673,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting Phase 3C Studio cutover (2026-08-30)
+
+- GitHub Pages still has no HTTP 301/308. Alias routes (`/map/`, `/sheds/`) can use meta refresh + `location.replace` + canonical + visible fallback. The **map HTML** is also the dedicated-host `/map/` document, so a `content=0` meta refresh there would loop on shedhunting.org. Use hostname/`data-shed-host`/`?local=1`/`loopback` guards instead.
+- Skip loopback in the product helper so CI smoke and local `python3 -m http.server` still exercise the map. Alias pages pass `forcePublic` so `/map/` and `/sheds/` still cut over locally.
+- `copyDir` must not copy Studio `apps/shed-hunting/index.html` into `dist/shedhunting/` (design-system traversal). Host overview comes from `host/index.html`.
+- Do not republish `sheds-site` from a Studio-only cutover. Source generate can flip host robots/canonical for the *next* publish.
+
 ### Lessons Learned — Shed Hunting Street tiles (2026-08-29)
 
 - Unauthenticated `basemaps.cartocdn.com` Voyager/Positron tiles are real maps with an **API KEY REQUIRED** watermark burned in (HTTP 200). Esri World Street / Topo / Imagery do not. Do not require a GitHub secret to ship Street.

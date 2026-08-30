@@ -123,6 +123,7 @@
   }
 
   function startHereHref(app, depth) {
+    if (app && app.id === "sheds") return shedHuntingPublicHref();
     if (!app) return "#";
     var sh = app.startHere;
     if (sh && sh.href) return resolveRoute(sh.href, depth);
@@ -244,7 +245,7 @@
     return cfg.origins || {
       studioOrigin: "https://waypointstudio.org",
       shedOrigin: "https://shedhunting.org",
-      shedDedicatedHostEnabled: false
+      shedDedicatedHostEnabled: true
     };
   }
 

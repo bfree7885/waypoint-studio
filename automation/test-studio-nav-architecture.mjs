@@ -88,14 +88,14 @@ assert(
 );
 assert("nav-registry includes Deck href", /\/side-trails\/waypoint-deck\//.test(JSON.stringify(navReg.studioPrimaryNav)));
 assert(
-  "Shed Hunting nav is overview not map or external domain",
-  navReg.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "/apps/shed-hunting/" && !/shedhunting\.org/.test(i.href))
+  "Shed Hunting nav is dedicated-host overview",
+  navReg.studioPrimaryNav.some((i) => i.id === "sheds" && i.href === "https://shedhunting.org/")
 );
 assert("Scenes omitted from primary nav", !navReg.studioPrimaryNav.some((i) => i.id === "scenes" || i.label === "Scenes"));
 assert(
-  "primary nav hrefs are site-root absolute",
+  "primary nav hrefs are site-root absolute or the dedicated Shed host",
   (cfg.studioPrimaryNav || []).every(function (i) {
-    return typeof i.href === "string" && i.href.charAt(0) === "/";
+    return typeof i.href === "string" && (i.href.charAt(0) === "/" || i.href === "https://shedhunting.org/");
   }),
   (cfg.studioPrimaryNav || []).map(function (i) { return i.href; }).join("|")
 );
@@ -165,7 +165,7 @@ assert("incubator does not catalog experiments", !/Steepleaf|Savant|Fieldry|Volu
 
 const sitemap = read("sitemap.xml");
 assert("sitemap includes waypoint-deck", /waypointstudio\.org\/side-trails\/waypoint-deck\//.test(sitemap));
-assert("sitemap includes shed-hunting overview", /waypointstudio\.org\/apps\/shed-hunting\//.test(sitemap));
+assert("sitemap omits legacy Studio shed-hunting URLs", !/waypointstudio\.org\/apps\/shed-hunting\//.test(sitemap));
 assert("sitemap omits unpublished scenes", !/\/apps\/scenes\//.test(sitemap) && !/\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits incubator", !/\/incubator\//.test(sitemap));
 assert("sitemap omits discontinued apps", !/\/apps\/fieldry\/|\/apps\/foragecast\/|\/side-trails\/openroad-pa\//.test(sitemap));
@@ -175,8 +175,8 @@ assert("scenes hub still exists", fs.existsSync(path.join(ROOT, "apps/scenes/ind
 assert("scenes photo-coach still exists", fs.existsSync(path.join(ROOT, "apps/photo-coach/index.html")));
 assert("scenes hub is noindex", /noindex/i.test(read("apps/scenes/index.html")));
 assert("robots disallows scenes", /Disallow: \/apps\/scenes\//.test(read("robots.txt")));
-assert("no public shedhunting.org hrefs in nav", !/https?:\/\/shedhunting\.org/.test(JSON.stringify(navReg.studioPrimaryNav)));
-assert("origin flag remains off", navReg.origins && navReg.origins.shedDedicatedHostEnabled === false);
+assert("primary nav Shed Hunting is shedhunting.org", /https?:\/\/shedhunting\.org/.test(JSON.stringify(navReg.studioPrimaryNav)));
+assert("origin flag is on", navReg.origins && navReg.origins.shedDedicatedHostEnabled === true);
 
 const catalog = read("design-system/js/platform/wds-platform-catalog.js");
 assert("platform catalog includes Deck", /id:\s*"deck"/.test(catalog));

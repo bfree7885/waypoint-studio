@@ -87,6 +87,7 @@ jobs:
           node automation/test-home-rc1.mjs
           node automation/test-waypoint-color-system.mjs
           node automation/test-shedhunting-host-readiness.mjs
+          node automation/test-shedhunting-phase3c-cutover.mjs
 
       - name: Articles RSS pipeline tests
         run: node automation/test-articles-rss.mjs

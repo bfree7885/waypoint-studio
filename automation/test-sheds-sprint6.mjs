@@ -33,7 +33,7 @@ const app = read("apps/shed-hunting/js/sheds-map-app.js");
 const foundation = read("apps/shed-hunting/data/foundation.json");
 const mapRedirect = read("map/index.html");
 
-assert("site-root /map/ redirects to Sheds map", /shed-hunting\/map/.test(mapRedirect));
+assert("site-root /map/ redirects to ShedHunting.org map", /https:\/\/shedhunting\.org\/map\//.test(mapRedirect) && /url=https:\/\/shedhunting\.org\/map\//.test(mapRedirect));
 assert("FAB add-note control", /id="btn-add-obs-fab"/.test(html));
 assert("tools still has add note", /id="btn-add-obs"/.test(html));
 assert("obs GPS capture control", /id="btn-obs-use-gps"/.test(html) && /id="obs-location-hint"/.test(html));

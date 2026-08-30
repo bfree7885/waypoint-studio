@@ -45,7 +45,7 @@ async function staticChecks() {
   else pass("mission IA present");
   if (!/Enter Dashboard|apps\/dashboard\//.test(html)) fail("missing Dashboard entry");
   else pass("Dashboard entry");
-  if (!/apps\/shed-hunting\//.test(html) || !/articles\//.test(html)) {
+  if (!/https:\/\/shedhunting\.org\//.test(html) || !/articles\//.test(html)) {
     fail("missing Shed Hunting/Articles entries");
   } else pass("Shed Hunting/Articles entries");
   if (/href=["'][^"']*apps\/scenes\//.test(html)) {

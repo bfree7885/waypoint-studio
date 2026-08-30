@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /**
- * Shed Hunting Phase 2 — current production architecture + dedicated-host readiness.
+ * Shed Hunting Phase 3C — Studio cutover + dedicated-host source readiness.
  *
- * A. Phase 1 production: same-origin Studio paths, no live shedhunting.org hrefs,
- *    Scenes unpublished, overview → map, /map/ is the Sheds alias.
- * B. Future host readiness: origin helper, vendored assets, prepare-host artifact,
- *    no design-system traversal on map / dist, canonical not flipped early.
+ * A. Production contract: shedDedicatedHostEnabled true, public hrefs on
+ *    shedhunting.org, legacy Studio routes noindex + canonical, sitemap
+ *    omits Studio Shed URLs, Scenes unpublished.
+ * B. Dedicated-host generate: dist/shedhunting is indexable, canonical
+ *    shedhunting.org, no design-system traversal, Esri Street default.
  *
  * Run: node automation/test-shedhunting-host-readiness.mjs
  */
@@ -74,40 +75,26 @@ const hostHtml = read("apps/shed-hunting/host/index.html");
 const mapAlias = read("map/index.html");
 const shedsAlias = read("sheds/index.html");
 
-assert("origin flag is false", originCfg.shedDedicatedHostEnabled === false);
+assert("origin flag is true", originCfg.shedDedicatedHostEnabled === true);
 assert("studioOrigin is waypointstudio.org", originCfg.studioOrigin === "https://waypointstudio.org");
 assert("shedOrigin is documented", originCfg.shedOrigin === "https://shedhunting.org");
 assert(
   "nav-registry origins match flag",
   navReg.origins &&
-    navReg.origins.shedDedicatedHostEnabled === false &&
+    navReg.origins.shedDedicatedHostEnabled === true &&
     navReg.origins.shedOrigin === originCfg.shedOrigin
 );
 assert(
   "nav-config origins match origin-config",
-  /"shedDedicatedHostEnabled": false/.test(read("design-system/js/platform/wds-app-nav-config.js")) &&
+  /"shedDedicatedHostEnabled": true/.test(read("design-system/js/platform/wds-app-nav-config.js")) &&
     /"shedOrigin": "https:\/\/shedhunting\.org"/.test(read("design-system/js/platform/wds-app-nav-config.js"))
 );
 
 const originsJs = read("design-system/js/platform/wds-origins.js");
-assert("origins helper embeds flag false", /shedDedicatedHostEnabled:\s*false/.test(originsJs));
-assert("origins helper does not default-enable dedicated host", !/shedDedicatedHostEnabled:\s*true/.test(originsJs));
+assert("origins helper embeds flag true", /shedDedicatedHostEnabled:\s*true/.test(originsJs));
+assert("origins helper can still disable dedicated host", /shedDedicatedHostEnabled/.test(originsJs));
 
-const off = loadOrigins();
-assert(
-  "flag off → Studio sheds href",
-  off.WDS.origins.shedHuntingPublicHref() === "/apps/shed-hunting/",
-  off.WDS.origins.shedHuntingPublicHref()
-);
-assert(
-  "flag off → Studio map href",
-  off.WDS.origins.shedHuntingMapHref() === "/apps/shed-hunting/map/",
-  off.WDS.origins.shedHuntingMapHref()
-);
-assert("flag off isShedHost false on studio", off.WDS.origins.isShedHost() === false);
-assert("flag off powered-by is /", off.WDS.origins.poweredByWaypointHref() === "/");
-
-const on = loadOrigins(Object.assign({}, originCfg, { shedDedicatedHostEnabled: true }));
+const on = loadOrigins();
 assert(
   "flag on → dedicated overview href",
   on.WDS.origins.shedHuntingPublicHref() === "https://shedhunting.org/",
@@ -118,21 +105,38 @@ assert(
   on.WDS.origins.shedHuntingMapHref() === "https://shedhunting.org/map/",
   on.WDS.origins.shedHuntingMapHref()
 );
+assert("flag on isShedHost false on studio", on.WDS.origins.isShedHost() === false);
+assert("flag on powered-by is / on studio", on.WDS.origins.poweredByWaypointHref() === "/");
+
+const off = loadOrigins(Object.assign({}, originCfg, { shedDedicatedHostEnabled: false }));
+assert(
+  "flag off → Studio sheds href",
+  off.WDS.origins.shedHuntingPublicHref() === "/apps/shed-hunting/",
+  off.WDS.origins.shedHuntingPublicHref()
+);
+assert(
+  "flag off → Studio map href",
+  off.WDS.origins.shedHuntingMapHref() === "/apps/shed-hunting/map/",
+  off.WDS.origins.shedHuntingMapHref()
+);
 
 const nav = loadNav();
 assert(
-  "appNav sheds href stays same-origin while flag false",
-  nav.WDS.appNav.shedHuntingPublicHref() === "/apps/shed-hunting/"
+  "appNav sheds href is dedicated host",
+  nav.WDS.appNav.shedHuntingPublicHref() === "https://shedhunting.org/",
+  nav.WDS.appNav.shedHuntingPublicHref()
 );
-nav.WDS.APP_NAV_CONFIG.origins.shedDedicatedHostEnabled = true;
+nav.WDS.APP_NAV_CONFIG.origins.shedDedicatedHostEnabled = false;
 assert(
-  "appNav sheds href follows flag on",
-  nav.WDS.appNav.shedHuntingPublicHref() === "https://shedhunting.org/"
+  "appNav sheds href follows flag off",
+  nav.WDS.appNav.shedHuntingPublicHref() === "/apps/shed-hunting/"
 );
 
 assert("overview Open Map is relative map/", /href="map\/"/.test(overview));
-assert("overview is not noindex", !/noindex/i.test(overview));
+assert("overview is noindex on Studio", /noindex/i.test(overview));
+assert("overview canonical is shedhunting.org", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\//i.test(overview));
 assert("overview still uses Studio shell", /data-wds-app-shell/.test(overview));
+assert("overview loads cutover helper", /sheds-studio-cutover\.js/.test(overview));
 assert(
   "map has no design-system traversal",
   !/\.\.\/\.\.\/\.\.\/design-system/.test(mapHtml) && !/\.\.\/\.\.\/design-system/.test(mapHtml)
@@ -142,18 +146,28 @@ assert("map loads origin helper", /vendor\/wds\/wds-origins\.js/.test(mapHtml));
 assert("map studio links are site-root", /href="\/support\.html"/.test(mapHtml) && /href="\/privacy\.html"/.test(mapHtml));
 assert("map has data-studio-path", /data-studio-path="\/support\.html"/.test(mapHtml));
 assert("map has Powered by Waypoint hook", /data-powered-by-waypoint/.test(mapHtml));
-assert("host template is noindex", /noindex/i.test(hostHtml));
+assert("map is noindex on Studio", /noindex/i.test(mapHtml));
+assert("map canonical is shedhunting.org/map/", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\/map\//i.test(mapHtml));
+assert("map loads cutover helper", /sheds-studio-cutover\.js/.test(mapHtml));
+assert("host template is indexable", /name="robots"[^>]*index, follow/i.test(hostHtml) && !/noindex/i.test(hostHtml));
 assert("host template is focused (no studio shell)", !/data-wds-app-shell/.test(hostHtml));
 assert("host template Open Map is relative", /href="\.\.\/map\/"/.test(hostHtml));
 assert("host template has Powered by Waypoint", /data-powered-by-waypoint/.test(hostHtml));
+assert("host template canonical is shedhunting.org", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\//i.test(hostHtml));
 
 assert(
-  "current /map/ alias targets Sheds map",
-  /\/apps\/shed-hunting\/map\//.test(mapAlias) && /noindex/i.test(mapAlias)
+  "current /map/ alias targets shedhunting.org/map/",
+  /https:\/\/shedhunting\.org\/map\//.test(mapAlias) && /noindex/i.test(mapAlias) && /location\.replace/.test(mapAlias)
 );
 assert(
-  "current /sheds/ alias targets Sheds map (legacy)",
-  /apps\/shed-hunting\/map\//.test(shedsAlias)
+  "current /sheds/ alias targets shedhunting.org overview",
+  /rel="canonical" href="https:\/\/shedhunting\.org\/"/.test(shedsAlias) &&
+    /url=https:\/\/shedhunting\.org\/"/.test(shedsAlias) &&
+    !/url=\/apps\/shed-hunting\/map\//.test(shedsAlias)
+);
+assert(
+  "/map/ does not hop through Studio map",
+  !/url=\/apps\/shed-hunting\/map\//.test(mapAlias)
 );
 assert(
   "Phase 2 docs record /map/ conflict",
@@ -161,9 +175,7 @@ assert(
     /conflict/i.test(read("docs/sheds/SHEDHUNTING-ORG-PHASE-2.md"))
 );
 
-assert("overview has no shedhunting.org canonical", !/shedhunting\.org/.test(overview));
-assert("map has no shedhunting.org canonical", !/rel=["']canonical["'][^>]*shedhunting\.org/i.test(mapHtml));
-assert("sitemap still lists Studio sheds overview", /waypointstudio\.org\/apps\/shed-hunting\//.test(read("sitemap.xml")));
+assert("sitemap no longer lists Studio sheds overview", !/waypointstudio\.org\/apps\/shed-hunting\//.test(read("sitemap.xml")));
 assert("sitemap does not list shedhunting.org", !/shedhunting\.org/.test(read("sitemap.xml")));
 assert("robots disallow host preview", /Disallow: \/apps\/shed-hunting\/host\//.test(read("robots.txt")));
 assert("robots still disallows scenes", /Disallow: \/apps\/scenes\//.test(read("robots.txt")));
@@ -173,24 +185,21 @@ const publicHrefRoots = [
   "about.html",
   "support.html",
   "404.html",
-  "apps/shed-hunting/index.html",
-  "apps/shed-hunting/map/index.html",
-  "apps/dashboard/index.html",
   "js/studio-home.js"
 ];
 for (const rel of publicHrefRoots) {
   assert(
-    rel + " has no live https://shedhunting.org href",
-    !/https:\/\/shedhunting\.org/i.test(read(rel))
+    rel + " links public Shed Hunting to shedhunting.org",
+    /https:\/\/shedhunting\.org\//i.test(read(rel))
   );
 }
 assert(
-  "primary nav Shed Hunting href is not the future host",
-  (navReg.studioPrimaryNav || []).every((i) => !/shedhunting\.org/i.test(i.href || ""))
+  "primary nav Shed Hunting href is the dedicated host",
+  (navReg.studioPrimaryNav || []).some((i) => i.id === "sheds" && i.href === "https://shedhunting.org/")
 );
 assert(
-  "origin-config may name the future host without enabling it",
-  originCfg.shedOrigin === "https://shedhunting.org" && originCfg.shedDedicatedHostEnabled === false
+  "origin-config names the live host and enables it",
+  originCfg.shedOrigin === "https://shedhunting.org" && originCfg.shedDedicatedHostEnabled === true
 );
 
 assert("Scenes omitted from primary nav", !navReg.studioPrimaryNav.some((i) => i.id === "scenes"));
@@ -266,8 +275,12 @@ assert("dist map includes Import JSON", /id="btn-import"/.test(distMapHtml));
 assert("dist map loads import module", /sheds-import-json\.js/.test(distMapHtml));
 assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
 assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
-assert("dist robots disallow until DNS", /Disallow: \//.test(read("dist/shedhunting/robots.txt")));
-assert("dist overview stays noindex in Phase 3A", /noindex/.test(distIndexHtml));
+assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/robots.txt")) && !/Disallow: \//.test(read("dist/shedhunting/robots.txt")));
+assert("dist sitemap lists dedicated host", /https:\/\/shedhunting\.org\//.test(read("dist/shedhunting/sitemap.xml")) && /https:\/\/shedhunting\.org\/map\//.test(read("dist/shedhunting/sitemap.xml")));
+assert("dist overview is indexable", /index, follow/i.test(distIndexHtml) && !/noindex/.test(distIndexHtml));
+assert("dist map is indexable", /index, follow/i.test(distMapHtml) && !/noindex/.test(distMapHtml));
+assert("dist overview canonical is shedhunting.org", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\//i.test(distIndexHtml));
+assert("dist map canonical is shedhunting.org/map/", /rel=["']canonical["'][^>]*https:\/\/shedhunting\.org\/map\//i.test(distMapHtml));
 assert("dist overview and map are shed hosts", /data-shed-host="1"/.test(distIndexHtml) && /data-shed-host="1"/.test(distMapHtml));
 assert("dist overview has no ../../ paths", !/\.\.\/\.\.\//.test(distIndexHtml));
 assert("dist map has no ../../ paths", !/\.\.\/\.\.\//.test(distMapHtml));
@@ -276,7 +289,7 @@ assert("dist map Terms points at Studio", /https:\/\/waypointstudio\.org\/terms\
 assert("dist map Contact points at Studio", /https:\/\/waypointstudio\.org\/contact\.html/.test(distMapHtml));
 assert("dist overview has no Scenes nav", !/Scenes/.test(distIndexHtml) && !/\/apps\/scenes\//.test(distIndexHtml));
 assert("dist has no paywall copy", !/Free\/Pro|paywall|subscribe now/i.test(distIndexHtml + distMapHtml));
-assert("origin flag remains false after Phase 3A", originCfg.shedDedicatedHostEnabled === false);
+assert("origin flag remains true after Phase 3C generate", originCfg.shedDedicatedHostEnabled === true);
 assert("CNAME remains waypointstudio.org", /^\s*waypointstudio\.org\s*$/m.test(read("CNAME")));
 assert("pages workflow still deploys this repo to Pages", /Deploy GitHub Pages/.test(read(".github/workflows/pages.yml")));
 assert("companion publish workflow is dispatch-only", /workflow_dispatch/.test(read(".github/workflows/shedhunting-host.yml")) && !/branches:\s*\[main\]/.test(read(".github/workflows/shedhunting-host.yml")));

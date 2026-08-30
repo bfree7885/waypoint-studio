@@ -51,7 +51,7 @@ assert("primary nav omits SignalTerrain as peer", !/"SignalTerrain"|Volunteer|Fo
 assert("primary nav includes Deck", /"Deck"/.test(primaryNavBlock));
 assert("primary nav omits Side Trails catalog label", !/"Side Trails"/.test(primaryNavBlock));
 assert("primary nav Dashboard → /apps/dashboard/", /"id": "dashboard"[\s\S]*?"href": "\/apps\/dashboard\/"/.test(navCfg));
-assert("primary nav Shed Hunting → overview", /"id": "sheds"[\s\S]*?"href": "\/apps\/shed-hunting\/"/.test(navCfg));
+assert("primary nav Shed Hunting → shedhunting.org", /"id": "sheds"[\s\S]*?"href": "https:\/\/shedhunting\.org\/"/.test(navCfg));
 assert("local nav omits Kiosk feature", !/"id":\s*"kiosk"/.test(navCfg));
 assert("startHere is Open Dashboard", /"label":\s*"Open Dashboard"/.test(navCfg));
 assert("customize omits Kiosk layout button", !/Kiosk layout/.test(fs.readFileSync(path.join(ROOT, "design-system/js/dashboard/rebuild/wds-dashboard-rebuild-customize.js"), "utf8")));
