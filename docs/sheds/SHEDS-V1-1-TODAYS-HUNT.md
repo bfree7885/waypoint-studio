@@ -82,3 +82,7 @@ V1.1 does **not** add `snow_depth`. SWE is never treated as depth.
 ## Tests
 
 `automation/test-sheds-today-hunt.mjs`
+
+## Mobile host notes
+
+At ≤360px the dedicated-host overview hides the brand “Powered by Waypoint” line, the stage eyebrow, and the duplicate Open Map under the location prompt so Need location and Open Map stay on the first screen.

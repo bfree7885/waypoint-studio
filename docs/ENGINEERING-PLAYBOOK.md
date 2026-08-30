@@ -1681,6 +1681,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Hourly `temperature_2m` was already fetched and unused. A documented 2 °C day-to-day threshold is enough for Warming / Cooling / Little change. Do not add `snow_depth` or treat SWE as depth.
 - Very good must be gated on weather + a real location. Missing either, or a zoom-6 Midwest overview center, must not produce a confident hunt band.
 - Do not send “Today’s conditions” to Dashboard on the dedicated host. Nav may still link Dashboard as Powered-by-Waypoint chrome.
+- The map session strip uses `display: flex`, which overrides the HTML `hidden` attribute. Without `[hidden] { display: none !important }`, “Search active” shows when no search is running.
 
 ### Lessons Learned — Shed Hunting Phase 3C Studio cutover (2026-08-30)
 
