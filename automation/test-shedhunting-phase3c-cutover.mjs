@@ -89,6 +89,45 @@ assert(
     localFlag.__replaced == null
 );
 
+function loadCutoverWithLinks(loc, hrefs) {
+  const sandbox = loadCutover(loc);
+  const links = hrefs.map((href) => ({
+    href,
+    getAttribute: function (name) {
+      return name === "href" ? this.href : null;
+    },
+    setAttribute: function (name, value) {
+      if (name === "href") this.href = value;
+    }
+  }));
+  sandbox.document.querySelectorAll = function (sel) {
+    return sel === "a[href]" ? links : [];
+  };
+  return { sandbox, links };
+}
+
+const hatchNav = loadCutoverWithLinks(
+  { hostname: "waypointstudio.org", search: "?local=1" },
+  ["map/", "../", "../../articles/", "map/?local=1"]
+);
+hatchNav.sandbox.WaypointShedsCutover.preserveLocalNav();
+assert(
+  "?local=1 is kept on in-app map/overview links",
+  hatchNav.links[0].href === "map/?local=1" &&
+    hatchNav.links[1].href === "../?local=1" &&
+    hatchNav.links[2].href === "../../articles/" &&
+    hatchNav.links[3].href === "map/?local=1",
+  hatchNav.links.map((l) => l.href).join(" | ")
+);
+
+const noHatchNav = loadCutoverWithLinks({ hostname: "127.0.0.1" }, ["map/", "../"]);
+noHatchNav.sandbox.WaypointShedsCutover.preserveLocalNav();
+assert(
+  "loopback without ?local=1 does not rewrite in-app links",
+  noHatchNav.links[0].href === "map/" && noHatchNav.links[1].href === "../",
+  noHatchNav.links.map((l) => l.href).join(" | ")
+);
+
 const loopback = loadCutover({ hostname: "127.0.0.1" });
 assert(
   "loopback product pages stay (CI / local map)",

@@ -1681,6 +1681,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Do not republish `sheds-site` from a Studio-only cutover. Source generate can flip host robots/canonical for the *next* publish.
 - When stripping Studio-only cutover chrome from the dedicated-host map, remove the **entire** `<div id="sheds-studio-cutover">…</div>` plus the following `showFallback` script with an exact match. A replace of `id="…"…</div>` leaves `<div `, the next `<script>` is parsed as attributes, and cutover JavaScript renders as visible text on `/map/`. A non-greedy `[\s\S]*?showFallback` script replace starts at the earlier head `redirectLegacyStudio` IIFE and deletes `</head>`, CSS, and the skip link.
 - Do not run `publish-shed-hunting-host.mjs` for a metadata-only republish: it force-moves `legacy-terrain-intelligence-2026-03-10`. Replace files in an existing `sheds-site` checkout, keep `CNAME`, `--ff-only` pull, no tag rewrite, no force-push.
+- `?local=1` is the Class B export hatch on Studio, but overview CTAs (`map/`) and the map brand (`../`) drop the query. The fallback `map/?local=1` link is hidden whenever `shouldStay()` is already true, so hatch users have no in-UI path that keeps Studio `localStorage`. Preserve the flag on those in-app hrefs at runtime — do not hardcode it on the shared map HTML (copied to shedhunting.org).
 
 ### Lessons Learned — Shed Hunting Street tiles (2026-08-29)
 
