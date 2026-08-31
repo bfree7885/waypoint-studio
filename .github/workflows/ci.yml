@@ -119,6 +119,14 @@ jobs:
       - name: Sheds V3.2 Inspect Intelligence
         run: node automation/test-sheds-v3-2-inspect-intel.mjs
 
+      - name: Sheds Today's Hunt
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node automation/test-sheds-today-hunt.mjs
+          node automation/test-sheds-today-hunt-v12.mjs
+          node automation/test-sheds-today-hunt-mobile.mjs
+
       - name: Dashboard Discover tests
         if: ${{ !cancelled() }}
         run: node automation/test-dashboard-discover.mjs

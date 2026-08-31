@@ -79,6 +79,8 @@ Avoid architecture words in that view (`searchability`, `channel`, `model`, `sup
 
 V1.1 does **not** add `snow_depth`. SWE is never treated as depth.
 
+V1.2 (later) adds `snow_depth` when Open-Meteo returns a numeric value. See `docs/sheds/SHEDS-V1-2-TODAYS-HUNT.md`.
+
 ## Tests
 
 `automation/test-sheds-today-hunt.mjs`

@@ -1673,6 +1673,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting V1.2 Today’s Hunt intelligence (2026-08-31)
+
+- Open-Meteo `snow_depth` is hourly/current **meters**. `snowfall_sum` is **cm of snowfall**, not SWE and not depth. Missing `snow_depth` is not zero; explicit `0.0` is known bare ground. Never copy `snowfall_sum` into depth.
+- A 1 °C freeze/thaw deadband is enough given 0.1 °C precision. Tiny crossings of 0 °C are `near_freezing`, not a cycle.
+- Prefer a 48 h temperature lookback when hourly data spans it; keep the V1.1 2 °C threshold and fall back to 24 h. Status `little_change` is the honest “relatively stable” label.
+- Freeze/thaw and snow-cover refine Today’s Hunt extras/caps. They must not lift an **outside** season day off Low, and they must not invent Very good without V1.1 location + usable weather gates.
+
 ### Lessons Learned — Shed Hunting V1.1 Today’s Hunt (2026-08-30)
 
 - The dedicated-host overview can ask “Should I go shed hunting today?” and still fail to answer it if Today’s Search lives only on the map and “Today’s conditions” points at Studio Dashboard. Compose TIMING + SEARCHABILITY + weather trend on the overview; keep channels separate; do not ship a 0–100 find score.

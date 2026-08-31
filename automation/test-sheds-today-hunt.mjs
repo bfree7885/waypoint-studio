@@ -207,7 +207,7 @@ const deepSnow = Hunt.compose({
 });
 assert("deep SWE caps at Fair", deepSnow.band === "Fair" || deepSnow.band === "Low", deepSnow.band);
 assert("SWE is not called depth", !/snow depth \d|depth is \d/i.test(JSON.stringify(deepSnow)));
-assert("SWE honesty", /water-equivalent|SWE|depth is (still )?unknown|not measured/i.test(JSON.stringify(deepSnow)));
+assert("SWE honesty", /snow-depth data is unavailable|depth is (still )?unknown|not measured|not treated as (ground )?depth/i.test(JSON.stringify(deepSnow)));
 
 const trendWarm = Wx.deriveTempTrend(
   weatherPackage({ recentC: 5, pastC: 1 }).hourlyTimes,
@@ -342,8 +342,9 @@ assert("map does not treat zoom-6 overview as hunt location", /getZoom\(\) >= 10
 
 const weatherSrc = read("apps/shed-hunting/js/sheds-weather.js");
 assert("weather fetch still requests hourly temperature", /hourly=temperature_2m/.test(weatherSrc));
-assert("weather does not request snow_depth", !/[=,]snow_depth/.test(weatherSrc));
-assert("SWE vs depth documented in weather", /water-equivalent|not depth/.test(weatherSrc));
+assert("weather requests snow_depth", /[=,]snow_depth/.test(weatherSrc));
+assert("weather requests daily min and max", /temperature_2m_min/.test(weatherSrc) && /temperature_2m_max/.test(weatherSrc));
+assert("SWE vs depth documented in weather", /never depth|not depth|not used as depth|not treated as depth/i.test(weatherSrc));
 
 const composerSrc = read("apps/shed-hunting/js/sheds-today-hunt.js");
 assert("composer documents Very good rules", /Very good requires/.test(composerSrc));
