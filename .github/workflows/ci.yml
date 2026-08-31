@@ -119,6 +119,14 @@ jobs:
       - name: Sheds V3.2 Inspect Intelligence
         run: node automation/test-sheds-v3-2-inspect-intel.mjs
 
+      - name: Sheds V1.3 Where should I look
+        if: ${{ !cancelled() }}
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node automation/test-sheds-v1-3-search-priority.mjs
+          node automation/test-sheds-v1-3-map-mobile.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:
