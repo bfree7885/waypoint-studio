@@ -442,6 +442,37 @@ const jsonNoSnowKey = {
 const parsedNoKey = Wx.parseForecast(jsonNoSnowKey, NOW);
 assert("omitted snow_depth key is unknown, not zero", parsedNoKey.snowDepthKnown === false);
 
+// past_days=2 prepends day-minus-2; snowfall and precip must not use that slot.
+const jsonFiveDay = {
+  current: { temperature_2m: 1, wind_speed_10m: 4, surface_pressure: 1010, precipitation: 0 },
+  daily: {
+    time: ["2026-02-13", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17"],
+    snowfall_sum: [20, 3, 1, 0, 2],
+    precipitation_sum: [10, 2, 5, 0, 0],
+    sunrise: ["2026-02-13T07:10", "2026-02-14T07:08", "2026-02-15T07:00", "2026-02-16T06:58", "2026-02-17T06:56"],
+    sunset: ["2026-02-13T17:20", "2026-02-14T17:25", "2026-02-15T17:36", "2026-02-16T17:38", "2026-02-17T17:40"],
+    temperature_2m_min: [-8, -6, -2, 0, 1],
+    temperature_2m_max: [0, 1, 5, 6, 7]
+  },
+  utc_offset_seconds: 0
+};
+const parsedFive = Wx.parseForecast(jsonFiveDay, NOW);
+assert("five-day snowfall excludes day-minus-2", parsedFive.snowMm === 6, String(parsedFive.snowMm));
+assert("precip is yesterday + today, not day-minus-2", parsedFive.precipMm24h === 7, String(parsedFive.precipMm24h));
+assert("sunrise attaches to today", parsedFive.sunriseIso === "2026-02-15T07:00", String(parsedFive.sunriseIso));
+assert("sunset attaches to today", parsedFive.sunsetIso === "2026-02-15T17:36", String(parsedFive.sunsetIso));
+assert("daily min/max attach to today", parsedFive.dailyMinC === -2 && parsedFive.dailyMaxC === 5, parsedFive.dailyMinC + "/" + parsedFive.dailyMaxC);
+
+const huntLimitingSwe = huntWith({
+  snowDepthKnown: true,
+  snowDepthM: 0.10,
+  snowMm: 40,
+  nightC: 4, dayC: 8, otherC: 6, tempC: 4
+});
+assert("limiting cover + high snowfall still caps", huntLimitingSwe.ruleIds.indexOf("cap-deep-swe") >= 0, huntLimitingSwe.ruleIds.join(","));
+const limitingBlob = [huntLimitingSwe.today, (huntLimitingSwe.why || []).join(" ")].join(" ");
+assert("limiting cover cap does not claim depth unavailable", !/unavailable/i.test(limitingBlob), limitingBlob);
+
 // Temperature trend 48h vs 24h
 function seriesTrend(recentC, past24C, past48C) {
   const times = [];
@@ -490,7 +521,7 @@ function banned(obj) {
   if (/\b\d{1,3}% chance/.test(blob)) hits.push("percent chance number");
   return hits;
 }
-[huntFt, huntBelow, huntDeep, huntZero, huntMissingDepth, failed, noLoc, very, outside].forEach(function (h, i) {
+[huntFt, huntBelow, huntDeep, huntZero, huntMissingDepth, huntLimitingSwe, failed, noLoc, very, outside].forEach(function (h, i) {
   const hits = banned(h);
   assert("no banned certainty language v12 #" + i, hits.length === 0, hits.join(", "));
 });

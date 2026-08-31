@@ -430,7 +430,11 @@
       } else if (typeof wx.snowMm === "number" && wx.snowMm > DEEP_SWE_MM && !depthKnownNoneOrLight) {
         rating = minBand(rating, "Fair");
         ruleIds.push("cap-deep-swe");
-        why.push("Recent snowfall is elevated — measured ground depth is unavailable, so opportunity stays cautious.");
+        if (wx.snowDepthKnown) {
+          why.push("Recent snowfall is elevated — measured snow cover may still hide ground, so opportunity stays cautious.");
+        } else {
+          why.push("Recent snowfall is elevated — measured ground depth is unavailable, so opportunity stays cautious.");
+        }
       }
 
       if (cat === "outside") {

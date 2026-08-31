@@ -41,6 +41,9 @@
   var SNOW_LIMITING_M = 0.15;
   var SNOW_NEAR_HOURS = 3;
 
+  /** Must match FORECAST_QUERY. Extra past days are for hourly trend/freeze only. */
+  var PAST_DAYS = 2;
+
   var FORECAST_QUERY =
     "current=temperature_2m,wind_speed_10m,surface_pressure,precipitation,snow_depth" +
     "&hourly=temperature_2m,wind_speed_10m,precipitation,surface_pressure,snow_depth" +
@@ -111,6 +114,21 @@
     var d = new Date(Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2])));
     d.setUTCDate(d.getUTCDate() - 1);
     return d.toISOString().slice(0, 10);
+  }
+
+  /**
+   * Local-today index in an Open-Meteo daily series.
+   * past_days prepends older days; a date miss falls back to PAST_DAYS.
+   */
+  function todayDailyIndex(dailyTime, todayStr, length) {
+    if (dailyTime && dailyTime.length && todayStr) {
+      var found = dailyTime.indexOf(todayStr);
+      if (found >= 0) return found;
+    }
+    var n = dailyTime && dailyTime.length ? dailyTime.length : (length || 0);
+    if (n > PAST_DAYS) return PAST_DAYS;
+    if (n > 1) return 1;
+    return 0;
   }
 
   function meanRange(arr, from, to) {
@@ -453,7 +471,9 @@
 
   /**
    * Parse Open-Meteo JSON into the weather package used by Today's Hunt.
-   * snowMm is the snowfall_sum total (Open-Meteo unit: cm). It is never depth.
+   * snowMm is recent snowfall_sum from yesterday through the short forecast
+   * (Open-Meteo unit: cm). It is never depth. The extra past_days=2 day is
+   * omitted — that history is only for hourly freeze/thaw and the 48 h trend.
    */
   function parseForecast(json, now) {
     if (!json || !json.current) {
@@ -461,13 +481,20 @@
     }
     var data = json;
     var nowDate = now instanceof Date ? now : (now ? new Date(now) : new Date());
+    var offsetSec = typeof data.utc_offset_seconds === "number" ? data.utc_offset_seconds : null;
+    var todayStr = localDateString(nowDate, offsetSec);
+    var yestStr = previousDateStr(todayStr);
     var snow = 0;
     var snowfallKnown = false;
     if (data.daily && data.daily.snowfall_sum && data.daily.snowfall_sum.length) {
       snowfallKnown = true;
-      snow = data.daily.snowfall_sum.reduce(function (a, b) {
-        return a + (finiteNum(b) ? b : 0);
-      }, 0);
+      var snowArr = data.daily.snowfall_sum;
+      var snowTimes = data.daily.time;
+      var si;
+      for (si = 0; si < snowArr.length; si++) {
+        if (snowTimes && snowTimes[si] && yestStr && snowTimes[si] < yestStr) continue;
+        if (finiteNum(snowArr[si])) snow += snowArr[si];
+      }
     }
     var influence = 1;
     if (snow > 25) influence = 0.7;
@@ -486,8 +513,9 @@
     var precipMm24h = null;
     if (data.daily && data.daily.precipitation_sum && data.daily.precipitation_sum.length) {
       var sums = data.daily.precipitation_sum;
-      precipMm24h = Number(sums[sums.length > 1 ? 1 : 0] || 0);
-      if (sums.length > 1) precipMm24h = Number(sums[0] || 0) + Number(sums[1] || 0);
+      var precipIx = todayDailyIndex(data.daily.time, todayStr, sums.length);
+      precipMm24h = Number(sums[precipIx] || 0);
+      if (precipIx > 0) precipMm24h += Number(sums[precipIx - 1] || 0);
     }
 
     var pressureTrend = null;
@@ -503,19 +531,16 @@
       }
     }
 
-    var offsetSec = typeof data.utc_offset_seconds === "number" ? data.utc_offset_seconds : null;
-    var todayStr = localDateString(nowDate, offsetSec);
-
-    var sunriseIso = data.daily && data.daily.sunrise ? data.daily.sunrise[data.daily.sunrise.length > 1 ? 1 : 0] : null;
-    var sunsetIso = data.daily && data.daily.sunset ? data.daily.sunset[data.daily.sunset.length > 1 ? 1 : 0] : null;
+    var sunriseIso = null;
+    var sunsetIso = null;
     var dailyMinC = null;
     var dailyMaxC = null;
     var dailyIdx = -1;
-    if (data.daily && data.daily.time && data.daily.time.length) {
-      var ix = todayStr ? data.daily.time.indexOf(todayStr) : -1;
-      if (ix < 0 && data.daily.time.length > 1) ix = 1;
-      if (ix < 0) ix = 0;
-      dailyIdx = ix;
+    if (data.daily) {
+      var dailyLen = (data.daily.time && data.daily.time.length) ||
+        (data.daily.sunrise && data.daily.sunrise.length) || 0;
+      var ix = todayDailyIndex(data.daily.time, todayStr, dailyLen);
+      if (data.daily.time && data.daily.time.length) dailyIdx = ix;
       sunriseIso = data.daily.sunrise && data.daily.sunrise[ix];
       sunsetIso = data.daily.sunset && data.daily.sunset[ix];
       if (data.daily.temperature_2m_min && finiteNum(data.daily.temperature_2m_min[ix])) {
