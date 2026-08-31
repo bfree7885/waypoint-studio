@@ -120,6 +120,7 @@ jobs:
         run: node automation/test-sheds-v3-2-inspect-intel.mjs
 
       - name: Sheds Today's Hunt
+        if: ${{ !cancelled() }}
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: |
