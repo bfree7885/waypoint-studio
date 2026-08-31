@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-31T02:03:46.286Z",
+  "checkedAt": "2026-08-31T18:20:56.903Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": false,
-      "itemCount": 0,
-      "error": "HTTP 429",
+      "ok": true,
+      "itemCount": 24,
+      "error": null,
       "warnings": [],
-      "ms": 101,
+      "ms": 305,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 284,
+      "ms": 270,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 170,
+      "ms": 113,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 204,
+      "ms": 321,
       "enabled": true
     },
     {
@@ -127,11 +127,11 @@
     {
       "id": "amc-outdoors",
       "name": "Appalachian Mountain Club — Outdoors",
-      "ok": true,
-      "itemCount": 10,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "timeout",
       "warnings": [],
-      "ms": 291,
+      "ms": 20001,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 165,
+      "ms": 322,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 75,
+      "ms": 239,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 92,
+      "ms": 1583,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 108,
+      "ms": 354,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 206,
+      "ms": 175,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 230,
+      "ms": 293,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 276,
+      "ms": 360,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 118,
+      "ms": 184,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-08-31T14:03:46.286Z"
+  "staleAfter": "2026-09-01T06:20:56.903Z"
 }
