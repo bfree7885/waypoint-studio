@@ -1591,12 +1591,16 @@
     if (!SearchPriority || !SearchPriority.haloLatLngs) {
       return Promise.resolve(null);
     }
-    var pts = SearchPriority.haloLatLngs({
-      north: bounds.getNorth(),
-      south: bounds.getSouth(),
-      west: bounds.getWest(),
-      east: bounds.getEast()
-    }, rows, cols);
+    var pts = SearchPriority.haloLatLngs(
+      SearchPriority.clampSearchBounds({
+        north: bounds.getNorth(),
+        south: bounds.getSouth(),
+        west: bounds.getWest(),
+        east: bounds.getEast()
+      }),
+      rows,
+      cols
+    );
     if (state.searchAreasAbort) {
       try { state.searchAreasAbort.abort(); } catch (e) { /* */ }
       state.searchAreasAbort = null;
@@ -1722,19 +1726,23 @@
       return;
     }
     var zoom = map.getZoom();
-    var bounds = map.getBounds();
+    var mapBounds = map.getBounds();
+    var rawBounds = {
+      north: mapBounds.getNorth(),
+      south: mapBounds.getSouth(),
+      west: mapBounds.getWest(),
+      east: mapBounds.getEast()
+    };
+    var searchBounds = SearchPriority.clampSearchBounds
+      ? SearchPriority.clampSearchBounds(rawBounds)
+      : rawBounds;
     var rows = SearchPriority.GRID_ROWS || 12;
     var cols = SearchPriority.GRID_COLS || 12;
     if (zoom < (SearchPriority.MIN_ZOOM || 12)) {
       state.searchAreasStatus = "insufficient_zoom";
       applySearchAreasGrid(SearchPriority.evaluateGrid({
         zoom: zoom,
-        bounds: {
-          north: bounds.getNorth(),
-          south: bounds.getSouth(),
-          west: bounds.getWest(),
-          east: bounds.getEast()
-        },
+        bounds: searchBounds,
         rows: rows,
         cols: cols,
         elevations: []
@@ -1749,19 +1757,14 @@
         rows: 0,
         cols: 0,
         cells: [],
-        bounds: {
-          north: bounds.getNorth(),
-          south: bounds.getSouth(),
-          west: bounds.getWest(),
-          east: bounds.getEast()
-        },
+        bounds: searchBounds,
         message: SearchPriority.COPY.UNAVAILABLE
       });
       return;
     }
     state.searchAreasStatus = "loading";
     syncSearchAreasLegend();
-    fetchSearchAreaElevations(bounds, rows, cols).then(function (elev) {
+    fetchSearchAreaElevations(mapBounds, rows, cols).then(function (elev) {
       if (!state.searchAreasVisible) return;
       if (elev && elev.failed) {
         state.searchAreasStatus = "failed";
@@ -1771,12 +1774,7 @@
           rows: 0,
           cols: 0,
           cells: [],
-          bounds: {
-            north: bounds.getNorth(),
-            south: bounds.getSouth(),
-            west: bounds.getWest(),
-            east: bounds.getEast()
-          },
+          bounds: searchBounds,
           message: SearchPriority.COPY.FAILED
         });
         return;
@@ -1784,12 +1782,7 @@
       if (!elev) return;
       var grid = SearchPriority.evaluateGrid({
         zoom: map.getZoom(),
-        bounds: {
-          north: bounds.getNorth(),
-          south: bounds.getSouth(),
-          west: bounds.getWest(),
-          east: bounds.getEast()
-        },
+        bounds: searchBounds,
         rows: rows,
         cols: cols,
         elevations: elev
@@ -3771,10 +3764,28 @@
     state.inspectReport = report;
     var priority = buildInspectPriority();
     state.inspectPriority = priority;
+    var noteEl = $("inspect-field-note");
+    function setPriorityHud(text) {
+      var raw = String(text || "");
+      var idx = raw.lastIndexOf("\nField note\n");
+      if (idx >= 0) {
+        body.textContent = raw.slice(0, idx).trim();
+        if (noteEl) {
+          noteEl.textContent = raw.slice(idx + "\nField note\n".length).trim();
+          noteEl.hidden = false;
+        }
+      } else {
+        body.textContent = raw;
+        if (noteEl) {
+          noteEl.textContent = "";
+          noteEl.hidden = true;
+        }
+      }
+    }
     if (priority && SearchPriority && SearchPriority.formatInspectHud) {
-      body.textContent = SearchPriority.formatInspectHud(priority);
+      setPriorityHud(SearchPriority.formatInspectHud(priority));
     } else if (report) {
-      body.textContent = report.hudFacts || report.hudText || "";
+      setPriorityHud(report.hudFacts || report.hudText || "");
     } else {
       var ll = state.inspectLatLng;
       var lines = [];
@@ -3794,6 +3805,10 @@
       if (rel.fromSearch) lines.push(rel.fromSearch);
       lines.push("Context only — not habitat proof.");
       body.textContent = lines.join("\n");
+      if (noteEl) {
+        noteEl.textContent = "";
+        noteEl.hidden = true;
+      }
     }
     var moreText = "";
     if (report) {
@@ -3885,6 +3900,7 @@
   function fetchInspectTerrain(lat, lng, gen) {
     state.inspectTerrainStatus = "loading";
     state.inspectTerrainDerived = null;
+    state.inspectTerrainNeighbors = null;
     renderInspectHud();
     if (!InspectIntel || !InspectIntel.elevationNeighborhoodUrl) {
       state.inspectTerrainStatus = "unavailable";

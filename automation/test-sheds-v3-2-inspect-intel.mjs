@@ -337,7 +337,7 @@ assert.match(html, />SEARCH</);
 assert.match(html, />OBS</);
 
 const css = read("apps/shed-hunting/css/sheds-map.css");
-assert.match(css, /max-height:\s*min\(38vh/);
+assert.match(css, /max-height:\s*min\(44vh/);
 assert.match(css, /sheds-inspect-hud__more/);
 assert.match(css, /min-height:\s*2\.75rem/);
 assert.match(css, /overflow-x:\s*hidden/);

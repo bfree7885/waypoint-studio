@@ -18,6 +18,7 @@
   var MIN_ZOOM = 12;
   var MIN_INSPECT_ZOOM = 11;
   var MAX_CELL_STEP_M = 450;
+  var MAX_SPAN_M = 3000;
   var GRID_ROWS = 12;
   var GRID_COLS = 12;
   var HALO = 1;
@@ -147,6 +148,28 @@
     var ns = dLat * 111320;
     var ew = dLng * metersPerDegLng(midLat);
     return { ns: ns, ew: ew, mean: (ns + ew) / 2 };
+  }
+
+  /**
+   * Keep overlay analysis on a local window so desktop viewports do not
+   * produce kilometer-scale cells (which would look like fake heat).
+   */
+  function clampSearchBounds(bounds, maxSpanM) {
+    if (!bounds) return bounds;
+    maxSpanM = maxSpanM != null ? maxSpanM : MAX_SPAN_M;
+    var lat = (Number(bounds.north) + Number(bounds.south)) / 2;
+    var lng = (Number(bounds.east) + Number(bounds.west)) / 2;
+    var spanLatM = Math.abs(bounds.north - bounds.south) * 111320;
+    var spanLngM = Math.abs(bounds.east - bounds.west) * metersPerDegLng(lat);
+    if (!(spanLatM > maxSpanM) && !(spanLngM > maxSpanM)) return bounds;
+    var halfLat = (Math.min(spanLatM, maxSpanM) / 111320) / 2;
+    var halfLng = (Math.min(spanLngM, maxSpanM) / metersPerDegLng(lat)) / 2;
+    return {
+      north: lat + halfLat,
+      south: lat - halfLat,
+      west: lng - halfLng,
+      east: lng + halfLng
+    };
   }
 
   function containsBannedLanguage(text) {
@@ -597,6 +620,7 @@
     var cols = opts.cols != null ? opts.cols : GRID_COLS;
     var bounds = opts.bounds;
     var elevations = opts.elevations;
+    bounds = clampSearchBounds(bounds);
     var haloRows = rows + HALO * 2;
     var haloCols = cols + HALO * 2;
 
@@ -820,6 +844,7 @@
     todayNotes: todayNotes,
     snowDepthKnown: snowDepthKnown,
     containsBannedLanguage: containsBannedLanguage,
+    clampSearchBounds: clampSearchBounds,
     haloPointCount: haloPointCount,
     haloLatLngs: haloLatLngs,
     stepMetersFromBounds: stepMetersFromBounds

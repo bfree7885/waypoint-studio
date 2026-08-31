@@ -329,6 +329,7 @@ assert("search-priority script", /sheds-search-priority\.js/.test(html));
 assert("Import JSON remains", /id="btn-import"/.test(html) && /btn-import/.test(mapApp));
 assert("Measure remains", /id="btn-measure"/.test(html) && /btn-measure/.test(mapApp));
 assert("Inspect remains", /id="btn-inspect-point"/.test(html) && /id="inspect-hud"/.test(html));
+assert("Inspect field note slot", /id="inspect-field-note"/.test(html));
 assert("Today hunt root remains", /id="today-hunt"/.test(html));
 assert("map-app uses SearchPriority", /WaypointShedsSearchPriority/.test(mapApp));
 assert("inspect HUD uses formatInspectHud", /formatInspectHud/.test(mapApp));
@@ -345,6 +346,18 @@ assert("overview still has hunt root", /id="todays-hunt"/.test(overview));
 const docs = read("docs/sheds/SHEDS-V1-3-WHERE-TO-LOOK.md");
 assert("v1.3 plan exists", /Where should I look/i.test(docs));
 assert("v1.3 not a prediction system", /not an antler prediction/i.test(docs));
+
+const wide = { north: 41.45, south: 41.15, west: -75.15, east: -74.45 };
+const clamped = P.clampSearchBounds(wide);
+assert("clamp shrinks desktop-scale bounds", Math.abs(clamped.north - clamped.south) * 111320 <= 3100);
+const wideGrid = P.evaluateGrid({
+  zoom: 14,
+  rows: 12,
+  cols: 12,
+  bounds: wide,
+  elevations: haloGrid(12, 12, function () { return 100; })
+});
+assert("clamped overlay is not insufficient-zoom", wideGrid.status !== "insufficient_zoom", wideGrid.status + " step=" + wideGrid.stepM);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s):\n" + failures.map((f) => " - " + f).join("\n"));

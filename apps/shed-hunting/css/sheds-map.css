@@ -214,7 +214,7 @@ html, body {
 }
 
 .sheds-inspect-hud {
-  max-height: min(38vh, 16.5rem);
+  max-height: min(44vh, 19rem);
   display: flex;
   flex-direction: column;
   gap: 0.22rem;
@@ -251,7 +251,7 @@ html, body {
   color: var(--sheds-muted);
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   overflow: hidden;
 }
 
@@ -266,9 +266,17 @@ html, body {
   white-space: pre-wrap;
   overflow: auto;
   overflow-x: hidden;
-  max-height: min(22vh, 10.5rem);
+  max-height: min(26vh, 12.5rem);
   -webkit-overflow-scrolling: touch;
   word-break: break-word;
+}
+
+.sheds-inspect-hud__note {
+  margin: 0;
+  flex: 0 0 auto;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: var(--sheds-muted);
 }
 
 .sheds-inspect-hud.is-expanded .sheds-inspect-hud__body {
@@ -401,6 +409,14 @@ html.sheds-session-active .sheds-inspect-hud {
 
   .sheds-inspect-hud {
     max-height: min(42vh, 18rem);
+  }
+
+  .sheds-inspect-hud__lede {
+    display: none;
+  }
+
+  .sheds-inspect-hud__body {
+    max-height: min(16vh, 6.5rem);
   }
 
   html.sheds-session-active .sheds-measure-hud,

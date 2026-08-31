@@ -188,7 +188,12 @@ async function main() {
             hud.removeAttribute("hidden");
             var body = document.getElementById("inspect-body");
             if (body) {
-              body.textContent = "Search priority: Higher\\n\\nTerrain\\nGentle southwest-facing bench beside steeper terrain.\\nSlope 8° · southwest-facing · ~412 m (1,352 ft)\\n\\nWhy\\n• Terrain transition may be worth checking.\\n• Moderate slope should be relatively searchable.\\n\\nField note\\nUse the terrain as a search guide, not evidence that sheds are present.";
+              body.textContent = "Search priority: Higher\\n\\nTerrain\\nGentle southwest-facing bench beside steeper terrain.\\nSlope 8° · southwest-facing · ~412 m (1,352 ft)\\n\\nWhy\\n• Terrain transition may be worth checking.\\n• Moderate slope should be relatively searchable.";
+            }
+            var note = document.getElementById("inspect-field-note");
+            if (note) {
+              note.hidden = false;
+              note.textContent = "Use the terrain as a search guide, not evidence that sheds are present.";
             }
             document.getElementById("sheds-map-shell").classList.add("is-inspecting");
           }
