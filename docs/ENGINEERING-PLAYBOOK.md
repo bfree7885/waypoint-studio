@@ -1673,6 +1673,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `.wcs-page` is a column flex item of `.was-shell` with `margin: 0 auto`. Auto side margins disable stretch, so the main sizes to chip min-content (~491px) while `html/body { overflow-x: clip }` hides the overflow. Set `width: 100%; min-width: 0` on `.wcs-page`.
 - Silent redirects are not enough: Dashboard wildlife intel and the observation ledger still interpolated **Fieldry** / **ForageCast** from leftover `localStorage`. Relabel rendered copy and hrefs; keep the stores. Scan `wds.js` runtime modules for quoted discontinued identity, not just HTML shells.
 
+### Lessons Learned — Shed Hunting V1.3 Where should I look? (2026-08-31)
+
+- Search Areas is a **terrain search-priority** overlay, not a second habitat model. Keep RAW slope/aspect, derived features (bench/transition/steep), and Higher/Moderate/Lower interpretation in one pure module. Today’s Hunt may add notes only; it must not rewrite base priority or lift an outside-season day.
+- Missing elevation or coarse zoom is **unavailable / zoom in**, never a silent Moderate fill. Open-Meteo neighborhood samples plus a small halo grid are enough; do not add a paid DEM vendor.
+- Give Search Areas its own abort controller. Reusing the habitat elevation abort cancels landscape scoring when the hunter pans with the overlay on.
+- Inspect compact HUD is V1.3 search priority; V3.2 “What is here / Why this may matter” stays in More detail so existing explainability tests remain the contract.
+- In a shed-hunting product, never use **shed** as a verb for snowmelt (“may shed lingering snow”). Hunters can read that as antler drop. Say the ground can **lose lingering snow**.
+
 ### Lessons Learned — Shed Hunting V1.2 Today’s Hunt intelligence (2026-08-31)
 
 - Open-Meteo `snow_depth` is hourly/current **meters**. `snowfall_sum` is **cm of snowfall**, not SWE and not depth. Missing `snow_depth` is not zero; explicit `0.0` is known bare ground. Never copy `snowfall_sum` into depth.
