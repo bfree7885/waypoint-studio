@@ -75,7 +75,7 @@ Additions:
 
 ## UI
 
-Same card. Order: rating → short explanation → season → up to three supporting condition lines → Why / Where / Watch → Open Map.
+Same card. Order: rating → short explanation → season → up to three supporting condition lines → Open Map → Why / Where / Watch.
 
 ## Tests
 
