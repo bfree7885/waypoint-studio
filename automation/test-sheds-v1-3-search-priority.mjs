@@ -136,6 +136,49 @@ const southPoint = P.evaluatePoint({
 });
 assert("aspect appears in inspect", /south/i.test(southPoint.hudText + " " + ((southPoint.feature && southPoint.feature.facing) || "")), southPoint.hudText);
 
+const solar = P.evaluatePoint({
+  zoom: 14,
+  elevStatus: "ready",
+  terrainStatus: "ready",
+  raw: {
+    elevM: 100,
+    slopeDeg: south.slopeDeg,
+    aspectDeg: south.aspectDeg,
+    northM: 110,
+    southM: 90,
+    eastM: 100,
+    westM: 100,
+    stepM: 60
+  },
+  today: {
+    available: true,
+    seasonCategory: "peak",
+    freezeThawStatus: "freeze_thaw",
+    tempTrendStatus: "warming",
+    snowCoverStatus: "light",
+    snowDepthKnown: true
+  }
+});
+assert("weather does not rewrite south-facing base priority", solar.priority === southPoint.priority && solar.basePriority === southPoint.basePriority, solar.priority + " vs " + southPoint.priority);
+assert("solar why is snow practicality, not antler drop", /lingering snow|practical/i.test(solar.hudText), solar.hudText);
+assert("solar why does not use shed as a verb", !/\bmay shed\b|\bshed lingering\b/i.test((solar.why || []).join(" ") + " " + solar.hudText), solar.hudText);
+
+const flat = P.evaluatePoint({
+  zoom: 14,
+  elevStatus: "ready",
+  terrainStatus: "ready",
+  raw: {
+    elevM: 100,
+    northM: 100,
+    southM: 100,
+    eastM: 100,
+    westM: 100,
+    stepM: 60
+  }
+});
+assert("uniformly flat is Lower, not Moderate", flat.priority === "Lower", flat.priority + " " + (flat.feature && flat.feature.kind));
+assert("uniformly flat is not a bench", !(flat.feature && flat.feature.kind === "bench"));
+
 // ——— Missing elevation ———
 const missing = P.evaluatePoint({
   zoom: 14,

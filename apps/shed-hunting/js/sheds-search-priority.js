@@ -340,7 +340,7 @@
     var seasonalOk = today && today.seasonCategory && today.seasonCategory !== "outside";
     if (ft === "freeze_thaw" || trend === "warming") {
       if (seasonalOk) {
-        return "Sun-exposed terrain may shed lingering snow sooner during appropriate seasonal conditions.";
+        return "Sun-exposed terrain can lose lingering snow sooner. That can change how practical the ground is to search.";
       }
       return "Sun-exposed terrain may be easier to search when snow is present — seasonal timing is still separate.";
     }

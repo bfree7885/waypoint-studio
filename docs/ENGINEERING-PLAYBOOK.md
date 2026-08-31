@@ -1679,6 +1679,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Missing elevation or coarse zoom is **unavailable / zoom in**, never a silent Moderate fill. Open-Meteo neighborhood samples plus a small halo grid are enough; do not add a paid DEM vendor.
 - Give Search Areas its own abort controller. Reusing the habitat elevation abort cancels landscape scoring when the hunter pans with the overlay on.
 - Inspect compact HUD is V1.3 search priority; V3.2 “What is here / Why this may matter” stays in More detail so existing explainability tests remain the contract.
+- In a shed-hunting product, never use **shed** as a verb for snowmelt (“may shed lingering snow”). Hunters can read that as antler drop. Say the ground can **lose lingering snow**.
 
 ### Lessons Learned — Shed Hunting V1.2 Today’s Hunt intelligence (2026-08-31)
 
