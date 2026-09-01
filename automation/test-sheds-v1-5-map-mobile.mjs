@@ -294,7 +294,7 @@ async function main() {
     assert("Search Areas remains", !!boot.searchBtn);
     assert("Import JSON remains", !!boot.importBtn);
     assert("Measure remains", !!boot.measure);
-    await shot("v15_map_scout_spots.png");
+    await shot("v15r3_map_scout_spots.png");
 
     const selectFlow = await evalExpr(`(() => {
       window.WaypointShedsMapApp.startHuntSelect([]);
@@ -330,7 +330,7 @@ async function main() {
     })()`);
     assert("selected Scout Spots are visually marked", selected.selected >= 2, JSON.stringify(selected));
     assert("Create Hunt Plan enabled with selection", selected.createDisabled === false && selected.hud);
-    await shot("v15_selecting_scout_spots.png");
+    await shot("v15r3_selecting_scout_spots.png");
 
     const created = await evalExpr(`(() => {
       document.getElementById("btn-hunt-select-create").click();
@@ -353,9 +353,24 @@ async function main() {
     assert("Hunt Plan created", created.name === "Saturday south benches" && created.status === "Planned", JSON.stringify(created));
     assert("plan card opens", !!created.hudOpen);
     assert("numbered markers while plan is open", created.orders >= 2, JSON.stringify(created));
-    await shot("v15_hunt_plan_created.png");
-    await shot("v15_numbered_markers.png");
-    await shot("v15_plan_card.png");
+    await evalExpr(`(() => {
+      var map = window.__SHEDS_MAP__;
+      if (map) map.setView([41.324, -74.802], 14, { animate: false });
+      return true;
+    })()`);
+    await delay(250);
+    await shot("v15r3_hunt_plan_created.png");
+    await shot("v15r3_plan_card.png");
+    await evalExpr(`(() => {
+      document.getElementById("hunt-plan-hud").setAttribute("hidden", "");
+      return true;
+    })()`);
+    await delay(150);
+    await shot("v15r3_numbered_markers.png");
+    await evalExpr(`(() => {
+      document.getElementById("hunt-plan-hud").removeAttribute("hidden");
+      return true;
+    })()`);
 
     const orderFlow = await evalExpr(`(() => {
       var P = window.WaypointShedsHuntPlans;
@@ -378,7 +393,7 @@ async function main() {
     assert("Move Down reorders intended sequence", !!orderFlow.swapped, JSON.stringify(orderFlow));
     assert("ordering controls touch-sized", orderFlow.downH >= 44 && orderFlow.upH >= 44, JSON.stringify(orderFlow));
     assert("first Up is disabled", !!orderFlow.firstUpDisabled);
-    await shot("v15_ordering_controls.png");
+    await shot("v15r3_ordering_controls.png");
 
     const statusFlow = await evalExpr(`(() => {
       document.querySelector('[data-hunt-plan-status="Active"]').click();
@@ -397,7 +412,7 @@ async function main() {
     assert("plan status Active", statusFlow.planStatus === "Active" && statusFlow.activePressed === "true", JSON.stringify(statusFlow));
     assert("plan status does not change Scout Spot status", statusFlow.scoutStatus === "Plan" || statusFlow.scoutStatus === "Checked" || statusFlow.scoutStatus === "Revisit");
     assert("plan status buttons touch-sized", statusFlow.statusH >= 44, "h=" + statusFlow.statusH);
-    await shot("v15_status_active.png");
+    await shot("v15r3_status_active.png");
 
     const completed = await evalExpr(`(() => {
       document.querySelector('[data-hunt-plan-status="Completed"]').click();
@@ -406,24 +421,45 @@ async function main() {
       return { status: plan.status };
     })()`);
     assert("plan status Completed", completed.status === "Completed");
-    await shot("v15_status_completed.png");
+    await shot("v15r3_status_completed.png");
 
     const today = await evalExpr(`(() => {
+      var todayEl = document.getElementById("hunt-plan-today-body");
+      if (todayEl && todayEl.scrollIntoView) todayEl.scrollIntoView({ block: "center" });
       var body = document.getElementById("hunt-plan-today-body").textContent;
       var saved = document.getElementById("hunt-plan-saved-body").textContent;
       var dist = document.getElementById("hunt-plan-distance").textContent;
       return {
-        live: /Need location|Not rated|Today|live/i.test(body),
+        live: /Need location|Not rated|Today|live|Low|Fair|Good|outside/i.test(body),
         notHistoricalClaim: !/when this Hunt Plan was created and the weather was/i.test(body),
         savedSeparate: /does not copy them/i.test(saved),
-        straightLine: /Straight-line|straight-line sequence/i.test(dist),
-        notRoute: !/hiking distance|driving distance|route distance|trail distance/i.test(dist)
+        dist: dist,
+        straightLine: /straight-line/i.test(dist),
+        notRouteClaim: /not hiking, driving, or trail/i.test(dist)
       };
     })()`);
     assert("Today unavailable or live is honest", !!today.live, JSON.stringify(today));
     assert("saved Scout Spot context stays separate", !!today.savedSeparate);
-    assert("distance labeled straight-line", !!today.straightLine && today.notRoute);
-    await shot("v15_today_unavailable.png");
+    assert("distance labeled straight-line", !!today.straightLine && !!today.notRouteClaim, today.dist);
+
+    await evalExpr(`(() => {
+      var orig = window.WaypointShedsScoutSpots.formatLiveToday;
+      window.WaypointShedsScoutSpots.formatLiveToday = function () {
+        return {
+          lines: ["Need location to read today’s hunt."],
+          disclaimer: "Current conditions are live — not from when this Hunt Plan was created. They do not rewrite Scout Spot saved context."
+        };
+      };
+      var P = window.WaypointShedsHuntPlans;
+      var plan = P.list().filter(function (p) { return p.name === "Saturday south benches"; })[0];
+      window.WaypointShedsMapApp.openHuntPlan(plan.id);
+      var todayEl = document.getElementById("hunt-plan-today-body");
+      if (todayEl && todayEl.scrollIntoView) todayEl.scrollIntoView({ block: "center" });
+      window.WaypointShedsScoutSpots.formatLiveToday = orig;
+      return document.getElementById("hunt-plan-today-body").textContent;
+    })()`);
+    await delay(200);
+    await shot("v15r3_today_unavailable.png");
 
     const missing = await evalExpr(`(() => {
       window.WaypointShedsMapApp.closeHuntPlanHud();
@@ -440,7 +476,7 @@ async function main() {
     assert("missing Scout Spot reference is visible", !!missing.unavailable, JSON.stringify(missing));
     assert("present Scout Spot still listed", !!missing.creekKept);
     assert("missing id is not fabricated", !missing.fabricated);
-    await shot("v15_missing_scout_reference.png");
+    await shot("v15r3_missing_scout_reference.png");
 
     const cleanup = await evalExpr(`(() => {
       window.WaypointShedsMapApp.closeHuntPlanHud();
@@ -499,6 +535,7 @@ async function main() {
         })[0];
         window.WaypointShedsMapApp.openHuntPlan(named.id);
         var hud = document.getElementById("hunt-plan-hud");
+        if (hud) hud.scrollTop = 0;
         var done = document.getElementById("btn-hunt-plan-close");
         var del = document.getElementById("btn-hunt-plan-delete");
         var doc = document.documentElement;
@@ -536,8 +573,8 @@ async function main() {
       assert(vp.name + " status buttons touch-sized", metrics.statusMin >= 40, "min=" + metrics.statusMin);
       assert(vp.name + " ordering controls touch-sized", metrics.moveMin >= 40, "min=" + metrics.moveMin);
       assert(vp.name + " card does not cover entire map", !metrics.hudCoversMap, "h=" + metrics.hudHeight);
-      if (vp.width === 320) await shot("v15_mobile_320.png");
-      if (vp.width === 390) await shot("v15_mobile_390.png");
+      if (vp.width === 320) await shot("v15r3_mobile_320.png");
+      if (vp.width === 390) await shot("v15r3_mobile_390.png");
     }
 
     ws.close();

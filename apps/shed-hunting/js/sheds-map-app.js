@@ -1847,20 +1847,18 @@
     if (!ScoutStore) {
       return {
         lines: ["Today’s Hunt is unavailable."],
-        disclaimer: "Current conditions are separate from saved Scout Spot context."
+        disclaimer: "Current conditions are live — not from when this Hunt Plan was created."
       };
     }
     var live = ScoutStore.formatLiveToday(state.lastHunt);
-    var loc = HuntPlans && HuntPlans.planLocation(plan, ScoutStore);
-    var extra = loc
-      ? "If this map session has no place yet, a Hunt Plan may use the average of its Scout Spot coordinates as a plan location — not conditions at every point."
-      : "";
     var lines = (live.lines || []).slice();
-    if (extra && /Need location/i.test(lines.join(" "))) lines.push(extra);
+    if (state.lastHunt && state.lastHunt.status === "need_location") {
+      var loc = HuntPlans && HuntPlans.planLocation(plan, ScoutStore);
+      if (loc && loc.disclaimer) lines.push(loc.disclaimer);
+    }
     return {
       lines: lines,
-      disclaimer: (live.disclaimer || "Current conditions are live — not from when this Hunt Plan was created.") +
-        " They do not rewrite Scout Spot saved context."
+      disclaimer: "Current conditions are live — not from when this Hunt Plan was created. They do not rewrite Scout Spot saved context."
     };
   }
 
@@ -1959,7 +1957,10 @@
     state.huntPlanId = id;
     renderHuntPlanHud(plan);
     var hud = $("hunt-plan-hud");
-    if (hud) hud.removeAttribute("hidden");
+    if (hud) {
+      hud.removeAttribute("hidden");
+      hud.scrollTop = 0;
+    }
     var shell = document.getElementById("sheds-map-shell");
     if (shell) shell.classList.add("is-hunting-plan");
     var prompt = $("search-prompt");
