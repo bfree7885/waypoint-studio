@@ -49,6 +49,7 @@ function loadStores() {
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-search-area-store.js",
     "apps/shed-hunting/js/sheds-scout-spot-store.js",
+    "apps/shed-hunting/js/sheds-hunt-plan-store.js",
     "apps/shed-hunting/js/sheds-validation-store.js",
     "apps/shed-hunting/js/sheds-import-json.js"
   ];
@@ -154,6 +155,8 @@ assert("legacy export without scoutSpots still parses", legacyParsed.ok && legac
 const legacyResult = legacyNoScout.WaypointShedsImport.importPayload(legacyParsed);
 assert("legacy import without scoutSpots succeeds", legacyResult.ok && legacyNoScout.WaypointShedsObservations.list().length === 1);
 assert("legacy import does not invent scout spots", legacyNoScout.WaypointShedsScoutSpots.list().length === 0);
+assert("legacy export without huntPlans still parses", legacyParsed.huntPlans.length === 0);
+assert("legacy import does not invent hunt plans", legacyNoScout.WaypointShedsHuntPlans.list().length === 0);
 
 const scoutOnly = loadStores();
 const scoutOnlyParsed = scoutOnly.WaypointShedsImport.parseExport(JSON.stringify({
@@ -165,6 +168,48 @@ const scoutOnlyParsed = scoutOnly.WaypointShedsImport.parseExport(JSON.stringify
 assert("scout-only payload parses", scoutOnlyParsed.ok && scoutOnlyParsed.scoutSpots.length === 1);
 const scoutOnlyResult = scoutOnly.WaypointShedsImport.importPayload(scoutOnlyParsed);
 assert("scout-only import works", scoutOnlyResult.ok && scoutOnly.WaypointShedsScoutSpots.list().length === 1);
+assert("scout-only import does not invent hunt plans", (scoutOnlyResult.counts.huntPlans && scoutOnlyResult.counts.huntPlans.added === 0) || scoutOnly.WaypointShedsHuntPlans.list().length === 0);
+
+const huntOnly = loadStores();
+const huntOnlyParsed = huntOnly.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  huntPlans: [
+    {
+      id: "plan_solo",
+      name: "Imported sequence",
+      status: "Active",
+      scoutSpotIds: ["spot_missing_ref", "spot_also_missing"]
+    }
+  ]
+}));
+assert("hunt-plan-only payload parses", huntOnlyParsed.ok && huntOnlyParsed.huntPlans.length === 1);
+const huntOnlyResult = huntOnly.WaypointShedsImport.importPayload(huntOnlyParsed);
+assert("hunt-plan-only import works", huntOnlyResult.ok && huntOnly.WaypointShedsHuntPlans.list().length === 1);
+assert("missing scout ids are not fabricated", huntOnly.WaypointShedsScoutSpots.list().length === 0);
+assert("imported plan keeps missing scout ids", huntOnly.WaypointShedsHuntPlans.getById("plan_solo").scoutSpotIds.length === 2);
+assert("hunt-plan-only added count is truthful", huntOnlyResult.counts.huntPlans.added === 1 && huntOnlyResult.counts.huntPlans.skipped === 0);
+
+const huntMerge = huntOnly.WaypointShedsImport.importPayload(huntOnlyParsed);
+assert("reimport hunt plan does not duplicate", huntMerge.ok && huntMerge.counts.huntPlans.added === 0 && huntMerge.counts.huntPlans.replaced === 1);
+assert("hunt plan count stays 1 after reimport", huntOnly.WaypointShedsHuntPlans.list().length === 1);
+
+const huntMalformed = loadStores();
+const huntMalformedParsed = huntMalformed.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  scoutSpots: [
+    { id: "spot_keep_plan", location: { lat: 41.2, lng: -74.8 }, name: "Keep" }
+  ],
+  huntPlans: [
+    null,
+    "nope",
+    { id: "plan_ok", name: "Keep me", scoutSpotIds: ["spot_keep_plan"] }
+  ]
+}));
+const huntMalformedResult = huntMalformed.WaypointShedsImport.importPayload(huntMalformedParsed);
+assert("malformed hunt plan does not fail the import", huntMalformedResult.ok);
+assert("valid scout survives malformed hunt plan", huntMalformed.WaypointShedsScoutSpots.list().length === 1);
+assert("malformed hunt plans skipped, valid plan added", huntMalformedResult.counts.huntPlans.skipped >= 2 && huntMalformedResult.counts.huntPlans.added === 1);
+assert("good hunt plan stored", !!huntMalformed.WaypointShedsHuntPlans.getById("plan_ok"));
 
 const mixed = loadStores();
 mixed.WaypointShedsObservations.importList([{

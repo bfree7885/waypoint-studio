@@ -1681,6 +1681,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Inspect compact HUD is V1.3 search priority; V3.2 “What is here / Why this may matter” stays in More detail so existing explainability tests remain the contract.
 - In a shed-hunting product, never use **shed** as a verb for snowmelt (“may shed lingering snow”). Hunters can read that as antler drop. Say the ground can **lose lingering snow**.
 
+### Lessons Learned — Shed Hunting V1.5 Hunt Plans (2026-09-01)
+
+- Hunt Plan (`waypoint-sheds-hunt-plans-v1`) is an intended search sequence of Scout Spot **ids**. It is not Field Plan (Start Search), not a route, and not Scout Spot status. Changing Planned / Active / Completed must not rewrite Plan / Checked / Revisit.
+- Do not draw a connecting polyline. Numbered diamonds while a plan is open are sequence, not a travel path. Straight-line distance is optional and must be labeled as such.
+- Plan-card Today is **live** session hunt context. Do not copy it onto Scout Spot `savedToday`, and do not present it as conditions from plan creation. A centroid of Scout Spots is not weather at every point.
+- Import at the 40-plan cap must skip extra **new** ids and count them as skipped (same honesty lesson as V1.4 Scout Spots). Missing Scout Spot ids stay listed as unavailable; do not fabricate Scout Spots.
+- Keep Hunt Plans vs Field Plan naming distinct in More. V1.5 is Hunt Plans.
+
 ### Lessons Learned — Shed Hunting V1.4 Scout Spots (2026-08-31)
 
 - Scout Spots are **field-planning pins**, not observations. Keep them in `waypoint-sheds-scout-spots-v1` so Import JSON can merge them without turning a candidate location into a recorded sighting.
