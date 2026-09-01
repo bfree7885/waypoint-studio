@@ -48,6 +48,7 @@ function loadStores() {
     "apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-search-area-store.js",
+    "apps/shed-hunting/js/sheds-scout-spot-store.js",
     "apps/shed-hunting/js/sheds-validation-store.js",
     "apps/shed-hunting/js/sheds-import-json.js"
   ];
@@ -99,6 +100,17 @@ const payload = {
       }
     ]
   },
+  scoutSpots: {
+    scoutSpots: [
+      {
+        id: "spot_1",
+        name: "Creek bench",
+        status: "Plan",
+        location: { lat: 41.323, lng: -74.801 },
+        terrain: { available: false, status: "unavailable", searchPriority: null }
+      }
+    ]
+  },
   validations: [{ id: "val_1", lat: 41.32, lng: -74.8 }],
   finds: [{ id: "shed_1", speciesId: "odocoileus-virginianus" }],
   modelPrefs: { heatVisible: false }
@@ -111,6 +123,7 @@ const result = sb.WaypointShedsImport.importPayload(parsed);
 assert("import ok", result.ok, JSON.stringify(result));
 assert("observations added", result.counts.observations && result.counts.observations.added === 1);
 assert("search areas added", result.counts.searchAreas && result.counts.searchAreas.added === 1);
+assert("scout spots added", result.counts.scoutSpots && result.counts.scoutSpots.added === 1);
 assert("sessions added", result.counts.sessions && result.counts.sessions.added === 1);
 assert("active session not restored as active", sb.WaypointShedsSessions.listSessions()[0].status === "ended");
 assert("coverage imported", result.counts.sessions.coverageAdded === 1);

@@ -273,6 +273,10 @@ assert("export JSON still exists for class B migration", /sheds-field-private\.j
 assert("import JSON is available on the map", /id="btn-import"/.test(mapHtml) && /sheds-import-json\.js/.test(mapHtml));
 assert("dist map includes Import JSON", /id="btn-import"/.test(distMapHtml));
 assert("dist map loads import module", /sheds-import-json\.js/.test(distMapHtml));
+assert("dist map loads scout store", /sheds-scout-spot-store\.js/.test(distMapHtml));
+assert("dist map has Save Scout Spot", /id="btn-save-scout-spot"/.test(distMapHtml) && /Save Scout Spot/.test(distMapHtml));
+assert("dist map has Scout Spot HUD", /id="scout-hud"/.test(distMapHtml));
+assert("dist copies scout store file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-scout-spot-store.js")));
 assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
 assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
 assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/robots.txt")) && !/Disallow: \//.test(read("dist/shedhunting/robots.txt")));
