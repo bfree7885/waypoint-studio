@@ -254,7 +254,7 @@ assert(
 );
 const roundTrip = S.importList(S.exportJson().scoutSpots);
 assert("export/import round-trip does not duplicate", roundTrip.ok && roundTrip.added === 0 && roundTrip.replaced >= 1);
-assert("round-trip count stable", S.list().length === 4);
+assert("round-trip count stable", S.list().length === 5);
 const thinReplace = S.importList([{
   id: saved.spot.id,
   location: { lat: 39.641, lng: -105.817 },
