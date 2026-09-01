@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-01T02:25:07.329Z",
-  "status": "ok",
+  "checkedAt": "2026-09-01T15:41:23.723Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
@@ -11,7 +11,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 200,
+      "ms": 238,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 200,
+      "ms": 169,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 273,
+      "ms": 143,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 192,
+      "ms": 361,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 389,
+      "ms": 357,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 51,
+      "ms": 142,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 849,
+      "ms": 238,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 245,
+      "ms": 1604,
       "enabled": true
     },
     {
@@ -211,17 +211,17 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 90,
+      "ms": 213,
       "enabled": true
     },
     {
       "id": "phys-org-earth",
       "name": "Phys.org — Earth Sciences",
-      "ok": true,
-      "itemCount": 25,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 500",
       "warnings": [],
-      "ms": 46,
+      "ms": 14112,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 245,
+      "ms": 249,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 311,
+      "ms": 147,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 245,
+      "ms": 183,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-01T14:25:07.329Z"
+  "staleAfter": "2026-09-02T03:41:23.723Z"
 }
