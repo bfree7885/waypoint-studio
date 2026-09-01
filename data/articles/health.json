@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-08-31T18:20:56.903Z",
-  "status": "partial",
+  "checkedAt": "2026-09-01T02:25:07.329Z",
+  "status": "ok",
   "retainedPrevious": false,
   "feeds": [
     {
@@ -11,7 +11,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 305,
+      "ms": 200,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 270,
+      "ms": 200,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 113,
+      "ms": 273,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 321,
+      "ms": 192,
       "enabled": true
     },
     {
@@ -127,11 +127,11 @@
     {
       "id": "amc-outdoors",
       "name": "Appalachian Mountain Club — Outdoors",
-      "ok": false,
-      "itemCount": 0,
-      "error": "timeout",
+      "ok": true,
+      "itemCount": 10,
+      "error": null,
       "warnings": [],
-      "ms": 20001,
+      "ms": 389,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 322,
+      "ms": 51,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 239,
+      "ms": 849,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1583,
+      "ms": 245,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 354,
+      "ms": 90,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 175,
+      "ms": 46,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 293,
+      "ms": 245,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 360,
+      "ms": 311,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 184,
+      "ms": 245,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-01T06:20:56.903Z"
+  "staleAfter": "2026-09-01T14:25:07.329Z"
 }
