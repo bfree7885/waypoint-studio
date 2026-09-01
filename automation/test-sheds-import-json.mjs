@@ -48,6 +48,7 @@ function loadStores() {
     "apps/shed-hunting/js/sheds-observation-store.js",
     "apps/shed-hunting/js/sheds-session-store.js",
     "apps/shed-hunting/js/sheds-search-area-store.js",
+    "apps/shed-hunting/js/sheds-scout-spot-store.js",
     "apps/shed-hunting/js/sheds-validation-store.js",
     "apps/shed-hunting/js/sheds-import-json.js"
   ];
@@ -99,6 +100,17 @@ const payload = {
       }
     ]
   },
+  scoutSpots: {
+    scoutSpots: [
+      {
+        id: "spot_1",
+        name: "Creek bench",
+        status: "Plan",
+        location: { lat: 41.323, lng: -74.801 },
+        terrain: { available: false, status: "unavailable", searchPriority: null }
+      }
+    ]
+  },
   validations: [{ id: "val_1", lat: 41.32, lng: -74.8 }],
   finds: [{ id: "shed_1", speciesId: "odocoileus-virginianus" }],
   modelPrefs: { heatVisible: false }
@@ -111,6 +123,7 @@ const result = sb.WaypointShedsImport.importPayload(parsed);
 assert("import ok", result.ok, JSON.stringify(result));
 assert("observations added", result.counts.observations && result.counts.observations.added === 1);
 assert("search areas added", result.counts.searchAreas && result.counts.searchAreas.added === 1);
+assert("scout spots added", result.counts.scoutSpots && result.counts.scoutSpots.added === 1);
 assert("sessions added", result.counts.sessions && result.counts.sessions.added === 1);
 assert("active session not restored as active", sb.WaypointShedsSessions.listSessions()[0].status === "ended");
 assert("coverage imported", result.counts.sessions.coverageAdded === 1);
@@ -127,6 +140,64 @@ assert(
   "import copy does not claim antler presence",
   /does not prove a find/.test(htmlHonesty) && !/antler is here|confirmed antler/i.test(htmlHonesty)
 );
+
+const legacyNoScout = loadStores();
+const legacyParsed = legacyNoScout.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  observations: [{
+    id: "obs_legacy",
+    type: "deer_sign",
+    location: { lat: 40.1, lng: -105.2 }
+  }]
+}));
+assert("legacy export without scoutSpots still parses", legacyParsed.ok && legacyParsed.observations.length === 1 && legacyParsed.scoutSpots.length === 0);
+const legacyResult = legacyNoScout.WaypointShedsImport.importPayload(legacyParsed);
+assert("legacy import without scoutSpots succeeds", legacyResult.ok && legacyNoScout.WaypointShedsObservations.list().length === 1);
+assert("legacy import does not invent scout spots", legacyNoScout.WaypointShedsScoutSpots.list().length === 0);
+
+const scoutOnly = loadStores();
+const scoutOnlyParsed = scoutOnly.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  scoutSpots: [
+    { id: "spot_solo", location: { lat: 39.5, lng: -105.1 }, name: "Solo" }
+  ]
+}));
+assert("scout-only payload parses", scoutOnlyParsed.ok && scoutOnlyParsed.scoutSpots.length === 1);
+const scoutOnlyResult = scoutOnly.WaypointShedsImport.importPayload(scoutOnlyParsed);
+assert("scout-only import works", scoutOnlyResult.ok && scoutOnly.WaypointShedsScoutSpots.list().length === 1);
+
+const mixed = loadStores();
+mixed.WaypointShedsObservations.importList([{
+  id: "obs_keep_malformed",
+  type: "deer_sign",
+  location: { lat: 41.1, lng: -74.9 }
+}]);
+const mixedParsed = mixed.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  observations: [{
+    id: "obs_keep_malformed",
+    type: "deer_sign",
+    location: { lat: 41.1, lng: -74.9 }
+  }, {
+    id: "obs_new_ok",
+    type: "deer_sign",
+    location: { lat: 41.2, lng: -74.8 }
+  }],
+  scoutSpots: [
+    { id: "spot_bad_coords", location: { lat: 999, lng: -105 }, name: "Nope" },
+    { id: "spot_ok_mixed", location: { lat: 41.15, lng: -74.85 }, name: "Good" },
+    null
+  ]
+}));
+const mixedResult = mixed.WaypointShedsImport.importPayload(mixedParsed);
+assert("malformed scout does not fail the import", mixedResult.ok);
+assert("valid observations survive a malformed scout", mixed.WaypointShedsObservations.list().length === 2);
+assert("malformed scout skipped, valid scout added", mixedResult.counts.scoutSpots.skipped >= 2 && mixedResult.counts.scoutSpots.added === 1);
+assert("good scout stored", !!mixed.WaypointShedsScoutSpots.getById("spot_ok_mixed"));
+
+const againScout = scoutOnly.WaypointShedsImport.importPayload(scoutOnlyParsed);
+assert("reimport scout does not duplicate", againScout.ok && againScout.counts.scoutSpots.added === 0 && againScout.counts.scoutSpots.replaced === 1);
+assert("scout count stays 1 after reimport", scoutOnly.WaypointShedsScoutSpots.list().length === 1);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");

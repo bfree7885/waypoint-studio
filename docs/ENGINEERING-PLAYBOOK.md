@@ -1681,6 +1681,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Inspect compact HUD is V1.3 search priority; V3.2 “What is here / Why this may matter” stays in More detail so existing explainability tests remain the contract.
 - In a shed-hunting product, never use **shed** as a verb for snowmelt (“may shed lingering snow”). Hunters can read that as antler drop. Say the ground can **lose lingering snow**.
 
+### Lessons Learned — Shed Hunting V1.4 Scout Spots (2026-08-31)
+
+- Scout Spots are **field-planning pins**, not observations. Keep them in `waypoint-sheds-scout-spots-v1` so Import JSON can merge them without turning a candidate location into a recorded sighting.
+- Persist `{ schemaVersion, scoutSpots }` and still read a legacy bare array. Missing terrain or Today at save time is unavailable — never Moderate, never today’s weather.
+- Saved Today is a **historical snapshot**. Label it Saved context vs Today. Live hunt may refresh the open card; it must not rewrite the stored band.
+- On 320–430, Inspect Save and Scout Done must stay reachable (sticky footer / sticky head). Markers stay subordinate diamonds; do not cluster in V1.4.
+- Import at the 120 cap must skip extra **new** ids and count them as skipped. `persist()` slicing after merge can drop those extras while still reporting `added`. Same-id replace must not wipe an available local terrain/Today snapshot with an empty import.
+
 ### Lessons Learned — Shed Hunting V1.2 Today’s Hunt intelligence (2026-08-31)
 
 - Open-Meteo `snow_depth` is hourly/current **meters**. `snowfall_sum` is **cm of snowfall**, not SWE and not depth. Missing `snow_depth` is not zero; explicit `0.0` is known bare ground. Never copy `snowfall_sum` into depth.
