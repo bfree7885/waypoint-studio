@@ -135,6 +135,14 @@ jobs:
           node automation/test-sheds-v1-4-scout-spots.mjs
           node automation/test-sheds-v1-4-map-mobile.mjs
 
+      - name: Sheds V1.5 Hunt Plans
+        if: ${{ !cancelled() }}
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node automation/test-sheds-v1-5-hunt-plans.mjs
+          node automation/test-sheds-v1-5-map-mobile.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:

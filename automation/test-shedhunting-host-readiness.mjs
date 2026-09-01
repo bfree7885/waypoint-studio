@@ -277,6 +277,9 @@ assert("dist map loads scout store", /sheds-scout-spot-store\.js/.test(distMapHt
 assert("dist map has Save Scout Spot", /id="btn-save-scout-spot"/.test(distMapHtml) && /Save Scout Spot/.test(distMapHtml));
 assert("dist map has Scout Spot HUD", /id="scout-hud"/.test(distMapHtml));
 assert("dist copies scout store file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-scout-spot-store.js")));
+assert("dist map loads hunt plan store", /sheds-hunt-plan-store\.js/.test(distMapHtml));
+assert("dist map has Hunt Plan HUD", /id="hunt-plan-hud"/.test(distMapHtml));
+assert("dist copies hunt plan store file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-hunt-plan-store.js")));
 assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
 assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
 assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/robots.txt")) && !/Disallow: \//.test(read("dist/shedhunting/robots.txt")));
