@@ -226,6 +226,71 @@ const fullSave = fullSb.WaypointShedsScoutSpots.create({ location: { lat: 1, lng
 assert("storage full is honest", !fullSave.ok && /storage|full|unavailable/i.test(fullSave.error));
 quota.setItem = origSet;
 
+const second = S.create({ location: { lat: 39.65, lng: -105.81 } });
+assert("second create gets a unique id", second.ok && second.spot.id !== saved.spot.id && second.spot.id !== noTerrain.spot.id);
+assert("invalid latitude rejected", S.normalize({ location: { lat: 91, lng: -105 } }) == null);
+assert("invalid longitude rejected", S.normalize({ location: { lat: 39, lng: -190 } }) == null);
+assert("non-finite coords rejected", S.normalize({ location: { lat: NaN, lng: -105 } }) == null);
+const longName = S.create({
+  location: { lat: 39.66, lng: -105.80 },
+  name: Array(120).fill("N").join("")
+});
+assert("overlong name clipped to 80", longName.ok && longName.spot.name.length === 80);
+const longNote = S.setNote(saved.spot.id, Array(500).fill("n").join(""));
+assert("overlong note clipped to 400", longNote.ok && longNote.spot.note.length === 400);
+const terrainBeforeStatus = JSON.stringify(S.getById(saved.spot.id).terrain);
+const todayBeforeStatus = JSON.stringify(S.getById(saved.spot.id).savedToday);
+["Plan", "Checked", "Revisit", "Plan", "Revisit", "Checked"].forEach(function (st) {
+  const r = S.setStatus(saved.spot.id, st);
+  assert("status " + st + " persists", r.ok && r.spot.status === st);
+});
+assert("status changes do not rewrite terrain", JSON.stringify(S.getById(saved.spot.id).terrain) === terrainBeforeStatus);
+assert("status changes do not rewrite savedToday", JSON.stringify(S.getById(saved.spot.id).savedToday) === todayBeforeStatus);
+assert(
+  "savedToday has no snow_depth number",
+  !Object.prototype.hasOwnProperty.call(saved.spot.savedToday, "snowDepthM") &&
+    !Object.prototype.hasOwnProperty.call(saved.spot.savedToday, "snow_depth") &&
+    saved.spot.savedToday.snowCoverStatus !== "0"
+);
+const roundTrip = S.importList(S.exportJson().scoutSpots);
+assert("export/import round-trip does not duplicate", roundTrip.ok && roundTrip.added === 0 && roundTrip.replaced >= 1);
+assert("round-trip count stable", S.list().length === 4);
+const thinReplace = S.importList([{
+  id: saved.spot.id,
+  location: { lat: 39.641, lng: -105.817 },
+  name: "Geneva Creek bench"
+}]);
+assert("thin same-id import does not wipe terrain", thinReplace.ok && S.getById(saved.spot.id).terrain.searchPriority === "Lower");
+assert("thin same-id import does not wipe savedToday", S.getById(saved.spot.id).savedToday.available === true && S.getById(saved.spot.id).savedToday.band === hunt.band);
+assert("thin same-id import keeps createdAt", S.getById(saved.spot.id).createdAt === saved.spot.createdAt);
+
+const capSb = load();
+const Cap = capSb.WaypointShedsScoutSpots;
+const capBatch = [];
+let i;
+for (i = 0; i < 120; i += 1) {
+  capBatch.push({
+    id: "spot_cap_" + i,
+    location: { lat: 39 + (i * 0.001), lng: -105 - (i * 0.001) },
+    name: "Cap " + i
+  });
+}
+const filled = Cap.importList(capBatch);
+assert("import can fill to 120", filled.ok && filled.added === 120 && Cap.list().length === 120);
+const refused = Cap.create({ location: { lat: 40, lng: -106 } });
+assert("121st create refused honestly", !refused.ok && /120/.test(refused.error));
+const overflow = Cap.importList([
+  { id: "spot_cap_0", location: { lat: 39, lng: -105 }, name: "Existing renamed" },
+  { id: "spot_new_a", location: { lat: 41, lng: -107 }, name: "Overflow A" },
+  { id: "spot_new_b", location: { lat: 42, lng: -108 }, name: "Overflow B" }
+]);
+assert("over-cap import skips new ids", overflow.ok && overflow.added === 0 && overflow.skipped === 2 && overflow.replaced === 1);
+assert("over-cap import keeps 120", Cap.list().length === 120);
+assert("existing id still mergeable at cap", Cap.getById("spot_cap_0").name === "Existing renamed");
+assert("overflow ids were not stored", !Cap.getById("spot_new_a") && !Cap.getById("spot_new_b"));
+const capDel = Cap.remove("spot_cap_1");
+assert("delete at cap removes only that id", capDel.ok && !Cap.getById("spot_cap_1") && Cap.list().length === 119 && !!Cap.getById("spot_cap_0"));
+
 const del = S.remove(saved.spot.id);
 assert("delete", del.ok && !S.getById(saved.spot.id));
 

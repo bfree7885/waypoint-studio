@@ -122,9 +122,9 @@ Restrained **diamonds** (rotated 12px squares), subordinate to Search Areas:
 
 Export JSON (`waypoint-sheds-field-private-v1`) includes `scoutSpots` (wrapped `{ schemaVersion, scoutSpots }` or a raw array). Import unwraps either shape and **merge-by-id**.
 
-Malformed records (no coordinates, non-objects) are skipped. Valid existing spots are not destroyed.
+Malformed records (no coordinates, non-objects) are skipped. Valid existing spots are not destroyed. Same-id imports keep `createdAt` and do not replace an available local terrain or Today snapshot with an unavailable import. New ids past the 120 cap are skipped and counted in `skipped` — they are not reported as added.
 
-A scout-only payload is a valid import.
+A scout-only payload is a valid import. A legacy export with no `scoutSpots` key leaves local Scout Spots unchanged.
 
 ## Failure states
 

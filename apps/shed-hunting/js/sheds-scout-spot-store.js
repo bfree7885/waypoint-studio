@@ -423,15 +423,33 @@
     var added = 0;
     var replaced = 0;
     var skipped = 0;
+    var count = Object.keys(byId).length;
     incoming.forEach(function (raw) {
       var spot = normalize(raw);
       if (!spot || !spot.id) {
         skipped += 1;
         return;
       }
-      if (byId[spot.id]) replaced += 1;
-      else added += 1;
+      if (byId[spot.id]) {
+        var prev = byId[spot.id];
+        spot.createdAt = prev.createdAt;
+        if (!(spot.terrain && spot.terrain.available) && prev.terrain && prev.terrain.available) {
+          spot.terrain = prev.terrain;
+        }
+        if (!(spot.savedToday && spot.savedToday.available) && prev.savedToday && prev.savedToday.available) {
+          spot.savedToday = prev.savedToday;
+        }
+        byId[spot.id] = spot;
+        replaced += 1;
+        return;
+      }
+      if (count >= MAX_SPOTS) {
+        skipped += 1;
+        return;
+      }
       byId[spot.id] = spot;
+      added += 1;
+      count += 1;
     });
     var merged = [];
     Object.keys(byId).forEach(function (id) { merged.push(byId[id]); });
@@ -445,7 +463,7 @@
         total: listRaw().length
       };
     }
-    return { ok: true, added: added, replaced: replaced, skipped: skipped, total: merged.length };
+    return { ok: true, added: added, replaced: replaced, skipped: skipped, total: listRaw().length };
   }
 
   global.WaypointShedsScoutSpots = {

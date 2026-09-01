@@ -1687,6 +1687,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Persist `{ schemaVersion, scoutSpots }` and still read a legacy bare array. Missing terrain or Today at save time is unavailable — never Moderate, never today’s weather.
 - Saved Today is a **historical snapshot**. Label it Saved context vs Today. Live hunt may refresh the open card; it must not rewrite the stored band.
 - On 320–430, Inspect Save and Scout Done must stay reachable (sticky footer / sticky head). Markers stay subordinate diamonds; do not cluster in V1.4.
+- Import at the 120 cap must skip extra **new** ids and count them as skipped. `persist()` slicing after merge can drop those extras while still reporting `added`. Same-id replace must not wipe an available local terrain/Today snapshot with an empty import.
 
 ### Lessons Learned — Shed Hunting V1.2 Today’s Hunt intelligence (2026-08-31)
 
