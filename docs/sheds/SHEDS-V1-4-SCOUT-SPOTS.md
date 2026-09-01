@@ -89,7 +89,7 @@ If live comparison is unavailable, only the saved snapshot is shown, still label
 ## Inspect integration
 
 1. Hunter opens Inspect and taps a location.
-2. **Save Scout Spot** appears (44px, full width, sticky at the bottom of the Inspect HUD).
+2. **Save Scout Spot** appears (44px, full width, above More detail).
 3. Save writes terrain + Today snapshots as they exist (including unavailable).
 4. Inspect closes; the Scout Spot card opens.
 

@@ -214,7 +214,7 @@ html, body {
 }
 
 .sheds-inspect-hud {
-  max-height: min(48vh, 22rem);
+  max-height: min(44vh, 19rem);
   display: flex;
   flex-direction: column;
   gap: 0.22rem;
@@ -329,16 +329,17 @@ html.sheds-session-active .sheds-scout-hud {
   top: calc(7.85rem + var(--sheds-safe-top));
 }
 
+.sheds-measure-hud[hidden],
+.sheds-inspect-hud[hidden] {
+  display: none !important;
+}
+
 .sheds-inspect-hud__actions {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   margin-top: 0.1rem;
-  position: sticky;
-  bottom: 0;
-  background: rgba(8, 18, 14, 0.96);
-  padding-top: 0.2rem;
 }
 
 .sheds-inspect-hud__actions[hidden] {
@@ -387,6 +388,12 @@ html.sheds-session-active .sheds-scout-hud {
   z-index: 2;
   background: rgba(8, 18, 14, 0.96);
   padding-bottom: 0.15rem;
+}
+
+.sheds-scout-hud .sheds-inspect-hud__body {
+  flex: 0 0 auto;
+  min-height: 4.2rem;
+  max-height: min(18vh, 8rem);
 }
 
 .sheds-scout-hud__label,
@@ -474,8 +481,8 @@ html.sheds-session-active .sheds-scout-hud {
 
 .sheds-scout-mark {
   display: block;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   transform: rotate(45deg);
   border: 2px solid rgba(232, 210, 140, 0.95);
   background: rgba(18, 22, 18, 0.35);
@@ -491,8 +498,8 @@ html.sheds-session-active .sheds-scout-hud {
 }
 
 .sheds-scout-mark.is-open {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   background: rgba(232, 210, 140, 0.28);
 }
 
@@ -561,7 +568,8 @@ html.sheds-session-active .sheds-scout-hud {
   display: none !important;
 }
 
-#sheds-map-shell.is-inspecting #search-prompt {
+#sheds-map-shell.is-inspecting #search-prompt,
+#sheds-map-shell.is-scouting #search-prompt {
   display: none !important;
 }
 

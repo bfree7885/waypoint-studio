@@ -1509,7 +1509,10 @@
     state.scoutSpotId = null;
     var hud = $("scout-hud");
     if (hud) hud.setAttribute("hidden", "");
+    var shell = document.getElementById("sheds-map-shell");
+    if (shell) shell.classList.remove("is-scouting");
     if (scoutLayer) refreshScoutSpots();
+    syncSearchPrompt();
   }
 
   function formatScoutTerrainBody(spot) {
@@ -1571,13 +1574,15 @@
     if (ScoutStore) {
       var saved = ScoutStore.formatSavedContext(spot.savedToday);
       if (savedWhen) {
-        savedWhen.textContent = saved.capturedAt
-          ? ("Saved " + formatWhen(saved.capturedAt))
-          : saved.disclaimer;
+        savedWhen.textContent = saved.capturedAt ? ("Saved " + formatWhen(saved.capturedAt)) : "";
       }
-      if (savedBody) savedBody.textContent = saved.lines.join("\n") + "\n" + saved.disclaimer;
+      if (savedBody) {
+        savedBody.textContent = saved.lines.concat(saved.disclaimer ? [saved.disclaimer] : []).join("\n");
+      }
       var live = ScoutStore.formatLiveToday(state.lastHunt);
-      if (todayBody) todayBody.textContent = live.lines.join("\n") + "\n" + live.disclaimer;
+      if (todayBody) {
+        todayBody.textContent = live.lines.concat(live.disclaimer ? [live.disclaimer] : []).join("\n");
+      }
     }
     if (fieldNote) fieldNote.textContent = (ScoutStore && ScoutStore.FIELD_NOTE) ||
       "Use the terrain as a search guide, not evidence that sheds are present.";
@@ -1594,6 +1599,10 @@
     renderScoutHud(spot);
     var hud = $("scout-hud");
     if (hud) hud.removeAttribute("hidden");
+    var shell = document.getElementById("sheds-map-shell");
+    if (shell) shell.classList.add("is-scouting");
+    var prompt = $("search-prompt");
+    if (prompt) prompt.setAttribute("hidden", "");
     refreshScoutSpots();
     if (map && spot.location) {
       try {
@@ -1615,8 +1624,8 @@
       var icon = L.divIcon({
         className: "leaflet-div-icon sheds-scout-icon",
         html: scoutMarkHtml(spot, open),
-        iconSize: open ? [16, 16] : [14, 14],
-        iconAnchor: open ? [8, 8] : [7, 7]
+        iconSize: open ? [18, 18] : [16, 16],
+        iconAnchor: open ? [9, 9] : [8, 8]
       });
       var m = L.marker([spot.location.lat, spot.location.lng], {
         icon: icon,
@@ -4180,6 +4189,8 @@
     state.inspectReport = null;
     state.inspectPriority = null;
     shellModeClass(false, true);
+    var scoutActions = $("inspect-scout-actions");
+    if (scoutActions) scoutActions.removeAttribute("hidden");
     var hud = $("inspect-hud");
     var more = $("inspect-more");
     if (more) {
@@ -4975,7 +4986,8 @@
       saveScoutSpotFromInspect: saveScoutSpotFromInspect,
       openScoutSpot: openScoutSpot,
       closeScoutHud: closeScoutHud,
-      refreshScoutSpots: refreshScoutSpots
+      refreshScoutSpots: refreshScoutSpots,
+      inspectAt: showInspectAt
     };
   } catch (eApi) { /* */ }
 

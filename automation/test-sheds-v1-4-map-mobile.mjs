@@ -287,16 +287,24 @@ async function main() {
       var map = window.__SHEDS_MAP__;
       document.getElementById("btn-inspect-point").click();
       var c = map.getCenter();
-      map.fire("click", { latlng: c });
+      if (window.WaypointShedsMapApp && window.WaypointShedsMapApp.inspectAt) {
+        window.WaypointShedsMapApp.inspectAt(c);
+      } else {
+        map.fire("click", { latlng: c });
+      }
       var actions = document.getElementById("inspect-scout-actions");
       var save = document.getElementById("btn-save-scout-spot");
       var before = window.WaypointShedsScoutSpots.list().length;
+      var actionsVisible = actions && !actions.hasAttribute("hidden");
+      var saveBox = save.getBoundingClientRect();
+      var saveH = save ? Math.round(saveBox.height) : 0;
       save.click();
       var after = window.WaypointShedsScoutSpots.list().length;
       var hud = document.getElementById("scout-hud");
       return {
-        actionsVisible: actions && !actions.hasAttribute("hidden"),
-        saveH: save ? Math.round(save.getBoundingClientRect().height) : 0,
+        actionsVisible: actionsVisible,
+        saveH: saveH,
+        saveW: save ? Math.round(saveBox.width) : 0,
         added: after === before + 1,
         hudOpen: hud && !hud.hasAttribute("hidden"),
         inspectClosed: document.getElementById("inspect-hud").hasAttribute("hidden")

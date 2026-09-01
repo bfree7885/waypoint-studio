@@ -13,8 +13,8 @@ import { extname, join, normalize } from "path";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CHROME = process.env.CHROME_PATH || "/usr/local/bin/google-chrome";
-const DBG = 9365;
-const PORT = 8778;
+const DBG = 9368;
+const PORT = 8781;
 const ART = fs.existsSync("/opt/cursor/artifacts")
   ? "/opt/cursor/artifacts"
   : path.join(ROOT, "automation/artifacts/sheds-v14-visual");
