@@ -1,6 +1,6 @@
 # ShedHunting.org V1.6 — Field Hunt Mode
 
-**Status:** product work on Studio. Not merged. Not deployed. Do not run `scripts/publish-shed-hunting-host.mjs`. Do not begin V1.7.
+**Status:** released on ShedHunting.org as Field Hunt Mode. V1.7 Hunt Track & Field Observations is a separate product increment — see `docs/sheds/SHEDS-V1-7-HUNT-TRACK-OBSERVATIONS.md`. Do not treat this V1.6 doc as authorization to deploy V1.7.
 
 V1.1–V1.2 answer **Should I go today?** and **what are conditions like?** V1.3 answers **Where should I look?** V1.4 saves **candidate places**. V1.5 builds a **Hunt Plan**. V1.6 is **work that plan in the field**.
 

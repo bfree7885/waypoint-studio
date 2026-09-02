@@ -45,7 +45,7 @@ Public identity is **ShedHunting.org · Powered by Waypoint**. The dedicated hos
 | Surface | URL | Job |
 |----------|-----|-----|
 | **Overview (public entrance)** | `https://shedhunting.org/` | **Should I go shed hunting today?** Today’s Hunt / current shed-hunting intelligence. |
-| **Map (field interface)** | `https://shedhunting.org/map/` | **Where should I look?** Reached from the overview. Not the primary public landing. |
+| **Map (field interface)** | `https://shedhunting.org/map/` | **Where should I look?** Reached from the overview. Field Hunt Mode works a Hunt Plan in the field (V1.6). Hunt Track and field observations (V1.7) record where this device reported travel — private, local, not navigation. |
 
 Legacy Waypoint Studio URLs (`/apps/shed-hunting/`, `/apps/shed-hunting/map/`, `/sheds/`, `/map/`) are not canonical. They noindex and send visitors to the dedicated host. Field engines stay in this repo.
 

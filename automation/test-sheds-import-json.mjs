@@ -50,6 +50,9 @@ function loadStores() {
     "apps/shed-hunting/js/sheds-search-area-store.js",
     "apps/shed-hunting/js/sheds-scout-spot-store.js",
     "apps/shed-hunting/js/sheds-hunt-plan-store.js",
+    "apps/shed-hunting/js/sheds-hunt-session-store.js",
+    "apps/shed-hunting/js/sheds-hunt-activity-store.js",
+    "apps/shed-hunting/js/sheds-hunt-record-store.js",
     "apps/shed-hunting/js/sheds-validation-store.js",
     "apps/shed-hunting/js/sheds-import-json.js"
   ];
@@ -243,6 +246,35 @@ assert("good scout stored", !!mixed.WaypointShedsScoutSpots.getById("spot_ok_mix
 const againScout = scoutOnly.WaypointShedsImport.importPayload(scoutOnlyParsed);
 assert("reimport scout does not duplicate", againScout.ok && againScout.counts.scoutSpots.added === 0 && againScout.counts.scoutSpots.replaced === 1);
 assert("scout count stays 1 after reimport", scoutOnly.WaypointShedsScoutSpots.list().length === 1);
+
+const huntRecOnly = loadStores();
+const huntRecParsed = huntRecOnly.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  huntRecords: {
+    huntRecords: [{
+      kind: "hunt-record",
+      huntRecordId: "hrec_imp",
+      huntPlanNameSnapshot: "Imported walk",
+      startedAt: "2026-09-02T10:00:00.000Z",
+      finishedAt: "2026-09-02T11:00:00.000Z",
+      trackPoints: [{ lat: 41.32, lng: -74.80, t: 1 }],
+      observations: [{ id: "hobs_imp", type: "shed_found", note: "User reported" }]
+    }]
+  }
+}));
+assert("hunt-records-only payload parses", huntRecParsed.ok && huntRecParsed.huntRecords.length === 1);
+const huntRecResult = huntRecOnly.WaypointShedsImport.importPayload(huntRecParsed);
+assert("hunt-records-only import works", huntRecResult.ok && huntRecOnly.WaypointShedsHuntRecords.list().length === 1);
+assert("imported hunt record keeps snapshot name", huntRecOnly.WaypointShedsHuntRecords.getById("hrec_imp").huntPlanNameSnapshot === "Imported walk");
+assert("imported hunt record does not invent a Hunt Session", huntRecOnly.WaypointShedsHuntSession.get() == null);
+
+const noRec = loadStores();
+const noRecParsed = noRec.WaypointShedsImport.parseExport(JSON.stringify({
+  format: "waypoint-sheds-field-private-v1",
+  scoutSpots: [{ id: "spot_no_rec", location: { lat: 41.2, lng: -74.8 }, name: "Keep" }]
+}));
+assert("old payload without huntRecords still parses", noRecParsed.ok && noRecParsed.huntRecords.length === 0);
+assert("old payload import does not invent hunt records", noRec.WaypointShedsImport.importPayload(noRecParsed).ok && noRec.WaypointShedsHuntRecords.list().length === 0);
 
 if (failures.length) {
   console.error("\n" + failures.length + " failure(s).");
