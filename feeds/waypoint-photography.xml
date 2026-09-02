@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Sep 2026 15:41:23 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 01:46:27 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Artemis III RS-25 Engine Processing: #3 Lift</title>
+    <link>https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</guid>
+    <pubDate>Tue, 01 Sep 2026 17:32:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Technicians prepare to transfer the #2 RS-25 SLS (Space Launch System) rocket engine (front) to the work stand with the #3 engine (back) for integration with the Artemis III core stage rocket on Tuesday, Aug. 25, 2026, inside the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>NASA&apos;s Nancy Grace Roman Space Telescope Launches</title>
     <link>https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</link>
@@ -226,24 +244,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/20
     <author>NASA</author>
   </item>
   <item>
-    <title>Lion Nebula Roars in Webb&apos;s Sights</title>
-    <link>https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</guid>
-    <pubDate>Tue, 11 Aug 2026 17:03:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA’s James Webb Space Telescope imaged the planetary nebula NGC 2392, the Lion Nebula, using the observatory’s NIRCam and MIRI instruments. The central star’s remains are responsible for the nebula’s structure, including a lion face-shaped bubble of ionized gas and dust “mane.”
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Will El Niño become supersized? What experts are saying</title>
     <link>https://earthsky.org/earth/super-el-nino-record-temperatures-2026-2027/</link>
     <guid isPermaLink="true">https://earthsky.org/earth/super-el-nino-record-temperatures-2026-2027/</guid>
@@ -280,6 +280,24 @@ Read the original article at the publisher: https://earthsky.org/space/lava-worl
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Roman space telescope has launched! You can adopt a pixel</title>
+    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
+    <pubDate>Tue, 01 Sep 2026 09:47:19 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Nancy Grace Roman Space Telescope launched on August 30, from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Sun news: Sun-observing spacecraft sees a solar eclipse</title>
     <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
     <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
@@ -298,14 +316,14 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Pioneer 11: Watching the Saturn watchers</title>
+    <title>Pioneer 11: Watching the Saturn Watchers</title>
     <link>https://earthsky.org/space/pioneer-11-watching-the-saturn-watchers/</link>
     <guid isPermaLink="true">https://earthsky.org/space/pioneer-11-watching-the-saturn-watchers/</guid>
     <pubDate>Tue, 01 Sep 2026 08:30:14 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: On the 50th anniversary of the launch of Pioneer 10, Patty Winter recalls the day that Pioneer 11 passed the rings of Saturn. The post Pioneer 11: Watching the Saturn watchers first appeared on EarthSky .
+Summary: Pioneer 11 made history 47 years ago today when it became the 1st spacecraft to fly past Saturn, revealing the ringed world up close for the 1st time. The post Pioneer 11: Watching the Saturn Watchers first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -368,6 +386,24 @@ Read the original article at the publisher: https://earthsky.org/earth/lake-powe
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Lion Nebula Roars in Webb&apos;s Sights</title>
+    <link>https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</guid>
+    <pubDate>Tue, 11 Aug 2026 17:03:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope imaged the planetary nebula NGC 2392, the Lion Nebula, using the observatory’s NIRCam and MIRI instruments. The central star’s remains are responsible for the nebula’s structure, including a lion face-shaped bubble of ionized gas and dust “mane.”
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kx6d0xbhsyp7q1em5qtc43rp/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA Astronaut Jessica Meir Uses VR Goggles</title>
@@ -478,24 +514,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/bi
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA Astronaut Chris Williams Returns to Earth</title>
-    <link>https://www.nasa.gov/image-detail/expedition-74-soyuz-landing/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/expedition-74-soyuz-landing/</guid>
-    <pubDate>Mon, 27 Jul 2026 16:58:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut Chris Williams is seen outside the Soyuz MS-28 spacecraft after he landed with Expedition 74 Roscosmos cosmonauts Sergey Kud-Sverchkov, and Sergei Mikaev in a remote area near the town of Zhezkazgan, Kazakhstan on Sunday, July 26, 2026. The trio returned to Earth after logging 241 days in space as a members of Expeditions 73 and 74 aboard the International Space Station.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/expedition-74-soyuz-landing/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide for September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
@@ -509,24 +527,6 @@ Waypoint’s Take: An outdoor reader can treat this as field context — treat v
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Roman space telescope has launched! You can adopt a pixel</title>
-    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
-    <pubDate>Sun, 30 Aug 2026 11:47:19 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Nancy Grace Roman Space Telescope launched on August 30, from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>

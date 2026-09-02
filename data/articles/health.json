@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-01T15:41:23.723Z",
-  "status": "partial",
+  "checkedAt": "2026-09-02T01:46:27.949Z",
+  "status": "ok",
   "retainedPrevious": false,
   "feeds": [
     {
@@ -11,7 +11,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 238,
+      "ms": 257,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 169,
+      "ms": 291,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 143,
+      "ms": 233,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 361,
+      "ms": 531,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 357,
+      "ms": 335,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 142,
+      "ms": 265,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 238,
+      "ms": 411,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1604,
+      "ms": 328,
       "enabled": true
     },
     {
@@ -211,29 +211,29 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 213,
+      "ms": 172,
       "enabled": true
     },
     {
       "id": "phys-org-earth",
       "name": "Phys.org — Earth Sciences",
-      "ok": false,
-      "itemCount": 0,
-      "error": "HTTP 500",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
       "warnings": [],
-      "ms": 14112,
+      "ms": 243,
       "enabled": true
     },
     {
       "id": "nws-albany",
       "name": "NWS Albany Area Forecast Discussions",
       "ok": true,
-      "itemCount": 3,
+      "itemCount": 2,
       "error": null,
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 249,
+      "ms": 323,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 147,
+      "ms": 314,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 183,
+      "ms": 278,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-02T03:41:23.723Z"
+  "staleAfter": "2026-09-02T13:46:27.949Z"
 }
