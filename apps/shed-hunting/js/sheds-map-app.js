@@ -5400,6 +5400,7 @@
           try { refreshAreasList(); } catch (e2) { /* */ }
           try { refreshScoutSpots(); } catch (eScout) { /* */ }
           try { refreshHuntPlanList(); } catch (ePlan) { /* */ }
+          try { healFieldHuntAfterScoutChange(); } catch (eHunt) { /* */ }
           try { scheduleRecompute(80); } catch (e3) { /* */ }
           var c = result.counts || {};
           function tally(section) {

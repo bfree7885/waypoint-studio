@@ -41,6 +41,7 @@
     if (!raw || typeof raw !== "object") return null;
     var huntPlanId = raw.huntPlanId != null ? String(raw.huntPlanId).trim().slice(0, 80) : "";
     if (!huntPlanId) return null;
+    if (raw.kind != null && String(raw.kind) !== KIND) return null;
     var status = raw.status === "active" ? "active" : null;
     if (!status) return null;
     var active = raw.activeScoutSpotId != null ? String(raw.activeScoutSpotId).trim().slice(0, 80) : "";

@@ -83,6 +83,7 @@ assert("touch-sized field controls", /sheds-field-hunt-hud__touch[\s\S]{0,80}min
 assert("map remains primary in field hunt CSS", /is-field-hunting/.test(css) && /max-height:\s*min\(58vh/.test(css) && /field-hunt-hud__actions/.test(css));
 assert("map-app wires Start Hunt", /startFieldHuntFromPlan/.test(app) && /enterFieldHuntMode/.test(app));
 assert("closeAllSheets includes Quick Note", /function closeAllSheets[\s\S]{0,900}sheet-field-hunt-note/.test(app));
+assert("import during hunt heals session", /importPayload[\s\S]{0,1200}healFieldHuntAfterScoutChange/.test(app));
 assert("export omits Hunt Session", /Hunt Session is transient/.test(app) && !/huntSession:/.test(app));
 assert("no auto-check from GPS in session store", !/proximity|geofence|autoCheck|auto-check/.test(storeSrc));
 assert("applyUserPosition does not set Scout status", !/applyUserPosition[\s\S]{0,400}setStatus/.test(app));
@@ -227,6 +228,51 @@ assert("unavailable ids are not Checked", gProg.checked === 0 && gProg.total ===
 ghostSb.WaypointShedsHuntPlans.importList([{ id: "plan_empty_v16", name: "Empty", scoutSpotIds: [] }]);
 const emptyStart = ghostSb.WaypointShedsHuntSession.start({ huntPlanId: "plan_empty_v16" });
 assert("empty Hunt Plan cannot start", !emptyStart.ok && /no available Scout Spots/i.test(emptyStart.error || ""));
+
+const impSb = load();
+const impA = impSb.WaypointShedsScoutSpots.create({ location: { lat: 41.1, lng: -74.1 }, name: "Keep" });
+const impB = impSb.WaypointShedsScoutSpots.create({ location: { lat: 41.2, lng: -74.2 }, name: "Drop" });
+const impPlan = impSb.WaypointShedsHuntPlans.create({
+  scoutSpotIds: [impA.spot.id, impB.spot.id],
+  name: "Import Hunt"
+});
+const impStart = impSb.WaypointShedsHuntSession.start({ huntPlanId: impPlan.plan.id });
+impSb.WaypointShedsHuntSession.setActiveSpot(impB.spot.id);
+impSb.WaypointShedsHuntPlans.importList([{
+  id: impPlan.plan.id,
+  name: "Import Hunt",
+  scoutSpotIds: [impA.spot.id]
+}]);
+const afterImport = impSb.WaypointShedsHuntSession.resume();
+assert("import replacing plan heals active Scout", afterImport.ok && afterImport.session.activeScoutSpotId === impA.spot.id, JSON.stringify(afterImport.session));
+assert("import does not auto-check", impSb.WaypointShedsScoutSpots.getById(impA.spot.id).status === "Plan");
+
+impSb.WaypointShedsHuntPlans.remove(impPlan.plan.id);
+const afterPlanGone = impSb.WaypointShedsHuntSession.resume();
+assert("import-era deleted Hunt Plan ends session", afterPlanGone.ended && !impSb.WaypointShedsHuntSession.get());
+
+const throwGet = memoryStorage();
+const origGet = throwGet.getItem.bind(throwGet);
+throwGet.getItem = function (k) {
+  if (k === "waypoint-sheds-hunt-session-v1") throw new Error("getItem failed");
+  return origGet(k);
+};
+const tsb = load({ storage: throwGet });
+assert("getItem throw fails safely", tsb.WaypointShedsHuntSession.get() == null);
+
+const kindSb = load();
+kindSb.storage.setItem("waypoint-sheds-hunt-session-v1", JSON.stringify({
+  session: { huntPlanId: "plan_x", status: "active", kind: "not-a-session", schemaVersion: 99 }
+}));
+assert("wrong kind is empty", kindSb.WaypointShedsHuntSession.get() == null);
+kindSb.storage.setItem("waypoint-sheds-hunt-session-v1", JSON.stringify({
+  session: { huntPlanId: "plan_x", status: "active" }
+}));
+assert("missing kind still loads if active+plan", !!kindSb.WaypointShedsHuntSession.get());
+kindSb.storage.setItem("waypoint-sheds-hunt-session-v1", JSON.stringify({
+  session: { huntPlanId: "plan_x", status: "done", kind: "hunt-session" }
+}));
+assert("wrong status is empty", kindSb.WaypointShedsHuntSession.get() == null);
 
 const Imp = sb.WaypointShedsImport;
 const parsed = Imp.parseExport(JSON.stringify({

@@ -140,7 +140,7 @@ The map stays the primary surface. The Field Hunt HUD is compact (left, limited 
 | Hunt Plan deleted | Session ended; honest message |
 | Active Scout Spot deleted | Session kept; next valid or none |
 | All Scout Spots gone | Session kept; no active spot; no invented replacements |
-| Malformed session storage | Treated as no session; no throw |
+| Malformed/corrupt session storage is treated as no session. Unknown `kind` values are rejected. Storage quota or write failure is an honest error; Scout Spot and Hunt Plan records are not destroyed. |
 | Storage quota | Honest error; nothing silent |
 | Empty Hunt Plan | Start Hunt refused |
 | Missing / malformed Scout coordinates | Distance unavailable |
