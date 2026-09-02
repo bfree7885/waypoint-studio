@@ -1689,6 +1689,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Import at the 40-plan cap must skip extra **new** ids and count them as skipped (same honesty lesson as V1.4 Scout Spots). Missing Scout Spot ids stay listed as unavailable; do not fabricate Scout Spots.
 - Keep Hunt Plans vs Field Plan naming distinct in More. V1.5 is Hunt Plans.
 
+### Lessons Learned — Shed Hunting V1.6 Field Hunt Mode (2026-09-01)
+
+- A Hunt Session (`waypoint-sheds-hunt-session-v1`) is **workflow state**, not field data. Do not export it in `sheds-field-private.json`. Scout Spot status/notes stay on `waypoint-sheds-scout-spots-v1`; do not duplicate terrain or saved Today into the session.
+- Start Hunt / Finish Hunt must not auto-set Hunt Plan Completed or rewrite Scout Spot status. GPS proximity must never mark Checked. Location-unavailable is a valid Field Hunt Mode; do not invent distance as 0.
+- Field HUD must stay compact so the map remains the primary surface. Resume on reload; orphaned sessions (deleted Hunt Plan) end honestly.
+
 ### Lessons Learned — Shed Hunting V1.4 Scout Spots (2026-08-31)
 
 - Scout Spots are **field-planning pins**, not observations. Keep them in `waypoint-sheds-scout-spots-v1` so Import JSON can merge them without turning a candidate location into a recorded sighting.
