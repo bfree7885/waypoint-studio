@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-02T01:46:27.949Z",
+  "checkedAt": "2026-09-02T15:30:21.519Z",
   "status": "ok",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 24,
       "error": null,
       "warnings": [],
-      "ms": 257,
+      "ms": 194,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 291,
+      "ms": 130,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 233,
+      "ms": 286,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 531,
+      "ms": 51,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 335,
+      "ms": 493,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 265,
+      "ms": 286,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 411,
+      "ms": 713,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 328,
+      "ms": 518,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 172,
+      "ms": 142,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 323,
+      "ms": 271,
       "enabled": true
     },
     {
@@ -243,20 +243,20 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 314,
+      "ms": 426,
       "enabled": true
     },
     {
       "id": "nws-burlington",
       "name": "NWS Burlington Area Headlines",
       "ok": true,
-      "itemCount": 2,
+      "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 278,
+      "ms": 179,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-02T13:46:27.949Z"
+  "staleAfter": "2026-09-03T03:30:21.519Z"
 }

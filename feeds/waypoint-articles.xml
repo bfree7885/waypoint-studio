@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Sep 2026 01:46:27 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2026 15:30:21 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -45,24 +45,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/am
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Nancy Grace Roman Space Telescope Launches</title>
-    <link>https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</guid>
-    <pubDate>Mon, 31 Aug 2026 14:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: A SpaceX Falcon Heavy rocket with NASA’s Nancy Grace Roman Telescope on board is seen transiting the sun during launch from Launch Complex 39A, Sunday, Aug. 30, 2026, at NASA’s Kennedy Space Center in Florida.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Interior Finalizes Streamlined Process for Migratory Game Bird Hunting Seasons</title>
     <link>https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</link>
     <guid isPermaLink="true">https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</guid>
@@ -80,6 +62,24 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Nancy Grace Roman Space Telescope Launches</title>
+    <link>https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</guid>
+    <pubDate>Mon, 31 Aug 2026 14:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A SpaceX Falcon Heavy rocket with NASA’s Nancy Grace Roman Telescope on board is seen transiting the sun during launch from Launch Complex 39A, Sunday, Aug. 30, 2026, at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
@@ -134,6 +134,42 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>See Swirling Swifts This Fall</title>
+    <link>https://www.audubon.org/north-carolina/news/see-swirling-swifts-fall</link>
+    <guid isPermaLink="true">https://www.audubon.org/north-carolina/news/see-swirling-swifts-fall</guid>
+    <pubDate>Wed, 02 Sep 2026 12:48:19 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Every fall, flocks of tiny bat-like birds exhibit one of the greatest migration spectacles: hundreds and thousands of swifts gather into a swirling bird tornado above their chimney roost site. As...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/north-carolina/news/see-swirling-swifts-fall</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Will fall migration bring a billion bird night?</title>
+    <link>https://earthsky.org/earth/lights-out-for-birds-spring-and-fall-migration/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/lights-out-for-birds-spring-and-fall-migration/</guid>
+    <pubDate>Wed, 02 Sep 2026 06:00:09 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Will we see a billion bird night during fall migration this year? And get tips on how you can help birds by turning off exterior lights. The post Will fall migration bring a billion bird night? first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/earth/lights-out-for-birds-spring-and-fall-migration/</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Tales of the Adirondacks, past and present: Our 21st century library</title>
@@ -191,6 +227,42 @@ Read the original article at the publisher: https://www.noaa.gov/office-educatio
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>The 2026 Audubon Photography Awards: Honorable Mentions</title>
+    <link>https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</guid>
+    <pubDate>Wed, 02 Sep 2026 13:00:03 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Did you peruse the winning images and videos for the 2026 Audubon Photography Awards and wish you could keep on scrolling? Well, we’ve got more stunning and surprising avian moments. Below...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>The 2026 Audubon Photography Awards: Winners</title>
+    <link>https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</guid>
+    <pubDate>Wed, 02 Sep 2026 13:00:01 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: After reviewing this year’s winners of the Audubon Photography Awards, we were struck by how many of the awardees made their own luck. Hours, days, or sometimes even years of patience and effort go...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Extended Drying of The Rio Grande Affects Bosque</title>
@@ -265,43 +337,6 @@ Read the original article at the publisher: https://phys.org/news/2026-09-uk-cha
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
-  </item>
-  <item>
-    <title>New storms threaten Grand Canyon flood search, 2 bodies recovered</title>
-    <link>https://phys.org/news/2026-08-storms-threaten-grand-canyon-bodies.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-08-storms-threaten-grand-canyon-bodies.html</guid>
-    <pubDate>Mon, 31 Aug 2026 17:40:04 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Forecast storms in the Grand Canyon on Monday threatened efforts to find more than a dozen people missing after flash floods over the weekend, the National Park Service (NPS) said, with two bodies already recovered.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-08-storms-threaten-grand-canyon-bodies.html</description>
-    <category>Weather</category>
-    <category>Rivers and Water</category>
-    <category>Regional News</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
-    <title>Big Changes Taking Root at Dale Hollow National Fish Hatchery!</title>
-    <link>https://www.fws.gov/story/2026-08/big-changes-taking-root-dale-hollow-national-fish-hatchery</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/big-changes-taking-root-dale-hollow-national-fish-hatchery</guid>
-    <pubDate>Wed, 26 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: A season of challenge has given way to renewal at Dale Hollow National Fish Hatchery. From freshly planted Western Pines to a revitalized stream, the grounds are transforming into a richer, more resilient landscape. Step into the story of how staff turned storm damage into an opportunity for long‑
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/big-changes-taking-root-dale-hollow-national-fish-hatchery</description>
-    <category>Weather</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Astronauts Anil Menon and Sophie Adenot on Spacewalk</title>
@@ -466,62 +501,6 @@ Read the original article at the publisher: https://earthsky.org/earth/super-el-
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Youth Power at Stillwater NWR</title>
-    <link>https://www.fws.gov/story/2026-08/youth-power-stillwater-nwr</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/youth-power-stillwater-nwr</guid>
-    <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: At the Stillwater NWR in Nevada, the Youth Conservation Corps (YCC) program traced a memorable summer at the refuge, consisting of a hard-working young crew of four, who alongside refuge staff helped maintain trails, planted native seeds and collected them for processing, and banded waterfowl in
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/youth-power-stillwater-nwr</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Understanding the Spawning Period</title>
-    <link>https://www.fws.gov/story/2026-08/understanding-spawning-period</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/understanding-spawning-period</guid>
-    <pubDate>Wed, 26 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Understanding the Spawning Period. Staff at Erwin National Fish Hatchery are studying the spawning periods in rainbow trout to better improve spawning efficiency at the hatchery.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/understanding-spawning-period</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Kuskokwim River Federal Public Waters Closed to Gillnets and the Harvest of Coho Salmon</title>
-    <link>https://www.fws.gov/story/2026-08/kuskokwim-river-federal-public-waters-closed-gillnets-and-harvest-coho-salmon</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/kuskokwim-river-federal-public-waters-closed-gillnets-and-harvest-coho-salmon</guid>
-    <pubDate>Wed, 12 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The Yukon Delta National Wildlife Refuge In-Season Manager has issued an Emergency Special Action, determining that Federal management is necessary for conservation, and for the continuation of subsistence uses for coho salmon within the Federal public waters of the Kuskokwim River drainage.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/kuskokwim-river-federal-public-waters-closed-gillnets-and-harvest-coho-salmon</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>How a brutal drought may have helped unleash yellow fever in Brazil</title>
     <link>https://www.sciencenews.org/article/drought-yellow-fever-outbreak-brazil</link>
     <guid isPermaLink="true">https://www.sciencenews.org/article/drought-yellow-fever-outbreak-brazil</guid>
@@ -540,6 +519,78 @@ Read the original article at the publisher: https://www.sciencenews.org/article/
     <author>Science News / Society for Science</author>
   </item>
   <item>
+    <title>Roman space telescope has launched! You can adopt a pixel</title>
+    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
+    <pubDate>Wed, 02 Sep 2026 11:00:19 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Nancy Grace Roman Space Telescope launched on August 30 from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Lake Powell hits record low, continues to drop</title>
+    <link>https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</guid>
+    <pubDate>Wed, 02 Sep 2026 10:30:11 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Lake Powell has hit its lowest level ever. Despite the monsoons, like the flash floods that hit Grand Canyon over the weekend, water levels continue to drop. The post Lake Powell hits record low, continues to drop first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: New update for Solar cycle 25</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Wed, 02 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news September 2, 2026: August&apos;s sunspot number came in at 76, down slightly from July. Solar Cycle 25 stays in its declining phase after the 2024 peak. The post Sun news: New update for Solar cycle 25 first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Fomalhaut is the Loneliest Star once again</title>
+    <link>https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</link>
+    <guid isPermaLink="true">https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</guid>
+    <pubDate>Wed, 02 Sep 2026 09:00:48 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Fomalhaut is known as the Loneliest Star because it shines brightly in a dim patch of sky. Saturn joined it in recent years, but is now pulling away. The post Fomalhaut is the Loneliest Star once again first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>How do lava-world exoplanets keep their atmospheres?</title>
     <link>https://earthsky.org/space/lava-world-exoplanets-atmospheres-cosmic-sandbar/</link>
     <guid isPermaLink="true">https://earthsky.org/space/lava-world-exoplanets-atmospheres-cosmic-sandbar/</guid>
@@ -552,42 +603,6 @@ Summary: A new study from researchers at Stanford University helps explain how h
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/lava-world-exoplanets-atmospheres-cosmic-sandbar/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Roman space telescope has launched! You can adopt a pixel</title>
-    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
-    <pubDate>Tue, 01 Sep 2026 09:47:19 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Nancy Grace Roman Space Telescope launched on August 30, from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Sun-observing spacecraft sees a solar eclipse</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 01 Sep 2026 09:00:53 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news September 1, 2026: The GOES-19 satellite caught Earth passing in front of the sun over the past day. Take a look at this eclipse! The post Sun news: Sun-observing spacecraft sees a solar eclipse first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -630,42 +645,6 @@ Read the original article at the publisher: https://earthsky.org/human-world/sep
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Giant trees break a decades-old science theory</title>
-    <link>https://earthsky.org/earth/giant-trees-defy-a-decades-old-theory/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/giant-trees-defy-a-decades-old-theory/</guid>
-    <pubDate>Mon, 31 Aug 2026 12:00:43 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Giant trees have evolved remarkable adaptations that allow them to reach extreme heights while maintaining efficient water transport. The post Giant trees break a decades-old science theory first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/giant-trees-defy-a-decades-old-theory/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Lake Powell hits record low, continues to drop</title>
-    <link>https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</guid>
-    <pubDate>Mon, 31 Aug 2026 11:20:11 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Lake Powell has hit its lowest level ever. Despite the monsoons, like the flash floods that hit Grand Canyon over the weekend, water levels continue to drop. The post Lake Powell hits record low, continues to drop first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Celebrating Hog Island Audubon Camp&apos;s 90th Anniversary</title>
     <link>https://www.audubon.org/seabird-institute/news/celebrating-hog-island-audubon-camps-90th-anniversary</link>
     <guid isPermaLink="true">https://www.audubon.org/seabird-institute/news/celebrating-hog-island-audubon-camps-90th-anniversary</guid>
@@ -682,6 +661,25 @@ Read the original article at the publisher: https://www.audubon.org/seabird-inst
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Filmmakers who captured viral “Champ” footage to appoint panel for full analysis</title>
+    <link>https://www.adirondackexplorer.org/communities/filmmakers-who-captured-viral-champ-footage-to-appoint-panel-for-full-analysis/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/filmmakers-who-captured-viral-champ-footage-to-appoint-panel-for-full-analysis/</guid>
+    <pubDate>Wed, 02 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Footage from local filmmakers shows something in the water in Lake Champlain. Photo courtesy of Kelly Tabor and Richard Rossi. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/06/Untitled-design.png?fit=780%2C410&amp;ssl=1&quot; /&gt; The local filmmakers who captured a large, submerged entity in Lake Champlain are asking for professionals to verify the video
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/filmmakers-who-captured-viral-champ-footage-to-appoint-panel-for-full-analysis/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Registration now open for 2026 New York State Salt Summit</title>
@@ -778,63 +776,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Poetry: As easy as falling off a bike</title>
-    <link>https://www.adirondackexplorer.org/communities/arts/poetry-as-easy-as-falling-off-a-bike/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/poetry-as-easy-as-falling-off-a-bike/</guid>
-    <pubDate>Mon, 31 Aug 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A mountain biker. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Mountain_Biking_In_Lenzerheide_Switzerland_-_29591826245.jpg?fit=780%2C441&amp;ssl=1&quot; /&gt; James B. Kobak Jr. shares another humorous poem about an unfortunate incident involving a bike and three cracked ribs
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/poetry-as-easy-as-falling-off-a-bike/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Johnstown seeks input from residents, community on new comprehensive plan</title>
-    <link>https://www.adirondackexplorer.org/communities/johnstown-seeks-input-from-residents-community-on-new-comprehensive-plan/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/johnstown-seeks-input-from-residents-community-on-new-comprehensive-plan/</guid>
-    <pubDate>Mon, 31 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: “Sunflower” sign leaving Johnstown on Rte. 29. Photo by Laura Bellinger. &quot; data-image-caption=&quot; “Sunflower” sign leaving Johnstown on Rte. 29. Explorer file photo. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/07/image-73.jpg?fit=540%2C720&amp;ssl=1&quot; /&gt; Johnstown is seeking input as it updates its comprehensive plan from 2004, a blueprint for growth, land use, infrastructure and more
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/johnstown-seeks-input-from-residents-community-on-new-comprehensive-plan/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Following Roosevelt’s famous ride</title>
-    <link>https://www.adirondackexplorer.org/communities/history/following-roosevelts-famous-ride/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/following-roosevelts-famous-ride/</guid>
-    <pubDate>Mon, 31 Aug 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Tim Rowland (left) and Jim Holler approach the Tahawus Club. In 1901, the clubhouse included a post office and a phone that Roosevelt used to contact his secretary. Photo by Tom French. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/7Clubhouse-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; Biking Roosevelt&apos;s ride from Upper Works to North Creek.
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/following-roosevelts-famous-ride/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>One of Earth’s driest places was just covered in snow</title>
     <link>https://www.sciencedaily.com/releases/2026/09/260901010709.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/09/260901010709.htm</guid>
@@ -924,6 +865,58 @@ Read the original article at the publisher: https://www.audubon.org/florida/news
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Announcing 2027 Crane Season Dates</title>
+    <link>https://www.audubon.org/great-plains/news/announcing-2027-crane-season-dates</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/announcing-2027-crane-season-dates</guid>
+    <pubDate>Tue, 25 Aug 2026 15:11:50 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Each year, visitors from all over the world make plans to visit Central Nebraska for the magnificent Sandhill Crane migration. Rowe Sanctuary is pleased to once again provide one of the best...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/announcing-2027-crane-season-dates</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Q&amp;A: Can U.S. parks promote safety, recreation and environmental protection?</title>
+    <link>https://phys.org/news/2026-09-qa-safety-recreation-environmental.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-qa-safety-recreation-environmental.html</guid>
+    <pubDate>Wed, 02 Sep 2026 11:20:06 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Recently, heavy rains have caused flooding in Grand Canyon and Zion National Parks, resulting in the loss of at least two lives. In U.S. national parks, maintaining visitor safety can be complicated because it is difficult to measure who is in a park and where they are, much less what hazards they will face as extreme weather events become more common, according to Bing Pan, professor of recreation, park and tourism management at Penn State.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-qa-safety-recreation-environmental.html</description>
+    <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Study: Reservoir management system could save California $150 million every year</title>
+    <link>https://phys.org/news/2026-09-reservoir-california-million-year.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-reservoir-california-million-year.html</guid>
+    <pubDate>Tue, 01 Sep 2026 18:40:06 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: A new study from the Center for Western Weather and Water Extremes (CW3E) at Scripps Institution of Oceanography at UC San Diego finds that improved weather and water forecasts could help California gain more value from existing reservoirs and help meet a new water supply target.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-reservoir-california-million-year.html</description>
+    <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   </channel>
 </rss>
