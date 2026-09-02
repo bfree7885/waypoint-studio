@@ -291,30 +291,34 @@ async function main() {
     assert("searched distance appears after points", tracked.distAvailable && !/Unavailable/.test(tracked.searched || ""), JSON.stringify(tracked));
 
     const observed = await evalExpr(`(() => {
-      document.getElementById("btn-field-hunt-obs").click();
-      var sheet = document.getElementById("sheet-field-hunt-obs");
-      var open = sheet && sheet.classList.contains("is-open");
-      var note = document.getElementById("field-hunt-obs-note");
-      if (note) note.value = "Willow edge.";
-      var typeBtn = document.querySelector("[data-field-hunt-obs=\"deer_sign\"]");
-      var typeBox = typeBtn.getBoundingClientRect();
-      typeBtn.click();
-      var shedBtn = document.querySelector("[data-field-hunt-obs=\"shed_found\"]");
-      document.getElementById("btn-field-hunt-obs").click();
-      shedBtn.click();
-      var act = window.WaypointShedsHuntActivity.get();
-      var types = act.observations.map(function (o) { return o.type; });
-      return {
-        sheetOpened: open,
-        typeH: Math.round(typeBox.height),
-        count: act.observations.length,
-        types: types,
-        unmapped: act.observations.every(function (o) { return !o.mapped; }),
-        note: act.observations[0] && act.observations[0].note,
-        closed: !document.getElementById("sheet-field-hunt-obs").classList.contains("is-open")
-      };
+      try {
+        document.getElementById("btn-field-hunt-obs").click();
+        var sheet = document.getElementById("sheet-field-hunt-obs");
+        var open = sheet && sheet.classList.contains("is-open");
+        var note = document.getElementById("field-hunt-obs-note");
+        if (note) note.value = "Willow edge.";
+        var typeBtn = document.querySelector("[data-field-hunt-obs=deer_sign]");
+        var typeBox = typeBtn ? typeBtn.getBoundingClientRect() : { height: 0 };
+        if (typeBtn) typeBtn.click();
+        document.getElementById("btn-field-hunt-obs").click();
+        var shedBtn = document.querySelector("[data-field-hunt-obs=shed_found]");
+        if (shedBtn) shedBtn.click();
+        var act = window.WaypointShedsHuntActivity.get();
+        var types = (act.observations || []).map(function (o) { return o.type; });
+        return {
+          sheetOpened: open,
+          typeH: Math.round(typeBox.height),
+          count: act.observations.length,
+          types: types,
+          unmapped: act.observations.every(function (o) { return !o.mapped; }),
+          note: act.observations[0] && act.observations[0].note,
+          closed: !document.getElementById("sheet-field-hunt-obs").classList.contains("is-open")
+        };
+      } catch (e) {
+        return { error: String(e && e.message || e) };
+      }
     })()`);
-    assert("observation chooser opens", !!observed.sheetOpened, JSON.stringify(observed));
+    assert("observation chooser opens", !observed.error && !!observed.sheetOpened, JSON.stringify(observed));
     assert("observation type touch-sized", observed.typeH >= 40, "h=" + observed.typeH);
     assert("observation without location saved", observed.count >= 2 && !!observed.unmapped, JSON.stringify(observed));
     assert("Shed Found recorded", (observed.types || []).indexOf("shed_found") !== -1, JSON.stringify(observed));
@@ -413,12 +417,13 @@ async function main() {
         var mapEl = document.querySelector(".leaflet-container").getBoundingClientRect();
         document.getElementById("btn-field-hunt-obs").click();
         var sheet = document.getElementById("sheet-field-hunt-obs");
-        var typeBtn = document.querySelector("[data-field-hunt-obs=\"other\"]");
-        var typeBox = typeBtn.getBoundingClientRect();
+        var typeBtn = document.querySelector("[data-field-hunt-obs=other]");
+        var typeBox = typeBtn ? typeBtn.getBoundingClientRect() : { height: 0 };
         var noteInput = document.getElementById("field-hunt-obs-note");
-        noteInput.focus();
+        if (noteInput) noteInput.focus();
         var kbOverflow = document.documentElement.scrollWidth > document.documentElement.clientWidth + 2;
-        document.querySelector("[data-close-sheet]").click();
+        var closer = document.querySelector("#sheet-field-hunt-obs [data-close-sheet]");
+        if (closer) closer.click();
         function inHud(box) {
           return box.height >= 40 && box.top >= hudBox.top - 2 && box.bottom <= hudBox.bottom + 2 &&
             box.left >= -2 && box.right <= window.innerWidth + 2 && box.bottom <= window.innerHeight + 2;
