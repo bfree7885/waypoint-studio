@@ -1,6 +1,6 @@
 # ShedHunting.org V1.5 — Hunt Plans
 
-**Status:** product work on Studio branch `cursor/sheds-v1-5-hunt-plans-3501`. Not merged. Not deployed. Do not run `scripts/publish-shed-hunting-host.mjs`.
+**Status:** merged to Studio main as Hunt Plans. Dedicated-host V1.5 is live on ShedHunting.org. V1.6 Field Hunt Mode is a separate product increment — do not treat this doc as authorization to deploy V1.6.
 
 V1.1–V1.2 answer **Should I go today?** and **what are conditions like?** V1.3 answers **Where should I look?** V1.4 saves **candidate places**. V1.5 connects those into a local field-planning workflow: **Where am I going to search?**
 

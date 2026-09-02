@@ -143,6 +143,14 @@ jobs:
           node automation/test-sheds-v1-5-hunt-plans.mjs
           node automation/test-sheds-v1-5-map-mobile.mjs
 
+      - name: Sheds V1.6 Field Hunt Mode
+        if: ${{ !cancelled() }}
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node automation/test-sheds-v1-6-field-hunt.mjs
+          node automation/test-sheds-v1-6-map-mobile.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:
