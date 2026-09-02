@@ -82,6 +82,7 @@ assert("field note not navigation", /not navigation and not evidence that sheds 
 assert("touch-sized field controls", /sheds-field-hunt-hud__touch[\s\S]{0,80}min-height:\s*2\.75rem/.test(css));
 assert("map remains primary in field hunt CSS", /is-field-hunting/.test(css) && /max-height:\s*min\(58vh/.test(css) && /field-hunt-hud__actions/.test(css));
 assert("map-app wires Start Hunt", /startFieldHuntFromPlan/.test(app) && /enterFieldHuntMode/.test(app));
+assert("closeAllSheets includes Quick Note", /function closeAllSheets[\s\S]{0,900}sheet-field-hunt-note/.test(app));
 assert("export omits Hunt Session", /Hunt Session is transient/.test(app) && !/huntSession:/.test(app));
 assert("no auto-check from GPS in session store", !/proximity|geofence|autoCheck|auto-check/.test(storeSrc));
 assert("applyUserPosition does not set Scout status", !/applyUserPosition[\s\S]{0,400}setStatus/.test(app));
