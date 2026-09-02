@@ -164,28 +164,32 @@
             <p class="sheds-inspect-hud__kicker" id="field-hunt-kicker">Hunt in progress</p>
             <button type="button" class="sheds-btn sheds-btn--ghost sheds-inspect-hud__close" id="btn-field-hunt-finish">Finish Hunt</button>
           </div>
-          <p class="sheds-field-hunt-hud__name" id="field-hunt-plan-name"></p>
-          <p class="sheds-field-hunt-hud__progress" id="field-hunt-progress"></p>
-          <section class="sheds-field-hunt-hud__spot" aria-labelledby="field-hunt-spot-heading">
-            <h3 class="sheds-scout-hud__h" id="field-hunt-spot-heading">Current Scout Spot</h3>
-            <p class="sheds-field-hunt-hud__spot-name" id="field-hunt-spot-name"></p>
-            <p class="sheds-field-hunt-hud__meta" id="field-hunt-spot-order"></p>
-            <p class="sheds-field-hunt-hud__meta" id="field-hunt-location"></p>
-            <p class="sheds-field-hunt-hud__dist" id="field-hunt-distance"></p>
-            <p class="sheds-field-hunt-hud__meta" id="field-hunt-terrain"></p>
-          </section>
-          <div class="sheds-field-hunt-hud__status" role="group" aria-label="Scout Spot field status">
-            <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-checked" data-field-hunt-status="Checked">Checked</button>
-            <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-revisit" data-field-hunt-status="Revisit">Revisit</button>
+          <div class="sheds-field-hunt-hud__body">
+            <p class="sheds-field-hunt-hud__name" id="field-hunt-plan-name"></p>
+            <p class="sheds-field-hunt-hud__progress" id="field-hunt-progress"></p>
+            <section class="sheds-field-hunt-hud__spot" aria-labelledby="field-hunt-spot-heading">
+              <h3 class="sheds-scout-hud__h" id="field-hunt-spot-heading">Current Scout Spot</h3>
+              <p class="sheds-field-hunt-hud__spot-name" id="field-hunt-spot-name"></p>
+              <p class="sheds-field-hunt-hud__meta" id="field-hunt-spot-order"></p>
+              <p class="sheds-field-hunt-hud__meta" id="field-hunt-location"></p>
+              <p class="sheds-field-hunt-hud__dist" id="field-hunt-distance"></p>
+              <p class="sheds-field-hunt-hud__meta" id="field-hunt-terrain"></p>
+            </section>
           </div>
-          <div class="sheds-field-hunt-hud__nav">
-            <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-prev">Previous</button>
-            <button type="button" class="sheds-btn sheds-btn--primary sheds-field-hunt-hud__touch" id="btn-field-hunt-next">Next Spot</button>
+          <div class="sheds-field-hunt-hud__actions">
+            <div class="sheds-field-hunt-hud__status" role="group" aria-label="Scout Spot field status">
+              <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-checked" data-field-hunt-status="Checked">Checked</button>
+              <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-revisit" data-field-hunt-status="Revisit">Revisit</button>
+            </div>
+            <div class="sheds-field-hunt-hud__nav">
+              <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-prev">Previous</button>
+              <button type="button" class="sheds-btn sheds-btn--primary sheds-field-hunt-hud__touch" id="btn-field-hunt-next">Next Spot</button>
+            </div>
+            <div class="sheds-field-hunt-hud__note-row">
+              <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-note">Quick Note</button>
+            </div>
           </div>
-          <div class="sheds-field-hunt-hud__note-row">
-            <button type="button" class="sheds-btn sheds-field-hunt-hud__touch" id="btn-field-hunt-note">Quick Note</button>
-          </div>
-          <p class="sheds-inspect-hud__note" id="field-hunt-field-note">Field Hunt Mode is working a Hunt Plan in the field — not navigation and not evidence that sheds are present.</p>
+          <p class="sheds-inspect-hud__note sheds-field-hunt-hud__honesty" id="field-hunt-field-note">Field Hunt Mode is working a Hunt Plan in the field — not navigation and not evidence that sheds are present.</p>
         </div>
       </div>
 

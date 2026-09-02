@@ -1984,7 +1984,7 @@
       if (spotNameEl) spotNameEl.textContent = activeEntry.name || "Scout Spot";
       if (orderEl) {
         orderEl.textContent = (availIdx >= 0 ? (availIdx + 1) : activeEntry.order) +
-          " of " + available.length + " in Hunt Plan order — next candidate location, not a route.";
+          " of " + available.length + " — Hunt Plan order, not a route.";
       }
       var bits = [];
       if (activeEntry.status) bits.push(activeEntry.status);
@@ -2000,9 +2000,9 @@
         : (state.userLatLng ? "Current location on map" : "Location unavailable");
     }
     if (distEl) {
-      if (dist.available) distEl.textContent = dist.display + " — geometric only, not walking or trail distance.";
+      if (dist.available) distEl.textContent = dist.display + " — geometric only.";
       else if (dist.reason === "location_unavailable") {
-        distEl.textContent = (dist.detail || "Straight-line distance needs your current location.") + " Distance is not invented.";
+        distEl.textContent = "Straight-line distance not shown.";
       } else distEl.textContent = dist.detail || dist.label || "Straight-line distance unavailable.";
     }
     var checkedBtn = $("btn-field-hunt-checked");

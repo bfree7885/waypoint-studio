@@ -75,12 +75,12 @@ const scoutSrc = read("apps/shed-hunting/js/sheds-scout-spot-store.js");
 
 assert("map loads hunt session store", /sheds-hunt-session-store\.js/.test(html));
 assert("Start Hunt control", /id="btn-hunt-plan-start"/.test(html) && /Start Hunt/.test(html));
-assert("Field Hunt HUD exists", /id="field-hunt-hud"/.test(html));
+assert("Field Hunt HUD exists", /id="field-hunt-hud"/.test(html) && /field-hunt-hud__actions/.test(html));
 assert("Finish Hunt control", /id="btn-field-hunt-finish"/.test(html));
 assert("Checked Revisit Quick Note Next", /id="btn-field-hunt-checked"/.test(html) && /id="btn-field-hunt-revisit"/.test(html) && /id="btn-field-hunt-note"/.test(html) && /id="btn-field-hunt-next"/.test(html));
 assert("field note not navigation", /not navigation and not evidence that sheds are present/.test(html));
 assert("touch-sized field controls", /sheds-field-hunt-hud__touch[\s\S]{0,80}min-height:\s*2\.75rem/.test(css));
-assert("map remains primary in field hunt CSS", /is-field-hunting/.test(css) && /max-height:\s*min\(52vh/.test(css));
+assert("map remains primary in field hunt CSS", /is-field-hunting/.test(css) && /max-height:\s*min\(58vh/.test(css) && /field-hunt-hud__actions/.test(css));
 assert("map-app wires Start Hunt", /startFieldHuntFromPlan/.test(app) && /enterFieldHuntMode/.test(app));
 assert("export omits Hunt Session", /Hunt Session is transient/.test(app) && !/huntSession:/.test(app));
 assert("no auto-check from GPS in session store", !/proximity|geofence|autoCheck|auto-check/.test(storeSrc));

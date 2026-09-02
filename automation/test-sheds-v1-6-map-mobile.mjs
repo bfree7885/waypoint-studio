@@ -252,7 +252,7 @@ async function main() {
     assert("Hunt Plan unchanged on start", !!started.planUnchanged);
     assert("progress visible", /0 of 3/.test(started.progress || ""), started.progress);
     assert("location unavailable is honest", /Location unavailable/i.test(started.loc || ""), started.loc);
-    assert("no fabricated distance", /not invented|unavailable|needs your current location/i.test(started.dist || ""), started.dist);
+    assert("no fabricated distance", /not shown|not invented|unavailable|needs your current location/i.test(started.dist || ""), started.dist);
     assert("active Scout Spot marked", started.activeMark >= 1 && started.orders >= 3, JSON.stringify(started));
     await shot("v16_field_hunt_started.png");
 
@@ -330,6 +330,10 @@ async function main() {
         var note = document.getElementById("btn-field-hunt-note").getBoundingClientRect();
         var next = document.getElementById("btn-field-hunt-next").getBoundingClientRect();
         var mapEl = document.querySelector(".leaflet-container").getBoundingClientRect();
+        function inHud(box) {
+          return box.height >= 40 && box.top >= hudBox.top - 2 && box.bottom <= hudBox.bottom + 2 &&
+            box.left >= -2 && box.right <= window.innerWidth + 2 && box.bottom <= window.innerHeight + 2;
+        }
         return {
           overflowX: doc.scrollWidth > doc.clientWidth + 2,
           scrollWidth: doc.scrollWidth,
@@ -337,25 +341,31 @@ async function main() {
           hudOverflow: hudBox.width > window.innerWidth + 2,
           hudHeight: Math.round(hudBox.height),
           finishH: Math.round(finish.height),
-          finishReachable: finish.height >= 40 && finish.top >= -2,
+          finishReachable: finish.height >= 40 && finish.top >= -2 && finish.bottom <= window.innerHeight + 2,
           checkedH: Math.round(checked.height),
+          checkedVisible: inHud(checked),
           revisitH: Math.round(revisit.height),
+          revisitVisible: inHud(revisit),
           noteH: Math.round(note.height),
+          noteVisible: inHud(note),
           nextH: Math.round(next.height),
-          coversMap: hudBox.height > window.innerHeight * 0.72,
+          nextVisible: inHud(next),
+          coversMap: hudBox.height > window.innerHeight * 0.78,
           mapH: Math.round(mapEl.height)
         };
       })()`);
       assert(vp.name + " no page horizontal overflow", !metrics.overflowX, "scroll=" + metrics.scrollWidth + " client=" + metrics.clientWidth);
       assert(vp.name + " field HUD not wider than viewport", !metrics.hudOverflow);
       assert(vp.name + " Finish reachable", !!metrics.finishReachable && metrics.finishH >= 40, JSON.stringify(metrics));
-      assert(vp.name + " Checked touch-sized", metrics.checkedH >= 40, "h=" + metrics.checkedH);
-      assert(vp.name + " Revisit touch-sized", metrics.revisitH >= 40);
-      assert(vp.name + " Quick Note touch-sized", metrics.noteH >= 40);
-      assert(vp.name + " Next Spot touch-sized", metrics.nextH >= 40);
+      assert(vp.name + " Checked touch-sized", metrics.checkedH >= 40 && !!metrics.checkedVisible, JSON.stringify(metrics));
+      assert(vp.name + " Revisit touch-sized", metrics.revisitH >= 40 && !!metrics.revisitVisible, JSON.stringify(metrics));
+      assert(vp.name + " Quick Note touch-sized", metrics.noteH >= 40 && !!metrics.noteVisible, JSON.stringify(metrics));
+      assert(vp.name + " Next Spot touch-sized", metrics.nextH >= 40 && !!metrics.nextVisible, JSON.stringify(metrics));
       assert(vp.name + " HUD does not cover the map", !metrics.coversMap, "h=" + metrics.hudHeight + " map=" + metrics.mapH);
       if (vp.width === 320) await shot("v16_mobile_320.png");
+      if (vp.width === 375) await shot("v16_mobile_375.png");
       if (vp.width === 390) await shot("v16_mobile_390.png");
+      if (vp.width === 430) await shot("v16_mobile_430.png");
     }
 
     ws.close();

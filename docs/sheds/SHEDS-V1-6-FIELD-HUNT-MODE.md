@@ -149,7 +149,7 @@ The map stays the primary surface. The Field Hunt HUD is compact (left, limited 
 
 ## Mobile UX
 
-First-class at 320 / 375 / 390 / 430. Primary controls target 44px. Finish, Checked, Revisit, Quick Note, Next Spot, and Start Hunt stay reachable. No horizontal page overflow. HUD must not cover the whole map.
+First-class at 320 / 375 / 390 / 430. Primary controls target 44px. Finish, Checked, Revisit, Quick Note, Next Spot, and Start Hunt stay reachable (field actions are pinned in the HUD; briefing peek is hidden while hunting so the map stays usable). No horizontal page overflow. HUD must not cover the whole map.
 
 ## Privacy
 
