@@ -3855,7 +3855,8 @@
       $("sheet-choose-hunt-plan"),
       $("sheet-save-area"),
       $("sheet-field-plan"),
-      $("sheet-session-summary")
+      $("sheet-session-summary"),
+      $("sheet-field-hunt-note")
     ].forEach(function (s) {
       if (s && s !== opts.except) closeSheetQuiet(s);
     });
