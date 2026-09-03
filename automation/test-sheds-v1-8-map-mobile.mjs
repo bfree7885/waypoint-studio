@@ -411,6 +411,8 @@ async function main() {
         var map = window.__SHEDS_MAP__;
         if (map) map.invalidateSize();
         window.WaypointShedsMapApp.openHuntHistory();
+        var huntsTab = document.getElementById("btn-history-hunts");
+        if (huntsTab) huntsTab.click();
         var sheet = document.getElementById("sheet-history");
         var panel = sheet ? sheet.querySelector(".sheds-sheet__panel") : null;
         var tab = document.getElementById("btn-history-hunts");
