@@ -935,6 +935,16 @@ html.sheds-session-active .sheds-scout-hud {
   max-height: min(78vh, 640px);
 }
 
+.sheds-sheet__panel--history .sheds-sheet__title {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-top: 0;
+  padding-top: 0.15rem;
+  padding-bottom: 0.35rem;
+  background: var(--sheds-surface-solid);
+}
+
 .sheds-history-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
