@@ -1701,7 +1701,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 
 - Capture one Condition Snapshot around hunt start. Do not refetch at finish. Do not invent coordinates from map center. If GPS is missing, store `no-location` and retry once on the first accepted track point.
 - Weather failure must never block Start Hunt, observations, or Finish Hunt. Write an unavailable snapshot so V1.9 records are not mistaken for pre-V1.9 legacy records.
+- An in-flight hunt-start weather callback must bind `sessionId` + `huntRecordId`. Finish Hunt is non-blocking and clears activity; applying Hunt A’s snapshot (or failure) onto Hunt B invents the next walk’s conditions.
+- Device GPS altitude must be stored from `applyUserPosition` (`state.userPosition` / `latlng.alt`). Hunt-start terrain cannot read a field the locate path never writes.
 - Keep snow depth, snowfall, SWE, and freeze/thaw distinct. Missing `snow_depth` is unavailable — never fill it from `snowfall_sum` / legacy `snowMm` (cm of snowfall, not depth).
+- `parseForecast` defaults `snowMm` to `0` when `snowfall_sum` is absent. Put `snowfallKnown: false` on that package so `factsFromWeather` does not treat the default as measured 0 cm snowfall.
 - Reuse `WaypointShedsWeather.fetchForecast` with a timeout and a 10-minute lat/lng de-dupe. If Today’s Hunt weather is already ready nearby, pass it as `weatherPackage` and skip a second request.
 - Search Areas `evaluateGrid` already ranks **per-cell terrain**. Today’s Hunt weather is one point and is excluded from cell priority. V2.0 still needs a spatial condition layer; V1.9 must not collapse that into one hunt-wide score.
 - Keep localStorage. A compact snapshot is ~1–2 KB versus ~90 KB of max Hunt Track. IndexedDB waits for photos, offline tiles, or measured quota failure.

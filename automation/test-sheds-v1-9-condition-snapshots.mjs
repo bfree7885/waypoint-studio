@@ -260,6 +260,9 @@ assert("no map-center substitute", /not invented from the map center/.test(app))
 assert("privacy: no hunt ids in service payload", !/huntRecordId|scoutSpot|shedFound/.test(svcSrc));
 assert("reuse Today’s Hunt weather when nearby", /weatherPackage: reuse/.test(app));
 assert("Finish Hunt not gated on weather", /Weather not yet recorded\. Hunt can continue/.test(app));
+assert("late weather snapshot binds hunt identity", /boundSessionId/.test(app) && /isSameHuntActivity/.test(app));
+assert("applyUserPosition stores GPS altitude", /function rememberGpsAltitude/.test(app) && /state\.userPosition\.altitude/.test(app));
+assert("huntConditionGps exposes altitude", /out\.alt/.test(app.slice(app.indexOf("function huntConditionGps"), app.indexOf("function huntConditionTerrain"))));
 assert("legacy snowMm is snowfall cm", /snowMm is recent snowfall_sum/.test(wxSrc));
 assert("Search Areas grid excludes Today from cell priority", /MUST NOT change cell priority/.test(spSrc));
 assert("ethics mentions Condition Snapshots stay on-device", /Condition Snapshots/.test(html));
@@ -312,6 +315,28 @@ const parsedMissing = Wx.parseForecast({
 assert("weather normalization omits unknown depth", parsedMissing.snowDepthKnown === false && parsedMissing.snowDepthM == null);
 const fromParsed = Snap.fromWeatherPackage({ lat: 41.3, lng: -74.8, weather: parsedMissing });
 assert("normalized snapshot keeps snowfall distinct", fromParsed.facts.snowfallSumCm != null && fromParsed.facts.snowDepthKnown === false);
+
+const noDailySnow = Wx.parseForecast({
+  current: { temperature_2m: 2, wind_speed_10m: 1, surface_pressure: 1012, precipitation: 0 }
+}, new Date("2026-09-03T15:00:00Z"));
+assert("parseForecast marks missing snowfall unknown", noDailySnow.snowfallKnown === false && noDailySnow.snowfallSumCm == null);
+const noSnowSnap = Snap.fromWeatherPackage({ lat: 41.3, lng: -74.8, weather: noDailySnow });
+assert("missing snowfall stays unavailable not zero", noSnowSnap.facts.snowfallSumCm == null);
+
+const knownZeroSnow = Wx.parseForecast({
+  current: { temperature_2m: 1, wind_speed_10m: 2, surface_pressure: 1010, precipitation: 0 },
+  daily: { time: ["2026-09-03"], snowfall_sum: [0], precipitation_sum: [0], temperature_2m_min: [1], temperature_2m_max: [4] }
+}, new Date("2026-09-03T15:00:00Z"));
+assert("known zero snowfall remains zero", knownZeroSnow.snowfallKnown === true && knownZeroSnow.snowfallSumCm === 0);
+const knownZeroSnap = Snap.fromWeatherPackage({ lat: 41.3, lng: -74.8, weather: knownZeroSnow });
+assert("known zero snowfall is stored as 0", knownZeroSnap.facts.snowfallSumCm === 0);
+
+const legacyOnlySnow = Snap.fromWeatherPackage({
+  lat: 41.3,
+  lng: -74.8,
+  weather: { ready: true, tempC: 0, snowMm: 3.2 }
+});
+assert("legacy snowMm still records snowfall", legacyOnlySnow.facts.snowfallSumCm === 3.2);
 
 const emptyWx = Snap.fromWeatherPackage({ lat: 41.3, lng: -74.8, weather: { ready: true, freezeThaw: { status: "insufficient" } } });
 assert("empty weather package is unavailable not recorded magic", Snap.presence({ conditionSnapshot: emptyWx }) === "unavailable");

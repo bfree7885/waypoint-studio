@@ -1105,9 +1105,17 @@
     publishLocationDebug();
   }
 
+  function rememberGpsAltitude(alt) {
+    if (alt == null || !isFinite(Number(alt))) return;
+    if (!state.userPosition) state.userPosition = {};
+    state.userPosition.altitude = Number(alt);
+  }
+
   /** Apply GPS only when movement exceeds threshold (or forced). Prevents oscillation. */
   function applyUserPosition(ll, accuracyM, headingDeg, opts) {
     opts = opts || {};
+    rememberGpsAltitude(opts.altitude);
+    if (ll && isFinite(ll.alt)) rememberGpsAltitude(ll.alt);
     if (
       !opts.force &&
       state.userLatLng &&
@@ -2163,7 +2171,12 @@
 
   function huntConditionGps() {
     if (state.userLatLng && isFinite(state.userLatLng.lat) && isFinite(state.userLatLng.lng)) {
-      return { lat: state.userLatLng.lat, lng: state.userLatLng.lng };
+      var out = { lat: state.userLatLng.lat, lng: state.userLatLng.lng };
+      var alt = null;
+      if (state.userPosition && isFinite(state.userPosition.altitude)) alt = state.userPosition.altitude;
+      else if (isFinite(state.userLatLng.alt)) alt = state.userLatLng.alt;
+      if (alt != null) out.alt = alt;
+      return out;
     }
     return null;
   }
@@ -2235,6 +2248,14 @@
       }
     }
 
+    var boundSessionId = activity.sessionId;
+    var boundHuntRecordId = activity.huntRecordId;
+    function isSameHuntActivity() {
+      var current = HuntActivity && HuntActivity.get();
+      return !!(current && current.sessionId === boundSessionId &&
+        current.huntRecordId === boundHuntRecordId);
+    }
+
     ConditionService.getConditionSnapshot({
       lat: gps.lat,
       lng: gps.lng,
@@ -2243,9 +2264,10 @@
       weatherPackage: reuse || undefined,
       terrain: huntConditionTerrain(gps)
     }).then(function (snap) {
-      if (!snap || !HuntActivity || !HuntActivity.get()) return;
+      if (!snap || !isSameHuntActivity()) return;
       try { HuntActivity.setConditionSnapshot(snap); } catch (e) { /* hunt continues */ }
     }).catch(function () {
+      if (!isSameHuntActivity()) return;
       try {
         HuntActivity.setConditionSnapshot(ConditionSnapshot.unavailable({
           lat: gps.lat,
@@ -4039,7 +4061,7 @@
         ll,
         pos.coords.accuracy,
         pos.coords.heading != null && !isNaN(pos.coords.heading) ? pos.coords.heading : null,
-        { force: false }
+        { force: false, altitude: pos.coords.altitude }
       );
       setLocStatus(
         "available",
@@ -4197,7 +4219,11 @@
       rememberGpsDenied(false);
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
       if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
-      applyUserPosition(ll, pos.coords.accuracy, state.headingDeg, { force: true, source: "geolocation" });
+      applyUserPosition(ll, pos.coords.accuracy, state.headingDeg, {
+        force: true,
+        source: "geolocation",
+        altitude: pos.coords.altitude
+      });
       var accDetail = state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "";
       if (state.locationKind === LOCATION_KIND.USER_APPROXIMATE) {
         accDetail = (accDetail ? accDetail + " · " : "") + "approximate — not precise";
