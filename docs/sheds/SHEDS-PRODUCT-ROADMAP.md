@@ -34,7 +34,7 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V1.4** | Save candidate places (Scout Spots) | Shipped |
 | **V1.5** | Plan the search (Hunt Plans) | Shipped |
 | **V1.6** | Work the plan in the field (Field Hunt Mode) | Shipped on ShedHunting.org |
-| **V1.7** | Record where I searched and what I observed | Hunt Track + field observations + durable Hunt Records. Studio implementation; dedicated-host publish is a separate owner gate. |
+| **V1.7** | Record where I searched and what I observed | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
 | **V1.8** | Hunt History | Not started. Read V1.7 Hunt Records. Do not begin until V1.7 is accepted. |
 | **V1.9** | Field refinement | Richer private records and storage groundwork (IndexedDB or equivalent) as needed. Not started. |
 
