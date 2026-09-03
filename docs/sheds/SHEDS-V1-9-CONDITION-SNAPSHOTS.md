@@ -55,7 +55,7 @@ Behavior:
 2. On the first accepted Hunt Track point, retry once while the snapshot is still `no-location`.
 3. If Today’s Hunt weather is already `ready`, was fetched for **GPS** (never map-center), and is within **0.01° (~1.1 km)** of hunt GPS, pass it as `weatherPackage` (no second Open-Meteo call). A looser 0.5° window would attach conditions from an inappropriate location.
 4. Otherwise fetch via the existing forecast query, 8 s timeout, 10-minute in-flight / last-ok de-dupe at 4-decimal lat/lng.
-5. An `ok` snapshot is never overwritten.
+5. An `ok` snapshot is never overwritten. An in-flight callback is bound to that hunt’s `sessionId` + `huntRecordId` so a late response cannot attach to a later hunt.
 6. Finish Hunt does **not** wait on weather. If the request has not completed, the Hunt Record still saves (placeholder unavailable, or whatever was already stored).
 
 ## Schema (`kind: "condition-snapshot"`, `schemaVersion: 1`)
@@ -83,7 +83,7 @@ Location: `{ lat, lng }` only when coordinates pass validation. Never repaired. 
 
 `season`: `localDate`, `month`, `dayOfYear`, `phaseId`, `phaseLabel`, `phaseRule`. Phase comes from `WaypointShedsTiming.evaluate` (regional photoperiod heuristic, **not** a cast date).
 
-`terrain`: optional `elevationM` from **device GPS altitude already on hand**. No extra Open-Meteo elevation fetch at hunt start. No Search Areas grid copy. Slope/aspect stay unset unless already supplied.
+`terrain`: optional `elevationM` from **device GPS altitude already on hand** (`applyUserPosition` stores `coords.altitude` onto `state.userPosition`). No extra Open-Meteo elevation fetch at hunt start. No Search Areas grid copy. Slope/aspect stay unset unless already supplied.
 
 `provenance`: weather = `open-meteo-forecast`; elevation = `device-gps-altitude-if-present`; season = `sheds-timing`.
 
@@ -107,6 +107,7 @@ Hourly arrays are **not** stored. Compact facts only.
 - Explicit `0` is known bare ground.
 - Never fill depth from precipitation or snowfall.
 - Legacy weather field `snowMm` is snowfall in **cm**, not millimeters of depth.
+- `parseForecast` still defaults `snowMm` to `0` when daily `snowfall_sum` is absent. The package now carries `snowfallKnown: false` in that case so snapshots do not store a fake 0 cm snowfall.
 
 ## Freeze / thaw
 
