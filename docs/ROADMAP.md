@@ -1,10 +1,13 @@
 # Waypoint Studio — Unified Roadmap
 
-**Last updated:** 2026-07-18 (SignalTerrain master engineering roadmap linked)  
+**Last updated:** 2026-09-03  
+**Canonical portfolio:** [PRODUCT-DIRECTION.md](PRODUCT-DIRECTION.md) wins when this file disagrees.
+
+**Shed Hunting sequence and V2.x intelligence:** [sheds/SHEDS-PRODUCT-ROADMAP.md](sheds/SHEDS-PRODUCT-ROADMAP.md). The flagship future Sheds+ feature is a **dynamic shifting search-priority map**, not an antler-location predictor. Do not implement it in V1.7.
+
 **Principle:** Shared systems first. One cohesive platform. Core instruments ship publicly; additional products grow from real foundations.
 
-> **Portfolio:** See [UNIFIED-PLATFORM.md](UNIFIED-PLATFORM.md), [STRATEGIC-DIRECTION.md](STRATEGIC-DIRECTION.md).  
-> **SignalTerrain engineering:** Milestone work is governed by [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md) — not ad-hoc feature lists.
+> Older rows below (Regional Dashboard / ForageCast / Fieldry as equal public apps) are **historical**. SignalTerrain engineering remains [SIGNALTERRAIN-ROADMAP.md](SIGNALTERRAIN-ROADMAP.md).
 
 ---
 

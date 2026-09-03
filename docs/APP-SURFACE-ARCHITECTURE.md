@@ -60,9 +60,10 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 ## Shed Hunting specifically
 
 - Public entrance: `https://shedhunting.org/` (overview) — **Should I go shed hunting today?**
-- Field interface: `https://shedhunting.org/map/` — **Where should I look?**
+- Field interface: `https://shedhunting.org/map/` — **Where should I look?** plus Field Hunt, Hunt Track, and private observations.
 - Map HUD is immersive (no studio primary nav); escape via the overview.
 - Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
+- Version sequence and V2.x flagship dynamic search-priority map: `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`. Do not implement that map in V1.7.
 
 ## Scenes specifically
 

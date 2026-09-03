@@ -1689,6 +1689,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Import at the 40-plan cap must skip extra **new** ids and count them as skipped (same honesty lesson as V1.4 Scout Spots). Missing Scout Spot ids stay listed as unavailable; do not fabricate Scout Spots.
 - Keep Hunt Plans vs Field Plan naming distinct in More. V1.5 is Hunt Plans.
 
+### Lessons Learned — Shed Hunting V1.7 Hunt Track & Observations (2026-09-02)
+
+- Shed Hunting versions follow `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`. The flagship V2.x Sheds+ feature is a **dynamic shifting search-priority map** — not an antler-location predictor. Do not implement it in V1.7. Do not treat private Hunt Tracks as licensable B2B data.
+- Do not stuff a GPS array into the V1.6 Hunt Session. Keep `waypoint-sheds-hunt-session-v1` as workflow state; persist live track + observations on `waypoint-sheds-hunt-activity-v1` and finished hunts on `waypoint-sheds-hunt-records-v1`.
+- Finish Hunt must persist the Hunt Record **before** clearing the session. If localStorage quota fails, show the error and leave the hunt active — never silently discard a finished walk.
+- Filtering GPS must drop impossible/jitter/teleport samples, not smooth a fictional route. Searched distance is a haversine of accepted points, not a trail or recommended route. Duration uses `startedAt` timestamps.
+- Observations without a valid location still save. Shed Found is user-reported evidence, not Search Priority and not a prediction. Do not export the transient Hunt Session or in-progress activity in field JSON.
+
 ### Lessons Learned — Shed Hunting V1.6 Field Hunt Mode (2026-09-01)
 
 - A Hunt Session (`waypoint-sheds-hunt-session-v1`) is **workflow state**, not field data. Do not export it in `sheds-field-private.json`. Scout Spot status/notes stay on `waypoint-sheds-scout-spots-v1`; do not duplicate terrain or saved Today into the session.
