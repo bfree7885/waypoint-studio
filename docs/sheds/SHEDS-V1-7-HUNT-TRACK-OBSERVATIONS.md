@@ -53,7 +53,7 @@ IndexedDB is not used in V1.7. Caps keep a typical origin quota (~5 MB) usable:
 - 80 observations per hunt
 - 12 finished Hunt Records
 
-Hunt History and V2.x personalization are expected to outgrow localStorage. IndexedDB (or equivalent) is **V1.8 / V1.9 / V2.x technical debt**, not a V1.7 migration.
+Hunt History and V2.x personalization are expected to outgrow localStorage. V1.8 reviewed this and **kept localStorage** (cap 24 finished records). IndexedDB remains V1.9 / V2.x technical debt until photos, offline tiles, or quota failure.
 
 If the finished-hunt write fails (quota or storage unavailable), the UI reports the error and **does not discard** the in-progress hunt. Oldest **finished** records may be dropped **only** to make room for a new successful save, with an explicit warning.
 
