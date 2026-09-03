@@ -290,6 +290,11 @@ assert("dist copies hunt activity store file", fs.existsSync(path.join(ROOT, "di
 assert("dist copies hunt record store file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-hunt-record-store.js")));
 assert("dist map has Hunt History", /id="btn-history"/.test(distMapHtml) && /Hunt History/.test(distMapHtml));
 assert("dist map has Hunt Detail sheet", /id="sheet-hunt-detail"/.test(distMapHtml));
+assert("dist map loads condition snapshot", /sheds-condition-snapshot\.js/.test(distMapHtml));
+assert("dist map loads condition service", /sheds-condition-service\.js/.test(distMapHtml));
+assert("dist map has Hunt Detail conditions", /id="hunt-detail-conditions"/.test(distMapHtml));
+assert("dist copies condition snapshot file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-condition-snapshot.js")));
+assert("dist copies condition service file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-condition-service.js")));
 assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
 assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
 assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/robots.txt")) && !/Disallow: \//.test(read("dist/shedhunting/robots.txt")));

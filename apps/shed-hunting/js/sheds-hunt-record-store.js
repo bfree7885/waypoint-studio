@@ -178,8 +178,21 @@
       interrupted: !!raw.interrupted,
       interruptReason: raw.interruptReason || null,
       quotaWarning: raw.quotaWarning ? String(raw.quotaWarning).slice(0, 240) : null,
+      conditionSnapshot: normalizeConditionSnapshot(raw.conditionSnapshot),
       privacy: PRIVACY
     };
+  }
+
+  function normalizeConditionSnapshot(raw) {
+    if (raw == null) return undefined;
+    if (typeof raw !== "object") return undefined;
+    var Snap = global.WaypointShedsConditionSnapshot;
+    if (Snap && typeof Snap.normalize === "function") {
+      var n = Snap.normalize(raw);
+      return n || undefined;
+    }
+    if (raw.kind && String(raw.kind) !== "condition-snapshot") return undefined;
+    return raw;
   }
 
   function loadBundle() {

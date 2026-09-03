@@ -31,6 +31,8 @@
   var HuntSession = window.WaypointShedsHuntSession;
   var HuntActivity = window.WaypointShedsHuntActivity;
   var HuntRecords = window.WaypointShedsHuntRecords;
+  var ConditionService = window.WaypointShedsConditionService;
+  var ConditionSnapshot = window.WaypointShedsConditionSnapshot;
   var FieldPlan = window.WaypointShedsFieldPlan;
   var FieldUi = window.WaypointShedsFieldUi;
   var Ux = window.WaypointShedsUxPolish;
@@ -1916,7 +1918,13 @@
       alt: alt,
       t: t
     });
-    if (result && result.accepted) redrawHuntTrack();
+    if (result && result.accepted) {
+      redrawHuntTrack();
+      var act = HuntActivity.get();
+      var snap = act && act.conditionSnapshot;
+      var missingGps = !snap || (snap.acquisition && snap.acquisition.status === "no-location");
+      if (missingGps) scheduleHuntConditionSnapshot({ reason: "first-gps" });
+    }
   }
 
   function redrawHuntTrack() {
@@ -2150,6 +2158,104 @@
     renderFieldHuntHud();
     refreshScoutSpots();
     if (session.activeScoutSpotId) panToScoutIfPossible(session.activeScoutSpotId);
+    scheduleHuntConditionSnapshot({ reason: "hunt-start" });
+  }
+
+  function huntConditionGps() {
+    if (state.userLatLng && isFinite(state.userLatLng.lat) && isFinite(state.userLatLng.lng)) {
+      return { lat: state.userLatLng.lat, lng: state.userLatLng.lng };
+    }
+    return null;
+  }
+
+  function huntConditionTerrain(latlng) {
+    var alt = null;
+    if (state.userPosition && isFinite(state.userPosition.altitude)) alt = state.userPosition.altitude;
+    else if (latlng && isFinite(latlng.alt)) alt = latlng.alt;
+    if (alt == null) return null;
+    return { elevationM: alt };
+  }
+
+  function scheduleHuntConditionSnapshot(opts) {
+    opts = opts || {};
+    if (!HuntActivity || !HuntActivity.get()) return;
+    var activity = HuntActivity.get();
+    var existing = activity && activity.conditionSnapshot;
+    if (existing && existing.acquisition && existing.acquisition.status === "ok") return;
+    if (!ConditionSnapshot) return;
+
+    var gps = huntConditionGps();
+    if (!gps) {
+      if (!existing || existing.acquisition.status !== "no-location") {
+        try {
+          HuntActivity.setConditionSnapshot(ConditionSnapshot.unavailable({
+            status: "no-location",
+            reason: "No GPS at hunt start. Conditions were not invented from the map center.",
+            captureContext: "hunt-start"
+          }));
+        } catch (e) { /* hunt continues */ }
+      }
+      return;
+    }
+
+    if (!ConditionService || typeof ConditionService.getConditionSnapshot !== "function") {
+      try {
+        HuntActivity.setConditionSnapshot(ConditionSnapshot.unavailable({
+          lat: gps.lat,
+          lng: gps.lng,
+          status: "unavailable",
+          reason: "Condition service unavailable.",
+          captureContext: "hunt-start",
+          terrain: huntConditionTerrain(gps)
+        }));
+      } catch (e) { /* */ }
+      return;
+    }
+
+    if (!existing || (existing.acquisition && existing.acquisition.status === "no-location")) {
+      try {
+        HuntActivity.setConditionSnapshot(ConditionSnapshot.unavailable({
+          lat: gps.lat,
+          lng: gps.lng,
+          status: "unavailable",
+          reason: "Weather not yet recorded. Hunt can continue.",
+          captureContext: "hunt-start",
+          terrain: huntConditionTerrain(gps)
+        }));
+      } catch (ePre) { /* hunt continues */ }
+    }
+
+    var reuse = null;
+    if (state.weather && state.weatherStatus === "ready" && state.weather.ready !== false) {
+      var plat = state.weather.fetchLat;
+      var plng = state.weather.fetchLng;
+      if (isFinite(plat) && isFinite(plng) &&
+          Math.abs(plat - gps.lat) <= 0.5 && Math.abs(plng - gps.lng) <= 0.5) {
+        reuse = state.weather;
+      }
+    }
+
+    ConditionService.getConditionSnapshot({
+      lat: gps.lat,
+      lng: gps.lng,
+      time: new Date(),
+      captureContext: "hunt-start",
+      weatherPackage: reuse || undefined,
+      terrain: huntConditionTerrain(gps)
+    }).then(function (snap) {
+      if (!snap || !HuntActivity || !HuntActivity.get()) return;
+      try { HuntActivity.setConditionSnapshot(snap); } catch (e) { /* hunt continues */ }
+    }).catch(function () {
+      try {
+        HuntActivity.setConditionSnapshot(ConditionSnapshot.unavailable({
+          lat: gps.lat,
+          lng: gps.lng,
+          status: "unavailable",
+          reason: "Weather request failed. Hunt can continue.",
+          captureContext: "hunt-start"
+        }));
+      } catch (e2) { /* */ }
+    });
   }
 
   function renderFieldHuntHud() {
@@ -4812,6 +4918,7 @@
         (unmappedCount ? " (" + unmappedCount + " without map coordinates)" : "") + "</dd></div>" +
         "<div><dt>Shed Found</dt><dd>" + escapeHtml(String(shedCount)) + "</dd></div>";
     }
+    renderHuntDetailConditions(rec);
     if (trackNote) {
       if (!rec.trackPoints || rec.trackPoints.length < 2) {
         trackNote.textContent = "No Hunt Track was recorded for this hunt. GPS was unavailable or no accepted points were saved.";
@@ -4844,6 +4951,25 @@
       mapBtn.disabled = !canShow && !on;
       mapBtn.textContent = on ? "Hide from map" : "Show on map";
     }
+  }
+
+  function renderHuntDetailConditions(rec) {
+    var section = $("hunt-detail-conditions");
+    var noteEl = $("hunt-detail-conditions-note");
+    var dl = $("hunt-detail-conditions-stats");
+    if (!section || !dl) return;
+    var rows = ConditionSnapshot && ConditionSnapshot.detailRows
+      ? ConditionSnapshot.detailRows(rec)
+      : { kind: rec && rec.conditionSnapshot ? "unavailable" : "legacy", heading: "Conditions at hunt time", note: rec && rec.conditionSnapshot ? "Unavailable" : "Conditions not recorded.", rows: [] };
+    section.hidden = false;
+    if (noteEl) noteEl.textContent = rows.note || "";
+    if (!rows.rows || !rows.rows.length) {
+      dl.innerHTML = "";
+      return;
+    }
+    dl.innerHTML = rows.rows.map(function (row) {
+      return "<div><dt>" + escapeHtml(row.dt) + "</dt><dd>" + escapeHtml(row.dd) + "</dd></div>";
+    }).join("");
   }
 
   function visibleHistoryIds() {

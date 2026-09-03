@@ -1697,6 +1697,16 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Filtering GPS must drop impossible/jitter/teleport samples, not smooth a fictional route. Searched distance is a haversine of accepted points, not a trail or recommended route. Duration uses `startedAt` timestamps.
 - Observations without a valid location still save. Shed Found is user-reported evidence, not Search Priority and not a prediction. Do not export the transient Hunt Session or in-progress activity in field JSON.
 
+### Lessons Learned — Shed Hunting V1.9 Condition Snapshots (2026-09-03)
+
+- Capture one Condition Snapshot around hunt start. Do not refetch at finish. Do not invent coordinates from map center. If GPS is missing, store `no-location` and retry once on the first accepted track point.
+- Weather failure must never block Start Hunt, observations, or Finish Hunt. Write an unavailable snapshot so V1.9 records are not mistaken for pre-V1.9 legacy records.
+- Keep snow depth, snowfall, SWE, and freeze/thaw distinct. Missing `snow_depth` is unavailable — never fill it from `snowfall_sum` / legacy `snowMm` (cm of snowfall, not depth).
+- Reuse `WaypointShedsWeather.fetchForecast` with a timeout and a 10-minute lat/lng de-dupe. If Today’s Hunt weather is already ready nearby, pass it as `weatherPackage` and skip a second request.
+- Search Areas `evaluateGrid` already ranks **per-cell terrain**. Today’s Hunt weather is one point and is excluded from cell priority. V2.0 still needs a spatial condition layer; V1.9 must not collapse that into one hunt-wide score.
+- Keep localStorage. A compact snapshot is ~1–2 KB versus ~90 KB of max Hunt Track. IndexedDB waits for photos, offline tiles, or measured quota failure.
+- Provenance is a product requirement. Document third-party datasets with UNVERIFIED where commercial/redistribution rights are not confirmed. Do not assume “accessible” means resellable.
+
 ### Lessons Learned — Shed Hunting V1.8 Hunt History (2026-09-03)
 
 - Hunt History reads `waypoint-sheds-hunt-records-v1`. Do not invent a parallel history store. Newest-first, honest unavailable/zero/no-track states, and an empty state that is not an error.

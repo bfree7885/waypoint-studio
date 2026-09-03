@@ -35,10 +35,10 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V1.5** | Plan the search (Hunt Plans) | Shipped |
 | **V1.6** | Work the plan in the field (Field Hunt Mode) | Shipped on ShedHunting.org |
 | **V1.7** | Record where I searched and what I observed | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
-| **V1.8** | Hunt History | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
-| **V1.9** | Field refinement | Richer private records and storage groundwork (IndexedDB or equivalent) as needed. Not started. |
+| **V1.8** | Hunt History | Shipped on ShedHunting.org. |
+| **V1.9** | Condition Snapshots | Factual environmental/context foundation for Hunt Records. Not the V2.x heat map. In review. |
 
-V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records.
+V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records. V1.9 stores a factual Condition Snapshot on new Hunt Records (weather/season/optional GPS altitude) without changing the History list.
 
 ---
 

@@ -167,6 +167,14 @@ jobs:
           node automation/test-sheds-v1-8-hunt-history.mjs
           node automation/test-sheds-v1-8-map-mobile.mjs
 
+      - name: Sheds V1.9 Condition Snapshots
+        if: ${{ !cancelled() }}
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node automation/test-sheds-v1-9-condition-snapshots.mjs
+          node automation/test-sheds-v1-9-map-mobile.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:

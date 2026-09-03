@@ -165,7 +165,7 @@ First-class widths: 320 / 375 / 390 / 430. Primary controls remain ~44px (`2.75r
 ## Future
 
 - **V1.8** Hunt History reads these Hunt Records.
-- **V1.9** may add richer private records and a larger local store (IndexedDB is technical debt, not V1.7 work).
+- **V1.9** Condition Snapshots are compact facts on new Hunt Records. V1.9 reassessed storage and **kept localStorage**; IndexedDB remains later debt (photos, offline tiles, or measured quota failure). See `docs/sheds/SHEDS-V1-9-CONDITION-SNAPSHOTS.md`.
 - **V2.x flagship (Sheds+):** a **dynamic, shifting search-priority / opportunity map**. It is not an antler-location predictor. See `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`.
 
 V1.7 does **not** implement accounts, cloud sync, sharing, leaderboards, payment, or the V2.x map.

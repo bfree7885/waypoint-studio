@@ -137,7 +137,7 @@ Caps otherwise unchanged: 1,800 track points and 80 observations per record.
 IndexedDB (or equivalent) remains **documented debt**. Migrate when one of these is true — not for elegance:
 
 1. Users regularly hit the 24-record cap or localStorage quota warnings during Finish Hunt.
-2. V1.9 / later adds photos or other binary field evidence.
+2. Later increments add photos or other binary field evidence. V1.9 Condition Snapshots are compact JSON (~1–2 KB) and did not trigger this migration.
 3. Offline basemap/pack caching needs the same origin storage budget.
 4. Multi-season history becomes a product requirement beyond a bounded recent set.
 5. Native apps need a shared local database.

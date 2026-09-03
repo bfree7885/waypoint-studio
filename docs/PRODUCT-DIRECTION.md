@@ -62,11 +62,11 @@ Shed Hunting version sequence and the V2.x intelligence milestone: [`docs/sheds/
 | V1.6 | Work the plan in the field |
 | V1.7 | Hunt Track, field observations, durable Hunt Records (private / local) |
 | V1.8 | Hunt History |
-| V1.9 | Field refinement / richer private records / storage groundwork |
+| V1.9 | Condition Snapshots — factual environmental foundation for later intelligence. Not the heat map. |
 | **V2.x** | **Flagship Sheds+ intelligence:** a **dynamic, shifting search-priority / opportunity map** that changes with real conditions and explains why ranks change. Not an antler-location predictor. |
 | V3.0 | Production iOS/Android, serious offline, Sheds/Sheds+ commercial system, field beta, hard public launch |
 
-Do **not** implement the V2.x dynamic map in V1.7–V1.8. V1.7 field history and V1.8 Hunt History exist so later intelligence can use private first-party hunt records without claiming known shed locations.
+Do **not** implement the V2.x dynamic map in V1.7–V1.9. V1.7 field history, V1.8 Hunt History, and V1.9 Condition Snapshots exist so later intelligence can use private first-party hunt records and factual conditions without claiming known shed locations.
 
 ### 3. Waypoint Deck (distinct project)
 
