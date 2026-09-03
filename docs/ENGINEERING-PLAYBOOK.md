@@ -1697,6 +1697,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Filtering GPS must drop impossible/jitter/teleport samples, not smooth a fictional route. Searched distance is a haversine of accepted points, not a trail or recommended route. Duration uses `startedAt` timestamps.
 - Observations without a valid location still save. Shed Found is user-reported evidence, not Search Priority and not a prediction. Do not export the transient Hunt Session or in-progress activity in field JSON.
 
+### Lessons Learned — Shed Hunting V1.8 Hunt History (2026-09-03)
+
+- Hunt History reads `waypoint-sheds-hunt-records-v1`. Do not invent a parallel history store. Newest-first, honest unavailable/zero/no-track states, and an empty state that is not an error.
+- Historical tracks are **search history**, visually subordinate to the live Field Hunt track. Multiple tracks are allowed. Do not blur them into a heat map or imply searched areas have fewer or more sheds.
+- V1.8 kept localStorage. Raising the finished-record cap from 12 to 24 is enough for a History UI; IndexedDB waits for photos, offline tiles, quota failure, or multi-season product need. Never silently drop V1.4–V1.7 private data.
+- Individual Hunt Record delete is confirm-only and must not delete Scout Spots or Hunt Plans. Facts stay separate from future derived intelligence — no heat scores on Hunt Records.
+- Keep data classes distinct: third-party licensed sources, Sheds-derived intelligence, private user field data, and future explicit opt-in aggregation. Private hunter GPS is not a B2B dataset.
+
 ### Lessons Learned — Shed Hunting V1.6 Field Hunt Mode (2026-09-01)
 
 - A Hunt Session (`waypoint-sheds-hunt-session-v1`) is **workflow state**, not field data. Do not export it in `sheds-field-private.json`. Scout Spot status/notes stay on `waypoint-sheds-scout-spots-v1`; do not duplicate terrain or saved Today into the session.

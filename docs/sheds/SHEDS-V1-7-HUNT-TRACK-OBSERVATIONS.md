@@ -1,6 +1,6 @@
 # ShedHunting.org V1.7 — Hunt Track & Field Observations
 
-**Status:** merged to Studio `main` (`aa84f348`). Dedicated-host artifact can be prepared with `scripts/prepare-shed-hunting-host.mjs`. Do **not** run `scripts/publish-shed-hunting-host.mjs` unless the owner publishes ShedHunting.org. Do not begin V1.8 Hunt History UI until asked. Do not implement the V2.x dynamic search-priority map in this increment.
+**Status:** merged to Studio `main` (`aa84f348`). Dedicated-host artifact can be prepared with `scripts/prepare-shed-hunting-host.mjs`. Do **not** run `scripts/publish-shed-hunting-host.mjs` unless the owner publishes ShedHunting.org. V1.8 Hunt History is a separate increment (`docs/sheds/SHEDS-V1-8-HUNT-HISTORY.md`). Do not implement the V2.x dynamic search-priority map in V1.7.
 
 V1.1–V1.2 answer **Should I go today?** and **what are conditions like?** V1.3 **Where should I look?** V1.4 **Save candidate places.** V1.5 **Plan the search.** V1.6 **Work the plan in the field.** V1.7 **Record where I searched and what I observed.**
 
@@ -53,7 +53,7 @@ IndexedDB is not used in V1.7. Caps keep a typical origin quota (~5 MB) usable:
 - 80 observations per hunt
 - 12 finished Hunt Records
 
-Hunt History and V2.x personalization are expected to outgrow localStorage. IndexedDB (or equivalent) is **V1.8 / V1.9 / V2.x technical debt**, not a V1.7 migration.
+Hunt History and V2.x personalization are expected to outgrow localStorage. V1.8 reviewed this and **kept localStorage** (cap 24 finished records). IndexedDB remains V1.9 / V2.x technical debt until photos, offline tiles, or quota failure.
 
 If the finished-hunt write fails (quota or storage unavailable), the UI reports the error and **does not discard** the in-progress hunt. Oldest **finished** records may be dropped **only** to make room for a new successful save, with an explicit warning.
 
