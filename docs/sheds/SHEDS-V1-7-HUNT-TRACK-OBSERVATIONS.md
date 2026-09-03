@@ -1,6 +1,6 @@
 # ShedHunting.org V1.7 — Hunt Track & Field Observations
 
-**Status:** merged to Studio `main` (`aa84f348`). Dedicated-host artifact can be prepared with `scripts/prepare-shed-hunting-host.mjs`. Do **not** run `scripts/publish-shed-hunting-host.mjs` unless the owner publishes ShedHunting.org. Do not begin V1.8 Hunt History UI until asked. Do not implement the V2.x dynamic search-priority map in this increment.
+**Status:** merged to Studio `main` (`aa84f348`). Dedicated-host artifact can be prepared with `scripts/prepare-shed-hunting-host.mjs`. Do **not** run `scripts/publish-shed-hunting-host.mjs` unless the owner publishes ShedHunting.org. V1.8 Hunt History is a separate increment (`docs/sheds/SHEDS-V1-8-HUNT-HISTORY.md`). Do not implement the V2.x dynamic search-priority map in V1.7.
 
 V1.1–V1.2 answer **Should I go today?** and **what are conditions like?** V1.3 **Where should I look?** V1.4 **Save candidate places.** V1.5 **Plan the search.** V1.6 **Work the plan in the field.** V1.7 **Record where I searched and what I observed.**
 

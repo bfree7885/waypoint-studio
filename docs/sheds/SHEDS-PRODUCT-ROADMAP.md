@@ -35,10 +35,10 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V1.5** | Plan the search (Hunt Plans) | Shipped |
 | **V1.6** | Work the plan in the field (Field Hunt Mode) | Shipped on ShedHunting.org |
 | **V1.7** | Record where I searched and what I observed | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
-| **V1.8** | Hunt History | Not started. Read V1.7 Hunt Records. Do not begin until V1.7 is accepted. |
+| **V1.8** | Hunt History | Implemented on Studio feature branch. Reads V1.7 Hunt Records. Not a heat map. |
 | **V1.9** | Field refinement | Richer private records and storage groundwork (IndexedDB or equivalent) as needed. Not started. |
 
-V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map.
+V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records.
 
 ---
 
@@ -119,15 +119,17 @@ Architecture must keep these **distinct**. Mixing them is a product and legal de
 | **Third-party / raw licensed data** | Weather, elevation, land cover, parcels, etc. obtained under a vendor license | Only as that license allows. Preserve provenance. |
 | **Sheds-derived intelligence** | Search-priority / opportunity interpretations Waypoint computes from defensible inputs | May become a licensable Sheds product **if** it does not embed private user field data. |
 | **Private user field data** | Hunt Tracks, observations, Shed Found, Scout Spots, Hunt Plans, Hunt Records | **Local to the hunter’s device.** Do **not** assume this can be commercially licensed. |
-| **Opted-in aggregated data** | Only if a future system is explicitly built with informed opt-in | Never implied by V1.7 local storage. Never silent upload. |
+| **Opted-in aggregated data** | Only if a future system is explicitly built with informed opt-in | Never implied by V1.7–V1.8 local storage. Never silent upload. |
 
-V1.7 stores private field data on-device. No Hunt Track, Scout Spot, observation, or Shed Found coordinate is uploaded to Waypoint.
+V1.8 still stores private field data on-device. No Hunt Track, Scout Spot, observation, or Shed Found coordinate is uploaded to Waypoint.
 
 ---
 
-## Storage debt (not V1.7 work)
+## Storage debt (V1.8 review)
 
-V1.7 localStorage caps (1,800 track points, 80 observations, 12 Hunt Records) are **safe enough for V1.7**. Hunt History, long tracks, and V2.x personalization likely need IndexedDB or another browser-local store. That is **V1.8 / V1.9 / V2.x** work.
+V1.8 **kept localStorage**. IndexedDB was not introduced. Caps: 1,800 track points, 80 observations, **24** Hunt Records (raised from 12 because History is now a product surface). See [`docs/sheds/SHEDS-V1-8-HUNT-HISTORY.md`](SHEDS-V1-8-HUNT-HISTORY.md).
+
+Migrate later when photos, offline tiles, multi-season archives, native apps, or quota failures make localStorage unsafe — not for architectural elegance.
 
 ---
 

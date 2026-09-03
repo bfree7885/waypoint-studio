@@ -138,13 +138,17 @@
     huntSelectIds: [],
     pendingHuntPlanIds: null,
     fieldHunting: false,
-    huntWatchId: null
+    huntWatchId: null,
+    historyView: "hunts",
+    historyVisibleIds: {},
+    historyDetailId: null
   };
 
   var els = {};
   var map, heatLayer, userMarker, accuracyCircle, headingLine, obsLayer, scoutLayer, clickLatLng;
   var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
   var huntTrackLayer, huntObsLayer, huntTrackLine, huntHudTimer;
+  var historyTrackLayer, historyObsLayer;
   var searchLayer, sglLayerGroup;
   var basemapsBundle = null;
   var basemapLayersControl = null;
@@ -1393,6 +1397,8 @@
     scoutLayer = L.layerGroup().addTo(map);
     coverageLayer = L.layerGroup().addTo(map);
     trackLayer = L.layerGroup().addTo(map);
+    historyTrackLayer = L.layerGroup().addTo(map);
+    historyObsLayer = L.layerGroup().addTo(map);
     huntTrackLayer = L.layerGroup().addTo(map);
     huntObsLayer = L.layerGroup().addTo(map);
     planLayer = L.layerGroup().addTo(map);
@@ -4186,7 +4192,8 @@
       $("sheet-field-plan"),
       $("sheet-session-summary"),
       $("sheet-field-hunt-note"),
-      $("sheet-field-hunt-obs")
+      $("sheet-field-hunt-obs"),
+      $("sheet-hunt-detail")
     ].forEach(function (s) {
       if (s && s !== opts.except) closeSheetQuiet(s);
     });
@@ -4658,6 +4665,316 @@
         " higher-priority pockets in view are not marked thoroughly searched.");
     }
     els.historyBody.textContent = lines.join("\n");
+  }
+
+  function setHistoryView(view) {
+    state.historyView = view === "sheds" ? "sheds" : "hunts";
+    var huntsView = $("hunt-history-hunts-view");
+    var shedsView = $("hunt-history-sheds-view");
+    var huntsBtn = $("btn-history-hunts");
+    var shedsBtn = $("btn-history-sheds");
+    if (huntsView) huntsView.hidden = state.historyView !== "hunts";
+    if (shedsView) shedsView.hidden = state.historyView !== "sheds";
+    if (huntsBtn) huntsBtn.setAttribute("aria-pressed", state.historyView === "hunts" ? "true" : "false");
+    if (shedsBtn) shedsBtn.setAttribute("aria-pressed", state.historyView === "sheds" ? "true" : "false");
+    renderHuntHistoryLists();
+  }
+
+  function openHuntHistory() {
+    closeAllSheets();
+    state.historyDetailId = null;
+    renderHistory();
+    setHistoryView(state.historyView || "hunts");
+    openSheet(els.sheetHistory);
+  }
+
+  function historySummaryLine(rec) {
+    var duration = HuntRecords.formatDuration(HuntRecords.durationMs(rec));
+    var dist = HuntRecords.formatDistanceM(rec.trackDistanceM, rec.trackDistanceAvailable);
+    if (!rec.trackPoints || !rec.trackPoints.length) dist = "No GPS track";
+    var obs = rec.summary && rec.summary.observationCount != null
+      ? rec.summary.observationCount
+      : (rec.observations || []).length;
+    var sheds = rec.summary && rec.summary.shedFoundCount != null
+      ? rec.summary.shedFoundCount
+      : (rec.observations || []).filter(function (o) { return o && o.type === "shed_found"; }).length;
+    return duration + " · " + dist + " · " + obs + " observation" + (obs === 1 ? "" : "s") +
+      " · " + sheds + " Shed Found";
+  }
+
+  function renderHuntHistoryLists() {
+    if (!HuntRecords) return;
+    var listEl = $("hunt-history-list");
+    var emptyEl = $("hunt-history-empty");
+    var records = HuntRecords.listNewestFirst();
+    if (emptyEl) emptyEl.hidden = records.length > 0;
+    if (listEl) {
+      if (!records.length) {
+        listEl.innerHTML = "";
+      } else {
+        listEl.innerHTML = records.map(function (rec) {
+          var shown = !!state.historyVisibleIds[rec.huntRecordId];
+          return "<li><button type=\"button\" class=\"sheds-btn sheds-history-card\" data-open-hunt=\"" +
+            escapeHtml(rec.huntRecordId) + "\">" +
+            "<span class=\"sheds-history-card__date\">" + escapeHtml(HuntRecords.formatDate(rec.startedAt || rec.finishedAt)) +
+            (shown ? " · on map" : "") + "</span>" +
+            "<span class=\"sheds-history-card__plan\">" + escapeHtml(rec.huntPlanNameSnapshot || "Hunt Plan") + "</span>" +
+            "<span class=\"sheds-history-card__meta\">" + escapeHtml(historySummaryLine(rec)) + "</span>" +
+            "</button></li>";
+        }).join("");
+        listEl.querySelectorAll("[data-open-hunt]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            openHuntDetail(btn.getAttribute("data-open-hunt"));
+          });
+        });
+      }
+    }
+
+    var finds = HuntRecords.listShedFounds();
+    var shedList = $("shed-found-history-list");
+    var shedEmpty = $("shed-found-history-empty");
+    if (shedEmpty) shedEmpty.hidden = finds.length > 0;
+    if (shedList) {
+      if (!finds.length) {
+        shedList.innerHTML = "";
+      } else {
+        shedList.innerHTML = finds.map(function (f) {
+          var when = HuntRecords.formatDate(f.createdAt || f.huntFinishedAt || f.huntStartedAt);
+          var time = f.createdAt ? HuntRecords.formatTime(f.createdAt) : "Time unavailable";
+          var loc = f.mapped && isFinite(f.lat) && isFinite(f.lng)
+            ? Number(f.lat).toFixed(5) + ", " + Number(f.lng).toFixed(5)
+            : "Location not recorded";
+          var note = f.note ? f.note : "No note recorded";
+          return "<li><button type=\"button\" class=\"sheds-btn sheds-history-card\" data-open-shed-hunt=\"" +
+            escapeHtml(f.huntRecordId) + "\">" +
+            "<span class=\"sheds-history-card__date\">Shed Found · " + escapeHtml(when) + " · " + escapeHtml(time) + "</span>" +
+            "<span class=\"sheds-history-card__plan\">" + escapeHtml(f.huntPlanNameSnapshot) + "</span>" +
+            "<span class=\"sheds-history-card__meta\">" + escapeHtml(loc) + " · " + escapeHtml(note) + "</span>" +
+            "</button></li>";
+        }).join("");
+        shedList.querySelectorAll("[data-open-shed-hunt]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            openHuntDetail(btn.getAttribute("data-open-shed-hunt"));
+          });
+        });
+      }
+    }
+  }
+
+  function openHuntDetail(id) {
+    if (!HuntRecords) return;
+    var rec = HuntRecords.getById(id);
+    if (!rec) return;
+    state.historyDetailId = rec.huntRecordId;
+    closeAllSheets();
+    renderHuntDetail(rec);
+    openSheet($("sheet-hunt-detail"));
+  }
+
+  function renderHuntDetail(rec) {
+    if (!rec) return;
+    var stats = $("hunt-detail-stats");
+    var lede = $("hunt-detail-lede");
+    var trackNote = $("hunt-detail-track-note");
+    var obsList = $("hunt-detail-obs-list");
+    var mapBtn = $("btn-hunt-detail-map");
+    var delStatus = $("hunt-detail-delete-status");
+    if (delStatus) {
+      delStatus.hidden = true;
+      delStatus.textContent = "";
+    }
+    if (lede) {
+      lede.textContent = "A finished Hunt Record. Hunt Track is device-reported travel. Observations and Shed Found are hunter-entered — not predictions.";
+    }
+    var duration = HuntRecords.formatDuration(HuntRecords.durationMs(rec));
+    var dist = (!rec.trackPoints || !rec.trackPoints.length)
+      ? "No GPS track"
+      : HuntRecords.formatDistanceM(rec.trackDistanceM, rec.trackDistanceAvailable);
+    var obsCount = rec.summary && rec.summary.observationCount != null
+      ? rec.summary.observationCount
+      : (rec.observations || []).length;
+    var shedCount = rec.summary && rec.summary.shedFoundCount != null
+      ? rec.summary.shedFoundCount
+      : (rec.observations || []).filter(function (o) { return o && o.type === "shed_found"; }).length;
+    var mappedCount = rec.summary && rec.summary.mappedObservationCount != null
+      ? rec.summary.mappedObservationCount
+      : (rec.observations || []).filter(function (o) { return o && o.mapped; }).length;
+    var unmappedCount = Math.max(0, obsCount - mappedCount);
+    if (stats) {
+      stats.innerHTML =
+        "<div><dt>Date</dt><dd>" + escapeHtml(HuntRecords.formatDate(rec.startedAt || rec.finishedAt)) + "</dd></div>" +
+        "<div><dt>Hunt Plan</dt><dd>" + escapeHtml(rec.huntPlanNameSnapshot || "Hunt Plan") + "</dd></div>" +
+        "<div><dt>Start</dt><dd>" + escapeHtml(HuntRecords.formatTime(rec.startedAt)) + "</dd></div>" +
+        "<div><dt>Finish</dt><dd>" + escapeHtml(HuntRecords.formatTime(rec.finishedAt)) + "</dd></div>" +
+        "<div><dt>Duration</dt><dd>" + escapeHtml(duration) + "</dd></div>" +
+        "<div><dt>Searched distance</dt><dd>" + escapeHtml(dist) + "</dd></div>" +
+        "<div><dt>Observations</dt><dd>" + escapeHtml(String(obsCount)) +
+        (unmappedCount ? " (" + unmappedCount + " without map coordinates)" : "") + "</dd></div>" +
+        "<div><dt>Shed Found</dt><dd>" + escapeHtml(String(shedCount)) + "</dd></div>";
+    }
+    if (trackNote) {
+      if (!rec.trackPoints || rec.trackPoints.length < 2) {
+        trackNote.textContent = "No Hunt Track was recorded for this hunt. GPS was unavailable or no accepted points were saved.";
+      } else if (state.historyVisibleIds[rec.huntRecordId]) {
+        trackNote.textContent = "This Hunt Track is on the map as previous search — not a heat map and not a prediction.";
+      } else {
+        trackNote.textContent = "Show on map to display this Hunt Track as previous search. It stays visually quieter than a live Field Hunt track.";
+      }
+    }
+    if (obsList) {
+      var obs = rec.observations || [];
+      if (!obs.length) {
+        obsList.innerHTML = "<li>0 observations recorded.</li>";
+      } else {
+        obsList.innerHTML = obs.map(function (o) {
+          var when = o.createdAt ? HuntRecords.formatTime(o.createdAt) : "Time unavailable";
+          var loc = o.mapped && isFinite(o.lat) && isFinite(o.lng)
+            ? Number(o.lat).toFixed(5) + ", " + Number(o.lng).toFixed(5)
+            : "Not mapped — no invented position";
+          var note = o.note ? o.note : "No note recorded";
+          return "<li><strong>" + escapeHtml(o.label || o.type) + "</strong> · " +
+            escapeHtml(when) + "<br>" + escapeHtml(loc) + "<br>" + escapeHtml(note) + "</li>";
+        }).join("");
+      }
+    }
+    if (mapBtn) {
+      var on = !!state.historyVisibleIds[rec.huntRecordId];
+      var canShow = (rec.trackPoints && rec.trackPoints.length >= 2) ||
+        (rec.observations || []).some(function (o) { return o && o.mapped; });
+      mapBtn.disabled = !canShow && !on;
+      mapBtn.textContent = on ? "Hide from map" : "Show on map";
+    }
+  }
+
+  function visibleHistoryIds() {
+    var ids = [];
+    Object.keys(state.historyVisibleIds || {}).forEach(function (id) {
+      if (state.historyVisibleIds[id]) ids.push(id);
+    });
+    return ids;
+  }
+
+  function redrawHistoryTracks() {
+    if (historyTrackLayer) historyTrackLayer.clearLayers();
+    if (historyObsLayer) historyObsLayer.clearLayers();
+    if (!HuntRecords || typeof L === "undefined") return;
+    visibleHistoryIds().forEach(function (id) {
+      var rec = HuntRecords.getById(id);
+      if (!rec) return;
+      var latlngs = [];
+      (rec.trackPoints || []).forEach(function (p) {
+        if (p && isFinite(p.lat) && isFinite(p.lng)) latlngs.push([p.lat, p.lng]);
+      });
+      if (historyTrackLayer && latlngs.length >= 2) {
+        L.polyline(latlngs, {
+          color: "#6d7a6c",
+          weight: 2,
+          opacity: 0.42,
+          lineJoin: "round",
+          lineCap: "round",
+          className: "sheds-history-track",
+          interactive: false
+        }).addTo(historyTrackLayer);
+      }
+      (rec.observations || []).forEach(function (obs) {
+        if (!historyObsLayer || !obs || !obs.mapped || !isFinite(obs.lat) || !isFinite(obs.lng)) return;
+        var shed = obs.type === "shed_found";
+        var icon = L.divIcon({
+          className: "sheds-div-icon",
+          html: "<span class=\"sheds-history-obs-mark" + (shed ? " sheds-history-obs-mark--shed" : "") +
+            "\" title=\"" + escapeHtml(obs.label || "Observation") + "\"></span>",
+          iconSize: shed ? [14, 14] : [12, 12],
+          iconAnchor: shed ? [7, 7] : [6, 6]
+        });
+        var m = L.marker([obs.lat, obs.lng], { icon: icon, keyboard: true });
+        var when = obs.createdAt ? HuntRecords.formatTime(obs.createdAt) : "Time unavailable";
+        var locLine = "Mapped from the recorded Hunt Record — not survey-grade.";
+        m.bindPopup(
+          "<p><strong>" + escapeHtml(obs.label || "Observation") + "</strong></p>" +
+          "<p>" + escapeHtml(when) + "</p>" +
+          "<p>" + escapeHtml(obs.note || "No note recorded") + "</p>" +
+          "<p>" + locLine + "</p>" +
+          "<p>Previous hunt — not a prediction.</p>",
+          { className: "sheds-hunt-obs-popup" }
+        );
+        m.addTo(historyObsLayer);
+      });
+    });
+  }
+
+  function fitHistoryHunt(rec) {
+    if (!map || !rec || typeof L === "undefined") return;
+    var pts = [];
+    (rec.trackPoints || []).forEach(function (p) {
+      if (p && isFinite(p.lat) && isFinite(p.lng)) pts.push([p.lat, p.lng]);
+    });
+    (rec.observations || []).forEach(function (o) {
+      if (o && o.mapped && isFinite(o.lat) && isFinite(o.lng)) pts.push([o.lat, o.lng]);
+    });
+    if (!pts.length) return;
+    try {
+      if (pts.length === 1) map.setView(pts[0], Math.max(map.getZoom(), 14), { animate: false });
+      else map.fitBounds(L.latLngBounds(pts), { padding: [28, 28], maxZoom: 16, animate: false });
+    } catch (e) { /* */ }
+  }
+
+  function toggleHistoryHuntOnMap(id, opts) {
+    opts = opts || {};
+    if (!HuntRecords || !id) return;
+    var rec = HuntRecords.getById(id);
+    if (!rec) return;
+    var on = !!state.historyVisibleIds[id];
+    if (on) delete state.historyVisibleIds[id];
+    else state.historyVisibleIds[id] = true;
+    redrawHistoryTracks();
+    if (!on && opts.fit) fitHistoryHunt(rec);
+    if (opts.closeSheets) closeAllSheets();
+    else if (state.historyDetailId === id) renderHuntDetail(rec);
+    renderHuntHistoryLists();
+  }
+
+  function showHistoricalHunt(id, opts) {
+    opts = opts || {};
+    if (!HuntRecords || !id) return;
+    var rec = HuntRecords.getById(id);
+    if (!rec) return;
+    state.historyVisibleIds[id] = true;
+    redrawHistoryTracks();
+    if (opts.fit) fitHistoryHunt(rec);
+    if (state.historyDetailId === id) renderHuntDetail(rec);
+    renderHuntHistoryLists();
+  }
+
+  function hideHistoricalHunt(id) {
+    if (!id) return;
+    delete state.historyVisibleIds[id];
+    redrawHistoryTracks();
+    if (state.historyDetailId === id) {
+      var rec = HuntRecords && HuntRecords.getById(id);
+      if (rec) renderHuntDetail(rec);
+    }
+    renderHuntHistoryLists();
+  }
+
+  function deleteHuntRecordWithConfirm(id) {
+    if (!HuntRecords || !id) return;
+    var rec = HuntRecords.getById(id);
+    if (!rec) return;
+    var msg = "Delete this Hunt Record from this device? Scout Spots and Hunt Plans are kept. This cannot be undone.";
+    if (!window.confirm(msg)) return;
+    var result = HuntRecords.remove(id);
+    var status = $("hunt-detail-delete-status");
+    if (!result.ok) {
+      if (status) {
+        status.hidden = false;
+        status.textContent = result.error || "Could not delete that Hunt Record.";
+      }
+      return;
+    }
+    delete state.historyVisibleIds[id];
+    state.historyDetailId = null;
+    redrawHistoryTracks();
+    openHuntHistory();
   }
 
   function openAddObservationFlow() {
@@ -5370,8 +5687,32 @@
     });
     if ($("btn-history")) {
       $("btn-history").addEventListener("click", function () {
-        renderHistory();
-        openSheet(els.sheetHistory);
+        openHuntHistory();
+      });
+    }
+    if ($("btn-history-hunts")) {
+      $("btn-history-hunts").addEventListener("click", function () {
+        setHistoryView("hunts");
+      });
+    }
+    if ($("btn-history-sheds")) {
+      $("btn-history-sheds").addEventListener("click", function () {
+        setHistoryView("sheds");
+      });
+    }
+    if ($("btn-hunt-detail-back")) {
+      $("btn-hunt-detail-back").addEventListener("click", function () {
+        openHuntHistory();
+      });
+    }
+    if ($("btn-hunt-detail-map")) {
+      $("btn-hunt-detail-map").addEventListener("click", function () {
+        toggleHistoryHuntOnMap(state.historyDetailId, { closeSheets: true, fit: true });
+      });
+    }
+    if ($("btn-hunt-detail-delete")) {
+      $("btn-hunt-detail-delete").addEventListener("click", function () {
+        deleteHuntRecordWithConfirm(state.historyDetailId);
       });
     }
     if ($("btn-validate")) {
@@ -6171,7 +6512,12 @@
       renderFieldHuntHud: renderFieldHuntHud,
       applyFieldHuntStatus: applyFieldHuntStatus,
       saveFieldHuntObservation: saveFieldHuntObservation,
-      openFieldHuntObservation: openFieldHuntObservation
+      openFieldHuntObservation: openFieldHuntObservation,
+      openHuntHistory: openHuntHistory,
+      openHuntDetail: openHuntDetail,
+      showHistoricalHunt: showHistoricalHunt,
+      hideHistoricalHunt: hideHistoricalHunt,
+      redrawHistoryTracks: redrawHistoryTracks
     };
   } catch (eApi) { /* */ }
 

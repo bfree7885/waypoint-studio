@@ -66,7 +66,7 @@ Shed Hunting version sequence and the V2.x intelligence milestone: [`docs/sheds/
 | **V2.x** | **Flagship Sheds+ intelligence:** a **dynamic, shifting search-priority / opportunity map** that changes with real conditions and explains why ranks change. Not an antler-location predictor. |
 | V3.0 | Production iOS/Android, serious offline, Sheds/Sheds+ commercial system, field beta, hard public launch |
 
-Do **not** implement the V2.x dynamic map in V1.7. V1.7 field history exists so later intelligence can use private first-party hunt records without claiming known shed locations.
+Do **not** implement the V2.x dynamic map in V1.7–V1.8. V1.7 field history and V1.8 Hunt History exist so later intelligence can use private first-party hunt records without claiming known shed locations.
 
 ### 3. Waypoint Deck (distinct project)
 
@@ -109,7 +109,7 @@ Never imply that Waypoint knows an antler or a deer is actually present at a loc
 
 The **flagship future intelligence feature** is a **dynamic, shifting shed-hunting search-priority map** (V2.x / Sheds+). It should change with season, weather, snow/melt, freeze/thaw, terrain, aspect, elevation, land cover, access/searchability, and eventually private hunt history. An area may be Moderate today and Higher after warming and melt — and the product must explain why. It must never claim sheds or deer are present, that an antler exists at a coordinate, or a probability unsupported by evidence.
 
-Do not implement that map in V1.7.
+Do not implement that map in V1.7–V1.8.
 
 ---
 
@@ -119,8 +119,8 @@ Do **not** implement payments. Do **not** hide currently working features behind
 
 | Tier | Question the product answers |
 |------|------------------------------|
-| **Sheds (free)** | **Is today a good day to search?** Work a Hunt Plan. Keep a private local Hunt Record. |
-| **Sheds+ (future paid)** | **Flagship:** the dynamic shifting search-priority map, plus Hunt History / private historical intelligence. |
+| **Sheds (free)** | **Is today a good day to search?** Work a Hunt Plan. Keep a private local Hunt Record and Hunt History. |
+| **Sheds+ (future paid)** | **Flagship:** the dynamic shifting search-priority map, plus richer private historical intelligence built on Hunt History. |
 
 Today’s Hunt on the overview is the closest existing expression of the free question. Current map search-priority and habitat tools remain available — they are not a paywall and they are not the V2.x dynamic map.
 
@@ -134,7 +134,7 @@ Keep provenance separate. Do **not** assume private user field data can be comme
 | --- | --- |
 | Third-party / raw licensed data | Use only under the vendor license; keep provenance. |
 | Sheds-derived intelligence | Search-priority interpretations computed from defensible inputs. May become licensable only if it does not embed private user tracks/observations. |
-| Private user field data | Hunt Tracks, observations, Shed Found, Scout Spots, Hunt Plans, Hunt Records — local to the device in V1.7. |
+| Private user field data | Hunt Tracks, observations, Shed Found, Scout Spots, Hunt Plans, Hunt Records — local to the device in V1.7–V1.8. |
 | Opted-in aggregated data | Only if a future system is explicitly built with informed opt-in. Never silent upload. |
 
 A future **B2B data licensing** direction is valid for third-party-licensed datasets and for Sheds-derived intelligence that does not include private hunter GPS. It is **not** a license to sell Hunt Tracks or Shed Found points.

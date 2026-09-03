@@ -1,16 +1,19 @@
 /**
- * Sheds V1.7 — durable finished Hunt Records (private / local).
+ * Sheds V1.7/V1.8 — durable finished Hunt Records (private / local).
  *
  * A Hunt Record is a finished Hunt Activity: device-reported track, duration
- * timestamps, observations, and a Hunt Plan name snapshot. It is stored for
- * V1.8 Hunt History and future paid historical features. It is not a route,
- * not a prediction, and not uploaded.
+ * timestamps, observations, and a Hunt Plan name snapshot. V1.8 Hunt History
+ * reads this store. It is not a route, not a prediction, not a heat map, and
+ * not uploaded.
  *
- * Schema: waypoint-sheds-hunt-records-v1
+ * Schema: waypoint-sheds-hunt-records-v1 (unchanged key; no heat scores)
  *
- * Persistence choice: localStorage, same as V1.4–V1.6. Caps keep GPS tracks
- * under typical origin quota. IndexedDB is not used in V1.7 — simplest robust
- * architecture. Quota failure must not silently discard the hunt being saved.
+ * Persistence: localStorage remains the V1.8 store. Caps keep GPS tracks under
+ * a typical ~5 MB origin quota. IndexedDB is documented technical debt — do
+ * not migrate until photos, offline tiles, multi-season history, or quota
+ * failures make localStorage unsafe. Quota failure must not silently discard
+ * the hunt being saved. Deleting a Hunt Record never deletes Scout Spots or
+ * Hunt Plans.
  */
 (function (global) {
   "use strict";
@@ -19,7 +22,7 @@
   var SCHEMA_VERSION = 1;
   var KIND = "hunt-record";
   var PRIVACY = "private-local";
-  var MAX_RECORDS = 12;
+  var MAX_RECORDS = 24;
   var MAX_TRACK_POINTS = 1800;
   var MAX_OBSERVATIONS = 80;
   var MAX_NOTE = 400;
@@ -308,6 +311,107 @@
     };
   }
 
+  function sortKey(rec) {
+    var raw = rec && (rec.finishedAt || rec.startedAt);
+    var t = raw ? Date.parse(String(raw)) : NaN;
+    return isFinite(t) ? t : 0;
+  }
+
+  function listNewestFirst() {
+    return list().slice().sort(function (a, b) {
+      return sortKey(b) - sortKey(a);
+    });
+  }
+
+  function listShedFounds() {
+    var out = [];
+    listNewestFirst().forEach(function (rec) {
+      (rec.observations || []).forEach(function (o) {
+        if (!o || o.type !== "shed_found") return;
+        var created = o.createdAt ? Date.parse(String(o.createdAt)) : NaN;
+        out.push({
+          huntRecordId: rec.huntRecordId,
+          huntPlanNameSnapshot: rec.huntPlanNameSnapshot || "Hunt Plan",
+          observationId: o.id,
+          createdAt: o.createdAt || null,
+          mapped: !!o.mapped,
+          lat: o.mapped ? o.lat : undefined,
+          lng: o.mapped ? o.lng : undefined,
+          note: o.note || "",
+          huntStartedAt: rec.startedAt || null,
+          huntFinishedAt: rec.finishedAt || null,
+          sortKey: isFinite(created) ? created : sortKey(rec)
+        });
+      });
+    });
+    out.sort(function (a, b) { return b.sortKey - a.sortKey; });
+    return out;
+  }
+
+  function removeRecord(id) {
+    var sid = id != null ? String(id).trim() : "";
+    if (!sid) return { ok: false, error: "Hunt Record not found." };
+    var bundle = loadBundle();
+    var records = bundle.huntRecords;
+    var kept = [];
+    var found = false;
+    records.forEach(function (r) {
+      if (r.huntRecordId === sid) found = true;
+      else kept.push(r);
+    });
+    if (!found) return { ok: false, error: "Hunt Record not found." };
+    var written = writeBundle(kept);
+    if (!written.ok) return written;
+    return { ok: true, removedId: sid };
+  }
+
+  function durationMs(rec) {
+    if (!rec || !rec.startedAt || !rec.finishedAt) return null;
+    var a = Date.parse(String(rec.startedAt));
+    var b = Date.parse(String(rec.finishedAt));
+    if (!isFinite(a) || !isFinite(b)) return null;
+    return Math.max(0, b - a);
+  }
+
+  function formatDuration(ms) {
+    if (ms == null || !isFinite(ms) || ms < 0) return "Unavailable";
+    var sec = Math.floor(ms / 1000);
+    var h = Math.floor(sec / 3600);
+    var m = Math.floor((sec % 3600) / 60);
+    function pad(n) { return String(n).padStart(2, "0"); }
+    if (h > 0) return pad(h) + ":" + pad(m);
+    return pad(m) + ":" + pad(sec % 60);
+  }
+
+  function formatDistanceM(meters, available) {
+    if (!available || meters == null || !isFinite(meters) || meters < 0) return "Unavailable";
+    if (meters < 1000) return Math.round(meters) + " m";
+    var km = meters / 1000;
+    return (km >= 10 ? km.toFixed(1) : km.toFixed(2)) + " km";
+  }
+
+  function formatDate(iso) {
+    if (!iso) return "Date unavailable";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "Date unavailable";
+    try {
+      return d.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" });
+    } catch (e) {
+      return String(iso).slice(0, 10);
+    }
+  }
+
+  function formatTime(iso) {
+    if (!iso) return "Unavailable";
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return "Unavailable";
+    try {
+      return d.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    } catch (e) {
+      return String(iso).slice(11, 16) || "Unavailable";
+    }
+  }
+
   global.WaypointShedsHuntRecords = {
     STORAGE_KEY: STORAGE_KEY,
     SCHEMA_VERSION: SCHEMA_VERSION,
@@ -317,9 +421,17 @@
     MAX_TRACK_POINTS: MAX_TRACK_POINTS,
     normalize: normalizeRecord,
     list: list,
+    listNewestFirst: listNewestFirst,
+    listShedFounds: listShedFounds,
     getById: getById,
     persist: persistRecord,
+    remove: removeRecord,
     importList: importList,
-    exportJson: exportJson
+    exportJson: exportJson,
+    durationMs: durationMs,
+    formatDuration: formatDuration,
+    formatDistanceM: formatDistanceM,
+    formatDate: formatDate,
+    formatTime: formatTime
   };
 })(typeof window !== "undefined" ? window : (typeof globalThis !== "undefined" ? globalThis : this));
