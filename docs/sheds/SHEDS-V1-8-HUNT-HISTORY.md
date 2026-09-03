@@ -1,6 +1,6 @@
 # ShedHunting.org V1.8 — Hunt History
 
-**Status:** implemented on a Studio feature branch. Do **not** merge to `main` or publish the dedicated host from this increment unless the owner asks. Do **not** run `scripts/publish-shed-hunting-host.mjs`. Safe host prep (`scripts/prepare-shed-hunting-host.mjs`) is allowed.
+**Status:** merged to Studio `main` (`62a81e8b`). Dedicated-host artifact can be prepared with `scripts/prepare-shed-hunting-host.mjs`. Do **not** run `scripts/publish-shed-hunting-host.mjs` unless the owner publishes ShedHunting.org. Do not implement the V2.x dynamic search-priority map in V1.8.
 
 V1.1–V1.2 answer **Should I go today?** and **what are conditions like?** V1.3 **Where should I look?** V1.4 **Save candidate places.** V1.5 **Plan the search.** V1.6 **Work the plan in the field.** V1.7 **Record where I searched and what I observed.** V1.8 **Remember my hunts.**
 
