@@ -53,7 +53,7 @@ Behavior:
 
 1. On Start Hunt, if GPS is absent, store an unavailable snapshot with `acquisition.status = "no-location"`. Conditions are not invented from the map center.
 2. On the first accepted Hunt Track point, retry once while the snapshot is still `no-location`.
-3. If Today’s Hunt weather is already `ready` and within 0.5° of GPS, pass it as `weatherPackage` (no second Open-Meteo call).
+3. If Today’s Hunt weather is already `ready`, was fetched for **GPS** (never map-center), and is within **0.01° (~1.1 km)** of hunt GPS, pass it as `weatherPackage` (no second Open-Meteo call). A looser 0.5° window would attach conditions from an inappropriate location.
 4. Otherwise fetch via the existing forecast query, 8 s timeout, 10-minute in-flight / last-ok de-dupe at 4-decimal lat/lng.
 5. An `ok` snapshot is never overwritten.
 6. Finish Hunt does **not** wait on weather. If the request has not completed, the Hunt Record still saves (placeholder unavailable, or whatever was already stored).
@@ -141,18 +141,22 @@ Statuses: offline, timeout, malformed, unavailable, invalid-coordinate, no-locat
 
 **Keep localStorage.** Same key: `waypoint-sheds-hunt-records-v1`. Cap remains **24**. No automatic IndexedDB migration.
 
-Evidence (serialized JSON):
+Evidence (independent serialized JSON, 2026-09-03 review):
 
-| Piece | Approx. size |
+| Piece | Measured size |
 | --- | --- |
-| Condition Snapshot | ~1–2 KB |
-| Max Hunt Track (1,800 points) | ~90 KB |
-| Max observations (80) | ~20 KB |
-| Worst-case 24 records | well under a typical ~5 MB origin quota |
+| Condition Snapshot | ~1.6 KB |
+| Small hunt (few points) | ~5–6 KB stored |
+| Medium realistic hunt | ~35 KB stored |
+| Large hunt | ~104 KB stored |
+| Maximum hunt (1,800 points + 80 observations + snapshot) | ~183 KB JSON / ~189 KB stored |
+| 24 maximum hunts (records key only) | ~4.54 MB |
+| Typical origin (24 medium hunts + spots + GIS pack + SGL + in-progress activity) | ~0.50 MB |
+| Heavy origin (24 maximum hunts + 80 spots + GIS pack + SGL) | ~4.84 MB of a typical 5.00 MiB / 5.24 MB quota (~0.40 MB remaining) |
 
-IndexedDB remains later debt for photos, offline tiles, or measured quota failure — not for this compact snapshot.
+Keep the **24-record cap**. Typical use is comfortable. Pathological 24×-max hunts leave a thin origin margin beside GIS pack and Scout Spots. V1.9 therefore **retries quota writes by dropping the oldest finished Hunt Record** and never drops the hunt being saved. If even that hunt cannot fit, the write is refused and Field Hunt stays in progress.
 
-Quota failure still refuses the write and does not discard the in-progress hunt.
+IndexedDB remains later debt for photos, offline tiles, or measured quota failure after this eviction path — not for this compact snapshot.
 
 ## Field JSON
 

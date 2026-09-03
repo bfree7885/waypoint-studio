@@ -258,6 +258,8 @@ assert("capture around hunt start", /scheduleHuntConditionSnapshot\(\{ reason: "
 assert("first GPS retry", /reason: "first-gps"/.test(app));
 assert("no map-center substitute", /not invented from the map center/.test(app));
 assert("privacy: no hunt ids in service payload", !/huntRecordId|scoutSpot|shedFound/.test(svcSrc));
+assert("reuse requires GPS-anchored Today’s Hunt weather", /anchorSource === "gps"/.test(app));
+assert("reuse radius is ~1.1 km not 55 km", /<= 0\.01/.test(app) && !/<= 0\.5 && Math\.abs\(plng/.test(app));
 assert("reuse Today’s Hunt weather when nearby", /weatherPackage: reuse/.test(app));
 assert("Finish Hunt not gated on weather", /Weather not yet recorded\. Hunt can continue/.test(app));
 assert("late weather snapshot binds hunt identity", /boundSessionId/.test(app) && /isSameHuntActivity/.test(app));
@@ -496,8 +498,40 @@ const q = quotaCtx.WaypointShedsHuntRecords.persist(sampleRecord({
   huntRecordId: "hrec_quota",
   conditionSnapshot: created
 }));
-assert("localStorage quota pressure refuses write", q.ok === false && /storage/i.test(q.error || ""));
+assert("localStorage quota pressure refuses write when this hunt cannot fit", q.ok === false && /storage/i.test(q.error || ""));
 assert("quota failure does not invent a record", quotaCtx.WaypointShedsHuntRecords.list().length === 0);
+
+const evictStore = memoryStorage();
+const evictOrig = evictStore.setItem;
+const evictCtx = load({ storage: evictStore });
+const oldRec = evictCtx.WaypointShedsHuntRecords.persist(sampleRecord({
+  huntRecordId: "hrec_old_quota",
+  finishedAt: "2026-01-01T12:00:00.000Z",
+  startedAt: "2026-01-01T10:00:00.000Z"
+}));
+const oneRecordBytes = String(evictStore.getItem("waypoint-sheds-hunt-records-v1") || "").length;
+evictStore.setItem = function (k, v) {
+  if (String(k).indexOf("hunt-records") >= 0 && String(v).length > oneRecordBytes + 40) {
+    const err = new Error("quota");
+    err.name = "QuotaExceededError";
+    throw err;
+  }
+  return evictOrig.call(evictStore, k, v);
+};
+const newRec = evictCtx.WaypointShedsHuntRecords.persist(sampleRecord({
+  huntRecordId: "hrec_new_quota",
+  finishedAt: "2026-09-03T15:00:00.000Z",
+  startedAt: "2026-09-03T12:00:00.000Z"
+}));
+assert("quota retry drops oldest not newest", oldRec.ok && newRec.ok && newRec.droppedOldest >= 1, JSON.stringify({
+  oldOk: oldRec.ok,
+  newOk: newRec.ok,
+  dropped: newRec.droppedOldest,
+  ids: evictCtx.WaypointShedsHuntRecords.list().map((r) => r.huntRecordId)
+}));
+assert("newest Hunt Record is retained after quota eviction",
+  !!evictCtx.WaypointShedsHuntRecords.getById("hrec_new_quota") &&
+  !evictCtx.WaypointShedsHuntRecords.getById("hrec_old_quota"));
 
 const sizes = Snap.typicalHuntRecordBytes({ trackPoints: 1800, observations: 80 });
 assert("snapshot is compact vs track", sizes.snapshotBytes < 4000 && sizes.snapshotBytes > 200, String(sizes.snapshotBytes));

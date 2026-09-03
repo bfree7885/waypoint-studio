@@ -2239,11 +2239,14 @@
     }
 
     var reuse = null;
-    if (state.weather && state.weatherStatus === "ready" && state.weather.ready !== false) {
+    if (state.weather && state.weatherStatus === "ready" && state.weather.ready !== false &&
+        state.weather.anchorSource === "gps") {
       var plat = state.weather.fetchLat;
       var plng = state.weather.fetchLng;
+      /* ~1.1 km. Do not reuse map-center Today’s Hunt weather, and do not
+         attach a ~55 km “nearby” package as hunt-location conditions. */
       if (isFinite(plat) && isFinite(plng) &&
-          Math.abs(plat - gps.lat) <= 0.5 && Math.abs(plng - gps.lng) <= 0.5) {
+          Math.abs(plat - gps.lat) <= 0.01 && Math.abs(plng - gps.lng) <= 0.01) {
         reuse = state.weather;
       }
     }
