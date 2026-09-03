@@ -45,13 +45,15 @@ Field Hunt Mode starts a **separate** `watchPosition` (`state.huntWatchId`) so i
 
 ## Persistence choice
 
-**localStorage**, same as V1.4–V1.6.
+**localStorage**, same as V1.4–V1.6. **This is safe enough for V1.7.**
 
-IndexedDB is not used in V1.7. GPS tracks are capped so a typical origin quota (~5 MB) remains usable:
+IndexedDB is not used in V1.7. Caps keep a typical origin quota (~5 MB) usable:
 
 - 1,800 track points per hunt
 - 80 observations per hunt
 - 12 finished Hunt Records
+
+Hunt History and V2.x personalization are expected to outgrow localStorage. IndexedDB (or equivalent) is **V1.8 / V1.9 / V2.x technical debt**, not a V1.7 migration.
 
 If the finished-hunt write fails (quota or storage unavailable), the UI reports the error and **does not discard** the in-progress hunt. Oldest **finished** records may be dropped **only** to make room for a new successful save, with an explicit warning.
 
@@ -160,8 +162,12 @@ Track-heavy JSON can be large; caps keep it bounded. Import merge is by `huntRec
 
 First-class widths: 320 / 375 / 390 / 430. Primary controls remain ~44px (`2.75rem`). Map stays the primary surface. Observation chooser and note input must stay usable; focusing the note must not permanently break layout.
 
-## Future: Hunt History (V1.8)
+## Future
 
-Hunt Records are the durable source for a later private Hunt History surface and a near-term paid Sheds+ historical/intelligence tier. V1.7 does **not** implement accounts, cloud sync, sharing, leaderboards, or payment.
+- **V1.8** Hunt History reads these Hunt Records.
+- **V1.9** may add richer private records and a larger local store (IndexedDB is technical debt, not V1.7 work).
+- **V2.x flagship (Sheds+):** a **dynamic, shifting search-priority / opportunity map**. It is not an antler-location predictor. See `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`.
 
-Do not treat this document as authorization to publish ShedHunting.org or to merge to `main`.
+V1.7 does **not** implement accounts, cloud sync, sharing, leaderboards, payment, or the V2.x map.
+
+Do not treat this document as authorization to run `scripts/publish-shed-hunting-host.mjs`.

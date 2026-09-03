@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-08-30  
+**Last updated:** 2026-09-03  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint is building now.
@@ -53,6 +53,21 @@ Preserve all working Sheds engines (Leaflet, GPS, measurement, inspect, observat
 
 Keep the Waypoint visual family (dusk-desert). Do not redesign Shed Hunting into a camouflage/green generic hunting site.
 
+Shed Hunting version sequence and the V2.x intelligence milestone: [`docs/sheds/SHEDS-PRODUCT-ROADMAP.md`](sheds/SHEDS-PRODUCT-ROADMAP.md).
+
+| Increment | Job |
+| --- | --- |
+| V1.1–V1.2 | Should I go today? / what are conditions like? |
+| V1.3–V1.5 | Where to look, Scout Spots, Hunt Plans |
+| V1.6 | Work the plan in the field |
+| V1.7 | Hunt Track, field observations, durable Hunt Records (private / local) |
+| V1.8 | Hunt History |
+| V1.9 | Field refinement / richer private records / storage groundwork |
+| **V2.x** | **Flagship Sheds+ intelligence:** a **dynamic, shifting search-priority / opportunity map** that changes with real conditions and explains why ranks change. Not an antler-location predictor. |
+| V3.0 | Production iOS/Android, serious offline, Sheds/Sheds+ commercial system, field beta, hard public launch |
+
+Do **not** implement the V2.x dynamic map in V1.7. V1.7 field history exists so later intelligence can use private first-party hunt records without claiming known shed locations.
+
 ### 3. Waypoint Deck (distinct project)
 
 Local-first / offline Linux field computer. Direction includes offline maps, GPS, local knowledge, local AI, radio/SDR, communications, weather, sensors, field data, incident/resilience tools, and system/power/connectivity awareness.
@@ -86,26 +101,43 @@ Keep URLs working. Do **not** delete Scenes. Do **not** 404 it. Apply `noindex` 
 
 ## Predictive intelligence honesty (Shed Hunting)
 
-Heat / habitat / Today’s Search is **decision support**, not a find oracle.
+Heat / habitat / Today’s Search / V1.3 search priority is **decision support**, not a find oracle.
 
-Use: likelihood, opportunity, habitat interest, search conditions, promising areas, decision support.
+Use: likelihood, opportunity, habitat interest, search conditions, promising areas, search priority, decision support.
 
 Never imply that Waypoint knows an antler or a deer is actually present at a location. Never market heat/habitat as proven antler-location probability.
 
+The **flagship future intelligence feature** is a **dynamic, shifting shed-hunting search-priority map** (V2.x / Sheds+). It should change with season, weather, snow/melt, freeze/thaw, terrain, aspect, elevation, land cover, access/searchability, and eventually private hunt history. An area may be Moderate today and Higher after warming and melt — and the product must explain why. It must never claim sheds or deer are present, that an antler exists at a coordinate, or a probability unsupported by evidence.
+
+Do not implement that map in V1.7.
+
 ---
 
-## Free / Pro (product direction only)
+## Sheds / Sheds+ (product direction only)
 
 Do **not** implement payments. Do **not** hide currently working features behind a paywall.
 
-Intended distinction (document now; implement later only when asked):
-
 | Tier | Question the product answers |
 |------|------------------------------|
-| **Free** | **Is today a good day to search?** |
-| **Future Pro** | **Where should I concentrate my search today?** |
+| **Sheds (free)** | **Is today a good day to search?** Work a Hunt Plan. Keep a private local Hunt Record. |
+| **Sheds+ (future paid)** | **Flagship:** the dynamic shifting search-priority map, plus Hunt History / private historical intelligence. |
 
-Today’s Search on the overview is the closest existing expression of the Free question. The map’s likelihood / habitat / heat / search-area tools remain available — they are not a paywall. Future Pro may add deeper dynamic opportunity mapping, environmental layers, forecast-driven analysis, saved/custom areas, historical comparisons, and advanced search-area prioritization.
+Today’s Hunt on the overview is the closest existing expression of the free question. Current map search-priority and habitat tools remain available — they are not a paywall and they are not the V2.x dynamic map.
+
+---
+
+## Data classes (Shed Hunting)
+
+Keep provenance separate. Do **not** assume private user field data can be commercially licensed.
+
+| Class | Rule |
+| --- | --- |
+| Third-party / raw licensed data | Use only under the vendor license; keep provenance. |
+| Sheds-derived intelligence | Search-priority interpretations computed from defensible inputs. May become licensable only if it does not embed private user tracks/observations. |
+| Private user field data | Hunt Tracks, observations, Shed Found, Scout Spots, Hunt Plans, Hunt Records — local to the device in V1.7. |
+| Opted-in aggregated data | Only if a future system is explicitly built with informed opt-in. Never silent upload. |
+
+A future **B2B data licensing** direction is valid for third-party-licensed datasets and for Sheds-derived intelligence that does not include private hunter GPS. It is **not** a license to sell Hunt Tracks or Shed Found points.
 
 ---
 
@@ -173,4 +205,5 @@ Do **not**:
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  
 6. Prefer incremental consolidation over theoretical rewrites.  
-7. Public Shed Hunting links use `https://shedhunting.org`. Origin-config flag is true. Do not revert it without an explicit rollback.
+7. Public Shed Hunting links use `https://shedhunting.org`. Origin-config flag is true. Do not revert it without an explicit rollback.  
+8. Shed Hunting versions follow [`docs/sheds/SHEDS-PRODUCT-ROADMAP.md`](sheds/SHEDS-PRODUCT-ROADMAP.md). Do not implement the V2.x dynamic search-priority heat map in V1.7. Do not treat private Hunt Tracks as licensable B2B data.

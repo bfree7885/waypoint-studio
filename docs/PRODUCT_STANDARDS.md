@@ -206,7 +206,7 @@ Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 
 - **Dashboard** — Discover
 - **Scenes** — Explore & understand (includes Photo Coach; articles/videos first-class)
-- **Sheds** — Go / field exploration
+- **Sheds** — Go / field exploration (public sibling: ShedHunting.org). Sequence and V2.x dynamic search-priority map: [`docs/sheds/SHEDS-PRODUCT-ROADMAP.md`](sheds/SHEDS-PRODUCT-ROADMAP.md).
 
 **Shared infrastructure (not separate consumer products)**
 
