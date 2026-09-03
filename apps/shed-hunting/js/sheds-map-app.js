@@ -2117,6 +2117,11 @@
 
   function enterFieldHuntMode(session) {
     if (!session) return;
+    var attached = attachOrStartHuntActivity(session);
+    if (!attached || !attached.ok) {
+      window.alert((attached && attached.error) || "Could not start Hunt Track. The hunt was not discarded.");
+      return;
+    }
     stopHuntSelect({ silent: true });
     closeScoutHud();
     stopMeasureMode();
@@ -2124,7 +2129,6 @@
     closeAllSheets();
     state.fieldHunting = true;
     state.huntPlanId = session.huntPlanId;
-    attachOrStartHuntActivity(session);
     var planHud = $("hunt-plan-hud");
     if (planHud) planHud.setAttribute("hidden", "");
     var hud = $("field-hunt-hud");

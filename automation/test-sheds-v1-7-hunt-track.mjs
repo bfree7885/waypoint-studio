@@ -90,6 +90,7 @@ assert("touch-sized observation types", /sheds-field-hunt-obs-types[\s\S]{0,180}
 assert("hunt track style is distinct", /sheds-hunt-track/.test(css) && /#b89a62/.test(css + app));
 assert("shed found marker distinct", /sheds-hunt-obs-mark--shed/.test(css));
 assert("map-app persist then finish", /persistHuntActivityRecord/.test(app) && /HuntSession\.finish/.test(app));
+assert("enterFieldHuntMode aborts when attach/start fails", /function enterFieldHuntMode[\s\S]{0,220}attachOrStartHuntActivity\(session\)[\s\S]{0,160}!attached\.ok/.test(app) && /startHuntTracking/.test(app));
 assert("map-app hunt watch is separate", /huntWatchId/.test(app) && /startHuntTracking/.test(app));
 assert("export includes finished Hunt Records", /huntRecords: HuntRecords/.test(app));
 assert("export omits Hunt Session", /Hunt Session is transient/.test(app) && !/huntSession:/.test(app));
