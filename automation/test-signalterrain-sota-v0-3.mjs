@@ -132,6 +132,7 @@ assert("route distance is not straight-line", route.distanceKm > 4 && route.dist
 assert("route distance labeled", /mi/.test(route.distanceLabel) && /km/.test(route.distanceLabel));
 assert("route attribution", /OpenStreetMap/.test(route.attribution) && /Valhalla/.test(route.attribution));
 assert("duration formatter exists", typeof Geo.formatDurationEstimate === "function" && /^~/.test(Geo.formatDurationEstimate(7066)));
+assert("duration from router", route.durationSource === "valhalla-pedestrian" && /~/.test(route.durationLabel));
 assert("destination is summit vicinity", /summit vicinity/i.test(route.destination.label));
 assert("does not claim best parking", !/best parking|recommended trail|official trailhead/i.test(JSON.stringify(route)));
 
