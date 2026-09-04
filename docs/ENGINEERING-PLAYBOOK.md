@@ -143,6 +143,7 @@ Include:
 - Never substitute Haversine for a failed hike. Elevation failure must keep a valid route.
 - A 3 m rise threshold on ~30 m 1 m-lidar samples undercounts real climbing. Use a moving average, then sum all smoothed deltas.
 - Route polylines must be visually heavier/cyan than OSM path fragments.
+- Label formatters (`formatDurationEstimate`) must not throw if an older cached `ss-geo.js` is in the browser. A valid Valhalla route must still display. Cache-bust V0.3 scripts (`?v=0.3`).
 
 ### 2026-09-04 — SignalTerrain V0.2 OSM access layer
 

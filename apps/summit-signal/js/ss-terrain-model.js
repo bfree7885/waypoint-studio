@@ -77,6 +77,15 @@
     );
   }
 
+  function formatElev(Geo, meters) {
+    if (!Geo || typeof Geo.formatElevationM !== "function") return null;
+    try {
+      return Geo.formatElevationM(meters);
+    } catch (e) {
+      return null;
+    }
+  }
+
   function normalizeSamples(payload, route, query) {
     var q = query || {};
     var Geo = global.SignalTerrainSotaGeo;
@@ -156,11 +165,11 @@
       endM: endM,
       maxM: maxM,
       minM: minM,
-      gainLabel: Geo ? Geo.formatElevationM(acc.gainM) : null,
-      lossLabel: Geo ? Geo.formatElevationM(acc.lossM) : null,
-      startLabel: Geo ? Geo.formatElevationM(startM) : null,
-      endLabel: Geo ? Geo.formatElevationM(endM) : null,
-      maxLabel: Geo ? Geo.formatElevationM(maxM) : null,
+      gainLabel: formatElev(Geo, acc.gainM),
+      lossLabel: formatElev(Geo, acc.lossM),
+      startLabel: formatElev(Geo, startM),
+      endLabel: formatElev(Geo, endM),
+      maxLabel: formatElev(Geo, maxM),
       noiseThresholdM: NOISE_M,
       smoothWindow: SMOOTH_WINDOW,
       sampleSpacingM: SAMPLE_SPACING_M,

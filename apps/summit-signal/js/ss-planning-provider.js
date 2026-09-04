@@ -249,11 +249,25 @@
       } else if (elev && (elev.status === "ok" || elev.status === "partial") && elev.gainM != null && route.distanceKm != null) {
         var sec = (route.distanceKm / 5 + elev.gainM / 600) * 3600;
         var Geo = global.SignalTerrainSotaGeo;
-        items.estimatedHikingTime.status = "ok";
-        items.estimatedHikingTime.display = Geo ? Geo.formatDurationEstimate(sec) : "Unavailable";
-        items.estimatedHikingTime.value = sec;
-        items.estimatedHikingTime.reason =
-          "SignalTerrain estimate: distance(km)/5 + gain(m)/600 hours. Not a personal pace model.";
+        var estimateLabel = null;
+        try {
+          if (Geo && typeof Geo.formatDurationEstimate === "function") {
+            estimateLabel = Geo.formatDurationEstimate(sec);
+          }
+        } catch (e) {
+          estimateLabel = null;
+        }
+        if (estimateLabel) {
+          items.estimatedHikingTime.status = "ok";
+          items.estimatedHikingTime.display = estimateLabel;
+          items.estimatedHikingTime.value = sec;
+          items.estimatedHikingTime.reason =
+            "SignalTerrain estimate: distance(km)/5 + gain(m)/600 hours. Not a personal pace model.";
+        } else {
+          items.estimatedHikingTime.status = "unavailable";
+          items.estimatedHikingTime.display = "Unavailable";
+          items.estimatedHikingTime.reason = "Duration formatter unavailable.";
+        }
       } else {
         items.estimatedHikingTime.status = "unavailable";
         items.estimatedHikingTime.display = "Unavailable";

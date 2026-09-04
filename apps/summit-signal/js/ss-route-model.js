@@ -143,7 +143,20 @@
     var distanceKm = lengthKmFromSummary(summary, geometry);
     var durationSec = isFiniteNumber(summary.time) ? summary.time : null;
     var Geo = global.SignalTerrainSotaGeo;
-    var durationLabel = durationSec != null && Geo ? Geo.formatDurationEstimate(durationSec) : null;
+    var durationLabel = null;
+    var distanceLabel = null;
+    try {
+      if (durationSec != null && Geo && typeof Geo.formatDurationEstimate === "function") {
+        durationLabel = Geo.formatDurationEstimate(durationSec);
+      }
+      if (distanceKm != null && Geo && typeof Geo.formatRouteDistance === "function") {
+        distanceLabel = Geo.formatRouteDistance(distanceKm);
+      } else if (distanceKm != null) {
+        distanceLabel = distanceKm.toFixed(1) + " km";
+      }
+    } catch (labelErr) {
+      if (distanceKm != null && !distanceLabel) distanceLabel = distanceKm.toFixed(1) + " km";
+    }
     var src = payload.source || {};
     return {
       status: "ok",
@@ -159,7 +172,7 @@
       geometry: geometry,
       encodedShape: legs[0].shape,
       distanceKm: distanceKm,
-      distanceLabel: Geo && distanceKm != null ? Geo.formatRouteDistance(distanceKm) : null,
+      distanceLabel: distanceLabel,
       durationSec: durationSec,
       durationLabel: durationLabel,
       durationSource: durationLabel ? "valhalla-pedestrian" : null,

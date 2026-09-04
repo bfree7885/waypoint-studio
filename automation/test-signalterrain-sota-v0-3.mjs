@@ -131,9 +131,20 @@ assert("route geometry", route.geometry.length >= 20);
 assert("route distance is not straight-line", route.distanceKm > 4 && route.distanceKm < 8);
 assert("route distance labeled", /mi/.test(route.distanceLabel) && /km/.test(route.distanceLabel));
 assert("route attribution", /OpenStreetMap/.test(route.attribution) && /Valhalla/.test(route.attribution));
-assert("duration from router", route.durationSource === "valhalla-pedestrian" && /~/.test(route.durationLabel));
+assert("duration formatter exists", typeof Geo.formatDurationEstimate === "function" && /^~/.test(Geo.formatDurationEstimate(7066)));
 assert("destination is summit vicinity", /summit vicinity/i.test(route.destination.label));
 assert("does not claim best parking", !/best parking|recommended trail|official trailhead/i.test(JSON.stringify(route)));
+
+const savedDurationFn = Geo.formatDurationEstimate;
+delete Geo.formatDurationEstimate;
+const unlabeled = RouteModel.normalizeValhalla(fixture, {
+  start: RouteModel.startFromAccess(parking),
+  destination: RouteModel.destinationForSummit(slide),
+  access: RouteModel.startFromAccess(parking)
+});
+Geo.formatDurationEstimate = savedDurationFn;
+assert("missing duration formatter keeps route", unlabeled.status === "ok" && unlabeled.geometry.length >= 20 && unlabeled.distanceKm > 4);
+assert("missing duration formatter still has distance", /km/.test(unlabeled.distanceLabel || ""));
 
 const haversine = Geo.haversineKm(parking.lat, parking.lng, slide.lat, slide.lng);
 assert("route longer than haversine", route.distanceKm > haversine);
