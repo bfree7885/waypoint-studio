@@ -211,7 +211,7 @@ assert("docs free/paid principle", /should remain useful for free|should remain 
 assert("docs activation zone accuracy", /25 m/.test(docs) && /does not approximate/.test(docs));
 assert("docs collision statement", /is a new product definition and is not the retired SignalTerrain Cyber product/.test(docs));
 assert("docs licensing gate", /commercial use of the API is not assumed permitted/i.test(docs));
-assert("docs keep V0.1 route", /\/apps\/summit-signal\//.test(docs) && /Do not occupy/.test(docs));
+assert("docs keep V0.1 route", /\/apps\/summit-signal\//.test(docs) && /Do(?: \*\*)?not(?:\*\*)? occupy/.test(docs));
 assert("historical summit-signal doc is a pointer", /SignalTerrain/.test(read("docs/summit-signal/V0.1.md")) && /not the retired SignalTerrain Cyber/.test(read("docs/summit-signal/V0.1.md")));
 assert("cyber vision corpus not overwritten", /Understand the world's signals/.test(read("docs/SIGNALTERRAIN-VISION.md")));
 
