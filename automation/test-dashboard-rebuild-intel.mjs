@@ -275,7 +275,7 @@ const fixtures = [
       }),
     expect: (a) => {
       assert(a.name + " golden signal", hasId(a.signals, "light-golden-approaching"));
-      assert(a.name + " scenes link", (a.toolLinks || []).some((l) => l.id === "scenes"));
+      assert(a.name + " omits unpublished Scenes link", !(a.toolLinks || []).some((l) => l.id === "scenes"));
       assert(a.name + " evidence minutesToSunset", a.signals.some((s) =>
         s.id === "light-golden-approaching" && s.evidence.some((e) => e.metric === "minutesToSunset")
       ));
@@ -303,7 +303,7 @@ const fixtures = [
       }),
     expect: (a) => {
       assert(a.name + " dark-moon signal", hasId(a.signals, "astro-dark-moon-clear"), ids(a.signals).join(","));
-      assert(a.name + " scenes link for dark sky", (a.toolLinks || []).some((l) => l.id === "scenes"));
+      assert(a.name + " omits unpublished Scenes dark-sky link", !(a.toolLinks || []).some((l) => l.id === "scenes"));
     }
   },
   {
