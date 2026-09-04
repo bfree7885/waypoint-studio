@@ -602,15 +602,6 @@ body {
     border-top: 0;
     border-left: 2px solid var(--ss-brass);
   }
-
-  .ss-layers {
-    left: auto;
-    right: 12px;
-    top: 64px;
-    bottom: auto;
-    max-width: min(420px, 46vw);
-    justify-content: flex-end;
-  }
 }
 
 @media (max-width: 360px) {

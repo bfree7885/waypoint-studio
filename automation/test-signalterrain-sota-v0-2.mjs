@@ -72,6 +72,7 @@ const catalog = Model.normalizeFixture(fixture, slide);
 assert("normalize ok", catalog.status === "ok");
 assert("trails parsed", catalog.trails.length >= 20 && catalog.trails.every((t) => t.geometry && t.geometry.length >= 2));
 assert("trail provenance", catalog.trails.every((t) => t.source === "openstreetmap" && t.provenanceUrl && /openstreetmap.org/.test(t.provenanceUrl)));
+assert("trails omit fragment distances", catalog.trails.every((t) => t.distanceLabel == null));
 assert("parking parsed", catalog.parking.length >= 1);
 assert("parking distances labeled straight-line", catalog.parking.every((p) => p.distanceLabel && /straight-line/.test(p.distanceLabel)));
 assert("unnamed parking keeps null name", catalog.parking.some((p) => p.name == null));
@@ -213,6 +214,7 @@ const appJs = read("apps/summit-signal/js/ss-map-app.js");
 assert("select triggers access load", /function loadAccessForSummit/.test(appJs) && /selectSummit/.test(appJs));
 assert("access failure does not throw SOTA UI", /catch/.test(appJs) && /renderDetail/.test(appJs));
 assert("layers independent", /setLayerVisible/.test(appJs));
+assert("desktop layers stay left of the sheet", !/@media \(min-width: 720px\)[\s\S]*\.ss-layers[\s\S]*right:\s*12px/.test(read("apps/summit-signal/css/summit-signal.css")));
 assert("map still independent of Sheds", !/WaypointSheds|sheds-map-app/.test(appJs));
 
 const docs = read("docs/signal-terrain/V0.2.md");

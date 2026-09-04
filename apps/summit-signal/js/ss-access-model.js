@@ -142,6 +142,18 @@
     return list;
   }
 
+  function sortTrails(list) {
+    list.sort(function (a, b) {
+      var an = a.name ? String(a.name).toLowerCase() : "";
+      var bn = b.name ? String(b.name).toLowerCase() : "";
+      if (an && !bn) return -1;
+      if (!an && bn) return 1;
+      if (an && bn && an !== bn) return an < bn ? -1 : 1;
+      return Number(a.osmId) - Number(b.osmId);
+    });
+    return list;
+  }
+
   function fromPreparedTrail(raw) {
     if (!raw || raw.osmId == null) return null;
     var geom = simplifyGeometry(raw.geometry || [], 24);
@@ -239,7 +251,8 @@
 
   function finalize(catalog, summit) {
     catalog.trails.forEach(function (f) {
-      attachDistance(f, summit);
+      f.distanceKm = null;
+      f.distanceLabel = null;
     });
     catalog.trailheads.forEach(function (f) {
       attachDistance(f, summit);
@@ -247,7 +260,7 @@
     catalog.parking.forEach(function (f) {
       attachDistance(f, summit);
     });
-    sortByDistance(catalog.trails);
+    sortTrails(catalog.trails);
     sortByDistance(catalog.trailheads);
     sortByDistance(catalog.parking);
     catalog.counts = {
