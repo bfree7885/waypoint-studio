@@ -145,6 +145,7 @@ Include:
 - SOTA Activation Zone is a ~25 m vertical contour. Do not draw a pretty circle or guessed polygon without a DEM. Keep an empty overlay layer instead.
 - CI smoke `hScroll` on ForageCast / SignalTerrain is usually the **homepage after a silent redirect**, not those apps. Do not patch retired-app CSS for it. Skip overflow when `currentPath` is no longer the URL under test; studio-home still owns `/` overflow.
 - Dashboard intel `toolLinks` for golden hour / dark sky are empty because Scenes is unpublished. Happening Now already asserts that. Do not restore Scenes CTAs to make `test-dashboard-rebuild-intel.mjs` green.
+- `test-profile-migration.mjs` can miss a CDP page target after a long CI Chrome sequence. Wait for `webSocketDebuggerUrl`, use an unused port, and retry more than once. Do not treat that flake as a Kansas-migration product regression.
 
 ### 2026-08-28 — Dusk-desert color reconciliation
 
