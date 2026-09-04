@@ -81,7 +81,9 @@ Shed Hunting is a public sibling destination. Cross-product discovery lives in t
 **global nav**. App bodies must not become studio directories or promo grids.
 The Homepage (`/`) is a Dashboard-first entrance; every other app keeps one job.
 Scenes remains available at existing URLs but is unpublished — do not promote it
-as a peer Studio application.
+as a peer Studio application. Summit Signal is an in-development unpublished
+field app at `/apps/summit-signal/` — do not add it to primary nav or public
+product lists until it is published.
 
 Canonical rule: `docs/APP-SURFACE-ARCHITECTURE.md`. Canonical portfolio:
 `docs/PRODUCT-DIRECTION.md`.

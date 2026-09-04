@@ -1,0 +1,589 @@
+/**
+ * Summit Signal V0.1 map application.
+ * Leaflet is vendored locally. Does not import Shed Hunting modules.
+ */
+(function (global) {
+  "use strict";
+
+  var TOPO_URL =
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
+  var TOPO_ATTR =
+    'Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community. Summit records from <a href="https://www.sota.org.uk/" rel="noopener noreferrer">Summits on the Air</a>.';
+
+  var DEFAULT_CENTER = { lat: 42.0, lng: -74.5 };
+  var DEFAULT_ZOOM = 8;
+  var NEARBY_LIMIT = 8;
+
+  var state = {
+    catalog: null,
+    summits: [],
+    filtered: [],
+    selectedId: null,
+    map: null,
+    markersById: {},
+    markerLayer: null,
+    activationZoneLayer: null,
+    locateMarker: null,
+    searchOpen: false,
+    geolocation: { status: "idle", message: null }
+  };
+
+  function $(id) {
+    return global.document.getElementById(id);
+  }
+
+  function setHidden(el, hidden) {
+    if (!el) return;
+    if (hidden) el.setAttribute("hidden", "");
+    else el.removeAttribute("hidden");
+  }
+
+  function text(value, fallback) {
+    if (value == null || value === "") return fallback || "Unavailable";
+    return String(value);
+  }
+
+  function formatElevation(summit) {
+    var parts = [];
+    if (summit.elevationM != null) parts.push(Math.round(summit.elevationM) + " m");
+    if (summit.elevationFt != null) parts.push(Math.round(summit.elevationFt) + " ft");
+    return parts.length ? parts.join(" · ") : "Unavailable";
+  }
+
+  function formatCoords(summit) {
+    if (summit.lat == null || summit.lng == null) return "Unavailable";
+    return summit.lat.toFixed(4) + ", " + summit.lng.toFixed(4);
+  }
+
+  function formatActivationCount(n) {
+    if (n == null) return "Unavailable";
+    return String(n);
+  }
+
+  function formatLastActivation(summit) {
+    if (!summit.lastActivationDate && !summit.lastActivationCall) return "Unavailable";
+    var date = summit.lastActivationDate ? String(summit.lastActivationDate).slice(0, 10) : null;
+    var call = summit.lastActivationCall;
+    if (date && call) return date + " · " + call;
+    return date || call;
+  }
+
+  function formatMaidenhead(summit) {
+    if (!summit.maidenhead) return "Unavailable";
+    if (summit.maidenheadSource === "derived") return summit.maidenhead + " (derived)";
+    return summit.maidenhead;
+  }
+
+  function formatAssociation(summit) {
+    var bits = [];
+    if (summit.associationName) bits.push(summit.associationName);
+    else if (summit.associationCode) bits.push(summit.associationCode);
+    return bits.length ? bits.join(" ") : "Unavailable";
+  }
+
+  function formatRegion(summit) {
+    if (summit.regionName && summit.regionCode) return summit.regionName + " (" + summit.regionCode + ")";
+    return summit.regionName || summit.regionCode || "Unavailable";
+  }
+
+  function announce(msg) {
+    var live = $("ss-live");
+    if (live) live.textContent = msg || "";
+  }
+
+  function setBanner(message, kind) {
+    var el = $("ss-banner");
+    if (!el) return;
+    if (!message) {
+      el.textContent = "";
+      setHidden(el, true);
+      el.removeAttribute("data-kind");
+      return;
+    }
+    el.textContent = message;
+    el.setAttribute("data-kind", kind || "info");
+    setHidden(el, false);
+  }
+
+  function markerHtml(summit, selected) {
+    var pts = summit.points != null ? String(summit.points) : "–";
+    var name = summit.name || "Unnamed summit";
+    var ref = summit.reference || "";
+    var label = name + (ref ? ", " + ref : "") + (summit.points != null ? ", " + summit.points + " points" : "");
+    return (
+      '<button type="button" class="ss-marker' +
+      (selected ? " is-selected" : "") +
+      '" data-summit-id="' +
+      escapeAttr(summit.id) +
+      '" data-points="' +
+      escapeAttr(pts) +
+      '" data-hike-difficulty="" data-activation-status="" data-weather-suitability="" data-accessibility="" data-recommendation-score="" aria-label="' +
+      escapeAttr(label) +
+      '" aria-pressed="' +
+      (selected ? "true" : "false") +
+      '"><span class="ss-marker__peak" aria-hidden="true"></span><span class="ss-marker__pts">' +
+      escapeHtml(pts) +
+      "</span></button>"
+    );
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function escapeAttr(s) {
+    return escapeHtml(s).replace(/'/g, "&#39;");
+  }
+
+  function makeIcon(summit, selected) {
+    var L = global.L;
+    return L.divIcon({
+      className: "ss-marker-wrap" + (selected ? " is-selected" : ""),
+      html: markerHtml(summit, selected),
+      iconSize: selected ? [36, 40] : [28, 32],
+      iconAnchor: selected ? [18, 38] : [14, 30],
+      popupAnchor: [0, -28]
+    });
+  }
+
+  function applyFilter() {
+    var Model = global.SummitSignalModel;
+    var q = ($("ss-search-q") && $("ss-search-q").value) || "";
+    var minEl = $("ss-min-points");
+    var min = minEl && minEl.value !== "" ? Number(minEl.value) : null;
+    state.filtered = Model.searchSummits(state.summits, q, min);
+    renderSearchResults();
+    refreshMarkerVisibility();
+  }
+
+  function refreshMarkerVisibility() {
+    var allowed = {};
+    for (var i = 0; i < state.filtered.length; i += 1) allowed[state.filtered[i].id] = true;
+    Object.keys(state.markersById).forEach(function (id) {
+      var marker = state.markersById[id];
+      var show = !!allowed[id];
+      var onMap = state.map.hasLayer(marker);
+      if (show && !onMap) marker.addTo(state.markerLayer);
+      if (!show && onMap) state.markerLayer.removeLayer(marker);
+    });
+  }
+
+  function renderSearchResults() {
+    var list = $("ss-search-results");
+    if (!list) return;
+    list.innerHTML = "";
+    var q = ($("ss-search-q") && $("ss-search-q").value) || "";
+    var minEl = $("ss-min-points");
+    var filtering = !!(q.trim() || (minEl && minEl.value !== ""));
+    if (!filtering) {
+      var hint = global.document.createElement("li");
+      hint.className = "ss-search-hint";
+      hint.textContent =
+        state.summits.length +
+        " summits loaded. Type a name or SOTA reference, or set a minimum points filter.";
+      list.appendChild(hint);
+      return;
+    }
+    if (!state.filtered.length) {
+      var empty = global.document.createElement("li");
+      empty.className = "ss-search-empty";
+      empty.textContent = "No matching summits in the loaded catalogue.";
+      list.appendChild(empty);
+      return;
+    }
+    var max = Math.min(state.filtered.length, 40);
+    for (var i = 0; i < max; i += 1) {
+      var s = state.filtered[i];
+      var li = global.document.createElement("li");
+      var btn = global.document.createElement("button");
+      btn.type = "button";
+      btn.className = "ss-search-item";
+      btn.setAttribute("data-summit-id", s.id);
+      btn.innerHTML =
+        '<span class="ss-search-item__name">' +
+        escapeHtml(s.name || "Unnamed summit") +
+        '</span><span class="ss-search-item__meta">' +
+        escapeHtml((s.reference || "") + (s.points != null ? " · " + s.points + " pts" : "")) +
+        "</span>";
+      btn.addEventListener("click", function (ev) {
+        selectSummit(ev.currentTarget.getAttribute("data-summit-id"), { pan: true, fromSearch: true });
+      });
+      li.appendChild(btn);
+      list.appendChild(li);
+    }
+    if (state.filtered.length > max) {
+      var more = global.document.createElement("li");
+      more.className = "ss-search-hint";
+      more.textContent = state.filtered.length - max + " more match the filter on the map.";
+      list.appendChild(more);
+    }
+  }
+
+  function setSelectedMarker(id) {
+    Object.keys(state.markersById).forEach(function (mid) {
+      var marker = state.markersById[mid];
+      var summit = global.SummitSignalModel.findById(state.summits, mid);
+      if (!summit) return;
+      var selected = mid === id;
+      marker.setIcon(makeIcon(summit, selected));
+      marker.setZIndexOffset(selected ? 1000 : 0);
+    });
+  }
+
+  function renderDetail(summit) {
+    var sheet = $("ss-sheet");
+    if (!sheet) return;
+    if (!summit) {
+      setHidden(sheet, true);
+      sheet.setAttribute("aria-hidden", "true");
+      return;
+    }
+    var planning = global.SummitSignalPlanning.getPlanning(summit);
+    var nearby = global.SummitSignalGeo.nearbySummits(summit, state.summits, { limit: NEARBY_LIMIT });
+
+    $("ss-detail-name").textContent = summit.name || "Unnamed summit";
+    $("ss-detail-ref").textContent = text(summit.reference);
+    $("ss-field-elevation").textContent = formatElevation(summit);
+    $("ss-field-points").textContent = summit.points != null ? String(summit.points) : "Unavailable";
+    $("ss-field-bonus").textContent = summit.seasonalBonus && summit.seasonalBonus.label
+      ? summit.seasonalBonus.label
+      : "Unavailable";
+    $("ss-field-bonus").setAttribute(
+      "data-status",
+      summit.seasonalBonus && summit.seasonalBonus.status ? summit.seasonalBonus.status : "unavailable"
+    );
+    $("ss-field-coords").textContent = formatCoords(summit);
+    $("ss-field-grid").textContent = formatMaidenhead(summit);
+    $("ss-field-grid").setAttribute("data-source", summit.maidenheadSource || "unavailable");
+    $("ss-field-activations").textContent = formatActivationCount(summit.activationCount);
+    $("ss-field-last").textContent = formatLastActivation(summit);
+    $("ss-field-association").textContent = formatAssociation(summit);
+    $("ss-field-region").textContent = formatRegion(summit);
+
+    var planRoot = $("ss-planning-fields");
+    planRoot.innerHTML = "";
+    planning.fields.forEach(function (f) {
+      var item = planning.items[f.id];
+      var row = global.document.createElement("div");
+      row.className = "ss-kv ss-kv--placeholder";
+      row.setAttribute("data-planning-id", f.id);
+      row.setAttribute("data-status", item.status);
+      row.innerHTML =
+        "<dt>" +
+        escapeHtml(item.label) +
+        '</dt><dd><span class="ss-unavailable">' +
+        escapeHtml(item.display) +
+        "</span></dd>";
+      planRoot.appendChild(row);
+    });
+
+    var nearRoot = $("ss-nearby-list");
+    nearRoot.innerHTML = "";
+    if (!nearby.length) {
+      var none = global.document.createElement("li");
+      none.className = "ss-nearby-empty";
+      none.textContent = "No other loaded summits with coordinates are available to compare.";
+      nearRoot.appendChild(none);
+    } else {
+      nearby.forEach(function (row) {
+        var s = row.summit;
+        var li = global.document.createElement("li");
+        var btn = global.document.createElement("button");
+        btn.type = "button";
+        btn.className = "ss-nearby-item";
+        btn.setAttribute("data-summit-id", s.id);
+        btn.innerHTML =
+          '<span class="ss-nearby-item__name">' +
+          escapeHtml(s.name || "Unnamed summit") +
+          '</span><span class="ss-nearby-item__meta">' +
+          escapeHtml(
+            (s.reference || "") +
+              (s.points != null ? " · " + s.points + " pts" : "") +
+              (row.distanceLabel ? " · " + row.distanceLabel : "")
+          ) +
+          "</span>";
+        btn.addEventListener("click", function (ev) {
+          selectSummit(ev.currentTarget.getAttribute("data-summit-id"), { pan: true });
+        });
+        li.appendChild(btn);
+        nearRoot.appendChild(li);
+      });
+    }
+
+    setHidden(sheet, false);
+    sheet.setAttribute("aria-hidden", "false");
+    announce("Selected " + (summit.name || summit.reference || "summit"));
+  }
+
+  function selectSummit(id, options) {
+    var opts = options || {};
+    var summit = global.SummitSignalModel.findById(state.summits, id);
+    if (!summit) return null;
+    state.selectedId = summit.id;
+    setSelectedMarker(summit.id);
+    renderDetail(summit);
+    if (opts.pan && state.map) {
+      state.map.panTo([summit.lat, summit.lng], { animate: true });
+    }
+    if (opts.fromSearch) {
+      setSearchOpen(false);
+    }
+    var marker = state.markersById[summit.id];
+    if (marker && marker.getElement) {
+      var btn = marker.getElement() && marker.getElement().querySelector(".ss-marker");
+      if (btn) btn.focus();
+    }
+    return summit;
+  }
+
+  function clearSelection() {
+    state.selectedId = null;
+    setSelectedMarker(null);
+    renderDetail(null);
+  }
+
+  function setSearchOpen(open) {
+    state.searchOpen = !!open;
+    var panel = $("ss-search-panel");
+    var btn = $("ss-search-open");
+    setHidden(panel, !state.searchOpen);
+    if (btn) {
+      btn.setAttribute("aria-expanded", state.searchOpen ? "true" : "false");
+    }
+    if (state.searchOpen && $("ss-search-q")) $("ss-search-q").focus();
+  }
+
+  function plotSummits() {
+    var L = global.L;
+    state.markersById = {};
+    state.markerLayer.clearLayers();
+    for (var i = 0; i < state.summits.length; i += 1) {
+      (function (summit) {
+        var marker = L.marker([summit.lat, summit.lng], {
+          icon: makeIcon(summit, false),
+          title: summit.name || summit.reference || "Summit",
+          keyboard: false,
+          riseOnHover: true
+        });
+        marker.on("click", function () {
+          selectSummit(summit.id, { pan: false });
+        });
+        marker.addTo(state.markerLayer);
+        state.markersById[summit.id] = marker;
+      })(state.summits[i]);
+    }
+    /* Activation-zone overlay hook — empty until a DEM-backed calculation exists. */
+    state.activationZoneLayer.clearLayers();
+  }
+
+  function fitToRegion() {
+    var region = state.catalog && state.catalog.region;
+    if (region && region.bounds && state.map) {
+      state.map.fitBounds(
+        [
+          [region.bounds.minLat, region.bounds.minLng],
+          [region.bounds.maxLat, region.bounds.maxLng]
+        ],
+        { padding: [28, 28], maxZoom: 10 }
+      );
+      return;
+    }
+    var center = (region && region.center) || DEFAULT_CENTER;
+    state.map.setView([center.lat, center.lng], DEFAULT_ZOOM);
+  }
+
+  function locateUser() {
+    if (!global.navigator || !global.navigator.geolocation) {
+      state.geolocation = {
+        status: "unavailable",
+        message: "Geolocation is not available in this browser. The map still works without it."
+      };
+      setBanner(state.geolocation.message, "info");
+      announce(state.geolocation.message);
+      return;
+    }
+    state.geolocation = { status: "pending", message: "Requesting location…" };
+    setBanner(state.geolocation.message, "info");
+    global.navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        var lat = pos.coords.latitude;
+        var lng = pos.coords.longitude;
+        state.geolocation = { status: "granted", message: null };
+        setBanner("", null);
+        var L = global.L;
+        if (state.locateMarker) state.map.removeLayer(state.locateMarker);
+        state.locateMarker = L.circleMarker([lat, lng], {
+          radius: 7,
+          color: "#3ec8c8",
+          weight: 2,
+          fillColor: "#3ec8c8",
+          fillOpacity: 0.85
+        }).addTo(state.map);
+        state.locateMarker.bindTooltip("Current location (approximate)", { permanent: false });
+        state.map.setView([lat, lng], Math.max(state.map.getZoom(), 10));
+        announce("Moved map to current location");
+      },
+      function () {
+        state.geolocation = {
+          status: "denied",
+          message: "Location permission is off or unavailable. Browse the map without GPS — summits still load."
+        };
+        setBanner(state.geolocation.message, "info");
+        announce(state.geolocation.message);
+      },
+      { enableHighAccuracy: false, timeout: 8000, maximumAge: 60000 }
+    );
+  }
+
+  function bindUi() {
+    var searchBtn = $("ss-search-open");
+    if (searchBtn) {
+      searchBtn.addEventListener("click", function () {
+        setSearchOpen(!state.searchOpen);
+      });
+    }
+    var searchClose = $("ss-search-close");
+    if (searchClose) {
+      searchClose.addEventListener("click", function () {
+        setSearchOpen(false);
+      });
+    }
+    var q = $("ss-search-q");
+    if (q) q.addEventListener("input", applyFilter);
+    var min = $("ss-min-points");
+    if (min) min.addEventListener("change", applyFilter);
+    var locate = $("ss-locate");
+    if (locate) locate.addEventListener("click", locateUser);
+    var close = $("ss-sheet-close");
+    if (close) {
+      close.addEventListener("click", function () {
+        clearSelection();
+        close.focus();
+      });
+    }
+    global.document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") {
+        if (state.searchOpen) {
+          setSearchOpen(false);
+          if (searchBtn) searchBtn.focus();
+        } else if (state.selectedId) {
+          clearSelection();
+        }
+      }
+    });
+  }
+
+  function describeSource(catalog) {
+    var src = catalog.source || {};
+    var meta = catalog.meta || {};
+    var count = catalog.summits.length;
+    var label = src.label || "SOTA summit catalogue";
+    var parts = [count + " summits · " + label];
+    if (meta.liveAttempted && meta.liveError) {
+      parts.push("Live SOTA request failed; using the labeled development fixture.");
+    }
+    if (src.developmentFixture) {
+      parts.push("Development fixture of real retrieved records — not invented.");
+    }
+    return parts.join(" ");
+  }
+
+  function bootMap() {
+    var L = global.L;
+    if (!L) throw new Error("Leaflet missing");
+    var mapEl = $("ss-map");
+    state.map = L.map(mapEl, {
+      zoomControl: true,
+      attributionControl: true,
+      minZoom: 5,
+      maxZoom: 16,
+      tap: true
+    });
+    L.tileLayer(TOPO_URL, {
+      attribution: TOPO_ATTR,
+      maxZoom: 16,
+      maxNativeZoom: 16
+    }).addTo(state.map);
+    state.markerLayer = L.layerGroup().addTo(state.map);
+    /* Reserved for a future DEM-backed activation-zone polygon. */
+    state.activationZoneLayer = L.layerGroup().addTo(state.map);
+    global.__SUMMIT_SIGNAL_MAP__ = state.map;
+    setTimeout(function () {
+      state.map.invalidateSize();
+    }, 80);
+  }
+
+  function start() {
+    bindUi();
+    bootMap();
+    setBanner("Loading SOTA summit catalogue…", "info");
+    return global.SummitSignalSota.loadCatalog()
+      .then(function (catalog) {
+        state.catalog = catalog;
+        state.summits = catalog.summits.slice();
+        state.filtered = state.summits.slice();
+        plotSummits();
+        fitToRegion();
+        applyFilter();
+        var srcNote = describeSource(catalog);
+        $("ss-source-note").textContent = srcNote;
+        var err = catalog.meta && catalog.meta.liveError;
+        if (err) {
+          setBanner(
+            "Live SOTA data is unavailable (" +
+              err +
+              "). Showing the labeled development fixture of real retrieved W2/GC records.",
+            "info"
+          );
+        } else if (catalog.source && catalog.source.developmentFixture) {
+          setBanner(
+            "Showing a labeled development fixture: " +
+              catalog.summits.length +
+              " real SOTA summits retrieved from api2.sota.org.uk (W2/GC Greater Catskills).",
+            "info"
+          );
+        } else {
+          setBanner(srcNote, "info");
+        }
+        announce(catalog.summits.length + " summits on the map");
+        return catalog;
+      })
+      .catch(function (err) {
+        setBanner(
+          "Summit catalogue could not be loaded. " +
+            String(err && err.message ? err.message : err) +
+            " The map still opens; summit markers are unavailable until data loads.",
+          "error"
+        );
+        fitToRegion();
+        return null;
+      });
+  }
+
+  var api = {
+    start: start,
+    selectSummit: selectSummit,
+    clearSelection: clearSelection,
+    applyFilter: applyFilter,
+    locateUser: locateUser,
+    getState: function () {
+      return state;
+    }
+  };
+
+  global.SummitSignalMapApp = api;
+  var ns = global.SummitSignal || (global.SummitSignal = {});
+  ns.MapApp = api;
+
+  if (global.document && global.document.readyState === "loading") {
+    global.document.addEventListener("DOMContentLoaded", function () {
+      start();
+    });
+  } else if (global.document) {
+    start();
+  }
+})(typeof window !== "undefined" ? window : globalThis);

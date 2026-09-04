@@ -65,6 +65,10 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 - Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
 - Version sequence and V2.x flagship dynamic search-priority map: `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`. Do not implement that map in V1.7.
 
+## Summit Signal specifically
+
+In-development, unpublished. Route: `/apps/summit-signal/`. Map-first SOTA explorer; not a Studio architecture peer. Keep it off primary nav, homepage, About/Support active lists, and the sitemap. `noindex` + robots Disallow. Do not couple it to Shed Hunting modules. See `docs/summit-signal/V0.1.md`.
+
 ## Scenes specifically
 
 Retained internally. URLs must keep working. Absent from primary nav, homepage, About/Support active lists, sitemap, and Dashboard public CTAs. `noindex` + robots Disallow.

@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-04 — Summit Signal V0.1 foundation
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/summit-signal/V0.1.md`
+
+- New Waypoint field apps can live under `/apps/` without becoming public architecture peers. Use `noindex`, robots Disallow, and keep them out of primary nav, homepage, About/Support, and the sitemap.
+- Do not couple a new map product to Shed Hunting modules. Vendor Leaflet independently; reuse public Esri tile URLs, not `sheds-tile-provider.js`.
+- SOTA live APIs are useful, but CORS and reliability argue for a **labeled fixture of real retrieved records** plus a provider that can switch to live later. Never invent summit or hike facts to fill the map.
+- Planning placeholders (trailhead, parking, route, gain, time, activation zone) establish product direction only when they are explicitly **not yet integrated**. Empty is honest; guessed AllTrails-like numbers are not.
+- SOTA Activation Zone is a ~25 m vertical contour. Do not draw a pretty circle or guessed polygon without a DEM. Keep an empty overlay layer instead.
+
 ### 2026-08-28 — Dusk-desert color reconciliation
 
 **Branch:** `cursor/dusk-desert-color-system-3501` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`

@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-09-03  
+**Last updated:** 2026-09-04  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint is building now.
@@ -194,6 +194,22 @@ Do **not**:
 **Phase 3B (custom domain via `sheds-site`):** publish `dist/shedhunting/` to `bfree7885/sheds-site`, which already owns `shedhunting.org`. Origin flag stays **false**. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3B.md`. Street default is Esri World Street Map (no tile secret required). **Do not publish until this Cloud Agent token can push `sheds-site`.** Live domain is still March 2026 Terrain Intelligence.
 
 **Phase 3C (Studio cutover, this work):** `shedDedicatedHostEnabled: true`. Waypoint Studio primary nav and public links use `https://shedhunting.org/`. Legacy Studio Shed routes noindex and redirect with static client-side cutover (GitHub Pages cannot emit HTTP 301/308). Do not merge/deploy until the owner reviews. Do not republish `sheds-site` from this phase. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
+
+---
+
+## In development — Summit Signal (not a public peer)
+
+**Summit Signal** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. V0.1 is a foundation map: retrieved SOTA summits, summit detail, nearby comparison, and search. It is **not** Shed Hunting and must not modify Shed Hunting.
+
+Treat it like other in-development / unpublished apps:
+
+- `noindex` + `robots.txt` Disallow
+- absent from primary nav, homepage product presentation, About/Support active lists, and the sitemap
+- do not present it as a fifth public architecture destination
+
+Canonical write-up: [`docs/summit-signal/V0.1.md`](summit-signal/V0.1.md).
+
+> Summit Signal is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
 
 ---
 
