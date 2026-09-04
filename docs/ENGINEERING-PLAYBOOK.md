@@ -134,9 +134,19 @@ Include:
 
 ## Lessons Learned
 
-### 2026-09-04 — Summit Signal V0.1 foundation
+### 2026-09-04 — SignalTerrain V0.1 (SOTA rebrand of Summit Signal)
 
-**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/summit-signal/V0.1.md`
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.1.md`
+
+- **SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Keep the SOTA app at `/apps/summit-signal/`. Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not overwrite `docs/SIGNALTERRAIN-*.md`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`.
+- Use collision-safe internals (`SignalTerrainSota*`, `signalterrain-sota-*`, `data-product="signalterrain-sota"`). Do not take the retired cyber package’s identifiers.
+- Public-portfolio tests still treat the string `SignalTerrain` as a discontinued *public* name. Do not weaken those lists so the unpublished SOTA app can appear on homepage/nav/About. The name belongs in the unpublished app and development docs only.
+- SOTA API/data terms must be reviewed before public launch or commercialization. Do not assume commercial API use is permitted. Keep attribution and the independent-app disclaimer. Do not implement billing.
+- CSS classes / DOM ids (`ss-*`) and the `/apps/summit-signal/` path were retained to avoid a destructive rename of a working map.
+
+### 2026-09-04 — Summit Signal V0.1 foundation (superseded name)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.1.md` (was `docs/summit-signal/V0.1.md`)
 
 - New Waypoint field apps can live under `/apps/` without becoming public architecture peers. Use `noindex`, robots Disallow, and keep them out of primary nav, homepage, About/Support, and the sitemap.
 - Do not couple a new map product to Shed Hunting modules. Vendor Leaflet independently; reuse public Esri tile URLs, not `sheds-tile-provider.js`.

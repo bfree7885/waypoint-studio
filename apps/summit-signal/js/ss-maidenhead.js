@@ -1,5 +1,5 @@
 /**
- * Maidenhead locator helpers for Summit Signal.
+ * Maidenhead locator helpers for SignalTerrain (SOTA).
  * Prefer the SOTA-provided locator when present. Derived values are labeled.
  */
 (function (global) {
@@ -41,7 +41,7 @@
     fromLatLng: fromLatLng
   };
 
-  global.SummitSignalMaidenhead = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
+  global.SignalTerrainSotaMaidenhead = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
   ns.Maidenhead = api;
 })(typeof window !== "undefined" ? window : globalThis);

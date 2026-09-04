@@ -5,11 +5,11 @@
     "endpoint": "/api/regions/W2/GC",
     "url": "https://api2.sota.org.uk/api/regions/W2/GC",
     "retrievedAt": "2026-09-04T01:00:00Z",
-    "userAgent": "SummitSignalV01/0.1 (Waypoint Studio; local development; not affiliated with SOTA)",
-    "licenseNote": "Summit records originate from Summits on the Air (SOTA). Summit Signal is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA). Attribute SOTA as the source of summit catalogue data.",
+    "userAgent": "SignalTerrainSotaV01/0.1 (Waypoint Studio; local development; not affiliated with SOTA)",
+    "licenseNote": "Summit records originate from Summits on the Air (SOTA). SignalTerrain is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA). Attribute SOTA as the source of summit catalogue data.",
     "label": "Development fixture \u2014 real retrieved SOTA region W2/GC (Greater Catskills)",
     "developmentFixture": true,
-    "liveReplacement": "Replace this file with a live provider call to the same endpoint, or expand to additional regions, without changing the normalized Summit Signal model."
+    "liveReplacement": "Replace this file with a live provider call to the same endpoint, or expand to additional regions, without changing the normalized SignalTerrain SOTA model."
   },
   "region": {
     "associationCode": "W2",

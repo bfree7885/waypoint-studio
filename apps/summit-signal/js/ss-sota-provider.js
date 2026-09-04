@@ -1,7 +1,7 @@
 /**
  * SOTA summit data provider.
  *
- * Raw SOTA source → this module → SummitSignalModel → UI.
+ * Raw SOTA source → this module → SignalTerrainSotaModel → UI.
  * Default: labeled development fixture of real retrieved W2/GC records.
  * Optional live fetch: ?live=1 (falls back to the fixture if the request fails).
  */
@@ -10,7 +10,7 @@
 
   var FIXTURE_URL = "data/ss-summits-w2-gc.json";
   var LIVE_URL = "https://api2.sota.org.uk/api/regions/W2/GC";
-  var CACHE_KEY = "summit-signal-catalog-v0";
+  var CACHE_KEY = "signalterrain-sota-catalog-v0";
   var memoryCache = null;
 
   function wantsLive(search) {
@@ -88,8 +88,8 @@
   }
 
   function toCatalog(payload, meta) {
-    var Model = global.SummitSignalModel;
-    if (!Model) throw new Error("SummitSignalModel missing — load ss-summit-model.js first");
+    var Model = global.SignalTerrainSotaModel;
+    if (!Model) throw new Error("SignalTerrainSotaModel missing — load ss-summit-model.js first");
     var catalog = Model.normalizeCatalog(payload);
     catalog.meta = meta || {};
     return catalog;
@@ -170,7 +170,7 @@
     wantsLive: wantsLive
   };
 
-  global.SummitSignalSota = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
-  ns.Sota = api;
+  global.SignalTerrainSotaProvider = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
+  ns.Provider = api;
 })(typeof window !== "undefined" ? window : globalThis);

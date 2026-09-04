@@ -197,26 +197,29 @@ Do **not**:
 
 ---
 
-## In development — Summit Signal (not a public peer)
+## In development — SignalTerrain (SOTA, unpublished; not a public peer)
 
-**Summit Signal** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. V0.1 is a foundation map: retrieved SOTA summits, summit detail, nearby comparison, and search. It is **not** Shed Hunting and must not modify Shed Hunting.
+**SignalTerrain** (`/apps/summit-signal/` in V0.1) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with (future) terrain/access and radio intelligence. V0.1 is a foundation map: retrieved SOTA summits, summit detail, nearby comparison, and search. It is **not** Shed Hunting and must not modify Shed Hunting.
+
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. Historical cyber docs remain at `docs/SIGNALTERRAIN-*.md`. Do not restore cyber copy such as “Understand the world's signals.”
 
 Treat it like other in-development / unpublished apps:
 
 - `noindex` + `robots.txt` Disallow
 - absent from primary nav, homepage product presentation, About/Support active lists, and the sitemap
 - do not present it as a fifth public architecture destination
+- the product name may appear in the unpublished app and development docs only; public-portfolio tests still treat `SignalTerrain` as a discontinued *public* name for the retired cyber product — do not weaken those lists
 
-Canonical write-up: [`docs/summit-signal/V0.1.md`](summit-signal/V0.1.md).
+Canonical write-up: [`docs/signal-terrain/V0.1.md`](signal-terrain/V0.1.md).
 
-> Summit Signal is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
+> SignalTerrain is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
 
 ---
 
 ## Agent contract
 
 1. Build toward **Dashboard (Studio) + Shed Hunting (sibling) + Deck + Publishing**. Do not restore Dashboard · Scenes · Sheds as equal Studio apps.  
-2. Do not revive discontinued public products, experiments, or incubator catalogs. Reusable engineering may stay internal.  
+2. Do not revive discontinued public products, experiments, or incubator catalogs. Reusable engineering may stay internal. Reusing the **name** SignalTerrain for the unpublished SOTA app at `/apps/summit-signal/` is authorized; do **not** restore SignalTerrain Cyber.  
 3. Do not promote unpublished Scenes in public discovery. Keep the code.  
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  

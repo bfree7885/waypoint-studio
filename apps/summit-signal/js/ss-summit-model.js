@@ -1,5 +1,5 @@
 /**
- * Normalized Summit Signal summit model.
+ * Normalized SignalTerrain (SOTA) summit model.
  * UI code should consume this shape, not raw SOTA payloads.
  *
  * Honesty: missing source fields stay unavailable. Never invent points,
@@ -63,7 +63,7 @@
     if (provided) {
       return { value: provided, source: "sota" };
     }
-    var Maidenhead = global.SummitSignalMaidenhead;
+    var Maidenhead = global.SignalTerrainSotaMaidenhead;
     var derived = Maidenhead && lat != null && lng != null ? Maidenhead.fromLatLng(lat, lng, 6) : null;
     if (derived) {
       return { value: derived, source: "derived" };
@@ -205,7 +205,7 @@
     validCoords: validCoords
   };
 
-  global.SummitSignalModel = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
+  global.SignalTerrainSotaModel = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
   ns.Model = api;
 })(typeof window !== "undefined" ? window : globalThis);

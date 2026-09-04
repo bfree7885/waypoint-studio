@@ -68,7 +68,7 @@
     nearbySummits: nearbySummits
   };
 
-  global.SummitSignalGeo = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
+  global.SignalTerrainSotaGeo = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
   ns.Geo = api;
 })(typeof window !== "undefined" ? window : globalThis);

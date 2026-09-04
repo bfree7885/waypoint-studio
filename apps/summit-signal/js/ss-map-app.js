@@ -1,6 +1,6 @@
 /**
- * Summit Signal V0.1 map application.
- * Leaflet is vendored locally. Does not import Shed Hunting modules.
+ * SignalTerrain SOTA V0.1 map application.
+ * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
   "use strict";
@@ -151,7 +151,7 @@
   }
 
   function applyFilter() {
-    var Model = global.SummitSignalModel;
+    var Model = global.SignalTerrainSotaModel;
     var q = ($("ss-search-q") && $("ss-search-q").value) || "";
     var minEl = $("ss-min-points");
     var min = minEl && minEl.value !== "" ? Number(minEl.value) : null;
@@ -226,7 +226,7 @@
   function setSelectedMarker(id) {
     Object.keys(state.markersById).forEach(function (mid) {
       var marker = state.markersById[mid];
-      var summit = global.SummitSignalModel.findById(state.summits, mid);
+      var summit = global.SignalTerrainSotaModel.findById(state.summits, mid);
       if (!summit) return;
       var selected = mid === id;
       marker.setIcon(makeIcon(summit, selected));
@@ -242,8 +242,8 @@
       sheet.setAttribute("aria-hidden", "true");
       return;
     }
-    var planning = global.SummitSignalPlanning.getPlanning(summit);
-    var nearby = global.SummitSignalGeo.nearbySummits(summit, state.summits, { limit: NEARBY_LIMIT });
+    var planning = global.SignalTerrainSotaPlanning.getPlanning(summit);
+    var nearby = global.SignalTerrainSotaGeo.nearbySummits(summit, state.summits, { limit: NEARBY_LIMIT });
 
     $("ss-detail-name").textContent = summit.name || "Unnamed summit";
     $("ss-detail-ref").textContent = text(summit.reference);
@@ -321,7 +321,7 @@
 
   function selectSummit(id, options) {
     var opts = options || {};
-    var summit = global.SummitSignalModel.findById(state.summits, id);
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, id);
     if (!summit) return null;
     state.selectedId = summit.id;
     setSelectedMarker(summit.id);
@@ -511,7 +511,7 @@
     state.markerLayer = L.layerGroup().addTo(state.map);
     /* Reserved for a future DEM-backed activation-zone polygon. */
     state.activationZoneLayer = L.layerGroup().addTo(state.map);
-    global.__SUMMIT_SIGNAL_MAP__ = state.map;
+    global.__SIGNALTERRAIN_SOTA_MAP__ = state.map;
     setTimeout(function () {
       state.map.invalidateSize();
     }, 80);
@@ -521,7 +521,7 @@
     bindUi();
     bootMap();
     setBanner("Loading SOTA summit catalogue…", "info");
-    return global.SummitSignalSota.loadCatalog()
+    return global.SignalTerrainSotaProvider.loadCatalog()
       .then(function (catalog) {
         state.catalog = catalog;
         state.summits = catalog.summits.slice();
@@ -575,8 +575,8 @@
     }
   };
 
-  global.SummitSignalMapApp = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
+  global.SignalTerrainSotaMapApp = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
   ns.MapApp = api;
 
   if (global.document && global.document.readyState === "loading") {

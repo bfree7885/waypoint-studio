@@ -13,7 +13,7 @@
   "use strict";
 
   var NOT_INTEGRATED_REASON =
-    "Not yet integrated. Summit Signal has not retrieved trail, parking, or routing data for this summit.";
+    "Not yet integrated. SignalTerrain has not retrieved trail, parking, or routing data for this summit.";
 
   var ACTIVATION_ZONE_REASON =
     "The SOTA Activation Zone is typically the area within about 25 m vertically of the summit. " +
@@ -56,7 +56,7 @@
     }
     return {
       status: "not-integrated",
-      provider: "summit-signal-planning-v0",
+      provider: "signalterrain-sota-planning-v0",
       intendedSources: [
         "OpenStreetMap-derived trail and trailhead data",
         "public land / open government datasets",
@@ -73,7 +73,7 @@
     getPlanning: getPlanning
   };
 
-  global.SummitSignalPlanning = api;
-  var ns = global.SummitSignal || (global.SummitSignal = {});
+  global.SignalTerrainSotaPlanning = api;
+  var ns = global.SignalTerrainSota || (global.SignalTerrainSota = {});
   ns.Planning = api;
 })(typeof window !== "undefined" ? window : globalThis);

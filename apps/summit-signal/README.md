@@ -1,10 +1,14 @@
-# Summit Signal
+# SignalTerrain (SOTA)
 
-Waypoint field application for SOTA summit discovery and activation planning.
+Unpublished Waypoint field application for SOTA summit discovery and activation planning.
 
-**V0.1** is the foundation: a mobile-first map of retrieved SOTA summits, summit detail, nearby comparison, and basic search. It is not a finished hiking or radio product.
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.**
 
-Canonical documentation: [`docs/summit-signal/V0.1.md`](../../docs/summit-signal/V0.1.md)
+This directory is served at `/apps/summit-signal/` in V0.1. That route is intentional. Do not move this app to `/apps/signalterrain/` — that URL belongs to the retired cyber surface and currently redirects.
+
+**V0.1** is the foundation: a mobile-first map of retrieved SOTA summits, summit detail, nearby comparison, and basic search. It is not a finished hiking or radio product. Trail, parking, and routing data are not integrated yet.
+
+Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md)
 
 ## Run locally
 
@@ -25,6 +29,10 @@ node automation/test-summit-signal-v0-1.mjs
 node automation/test-summit-signal-v0-1-map-mobile.mjs
 ```
 
+## Isolation
+
+This app does not import Shed Hunting modules, `design-system/signalterrain/**`, or `wds-signalterrain-*` (retired cyber runtime).
+
 ## Independence
 
-Summit Signal is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
+SignalTerrain is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).

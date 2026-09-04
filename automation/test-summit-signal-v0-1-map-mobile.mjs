@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Summit Signal V0.1 — map load, select, detail, search, geolocation-off, 320px.
+ * SignalTerrain SOTA V0.1 — map load, select, detail, search, geolocation-off, 320px.
+ * Runtime remains /apps/summit-signal/.
  * Run: node automation/test-summit-signal-v0-1-map-mobile.mjs
  */
 import { spawn } from "child_process";
@@ -19,7 +20,7 @@ const PORT = Number(process.env.SS_V01_MOBILE_PORT || 8131);
 const ART = process.env.SS_V01_ARTIFACTS ||
   (fs.existsSync("/opt/cursor/artifacts")
     ? "/opt/cursor/artifacts"
-    : path.join(ROOT, "automation/artifacts/summit-signal-v0-1"));
+    : path.join(ROOT, "automation/artifacts/signalterrain-sota-v0-1"));
 const VIEWPORTS = [
   { name: "w320", width: 320, height: 568 },
   { name: "w375", width: 375, height: 667 },
@@ -169,15 +170,20 @@ async function main() {
     let boot = null;
     for (let i = 0; i < 40; i += 1) {
       boot = await evalExpr(`(() => {
-        var app = window.SummitSignalMapApp;
+        var app = window.SignalTerrainSotaMapApp;
         var st = app && app.getState ? app.getState() : null;
         return {
           ready: !!(st && st.summits && st.summits.length),
           count: st && st.summits ? st.summits.length : 0,
-          map: !!(window.__SUMMIT_SIGNAL_MAP__),
+          map: !!(window.__SIGNALTERRAIN_SOTA_MAP__),
           markers: st && st.markersById ? Object.keys(st.markersById).length : 0,
           geo: st && st.geolocation ? st.geolocation.status : null,
-          banner: (document.getElementById("ss-banner") || {}).textContent || ""
+          banner: (document.getElementById("ss-banner") || {}).textContent || "",
+          product: (document.querySelector(".ss-product") || {}).textContent || "",
+          title: document.title || "",
+          dataProduct: document.documentElement.getAttribute("data-product") || "",
+          loadedCyber: !!(window.WDS && window.WDS.signalterrain),
+          loadedSheds: !!window.WaypointSheds
         };
       })()`);
       if (boot && boot.ready) break;
@@ -188,10 +194,13 @@ async function main() {
     assert("markers plotted", !!(boot && boot.markers >= 100), JSON.stringify(boot));
     assert("geolocation idle until asked", boot && boot.geo === "idle", JSON.stringify(boot));
     assert("fixture banner is honest", /development fixture|real SOTA/i.test(boot.banner || ""), boot.banner);
-    await shot("summit_signal_explorer_map.png");
+    assert("visible product is SignalTerrain", boot && boot.product === "SignalTerrain" && /SignalTerrain/.test(boot.title || ""), JSON.stringify(boot));
+    assert("data-product is signalterrain-sota", boot && boot.dataProduct === "signalterrain-sota");
+    assert("does not load cyber or Sheds globals", boot && boot.loadedCyber === false && boot.loadedSheds === false, JSON.stringify(boot));
+    await shot("signalterrain_sota_map.png");
 
     const selected = await evalExpr(`(() => {
-      window.SummitSignalMapApp.selectSummit("W2/GC-001", { pan: true });
+      window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true });
       var sheet = document.getElementById("ss-sheet");
       var selectedBtn = document.querySelector(".ss-marker.is-selected");
       var nameEl = document.getElementById("ss-detail-name");
@@ -251,7 +260,7 @@ async function main() {
       return true;
     })()`);
     await delay(400);
-    await shot("summit_signal_explorer_detail.png");
+    await shot("signalterrain_sota_detail.png");
 
     const nearbyNav = await evalExpr(`(() => {
       var first = document.querySelector(".ss-nearby-item");
@@ -263,7 +272,7 @@ async function main() {
         id: id,
         name: (document.getElementById("ss-detail-name") || {}).textContent,
         ref: (document.getElementById("ss-detail-ref") || {}).textContent,
-        selectedId: window.SummitSignalMapApp.getState().selectedId
+        selectedId: window.SignalTerrainSotaMapApp.getState().selectedId
       };
     })()`);
     assert("nearby navigates to another summit", !!(nearbyNav && nearbyNav.ok && nearbyNav.selectedId && nearbyNav.selectedId !== "W2/GC-001"), JSON.stringify(nearbyNav));
@@ -287,26 +296,26 @@ async function main() {
       return true;
     })()`);
     await delay(200);
-    await shot("summit_signal_explorer_search.png");
+    await shot("signalterrain_sota_search.png");
 
     const geo = await evalExpr(`(() => {
       navigator.geolocation.getCurrentPosition = function (ok, err) {
         err({ code: 1, message: "denied" });
       };
-      window.SummitSignalMapApp.locateUser();
-      var st = window.SummitSignalMapApp.getState();
+      window.SignalTerrainSotaMapApp.locateUser();
+      var st = window.SignalTerrainSotaMapApp.getState();
       return {
         status: st.geolocation.status,
         message: st.geolocation.message,
         stillHasSummits: st.summits.length >= 100,
-        map: !!window.__SUMMIT_SIGNAL_MAP__
+        map: !!window.__SIGNALTERRAIN_SOTA_MAP__
       };
     })()`);
     assert("denied geolocation still has a map", geo && geo.map && geo.stillHasSummits, JSON.stringify(geo));
     assert("denied geolocation is honest", geo.status === "denied" && /without GPS|permission/i.test(geo.message || ""), JSON.stringify(geo));
 
     await evalExpr(`(() => {
-      window.SummitSignalMapApp.selectSummit("W2/GC-001", { pan: true });
+      window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true });
       document.getElementById("ss-search-close").click();
       return true;
     })()`);
@@ -321,7 +330,7 @@ async function main() {
       await delay(350);
       const metrics = await evalExpr(`(() => {
         window.dispatchEvent(new Event("resize"));
-        var map = window.__SUMMIT_SIGNAL_MAP__;
+        var map = window.__SIGNALTERRAIN_SOTA_MAP__;
         if (map) map.invalidateSize();
         var overflowX = document.documentElement.scrollWidth > document.documentElement.clientWidth + 2;
         var mapEl = document.querySelector(".leaflet-container");
@@ -354,15 +363,15 @@ async function main() {
           return true;
         })()`);
         await delay(200);
-        await shot("summit_signal_explorer_w320.png");
+        await shot("signalterrain_sota_w320.png");
       }
     }
 
     if (failures.length) {
-      console.error("\nSummit Signal map/mobile tests failed (" + failures.length + ").");
+      console.error("\nSignalTerrain SOTA map/mobile tests failed (" + failures.length + ").");
       process.exitCode = 1;
     } else {
-      console.log("\nAll Summit Signal map/mobile tests passed.");
+      console.log("\nAll SignalTerrain SOTA map/mobile tests passed.");
     }
   } finally {
     try {

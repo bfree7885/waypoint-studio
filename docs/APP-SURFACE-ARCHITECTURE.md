@@ -65,9 +65,11 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 - Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
 - Version sequence and V2.x flagship dynamic search-priority map: `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`. Do not implement that map in V1.7.
 
-## Summit Signal specifically
+## SignalTerrain (SOTA) specifically
 
-In-development, unpublished. Route: `/apps/summit-signal/`. Map-first SOTA explorer; not a Studio architecture peer. Keep it off primary nav, homepage, About/Support active lists, and the sitemap. `noindex` + robots Disallow. Do not couple it to Shed Hunting modules. See `docs/summit-signal/V0.1.md`.
+In-development, unpublished. Product name **SignalTerrain**. V0.1 route: `/apps/summit-signal/`. Map-first SOTA explorer; not a Studio architecture peer. Keep it off primary nav, homepage, About/Support active lists, and the sitemap. `noindex` + robots Disallow. Do not couple it to Shed Hunting modules. Do not occupy `/apps/signalterrain/` (retired SignalTerrain Cyber redirect). Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. See `docs/signal-terrain/V0.1.md`.
+
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** The “SignalTerrain” mention in Forbidden promo cards above refers to not promoting the *retired cyber* product (or this unpublished SOTA app) from other app bodies.
 
 ## Scenes specifically
 
