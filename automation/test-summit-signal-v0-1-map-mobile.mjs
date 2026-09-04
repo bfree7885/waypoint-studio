@@ -197,7 +197,8 @@ async function main() {
     assert("visible product is SignalTerrain", boot && boot.product === "SignalTerrain" && /SignalTerrain/.test(boot.title || ""), JSON.stringify(boot));
     assert("data-product is signalterrain-sota", boot && boot.dataProduct === "signalterrain-sota");
     assert("does not load cyber or Sheds globals", boot && boot.loadedCyber === false && boot.loadedSheds === false, JSON.stringify(boot));
-    await shot("signalterrain_sota_map.png");
+    assert("layer controls exist", await evalExpr(`!!document.getElementById("ss-layers")`));
+    await shot("signalterrain_sota_v02_map.png");
 
     const selected = await evalExpr(`(() => {
       window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true });
@@ -224,7 +225,7 @@ async function main() {
         nearby: Array.prototype.map.call(document.querySelectorAll(".ss-nearby-item"), function (el) {
           return el.textContent;
         }),
-        planning: Array.prototype.map.call(document.querySelectorAll("[data-planning-id]"), function (el) {
+        laterPlanning: Array.prototype.map.call(document.querySelectorAll("[data-planning-id]"), function (el) {
           return {
             id: el.getAttribute("data-planning-id"),
             status: el.getAttribute("data-status"),
@@ -249,18 +250,98 @@ async function main() {
     assert("selected marker obvious", selected.selected === true);
     assert("nearby list populated", Array.isArray(selected.nearby) && selected.nearby.length >= 3, JSON.stringify(selected.nearby && selected.nearby.slice(0, 3)));
     assert(
-      "planning placeholders honest",
-      selected.planning.length === 7 &&
-        selected.planning.every((p) => p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
-      JSON.stringify(selected.planning)
+      "later planning fields remain not-integrated",
+      selected.laterPlanning.length >= 4 &&
+        selected.laterPlanning.every((p) => p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
+      JSON.stringify(selected.laterPlanning)
     );
+
+    let access = null;
+    for (let i = 0; i < 40; i += 1) {
+      access = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var a = st && st.access;
+        var trails = st && st.trailLayer ? st.trailLayer.getLayers().length : 0;
+        var parking = st && st.parkingLayer ? st.parkingLayer.getLayers().length : 0;
+        var heads = st && st.trailheadLayer ? st.trailheadLayer.getLayers().length : 0;
+        var body = document.getElementById("ss-access-body");
+        var groups = Array.prototype.map.call(document.querySelectorAll("[data-access-kind]"), function (el) {
+          return { kind: el.getAttribute("data-access-kind"), status: el.getAttribute("data-status"), text: el.textContent };
+        });
+        return {
+          status: a && a.status,
+          trailCount: a && a.trails ? a.trails.length : 0,
+          parkingCount: a && a.parking ? a.parking.length : 0,
+          trailheadCount: a && a.trailheads ? a.trailheads.length : 0,
+          trailLayers: trails,
+          parkingLayers: parking,
+          trailheadLayers: heads,
+          accessStatusAttr: body ? body.getAttribute("data-access-status") : null,
+          groups: groups,
+          caveat: (document.getElementById("ss-access-caveat") || {}).textContent || "",
+          hasSlideParking: !!(a && a.parking && a.parking.some(function (p) { return p.name === "Slide Mountain Parking Area"; })),
+          straightLine: !!(a && a.parking && a.parking.some(function (p) { return p.distanceLabel && /straight-line/.test(p.distanceLabel); })),
+          recommended: /recommended trail|best parking|official trailhead/i.test((body && body.textContent) || "")
+        };
+      })()`);
+      if (access && access.status && access.status !== "pending") break;
+      await delay(250);
+    }
+    assert("access loaded for Slide", access && access.status === "ok", JSON.stringify(access));
+    assert("mapped trails present", access && access.trailCount >= 10 && access.trailLayers >= 10, JSON.stringify(access));
+    assert("mapped parking present", access && access.parkingCount >= 1 && access.hasSlideParking, JSON.stringify(access));
+    assert("trailheads listed or honestly empty", access && access.trailheadCount >= 1, JSON.stringify(access));
+    assert("straight-line parking distance", access && access.straightLine === true, JSON.stringify(access));
+    assert("no fabricated route language", access && access.recommended === false, JSON.stringify(access));
+    assert("OSM caveat visible", /OpenStreetMap data may be incomplete|candidate access information/i.test(access.caveat || ""), access.caveat);
     await evalExpr(`(() => {
       var body = document.querySelector(".ss-sheet__body");
       if (body) body.scrollTop = 0;
+      var access = document.getElementById("ss-sec-planning");
+      if (access) access.scrollIntoView({ block: "nearest" });
       return true;
     })()`);
     await delay(400);
-    await shot("signalterrain_sota_detail.png");
+    await shot("signalterrain_sota_v02_slide_access.png");
+
+    await evalExpr(`(() => {
+      var close = document.getElementById("ss-sheet-close");
+      if (close) close.click();
+      return true;
+    })()`);
+    await delay(600);
+    await shot("signalterrain_sota_v02_slide_trails_parking.png");
+    await evalExpr(`window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: false })`);
+    await delay(500);
+    await evalExpr(`(() => {
+      var parking = document.querySelector('[data-access-kind="parking"]');
+      if (parking) parking.scrollIntoView({ block: "center" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v02_access_lists.png");
+
+    const layers = await evalExpr(`(() => {
+      var trails = document.getElementById("ss-layer-trails");
+      var parking = document.getElementById("ss-layer-parking");
+      var before = window.SignalTerrainSotaMapApp.getState().map.hasLayer(window.SignalTerrainSotaMapApp.getState().trailLayer);
+      trails.checked = false;
+      trails.dispatchEvent(new Event("change", { bubbles: true }));
+      var afterOff = window.SignalTerrainSotaMapApp.getState().map.hasLayer(window.SignalTerrainSotaMapApp.getState().trailLayer);
+      trails.checked = true;
+      trails.dispatchEvent(new Event("change", { bubbles: true }));
+      var afterOn = window.SignalTerrainSotaMapApp.getState().map.hasLayer(window.SignalTerrainSotaMapApp.getState().trailLayer);
+      var parkBefore = window.SignalTerrainSotaMapApp.getState().map.hasLayer(window.SignalTerrainSotaMapApp.getState().parkingLayer);
+      parking.checked = false;
+      parking.dispatchEvent(new Event("change", { bubbles: true }));
+      var parkOff = window.SignalTerrainSotaMapApp.getState().map.hasLayer(window.SignalTerrainSotaMapApp.getState().parkingLayer);
+      parking.checked = true;
+      parking.dispatchEvent(new Event("change", { bubbles: true }));
+      return { before: before, afterOff: afterOff, afterOn: afterOn, parkBefore: parkBefore, parkOff: parkOff };
+    })()`);
+    assert("trail layer toggles independently", layers && layers.before === true && layers.afterOff === false && layers.afterOn === true, JSON.stringify(layers));
+    assert("parking layer toggles independently", layers && layers.parkBefore === true && layers.parkOff === false, JSON.stringify(layers));
+    await shot("signalterrain_sota_v02_layers.png");
 
     const nearbyNav = await evalExpr(`(() => {
       var first = document.querySelector(".ss-nearby-item");
@@ -276,6 +357,30 @@ async function main() {
       };
     })()`);
     assert("nearby navigates to another summit", !!(nearbyNav && nearbyNav.ok && nearbyNav.selectedId && nearbyNav.selectedId !== "W2/GC-001"), JSON.stringify(nearbyNav));
+    let otherAccess = null;
+    for (let i = 0; i < 40; i += 1) {
+      otherAccess = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var name = (document.getElementById("ss-detail-name") || {}).textContent;
+        var elev = (document.getElementById("ss-field-elevation") || {}).textContent;
+        var body = document.getElementById("ss-access-body");
+        return {
+          accessStatus: st.access && st.access.status,
+          reason: st.access && st.access.reason,
+          body: body ? body.textContent : "",
+          name: name,
+          elev: elev,
+          stillHasSummits: st.summits.length >= 100,
+          map: !!window.__SIGNALTERRAIN_SOTA_MAP__
+        };
+      })()`);
+      if (otherAccess && otherAccess.accessStatus && otherAccess.accessStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("OSM miss is unavailable not a crash", otherAccess && otherAccess.accessStatus === "unavailable" && otherAccess.stillHasSummits && otherAccess.map, JSON.stringify(otherAccess));
+    assert("SOTA detail still populated without OSM", otherAccess && otherAccess.name && otherAccess.elev && otherAccess.elev !== "Unavailable", JSON.stringify(otherAccess));
+    assert("unavailable copy is honest", /OpenStreetMap|fixture|unavailable/i.test((otherAccess && (otherAccess.reason || otherAccess.body)) || ""), JSON.stringify(otherAccess));
+    await shot("signalterrain_sota_v02_access_unavailable.png");
 
     const searched = await evalExpr(`(() => {
       document.getElementById("ss-search-open").click();
@@ -363,7 +468,7 @@ async function main() {
           return true;
         })()`);
         await delay(200);
-        await shot("signalterrain_sota_w320.png");
+        await shot("signalterrain_sota_v02_w320.png");
       }
     }
 

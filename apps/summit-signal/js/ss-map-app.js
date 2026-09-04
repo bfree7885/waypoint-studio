@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.1 map application.
+ * SignalTerrain SOTA V0.2 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -8,7 +8,9 @@
   var TOPO_URL =
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}";
   var TOPO_ATTR =
-    'Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community. Summit records from <a href="https://www.sota.org.uk/" rel="noopener noreferrer">Summits on the Air</a>.';
+    'Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community. ' +
+    'Access features &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors. ' +
+    'Summit records from <a href="https://www.sota.org.uk/" rel="noopener noreferrer">Summits on the Air</a>.';
 
   var DEFAULT_CENTER = { lat: 42.0, lng: -74.5 };
   var DEFAULT_ZOOM = 8;
@@ -22,10 +24,16 @@
     map: null,
     markersById: {},
     markerLayer: null,
+    trailLayer: null,
+    trailheadLayer: null,
+    parkingLayer: null,
     activationZoneLayer: null,
     locateMarker: null,
     searchOpen: false,
-    geolocation: { status: "idle", message: null }
+    geolocation: { status: "idle", message: null },
+    access: null,
+    accessSeq: 0,
+    layersOn: { summits: true, trails: true, trailheads: true, parking: true }
   };
 
   function $(id) {
@@ -234,6 +242,234 @@
     });
   }
 
+  function accessPinHtml(kind, label) {
+    var cls = kind === "trailhead" ? "ss-access-pin ss-access-pin--trailhead" : "ss-access-pin ss-access-pin--parking";
+    var mark = kind === "trailhead" ? "" : "P";
+    return (
+      '<div class="' +
+      cls +
+      '" title="' +
+      escapeAttr(label) +
+      '"><span class="ss-access-pin__mark">' +
+      escapeHtml(mark) +
+      "</span></div>"
+    );
+  }
+
+  function makeAccessIcon(kind, label) {
+    var L = global.L;
+    return L.divIcon({
+      className: "ss-marker-wrap ss-access-wrap",
+      html: accessPinHtml(kind, label),
+      iconSize: [22, 22],
+      iconAnchor: [11, 18]
+    });
+  }
+
+  function setLayerVisible(name, on) {
+    state.layersOn[name] = !!on;
+    var map = state.map;
+    if (!map) return;
+    var layer =
+      name === "summits"
+        ? state.markerLayer
+        : name === "trails"
+          ? state.trailLayer
+          : name === "trailheads"
+            ? state.trailheadLayer
+            : name === "parking"
+              ? state.parkingLayer
+              : null;
+    if (!layer) return;
+    if (on) {
+      if (!map.hasLayer(layer)) layer.addTo(map);
+    } else if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+    }
+  }
+
+  function clearAccessLayers() {
+    if (state.trailLayer) state.trailLayer.clearLayers();
+    if (state.trailheadLayer) state.trailheadLayer.clearLayers();
+    if (state.parkingLayer) state.parkingLayer.clearLayers();
+  }
+
+  function plotAccess(catalog) {
+    var L = global.L;
+    clearAccessLayers();
+    if (!catalog || catalog.status === "unavailable" || catalog.status === "pending") return;
+    (catalog.trails || []).forEach(function (trail) {
+      if (!trail.geometry || trail.geometry.length < 2) return;
+      var latlngs = trail.geometry.map(function (p) {
+        return [p.lat, p.lng];
+      });
+      L.polyline(latlngs, {
+        color: "#7fa37c",
+        weight: 2,
+        opacity: 0.72,
+        className: "ss-trail-line",
+        interactive: false
+      }).addTo(state.trailLayer);
+    });
+    (catalog.trailheads || []).forEach(function (th) {
+      if (th.lat == null || th.lng == null) return;
+      var label = th.name || "Unnamed mapped trailhead";
+      L.marker([th.lat, th.lng], {
+        icon: makeAccessIcon("trailhead", label),
+        title: label,
+        keyboard: false,
+        zIndexOffset: 200
+      }).addTo(state.trailheadLayer);
+    });
+    (catalog.parking || []).forEach(function (pk) {
+      if (pk.lat == null || pk.lng == null) return;
+      var label = pk.name || "Unnamed mapped parking";
+      L.marker([pk.lat, pk.lng], {
+        icon: makeAccessIcon("parking", label),
+        title: label,
+        keyboard: false,
+        zIndexOffset: 180
+      }).addTo(state.parkingLayer);
+    });
+  }
+
+  function renderFeatureList(features, unnamedFallback) {
+    var ul = global.document.createElement("ul");
+    ul.className = "ss-access-list";
+    var max = 8;
+    var shown = features.slice(0, max);
+    shown.forEach(function (f) {
+      var li = global.document.createElement("li");
+      var name = f.name || unnamedFallback;
+      var meta = [];
+      if (f.distanceLabel) meta.push(f.distanceLabel);
+      meta.push("OSM " + f.osmType + "/" + f.osmId);
+      li.innerHTML =
+        '<span class="ss-access-name">' +
+        escapeHtml(name) +
+        '</span><span class="ss-access-meta">' +
+        escapeHtml(meta.join(" · ")) +
+        "</span>";
+      ul.appendChild(li);
+    });
+    if (features.length > max) {
+      var more = global.document.createElement("li");
+      more.className = "ss-access-meta";
+      more.textContent = features.length - max + " more mapped in this search area.";
+      ul.appendChild(more);
+    }
+    return ul;
+  }
+
+  function renderAccessPanel(summit, catalog) {
+    var body = $("ss-access-body");
+    var caveat = $("ss-access-caveat");
+    if (!body) return;
+    body.innerHTML = "";
+    var st = catalog && catalog.status ? catalog.status : "pending";
+    body.setAttribute("data-access-status", st);
+    if (caveat) caveat.textContent = "";
+    if (st === "pending") {
+      body.textContent = "Looking up mapped access…";
+      return;
+    }
+    var planning = global.SignalTerrainSotaPlanning.getPlanning(summit, catalog && catalog.status ? catalog : null);
+    if (st === "unavailable") {
+      var fail = global.document.createElement("p");
+      fail.className = "ss-note";
+      fail.setAttribute("data-access-kind", "unavailable");
+      fail.textContent = planning.parking.display || "OpenStreetMap data unavailable";
+      if (catalog && catalog.reason) fail.textContent = catalog.reason;
+      body.appendChild(fail);
+      if (caveat) caveat.textContent = planning.caveat || "";
+      return;
+    }
+    function group(title, summary, list, unnamed) {
+      var wrap = global.document.createElement("div");
+      wrap.className = "ss-access-group";
+      wrap.setAttribute("data-access-kind", summary.id);
+      wrap.setAttribute("data-status", summary.status);
+      var h = global.document.createElement("h4");
+      h.textContent = title;
+      wrap.appendChild(h);
+      var count = global.document.createElement("p");
+      count.className = "ss-access-count";
+      count.textContent = summary.display;
+      wrap.appendChild(count);
+      if (summary.status === "ok" && list && list.length) {
+        wrap.appendChild(renderFeatureList(list, unnamed));
+      }
+      if (summary.id === "trails" && summary.namedHikingRoutes && summary.namedHikingRoutes.length) {
+        var routes = global.document.createElement("p");
+        routes.className = "ss-note";
+        var names = [];
+        summary.namedHikingRoutes.forEach(function (r) {
+          if (r.name) names.push(r.name);
+        });
+        if (names.length) {
+          routes.textContent = "Named hiking routes mapped nearby: " + names.slice(0, 6).join("; ") + ".";
+          wrap.appendChild(routes);
+        }
+      }
+      body.appendChild(wrap);
+    }
+    group("Nearby mapped paths", planning.access, planning.access.features, "Unnamed mapped path");
+    group("Nearby mapped trailheads", planning.trailheads, planning.trailheads.features, "Unnamed mapped trailhead");
+    group("Nearby mapped parking", planning.parking, planning.parking.features, "Unnamed mapped parking");
+    if (caveat) caveat.textContent = planning.candidateNote || planning.caveat || "";
+  }
+
+  function maybeFocusAccess(summit, catalog) {
+    if (!state.map || !summit || !isFinite(Number(summit.lat))) return;
+    var pts = [[summit.lat, summit.lng]];
+    function add(list) {
+      (list || []).forEach(function (f) {
+        if (f && isFinite(Number(f.lat)) && isFinite(Number(f.lng))) pts.push([f.lat, f.lng]);
+      });
+    }
+    if (catalog && catalog.status === "ok") {
+      add(catalog.parking);
+      add(catalog.trailheads);
+    }
+    if (pts.length > 1) {
+      state.map.fitBounds(pts, { padding: [40, 40], maxZoom: 14, animate: true });
+      return;
+    }
+    state.map.setView([summit.lat, summit.lng], Math.max(state.map.getZoom(), 13), { animate: true });
+  }
+
+  function loadAccessForSummit(summit) {
+    var Access = global.SignalTerrainSotaAccess;
+    if (!Access || !summit) return Promise.resolve(null);
+    var seq = (state.accessSeq += 1);
+    state.access = { status: "pending", query: { summitId: summit.id } };
+    renderAccessPanel(summit, state.access);
+    return Access.loadAccess(summit)
+      .then(function (catalog) {
+        if (seq !== state.accessSeq || state.selectedId !== summit.id) return catalog;
+        state.access = catalog;
+        plotAccess(catalog);
+        maybeFocusAccess(summit, catalog);
+        renderAccessPanel(summit, catalog);
+        return catalog;
+      })
+      .catch(function (err) {
+        if (seq !== state.accessSeq || state.selectedId !== summit.id) return null;
+        var failed = {
+          status: "unavailable",
+          reason: "OpenStreetMap data unavailable (" + String(err && err.message ? err.message : err) + ").",
+          trails: [],
+          trailheads: [],
+          parking: [],
+          namedHikingRoutes: []
+        };
+        state.access = failed;
+        clearAccessLayers();
+        renderAccessPanel(summit, failed);
+        return failed;
+      });
+  }
+
   function renderDetail(summit) {
     var sheet = $("ss-sheet");
     if (!sheet) return;
@@ -242,7 +478,6 @@
       sheet.setAttribute("aria-hidden", "true");
       return;
     }
-    var planning = global.SignalTerrainSotaPlanning.getPlanning(summit);
     var nearby = global.SignalTerrainSotaGeo.nearbySummits(summit, state.summits, { limit: NEARBY_LIMIT });
 
     $("ss-detail-name").textContent = summit.name || "Unnamed summit";
@@ -266,11 +501,13 @@
 
     var planRoot = $("ss-planning-fields");
     planRoot.innerHTML = "";
-    planning.fields.forEach(function (f) {
-      var item = planning.items[f.id];
+    var planning = global.SignalTerrainSotaPlanning.getPlanning(summit, state.access && state.selectedId === summit.id ? state.access : null);
+    (global.SignalTerrainSotaPlanning.LATER_IDS || []).forEach(function (id) {
+      var item = planning.items[id];
+      if (!item) return;
       var row = global.document.createElement("div");
       row.className = "ss-kv ss-kv--placeholder";
-      row.setAttribute("data-planning-id", f.id);
+      row.setAttribute("data-planning-id", id);
       row.setAttribute("data-status", item.status);
       row.innerHTML =
         "<dt>" +
@@ -280,6 +517,7 @@
         "</span></dd>";
       planRoot.appendChild(row);
     });
+    renderAccessPanel(summit, state.access && state.selectedId === summit.id ? state.access : { status: "pending" });
 
     var nearRoot = $("ss-nearby-list");
     nearRoot.innerHTML = "";
@@ -326,6 +564,7 @@
     state.selectedId = summit.id;
     setSelectedMarker(summit.id);
     renderDetail(summit);
+    loadAccessForSummit(summit);
     if (opts.pan && state.map) {
       state.map.panTo([summit.lat, summit.lng], { animate: true });
     }
@@ -342,7 +581,10 @@
 
   function clearSelection() {
     state.selectedId = null;
+    state.accessSeq += 1;
+    state.access = null;
     setSelectedMarker(null);
+    clearAccessLayers();
     renderDetail(null);
   }
 
@@ -458,6 +700,15 @@
     if (min) min.addEventListener("change", applyFilter);
     var locate = $("ss-locate");
     if (locate) locate.addEventListener("click", locateUser);
+    var layerRoot = $("ss-layers");
+    if (layerRoot) {
+      layerRoot.addEventListener("change", function (ev) {
+        var t = ev.target;
+        if (!t || !t.getAttribute) return;
+        var name = t.getAttribute("data-layer");
+        if (name) setLayerVisible(name, t.checked);
+      });
+    }
     var close = $("ss-sheet-close");
     if (close) {
       close.addEventListener("click", function () {
@@ -508,6 +759,9 @@
       maxZoom: 16,
       maxNativeZoom: 16
     }).addTo(state.map);
+    state.trailLayer = L.layerGroup().addTo(state.map);
+    state.trailheadLayer = L.layerGroup().addTo(state.map);
+    state.parkingLayer = L.layerGroup().addTo(state.map);
     state.markerLayer = L.layerGroup().addTo(state.map);
     /* Reserved for a future DEM-backed activation-zone polygon. */
     state.activationZoneLayer = L.layerGroup().addTo(state.map);
@@ -570,6 +824,8 @@
     clearSelection: clearSelection,
     applyFilter: applyFilter,
     locateUser: locateUser,
+    setLayerVisible: setLayerVisible,
+    loadAccessForSummit: loadAccessForSummit,
     getState: function () {
       return state;
     }

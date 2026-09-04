@@ -134,6 +134,17 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-04 — SignalTerrain V0.2 OSM access layer
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.2.md`
+
+- Selected-summit Overpass/fixture queries beat region-wide OSM dumps. 5000 m around Catskills peaks captures CR-47 parking that 2500 m would miss.
+- Empty successful OSM results are not the same as unavailable, and neither means “no trail exists.”
+- Draw OSM ways as they are. Do not stitch hiking relations into a fake summit route.
+- Straight-line to parking/trailhead must be labeled straight-line, never hike distance.
+- Access failure must not block the SOTA map. CI must use a labeled real OSM fixture, not live Overpass.
+- When inserting a helper such as `maybeFocusAccess`, keep `function loadAccessForSummit` as its own declaration. A missing function header is a parse error that takes down the whole map, including SOTA markers.
+
 ### 2026-09-04 — SignalTerrain V0.1 (SOTA rebrand of Summit Signal)
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.1.md`

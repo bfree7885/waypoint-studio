@@ -6,9 +6,9 @@ Unpublished Waypoint field application for SOTA summit discovery and activation 
 
 This directory is served at `/apps/summit-signal/` in V0.1. That route is intentional. Do not move this app to `/apps/signalterrain/` — that URL belongs to the retired cyber surface and currently redirects.
 
-**V0.1** is the foundation: a mobile-first map of retrieved SOTA summits, summit detail, nearby comparison, and basic search. It is not a finished hiking or radio product. Trail, parking, and routing data are not integrated yet.
+**V0.2** adds an OpenStreetMap candidate access layer (trails, trailheads, parking) around the selected summit. It is not a finished hiking or radio product. Hike routes, gain, and times are not calculated.
 
-Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md)
+Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](../../docs/signal-terrain/V0.2.md)
 
 ## Run locally
 
@@ -25,6 +25,7 @@ Optional live SOTA fetch (falls back to the labeled fixture on failure): `?live=
 ## Tests
 
 ```bash
+node automation/test-signalterrain-sota-v0-2.mjs
 node automation/test-summit-signal-v0-1.mjs
 node automation/test-summit-signal-v0-1-map-mobile.mjs
 ```

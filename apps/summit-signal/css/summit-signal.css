@@ -1,4 +1,4 @@
-/* SignalTerrain SOTA V0.1 — alpine field-instrument identity.
+/* SignalTerrain SOTA V0.2 — alpine field-instrument identity.
    Not Shed Hunting dusk-desert. Not SignalTerrain Cyber. Not generic SaaS purple. */
 
 :root {
@@ -405,6 +405,131 @@ body {
   color: var(--ss-cyan);
 }
 
+.ss-layers {
+  position: absolute;
+  z-index: 1100;
+  left: 52px;
+  top: 96px;
+  bottom: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: calc(100% - 64px);
+  pointer-events: none;
+}
+
+.ss-layer {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 4px 8px;
+  background: rgba(18, 26, 22, 0.92);
+  border: 1px solid var(--ss-line);
+  color: var(--ss-paper);
+  font-size: 11px;
+  font-family: var(--ss-mono);
+  letter-spacing: 0.02em;
+}
+
+.ss-layer input {
+  margin: 0;
+}
+
+.ss-subhead {
+  margin: 14px 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ss-dim);
+}
+
+.ss-access-group {
+  margin: 0 0 10px;
+}
+
+.ss-access-group h4 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ss-paper);
+}
+
+.ss-access-count {
+  font-family: var(--ss-mono);
+  font-size: 12px;
+  color: var(--ss-cyan);
+  margin: 0 0 6px;
+}
+
+.ss-access-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ss-access-list li {
+  font-family: var(--ss-mono);
+  font-size: 12px;
+  margin: 0 0 6px;
+  padding: 6px 8px;
+  background: var(--ss-panel-2);
+  border: 1px solid var(--ss-line);
+  overflow-wrap: anywhere;
+}
+
+.ss-access-list .ss-access-name {
+  display: block;
+  color: var(--ss-paper);
+}
+
+.ss-access-list .ss-access-meta {
+  display: block;
+  color: var(--ss-dim);
+}
+
+.ss-note--caveat {
+  color: var(--ss-muted);
+}
+
+.ss-trail-line {
+  /* Leaflet path class hook */
+}
+
+.ss-access-pin {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.ss-access-pin--parking .ss-access-pin__mark {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background: #1a2420;
+  color: var(--ss-brass);
+  border: 1px solid var(--ss-brass);
+  font-family: var(--ss-mono);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+.ss-access-pin--trailhead .ss-access-pin__mark {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 14px solid var(--ss-ridge);
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.6));
+}
+
 /* Markers: peak + points. Selected = radio-cyan ring. */
 .ss-marker-wrap {
   background: transparent !important;
@@ -477,6 +602,15 @@ body {
     border-top: 0;
     border-left: 2px solid var(--ss-brass);
   }
+
+  .ss-layers {
+    left: auto;
+    right: 12px;
+    top: 64px;
+    bottom: auto;
+    max-width: min(420px, 46vw);
+    justify-content: flex-end;
+  }
 }
 
 @media (max-width: 360px) {
@@ -496,5 +630,16 @@ body {
   .ss-kv {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+
+  .ss-layers {
+    left: 10px;
+    top: 132px;
+    max-width: calc(100% - 20px);
+  }
+
+  .ss-layer {
+    padding: 3px 6px;
+    font-size: 10px;
   }
 }
