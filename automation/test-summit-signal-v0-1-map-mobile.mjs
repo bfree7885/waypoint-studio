@@ -188,15 +188,18 @@ async function main() {
     assert("markers plotted", !!(boot && boot.markers >= 100), JSON.stringify(boot));
     assert("geolocation idle until asked", boot && boot.geo === "idle", JSON.stringify(boot));
     assert("fixture banner is honest", /development fixture|real SOTA/i.test(boot.banner || ""), boot.banner);
-    await shot("summit_signal_map.png");
+    await shot("summit_signal_explorer_map.png");
 
     const selected = await evalExpr(`(() => {
       window.SummitSignalMapApp.selectSummit("W2/GC-001", { pan: true });
       var sheet = document.getElementById("ss-sheet");
       var selectedBtn = document.querySelector(".ss-marker.is-selected");
+      var nameEl = document.getElementById("ss-detail-name");
+      var nameBox = nameEl ? nameEl.getBoundingClientRect() : { top: -1, bottom: -1 };
       return {
         hidden: sheet ? sheet.hasAttribute("hidden") : true,
-        name: (document.getElementById("ss-detail-name") || {}).textContent,
+        name: (nameEl || {}).textContent,
+        nameOnScreen: nameBox.top >= 0 && nameBox.bottom <= (window.innerHeight + 1) && nameBox.top < window.innerHeight,
         ref: (document.getElementById("ss-detail-ref") || {}).textContent,
         elev: (document.getElementById("ss-field-elevation") || {}).textContent,
         points: (document.getElementById("ss-field-points") || {}).textContent,
@@ -223,6 +226,7 @@ async function main() {
     })()`);
     assert("detail sheet opens", selected && selected.hidden === false, JSON.stringify(selected));
     assert("detail name is Slide Mountain", /Slide Mountain/.test(selected.name || ""));
+    assert("detail title is on screen", selected && selected.nameOnScreen === true, JSON.stringify(selected && { nameOnScreen: selected.nameOnScreen }));
     assert("detail reference", /W2\/GC-001/.test(selected.ref || ""));
     assert("detail elevation retrieved", /1277/.test(selected.elev || "") && /4190/.test(selected.elev || ""));
     assert("detail points retrieved", selected.points === "10");
@@ -241,8 +245,13 @@ async function main() {
         selected.planning.every((p) => p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
       JSON.stringify(selected.planning)
     );
+    await evalExpr(`(() => {
+      var body = document.querySelector(".ss-sheet__body");
+      if (body) body.scrollTop = 0;
+      return true;
+    })()`);
     await delay(400);
-    await shot("summit_signal_selected_detail.png");
+    await shot("summit_signal_explorer_detail.png");
 
     const nearbyNav = await evalExpr(`(() => {
       var first = document.querySelector(".ss-nearby-item");
@@ -272,7 +281,13 @@ async function main() {
     })()`);
     assert("search panel opens", searched && searched.panelHidden === false);
     assert("search finds Slide", searched.items.some((t) => /Slide Mountain/.test(t) && /W2\/GC-001/.test(t)), JSON.stringify(searched.items.slice(0, 5)));
-    await shot("summit_signal_search.png");
+    await evalExpr(`(() => {
+      var item = document.querySelector(".ss-search-item");
+      if (item) item.scrollIntoView({ block: "nearest" });
+      return true;
+    })()`);
+    await delay(200);
+    await shot("summit_signal_explorer_search.png");
 
     const geo = await evalExpr(`(() => {
       navigator.geolocation.getCurrentPosition = function (ok, err) {
@@ -332,7 +347,15 @@ async function main() {
         JSON.stringify(metrics)
       );
       assert(vp.name + " map has height", metrics && metrics.mapH > 120, JSON.stringify(metrics));
-      if (vp.name === "w320") await shot("summit_signal_mobile_320.png");
+      if (vp.name === "w320") {
+        await evalExpr(`(() => {
+          var body = document.querySelector(".ss-sheet__body");
+          if (body) body.scrollTop = 0;
+          return true;
+        })()`);
+        await delay(200);
+        await shot("summit_signal_explorer_w320.png");
+      }
     }
 
     if (failures.length) {
