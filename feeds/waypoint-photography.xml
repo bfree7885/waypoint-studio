@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 04 Sep 2026 01:46:28 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 04 Sep 2026 15:20:03 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -82,23 +82,93 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/20
     <author>NASA</author>
   </item>
   <item>
-    <title>Sun news: Big flare from newcomer sunspot</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Thu, 03 Sep 2026 09:00:53 GMT</pubDate>
+    <title>Cassiopeia the Queen ascends in September and October</title>
+    <link>https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</guid>
+    <pubDate>Fri, 04 Sep 2026 07:30:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news September 3, 2026: Bam! Newcomer AR4524 fired an M3.0 flare from the northeast limb. Its CME will miss Earth, but this region is one to watch. The post Sun news: Big flare from newcomer sunspot first appeared on EarthSky .
+Summary: Cassiopeia the Queen is an easy-to-find constellation. It has the shape of a W or M. Look for it in the north-northeast sky on September and October evenings. The post Cassiopeia the Queen ascends in September and October first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
     <category domain="geographic">Northeast</category>
-    <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Washingtonians Recognized in 2026 Audubon Photography Awards</title>
+    <link>https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</link>
+    <guid isPermaLink="true">https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</guid>
+    <pubDate>Wed, 02 Sep 2026 22:09:57 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: SEATTLE (September 2, 2026) – Today, the National Audubon Society announced the winners of the 2026 Audubon Photography Awards. Now in its seventeenth year, the awards celebrate stunning photos...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Audubon Announces 2026 Audubon Photography Awards Winners</title>
+    <link>https://www.audubon.org/press-room/audubon-announces-2026-audubon-photography-awards-winners</link>
+    <guid isPermaLink="true">https://www.audubon.org/press-room/audubon-announces-2026-audubon-photography-awards-winners</guid>
+    <pubDate>Wed, 02 Sep 2026 19:00:00 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: NEW YORK / SANTIAGO / BOGOTA (September 2, 2026) – Today the National Audubon Society announced the winners of the 2026 Audubon Photography Awards. Now in its seventeenth year, the awards celebrate...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/press-room/audubon-announces-2026-audubon-photography-awards-winners</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Audubon Florida Celebrates Sunshine State Winners in 2026 Audubon Photography Awards</title>
+    <link>https://www.audubon.org/florida/news/audubon-florida-celebrates-sunshine-state-winners-2026-audubon-photography-awards</link>
+    <guid isPermaLink="true">https://www.audubon.org/florida/news/audubon-florida-celebrates-sunshine-state-winners-2026-audubon-photography-awards</guid>
+    <pubDate>Wed, 02 Sep 2026 16:06:26 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Today the National Audubon Society announced the winners of the 2026 Audubon Photography Awards, including two photographs that capture bird life in Florida. Now in its seventeenth year, the awards...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/florida/news/audubon-florida-celebrates-sunshine-state-winners-2026-audubon-photography-awards</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Lunar Occultation of Venus</title>
+    <link>https://www.nasa.gov/image-detail/amf-nhq202606170001/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-nhq202606170001/</guid>
+    <pubDate>Fri, 04 Sep 2026 14:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Wednesday, June 17, skywatchers across the United States—and parts of Canada—enjoyed a rare event: a daytime lunar occultation of Venus. A lunar occultation occurs when the Moon moves directly in front of another celestial object from our viewpoint on Earth, briefly hiding it from sight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-nhq202606170001/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Civil Servants Sworn in at NASA Ames</title>
@@ -245,24 +315,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/30
     <author>NASA</author>
   </item>
   <item>
-    <title>Total Solar Eclipse in Sunflower Field</title>
-    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</guid>
-    <pubDate>Fri, 14 Aug 2026 14:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Total Solar Eclipse in Sunflower Field. This composite image shows the progression of a total solar eclipse over San Millán de los Caballeros, Spain on, Wednesday, Aug. 12, 2026.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>August Lunar Eclipse Rises Over Louisiana</title>
     <link>https://www.nasa.gov/image-detail/amf-maf_20260827_lunareclipse_01/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-maf_20260827_lunareclipse_01/</guid>
@@ -278,6 +330,42 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/am
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>Mars’ southern hemisphere is unusually hot deep underground</title>
+    <link>https://earthsky.org/space/mars-southern-hemisphere-thermal-anomaly-asymetry/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/mars-southern-hemisphere-thermal-anomaly-asymetry/</guid>
+    <pubDate>Fri, 04 Sep 2026 11:32:19 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A new study from Caltech shows that Mars&apos; southern hemisphere is much hotter than expected deep below the surface. Why is that? The post Mars’ southern hemisphere is unusually hot deep underground first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/mars-southern-hemisphere-thermal-anomaly-asymetry/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: More action from returning sunspot region</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Fri, 04 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news September 4, 2026: Returning region AR4524 fired an M1.2 flare. Its last pass across the Earth-viewed sun was promising, so stronger flares may follow. The post Sun news: More action from returning sunspot region first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Saturn’s south pole decagon confirmed! A mysterious 10-sided figure</title>
@@ -352,58 +440,58 @@ Read the original article at the publisher: https://earthsky.org/space/giant-meg
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Roman space telescope has launched! You can adopt a pixel</title>
-    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
-    <pubDate>Wed, 02 Sep 2026 11:00:19 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>The 2026 Audubon Photography Awards: Honorable Mentions</title>
+    <link>https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</guid>
+    <pubDate>Wed, 02 Sep 2026 13:00:03 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: The Nancy Grace Roman Space Telescope launched on August 30 from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
+Summary: Did you peruse the winning images and videos for the 2026 Audubon Photography Awards and wish you could keep on scrolling? Well, we’ve got more stunning and surprising avian moments. Below...
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+Read the original article at the publisher: https://www.audubon.org/magazine/2026-audubon-photography-awards-honorable-mentions</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Lake Powell hits record low, continues to drop</title>
-    <link>https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</guid>
-    <pubDate>Wed, 02 Sep 2026 10:30:11 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>The 2026 Audubon Photography Awards: Winners</title>
+    <link>https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</guid>
+    <pubDate>Wed, 02 Sep 2026 13:00:01 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: Lake Powell has hit its lowest level ever. Despite the monsoons, like the flash floods that hit Grand Canyon over the weekend, water levels continue to drop. The post Lake Powell hits record low, continues to drop first appeared on EarthSky .
+Summary: After reviewing this year’s winners of the Audubon Photography Awards, we were struck by how many of the awardees made their own luck. Hours, days, or sometimes even years of patience and effort go...
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/earth/lake-powell-is-shrinking-dead-pool-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+Read the original article at the publisher: https://www.audubon.org/magazine/2026-audubon-photography-awards-winners</description>
+    <category>Birds</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Fomalhaut is the Loneliest Star once again</title>
-    <link>https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</link>
-    <guid isPermaLink="true">https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</guid>
-    <pubDate>Wed, 02 Sep 2026 09:00:48 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Total Solar Eclipse in Sunflower Field</title>
+    <link>https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</guid>
+    <pubDate>Fri, 14 Aug 2026 14:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Fomalhaut is known as the Loneliest Star because it shines brightly in a dim patch of sky. Saturn joined it in recent years, but is now pulling away. The post Fomalhaut is the Loneliest Star once again first appeared on EarthSky .
+Summary: Total Solar Eclipse in Sunflower Field. This composite image shows the progression of a total solar eclipse over San Millán de los Caballeros, Spain on, Wednesday, Aug. 12, 2026.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/brightest-stars/solitary-fomalhaut-guards-the-southern-sky/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/2026-total-solar-eclipse-3/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
     <title>2026 Total Solar Eclipse in Spain</title>
@@ -553,11 +641,11 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/bi
     <title>Visible planets and night sky guide for September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Thu, 03 Sep 2026 08:38:08 GMT</pubDate>
+    <pubDate>Fri, 04 Sep 2026 08:38:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Jupiter is back, and the waning gibbous moon hangs near the Pleiades. Watch a video about September&apos;s best sky sights. The post Visible planets and night sky guide for September first appeared on EarthSky .
+Summary: Visible planets and night sky guide: The moon reaches 3rd quarter today, rising about midnight to set around noon. Look for the daylight moon tomorrow morning! The post Visible planets and night sky guide for September first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -584,6 +672,24 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Roman space telescope has launched! You can adopt a pixel</title>
+    <link>https://earthsky.org/space/nancy-grace-roman-space-telescope/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/nancy-grace-roman-space-telescope/</guid>
+    <pubDate>Wed, 02 Sep 2026 11:00:19 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Nancy Grace Roman Space Telescope launched on August 30 from the Kennedy Space Center. Want to add your name to a pixel? Find out how here! The post Roman space telescope has launched! You can adopt a pixel first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/nancy-grace-roman-space-telescope/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Webb Opens Treasure Chest</title>
     <link>https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</guid>
@@ -596,23 +702,6 @@ Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month takes
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/webb-opens-a-treasure-chest-filled-with-stars/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Perseids Meteor Shower</title>
-    <link>https://www.nasa.gov/image-detail/perseidsorion-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/perseidsorion-2/</guid>
-    <pubDate>Thu, 13 Aug 2026 15:09:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Perseids Meteor Shower. The constellation Orion is framed by two Perseid meteors on Aug. 12, 2018, in Cedar Breaks National Monument, Utah.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/perseidsorion-2/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
