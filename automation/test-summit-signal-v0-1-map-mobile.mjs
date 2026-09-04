@@ -394,7 +394,37 @@ async function main() {
     assert("readiness factual", azRel && /Activation zone|Route enters|Location unavailable/i.test(azRel.ready || "") && !/activated/i.test(azRel.ready || ""), azRel && azRel.ready);
     await delay(300);
     await shot("signalterrain_sota_v04_az_and_route.png");
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 1280,
+      height: 800,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
     await evalExpr(`(() => {
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      window.dispatchEvent(new Event("resize"));
+      if (map) {
+        map.invalidateSize();
+        var st = window.SignalTerrainSotaMapApp.getState();
+        if (st.routeLayer && st.activationZoneLayer) {
+          var group = L.featureGroup([st.routeLayer, st.activationZoneLayer, st.markerLayer]);
+          try { map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 14 }); } catch (e) {}
+        }
+      }
+      return true;
+    })()`);
+    await delay(500);
+    await shot("signalterrain_sota_v04_desktop_az_overlay.png");
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await evalExpr(`(() => {
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      window.dispatchEvent(new Event("resize"));
+      if (map) map.invalidateSize();
       var ready = document.getElementById("ss-sec-ready");
       if (ready) ready.scrollIntoView({ block: "start" });
       return true;
@@ -571,7 +601,13 @@ async function main() {
       otherAz && otherAz.azStatus && otherAz.azStatus !== "ok" && otherAz.azLayers === 0 && otherAz.stillHasSummits,
       JSON.stringify(otherAz)
     );
-    await shot("signalterrain_sota_v04_az_unavailable.png");
+    await evalExpr(`(() => {
+      var az = document.getElementById("ss-sec-az");
+      if (az) az.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(250);
+    await shot("signalterrain_sota_v04_az_unavailable_detail.png");
     await shot("signalterrain_sota_v02_access_unavailable.png");
 
     const searched = await evalExpr(`(() => {
