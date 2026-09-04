@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.2 map application.
+ * SignalTerrain SOTA V0.3 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -10,6 +10,7 @@
   var TOPO_ATTR =
     'Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community. ' +
     'Access features &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors. ' +
+    'Routes: Valhalla / OSM. Elevation: USGS 3DEP. ' +
     'Summit records from <a href="https://www.sota.org.uk/" rel="noopener noreferrer">Summits on the Air</a>.';
 
   var DEFAULT_CENTER = { lat: 42.0, lng: -74.5 };
@@ -27,13 +28,18 @@
     trailLayer: null,
     trailheadLayer: null,
     parkingLayer: null,
+    routeLayer: null,
     activationZoneLayer: null,
     locateMarker: null,
     searchOpen: false,
     geolocation: { status: "idle", message: null },
     access: null,
     accessSeq: 0,
-    layersOn: { summits: true, trails: true, trailheads: true, parking: true }
+    selectedAccess: null,
+    hikeSeq: 0,
+    route: null,
+    elevation: null,
+    layersOn: { summits: true, trails: true, trailheads: true, parking: true, hike: true }
   };
 
   function $(id) {
@@ -242,8 +248,19 @@
     });
   }
 
-  function accessPinHtml(kind, label) {
-    var cls = kind === "trailhead" ? "ss-access-pin ss-access-pin--trailhead" : "ss-access-pin ss-access-pin--parking";
+  function accessKey(feature) {
+    if (!feature || !feature.osmType || feature.osmId == null) return "";
+    return feature.osmType + "/" + feature.osmId;
+  }
+
+  function isSelectedAccess(feature) {
+    return !!(state.selectedAccess && accessKey(state.selectedAccess) === accessKey(feature));
+  }
+
+  function accessPinHtml(kind, label, selected) {
+    var cls =
+      (kind === "trailhead" ? "ss-access-pin ss-access-pin--trailhead" : "ss-access-pin ss-access-pin--parking") +
+      (selected ? " is-start" : "");
     var mark = kind === "trailhead" ? "" : "P";
     return (
       '<div class="' +
@@ -256,11 +273,11 @@
     );
   }
 
-  function makeAccessIcon(kind, label) {
+  function makeAccessIcon(kind, label, selected) {
     var L = global.L;
     return L.divIcon({
       className: "ss-marker-wrap ss-access-wrap",
-      html: accessPinHtml(kind, label),
+      html: accessPinHtml(kind, label, selected),
       iconSize: [22, 22],
       iconAnchor: [11, 18]
     });
@@ -279,7 +296,9 @@
             ? state.trailheadLayer
             : name === "parking"
               ? state.parkingLayer
-              : null;
+              : name === "hike"
+                ? state.routeLayer
+                : null;
     if (!layer) return;
     if (on) {
       if (!map.hasLayer(layer)) layer.addTo(map);
@@ -314,26 +333,34 @@
     (catalog.trailheads || []).forEach(function (th) {
       if (th.lat == null || th.lng == null) return;
       var label = th.name || "Unnamed mapped trailhead";
-      L.marker([th.lat, th.lng], {
-        icon: makeAccessIcon("trailhead", label),
+      var marker = L.marker([th.lat, th.lng], {
+        icon: makeAccessIcon("trailhead", label, isSelectedAccess(th)),
         title: label,
-        keyboard: false,
-        zIndexOffset: 200
-      }).addTo(state.trailheadLayer);
+        keyboard: true,
+        zIndexOffset: isSelectedAccess(th) ? 400 : 200
+      });
+      marker.on("click", function () {
+        startHikeFromAccess(th);
+      });
+      marker.addTo(state.trailheadLayer);
     });
     (catalog.parking || []).forEach(function (pk) {
       if (pk.lat == null || pk.lng == null) return;
       var label = pk.name || "Unnamed mapped parking";
-      L.marker([pk.lat, pk.lng], {
-        icon: makeAccessIcon("parking", label),
+      var marker = L.marker([pk.lat, pk.lng], {
+        icon: makeAccessIcon("parking", label, isSelectedAccess(pk)),
         title: label,
-        keyboard: false,
-        zIndexOffset: 180
-      }).addTo(state.parkingLayer);
+        keyboard: true,
+        zIndexOffset: isSelectedAccess(pk) ? 400 : 180
+      });
+      marker.on("click", function () {
+        startHikeFromAccess(pk);
+      });
+      marker.addTo(state.parkingLayer);
     });
   }
 
-  function renderFeatureList(features, unnamedFallback) {
+  function renderFeatureList(features, unnamedFallback, startable) {
     var ul = global.document.createElement("ul");
     ul.className = "ss-access-list";
     var max = 8;
@@ -341,6 +368,8 @@
     shown.forEach(function (f) {
       var li = global.document.createElement("li");
       var name = f.name || unnamedFallback;
+      var selected = isSelectedAccess(f);
+      if (selected) li.className = "is-start";
       var meta = [];
       if (f.distanceLabel) meta.push(f.distanceLabel);
       meta.push("OSM " + f.osmType + "/" + f.osmId);
@@ -350,6 +379,18 @@
         '</span><span class="ss-access-meta">' +
         escapeHtml(meta.join(" · ")) +
         "</span>";
+      if (startable) {
+        var btn = global.document.createElement("button");
+        btn.type = "button";
+        btn.className = "ss-start-hike";
+        btn.setAttribute("data-start-hike", accessKey(f));
+        btn.setAttribute("aria-pressed", selected ? "true" : "false");
+        btn.textContent = selected ? "Starting here" : "Start hike here";
+        btn.addEventListener("click", function () {
+          startHikeFromAccess(f);
+        });
+        li.appendChild(btn);
+      }
       ul.appendChild(li);
     });
     if (features.length > max) {
@@ -384,7 +425,7 @@
       if (caveat) caveat.textContent = planning.caveat || "";
       return;
     }
-    function group(title, summary, list, unnamed) {
+    function group(title, summary, list, unnamed, startable) {
       var wrap = global.document.createElement("div");
       wrap.className = "ss-access-group";
       wrap.setAttribute("data-access-kind", summary.id);
@@ -397,7 +438,7 @@
       count.textContent = summary.display;
       wrap.appendChild(count);
       if (summary.status === "ok" && list && list.length) {
-        wrap.appendChild(renderFeatureList(list, unnamed));
+        wrap.appendChild(renderFeatureList(list, unnamed, startable));
       }
       if (summary.id === "trails" && summary.namedHikingRoutes && summary.namedHikingRoutes.length) {
         var routes = global.document.createElement("p");
@@ -413,9 +454,9 @@
       }
       body.appendChild(wrap);
     }
-    group("Nearby mapped paths", planning.access, planning.access.features, "Unnamed mapped path");
-    group("Nearby mapped trailheads", planning.trailheads, planning.trailheads.features, "Unnamed mapped trailhead");
-    group("Nearby mapped parking", planning.parking, planning.parking.features, "Unnamed mapped parking");
+    group("Nearby mapped paths", planning.access, planning.access.features, "Unnamed mapped path", false);
+    group("Nearby mapped trailheads", planning.trailheads, planning.trailheads.features, "Unnamed mapped trailhead", true);
+    group("Nearby mapped parking", planning.parking, planning.parking.features, "Unnamed mapped parking", true);
     if (caveat) caveat.textContent = planning.candidateNote || planning.caveat || "";
   }
 
@@ -470,6 +511,231 @@
       });
   }
 
+  function clearHikeLayers() {
+    if (state.routeLayer) state.routeLayer.clearLayers();
+  }
+
+  function plotRoute(route) {
+    var L = global.L;
+    clearHikeLayers();
+    if (!route || route.status !== "ok" || !route.geometry || route.geometry.length < 2 || !state.map) return;
+    var latlngs = route.geometry.map(function (p) {
+      return [p.lat, p.lng];
+    });
+    L.polyline(latlngs, {
+      color: "#3ec8c8",
+      weight: 5,
+      opacity: 0.92,
+      className: "ss-hike-line",
+      lineJoin: "round",
+      interactive: false
+    }).addTo(state.routeLayer);
+    if (!state.layersOn.hike) setLayerVisible("hike", false);
+    try {
+      state.map.fitBounds(latlngs, { padding: [36, 36], maxZoom: 15, animate: true });
+    } catch (e) {}
+  }
+
+  function hikeState() {
+    return {
+      selectedAccess: state.selectedAccess,
+      route: state.route,
+      elevation: state.elevation
+    };
+  }
+
+  function renderProfileSvg(elev) {
+    var pts = (elev && elev.points) || [];
+    if (pts.length < 2) return "";
+    var w = 280;
+    var h = 88;
+    var padL = 8;
+    var padR = 8;
+    var padT = 10;
+    var padB = 16;
+    var maxD = pts[pts.length - 1].distanceKm || 1;
+    var elevs = pts.map(function (p) {
+      return p.elevSmoothM != null ? p.elevSmoothM : p.elevM;
+    });
+    var minE = Math.min.apply(null, elevs);
+    var maxE = Math.max.apply(null, elevs);
+    var span = maxE - minE || 1;
+    var d = "";
+    for (var i = 0; i < pts.length; i += 1) {
+      var x = padL + (pts[i].distanceKm / maxD) * (w - padL - padR);
+      var y = padT + (1 - (elevs[i] - minE) / span) * (h - padT - padB);
+      d += (i === 0 ? "M" : "L") + x.toFixed(1) + " " + y.toFixed(1);
+    }
+    var Geo = global.SignalTerrainSotaGeo;
+    return (
+      '<svg class="ss-profile" id="ss-hike-profile" viewBox="0 0 ' +
+      w +
+      " " +
+      h +
+      '" role="img" aria-label="Elevation profile along the calculated route"><path fill="none" stroke="#3ec8c8" stroke-width="2" d="' +
+      d +
+      '"></path><text class="ss-profile-axis" x="' +
+      padL +
+      '" y="' +
+      (h - 4) +
+      '">0</text><text class="ss-profile-axis" x="' +
+      (w - padR - 36) +
+      '" y="' +
+      (h - 4) +
+      '">' +
+      escapeHtml(elev.points[elev.points.length - 1].distanceKm.toFixed(1) + " km") +
+      "</text></svg>"
+    );
+  }
+
+  function renderHikePanel() {
+    var body = $("ss-hike-body");
+    var caveat = $("ss-hike-caveat");
+    if (!body) return;
+    body.innerHTML = "";
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    var planning = global.SignalTerrainSotaPlanning.getPlanning(
+      summit,
+      state.access && state.selectedId === (summit && summit.id) ? state.access : null,
+      hikeState()
+    );
+    var route = state.route;
+    var elev = state.elevation;
+    var start = state.selectedAccess;
+    var st = route && route.status ? route.status : start ? "pending" : "idle";
+    body.setAttribute("data-hike-status", st);
+    if (caveat) caveat.textContent = "";
+    if (!start) {
+      body.innerHTML = '<p class="ss-note">No start selected. Use Start hike here on a mapped parking area or trailhead.</p>';
+      return;
+    }
+    var status = global.document.createElement("p");
+    status.className = "ss-hike-status";
+    status.setAttribute("data-hike-kind", st);
+    if (st === "pending") status.textContent = "Calculating pedestrian route…";
+    else if (st === "ok") status.textContent = "Pedestrian route calculated";
+    else if (st === "no-route") status.textContent = "No pedestrian/hiking route found";
+    else if (st === "timeout") status.textContent = "Routing request timed out";
+    else status.textContent = "Hiking route unavailable";
+    body.appendChild(status);
+    var dl = global.document.createElement("dl");
+    dl.className = "ss-hike-kv";
+    function row(k, v) {
+      var wrap = global.document.createElement("div");
+      wrap.innerHTML = "<dt>" + escapeHtml(k) + "</dt><dd>" + escapeHtml(v) + "</dd>";
+      dl.appendChild(wrap);
+    }
+    var startName = start.name || (start.kind === "trailhead" ? "Unnamed mapped trailhead" : "Unnamed mapped parking");
+    row("Start", startName);
+    row("Destination", (summit && summit.name ? summit.name : "Summit") + " summit vicinity");
+    if (route && route.status === "ok") {
+      row("Route distance", route.distanceLabel || "Unavailable");
+      if (elev && (elev.status === "ok" || elev.status === "partial")) {
+        row("Elevation gain", elev.gainLabel || "Unavailable");
+        row("Elevation loss", elev.lossLabel || "Unavailable");
+      } else if (elev && elev.status === "pending") {
+        row("Elevation gain", "Sampling USGS 3DEP…");
+      } else {
+        row("Elevation gain", "Unavailable");
+        row("Elevation loss", "Unavailable");
+      }
+      row("Estimated time", planning.items.estimatedHikingTime.display);
+      row("Route source", route.source && route.source.developmentFixture ? "Valhalla (labeled development fixture)" : "Valhalla");
+      row(
+        "Elevation source",
+        elev && (elev.status === "ok" || elev.status === "partial")
+          ? elev.source && elev.source.developmentFixture
+            ? "USGS 3DEP (labeled development fixture)"
+            : "USGS 3DEP"
+          : "Unavailable"
+      );
+      body.appendChild(dl);
+      if (elev && (elev.status === "ok" || elev.status === "partial") && elev.points && elev.points.length > 1) {
+        var wrap = global.document.createElement("div");
+        wrap.innerHTML = renderProfileSvg(elev);
+        body.appendChild(wrap.firstChild);
+      } else if (route.status === "ok" && elev && elev.status !== "pending") {
+        var miss = global.document.createElement("p");
+        miss.className = "ss-note";
+        miss.setAttribute("data-elev-status", elev.status || "unavailable");
+        miss.textContent = elev.reason || "Elevation data unavailable. The calculated route is still shown.";
+        body.appendChild(miss);
+      }
+    } else {
+      row("Route distance", "Unavailable");
+      body.appendChild(dl);
+      var fail = global.document.createElement("p");
+      fail.className = "ss-note";
+      fail.textContent = (route && route.reason) || "Routing did not return a hike. Straight-line distance is not used as a substitute.";
+      body.appendChild(fail);
+    }
+    if (caveat) {
+      caveat.textContent =
+        "Mapped access is from OpenStreetMap. The hike is a Valhalla pedestrian route toward the summit coordinate, not a recommended trail and not an activation-zone path.";
+    }
+  }
+
+  function startHikeFromAccess(feature) {
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    if (!summit || !feature) return Promise.resolve(null);
+    var Route = global.SignalTerrainSotaRoute;
+    var Terrain = global.SignalTerrainSotaTerrain;
+    state.selectedAccess = feature;
+    var seq = (state.hikeSeq += 1);
+    state.route = { status: "pending" };
+    state.elevation = { status: "pending" };
+    renderAccessPanel(summit, state.access);
+    renderHikePanel();
+    plotAccess(state.access);
+    if (!Route) {
+      state.route = global.SignalTerrainSotaRouteModel.emptyRoute({}, "unavailable", "Routing provider missing.");
+      renderHikePanel();
+      return Promise.resolve(state.route);
+    }
+    return Route.loadRoute(summit, feature)
+      .then(function (route) {
+        if (seq !== state.hikeSeq || state.selectedId !== summit.id) return route;
+        state.route = route;
+        plotRoute(route);
+        renderHikePanel();
+        if (route.status !== "ok" || !Terrain) {
+          state.elevation = global.SignalTerrainSotaTerrainModel
+            ? global.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation needs a calculated route.")
+            : { status: "unavailable" };
+          renderHikePanel();
+          return route;
+        }
+        return Terrain.loadElevation(route)
+          .then(function (elev) {
+            if (seq !== state.hikeSeq || state.selectedId !== summit.id) return route;
+            state.elevation = elev;
+            renderHikePanel();
+            return route;
+          })
+          .catch(function () {
+            if (seq !== state.hikeSeq) return route;
+            state.elevation = global.SignalTerrainSotaTerrainModel.emptyProfile(
+              {},
+              "unavailable",
+              "Elevation data unavailable. The calculated route is still shown."
+            );
+            renderHikePanel();
+            return route;
+          });
+      })
+      .catch(function (err) {
+        if (seq !== state.hikeSeq) return null;
+        state.route = global.SignalTerrainSotaRouteModel.emptyRoute(
+          {},
+          "unavailable",
+          "Routing service unavailable (" + String(err && err.message ? err.message : err) + ")."
+        );
+        clearHikeLayers();
+        renderHikePanel();
+        return state.route;
+      });
+  }
+
   function renderDetail(summit) {
     var sheet = $("ss-sheet");
     if (!sheet) return;
@@ -501,8 +767,12 @@
 
     var planRoot = $("ss-planning-fields");
     planRoot.innerHTML = "";
-    var planning = global.SignalTerrainSotaPlanning.getPlanning(summit, state.access && state.selectedId === summit.id ? state.access : null);
-    (global.SignalTerrainSotaPlanning.LATER_IDS || []).forEach(function (id) {
+    var planning = global.SignalTerrainSotaPlanning.getPlanning(
+      summit,
+      state.access && state.selectedId === summit.id ? state.access : null,
+      hikeState()
+    );
+    ["activationZone"].forEach(function (id) {
       var item = planning.items[id];
       if (!item) return;
       var row = global.document.createElement("div");
@@ -518,6 +788,7 @@
       planRoot.appendChild(row);
     });
     renderAccessPanel(summit, state.access && state.selectedId === summit.id ? state.access : { status: "pending" });
+    renderHikePanel();
 
     var nearRoot = $("ss-nearby-list");
     nearRoot.innerHTML = "";
@@ -561,6 +832,13 @@
     var opts = options || {};
     var summit = global.SignalTerrainSotaModel.findById(state.summits, id);
     if (!summit) return null;
+    if (state.selectedId !== summit.id) {
+      state.selectedAccess = null;
+      state.route = null;
+      state.elevation = null;
+      state.hikeSeq += 1;
+      clearHikeLayers();
+    }
     state.selectedId = summit.id;
     setSelectedMarker(summit.id);
     renderDetail(summit);
@@ -583,8 +861,13 @@
     state.selectedId = null;
     state.accessSeq += 1;
     state.access = null;
+    state.selectedAccess = null;
+    state.route = null;
+    state.elevation = null;
+    state.hikeSeq += 1;
     setSelectedMarker(null);
     clearAccessLayers();
+    clearHikeLayers();
     renderDetail(null);
   }
 
@@ -762,6 +1045,7 @@
     state.trailLayer = L.layerGroup().addTo(state.map);
     state.trailheadLayer = L.layerGroup().addTo(state.map);
     state.parkingLayer = L.layerGroup().addTo(state.map);
+    state.routeLayer = L.layerGroup().addTo(state.map);
     state.markerLayer = L.layerGroup().addTo(state.map);
     /* Reserved for a future DEM-backed activation-zone polygon. */
     state.activationZoneLayer = L.layerGroup().addTo(state.map);
@@ -826,6 +1110,7 @@
     locateUser: locateUser,
     setLayerVisible: setLayerVisible,
     loadAccessForSummit: loadAccessForSummit,
+    startHikeFromAccess: startHikeFromAccess,
     getState: function () {
       return state;
     }

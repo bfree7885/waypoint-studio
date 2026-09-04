@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-04 — SignalTerrain V0.3 hike routing + 3DEP
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.3.md`
+
+- Do not auto-start a route from nearest parking. Start hike here is the user confirmation.
+- FOSSGIS Valhalla is development-only. Default to a labeled real route fixture; `?route=live=1` is opt-in; production must self-host.
+- Never substitute Haversine for a failed hike. Elevation failure must keep a valid route.
+- A 3 m rise threshold on ~30 m 1 m-lidar samples undercounts real climbing. Use a moving average, then sum all smoothed deltas.
+- Route polylines must be visually heavier/cyan than OSM path fragments.
+
 ### 2026-09-04 — SignalTerrain V0.2 OSM access layer
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.2.md`

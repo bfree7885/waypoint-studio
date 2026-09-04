@@ -1,9 +1,9 @@
 /**
  * Hiking / activation-planning data boundary.
  *
- * V0.2 fills candidate OSM access (trails, trailheads, parking) when an
- * access catalog is provided. Route / gain / time / activation-zone stay
- * not-integrated. Never invents AllTrails-like hike stats.
+ * V0.2 fills candidate OSM access. V0.3 adds user-selected start + Valhalla
+ * route + USGS 3DEP profile. Activation-zone polygons stay out. Never invents
+ * hike stats or a "best" trailhead.
  */
 (function (global) {
   "use strict";
@@ -13,11 +13,10 @@
 
   var ACTIVATION_ZONE_REASON =
     "The SOTA Activation Zone is typically the area within about 25 m vertically of the summit. " +
-    "An overlay needs a reliable elevation model. V0.2 does not draw a zone from guessed contours.";
+    "V0.3 samples USGS 3DEP along a hike but does not draw a zone polygon. A contour, not a circle, is required.";
 
   var ROUTE_REASON =
-    "Hiking route, hike distance, elevation gain, and estimated time are not calculated in V0.2. " +
-    "Nearby mapped paths are candidate access features, not a recommended route.";
+    "Select a mapped parking area or trailhead, then choose Start hike here. SignalTerrain does not pick a best access point.";
 
   var FIELDS = [
     { id: "trailhead", label: "Trailhead" },
@@ -30,6 +29,7 @@
   ];
 
   var LATER_IDS = ["hikingRoute", "distance", "elevationGain", "estimatedHikingTime", "activationZone"];
+  var HIKE_IDS = ["hikingRoute", "distance", "elevationGain", "estimatedHikingTime"];
 
   function field(id, label, extraReason) {
     return {
@@ -141,9 +141,10 @@
 
   /**
    * Planning payload for a summit.
-   * Pass an access catalog from SignalTerrainSotaAccess.loadAccess when V0.2 data exists.
+   * accessCatalog: V0.2 OSM access.
+   * hike: { selectedAccess, route, elevation } from V0.3 providers.
    */
-  function getPlanning(summit, accessCatalog) {
+  function getPlanning(summit, accessCatalog, hike) {
     var items = laterFields();
     var access = summarizeList("trails", accessCatalog);
     var trailheads = summarizeList("trailheads", accessCatalog);
@@ -166,6 +167,7 @@
       reason: parking.reason || null,
       features: parking.features || []
     };
+    applyHike(items, summit, hike);
     var status;
     if (!accessCatalog) status = "not-integrated";
     else if (accessCatalog.status === "pending") status = "pending";
@@ -176,9 +178,11 @@
       status: status,
       provider: "signalterrain-sota-planning-v0",
       accessStatus: accessCatalog ? accessCatalog.status : "not-integrated",
+      hikeStatus: hike && hike.route ? hike.route.status : "idle",
       access: access,
       trailheads: trailheads,
       parking: parking,
+      hike: hike || null,
       caveat: (global.SignalTerrainSotaAccessModel && global.SignalTerrainSotaAccessModel.CAVEAT) || "",
       candidateNote:
         (global.SignalTerrainSotaAccessModel && global.SignalTerrainSotaAccessModel.CANDIDATE_NOTE) || "",
@@ -186,18 +190,95 @@
       retrievedAt: accessCatalog && accessCatalog.retrievedAt ? accessCatalog.retrievedAt : null,
       intendedSources: [
         "OpenStreetMap-derived trail and trailhead data",
-        "public land / open government datasets",
-        "licensed routing / elevation providers"
+        "Valhalla pedestrian routing on OSM",
+        "USGS 3DEP elevation"
       ],
-      forbiddenSources: ["AllTrails scraping", "invented hike stats", "fabricated routes"],
+      forbiddenSources: ["AllTrails scraping", "invented hike stats", "fabricated routes", "straight-line as hike distance"],
       items: items,
       fields: FIELDS.slice()
     };
   }
 
+  function applyHike(items, summit, hike) {
+    var route = hike && hike.route;
+    var elev = hike && hike.elevation;
+    var start = hike && hike.selectedAccess;
+    if (!start && !route) {
+      items.hikingRoute.display = "Not started";
+      items.hikingRoute.reason = ROUTE_REASON;
+      return;
+    }
+    if (route && route.status === "pending") {
+      items.hikingRoute.status = "pending";
+      items.hikingRoute.display = "Calculating pedestrian route…";
+      items.distance.status = "pending";
+      items.distance.display = "Calculating…";
+      items.estimatedHikingTime.status = "pending";
+      items.estimatedHikingTime.display = "Calculating…";
+      items.elevationGain.status = "pending";
+      items.elevationGain.display = "Waiting for route…";
+      return;
+    }
+    if (route && (route.status === "unavailable" || route.status === "timeout" || route.status === "malformed" || route.status === "invalid-start" || route.status === "no-route")) {
+      items.hikingRoute.status = route.status;
+      items.hikingRoute.display = route.status === "no-route" ? "No pedestrian/hiking route found" : "Unavailable";
+      items.hikingRoute.reason = route.reason;
+      items.distance.status = route.status;
+      items.distance.display = "Unavailable";
+      items.distance.reason = "Route distance is not replaced with straight-line distance.";
+      items.estimatedHikingTime.status = "unavailable";
+      items.estimatedHikingTime.display = "Unavailable";
+      items.elevationGain.status = "unavailable";
+      items.elevationGain.display = "Unavailable";
+      return;
+    }
+    if (route && route.status === "ok") {
+      items.hikingRoute.status = "ok";
+      items.hikingRoute.display = "Calculated pedestrian route";
+      items.hikingRoute.value = route;
+      items.hikingRoute.reason = route.attribution;
+      items.distance.status = "ok";
+      items.distance.display = route.distanceLabel || "Unavailable";
+      items.distance.value = route.distanceKm;
+      items.distance.reason = "Calculated route distance, not straight-line.";
+      if (route.durationLabel) {
+        items.estimatedHikingTime.status = "ok";
+        items.estimatedHikingTime.display = route.durationLabel;
+        items.estimatedHikingTime.value = route.durationSec;
+        items.estimatedHikingTime.reason = "Valhalla pedestrian costing duration (estimate, rounded).";
+      } else if (elev && (elev.status === "ok" || elev.status === "partial") && elev.gainM != null && route.distanceKm != null) {
+        var sec = (route.distanceKm / 5 + elev.gainM / 600) * 3600;
+        var Geo = global.SignalTerrainSotaGeo;
+        items.estimatedHikingTime.status = "ok";
+        items.estimatedHikingTime.display = Geo ? Geo.formatDurationEstimate(sec) : "Unavailable";
+        items.estimatedHikingTime.value = sec;
+        items.estimatedHikingTime.reason =
+          "SignalTerrain estimate: distance(km)/5 + gain(m)/600 hours. Not a personal pace model.";
+      } else {
+        items.estimatedHikingTime.status = "unavailable";
+        items.estimatedHikingTime.display = "Unavailable";
+        items.estimatedHikingTime.reason = "No legitimate duration from the router, and elevation is unavailable for an estimate.";
+      }
+      if (!elev || elev.status === "pending") {
+        items.elevationGain.status = "pending";
+        items.elevationGain.display = "Sampling USGS 3DEP…";
+      } else if (elev.status === "ok" || elev.status === "partial") {
+        items.elevationGain.status = elev.status;
+        items.elevationGain.display = elev.gainLabel || "Unavailable";
+        items.elevationGain.value = elev.gainM;
+        items.elevationGain.reason = elev.methodology;
+      } else {
+        items.elevationGain.status = "unavailable";
+        items.elevationGain.display = "Unavailable";
+        items.elevationGain.reason = elev.reason || "Elevation data unavailable. The calculated route is still shown.";
+      }
+    }
+  }
+
   var api = {
     FIELDS: FIELDS,
     LATER_IDS: LATER_IDS,
+    HIKE_IDS: HIKE_IDS,
     getPlanning: getPlanning
   };
 

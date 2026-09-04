@@ -184,13 +184,14 @@ jobs:
           node automation/test-sheds-today-hunt-v12.mjs
           node automation/test-sheds-today-hunt-mobile.mjs
 
-      - name: SignalTerrain SOTA V0.1–V0.2
+      - name: SignalTerrain SOTA V0.1–V0.3
         if: ${{ !cancelled() }}
         env:
           CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: |
           node automation/test-summit-signal-v0-1.mjs
           node automation/test-signalterrain-sota-v0-2.mjs
+          node automation/test-signalterrain-sota-v0-3.mjs
           node automation/test-summit-signal-v0-1-map-mobile.mjs
 
       - name: Dashboard Discover tests

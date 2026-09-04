@@ -32,6 +32,41 @@
     return Math.round(km) + " km";
   }
 
+  function kmToMiles(km) {
+    if (!isFiniteNumber(km)) return null;
+    return km * 0.621371;
+  }
+
+  function metersToFeet(m) {
+    if (!isFiniteNumber(m)) return null;
+    return m * 3.28084;
+  }
+
+  function formatRouteDistance(km) {
+    var mi = kmToMiles(km);
+    if (mi == null) return null;
+    var miTxt = mi < 10 ? mi.toFixed(1) : String(Math.round(mi));
+    var kmTxt = formatDistanceKm(km);
+    return miTxt + " mi · " + kmTxt;
+  }
+
+  function formatElevationM(m) {
+    var ft = metersToFeet(m);
+    if (ft == null) return null;
+    return Math.round(ft).toLocaleString("en-US") + " ft · " + Math.round(m).toLocaleString("en-US") + " m";
+  }
+
+  function formatDurationEstimate(seconds) {
+    if (!isFiniteNumber(seconds) || seconds <= 0) return null;
+    var min = Math.round(seconds / 60 / 5) * 5;
+    if (min < 5) min = 5;
+    var h = Math.floor(min / 60);
+    var m = min % 60;
+    if (h && m) return "~" + h + " hr " + m + " min";
+    if (h) return "~" + h + " hr";
+    return "~" + m + " min";
+  }
+
   /**
    * Nearby SOTA summits relative to a selected summit.
    * Distance is from summit to summit (not trailhead).
@@ -65,6 +100,11 @@
   var api = {
     haversineKm: haversineKm,
     formatDistanceKm: formatDistanceKm,
+    kmToMiles: kmToMiles,
+    metersToFeet: metersToFeet,
+    formatRouteDistance: formatRouteDistance,
+    formatElevationM: formatElevationM,
+    formatDurationEstimate: formatDurationEstimate,
     nearbySummits: nearbySummits
   };
 

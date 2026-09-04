@@ -484,9 +484,80 @@ body {
   color: var(--ss-paper);
 }
 
-.ss-access-list .ss-access-meta {
-  display: block;
+.ss-access-list li.is-start {
+  border-color: var(--ss-cyan);
+}
+
+.ss-start-hike {
+  appearance: none;
+  margin-top: 6px;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--ss-brass);
+  background: transparent;
+  color: var(--ss-brass);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ss-start-hike[aria-pressed="true"] {
+  background: var(--ss-brass);
+  color: var(--ss-ink);
+}
+
+.ss-hike-kv {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 4px 10px;
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.ss-hike-kv div {
+  display: contents;
+}
+
+.ss-hike-kv dt {
   color: var(--ss-dim);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ss-hike-kv dd {
+  margin: 0;
+  color: var(--ss-paper);
+}
+
+.ss-profile {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 96px;
+  margin: 8px 0 4px;
+  background: var(--ss-panel-2);
+  border: 1px solid var(--ss-line);
+}
+
+.ss-profile-axis {
+  font-size: 10px;
+  fill: var(--ss-dim);
+}
+
+.ss-hike-status {
+  font-family: var(--ss-mono);
+  font-size: 12px;
+  color: var(--ss-cyan);
+  margin: 0 0 8px;
+}
+
+.ss-access-pin.is-start {
+  outline: 2px solid var(--ss-cyan);
+  outline-offset: 1px;
 }
 
 .ss-note--caveat {

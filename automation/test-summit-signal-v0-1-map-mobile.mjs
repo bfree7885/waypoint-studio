@@ -250,9 +250,8 @@ async function main() {
     assert("selected marker obvious", selected.selected === true);
     assert("nearby list populated", Array.isArray(selected.nearby) && selected.nearby.length >= 3, JSON.stringify(selected.nearby && selected.nearby.slice(0, 3)));
     assert(
-      "later planning fields remain not-integrated",
-      selected.laterPlanning.length >= 4 &&
-        selected.laterPlanning.every((p) => p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
+      "activation zone remains not-integrated",
+      selected.laterPlanning.some((p) => p.id === "activationZone" && p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
       JSON.stringify(selected.laterPlanning)
     );
 
@@ -320,6 +319,126 @@ async function main() {
     })()`);
     await delay(300);
     await shot("signalterrain_sota_v02_access_lists.png");
+
+    const hikeStart = await evalExpr(`(() => {
+      var btn = document.querySelector('[data-start-hike="way/816358667"]');
+      if (btn) btn.click();
+      return { clicked: !!btn };
+    })()`);
+    assert("start hike clicked", !!(hikeStart && hikeStart.clicked), JSON.stringify(hikeStart));
+    let hike = null;
+    for (let i = 0; i < 40; i += 1) {
+      hike = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var body = document.getElementById("ss-hike-body");
+        var hikeEl = document.getElementById("ss-sec-hike");
+        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        return {
+          routeStatus: st.route && st.route.status,
+          elevStatus: st.elevation && st.elevation.status,
+          distanceKm: st.route && st.route.distanceKm,
+          distanceLabel: st.route && st.route.distanceLabel,
+          durationLabel: st.route && st.route.durationLabel,
+          gainM: st.elevation && st.elevation.gainM,
+          startName: st.selectedAccess && st.selectedAccess.name,
+          body: body ? body.textContent.slice(0, 600) : "",
+          routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+          profile: !!document.getElementById("ss-hike-profile")
+        };
+      })()`);
+      if (hike && hike.routeStatus && hike.routeStatus !== "pending" && hike.elevStatus && hike.elevStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("hike route ok", hike && hike.routeStatus === "ok" && hike.routeLayers >= 1, JSON.stringify(hike));
+    assert("route distance not straight-line", hike && hike.distanceKm > 4 && /mi/.test(hike.distanceLabel || ""), JSON.stringify(hike));
+    assert("plan the hike shows start", hike && /Slide Mountain Parking Area/.test(hike.body || ""), hike && hike.body);
+    assert("elevation profile rendered", hike && hike.profile === true && hike.gainM > 400, JSON.stringify(hike));
+    assert("estimated time tilde", hike && /^~/.test(hike.durationLabel || ""), JSON.stringify(hike));
+    await evalExpr(`(() => {
+      var hike = document.getElementById("ss-hike-body");
+      if (hike) hike.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(400);
+    await shot("signalterrain_sota_v03_plan_the_hike.png");
+
+    const alt = await evalExpr(`(() => {
+      var btn = document.querySelector('[data-start-hike="way/816358666"]');
+      if (btn) btn.click();
+      return { clicked: !!btn };
+    })()`);
+    assert("change access point", !!(alt && alt.clicked), JSON.stringify(alt));
+    let hike2 = null;
+    for (let i = 0; i < 40; i += 1) {
+      hike2 = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        return {
+          startName: st.selectedAccess && st.selectedAccess.name,
+          distanceKm: st.route && st.route.distanceKm,
+          status: st.route && st.route.status
+        };
+      })()`);
+      if (hike2 && hike2.status && hike2.status !== "pending" && hike2.startName === "Giant Ledge Trailhead") break;
+      await delay(250);
+    }
+    assert("alternate start recalculates", hike2 && hike2.status === "ok" && hike2.startName === "Giant Ledge Trailhead" && Math.abs(hike2.distanceKm - hike.distanceKm) > 0.2, JSON.stringify(hike2));
+    await evalExpr(`(() => {
+      var hike = document.getElementById("ss-hike-body");
+      if (hike) hike.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(350);
+    await shot("signalterrain_sota_v03_alt_start.png");
+
+    await evalExpr(`(() => {
+      window.SignalTerrainSotaRoute.clearCache();
+      window.SignalTerrainSotaTerrain.clearCache();
+      window.SignalTerrainSotaTerrain.loadElevation = function () {
+        return Promise.resolve(window.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation data unavailable. The calculated route is still shown."));
+      };
+      var parking = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 816358667; });
+      return window.SignalTerrainSotaMapApp.startHikeFromAccess(parking);
+    })()`);
+    await delay(700);
+    const elevFail = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return {
+        routeStatus: st.route && st.route.status,
+        routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+        elevStatus: st.elevation && st.elevation.status
+      };
+    })()`);
+    assert("elevation fail keeps route", elevFail && elevFail.routeStatus === "ok" && elevFail.routeLayers >= 1 && elevFail.elevStatus === "unavailable", JSON.stringify(elevFail));
+    await evalExpr(`(() => {
+      var hike = document.getElementById("ss-hike-body");
+      if (hike) hike.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v03_elev_unavailable.png");
+
+    await evalExpr(`(() => {
+      window.SignalTerrainSotaRoute.clearCache();
+      var unnamed = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 2442957521; });
+      return window.SignalTerrainSotaMapApp.startHikeFromAccess(unnamed);
+    })()`);
+    await delay(500);
+    const noFix = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return {
+        status: st.route && st.route.status,
+        layers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+        stillHasSummits: st.summits.length >= 100
+      };
+    })()`);
+    assert("routing miss is unavailable not a fake line", noFix && noFix.status === "unavailable" && noFix.layers === 0 && noFix.stillHasSummits, JSON.stringify(noFix));
+    await evalExpr(`(() => {
+      var hike = document.getElementById("ss-hike-body");
+      if (hike) hike.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v03_route_unavailable.png");
 
     const layers = await evalExpr(`(() => {
       var trails = document.getElementById("ss-layer-trails");
