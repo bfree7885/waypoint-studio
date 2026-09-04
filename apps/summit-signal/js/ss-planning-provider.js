@@ -2,8 +2,9 @@
  * Hiking / activation-planning data boundary.
  *
  * V0.2 fills candidate OSM access. V0.3 adds user-selected start + Valhalla
- * route + USGS 3DEP profile. Activation-zone polygons stay out. Never invents
- * hike stats or a "best" trailhead.
+ * route + USGS 3DEP profile. V0.4 fills a terrain-derived Activation Zone
+ * when the AZ engine has run. Never invents hike stats, a "best" trailhead,
+ * or an activation-validity claim.
  */
 (function (global) {
   "use strict";
@@ -12,8 +13,8 @@
     "Not yet integrated. SignalTerrain has not retrieved trail, parking, or routing data for this summit.";
 
   var ACTIVATION_ZONE_REASON =
-    "The SOTA Activation Zone is typically the area within about 25 m vertically of the summit. " +
-    "V0.3 samples USGS 3DEP along a hike but does not draw a zone polygon. A contour, not a circle, is required.";
+    "The SOTA Activation Zone is the area within a closed contour at the association Vertical Distance below the summit " +
+    "(normally 25 m; SOTA General Rules v1.21). SignalTerrain does not draw a radius. A terrain contour is required.";
 
   var ROUTE_REASON =
     "Select a mapped parking area or trailhead, then choose Start hike here. SignalTerrain does not pick a best access point.";
@@ -168,6 +169,7 @@
       features: parking.features || []
     };
     applyHike(items, summit, hike);
+    applyAz(items, summit, hike);
     var status;
     if (!accessCatalog) status = "not-integrated";
     else if (accessCatalog.status === "pending") status = "pending";
@@ -191,7 +193,8 @@
       intendedSources: [
         "OpenStreetMap-derived trail and trailhead data",
         "Valhalla pedestrian routing on OSM",
-        "USGS 3DEP elevation"
+        "USGS 3DEP elevation",
+        "SOTA General Rules v1.21 Activation Zone contour"
       ],
       forbiddenSources: ["AllTrails scraping", "invented hike stats", "fabricated routes", "straight-line as hike distance"],
       items: items,
@@ -289,11 +292,125 @@
     }
   }
 
+  function applyAz(items, summit, hike) {
+    var az = hike && hike.az;
+    if (!az) return;
+    items.activationZone.status = az.status === "ok" ? "ok" : az.status || "unavailable";
+    if (az.status === "ok") {
+      items.activationZone.display = "Terrain-derived contour";
+      items.activationZone.value = az;
+      items.activationZone.reason = az.caveat;
+    } else if (az.status === "pending") {
+      items.activationZone.status = "pending";
+      items.activationZone.display = "Calculating Activation Zone…";
+    } else {
+      items.activationZone.display = "Unavailable";
+      items.activationZone.reason = az.reason || "Activation Zone could not be calculated.";
+      items.activationZone.value = az;
+    }
+  }
+
+  function getReadiness(summit, accessCatalog, hike) {
+    var planning = getPlanning(summit, accessCatalog, hike);
+    var az = hike && hike.az;
+    var rel = hike && hike.routeAz;
+    var loc = hike && hike.geoAz;
+    var Geo = global.SignalTerrainSotaGeo;
+    function row(label, status, display, note) {
+      return { label: label, status: status || "unavailable", display: display || "Unavailable", note: note || null };
+    }
+    var access = planning.items.parking;
+    var start = hike && hike.selectedAccess;
+    var route = hike && hike.route;
+    var locRow;
+    if (!az || az.status !== "ok") locRow = row("Current location vs AZ", "az-unavailable", "AZ unavailable");
+    else if (!loc || loc.status === "location-unavailable") {
+      locRow = row("Current location vs AZ", "location-unavailable", "Location unavailable");
+    } else {
+      locRow = row("Current location vs AZ", loc.status, loc.label, loc.note);
+    }
+    var enterDisplay = "Unknown";
+    var enterStatus = "unknown";
+    if (!route || route.status !== "ok") {
+      enterDisplay = "Unknown — route unavailable";
+      enterStatus = "route-unavailable";
+    } else if (!az || az.status !== "ok") {
+      enterDisplay = "Unknown — AZ unavailable";
+      enterStatus = "az-unavailable";
+    } else if (rel && rel.enters === true) {
+      enterStatus = "enters";
+      enterDisplay = rel.distanceToEntryKm === 0 ? "Route starts inside AZ" : "Route enters Activation Zone";
+    } else if (rel && rel.enters === false) {
+      enterStatus = "does-not-enter";
+      enterDisplay = "Calculated route does not enter Activation Zone";
+    }
+    return {
+      title: "Activation readiness",
+      note: "Factual known/unknown summary. Not a score and not a valid-activation claim.",
+      groups: [
+        {
+          id: "summit",
+          title: "Summit",
+          rows: [
+            row("Name", summit && summit.name ? "ok" : "unavailable", summit && summit.name ? summit.name : "Unavailable"),
+            row("Reference", summit && (summit.reference || summit.id) ? "ok" : "unavailable", (summit && (summit.reference || summit.id)) || "Unavailable"),
+            row("Points", summit && summit.points != null ? "ok" : "unavailable", summit && summit.points != null ? String(summit.points) : "Unavailable"),
+            row("Seasonal bonus", "unavailable", "Unavailable")
+          ]
+        },
+        {
+          id: "access",
+          title: "Access",
+          rows: [
+            row(
+              "Selected start",
+              start ? "ok" : "unavailable",
+              start ? start.name || (start.kind === "trailhead" ? "Unnamed mapped trailhead" : "Unnamed mapped parking") : "Not selected"
+            ),
+            row("Access data", access ? access.status : "not-integrated", access ? access.display : "Not yet integrated")
+          ]
+        },
+        {
+          id: "hike",
+          title: "Hike",
+          rows: [
+            row("Route", planning.items.hikingRoute.status, planning.items.hikingRoute.display),
+            row("Route distance", planning.items.distance.status, planning.items.distance.display, "Route distance, not straight-line."),
+            row("Elevation gain", planning.items.elevationGain.status, planning.items.elevationGain.display),
+            row("Estimated time", planning.items.estimatedHikingTime.status, planning.items.estimatedHikingTime.display)
+          ]
+        },
+        {
+          id: "az",
+          title: "Activation zone",
+          rows: [
+            row("Zone", planning.items.activationZone.status, planning.items.activationZone.display),
+            row("Route vs AZ", enterStatus, enterDisplay, rel && rel.reason),
+            row(
+              "Distance to AZ entry",
+              rel && rel.enters && rel.distanceToEntryKm != null ? "ok" : "unavailable",
+              rel && rel.enters && rel.distanceToEntryKm != null && Geo
+                ? Geo.formatRouteDistance(rel.distanceToEntryKm)
+                : "Unavailable"
+            ),
+            locRow
+          ]
+        },
+        {
+          id: "later",
+          title: "Not in V0.4",
+          rows: [row("Radio", "not-integrated", "Not integrated"), row("Weather", "not-integrated", "Not integrated")]
+        }
+      ]
+    };
+  }
+
   var api = {
     FIELDS: FIELDS,
     LATER_IDS: LATER_IDS,
     HIKE_IDS: HIKE_IDS,
-    getPlanning: getPlanning
+    getPlanning: getPlanning,
+    getReadiness: getReadiness
   };
 
   global.SignalTerrainSotaPlanning = api;

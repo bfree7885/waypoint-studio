@@ -97,6 +97,28 @@
     return ranked.slice(0, limit);
   }
 
+  function pointInPolygon(lat, lng, latlngs) {
+    if (!isFiniteNumber(lat) || !isFiniteNumber(lng) || !latlngs || latlngs.length < 3) return false;
+    var inside = false;
+    for (var i = 0, j = latlngs.length - 1; i < latlngs.length; j = i, i += 1) {
+      var yi = latlngs[i][0];
+      var xi = latlngs[i][1];
+      var yj = latlngs[j][0];
+      var xj = latlngs[j][1];
+      var intersect = yi > lat !== yj > lat && lng < ((xj - xi) * (lat - yi)) / (yj - yi + 0) + xi;
+      if (yj === yi) continue;
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  function destinationOffset(lat, lng, northM, eastM) {
+    if (!isFiniteNumber(lat) || !isFiniteNumber(lng)) return null;
+    var dLat = (northM || 0) / 111320;
+    var dLng = (eastM || 0) / (111320 * Math.cos(toRad(lat)));
+    return { lat: lat + dLat, lng: lng + dLng };
+  }
+
   var api = {
     haversineKm: haversineKm,
     formatDistanceKm: formatDistanceKm,
@@ -105,7 +127,9 @@
     formatRouteDistance: formatRouteDistance,
     formatElevationM: formatElevationM,
     formatDurationEstimate: formatDurationEstimate,
-    nearbySummits: nearbySummits
+    nearbySummits: nearbySummits,
+    pointInPolygon: pointInPolygon,
+    destinationOffset: destinationOffset
   };
 
   global.SignalTerrainSotaGeo = api;

@@ -555,6 +555,35 @@ body {
   margin: 0 0 8px;
 }
 
+.ss-az-status {
+  font-family: var(--ss-mono);
+  font-size: 12px;
+  color: var(--ss-brass);
+  margin: 0 0 8px;
+}
+
+.ss-az-entry-label {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ss-ink);
+  background: var(--ss-brass);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.ss-ready-group {
+  margin: 0 0 10px;
+}
+
+.ss-ready-group h4 {
+  margin: 0 0 4px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ss-brass);
+}
+
 .ss-access-pin.is-start {
   outline: 2px solid var(--ss-cyan);
   outline-offset: 1px;

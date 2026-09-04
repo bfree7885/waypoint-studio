@@ -134,6 +134,17 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-04 — SignalTerrain V0.4 Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.4.md`
+
+- The SOTA AZ is a closed contour at Vertical Distance below the summit (GR v1.21, normally 25 m), never a radius.
+- Threshold uses the SOTA catalogue elevation. DEM is geometry + a discrepancy check; do not silently rewrite the SOTA record.
+- 4-connected flood fill from the summit cell; discard disconnected above-threshold blobs (neighbouring peaks).
+- Thin ridges and single-cell peaks need a cell-edge outline, not interpolated marching squares. The polygon is still a closed contour of qualifying terrain, never a radius.
+- Keep the V0.3 route geometry; only report whether it enters the polygon.
+- Never say “activated” because GPS is inside the polygon.
+
 ### 2026-09-04 — SignalTerrain V0.3 hike routing + 3DEP
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.3.md`

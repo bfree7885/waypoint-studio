@@ -197,7 +197,7 @@ async function main() {
     assert("visible product is SignalTerrain", boot && boot.product === "SignalTerrain" && /SignalTerrain/.test(boot.title || ""), JSON.stringify(boot));
     assert("data-product is signalterrain-sota", boot && boot.dataProduct === "signalterrain-sota");
     assert("does not load cyber or Sheds globals", boot && boot.loadedCyber === false && boot.loadedSheds === false, JSON.stringify(boot));
-    assert("layer controls exist", await evalExpr(`!!document.getElementById("ss-layers")`));
+    assert("layer controls exist", await evalExpr(`!!document.getElementById("ss-layers") && !!document.getElementById("ss-layer-az")`));
     await shot("signalterrain_sota_v02_map.png");
 
     const selected = await evalExpr(`(() => {
@@ -231,7 +231,10 @@ async function main() {
             status: el.getAttribute("data-status"),
             text: el.textContent
           };
-        })
+        }),
+        azStatus: (document.getElementById("ss-az-body") || {}).getAttribute("data-az-status"),
+        azText: (document.getElementById("ss-az-body") || {}).textContent,
+        readyText: (document.getElementById("ss-ready-body") || {}).textContent
       };
     })()`);
     assert("detail sheet opens", selected && selected.hidden === false, JSON.stringify(selected));
@@ -250,10 +253,30 @@ async function main() {
     assert("selected marker obvious", selected.selected === true);
     assert("nearby list populated", Array.isArray(selected.nearby) && selected.nearby.length >= 3, JSON.stringify(selected.nearby && selected.nearby.slice(0, 3)));
     assert(
-      "activation zone remains not-integrated",
-      selected.laterPlanning.some((p) => p.id === "activationZone" && p.status === "not-integrated" && /Not yet integrated/.test(p.text || "")),
-      JSON.stringify(selected.laterPlanning)
+      "activation zone calculated or pending",
+      selected && (selected.azStatus === "ok" || selected.azStatus === "pending" || /Activation Zone/.test(selected.azText || "")),
+      JSON.stringify({ azStatus: selected && selected.azStatus, azText: selected && selected.azText })
     );
+
+    let azReady = selected;
+    for (let i = 0; i < 40; i += 1) {
+      azReady = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        return {
+          azStatus: st.az && st.az.status,
+          azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+          thresholdM: st.az && st.az.thresholdM,
+          cellCount: st.az && st.az.cellCount,
+          azText: (document.getElementById("ss-az-body") || {}).textContent,
+          readyText: (document.getElementById("ss-ready-body") || {}).textContent
+        };
+      })()`);
+      if (azReady && azReady.azStatus && azReady.azStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("AZ status ok", azReady && azReady.azStatus === "ok" && azReady.azLayers >= 1, JSON.stringify(azReady));
+    assert("AZ threshold 1252", azReady && azReady.thresholdM === 1252, JSON.stringify(azReady));
+    assert("readiness not a score", azReady && !/87%|activated/i.test(azReady.readyText || ""), azReady && azReady.readyText);
 
     let access = null;
     for (let i = 0; i < 40; i += 1) {
@@ -354,6 +377,41 @@ async function main() {
     assert("plan the hike shows start", hike && /Slide Mountain Parking Area/.test(hike.body || ""), hike && hike.body);
     assert("elevation profile rendered", hike && hike.profile === true && hike.gainM > 400, JSON.stringify(hike));
     assert("estimated time tilde", hike && /^~/.test(hike.durationLabel || ""), JSON.stringify(hike));
+    const azRel = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var azEl = document.getElementById("ss-az-body");
+      if (azEl) azEl.scrollIntoView({ block: "nearest" });
+      return {
+        enters: st.routeAz && st.routeAz.enters,
+        distanceToEntryKm: st.routeAz && st.routeAz.distanceToEntryKm,
+        azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+        azText: azEl ? azEl.textContent : "",
+        ready: (document.getElementById("ss-ready-body") || {}).textContent
+      };
+    })()`);
+    assert("route enters AZ", azRel && azRel.enters === true && azRel.distanceToEntryKm > 4, JSON.stringify(azRel));
+    assert("AZ overlay with route", azRel && azRel.azLayers >= 1, JSON.stringify(azRel));
+    assert("readiness factual", azRel && /Activation zone|Route enters|Location unavailable/i.test(azRel.ready || "") && !/activated/i.test(azRel.ready || ""), azRel && azRel.ready);
+    await delay(300);
+    await shot("signalterrain_sota_v04_az_and_route.png");
+    await evalExpr(`(() => {
+      var ready = document.getElementById("ss-sec-ready");
+      if (ready) ready.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v04_activation_readiness.png");
+    const toggled = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var before = st.map.hasLayer(st.activationZoneLayer);
+      window.SignalTerrainSotaMapApp.setLayerVisible("az", false);
+      var off = !st.map.hasLayer(st.activationZoneLayer);
+      window.SignalTerrainSotaMapApp.setLayerVisible("az", true);
+      var on = st.map.hasLayer(st.activationZoneLayer);
+      var chip = document.getElementById("ss-layer-az");
+      return { before: before, off: off, on: on, chip: !!(chip && chip.getBoundingClientRect().width > 0) };
+    })()`);
+    assert("AZ layer toggle", toggled && toggled.before === true && toggled.off === true && toggled.on === true && toggled.chip === true, JSON.stringify(toggled));
     await evalExpr(`(() => {
       var hike = document.getElementById("ss-hike-body");
       if (hike) hike.scrollIntoView({ block: "start" });
@@ -499,6 +557,21 @@ async function main() {
     assert("OSM miss is unavailable not a crash", otherAccess && otherAccess.accessStatus === "unavailable" && otherAccess.stillHasSummits && otherAccess.map, JSON.stringify(otherAccess));
     assert("SOTA detail still populated without OSM", otherAccess && otherAccess.name && otherAccess.elev && otherAccess.elev !== "Unavailable", JSON.stringify(otherAccess));
     assert("unavailable copy is honest", /OpenStreetMap|fixture|unavailable/i.test((otherAccess && (otherAccess.reason || otherAccess.body)) || ""), JSON.stringify(otherAccess));
+    const otherAz = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return {
+        azStatus: st.az && st.az.status,
+        azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+        stillHasSummits: st.summits.length >= 100,
+        azText: (document.getElementById("ss-az-body") || {}).textContent
+      };
+    })()`);
+    assert(
+      "AZ miss does not crash the map",
+      otherAz && otherAz.azStatus && otherAz.azStatus !== "ok" && otherAz.azLayers === 0 && otherAz.stillHasSummits,
+      JSON.stringify(otherAz)
+    );
+    await shot("signalterrain_sota_v04_az_unavailable.png");
     await shot("signalterrain_sota_v02_access_unavailable.png");
 
     const searched = await evalExpr(`(() => {
@@ -588,6 +661,13 @@ async function main() {
         })()`);
         await delay(200);
         await shot("signalterrain_sota_v02_w320.png");
+        await evalExpr(`(() => {
+          var az = document.getElementById("ss-sec-az");
+          if (az) az.scrollIntoView({ block: "start" });
+          return true;
+        })()`);
+        await delay(250);
+        await shot("signalterrain_sota_v04_w320.png");
       }
     }
 

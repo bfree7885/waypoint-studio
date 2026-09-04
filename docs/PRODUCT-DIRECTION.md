@@ -199,7 +199,7 @@ Do **not**:
 
 ## In development — SignalTerrain (SOTA, unpublished; not a public peer)
 
-**SignalTerrain** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with terrain/access intelligence (V0.2 OpenStreetMap candidate trails, trailheads, and parking) and V0.3 user-selected pedestrian routing plus USGS 3DEP elevation. It is **not** Shed Hunting and must not modify Shed Hunting.
+**SignalTerrain** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with terrain/access intelligence (V0.2 OpenStreetMap candidate trails, trailheads, and parking), V0.3 user-selected pedestrian routing plus USGS 3DEP elevation, and V0.4 terrain-derived Activation Zone contours. It is **not** Shed Hunting and must not modify Shed Hunting.
 
 **SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. Historical cyber docs remain at `docs/SIGNALTERRAIN-*.md`. Do not restore cyber copy such as “Understand the world's signals.”
 

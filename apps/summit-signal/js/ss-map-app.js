@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.3 map application.
+ * SignalTerrain SOTA V0.4 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -10,7 +10,7 @@
   var TOPO_ATTR =
     'Tiles &copy; Esri &mdash; Esri, USGS, NOAA, and the GIS User Community. ' +
     'Access features &copy; <a href="https://www.openstreetmap.org/copyright" rel="noopener noreferrer">OpenStreetMap</a> contributors. ' +
-    'Routes: Valhalla / OSM. Elevation: USGS 3DEP. ' +
+    'Routes: Valhalla / OSM. Elevation: USGS 3DEP. Activation Zone: SOTA GR v1.21 + 3DEP. ' +
     'Summit records from <a href="https://www.sota.org.uk/" rel="noopener noreferrer">Summits on the Air</a>.';
 
   var DEFAULT_CENTER = { lat: 42.0, lng: -74.5 };
@@ -39,7 +39,10 @@
     hikeSeq: 0,
     route: null,
     elevation: null,
-    layersOn: { summits: true, trails: true, trailheads: true, parking: true, hike: true }
+    az: null,
+    azSeq: 0,
+    routeAz: null,
+    layersOn: { summits: true, trails: true, trailheads: true, parking: true, hike: true, az: true }
   };
 
   function $(id) {
@@ -298,6 +301,8 @@
               ? state.parkingLayer
               : name === "hike"
                 ? state.routeLayer
+                : name === "az"
+                  ? state.activationZoneLayer
                 : null;
     if (!layer) return;
     if (on) {
@@ -531,6 +536,7 @@
       interactive: false
     }).addTo(state.routeLayer);
     if (!state.layersOn.hike) setLayerVisible("hike", false);
+    plotAzEntry();
     try {
       state.map.fitBounds(latlngs, { padding: [36, 36], maxZoom: 15, animate: true });
     } catch (e) {}
@@ -540,8 +546,237 @@
     return {
       selectedAccess: state.selectedAccess,
       route: state.route,
-      elevation: state.elevation
+      elevation: state.elevation,
+      az: state.az,
+      routeAz: state.routeAz,
+      geoAz: geoAzState()
     };
+  }
+
+  function geoAzState() {
+    var AzModel = global.SignalTerrainSotaAzModel;
+    var geo = state.geolocation || {};
+    if (!AzModel) return { status: "az-unavailable" };
+    var loc = {
+      status: geo.status,
+      lat: state.locateMarker && state.locateMarker.getLatLng ? state.locateMarker.getLatLng().lat : geo.lat,
+      lng: state.locateMarker && state.locateMarker.getLatLng ? state.locateMarker.getLatLng().lng : geo.lng
+    };
+    if (geo.status === "granted") {
+      loc.status = "granted";
+    }
+    return AzModel.locationStatus(state.az, loc);
+  }
+
+  function clearAzLayers() {
+    if (state.activationZoneLayer) state.activationZoneLayer.clearLayers();
+  }
+
+  function plotAz(az) {
+    var L = global.L;
+    clearAzLayers();
+    if (!az || az.status !== "ok" || !az.latlngs || !az.latlngs.length || !state.map) return;
+    L.polygon(az.latlngs, {
+      color: "#e0b15a",
+      weight: 2,
+      fillColor: "#e0b15a",
+      fillOpacity: 0.28,
+      className: "ss-az-area",
+      interactive: false
+    }).addTo(state.activationZoneLayer);
+    if (!state.layersOn.az) setLayerVisible("az", false);
+    plotAzEntry();
+  }
+
+  function plotAzEntry() {
+    var L = global.L;
+    if (!state.activationZoneLayer || !state.routeAz || !state.routeAz.entry) return;
+    var e = state.routeAz.entry;
+    var marker = L.circleMarker([e.lat, e.lng], {
+      radius: 6,
+      color: "#0c1210",
+      weight: 1,
+      fillColor: "#e0b15a",
+      fillOpacity: 1,
+      className: "ss-az-entry"
+    });
+    var Geo = global.SignalTerrainSotaGeo;
+    var dist = e.distanceKm != null && Geo ? Geo.formatRouteDistance(e.distanceKm) : "Unavailable";
+    var remain =
+      state.routeAz.remainingToSummitKm != null && Geo ? Geo.formatRouteDistance(state.routeAz.remainingToSummitKm) : "Unavailable";
+    var elev =
+      e.elevationM != null && Geo && Geo.formatElevationM ? Geo.formatElevationM(e.elevationM) : "Unavailable";
+    marker.bindTooltip(
+      "AZ entry (geographic)<br>From start: " +
+        dist +
+        "<br>Elevation: " +
+        elev +
+        "<br>Remaining toward summit coordinate: " +
+        remain +
+        "<br>Not a requirement to stop. Not a valid-activation claim.",
+      { sticky: true }
+    );
+    marker.addTo(state.activationZoneLayer);
+  }
+
+  function updateRouteAz() {
+    var AzModel = global.SignalTerrainSotaAzModel;
+    if (!AzModel) {
+      state.routeAz = null;
+      return;
+    }
+    state.routeAz = AzModel.relateRoute(state.az, state.route);
+    AzModel.attachEntryElevation(state.routeAz, state.elevation);
+    plotAz(state.az);
+    renderHikePanel();
+    renderAzPanel();
+    renderReadiness();
+  }
+
+  function loadAzForSummit(summit) {
+    var Az = global.SignalTerrainSotaAz;
+    var seq = (state.azSeq += 1);
+    if (!summit) {
+      state.az = null;
+      state.routeAz = null;
+      clearAzLayers();
+      renderAzPanel();
+      renderReadiness();
+      return Promise.resolve(null);
+    }
+    state.az = { status: "pending" };
+    renderAzPanel();
+    renderReadiness();
+    if (!Az) {
+      state.az = global.SignalTerrainSotaAzModel.emptyAz({}, "unavailable", "Activation Zone provider missing.");
+      renderAzPanel();
+      return Promise.resolve(state.az);
+    }
+    return Az.loadActivationZone(summit)
+      .then(function (az) {
+        if (seq !== state.azSeq || state.selectedId !== summit.id) return az;
+        state.az = az;
+        plotAz(az);
+        updateRouteAz();
+        renderDetail(summit);
+        return az;
+      })
+      .catch(function (err) {
+        if (seq !== state.azSeq) return null;
+        state.az = global.SignalTerrainSotaAzModel.emptyAz(
+          { summitId: summit.id },
+          "dem-unavailable",
+          "Activation Zone unavailable (" + String(err && err.message ? err.message : err) + ")."
+        );
+        clearAzLayers();
+        renderAzPanel();
+        renderReadiness();
+        return state.az;
+      });
+  }
+
+  function renderAzPanel() {
+    var body = $("ss-az-body");
+    var caveat = $("ss-az-caveat");
+    if (!body) return;
+    body.innerHTML = "";
+    var az = state.az;
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    var st = az && az.status ? az.status : "idle";
+    body.setAttribute("data-az-status", st);
+    var status = global.document.createElement("p");
+    status.className = "ss-az-status";
+    status.setAttribute("data-az-kind", st);
+    if (st === "pending") status.textContent = "Calculating Activation Zone…";
+    else if (st === "ok") status.textContent = "Terrain-derived Activation Zone";
+    else if (st === "idle" || !az) status.textContent = "Select a summit to calculate the Activation Zone.";
+    else status.textContent = "Activation Zone unavailable";
+    body.appendChild(status);
+    if (az && az.status === "ok") {
+      var dl = global.document.createElement("dl");
+      dl.className = "ss-kv-list";
+      function row(k, v) {
+        var div = global.document.createElement("div");
+        div.className = "ss-kv";
+        div.innerHTML = "<dt>" + escapeHtml(k) + "</dt><dd>" + escapeHtml(v) + "</dd>";
+        dl.appendChild(div);
+      }
+      row("Summit elevation used", az.summitElevationLabel || (az.summitElevationUsedM != null ? String(az.summitElevationUsedM) + " m" : "Unavailable"));
+      row("Activation threshold", az.thresholdLabel || (az.thresholdM != null ? String(az.thresholdM) + " m" : "Unavailable"));
+      row(
+        "Rule",
+        az.rule && az.rule.verticalDistanceM != null
+          ? az.rule.verticalDistanceM + " m vertical · SOTA General Rules " + (az.rule.source && az.rule.source.version)
+          : "Unavailable"
+      );
+      row("Terrain source", az.dem && az.dem.provider === "usgs-3dep" ? "USGS 3DEP" : az.dem && az.dem.provider ? az.dem.provider : "Unavailable");
+      if (az.dem && az.dem.developmentFixture) row("DEM", "Labeled development fixture");
+      row("Calculated", az.retrievedAt ? String(az.retrievedAt).replace("T", " ").slice(0, 19) + " UTC" : "Unavailable");
+      if (az.elevationDiscrepancyM != null && Math.abs(az.elevationDiscrepancyM) >= 1) {
+        row(
+          "DEM at coordinate",
+          (Math.round(az.demSummitM) + " m") +
+            " (SOTA catalogue not altered; difference " +
+            az.elevationDiscrepancyM.toFixed(1) +
+            " m)"
+        );
+      }
+      if (state.routeAz && state.routeAz.enters === true) {
+        var Geo = global.SignalTerrainSotaGeo;
+        row("Route vs AZ", "Route enters Activation Zone");
+        row("Distance to AZ entry", state.routeAz.distanceToEntryKm != null && Geo ? Geo.formatRouteDistance(state.routeAz.distanceToEntryKm) : "Unavailable");
+        if (state.routeAz.entry && state.routeAz.entry.elevationM != null && Geo) {
+          row("Elevation at AZ entry", Geo.formatElevationM(state.routeAz.entry.elevationM));
+        }
+      } else if (state.routeAz && state.routeAz.enters === false) {
+        row("Route vs AZ", "Calculated route does not enter Activation Zone");
+      }
+      var loc = geoAzState();
+      row("Current location", loc.label);
+      body.appendChild(dl);
+    } else if (az && az.reason) {
+      var p = global.document.createElement("p");
+      p.className = "ss-note";
+      p.textContent = az.reason;
+      body.appendChild(p);
+    }
+    if (caveat) {
+      caveat.textContent =
+        (az && az.caveat) ||
+        "SignalTerrain's Activation Zone is a terrain-derived planning aid. Operators remain responsible for complying with current SOTA rules and verifying their activation.";
+    }
+  }
+
+  function renderReadiness() {
+    var body = $("ss-ready-body");
+    if (!body) return;
+    body.innerHTML = "";
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    if (!summit || !global.SignalTerrainSotaPlanning.getReadiness) return;
+    var ready = global.SignalTerrainSotaPlanning.getReadiness(
+      summit,
+      state.access && state.selectedId === summit.id ? state.access : null,
+      hikeState()
+    );
+    (ready.groups || []).forEach(function (g) {
+      var wrap = global.document.createElement("div");
+      wrap.className = "ss-ready-group";
+      wrap.setAttribute("data-ready-group", g.id);
+      var h = global.document.createElement("h4");
+      h.textContent = g.title;
+      wrap.appendChild(h);
+      var dl = global.document.createElement("dl");
+      dl.className = "ss-kv-list";
+      (g.rows || []).forEach(function (r) {
+        var div = global.document.createElement("div");
+        div.className = "ss-kv";
+        div.setAttribute("data-status", r.status);
+        div.innerHTML = "<dt>" + escapeHtml(r.label) + "</dt><dd>" + escapeHtml(r.display) + "</dd>";
+        dl.appendChild(div);
+      });
+      wrap.appendChild(dl);
+      body.appendChild(wrap);
+    });
   }
 
   function renderProfileSvg(elev) {
@@ -698,6 +933,7 @@
         state.route = route;
         plotRoute(route);
         renderHikePanel();
+        updateRouteAz();
         if (route.status !== "ok" || !Terrain) {
           state.elevation = global.SignalTerrainSotaTerrainModel
             ? global.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation needs a calculated route.")
@@ -710,6 +946,7 @@
             if (seq !== state.hikeSeq || state.selectedId !== summit.id) return route;
             state.elevation = elev;
             renderHikePanel();
+            updateRouteAz();
             return route;
           })
           .catch(function () {
@@ -767,26 +1004,8 @@
 
     var planRoot = $("ss-planning-fields");
     planRoot.innerHTML = "";
-    var planning = global.SignalTerrainSotaPlanning.getPlanning(
-      summit,
-      state.access && state.selectedId === summit.id ? state.access : null,
-      hikeState()
-    );
-    ["activationZone"].forEach(function (id) {
-      var item = planning.items[id];
-      if (!item) return;
-      var row = global.document.createElement("div");
-      row.className = "ss-kv ss-kv--placeholder";
-      row.setAttribute("data-planning-id", id);
-      row.setAttribute("data-status", item.status);
-      row.innerHTML =
-        "<dt>" +
-        escapeHtml(item.label) +
-        '</dt><dd><span class="ss-unavailable">' +
-        escapeHtml(item.display) +
-        "</span></dd>";
-      planRoot.appendChild(row);
-    });
+    renderAzPanel();
+    renderReadiness();
     renderAccessPanel(summit, state.access && state.selectedId === summit.id ? state.access : { status: "pending" });
     renderHikePanel();
 
@@ -836,13 +1055,18 @@
       state.selectedAccess = null;
       state.route = null;
       state.elevation = null;
+      state.az = null;
+      state.routeAz = null;
       state.hikeSeq += 1;
+      state.azSeq += 1;
       clearHikeLayers();
+      clearAzLayers();
     }
     state.selectedId = summit.id;
     setSelectedMarker(summit.id);
     renderDetail(summit);
     loadAccessForSummit(summit);
+    loadAzForSummit(summit);
     if (opts.pan && state.map) {
       state.map.panTo([summit.lat, summit.lng], { animate: true });
     }
@@ -864,10 +1088,14 @@
     state.selectedAccess = null;
     state.route = null;
     state.elevation = null;
+    state.az = null;
+    state.routeAz = null;
     state.hikeSeq += 1;
+    state.azSeq += 1;
     setSelectedMarker(null);
     clearAccessLayers();
     clearHikeLayers();
+    clearAzLayers();
     renderDetail(null);
   }
 
@@ -901,8 +1129,6 @@
         state.markersById[summit.id] = marker;
       })(state.summits[i]);
     }
-    /* Activation-zone overlay hook — empty until a DEM-backed calculation exists. */
-    state.activationZoneLayer.clearLayers();
   }
 
   function fitToRegion() {
@@ -950,6 +1176,10 @@
         }).addTo(state.map);
         state.locateMarker.bindTooltip("Current location (approximate)", { permanent: false });
         state.map.setView([lat, lng], Math.max(state.map.getZoom(), 10));
+        state.geolocation.lat = lat;
+        state.geolocation.lng = lng;
+        renderAzPanel();
+        renderReadiness();
         announce("Moved map to current location");
       },
       function () {
@@ -1043,12 +1273,12 @@
       maxNativeZoom: 16
     }).addTo(state.map);
     state.trailLayer = L.layerGroup().addTo(state.map);
+    /* AZ is an AREA under trails/hike so the summit marker and cyan route stay obvious. */
+    state.activationZoneLayer = L.layerGroup().addTo(state.map);
     state.trailheadLayer = L.layerGroup().addTo(state.map);
     state.parkingLayer = L.layerGroup().addTo(state.map);
     state.routeLayer = L.layerGroup().addTo(state.map);
     state.markerLayer = L.layerGroup().addTo(state.map);
-    /* Reserved for a future DEM-backed activation-zone polygon. */
-    state.activationZoneLayer = L.layerGroup().addTo(state.map);
     global.__SIGNALTERRAIN_SOTA_MAP__ = state.map;
     setTimeout(function () {
       state.map.invalidateSize();
