@@ -261,7 +261,10 @@
       dem: dem.source || null,
       retrievedAt: (dem.source && dem.source.retrievedAt) || new Date().toISOString()
     };
-    if (discrepancy != null && Math.abs(discrepancy) >= CONFLICT_M && (!isFiniteNumber(demAt) || demAt < threshold)) {
+    function elevationConflictAz() {
+      if (discrepancy == null || Math.abs(discrepancy) < CONFLICT_M || (isFiniteNumber(demAt) && demAt >= threshold)) {
+        return null;
+      }
       return emptyAz(
         query,
         "elevation-conflict",
@@ -280,7 +283,7 @@
       }
     }
     if (!above) {
-      return emptyAz(query, "calculation-failed", "No DEM cells reach the Activation threshold derived from the SOTA summit elevation.", extra);
+      return elevationConflictAz() || emptyAz(query, "calculation-failed", "No DEM cells reach the Activation threshold derived from the SOTA summit elevation.", extra);
     }
     var seed = near;
     if (!mask[seed.index]) {
@@ -297,11 +300,14 @@
         }
       }
       if (bi < 0) {
-        return emptyAz(
-          query,
-          "calculation-failed",
-          "The DEM cell at the SOTA coordinate is below the Activation threshold, and no neighbouring qualifying cell is attached.",
-          extra
+        return (
+          elevationConflictAz() ||
+          emptyAz(
+            query,
+            "calculation-failed",
+            "The DEM cell at the SOTA coordinate is below the Activation threshold, and no neighbouring qualifying cell is attached.",
+            extra
+          )
         );
       }
       seed = { index: bi, r: Math.floor(bi / grid.cols), c: bi % grid.cols };

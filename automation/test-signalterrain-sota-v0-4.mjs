@@ -261,6 +261,31 @@ const highSota = { id: "C", lat: 42, lng: -74, elevationM: 1000, reference: "W2/
 const conf = AzModel.computeAz(highSota, conflictDem);
 assert("elevation conflict when DEM far below threshold", conf.status === "elevation-conflict" || conf.status === "calculation-failed", conf.status);
 
+const offThreshold = AzModel.makeSyntheticGrid({
+  rows: 11,
+  cols: 11,
+  cellSizeM: 10,
+  origin,
+  fn: function (r, c) {
+    if (r === 5 && c === 5) return 1000;
+    if (Math.abs(r - 5) <= 1 && Math.abs(c - 5) <= 1) return 980;
+    return 970;
+  }
+});
+const offThresholdSummit = {
+  id: "T-OFF",
+  lat: AzModel.cellLat(offThreshold.grid, 5),
+  lng: AzModel.cellLng(offThreshold.grid, 7),
+  elevationM: 1000,
+  reference: "W2/GC-906"
+};
+const offThAz = AzModel.computeAz(offThresholdSummit, offThreshold);
+assert(
+  "below-threshold pin snaps to neighbouring qualifying cell",
+  offThAz.status === "ok" && offThAz.cellCount >= 1 && offThAz.seed && offThAz.seed.r === 5 && Math.abs(offThAz.seed.c - 5) <= 1,
+  JSON.stringify({ status: offThAz.status, reason: offThAz.reason, cells: offThAz.cellCount, seed: offThAz.seed })
+);
+
 const routeInside = {
   status: "ok",
   geometry: [
