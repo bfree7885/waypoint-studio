@@ -144,6 +144,7 @@ Include:
 - Straight-line to parking/trailhead must be labeled straight-line, never hike distance.
 - Access failure must not block the SOTA map. CI must use a labeled real OSM fixture, not live Overpass.
 - When inserting a helper such as `maybeFocusAccess`, keep `function loadAccessForSummit` as its own declaration. A missing function header is a parse error that takes down the whole map, including SOTA markers.
+- Desktop summit-detail sheet sits on the right. Layer chips must stay on the left of the map (next to zoom), not `right: 12px`, or the sheet covers the toggles.
 
 ### 2026-09-04 — SignalTerrain V0.1 (SOTA rebrand of Summit Signal)
 
