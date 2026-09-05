@@ -10,7 +10,8 @@ Canonical V0.5 write-up: [`V0.5.md`](V0.5.md)
 Canonical V0.6 write-up: [`V0.6.md`](V0.6.md)  
 Canonical V0.7 write-up: [`V0.7.md`](V0.7.md)  
 Canonical V0.8 write-up: [`V0.8.md`](V0.8.md)  
-Canonical V0.9 write-up: [`V0.9.md`](V0.9.md)
+Canonical V0.9 write-up: [`V0.9.md`](V0.9.md)  
+V1.0 field-test card: [`V1.0-FIELD-TEST.md`](V1.0-FIELD-TEST.md)
 
 Unlisted field-test host: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`
 

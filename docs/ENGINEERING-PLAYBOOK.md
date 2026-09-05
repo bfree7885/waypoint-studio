@@ -142,6 +142,15 @@ Include:
 - Sheds forest brand on `main` inlines `--wp-warm: #6f7d5f` just past a 500-character window that expected `var(--wp-sage)`. Diagnose merge-commit tokens before blaming SignalTerrain.
 - Do not revert Sheds CSS from this branch to make the gate pass.
 
+### 2026-09-05 — SignalTerrain V1.0 field validation (no product change)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.0-FIELD-TEST.md`
+
+- Keep the GitHub Pages tab open. Reload/close while offline is `ERR_INTERNET_DISCONNECTED` (Pages `max-age=600` is not an offline pack).
+- Parking list is OSM candidates ordered by straight-line distance — first-time Slide users can tap Giant Ledge instead of Slide Mountain Parking Area.
+- GPS line “Inside mapped Activation Zone” omits the geographic-only note on that row; lede/caveat/plan still say it is not a valid activation.
+- Do not add weather, GPX, offline, or SOTA logging from this audit. Wait for the real outing.
+
 ### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host published
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
