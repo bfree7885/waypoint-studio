@@ -375,7 +375,7 @@ const loaded = await Az.loadActivationZone(slide, { live: false });
 assert("provider loads slide fixture", loaded.status === "ok" && loaded.cellCount === slideAz.cellCount);
 const cached = await Az.loadActivationZone(slide, { live: false });
 assert("AZ cache hits", cached.cellCount === loaded.cellCount);
-assert("cache key versions", /signalterrain-sota-az-v0:W2\/GC-001/.test(Az.cacheKey(slide, Rules.ruleForSummit(slide))));
+assert("cache key versions", /signalterrain-sota-az-v0:W2\/GC-001/.test(Az.cacheKey(slide, Rules.ruleForSummit(slide), false)));
 
 const other = await Az.loadActivationZone({ id: "W2/GC-003", lat: 42.2701, lng: -74.1235, elevationM: 1216, reference: "W2/GC-003" }, { live: false });
 assert("other summit without fixture unsupported", other.status === "unsupported-region" || other.status === "dem-unavailable", other.status);

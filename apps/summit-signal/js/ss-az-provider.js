@@ -24,12 +24,12 @@
     return global.SignalTerrainSotaRules;
   }
 
-  function cacheKey(summit, rule) {
+  function cacheKey(summit, rule, live) {
     var ver = (Model() && Model().ALGORITHM_VERSION) || "signalterrain-sota-az-v0";
     var id = summit && (summit.id || summit.reference) || "none";
     var vd = rule && rule.verticalDistanceM != null ? String(rule.verticalDistanceM) : "na";
     var elev = summit && summit.elevationM != null ? String(Math.round(summit.elevationM * 10)) : "na";
-    return ver + ":" + id + ":usgs-3dep:" + (rule && rule.source && rule.source.id) + ":vd" + vd + ":e" + elev;
+    return ver + ":" + id + ":usgs-3dep:" + (rule && rule.source && rule.source.id) + ":vd" + vd + ":e" + elev + (live ? ":live" : ":fixture");
   }
 
   function wantsLive(search) {
@@ -157,9 +157,9 @@
       );
     }
     var rule = R.ruleForSummit(summit);
-    var key = cacheKey(summit, rule);
-    if (!opts.force && memoryCache[key]) return Promise.resolve(memoryCache[key]);
     var live = opts.live != null ? opts.live : wantsLive();
+    var key = cacheKey(summit, rule, live);
+    if (!opts.force && memoryCache[key]) return Promise.resolve(memoryCache[key]);
     var demP = live ? loadLiveDem(summit) : loadFixtureDem(summit);
     return demP
       .then(function (dem) {
