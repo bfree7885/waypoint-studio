@@ -358,11 +358,11 @@ const hunterPlan = Plan.buildPlan({
   storage: memStorage()
 });
 assert("Hunter unnamed parking candidate", hunterPlan.access.selected.typeLabel === "Mapped parking candidate");
-assert("Hunter unnamed name", hunterPlan.access.selected.name === "Unnamed mapped parking candidate");
+assert("Hunter unnamed name", hunterPlan.access.selected.name === "Unnamed mapped parking");
 assert("Hunter AZ unchanged 1587 / 1209", hunterAz.cellCount === 1587 && hunterAz.thresholdM === 1209);
 assert("Hunter plan AZ known", readiness(hunterPlan, "activationZone").state === "KNOWN" && hunterPlan.activationZone.thresholdM === 1209);
 assert("Hunter route known", hunterPlan.hike.status === "KNOWN" && Math.abs(hunterPlan.hike.distanceKm - 9.997) < 0.01);
-assert("Hunter copy unnamed start", /Unnamed mapped parking candidate/.test(hunterPlan.copyText));
+assert("Hunter copy unnamed start", /Unnamed mapped parking/.test(hunterPlan.copyText) && !/Unnamed mapped parking candidate/.test(hunterPlan.copyText));
 
 const hunterAzPlan = Plan.buildPlan({
   summit: hunter,
@@ -402,7 +402,7 @@ assert("html loads plan model", /ss-plan-model\.js/.test(html));
 assert("html Activation Plan", /Activation Plan/.test(html) && /id="ss-plan-body"/.test(html));
 assert("html readiness heading kept", /Activation readiness/.test(html) && /id="ss-sec-ready"/.test(html));
 assert("html Verify / checklist hooks via renderer", /ss-plan-copy/.test(read("apps/summit-signal/js/ss-map-app.js")));
-assert("kicker is V0.7", /V0\.7 · SOTA/.test(html));
+assert("kicker is V0.7+", /V0\.[78] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("no weather API in html", !/open-meteo|weatherapi|api\.weather/i.test(html));

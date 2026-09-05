@@ -229,7 +229,7 @@ const html = read("apps/summit-signal/index.html");
 assert("html loads route modules", /ss-route-model\.js/.test(html) && /ss-terrain-provider\.js/.test(html));
 assert("html hike layer", /data-layer="hike"/.test(html));
 assert("html plan the hike", /Plan the hike/.test(html));
-assert("kicker is V0.3+", /V0\.[3-7] · SOTA/.test(html));
+assert("kicker is V0.3+", /V0\.[3-8] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("Valhalla and 3DEP attribution", /Valhalla/.test(html) && /3DEP/.test(html));

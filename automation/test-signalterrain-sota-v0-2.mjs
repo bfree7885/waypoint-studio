@@ -207,7 +207,7 @@ assert("html loads access modules", /ss-access-model\.js/.test(html) && /ss-acce
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("layer toggles present", /data-layer="summits"/.test(html) && /data-layer="trails"/.test(html) && /data-layer="parking"/.test(html));
 assert("OSM attribution in html", /OpenStreetMap/.test(html) && /ODbL/.test(html));
-assert("kicker is V0.2+", /V0\.[2-7] · SOTA/.test(html));
+assert("kicker is V0.2+", /V0\.[2-8] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 
 const appJs = read("apps/summit-signal/js/ss-map-app.js");

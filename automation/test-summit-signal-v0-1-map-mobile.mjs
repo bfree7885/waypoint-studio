@@ -363,6 +363,37 @@ async function main() {
     await delay(300);
     await shot("signalterrain_sota_v02_access_lists.png");
 
+    const inspectSlide = await evalExpr(`(() => {
+      var parking = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 816358667; });
+      window.SignalTerrainSotaMapApp.inspectAccess(parking);
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var start = document.getElementById("ss-start-body");
+      if (start) start.scrollIntoView({ block: "start" });
+      var maps = document.getElementById("ss-start-open-maps");
+      return {
+        inspected: st.inspectedAccess && st.inspectedAccess.osmId,
+        selected: st.selectedAccess && st.selectedAccess.osmId,
+        route: st.route && st.route.status,
+        startText: start ? start.textContent : "",
+        mapsUrl: maps ? maps.getAttribute("data-maps-url") : null,
+        copy: !!document.getElementById("ss-start-copy"),
+        commit: !!document.getElementById("ss-start-commit")
+      };
+    })()`);
+    assert("inspect Slide parking does not route", inspectSlide && inspectSlide.inspected === 816358667 && !inspectSlide.selected && !inspectSlide.route, JSON.stringify(inspectSlide));
+    assert("Slide START shows mapped name and coords", inspectSlide && /Slide Mountain Parking Area/.test(inspectSlide.startText || "") && /42\\.00868/.test(inspectSlide.startText || "") && /Mapped access tag: yes/.test(inspectSlide.startText || "") && /Mapped fee tag: no/.test(inspectSlide.startText || ""), inspectSlide && inspectSlide.startText);
+    assert("Slide Open in Maps targets parking not summit", inspectSlide && inspectSlide.mapsUrl && inspectSlide.mapsUrl.indexOf("42.00868") !== -1 && inspectSlide.mapsUrl.indexOf("41.9991") === -1, JSON.stringify(inspectSlide && inspectSlide.mapsUrl));
+    assert("Copy coordinates and Start hike here present", inspectSlide && inspectSlide.copy && inspectSlide.commit, JSON.stringify(inspectSlide));
+    await delay(400);
+    await shot("signalterrain_sota_v08_slide_selected_start.png");
+    await evalExpr(`(() => {
+      var maps = document.getElementById("ss-start-open-maps");
+      if (maps) maps.scrollIntoView({ block: "center" });
+      return true;
+    })()`);
+    await delay(250);
+    await shot("signalterrain_sota_v08_slide_maps_handoff.png");
+
     const hikeStart = await evalExpr(`(() => {
       var btn = document.querySelector('[data-start-hike="way/816358667"]');
       if (btn) btn.click();
@@ -463,6 +494,95 @@ async function main() {
     await delay(300);
     await shot("signalterrain_sota_v04_az_and_route.png");
     await shot("signalterrain_sota_v05_slide_az_and_route.png");
+    const beforeHide = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      var radio = document.querySelector('[data-check-id="radio"]');
+      return {
+        selectedId: st.selectedId,
+        start: st.selectedAccess && st.selectedAccess.osmId,
+        dest: st.destinationMode,
+        routeKm: st.route && st.route.distanceKm,
+        azCells: st.az && st.az.cellCount,
+        azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+        routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+        radio: !!(radio && radio.checked),
+        headline: plan && plan.snapshot && plan.snapshot.headline
+      };
+    })()`);
+    await evalExpr(`window.SignalTerrainSotaMapApp.hideSheet()`);
+    await delay(400);
+    const hidden = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var sheet = document.getElementById("ss-sheet");
+      var show = document.getElementById("ss-show-plan");
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      if (map && st.routeLayer && st.activationZoneLayer) {
+        try {
+          var group = L.featureGroup([st.routeLayer, st.activationZoneLayer, st.markerLayer]);
+          map.fitBounds(group.getBounds(), { padding: [28, 28], maxZoom: 14 });
+          map.invalidateSize();
+        } catch (e) {}
+      }
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      return {
+        sheetHidden: sheet && sheet.hasAttribute("hidden"),
+        showPlan: show && !show.hasAttribute("hidden"),
+        selectedId: st.selectedId,
+        start: st.selectedAccess && st.selectedAccess.osmId,
+        dest: st.destinationMode,
+        routeKm: st.route && st.route.distanceKm,
+        azCells: st.az && st.az.cellCount,
+        azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+        routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+        headline: plan && plan.snapshot && plan.snapshot.headline
+      };
+    })()`);
+    assert(
+      "hide sheet preserves Slide plan",
+      hidden &&
+        hidden.sheetHidden === true &&
+        hidden.selectedId === "W2/GC-001" &&
+        hidden.start === 816358667 &&
+        hidden.dest === beforeHide.dest &&
+        hidden.routeKm === beforeHide.routeKm &&
+        hidden.azCells === 568 &&
+        hidden.azLayers >= 1 &&
+        hidden.routeLayers >= 1,
+      JSON.stringify({ beforeHide, hidden })
+    );
+    await delay(400);
+    await shot("signalterrain_sota_v08_slide_plan_after_close.png");
+    await evalExpr(`window.SignalTerrainSotaMapApp.showSheet()`);
+    await delay(350);
+    const reopened = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var sheet = document.getElementById("ss-sheet");
+      var radio = document.querySelector('[data-check-id="radio"]');
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      return {
+        sheetHidden: sheet && sheet.hasAttribute("hidden"),
+        selectedId: st.selectedId,
+        start: st.selectedAccess && st.selectedAccess.osmId,
+        dest: st.destinationMode,
+        routeKm: st.route && st.route.distanceKm,
+        azCells: st.az && st.az.cellCount,
+        radio: !!(radio && radio.checked),
+        headline: plan && plan.snapshot && plan.snapshot.headline
+      };
+    })()`);
+    assert(
+      "reopen restores Slide plan and checklist",
+      reopened &&
+        reopened.sheetHidden === false &&
+        reopened.selectedId === "W2/GC-001" &&
+        reopened.start === 816358667 &&
+        reopened.routeKm === beforeHide.routeKm &&
+        reopened.azCells === 568 &&
+        reopened.radio === true &&
+        /SLIDE MOUNTAIN/.test(reopened.headline || ""),
+      JSON.stringify(reopened)
+    );
     await send("Emulation.setDeviceMetricsOverride", {
       width: 1280,
       height: 800,
@@ -928,6 +1048,61 @@ async function main() {
     }
     assert("Hunter Route-to-Summit ok", hunterHike && hunterHike.routeStatus === "ok" && hunterHike.distanceKm > 8 && hunterHike.routeLayers >= 1, JSON.stringify(hunterHike));
     assert("Hunter summit elevation sampled", hunterHike && (hunterHike.elevStatus === "ok" || hunterHike.elevStatus === "partial") && hunterHike.gainM > 500, JSON.stringify(hunterHike));
+    const hunterStart = await evalExpr(`(() => {
+      var parking = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 338567127; });
+      window.SignalTerrainSotaMapApp.inspectAccess(parking);
+      var start = document.getElementById("ss-start-body");
+      if (start) start.scrollIntoView({ block: "start" });
+      var maps = document.getElementById("ss-start-open-maps");
+      return {
+        name: start && start.querySelector('[data-start-field="name"]') && start.querySelector('[data-start-field="name"]').textContent,
+        coords: start && start.querySelector('[data-start-field="coords"]') && start.querySelector('[data-start-field="coords"]').textContent,
+        access: start && start.querySelector('[data-start-field="access"]') && start.querySelector('[data-start-field="access"]').textContent,
+        fee: start && start.querySelector('[data-start-field="fee"]') && start.querySelector('[data-start-field="fee"]').textContent,
+        mapsUrl: maps && maps.getAttribute("data-maps-url"),
+        selected: window.SignalTerrainSotaMapApp.getState().selectedAccess && window.SignalTerrainSotaMapApp.getState().selectedAccess.osmId,
+        route: window.SignalTerrainSotaMapApp.getState().route && window.SignalTerrainSotaMapApp.getState().route.status
+      };
+    })()`);
+    assert("Hunter unnamed Becker Hollow start", hunterStart && hunterStart.name === "Unnamed mapped parking" && hunterStart.selected === 338567127, JSON.stringify(hunterStart));
+    assert("Hunter start coordinates and access tag", hunterStart && /42\\.18191/.test(hunterStart.coords || "") && hunterStart.access === "Mapped access tag: yes", JSON.stringify(hunterStart));
+    assert("Hunter maps handoff is Becker not summit", hunterStart && hunterStart.mapsUrl && hunterStart.mapsUrl.indexOf("42.18191") !== -1 && hunterStart.mapsUrl.indexOf("42.1776") === -1, JSON.stringify(hunterStart && hunterStart.mapsUrl));
+    await delay(350);
+    await shot("signalterrain_sota_v08_hunter_unnamed_start.png");
+    await shot("signalterrain_sota_v08_hunter_metadata.png");
+    const inspectOther = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var other = st.access.parking.find(function (p) { return p.osmId !== 338567127; });
+      var beforeKm = st.route && st.route.distanceKm;
+      window.SignalTerrainSotaMapApp.inspectAccess(other);
+      st = window.SignalTerrainSotaMapApp.getState();
+      var keep = document.querySelector("[data-start-keep]");
+      var start = document.getElementById("ss-start-body");
+      if (start) start.scrollIntoView({ block: "start" });
+      return {
+        otherId: other && other.osmId,
+        inspected: st.inspectedAccess && st.inspectedAccess.osmId,
+        selected: st.selectedAccess && st.selectedAccess.osmId,
+        route: st.route && st.route.status,
+        km: st.route && st.route.distanceKm,
+        beforeKm: beforeKm,
+        keep: keep ? keep.textContent : "",
+        startName: start && start.querySelector('[data-start-field="name"]') && start.querySelector('[data-start-field="name"]').textContent
+      };
+    })()`);
+    assert(
+      "inspect alternate Hunter parking keeps Becker route",
+      inspectOther &&
+        inspectOther.selected === 338567127 &&
+        inspectOther.inspected &&
+        inspectOther.inspected !== 338567127 &&
+        inspectOther.route === "ok" &&
+        inspectOther.km === inspectOther.beforeKm &&
+        /Current hike start remains Unnamed mapped parking/.test(inspectOther.keep || ""),
+      JSON.stringify(inspectOther)
+    );
+    await delay(350);
+    await shot("signalterrain_sota_v08_hunter_inspect_other.png");
     await delay(350);
     await shot("signalterrain_sota_v06_hunter_route_to_summit.png");
     await evalExpr(`(() => {
@@ -1136,6 +1311,61 @@ async function main() {
           return { overflowX: overflowX, planW: box.width, clientW: document.documentElement.clientWidth };
         })()`);
         assert("w320 Activation Plan no overflow", planOverflow && planOverflow.overflowX === false, JSON.stringify(planOverflow));
+        await evalExpr(`(() => {
+          var parking = window.SignalTerrainSotaMapApp.getState().access && window.SignalTerrainSotaMapApp.getState().access.parking && window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 338567127; });
+          if (parking) window.SignalTerrainSotaMapApp.startHikeFromAccess(parking);
+          return true;
+        })()`);
+        for (let i = 0; i < 40; i += 1) {
+          const st = await evalExpr(`(() => {
+            var s = window.SignalTerrainSotaMapApp.getState();
+            return { route: s.route && s.route.status, az: s.az && s.az.status, start: s.selectedAccess && s.selectedAccess.osmId };
+          })()`);
+          if (st && st.route === "ok" && st.az && st.az !== "pending") break;
+          await delay(250);
+        }
+        await evalExpr(`window.SignalTerrainSotaMapApp.hideSheet()`);
+        await delay(300);
+        const preserved320 = await evalExpr(`(() => {
+          var st = window.SignalTerrainSotaMapApp.getState();
+          var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+          if (map) {
+            try {
+              map.invalidateSize();
+              if (st.routeLayer && st.activationZoneLayer) {
+                var group = L.featureGroup([st.routeLayer, st.activationZoneLayer, st.markerLayer]);
+                map.fitBounds(group.getBounds(), { padding: [16, 16], maxZoom: 13 });
+              }
+            } catch (e) {}
+          }
+          var overflowX = document.documentElement.scrollWidth > document.documentElement.clientWidth + 2;
+          var sheet = document.getElementById("ss-sheet");
+          return {
+            overflowX: overflowX,
+            sheetHidden: sheet && sheet.hasAttribute("hidden"),
+            selectedId: st.selectedId,
+            start: st.selectedAccess && st.selectedAccess.osmId,
+            route: st.route && st.route.status,
+            az: st.az && st.az.status,
+            routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+            azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0
+          };
+        })()`);
+        assert(
+          "w320 hide preserves plan without overflow",
+          preserved320 &&
+            preserved320.overflowX === false &&
+            preserved320.sheetHidden === true &&
+            preserved320.selectedId === "W2/GC-002" &&
+            preserved320.start === 338567127 &&
+            preserved320.route === "ok" &&
+            preserved320.az === "ok" &&
+            preserved320.routeLayers >= 1 &&
+            preserved320.azLayers >= 1,
+          JSON.stringify(preserved320)
+        );
+        await delay(350);
+        await shot("signalterrain_sota_v08_w320_plan_preserved.png");
       }
     }
 
