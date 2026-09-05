@@ -1,4 +1,14 @@
 # Antler mark exploration
 
-Option A was approved for production (`../antler-mark.svg`).
-Options B and C kept for design reference only — not wired into the app.
+Production mark remains Option A (`../antler-mark.svg`) until a new option is explicitly approved.
+
+| Option | Status |
+|--------|--------|
+| A | Paired stroke sheds — currently in production |
+| B / C | Earlier paired stroke variants — reference only |
+| D / E / F | Rejected (too abstract / icon-like) |
+| **G / H / I** | **Active exploration** — realistic single whitetail shed silhouettes |
+
+Open `explore-ghi.html` for large / medium / wordmark comparison.
+
+Not wired into host or map.
