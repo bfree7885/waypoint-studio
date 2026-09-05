@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — SignalTerrain V0.9 field-test host inspection (not deployed)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
+
+- Studio production is GitHub Pages from `main` only (`pages.yml`). There is no branch/preview URL.
+- One Pages project = one custom domain. A phone field-test cannot be isolated without a companion Pages repo (Sheds pattern) or a main merge.
+- Dispatching `pages.yml` from a feature branch overwrites waypointstudio.org with the unmerged tree. Do not do that.
+- GitHub Pages here is unlisted at best, never authenticated. Do not call it private.
+- Stop when deploy requires merging to production main. Record the inspection; do not improvise a host.
+
 ### 2026-09-05 — SignalTerrain V0.8 field-test access + Maps handoff
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.8.md`

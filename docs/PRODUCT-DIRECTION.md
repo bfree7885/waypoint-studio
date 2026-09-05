@@ -199,7 +199,7 @@ Do **not**:
 
 ## In development — SignalTerrain (SOTA, unpublished; not a public peer)
 
-**SignalTerrain** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with terrain/access intelligence (V0.2 OpenStreetMap candidate trails, trailheads, and parking), V0.3 user-selected pedestrian routing plus USGS 3DEP elevation, V0.4 terrain-derived Activation Zone contours, V0.5 fixture coverage for a second W2/GC summit, V0.6 Route to Activation Zone, V0.7 Activation Plan + Field Readiness, and V0.8 field-test start inspection with a Maps handoff to the selected trailhead. It is **not** Shed Hunting and must not modify Shed Hunting.
+**SignalTerrain** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with terrain/access intelligence (V0.2 OpenStreetMap candidate trails, trailheads, and parking), V0.3 user-selected pedestrian routing plus USGS 3DEP elevation, V0.4 terrain-derived Activation Zone contours, V0.5 fixture coverage for a second W2/GC summit, V0.6 Route to Activation Zone, V0.7 Activation Plan + Field Readiness, and V0.8 field-test start inspection with a Maps handoff to the selected trailhead. V0.9 inspected Studio GitHub Pages hosting and **did not deploy** — a phone field-test URL requires an isolated host or an explicit main-merge decision. It is **not** Shed Hunting and must not modify Shed Hunting.
 
 **SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. Historical cyber docs remain at `docs/SIGNALTERRAIN-*.md`. Do not restore cyber copy such as “Understand the world's signals.”
 
@@ -210,7 +210,7 @@ Treat it like other in-development / unpublished apps:
 - do not present it as a fifth public architecture destination
 - the product name may appear in the unpublished app and development docs only; public-portfolio tests still treat `SignalTerrain` as a discontinued *public* name for the retired cyber product — do not weaken those lists
 
-Canonical write-up: [`docs/signal-terrain/V0.1.md`](signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](signal-terrain/V0.6.md) · [`docs/signal-terrain/V0.7.md`](signal-terrain/V0.7.md) · [`docs/signal-terrain/V0.8.md`](signal-terrain/V0.8.md).
+Canonical write-up: [`docs/signal-terrain/V0.1.md`](signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](signal-terrain/V0.6.md) · [`docs/signal-terrain/V0.7.md`](signal-terrain/V0.7.md) · [`docs/signal-terrain/V0.8.md`](signal-terrain/V0.8.md) · [`docs/signal-terrain/V0.9.md`](signal-terrain/V0.9.md).
 
 > SignalTerrain is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
 

@@ -9,7 +9,8 @@ Canonical V0.4 write-up: [`V0.4.md`](V0.4.md)
 Canonical V0.5 write-up: [`V0.5.md`](V0.5.md)  
 Canonical V0.6 write-up: [`V0.6.md`](V0.6.md)  
 Canonical V0.7 write-up: [`V0.7.md`](V0.7.md)  
-Canonical V0.8 write-up: [`V0.8.md`](V0.8.md)
+Canonical V0.8 write-up: [`V0.8.md`](V0.8.md)  
+Canonical V0.9 write-up: [`V0.9.md`](V0.9.md)
 
 Runtime in this increment: `/apps/summit-signal/` (do not occupy `/apps/signalterrain/`).
 

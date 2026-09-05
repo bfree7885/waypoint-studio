@@ -8,7 +8,7 @@ This directory is served at `/apps/summit-signal/` in V0.1. That route is intent
 
 **V0.8** adds field-test start inspection, start coordinates, a Maps handoff to the selected trailhead, OSM access/fee visibility, and a sheet that can be hidden without destroying the plan. Slide and Hunter AZ/route acceptance are unchanged. SignalTerrain remains unpublished.
 
-Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](../../docs/signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](../../docs/signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](../../docs/signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](../../docs/signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](../../docs/signal-terrain/V0.6.md) · [`docs/signal-terrain/V0.7.md`](../../docs/signal-terrain/V0.7.md) · [`docs/signal-terrain/V0.8.md`](../../docs/signal-terrain/V0.8.md)
+Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](../../docs/signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](../../docs/signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](../../docs/signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](../../docs/signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](../../docs/signal-terrain/V0.6.md) · [`docs/signal-terrain/V0.7.md`](../../docs/signal-terrain/V0.7.md) · [`docs/signal-terrain/V0.8.md`](../../docs/signal-terrain/V0.8.md) · [`docs/signal-terrain/V0.9.md`](../../docs/signal-terrain/V0.9.md)
 
 ## Run locally
 
@@ -25,6 +25,7 @@ Optional live SOTA fetch (falls back to the labeled fixture on failure): `?live=
 ## Tests
 
 ```bash
+node automation/test-signalterrain-sota-v0-9.mjs
 node automation/test-signalterrain-sota-v0-8.mjs
 node automation/test-signalterrain-sota-v0-7.mjs
 node automation/test-signalterrain-sota-v0-6.mjs
