@@ -377,7 +377,7 @@ const cached = await Az.loadActivationZone(slide, { live: false });
 assert("AZ cache hits", cached.cellCount === loaded.cellCount);
 assert("cache key versions", /signalterrain-sota-az-v0:W2\/GC-001/.test(Az.cacheKey(slide, Rules.ruleForSummit(slide))));
 
-const other = await Az.loadActivationZone({ id: "W2/GC-002", lat: 42, lng: -74.3, elevationM: 1234, reference: "W2/GC-002" }, { live: false });
+const other = await Az.loadActivationZone({ id: "W2/GC-003", lat: 42.2701, lng: -74.1235, elevationM: 1216, reference: "W2/GC-003" }, { live: false });
 assert("other summit without fixture unsupported", other.status === "unsupported-region" || other.status === "dem-unavailable", other.status);
 
 const plan = Planning.getPlanning(slide, { status: "ok", trails: [], trailheads: [], parking: [parking] }, {
@@ -403,7 +403,7 @@ const html = read("apps/summit-signal/index.html");
 assert("html loads AZ modules", /ss-az-model\.js/.test(html) && /ss-sota-rules\.js/.test(html));
 assert("html AZ layer", /data-layer="az"/.test(html));
 assert("html readiness", /Activation readiness/.test(html));
-assert("kicker is V0.4", /V0\.4 · SOTA/.test(html));
+assert("kicker is V0.4+", /V0\.[45] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("GR attribution", /General Rules v1\.21/.test(html));

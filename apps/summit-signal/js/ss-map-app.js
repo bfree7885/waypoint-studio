@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.4 map application.
+ * SignalTerrain SOTA V0.5 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {

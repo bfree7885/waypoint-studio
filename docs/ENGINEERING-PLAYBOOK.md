@@ -134,6 +134,15 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — SignalTerrain V0.5 second W2/GC Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.5.md`
+
+- Prove the existing AZ engine on a second real catalogue summit before adding workflow features. Do not special-case the new summit in the algorithm.
+- Hunter Mountain’s 25 m contour is a southeast plateau/spine, not a Slide-like cone. A 500 m DEM window clips it; the same 10 m analysis grid with a larger labeled window lets the contour close.
+- Neighbour-snap-before-elevation-conflict (`cb627c08`) stays in the engine even when the second summit seeds on the nearest cell.
+- Keep at least one loaded W2 summit without an AZ fixture so unsupported-region stays testable.
+
 ### 2026-09-04 — SignalTerrain V0.4 Activation Zone
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.4.md`

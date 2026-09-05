@@ -398,7 +398,7 @@
         },
         {
           id: "later",
-          title: "Not in V0.4",
+          title: "Not in V0.5",
           rows: [row("Radio", "not-integrated", "Not integrated"), row("Weather", "not-integrated", "Not integrated")]
         }
       ]

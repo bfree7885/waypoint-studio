@@ -394,6 +394,7 @@ async function main() {
     assert("readiness factual", azRel && /Activation zone|Route enters|Location unavailable/i.test(azRel.ready || "") && !/activated/i.test(azRel.ready || ""), azRel && azRel.ready);
     await delay(300);
     await shot("signalterrain_sota_v04_az_and_route.png");
+    await shot("signalterrain_sota_v05_slide_az_and_route.png");
     await send("Emulation.setDeviceMetricsOverride", {
       width: 1280,
       height: 800,
@@ -415,6 +416,7 @@ async function main() {
     })()`);
     await delay(500);
     await shot("signalterrain_sota_v04_desktop_az_overlay.png");
+    await shot("signalterrain_sota_v05_slide_desktop_az.png");
     await send("Emulation.setDeviceMetricsOverride", {
       width: 390,
       height: 844,
@@ -431,6 +433,7 @@ async function main() {
     })()`);
     await delay(300);
     await shot("signalterrain_sota_v04_activation_readiness.png");
+    await shot("signalterrain_sota_v05_slide_readiness.png");
     const toggled = await evalExpr(`(() => {
       var st = window.SignalTerrainSotaMapApp.getState();
       var before = st.map.hasLayer(st.activationZoneLayer);
@@ -551,7 +554,11 @@ async function main() {
     await shot("signalterrain_sota_v02_layers.png");
 
     const nearbyNav = await evalExpr(`(() => {
-      var first = document.querySelector(".ss-nearby-item");
+      var items = Array.prototype.slice.call(document.querySelectorAll(".ss-nearby-item"));
+      var first = items.find(function (el) {
+        var id = el.getAttribute("data-summit-id");
+        return id && id !== "W2/GC-001" && id !== "W2/GC-002";
+      }) || items[0];
       if (!first) return { ok: false };
       var id = first.getAttribute("data-summit-id");
       first.click();
@@ -563,7 +570,7 @@ async function main() {
         selectedId: window.SignalTerrainSotaMapApp.getState().selectedId
       };
     })()`);
-    assert("nearby navigates to another summit", !!(nearbyNav && nearbyNav.ok && nearbyNav.selectedId && nearbyNav.selectedId !== "W2/GC-001"), JSON.stringify(nearbyNav));
+    assert("nearby navigates to another summit", !!(nearbyNav && nearbyNav.ok && nearbyNav.selectedId && nearbyNav.selectedId !== "W2/GC-001" && nearbyNav.selectedId !== "W2/GC-002"), JSON.stringify(nearbyNav));
     let otherAccess = null;
     for (let i = 0; i < 40; i += 1) {
       otherAccess = await evalExpr(`(() => {
@@ -609,6 +616,74 @@ async function main() {
     await delay(250);
     await shot("signalterrain_sota_v04_az_unavailable_detail.png");
     await shot("signalterrain_sota_v02_access_unavailable.png");
+
+    await evalExpr(`window.SignalTerrainSotaMapApp.selectSummit("W2/GC-002", { pan: true })`);
+    let hunterAzUi = null;
+    for (let i = 0; i < 40; i += 1) {
+      hunterAzUi = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var azEl = document.getElementById("ss-az-body");
+        if (azEl) azEl.scrollIntoView({ block: "nearest" });
+        return {
+          id: st.selectedId,
+          name: (document.getElementById("ss-detail-name") || {}).textContent,
+          ref: (document.getElementById("ss-detail-ref") || {}).textContent,
+          azStatus: st.az && st.az.status,
+          thresholdM: st.az && st.az.thresholdM,
+          cellCount: st.az && st.az.cellCount,
+          notARadius: st.az && st.az.notARadius,
+          edgeClipped: st.az && st.az.edgeClipped,
+          azLayers: st.activationZoneLayer ? st.activationZoneLayer.getLayers().length : 0,
+          azText: azEl ? azEl.textContent : "",
+          ready: (document.getElementById("ss-ready-body") || {}).textContent
+        };
+      })()`);
+      if (hunterAzUi && hunterAzUi.azStatus && hunterAzUi.azStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("Hunter selected", hunterAzUi && hunterAzUi.id === "W2/GC-002" && /Hunter Mountain/.test(hunterAzUi.name || "") && /W2\/GC-002/.test(hunterAzUi.ref || ""), JSON.stringify(hunterAzUi));
+    assert("Hunter AZ ok", hunterAzUi && hunterAzUi.azStatus === "ok" && hunterAzUi.azLayers >= 1, JSON.stringify(hunterAzUi));
+    assert("Hunter threshold 1209", hunterAzUi && hunterAzUi.thresholdM === 1209, JSON.stringify(hunterAzUi));
+    assert("Hunter AZ not a radius", hunterAzUi && hunterAzUi.notARadius === true && hunterAzUi.cellCount > 400, JSON.stringify(hunterAzUi));
+    assert("Hunter AZ copy is terrain-derived", hunterAzUi && /Terrain-derived Activation Zone/.test(hunterAzUi.azText || "") && /1,?209/.test(hunterAzUi.azText || ""), hunterAzUi && hunterAzUi.azText);
+    await delay(400);
+    await shot("signalterrain_sota_v05_hunter_az.png");
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 1280,
+      height: 800,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
+    await evalExpr(`(() => {
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      window.dispatchEvent(new Event("resize"));
+      if (map) {
+        map.invalidateSize();
+        var st = window.SignalTerrainSotaMapApp.getState();
+        if (st.activationZoneLayer) {
+          try { map.fitBounds(st.activationZoneLayer.getBounds(), { padding: [40, 40], maxZoom: 14 }); } catch (e) {}
+        }
+      }
+      return true;
+    })()`);
+    await delay(500);
+    await shot("signalterrain_sota_v05_hunter_desktop_az.png");
+    await send("Emulation.setDeviceMetricsOverride", {
+      width: 390,
+      height: 844,
+      deviceScaleFactor: 2,
+      mobile: true
+    });
+    await evalExpr(`(() => {
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      window.dispatchEvent(new Event("resize"));
+      if (map) map.invalidateSize();
+      var ready = document.getElementById("ss-sec-ready");
+      if (ready) ready.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v05_hunter_readiness.png");
 
     const searched = await evalExpr(`(() => {
       document.getElementById("ss-search-open").click();
@@ -704,6 +779,37 @@ async function main() {
         })()`);
         await delay(250);
         await shot("signalterrain_sota_v04_w320.png");
+        await evalExpr(`window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true })`);
+        for (let i = 0; i < 40; i += 1) {
+          const st = await evalExpr(`(window.SignalTerrainSotaMapApp.getState().az || {}).status`);
+          if (st && st !== "pending") break;
+          await delay(250);
+        }
+        await evalExpr(`(() => {
+          var az = document.getElementById("ss-sec-az");
+          if (az) az.scrollIntoView({ block: "start" });
+          return true;
+        })()`);
+        await delay(350);
+        await shot("signalterrain_sota_v05_slide_w320.png");
+        await evalExpr(`window.SignalTerrainSotaMapApp.selectSummit("W2/GC-002", { pan: true })`);
+        for (let i = 0; i < 40; i += 1) {
+          const st = await evalExpr(`(window.SignalTerrainSotaMapApp.getState().az || {}).status`);
+          if (st && st !== "pending") break;
+          await delay(250);
+        }
+        await evalExpr(`(() => {
+          var az = document.getElementById("ss-sec-az");
+          if (az) az.scrollIntoView({ block: "start" });
+          var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+          var st = window.SignalTerrainSotaMapApp.getState();
+          if (map && st.activationZoneLayer) {
+            try { map.fitBounds(st.activationZoneLayer.getBounds(), { padding: [16, 16], maxZoom: 14 }); } catch (e) {}
+          }
+          return true;
+        })()`);
+        await delay(400);
+        await shot("signalterrain_sota_v05_hunter_w320.png");
       }
     }
 

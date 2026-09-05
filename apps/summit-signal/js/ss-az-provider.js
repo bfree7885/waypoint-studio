@@ -1,8 +1,9 @@
 /**
  * Activation Zone provider for SignalTerrain (SOTA).
  *
- * Default: labeled USGS 3DEP grid fixture for Slide Mountain.
- * Live opt-in: ?az=live=1 or ?route=live=1 (same 3DEP ImageServer as V0.3).
+ * Default: labeled USGS 3DEP grid fixtures for Slide (W2/GC-001) and
+ * Hunter (W2/GC-002). Live opt-in: ?az=live=1 or ?route=live=1.
+ * Other W2 summits without a fixture stay unsupported-region unless live.
  * AZ failure must not break SOTA, access, or hiking routing.
  */
 (function (global) {
@@ -11,7 +12,8 @@
   var SAMPLES_URL = "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer/getSamples";
   var TIMEOUT_MS = 25000;
   var FIXTURES = {
-    "W2/GC-001": "data/st-sota-az-dem-w2-gc-001.json"
+    "W2/GC-001": "data/st-sota-az-dem-w2-gc-001.json",
+    "W2/GC-002": "data/st-sota-az-dem-w2-gc-002.json"
   };
   var memoryCache = {};
 
