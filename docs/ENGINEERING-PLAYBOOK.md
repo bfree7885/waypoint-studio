@@ -134,6 +134,14 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — PR CI merges `main`; color gate is not branch-HEAD
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b`
+
+- `pull_request` CI checks out `refs/pull/*/merge`, not the feature branch tip. A test that passes on the branch can fail against `origin/main` files GitHub merged in.
+- Sheds forest brand on `main` inlines `--wp-warm: #6f7d5f` just past a 500-character window that expected `var(--wp-sage)`. Diagnose merge-commit tokens before blaming SignalTerrain.
+- Do not revert Sheds CSS from this branch to make the gate pass.
+
 ### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
