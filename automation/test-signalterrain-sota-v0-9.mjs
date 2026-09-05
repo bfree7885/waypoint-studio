@@ -70,7 +70,9 @@ assert(
   "V0.9 docs unlisted not access-controlled",
   /The field-test URL is unlisted, not access-controlled\./.test(docs)
 );
-assert("V0.9 records live URL", docs.includes("FIELD-TEST URL (LIVE)") && docs.includes(FIELD_TEST_URL));
+assert("V0.9 records intended companion URL", docs.includes("https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/"));
+assert("V0.9 does not claim a live URL as shipped", !/FIELD-TEST URL \(LIVE\)/.test(docs));
+assert("V0.9 records write blocker", /contents:write/.test(docs) && /sheds-site/.test(docs) && /403/.test(docs));
 assert("V0.9 does not use Sheds host", !/publish to sheds-site|reuse sheds-site/i.test(docs));
 assert("V0.9 does not require main merge", /Do not merge to `main`/.test(docs) || /Do not merge to main/.test(docs));
 

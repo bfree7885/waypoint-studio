@@ -139,9 +139,9 @@ Include:
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
 
 - Studio Pages is `main` → `waypointstudio.org` only. Do not dispatch `pages.yml` from a feature branch.
-- New GitHub repo creation 403’d for this agent. Use an existing isolated Pages project (`waypoint-studio-site`, no CNAME) rather than `sheds-site` or a Studio overwrite.
-- Field-test URL: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`. Unlisted, not authenticated.
-- Preserve host rollback tags; never force-push Studio `main`.
+- New GitHub repo creation 403’d. Existing isolated Pages project is `waypoint-studio-site` (no CNAME).
+- `SHEDHUNTING_DEPLOY_TOKEN` can write **only** to `sheds-site` (blob 201). It cannot create repos or push `waypoint-studio-site` (403). Do not publish SignalTerrain to Sheds.
+- Intended URL: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`. Unlisted, not authenticated. **Not live** until contents:write exists on that companion repo.
 
 ### 2026-09-05 — SignalTerrain V0.9 field-test host inspection (not deployed)
 
