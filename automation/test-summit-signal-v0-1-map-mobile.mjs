@@ -381,7 +381,7 @@ async function main() {
       };
     })()`);
     assert("inspect Slide parking does not route", inspectSlide && inspectSlide.inspected === 816358667 && !inspectSlide.selected && !inspectSlide.route, JSON.stringify(inspectSlide));
-    assert("Slide START shows mapped name and coords", inspectSlide && /Slide Mountain Parking Area/.test(inspectSlide.startText || "") && /42\\.00868/.test(inspectSlide.startText || "") && /Mapped access tag: yes/.test(inspectSlide.startText || "") && /Mapped fee tag: no/.test(inspectSlide.startText || ""), inspectSlide && inspectSlide.startText);
+    assert("Slide START shows mapped name and coords", inspectSlide && /Slide Mountain Parking Area/.test(inspectSlide.startText || "") && inspectSlide.startText.indexOf("42.00868") !== -1 && /Mapped access tag: yes/.test(inspectSlide.startText || "") && /Mapped fee tag: no/.test(inspectSlide.startText || ""), inspectSlide && inspectSlide.startText);
     assert("Slide Open in Maps targets parking not summit", inspectSlide && inspectSlide.mapsUrl && inspectSlide.mapsUrl.indexOf("42.00868") !== -1 && inspectSlide.mapsUrl.indexOf("41.9991") === -1, JSON.stringify(inspectSlide && inspectSlide.mapsUrl));
     assert("Copy coordinates and Start hike here present", inspectSlide && inspectSlide.copy && inspectSlide.commit, JSON.stringify(inspectSlide));
     await delay(400);
@@ -1065,7 +1065,7 @@ async function main() {
       };
     })()`);
     assert("Hunter unnamed Becker Hollow start", hunterStart && hunterStart.name === "Unnamed mapped parking" && hunterStart.selected === 338567127, JSON.stringify(hunterStart));
-    assert("Hunter start coordinates and access tag", hunterStart && /42\\.18191/.test(hunterStart.coords || "") && hunterStart.access === "Mapped access tag: yes", JSON.stringify(hunterStart));
+    assert("Hunter start coordinates and access tag", hunterStart && String(hunterStart.coords || "").indexOf("42.18191") !== -1 && hunterStart.access === "Mapped access tag: yes", JSON.stringify(hunterStart));
     assert("Hunter maps handoff is Becker not summit", hunterStart && hunterStart.mapsUrl && hunterStart.mapsUrl.indexOf("42.18191") !== -1 && hunterStart.mapsUrl.indexOf("42.1776") === -1, JSON.stringify(hunterStart && hunterStart.mapsUrl));
     await delay(350);
     await shot("signalterrain_sota_v08_hunter_unnamed_start.png");
