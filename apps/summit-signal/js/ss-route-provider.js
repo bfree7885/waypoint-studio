@@ -13,7 +13,8 @@
   var TIMEOUT_MS = 20000;
   var FIXTURES = {
     "way/816358667": "data/st-sota-route-w2-gc-001-slide-parking.json",
-    "way/816358666": "data/st-sota-route-w2-gc-001-giant-ledge.json"
+    "way/816358666": "data/st-sota-route-w2-gc-001-giant-ledge.json",
+    "way/338567127": "data/st-sota-route-w2-gc-002-becker-hollow.json"
   };
   var memoryCache = {};
 
@@ -40,7 +41,7 @@
   }
 
   function fixtureUrl(summit, access) {
-    if (!summit || summit.id !== "W2/GC-001") return null;
+    if (!summit || !access) return null;
     return FIXTURES[accessKey(access)] || null;
   }
 

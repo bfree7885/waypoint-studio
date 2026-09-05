@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — SignalTerrain V0.6 Route to Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.6.md`
+
+- Keep Route to Summit as an explicit mode. Do not silently prefix the V0.3 route and call it an AZ destination.
+- AZ-entry candidates must come from the Valhalla geometry × calculated AZ, not a centroid, vertex, or straight-line nearest point.
+- Cache Route-to-AZ separately from Route-to-Summit; the V0.3 route id does not include destination mode.
+- Prefix elevation must re-smooth clipped 3DEP samples. Do not scale summit gain by distance.
+- If AZ-route gain equals summit-route gain (short remaining spur vs sample spacing), report that honestly.
+
 ### 2026-09-05 — SignalTerrain V0.5 second W2/GC Activation Zone
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.5.md`

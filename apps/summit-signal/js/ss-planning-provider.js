@@ -3,8 +3,8 @@
  *
  * V0.2 fills candidate OSM access. V0.3 adds user-selected start + Valhalla
  * route + USGS 3DEP profile. V0.4 fills a terrain-derived Activation Zone
- * when the AZ engine has run. Never invents hike stats, a "best" trailhead,
- * or an activation-validity claim.
+ * when the AZ engine has run. V0.6 adds an explicit Route-to-AZ destination.
+ * Never invents hike stats, a "best" trailhead, or an activation-validity claim.
  */
 (function (global) {
   "use strict";
@@ -203,6 +203,39 @@
   }
 
   function applyHike(items, summit, hike) {
+    if (hike && hike.destinationMode === "az") {
+      var azr = hike.azRoute;
+      if (azr && azr.status === "pending") {
+        items.hikingRoute.status = "pending";
+        items.hikingRoute.display = "Calculating route to Activation Zone…";
+        items.distance.status = "pending";
+        items.distance.display = "Calculating…";
+        items.estimatedHikingTime.status = "pending";
+        items.estimatedHikingTime.display = "Calculating…";
+        items.elevationGain.status = "pending";
+        items.elevationGain.display = "Waiting for route…";
+        return;
+      }
+      if (azr && azr.status === "ok") {
+        hike = {
+          selectedAccess: hike.selectedAccess,
+          route: azr.route || hike.route,
+          elevation: hike.azElevation || hike.elevation
+        };
+      } else if (azr) {
+        items.hikingRoute.status = azr.status;
+        items.hikingRoute.display = "Route to Activation Zone unavailable";
+        items.hikingRoute.reason = azr.reason;
+        items.distance.status = azr.status;
+        items.distance.display = "Unavailable";
+        items.distance.reason = "Route to AZ is not replaced with a summit route, straight-line, or polygon vertex.";
+        items.estimatedHikingTime.status = "unavailable";
+        items.estimatedHikingTime.display = "Unavailable";
+        items.elevationGain.status = "unavailable";
+        items.elevationGain.display = "Unavailable";
+        return;
+      }
+    }
     var route = hike && hike.route;
     var elev = hike && hike.elevation;
     var start = hike && hike.selectedAccess;
@@ -398,7 +431,7 @@
         },
         {
           id: "later",
-          title: "Not in V0.5",
+          title: "Not in V0.6",
           rows: [row("Radio", "not-integrated", "Not integrated"), row("Weather", "not-integrated", "Not integrated")]
         }
       ]

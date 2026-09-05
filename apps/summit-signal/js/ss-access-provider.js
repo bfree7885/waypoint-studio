@@ -10,6 +10,10 @@
   "use strict";
 
   var FIXTURE_URL = "data/st-sota-access-w2-gc-001.json";
+  var FIXTURES = {
+    "W2/GC-001": "data/st-sota-access-w2-gc-001.json",
+    "W2/GC-002": "data/st-sota-access-w2-gc-002.json"
+  };
   var OVERPASS_URL = "https://overpass-api.de/api/interpreter";
   var TIMEOUT_MS = 15000;
   var memoryCache = {};
@@ -144,6 +148,11 @@
     return catalog;
   }
 
+  function defaultFixtureUrl(summit) {
+    var id = summit && (summit.id || summit.reference);
+    return (id && FIXTURES[id]) || null;
+  }
+
   function fixtureMatches(payload, summit) {
     var sid = summit && (summit.id || summit.reference);
     var src = payload && payload.source ? payload.source : {};
@@ -210,7 +219,7 @@
       })
       .catch(function (err) {
         var msg = String(err && err.message ? err.message : err);
-        return loadFixture(summit, opts.fixtureUrl || FIXTURE_URL, {
+        return loadFixture(summit, opts.fixtureUrl || defaultFixtureUrl(summit) || FIXTURE_URL, {
           liveAttempted: true,
           liveError: msg,
           mode: "fixture"
@@ -266,7 +275,13 @@
       return loadLive(summit, opts);
     }
 
-    return loadFixture(summit, opts.fixtureUrl || FIXTURE_URL, { liveAttempted: false }).catch(function (err) {
+    var url = opts.fixtureUrl || defaultFixtureUrl(summit);
+    if (!url) {
+      return Promise.resolve(
+        unavailable(summit, "No labeled OpenStreetMap fixture exists for this summit. Live Overpass was not requested.")
+      );
+    }
+    return loadFixture(summit, url, { liveAttempted: false }).catch(function (err) {
       return unavailable(summit, "OpenStreetMap data unavailable (" + String(err && err.message ? err.message : err) + ").");
     });
   }
@@ -277,6 +292,7 @@
 
   var api = {
     FIXTURE_URL: FIXTURE_URL,
+    FIXTURES: FIXTURES,
     OVERPASS_URL: OVERPASS_URL,
     TIMEOUT_MS: TIMEOUT_MS,
     cacheKey: cacheKey,

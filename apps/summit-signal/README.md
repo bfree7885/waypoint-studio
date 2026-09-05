@@ -6,9 +6,9 @@ Unpublished Waypoint field application for SOTA summit discovery and activation 
 
 This directory is served at `/apps/summit-signal/` in V0.1. That route is intentional. Do not move this app to `/apps/signalterrain/` — that URL belongs to the retired cyber surface and currently redirects.
 
-**V0.5** runs the same Activation Zone engine on a second real W2/GC summit (Hunter Mountain) using a labeled USGS 3DEP fixture. Slide Mountain acceptance is unchanged. SignalTerrain remains unpublished.
+**V0.6** adds an explicit Route to Activation Zone destination on top of V0.3 summit routing and the V0.4/V0.5 terrain-derived AZ. Slide and Hunter AZ acceptance are unchanged. SignalTerrain remains unpublished.
 
-Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](../../docs/signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](../../docs/signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](../../docs/signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](../../docs/signal-terrain/V0.5.md)
+Canonical documentation: [`docs/signal-terrain/V0.1.md`](../../docs/signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](../../docs/signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](../../docs/signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](../../docs/signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](../../docs/signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](../../docs/signal-terrain/V0.6.md)
 
 ## Run locally
 

@@ -12,7 +12,8 @@
   var TIMEOUT_MS = 20000;
   var FIXTURES = {
     "way/816358667": "data/st-sota-elev-w2-gc-001-slide-parking.json",
-    "way/816358666": "data/st-sota-elev-w2-gc-001-giant-ledge.json"
+    "way/816358666": "data/st-sota-elev-w2-gc-001-giant-ledge.json",
+    "way/338567127": "data/st-sota-elev-w2-gc-002-becker-hollow.json"
   };
   var memoryCache = {};
 
@@ -84,6 +85,9 @@
       .then(function (payload) {
         var profile = Model.normalizeSamples(payload, route, { routeId: cacheKey(route) });
         if (profile.status === "ok" || profile.status === "partial") profile.source.developmentFixture = true;
+        if (route && route.destinationMode === "activation-zone" && route.distanceKm != null && (profile.status === "ok" || profile.status === "partial")) {
+          profile = Model.clipProfile(profile, route.distanceKm);
+        }
         return profile;
       })
       .catch(function (err) {
@@ -113,7 +117,11 @@
         return res.json();
       })
       .then(function (payload) {
-        return Model.normalizeSamples(payload, route, { routeId: cacheKey(route) });
+        var profile = Model.normalizeSamples(payload, route, { routeId: cacheKey(route) });
+        if (route && route.destinationMode === "activation-zone" && route.distanceKm != null && (profile.status === "ok" || profile.status === "partial")) {
+          profile = Model.clipProfile(profile, route.distanceKm);
+        }
+        return profile;
       })
       .catch(function (err) {
         var aborted = err && (err.name === "AbortError" || /abort/i.test(String(err)));

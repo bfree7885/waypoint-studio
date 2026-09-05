@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.5 map application.
+ * SignalTerrain SOTA V0.6 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -36,12 +36,18 @@
     access: null,
     accessSeq: 0,
     selectedAccess: null,
+    destinationMode: "summit",
     hikeSeq: 0,
     route: null,
     elevation: null,
+    summitRoute: null,
+    summitElevation: null,
+    azRoute: null,
+    azElevation: null,
     az: null,
     azSeq: 0,
     routeAz: null,
+    summitRouteAz: null,
     layersOn: { summits: true, trails: true, trailheads: true, parking: true, hike: true, az: true }
   };
 
@@ -531,7 +537,10 @@
       color: "#3ec8c8",
       weight: 5,
       opacity: 0.92,
-      className: "ss-hike-line",
+      className:
+        state.destinationMode === "az" && state.azRoute && state.azRoute.status === "ok"
+          ? "ss-hike-line ss-hike-line--az"
+          : "ss-hike-line",
       lineJoin: "round",
       interactive: false
     }).addTo(state.routeLayer);
@@ -545,10 +554,16 @@
   function hikeState() {
     return {
       selectedAccess: state.selectedAccess,
+      destinationMode: state.destinationMode,
       route: state.route,
       elevation: state.elevation,
+      summitRoute: state.summitRoute,
+      summitElevation: state.summitElevation,
+      azRoute: state.azRoute,
+      azElevation: state.azElevation,
       az: state.az,
       routeAz: state.routeAz,
+      summitRouteAz: state.summitRouteAz,
       geoAz: geoAzState()
     };
   }
@@ -590,43 +605,78 @@
 
   function plotAzEntry() {
     var L = global.L;
-    if (!state.activationZoneLayer || !state.routeAz || !state.routeAz.entry) return;
-    var e = state.routeAz.entry;
+    var entry = null;
+    if (state.destinationMode === "az" && state.azRoute && state.azRoute.status === "ok" && state.azRoute.entry) {
+      entry = state.azRoute.entry;
+    } else if (state.routeAz && state.routeAz.entry) {
+      entry = state.routeAz.entry;
+    }
+    if (!state.activationZoneLayer || !entry) return;
+    var e = entry;
     var marker = L.circleMarker([e.lat, e.lng], {
-      radius: 6,
+      radius: 7,
       color: "#0c1210",
       weight: 1,
       fillColor: "#e0b15a",
       fillOpacity: 1,
       className: "ss-az-entry"
     });
+    var label = L.marker([e.lat, e.lng], {
+      icon: L.divIcon({
+        className: "ss-az-entry-wrap",
+        html: '<span class="ss-az-entry-label">AZ ENTRY</span>',
+        iconSize: [72, 16],
+        iconAnchor: [36, -8]
+      }),
+      interactive: false,
+      keyboard: false
+    });
     var Geo = global.SignalTerrainSotaGeo;
-    var dist = e.distanceKm != null && Geo ? Geo.formatRouteDistance(e.distanceKm) : "Unavailable";
+    var dist =
+      e.distanceKm != null && Geo
+        ? Geo.formatRouteDistance(e.distanceKm)
+        : state.azRoute && state.azRoute.distanceLabel
+          ? state.azRoute.distanceLabel
+          : "Unavailable";
+    var remainSrc = state.summitRouteAz || state.routeAz;
     var remain =
-      state.routeAz.remainingToSummitKm != null && Geo ? Geo.formatRouteDistance(state.routeAz.remainingToSummitKm) : "Unavailable";
+      remainSrc && remainSrc.remainingToSummitKm != null && Geo
+        ? Geo.formatRouteDistance(remainSrc.remainingToSummitKm)
+        : "Unavailable";
     var elev =
       e.elevationM != null && Geo && Geo.formatElevationM ? Geo.formatElevationM(e.elevationM) : "Unavailable";
+    var inside = e.onOrInsideAz === false ? "Outside AZ (invalid)" : "Inside or on AZ boundary";
     marker.bindTooltip(
-      "AZ entry (geographic)<br>From start: " +
+      "AZ ENTRY<br>From start: " +
         dist +
         "<br>Elevation: " +
         elev +
-        "<br>Remaining toward summit coordinate: " +
+        "<br>" +
+        inside +
+        "<br>Remaining toward summit coordinate (along Route-to-Summit): " +
         remain +
-        "<br>Not a requirement to stop. Not a valid-activation claim.",
+        "<br>Not a requirement to stop. Not an activation point.",
       { sticky: true }
     );
     marker.addTo(state.activationZoneLayer);
+    label.addTo(state.activationZoneLayer);
   }
 
   function updateRouteAz() {
     var AzModel = global.SignalTerrainSotaAzModel;
     if (!AzModel) {
       state.routeAz = null;
+      state.summitRouteAz = null;
       return;
     }
-    state.routeAz = AzModel.relateRoute(state.az, state.route);
+    state.summitRouteAz = state.summitRoute ? AzModel.relateRoute(state.az, state.summitRoute) : null;
+    var displayed =
+      state.destinationMode === "az" && state.azRoute && state.azRoute.status === "ok" && state.azRoute.route
+        ? state.azRoute.route
+        : state.route;
+    state.routeAz = AzModel.relateRoute(state.az, displayed);
     AzModel.attachEntryElevation(state.routeAz, state.elevation);
+    if (state.summitRouteAz) AzModel.attachEntryElevation(state.summitRouteAz, state.summitElevation || state.elevation);
     plotAz(state.az);
     renderHikePanel();
     renderAzPanel();
@@ -659,6 +709,11 @@
         plotAz(az);
         updateRouteAz();
         renderDetail(summit);
+        if (state.destinationMode === "az" && state.selectedAccess && state.summitRoute) {
+          return applyAzDestination(summit, state.selectedAccess, state.summitRoute, state.hikeSeq).then(function () {
+            return az;
+          });
+        }
         return az;
       })
       .catch(function (err) {
@@ -823,6 +878,103 @@
     );
   }
 
+  function azRouteStatusText(azr) {
+    var st = azr && azr.status;
+    if (st === "ok") return "Route to AZ found";
+    if (st === "pending") return "Calculating route to Activation Zone…";
+    if (st === "az-unavailable") return "Activation Zone unavailable";
+    if (st === "no-candidate") return "No valid AZ routing candidate found";
+    if (st === "unavailable" || st === "timeout") return "Routing service unavailable";
+    if (st === "no-route") return "Route provider returned no route";
+    if (st === "all-candidates-failed") return "All candidate routes failed validation";
+    if (st === "generation-failed") return "Candidate generation failed";
+    if (st === "invalid-start") return "Select a mapped parking area or trailhead to start the hike.";
+    return "Route to Activation Zone unavailable";
+  }
+
+  function appendDestMode(body) {
+    var group = global.document.createElement("div");
+    group.className = "ss-dest-mode";
+    group.setAttribute("role", "group");
+    group.setAttribute("aria-label", "Route destination");
+    var lab = global.document.createElement("span");
+    lab.className = "ss-dest-mode__label";
+    lab.textContent = "Route to";
+    group.appendChild(lab);
+    function btn(mode, text) {
+      var b = global.document.createElement("button");
+      b.type = "button";
+      b.className = "ss-dest-mode__btn";
+      b.setAttribute("data-dest-mode", mode);
+      b.setAttribute("aria-pressed", state.destinationMode === mode ? "true" : "false");
+      b.textContent = text;
+      b.addEventListener("click", function () {
+        setDestinationMode(mode);
+      });
+      group.appendChild(b);
+    }
+    btn("summit", "Summit");
+    btn("az", "Activation Zone");
+    body.appendChild(group);
+  }
+
+  function appendComparison(body) {
+    var s = state.summitRoute;
+    var a = state.azRoute;
+    if (!s || s.status !== "ok" || !a || a.status !== "ok") return;
+    var se = state.summitElevation;
+    var ae = state.azElevation;
+    var Geo = global.SignalTerrainSotaGeo;
+    var wrap = global.document.createElement("div");
+    wrap.className = "ss-route-compare";
+    wrap.setAttribute("data-route-compare", "true");
+    var h = global.document.createElement("p");
+    h.className = "ss-route-compare__title";
+    h.textContent = "Route comparison";
+    wrap.appendChild(h);
+    var dl = global.document.createElement("dl");
+    dl.className = "ss-hike-kv";
+    function row(k, v) {
+      var div = global.document.createElement("div");
+      div.innerHTML = "<dt>" + escapeHtml(k) + "</dt><dd>" + escapeHtml(v) + "</dd>";
+      dl.appendChild(div);
+    }
+    row(
+      "Route to Summit",
+      (s.distanceLabel || "Unavailable") +
+        (se && (se.status === "ok" || se.status === "partial") && se.gainLabel ? " · " + se.gainLabel + " gain" : "") +
+        (s.durationLabel ? " · " + s.durationLabel : "")
+    );
+    row(
+      "Route to Activation Zone",
+      (a.distanceLabel || a.route && a.route.distanceLabel || "Unavailable") +
+        (ae && (ae.status === "ok" || ae.status === "partial") && ae.gainLabel ? " · " + ae.gainLabel + " gain" : "") +
+        (a.durationLabel ? " · " + a.durationLabel : "")
+    );
+    if (s.distanceKm != null && a.distanceKm != null && s.distanceKm > a.distanceKm + 0.0005 && Geo) {
+      row("AZ route saves", Geo.formatRouteDistance(s.distanceKm - a.distanceKm));
+    }
+    if (
+      se &&
+      ae &&
+      (se.status === "ok" || se.status === "partial") &&
+      (ae.status === "ok" || ae.status === "partial") &&
+      se.gainM != null &&
+      ae.gainM != null &&
+      se.gainM > ae.gainM + 0.5 &&
+      Geo &&
+      Geo.formatElevationM
+    ) {
+      row("AZ climbing saves", Geo.formatElevationM(se.gainM - ae.gainM));
+    }
+    wrap.appendChild(dl);
+    var note = global.document.createElement("p");
+    note.className = "ss-note";
+    note.textContent = "Comparison of the two calculated routes from this start. Not a recommendation.";
+    wrap.appendChild(note);
+    body.appendChild(wrap);
+  }
+
   function renderHikePanel() {
     var body = $("ss-hike-body");
     var caveat = $("ss-hike-caveat");
@@ -834,20 +986,38 @@
       state.access && state.selectedId === (summit && summit.id) ? state.access : null,
       hikeState()
     );
-    var route = state.route;
-    var elev = state.elevation;
+    var dest = state.destinationMode === "az" ? "az" : "summit";
+    var azMode = dest === "az";
+    var azr = state.azRoute;
+    var route = azMode && azr && azr.status === "ok" && azr.route ? azr.route : state.route;
+    var elev = azMode && azr && azr.status === "ok" ? state.azElevation || state.elevation : state.elevation;
     var start = state.selectedAccess;
-    var st = route && route.status ? route.status : start ? "pending" : "idle";
+    var st;
+    if (azMode) {
+      st = azr && azr.status ? azr.status : start ? (state.summitRoute && state.summitRoute.status === "pending" ? "pending" : "pending") : "idle";
+    } else {
+      st = route && route.status ? route.status : start ? "pending" : "idle";
+    }
     body.setAttribute("data-hike-status", st);
+    body.setAttribute("data-dest-mode", dest);
     if (caveat) caveat.textContent = "";
+    appendDestMode(body);
     if (!start) {
-      body.innerHTML = '<p class="ss-note">No start selected. Use Start hike here on a mapped parking area or trailhead.</p>';
+      var idle = global.document.createElement("p");
+      idle.className = "ss-note";
+      idle.textContent = "No start selected. Use Start hike here on a mapped parking area or trailhead.";
+      body.appendChild(idle);
+      if (caveat) {
+        caveat.textContent =
+          "Mapped access is from OpenStreetMap. Destination mode chooses Route to Summit or Route to Activation Zone. SignalTerrain does not pick a best start or an activation point.";
+      }
       return;
     }
     var status = global.document.createElement("p");
     status.className = "ss-hike-status";
     status.setAttribute("data-hike-kind", st);
-    if (st === "pending") status.textContent = "Calculating pedestrian route…";
+    if (azMode) status.textContent = azRouteStatusText(azr || { status: st });
+    else if (st === "pending") status.textContent = "Calculating pedestrian route…";
     else if (st === "ok") status.textContent = "Pedestrian route calculated";
     else if (st === "no-route") status.textContent = "No pedestrian/hiking route found";
     else if (st === "timeout") status.textContent = "Routing request timed out";
@@ -862,8 +1032,10 @@
     }
     var startName = start.name || (start.kind === "trailhead" ? "Unnamed mapped trailhead" : "Unnamed mapped parking");
     row("Start", startName);
-    row("Destination", (summit && summit.name ? summit.name : "Summit") + " summit vicinity");
-    if (route && route.status === "ok") {
+    row("Destination", azMode ? "Activation Zone" : (summit && summit.name ? summit.name : "Summit") + " summit vicinity");
+    var showAzOk = azMode && azr && azr.status === "ok" && route && route.status === "ok";
+    var showSummitOk = !azMode && route && route.status === "ok";
+    if (showAzOk || showSummitOk) {
       row("Route distance", route.distanceLabel || "Unavailable");
       if (elev && (elev.status === "ok" || elev.status === "partial")) {
         row("Elevation gain", elev.gainLabel || "Unavailable");
@@ -874,10 +1046,14 @@
         row("Elevation gain", "Unavailable");
         row("Elevation loss", "Unavailable");
       }
-      row("Estimated time", planning.items.estimatedHikingTime.display);
+      row("Estimated time", (azMode ? azr.durationLabel : null) || route.durationLabel || planning.items.estimatedHikingTime.display);
+      if (azMode && azr.entry) {
+        row("AZ entry", azr.entry.lat.toFixed(5) + ", " + azr.entry.lng.toFixed(5));
+        row("Selection", azr.selectionLabel || "Selected routed AZ entry");
+      }
       row("Route source", route.source && route.source.developmentFixture ? "Valhalla (labeled development fixture)" : "Valhalla");
       row(
-        "Elevation source",
+        "Terrain source",
         elev && (elev.status === "ok" || elev.status === "partial")
           ? elev.source && elev.source.developmentFixture
             ? "USGS 3DEP (labeled development fixture)"
@@ -896,18 +1072,106 @@
         miss.textContent = elev.reason || "Elevation data unavailable. The calculated route is still shown.";
         body.appendChild(miss);
       }
+      appendComparison(body);
     } else {
       row("Route distance", "Unavailable");
       body.appendChild(dl);
       var fail = global.document.createElement("p");
       fail.className = "ss-note";
-      fail.textContent = (route && route.reason) || "Routing did not return a hike. Straight-line distance is not used as a substitute.";
+      fail.setAttribute("data-az-route-fail", azMode ? (azr && azr.status) || "unavailable" : "");
+      if (azMode) {
+        fail.textContent =
+          (azr && azr.reason) ||
+          "Route to Activation Zone was not found. The Route-to-Summit result and Activation Zone are unchanged. Straight-line and nearest-polygon substitutes are not used.";
+      } else {
+        fail.textContent = (route && route.reason) || "Routing did not return a hike. Straight-line distance is not used as a substitute.";
+      }
       body.appendChild(fail);
+      if (azMode && state.summitRoute && state.summitRoute.status === "ok") {
+        appendComparison(body);
+      }
     }
     if (caveat) {
-      caveat.textContent =
-        "Mapped access is from OpenStreetMap. The hike is a Valhalla pedestrian route toward the summit coordinate, not a recommended trail and not an activation-zone path.";
+      caveat.textContent = azMode
+        ? "Route to Activation Zone identifies a legitimate routed entry into the calculated Activation Zone. It does not identify a globally optimal or recommended operating location."
+        : "Mapped access is from OpenStreetMap. The hike is a Valhalla pedestrian route toward the summit coordinate, not a recommended trail and not an activation-zone path.";
     }
+  }
+
+  function applyAzDestination(summit, feature, summitRoute, seq) {
+    var AzRoute = global.SignalTerrainSotaAzRoute;
+    var Terrain = global.SignalTerrainSotaTerrain;
+    var M = global.SignalTerrainSotaAzRouteModel;
+    if (!AzRoute || !M) {
+      state.azRoute = M
+        ? M.emptyResult({ summitId: summit.id, access: feature }, "generation-failed", "Route-to-AZ provider missing.")
+        : { status: "generation-failed", reason: "Route-to-AZ provider missing." };
+      state.route = summitRoute;
+      state.elevation = state.summitElevation;
+      if (summitRoute && summitRoute.status === "ok") plotRoute(summitRoute);
+      renderHikePanel();
+      updateRouteAz();
+      return Promise.resolve(state.azRoute);
+    }
+    state.azRoute = { status: "pending" };
+    renderHikePanel();
+    return AzRoute.loadAzRoute(summit, feature, { summitRoute: summitRoute, az: state.az }).then(function (azr) {
+      if (seq !== state.hikeSeq || state.selectedId !== summit.id) return azr;
+      state.azRoute = azr;
+      if (azr && azr.status === "ok" && azr.route) {
+        state.route = azr.route;
+        plotRoute(azr.route);
+        if (!Terrain) {
+          state.azElevation = global.SignalTerrainSotaTerrainModel
+            ? global.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation needs a calculated route.")
+            : { status: "unavailable" };
+          state.elevation = state.azElevation;
+          renderHikePanel();
+          updateRouteAz();
+          return azr;
+        }
+        return Terrain.loadElevation(azr.route)
+          .then(function (elev) {
+            if (seq !== state.hikeSeq) return azr;
+            state.azElevation = elev;
+            state.elevation = elev;
+            renderHikePanel();
+            updateRouteAz();
+            return azr;
+          })
+          .catch(function () {
+            if (seq !== state.hikeSeq) return azr;
+            state.azElevation = global.SignalTerrainSotaTerrainModel.emptyProfile(
+              {},
+              "unavailable",
+              "Elevation data unavailable. The calculated AZ route is still shown."
+            );
+            state.elevation = state.azElevation;
+            renderHikePanel();
+            updateRouteAz();
+            return azr;
+          });
+      }
+      state.route = summitRoute;
+      state.elevation = state.summitElevation;
+      if (summitRoute && summitRoute.status === "ok") plotRoute(summitRoute);
+      else clearHikeLayers();
+      renderHikePanel();
+      updateRouteAz();
+      return azr;
+    });
+  }
+
+  function setDestinationMode(mode) {
+    var next = mode === "az" ? "az" : "summit";
+    if (state.destinationMode === next && !(next === "az" && state.selectedAccess && !state.azRoute)) {
+      renderHikePanel();
+      return Promise.resolve(state.route);
+    }
+    state.destinationMode = next;
+    if (state.selectedAccess) return startHikeFromAccess(state.selectedAccess);
+    renderHikePanel();
+    return Promise.resolve(null);
   }
 
   function startHikeFromAccess(feature) {
@@ -917,6 +1181,10 @@
     var Terrain = global.SignalTerrainSotaTerrain;
     state.selectedAccess = feature;
     var seq = (state.hikeSeq += 1);
+    state.summitRoute = { status: "pending" };
+    state.azRoute = state.destinationMode === "az" ? { status: "pending" } : null;
+    state.azElevation = null;
+    state.summitElevation = { status: "pending" };
     state.route = { status: "pending" };
     state.elevation = { status: "pending" };
     renderAccessPanel(summit, state.access);
@@ -924,41 +1192,55 @@
     plotAccess(state.access);
     if (!Route) {
       state.route = global.SignalTerrainSotaRouteModel.emptyRoute({}, "unavailable", "Routing provider missing.");
+      state.summitRoute = state.route;
       renderHikePanel();
       return Promise.resolve(state.route);
     }
     return Route.loadRoute(summit, feature)
       .then(function (route) {
         if (seq !== state.hikeSeq || state.selectedId !== summit.id) return route;
-        state.route = route;
-        plotRoute(route);
+        state.summitRoute = route;
+        if (state.destinationMode !== "az") {
+          state.route = route;
+          plotRoute(route);
+        }
         renderHikePanel();
         updateRouteAz();
+        var elevP;
         if (route.status !== "ok" || !Terrain) {
-          state.elevation = global.SignalTerrainSotaTerrainModel
+          state.summitElevation = global.SignalTerrainSotaTerrainModel
             ? global.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation needs a calculated route.")
             : { status: "unavailable" };
+          if (state.destinationMode !== "az") state.elevation = state.summitElevation;
+          elevP = Promise.resolve(state.summitElevation);
+        } else {
+          elevP = Terrain.loadElevation(route)
+            .then(function (elev) {
+              if (seq !== state.hikeSeq || state.selectedId !== summit.id) return elev;
+              state.summitElevation = elev;
+              if (state.destinationMode !== "az") state.elevation = elev;
+              renderHikePanel();
+              updateRouteAz();
+              return elev;
+            })
+            .catch(function () {
+              if (seq !== state.hikeSeq) return null;
+              state.summitElevation = global.SignalTerrainSotaTerrainModel.emptyProfile(
+                {},
+                "unavailable",
+                "Elevation data unavailable. The calculated route is still shown."
+              );
+              if (state.destinationMode !== "az") state.elevation = state.summitElevation;
+              renderHikePanel();
+              return state.summitElevation;
+            });
+        }
+        return elevP.then(function () {
+          if (seq !== state.hikeSeq) return route;
+          if (state.destinationMode === "az") return applyAzDestination(summit, feature, route, seq);
           renderHikePanel();
           return route;
-        }
-        return Terrain.loadElevation(route)
-          .then(function (elev) {
-            if (seq !== state.hikeSeq || state.selectedId !== summit.id) return route;
-            state.elevation = elev;
-            renderHikePanel();
-            updateRouteAz();
-            return route;
-          })
-          .catch(function () {
-            if (seq !== state.hikeSeq) return route;
-            state.elevation = global.SignalTerrainSotaTerrainModel.emptyProfile(
-              {},
-              "unavailable",
-              "Elevation data unavailable. The calculated route is still shown."
-            );
-            renderHikePanel();
-            return route;
-          });
+        });
       })
       .catch(function (err) {
         if (seq !== state.hikeSeq) return null;
@@ -967,6 +1249,16 @@
           "unavailable",
           "Routing service unavailable (" + String(err && err.message ? err.message : err) + ")."
         );
+        state.summitRoute = state.route;
+        if (state.destinationMode === "az") {
+          state.azRoute = global.SignalTerrainSotaAzRouteModel
+            ? global.SignalTerrainSotaAzRouteModel.emptyResult(
+                { summitId: summit.id, access: feature },
+                "unavailable",
+                "Routing service unavailable."
+              )
+            : { status: "unavailable" };
+        }
         clearHikeLayers();
         renderHikePanel();
         return state.route;
@@ -1055,8 +1347,13 @@
       state.selectedAccess = null;
       state.route = null;
       state.elevation = null;
+      state.summitRoute = null;
+      state.summitElevation = null;
+      state.azRoute = null;
+      state.azElevation = null;
       state.az = null;
       state.routeAz = null;
+      state.summitRouteAz = null;
       state.hikeSeq += 1;
       state.azSeq += 1;
       clearHikeLayers();
@@ -1088,8 +1385,13 @@
     state.selectedAccess = null;
     state.route = null;
     state.elevation = null;
+    state.summitRoute = null;
+    state.summitElevation = null;
+    state.azRoute = null;
+    state.azElevation = null;
     state.az = null;
     state.routeAz = null;
+    state.summitRouteAz = null;
     state.hikeSeq += 1;
     state.azSeq += 1;
     setSelectedMarker(null);
@@ -1341,6 +1643,7 @@
     setLayerVisible: setLayerVisible,
     loadAccessForSummit: loadAccessForSummit,
     startHikeFromAccess: startHikeFromAccess,
+    setDestinationMode: setDestinationMode,
     getState: function () {
       return state;
     }

@@ -452,6 +452,102 @@ async function main() {
     })()`);
     await delay(400);
     await shot("signalterrain_sota_v03_plan_the_hike.png");
+    await shot("signalterrain_sota_v06_slide_route_to_summit.png");
+
+    const azMode = await evalExpr(`(() => {
+      return window.SignalTerrainSotaMapApp.setDestinationMode("az").then(function () { return true; });
+    })()`);
+    let azHike = null;
+    for (let i = 0; i < 40; i += 1) {
+      azHike = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var body = document.getElementById("ss-hike-body");
+        var hikeEl = document.getElementById("ss-sec-hike");
+        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+        if (map && st.routeLayer && st.activationZoneLayer) {
+          try {
+            var group = L.featureGroup([st.routeLayer, st.activationZoneLayer]);
+            map.fitBounds(group.getBounds(), { padding: [36, 36], maxZoom: 15 });
+          } catch (e) {}
+        }
+        return {
+          dest: st.destinationMode,
+          azStatus: st.azRoute && st.azRoute.status,
+          azKm: st.azRoute && st.azRoute.distanceKm,
+          summitKm: st.summitRoute && st.summitRoute.distanceKm,
+          entry: st.azRoute && st.azRoute.entry,
+          body: body ? body.textContent.slice(0, 900) : "",
+          destPressed: (document.querySelector('[data-dest-mode="az"]') || {}).getAttribute
+            ? document.querySelector('[data-dest-mode="az"]').getAttribute("aria-pressed")
+            : null,
+          compare: !!document.querySelector("[data-route-compare]"),
+          azEntryLabel: !!document.querySelector(".ss-az-entry-label"),
+          routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0
+        };
+      })()`);
+      if (azHike && azHike.azStatus && azHike.azStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("AZ dest mode selected", azHike && azHike.dest === "az" && azHike.destPressed === "true", JSON.stringify(azHike));
+    assert("Slide Route-to-AZ ok", azHike && azHike.azStatus === "ok" && azHike.azKm > 5 && azHike.azKm < azHike.summitKm, JSON.stringify(azHike));
+    assert("Slide AZ panel shows destination and selection", azHike && /Activation Zone/.test(azHike.body || "") && /Shortest routed AZ entry/.test(azHike.body || ""), azHike && azHike.body);
+    assert("AZ ENTRY marker present", azHike && azHike.azEntryLabel === true, JSON.stringify(azHike));
+    assert("route comparison shown", azHike && azHike.compare === true, JSON.stringify(azHike));
+    await delay(400);
+    await shot("signalterrain_sota_v06_slide_route_to_az.png");
+    await shot("signalterrain_sota_v06_slide_az_entry.png");
+    await evalExpr(`(() => {
+      var cmp = document.querySelector(".ss-route-compare");
+      if (cmp) cmp.scrollIntoView({ block: "center" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v06_route_comparison.png");
+
+    await evalExpr(`(() => {
+      window.__ST_ORIG_AZ_ROUTE = window.SignalTerrainSotaAzRoute.loadAzRoute;
+      window.SignalTerrainSotaAzRoute.clearCache();
+      window.SignalTerrainSotaAzRoute.loadAzRoute = function (summit, access) {
+        return Promise.resolve(
+          window.SignalTerrainSotaAzRouteModel.emptyResult(
+            { summitId: summit && summit.id, access: access },
+            "no-candidate",
+            "No valid AZ routing candidate found."
+          )
+        );
+      };
+      var parking = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 816358667; });
+      return window.SignalTerrainSotaMapApp.startHikeFromAccess(parking);
+    })()`);
+    await delay(700);
+    const azFail = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      var body = document.getElementById("ss-hike-body");
+      if (body) body.scrollIntoView({ block: "start" });
+      return {
+        dest: st.destinationMode,
+        azStatus: st.azRoute && st.azRoute.status,
+        summitStatus: st.summitRoute && st.summitRoute.status,
+        summitLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0,
+        azOk: st.az && st.az.status,
+        body: body ? body.textContent.slice(0, 700) : ""
+      };
+    })()`);
+    assert(
+      "AZ failure preserves summit route and AZ",
+      azFail && azFail.dest === "az" && azFail.azStatus === "no-candidate" && azFail.summitStatus === "ok" && azFail.summitLayers >= 1 && azFail.azOk === "ok",
+      JSON.stringify(azFail)
+    );
+    assert("AZ failure copy is honest", azFail && /No valid AZ routing candidate/.test(azFail.body || ""), azFail && azFail.body);
+    await delay(300);
+    await shot("signalterrain_sota_v06_az_route_failure.png");
+    await evalExpr(`(() => {
+      if (window.__ST_ORIG_AZ_ROUTE) window.SignalTerrainSotaAzRoute.loadAzRoute = window.__ST_ORIG_AZ_ROUTE;
+      window.SignalTerrainSotaAzRoute.clearCache();
+      return window.SignalTerrainSotaMapApp.setDestinationMode("summit");
+    })()`);
+    await delay(600);
 
     const alt = await evalExpr(`(() => {
       var btn = document.querySelector('[data-start-hike="way/816358666"]');
@@ -685,6 +781,81 @@ async function main() {
     await delay(300);
     await shot("signalterrain_sota_v05_hunter_readiness.png");
 
+    await evalExpr(`(() => {
+      return window.SignalTerrainSotaMapApp.setDestinationMode("summit");
+    })()`);
+    let hunterAccessReady = null;
+    for (let i = 0; i < 40; i += 1) {
+      hunterAccessReady = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        return {
+          accessStatus: st.access && st.access.status,
+          parking: st.access && st.access.parking ? st.access.parking.length : 0,
+          hasBecker: !!(st.access && st.access.parking && st.access.parking.some(function (p) { return p.osmId === 338567127; }))
+        };
+      })()`);
+      if (hunterAccessReady && hunterAccessReady.accessStatus && hunterAccessReady.accessStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("Hunter access fixture available", hunterAccessReady && hunterAccessReady.accessStatus === "ok" && hunterAccessReady.hasBecker === true, JSON.stringify(hunterAccessReady));
+    await evalExpr(`(() => {
+      var parking = window.SignalTerrainSotaMapApp.getState().access.parking.find(function (p) { return p.osmId === 338567127; });
+      return window.SignalTerrainSotaMapApp.startHikeFromAccess(parking);
+    })()`);
+    let hunterHike = null;
+    for (let i = 0; i < 40; i += 1) {
+      hunterHike = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var body = document.getElementById("ss-hike-body");
+        var hikeEl = document.getElementById("ss-sec-hike");
+        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        return {
+          dest: st.destinationMode,
+          routeStatus: st.route && st.route.status,
+          distanceKm: st.route && st.route.distanceKm,
+          body: body ? body.textContent.slice(0, 700) : "",
+          routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0
+        };
+      })()`);
+      if (hunterHike && hunterHike.routeStatus && hunterHike.routeStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("Hunter Route-to-Summit ok", hunterHike && hunterHike.routeStatus === "ok" && hunterHike.distanceKm > 8 && hunterHike.routeLayers >= 1, JSON.stringify(hunterHike));
+    await delay(350);
+    await shot("signalterrain_sota_v06_hunter_route_to_summit.png");
+    await evalExpr(`(() => window.SignalTerrainSotaMapApp.setDestinationMode("az"))()`);
+    let hunterAzRoute = null;
+    for (let i = 0; i < 40; i += 1) {
+      hunterAzRoute = await evalExpr(`(() => {
+        var st = window.SignalTerrainSotaMapApp.getState();
+        var body = document.getElementById("ss-hike-body");
+        var hikeEl = document.getElementById("ss-sec-hike");
+        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+        if (map && st.routeLayer && st.activationZoneLayer) {
+          try {
+            var group = L.featureGroup([st.routeLayer, st.activationZoneLayer]);
+            map.fitBounds(group.getBounds(), { padding: [36, 36], maxZoom: 14 });
+          } catch (e) {}
+        }
+        return {
+          dest: st.destinationMode,
+          azStatus: st.azRoute && st.azRoute.status,
+          azKm: st.azRoute && st.azRoute.distanceKm,
+          entry: st.azRoute && st.azRoute.entry,
+          azEntryLabel: !!document.querySelector(".ss-az-entry-label"),
+          body: body ? body.textContent.slice(0, 800) : ""
+        };
+      })()`);
+      if (hunterAzRoute && hunterAzRoute.azStatus && hunterAzRoute.azStatus !== "pending") break;
+      await delay(250);
+    }
+    assert("Hunter Route-to-AZ ok", hunterAzRoute && hunterAzRoute.azStatus === "ok" && hunterAzRoute.azKm > 8, JSON.stringify(hunterAzRoute));
+    assert("Hunter AZ ENTRY shown", hunterAzRoute && hunterAzRoute.azEntryLabel === true, JSON.stringify(hunterAzRoute));
+    await delay(400);
+    await shot("signalterrain_sota_v06_hunter_route_to_az.png");
+    await shot("signalterrain_sota_v06_hunter_az_entry.png");
+
     const searched = await evalExpr(`(() => {
       document.getElementById("ss-search-open").click();
       var input = document.getElementById("ss-search-q");
@@ -810,6 +981,13 @@ async function main() {
         })()`);
         await delay(400);
         await shot("signalterrain_sota_v05_hunter_w320.png");
+        await evalExpr(`(() => {
+          var hike = document.getElementById("ss-hike-body");
+          if (hike) hike.scrollIntoView({ block: "start" });
+          return true;
+        })()`);
+        await delay(300);
+        await shot("signalterrain_sota_v06_w320.png");
       }
     }
 

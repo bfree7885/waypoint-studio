@@ -187,6 +187,78 @@
   }
 
   /**
+   * Clip a normalized 3DEP profile to a prefix distance and recompute
+   * smoothing + gain/loss. Used for Route-to-AZ geometry that is a validated
+   * subroute of a summit-route fixture. Does not scale summit gain.
+   */
+  function clipProfile(elev, maxDistanceKm) {
+    if (!elev) return emptyProfile({}, "unavailable", "Elevation needs a calculated route.");
+    if (elev.status !== "ok" && elev.status !== "partial") return elev;
+    if (!isFiniteNumber(maxDistanceKm)) return elev;
+    var srcPts = elev.points || [];
+    var clipped = [];
+    for (var i = 0; i < srcPts.length; i += 1) {
+      if ((srcPts[i].distanceKm || 0) <= maxDistanceKm + 1e-9) clipped.push(srcPts[i]);
+    }
+    if (clipped.length < 5) {
+      return emptyProfile(
+        { routeId: elev.routeId },
+        "unavailable",
+        "Too few elevation samples on the Route-to-AZ prefix. The calculated AZ route is still shown."
+      );
+    }
+    var series = clipped.map(function (p) {
+      return p.elevM;
+    });
+    var smoothed = movingAverage(series, SMOOTH_WINDOW);
+    var points = [];
+    for (var k = 0; k < clipped.length; k += 1) {
+      points.push({
+        lat: clipped[k].lat,
+        lng: clipped[k].lng,
+        elevM: clipped[k].elevM,
+        distanceKm: clipped[k].distanceKm,
+        resolutionM: clipped[k].resolutionM,
+        elevSmoothM: smoothed[k]
+      });
+    }
+    var acc = accumulate(smoothed);
+    var startM = smoothed[0];
+    var endM = smoothed[smoothed.length - 1];
+    var maxM = Math.max.apply(null, smoothed);
+    var minM = Math.min.apply(null, smoothed);
+    var Geo = global.SignalTerrainSotaGeo;
+    return {
+      status: elev.status,
+      reason: elev.reason,
+      queryVersion: QUERY_VERSION,
+      provider: "usgs-3dep",
+      retrievedAt: elev.retrievedAt,
+      routeId: elev.routeId,
+      points: points,
+      gainM: acc.gainM,
+      lossM: acc.lossM,
+      startM: startM,
+      endM: endM,
+      maxM: maxM,
+      minM: minM,
+      gainLabel: formatElev(Geo, acc.gainM),
+      lossLabel: formatElev(Geo, acc.lossM),
+      startLabel: formatElev(Geo, startM),
+      endLabel: formatElev(Geo, endM),
+      maxLabel: formatElev(Geo, maxM),
+      noiseThresholdM: NOISE_M,
+      smoothWindow: SMOOTH_WINDOW,
+      sampleSpacingM: SAMPLE_SPACING_M,
+      clippedToKm: maxDistanceKm,
+      methodology:
+        "USGS 3DEP samples along the Valhalla geometry, clipped to the Route-to-AZ prefix distance, then a 5-point moving average. Cumulative gain/loss is recomputed on the prefix samples — not a scaled summit-route total.",
+      attribution: elev.attribution || "Elevation from USGS 3DEP (The National Map).",
+      source: elev.source || { provider: "usgs-3dep", developmentFixture: false }
+    };
+  }
+
+  /**
    * Reserved for V0.4 SOTA activation-zone contours from the same DEM.
    * V0.3 does not draw an activation-zone polygon.
    */
@@ -207,6 +279,7 @@
     accumulate: accumulate,
     emptyProfile: emptyProfile,
     normalizeSamples: normalizeSamples,
+    clipProfile: clipProfile,
     describeActivationZoneCapability: describeActivationZoneCapability
   };
 
