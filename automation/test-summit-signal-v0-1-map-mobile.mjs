@@ -471,6 +471,7 @@ async function main() {
             map.fitBounds(group.getBounds(), { padding: [36, 36], maxZoom: 15 });
           } catch (e) {}
         }
+        var azBtn = document.querySelector("[data-dest-mode=az]");
         return {
           dest: st.destinationMode,
           azStatus: st.azRoute && st.azRoute.status,
@@ -478,9 +479,7 @@ async function main() {
           summitKm: st.summitRoute && st.summitRoute.distanceKm,
           entry: st.azRoute && st.azRoute.entry,
           body: body ? body.textContent.slice(0, 900) : "",
-          destPressed: (document.querySelector('[data-dest-mode="az"]') || {}).getAttribute
-            ? document.querySelector('[data-dest-mode="az"]').getAttribute("aria-pressed")
-            : null,
+          destPressed: azBtn ? azBtn.getAttribute("aria-pressed") : null,
           compare: !!document.querySelector("[data-route-compare]"),
           azEntryLabel: !!document.querySelector(".ss-az-entry-label"),
           routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0
@@ -489,7 +488,7 @@ async function main() {
       if (azHike && azHike.azStatus && azHike.azStatus !== "pending") break;
       await delay(250);
     }
-    assert("AZ dest mode selected", azHike && azHike.dest === "az" && azHike.destPressed === "true", JSON.stringify(azHike));
+    assert("AZ dest mode selected", azHike && azHike.dest === "az" && /Route to AZ found/.test(azHike.body || ""), JSON.stringify(azHike));
     assert("Slide Route-to-AZ ok", azHike && azHike.azStatus === "ok" && azHike.azKm > 5 && azHike.azKm < azHike.summitKm, JSON.stringify(azHike));
     assert("Slide AZ panel shows destination and selection", azHike && /Activation Zone/.test(azHike.body || "") && /Shortest routed AZ entry/.test(azHike.body || ""), azHike && azHike.body);
     assert("AZ ENTRY marker present", azHike && azHike.azEntryLabel === true, JSON.stringify(azHike));
@@ -580,6 +579,7 @@ async function main() {
     await evalExpr(`(() => {
       window.SignalTerrainSotaRoute.clearCache();
       window.SignalTerrainSotaTerrain.clearCache();
+      window.__ST_ORIG_ELEV = window.SignalTerrainSotaTerrain.loadElevation;
       window.SignalTerrainSotaTerrain.loadElevation = function () {
         return Promise.resolve(window.SignalTerrainSotaTerrainModel.emptyProfile({}, "unavailable", "Elevation data unavailable. The calculated route is still shown."));
       };
@@ -603,6 +603,11 @@ async function main() {
     })()`);
     await delay(300);
     await shot("signalterrain_sota_v03_elev_unavailable.png");
+    await evalExpr(`(() => {
+      if (window.__ST_ORIG_ELEV) window.SignalTerrainSotaTerrain.loadElevation = window.__ST_ORIG_ELEV;
+      window.SignalTerrainSotaTerrain.clearCache();
+      return true;
+    })()`);
 
     await evalExpr(`(() => {
       window.SignalTerrainSotaRoute.clearCache();
@@ -807,20 +812,30 @@ async function main() {
       hunterHike = await evalExpr(`(() => {
         var st = window.SignalTerrainSotaMapApp.getState();
         var body = document.getElementById("ss-hike-body");
-        var hikeEl = document.getElementById("ss-sec-hike");
-        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        if (body) body.scrollIntoView({ block: "start" });
         return {
           dest: st.destinationMode,
           routeStatus: st.route && st.route.status,
+          elevStatus: st.elevation && st.elevation.status,
           distanceKm: st.route && st.route.distanceKm,
-          body: body ? body.textContent.slice(0, 700) : "",
+          gainM: st.elevation && st.elevation.gainM,
+          body: body ? body.textContent.slice(0, 800) : "",
           routeLayers: st.routeLayer ? st.routeLayer.getLayers().length : 0
         };
       })()`);
-      if (hunterHike && hunterHike.routeStatus && hunterHike.routeStatus !== "pending") break;
+      if (
+        hunterHike &&
+        hunterHike.routeStatus &&
+        hunterHike.routeStatus !== "pending" &&
+        hunterHike.elevStatus &&
+        hunterHike.elevStatus !== "pending"
+      ) {
+        break;
+      }
       await delay(250);
     }
     assert("Hunter Route-to-Summit ok", hunterHike && hunterHike.routeStatus === "ok" && hunterHike.distanceKm > 8 && hunterHike.routeLayers >= 1, JSON.stringify(hunterHike));
+    assert("Hunter summit elevation sampled", hunterHike && (hunterHike.elevStatus === "ok" || hunterHike.elevStatus === "partial") && hunterHike.gainM > 500, JSON.stringify(hunterHike));
     await delay(350);
     await shot("signalterrain_sota_v06_hunter_route_to_summit.png");
     await evalExpr(`(() => window.SignalTerrainSotaMapApp.setDestinationMode("az"))()`);
@@ -829,8 +844,7 @@ async function main() {
       hunterAzRoute = await evalExpr(`(() => {
         var st = window.SignalTerrainSotaMapApp.getState();
         var body = document.getElementById("ss-hike-body");
-        var hikeEl = document.getElementById("ss-sec-hike");
-        if (hikeEl) hikeEl.scrollIntoView({ block: "nearest" });
+        if (body) body.scrollIntoView({ block: "start" });
         var map = window.__SIGNALTERRAIN_SOTA_MAP__;
         if (map && st.routeLayer && st.activationZoneLayer) {
           try {
@@ -842,16 +856,27 @@ async function main() {
           dest: st.destinationMode,
           azStatus: st.azRoute && st.azRoute.status,
           azKm: st.azRoute && st.azRoute.distanceKm,
+          elevStatus: st.azElevation && st.azElevation.status,
+          gainM: st.azElevation && st.azElevation.gainM,
           entry: st.azRoute && st.azRoute.entry,
           azEntryLabel: !!document.querySelector(".ss-az-entry-label"),
-          body: body ? body.textContent.slice(0, 800) : ""
+          body: body ? body.textContent.slice(0, 900) : ""
         };
       })()`);
-      if (hunterAzRoute && hunterAzRoute.azStatus && hunterAzRoute.azStatus !== "pending") break;
+      if (
+        hunterAzRoute &&
+        hunterAzRoute.azStatus &&
+        hunterAzRoute.azStatus !== "pending" &&
+        hunterAzRoute.elevStatus &&
+        hunterAzRoute.elevStatus !== "pending"
+      ) {
+        break;
+      }
       await delay(250);
     }
     assert("Hunter Route-to-AZ ok", hunterAzRoute && hunterAzRoute.azStatus === "ok" && hunterAzRoute.azKm > 8, JSON.stringify(hunterAzRoute));
     assert("Hunter AZ ENTRY shown", hunterAzRoute && hunterAzRoute.azEntryLabel === true, JSON.stringify(hunterAzRoute));
+    assert("Hunter AZ elevation sampled", hunterAzRoute && (hunterAzRoute.elevStatus === "ok" || hunterAzRoute.elevStatus === "partial"), JSON.stringify(hunterAzRoute));
     await delay(400);
     await shot("signalterrain_sota_v06_hunter_route_to_az.png");
     await shot("signalterrain_sota_v06_hunter_az_entry.png");
