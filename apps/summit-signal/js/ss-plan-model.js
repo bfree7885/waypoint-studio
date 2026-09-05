@@ -464,6 +464,16 @@
     return items;
   }
 
+  function startSnapshotValue(accessSt) {
+    if (!accessSt || !accessSt.selected) {
+      return accessSt && accessSt.status === STATES.UNAVAILABLE ? "Unavailable" : "Not selected";
+    }
+    if (accessSt.selected.mappedName) {
+      return accessSt.selected.mappedName + " (" + accessSt.selected.typeLabel + ")";
+    }
+    return accessSt.selected.name;
+  }
+
   function stillVerifySummary(unresolved) {
     var bits = [];
     var ids = {};
@@ -477,7 +487,6 @@
     if (ids["weather-not-checked"]) bits.push("weather");
     if (ids["radio-not-checked"]) bits.push("radio conditions");
     if (ids["offline-not-confirmed"]) bits.push("offline navigation");
-    if (ids["route-unavailable"]) bits.push("navigation");
     return bits.length ? bits.join(", ") : "None listed from current SignalTerrain knowledge";
   }
 
@@ -485,12 +494,7 @@
     var headlineParts = [];
     if (summitSt.name) headlineParts.push(String(summitSt.name).toUpperCase());
     if (summitSt.reference) headlineParts.push(summitSt.reference);
-    var startValue = "Not selected";
-    if (accessSt.selected) {
-      startValue = accessSt.selected.name + " (" + accessSt.selected.typeLabel + ")";
-    } else if (accessSt.status === STATES.UNAVAILABLE) {
-      startValue = "Unavailable";
-    }
+    var startValue = startSnapshotValue(accessSt);
     var azEntry = "Unavailable";
     if (azSt.distanceToEntryLabel && azSt.distanceToEntryLabel !== "Unavailable") azEntry = azSt.distanceToEntryLabel;
     else if (azSt.routeEnters === false) azEntry = "Selected route does not enter Activation Zone";
@@ -518,9 +522,7 @@
     var lines = ["SignalTerrain Activation Plan"];
     var ident = [s.name, s.reference].filter(Boolean).join(" — ");
     lines.push(ident || "Summit unavailable");
-    var start = "Not selected";
-    if (a.selected) start = a.selected.name + " (" + a.selected.typeLabel + ")";
-    else if (a.status === STATES.UNAVAILABLE) start = "Unavailable";
+    var start = startSnapshotValue(a);
     lines.push("Start: " + start);
     lines.push("Destination: " + (h.destinationLabel || "Unavailable"));
     lines.push("Route: " + (h.distanceLabel || "Unavailable"));
