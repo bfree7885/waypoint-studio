@@ -297,6 +297,14 @@ assert("dist copies condition snapshot file", fs.existsSync(path.join(ROOT, "dis
 assert("dist copies condition service file", fs.existsSync(path.join(ROOT, "dist/shedhunting/js/sheds-condition-service.js")));
 assert("dist has .nojekyll", fs.existsSync(path.join(ROOT, "dist/shedhunting/.nojekyll")));
 assert("dist has no CNAME", !fs.existsSync(path.join(ROOT, "dist/shedhunting/CNAME")));
+assert(
+  "dist excludes antler-options exploration archive",
+  !fs.existsSync(path.join(ROOT, "dist/shedhunting/assets/antler-options"))
+);
+assert(
+  "dist keeps canonical antler-mark.svg",
+  fs.existsSync(path.join(ROOT, "dist/shedhunting/assets/antler-mark.svg"))
+);
 assert("dist robots allow indexing", /Allow: \//.test(read("dist/shedhunting/robots.txt")) && !/Disallow: \//.test(read("dist/shedhunting/robots.txt")));
 assert("dist sitemap lists dedicated host", /https:\/\/shedhunting\.org\//.test(read("dist/shedhunting/sitemap.xml")) && /https:\/\/shedhunting\.org\/map\//.test(read("dist/shedhunting/sitemap.xml")));
 assert("dist overview is indexable", /index, follow/i.test(distIndexHtml) && !/noindex/.test(distIndexHtml));

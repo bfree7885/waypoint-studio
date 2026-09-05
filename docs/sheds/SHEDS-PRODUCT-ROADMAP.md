@@ -137,4 +137,4 @@ Migrate later when photos, offline tiles, multi-season archives, native apps, or
 
 - Do not merge a later increment “because the roadmap exists.”
 - Do not run `scripts/publish-shed-hunting-host.mjs` unless the owner asked to publish ShedHunting.org.
-- Do not move `legacy-terrain-intelligence-2026-03-10`.
+- Do not move `legacy-terrain-intelligence-2026-03-10` (immutable historical cutover marker). Immediate rollback uses the previous sheds-site commit SHA printed by the publisher.

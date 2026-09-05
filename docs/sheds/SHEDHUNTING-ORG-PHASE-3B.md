@@ -74,9 +74,9 @@ Preserved in git history at the HEAD SHA above (no force-push):
 - `fieldview.html`, `field-guide/`, `api/observations.json` (one dummy observation near 39.5, −98.2)
 - Legacy docs: `PRODUCT.md`, `PAYWALL.md`, `DEVELOPMENT_PLAN.md`, `PROJECT_STATE.md`
 
-These are the March 2026 “Terrain Intelligence” prototype, not the current Shed Hunting product. Replacing **deployed** files is intended; **history** at `238cbe15` is the rollback.
+These are the March 2026 “Terrain Intelligence” prototype, not the current Shed Hunting product. Replacing **deployed** files is intended; **history** at `238cbe15` is the historical cutover rollback point.
 
-Rollback tag the publisher will try to push: `legacy-terrain-intelligence-2026-03-10`.
+Tag `legacy-terrain-intelligence-2026-03-10` (→ `238cbe15…`) is the **immutable** Terrain Intelligence → Shed Hunting cutover marker. The publisher does not move it. Each publish prints the previous sheds-site HEAD SHA for immediate rollback (manual operator action).
 
 ## Why overwrite did not run
 

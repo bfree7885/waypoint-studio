@@ -33,6 +33,8 @@ function copyDir(from, to, depth) {
   fs.mkdirSync(to, { recursive: true });
   for (const ent of fs.readdirSync(from, { withFileTypes: true })) {
     if (ent.name === "host") continue;
+    // Design-history exploration only — keep in Studio source, never publish.
+    if (ent.name === "antler-options") continue;
     if (depth === 0 && ent.name === "index.html") continue;
     const src = path.join(from, ent.name);
     const dst = path.join(to, ent.name);

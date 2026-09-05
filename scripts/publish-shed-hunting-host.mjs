@@ -3,7 +3,12 @@
  * Publish dist/shedhunting/ to bfree7885/sheds-site (GitHub Pages for shedhunting.org).
  *
  * Keeps the existing shedhunting.org CNAME. Does not change waypointstudio.org.
- * Does not force-push. Tags the pre-replace HEAD for rollback.
+ * Does not force-push. Does not move tags.
+ *
+ * Rollback: prints the pre-replace sheds-site HEAD SHA (previous production).
+ * Operator rollback is a manual, explicit action using that SHA / git history.
+ * Tag `legacy-terrain-intelligence-2026-03-10` is an immutable historical
+ * Terrain Intelligence → Shed Hunting cutover marker — not a rolling pointer.
  *
  * Env:
  *   SHEDHUNTING_HOST_REPO             default bfree7885/sheds-site
@@ -23,7 +28,6 @@ const DIST = path.join(ROOT, "dist/shedhunting");
 const REPO = process.env.SHEDHUNTING_HOST_REPO || "bfree7885/sheds-site";
 const TOKEN = process.env.SHEDHUNTING_DEPLOY_TOKEN || "";
 const ALLOW_PLACEHOLDER = process.env.SHEDHUNTING_ALLOW_PLACEHOLDER_TILES === "1";
-const ROLLBACK_TAG = "legacy-terrain-intelligence-2026-03-10";
 
 function run(cmd, args, opts) {
   const res = spawnSync(cmd, args, Object.assign({ encoding: "utf8" }, opts));
@@ -142,14 +146,11 @@ function main() {
   }
 
   const prev = run("git", ["rev-parse", "HEAD"], { cwd: tmp }).trim();
-  console.log("sheds-site HEAD before replace:", prev);
-  try {
-    run("git", ["tag", "-f", ROLLBACK_TAG, prev], { cwd: tmp });
-    run("git", ["push", "origin", ROLLBACK_TAG], { cwd: tmp });
-    console.log("rollback tag:", ROLLBACK_TAG, prev);
-  } catch (e) {
-    console.error("Could not push rollback tag (history on main is still intact at " + prev + "):", String(e.message || e).slice(0, 400));
-  }
+  console.log("Previous production:", prev);
+  console.log("Rollback commit:", prev);
+  console.log(
+    "(Historical cutover marker legacy-terrain-intelligence-2026-03-10 is immutable; not moved.)"
+  );
 
   for (const ent of fs.readdirSync(tmp)) {
     if (ent === ".git") continue;
@@ -168,7 +169,9 @@ function main() {
   run("git", ["-c", "user.email=41898282+github-actions[bot]@users.noreply.github.com", "-c", "user.name=github-actions[bot]", "commit", "-m", "Publish generated ShedHunting.org host from waypoint-studio"], { cwd: tmp });
   run("git", ["push", "origin", "HEAD:main"], { cwd: tmp });
   const next = run("git", ["rev-parse", "HEAD"], { cwd: tmp }).trim();
-  console.log("published to https://github.com/" + REPO, "commit", next, "rollback", prev);
+  console.log("published to https://github.com/" + REPO, "commit", next);
+  console.log("Previous production:", prev);
+  console.log("Rollback commit:", prev);
 }
 
 try {

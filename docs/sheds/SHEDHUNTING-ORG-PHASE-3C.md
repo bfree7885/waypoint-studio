@@ -66,7 +66,7 @@ On dedicated-host **source generation** (`scripts/prepare-shed-hunting-host.mjs`
 - Host overview and map are `index, follow` with shedhunting.org canonicals
 - Dist `/map/` strips the Studio cutover fallback `<div id="sheds-studio-cutover">` **and** its `showFallback` script with an exact script match. A replace of `id="…"…</div>` leaves a broken `<div` that turns the next `<script>` into visible page text. A `[\s\S]*?showFallback` script replace is also wrong: it starts at the earlier head `redirectLegacyStudio` script and eats `</head>` / CSS.
 
-This phase does **not** push those generate changes to `sheds-site`. Live host files stay as last published until an explicit republish. The pre-cutover republish is a separate owner-local `sheds-site` push; do not use `publish-shed-hunting-host.mjs` for that pass (it force-moves the rollback tag).
+This phase does **not** push those generate changes to `sheds-site`. Live host files stay as last published until an explicit republish. The pre-cutover republish is a separate owner-local `sheds-site` push; prefer that over `publish-shed-hunting-host.mjs` for metadata-only passes. Tag `legacy-terrain-intelligence-2026-03-10` is an immutable historical cutover marker (not a rolling pointer); each publish records the previous sheds-site commit SHA for rollback.
 
 ## Data migration
 
