@@ -405,6 +405,16 @@ body {
   color: var(--ss-cyan);
 }
 
+.ss-build {
+  margin: 0 0 8px;
+  font-family: var(--ss-mono);
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--ss-dim);
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
 .ss-layers {
   position: absolute;
   z-index: 1100;

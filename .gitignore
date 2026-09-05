@@ -40,4 +40,7 @@ private/university/server/.env.*
 # Dedicated Shed Hunting host artifact (generated; published to companion repo)
 dist/shedhunting/
 
+# Isolated SignalTerrain V0.9 field-test host artifact (published to waypoint-studio-site)
+dist/signalterrain-field-test/
+
 node_modules/

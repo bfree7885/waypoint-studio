@@ -12,6 +12,8 @@ Canonical V0.7 write-up: [`V0.7.md`](V0.7.md)
 Canonical V0.8 write-up: [`V0.8.md`](V0.8.md)  
 Canonical V0.9 write-up: [`V0.9.md`](V0.9.md)
 
+Unlisted field-test (not a public launch): [https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/](https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/)
+
 Runtime in this increment: `/apps/summit-signal/` (do not occupy `/apps/signalterrain/`).
 
 Historical cyber documentation remains at `docs/SIGNALTERRAIN-*.md` and must not be overwritten by this product.

@@ -298,7 +298,7 @@ const noStart = Plan.buildPlan({
 assert("copy coordinates unavailable without start", /Coordinates: Unavailable/.test(noStart.copyText));
 
 const html = read("apps/summit-signal/index.html");
-assert("kicker is V0.8", /V0\.8 · SOTA/.test(html));
+assert("kicker is V0.8+", /V0\.[89] · /.test(html));
 assert("html Start section", /id="ss-start-section"/.test(html) && /id="ss-start-body"/.test(html));
 assert("html Show plan", /id="ss-show-plan"/.test(html));
 assert("unpublished", /noindex/i.test(html));
