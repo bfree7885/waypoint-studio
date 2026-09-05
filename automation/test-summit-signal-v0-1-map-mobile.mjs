@@ -317,6 +317,26 @@ async function main() {
     assert("no fabricated route language", access && access.recommended === false, JSON.stringify(access));
     assert("OSM caveat visible", /OpenStreetMap data may be incomplete|candidate access information/i.test(access.caveat || ""), access.caveat);
     await evalExpr(`(() => {
+      var plan = document.getElementById("ss-sec-plan");
+      if (plan) plan.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(400);
+    const incompletePlan = await evalExpr(`(() => {
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan && window.SignalTerrainSotaMapApp.getActivationPlan();
+      var body = document.getElementById("ss-plan-body");
+      return {
+        accessState: plan && plan.fieldReadiness && plan.fieldReadiness.find(function (r) { return r.id === "access"; }).state,
+        routeState: plan && plan.fieldReadiness && plan.fieldReadiness.find(function (r) { return r.id === "route"; }).state,
+        verify: !!(body && body.querySelector("[data-plan-verify]")),
+        location: body && body.querySelector(".ss-plan-location") && body.querySelector(".ss-plan-location").textContent
+      };
+    })()`);
+    assert("incomplete plan access unknown", incompletePlan && incompletePlan.accessState === "UNKNOWN", JSON.stringify(incompletePlan));
+    assert("incomplete GPS unavailable", incompletePlan && /Location unavailable/.test(incompletePlan.location || ""), JSON.stringify(incompletePlan));
+    await shot("signalterrain_sota_v07_incomplete_plan.png");
+    await shot("signalterrain_sota_v07_gps_unavailable.png");
+    await evalExpr(`(() => {
       var body = document.querySelector(".ss-sheet__body");
       if (body) body.scrollTop = 0;
       var access = document.getElementById("ss-sec-planning");
@@ -377,6 +397,54 @@ async function main() {
     assert("plan the hike shows start", hike && /Slide Mountain Parking Area/.test(hike.body || ""), hike && hike.body);
     assert("elevation profile rendered", hike && hike.profile === true && hike.gainM > 400, JSON.stringify(hike));
     assert("estimated time tilde", hike && /^~/.test(hike.durationLabel || ""), JSON.stringify(hike));
+    await evalExpr(`(() => {
+      var plan = document.getElementById("ss-sec-plan");
+      if (plan) plan.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(400);
+    const slidePlan = await evalExpr(`(() => {
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      var body = document.getElementById("ss-plan-body");
+      var radio = body && body.querySelector('[data-check-id="radio"]');
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      return {
+        headline: body && body.querySelector(".ss-plan-snapshot__headline") && body.querySelector(".ss-plan-snapshot__headline").textContent,
+        dest: plan && plan.hike && plan.hike.destinationLabel,
+        accessState: plan && plan.fieldReadiness.find(function (r) { return r.id === "access"; }).state,
+        routeState: plan && plan.fieldReadiness.find(function (r) { return r.id === "route"; }).state,
+        weather: plan && plan.fieldReadiness.find(function (r) { return r.id === "weather"; }).state,
+        verifyText: body && body.querySelector("[data-plan-verify]") && body.querySelector("[data-plan-verify]").textContent,
+        checklist: body && body.querySelector("[data-plan-checklist]") && body.querySelector("[data-plan-checklist]").textContent,
+        copy: !!document.getElementById("ss-plan-copy"),
+        parkingConfirmed: /parking confirmed|legal parking|official trailhead/i.test((body && body.textContent) || "")
+      };
+    })()`);
+    assert("Slide Activation Plan headline", slidePlan && /SLIDE MOUNTAIN/.test(slidePlan.headline || "") && /W2\/GC-001/.test(slidePlan.headline || ""), JSON.stringify(slidePlan));
+    assert("Slide plan access verify / route known", slidePlan && slidePlan.accessState === "VERIFY" && slidePlan.routeState === "KNOWN", JSON.stringify(slidePlan));
+    assert("Slide plan weather not integrated", slidePlan && slidePlan.weather === "NOT_INTEGRATED", JSON.stringify(slidePlan));
+    assert("Verify before you go visible", slidePlan && /Verify parking\/access legality/.test(slidePlan.verifyText || ""), JSON.stringify(slidePlan));
+    assert("Personal field checklist visible", slidePlan && /Personal field checklist/.test(slidePlan.checklist || "") && /Radio/.test(slidePlan.checklist || ""), JSON.stringify(slidePlan));
+    assert("Copy Plan control present", slidePlan && slidePlan.copy === true, JSON.stringify(slidePlan));
+    assert("plan does not confirm parking", slidePlan && slidePlan.parkingConfirmed === false, JSON.stringify(slidePlan));
+    await shot("signalterrain_sota_v07_slide_activation_plan.png");
+    await evalExpr(`(() => {
+      var verify = document.querySelector("[data-plan-verify]");
+      if (verify) verify.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(250);
+    await shot("signalterrain_sota_v07_verify_before_you_go.png");
+    await evalExpr(`(() => {
+      var check = document.querySelector("[data-plan-checklist]");
+      if (check) check.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(250);
+    await shot("signalterrain_sota_v07_personal_checklist.png");
     const azRel = await evalExpr(`(() => {
       var st = window.SignalTerrainSotaMapApp.getState();
       var azEl = document.getElementById("ss-az-body");
@@ -497,6 +565,23 @@ async function main() {
     await shot("signalterrain_sota_v06_slide_route_to_az.png");
     await shot("signalterrain_sota_v06_slide_az_entry.png");
     await evalExpr(`(() => {
+      var plan = document.getElementById("ss-sec-plan");
+      if (plan) plan.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    const azPlanUi = await evalExpr(`(() => {
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      var body = document.getElementById("ss-plan-body");
+      return {
+        dest: plan && plan.hike && plan.hike.destinationLabel,
+        destMode: plan && plan.hike && plan.hike.destinationMode,
+        snapshot: body && body.querySelector("[data-plan-snapshot]") && body.querySelector("[data-plan-snapshot]").textContent
+      };
+    })()`);
+    assert("Route-to-AZ plan destination", azPlanUi && azPlanUi.dest === "Activation Zone" && azPlanUi.destMode === "az", JSON.stringify(azPlanUi));
+    await shot("signalterrain_sota_v07_slide_route_to_az_plan.png");
+    await evalExpr(`(() => {
       var cmp = document.querySelector(".ss-route-compare");
       if (cmp) cmp.scrollIntoView({ block: "center" });
       return true;
@@ -541,6 +626,13 @@ async function main() {
     assert("AZ failure copy is honest", azFail && /No valid AZ routing candidate/.test(azFail.body || ""), azFail && azFail.body);
     await delay(300);
     await shot("signalterrain_sota_v06_az_route_failure.png");
+    await evalExpr(`(() => {
+      var plan = document.getElementById("ss-sec-plan");
+      if (plan) plan.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    await shot("signalterrain_sota_v07_provider_failure_plan.png");
     await evalExpr(`(() => {
       if (window.__ST_ORIG_AZ_ROUTE) window.SignalTerrainSotaAzRoute.loadAzRoute = window.__ST_ORIG_AZ_ROUTE;
       window.SignalTerrainSotaAzRoute.clearCache();
@@ -838,6 +930,23 @@ async function main() {
     assert("Hunter summit elevation sampled", hunterHike && (hunterHike.elevStatus === "ok" || hunterHike.elevStatus === "partial") && hunterHike.gainM > 500, JSON.stringify(hunterHike));
     await delay(350);
     await shot("signalterrain_sota_v06_hunter_route_to_summit.png");
+    await evalExpr(`(() => {
+      var plan = document.getElementById("ss-sec-plan");
+      if (plan) plan.scrollIntoView({ block: "start" });
+      return true;
+    })()`);
+    await delay(300);
+    const hunterPlanUi = await evalExpr(`(() => {
+      var plan = window.SignalTerrainSotaMapApp.getActivationPlan();
+      var body = document.getElementById("ss-plan-body");
+      return {
+        headline: body && body.querySelector(".ss-plan-snapshot__headline") && body.querySelector(".ss-plan-snapshot__headline").textContent,
+        start: plan && plan.access && plan.access.selected && plan.access.selected.name,
+        type: plan && plan.access && plan.access.selected && plan.access.selected.typeLabel
+      };
+    })()`);
+    assert("Hunter Activation Plan", hunterPlanUi && /HUNTER MOUNTAIN/.test(hunterPlanUi.headline || "") && hunterPlanUi.type === "Mapped parking candidate", JSON.stringify(hunterPlanUi));
+    await shot("signalterrain_sota_v07_hunter_activation_plan.png");
     await evalExpr(`(() => window.SignalTerrainSotaMapApp.setDestinationMode("az"))()`);
     let hunterAzRoute = null;
     for (let i = 0; i < 40; i += 1) {
@@ -1013,6 +1122,20 @@ async function main() {
         })()`);
         await delay(300);
         await shot("signalterrain_sota_v06_w320.png");
+        await evalExpr(`(() => {
+          var plan = document.getElementById("ss-sec-plan");
+          if (plan) plan.scrollIntoView({ block: "start" });
+          return true;
+        })()`);
+        await delay(300);
+        await shot("signalterrain_sota_v07_w320.png");
+        const planOverflow = await evalExpr(`(() => {
+          var overflowX = document.documentElement.scrollWidth > document.documentElement.clientWidth + 2;
+          var plan = document.getElementById("ss-plan-body");
+          var box = plan ? plan.getBoundingClientRect() : { width: 0 };
+          return { overflowX: overflowX, planW: box.width, clientW: document.documentElement.clientWidth };
+        })()`);
+        assert("w320 Activation Plan no overflow", planOverflow && planOverflow.overflowX === false, JSON.stringify(planOverflow));
       }
     }
 
