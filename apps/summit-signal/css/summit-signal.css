@@ -488,10 +488,14 @@ body {
   border-color: var(--ss-cyan);
 }
 
+.ss-access-list li.is-inspect {
+  border-color: var(--ss-brass);
+}
+
 .ss-start-hike {
   appearance: none;
   margin-top: 6px;
-  min-height: 32px;
+  min-height: 40px;
   padding: 0 8px;
   border: 1px solid var(--ss-brass);
   background: transparent;
@@ -725,6 +729,11 @@ body {
   outline-offset: 1px;
 }
 
+.ss-access-pin.is-inspect {
+  outline: 2px solid var(--ss-brass);
+  outline-offset: 1px;
+}
+
 .ss-note--caveat {
   color: var(--ss-muted);
 }
@@ -890,6 +899,52 @@ body {
   stroke-linecap: round;
 }
 
+.ss-start-section {
+  margin: 0 0 12px;
+  padding: 8px;
+  background: var(--ss-panel-2);
+  border: 1px solid var(--ss-line);
+}
+
+.ss-start-section h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ss-brass);
+}
+
+.ss-start-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.ss-start-actions .ss-btn,
+.ss-start-actions .ss-start-hike {
+  flex: 1 1 8rem;
+  min-height: 40px;
+}
+
+.ss-show-plan {
+  position: absolute;
+  z-index: 1100;
+  left: 10px;
+  bottom: 88px;
+  appearance: none;
+  border: 1px solid var(--ss-brass);
+  background: var(--ss-brass);
+  color: var(--ss-ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 0 12px;
+  cursor: pointer;
+  max-width: calc(100% - 20px);
+}
+
 .ss-az-entry-wrap {
   background: none;
   border: 0;
@@ -936,6 +991,16 @@ body {
   .ss-kv {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+
+  .ss-start-actions .ss-btn,
+  .ss-start-actions .ss-start-hike {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .ss-show-plan {
+    bottom: 96px;
   }
 
   .ss-layers {

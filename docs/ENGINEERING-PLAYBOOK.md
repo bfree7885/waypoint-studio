@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — SignalTerrain V0.8 field-test access + Maps handoff
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.8.md`
+
+- Inspect and Start hike here are different actions. Marker click must not call the router.
+- Close/hide of the summit sheet must not call `clearSelection()`. Phone map inspection needs the route, AZ, and plan to stay in memory.
+- Surface existing OSM `access`/`fee` tags as “Mapped … tag: value”. Never translate `access=yes` into legal parking.
+- Maps handoff is coordinates only. Do not geocode a feature name (it can resolve to the summit).
+- Unnamed parking stays unnamed. Copy Plan includes start coordinates without access-legality claims.
+
 ### 2026-09-05 — SignalTerrain V0.7 Activation Plan + Field Readiness
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.7.md`

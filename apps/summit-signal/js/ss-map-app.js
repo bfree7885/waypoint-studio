@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.7 map application.
+ * SignalTerrain SOTA V0.8 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -36,6 +36,8 @@
     access: null,
     accessSeq: 0,
     selectedAccess: null,
+    inspectedAccess: null,
+    sheetOpen: true,
     destinationMode: "summit",
     hikeSeq: 0,
     route: null,
@@ -267,10 +269,23 @@
     return !!(state.selectedAccess && accessKey(state.selectedAccess) === accessKey(feature));
   }
 
-  function accessPinHtml(kind, label, selected) {
+  function isInspectedAccess(feature) {
+    return !!(state.inspectedAccess && accessKey(state.inspectedAccess) === accessKey(feature));
+  }
+
+  function accessRole(feature) {
+    if (isSelectedAccess(feature)) return "start";
+    if (isInspectedAccess(feature)) return "inspect";
+    return "candidate";
+  }
+
+  function accessPinHtml(kind, label, role) {
+    var extra = "";
+    if (role === "start") extra = " is-start";
+    else if (role === "inspect") extra = " is-inspect";
     var cls =
       (kind === "trailhead" ? "ss-access-pin ss-access-pin--trailhead" : "ss-access-pin ss-access-pin--parking") +
-      (selected ? " is-start" : "");
+      extra;
     var mark = kind === "trailhead" ? "" : "P";
     return (
       '<div class="' +
@@ -283,11 +298,11 @@
     );
   }
 
-  function makeAccessIcon(kind, label, selected) {
+  function makeAccessIcon(kind, label, role) {
     var L = global.L;
     return L.divIcon({
       className: "ss-marker-wrap ss-access-wrap",
-      html: accessPinHtml(kind, label, selected),
+      html: accessPinHtml(kind, label, role),
       iconSize: [22, 22],
       iconAnchor: [11, 18]
     });
@@ -345,28 +360,30 @@
     (catalog.trailheads || []).forEach(function (th) {
       if (th.lat == null || th.lng == null) return;
       var label = th.name || "Unnamed mapped trailhead";
+      var role = accessRole(th);
       var marker = L.marker([th.lat, th.lng], {
-        icon: makeAccessIcon("trailhead", label, isSelectedAccess(th)),
+        icon: makeAccessIcon("trailhead", label, role),
         title: label,
         keyboard: true,
-        zIndexOffset: isSelectedAccess(th) ? 400 : 200
+        zIndexOffset: role === "start" ? 500 : role === "inspect" ? 420 : 200
       });
       marker.on("click", function () {
-        startHikeFromAccess(th);
+        inspectAccess(th);
       });
       marker.addTo(state.trailheadLayer);
     });
     (catalog.parking || []).forEach(function (pk) {
       if (pk.lat == null || pk.lng == null) return;
       var label = pk.name || "Unnamed mapped parking";
+      var role = accessRole(pk);
       var marker = L.marker([pk.lat, pk.lng], {
-        icon: makeAccessIcon("parking", label, isSelectedAccess(pk)),
+        icon: makeAccessIcon("parking", label, role),
         title: label,
         keyboard: true,
-        zIndexOffset: isSelectedAccess(pk) ? 400 : 180
+        zIndexOffset: role === "start" ? 500 : role === "inspect" ? 420 : 180
       });
       marker.on("click", function () {
-        startHikeFromAccess(pk);
+        inspectAccess(pk);
       });
       marker.addTo(state.parkingLayer);
     });
@@ -381,7 +398,9 @@
       var li = global.document.createElement("li");
       var name = f.name || unnamedFallback;
       var selected = isSelectedAccess(f);
+      var inspected = isInspectedAccess(f);
       if (selected) li.className = "is-start";
+      else if (inspected) li.className = "is-inspect";
       var meta = [];
       if (f.distanceLabel) meta.push(f.distanceLabel);
       meta.push("OSM " + f.osmType + "/" + f.osmId);
@@ -392,13 +411,19 @@
         escapeHtml(meta.join(" · ")) +
         "</span>";
       if (startable) {
+        li.setAttribute("data-inspect-access", accessKey(f));
+        li.addEventListener("click", function (ev) {
+          if (ev.target && ev.target.closest && ev.target.closest("[data-start-hike]")) return;
+          inspectAccess(f);
+        });
         var btn = global.document.createElement("button");
         btn.type = "button";
         btn.className = "ss-start-hike";
         btn.setAttribute("data-start-hike", accessKey(f));
         btn.setAttribute("aria-pressed", selected ? "true" : "false");
         btn.textContent = selected ? "Starting here" : "Start hike here";
-        btn.addEventListener("click", function () {
+        btn.addEventListener("click", function (ev) {
+          ev.stopPropagation();
           startHikeFromAccess(f);
         });
         li.appendChild(btn);
@@ -422,6 +447,7 @@
     var st = catalog && catalog.status ? catalog.status : "pending";
     body.setAttribute("data-access-status", st);
     if (caveat) caveat.textContent = "";
+    renderStartSection();
     if (st === "pending") {
       body.textContent = "Looking up mapped access…";
       return;
@@ -470,6 +496,187 @@
     group("Nearby mapped trailheads", planning.trailheads, planning.trailheads.features, "Unnamed mapped trailhead", true);
     group("Nearby mapped parking", planning.parking, planning.parking.features, "Unnamed mapped parking", true);
     if (caveat) caveat.textContent = planning.candidateNote || planning.caveat || "";
+  }
+
+  function currentStartFeature() {
+    return state.inspectedAccess || state.selectedAccess || null;
+  }
+
+  function renderStartSection() {
+    var section = $("ss-start-section");
+    var body = $("ss-start-body");
+    if (!section || !body) return;
+    var AM = global.SignalTerrainSotaAccessModel;
+    var feature = currentStartFeature();
+    body.innerHTML = "";
+    if (!feature) {
+      setHidden(section, false);
+      var idle = global.document.createElement("p");
+      idle.className = "ss-note";
+      idle.textContent =
+        "Select a mapped parking area or trailhead to inspect it. Start hike here commits the hiking route origin.";
+      body.appendChild(idle);
+      return;
+    }
+    setHidden(section, false);
+    var view = AM && AM.startInspection ? AM.startInspection(feature) : null;
+    var dl = global.document.createElement("dl");
+    dl.className = "ss-kv-list ss-start-kv";
+    function row(k, v, extra) {
+      var wrap = global.document.createElement("div");
+      wrap.className = "ss-kv";
+      var dt = global.document.createElement("dt");
+      dt.textContent = k;
+      var dd = global.document.createElement("dd");
+      dd.textContent = v;
+      if (extra) dd.setAttribute("data-start-field", extra);
+      wrap.appendChild(dt);
+      wrap.appendChild(dd);
+      dl.appendChild(wrap);
+    }
+    row("Name", (view && view.displayName) || "Unavailable", "name");
+    row("Type", (view && view.typeLabel) || "Unavailable", "type");
+    row("Coordinates", (view && view.coordsLabel) || "Unavailable", "coords");
+    row("Access", (view && view.accessDisplay) || "Unavailable", "access");
+    row("Fee", (view && view.feeDisplay) || "Unavailable", "fee");
+    if (view && view.osmRef) row("OSM", view.osmRef, "osm");
+    body.appendChild(dl);
+    if (state.selectedAccess && accessKey(state.selectedAccess) !== accessKey(feature)) {
+      var keep = global.document.createElement("p");
+      keep.className = "ss-note";
+      keep.setAttribute("data-start-keep", "true");
+      var committedName =
+        AM && AM.startDisplayName
+          ? AM.startDisplayName(state.selectedAccess)
+          : state.selectedAccess.name || "the committed start";
+      keep.textContent =
+        "Current hike start remains " +
+        committedName +
+        ". Start hike here replaces the route origin.";
+      body.appendChild(keep);
+    }
+    var actions = global.document.createElement("div");
+    actions.className = "ss-start-actions";
+    var commit = global.document.createElement("button");
+    commit.type = "button";
+    commit.className = "ss-start-hike";
+    commit.id = "ss-start-commit";
+    commit.setAttribute("data-start-hike", accessKey(feature));
+    commit.setAttribute("aria-pressed", isSelectedAccess(feature) ? "true" : "false");
+    commit.textContent = isSelectedAccess(feature) ? "Starting here" : "Start hike here";
+    commit.addEventListener("click", function () {
+      startHikeFromAccess(feature);
+    });
+    actions.appendChild(commit);
+    var copyBtn = global.document.createElement("button");
+    copyBtn.type = "button";
+    copyBtn.className = "ss-btn ss-btn--ghost";
+    copyBtn.id = "ss-start-copy";
+    copyBtn.textContent = "Copy coordinates";
+    copyBtn.disabled = !(view && view.hasCoordinates);
+    copyBtn.addEventListener("click", function () {
+      copyStartCoordinates(feature);
+    });
+    actions.appendChild(copyBtn);
+    var mapsBtn = global.document.createElement("button");
+    mapsBtn.type = "button";
+    mapsBtn.className = "ss-btn ss-btn--ghost";
+    mapsBtn.id = "ss-start-open-maps";
+    mapsBtn.textContent = "Open in Maps";
+    var mapsUrl = view && view.mapsUrl ? view.mapsUrl : AM && AM.mapsHandoffUrl ? AM.mapsHandoffUrl(feature) : null;
+    if (mapsUrl) mapsBtn.setAttribute("data-maps-url", mapsUrl);
+    mapsBtn.disabled = !mapsUrl;
+    mapsBtn.addEventListener("click", function () {
+      openMapsHandoff(feature);
+    });
+    actions.appendChild(mapsBtn);
+    body.appendChild(actions);
+    var status = global.document.createElement("p");
+    status.className = "ss-note";
+    status.id = "ss-start-copy-status";
+    status.setAttribute("aria-live", "polite");
+    body.appendChild(status);
+    if (!view || !view.hasCoordinates) {
+      var miss = global.document.createElement("p");
+      miss.className = "ss-note";
+      miss.setAttribute("data-start-coords", "unavailable");
+      miss.textContent = "Coordinates unavailable for this mapped feature.";
+      body.appendChild(miss);
+    }
+  }
+
+  function inspectAccess(feature) {
+    if (!feature) return null;
+    state.inspectedAccess = feature;
+    state.sheetOpen = true;
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    plotAccess(state.access);
+    if (summit) renderAccessPanel(summit, state.access || { status: "pending" });
+    else renderStartSection();
+    syncSheetVisibility();
+    var AM = global.SignalTerrainSotaAccessModel;
+    var label = AM && AM.startDisplayName ? AM.startDisplayName(feature) : feature.name || "mapped start";
+    announce("Inspecting " + label + ". Start hike here commits the route origin.");
+    return feature;
+  }
+
+  function copyStartCoordinates(feature) {
+    var AM = global.SignalTerrainSotaAccessModel;
+    var text = AM && AM.formatStartCoordinates ? AM.formatStartCoordinates(feature) : null;
+    var statusEl = $("ss-start-copy-status");
+    function note(msg) {
+      if (statusEl) statusEl.textContent = msg;
+      announce(msg);
+    }
+    if (!text) {
+      note("Coordinates unavailable for this mapped feature.");
+      return Promise.resolve(false);
+    }
+    function ok() {
+      note("Coordinates copied.");
+      return true;
+    }
+    function fail() {
+      note("Copy is unavailable in this browser.");
+      return false;
+    }
+    if (global.navigator && global.navigator.clipboard && global.navigator.clipboard.writeText) {
+      return global.navigator.clipboard.writeText(text).then(ok, function () {
+        return fallbackCopyText(text) ? ok() : fail();
+      });
+    }
+    return Promise.resolve(fallbackCopyText(text) ? ok() : fail());
+  }
+
+  function openMapsHandoff(feature) {
+    var AM = global.SignalTerrainSotaAccessModel;
+    var url = AM && AM.mapsHandoffUrl ? AM.mapsHandoffUrl(feature) : null;
+    var statusEl = $("ss-start-copy-status");
+    function note(msg) {
+      if (statusEl) statusEl.textContent = msg;
+      announce(msg);
+    }
+    if (!url) {
+      note("Maps handoff unavailable — this mapped feature has no coordinates.");
+      return null;
+    }
+    try {
+      if (typeof global.open === "function") {
+        var opened = global.open(url, "_blank", "noopener,noreferrer");
+        if (opened === null) {
+          note("Maps handoff was blocked by the browser. Coordinates remain available to copy.");
+        } else {
+          note("Opening maps at the selected start coordinates.");
+        }
+      } else {
+        note("Maps handoff unavailable in this browser.");
+        return url;
+      }
+    } catch (e) {
+      note("Maps handoff unavailable in this browser.");
+      return null;
+    }
+    return url;
   }
 
   function maybeFocusAccess(summit, catalog) {
@@ -851,14 +1058,20 @@
           return true;
         },
         function () {
-          return fallbackCopyPlan(value);
+          var ok = fallbackCopyText(value);
+          if (ok) announce("Activation Plan copied");
+          else announce("Copy is unavailable in this browser");
+          return ok;
         }
       );
     }
-    return Promise.resolve(fallbackCopyPlan(value));
+    var ok = fallbackCopyText(value);
+    if (ok) announce("Activation Plan copied");
+    else announce("Copy is unavailable in this browser");
+    return Promise.resolve(ok);
   }
 
-  function fallbackCopyPlan(value) {
+  function fallbackCopyText(value) {
     try {
       var ta = global.document.createElement("textarea");
       ta.value = value;
@@ -867,12 +1080,10 @@
       ta.style.left = "-9999px";
       global.document.body.appendChild(ta);
       ta.select();
-      var ok = global.document.execCommand("copy");
+      var copied = global.document.execCommand("copy");
       global.document.body.removeChild(ta);
-      if (ok) announce("Activation Plan copied");
-      return ok;
+      return copied;
     } catch (e) {
-      announce("Copy is unavailable in this browser");
       return false;
     }
   }
@@ -960,8 +1171,13 @@
           value: plan.access.selected ? plan.access.selected.typeLabel : "Unavailable"
         },
         {
+          id: "coords",
+          label: "Start coordinates",
+          value: plan.access.selected ? plan.access.selected.coordsLabel : "Unavailable"
+        },
+        {
           id: "straight",
-          label: "Straight-line",
+          label: "Straight-line distance to summit",
           value: plan.access.selected && plan.access.selected.straightLineLabel
             ? plan.access.selected.straightLineLabel
             : "Unavailable"
@@ -1457,7 +1673,9 @@
     if (!summit || !feature) return Promise.resolve(null);
     var Route = global.SignalTerrainSotaRoute;
     var Terrain = global.SignalTerrainSotaTerrain;
+    state.inspectedAccess = feature;
     state.selectedAccess = feature;
+    state.sheetOpen = true;
     var seq = (state.hikeSeq += 1);
     state.summitRoute = { status: "pending" };
     state.azRoute = state.destinationMode === "az" ? { status: "pending" } : null;
@@ -1547,8 +1765,7 @@
     var sheet = $("ss-sheet");
     if (!sheet) return;
     if (!summit) {
-      setHidden(sheet, true);
-      sheet.setAttribute("aria-hidden", "true");
+      syncSheetVisibility();
       return;
     }
     var nearby = global.SignalTerrainSotaGeo.nearbySummits(summit, state.summits, { limit: NEARBY_LIMIT });
@@ -1612,9 +1829,48 @@
       });
     }
 
-    setHidden(sheet, false);
-    sheet.setAttribute("aria-hidden", "false");
+    setHidden(sheet, state.sheetOpen === false);
+    sheet.setAttribute("aria-hidden", state.sheetOpen === false ? "true" : "false");
+    syncSheetVisibility();
     announce("Selected " + (summit.name || summit.reference || "summit"));
+  }
+
+  function syncSheetVisibility() {
+    var sheet = $("ss-sheet");
+    var showBtn = $("ss-show-plan");
+    if (!state.selectedId) {
+      setHidden(sheet, true);
+      if (sheet) sheet.setAttribute("aria-hidden", "true");
+      setHidden(showBtn, true);
+      return;
+    }
+    var hide = state.sheetOpen === false;
+    setHidden(sheet, hide);
+    if (sheet) sheet.setAttribute("aria-hidden", hide ? "true" : "false");
+    setHidden(showBtn, !hide);
+  }
+
+  function hideSheet() {
+    if (!state.selectedId) return;
+    state.sheetOpen = false;
+    syncSheetVisibility();
+    if (state.map) {
+      try {
+        state.map.invalidateSize();
+      } catch (e) {}
+    }
+    announce("Summit plan hidden. Map and planning state are unchanged.");
+  }
+
+  function showSheet() {
+    if (!state.selectedId) return;
+    state.sheetOpen = true;
+    syncSheetVisibility();
+    if (state.map) {
+      try {
+        state.map.invalidateSize();
+      } catch (e) {}
+    }
   }
 
   function selectSummit(id, options) {
@@ -1623,6 +1879,7 @@
     if (!summit) return null;
     if (state.selectedId !== summit.id) {
       state.selectedAccess = null;
+      state.inspectedAccess = null;
       state.route = null;
       state.elevation = null;
       state.summitRoute = null;
@@ -1638,6 +1895,7 @@
       clearAzLayers();
     }
     state.selectedId = summit.id;
+    state.sheetOpen = true;
     setSelectedMarker(summit.id);
     renderDetail(summit);
     loadAccessForSummit(summit);
@@ -1661,6 +1919,8 @@
     state.accessSeq += 1;
     state.access = null;
     state.selectedAccess = null;
+    state.inspectedAccess = null;
+    state.sheetOpen = true;
     state.route = null;
     state.elevation = null;
     state.summitRoute = null;
@@ -1805,8 +2065,17 @@
     var close = $("ss-sheet-close");
     if (close) {
       close.addEventListener("click", function () {
-        clearSelection();
-        close.focus();
+        hideSheet();
+        var showBtn = $("ss-show-plan");
+        if (showBtn) showBtn.focus();
+        else close.focus();
+      });
+    }
+    var showPlan = $("ss-show-plan");
+    if (showPlan) {
+      showPlan.addEventListener("click", function () {
+        showSheet();
+        if (close) close.focus();
       });
     }
     global.document.addEventListener("keydown", function (ev) {
@@ -1814,8 +2083,8 @@
         if (state.searchOpen) {
           setSearchOpen(false);
           if (searchBtn) searchBtn.focus();
-        } else if (state.selectedId) {
-          clearSelection();
+        } else if (state.selectedId && state.sheetOpen !== false) {
+          hideSheet();
         }
       }
     });
@@ -1920,12 +2189,22 @@
     locateUser: locateUser,
     setLayerVisible: setLayerVisible,
     loadAccessForSummit: loadAccessForSummit,
+    inspectAccess: inspectAccess,
     startHikeFromAccess: startHikeFromAccess,
+    hideSheet: hideSheet,
+    showSheet: showSheet,
     setDestinationMode: setDestinationMode,
     getActivationPlan: currentActivationPlan,
     copyActivationPlan: function () {
       var plan = currentActivationPlan();
       return copyActivationPlanText(plan ? plan.copyText : "");
+    },
+    copyStartCoordinates: function (feature) {
+      return copyStartCoordinates(feature || currentStartFeature());
+    },
+    mapsHandoffForAccess: function (feature) {
+      var AM = global.SignalTerrainSotaAccessModel;
+      return AM && AM.mapsHandoffUrl ? AM.mapsHandoffUrl(feature || currentStartFeature()) : null;
     },
     getState: function () {
       return state;

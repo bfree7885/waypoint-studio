@@ -158,9 +158,18 @@
 
   function accessName(feature) {
     if (!feature) return null;
+    var AM = accessModel();
+    if (AM && AM.startDisplayName) return AM.startDisplayName(feature);
     if (feature.name) return feature.name;
     if (feature.kind === "trailhead") return "Unnamed mapped trailhead";
-    return "Unnamed mapped parking candidate";
+    return "Unnamed mapped parking";
+  }
+
+  function startCoordsLabel(feature) {
+    var AM = accessModel();
+    if (AM && AM.formatStartCoordinates) return AM.formatStartCoordinates(feature);
+    if (!feature || !isFiniteNumber(feature.lat) || !isFiniteNumber(feature.lng)) return null;
+    return feature.lat.toFixed(5) + ", " + feature.lng.toFixed(5);
   }
 
   function catalogStatusLabel(catalog) {
@@ -247,11 +256,15 @@
     var straight = isFiniteNumber(start.distanceKm) ? start.distanceKm : null;
     var osmRef =
       start.osmType && start.osmId != null ? String(start.osmType) + "/" + String(start.osmId) : null;
+    var coordsLabel = startCoordsLabel(start);
     out.selected = {
       kind: start.kind || null,
       typeLabel: accessTypeLabel(start),
       name: accessName(start),
       mappedName: start.name || null,
+      lat: isFiniteNumber(start.lat) ? start.lat : null,
+      lng: isFiniteNumber(start.lng) ? start.lng : null,
+      coordsLabel: coordsLabel || "Unavailable",
       straightLineKm: straight,
       straightLineLabel:
         straight != null && Geo && Geo.formatDistanceKm ? Geo.formatDistanceKm(straight) + " from summit (straight-line)" : null,
@@ -524,6 +537,7 @@
     lines.push(ident || "Summit unavailable");
     var start = startSnapshotValue(a);
     lines.push("Start: " + start);
+    lines.push("Coordinates: " + (a.selected && a.selected.coordsLabel ? a.selected.coordsLabel : "Unavailable"));
     lines.push("Destination: " + (h.destinationLabel || "Unavailable"));
     lines.push("Route: " + (h.distanceLabel || "Unavailable"));
     lines.push("Gain: " + (h.gainLabel || "Unavailable"));

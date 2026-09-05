@@ -129,8 +129,118 @@
     }
     var km = Geo.haversineKm(summit.lat, summit.lng, feature.lat, feature.lng);
     feature.distanceKm = km;
-    feature.distanceLabel = km == null ? null : Geo.formatDistanceKm(km) + " straight-line";
+    feature.distanceLabel = km == null ? null : Geo.formatDistanceKm(km) + " straight-line to summit";
     return feature;
+  }
+
+  var COORDINATE_DIGITS = 5;
+
+  function startDisplayName(feature) {
+    if (!feature) return null;
+    if (feature.name && String(feature.name).trim()) return String(feature.name).trim();
+    if (feature.kind === "trailhead") return "Unnamed mapped trailhead";
+    return "Unnamed mapped parking";
+  }
+
+  function startTypeLabel(feature) {
+    if (!feature) return null;
+    if (feature.kind === "trailhead") return "Mapped trailhead";
+    if (feature.kind === "parking") return "Mapped parking";
+    return "Mapped access feature";
+  }
+
+  function mappedTagValue(feature, key) {
+    if (!feature) return null;
+    var v = feature[key];
+    if (v == null && feature.tags) v = feature.tags[key];
+    if (v == null || v === "") return null;
+    return String(v);
+  }
+
+  function accessTagLabel(feature) {
+    var v = mappedTagValue(feature, "access");
+    return v ? "Mapped access tag: " + v : null;
+  }
+
+  function feeTagLabel(feature) {
+    var v = mappedTagValue(feature, "fee");
+    return v ? "Mapped fee tag: " + v : null;
+  }
+
+  function formatStartCoordinates(feature, digits) {
+    var d = typeof digits === "number" ? digits : COORDINATE_DIGITS;
+    if (!feature || !isFiniteNumber(feature.lat) || !isFiniteNumber(feature.lng)) return null;
+    return feature.lat.toFixed(d) + ", " + feature.lng.toFixed(d);
+  }
+
+  function detectMapsPlatform(ua) {
+    var s = ua == null && typeof navigator !== "undefined" ? navigator.userAgent || "" : String(ua || "");
+    if (/iPad|iPhone|iPod/i.test(s)) return "ios";
+    if (/Android/i.test(s)) return "android";
+    return "generic";
+  }
+
+  function mapsHandoffUrl(feature, opts) {
+    opts = opts || {};
+    if (!feature || !isFiniteNumber(feature.lat) || !isFiniteNumber(feature.lng)) return null;
+    var lat = feature.lat.toFixed(COORDINATE_DIGITS);
+    var lng = feature.lng.toFixed(COORDINATE_DIGITS);
+    var platform = opts.platform || detectMapsPlatform(opts.userAgent);
+    var named = feature.name && String(feature.name).trim();
+    var label = named || startDisplayName(feature);
+    if (platform === "ios") {
+      return "https://maps.apple.com/?ll=" + lat + "," + lng + "&q=" + encodeURIComponent(label);
+    }
+    if (platform === "android") {
+      return "geo:" + lat + "," + lng + "?q=" + lat + "," + lng + "(" + encodeURIComponent(label) + ")";
+    }
+    return "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lng;
+  }
+
+  function startInspection(feature) {
+    if (!feature) {
+      return {
+        displayName: null,
+        typeLabel: null,
+        unnamed: false,
+        lat: null,
+        lng: null,
+        coordsLabel: null,
+        hasCoordinates: false,
+        accessTag: null,
+        feeTag: null,
+        accessLabel: null,
+        feeLabel: null,
+        accessDisplay: "Unavailable",
+        feeDisplay: "Unavailable",
+        osmRef: null,
+        provenanceUrl: null,
+        mapsUrl: null
+      };
+    }
+    var coords = formatStartCoordinates(feature);
+    var access = accessTagLabel(feature);
+    var fee = feeTagLabel(feature);
+    var osmRef =
+      feature.osmType && feature.osmId != null ? String(feature.osmType) + "/" + String(feature.osmId) : null;
+    return {
+      displayName: startDisplayName(feature),
+      typeLabel: startTypeLabel(feature),
+      unnamed: !(feature.name && String(feature.name).trim()),
+      lat: isFiniteNumber(feature.lat) ? feature.lat : null,
+      lng: isFiniteNumber(feature.lng) ? feature.lng : null,
+      coordsLabel: coords,
+      hasCoordinates: !!coords,
+      accessTag: mappedTagValue(feature, "access"),
+      feeTag: mappedTagValue(feature, "fee"),
+      accessLabel: access,
+      feeLabel: fee,
+      accessDisplay: access || "Unavailable",
+      feeDisplay: fee || "Unavailable",
+      osmRef: osmRef,
+      provenanceUrl: feature.provenanceUrl || (osmRef ? provenanceUrl(feature.osmType, feature.osmId) : null),
+      mapsUrl: mapsHandoffUrl(feature)
+    };
   }
 
   function sortByDistance(list) {
@@ -408,7 +518,17 @@
     emptyCatalog: emptyCatalog,
     unnamedTrailCount: unnamedTrailCount,
     namedTrailNames: namedTrailNames,
-    attachDistance: attachDistance
+    attachDistance: attachDistance,
+    COORDINATE_DIGITS: COORDINATE_DIGITS,
+    startDisplayName: startDisplayName,
+    startTypeLabel: startTypeLabel,
+    mappedTagValue: mappedTagValue,
+    accessTagLabel: accessTagLabel,
+    feeTagLabel: feeTagLabel,
+    formatStartCoordinates: formatStartCoordinates,
+    detectMapsPlatform: detectMapsPlatform,
+    mapsHandoffUrl: mapsHandoffUrl,
+    startInspection: startInspection
   };
 
   global.SignalTerrainSotaAccessModel = api;
