@@ -142,6 +142,14 @@ Include:
 - Sheds forest brand on `main` inlines `--wp-warm: #6f7d5f` just past a 500-character window that expected `var(--wp-sage)`. Diagnose merge-commit tokens before blaming SignalTerrain.
 - Do not revert Sheds CSS from this branch to make the gate pass.
 
+### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host published
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
+
+- Fine-grained PAT `SHEDHUNTING_DEPLOY_TOKEN` needed `waypoint-studio-site` added to its selected repositories with Contents: Read and write. REST `permissions.push` on public repos is a red herring (owner perms, not token Contents).
+- After the grant, existing prepare/publish scripts pushed `04c45bd6` to `bfree7885/waypoint-studio-site` `main`. Rollback tag `legacy-waypoint-studio-site-pre-st-v09` = `c45abc7e`.
+- Unlisted URL: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`. Not authenticated. Do not merge to `main`. Do not use `sheds-site`.
+
 ### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
