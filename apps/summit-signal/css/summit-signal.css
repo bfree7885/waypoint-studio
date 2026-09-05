@@ -584,6 +584,142 @@ body {
   color: var(--ss-brass);
 }
 
+.ss-block--plan {
+  overflow-wrap: anywhere;
+}
+
+.ss-plan-location {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  background: var(--ss-panel-2);
+  border: 1px solid var(--ss-line);
+  font-size: 14px;
+}
+
+.ss-plan-location span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ss-dim);
+  margin-bottom: 2px;
+}
+
+.ss-plan-location[data-location-status="inside"] {
+  border-color: var(--ss-cyan);
+}
+
+.ss-plan-snapshot {
+  margin: 0 0 10px;
+}
+
+.ss-plan-snapshot__headline {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.ss-plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+}
+
+.ss-plan-actions .ss-btn {
+  min-width: 7.5rem;
+}
+
+.ss-plan-section,
+.ss-plan-verify,
+.ss-plan-checklist {
+  margin: 0 0 12px;
+}
+
+.ss-plan-section h4,
+.ss-plan-verify h4,
+.ss-plan-checklist h4,
+.ss-block--plan .ss-subhead {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ss-brass);
+}
+
+.ss-plan-verify__list,
+.ss-plan-checklist__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ss-plan-verify__list li {
+  margin: 0 0 6px;
+  padding-left: 1em;
+  position: relative;
+  font-size: 14px;
+}
+
+.ss-plan-verify__list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--ss-brass);
+}
+
+.ss-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.ss-check input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.ss-ready-states {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.ss-ready-state {
+  display: grid;
+  grid-template-columns: minmax(7rem, 42%) 1fr;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.ss-ready-state__area {
+  color: var(--ss-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+
+.ss-ready-state__value {
+  font-family: var(--ss-mono);
+  font-size: 13px;
+}
+
+.ss-ready-state[data-ready-state="VERIFY"] .ss-ready-state__value,
+.ss-ready-state[data-ready-state="NOT_INTEGRATED"] .ss-ready-state__value {
+  color: var(--ss-brass);
+}
+
+.ss-ready-state[data-ready-state="KNOWN"] .ss-ready-state__value {
+  color: var(--ss-cyan);
+}
+
 .ss-access-pin.is-start {
   outline: 2px solid var(--ss-cyan);
   outline-offset: 1px;
@@ -771,6 +907,21 @@ body {
 
   .ss-dest-mode {
     max-width: 100%;
+  }
+
+  .ss-dest-mode__btn {
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+
+  .ss-ready-state {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .ss-plan-actions .ss-btn,
+  #ss-plan-reset {
+    width: 100%;
   }
 
   .ss-kicker {

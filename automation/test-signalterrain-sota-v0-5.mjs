@@ -269,7 +269,7 @@ assert(
 );
 
 const html = read("apps/summit-signal/index.html");
-assert("kicker is V0.5+", /V0\.[56] · SOTA/.test(html));
+assert("kicker is V0.5+", /V0\.[5-7] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("Hunter fixture is wired", /st-sota-az-dem-w2-gc-002\.json/.test(read("apps/summit-signal/js/ss-az-provider.js")));

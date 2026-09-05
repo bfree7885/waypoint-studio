@@ -1,5 +1,5 @@
 /**
- * SignalTerrain SOTA V0.6 map application.
+ * SignalTerrain SOTA V0.7 map application.
  * Leaflet is vendored locally. Does not import Shed Hunting or SignalTerrain Cyber modules.
  */
 (function (global) {
@@ -48,6 +48,7 @@
     azSeq: 0,
     routeAz: null,
     summitRouteAz: null,
+    activationPlan: null,
     layersOn: { summits: true, trails: true, trailheads: true, parking: true, hike: true, az: true }
   };
 
@@ -802,36 +803,313 @@
     }
   }
 
-  function renderReadiness() {
-    var body = $("ss-ready-body");
-    if (!body) return;
-    body.innerHTML = "";
+  function currentActivationPlan() {
+    var Plan = global.SignalTerrainSotaPlan;
     var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
-    if (!summit || !global.SignalTerrainSotaPlanning.getReadiness) return;
-    var ready = global.SignalTerrainSotaPlanning.getReadiness(
-      summit,
-      state.access && state.selectedId === summit.id ? state.access : null,
-      hikeState()
-    );
-    (ready.groups || []).forEach(function (g) {
-      var wrap = global.document.createElement("div");
-      wrap.className = "ss-ready-group";
-      wrap.setAttribute("data-ready-group", g.id);
-      var h = global.document.createElement("h4");
-      h.textContent = g.title;
-      wrap.appendChild(h);
-      var dl = global.document.createElement("dl");
-      dl.className = "ss-kv-list";
-      (g.rows || []).forEach(function (r) {
-        var div = global.document.createElement("div");
-        div.className = "ss-kv";
-        div.setAttribute("data-status", r.status);
-        div.innerHTML = "<dt>" + escapeHtml(r.label) + "</dt><dd>" + escapeHtml(r.display) + "</dd>";
-        dl.appendChild(div);
-      });
-      wrap.appendChild(dl);
-      body.appendChild(wrap);
+    if (!Plan || !summit) return null;
+    return Plan.buildPlan({
+      summit: summit,
+      accessCatalog: state.access && state.selectedId === summit.id ? state.access : null,
+      hike: hikeState()
     });
+  }
+
+  function appendPlanRows(parent, rows, className) {
+    var dl = global.document.createElement("dl");
+    dl.className = className || "ss-kv-list";
+    (rows || []).forEach(function (r) {
+      var div = global.document.createElement("div");
+      div.className = "ss-kv";
+      if (r.status) div.setAttribute("data-status", r.status);
+      if (r.id) div.setAttribute("data-plan-row", r.id);
+      var dt = global.document.createElement("dt");
+      dt.textContent = r.label;
+      var dd = global.document.createElement("dd");
+      dd.textContent = r.value;
+      if (r.href) {
+        var a = global.document.createElement("a");
+        a.href = r.href;
+        a.rel = "noopener noreferrer";
+        a.textContent = r.value;
+        dd.textContent = "";
+        dd.appendChild(a);
+      }
+      div.appendChild(dt);
+      div.appendChild(dd);
+      dl.appendChild(div);
+    });
+    parent.appendChild(dl);
+    return dl;
+  }
+
+  function copyActivationPlanText(text) {
+    var value = text || "";
+    if (global.navigator && global.navigator.clipboard && global.navigator.clipboard.writeText) {
+      return global.navigator.clipboard.writeText(value).then(
+        function () {
+          announce("Activation Plan copied");
+          return true;
+        },
+        function () {
+          return fallbackCopyPlan(value);
+        }
+      );
+    }
+    return Promise.resolve(fallbackCopyPlan(value));
+  }
+
+  function fallbackCopyPlan(value) {
+    try {
+      var ta = global.document.createElement("textarea");
+      ta.value = value;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
+      global.document.body.appendChild(ta);
+      ta.select();
+      var ok = global.document.execCommand("copy");
+      global.document.body.removeChild(ta);
+      if (ok) announce("Activation Plan copied");
+      return ok;
+    } catch (e) {
+      announce("Copy is unavailable in this browser");
+      return false;
+    }
+  }
+
+  function renderReadiness() {
+    renderActivationPlan();
+  }
+
+  function renderActivationPlan() {
+    var body = $("ss-plan-body");
+    var readyBody = $("ss-ready-body");
+    var summit = global.SignalTerrainSotaModel.findById(state.summits, state.selectedId);
+    var Plan = global.SignalTerrainSotaPlan;
+    if (body) body.innerHTML = "";
+    if (readyBody) readyBody.innerHTML = "";
+    if (!summit || !Plan) return;
+    var plan = currentActivationPlan();
+    if (!plan) return;
+    state.activationPlan = plan;
+    if (body) {
+      body.setAttribute("data-plan-status", "ok");
+      body.setAttribute("data-dest-mode", plan.hike.destinationMode);
+      var loc = global.document.createElement("p");
+      loc.className = "ss-plan-location";
+      loc.setAttribute("data-location-status", plan.location.status);
+      loc.innerHTML =
+        "<span>Location</span> " + escapeHtml(plan.location.label);
+      body.appendChild(loc);
+
+      var snap = global.document.createElement("div");
+      snap.className = "ss-plan-snapshot";
+      snap.setAttribute("data-plan-snapshot", "true");
+      var head = global.document.createElement("p");
+      head.className = "ss-plan-snapshot__headline";
+      head.textContent = plan.snapshot.headline;
+      snap.appendChild(head);
+      appendPlanRows(snap, plan.snapshot.rows, "ss-hike-kv");
+      body.appendChild(snap);
+
+      var actions = global.document.createElement("div");
+      actions.className = "ss-plan-actions";
+      var copyBtn = global.document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.className = "ss-btn";
+      copyBtn.id = "ss-plan-copy";
+      copyBtn.textContent = "Copy Plan";
+      copyBtn.addEventListener("click", function () {
+        copyActivationPlanText((currentActivationPlan() || plan).copyText);
+      });
+      actions.appendChild(copyBtn);
+      body.appendChild(actions);
+
+      var summitSec = global.document.createElement("div");
+      summitSec.className = "ss-plan-section";
+      summitSec.setAttribute("data-plan-section", "summit");
+      var sh = global.document.createElement("h4");
+      sh.textContent = "Summit";
+      summitSec.appendChild(sh);
+      appendPlanRows(summitSec, [
+        { id: "name", label: "Name", value: plan.summit.name || "Unavailable" },
+        { id: "ref", label: "SOTA reference", value: plan.summit.reference || "Unavailable" },
+        { id: "points", label: "SOTA points", value: plan.summit.points != null ? String(plan.summit.points) : "Unavailable" },
+        { id: "elev", label: "Elevation", value: plan.summit.elevationLabel },
+        { id: "grid", label: "Grid", value: plan.summit.maidenheadLabel || "Unavailable" },
+        { id: "coords", label: "Coordinates", value: plan.summit.coordsLabel }
+      ]);
+      body.appendChild(summitSec);
+
+      var accessSec = global.document.createElement("div");
+      accessSec.className = "ss-plan-section";
+      accessSec.setAttribute("data-plan-section", "access");
+      var ah = global.document.createElement("h4");
+      ah.textContent = "Access";
+      accessSec.appendChild(ah);
+      var accessRows = [
+        {
+          id: "start",
+          label: "Selected start",
+          value: plan.access.selected ? plan.access.selected.name : "Not selected",
+          status: plan.access.status.toLowerCase()
+        },
+        {
+          id: "type",
+          label: "Feature type",
+          value: plan.access.selected ? plan.access.selected.typeLabel : "Unavailable"
+        },
+        {
+          id: "straight",
+          label: "Straight-line",
+          value: plan.access.selected && plan.access.selected.straightLineLabel
+            ? plan.access.selected.straightLineLabel
+            : "Unavailable"
+        },
+        {
+          id: "osm",
+          label: "OSM provenance",
+          value: plan.access.provenance || "Unavailable",
+          href: plan.access.selected && plan.access.selected.provenanceUrl
+        },
+        { id: "catalog", label: "Access data", value: plan.access.catalogDisplay }
+      ];
+      appendPlanRows(accessSec, accessRows);
+      var caveat = global.document.createElement("p");
+      caveat.className = "ss-note ss-note--caveat";
+      caveat.textContent = plan.access.caveat;
+      accessSec.appendChild(caveat);
+      body.appendChild(accessSec);
+
+      var hikeSec = global.document.createElement("div");
+      hikeSec.className = "ss-plan-section";
+      hikeSec.setAttribute("data-plan-section", "hike");
+      var hh = global.document.createElement("h4");
+      hh.textContent = "Hike";
+      hikeSec.appendChild(hh);
+      appendPlanRows(hikeSec, [
+        { id: "dest", label: "Destination", value: plan.hike.destinationLabel, status: plan.hike.destinationMode },
+        { id: "dist", label: "Route distance", value: plan.hike.distanceLabel },
+        { id: "gain", label: "Elevation gain", value: plan.hike.gainLabel },
+        { id: "loss", label: "Elevation loss", value: plan.hike.lossLabel },
+        { id: "time", label: "Estimated duration", value: plan.hike.durationLabel },
+        { id: "rsrc", label: "Route source", value: plan.hike.routeSource },
+        { id: "esrc", label: "Elevation source", value: plan.hike.elevationSource }
+      ]);
+      body.appendChild(hikeSec);
+
+      var azSec = global.document.createElement("div");
+      azSec.className = "ss-plan-section";
+      azSec.setAttribute("data-plan-section", "az");
+      var zh = global.document.createElement("h4");
+      zh.textContent = "Activation Zone";
+      azSec.appendChild(zh);
+      var entersLabel = "Unknown";
+      if (plan.activationZone.routeEnters === true) entersLabel = "Selected route enters Activation Zone";
+      else if (plan.activationZone.routeEnters === false) entersLabel = "Selected route does not enter Activation Zone";
+      else if (plan.activationZone.status === "UNAVAILABLE") entersLabel = "Unavailable";
+      appendPlanRows(azSec, [
+        { id: "az-avail", label: "Zone", value: plan.activationZone.available ? "Terrain-derived contour" : "Unavailable" },
+        { id: "az-summit", label: "Summit elevation", value: plan.activationZone.summitElevationLabel },
+        { id: "az-vd", label: "Vertical threshold", value: plan.activationZone.verticalDistanceM != null ? plan.activationZone.verticalDistanceM + " m" : "Unavailable" },
+        { id: "az-th", label: "Activation elevation", value: plan.activationZone.thresholdLabel },
+        { id: "az-src", label: "Terrain source", value: plan.activationZone.terrainSource },
+        { id: "az-enter", label: "Route vs AZ", value: entersLabel },
+        { id: "az-dist", label: "Distance to AZ entry", value: plan.activationZone.distanceToEntryLabel },
+        { id: "az-gps", label: "Current GPS", value: plan.location.label }
+      ]);
+      body.appendChild(azSec);
+
+      var verify = global.document.createElement("div");
+      verify.className = "ss-plan-verify";
+      verify.setAttribute("data-plan-verify", "true");
+      var vh = global.document.createElement("h4");
+      vh.textContent = "Verify before you go";
+      verify.appendChild(vh);
+      var ul = global.document.createElement("ul");
+      ul.className = "ss-plan-verify__list";
+      (plan.unresolved || []).forEach(function (item) {
+        var li = global.document.createElement("li");
+        li.setAttribute("data-unresolved", item.id);
+        li.textContent = item.text;
+        ul.appendChild(li);
+      });
+      verify.appendChild(ul);
+      body.appendChild(verify);
+
+      var checkWrap = global.document.createElement("div");
+      checkWrap.className = "ss-plan-checklist";
+      checkWrap.setAttribute("data-plan-checklist", "true");
+      var ch = global.document.createElement("h4");
+      ch.textContent = plan.checklist.label;
+      checkWrap.appendChild(ch);
+      var note = global.document.createElement("p");
+      note.className = "ss-note";
+      note.textContent = plan.checklist.note;
+      checkWrap.appendChild(note);
+      var list = global.document.createElement("ul");
+      list.className = "ss-plan-checklist__list";
+      plan.checklist.items.forEach(function (item) {
+        var li = global.document.createElement("li");
+        var lab = global.document.createElement("label");
+        lab.className = "ss-check";
+        var cb = global.document.createElement("input");
+        cb.type = "checkbox";
+        cb.checked = !!item.checked;
+        cb.setAttribute("data-check-id", item.id);
+        cb.addEventListener("change", function () {
+          Plan.setChecked(plan.checklist.summitId, item.id, cb.checked);
+          renderActivationPlan();
+        });
+        var span = global.document.createElement("span");
+        span.textContent = item.label;
+        lab.appendChild(cb);
+        lab.appendChild(span);
+        li.appendChild(lab);
+        list.appendChild(li);
+      });
+      checkWrap.appendChild(list);
+      var reset = global.document.createElement("button");
+      reset.type = "button";
+      reset.className = "ss-btn ss-btn--ghost";
+      reset.id = "ss-plan-reset";
+      reset.textContent = "Reset checklist";
+      reset.addEventListener("click", function () {
+        Plan.resetChecklist(plan.checklist.summitId);
+        renderActivationPlan();
+        announce("Personal field checklist reset");
+      });
+      checkWrap.appendChild(reset);
+      body.appendChild(checkWrap);
+
+      var aid = global.document.createElement("p");
+      aid.className = "ss-note ss-note--caveat";
+      aid.setAttribute("data-plan-aid", "true");
+      aid.textContent = plan.plannerAid;
+      body.appendChild(aid);
+    }
+    if (readyBody) {
+      var readyList = global.document.createElement("ul");
+      readyList.className = "ss-ready-states";
+      (plan.fieldReadiness || []).forEach(function (row) {
+        var li = global.document.createElement("li");
+        li.className = "ss-ready-state";
+        li.setAttribute("data-ready-area", row.id);
+        li.setAttribute("data-ready-state", row.state);
+        li.innerHTML =
+          "<span class=\"ss-ready-state__area\">" +
+          escapeHtml(row.area) +
+          "</span><span class=\"ss-ready-state__value\">" +
+          escapeHtml(row.label) +
+          "</span>";
+        readyList.appendChild(li);
+      });
+      readyBody.appendChild(readyList);
+      var readyNote = global.document.createElement("p");
+      readyNote.className = "ss-note";
+      readyNote.textContent = "Not a score and not a valid-activation claim.";
+      readyBody.appendChild(readyNote);
+    }
   }
 
   function renderProfileSvg(elev) {
@@ -1644,6 +1922,11 @@
     loadAccessForSummit: loadAccessForSummit,
     startHikeFromAccess: startHikeFromAccess,
     setDestinationMode: setDestinationMode,
+    getActivationPlan: currentActivationPlan,
+    copyActivationPlan: function () {
+      var plan = currentActivationPlan();
+      return copyActivationPlanText(plan ? plan.copyText : "");
+    },
     getState: function () {
       return state;
     }

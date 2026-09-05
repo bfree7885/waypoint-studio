@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-05 — SignalTerrain V0.7 Activation Plan + Field Readiness
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.7.md`
+
+- Synthesize existing summit/access/route/AZ/GPS evidence into one Activation Plan model. Do not duplicate provider payloads in the DOM.
+- Field Readiness is information completeness (`KNOWN` / `UNKNOWN` / `UNAVAILABLE` / `VERIFY` / `NOT INTEGRATED`), never a score or “valid activation.”
+- Mapped OSM parking stays a candidate (`VERIFY`). Do not say parking is confirmed or legal.
+- Personal checklist is localStorage, per summit, with an explicit reset. It is not SOTA required equipment.
+- Provider failures must leave the rest of the plan standing.
+
 ### 2026-09-05 — SignalTerrain V0.6 Route to Activation Zone
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.6.md`

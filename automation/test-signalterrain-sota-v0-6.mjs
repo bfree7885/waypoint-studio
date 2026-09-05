@@ -302,7 +302,7 @@ assert("AZ failure does not relabel summit route", /unavailable/i.test(planningF
 
 const html = read("apps/summit-signal/index.html");
 assert("html loads AZ-route modules", /ss-az-route-model\.js/.test(html) && /ss-az-route-provider\.js/.test(html));
-assert("kicker is V0.6", /V0\.6 · SOTA/.test(html));
+assert("kicker is V0.6+", /V0\.[67] · SOTA/.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 
