@@ -425,18 +425,41 @@
 
 [data-product="shed-hunting"],
 [data-product="sheds"] {
-  /* Terracotta + restrained sage */
-  --wp-accent: var(--waypoint-orange);
-  --wp-accent-dim: var(--wp-terracotta-dim);
-  --wp-accent-bright: var(--waypoint-orange-bright);
-  --wp-warm: var(--wp-sage);
-  --wp-warm-dim: var(--wp-sage-dim);
-  --wp-product-glow: rgba(212, 106, 58, 0.1);
+  /* ShedHunting.org forest field brand — cream type, olive secondary, terracotta accent */
+  --wp-bg: #121f18;
+  --wp-surface: #1a2b21;
+  --wp-elevated: #22362a;
+  --wp-inset: #0c1410;
+  --wp-text: #efe6d4;
+  --wp-text-secondary: rgba(239, 230, 212, 0.72);
+  --wp-border: rgba(239, 230, 212, 0.14);
+  --wp-border-subtle: rgba(239, 230, 212, 0.1);
+  --wp-accent: #c45a3c;
+  --wp-accent-dim: rgba(196, 90, 60, 0.18);
+  --wp-accent-bright: #d46a4a;
+  --wp-warm: #6f7d5f;
+  --wp-warm-dim: rgba(111, 125, 95, 0.22);
+  --wp-clay: #a84a32;
+  --wp-clay-bright: #c45a3c;
+  --wp-sage: #6f7d5f;
+  --wp-sage-deep: #556348;
+  --wp-product-glow: rgba(196, 90, 60, 0.14);
+  --wp-on-accent: #efe6d4;
+  --wds-bg: var(--wp-bg);
+  --wds-surface: var(--wp-surface);
+  --wds-elevated: var(--wp-elevated);
+  --wds-inset: var(--wp-inset);
+  --wds-text: var(--wp-text);
+  --wds-text-secondary: var(--wp-text-secondary);
+  --wds-border: var(--wp-border);
+  --wds-border-subtle: var(--wp-border-subtle);
   --wds-accent: var(--wp-accent);
   --wds-accent-dim: var(--wp-accent-dim);
   --wds-warm: var(--wp-warm);
   --wds-moss: var(--wp-sage-deep);
   --wds-product-glow: var(--wp-product-glow);
+  --wds-on-accent: var(--wp-on-accent);
+  --wds-topbar-bg: color-mix(in srgb, #121f18 94%, transparent);
 }
 
 [data-product="articles"] {

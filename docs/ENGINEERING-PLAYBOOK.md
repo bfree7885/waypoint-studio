@@ -1815,3 +1815,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Sage `#73806A` is ~4.4:1 on charcoal. Leave the master token for accents. If `--wp-warm` is sage on Sheds, shared `a { color: var(--wds-warm) }` paints in-page links sage — override that semantic use (Take sources) to terracotta rather than brightening all sage.
 
 
+## Lessons Learned — ShedHunting.org forest brand pass (2026-09-05)
+
+- Approved forest brand (dark forest + cream + olive + terracotta + muted earth) lived only in mockup; live chrome was still charcoal SW + lime map accents. Tokenize in a product-scoped `sheds-brand.css` and remap `[data-product="shed-hunting"]` in shared WDS tokens rather than scattering hex.
+- Live “antler” mark was an empty HUD square with a lime `box-shadow` ring — not an SVG. Stray flecks under a later draft silhouette came from bad path geometry (self-intersecting / hanging tip strokes). Fix at SVG source with a single continuous filled path; verify with connected-component raster checks. Do not mask with overflow hacks.
+- Bright lime (`#d8ec5c`) on YOU chrome/FABs fights the forest palette; retint status chrome to muted field gold / terracotta while keeping markers distinguishable. Leave true map/data hues (water, etc.) alone.
+- Visual QA closeups can hallucinate “stray pixels” from antialiasing; confirm with pixel connectivity analysis before redrawing again.
