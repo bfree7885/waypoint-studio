@@ -1362,21 +1362,22 @@ html.sheds-session-active .sheds-hunt-plan-hud {
 }
 
 .sheds-hud-brand__mark {
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--sheds-surface-solid, #1a2b21) 88%, #000);
-  border: 1px solid rgba(196, 165, 116, 0.32);
+  /* Option K ~32px tall in map HUD — full shed silhouette, no circular crop */
+  width: calc(32px * 360 / 460);
+  height: 32px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
   box-shadow: none;
   color: var(--sheds-text, #efe6d4);
   display: inline-grid;
   place-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .sheds-hud-brand__mark .sheds-brand-mark {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: calc(32px * 360 / 460);
+  height: 32px;
   color: inherit;
 }
 

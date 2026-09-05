@@ -1,14 +1,25 @@
 # Antler mark exploration
 
-Production mark remains Option A (`../antler-mark.svg`) until a new option is explicitly approved.
+## Production
+
+**Option K** is the current production ShedHunting.org antler mark.
+
+Canonical asset: `../antler-mark.svg`  
+(Exact Option K path data; `fill="currentColor"` for cream on forest.)
+
+Primary/header presentation target: **~33px tall** (acceptable 32–36px).  
+Do not shrink the primary mark to 22–24px.
+
+## Archive / exploration only
 
 | Option | Status |
 |--------|--------|
-| A | Paired stroke sheds — currently in production |
-| B / C | Earlier paired stroke variants — reference only |
-| D / E / F | Rejected (too abstract / icon-like) |
-| **G / H / I** | **Active exploration** — realistic single whitetail shed silhouettes |
+| A | Superseded paired stroke mark |
+| B / C | Early paired stroke variants |
+| D / E / F | Rejected (too abstract) |
+| G / H / I | Rejected (clip-art tendency) |
+| J | Field study (ancestor of K) |
+| **K** | **Production** |
+| L | Brand reduction exploration (not adopted) |
 
-Open `explore-ghi.html` for large / medium / wordmark comparison.
-
-Not wired into host or map.
+Do not wire exploration files into host/map.
