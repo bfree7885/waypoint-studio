@@ -21,6 +21,7 @@ Disallow: /apps/landscape-interpretation/
 Disallow: /apps/terrainbound/
 Disallow: /apps/signalterrain/
 Disallow: /apps/shed-hunting/host/
+Disallow: /apps/summit-signal/
 Disallow: /apps/scenes/
 Disallow: /apps/photo-coach/
 Disallow: /apps/moving-scenes/

@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-09-03  
+**Last updated:** 2026-09-04  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint is building now.
@@ -197,10 +197,29 @@ Do **not**:
 
 ---
 
+## In development — SignalTerrain (SOTA, unpublished; not a public peer)
+
+**SignalTerrain** (`/apps/summit-signal/`) is an unpublished Waypoint field application for SOTA summit discovery and activation planning. It combines SOTA summit intelligence with terrain/access intelligence (V0.2 OpenStreetMap candidate trails, trailheads, and parking), V0.3 user-selected pedestrian routing plus USGS 3DEP elevation, V0.4 terrain-derived Activation Zone contours, V0.5 fixture coverage for a second W2/GC summit, V0.6 Route to Activation Zone, V0.7 Activation Plan + Field Readiness, and V0.8 field-test start inspection with a Maps handoff to the selected trailhead. V0.9 publishes an isolated unlisted github.io companion host (`waypoint-studio-site`); it is not merged to `main`, not on `waypointstudio.org`, and **not** Shed Hunting. V1.1 makes loaded summit coverage honest: the map no longer implies that the visible geographic area equals the W2/GC development fixture.
+
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. Historical cyber docs remain at `docs/SIGNALTERRAIN-*.md`. Do not restore cyber copy such as “Understand the world's signals.”
+
+Treat it like other in-development / unpublished apps:
+
+- `noindex` + `robots.txt` Disallow
+- absent from primary nav, homepage product presentation, About/Support active lists, and the sitemap
+- do not present it as a fifth public architecture destination
+- the product name may appear in the unpublished app and development docs only; public-portfolio tests still treat `SignalTerrain` as a discontinued *public* name for the retired cyber product — do not weaken those lists
+
+Canonical write-up: [`docs/signal-terrain/V0.1.md`](signal-terrain/V0.1.md) · [`docs/signal-terrain/V0.2.md`](signal-terrain/V0.2.md) · [`docs/signal-terrain/V0.3.md`](signal-terrain/V0.3.md) · [`docs/signal-terrain/V0.4.md`](signal-terrain/V0.4.md) · [`docs/signal-terrain/V0.5.md`](signal-terrain/V0.5.md) · [`docs/signal-terrain/V0.6.md`](signal-terrain/V0.6.md) · [`docs/signal-terrain/V0.7.md`](signal-terrain/V0.7.md) · [`docs/signal-terrain/V0.8.md`](signal-terrain/V0.8.md) · [`docs/signal-terrain/V0.9.md`](signal-terrain/V0.9.md) · [`docs/signal-terrain/V1.1.md`](signal-terrain/V1.1.md).
+
+> SignalTerrain is an independent application and is not affiliated with or endorsed by Summits on the Air (SOTA).
+
+---
+
 ## Agent contract
 
 1. Build toward **Dashboard (Studio) + Shed Hunting (sibling) + Deck + Publishing**. Do not restore Dashboard · Scenes · Sheds as equal Studio apps.  
-2. Do not revive discontinued public products, experiments, or incubator catalogs. Reusable engineering may stay internal.  
+2. Do not revive discontinued public products, experiments, or incubator catalogs. Reusable engineering may stay internal. Reusing the **name** SignalTerrain for the unpublished SOTA app at `/apps/summit-signal/` is authorized; do **not** restore SignalTerrain Cyber.  
 3. Do not promote unpublished Scenes in public discovery. Keep the code.  
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  
