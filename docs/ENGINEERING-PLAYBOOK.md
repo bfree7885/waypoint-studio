@@ -1821,3 +1821,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Live “antler” mark was an empty HUD square with a lime `box-shadow` ring — not an SVG. Stray flecks under a later draft silhouette came from bad path geometry (self-intersecting / hanging tip strokes). Fix at SVG source with a single continuous filled path; verify with connected-component raster checks. Do not mask with overflow hacks.
 - Bright lime (`#d8ec5c`) on YOU chrome/FABs fights the forest palette; retint status chrome to muted field gold / terracotta while keeping markers distinguishable. Leave true map/data hues (water, etc.) alone.
 - Visual QA closeups can hallucinate “stray pixels” from antialiasing; confirm with pixel connectivity analysis before redrawing again.
+
+## Lessons Learned — Sheds V2.0 Phase 1 Search Priority Today (2026-09-06)
+
+- V1.3 search priority intentionally keeps `basePriorityUnchanged` under today's conditions; relative WHERE requires a separate condition×spatial modifier layer, not a global "good day" boost.
+- Weather/conditions are point-level for the Search Area. Modifiers that cannot interact with spatial discriminators (aspect, feature kind, slope) only inflate scores without changing where — reject them.
+- Habitat GIS packs currently lack aspect; Path A base still works, but solar_searchability needs terrain aspect from V1.3 elev neighbors when available.
+- Keep the model pure (no network, deterministic fixtures) and unwired until map integration review. Vocabulary must stay "search interest," never probability/hotspot language.
