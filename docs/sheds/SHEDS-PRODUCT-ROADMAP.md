@@ -36,7 +36,8 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V1.6** | Work the plan in the field (Field Hunt Mode) | Shipped on ShedHunting.org |
 | **V1.7** | Record where I searched and what I observed | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
 | **V1.8** | Hunt History | Shipped on ShedHunting.org. |
-| **V1.9** | Condition Snapshots | Factual environmental/context foundation for Hunt Records. Not the V2.x heat map. In review. |
+| **V1.9** | Condition Snapshots | **Shipped.** Factual environmental/context foundation for Hunt Records. Not the V2.x heat map. |
+| **V2.0 Phase 1** | Search Priority Today (model) | **In development.** Condition × spatial modifiers for relative search interest inside a Search Area. Spec: `SHEDS-V2-0-PHASE1-SEARCH-PRIORITY-TODAY.md`. Not yet wired to production map UI. |
 
 V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records. V1.9 stores a factual Condition Snapshot on new Hunt Records (weather/season/optional GPS altitude) without changing the History list.
 
@@ -44,7 +45,7 @@ V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so la
 
 ## Flagship V2.x intelligence: dynamic search-priority map
 
-**This is the flagship Sheds+ intelligence milestone. Do not implement it in V1.7–V1.9 unless explicitly asked.**
+**This is the flagship Sheds+ intelligence milestone.** V1.9 is shipped. **V2.0 Phase 1** builds the pure model foundation only (no production map wash yet). Do not skip to full Sheds+ visualization, personal-history heat, accounts, or new habitat packs in Phase 1.
 
 The map should **change as real conditions change**. Relative **search priority / opportunity** may shift. Example: an area that is Moderate today may become Higher after warming, snowmelt, better seasonal timing, and improved searchability. The hunter must be able to understand **why** the rank changed.
 
