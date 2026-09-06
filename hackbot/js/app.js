@@ -487,6 +487,7 @@
       )
         .then(function (evaln) {
           self.state.training.lastEvaluation = evaln;
+          self.state.training.hintText = "";
           self.mergeConcepts(step, evaln.matchedConcepts || []);
           if (evaln.verdict === "CORRECT" || evaln.canAdvance) {
             self.markStepComplete(step.id);
