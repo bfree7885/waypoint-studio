@@ -179,6 +179,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: node automation/test-sheds-v2-0-search-priority-today.mjs
 
+      - name: Sheds V2.0 Phase 1 Search Priority Today Map
+        if: ${{ !cancelled() }}
+        run: node automation/test-sheds-v2-0-search-priority-today-map.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:

@@ -1828,3 +1828,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Weather/conditions are point-level for the Search Area. Modifiers that cannot interact with spatial discriminators (aspect, feature kind, slope) only inflate scores without changing where — reject them.
 - Habitat GIS packs currently lack aspect; Path A base still works, but solar_searchability needs terrain aspect from V1.3 elev neighbors when available.
 - Keep the model pure (no network, deterministic fixtures) and unwired until map integration review. Vocabulary must stay "search interest," never probability/hotspot language.
+
+## Lessons Learned — Sheds V2.0 Phase 1 map integration (2026-09-06)
+
+- Keep the pure model untouched; map code only adapts GIS/terrain cells + todayContextFromHunt into evaluateArea.
+- Do not stretch a single band into fake contrast — honesty beats visual drama when the Search Area is all moderate.
+- GIS packs lack aspect; solar_searchability needs terrain enrichment (or stays limited). Do not invent aspect.
+- Unrelated foragecast/signalterrain/waypoint-volunteer smoke failures are not a Phase 1 integration defect.
