@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Hackbot — local personal cybersecurity training workbench. Not a public Waypoint Studio product.">
+  <title>Hackbot · Local workbench</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2307090c'/%3E%3Crect x='3' y='3' width='10' height='10' fill='none' stroke='%233ecf8e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/hackbot.css">
+</head>
+<body>
+  <a class="hb-skip" href="#hb-center">Skip to workspace</a>
+  <div id="hb-root" class="hb-app" hidden>
+    <aside class="hb-sidebar" id="hb-sidebar">
+      <div class="hb-brand">
+        <p class="hb-brand-kicker">Local workbench</p>
+        <h1>Hackbot</h1>
+        <p class="hb-brand-sub">Teach me → then research with me</p>
+      </div>
+      <nav class="hb-nav" aria-label="Hackbot">
+        <p class="hb-nav-label" id="hb-ws-label">Workspaces</p>
+        <div id="hb-workspace-list" role="list" aria-labelledby="hb-ws-label"></div>
+        <div class="hb-nav-actions">
+          <button type="button" class="hb-btn hb-btn-block" id="hb-btn-new">New Workspace</button>
+          <button type="button" class="hb-btn hb-btn-ghost hb-btn-block" id="hb-btn-demo">Load Demo Workspace</button>
+        </div>
+        <div class="hb-nav-placeholders">
+          <button type="button" class="hb-nav-link" data-view="workbench" id="hb-nav-workbench">Workbench</button>
+          <button type="button" class="hb-nav-link is-placeholder" data-view="training" id="hb-nav-training">Training <span>placeholder</span></button>
+          <button type="button" class="hb-nav-link is-placeholder" data-view="notes" id="hb-nav-notes">Notes <span>placeholder</span></button>
+          <button type="button" class="hb-nav-link is-placeholder" data-view="findings" id="hb-nav-findings">Findings <span>placeholder</span></button>
+        </div>
+      </nav>
+      <p class="hb-sidebar-note">Stored in this browser only. Not part of Waypoint Studio.</p>
+    </aside>
+
+    <div class="hb-stage">
+      <header class="hb-top">
+        <button type="button" class="hb-icon-btn" id="hb-menu" aria-expanded="false" aria-controls="hb-sidebar">Menu</button>
+        <div class="hb-top-main">
+          <h2 id="hb-workspace-title">No workspace selected</h2>
+          <p class="hb-auth" id="hb-auth-status">Authorization: none</p>
+        </div>
+        <div class="hb-top-controls">
+          <label class="hb-toggle" for="hb-learning">
+            <input type="checkbox" id="hb-learning" checked disabled>
+            <span>
+              Learning Mode
+              <small>Explain · question · hint · reason</small>
+            </span>
+          </label>
+          <button type="button" class="hb-assist" id="hb-assist" aria-expanded="false" aria-controls="hb-assist-pop" disabled>
+            <span class="hb-assist-kicker">Assistance</span>
+            <span id="hb-assist-label">5 — Instructor</span>
+          </button>
+        </div>
+      </header>
+
+      <div id="hb-assist-pop" class="hb-assist-pop" hidden>
+        <p>Assistance Level is stored on the workspace. It does not change automatically.</p>
+        <ul>
+          <li>5 — Instructor</li>
+          <li>4 — Guided</li>
+          <li>3 — Partner</li>
+          <li>2 — Analyst</li>
+          <li>1 — Independent</li>
+        </ul>
+      </div>
+
+      <main class="hb-center" id="hb-center" tabindex="-1">
+        <p class="hb-boot">Opening Hackbot…</p>
+      </main>
+
+      <aside class="hb-rail" id="hb-rail" aria-label="Workspace context">
+        <section class="hb-panel">
+          <h3>Target Scope</h3>
+          <div id="hb-panel-scope"></div>
+        </section>
+        <section class="hb-panel">
+          <h3>Current Hypotheses</h3>
+          <div id="hb-panel-hypotheses"></div>
+        </section>
+        <section class="hb-panel">
+          <h3>Evidence</h3>
+          <div id="hb-panel-evidence"></div>
+        </section>
+        <section class="hb-panel">
+          <h3>Actions</h3>
+          <div id="hb-panel-actions"></div>
+        </section>
+        <section class="hb-panel">
+          <h3>Learning Notes</h3>
+          <div id="hb-panel-notes"></div>
+        </section>
+      </aside>
+
+      <section class="hb-terminal" id="hb-terminal" aria-label="Terminal placeholder"></section>
+    </div>
+  </div>
+
+  <div id="hb-error" class="hb-fatal" hidden></div>
+
+  <dialog class="hb-dialog" id="hb-new-dialog" aria-labelledby="hb-new-title">
+    <form method="dialog" id="hb-new-form">
+      <h2 id="hb-new-title">New Workspace</h2>
+      <p class="hb-dialog-lead">Hackbot is intended for systems you own or have explicit authorization to test.</p>
+      <p class="hb-muted hb-small">Target Scope is required. The workspace will not become active until these fields are complete.</p>
+
+      <label>
+        Workspace name
+        <input type="text" name="name" required maxlength="120" autocomplete="off" placeholder="e.g. Juice Shop lab">
+      </label>
+      <label>
+        Target name
+        <input type="text" name="targetName" required maxlength="160" autocomplete="off" placeholder="e.g. local OWASP Juice Shop">
+      </label>
+      <label>
+        Target type
+        <select name="targetType" required>
+          <option value="">Select…</option>
+        </select>
+      </label>
+      <label>
+        Authorization type
+        <select name="authorizationType" required>
+          <option value="">Select…</option>
+        </select>
+      </label>
+      <label>
+        Allowed target(s)
+        <textarea name="allowedTargets" required rows="3" placeholder="localhost&#10;127.0.0.1"></textarea>
+      </label>
+      <label>
+        Testing boundaries <span class="hb-optional">(optional)</span>
+        <textarea name="boundaries" rows="2" placeholder="What is in and out of scope"></textarea>
+      </label>
+      <label>
+        Notes <span class="hb-optional">(optional)</span>
+        <textarea name="notes" rows="2"></textarea>
+      </label>
+      <p class="hb-form-error" id="hb-new-error" hidden></p>
+      <div class="hb-dialog-actions">
+        <button type="button" class="hb-btn hb-btn-ghost" id="hb-new-cancel">Cancel</button>
+        <button type="submit" class="hb-btn" id="hb-new-create" disabled>Create workspace</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript>
+    <main class="hb-noscript">
+      <h1>Hackbot</h1>
+      <p>Enable JavaScript. Hackbot stores workspaces in IndexedDB on this device.</p>
+    </main>
+  </noscript>
+
+  <script src="js/models.js"></script>
+  <script src="js/store.js"></script>
+  <script src="ai/provider.js"></script>
+  <script src="ai/mock-provider.js"></script>
+  <script src="views/workspace-list.js"></script>
+  <script src="views/scope-panel.js"></script>
+  <script src="views/conversation.js"></script>
+  <script src="views/evidence-panel.js"></script>
+  <script src="views/hypotheses-panel.js"></script>
+  <script src="views/notes-findings.js"></script>
+  <script src="views/terminal-placeholder.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.Hackbot && Hackbot.App) {
+        Hackbot.App.mount(document.getElementById("hb-root"));
+      }
+    });
+  </script>
+</body>
+</html>
