@@ -538,8 +538,9 @@
       this.captureTrainingDraft();
       progress.hintsUsed += 1;
       var hints = step.hints || [];
-      var idx = Math.min(progress.hintsUsed, hints.length) - 1;
-      this.state.training.hintText = hints[Math.max(idx, 0)] || "";
+      var shown = hints.indexOf(this.state.training.hintText);
+      var idx = shown < 0 ? 0 : Math.min(shown + 1, Math.max(hints.length - 1, 0));
+      this.state.training.hintText = hints[idx] || "";
       return this.persistProgress().then(function () {
         self.render();
       });

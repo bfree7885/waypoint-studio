@@ -10,7 +10,7 @@
   function normalize(value) {
     return String(value || "")
       .toLowerCase()
-      .replace(/https?:\/\//g, " ")
+      .replace(/(https?):\/\//g, "$1 ")
       .replace(/[^a-z0-9./]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
