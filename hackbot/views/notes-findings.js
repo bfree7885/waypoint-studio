@@ -74,7 +74,7 @@
     el.innerHTML =
       '<div class="hb-placeholder-page"><h2>Notes</h2>' +
       body +
-      "<p class=\"hb-muted\">This list is local to the workspace. Training Engine notes are not built yet.</p></div>";
+      "<p class=\"hb-muted\">This list is local to the workspace.</p></div>";
   };
 
   Views.renderFindingsPage = function (el, findings) {
@@ -99,16 +99,6 @@
     el.innerHTML =
       '<div class="hb-placeholder-page"><h2>Findings</h2>' +
       body +
-      "</div>";
-  };
-
-  Views.renderTrainingPlaceholder = function (el) {
-    if (!el) return;
-    el.innerHTML =
-      '<div class="hb-placeholder-page">' +
-      "<h2>Training</h2>" +
-      "<p>The Training Engine is not built yet. This is a placeholder so the workbench shell is complete.</p>" +
-      "<p class=\"hb-loop\">Teach me → Guide me → Work with me → Assist my research</p>" +
       "</div>";
   };
 })(window);

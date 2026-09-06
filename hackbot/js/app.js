@@ -45,10 +45,27 @@
       actions: [],
       findings: [],
       notes: [],
+      training: {
+        progress: null,
+        attempts: [],
+        lastEvaluation: null,
+        hintText: "",
+        draft: ""
+      },
       navOpen: false,
       assistOpen: false
     },
     _queue: Promise.resolve(),
+
+    emptyTraining: function () {
+      return {
+        progress: null,
+        attempts: [],
+        lastEvaluation: null,
+        hintText: "",
+        draft: ""
+      };
+    },
 
     enqueue: function (work) {
       var self = this;
@@ -138,16 +155,25 @@
         var btn = qs(id);
         if (!btn) return;
         btn.addEventListener("click", function () {
-          self.state.view = btn.getAttribute("data-view") || "workbench";
+          var view = btn.getAttribute("data-view") || "workbench";
           self.state.navOpen = false;
           self.syncNav();
+          if (view === "training") {
+            self.enqueue(function () {
+              return self.openTraining();
+            });
+            return;
+          }
+          self.state.view = view;
           self.render();
         });
       });
       if (form) {
         form.addEventListener("submit", function (ev) {
           ev.preventDefault();
-          self.submitNewWorkspace(form);
+          self.enqueue(function () {
+            return self.submitNewWorkspace(form);
+          });
         });
         ["input", "change"].forEach(function (evt) {
           form.addEventListener(evt, function () {
@@ -221,6 +247,7 @@
       this.state.actions = [];
       this.state.findings = [];
       this.state.notes = [];
+      this.state.training = this.emptyTraining();
     },
 
     openWorkspace: function (id) {
@@ -239,6 +266,7 @@
           self.state.actions = bundle.actions;
           self.state.findings = bundle.findings;
           self.state.notes = bundle.notes;
+          self.state.training = self.emptyTraining();
           self.state.view = "workbench";
           return Hackbot.Store.listWorkspaces();
         })
@@ -307,7 +335,7 @@
         return;
       }
       if (createBtn) createBtn.disabled = true;
-      Hackbot.Store.createWorkspaceWithScope(payload)
+      return Hackbot.Store.createWorkspaceWithScope(payload)
         .then(function (result) {
           var dialog = qs("hb-new-dialog");
           if (dialog && dialog.open) dialog.close();
@@ -335,11 +363,236 @@
         });
     },
 
+    currentLesson: function () {
+      return Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
+    },
+
+    currentStep: function () {
+      var lesson = this.currentLesson();
+      var progress = this.state.training && this.state.training.progress;
+      var idx = progress ? progress.currentStep : 0;
+      return Hackbot.Curriculum.getStep(lesson, idx);
+    },
+
+    captureTrainingDraft: function () {
+      var input = qs("hb-train-input");
+      if (input) this.state.training.draft = input.value;
+    },
+
+    attemptsForStep: function (exerciseId) {
+      return (this.state.training.attempts || []).filter(function (row) {
+        return row.exerciseId === exerciseId;
+      });
+    },
+
+    mergeConcepts: function (step, matchedIds) {
+      var progress = this.state.training.progress;
+      if (!progress || !step) return;
+      var known = progress.conceptsEncountered || [];
+      (step.concepts || []).forEach(function (group) {
+        if (matchedIds.indexOf(group.id) !== -1 && known.indexOf(group.label) === -1) {
+          known.push(group.label);
+        }
+      });
+      progress.conceptsEncountered = known;
+    },
+
+    markStepComplete: function (stepId) {
+      var progress = this.state.training.progress;
+      if (!progress || !stepId) return;
+      if (progress.completedSteps.indexOf(stepId) === -1) {
+        progress.completedSteps.push(stepId);
+      }
+    },
+
+    persistProgress: function () {
+      if (!this.state.training.progress) return Promise.resolve();
+      return Hackbot.Store.saveLessonProgress(this.state.training.progress);
+    },
+
+    hydrateCurrentStep: function () {
+      var self = this;
+      var step = this.currentStep();
+      var lesson = this.currentLesson();
+      var ws = this.state.workspace;
+      this.state.training.hintText = "";
+      this.state.training.lastEvaluation = null;
+      this.state.training.draft = "";
+      if (!step || (step.kind !== "exercise" && step.kind !== "reflection")) {
+        return Promise.resolve();
+      }
+      var rows = this.attemptsForStep(step.id);
+      if (!rows.length) return Promise.resolve();
+      var last = rows[rows.length - 1];
+      this.state.training.draft = last.learnerResponse || "";
+      return Promise.resolve(
+        Hackbot.Provider.evaluateLearnerResponse({
+          lesson: lesson,
+          exercise: step,
+          learnerResponse: last.learnerResponse,
+          assistanceLevel: ws ? ws.assistanceLevel : 5,
+          attemptNumber: rows.length
+        })
+      ).then(function (evaln) {
+        self.state.training.lastEvaluation = evaln;
+      });
+    },
+
+    openTraining: function () {
+      var self = this;
+      if (!this.state.workspace) {
+        this.state.view = "training";
+        this.state.training = this.emptyTraining();
+        this.render();
+        return Promise.resolve();
+      }
+      this.state.view = "training";
+      var lessonId = Hackbot.Curriculum.DEFAULT_LESSON_ID;
+      return Hackbot.Store.startOrGetLessonProgress(this.state.workspace.id, lessonId)
+        .then(function (progress) {
+          self.state.training.progress = progress;
+          return Hackbot.Store.listExerciseAttempts(self.state.workspace.id, lessonId);
+        })
+        .then(function (attempts) {
+          self.state.training.attempts = attempts || [];
+          return self.hydrateCurrentStep();
+        })
+        .then(function () {
+          self.render();
+        });
+    },
+
+    submitTraining: function (text) {
+      var self = this;
+      var step = this.currentStep();
+      var lesson = this.currentLesson();
+      var progress = this.state.training.progress;
+      var ws = this.state.workspace;
+      if (!step || !lesson || !progress || !ws) return Promise.resolve();
+      if (step.kind !== "exercise" && step.kind !== "reflection") {
+        return Promise.resolve();
+      }
+      var trimmed = Hackbot.Models.trim(text);
+      this.state.training.draft = trimmed;
+      var attemptNumber = this.attemptsForStep(step.id).length + 1;
+      progress.attempts += 1;
+      return Promise.resolve(
+        Hackbot.Provider.evaluateLearnerResponse({
+          lesson: lesson,
+          exercise: step,
+          learnerResponse: trimmed,
+          assistanceLevel: ws.assistanceLevel,
+          attemptNumber: attemptNumber
+        })
+      )
+        .then(function (evaln) {
+          self.state.training.lastEvaluation = evaln;
+          self.mergeConcepts(step, evaln.matchedConcepts || []);
+          if (evaln.verdict === "CORRECT" || evaln.canAdvance) {
+            self.markStepComplete(step.id);
+          }
+          var notePromise = Promise.resolve();
+          if (step.kind === "reflection" && evaln.canAdvance && trimmed) {
+            var already = (self.state.notes || []).some(function (note) {
+              return note.concept === "HTTP researcher attention";
+            });
+            if (!already) {
+              notePromise = Hackbot.Store.addLearningNote({
+                workspaceId: ws.id,
+                sessionId: self.state.session ? self.state.session.id : "",
+                concept: "HTTP researcher attention",
+                explanation: trimmed
+              }).then(function () {
+                return Hackbot.Store.listNotes(ws.id);
+              }).then(function (notes) {
+                self.state.notes = notes;
+              });
+            }
+          }
+          return notePromise.then(function () {
+            return Hackbot.Store.addExerciseAttempt({
+              workspaceId: ws.id,
+              lessonId: lesson.id,
+              exerciseId: step.id,
+              learnerResponse: trimmed,
+              evaluation: evaln.verdict,
+              hintLevel: evaln.hintLevel
+            });
+          });
+        })
+        .then(function (row) {
+          self.state.training.attempts = self.state.training.attempts.concat([row]);
+          return self.persistProgress();
+        })
+        .then(function () {
+          self.render();
+        });
+    },
+
+    hintTraining: function () {
+      var self = this;
+      var step = this.currentStep();
+      var progress = this.state.training.progress;
+      if (!step || !progress) return Promise.resolve();
+      this.captureTrainingDraft();
+      progress.hintsUsed += 1;
+      var hints = step.hints || [];
+      var idx = Math.min(progress.hintsUsed, hints.length) - 1;
+      this.state.training.hintText = hints[Math.max(idx, 0)] || "";
+      return this.persistProgress().then(function () {
+        self.render();
+      });
+    },
+
+    backTraining: function () {
+      var self = this;
+      var progress = this.state.training.progress;
+      if (!progress || progress.currentStep <= 0) return Promise.resolve();
+      this.captureTrainingDraft();
+      progress.currentStep -= 1;
+      return this.persistProgress()
+        .then(function () {
+          return self.hydrateCurrentStep();
+        })
+        .then(function () {
+          self.render();
+        });
+    },
+
+    nextTraining: function () {
+      var self = this;
+      var lesson = this.currentLesson();
+      var progress = this.state.training.progress;
+      var step = this.currentStep();
+      if (!lesson || !progress || !step) return Promise.resolve();
+      this.captureTrainingDraft();
+      if (step.kind === "read") {
+        this.markStepComplete(step.id);
+      }
+      if (progress.currentStep >= lesson.steps.length - 1) {
+        if (progress.completedSteps.length >= lesson.steps.length) {
+          progress.status = "completed";
+          progress.completedAt = progress.completedAt || Hackbot.Models.nowIso();
+        }
+        return this.persistProgress().then(function () {
+          self.render();
+        });
+      }
+      progress.currentStep += 1;
+      return this.persistProgress()
+        .then(function () {
+          return self.hydrateCurrentStep();
+        })
+        .then(function () {
+          self.render();
+        });
+    },
+
     toggleLearning: function (enabled) {
       var self = this;
       var ws = this.state.workspace;
-      if (!ws) return;
-      Hackbot.Store.setLearningMode(ws.id, enabled)
+      if (!ws) return Promise.resolve();
+      return Hackbot.Store.setLearningMode(ws.id, enabled)
         .then(function (updated) {
           self.state.workspace = updated;
           return self.refreshLists();
@@ -357,14 +610,14 @@
       var ws = this.state.workspace;
       var session = this.state.session;
       var content = Hackbot.Models.trim(text);
-      if (!ws || !session || !content) return;
+      if (!ws || !session || !content) return Promise.resolve();
       var user = {
         workspaceId: ws.id,
         sessionId: session.id,
         role: "user",
         content: content
       };
-      Hackbot.Store.addMessage(user)
+      return Hackbot.Store.addMessage(user)
         .then(function (saved) {
           self.state.messages = self.state.messages.concat([saved]);
           self.render();
@@ -455,7 +708,31 @@
         return;
       }
       if (this.state.view === "training") {
-        Hackbot.Views.renderTrainingPlaceholder(el);
+        Hackbot.Views.renderTraining(el, this.state, {
+          onSubmit: function (text) {
+            self.enqueue(function () {
+              return self.submitTraining(text);
+            });
+          },
+          onHint: function () {
+            self.enqueue(function () {
+              return self.hintTraining();
+            });
+          },
+          onBack: function () {
+            self.enqueue(function () {
+              return self.backTraining();
+            });
+          },
+          onNext: function () {
+            self.enqueue(function () {
+              return self.nextTraining();
+            });
+          },
+          onDraft: function (text) {
+            self.state.training.draft = text;
+          }
+        });
         return;
       }
       if (this.state.view === "notes") {
@@ -468,7 +745,9 @@
       }
       Hackbot.Views.renderConversation(el, this.state, {
         onSend: function (text) {
-          self.sendMessage(text);
+          self.enqueue(function () {
+            return self.sendMessage(text);
+          });
         }
       });
     },
@@ -488,6 +767,19 @@
       this.renderHeader();
       this.renderNavCurrent();
       this.renderCenter();
+      this.renderRails();
+    },
+
+    renderRails: function () {
+      var workbenchRail = qs("hb-rail-workbench");
+      var trainingRail = qs("hb-rail-training");
+      var onTraining = this.state.view === "training";
+      if (workbenchRail) workbenchRail.hidden = onTraining;
+      if (trainingRail) trainingRail.hidden = !onTraining;
+      if (onTraining) {
+        Hackbot.Views.renderLearningProgress(trainingRail, this.state);
+        return;
+      }
       Hackbot.Views.renderScopePanel(qs("hb-panel-scope"), this.state.scope);
       Hackbot.Views.renderHypothesesPanel(qs("hb-panel-hypotheses"), this.state.hypotheses);
       Hackbot.Views.renderEvidencePanel(qs("hb-panel-evidence"), this.state.evidence);

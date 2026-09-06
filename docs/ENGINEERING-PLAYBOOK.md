@@ -1841,3 +1841,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Hackbot lives at `/hackbot/`, not `/apps/`. Do not add Studio nav, deploy it, or treat SignalTerrain as a substitute foundation.
 - Workspaces must refuse activation without a complete Target Scope in both UI and IndexedDB (`createWorkspaceWithScope` / `activateWorkspace`).
 - Keep AI behind `Hackbot.Provider`; V1 is MockProvider only — no API keys or local LLM.
+
+## Lessons Learned — Hackbot Training Engine / Lesson 1 (2026-09-06)
+
+- IndexedDB upgrade must stay additive (`hackbot-v1` name, version 2). Creating `lessonProgress` / `exerciseAttempts` in `onupgradeneeded` without deleting older stores keeps existing workspaces, scope, Learning Mode, and Assistance Level.
+- Lesson evaluation attempt counts must be **per exercise**, not lesson-wide, or later steps skip the question → hint → explanation progression.
+- `evaluateLearnerResponse` is the Training Engine contract; Lesson 1 uses deterministic concept matching. Do not call networks or an LLM.
+- Future lessons in the Module 1 shell must stay visibly unavailable. Do not present empty step arrays as playable content.
