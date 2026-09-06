@@ -300,6 +300,18 @@ console.log("10. Map shell contracts (script tags + why panel + mobile CSS)");
   assert.ok(mapApp.includes("consumeTodayHuntMapHandoff"));
   assert.ok(mapApp.includes("applySearchInterestToday"));
   assert.ok(mapApp.includes("SearchPriorityTodayMap"));
+  assert.ok(
+    /setSearchLocation\(\s*loc\.lat\s*,\s*loc\.lng/.test(mapApp),
+    "handoff must pass numeric lat/lng into setSearchLocation"
+  );
+  assert.ok(
+    mapApp.includes("state.lastGisGrid"),
+    "GIS pack must be retained for briefing / explain after interest paint"
+  );
+  assert.ok(
+    mapApp.includes("refreshSearchInterestToday"),
+    "interest wash must rebuild when hunt conditions arrive"
+  );
   console.log("  ok");
 }
 

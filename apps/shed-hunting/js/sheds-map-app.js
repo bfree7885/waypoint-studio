@@ -95,6 +95,7 @@
     lastPlan: null,
     lastToday: null,
     lastGrid: null,
+    lastGisGrid: null,
     lastChannels: null,
     lastPerf: {},
     offlineForced: false,
@@ -1183,6 +1184,8 @@
       ingestHuntTrackPoint(ll.lat, ll.lng, accuracyM, opts.altitude, Date.now());
     }
     if (state.fieldHunting) renderFieldHuntHud();
+    // Today's Hunt ?today=1 may have arrived before this first GPS fix.
+    consumeTodayHuntMapHandoff();
     return true;
   }
 
@@ -3218,6 +3221,7 @@
       }
       if (opts.refreshBriefing !== false) {
         updatePlanner(state.lastGrid || null);
+        refreshSearchInterestToday();
       }
       return w;
     });
@@ -3289,9 +3293,10 @@
     var timing = Timing
       ? Timing.evaluate({ date: new Date(), lat: lat, prefs: state.prefs || {} })
       : null;
+    var gisGrid = gisGridForConsumers();
     var habitat;
-    if (state.searchLocation && HabitatGis && state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
-      if (state.lastGrid.unavailable || state.lastGrid.habitatEmpty) {
+    if (state.searchLocation && HabitatGis && gisGrid) {
+      if (gisGrid.unavailable || gisGrid.habitatEmpty) {
         habitat = {
           channel: "habitat",
           empty: true,
@@ -3304,9 +3309,10 @@
           provenance: [{ factor: "gis-pack", class: "SOURCE_FACT", missing: true }]
         };
       } else {
-        var mid = heatLayer && heatLayer.nearestCell
-          ? heatLayer.nearestCell({ lat: state.searchLocation.lat, lng: state.searchLocation.lng })
-          : null;
+        var mid = nearestCellInGrid(gisGrid, {
+          lat: state.searchLocation.lat,
+          lng: state.searchLocation.lng
+        });
         var scored = mid && mid.result ? mid.result : null;
         habitat = {
           channel: "habitat",
@@ -3354,7 +3360,7 @@
           })
         : { empty: true, label: "No habitat-specific guidance yet", channel: "habitat" };
     }
-    if (state.lastGrid && state.lastGrid.habitatEmpty && !(state.lastGrid.renderMode === "gis-bands")) {
+    if (!gisGrid && state.lastGrid && state.lastGrid.habitatEmpty) {
       habitat = Object.assign({}, habitat, {
         empty: true,
         label: (Habitat && Habitat.EMPTY_MESSAGE) || "No habitat-specific guidance yet",
@@ -3398,14 +3404,14 @@
           searchability: searchability,
           weatherStatus: state.weatherStatus,
           envFailed: state.weatherStatus === "unavailable",
-          elevFailed: !state.elevCache && !(state.lastGrid && state.lastGrid.renderMode === "gis-bands" && !state.lastGrid.unavailable)
+          elevFailed: !state.elevCache && !(gisGrid && !gisGrid.unavailable)
         })
       : { level: "Low", label: "Low", why: ["Confidence module unavailable."] };
-    if (HabitatGis && state.lastGrid && state.lastGrid.renderMode === "gis-bands") {
-      var gisSupport = state.lastGrid.evidenceSupport || HabitatGis.evidenceSupport({
-        unavailable: !!state.lastGrid.unavailable,
-        hasStructure: !state.lastGrid.unavailable,
-        hasTerrain: !state.lastGrid.unavailable,
+    if (HabitatGis && gisGrid) {
+      var gisSupport = gisGrid.evidenceSupport || HabitatGis.evidenceSupport({
+        unavailable: !!gisGrid.unavailable,
+        hasStructure: !gisGrid.unavailable,
+        hasTerrain: !gisGrid.unavailable,
         hasObservations: Store.list().length > 0
       });
       confidence = Object.assign({}, confidence, {
@@ -3560,6 +3566,30 @@
     root.setAttribute("data-state", meta.insufficient ? "limited" : "ready");
   }
 
+  function gisGridForConsumers() {
+    if (state.heatMode === "observed") return null;
+    if (state.lastGisGrid && state.lastGisGrid.renderMode === "gis-bands") return state.lastGisGrid;
+    if (state.lastGrid && state.lastGrid.renderMode === "gis-bands") return state.lastGrid;
+    return null;
+  }
+
+  function nearestCellInGrid(grid, latlng) {
+    if (!grid || !grid.cells || !latlng || !isFinite(latlng.lat) || !isFinite(latlng.lng)) return null;
+    var best = null;
+    var bestD = Infinity;
+    var i;
+    for (i = 0; i < grid.cells.length; i++) {
+      var c = grid.cells[i];
+      if (!c || c.outsideArea) continue;
+      var d = Math.pow(c.lat - latlng.lat, 2) + Math.pow(c.lng - latlng.lng, 2);
+      if (d < bestD) {
+        bestD = d;
+        best = c;
+      }
+    }
+    return best;
+  }
+
   function applySearchInterestToday(spatialGrid, done) {
     done = typeof done === "function" ? done : function () {};
     if (!SearchPriorityTodayMap || !SearchPriorityToday) {
@@ -3592,6 +3622,40 @@
     state.lastInterestSummary = out.summary || null;
     renderWhyBandsToday(out.summary, { insufficient: !out.ok });
     done(out);
+  }
+
+  function paintInterestResult(interest) {
+    if (interest && interest.ok && interest.grid) {
+      applyGridToUi(interest.grid, {
+        label: "Search interest today",
+        elevNote: interest.note || "Relative search interest — not find probability."
+      });
+      return;
+    }
+    var empty = (interest && interest.grid) || (SearchPriorityTodayMap && SearchPriorityTodayMap.emptyInterestGrid
+      ? SearchPriorityTodayMap.emptyInterestGrid((interest && interest.note) || "Search-interest guidance unavailable here.")
+      : state.lastGisGrid);
+    applyGridToUi(empty || {
+      cells: [],
+      bounds: { west: 0, east: 0, south: 0, north: 0 },
+      rows: 0,
+      cols: 0
+    }, {
+      label: "Search interest limited",
+      elevNote: (interest && interest.note) ||
+        "Not enough terrain, habitat, or condition evidence for a search-interest wash."
+    });
+  }
+
+  function refreshSearchInterestToday(gen) {
+    if (gen != null && gen !== state.recomputeGen) return;
+    if (state.heatMode === "observed") return;
+    if (!state.searchLocation || !state.lastGisGrid) return;
+    if (!SearchPriorityTodayMap || !SearchPriorityToday) return;
+    applySearchInterestToday(state.lastGisGrid, function (interest) {
+      if (gen != null && gen !== state.recomputeGen) return;
+      paintInterestResult(interest);
+    });
   }
 
   function applyGridToUi(grid, meta) {
@@ -3714,6 +3778,7 @@
         }
         setModelCoverageNote("Tap the area you want to analyze — coarse YOU does not drive fine habitat GIS.");
         updateCoverageUi({ level: "limited", label: "No SEARCH LOCATION yet" });
+        state.lastGisGrid = null;
         state.lastGrid = {
           cells: [],
           habitatEmpty: true,
@@ -3750,32 +3815,19 @@
         // Never pass weather/season into GIS grid (already omitted in HabitatGis).
         if (gen !== state.recomputeGen) return;
         state.heatPhase = "refine";
+        state.lastGisGrid = grid;
         state.lastPerf.gisMs = ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - tGis;
         state.lastPerf.refineMs = state.lastPerf.gisMs;
         applySearchInterestToday(grid, function (interest) {
           if (gen !== state.recomputeGen) return;
-          if (interest && interest.ok && interest.grid) {
-            applyGridToUi(interest.grid, {
-              label: "Search interest today",
-              elevNote: interest.note || "Relative search interest — not find probability."
-            });
-            return;
-          }
-          // Honest empty wash when interest cannot be evaluated — do not keep a decorative habitat wash.
-          var empty = (interest && interest.grid) || (SearchPriorityTodayMap && SearchPriorityTodayMap.emptyInterestGrid
-            ? SearchPriorityTodayMap.emptyInterestGrid((interest && interest.note) || "Search-interest guidance unavailable here.")
-            : grid);
-          applyGridToUi(empty, {
-            label: "Search interest limited",
-            elevNote: (interest && interest.note) ||
-              "Not enough terrain, habitat, or condition evidence for a search-interest wash."
-          });
+          paintInterestResult(interest);
         });
         wxPromise.then(function (w) {
           if (gen !== state.recomputeGen) return;
           if (w) state.weather = w;
           preserveSearchAcrossSideEffects();
           updatePlanner(state.lastGrid);
+          refreshSearchInterestToday(gen);
         });
       });
       return;
@@ -4290,10 +4342,11 @@
     bits.push("Terrain: " + (grid && state.elevCache ? "elevation-derived" : "unavailable"));
     bits.push("Observations: " + Store.list().length + " local");
     bits.push("Weather snow: " + (state.weather ? "provider" : "unavailable"));
+    var gisPack = gisGridForConsumers();
     bits.push(
       "Land cover: " +
-        (state.lastGrid && state.lastGrid.renderMode === "gis-bands" && !state.lastGrid.unavailable
-          ? ("GIS pack " + (state.lastGrid.packId || "yes") + " (~30 m)")
+        (gisPack && !gisPack.unavailable
+          ? ("GIS pack " + (gisPack.packId || "yes") + " (~30 m)")
           : (state.searchLocation ? "unavailable for SEARCH" : "needs SEARCH LOCATION"))
     );
     els.inputsSummary.textContent = bits.join(" · ");
@@ -4676,10 +4729,12 @@
 
   function openExplain(latlng) {
     var t0 = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
-    var cell = heatLayer && heatLayer.nearestCell(latlng);
+    var gisPack = gisGridForConsumers();
+    var cell = (gisPack && nearestCellInGrid(gisPack, latlng)) ||
+      (heatLayer && heatLayer.nearestCell(latlng));
     var text;
     state.lastExplainLatLng = latlng;
-    var gisGrid = state.lastGrid && state.lastGrid.renderMode === "gis-bands";
+    var gisGrid = !!gisPack;
     if (gisGrid && (!cell || cell.outsideArea || !cell.result || cell.result.unavailable)) {
       text = state.searchLocation
         ? "Habitat data unavailable for this area — or tap inside the SEARCH AREA circle."
@@ -6679,14 +6734,18 @@
     try {
       var params = new URLSearchParams(location.search || "");
       if (params.get("today") !== "1") return;
-      // Drop the query so refresh/share stays clean.
-      if (history && history.replaceState) {
-        history.replaceState(null, "", location.pathname + (location.hash || ""));
+      if (state.searchLocation) {
+        if (history && history.replaceState) {
+          history.replaceState(null, "", location.pathname + (location.hash || ""));
+        }
+        return;
       }
-      if (state.searchLocation) return;
       var loc = locationForHunt();
       if (!loc || !isFinite(loc.lat) || !isFinite(loc.lng)) return;
-      setSearchLocation({ lat: loc.lat, lng: loc.lng, source: loc.source || "today_hunt" });
+      var set = setSearchLocation(loc.lat, loc.lng, loc.source || "today_hunt");
+      if (set && history && history.replaceState) {
+        history.replaceState(null, "", location.pathname + (location.hash || ""));
+      }
     } catch (e) { /* ignore */ }
   }
 
