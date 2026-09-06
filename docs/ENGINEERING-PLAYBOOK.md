@@ -1835,3 +1835,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Do not stretch a single band into fake contrast — honesty beats visual drama when the Search Area is all moderate.
 - GIS packs lack aspect; solar_searchability needs terrain enrichment (or stays limited). Do not invent aspect.
 - Unrelated foragecast/signalterrain/waypoint-volunteer smoke failures are not a Phase 1 integration defect.
+
+## Lessons Learned — Hackbot local foundation (2026-09-06)
+
+- Hackbot lives at `/hackbot/`, not `/apps/`. Do not add Studio nav, deploy it, or treat SignalTerrain as a substitute foundation.
+- Workspaces must refuse activation without a complete Target Scope in both UI and IndexedDB (`createWorkspaceWithScope` / `activateWorkspace`).
+- Keep AI behind `Hackbot.Provider`; V1 is MockProvider only — no API keys or local LLM.
