@@ -134,6 +134,15 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-06 — SignalTerrain V1.2 static catalogue importer (preparation)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.2-STATIC-CATALOGUE-IMPORT.md`
+
+- Finding `summitslist.csv` is not permission to redistribute it. Keep GENERATE → REVIEW → PERMISSION → PROMOTE → REGISTER, and lock registration until confirmation.
+- The importer must take a local path only. Refuse URLs. Do not fetch the SOTA API or scrape. Hash the raw file bytes into pack provenance.
+- Map CSV columns by header name; parse association/region codes from `SummitCode` when those columns are names. Do not assume US state codes are SOTA regions.
+- Write staged packs outside `apps/summit-signal/data`. Synthetic `XX/…` fixtures are for importer tests only.
+
 ### 2026-09-06 — SignalTerrain V1.2 data-acquisition blocker
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.2.md`

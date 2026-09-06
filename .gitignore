@@ -43,4 +43,7 @@ dist/shedhunting/
 # Isolated SignalTerrain V0.9 field-test host artifact (published to waypoint-studio-site)
 dist/signalterrain-field-test/
 
+# SignalTerrain V1.2 import staging (generated packs; never auto-register)
+tmp/signalterrain/
+
 node_modules/
