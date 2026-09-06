@@ -175,6 +175,10 @@ jobs:
           node automation/test-sheds-v1-9-condition-snapshots.mjs
           node automation/test-sheds-v1-9-map-mobile.mjs
 
+      - name: Sheds V2.0 Phase 1 Search Priority Today
+        if: ${{ !cancelled() }}
+        run: node automation/test-sheds-v2-0-search-priority-today.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:
