@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Sep 2026 14:08:00 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 01:41:13 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>Remembering Joe Ellis</title>
-    <link>https://www.audubon.org/news/remembering-joe-ellis</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/remembering-joe-ellis</guid>
-    <pubDate>Thu, 03 Sep 2026 15:49:09 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Every time you follow a Swainson’s Hawk or Wood Thrush on the Bird Migration Explorer, or visit Sharon Audubon Center in Connecticut, you’re seeing the work that Joe Ellis helped make possible...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/news/remembering-joe-ellis</description>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
   <item>
     <title>Interior Finalizes Streamlined Process for Migratory Game Bird Hunting Seasons</title>
     <link>https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</link>
@@ -47,6 +29,24 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Remembering Joe Ellis</title>
+    <link>https://www.audubon.org/news/remembering-joe-ellis</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/remembering-joe-ellis</guid>
+    <pubDate>Thu, 03 Sep 2026 15:49:09 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Every time you follow a Swainson’s Hawk or Wood Thrush on the Bird Migration Explorer, or visit Sharon Audubon Center in Connecticut, you’re seeing the work that Joe Ellis helped make possible...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/news/remembering-joe-ellis</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>See Swirling Swifts This Fall</title>
     <link>https://www.audubon.org/north-carolina/news/see-swirling-swifts-fall</link>
     <guid isPermaLink="true">https://www.audubon.org/north-carolina/news/see-swirling-swifts-fall</guid>
@@ -63,6 +63,25 @@ Read the original article at the publisher: https://www.audubon.org/north-caroli
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Part 4: The president and his fishing guides, 1926 summer White House</title>
+    <link>https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</guid>
+    <pubDate>Sat, 05 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Coolidge, left, with Edward “Ted” Clark, his personal secretary. Photo courtesy of the Library of Congress. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Coolidge__Clark_LOC_npcc.09176-cropped.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; As his summer in the Adirondack continued, President Coolidge began to prioritize additional time for his rediscovered passion of fishing
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Hard truths at harvest</title>
@@ -142,25 +161,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Labor Day celebrations and other Adirondack events</title>
-    <link>https://www.adirondackexplorer.org/events/labor-day-celebrations-and-other-adirondack-events/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/labor-day-celebrations-and-other-adirondack-events/</guid>
-    <pubDate>Thu, 03 Sep 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Fireworks will be part of Labor Day celebrations in the park. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/2026_Fogos_24_de_xullo._Santiago_de_Compostela-3.jpg?fit=780%2C780&amp;ssl=1&quot; /&gt; Events in the Adirondacks this week include live music, community arts and crafts, science lectures, and fireworks to celebrate Labor Day
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/events/labor-day-celebrations-and-other-adirondack-events/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>The Issue with Tissue—a Boreal Love Story</title>
     <link>https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</link>
     <guid isPermaLink="true">https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</guid>
@@ -195,82 +195,6 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Northeast</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Investing in Arizona’s Water Infrastructure</title>
-    <link>https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</guid>
-    <pubDate>Thu, 03 Sep 2026 23:49:39 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Supporting Arizona’s water infrastructure is vital to protect our water supplies and way of life. To gain a fresh perspective on the different types of water-related infrastructure we rely on to...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Monitoring Grassland Sparrows of the Research Ranch</title>
-    <link>https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</guid>
-    <pubDate>Thu, 03 Sep 2026 19:41:42 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Cassin’s, Botteri’s, and Grasshopper sparrows – the songs of these grassland specialists are emblematic of summers on the Research Ranch where they nest within dense, native grass, feast...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>From the Archives: Wendell Berry&apos;s ‘The One-Inch Journey’</title>
-    <link>https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</link>
-    <guid isPermaLink="true">https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</guid>
-    <pubDate>Thu, 03 Sep 2026 18:22:25 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Editor&apos;s Note: Acclaimed essayist, novelist, and poet Wendell Berry was a native Kentuckian and a strong proponent of living in harmony with nature. This essay, which appeared in the May 1971 issue...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Expanding Outdoors for All</title>
-    <link>https://www.audubon.org/california/news/expanding-outdoors-all</link>
-    <guid isPermaLink="true">https://www.audubon.org/california/news/expanding-outdoors-all</guid>
-    <pubDate>Thu, 03 Sep 2026 15:54:19 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: California is full of incredible landscapes. From our coastline to the mountaintops, California is the most biodiverse state in the U.S. People travel from around the world to experience these...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/california/news/expanding-outdoors-all</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>On the Water at Allouez Bay: Restoring a Critical Lake Superior Wetland</title>
@@ -458,24 +382,6 @@ Read the original article at the publisher: https://earthsky.org/space/mars-sout
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>What Migratory Birds Tell Us About the Health of the Mississippi River</title>
-    <link>https://www.audubon.org/news/what-migratory-birds-tell-us-about-health-of-mississippi-river</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/what-migratory-birds-tell-us-about-health-of-mississippi-river</guid>
-    <pubDate>Thu, 03 Sep 2026 17:22:17 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Late summer is a time of change for many—vacations ending and school years beginning. It’s also a season of celebration as we enjoy autumn harvests and fall festivals and begin our preparations...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/news/what-migratory-birds-tell-us-about-health-of-mississippi-river</description>
-    <category>Birds</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>Washingtonians Recognized in 2026 Audubon Photography Awards</title>
     <link>https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</link>
     <guid isPermaLink="true">https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</guid>
@@ -566,6 +472,25 @@ Read the original article at the publisher: https://www.audubon.org/magazine/202
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>Comings and Goings: Lake George area nonprofits welcome new staff</title>
+    <link>https://www.adirondackexplorer.org/communities/comings-and-goings-lake-george-area-nonprofits-welcome-new-staff/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/comings-and-goings-lake-george-area-nonprofits-welcome-new-staff/</guid>
+    <pubDate>Sat, 05 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Comings and Goings: Lake George area nonprofits welcome new staff. Comings and Goings &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/10/comings.webp?fit=780%2C452&amp;ssl=1&quot; /&gt; Three Lake George area organizations welcome new staff and board members to fill specific program areas
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/comings-and-goings-lake-george-area-nonprofits-welcome-new-staff/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>25 horses intercepted en route to Canada in enforcement of NY horse slaughter law</title>
     <link>https://www.adirondackexplorer.org/communities/25-horses-intercepted-en-route-to-canada-in-enforcement-of-ny-horse-slaughter-law/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/25-horses-intercepted-en-route-to-canada-in-enforcement-of-ny-horse-slaughter-law/</guid>
@@ -642,23 +567,80 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Time travel: Honoring Roosevelt’s Tahawus ride to the presidency</title>
-    <link>https://www.adirondackexplorer.org/communities/history/time-travel-honoring-roosevelts-tahawus-ride-to-the-presidency/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/time-travel-honoring-roosevelts-tahawus-ride-to-the-presidency/</guid>
-    <pubDate>Thu, 03 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Investing in Arizona’s Water Infrastructure</title>
+    <link>https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</link>
+    <guid isPermaLink="true">https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</guid>
+    <pubDate>Thu, 03 Sep 2026 23:49:39 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: Theodore Roosevelt. Image courtesy of the National Portrait Gallery, Smithsonian Institution, Washington D.C. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/theodore_roosevelt2-scaled.jpg?fit=780%2C633&amp;ssl=1&quot; /&gt; Teddy Roosevelt&apos;s ride to the presidency took much longer than it would today, even with his horse and buggy speeding down the road
+Summary: Supporting Arizona’s water infrastructure is vital to protect our water supplies and way of life. To gain a fresh perspective on the different types of water-related infrastructure we rely on to...
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/time-travel-honoring-roosevelts-tahawus-ride-to-the-presidency/</description>
-    <category>Regional News</category>
+Read the original article at the publisher: https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
     <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Monitoring Grassland Sparrows of the Research Ranch</title>
+    <link>https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</link>
+    <guid isPermaLink="true">https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</guid>
+    <pubDate>Thu, 03 Sep 2026 19:41:42 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Cassin’s, Botteri’s, and Grasshopper sparrows – the songs of these grassland specialists are emblematic of summers on the Research Ranch where they nest within dense, native grass, feast...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>From the Archives: Wendell Berry&apos;s ‘The One-Inch Journey’</title>
+    <link>https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</guid>
+    <pubDate>Thu, 03 Sep 2026 18:22:25 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Editor&apos;s Note: Acclaimed essayist, novelist, and poet Wendell Berry was a native Kentuckian and a strong proponent of living in harmony with nature. This essay, which appeared in the May 1971 issue...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Expanding Outdoors for All</title>
+    <link>https://www.audubon.org/california/news/expanding-outdoors-all</link>
+    <guid isPermaLink="true">https://www.audubon.org/california/news/expanding-outdoors-all</guid>
+    <pubDate>Thu, 03 Sep 2026 15:54:19 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: California is full of incredible landscapes. From our coastline to the mountaintops, California is the most biodiverse state in the U.S. People travel from around the world to experience these...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/california/news/expanding-outdoors-all</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>A Songbird with a Unique Shade of Blue</title>
@@ -699,23 +681,6 @@ Read the original article at the publisher: https://www.audubon.org/southwest/ne
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Satellites spot forest stress two years before bark beetle die-offs become apparent</title>
-    <link>https://phys.org/news/2026-09-satellites-forest-stress-years-bark.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-satellites-forest-stress-years-bark.html</guid>
-    <pubDate>Thu, 03 Sep 2026 22:10:05 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Satellite measurements detected declining photosynthetic activity in Western U.S. forests two years before bark beetle mortality appeared in aerial detection surveys, according to new University of Utah-led research.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-satellites-forest-stress-years-bark.html</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Birds and Community Welcome &apos;Flags Across America&apos; at Bear River Migratory Bird Refuge</title>
     <link>https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</guid>
@@ -752,6 +717,40 @@ Read the original article at the publisher: https://www.noaa.gov/stories/testing
     <category>Environmental Science</category>
     <category domain="geographic">Northeast</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Extreme drought now covers 44% of Puerto Rico</title>
+    <link>https://www.sciencedaily.com/releases/2026/09/260902234457.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/09/260902234457.htm</guid>
+    <pubDate>Fri, 04 Sep 2026 12:12:53 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: Puerto Rico’s normally rainy season has instead brought a severe and fast-growing drought. By August 25, three-quarters of the territory was in at least moderate drought, with extreme drought covering 44 percent and some areas receiving less than 20 percent of their usual rainfall. Water shortages have forced rationing, while farmers are losing crops and ranchers are running low on hay.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/09/260902234457.htm</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Visible planets and night sky guide for September</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Sat, 05 Sep 2026 08:38:08 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Visible planets and night sky guide: Tomorrow morning, the crescent moon will hang close to the red planet Mars with bright Jupiter closer to the horizon. The post Visible planets and night sky guide for September first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
