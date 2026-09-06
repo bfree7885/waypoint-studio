@@ -106,7 +106,9 @@
 
   /**
    * Condition × spatial modifiers. Each must change relative WHERE.
-   * Returns { modifiers, limited }.
+   * Returns { modifiers, limited } where limited is partial condition inputs
+   * (unknown snow / freeze-thaw / trend, or no weather) — not missing aspect,
+   * slope, or feature kind. Those spatial gaps only skip the related modifier.
    */
   function collectModifiers(cell, conditions) {
     var modifiers = [];
@@ -118,6 +120,11 @@
       return { modifiers: modifiers, limited: true };
     }
 
+    var known = conditions.known || {};
+    if (!known.snow || !known.freezeThaw || !known.tempTrend) {
+      limited = true;
+    }
+
     var aspect = cell.aspectCardinal || null;
     var kind = (cell.feature && cell.feature.kind) || cell.featureKind || null;
     var slope = finiteNum(cell.slopeDeg) ? cell.slopeDeg : null;
@@ -126,25 +133,19 @@
     var solarTrigger =
       conditions.freezeThawStatus === "freeze_thaw" ||
       conditions.tempTrendStatus === "warming";
-    if (solarTrigger) {
-      if (!aspect || slope == null || slope < 2) {
-        limited = true;
-      } else if (isSouthish(aspect)) {
-        modifiers.push({
-          id: "solar_searchability",
-          delta: 1,
-          reason:
-            "Sun-facing ground can become more searchable sooner during thaw or warming (searchability, not a find claim)."
-        });
-      }
+    if (solarTrigger && aspect && slope != null && slope >= 2 && isSouthish(aspect)) {
+      modifiers.push({
+        id: "solar_searchability",
+        delta: 1,
+        reason:
+          "Sun-facing ground can become more searchable sooner during thaw or warming (searchability, not a find claim)."
+      });
     }
 
     // snow_practicality: limiting/deep snow × steep vs bench/gentle
     var snow = conditions.snowCoverStatus;
     if (snow === "limiting" || snow === "deep") {
-      if (!kind) {
-        limited = true;
-      } else if (STEEPISH[kind]) {
+      if (STEEPISH[kind]) {
         modifiers.push({
           id: "snow_practicality",
           delta: -1,
@@ -159,9 +160,6 @@
             "Gentler benches/transitions are relatively more practical to search when snow is limiting."
         });
       }
-    } else if (snow == null) {
-      // unknown snow — do not invent practicality shifts
-      if (conditions.known && conditions.known.snow === false) limited = true;
     }
 
     return { modifiers: modifiers, limited: limited };

@@ -220,6 +220,8 @@ console.log("E. Partial condition data (snow only)");
   assert.equal(map.east_bench.score, 2); // base 1 + 1
   assert.equal(map.south_transition.modifiers.includes("solar_searchability"), false);
   assert.ok(map.south_transition.modifiers.includes("snow_practicality")); // transition is BENCHISH
+  assert.equal(map.north_steep.limited, true, "snow-only snapshot is partial condition inputs");
+  assert.equal(map.north_steep.evaluation.flags.conditionsLimited, true);
   assertNoForbiddenLanguage(result, "E");
   console.log("  ok partial snow-only modifiers");
 }
@@ -315,6 +317,48 @@ console.log("J. No probability / find-certainty semantics in output");
     assert.match(String(band), /interest/);
     assert.equal(/\bprobability\b/i.test(band), false);
   }
+  console.log("  ok");
+}
+
+console.log("K. Limited flag is condition-input honesty, not spatial gaps");
+{
+  const full = COND_FREEZE_THAW;
+  const noAspect = API.evaluateCell({
+    cell: { gisBand: "some", slopeDeg: 8, featureKind: "transition" },
+    conditions: full,
+  });
+  assert.equal(noAspect.limited, false, "complete conditions + null aspect are not limited");
+  assert.equal(noAspect.flags.conditionsLimited, false);
+  assert.equal(noAspect.modifiers.some((m) => m.id === "solar_searchability"), false);
+
+  const flat = API.evaluateCell({
+    cell: {
+      gisBand: "some",
+      aspectCardinal: "S",
+      slopeDeg: 1,
+      featureKind: "bench",
+    },
+    conditions: full,
+  });
+  assert.equal(flat.limited, false, "complete conditions + unusable slope are not limited");
+  assert.equal(flat.flags.conditionsLimited, false);
+  assert.equal(flat.modifiers.some((m) => m.id === "solar_searchability"), false);
+
+  const snowOnly = API.evaluateCell({
+    cell: SPATIAL_AREA[0],
+    conditions: { snowCoverStatus: "limiting" },
+  });
+  assert.equal(snowOnly.limited, true, "snow-only snapshot must report limited");
+  assert.equal(snowOnly.flags.conditionsLimited, true);
+  assert.ok(snowOnly.modifiers.some((m) => m.id === "snow_practicality"));
+
+  const noKind = API.evaluateCell({
+    cell: { terrainPriority: "Moderate", aspectCardinal: "N", slopeDeg: 18 },
+    conditions: COND_LIMITING_SNOW,
+  });
+  assert.equal(noKind.limited, false, "complete conditions + missing feature kind are not limited");
+  assert.equal(noKind.modifiers.length, 0);
+
   console.log("  ok");
 }
 
