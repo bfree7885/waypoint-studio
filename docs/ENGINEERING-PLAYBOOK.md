@@ -134,6 +134,15 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-06 — SignalTerrain V1.2 data-acquisition blocker
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.2.md`
+
+- Honest coverage (V1.1) is not the same as useful coverage (V1.2). Do not declare V1.2 success because the map explains that NJ/PA data is missing.
+- SOTA API ToS: no AI-generated software may connect to the API without prior approval; no commercial use without a licence. Do not retrieve neighboring region packs from this agent.
+- OSM `communication:amateur_radio:sota` is ODbL, not a substitute official catalogue. High Point NJ’s OSM peak node has no SOTA tag — cannot invent the reference.
+- If no permissible pack exists, STOP. Wait for a human-prepared labeled fixture in the V0.1 pattern.
+
 ### 2026-09-06 — SignalTerrain V1.1 geographic summit coverage
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.1.md`
