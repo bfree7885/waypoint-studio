@@ -4,6 +4,8 @@
 **Location:** `/hackbot/` at the repository root  
 **Open locally:** from the repository root, `python3 -m http.server 8080`, then [http://localhost:8080/hackbot/](http://localhost:8080/hackbot/)
 
+MockProvider concept matching (no browser): `node hackbot/scripts/training-eval-smoke.cjs`
+
 ## Purpose
 
 Hackbot is a **personal** AI-assisted cybersecurity **training** and **authorized** security-research workbench.
@@ -19,11 +21,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation only (workbench, scope, learning controls, mock mentor) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1 shell, Lesson 1 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-The Training Engine (lessons, curriculum, competence-based assistance changes) is **intentionally not in V1**.
+Lesson 1 is the first real training experience. Lessons 2–10 are labeled **future** and are not playable. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -35,7 +37,9 @@ The Training Engine (lessons, curriculum, competence-based assistance changes) i
 
 ## IndexedDB entities
 
-Database: `hackbot-v1` (version `1`)
+Database: `hackbot-v1` (version `2`). Name stays `hackbot-v1`; the version number is the schema generation.
+
+Upgrade `1 → 2` is additive: existing object stores are left in place. Workspaces, scopes, Learning Mode, and Assistance Level are not wiped.
 
 | Store | Role |
 | --- | --- |
@@ -47,11 +51,15 @@ Database: `hackbot-v1` (version `1`)
 | `actions` | Planned/recorded actions (no execution) |
 | `hypotheses` | Current hypotheses |
 | `findings` | Draft findings |
-| `learningNotes` | Concept notes |
+| `learningNotes` | Concept notes (Lesson 1 reflection is stored here) |
 | `sessionActivities` | Chronological reconstruction hooks |
+| `lessonProgress` | Per-workspace lesson step, hints, attempts, completion (v2) |
+| `exerciseAttempts` | Submitted answers and MockProvider verdicts (v2) |
 | `meta` | Last active workspace id |
 
-`SessionActivity` is written when a workspace is created, scope is recorded, and messages are added so later work can reconstruct observe → hypothesize → act → record → learn. Relationships are intentionally shallow.
+`LessonProgress.id` is `workspaceId::lessonId`. `currentStep` is a **numeric step index**. `completedSteps` holds step ids (e.g. `a-url`).
+
+`SessionActivity` is written when a workspace is created, scope is recorded, messages are added, a lesson starts, and an exercise is attempted.
 
 ## Workspace and Target Scope
 
@@ -81,8 +89,6 @@ Default: **ON** for every new workspace, persisted on the workspace.
 
 When on, the workbench presents Hackbot as a mentor that prefers explanation, questions, hints, learner reasoning, and concept understanding — not finished answers. Toggling Learning Mode writes through IndexedDB and survives refresh.
 
-No training curriculum is included yet.
-
 ## Assistance Level
 
 Stored on the workspace. Default: **5 — Instructor**.
@@ -95,7 +101,28 @@ Stored on the workspace. Default: **5 — Instructor**.
 | 2 | Analyst |
 | 1 | Independent |
 
-The learner may **view** the scale. V1 does **not** auto-decrease the level and does not implement a competence algorithm.
+The learner may **view** the scale. This build does **not** auto-decrease the level and does not implement a competence algorithm. Lesson 1 runs at the workspace's current Assistance Level. At **5 — Instructor** the lesson adds extra context and guiding questions.
+
+## Training Engine
+
+Sidebar **Training** opens Module 1 — Web Investigation Foundations.
+
+| Lesson | Status |
+| --- | --- |
+| 1. How a Web Request Works | Available |
+| 2–10 | Future (visible, not playable) |
+
+Lesson 1 loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**.
+
+All examples are synthetic (`training.hackbot.local`). Nothing is sent to a network. No exploitation is taught.
+
+Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
+
+Progress, attempts, hints, and the Part G reflection persist in IndexedDB and survive refresh.
+
+### MockProvider evaluation
+
+`evaluateLearnerResponse` classifies answers as **CORRECT**, **PARTIALLY CORRECT**, or **NEEDS ANOTHER LOOK** using case/punctuation-insensitive concept matching. Attempt 1 asks a guiding question; attempt 2 gives a stronger hint; attempt 3 explains clearly and lets the learner continue. Reflection is stored as a `LearningNote` and is not graded harshly.
 
 ## AI provider abstraction
 
@@ -104,7 +131,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-V1 registers **MockProvider** only. Responses are deterministic local strings. `evaluateLearnerResponse` is available for a future Training Engine; it is not a lesson UI.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lesson 1 calls `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 
@@ -129,9 +156,9 @@ The bottom **Terminal / Output** panel is a labeled placeholder: execution is no
 
 ## Workbench layout
 
-- Left: Hackbot, workspaces, New Workspace, demo, Training/Notes/Findings placeholders
-- Center: workspace title, authorization status, Learning Mode, Assistance Level, mentor conversation
-- Right: Target Scope, hypotheses, evidence, actions, learning notes
+- Left: Hackbot, workspaces, New Workspace, demo, Training, Notes/Findings placeholders
+- Center: workbench conversation, or Training lesson runner
+- Right: workbench rails (scope, hypotheses, evidence, actions, notes) or Training Learning Progress
 - Bottom: terminal placeholder
 
 Loop shown in the empty mentor state: **Observe → Understand → Hypothesize → Test → Record → Learn**.

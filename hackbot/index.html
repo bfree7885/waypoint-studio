@@ -27,7 +27,7 @@
         </div>
         <div class="hb-nav-placeholders">
           <button type="button" class="hb-nav-link" data-view="workbench" id="hb-nav-workbench">Workbench</button>
-          <button type="button" class="hb-nav-link is-placeholder" data-view="training" id="hb-nav-training">Training <span>placeholder</span></button>
+          <button type="button" class="hb-nav-link" data-view="training" id="hb-nav-training">Training</button>
           <button type="button" class="hb-nav-link is-placeholder" data-view="notes" id="hb-nav-notes">Notes <span>placeholder</span></button>
           <button type="button" class="hb-nav-link is-placeholder" data-view="findings" id="hb-nav-findings">Findings <span>placeholder</span></button>
         </div>
@@ -73,6 +73,7 @@
       </main>
 
       <aside class="hb-rail" id="hb-rail" aria-label="Workspace context">
+        <div id="hb-rail-workbench">
         <section class="hb-panel">
           <h3>Target Scope</h3>
           <div id="hb-panel-scope"></div>
@@ -93,6 +94,8 @@
           <h3>Learning Notes</h3>
           <div id="hb-panel-notes"></div>
         </section>
+        </div>
+        <div id="hb-rail-training" hidden></div>
       </aside>
 
       <section class="hb-terminal" id="hb-terminal" aria-label="Terminal placeholder"></section>
@@ -156,6 +159,7 @@
 
   <script src="js/models.js"></script>
   <script src="js/store.js"></script>
+  <script src="js/curriculum.js"></script>
   <script src="ai/provider.js"></script>
   <script src="ai/mock-provider.js"></script>
   <script src="views/workspace-list.js"></script>
@@ -164,6 +168,7 @@
   <script src="views/evidence-panel.js"></script>
   <script src="views/hypotheses-panel.js"></script>
   <script src="views/notes-findings.js"></script>
+  <script src="views/training.js"></script>
   <script src="views/terminal-placeholder.js"></script>
   <script src="js/app.js"></script>
   <script>

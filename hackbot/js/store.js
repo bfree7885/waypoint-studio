@@ -20,6 +20,8 @@
     "findings",
     "learningNotes",
     "sessionActivities",
+    "lessonProgress",
+    "exerciseAttempts",
     "meta"
   ];
 
@@ -103,6 +105,34 @@
 
         if (!db.objectStoreNames.contains("meta")) {
           db.createObjectStore("meta", { keyPath: "key" });
+        }
+
+        if (!db.objectStoreNames.contains("lessonProgress")) {
+          var progress = db.createObjectStore("lessonProgress", { keyPath: "id" });
+          progress.createIndex("by_workspace", "workspaceId", { unique: false });
+          progress.createIndex("by_lesson", "lessonId", { unique: false });
+        } else {
+          var existingProgress = ev.target.transaction.objectStore("lessonProgress");
+          if (!existingProgress.indexNames.contains("by_workspace")) {
+            existingProgress.createIndex("by_workspace", "workspaceId", { unique: false });
+          }
+          if (!existingProgress.indexNames.contains("by_lesson")) {
+            existingProgress.createIndex("by_lesson", "lessonId", { unique: false });
+          }
+        }
+
+        if (!db.objectStoreNames.contains("exerciseAttempts")) {
+          var attempts = db.createObjectStore("exerciseAttempts", { keyPath: "id" });
+          attempts.createIndex("by_workspace", "workspaceId", { unique: false });
+          attempts.createIndex("by_lesson", "lessonId", { unique: false });
+        } else {
+          var existingAttempts = ev.target.transaction.objectStore("exerciseAttempts");
+          if (!existingAttempts.indexNames.contains("by_workspace")) {
+            existingAttempts.createIndex("by_workspace", "workspaceId", { unique: false });
+          }
+          if (!existingAttempts.indexNames.contains("by_lesson")) {
+            existingAttempts.createIndex("by_lesson", "lessonId", { unique: false });
+          }
         }
       };
       req.onsuccess = function () {
@@ -351,6 +381,83 @@
     return getAllByIndex("sessionActivities", "by_workspace", workspaceId).then(sortByCreated);
   }
 
+  function addLearningNote(partial) {
+    var row = M().learningNote(partial);
+    return putRecord("learningNotes", row).then(function () {
+      return addActivity({
+        workspaceId: row.workspaceId,
+        sessionId: row.sessionId,
+        activityType: "learning_note",
+        entityId: row.id,
+        summary: "Learning note: " + (row.concept || "reflection")
+      }).then(function () {
+        return row;
+      });
+    });
+  }
+
+  function getLessonProgress(workspaceId, lessonId) {
+    return getById("lessonProgress", M().progressId(workspaceId, lessonId));
+  }
+
+  function saveLessonProgress(row) {
+    return putRecord("lessonProgress", M().lessonProgress(row));
+  }
+
+  function startOrGetLessonProgress(workspaceId, lessonId) {
+    return getLessonProgress(workspaceId, lessonId).then(function (existing) {
+      if (existing) return existing;
+      var created = M().lessonProgress({
+        workspaceId: workspaceId,
+        lessonId: lessonId,
+        currentStep: 0,
+        completedSteps: [],
+        status: "in_progress",
+        hintsUsed: 0,
+        attempts: 0,
+        conceptsEncountered: []
+      });
+      return saveLessonProgress(created).then(function () {
+        return addActivity({
+          workspaceId: workspaceId,
+          activityType: "lesson_started",
+          entityId: created.id,
+          summary: "Started lesson " + lessonId
+        }).then(function () {
+          return created;
+        });
+      });
+    });
+  }
+
+  function addExerciseAttempt(partial) {
+    var row = M().exerciseAttempt(partial);
+    return putRecord("exerciseAttempts", row).then(function () {
+      return addActivity({
+        workspaceId: row.workspaceId,
+        activityType: "exercise_attempt",
+        entityId: row.id,
+        summary: "Exercise " + row.exerciseId + ": " + (row.evaluation || "submitted")
+      }).then(function () {
+        return row;
+      });
+    });
+  }
+
+  function listExerciseAttempts(workspaceId, lessonId) {
+    return getAllByIndex("exerciseAttempts", "by_lesson", lessonId).then(function (rows) {
+      return sortByCreated(
+        (rows || []).filter(function (row) {
+          return row.workspaceId === workspaceId;
+        })
+      );
+    });
+  }
+
+  function listLessonProgress(workspaceId) {
+    return getAllByIndex("lessonProgress", "by_workspace", workspaceId);
+  }
+
   function findDemoWorkspace() {
     return listWorkspaces().then(function (list) {
       var found = null;
@@ -443,6 +550,13 @@
     listFindings: listFindings,
     listNotes: listNotes,
     listActivities: listActivities,
+    addLearningNote: addLearningNote,
+    getLessonProgress: getLessonProgress,
+    saveLessonProgress: saveLessonProgress,
+    startOrGetLessonProgress: startOrGetLessonProgress,
+    addExerciseAttempt: addExerciseAttempt,
+    listExerciseAttempts: listExerciseAttempts,
+    listLessonProgress: listLessonProgress,
     loadDemoWorkspace: loadDemoWorkspace,
     findDemoWorkspace: findDemoWorkspace,
     loadWorkbench: loadWorkbench,

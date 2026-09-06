@@ -231,7 +231,7 @@
       workspaceId: partial.workspaceId || "",
       sessionId: partial.sessionId || "",
       concept: trim(partial.concept),
-      explanation: trim(partial.explanation),
+      explanation: trim(partial.explanation || partial.note),
       createdAt: partial.createdAt || now
     };
   }
@@ -246,6 +246,47 @@
       activityType: trim(partial.activityType) || "note",
       entityId: partial.entityId || null,
       summary: trim(partial.summary),
+      createdAt: partial.createdAt || now
+    };
+  }
+
+  function progressId(workspaceId, lessonId) {
+    return trim(workspaceId) + "::" + trim(lessonId);
+  }
+
+  function lessonProgress(partial) {
+    var now = nowIso();
+    partial = partial || {};
+    var workspaceId = trim(partial.workspaceId);
+    var lessonId = trim(partial.lessonId);
+    return {
+      id: partial.id || progressId(workspaceId, lessonId),
+      workspaceId: workspaceId,
+      lessonId: lessonId,
+      currentStep: partial.currentStep == null ? 0 : Number(partial.currentStep) || 0,
+      completedSteps: Array.isArray(partial.completedSteps) ? partial.completedSteps.slice() : [],
+      startedAt: partial.startedAt || now,
+      completedAt: partial.completedAt || null,
+      status: trim(partial.status) || "in_progress",
+      hintsUsed: Number(partial.hintsUsed) || 0,
+      attempts: Number(partial.attempts) || 0,
+      conceptsEncountered: Array.isArray(partial.conceptsEncountered)
+        ? partial.conceptsEncountered.slice()
+        : []
+    };
+  }
+
+  function exerciseAttempt(partial) {
+    var now = nowIso();
+    partial = partial || {};
+    return {
+      id: partial.id || uuid(),
+      workspaceId: trim(partial.workspaceId),
+      lessonId: trim(partial.lessonId),
+      exerciseId: trim(partial.exerciseId),
+      learnerResponse: partial.learnerResponse == null ? "" : String(partial.learnerResponse),
+      evaluation: trim(partial.evaluation),
+      hintLevel: Number(partial.hintLevel) || 0,
       createdAt: partial.createdAt || now
     };
   }
@@ -277,7 +318,7 @@
 
   Hackbot.Models = {
     DB_NAME: "hackbot-v1",
-    DB_VERSION: 1,
+    DB_VERSION: 2,
     META_LAST_WORKSPACE: "lastWorkspaceId",
     TARGET_TYPES: TARGET_TYPES,
     AUTHORIZATION_TYPES: AUTHORIZATION_TYPES,
@@ -300,6 +341,9 @@
     finding: finding,
     learningNote: learningNote,
     sessionActivity: sessionActivity,
+    progressId: progressId,
+    lessonProgress: lessonProgress,
+    exerciseAttempt: exerciseAttempt,
     escapeHtml: escapeHtml,
     formatTime: formatTime
   };
