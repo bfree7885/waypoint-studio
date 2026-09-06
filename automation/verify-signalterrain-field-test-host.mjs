@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Live HTTP smoke for the unlisted SignalTerrain V0.9 field-test host.
+ * Live HTTP smoke for the unlisted SignalTerrain V1.1 field-test host.
  * Not part of required CI (no live host dependency).
  *
  *   SIGNALTERRAIN_FIELD_TEST_URL=https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/ \
@@ -37,6 +37,7 @@ const assets = [
   { name: "Leaflet JS", url: BASE + "vendor/leaflet/leaflet.js" },
   { name: "map app JS", url: BASE + "js/ss-map-app.js" },
   { name: "summit fixture", url: BASE + "data/ss-summits-w2-gc.json" },
+  { name: "summit catalogue manifest", url: BASE + "data/ss-summit-catalogue.json" },
   { name: "Slide access fixture", url: BASE + "data/st-sota-access-w2-gc-001.json" },
   { name: "Hunter access fixture", url: BASE + "data/st-sota-access-w2-gc-002.json" },
   { name: "Slide parking route", url: BASE + "data/st-sota-route-w2-gc-001-slide-parking.json" },
@@ -51,15 +52,15 @@ assert("HTTPS", BASE.startsWith("https://"));
 assert("HTTP 200 app document", htmlDoc.res.status === 200, String(htmlDoc.res.status));
 assert("title", /<title>SignalTerrain — Waypoint<\/title>/.test(htmlDoc.body));
 assert("noindex", /name="robots" content="noindex, nofollow"/.test(htmlDoc.body));
-assert("V0.9 kicker", /V0\.9 · unlisted field-test/.test(htmlDoc.body));
-assert("build stamp present", /id="ss-field-test-build"/.test(htmlDoc.body) && /SignalTerrain V0\.9/.test(htmlDoc.body));
+assert("V1.1 kicker", /V1\.1 · unlisted field-test/.test(htmlDoc.body));
+assert("build stamp present", /id="ss-field-test-build"/.test(htmlDoc.body) && /SignalTerrain V1\.1/.test(htmlDoc.body));
 assert("not mixed Leaflet CDN", !/unpkg\.com\/leaflet|cdnjs.*leaflet/.test(htmlDoc.body));
 assert("relative Leaflet", /vendor\/leaflet\/leaflet\.js/.test(htmlDoc.body));
 if (EXPECTED_SHA) {
   assert(
     "deployed SHA in meta",
-    htmlDoc.body.includes('content="V0.9 ' + EXPECTED_SHA + '"') ||
-      htmlDoc.body.includes("SignalTerrain V0.9 · " + EXPECTED_SHA.slice(0, 7)),
+    htmlDoc.body.includes('content="V1.1 ' + EXPECTED_SHA + '"') ||
+      htmlDoc.body.includes("SignalTerrain V1.1 · " + EXPECTED_SHA.slice(0, 7)),
     "expected " + EXPECTED_SHA
   );
 }
@@ -94,5 +95,5 @@ if (failures.length) {
   console.error("\nFailed " + failures.length + ":\n" + failures.join("\n"));
   process.exit(1);
 }
-console.log("\nSignalTerrain V0.9 live host smoke passed (" + passed + ").");
+console.log("\nSignalTerrain V1.1 live host smoke passed (" + passed + ").");
 console.log("URL", BASE);

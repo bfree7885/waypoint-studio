@@ -157,7 +157,12 @@ Sota.clearCache();
 const loaded = await Sota.loadCatalog({ live: false, fixtureUrl: "data/ss-summits-w2-gc.json" });
 assert("provider loads fixture", loaded.summits.length === 118 && loaded.meta.mode === "fixture");
 assert("provider meta not live", loaded.meta.liveAttempted === false);
-assert("session cache uses signalterrain-sota key", Object.keys(session).includes("signalterrain-sota-catalog-v0"));
+assert(
+  "session cache uses signalterrain-sota key",
+  Object.keys(session).some(function (k) {
+    return k.indexOf("signalterrain-sota-catalog") === 0;
+  })
+);
 assert("legacy summit-signal cache key unused", !Object.keys(session).includes("summit-signal-catalog-v0"));
 
 sandbox.fetch = async (url) => {

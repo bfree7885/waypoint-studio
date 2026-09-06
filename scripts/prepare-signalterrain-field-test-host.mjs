@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build an isolated SignalTerrain V0.9 field-test GitHub Pages artifact.
+ * Build an isolated SignalTerrain V1.1 field-test GitHub Pages artifact.
  *
  * Copies only apps/summit-signal/ plus host-level noindex/robots files.
  * Does not copy Waypoint Studio production, Sheds, or retired cyber SignalTerrain.
@@ -57,11 +57,11 @@ function copyDir(from, to) {
 
 function stampHtml(html, sha) {
   const short = sha.slice(0, 7);
-  const label = "SignalTerrain V0.9 · " + short;
+  const label = "SignalTerrain V1.1 · " + short;
   let out = html;
   out = out.replace(
     /<meta name="signalterrain-build" content="[^"]*">/,
-    '<meta name="signalterrain-build" content="V0.9 ' + sha + '">'
+    '<meta name="signalterrain-build" content="V1.1 ' + sha + '">'
   );
   out = out.replace(
     /<p class="ss-build" id="ss-field-test-build">[\s\S]*?<\/p>/,
@@ -86,7 +86,7 @@ function rootIndex() {
   <title>Unlisted field-test</title>
 </head>
 <body>
-  <p>Unlisted SignalTerrain V0.9 field-test host. Not a public product launch. Not authenticated. Anyone with the URL may open it.</p>
+  <p>Unlisted SignalTerrain V1.1 field-test host. Not a public product launch. Not authenticated. Anyone with the URL may open it.</p>
   <p><a href="apps/summit-signal/">Open the field-test app</a></p>
 </body>
 </html>
@@ -115,7 +115,7 @@ Disallow: /
 }
 
 function hostReadme(sha) {
-  return `# SignalTerrain V0.9 field-test host
+  return `# SignalTerrain V1.1 field-test host
 
 This repository is an **unlisted GitHub Pages field-test host**.
 
@@ -149,7 +149,7 @@ function main() {
     JSON.stringify(
       {
         product: "SignalTerrain",
-        version: "V0.9",
+        version: "V1.1",
         sourceSha: sha,
         shortSha: sha.slice(0, 7),
         unlisted: true,

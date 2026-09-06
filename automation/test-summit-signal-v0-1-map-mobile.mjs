@@ -1369,6 +1369,95 @@ async function main() {
       }
     }
 
+    const coverageBoot = await evalExpr(`(() => {
+      var badge = document.getElementById("ss-coverage");
+      var label = document.getElementById("ss-coverage-label");
+      var note = document.getElementById("ss-source-note");
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return {
+        badge: !!(badge && label),
+        state: badge ? badge.getAttribute("data-state") : null,
+        label: label ? label.textContent : "",
+        note: note ? note.textContent : "",
+        packs: st.catalog && st.catalog.packs ? st.catalog.packs.length : 0,
+        count: st.summits ? st.summits.length : 0,
+        hull: st.catalog && st.catalog.coverage && st.catalog.coverage.hull ? st.catalog.coverage.hull.length : 0
+      };
+    })()`);
+    assert("coverage badge exists", !!(coverageBoot && coverageBoot.badge), JSON.stringify(coverageBoot));
+    assert("coverage names loaded pack not all SOTA", !!(coverageBoot && /Greater Catskills|W2\/GC/.test(coverageBoot.label + coverageBoot.note) && !/all SOTA summits/i.test(coverageBoot.label + coverageBoot.note)), JSON.stringify(coverageBoot));
+    assert("default catalogue still 118", coverageBoot && coverageBoot.count === 118, JSON.stringify(coverageBoot));
+    await shot("signalterrain_v11_loaded_coverage.png");
+
+    await evalExpr(`(() => { window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true }); return true; })()`);
+    await delay(500);
+    const slideStill = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return { id: st.selectedId, name: (document.getElementById("ss-detail-name") || {}).textContent, ref: (document.getElementById("ss-detail-ref") || {}).textContent };
+    })()`);
+    assert("Slide remains selectable", !!(slideStill && slideStill.id === "W2/GC-001" && /Slide Mountain/.test(slideStill.name || "")), JSON.stringify(slideStill));
+    await shot("signalterrain_v11_slide_selected.png");
+
+    await evalExpr(`(() => { window.SignalTerrainSotaMapApp.selectSummit("W2/GC-002", { pan: true }); return true; })()`);
+    await delay(500);
+    const hunterStill = await evalExpr(`(() => {
+      var st = window.SignalTerrainSotaMapApp.getState();
+      return { id: st.selectedId, name: (document.getElementById("ss-detail-name") || {}).textContent };
+    })()`);
+    assert("Hunter remains selectable", !!(hunterStill && hunterStill.id === "W2/GC-002" && /Hunter Mountain/.test(hunterStill.name || "")), JSON.stringify(hunterStill));
+
+    await evalExpr(`(() => {
+      window.__SIGNALTERRAIN_SOTA_MAP__.setView([41.3226, -74.8024], 11);
+      window.SignalTerrainSotaMapApp.updateCoverageUi();
+      return true;
+    })()`);
+    await delay(400);
+    const milfordUi = await evalExpr(`(() => {
+      var badge = document.getElementById("ss-coverage");
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      var b = map.getBounds();
+      var vis = window.SignalTerrainSotaModel.summitsInBounds(window.SignalTerrainSotaMapApp.getState().summits, {
+        minLat: b.getSouth(), minLng: b.getWest(), maxLat: b.getNorth(), maxLng: b.getEast()
+      });
+      return {
+        state: badge.getAttribute("data-state"),
+        label: (document.getElementById("ss-coverage-label") || {}).textContent || "",
+        visible: vis.length
+      };
+    })()`);
+    assert("Milford view is outside-or-partial coverage", !!(milfordUi && (milfordUi.state === "outside" || milfordUi.state === "partial")), JSON.stringify(milfordUi));
+    assert("Milford coverage copy is honest", /not loaded for this area|outside the loaded summit catalogue/i.test((milfordUi && milfordUi.label) || ""), JSON.stringify(milfordUi));
+    await shot("signalterrain_v11_milford_area.png");
+
+    await evalExpr(`(() => {
+      window.__SIGNALTERRAIN_SOTA_MAP__.setView([41.3209, -74.6616], 13);
+      var q = document.getElementById("ss-search-q");
+      if (q) q.value = "High Point State Park";
+      window.SignalTerrainSotaMapApp.applyFilter();
+      window.SignalTerrainSotaMapApp.updateCoverageUi();
+      return true;
+    })()`);
+    await delay(400);
+    const hpUi = await evalExpr(`(() => {
+      var badge = document.getElementById("ss-coverage");
+      var empty = (document.querySelector(".ss-search-empty") || {}).textContent || "";
+      var map = window.__SIGNALTERRAIN_SOTA_MAP__;
+      var b = map.getBounds();
+      var vis = window.SignalTerrainSotaModel.summitsInBounds(window.SignalTerrainSotaMapApp.getState().summits, {
+        minLat: b.getSouth(), minLng: b.getWest(), maxLat: b.getNorth(), maxLng: b.getEast()
+      });
+      return {
+        state: badge.getAttribute("data-state"),
+        label: (document.getElementById("ss-coverage-label") || {}).textContent || "",
+        searchEmpty: empty,
+        visible: vis.length
+      };
+    })()`);
+    assert("High Point SP viewport has no loaded markers", !!(hpUi && hpUi.visible === 0), JSON.stringify(hpUi));
+    assert("High Point SP is outside coverage", hpUi && hpUi.state === "outside", JSON.stringify(hpUi));
+    assert("High Point State Park search is catalogue miss", /Not found in current summit catalogue/.test((hpUi && hpUi.searchEmpty) || ""), JSON.stringify(hpUi));
+    await shot("signalterrain_v11_high_point_outside.png");
+
     if (failures.length) {
       console.error("\nSignalTerrain SOTA map/mobile tests failed (" + failures.length + ").");
       process.exitCode = 1;

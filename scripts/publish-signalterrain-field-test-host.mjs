@@ -133,7 +133,7 @@ function main() {
     gitIdentity(tmp).concat([
       "commit",
       "-m",
-      "Publish unlisted SignalTerrain V0.9 field-test host from waypoint-studio"
+      "Publish unlisted SignalTerrain V1.1 field-test host from waypoint-studio"
     ]),
     { cwd: tmp }
   );

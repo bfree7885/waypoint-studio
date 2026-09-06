@@ -77,10 +77,10 @@ assert("V0.9 does not use Sheds host", !/publish to sheds-site|reuse sheds-site/
 assert("V0.9 does not require main merge", /Do not merge to `main`/.test(docs) || /Do not merge to main/.test(docs));
 
 const html = read("apps/summit-signal/index.html");
-assert("app kicker is V0.9 field-test", /V0\.9 · unlisted field-test/.test(html));
+assert("app kicker is V1.1 field-test", /V1\.1 · unlisted field-test/.test(html));
 assert("unpublished noindex", /noindex/i.test(html));
 assert("build meta exists", /name="signalterrain-build"/.test(html));
-assert("build stamp exists", /id="ss-field-test-build"/.test(html) && /SignalTerrain V0\.9/.test(html));
+assert("build stamp exists", /id="ss-field-test-build"/.test(html) && /SignalTerrain V1\.1/.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 
 assert("robots disallows summit-signal on this branch", /Disallow: \/apps\/summit-signal\//.test(read("robots.txt")));
@@ -107,8 +107,8 @@ const distRoot = path.join(ROOT, "dist/signalterrain-field-test");
 const distApp = path.join(distRoot, "apps/summit-signal/index.html");
 assert("dist app exists", fs.existsSync(distApp));
 const distHtml = fs.readFileSync(distApp, "utf8");
-assert("dist stamps SHA", /content="V0\.9 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/.test(distHtml));
-assert("dist stamps short SHA", /SignalTerrain V0\.9 · aaaaaaa/.test(distHtml));
+assert("dist stamps SHA", /content="V1\.1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/.test(distHtml));
+assert("dist stamps short SHA", /SignalTerrain V1\.1 · aaaaaaa/.test(distHtml));
 assert("dist noindex", /noindex, nofollow/.test(distHtml));
 assert("dist has no CNAME", !fs.existsSync(path.join(distRoot, "CNAME")));
 assert("dist robots disallow all", /Disallow: \//.test(fs.readFileSync(path.join(distRoot, "robots.txt"), "utf8")));
@@ -120,6 +120,10 @@ assert(
   "dist keeps Slide/Hunter fixtures",
   fs.existsSync(path.join(distRoot, "apps/summit-signal/data/st-sota-route-w2-gc-001-slide-parking.json")) &&
     fs.existsSync(path.join(distRoot, "apps/summit-signal/data/st-sota-route-w2-gc-002-becker-hollow.json"))
+);
+assert(
+  "dist keeps summit catalogue manifest",
+  fs.existsSync(path.join(distRoot, "apps/summit-signal/data/ss-summit-catalogue.json"))
 );
 
 if (failures.length) {

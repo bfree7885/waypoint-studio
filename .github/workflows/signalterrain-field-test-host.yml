@@ -1,6 +1,6 @@
 name: Publish SignalTerrain field-test host
 
-# Isolated github.io host for unlisted SignalTerrain V0.9 field-test.
+# Isolated github.io host for unlisted SignalTerrain field-test.
 # Does not deploy Studio production Pages. Does not touch the Shed Hunting host.
 
 on:

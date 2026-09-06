@@ -134,6 +134,16 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-06 — SignalTerrain V1.1 geographic summit coverage
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.1.md`
+
+- A region envelope is not coverage. Fitting the map to W2/GC min/max made PA/NJ look empty of SOTA summits; they were only missing from the loaded pack.
+- Visible map area and loaded summit catalogue are not assumed to be the same thing. Say so on the map.
+- Do not invent neighboring SOTA references. If High Point NJ is not in a permissible fixture, report absence and bound coverage honestly.
+- Deduplicate merged packs by SOTA reference, not summit name. Conflicting coordinates for the same ref must fail.
+- Do not expand live SOTA API usage to fill a coverage hole.
+
 ### 2026-09-05 — PR CI merges `main`; color gate is not branch-HEAD
 
 **Branch:** `cursor/summit-signal-v0-1-9f7b`

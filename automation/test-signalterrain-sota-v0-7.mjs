@@ -402,7 +402,7 @@ assert("html loads plan model", /ss-plan-model\.js/.test(html));
 assert("html Activation Plan", /Activation Plan/.test(html) && /id="ss-plan-body"/.test(html));
 assert("html readiness heading kept", /Activation readiness/.test(html) && /id="ss-sec-ready"/.test(html));
 assert("html Verify / checklist hooks via renderer", /ss-plan-copy/.test(read("apps/summit-signal/js/ss-map-app.js")));
-assert("kicker is V0.7+", /V0\.[7-9] · /.test(html));
+assert("kicker is V0.7+", /V(?:0\.[7-9]|1\.\d) · /.test(html));
 assert("unpublished", /noindex/i.test(html));
 assert("html does not load Sheds or cyber ST", !/shed-hunting|wds-signalterrain|design-system\/signalterrain/.test(html));
 assert("no weather API in html", !/open-meteo|weatherapi|api\.weather/i.test(html));
