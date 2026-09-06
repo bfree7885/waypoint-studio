@@ -48,6 +48,15 @@
       navOpen: false,
       assistOpen: false
     },
+    _queue: Promise.resolve(),
+
+    enqueue: function (work) {
+      var self = this;
+      this._queue = this._queue.then(work, work).catch(function (err) {
+        self.flash(err && err.message ? err.message : String(err));
+      });
+      return this._queue;
+    },
 
     mount: function (root) {
       var self = this;
@@ -97,7 +106,9 @@
         self.openNewWorkspace();
       });
       if (demoBtn) demoBtn.addEventListener("click", function () {
-        self.loadDemo();
+        self.enqueue(function () {
+          return self.loadDemo();
+        });
       });
       if (menu) {
         menu.addEventListener("click", function () {
@@ -111,7 +122,10 @@
       });
       if (learning) {
         learning.addEventListener("change", function () {
-          self.toggleLearning(learning.checked);
+          var enabled = learning.checked;
+          self.enqueue(function () {
+            return self.toggleLearning(enabled);
+          });
         });
       }
       if (assist) {
@@ -466,7 +480,9 @@
         this.state.workspaces,
         this.state.workspace && this.state.workspace.id,
         function (id) {
-          self.openWorkspace(id);
+          self.enqueue(function () {
+            return self.openWorkspace(id);
+          });
         }
       );
       this.renderHeader();
