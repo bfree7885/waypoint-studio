@@ -1387,7 +1387,9 @@ async function main() {
     assert("coverage badge exists", !!(coverageBoot && coverageBoot.badge), JSON.stringify(coverageBoot));
     assert("coverage names loaded pack not all SOTA", !!(coverageBoot && /Greater Catskills|W2\/GC/.test(coverageBoot.label + coverageBoot.note) && !/all SOTA summits/i.test(coverageBoot.label + coverageBoot.note)), JSON.stringify(coverageBoot));
     assert("default catalogue still 118", coverageBoot && coverageBoot.count === 118, JSON.stringify(coverageBoot));
-    await shot("signalterrain_v11_loaded_coverage.png");
+    await evalExpr(`(() => { window.SignalTerrainSotaMapApp.hideSheet(); return true; })()`);
+    await delay(200);
+    await shot("signalterrain_v11_coverage_hull.png");
 
     await evalExpr(`(() => { window.SignalTerrainSotaMapApp.selectSummit("W2/GC-001", { pan: true }); return true; })()`);
     await delay(500);
@@ -1407,6 +1409,7 @@ async function main() {
     assert("Hunter remains selectable", !!(hunterStill && hunterStill.id === "W2/GC-002" && /Hunter Mountain/.test(hunterStill.name || "")), JSON.stringify(hunterStill));
 
     await evalExpr(`(() => {
+      window.SignalTerrainSotaMapApp.hideSheet();
       window.__SIGNALTERRAIN_SOTA_MAP__.setView([41.3226, -74.8024], 11);
       window.SignalTerrainSotaMapApp.updateCoverageUi();
       return true;
@@ -1427,10 +1430,13 @@ async function main() {
     })()`);
     assert("Milford view is outside-or-partial coverage", !!(milfordUi && (milfordUi.state === "outside" || milfordUi.state === "partial")), JSON.stringify(milfordUi));
     assert("Milford coverage copy is honest", /not loaded for this area|outside the loaded summit catalogue/i.test((milfordUi && milfordUi.label) || ""), JSON.stringify(milfordUi));
-    await shot("signalterrain_v11_milford_area.png");
+    await shot("signalterrain_v11_milford_outside_coverage.png");
 
     await evalExpr(`(() => {
+      window.SignalTerrainSotaMapApp.hideSheet();
       window.__SIGNALTERRAIN_SOTA_MAP__.setView([41.3209, -74.6616], 13);
+      var open = document.getElementById("ss-search-open");
+      if (open) open.click();
       var q = document.getElementById("ss-search-q");
       if (q) q.value = "High Point State Park";
       window.SignalTerrainSotaMapApp.applyFilter();
@@ -1456,7 +1462,7 @@ async function main() {
     assert("High Point SP viewport has no loaded markers", !!(hpUi && hpUi.visible === 0), JSON.stringify(hpUi));
     assert("High Point SP is outside coverage", hpUi && hpUi.state === "outside", JSON.stringify(hpUi));
     assert("High Point State Park search is catalogue miss", /Not found in current summit catalogue/.test((hpUi && hpUi.searchEmpty) || ""), JSON.stringify(hpUi));
-    await shot("signalterrain_v11_high_point_outside.png");
+    await shot("signalterrain_v11_high_point_catalogue_not_loaded.png");
 
     if (failures.length) {
       console.error("\nSignalTerrain SOTA map/mobile tests failed (" + failures.length + ").");
