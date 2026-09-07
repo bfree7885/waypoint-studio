@@ -175,6 +175,14 @@ console.log("E. Terrain enrichment arrives after first interest render → one v
   assert.ok(mapApp.includes("interestEnrichAppliedKey"));
   assert.ok(mapApp.includes("scheduleRecompute(120)"));
   assert.ok(mapApp.includes("key !== state.interestEnrichAppliedKey"));
+  const applyFn = mapApp.slice(
+    mapApp.indexOf("function applySearchAreasGrid"),
+    mapApp.indexOf("function recomputeSearchAreas")
+  );
+  assert.ok(
+    applyFn.includes("state.interestEnrichAppliedKey = \"\""),
+    "clearKey must reset interestEnrichAppliedKey so recovery can refresh"
+  );
   console.log(
     "  ok first=",
     first.grid.cells.map((c) => c.band).join("|"),
@@ -222,6 +230,18 @@ console.log("H. No recompute loop (enrichment key guard + needed() gate)");
   assert.ok(mapApp.includes("interestEnrichAppliedKey"));
   assert.ok(mapApp.includes("state.searchAreasVisible ||"));
   assert.ok(mapApp.includes("state.searchLocation"));
+  const recomputeFn = mapApp.slice(
+    mapApp.indexOf("function recomputeSearchAreas"),
+    mapApp.indexOf("if (zoom < (SearchPriority.MIN_ZOOM")
+  );
+  assert.ok(
+    recomputeFn.includes("searchAreasFetchGen += 1"),
+    "cache hit must bump searchAreasFetchGen so a stale fetch cannot apply"
+  );
+  assert.ok(
+    recomputeFn.includes("searchAreasAbort.abort()"),
+    "cache hit must abort the in-flight elevation request"
+  );
   const hideBlock = mapApp.slice(
     mapApp.indexOf("function setSearchAreasVisible"),
     mapApp.indexOf("function syncSearchAreasLegend")

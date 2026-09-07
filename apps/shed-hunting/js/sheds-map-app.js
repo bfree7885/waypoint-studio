@@ -3133,6 +3133,9 @@
       state.terrainEnrichKey = key;
     } else if (opts.clearKey) {
       state.terrainEnrichKey = "";
+      // Invalidate the interest loop-guard too — a later ready pass for the
+      // same viewport key must schedule Search Priority Today again.
+      state.interestEnrichAppliedKey = "";
     }
     paintSearchAreasLayer(grid);
     syncSearchAreasLegend();
@@ -3180,6 +3183,13 @@
       state.lastSearchAreasGrid.cells &&
       state.lastSearchAreasGrid.cells.length
     ) {
+      // Drop any in-flight fetch for a different viewport so it cannot
+      // overwrite this cached ready grid when it resolves.
+      if (state.searchAreasAbort) {
+        try { state.searchAreasAbort.abort(); } catch (e) { /* */ }
+        state.searchAreasAbort = null;
+      }
+      state.searchAreasFetchGen += 1;
       state.searchAreasStatus = "ready";
       paintSearchAreasLayer(state.lastSearchAreasGrid);
       syncSearchAreasLegend();
