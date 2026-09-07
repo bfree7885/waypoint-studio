@@ -41,6 +41,7 @@
   var SearchPriority = window.WaypointShedsSearchPriority;
   var SearchPriorityToday = window.WaypointShedsSearchPriorityToday;
   var SearchPriorityTodayMap = window.WaypointShedsSearchPriorityTodayMap;
+  var RadarP0 = window.WaypointShedsRadarP0;
 
   var NEUTRAL = { lat: 44.5, lng: -92.5, zoom: 6 }; // Midwest overview — not “you”
   var GRID_ROWS = 18;
@@ -140,6 +141,19 @@
     terrainEnrichKey: "",
     /** Enrichment key already applied to Search Priority Today (loop guard). */
     interestEnrichAppliedKey: "",
+    /** RADAR P0 prototype — viewport surface (not production launch). */
+    radarP0Enabled: true,
+    radarP0FrameId: "A",
+    radarBaseCache: null,
+    radarBaseKey: "",
+    radarElevCache: null,
+    radarElevKey: "",
+    radarElevAbort: null,
+    radarElevFetchGen: 0,
+    radarPaintGen: 0,
+    radarCenteredOnce: false,
+    radarHoldDemoCenter: false,
+    lastRadarExplain: null,
     scoutSpotId: null,
     huntPlanId: null,
     huntSelecting: false,
@@ -383,7 +397,9 @@
       syncGuidanceModeLabel();
       modeEl.textContent = state.heatMode === "observed"
         ? "My observations"
-        : (state.lastGrid && state.lastGrid.renderMode === "search-interest-today"
+        : (state.lastGrid && state.lastGrid.renderMode === "radar-interest"
+          ? "Relative Search Interest"
+          : (state.lastGrid && state.lastGrid.renderMode === "search-interest-today"
           ? "Search interest today"
           : (state.lastGrid && state.lastGrid.unavailable
             ? "Landscape unavailable"
@@ -391,7 +407,7 @@
               ? "No landscape guidance yet"
               : (state.lastGrid && state.lastGrid.renderMode === "gis-bands"
                 ? "Landscape · MODEL"
-                : "Landscape guidance"))));
+                : "Landscape guidance")))));
     }
     var low = legend.querySelector(".sheds-swatch--low");
     var mid = legend.querySelector(".sheds-swatch--mid");
@@ -409,7 +425,11 @@
       for (i = 0; i < parts.length; i++) node.removeChild(parts[i]);
       node.appendChild(document.createTextNode(" " + text));
     }
-    if (state.lastGrid && state.lastGrid.renderMode === "search-interest-today") {
+    if (
+      state.lastGrid &&
+      (state.lastGrid.renderMode === "search-interest-today" ||
+        state.lastGrid.renderMode === "radar-interest")
+    ) {
       setSwatchLabel(low, "Lower");
       setSwatchLabel(mid, "Moderate");
       setSwatchLabel(high, "Stronger");
@@ -426,6 +446,12 @@
         status.textContent = n
           ? (n + " private note" + (n === 1 ? "" : "s") + " in filter")
           : "Empty — log observations to build this view";
+      } else if (state.lastGrid && state.lastGrid.renderMode === "radar-interest") {
+        status.textContent = state.lastGrid.unavailable
+          ? "Radar coverage limited outside Pike pack AOI"
+          : "Smoothed Relative Search Interest · ≈" +
+            Math.round(state.lastGrid.cellMetersApprox || 90) +
+            " m analysis — not find %";
       } else if (state.lastGrid && state.lastGrid.renderMode === "search-interest-today") {
         status.textContent = state.lastGrid.unavailable
           ? "Search-interest guidance is limited here"
@@ -2854,6 +2880,366 @@
   }
 
   /**
+   * RADAR P0 — fetch halo elevations for viewport field (independent of Search Areas).
+   * Cached by radar elev key; frame switches must not refetch.
+   */
+  function fetchRadarElevations(bounds, rows, cols) {
+    if (!SearchPriority || !SearchPriority.haloLatLngs) {
+      return Promise.resolve(null);
+    }
+    var key = [
+      Number(bounds.west).toFixed(4),
+      Number(bounds.south).toFixed(4),
+      Number(bounds.east).toFixed(4),
+      Number(bounds.north).toFixed(4),
+      rows,
+      cols,
+      "radar"
+    ].join("|");
+    if (state.radarElevKey === key && state.radarElevCache) {
+      return Promise.resolve({ elevations: state.radarElevCache, key: key, fromCache: true });
+    }
+    if (state.radarElevAbort) {
+      try { state.radarElevAbort.abort(); } catch (e) { /* */ }
+      state.radarElevAbort = null;
+    }
+    var pts = SearchPriority.haloLatLngs(bounds, rows, cols);
+    var ac = typeof AbortController !== "undefined" ? new AbortController() : null;
+    state.radarElevAbort = ac;
+    var gen = ++state.radarElevFetchGen;
+    var chunks = [];
+    var size = 80;
+    var i;
+    for (i = 0; i < pts.lats.length; i += size) {
+      chunks.push({
+        lat: pts.lats.slice(i, i + size),
+        lng: pts.lngs.slice(i, i + size)
+      });
+    }
+    return chunks.reduce(function (chain, ch) {
+      return chain.then(function (acc) {
+        if (ac && ac.signal && ac.signal.aborted) {
+          return Promise.reject(Object.assign(new Error("aborted"), { name: "AbortError" }));
+        }
+        var url = "https://api.open-meteo.com/v1/elevation?latitude=" +
+          ch.lat.map(function (n) { return n.toFixed(5); }).join(",") +
+          "&longitude=" + ch.lng.map(function (n) { return n.toFixed(5); }).join(",");
+        var opts = { credentials: "omit" };
+        if (ac && ac.signal) opts.signal = ac.signal;
+        return fetch(url, opts).then(function (res) {
+          if (!res.ok) throw new Error("elevation " + res.status);
+          return res.json();
+        }).then(function (data) {
+          return acc.concat(data.elevation || []);
+        });
+      });
+    }, Promise.resolve([])).then(function (allElev) {
+      if (gen !== state.radarElevFetchGen) return null;
+      if (state.radarElevAbort === ac) state.radarElevAbort = null;
+      state.radarElevCache = allElev;
+      state.radarElevKey = key;
+      return { elevations: allElev, key: key, fromCache: false };
+    }).catch(function (err) {
+      if (gen !== state.radarElevFetchGen) return null;
+      if (state.radarElevAbort === ac) state.radarElevAbort = null;
+      if (err && err.name === "AbortError") return null;
+      return { elevations: null, key: key, fromCache: false, failed: true };
+    });
+  }
+
+  function syncRadarP0Ui() {
+    var panel = $("radar-p0-panel");
+    if (panel) {
+      panel.hidden = false;
+      panel.setAttribute("data-frame", state.radarP0FrameId || "A");
+      panel.setAttribute("data-on", state.radarP0Enabled ? "true" : "false");
+    }
+    var toggle = $("btn-radar-p0-toggle");
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", state.radarP0Enabled ? "true" : "false");
+      toggle.textContent = state.radarP0Enabled ? "Radar P0 · On" : "Radar P0 · Off";
+    }
+    var frames = $("radar-p0-frames-wrap") || ($("btn-radar-frame-a") && $("btn-radar-frame-a").parentNode);
+    if (frames && frames.classList && frames.classList.contains("sheds-radar-p0__frames")) {
+      frames.hidden = !state.radarP0Enabled;
+    }
+    var aBtn = $("btn-radar-frame-a");
+    var bBtn = $("btn-radar-frame-b");
+    if (aBtn) aBtn.setAttribute("aria-pressed", state.radarP0FrameId === "A" ? "true" : "false");
+    if (bBtn) bBtn.setAttribute("aria-pressed", state.radarP0FrameId === "B" ? "true" : "false");
+    var frameLabel = $("radar-p0-frame-label");
+    if (frameLabel && RadarP0 && RadarP0.FRAMES) {
+      var fr = RadarP0.FRAMES[state.radarP0FrameId] || RadarP0.FRAMES.A;
+      frameLabel.textContent = fr.label;
+    }
+  }
+
+  function renderRadarExplain(explain) {
+    var panel = $("radar-p0-explain");
+    var body = $("radar-p0-explain-body");
+    if (!panel || !body) return;
+    state.lastRadarExplain = explain || null;
+    if (!explain) {
+      panel.hidden = true;
+      body.textContent = "";
+      return;
+    }
+    var lines = [];
+    lines.push("Relative Search Interest");
+    if (explain.frameLabel) lines.push("Frame: " + explain.frameLabel);
+    if (explain.score != null) lines.push("Score: " + explain.score + " (0–3 relative — not probability)");
+    if (explain.band) lines.push("Band: " + explain.band);
+    lines.push("");
+    lines.push("Factors:");
+    var i;
+    var factors = explain.factors || [];
+    for (i = 0; i < factors.length; i++) {
+      var f = factors[i];
+      lines.push("• " + f.label + ": " + f.value + (f.detail ? " — " + f.detail : ""));
+    }
+    lines.push("");
+    lines.push(explain.disclaimer || "");
+    body.textContent = lines.join("\n");
+    panel.hidden = false;
+  }
+
+  function paintRadarGrid(grid, meta) {
+    meta = meta || {};
+    ensureHeatLayer();
+    if (heatLayer) {
+      if (heatLayer.setSmooth) heatLayer.setSmooth(true);
+      heatLayer.setGrid(grid);
+      if (heatLayer.setShowConfidence) heatLayer.setShowConfidence(!!state.prefs.showConfidence);
+    }
+    state.lastGrid = grid;
+    updateCoverageUi(grid.coverage);
+    setModelCoverageNote(
+      (grid.disclaimer || meta.label || "Relative Search Interest") +
+        (meta.elevNote ? " " + meta.elevNote : "")
+    );
+    updateActiveInputsSummary(grid);
+    syncHeatLegend();
+    syncRadarP0Ui();
+  }
+
+  function maybeCenterRadarDemo(pack) {
+    if (state.radarCenteredOnce || !map || !RadarP0 || !pack) return;
+    var center = RadarP0.packDemoCenter(pack);
+    if (!center) return;
+    var c = map.getCenter();
+    if (GisPack && GisPack.inBounds(pack, c.lat, c.lng)) {
+      state.radarCenteredOnce = true;
+      return;
+    }
+    state.radarCenteredOnce = true;
+    map.setView([center.lat, center.lng], center.zoom, { animate: false });
+  }
+
+  /**
+   * RADAR P0 recompute: viewport field, no Search Area required.
+   * Reuses base+terrain cache across Frame A/B switches.
+   */
+  function recomputeRadarP0(gen, wxPromise) {
+    if (!RadarP0 || !GisPack || !HabitatGis) {
+      paintRadarGrid(RadarP0 ? RadarP0.emptyRadarGrid("Radar modules unavailable.").grid : {
+        cells: [], rows: 0, cols: 0, bounds: { west: 0, east: 0, south: 0, north: 0 },
+        renderMode: "radar-interest", unavailable: true, habitatEmpty: true,
+        coverage: { level: "limited", label: "Radar unavailable" }
+      }, { label: "Radar P0 unavailable" });
+      return;
+    }
+    var zoom = map.getZoom();
+    if (zoom < (RadarP0.MIN_ZOOM || 11)) {
+      state.heatPhase = "zoom";
+      paintRadarGrid(RadarP0.emptyRadarGrid("Zoom in for Relative Search Interest (~90 m analysis).").grid, {
+        label: "Zoom for radar surface"
+      });
+      if (wxPromise) {
+        wxPromise.then(function (w) {
+          if (gen !== state.recomputeGen) return;
+          if (w) state.weather = w;
+        });
+      }
+      return;
+    }
+
+    ensureGisPacks().then(function () {
+      if (gen !== state.recomputeGen) return;
+      var center = map.getCenter();
+      var pack = GisPack.findCoveringPack(state.gisPacks, center.lat, center.lng);
+      if (!pack && state.gisPacks && state.gisPacks.length) {
+        // Viewport may still intersect pack even if center is outside.
+        pack = state.gisPacks[0];
+        maybeCenterRadarDemo(pack);
+        // After potential setView, wait for next settle recompute rather than painting wrong window.
+        if (!GisPack.inBounds(pack, map.getCenter().lat, map.getCenter().lng)) {
+          paintRadarGrid(
+            RadarP0.emptyRadarGrid(
+              "Relative Search Interest is limited to the Pike/Milford pack AOI in this prototype."
+            ).grid,
+            { label: "Outside pack coverage" }
+          );
+          return;
+        }
+        pack = GisPack.findCoveringPack(state.gisPacks, map.getCenter().lat, map.getCenter().lng) || pack;
+      }
+      if (!pack) {
+        paintRadarGrid(
+          RadarP0.emptyRadarGrid(
+            "No habitat pack covers this map — radar not fabricated outside supported AOI."
+          ).grid,
+          { label: "Unsupported coverage" }
+        );
+        return;
+      }
+
+      var win = RadarP0.viewportAnalysisBounds(map.getBounds(), pack.bounds);
+      if (!win.ok) {
+        maybeCenterRadarDemo(pack);
+        paintRadarGrid(
+          RadarP0.emptyRadarGrid(
+            win.reason === "outside_pack"
+              ? "Outside Pike pack AOI — no land-cover radar fabricated."
+              : "Viewport radar unavailable."
+          ).grid,
+          { label: "Limited radar coverage" }
+        );
+        return;
+      }
+
+      var dims = RadarP0.dimsForBounds(win.bounds);
+      var key = RadarP0.cacheKey(win.bounds, dims.rows, dims.cols, pack.packId);
+      var baseField = null;
+      if (state.radarBaseKey === key && state.radarBaseCache) {
+        baseField = state.radarBaseCache;
+      } else {
+        var built = RadarP0.buildBaseField({
+          pack: pack,
+          bounds: win.bounds,
+          rows: dims.rows,
+          cols: dims.cols,
+          cellSizeMApprox: dims.cellSizeMApprox,
+          HabitatGis: HabitatGis,
+          GisPack: GisPack
+        });
+        if (!built.ok) {
+          paintRadarGrid(
+            RadarP0.emptyRadarGrid("Not enough habitat inputs for a radar surface here.").grid,
+            { label: "Insufficient spatial inputs" }
+          );
+          return;
+        }
+        baseField = built.field;
+        state.radarBaseCache = baseField;
+        state.radarBaseKey = key;
+      }
+
+      function finishWithField(field, elevMeta) {
+        if (gen !== state.recomputeGen) return;
+        var painted = RadarP0.applyFrame(field, state.radarP0FrameId || "A", {
+          Model: SearchPriorityToday
+        });
+        state.heatPhase = "refine";
+        paintRadarGrid(painted.grid, {
+          label: "Relative Search Interest",
+          elevNote: elevMeta && elevMeta.fromCache
+            ? "Terrain cache reused · frame switch did not refetch elevation."
+            : field.terrainEnriched
+              ? "Terrain/aspect enriched from elevation."
+              : "Terrain/aspect limited — solar modifier only where aspect exists."
+        });
+      }
+
+      // Already terrain-enriched for this key — skip elevation network.
+      if (baseField.terrainEnriched) {
+        finishWithField(baseField, { fromCache: true });
+        return;
+      }
+
+      var elevKeyGuess = [
+        Number(win.bounds.west).toFixed(4),
+        Number(win.bounds.south).toFixed(4),
+        Number(win.bounds.east).toFixed(4),
+        Number(win.bounds.north).toFixed(4),
+        dims.rows,
+        dims.cols,
+        "radar"
+      ].join("|");
+      if (state.radarElevKey === elevKeyGuess && state.radarElevCache) {
+        var enrichedCached = RadarP0.enrichWithTerrain(baseField, state.radarElevCache, {
+          SearchPriority: SearchPriority,
+          zoom: zoom,
+          countedFetch: false
+        });
+        if (enrichedCached.ok && enrichedCached.field) {
+          state.radarBaseCache = enrichedCached.field;
+          state.radarBaseKey = key;
+          finishWithField(enrichedCached.field, { fromCache: true });
+          return;
+        }
+      }
+
+      if (state.offlineForced) {
+        finishWithField(baseField, { fromCache: false });
+        return;
+      }
+
+      setModelCoverageNote("Sampling elevation for aspect…");
+      fetchRadarElevations(win.bounds, dims.rows, dims.cols).then(function (elevPack) {
+        if (gen !== state.recomputeGen) return;
+        if (!elevPack || !elevPack.elevations) {
+          finishWithField(baseField, { fromCache: false });
+          return;
+        }
+        var enriched = RadarP0.enrichWithTerrain(baseField, elevPack.elevations, {
+          SearchPriority: SearchPriority,
+          zoom: zoom,
+          countedFetch: !elevPack.fromCache
+        });
+        var field = enriched.ok && enriched.field ? enriched.field : baseField;
+        state.radarBaseCache = field;
+        state.radarBaseKey = key;
+        finishWithField(field, { fromCache: !!elevPack.fromCache });
+      });
+
+      if (wxPromise) {
+        wxPromise.then(function (w) {
+          if (gen !== state.recomputeGen) return;
+          if (w) state.weather = w;
+        });
+      }
+    });
+  }
+
+  function setRadarP0Frame(frameId) {
+    if (!RadarP0 || !RadarP0.FRAMES[frameId]) return;
+    if (state.radarP0FrameId === frameId) return;
+    state.radarP0FrameId = frameId;
+    syncRadarP0Ui();
+    // Frame switch: reuse base+elev cache — only re-apply conditions.
+    if (state.radarP0Enabled && state.radarBaseCache) {
+      var painted = RadarP0.applyFrame(state.radarBaseCache, frameId, {
+        Model: SearchPriorityToday
+      });
+      paintRadarGrid(painted.grid, {
+        label: "Relative Search Interest",
+        elevNote: "Condition frame switched · base landscape + elevation cache reused (no elev refetch)."
+      });
+      return;
+    }
+    scheduleRecompute(80);
+  }
+
+  function setRadarP0Enabled(on) {
+    state.radarP0Enabled = !!on;
+    syncRadarP0Ui();
+    if (!state.radarP0Enabled) {
+      renderRadarExplain(null);
+    }
+    scheduleRecompute(100);
+  }
+
+  /**
    * Phase 1.x — terrain/aspect enrichment runs when Search Areas overlay is on
    * OR a Search Location is active. Overlay visibility is presentation-only.
    */
@@ -3792,6 +4178,12 @@
       return;
     }
 
+    // RADAR P0 prototype — viewport surface; Search Area not required.
+    if (state.radarP0Enabled && RadarP0) {
+      recomputeRadarP0(gen, wxPromise);
+      return;
+    }
+
     // Phase 2: Habitat GIS only when SEARCH LOCATION is set — never from coarse YOU alone.
     if (HabitatGis && GisPack) {
       preserveSearchAcrossSideEffects();
@@ -4465,7 +4857,11 @@
       // Initial acquisition + explicit Locate/Here center on YOU.
       // Do not skip initial center merely because a prior session saved a map view —
       // that left owners looking at Midwest while GPS sat off-screen.
-      var shouldCenter = opts.center !== false && !state.userPanned;
+      // RADAR P0 demo: hold Pike AOI until the user explicitly Locates / pans.
+      var shouldCenter =
+        opts.center !== false &&
+        !state.userPanned &&
+        !state.radarHoldDemoCenter;
       if (shouldCenter) {
         recenterToUser({ zoom: Math.max(map.getZoom(), 13) });
       }
@@ -4777,6 +5173,51 @@
     var cell = heatLayer && heatLayer.nearestCell(latlng);
     var text;
     state.lastExplainLatLng = latlng;
+
+    // RADAR P0 tap explain — compact factors panel (no LLM narrative).
+    if (
+      state.radarP0Enabled &&
+      RadarP0 &&
+      state.lastGrid &&
+      state.lastGrid.renderMode === "radar-interest"
+    ) {
+      var explain = RadarP0.explainAt(state.lastGrid, latlng);
+      renderRadarExplain(explain);
+      if (explain) {
+        text =
+          "Relative Search Interest\n" +
+          (explain.frameLabel ? "Frame: " + explain.frameLabel + "\n" : "") +
+          (explain.score != null ? "Score: " + explain.score + " (relative 0–3 — not probability)\n" : "") +
+          "\nFactors:\n• " +
+          (explain.factors || [])
+            .map(function (f) {
+              return f.label + ": " + f.value + (f.detail ? " — " + f.detail : "");
+            })
+            .join("\n• ") +
+          "\n\n" +
+          (explain.disclaimer || "");
+        if (els.explainBreakdown) els.explainBreakdown.textContent = "";
+        if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
+        if (els.explainCompare) els.explainCompare.textContent = "";
+        if (els.explainTech) {
+          els.explainTech.textContent =
+            "RADAR P0 · smoothed display · analysis ≈" +
+            Math.round(explain.cellMetersApprox || 90) +
+            " m · Phase 1 model modifiers";
+        }
+        els.explainBody.textContent = text;
+        state.lastPerf.explainMs =
+          ((typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now()) - t0;
+        openSheet(els.sheetExplain);
+        return;
+      }
+      text = "No Relative Search Interest sample here — outside pack coverage or limited inputs.";
+      els.explainBody.textContent = text;
+      renderRadarExplain(null);
+      openSheet(els.sheetExplain);
+      return;
+    }
+
     var gisGrid = state.lastGrid && state.lastGrid.renderMode === "gis-bands";
     if (gisGrid && (!cell || cell.outsideArea || !cell.result || cell.result.unavailable)) {
       text = state.searchLocation
@@ -5918,7 +6359,10 @@
   }
 
   function bindControls() {
-    $("btn-locate").addEventListener("click", function () { locateUser({ center: true, force: true }); });
+    $("btn-locate").addEventListener("click", function () {
+      state.radarHoldDemoCenter = false;
+      locateUser({ center: true, force: true });
+    });
     if ($("btn-here-chip")) {
       $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true, force: true }); });
     }
@@ -6539,6 +6983,42 @@
         setSearchAreasVisible(!state.searchAreasVisible);
       });
     }
+    if ($("btn-radar-p0-toggle")) {
+      $("btn-radar-p0-toggle").addEventListener("click", function () {
+        setRadarP0Enabled(!state.radarP0Enabled);
+      });
+    }
+    if ($("btn-radar-frame-a")) {
+      $("btn-radar-frame-a").addEventListener("click", function () {
+        setRadarP0Frame("A");
+      });
+    }
+    if ($("btn-radar-frame-b")) {
+      $("btn-radar-frame-b").addEventListener("click", function () {
+        setRadarP0Frame("B");
+      });
+    }
+    if ($("btn-radar-pike-aoi")) {
+      $("btn-radar-pike-aoi").addEventListener("click", function () {
+        ensureGisPacks().then(function () {
+          var pack = state.gisPacks && state.gisPacks[0];
+          var center = RadarP0 && pack ? RadarP0.packDemoCenter(pack) : null;
+          if (!center || !map) return;
+          state.radarCenteredOnce = true;
+          state.radarHoldDemoCenter = true;
+          state.userPanned = true;
+          state.followUser = false;
+          map.setView([center.lat, center.lng], center.zoom, { animate: false });
+          scheduleRecompute(120);
+        });
+      });
+    }
+    if ($("btn-radar-explain-close")) {
+      $("btn-radar-explain-close").addEventListener("click", function () {
+        renderRadarExplain(null);
+      });
+    }
+    syncRadarP0Ui();
     function readHeatFilterControls() {
       state.heatMode = $("heat-mode") ? $("heat-mode").value : "habitat";
       if (state.heatMode === "biological") state.heatMode = "habitat";
@@ -6878,10 +7358,36 @@
     setPlanExpanded(false);
     syncHeatLegend();
     syncSearchAreasLegend();
+    syncRadarP0Ui();
     if (state.searchAreasVisible) setSearchAreasVisible(true);
     syncSearchPrompt();
     initFirstRunCoach();
     ensureGisPacks().then(function () {
+      // RADAR P0: if no saved view and radar is on, open Pike AOI so the proof is visible.
+      try {
+        var params = new URLSearchParams(location.search || "");
+        if (params.get("radarP0") === "0") {
+          state.radarP0Enabled = false;
+          syncRadarP0Ui();
+        }
+        var savedView = Store.loadMapView && Store.loadMapView();
+        var pack0 = state.gisPacks && state.gisPacks[0];
+        if (
+          state.radarP0Enabled &&
+          pack0 &&
+          RadarP0 &&
+          (!savedView || params.get("radarP0") === "1")
+        ) {
+          var demo = RadarP0.packDemoCenter(pack0);
+          if (demo && map) {
+            state.radarCenteredOnce = true;
+            state.radarHoldDemoCenter = true;
+            state.userPanned = true;
+            state.followUser = false;
+            map.setView([demo.lat, demo.lng], demo.zoom, { animate: false });
+          }
+        }
+      } catch (eRadar) { /* */ }
       scheduleRecompute(200);
       // Phase 1.x: terrain/aspect enrichment for Search Priority Today (overlay-independent).
       scheduleSearchAreas(240);
@@ -6919,7 +7425,63 @@
       openHuntDetail: openHuntDetail,
       showHistoricalHunt: showHistoricalHunt,
       hideHistoricalHunt: hideHistoricalHunt,
-      redrawHistoryTracks: redrawHistoryTracks
+      redrawHistoryTracks: redrawHistoryTracks,
+      /* RADAR P0 test hooks — prototype only */
+      _radarP0: {
+        isEnabled: function () { return !!state.radarP0Enabled; },
+        getFrameId: function () { return state.radarP0FrameId; },
+        getBaseKey: function () { return state.radarBaseKey; },
+        getElevKey: function () { return state.radarElevKey; },
+        getElevFetchGen: function () { return state.radarElevFetchGen; },
+        setFrame: setRadarP0Frame,
+        setEnabled: setRadarP0Enabled,
+        getMap: function () { return map; },
+        getLastGrid: function () { return state.lastGrid; },
+        getBaseField: function () { return state.radarBaseCache; },
+        /** Enrichment-ready status for acceptance capture (not product UI). */
+        getProofStatus: function () {
+          var field = state.radarBaseCache;
+          var cells = (field && field.cells) || [];
+          var aspects = {};
+          var withAspect = 0;
+          var southish = 0;
+          var i;
+          for (i = 0; i < cells.length; i++) {
+            var a = cells[i] && cells[i].aspectCardinal ? cells[i].aspectCardinal : null;
+            var key = a || "null";
+            aspects[key] = (aspects[key] || 0) + 1;
+            if (a) withAspect += 1;
+            if (a === "S" || a === "SE" || a === "SW") southish += 1;
+          }
+          return {
+            enabled: !!state.radarP0Enabled,
+            frameId: state.radarP0FrameId || null,
+            baseKey: state.radarBaseKey || "",
+            elevKey: state.radarElevKey || "",
+            elevFetchGen: state.radarElevFetchGen || 0,
+            terrainEnriched: !!(field && field.terrainEnriched),
+            rows: field ? field.rows : 0,
+            cols: field ? field.cols : 0,
+            bounds: field && field.bounds ? field.bounds : null,
+            cellCount: cells.length,
+            withAspect: withAspect,
+            southish: southish,
+            aspects: aspects,
+            stats: state.lastGrid && state.lastGrid.stats ? state.lastGrid.stats : null,
+            renderMode: state.lastGrid ? state.lastGrid.renderMode : null,
+            ready: !!(
+              state.radarP0Enabled &&
+              field &&
+              field.terrainEnriched &&
+              state.radarElevKey &&
+              withAspect > 0 &&
+              southish > 0 &&
+              state.lastGrid &&
+              state.lastGrid.renderMode === "radar-interest"
+            )
+          };
+        }
+      }
     };
   } catch (eApi) { /* */ }
 

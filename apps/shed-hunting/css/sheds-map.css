@@ -1723,6 +1723,144 @@ html.sheds-session-active .sheds-hunt-plan-hud {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
 }
 
+/* RADAR P0 prototype panel — forest tokens, not a brand redesign */
+.sheds-radar-p0 {
+  position: absolute;
+  top: calc(0.55rem + var(--sheds-safe-top));
+  left: calc(0.5rem + var(--sheds-safe-left));
+  z-index: 540;
+  max-width: min(92vw, 17.5rem);
+  padding: 0.55rem 0.7rem 0.65rem;
+  border-radius: 14px;
+  background: rgba(6, 16, 12, 0.94);
+  border: 1px solid var(--sheds-border);
+  backdrop-filter: var(--sheds-blur);
+  -webkit-backdrop-filter: var(--sheds-blur);
+  color: var(--sheds-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.sheds-radar-p0[hidden] {
+  display: none !important;
+}
+
+.sheds-radar-p0__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.sheds-radar-p0__kicker {
+  margin: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sheds-muted, #a8b5ae);
+  font-weight: 650;
+}
+
+.sheds-radar-p0__toggle {
+  font-size: 0.65rem !important;
+  padding: 0.2rem 0.45rem !important;
+}
+
+.sheds-radar-p0__lede {
+  margin: 0 0 0.45rem;
+  color: var(--sheds-muted, #a8b5ae);
+}
+
+.sheds-radar-p0__frames {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.sheds-radar-p0__frame {
+  appearance: none;
+  flex: 1 1 0;
+  margin: 0;
+  padding: 0.35rem 0.4rem;
+  border-radius: 10px;
+  border: 1px solid var(--sheds-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sheds-radar-p0__frame[aria-pressed="true"] {
+  background: rgba(72, 140, 78, 0.28);
+  border-color: rgba(72, 140, 78, 0.55);
+}
+
+.sheds-radar-p0__frame-label {
+  margin: 0 0 0.4rem;
+  color: var(--sheds-muted, #a8b5ae);
+}
+
+.sheds-radar-p0-explain {
+  position: absolute;
+  top: calc(9.5rem + var(--sheds-safe-top));
+  left: calc(0.5rem + var(--sheds-safe-left));
+  z-index: 541;
+  max-width: min(92vw, 18rem);
+  max-height: min(42vh, 16rem);
+  overflow: auto;
+  padding: 0.55rem 0.7rem 0.65rem;
+  border-radius: 14px;
+  background: rgba(6, 16, 12, 0.96);
+  border: 1px solid var(--sheds-border);
+  color: var(--sheds-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+  font-size: 0.7rem;
+}
+
+.sheds-radar-p0-explain[hidden] {
+  display: none !important;
+}
+
+.sheds-radar-p0-explain__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.3rem;
+}
+
+.sheds-radar-p0-explain__kicker {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  color: var(--sheds-muted, #a8b5ae);
+}
+
+.sheds-radar-p0-explain__body {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .sheds-radar-p0 {
+    max-width: min(96vw, 15.5rem);
+    font-size: 0.68rem;
+  }
+  .sheds-radar-p0-explain {
+    top: calc(10.25rem + var(--sheds-safe-top));
+    max-width: min(96vw, 16rem);
+  }
+}
+
 .sheds-legend-float__toggle {
   appearance: none;
   display: flex;

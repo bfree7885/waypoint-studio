@@ -1,0 +1,277 @@
+{
+  "capturedAt": "2026-09-07T14:44:18.440Z",
+  "viewport": {
+    "center": {
+      "lat": 41.3091,
+      "lng": -74.7835
+    },
+    "zoom": 13,
+    "bounds": {
+      "west": -74.8104,
+      "south": 41.2889,
+      "east": -74.7566,
+      "north": 41.3293
+    },
+    "rows": 50,
+    "cols": 50
+  },
+  "locked": {
+    "ok": true,
+    "center": {
+      "lat": 41.3091,
+      "lng": -74.7835
+    },
+    "zoom": 13,
+    "size": {
+      "x": 1280,
+      "y": 800
+    }
+  },
+  "statusReady": {
+    "enabled": true,
+    "frameId": "A",
+    "baseKey": "pa-pike-milford-v1|-74.8236|41.2901|-74.7697|41.3306|50|50|90",
+    "elevKey": "-74.8236|41.2901|-74.7697|41.3306|50|50|radar",
+    "elevFetchGen": 2,
+    "terrainEnriched": true,
+    "rows": 50,
+    "cols": 50,
+    "bounds": {
+      "west": -74.82355018205374,
+      "east": -74.76973366194042,
+      "south": 41.29014059505718,
+      "north": 41.33056459793178
+    },
+    "cellCount": 2500,
+    "withAspect": 2188,
+    "southish": 854,
+    "aspects": {
+      "S": 463,
+      "SW": 111,
+      "W": 174,
+      "SE": 280,
+      "E": 173,
+      "null": 312,
+      "NW": 405,
+      "NE": 160,
+      "N": 422
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 1276
+    },
+    "renderMode": "radar-interest",
+    "ready": true,
+    "elevHits": 0,
+    "elevMisses": 5408,
+    "center": {
+      "lat": 41.3091,
+      "lng": -74.7835
+    },
+    "zoom": 13
+  },
+  "elevGenBeforeSwitch": 2,
+  "elevGenAfterSwitch": 2,
+  "elevNetworkOnSwitch": 0,
+  "heatFingerprintA": {
+    "tiles": 24,
+    "sum": 46313717,
+    "nonzero": 3273196,
+    "paintedSamples": 25344
+  },
+  "heatFingerprintB": {
+    "tiles": 24,
+    "sum": 45148565,
+    "nonzero": 3074240,
+    "paintedSamples": 25026
+  },
+  "frameA": {
+    "inputs": {
+      "snowCoverStatus": "limiting",
+      "freezeThawStatus": null,
+      "tempTrendStatus": "cooling",
+      "seasonCategory": "late_winter"
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 1276
+    },
+    "hist": {
+      "scores": {
+        "0": 98,
+        "1": 481,
+        "2": 1109,
+        "3": 812
+      },
+      "bands": {
+        "stronger_interest": 1921,
+        "moderate_interest": 481,
+        "lower_interest": 98
+      }
+    }
+  },
+  "frameB": {
+    "inputs": {
+      "snowCoverStatus": "light",
+      "freezeThawStatus": "freeze_thaw",
+      "tempTrendStatus": "warming",
+      "seasonCategory": "late_winter"
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 682,
+      "snowModifiers": 0
+    },
+    "hist": {
+      "scores": {
+        "0": 160,
+        "1": 448,
+        "2": 1455,
+        "3": 437
+      },
+      "bands": {
+        "stronger_interest": 1892,
+        "lower_interest": 160,
+        "moderate_interest": 448
+      }
+    },
+    "note": "Relative Search Interest — smoothed display; analysis ≈90 m. Not find probability. Condition frame switched · base landscape + elevation cache reused (no elev refetch)."
+  },
+  "diff": {
+    "changed": 1331,
+    "unchanged": 1169,
+    "increased": 418,
+    "decreased": 913,
+    "solarOnB": 389,
+    "changedByAsp": {
+      "E": 106,
+      "W": 108,
+      "null": 136,
+      "SE": 147,
+      "S": 275,
+      "SW": 41,
+      "NW": 219,
+      "NE": 105,
+      "N": 194
+    },
+    "uniformBoost": false
+  },
+  "samples": {
+    "changed": {
+      "lat": 41.329351877845546,
+      "lng": -74.88617997034382,
+      "score": 3,
+      "aspect": "S",
+      "mods": [
+        "solar_searchability"
+      ]
+    },
+    "unchanged": {
+      "lat": 41.32611795761558,
+      "lng": -74.88617997034382,
+      "score": 2,
+      "aspect": "N",
+      "mods": []
+    },
+    "explainChanged": {
+      "score": 3,
+      "factors": [
+        {
+          "id": "base_gis",
+          "label": "Base habitat GIS band",
+          "value": "stronger",
+          "detail": "Forest cover · edge ~179 m"
+        },
+        {
+          "id": "slope",
+          "label": "Slope",
+          "value": "2°",
+          "detail": "From pack / elevation-derived terrain"
+        },
+        {
+          "id": "aspect",
+          "label": "Aspect",
+          "value": "S",
+          "detail": "Elevation-derived cardinal aspect"
+        },
+        {
+          "id": "feature",
+          "label": "Terrain feature",
+          "value": "hillside",
+          "detail": "Elevation-derived feature kind"
+        },
+        {
+          "id": "solar_searchability",
+          "label": "solar_searchability",
+          "value": "+1",
+          "detail": "Sun-facing ground can become more searchable sooner during thaw or warming (searchability, not a find claim)."
+        },
+        {
+          "id": "relative_score",
+          "label": "Relative interest score",
+          "value": "3",
+          "detail": "0–3 relative scale — not probability"
+        }
+      ]
+    },
+    "explainUnchanged": {
+      "score": 2,
+      "factors": [
+        {
+          "id": "base_gis",
+          "label": "Base habitat GIS band",
+          "value": "stronger",
+          "detail": "Forest cover · edge ~0 m"
+        },
+        {
+          "id": "slope",
+          "label": "Slope",
+          "value": "0°",
+          "detail": "From pack / elevation-derived terrain"
+        },
+        {
+          "id": "aspect",
+          "label": "Aspect",
+          "value": "N",
+          "detail": "Elevation-derived cardinal aspect"
+        },
+        {
+          "id": "feature",
+          "label": "Terrain feature",
+          "value": "undifferentiated",
+          "detail": "Elevation-derived feature kind"
+        },
+        {
+          "id": "relative_score",
+          "label": "Relative interest score",
+          "value": "2",
+          "detail": "0–3 relative scale — not probability"
+        }
+      ]
+    },
+    "pt": {
+      "x": 41,
+      "y": 243,
+      "lat": 41.329351877845546,
+      "lng": -74.88617997034382
+    }
+  },
+  "explainUi": {
+    "body": "",
+    "hidden": true
+  },
+  "outside": {
+    "note": "Relative Search Interest is limited to the Pike/Milford pack AOI in this prototype.",
+    "legend": "Radar coverage limited outside Pike pack AOI",
+    "unavailable": true,
+    "cells": 0,
+    "renderMode": "radar-interest"
+  },
+  "screenshots": {
+    "frameA": "/home/bryan/Projects/waypoint-studio/.worktrees/radar-p0-review/docs/sheds/samples/radar-p0/browser-frame-a.png",
+    "frameB": "/home/bryan/Projects/waypoint-studio/.worktrees/radar-p0-review/docs/sheds/samples/radar-p0/browser-frame-b.png",
+    "frameBMobile": "/home/bryan/Projects/waypoint-studio/.worktrees/radar-p0-review/docs/sheds/samples/radar-p0/browser-frame-b-mobile.png"
+  }
+}

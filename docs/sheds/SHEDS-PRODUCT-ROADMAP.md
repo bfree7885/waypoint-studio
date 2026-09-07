@@ -2,7 +2,7 @@
 
 **Status:** Canonical for ShedHunting.org sequence and intelligence direction.  
 **Audience:** Owners, engineers, and coding agents  
-**Last updated:** 2026-09-03
+**Last updated:** 2026-09-07
 
 When Shed Hunting version intent disagrees, **this file plus** [`docs/PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md) win. Do not implement a later increment because it appears here.
 
@@ -37,15 +37,32 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V1.7** | Record where I searched and what I observed | Merged to Studio main. Dedicated-host publish is a separate owner gate. |
 | **V1.8** | Hunt History | Shipped on ShedHunting.org. |
 | **V1.9** | Condition Snapshots | **Shipped.** Factual environmental/context foundation for Hunt Records. Not the V2.x heat map. |
-| **V2.0 Phase 1** | Search Priority Today (model + map) | **In development.** Model foundation merged; map integration in progress (relative search-interest wash + Why these bands today). Spec: `SHEDS-V2-0-PHASE1-SEARCH-PRIORITY-TODAY.md`. Not deployed. |
+| **V2.0 Phase 1** | Search Priority Today (model + map) | **Shipped** (Studio main + sheds-site). Relative search-interest wash + Why these bands today. Spec: `SHEDS-V2-0-PHASE1-SEARCH-PRIORITY-TODAY.md`. |
+| **V2.0 Phase 1.x** | Aspect enrichment independent of Search Areas overlay | **Shipped.** |
+| **RADAR P0** | Viewport continuous Relative Search Interest surface (Pike AOI proof) | **Prototype architecture/data proof** — not production-ready. Spec: `SHEDS-RADAR-P0.md`. Do not deploy as launch. |
 
 V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records. V1.9 stores a factual Condition Snapshot on new Hunt Records (weather/season/optional GPS altitude) without changing the History list.
 
 ---
 
-## Flagship V2.x intelligence: dynamic search-priority map
+## Flagship direction reset: Shed Radar (internal)
 
-**This is the flagship Sheds+ intelligence milestone.** V1.9 is shipped. **V2.0 Phase 1** delivers the pure model foundation and the first map integration of condition-aware relative search interest (not find probability). Do not skip to full Sheds+ visualization, personal-history heat, accounts, or new habitat packs in Phase 1.
+Product direction after Phase 1.x prioritizes a **weather-radar-like** relative search-interest surface (map-first), not Search-Area-first discrete bands.
+
+Suggested sequence (evaluate against repo realities; do not skip honesty gates):
+
+| Milestone | Intent | Status |
+| --- | --- | --- |
+| **RADAR P0** | Architecture/data proof in Pike AOI | Prototype (this doc) |
+| **RADAR P1** | Static base landscape surface | Not started |
+| **RADAR P2** | Current-condition dynamic surface | Not started |
+| **RADAR P3** | Time snapshots / playback prototype | Not started |
+| **RADAR P4** | Broader geographic coverage | Not started |
+| **RADAR P5** | Product integration / polish | Not started |
+
+**Do not** put the internal phrase “Shed Radar” into production UI automatically. Prefer **Relative Search Interest**.
+
+V1.9 is shipped. **V2.0 Phase 1** delivered the pure model foundation and first map integration of condition-aware relative search interest (not find probability). RADAR P0 reuses that model on a viewport field with continuous display.
 
 The map should **change as real conditions change**. Relative **search priority / opportunity** may shift. Example: an area that is Moderate today may become Higher after warming, snowmelt, better seasonal timing, and improved searchability. The hunter must be able to understand **why** the rank changed.
 
@@ -70,7 +87,7 @@ The map must **never** claim:
 - an antler exists at a coordinate
 - a probability unsupported by evidence
 
-Later V2.x deepening (still not V1.7):
+Later deepening (still not V1.7):
 
 - richer terrain/data inputs
 - snow/melt progression
@@ -81,7 +98,7 @@ Later V2.x deepening (still not V1.7):
 - improved explainability
 - offline intelligence groundwork
 
-Existing V1.3 search-priority and habitat/heat layers stay available as today’s field tools. They are **not** this V2.x dynamic map and must not be marketed as proven antler locations.
+Existing V1.3 search-priority and habitat/heat layers stay available as today’s field tools. They are **not** this radar surface and must not be marketed as proven antler locations.
 
 ---
 

@@ -1842,3 +1842,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Reuse `lastSearchAreasGrid` as the enrichment cache; invalidate by viewport bounds+grid+zoom key. Do not clear it when the overlay is hidden.
 - When enrichment arrives after the first interest paint, schedule one recompute guarded by `interestEnrichAppliedKey` to avoid loops.
 - Never fabricate aspect. If elevation/terrain is unavailable, keep honest degraded guidance and skip `solar_searchability`.
+
+## Lessons Learned — Sheds RADAR P0 spatial surface (2026-09-07)
+
+- Search-Area-first discrete bands are useful infrastructure but not the desired map-first experience; a viewport-scoped score field clipped to pack bounds is the smallest foundation for a weather-radar-like surface.
+- Reuse Phase 1 `evaluateCell` per cell — do not invent a second scoring model. Continuous display is visual bilinear only; keep ~90 m analytical honesty in copy.
+- Cache base landscape + elevation by viewport key so Frame A/B switches re-apply conditions without refetching terrain.
+- Outside pack AOI: empty/limited surface — never fabricate land-cover-rich radar.
+- Prototype controls and evidence belong in-branch; do not deploy P0 as production launch or rename UI to “Shed Radar.”
+- Experience proof requires enrichment-ready capture: without aspect, Frame A/B are analytically identical. Dismiss onboarding overlays for screenshots only; assert map-region pixel delta (not frame-button chrome) and heat-canvas fingerprint change.

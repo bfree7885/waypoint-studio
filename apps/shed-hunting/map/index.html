@@ -338,6 +338,28 @@
         </div>
       </div>
 
+      <!-- RADAR P0 prototype controls — architecture proof only -->
+      <div class="sheds-radar-p0" id="radar-p0-panel" data-frame="A" role="region" aria-label="Relative Search Interest prototype">
+        <div class="sheds-radar-p0__head">
+          <p class="sheds-radar-p0__kicker">Prototype · Relative Search Interest</p>
+          <button type="button" class="sheds-btn sheds-btn--ghost sheds-radar-p0__toggle" id="btn-radar-p0-toggle" aria-pressed="true">Radar P0 · On</button>
+        </div>
+        <p class="sheds-radar-p0__lede">Smoothed display; analysis ≈90 m. Not find probability. Pike AOI only.</p>
+        <div class="sheds-radar-p0__frames" role="group" aria-label="Condition frame">
+          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-a" aria-pressed="true">Neutral / Cold</button>
+          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-b" aria-pressed="false">Warming / Thaw</button>
+        </div>
+        <p class="sheds-radar-p0__frame-label">Frame: <span id="radar-p0-frame-label">Neutral / Cold</span></p>
+        <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-radar-pike-aoi">Show Pike AOI</button>
+      </div>
+      <div class="sheds-radar-p0-explain" id="radar-p0-explain" hidden role="status" aria-live="polite">
+        <div class="sheds-radar-p0-explain__head">
+          <p class="sheds-radar-p0-explain__kicker">Why this intensity</p>
+          <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-radar-explain-close">Close</button>
+        </div>
+        <pre class="sheds-radar-p0-explain__body" id="radar-p0-explain-body"></pre>
+      </div>
+
       <!-- Search Areas — V1.3 terrain search priority (not find chance) -->
       <div class="sheds-search-legend" id="search-areas-legend" data-on="false" aria-label="Search Areas">
         <button type="button" class="sheds-search-legend__toggle" id="btn-search-areas" aria-pressed="false" title="Search Areas — terrain worth inspecting">
@@ -1169,6 +1191,7 @@
   <script src="../js/sheds-search-priority.js"></script>
   <script src="../js/sheds-search-priority-today.js"></script>
   <script src="../js/sheds-search-priority-today-map.js"></script>
+  <script src="../js/sheds-radar-p0.js"></script>
   <script src="../js/sheds-scout-spot-store.js"></script>
   <script src="../js/sheds-hunt-plan-store.js"></script>
   <script src="../js/sheds-hunt-session-store.js"></script>

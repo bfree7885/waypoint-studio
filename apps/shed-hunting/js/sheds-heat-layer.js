@@ -79,6 +79,12 @@
       return !!(grid && grid.renderMode === "search-interest-today");
     },
 
+    /** RADAR P0 — continuous relative-interest field (visual bilinear only). */
+    _isRadarMode: function () {
+      var grid = this._grid;
+      return !!(grid && grid.renderMode === "radar-interest");
+    },
+
     _cellAt: function (row, col) {
       var grid = this._grid;
       if (!grid || row < 0 || col < 0 || row >= grid.rows || col >= grid.cols) return null;
@@ -103,6 +109,40 @@
       return top + (bot - top) * fr;
     },
 
+    /** Soft radar wash — intensity from continuous priority (not probability). */
+    _colorForRadar: function (priority, alphaBoost) {
+      var p = Math.max(0, Math.min(1, priority));
+      var aMul = alphaBoost != null ? alphaBoost : 1;
+      if (p < 0.08) return null;
+      if (p < 0.34) {
+        return "rgba(78, 110, 118, " + ((0.04 + p * 0.28) * aMul) + ")";
+      }
+      if (p < 0.67) {
+        return "rgba(168, 148, 72, " + ((0.10 + (p - 0.34) * 0.42) * aMul) + ")";
+      }
+      return "rgba(72, 140, 78, " + ((0.18 + (p - 0.67) * 0.55) * aMul) + ")";
+    },
+
+    _paintContinuousPriority: function (ctx, grid, nw, se, tileX, tileY, colorFn) {
+      var cellW = (se.x - nw.x) / grid.cols;
+      var cellH = (se.y - nw.y) / grid.rows;
+      var step = Math.max(2, Math.min(6, Math.floor(Math.min(Math.abs(cellW), Math.abs(cellH)) / 3) || 2));
+      var y;
+      var x;
+      for (y = 0; y < 256; y += step) {
+        for (x = 0; x < 256; x += step) {
+          var gx = (tileX + x + step / 2 - nw.x) / cellW;
+          var gy = (tileY + y + step / 2 - nw.y) / cellH;
+          if (gx < -1 || gy < -1 || gx > grid.cols || gy > grid.rows) continue;
+          var p = this._samplePriority(gy, gx);
+          var fill = colorFn.call(this, p, 1);
+          if (!fill) continue;
+          ctx.fillStyle = fill;
+          ctx.fillRect(x, y, step + 1, step + 1);
+        }
+      }
+    },
+
     _paintTile: function (tile, coords) {
       var ctx = tile.getContext("2d");
       ctx.clearRect(0, 0, 256, 256);
@@ -120,7 +160,24 @@
       var gis = this._isGisMode();
       var search = this._isSearchMode();
       var interest = this._isInterestMode();
+      var radar = this._isRadarMode();
       var i;
+
+      // RADAR P0: continuous bilinear intensity — never primary square-band cells.
+      if (radar) {
+        this._paintContinuousPriority(ctx, grid, nw, se, tileX, tileY, this._colorForRadar);
+        if (this._showConfidence || limited) {
+          ctx.strokeStyle = "rgba(228,234,244,0.08)";
+          ctx.lineWidth = 1;
+          for (var rhx = -256; rhx < 512; rhx += 10) {
+            ctx.beginPath();
+            ctx.moveTo(rhx, 0);
+            ctx.lineTo(rhx + 256, 256);
+            ctx.stroke();
+          }
+        }
+        return;
+      }
 
       if (search || interest) {
         for (i = 0; i < grid.cells.length; i++) {
