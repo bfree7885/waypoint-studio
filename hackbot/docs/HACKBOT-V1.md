@@ -21,11 +21,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–2 usable) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–3 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-Lesson 1 is the first training experience. Lesson 2 is the first page-inspection exercise. Lessons 3–10 are labeled **future**. Assistance Level is not auto-changed.
+Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lessons 4–10 are labeled **future**. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -111,15 +111,16 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | --- | --- |
 | 1. How a Web Request Works | Available |
 | 2. Inspecting a Web Page | Available |
-| 3–10 | Future (visible, not playable) |
+| 3. HTTP Requests and Responses | Available |
+| 4–10 | Future (visible, not playable) |
 
-Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**.
+Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**.
 
-Lesson 2 uses a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab from the lesson. Nothing is sent to a network. No exploitation is taught.
+Lessons 2–3 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, and product clicks issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show GET `/search?q=boots`, POST `/login` (synthetic 401 JSON), and GET `/products/42`. No general-purpose backend. No exploitation.
 
 Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
 
-Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Lesson 1 and Lesson 2 progress are stored separately (`workspaceId::lessonId`). Schema version stays **2**.
+Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Each lesson’s progress is stored separately (`workspaceId::lessonId`). Schema version stays **2**.
 
 ### MockProvider evaluation
 
@@ -132,7 +133,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1 and 2 call `evaluateLearnerResponse`.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–3 call `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 

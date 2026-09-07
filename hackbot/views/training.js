@@ -190,7 +190,7 @@
         '<p class="hb-train-tools">' +
         '<a class="hb-btn hb-btn-ghost" id="hb-train-open-page" href="' +
         Models.escapeHtml(pageUrl) +
-        '" target="_blank" rel="noopener noreferrer">Open Trail Supply page</a>' +
+        '" target="_blank" rel="noopener noreferrer">Open Trail Supply</a>' +
         '<span class="hb-muted hb-small">Opens in another tab so Hackbot stays here as the mentor.</span></p>';
     }
 

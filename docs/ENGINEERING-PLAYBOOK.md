@@ -1855,3 +1855,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep evaluation on exercise `concepts` / `passCount` / `hints`. A second lesson is not a reason to special-case MockProvider with a pile of if/else.
 - Page inspection needs a real local document the learner can open in another tab. An iframe preview is not a substitute for Developer Tools on that tab.
 - Hint-button indexing must be per current step. A lesson-wide `hintsUsed` counter skips early hints on later exercises.
+
+## Lessons Learned — Hackbot Lesson 3 HTTP Requests and Responses (2026-09-07)
+
+- A static file server cannot return a synthetic 401. A same-origin service worker on the training page is enough: intercept search/login/product `fetch` calls, leave HTML form `action`/`href` unchanged for Lesson 2 inspection.
+- Register relative URLs (`search?q=boots`, `login`, `products/42`) so the worker’s directory scope can see them. Absolute `/search` would miss the worker and hit the repo root.
+- Do not add a Studio or Node backend for training HTTP. Keep the handler inside `/hackbot/training/`.

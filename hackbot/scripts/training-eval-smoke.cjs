@@ -26,6 +26,7 @@ function load(rel) {
 
 load("js/models.js");
 load("js/curriculum-lesson2.js");
+load("js/curriculum-lesson3.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -46,15 +47,23 @@ if (!lesson2.trainingPage) {
   throw new Error("Lesson 2 should declare a local training page");
 }
 
+var lesson3 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_3_ID);
+if (!lesson3 || lesson3.status !== "available" || lesson3.steps.length !== 11) {
+  throw new Error("Lesson 3 should be available with 11 steps");
+}
+if (!lesson3.trainingPage) {
+  throw new Error("Lesson 3 should reuse the Trail Supply training page");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 8) {
-  throw new Error("Expected 8 future lessons (3–10), got " + future.length);
+if (future.length !== 7) {
+  throw new Error("Expected 7 future lessons (4–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 3 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 3–10: " + item.number);
+  if (item.number < 4 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 4–10: " + item.number);
   }
 });
 
@@ -140,6 +149,24 @@ Promise.all([
   }),
   evalStep(lesson2, "j-reflect", "The HTML comment and data-product-id are not visible as shopper-facing copy.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 2 reflection is soft-graded");
+  }),
+  evalStep(lesson3, "a-network", "I see the HTML document, store.css, and the JavaScript file after reload.").then(function (r) {
+    assert(r.verdict === "CORRECT", "page-load resources should be CORRECT");
+  }),
+  evalStep(lesson3, "b-search", "GET /search?q=boots").then(function (r) {
+    assert(r.verdict === "CORRECT", "search GET should be CORRECT");
+  }),
+  evalStep(lesson3, "e-post", "Search is GET with a query string and 200; login is POST /login with a JSON body and 401 unauthorized.").then(function (r) {
+    assert(r.verdict === "CORRECT", "GET vs POST should be CORRECT");
+  }),
+  evalStep(lesson3, "i-challenge", "Reload GET store.css 200; search GET /search q=boots 200; login POST /login JSON body 401 invalid credentials; search uses query, login uses body.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 3 challenge should be CORRECT");
+  }),
+  evalStep(lesson3, "i-challenge", "not sure").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 3 challenge should not advance");
+  }),
+  evalStep(lesson3, "k-reflect", "Network showed GET /search?q=boots and a 401 JSON body that the shop page never printed.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 3 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

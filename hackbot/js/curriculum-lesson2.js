@@ -344,7 +344,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Look → Identify → Ask why → Form a model → Verify",
     completeBanner:
-      "Lesson 2 is complete. You can review steps; Lessons 3–10 are not built yet.",
+      "Lesson 2 is complete. You can review steps or continue to Lesson 3 — HTTP Requests and Responses.",
     goal: "See that the rendered page is one representation of an application, and practice inspecting HTML, links, forms, scripts, and comments on a synthetic storefront.",
     steps: STEPS
   };
