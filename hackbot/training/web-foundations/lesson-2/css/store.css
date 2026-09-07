@@ -147,6 +147,41 @@ body {
   margin: 1.2rem 0;
 }
 
+.missing-link {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.result-panel {
+  margin: 1rem 0;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--ts-line);
+  border-radius: 8px;
+  background: var(--ts-panel);
+}
+
+.result-panel h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.result-meta {
+  margin: 0 0 0.45rem;
+  color: var(--ts-muted);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.82rem;
+}
+
+.result-body {
+  overflow: auto;
+  margin: 0;
+  padding: 0.55rem 0.6rem;
+  background: #1c241c;
+  color: #e8efe4;
+  font-size: 0.82rem;
+  white-space: pre-wrap;
+}
+
 .login-form input,
 .search-form input,
 button {

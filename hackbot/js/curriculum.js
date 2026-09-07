@@ -226,7 +226,6 @@
   ];
 
   var FUTURE_LESSONS = [
-    { id: "http-pair", title: "HTTP Requests and Responses" },
     { id: "headers", title: "Headers" },
     { id: "status-redirects", title: "Status Codes and Redirects" },
     { id: "parameters", title: "Parameters and User Input" },
@@ -259,10 +258,14 @@
     MODULE_1.lessons.push(Hackbot.Lesson2);
   }
 
+  if (Hackbot.Lesson3) {
+    MODULE_1.lessons.push(Hackbot.Lesson3);
+  }
+
   FUTURE_LESSONS.forEach(function (item, index) {
     MODULE_1.lessons.push({
       id: item.id,
-      number: index + 3,
+      number: index + 4,
       title: item.title,
       status: "future",
       steps: []
@@ -293,6 +296,7 @@
     getLesson: getLesson,
     getStep: getStep,
     LESSON_2_ID: "inspect-page",
+    LESSON_3_ID: "http-pair",
     trainingPageUrl: function (lesson) {
       if (!lesson || !lesson.trainingPage) return "";
       if (!global.location || !global.location.href) return lesson.trainingPage;

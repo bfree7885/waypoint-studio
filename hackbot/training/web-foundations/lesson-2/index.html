@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lesson 2. Not a live shop.">
+  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–3. Not a live shop.">
   <title>Trail Supply</title>
   <link rel="stylesheet" href="css/store.css">
 </head>
@@ -28,7 +28,7 @@
   </header>
 
   <main class="store-main">
-    <p class="store-banner">Local Hackbot training page. These links and forms do not leave this browser.</p>
+    <p class="store-banner">Local Hackbot training page. Search, sign-in, and product links generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
 
     <section id="catalog" class="catalog" aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Field kit</h2>
@@ -40,6 +40,9 @@
         <a href="/products/17" class="product-link" data-product-id="17">Headlamp</a>
         <p class="price">$34.00</p>
       </article>
+      <p class="missing-link">
+        <a href="/products/99" class="product-link" data-product-id="99">Lantern — not in catalog</a>
+      </p>
     </section>
 
     <section class="account" aria-labelledby="account-heading">
@@ -55,6 +58,11 @@
 
     <p class="visually-hidden" id="inventory-hint" data-catalog="demo">Catalog source: /inventory/demo.json</p>
     <p id="store-status" class="store-status" role="status"></p>
+    <section id="result-panel" class="result-panel" hidden>
+      <h2>Last training response</h2>
+      <p id="result-meta" class="result-meta"></p>
+      <pre id="result-body" class="result-body" tabindex="0"></pre>
+    </section>
   </main>
 
   <footer class="store-footer">
