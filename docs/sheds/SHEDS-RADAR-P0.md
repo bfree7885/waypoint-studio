@@ -148,4 +148,12 @@ Remain available as optional planning/inspection tools. Radar P0 is the primary 
 
 `automation/test-sheds-radar-p0.mjs`
 
-Evidence images: `docs/sheds/samples/radar-p0/`
+Evidence capture (enrichment-ready Frame A/B):
+
+`automation/capture-sheds-radar-p0-evidence.mjs`
+
+Evidence images + `proof-report.json`: `docs/sheds/samples/radar-p0/`
+
+Acceptance: do not claim Frame A/B visual proof until `elevKey` is non-empty,
+aspect-bearing cells exist, analytical changed/unchanged cells are both > 0,
+and map-region screenshot pixels differ (not merely frame-button chrome).

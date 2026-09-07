@@ -1850,3 +1850,4 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Cache base landscape + elevation by viewport key so Frame A/B switches re-apply conditions without refetching terrain.
 - Outside pack AOI: empty/limited surface — never fabricate land-cover-rich radar.
 - Prototype controls and evidence belong in-branch; do not deploy P0 as production launch or rename UI to “Shed Radar.”
+- Experience proof requires enrichment-ready capture: without aspect, Frame A/B are analytically identical. Dismiss onboarding overlays for screenshots only; assert map-region pixel delta (not frame-button chrome) and heat-canvas fingerprint change.

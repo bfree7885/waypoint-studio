@@ -278,6 +278,79 @@ assert.ok(mapHtml.includes("btn-radar-frame-b"), "frame B control");
 assert.ok(mapHtml.includes("Relative Search Interest"), "honest product language");
 assert.ok(!/Shed Radar/.test(mapHtml.replace(/Radar P0/g, "")), "no production Shed Radar rename");
 
+// Real DEM fixture (Open-Meteo samples for locked Pike viewport) — enrichment-ready proof
+const elevFixturePath = path.join(
+  root,
+  "docs/sheds/samples/radar-p0/elev-fixture-pike-50x50.json"
+);
+assert.ok(fs.existsSync(elevFixturePath), "elev fixture present for acceptance");
+const elevFix = JSON.parse(fs.readFileSync(elevFixturePath, "utf8"));
+assert.equal(elevFix.rows, 50);
+assert.equal(elevFix.cols, 50);
+assert.equal(elevFix.elevations.length, (elevFix.rows + 2) * (elevFix.cols + 2));
+const baseFix = Radar.buildBaseField({
+  pack,
+  bounds: elevFix.bounds,
+  rows: elevFix.rows,
+  cols: elevFix.cols,
+  cellSizeMApprox: 90,
+  HabitatGis,
+  GisPack,
+});
+assert.equal(baseFix.ok, true, "fixture viewport base field");
+const enFix = Radar.enrichWithTerrain(baseFix.field, elevFix.elevations, {
+  SearchPriority: sandbox.WaypointShedsSearchPriority,
+  zoom: elevFix.zoom || 13,
+});
+assert.equal(enFix.field.terrainEnriched, true, "fixture terrain enriched");
+const fixAspects = enFix.field.cells.filter((c) => c.aspectCardinal).length;
+const fixSouth = enFix.field.cells.filter((c) =>
+  c.aspectCardinal === "S" || c.aspectCardinal === "SE" || c.aspectCardinal === "SW"
+).length;
+assert.ok(fixAspects > 0, "fixture has aspect-bearing cells");
+assert.ok(fixSouth > 0, "fixture has southish cells");
+const fixA = Radar.applyFrame(enFix.field, "A", { Model });
+const fixB = Radar.applyFrame(enFix.field, "B", { Model });
+const fixDiff = Radar.diffFrames(fixA.grid, fixB.grid);
+assert.ok(fixDiff.changed > 0, "fixture frames change some cells");
+assert.ok(fixDiff.unchanged > 0, "fixture frames leave some cells unchanged");
+assert.equal(fixDiff.uniformBoost, false, "fixture no uniform boost");
+assert.ok(fixB.grid.stats.solarModifiers > 0, "fixture Frame B applies solar");
+assert.equal(fixA.grid.stats.solarModifiers, 0, "fixture Frame A has no solar");
+
+// Capture tooling + proof hooks present
+const captureSrc = fs.readFileSync(
+  path.join(root, "automation/capture-sheds-radar-p0-evidence.mjs"),
+  "utf8"
+);
+assert.ok(captureSrc.includes("getProofStatus"), "capture waits on proof status");
+assert.ok(captureSrc.includes("elev-fixture-pike-50x50.json"), "capture uses elev fixture");
+assert.ok(mapApp.includes("getProofStatus"), "map exposes getProofStatus");
+assert.ok(mapApp.includes("terrainEnriched"), "proof status includes terrainEnriched");
+assert.ok(
+  fs.existsSync(path.join(root, "docs/sheds/samples/radar-p0/proof-report.json")),
+  "proof-report.json committed"
+);
+assert.ok(
+  fs.existsSync(path.join(root, "docs/sheds/samples/radar-p0/browser-frame-diff-map.png")),
+  "browser map-region diff evidence committed"
+);
+const proof = JSON.parse(
+  fs.readFileSync(path.join(root, "docs/sheds/samples/radar-p0/proof-report.json"), "utf8")
+);
+assert.ok(proof.statusReady && proof.statusReady.elevKey, "proof elevKey non-empty");
+assert.ok(proof.statusReady.terrainEnriched, "proof terrain enriched");
+assert.ok(proof.statusReady.southish > 0, "proof southish > 0");
+assert.ok(proof.diff && proof.diff.changed > 0 && proof.diff.unchanged > 0, "proof WHERE change");
+assert.equal(proof.diff.uniformBoost, false, "proof not uniform");
+assert.equal(proof.elevNetworkOnSwitch, 0, "proof no elev network on frame switch");
+assert.ok(
+  proof.heatFingerprintA &&
+    proof.heatFingerprintB &&
+    proof.heatFingerprintA.sum !== proof.heatFingerprintB.sum,
+  "proof heat canvas fingerprint changed across frames"
+);
+
 console.log("RADAR P0 tests passed");
 console.log(
   JSON.stringify(
@@ -290,6 +363,10 @@ console.log(
       frameAReady: paintedA.grid.stats.ready,
       frameBReady: paintedB.grid.stats.ready,
       frameBSolar: paintedB.grid.stats.solarModifiers,
+      fixtureDiff: fixDiff,
+      fixtureSouthish: fixSouth,
+      proofChanged: proof.diff.changed,
+      proofUnchanged: proof.diff.unchanged,
     },
     null,
     2

@@ -7434,7 +7434,53 @@
         getElevKey: function () { return state.radarElevKey; },
         getElevFetchGen: function () { return state.radarElevFetchGen; },
         setFrame: setRadarP0Frame,
-        setEnabled: setRadarP0Enabled
+        setEnabled: setRadarP0Enabled,
+        getMap: function () { return map; },
+        getLastGrid: function () { return state.lastGrid; },
+        getBaseField: function () { return state.radarBaseCache; },
+        /** Enrichment-ready status for acceptance capture (not product UI). */
+        getProofStatus: function () {
+          var field = state.radarBaseCache;
+          var cells = (field && field.cells) || [];
+          var aspects = {};
+          var withAspect = 0;
+          var southish = 0;
+          var i;
+          for (i = 0; i < cells.length; i++) {
+            var a = cells[i] && cells[i].aspectCardinal ? cells[i].aspectCardinal : null;
+            var key = a || "null";
+            aspects[key] = (aspects[key] || 0) + 1;
+            if (a) withAspect += 1;
+            if (a === "S" || a === "SE" || a === "SW") southish += 1;
+          }
+          return {
+            enabled: !!state.radarP0Enabled,
+            frameId: state.radarP0FrameId || null,
+            baseKey: state.radarBaseKey || "",
+            elevKey: state.radarElevKey || "",
+            elevFetchGen: state.radarElevFetchGen || 0,
+            terrainEnriched: !!(field && field.terrainEnriched),
+            rows: field ? field.rows : 0,
+            cols: field ? field.cols : 0,
+            bounds: field && field.bounds ? field.bounds : null,
+            cellCount: cells.length,
+            withAspect: withAspect,
+            southish: southish,
+            aspects: aspects,
+            stats: state.lastGrid && state.lastGrid.stats ? state.lastGrid.stats : null,
+            renderMode: state.lastGrid ? state.lastGrid.renderMode : null,
+            ready: !!(
+              state.radarP0Enabled &&
+              field &&
+              field.terrainEnriched &&
+              state.radarElevKey &&
+              withAspect > 0 &&
+              southish > 0 &&
+              state.lastGrid &&
+              state.lastGrid.renderMode === "radar-interest"
+            )
+          };
+        }
       }
     };
   } catch (eApi) { /* */ }
