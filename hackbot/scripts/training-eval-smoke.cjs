@@ -25,6 +25,7 @@ function load(rel) {
 }
 
 load("js/models.js");
+load("js/curriculum-lesson2.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -32,19 +33,32 @@ load("ai/mock-provider.js");
 var Hackbot = sandbox.Hackbot;
 Hackbot.Provider.set(new Hackbot.MockProvider());
 
-var lesson = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
-if (!lesson || lesson.steps.length !== 7) {
+var lesson1 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
+if (!lesson1 || lesson1.steps.length !== 7) {
   throw new Error("Lesson 1 should have 7 steps");
+}
+
+var lesson2 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_2_ID);
+if (!lesson2 || lesson2.status !== "available" || lesson2.steps.length !== 10) {
+  throw new Error("Lesson 2 should be available with 10 steps");
+}
+if (!lesson2.trainingPage) {
+  throw new Error("Lesson 2 should declare a local training page");
 }
 
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 9) {
-  throw new Error("Expected 9 future lessons, got " + future.length);
+if (future.length !== 8) {
+  throw new Error("Expected 8 future lessons (3–10), got " + future.length);
 }
+future.forEach(function (item) {
+  if (item.number < 3 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 3–10: " + item.number);
+  }
+});
 
-function evalStep(stepId, text, attemptNumber) {
+function evalStep(lesson, stepId, text, attemptNumber) {
   var step = null;
   lesson.steps.forEach(function (item) {
     if (item.id === stepId) step = item;
@@ -63,36 +77,69 @@ function assert(cond, message) {
 }
 
 Promise.all([
-  evalStep("a-url", "https is the protocol, training.hackbot.local is the host, /products/42 is the path").then(function (r) {
+  evalStep(lesson1, "a-url", "https is the protocol, training.hackbot.local is the host, /products/42 is the path").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "URL parse should be CORRECT");
   }),
-  evalStep("a-url", "I am not sure???").then(function (r) {
+  evalStep(lesson1, "a-url", "I am not sure???").then(function (r) {
     assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "nonsense attempt 1 should not advance");
     assert(/before the :\/\//.test(r.feedback), "attempt 1 should ask a guiding question");
     assert(/Instructor:/.test(r.feedback), "level 5 should add instructor guidance");
   }),
-  evalStep("a-url", "I am not sure???", 2).then(function (r) {
+  evalStep(lesson1, "a-url", "I am not sure???", 2).then(function (r) {
     assert(/Protocol is the scheme/.test(r.feedback), "attempt 2 should give a stronger hint");
   }),
-  evalStep("a-url", "I am not sure???", 3).then(function (r) {
+  evalStep(lesson1, "a-url", "I am not sure???", 3).then(function (r) {
     assert(r.canAdvance, "attempt 3 must let the learner continue");
     assert(/https is the protocol/.test(r.feedback), "attempt 3 should explain clearly");
   }),
-  evalStep("a-url", "HTTPS — host Training.Hackbot.Local; path /products/42.").then(function (r) {
+  evalStep(lesson1, "a-url", "HTTPS — host Training.Hackbot.Local; path /products/42.").then(function (r) {
     assert(r.verdict === "CORRECT", "matching must ignore punctuation and case");
   }),
-  evalStep("b-request", "the path /products/42 and the Host header").then(function (r) {
+  evalStep(lesson1, "b-request", "the path /products/42 and the Host header").then(function (r) {
     assert(r.verdict === "CORRECT" || r.verdict === "PARTIALLY CORRECT", "request resource parts should match");
     assert(r.canAdvance || r.verdict === "PARTIALLY CORRECT", "partial resource answer is acceptable");
   }),
-  evalStep("d-try", "POST to training.hackbot.local /api/login, application/json, 401 unauthorized, invalid credentials").then(function (r) {
+  evalStep(lesson1, "d-try", "POST to training.hackbot.local /api/login, application/json, 401 unauthorized, invalid credentials").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "login pair should be CORRECT");
   }),
-  evalStep("g-reflect", "Status codes show whether the app accepted the request, which matters because refusal vs success changes what you inspect next.").then(function (r) {
+  evalStep(lesson1, "g-reflect", "Status codes show whether the app accepted the request, which matters because refusal vs success changes what you inspect next.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "reflection is soft-graded");
   }),
-  evalStep("a-url", "").then(function (r) {
+  evalStep(lesson1, "a-url", "").then(function (r) {
     assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "empty answers must not advance");
+  }),
+  evalStep(lesson2, "a-visible", "I see Trail Supply, a Trail Camera product, a search box, and a sign-in form.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "visible page should be CORRECT");
+  }),
+  evalStep(lesson2, "b-inspector", "The heading is an h1 with text Trail Supply and id site-heading.").then(function (r) {
+    assert(r.verdict === "CORRECT", "heading inspection should be CORRECT");
+  }),
+  evalStep(lesson2, "c-html", "href goes to /products/42, class product-link, data-product-id 42, label Trail Camera").then(function (r) {
+    assert(r.verdict === "CORRECT", "HTML element reading should be CORRECT");
+  }),
+  evalStep(lesson2, "d-links", "The Trail Camera link goes to /products/42").then(function (r) {
+    assert(r.verdict === "CORRECT", "product link destination should be CORRECT");
+  }),
+  evalStep(lesson2, "e-forms", "The browser would send GET /search?q=boots").then(function (r) {
+    assert(r.verdict === "CORRECT", "search form request should be CORRECT");
+  }),
+  evalStep(lesson2, "f-scripts", "I would open js/app.js").then(function (r) {
+    assert(r.verdict === "CORRECT", "script file should be CORRECT");
+  }),
+  evalStep(lesson2, "g-comments", "Comments can name endpoints that never appear as visible page text.").then(function (r) {
+    assert(r.verdict === "CORRECT", "comment reasoning should be CORRECT");
+  }),
+  evalStep(lesson2, "h-challenge", "h1 site-heading Trail Supply; login POST /login username; search /search; /products/42 data-product-id 42; js/app.js; TODO inventory endpoint; also hidden /inventory/demo.json").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "challenge should be CORRECT");
+  }),
+  evalStep(lesson2, "h-challenge", "I clicked around").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague challenge attempt 1 should not advance");
+  }),
+  evalStep(lesson2, "h-challenge", "I clicked around", 3).then(function (r) {
+    assert(r.canAdvance, "challenge attempt 3 must let the learner continue");
+  }),
+  evalStep(lesson2, "j-reflect", "The HTML comment and data-product-id are not visible as shopper-facing copy.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 2 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

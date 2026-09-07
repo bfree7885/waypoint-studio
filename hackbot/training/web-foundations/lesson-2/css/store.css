@@ -1,0 +1,187 @@
+/* Trail Supply — local synthetic storefront. Not a Studio surface. */
+
+:root {
+  --ts-bg: #f4efe6;
+  --ts-ink: #1c241c;
+  --ts-muted: #5c6758;
+  --ts-panel: #fffdf8;
+  --ts-line: #d7cbb8;
+  --ts-accent: #3d6b4f;
+  --ts-focus: #1d4f8c;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--ts-bg);
+  color: var(--ts-ink);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.45;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--ts-accent);
+  color: #fff;
+  padding: 0.4rem 0.7rem;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.store-header,
+.store-main,
+.store-footer {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem 1.1rem;
+}
+
+.store-kicker {
+  margin: 0;
+  color: var(--ts-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-title {
+  margin: 0.2rem 0 0.7rem;
+  font-size: 1.8rem;
+}
+
+.store-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.store-nav a {
+  color: var(--ts-accent);
+}
+
+.search-form,
+.login-form {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  border: 1px solid var(--ts-line);
+  border-radius: 8px;
+  background: var(--ts-panel);
+}
+
+.search-form {
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+
+.search-form label {
+  grid-column: 1;
+}
+
+.search-form input {
+  grid-column: 2;
+}
+
+.search-form button {
+  grid-column: 3;
+}
+
+.store-banner,
+.store-status,
+.store-footer {
+  color: var(--ts-muted);
+  font-size: 0.92rem;
+}
+
+.catalog {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.1rem 0;
+}
+
+.product-card {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--ts-line);
+  border-radius: 8px;
+  background: var(--ts-panel);
+}
+
+.product-link {
+  font-weight: 650;
+  color: var(--ts-ink);
+}
+
+.price {
+  margin: 0.25rem 0 0;
+}
+
+.account {
+  margin: 1.2rem 0;
+}
+
+.login-form input,
+.search-form input,
+button {
+  font: inherit;
+}
+
+.login-form input,
+.search-form input {
+  padding: 0.35rem 0.45rem;
+  border: 1px solid var(--ts-line);
+  border-radius: 6px;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ts-accent);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ts-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .search-form {
+    grid-template-columns: 1fr;
+  }
+
+  .search-form label,
+  .search-form input,
+  .search-form button {
+    grid-column: 1;
+  }
+}

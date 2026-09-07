@@ -1848,3 +1848,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Lesson evaluation attempt counts must be **per exercise**, not lesson-wide, or later steps skip the question → hint → explanation progression.
 - `evaluateLearnerResponse` is the Training Engine contract; Lesson 1 uses deterministic concept matching. Do not call networks or an LLM.
 - Future lessons in the Module 1 shell must stay visibly unavailable. Do not present empty step arrays as playable content.
+
+## Lessons Learned — Hackbot Lesson 2 Inspecting a Web Page (2026-09-07)
+
+- Do not bump IndexedDB version for a new lesson. `LessonProgress.id` is already `workspaceId::lessonId`; Lesson 1 rows stay intact.
+- Keep evaluation on exercise `concepts` / `passCount` / `hints`. A second lesson is not a reason to special-case MockProvider with a pile of if/else.
+- Page inspection needs a real local document the learner can open in another tab. An iframe preview is not a substitute for Developer Tools on that tab.
+- Hint-button indexing must be per current step. A lesson-wide `hintsUsed` counter skips early hints on later exercises.

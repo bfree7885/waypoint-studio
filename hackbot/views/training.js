@@ -13,11 +13,25 @@
     return "is-needs";
   }
 
+  function currentLesson(state) {
+    var id =
+      (state.training && state.training.lessonId) || Hackbot.Curriculum.DEFAULT_LESSON_ID;
+    return Hackbot.Curriculum.getLesson(id);
+  }
+
+  function progressFor(catalog, lessonId) {
+    var found = null;
+    (catalog || []).forEach(function (row) {
+      if (row.lessonId === lessonId) found = row;
+    });
+    return found;
+  }
+
   Views.renderLearningProgress = function (el, state) {
     var Models = Hackbot.Models;
     if (!el) return;
     var module = Hackbot.Curriculum.getModule();
-    var lesson = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
+    var lesson = currentLesson(state);
     var progress = state.training && state.training.progress;
     var stepIndex = progress ? progress.currentStep : 0;
     var step = Hackbot.Curriculum.getStep(lesson, stepIndex);
@@ -35,7 +49,7 @@
       "</dd>" +
       "<dt>Step</dt><dd>" +
       Models.escapeHtml(
-        step
+        step && lesson
           ? "Part " + step.part + " · " + step.phase + " (" + (stepIndex + 1) + " of " + lesson.steps.length + ")"
           : "Not started"
       ) +
@@ -66,11 +80,12 @@
     handlers = handlers || {};
     if (!el) return;
     var module = Hackbot.Curriculum.getModule();
-    var lesson = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
+    var lesson = currentLesson(state);
     var progress = state.training && state.training.progress;
     var evaln = state.training && state.training.lastEvaluation;
     var hintText = state.training && state.training.hintText;
     var draft = (state.training && state.training.draft) || "";
+    var catalog = (state.training && state.training.catalog) || [];
 
     if (!state.workspace) {
       el.innerHTML =
@@ -89,6 +104,10 @@
         .map(function (item) {
           var available = item.status === "available";
           var current = available && lesson && item.id === lesson.id;
+          var row = progressFor(catalog, item.id);
+          var mark = "";
+          if (row && row.status === "completed") mark = " <span class=\"hb-lesson-state\">completed</span>";
+          else if (row && row.status === "in_progress") mark = " <span class=\"hb-lesson-state\">in progress</span>";
           return (
             "<li>" +
             (available
@@ -100,6 +119,7 @@
                 item.number +
                 " — " +
                 Models.escapeHtml(item.title) +
+                mark +
                 "</button>"
               : '<span class="hb-future">Lesson ' +
                 item.number +
@@ -121,15 +141,24 @@
       lessonComplete ||
       (step && (step.kind === "read" || stepDone || (evaln && evaln.canAdvance)))
     );
-    var isLast = lesson && stepIndex >= lesson.steps.length - 1;
+    var isLast = lesson && lesson.steps && stepIndex >= lesson.steps.length - 1;
     var assistance = state.workspace.assistanceLevel == null ? 5 : Number(state.workspace.assistanceLevel);
+    var pageUrl = Hackbot.Curriculum.trainingPageUrl(lesson);
 
     var body = '<div class="hb-training">';
     body += lessonNav;
     body += '<p class="hb-loop">' + Models.escapeHtml(module.loop) + "</p>";
+    if (lesson && lesson.cycle) {
+      body += '<p class="hb-loop hb-cycle">' + Models.escapeHtml(lesson.cycle) + "</p>";
+    }
 
     if (progress && progress.status === "completed") {
-      body += '<p class="hb-complete-banner">Lesson 1 is complete. You can review steps; Lessons 2–10 are not built yet.</p>';
+      body +=
+        '<p class="hb-complete-banner">' +
+        Models.escapeHtml(
+          (lesson && lesson.completeBanner) || "This lesson is complete. You can review steps."
+        ) +
+        "</p>";
     }
 
     if (!step) {
@@ -154,8 +183,25 @@
       "</h2>" +
       "<h3>" +
       Models.escapeHtml(step.title) +
-      "</h3></header>" +
-      step.body;
+      "</h3></header>";
+
+    if (pageUrl) {
+      body +=
+        '<p class="hb-train-tools">' +
+        '<a class="hb-btn hb-btn-ghost" id="hb-train-open-page" href="' +
+        Models.escapeHtml(pageUrl) +
+        '" target="_blank" rel="noopener noreferrer">Open Trail Supply page</a>' +
+        '<span class="hb-muted hb-small">Opens in another tab so Hackbot stays here as the mentor.</span></p>';
+    }
+
+    if (step.embedTrainingPage && pageUrl) {
+      body +=
+        '<iframe class="hb-train-frame" title="Trail Supply training page preview" src="' +
+        Models.escapeHtml(pageUrl) +
+        '"></iframe>';
+    }
+
+    body += step.body;
 
     if (assistance >= 5 && step.instructorNote) {
       body += '<p class="hb-instructor">' + step.instructorNote + "</p>";
@@ -213,6 +259,18 @@
 
     el.innerHTML = body;
 
+    Array.prototype.forEach.call(el.querySelectorAll(".hb-lesson-link"), function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.getAttribute("data-lesson");
+        if (typeof handlers.onSelectLesson === "function") handlers.onSelectLesson(id);
+      });
+    });
+    var openPage = el.querySelector("#hb-train-open-page");
+    if (openPage && typeof handlers.onOpenTrainingPage === "function") {
+      openPage.addEventListener("click", function () {
+        handlers.onOpenTrainingPage();
+      });
+    }
     var form = el.querySelector("#hb-train-form");
     if (form) {
       form.addEventListener("submit", function (ev) {

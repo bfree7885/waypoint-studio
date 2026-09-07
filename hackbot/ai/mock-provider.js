@@ -118,7 +118,9 @@
     }
 
     var feedback;
-    if (verdict === "CORRECT" && !soft) {
+    if (verdict === "CORRECT" && exercise.successFeedback) {
+      feedback = exercise.successFeedback;
+    } else if (verdict === "CORRECT" && !soft) {
       feedback =
         "You pointed at the actual exchange, not a memorized command. " +
         (exercise.reveal ? "Check the labeled breakdown, then continue." : "What would you inspect next, and why?");
