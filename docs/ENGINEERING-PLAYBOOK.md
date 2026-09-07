@@ -1835,3 +1835,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Do not stretch a single band into fake contrast — honesty beats visual drama when the Search Area is all moderate.
 - GIS packs lack aspect; solar_searchability needs terrain enrichment (or stays limited). Do not invent aspect.
 - Unrelated foragecast/signalterrain/waypoint-volunteer smoke failures are not a Phase 1 integration defect.
+
+## Lessons Learned — Sheds V2.0 Phase 1.x aspect enrichment (2026-09-06)
+
+- Search Areas overlay visibility must be presentation-only. Terrain/aspect enrichment for Search Priority Today is keyed off an active Search Location (or overlay-on for display), not the overlay toggle.
+- Reuse `lastSearchAreasGrid` as the enrichment cache; invalidate by viewport bounds+grid+zoom key. Do not clear it when the overlay is hidden.
+- When enrichment arrives after the first interest paint, schedule one recompute guarded by `interestEnrichAppliedKey` to avoid loops.
+- Never fabricate aspect. If elevation/terrain is unavailable, keep honest degraded guidance and skip `solar_searchability`.
