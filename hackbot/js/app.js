@@ -46,11 +46,14 @@
       findings: [],
       notes: [],
       training: {
+        lessonId: "",
         progress: null,
         attempts: [],
         lastEvaluation: null,
         hintText: "",
-        draft: ""
+        hintClicks: 0,
+        draft: "",
+        catalog: []
       },
       navOpen: false,
       assistOpen: false
@@ -59,11 +62,14 @@
 
     emptyTraining: function () {
       return {
+        lessonId: "",
         progress: null,
         attempts: [],
         lastEvaluation: null,
         hintText: "",
-        draft: ""
+        hintClicks: 0,
+        draft: "",
+        catalog: []
       };
     },
 
@@ -364,7 +370,10 @@
     },
 
     currentLesson: function () {
-      return Hackbot.Curriculum.getLesson(Hackbot.Curriculum.DEFAULT_LESSON_ID);
+      var id =
+        (this.state.training && this.state.training.lessonId) ||
+        Hackbot.Curriculum.DEFAULT_LESSON_ID;
+      return Hackbot.Curriculum.getLesson(id);
     },
 
     currentStep: function () {
@@ -416,6 +425,7 @@
       var lesson = this.currentLesson();
       var ws = this.state.workspace;
       this.state.training.hintText = "";
+      this.state.training.hintClicks = 0;
       this.state.training.lastEvaluation = null;
       this.state.training.draft = "";
       if (!step || (step.kind !== "exercise" && step.kind !== "reflection")) {
@@ -438,7 +448,7 @@
       });
     },
 
-    openTraining: function () {
+    openTraining: function (lessonId) {
       var self = this;
       if (!this.state.workspace) {
         this.state.view = "training";
@@ -447,14 +457,35 @@
         return Promise.resolve();
       }
       this.state.view = "training";
-      var lessonId = Hackbot.Curriculum.DEFAULT_LESSON_ID;
-      return Hackbot.Store.startOrGetLessonProgress(this.state.workspace.id, lessonId)
+      var wsId = this.state.workspace.id;
+      var requested = Hackbot.Models.trim(lessonId);
+      var pick = requested
+        ? Promise.resolve(requested)
+        : Hackbot.Store.getLastTrainingLesson(wsId).then(function (saved) {
+            return saved || self.state.training.lessonId || Hackbot.Curriculum.DEFAULT_LESSON_ID;
+          });
+      return pick
+        .then(function (id) {
+          var lesson = Hackbot.Curriculum.getLesson(id);
+          if (!lesson || lesson.status !== "available") {
+            id = Hackbot.Curriculum.DEFAULT_LESSON_ID;
+            lesson = Hackbot.Curriculum.getLesson(id);
+          }
+          self.state.training.lessonId = id;
+          return Hackbot.Store.setLastTrainingLesson(wsId, id).then(function () {
+            return Hackbot.Store.startOrGetLessonProgress(wsId, id);
+          });
+        })
         .then(function (progress) {
           self.state.training.progress = progress;
-          return Hackbot.Store.listExerciseAttempts(self.state.workspace.id, lessonId);
+          return Promise.all([
+            Hackbot.Store.listExerciseAttempts(wsId, self.state.training.lessonId),
+            Hackbot.Store.listLessonProgress(wsId)
+          ]);
         })
-        .then(function (attempts) {
-          self.state.training.attempts = attempts || [];
+        .then(function (parts) {
+          self.state.training.attempts = parts[0] || [];
+          self.state.training.catalog = parts[1] || [];
           return self.hydrateCurrentStep();
         })
         .then(function () {
@@ -494,14 +525,15 @@
           }
           var notePromise = Promise.resolve();
           if (step.kind === "reflection" && evaln.canAdvance && trimmed) {
+            var concept = step.noteConcept || "Learning reflection";
             var already = (self.state.notes || []).some(function (note) {
-              return note.concept === "HTTP researcher attention";
+              return note.concept === concept;
             });
             if (!already) {
               notePromise = Hackbot.Store.addLearningNote({
                 workspaceId: ws.id,
                 sessionId: self.state.session ? self.state.session.id : "",
-                concept: "HTTP researcher attention",
+                concept: concept,
                 explanation: trimmed
               }).then(function () {
                 return Hackbot.Store.listNotes(ws.id);
@@ -537,8 +569,9 @@
       if (!step || !progress) return Promise.resolve();
       this.captureTrainingDraft();
       progress.hintsUsed += 1;
+      this.state.training.hintClicks = (this.state.training.hintClicks || 0) + 1;
       var hints = step.hints || [];
-      var idx = Math.min(progress.hintsUsed, hints.length) - 1;
+      var idx = Math.min(this.state.training.hintClicks, hints.length) - 1;
       this.state.training.hintText = hints[Math.max(idx, 0)] || "";
       return this.persistProgress().then(function () {
         self.render();
@@ -575,9 +608,15 @@
           progress.status = "completed";
           progress.completedAt = progress.completedAt || Hackbot.Models.nowIso();
         }
-        return this.persistProgress().then(function () {
-          self.render();
-        });
+        return this.persistProgress()
+          .then(function () {
+            if (!self.state.workspace) return [];
+            return Hackbot.Store.listLessonProgress(self.state.workspace.id);
+          })
+          .then(function (catalog) {
+            self.state.training.catalog = catalog || [];
+            self.render();
+          });
       }
       progress.currentStep += 1;
       return this.persistProgress()
@@ -732,6 +771,11 @@
           },
           onDraft: function (text) {
             self.state.training.draft = text;
+          },
+          onSelectLesson: function (id) {
+            self.enqueue(function () {
+              return self.openTraining(id);
+            });
           }
         });
         return;

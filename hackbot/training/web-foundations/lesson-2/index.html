@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lesson 2. Not a live shop.">
+  <title>Trail Supply</title>
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+  <!-- TODO: replace demo inventory endpoint before release -->
+  <a class="skip-link" href="#catalog">Skip to catalog</a>
+
+  <header class="store-header">
+    <p class="store-kicker">Synthetic training storefront</p>
+    <h1 id="site-heading" class="site-title">Trail Supply</h1>
+    <nav class="store-nav" aria-label="Store">
+      <a href="/">Home</a>
+      <a href="/catalog?category=optics">Optics</a>
+      <a href="/help/sizing">Gear guide</a>
+    </nav>
+    <form id="search-form" class="search-form" action="/search" method="GET">
+      <label for="q">Search</label>
+      <input id="q" type="search" name="q" placeholder="Find gear" maxlength="80">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+
+  <main class="store-main">
+    <p class="store-banner">Local Hackbot training page. These links and forms do not leave this browser.</p>
+
+    <section id="catalog" class="catalog" aria-labelledby="catalog-heading">
+      <h2 id="catalog-heading">Field kit</h2>
+      <article class="product-card">
+        <a href="/products/42" class="product-link" data-product-id="42">Trail Camera</a>
+        <p class="price">$129.99</p>
+      </article>
+      <article class="product-card">
+        <a href="/products/17" class="product-link" data-product-id="17">Headlamp</a>
+        <p class="price">$34.00</p>
+      </article>
+    </section>
+
+    <section class="account" aria-labelledby="account-heading">
+      <h2 id="account-heading">Account</h2>
+      <form id="login-form" class="login-form" action="/login" method="POST">
+        <label for="username">Username</label>
+        <input id="username" name="username" autocomplete="username" maxlength="80">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" maxlength="80">
+        <button type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <p class="visually-hidden" id="inventory-hint" data-catalog="demo">Catalog source: /inventory/demo.json</p>
+    <p id="store-status" class="store-status" role="status"></p>
+  </main>
+
+  <footer class="store-footer">
+    <p>Trail Supply is fictional training material for Hackbot. No live inventory, no real accounts.</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

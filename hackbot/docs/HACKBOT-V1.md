@@ -21,11 +21,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1 shell, Lesson 1 usable) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–2 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-Lesson 1 is the first real training experience. Lessons 2–10 are labeled **future** and are not playable. Assistance Level is not auto-changed.
+Lesson 1 is the first training experience. Lesson 2 is the first page-inspection exercise. Lessons 3–10 are labeled **future**. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -51,7 +51,7 @@ Upgrade `1 → 2` is additive: existing object stores are left in place. Workspa
 | `actions` | Planned/recorded actions (no execution) |
 | `hypotheses` | Current hypotheses |
 | `findings` | Draft findings |
-| `learningNotes` | Concept notes (Lesson 1 reflection is stored here) |
+| `learningNotes` | Concept notes (lesson reflections are stored here) |
 | `sessionActivities` | Chronological reconstruction hooks |
 | `lessonProgress` | Per-workspace lesson step, hints, attempts, completion (v2) |
 | `exerciseAttempts` | Submitted answers and MockProvider verdicts (v2) |
@@ -101,7 +101,7 @@ Stored on the workspace. Default: **5 — Instructor**.
 | 2 | Analyst |
 | 1 | Independent |
 
-The learner may **view** the scale. This build does **not** auto-decrease the level and does not implement a competence algorithm. Lesson 1 runs at the workspace's current Assistance Level. At **5 — Instructor** the lesson adds extra context and guiding questions.
+The learner may **view** the scale. This build does **not** auto-decrease the level and does not implement a competence algorithm. Lessons run at the workspace's current Assistance Level. At **5 — Instructor** lessons add extra context and guiding questions.
 
 ## Training Engine
 
@@ -110,19 +110,20 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | Lesson | Status |
 | --- | --- |
 | 1. How a Web Request Works | Available |
-| 2–10 | Future (visible, not playable) |
+| 2. Inspecting a Web Page | Available |
+| 3–10 | Future (visible, not playable) |
 
-Lesson 1 loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**.
+Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**.
 
-All examples are synthetic (`training.hackbot.local`). Nothing is sent to a network. No exploitation is taught.
+Lesson 2 uses a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab from the lesson. Nothing is sent to a network. No exploitation is taught.
 
 Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
 
-Progress, attempts, hints, and the Part G reflection persist in IndexedDB and survive refresh.
+Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Lesson 1 and Lesson 2 progress are stored separately (`workspaceId::lessonId`). Schema version stays **2**.
 
 ### MockProvider evaluation
 
-`evaluateLearnerResponse` classifies answers as **CORRECT**, **PARTIALLY CORRECT**, or **NEEDS ANOTHER LOOK** using case/punctuation-insensitive concept matching. Attempt 1 asks a guiding question; attempt 2 gives a stronger hint; attempt 3 explains clearly and lets the learner continue. Reflection is stored as a `LearningNote` and is not graded harshly.
+`evaluateLearnerResponse` classifies answers as **CORRECT**, **PARTIALLY CORRECT**, or **NEEDS ANOTHER LOOK** using case/punctuation-insensitive concept matching defined on each exercise. Attempt 1 asks a guiding question; attempt 2 gives a stronger hint; attempt 3 explains clearly and lets the learner continue. Reflections are stored as `LearningNote`s and are not graded harshly.
 
 ## AI provider abstraction
 
@@ -131,7 +132,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-This build registers **MockProvider** only. Responses are deterministic local strings. Lesson 1 calls `evaluateLearnerResponse`.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1 and 2 call `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 

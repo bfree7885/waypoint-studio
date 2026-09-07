@@ -210,6 +210,7 @@
         "What information in an HTTP request or response do you think a security researcher might pay attention to, and why?",
       instructorNote:
         "There is no single correct list. Name one or two fields and why they would change how you read the application’s behavior.",
+      noteConcept: "HTTP researcher attention",
       body: "<p>Write from what you just inspected. This is stored as a learning note, not a score.</p>",
       concepts: [
         { id: "attention", label: "researcher attention", terms: ["header", "status", "body", "path", "method", "cookie", "auth", "token", "password", "error", "host", "why", "because"] }
@@ -225,7 +226,6 @@
   ];
 
   var FUTURE_LESSONS = [
-    { id: "inspect-page", title: "Inspecting a Web Page" },
     { id: "http-pair", title: "HTTP Requests and Responses" },
     { id: "headers", title: "Headers" },
     { id: "status-redirects", title: "Status Codes and Redirects" },
@@ -248,20 +248,26 @@
         title: "How a Web Request Works",
         status: "available",
         goal: "Understand client, server, URL, host, path, request, response, method, status, headers, and body by inspecting synthetic HTTP.",
+        completeBanner:
+          "Lesson 1 is complete. You can review steps or continue to Lesson 2 — Inspecting a Web Page.",
         steps: LESSON_1_STEPS
       }
-    ].concat(
-      FUTURE_LESSONS.map(function (item, index) {
-        return {
-          id: item.id,
-          number: index + 2,
-          title: item.title,
-          status: "future",
-          steps: []
-        };
-      })
-    )
+    ]
   };
+
+  if (Hackbot.Lesson2) {
+    MODULE_1.lessons.push(Hackbot.Lesson2);
+  }
+
+  FUTURE_LESSONS.forEach(function (item, index) {
+    MODULE_1.lessons.push({
+      id: item.id,
+      number: index + 3,
+      title: item.title,
+      status: "future",
+      steps: []
+    });
+  });
 
   function getModule() {
     return MODULE_1;
@@ -285,6 +291,16 @@
     DEFAULT_LESSON_ID: "web-request-works",
     getModule: getModule,
     getLesson: getLesson,
-    getStep: getStep
+    getStep: getStep,
+    LESSON_2_ID: "inspect-page",
+    trainingPageUrl: function (lesson) {
+      if (!lesson || !lesson.trainingPage) return "";
+      if (!global.location || !global.location.href) return lesson.trainingPage;
+      try {
+        return new URL(lesson.trainingPage, global.location.href).href;
+      } catch (err) {
+        return lesson.trainingPage;
+      }
+    }
   };
 })(window);

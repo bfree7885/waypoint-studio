@@ -565,6 +565,14 @@
     },
     setLastWorkspaceId: function (id) {
       return setMeta(M().META_LAST_WORKSPACE, id);
+    },
+    getLastTrainingLesson: function (workspaceId) {
+      if (!workspaceId) return Promise.resolve(null);
+      return getMeta(M().META_LAST_TRAINING_LESSON + workspaceId);
+    },
+    setLastTrainingLesson: function (workspaceId, lessonId) {
+      if (!workspaceId) return Promise.resolve(null);
+      return setMeta(M().META_LAST_TRAINING_LESSON + workspaceId, lessonId);
     }
   };
 })(window);
