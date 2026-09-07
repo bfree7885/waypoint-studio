@@ -187,6 +187,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: node automation/test-sheds-v2-0-phase1x-aspect-enrichment.mjs
 
+      - name: Sheds RADAR P0 Spatial Surface
+        if: ${{ !cancelled() }}
+        run: node automation/test-sheds-radar-p0.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:
