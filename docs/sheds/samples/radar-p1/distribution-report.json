@@ -1,0 +1,396 @@
+{
+  "viewport": {
+    "west": -74.8104,
+    "south": 41.2889,
+    "east": -74.7566,
+    "north": 41.3293
+  },
+  "center": {
+    "lat": 41.3091,
+    "lng": -74.7835,
+    "zoom": 13
+  },
+  "dims": {
+    "rows": 50,
+    "cols": 50
+  },
+  "distribution": {
+    "n": 2500,
+    "min": 0,
+    "max": 0.722,
+    "mean": 0.4971559200000015,
+    "p10": 0.172,
+    "p25": 0.21,
+    "median": 0.66,
+    "p75": 0.722,
+    "p90": 0.722,
+    "stdev": 0.2454343183031951,
+    "unique": 38
+  },
+  "displayLabels": {
+    "Lower": 749,
+    "Moderate": 462,
+    "Stronger": 1289
+  },
+  "displayFrac": {
+    "Lower": 0.2996,
+    "Moderate": 0.1848,
+    "Stronger": 0.5156
+  },
+  "clustering": {
+    "high": 1289,
+    "neighborHighFrac": 0.7199842022116903
+  },
+  "frameDiff": {
+    "changed": 1402,
+    "unchanged": 1098,
+    "solarGained": 252,
+    "uniformBoost": false
+  },
+  "constants": {
+    "W_LAND": 0.8,
+    "W_SLOPE": 0.2,
+    "TRANSITION_MAX_BOOST": 0.3,
+    "COVER_BASE": {
+      "forest": 0.44,
+      "open": 0.43,
+      "wetland": 0.43,
+      "agriculture": 0.4,
+      "developed": 0.08,
+      "water": 0,
+      "other": 0.22,
+      "unknown": 0.22
+    },
+    "DEVELOPED_NLCD": {
+      "21": 0.1,
+      "22": 0.09,
+      "23": 0.06,
+      "24": 0.05
+    },
+    "SLOPE_CONTEXT": {
+      "flat": 0.5,
+      "moderate": 0.65,
+      "steeper": 0.45,
+      "verySteep": 0.2
+    }
+  },
+  "parameterAdjustments": [],
+  "sanity": {
+    "A_forest_interior": {
+      "score": 0.482,
+      "status": "ready",
+      "components": {
+        "landCover": 0.44,
+        "transition": 0,
+        "landCombined": 0.44,
+        "slope": 0.65
+      },
+      "inputs": {
+        "nlcd": 41,
+        "structure": "forest",
+        "structureLabel": "Forest cover",
+        "edgeM": 179,
+        "slopeDeg": 3
+      },
+      "displayLabel": "Moderate",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "forest",
+          "detail": "Wooded land"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "3°",
+          "detail": "Moderate slope (~3°) — coarse search-terrain context"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Moderate",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "B_transition": {
+      "score": 0.682,
+      "status": "ready",
+      "components": {
+        "landCover": 0.44,
+        "transition": 0.3,
+        "landCombined": 0.74,
+        "slope": 0.45
+      },
+      "inputs": {
+        "nlcd": 43,
+        "structure": "forest",
+        "structureLabel": "Forest cover",
+        "edgeM": 0,
+        "slopeDeg": 15
+      },
+      "displayLabel": "Stronger",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "forest",
+          "detail": "Wooded land"
+        },
+        {
+          "id": "transition",
+          "label": "Land-cover transition",
+          "value": "~0 m",
+          "detail": "Land-cover transition nearby (~0 m) — pack forest↔non-forest distance; not proven forest/open"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "15°",
+          "detail": "Steeper slope (~15°) — reduced search practicality"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Stronger",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "C_agriculture": {
+      "score": 0.4226,
+      "status": "ready",
+      "components": {
+        "landCover": 0.4,
+        "transition": 0.0033,
+        "landCombined": 0.4033,
+        "slope": 0.5
+      },
+      "inputs": {
+        "nlcd": 81,
+        "structure": "agriculture",
+        "structureLabel": "Agriculture",
+        "edgeM": 89,
+        "slopeDeg": 1
+      },
+      "displayLabel": "Moderate",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "agriculture",
+          "detail": "Agricultural land"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "1°",
+          "detail": "Nearly flat terrain (~1°) — coarse search-terrain context"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Moderate",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "D_developed": {
+      "score": 0.17,
+      "status": "ready",
+      "components": {
+        "landCover": 0.1,
+        "transition": 0,
+        "landCombined": 0.1,
+        "slope": 0.45
+      },
+      "inputs": {
+        "nlcd": 21,
+        "structure": "developed",
+        "structureLabel": "Developed",
+        "edgeM": 0,
+        "slopeDeg": 14
+      },
+      "displayLabel": "Lower",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "developed",
+          "detail": "Developed land — reduced for search practicality"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "14°",
+          "detail": "Steeper slope (~14°) — reduced search practicality"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Lower",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "E_water": {
+      "score": 0,
+      "status": "ready",
+      "components": {
+        "landCover": 0,
+        "transition": 0,
+        "landCombined": 0,
+        "slope": 0.65
+      },
+      "inputs": {
+        "nlcd": 11,
+        "structure": "water",
+        "structureLabel": "Water",
+        "edgeM": 0,
+        "slopeDeg": 4
+      },
+      "displayLabel": "Lower",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "water",
+          "detail": "Open water — not treated as searchable ground"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "4°",
+          "detail": "Moderate slope (~4°) — coarse search-terrain context"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Lower",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "F_moderate_slope": {
+      "score": 0.722,
+      "status": "ready",
+      "components": {
+        "landCover": 0.44,
+        "transition": 0.3,
+        "landCombined": 0.74,
+        "slope": 0.65
+      },
+      "inputs": {
+        "nlcd": 42,
+        "structure": "forest",
+        "structureLabel": "Forest cover",
+        "edgeM": 0,
+        "slopeDeg": 5
+      },
+      "displayLabel": "Stronger",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "forest",
+          "detail": "Wooded land"
+        },
+        {
+          "id": "transition",
+          "label": "Land-cover transition",
+          "value": "~0 m",
+          "detail": "Land-cover transition nearby (~0 m) — pack forest↔non-forest distance; not proven forest/open"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "5°",
+          "detail": "Moderate slope (~5°) — coarse search-terrain context"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Stronger",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "G_steep_slope": {
+      "score": 0.12,
+      "status": "ready",
+      "components": {
+        "landCover": 0.1,
+        "transition": 0,
+        "landCombined": 0.1,
+        "slope": 0.2
+      },
+      "inputs": {
+        "nlcd": 21,
+        "structure": "developed",
+        "structureLabel": "Developed",
+        "edgeM": 0,
+        "slopeDeg": 28
+      },
+      "displayLabel": "Lower",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "developed",
+          "detail": "Developed land — reduced for search practicality"
+        },
+        {
+          "id": "slope",
+          "label": "Slope context",
+          "value": "28°",
+          "detail": "Very steep terrain (~28°) — limited search practicality"
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Lower",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    },
+    "H_missing_slope": {
+      "score": 0.44,
+      "status": "partial",
+      "components": {
+        "landCover": 0.44,
+        "transition": 0,
+        "landCombined": 0.44,
+        "slope": null
+      },
+      "inputs": {
+        "nlcd": 41,
+        "structure": "forest",
+        "structureLabel": null,
+        "edgeM": 90,
+        "slopeDeg": null
+      },
+      "displayLabel": "Moderate",
+      "factors": [
+        {
+          "id": "land_cover",
+          "label": "Land cover",
+          "value": "forest",
+          "detail": "Wooded land"
+        },
+        {
+          "id": "slope_missing",
+          "label": "Slope context",
+          "value": "unavailable",
+          "detail": "Slope unavailable — not treated as low landscape interest."
+        },
+        {
+          "id": "relative_landscape",
+          "label": "Relative landscape interest",
+          "value": "Moderate",
+          "detail": "Continuous geographic foundation — not an encounter claim."
+        }
+      ]
+    }
+  }
+}

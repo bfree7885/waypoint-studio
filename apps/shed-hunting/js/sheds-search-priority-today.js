@@ -77,15 +77,49 @@
     };
   }
 
+  /**
+   * Continuous unit-scale band labels for RADAR P1 landscape base (display only).
+   * Thresholds align with HabitatGis band cuts for familiar language — not the store.
+   */
+  function bandFromUnitScore(score) {
+    if (!finiteNum(score)) return null;
+    if (score >= 0.62) return "stronger_interest";
+    if (score >= 0.34) return "moderate_interest";
+    return "lower_interest";
+  }
+
+  function clampUnitScore(n) {
+    if (!finiteNum(n)) return null;
+    if (n < 0) return 0;
+    if (n > 1) return 1;
+    return Math.round(n * 10000) / 10000;
+  }
+
+  /**
+   * When landscapeScore (0–1) is present, Phase 1 modifiers keep the same eligibility
+   * rules but scale deltas by 1/3 so solar/snow remain ± one relative step on a unit base.
+   */
+  var UNIT_MODIFIER_SCALE = 1 / 3;
+
   function resolveBase(cell) {
     cell = cell || {};
+    // RADAR P1 continuous static landscape — preferred when present.
+    if (finiteNum(cell.landscapeScore) && cell.landscapeScore >= 0 && cell.landscapeScore <= 1) {
+      return {
+        source: "radar_landscape",
+        label: cell.landscapeLabel || "base_landscape",
+        score: cell.landscapeScore,
+        scale: "unit"
+      };
+    }
     var gisBand = cell.gisBand || null;
     var gisScore = baseScoreFromGis(gisBand);
     if (gisScore != null) {
       return {
         source: "gis",
         label: gisBand,
-        score: gisScore
+        score: gisScore,
+        scale: "tri"
       };
     }
     var terrain = cell.terrainPriority || cell.priority || null;
@@ -94,10 +128,11 @@
       return {
         source: "terrain",
         label: terrain,
-        score: tScore
+        score: tScore,
+        scale: "tri"
       };
     }
-    return { source: "none", label: null, score: null };
+    return { source: "none", label: null, score: null, scale: null };
   }
 
   function isSouthish(cardinal) {
@@ -206,22 +241,32 @@
     }
 
     var collected = collectModifiers(cell, conditions);
+    var unitScale = base.scale === "unit";
     var score = base.score;
     var reasons = [];
     var inputsUsed = ["base:" + base.source];
-    reasons.push(
-      "Base " +
-        (base.source === "gis" ? "habitat GIS band" : "terrain priority") +
-        ": " +
-        base.label +
-        "."
-    );
+    var basePhrase =
+      base.source === "radar_landscape"
+        ? "RADAR base landscape"
+        : base.source === "gis"
+          ? "habitat GIS band"
+          : "terrain priority";
+    reasons.push("Base " + basePhrase + ": " + base.label + ".");
 
+    var scaledModifiers = [];
     var i;
     for (i = 0; i < collected.modifiers.length; i++) {
-      score += collected.modifiers[i].delta;
-      reasons.push(collected.modifiers[i].reason);
-      inputsUsed.push("modifier:" + collected.modifiers[i].id);
+      var mod = collected.modifiers[i];
+      var appliedDelta = unitScale ? mod.delta * UNIT_MODIFIER_SCALE : mod.delta;
+      score += appliedDelta;
+      scaledModifiers.push({
+        id: mod.id,
+        delta: appliedDelta,
+        reason: mod.reason,
+        modelDelta: mod.delta
+      });
+      reasons.push(mod.reason);
+      inputsUsed.push("modifier:" + mod.id);
     }
 
     if (conditions.available) {
@@ -231,16 +276,17 @@
       if (conditions.seasonCategory) inputsUsed.push("condition:season");
     }
 
-    score = clampScore(score);
-    var band = bandFromScore(score);
+    score = unitScale ? clampUnitScore(score) : clampScore(score);
+    var band = unitScale ? bandFromUnitScore(score) : bandFromScore(score);
 
     return {
       version: VERSION,
       status: "ready",
       band: band,
       score: score,
+      scoreScale: unitScale ? "unit" : "tri",
       base: base,
-      modifiers: collected.modifiers.slice(),
+      modifiers: scaledModifiers,
       reasons: reasons,
       inputsUsed: inputsUsed,
       limited: collected.limited || !conditions.available,
@@ -298,10 +344,12 @@
   var api = {
     VERSION: VERSION,
     BANDS: BANDS,
+    UNIT_MODIFIER_SCALE: UNIT_MODIFIER_SCALE,
     evaluateCell: evaluateCell,
     evaluateArea: evaluateArea,
     orderingKey: orderingKey,
     bandFromScore: bandFromScore,
+    bandFromUnitScore: bandFromUnitScore,
     normalizeConditions: normalizeConditions,
     containsBannedLanguage: containsBannedLanguage,
     assertHonestOutput: assertHonestOutput

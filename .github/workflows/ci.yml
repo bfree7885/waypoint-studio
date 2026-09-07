@@ -191,6 +191,10 @@ jobs:
         if: ${{ !cancelled() }}
         run: node automation/test-sheds-radar-p0.mjs
 
+      - name: Sheds RADAR P1 Base Landscape
+        if: ${{ !cancelled() }}
+        run: node automation/test-sheds-radar-p1.mjs
+
       - name: Sheds Today's Hunt
         if: ${{ !cancelled() }}
         env:
