@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerrainBound — Cedar Hollow</title>
+  <meta name="description" content="A small cartoon wilderness you can walk, observe, and reason about.">
+  <link rel="stylesheet" href="./css/game.css">
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="world" tabindex="0" role="img" aria-label="Cedar Hollow, a forested valley you can explore"></canvas>
+
+    <div class="hud">
+      <div class="place-chip">Cedar Hollow <small>Granite Knob · Pine Creek</small></div>
+      <div id="control-hint" class="control-hint"></div>
+      <div id="inspect-prompt" class="inspect-prompt" hidden></div>
+      <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
+    </div>
+
+    <section id="title-screen">
+      <div class="title-card">
+        <p class="kicker">Explore the land</p>
+        <h1>TerrainBound</h1>
+        <p class="tag">A wilderness you can walk. Look closely. Follow the water.</p>
+        <button type="button" id="enter-btn">Enter Cedar Hollow</button>
+        <p class="title-note">Keyboard and mouse · wander as you like</p>
+      </div>
+    </section>
+
+    <div id="dialogue" hidden role="dialog" aria-labelledby="dialogue-speaker">
+      <div class="dialogue-card">
+        <p id="dialogue-kicker" class="dialogue-kicker" hidden></p>
+        <h2 id="dialogue-speaker"></h2>
+        <p id="dialogue-text"></p>
+        <div id="dialogue-actions"></div>
+      </div>
+    </div>
+
+    <aside id="journal" aria-hidden="true">
+      <header>
+        <h2>Field tablet</h2>
+        <button type="button" id="journal-close">Close</button>
+      </header>
+      <section class="journal-section">
+        <h3 class="journal-kicker">Mission notes</h3>
+        <div id="journal-mission"></div>
+      </section>
+      <section class="journal-section">
+        <h3 class="journal-kicker">Discoveries</h3>
+        <p id="discovery-count">Cedar Hollow discoveries  0 / 0</p>
+        <div id="journal-discoveries"></div>
+      </section>
+    </aside>
+
+    <div id="toast" hidden>
+      <strong>Observation added</strong>
+      <p></p>
+    </div>
+
+    <div id="conclusion" hidden role="dialog" aria-label="Trace the water">
+      <div class="conclusion-card">
+        <h2>Where does the water go?</h2>
+        <p id="path-status"></p>
+        <div class="sketch" id="flow-nodes"></div>
+        <p id="conclusion-hint"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="path-reset">Clear path</button>
+          <button type="button" id="conclusion-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="boot-error" hidden></div>
+  </div>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

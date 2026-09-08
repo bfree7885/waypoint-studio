@@ -1,0 +1,178 @@
+/**
+ * Minimal HTML overlays. World stays primary; panels appear only when needed.
+ */
+
+const SYMBOLS = {
+  erratic: "◉",
+  bedrock: "▣",
+  tributary: "⌇",
+  bank: "⌢",
+  sediment: "≈",
+  cobbles: "○",
+  marsh: "❧",
+  weathered: "▤",
+  rills: "⌇",
+  gauge: "┃",
+  seep: "◌",
+  view: "△"
+};
+
+export function bindUi(root) {
+  const title = root.querySelector("#title-screen");
+  const dialogue = root.querySelector("#dialogue");
+  const dialogueSpeaker = root.querySelector("#dialogue-speaker");
+  const dialogueKicker = root.querySelector("#dialogue-kicker");
+  const dialogueText = root.querySelector("#dialogue-text");
+  const dialogueActions = root.querySelector("#dialogue-actions");
+  const journal = root.querySelector("#journal");
+  const missionBody = root.querySelector("#journal-mission");
+  const discoveryBody = root.querySelector("#journal-discoveries");
+  const discoveryCount = root.querySelector("#discovery-count");
+  const toast = root.querySelector("#toast");
+  const prompt = root.querySelector("#inspect-prompt");
+  const hint = root.querySelector("#control-hint");
+  const conclusion = root.querySelector("#conclusion");
+  const pathStatus = root.querySelector("#path-status");
+  const nodes = root.querySelector("#flow-nodes");
+  const concludeHint = root.querySelector("#conclusion-hint");
+
+  let toastTimer = 0;
+
+  return {
+    showTitle(visible) {
+      title.hidden = !visible;
+    },
+    showDialogue(open, speaker, text, actions, kicker = "") {
+      dialogue.hidden = !open;
+      if (!open) return;
+      dialogueSpeaker.textContent = speaker;
+      if (dialogueKicker) {
+        dialogueKicker.hidden = !kicker;
+        dialogueKicker.textContent = kicker;
+      }
+      dialogueText.textContent = text;
+      dialogueActions.replaceChildren();
+      for (const action of actions) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = action.label;
+        btn.addEventListener("click", action.onClick);
+        dialogueActions.appendChild(btn);
+      }
+    },
+    setPrompt(text) {
+      prompt.hidden = !text;
+      prompt.textContent = text || "";
+    },
+    setHint(text) {
+      hint.textContent = text;
+    },
+    showToast(titleText, body) {
+      toast.hidden = false;
+      toast.querySelector("strong").textContent = titleText;
+      toast.querySelector("p").textContent = body;
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => {
+        toast.hidden = true;
+      }, 4200);
+      toast.classList.remove("toast-pop");
+      void toast.offsetWidth;
+      toast.classList.add("toast-pop");
+    },
+    setJournal(view) {
+      const open = view.open;
+      journal.classList.toggle("is-open", open);
+      journal.setAttribute("aria-hidden", open ? "false" : "true");
+      missionBody.replaceChildren();
+      discoveryBody.replaceChildren();
+
+      const observations = view.observations || [];
+      const storyNotes = view.storyNotes || [];
+      if (!observations.length && !storyNotes.length && !view.concluded) {
+        const empty = document.createElement("p");
+        empty.className = "journal-empty";
+        empty.textContent = "No mission notes yet. Walk the hollow and inspect what you find.";
+        missionBody.appendChild(empty);
+      }
+      for (const item of observations) {
+        missionBody.appendChild(noteArticle(item.title, item.text));
+      }
+      for (const item of storyNotes) {
+        missionBody.appendChild(noteArticle(item.title, item.text));
+      }
+      if (view.concluded && view.conclusionText) {
+        const done = noteArticle(view.conclusionText.title, view.conclusionText.text);
+        done.classList.add("journal-conclusion");
+        missionBody.appendChild(done);
+      }
+
+      const log = view.discoveryLog;
+      if (log) {
+        discoveryCount.textContent = `Cedar Hollow discoveries  ${log.foundCount} / ${log.total}`;
+        if (!log.found.length) {
+          const empty = document.createElement("p");
+          empty.className = "journal-empty";
+          empty.textContent = "Nothing in this section yet. Wander. Look closely.";
+          discoveryBody.appendChild(empty);
+        }
+        for (const item of log.found) {
+          const art = document.createElement("article");
+          art.className = "discovery-card";
+          const h = document.createElement("h3");
+          const mark = document.createElement("span");
+          mark.className = "discovery-symbol";
+          mark.textContent = SYMBOLS[item.symbol] || "•";
+          h.append(mark, document.createTextNode(" " + item.name));
+          const loc = document.createElement("p");
+          loc.className = "discovery-loc";
+          loc.textContent = item.location;
+          const p = document.createElement("p");
+          p.textContent = item.text;
+          art.append(h, loc, p);
+          discoveryBody.appendChild(art);
+        }
+        if (log.remaining > 0) {
+          const rest = document.createElement("p");
+          rest.className = "journal-empty";
+          rest.textContent =
+            log.remaining === 1
+              ? "One unmarked page left."
+              : `${log.remaining} unmarked pages left.`;
+          discoveryBody.appendChild(rest);
+        }
+      }
+    },
+    showConclusion(open, features, path, observed, hintText) {
+      conclusion.hidden = !open;
+      concludeHint.textContent = hintText || "";
+      if (!open) return;
+      nodes.replaceChildren();
+      for (const feature of features) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "flow-node";
+        btn.dataset.featureId = feature.id;
+        btn.style.left = `${feature.mapX}%`;
+        btn.style.top = `${feature.mapY}%`;
+        btn.disabled = !observed.has(feature.id);
+        btn.textContent = feature.short;
+        const index = path.indexOf(feature.id);
+        if (index >= 0) btn.dataset.order = String(index + 1);
+        nodes.appendChild(btn);
+      }
+      pathStatus.textContent = path.length
+        ? path.map((id) => features.find((f) => f.id === id)?.short || id).join(" → ")
+        : "Tap places you visited, starting high and moving downhill.";
+    }
+  };
+}
+
+function noteArticle(title, text) {
+  const li = document.createElement("article");
+  const h = document.createElement("h3");
+  const p = document.createElement("p");
+  h.textContent = title;
+  p.textContent = text;
+  li.append(h, p);
+  return li;
+}

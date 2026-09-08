@@ -1605,3 +1605,16 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Session strip + YOU chip + header chips collide unless the strip becomes a full-width stack and `sheds-session-active` pushes presence chrome down.
 - Outdoor-readability `.sheds-fab { background… }` after `.sheds-fab--primary` made Locate look disabled — re-assert primary contrast after that block.
 - Collapsed Field Briefing peek (~8rem) plus legend ate the map; peek should show kicker+glance only (~4.5rem) with expand for the rest; landscape legend should collapse to a chip on mobile.
+
+### Lessons Learned — TerrainBound Phase 0 (2026-09-07)
+
+- The retired Studio page at `apps/terrainbound/` is a Fieldry redirect, not this game. Keep the Earth Science prototype isolated at `terrainbound/` and do not register it in Studio nav or product registries.
+- A small authored region plus Canvas 2D beats procedural worlds and 3D engines for school-computer prototypes: no build step, readable cartoon landforms, and room to add regions later.
+- Curriculum metadata must stay in a separate data layer with `code: null` until official NYS ESS / NYSSLS codes are supplied. Player-facing copy should never contain standards codes.
+- Inspection points have to be walkable. Putting inspect targets on peaks, inside buildings, or in deep water makes the “walk the land” loop impossible.
+
+### Lessons Learned — TerrainBound Phase 1 (2026-09-08)
+
+- A demonstration map is what happens when every inspectable wears a permanent white ring. Nearby-only highlights make students notice the land instead of following HUD dots.
+- Discoveries must be data, not one-off if/else, and the journal must omit unfound names. A count (`4 / 12`) is enough hunger without an achievement board.
+- Wren should hint at places (“boulders near the north trail”), not deliver the vocabulary first. Curiosity before the glossary.

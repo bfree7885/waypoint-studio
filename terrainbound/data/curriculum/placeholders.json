@@ -1,0 +1,84 @@
+{
+  "status": "placeholders-only",
+  "playerVisible": false,
+  "disclaimer": "Exact NYS ESS / NYSSLS codes have not been supplied. These slots are internal metadata only. Do not display them to players or present them as official standards.",
+  "slots": [
+    {
+      "id": "water-movement-through-terrain",
+      "playerVisible": false,
+      "sciencePractice": "Planning and carrying out investigations",
+      "topic": "How water moves across land: slope, streams, collection, and downstream flow",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "interpreting-landforms",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Reading elevation and landform relationships in a small watershed",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "evidence-based-explanation",
+      "playerVisible": false,
+      "sciencePractice": "Engaging in argument from evidence",
+      "topic": "Using field observations to explain a hydrologic event",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "transported-sediment",
+      "playerVisible": false,
+      "sciencePractice": "Constructing explanations",
+      "topic": "Rocks and sediment that do not match local bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "weathering-and-bedrock",
+      "playerVisible": false,
+      "sciencePractice": "Planning and carrying out investigations",
+      "topic": "Weathering, rounding, and exposed bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "erosion-and-deposition",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "Erosion, cut banks, bars, and rills in a small stream system",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "wetlands-and-groundwater",
+      "playerVisible": false,
+      "sciencePractice": "Obtaining, evaluating, and communicating information",
+      "topic": "Wetlands, seeps, and water stored in the ground",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    }
+  ]
+}
