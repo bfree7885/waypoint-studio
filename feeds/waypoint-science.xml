@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Sep 2026 16:46:48 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 01:50:10 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -44,6 +44,42 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Igniting Roman&apos;s Journey</title>
+    <link>https://www.nasa.gov/image-detail/amf-nhq202608300037/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-nhq202608300037/</guid>
+    <pubDate>Thu, 03 Sep 2026 14:25:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Now on a three-month, million-mile journey to its final orbit, NASA’s Nancy Grace Roman Space Telescope will soon reveal the universe’s darkest secrets. The mission launched at 7:26 a.m. EDT on Aug. 30 aboard a SpaceX Falcon Heavy rocket from Launch Complex 39A at the agency’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-nhq202608300037/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis III RS-25 Engine Processing: #3 Lift</title>
+    <link>https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</guid>
+    <pubDate>Tue, 01 Sep 2026 17:32:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Technicians prepare to transfer the #2 RS-25 SLS (Space Launch System) rocket engine (front) to the work stand with the #3 engine (back) for integration with the Artemis III core stage rocket on Tuesday, Aug. 25, 2026, inside the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>A Nature Conservancy Volunteer’s Hunt for Champion Trees</title>
@@ -177,25 +213,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/a
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Part 4: The president and his fishing guides, 1926 summer White House</title>
-    <link>https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</guid>
-    <pubDate>Sat, 05 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Coolidge, left, with Edward “Ted” Clark, his personal secretary. Photo courtesy of the Library of Congress. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Coolidge__Clark_LOC_npcc.09176-cropped.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; As his summer in the Adirondack continued, President Coolidge began to prioritize additional time for his rediscovered passion of fishing
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>On the Water at Allouez Bay: Restoring a Critical Lake Superior Wetland</title>
     <link>https://www.audubon.org/great-lakes/news/water-allouez-bay-restoring-critical-lake-superior-wetland</link>
     <guid isPermaLink="true">https://www.audubon.org/great-lakes/news/water-allouez-bay-restoring-critical-lake-superior-wetland</guid>
@@ -231,6 +248,168 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-09/cu
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Nancy Grace Roman Space Telescope Launches</title>
+    <link>https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</guid>
+    <pubDate>Mon, 31 Aug 2026 14:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A SpaceX Falcon Heavy rocket with NASA’s Nancy Grace Roman Telescope on board is seen transiting the sun during launch from Launch Complex 39A, Sunday, Aug. 30, 2026, at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nancy-grace-roman-space-telescope-launch-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
+    <link>https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</guid>
+    <pubDate>Fri, 28 Aug 2026 22:24:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: President Donald J. Trump awarded NASA astronauts Victor Glover and Christina Koch, CSA (Canadian Space Agency) astronaut Jeremy Hansen, and NASA astronaut Reid Wiseman with the Congressional Space Medal of Honor on Aug. 28, 2026, at NASA’s Johnson Space Center in Houston.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Civil Servants Sworn in at NASA Ames</title>
+    <link>https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</guid>
+    <pubDate>Thu, 27 Aug 2026 18:04:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: New civil servants and guests pose for a group photo with NASA and Center leadership in the National Full-Scale Aerodynamics Complex (NFAC) 80-by-120-foot test section, N221.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Roman Space Telescope Travels to SpaceX Hangar</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1305/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1305/</guid>
+    <pubDate>Wed, 26 Aug 2026 18:41:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s Nancy Grace Roman Space Telescope, encapsulated in its payload fairing, travels to the SpaceX hangar at Launch Complex 39A at NASA’s Kennedy Space Center on Tuesday, Aug. 25, 2026.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1305/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Astronauts Anil Menon and Sophie Adenot on Spacewalk</title>
+    <link>https://www.nasa.gov/image-detail/gmt230_ehdc1-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/gmt230_ehdc1-2/</guid>
+    <pubDate>Tue, 25 Aug 2026 14:58:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: From left, Expedition 75 flight engineers Anil Menon of NASA (partially obscured and wearing the spacesuit with a red stripe on the legs) and Sophie Adenot of ESA (European Space Agency) work together during a six‑hour and 23‑minute spacewalk outside the International Space Station.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/gmt230_ehdc1-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA Astronaut Reid Wiseman at Freedom 250 Grand Prix</title>
+    <link>https://www.nasa.gov/image-detail/freedom-250-grand-prix/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/freedom-250-grand-prix/</guid>
+    <pubDate>Mon, 24 Aug 2026 17:35:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut Reid Wiseman, Artemis II commander, is seen in the two-seat IndyCar as he prepares for driver Conor Daly to take him on a lap in the fastest seat in sport ahead of the start of the Freedom 250 Grand Prix, Sunday, Aug. 23, 2026, in Washington, D.C.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/freedom-250-grand-prix/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis Mission Patches</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
+    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Ancient Milky Way Merger</title>
+    <link>https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</guid>
+    <pubDate>Wed, 19 Aug 2026 16:20:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: About 12 billion years ago, a dwarf galaxy known as LKH collided with a young Milky Way and merged with it. This artist’s concept portrays that collision. NASA’s Hubble Space Telescope uncovered definitive evidence of this collision by studying globular star clusters.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s B777 Gets New Coat of Paint</title>
+    <link>https://www.nasa.gov/image-detail/jsc2026e407303/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e407303/</guid>
+    <pubDate>Tue, 18 Aug 2026 15:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA&apos;s B777 Gets New Coat of Paint. NASA&apos;s Boeing 777 returns to the agency&apos;s Langley Research Center after receiving a new paint scheme.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e407303/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Labor Day: Learn its history and traditions</title>
@@ -325,6 +504,24 @@ Read the original article at the publisher: https://www.noaa.gov/office-educatio
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Small asteroid hit Earth’s atmosphere Sunday near Australia</title>
+    <link>https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</guid>
+    <pubDate>Mon, 07 Sep 2026 12:19:54 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: A small asteroid hit Earth&apos;s atmosphere harmlessly on Sunday. Scientists spotted it just 6 hours before impact. It was the 13th asteroid spotted before impact. The post Small asteroid hit Earth’s atmosphere Sunday near Australia first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Reef fish survival threatened by motorboat noise</title>
@@ -526,228 +723,23 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Where Birds Are Showing the Way</title>
-    <link>https://www.audubon.org/news/where-birds-are-showing-way</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/where-birds-are-showing-way</guid>
-    <pubDate>Sun, 06 Sep 2026 20:17:11 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>Part 4: The president and his fishing guides, 1926 summer White House</title>
+    <link>https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</guid>
+    <pubDate>Sat, 05 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Last month, visiting projects Audubon and our partners have built over the past five years, I realized that the biggest result isn’t any single conservation success. It’s the landscape itself...
+Summary: Coolidge, left, with Edward “Ted” Clark, his personal secretary. Photo courtesy of the Library of Congress. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Coolidge__Clark_LOC_npcc.09176-cropped.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; As his summer in the Adirondack continued, President Coolidge began to prioritize additional time for his rediscovered passion of fishing
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/news/where-birds-are-showing-way</description>
-    <category>Birds</category>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</description>
+    <category>Regional News</category>
     <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>The Issue with Tissue—a Boreal Love Story</title>
-    <link>https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</link>
-    <guid isPermaLink="true">https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</guid>
-    <pubDate>Fri, 04 Sep 2026 20:55:52 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Born and raised in Montreal, Michael Zelniker is a lifelong environmentalist as well as an award-winning actor and filmmaker. Then after more than 30 years of working on film, television, and theater...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Cassiopeia the Queen ascends in September and October</title>
-    <link>https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</guid>
-    <pubDate>Fri, 04 Sep 2026 07:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Cassiopeia the Queen is an easy-to-find constellation. It has the shape of a W or M. Look for it in the north-northeast sky on September and October evenings. The post Cassiopeia the Queen ascends in September and October first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Northeast</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Investing in Arizona’s Water Infrastructure</title>
-    <link>https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</guid>
-    <pubDate>Thu, 03 Sep 2026 23:49:39 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Supporting Arizona’s water infrastructure is vital to protect our water supplies and way of life. To gain a fresh perspective on the different types of water-related infrastructure we rely on to...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/investing-arizonas-water-infrastructure</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Monitoring Grassland Sparrows of the Research Ranch</title>
-    <link>https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</guid>
-    <pubDate>Thu, 03 Sep 2026 19:41:42 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Cassin’s, Botteri’s, and Grasshopper sparrows – the songs of these grassland specialists are emblematic of summers on the Research Ranch where they nest within dense, native grass, feast...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/monitoring-grassland-sparrows-of-research-ranch</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>From the Archives: Wendell Berry&apos;s ‘The One-Inch Journey’</title>
-    <link>https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</link>
-    <guid isPermaLink="true">https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</guid>
-    <pubDate>Thu, 03 Sep 2026 18:22:25 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Editor&apos;s Note: Acclaimed essayist, novelist, and poet Wendell Berry was a native Kentuckian and a strong proponent of living in harmony with nature. This essay, which appeared in the May 1971 issue...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/magazine/archives-wendell-berrys-one-inch-journey</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Expanding Outdoors for All</title>
-    <link>https://www.audubon.org/california/news/expanding-outdoors-all</link>
-    <guid isPermaLink="true">https://www.audubon.org/california/news/expanding-outdoors-all</guid>
-    <pubDate>Thu, 03 Sep 2026 15:54:19 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: California is full of incredible landscapes. From our coastline to the mountaintops, California is the most biodiverse state in the U.S. People travel from around the world to experience these...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/california/news/expanding-outdoors-all</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>A Songbird with a Unique Shade of Blue</title>
-    <link>https://www.audubon.org/southwest/news/songbird-unique-shade-of-blue</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/songbird-unique-shade-of-blue</guid>
-    <pubDate>Wed, 02 Sep 2026 18:40:59 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: If a flash of blue across the arid montane summer landscapes of New Mexico and Arizona catches your eye, it may just be the spunky Mountain Bluebird. The first time I saw one of these blue...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/songbird-unique-shade-of-blue</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Extended Drying of The Rio Grande Affects Bosque</title>
-    <link>https://www.audubon.org/southwest/news/extended-drying-of-rio-grande-affects-bosque</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/extended-drying-of-rio-grande-affects-bosque</guid>
-    <pubDate>Tue, 01 Sep 2026 16:00:10 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: The unprecedented drying of the Rio Grande has made this year one of the hardest summers for the bosque. About a month ago, my co-worker Tucker and I were heading out to conduct routine...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/extended-drying-of-rio-grande-affects-bosque</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Ancient charcoal reveals evidence of wildfires near the South Pole</title>
-    <link>https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</guid>
-    <pubDate>Mon, 07 Sep 2026 16:20:05 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: A journey back in time to the Late Cretaceous: A swampy rainforest with conifers and tree ferns stretches as far as the eye can see, dinosaurs roam through the misty wetlands, and the climate is mild and warm. The average annual temperature is 12°C (54°F)—around two degrees higher than in present-day Germany.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</description>
-    <category>Climate</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
-    <title>Birds and Community Welcome &apos;Flags Across America&apos; at Bear River Migratory Bird Refuge</title>
-    <link>https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</guid>
-    <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Just like you would expect from its name, Bear River Migratory Bird Refuge provides critical resting and feeding habitat for millions of birds migrating through Utah annually. Some birds stay to breed, nest, and raise their young across the refuge wetlands. At the Flags Across America event in
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Testing the waters: A day at the nation’s largest oil spill simulation tank</title>
-    <link>https://www.noaa.gov/stories/testing-waters-day-at-nations-largest-oil-spill-simulation-tank-ext-0</link>
-    <guid isPermaLink="true">https://www.noaa.gov/stories/testing-waters-day-at-nations-largest-oil-spill-simulation-tank-ext-0</guid>
-    <pubDate>Thu, 20 Aug 2026 18:21:38 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Testing the waters: A day at the nation’s largest oil spill simulation tank Located at Naval Weapons Station Earle Waterfront in Leonardo, New Jersey, the National Oil Spill Response Research and Renewable Energy Test Facility (Ohmsett) features a massive 2.6-million-gallon outdoor saltwater tank that serves as the nation’s testing ground for evaluating full-scale oil spill response equipment and marine technologies under realistic ocean conditions. (Image credit: Bureau of Safety and Environmental Enforcement, bsee.gov) Download Image August 20, 2026 Ocean &amp; Coasts 0 Off
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/stories/testing-waters-day-at-nations-largest-oil-spill-simulation-tank-ext-0</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Northeast</category>
-    <author>NOAA</author>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   </channel>
 </rss>
