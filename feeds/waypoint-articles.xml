@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Sep 2026 01:50:10 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 08 Sep 2026 15:33:30 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -44,24 +44,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Indonesia’s most dangerous fires are burning underground</title>
-    <link>https://www.sciencedaily.com/releases/2026/09/260904000318.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/09/260904000318.htm</guid>
-    <pubDate>Sun, 06 Sep 2026 07:57:45 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: Indonesia’s dangerous peat fires are surging early in the 2026 fire season as a strengthening El Niño and severe drought dry out wetlands that can burn underground for months. These slow smoldering fires are especially destructive because they release far more fine particles and several pollutants than typical tropical forest fires, while thick smoke can make them difficult for satellites to detect.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/09/260904000318.htm</description>
-    <category>Forests and Plants</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Igniting Roman&apos;s Journey</title>
@@ -119,6 +101,25 @@ Read the original article at the publisher: https://blog.nature.org/2026/09/06/a
     <author>The Nature Conservancy</author>
   </item>
   <item>
+    <title>Makah National Fish Hatchery, Makah Indian Tribe Nurture Beauty</title>
+    <link>https://www.fws.gov/story/2026-09/makah-national-fish-hatchery-makah-indian-tribe-nurture-beauty</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-09/makah-national-fish-hatchery-makah-indian-tribe-nurture-beauty</guid>
+    <pubDate>Tue, 08 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: In April 2026, the flags reached Neah Bay, Washington, the northwesternmost point of the contiguous United States, meeting the Pacific Ocean with pride and strength. They were welcomed by the Makah Indian Tribe, a community that has called this land home since time immemorial, and Makah National
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-09/makah-national-fish-hatchery-makah-indian-tribe-nurture-beauty</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
     <title>Interior Finalizes Streamlined Process for Migratory Game Bird Hunting Seasons</title>
     <link>https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</link>
     <guid isPermaLink="true">https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</guid>
@@ -136,6 +137,24 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Indonesia’s most dangerous fires are burning underground</title>
+    <link>https://www.sciencedaily.com/releases/2026/09/260904000318.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/09/260904000318.htm</guid>
+    <pubDate>Sun, 06 Sep 2026 07:57:45 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: Indonesia’s dangerous peat fires are surging early in the 2026 fire season as a strengthening El Niño and severe drought dry out wetlands that can burn underground for months. These slow smoldering fires are especially destructive because they release far more fine particles and several pollutants than typical tropical forest fires, while thick smoke can make them difficult for satellites to detect.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/09/260904000318.htm</description>
+    <category>Forests and Plants</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Remembering Joe Ellis</title>
@@ -205,25 +224,6 @@ Summary: A new exhibition at ADKX will showcase the history of Black community m
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/exhibit-exploring-200-years-of-black-life-in-the-adirondacks-to-open-summer-2027/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 06 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -412,42 +412,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s B777 Gets New Coat of Paint</title>
-    <link>https://www.nasa.gov/image-detail/jsc2026e407303/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e407303/</guid>
-    <pubDate>Tue, 18 Aug 2026 15:16:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA&apos;s B777 Gets New Coat of Paint. NASA&apos;s Boeing 777 returns to the agency&apos;s Langley Research Center after receiving a new paint scheme.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e407303/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Labor Day: Learn its history and traditions</title>
-    <link>https://earthsky.org/human-world/labor-day-history-celebrate-traditions/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/labor-day-history-celebrate-traditions/</guid>
-    <pubDate>Sun, 06 Sep 2026 10:47:14 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Labor Day is a federal US holiday that falls on the 1st Monday in September and is considered the unofficial end of summer. The post Labor Day: Learn its history and traditions first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/human-world/labor-day-history-celebrate-traditions/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>All Hands Back on Deck for Early Detection</title>
     <link>https://www.fws.gov/story/2026-09/all-hands-back-deck-early-detection</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-09/all-hands-back-deck-early-detection</guid>
@@ -505,23 +469,22 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
-    <title>The 2027 NOAA Hollings Scholarship application is now open!</title>
-    <link>https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</guid>
-    <pubDate>Tue, 01 Sep 2026 13:40:20 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+    <title>How many stars can you see on a moonless night?</title>
+    <link>https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</guid>
+    <pubDate>Tue, 08 Sep 2026 08:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The 2027 NOAA Hollings Scholarship application is now open! NOAA undergraduate scholars complete 10-week summer internship projects that span NOAA&apos;s mission. (Image credit: NOAA Office of Education) Download Image September 1, 2026 The Hollings undergraduate scholarships application is open through January 31, 2027, 11:59 p.m.
+Summary: Have you ever wondered how many stars are visible on a given night? It depends on factors including how dark your sky is and what your age is. The post How many stars can you see on a moonless night? first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</description>
+    <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Small asteroid hit Earth’s atmosphere Sunday near Australia</title>
@@ -531,7 +494,7 @@ Read the original article at the publisher: https://www.noaa.gov/office-educatio
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: A small asteroid hit Earth&apos;s atmosphere harmlessly on Sunday. Scientists spotted it just 6 hours before impact. It was the 13th asteroid spotted before impact. The post Small asteroid hit Earth’s atmosphere Sunday near Australia first appeared on EarthSky .
+Summary: A small asteroid impacted Earth&apos;s atmosphere harmlessly on Sunday. Scientists spotted it just 6 hours earlier. It was the 13th asteroid spotted before impact. The post Small asteroid hit Earth’s atmosphere Sunday near Australia first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -554,78 +517,6 @@ Summary: Reef fish exposed to motorboat noise can end up smaller and struggle to
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/earth/reef-fish-growth-and-survival-threatened-by-motorboat-noise/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Sun-stuff bursts could trigger strong auroras</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Mon, 07 Sep 2026 09:00:53 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news September 7, 2026: A convoy of CMEs is racing our way. G1-G2 storms are likely, with G3 possible. Auroras may reach New York and London! The post Sun news: Sun-stuff bursts could trigger strong auroras first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>These microbes in Antarctica don’t live anywhere else</title>
-    <link>https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</guid>
-    <pubDate>Sun, 06 Sep 2026 11:45:02 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Researchers have discovered that some microbes in Antarctica are unique to the icy continent and are found nowhere else on Earth. The post These microbes in Antarctica don’t live anywhere else first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>If we find life beyond Earth, how will nations respond?</title>
-    <link>https://earthsky.org/human-world/if-we-find-life-beyond-earth-how-will-nations-respond/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/if-we-find-life-beyond-earth-how-will-nations-respond/</guid>
-    <pubDate>Sun, 06 Sep 2026 10:36:23 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: If we ever find life beyond Earth, how will the nations of the world respond? A group of experts give 3 possibilities: cooperation, competition and isolation. The post If we find life beyond Earth, how will nations respond? first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/human-world/if-we-find-life-beyond-earth-how-will-nations-respond/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Octans and Apus circle the south celestial pole</title>
-    <link>https://earthsky.org/constellations/octans-and-apus-south-celestial-pole/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/octans-and-apus-south-celestial-pole/</guid>
-    <pubDate>Sun, 06 Sep 2026 07:30:18 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Octans and Apus are 2 constellations that you have to be in the Southern Hemisphere to see. Plus, Octans is home to the south celestial pole. The post Octans and Apus circle the south celestial pole first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/constellations/octans-and-apus-south-celestial-pole/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -722,18 +613,18 @@ Read the original article at the publisher: https://www.audubon.org/magazine/202
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Seven generations of stewardship</title>
-    <link>https://www.adirondackexplorer.org/communities/land-use/seven-generations-of-stewardship/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/seven-generations-of-stewardship/</guid>
-    <pubDate>Sun, 06 Sep 2026 10:30:00 GMT</pubDate>
+    <title>Old Forge Library unveils $15,000 matching grant for Mohawk Valley Gives</title>
+    <link>https://www.adirondackexplorer.org/communities/old-forge-library-unveils-15000-matching-grant-for-mohawk-valley-gives/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/old-forge-library-unveils-15000-matching-grant-for-mohawk-valley-gives/</guid>
+    <pubDate>Tue, 08 Sep 2026 12:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Ginny Brandreth, rowing a guide boat on Brandreth Lake, built at Brandreth Park by Wallace Emerson for her grandfather. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/DSC06387.jpg?fit=780%2C394&amp;ssl=1&quot; /&gt; Family ownership at Brandreth Park has survived 75 years, and counting.
+Summary: Community members enjoy activities at an event at the Old Forge Library. Photo courtesy of the Old Forge Library. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/Community-neighbors-enjoying-Marchs-Cabin-Fever-Bingo-and-Pot-Luck.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; A local donor has pledged a 1:1 match up to $15,000 for donations to support the Old Forge Library and its year round programs
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/seven-generations-of-stewardship/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/old-forge-library-unveils-15000-matching-grant-for-mohawk-valley-gives/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -741,18 +632,37 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Part 4: The president and his fishing guides, 1926 summer White House</title>
-    <link>https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</guid>
-    <pubDate>Sat, 05 Sep 2026 20:00:00 GMT</pubDate>
+    <title>Paddle first, pedal next</title>
+    <link>https://www.adirondackexplorer.org/recreation/paddling/paddle-first-pedal-next/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/paddling/paddle-first-pedal-next/</guid>
+    <pubDate>Tue, 08 Sep 2026 10:30:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Coolidge, left, with Edward “Ted” Clark, his personal secretary. Photo courtesy of the Library of Congress. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Coolidge__Clark_LOC_npcc.09176-cropped.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; As his summer in the Adirondack continued, President Coolidge began to prioritize additional time for his rediscovered passion of fishing
+Summary: Mike Lynch points out a couple of loons along the way. Photo by Tim Rowland &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/IMG_3825.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; A boat to bike adventure amongst friends.
 
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/part-4-the-president-and-his-fishing-guides-1926-summer-white-house/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/paddling/paddle-first-pedal-next/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
+    <pubDate>Sun, 06 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -795,23 +705,6 @@ Read the original article at the publisher: https://www.audubon.org/canada/news/
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Cassiopeia the Queen ascends in September and October</title>
-    <link>https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</guid>
-    <pubDate>Fri, 04 Sep 2026 07:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Cassiopeia the Queen is an easy-to-find constellation. It has the shape of a W or M. Look for it in the north-northeast sky on September and October evenings. The post Cassiopeia the Queen ascends in September and October first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/constellations/cassiopeia-the-queen-charts-lore-science/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Northeast</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Investing in Arizona’s Water Infrastructure</title>
@@ -926,6 +819,113 @@ Read the original article at the publisher: https://www.audubon.org/southwest/ne
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>First national map reveals where Ireland&apos;s coast is most exposed to erosion and flooding</title>
+    <link>https://phys.org/news/2026-09-national-reveals-ireland-coast-exposed.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-national-reveals-ireland-coast-exposed.html</guid>
+    <pubDate>Tue, 08 Sep 2026 14:00:03 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: The first national map of Ireland&apos;s exposure to climate hazards, including rising sea levels and storm surges, has identified the stretches of coastline facing the greatest pressures, providing critical new evidence to support coastal management and climate adaptation.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-national-reveals-ireland-coast-exposed.html</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Kauai on tornado watch as Hurricane Lowell nears Hawaiian Islands</title>
+    <link>https://phys.org/news/2026-09-kauai-tornado-hurricane-lowell-nears.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-kauai-tornado-hurricane-lowell-nears.html</guid>
+    <pubDate>Tue, 08 Sep 2026 09:10:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Residents of Kauai were warned to watch for tornadoes late Monday as Hurricane Lowell edged toward the westernmost Hawaiian Islands in the U.S. Pacific island chain, the National Weather Service said.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-kauai-tornado-hurricane-lowell-nears.html</description>
+    <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>War drama Pressure depicts D‑day&apos;s weather forecast—what we found when we recreated the challenge using modern systems</title>
+    <link>https://phys.org/news/2026-09-war-drama-pressure-depicts-dday.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-war-drama-pressure-depicts-dday.html</guid>
+    <pubDate>Mon, 07 Sep 2026 21:20:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Meteorologist James Stagg gave what many regard as the most important weather forecast in history in June 1944. The fate of more than 150,000 Allied troops preparing to invade the Normandy beaches on D-Day and the future of the war in Europe depended on Stagg and his forecasting teams.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-war-drama-pressure-depicts-dday.html</description>
+    <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Ancient charcoal reveals evidence of wildfires near the South Pole</title>
+    <link>https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</guid>
+    <pubDate>Mon, 07 Sep 2026 16:20:05 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: A journey back in time to the Late Cretaceous: A swampy rainforest with conifers and tree ferns stretches as far as the eye can see, dinosaurs roam through the misty wetlands, and the climate is mild and warm. The average annual temperature is 12°C (54°F)—around two degrees higher than in present-day Germany.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-ancient-charcoal-reveals-evidence-wildfires.html</description>
+    <category>Climate</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Lunar Occultation of Venus</title>
+    <link>https://www.nasa.gov/image-detail/amf-nhq202606170001/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-nhq202606170001/</guid>
+    <pubDate>Fri, 04 Sep 2026 14:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Wednesday, June 17, skywatchers across the United States—and parts of Canada—enjoyed a rare event: a daytime lunar occultation of Venus. A lunar occultation occurs when the Moon moves directly in front of another celestial object from our viewpoint on Earth, briefly hiding it from sight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-nhq202606170001/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Birds and Community Welcome &apos;Flags Across America&apos; at Bear River Migratory Bird Refuge</title>
+    <link>https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</guid>
+    <pubDate>Mon, 24 Aug 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Just like you would expect from its name, Bear River Migratory Bird Refuge provides critical resting and feeding habitat for millions of birds migrating through Utah annually. Some birds stay to breed, nest, and raise their young across the refuge wetlands. At the Flags Across America event in
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-08/birds-and-community-welcome-flags-across-america-bear-river-migratory-bird-refuge</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   </channel>
 </rss>
