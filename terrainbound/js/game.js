@@ -36,6 +36,36 @@ import {
   pickLandscapeWren,
   interpretiveLabels
 } from "./investigation.js";
+import {
+  createFlumeState,
+  runTrial,
+  setFlumeSlope,
+  setFlumeWater,
+  hasFairComparison,
+  flumeRows,
+  flumeMeans,
+  slopeById,
+  waterById
+} from "./flume.js";
+import {
+  createDataState,
+  setDatasetRows,
+  setGraphAxes,
+  graphModel,
+  tryInterpretation,
+  datasetSpecById
+} from "./fielddata.js";
+import {
+  createChallengeState,
+  nearestChallengeSite,
+  observeSite,
+  measureSite,
+  canProposeChallenge,
+  tryChallengeExplanation,
+  tryChallengeFollowUp,
+  presentChallenge,
+  challengeProgress
+} from "./challenge.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
 import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, wipeRequiresConfirm } from "./save.js";
@@ -78,7 +108,20 @@ const FLOW_MAP = [
 
 export async function boot(root = document) {
   const canvas = root.querySelector("#world");
-  const [region, mission, curriculum, catalog, investigation, worldRaw, masteryProfile, toolsCatalog, hazardsCatalog] =
+  const [
+    region,
+    mission,
+    curriculum,
+    catalog,
+    investigation,
+    worldRaw,
+    masteryProfile,
+    toolsCatalog,
+    hazardsCatalog,
+    flumeSpec,
+    dataCatalog,
+    challengeSpec
+  ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/missions/where-does-the-water-go.json").then((r) => r.json()),
@@ -88,7 +131,10 @@ export async function boot(root = document) {
       fetch("./data/world/regions.json").then((r) => r.json()),
       fetch("./data/mastery/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/world/tools.json").then((r) => r.json()),
-      fetch("./data/world/hazards.json").then((r) => r.json())
+      fetch("./data/world/hazards.json").then((r) => r.json()),
+      fetch("./data/investigations/what-makes-water-move.json").then((r) => r.json()),
+      fetch("./data/fielddata/catalog.json").then((r) => r.json()),
+      fetch("./data/challenges/after-the-rain.json").then((r) => r.json())
     ]);
   void curriculum;
   void hazardsCatalog;
@@ -104,6 +150,9 @@ export async function boot(root = document) {
   const missionState = createMissionState(mission);
   const discoveryState = createDiscoveryState();
   const invState = createInvestigationState();
+  const flumeState = createFlumeState();
+  const dataState = createDataState();
+  const challengeState = createChallengeState();
   const taught = emptyTaught();
   const ui = bindUi(root);
   const renderer = createRenderer(canvas, world, { heightAt, inCreek, onTrail });
@@ -128,6 +177,9 @@ export async function boot(root = document) {
   let dialogue = null;
   let conclusionOpen = false;
   let hypothesisOpen = false;
+  let flumeOpen = false;
+  let interpretOverlay = false;
+  let clearanceOpen = false;
   let atlasOpen = false;
   let confirmOpen = false;
   let last = performance.now();
@@ -144,16 +196,40 @@ export async function boot(root = document) {
       taught,
       worldState,
       masteryState,
-      toolState
+      toolState,
+      flumeState,
+      dataState,
+      challengeState
     });
   }
   camera.x = player.x;
   camera.y = player.y - 28;
-  syncFromGameplay(masteryState, gameplaySnapshot({ discoveryState, missionState, invState }));
-  syncToolsFromGameplay(toolState, toolsCatalog, { journalOpened: taught.journal });
+  syncFromGameplay(
+    masteryState,
+    gameplaySnapshot({ discoveryState, missionState, invState, flumeState, dataState, challengeState, flumeSpec })
+  );
+  syncToolsFromGameplay(toolState, toolsCatalog, {
+    journalOpened: taught.journal,
+    datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted)
+  });
+
+  function snapshot() {
+    return gameplaySnapshot({
+      discoveryState,
+      missionState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      flumeSpec
+    });
+  }
 
   function journalView(open = journalOpen) {
     const evidence = evidenceModel(investigation, invState);
+    const flow = dataState.datasets["cedar-hollow-flow"];
+    const rows = flow?.rows || [];
+    const spec = datasetSpecById(dataCatalog, "cedar-hollow-flow");
     return {
       open,
       observations: missionState.observations,
@@ -172,13 +248,30 @@ export async function boot(root = document) {
       missingLine:
         missionState.concluded && invState.concluded && !regionMastered(masteryProfile, masteryState)
           ? remediationLine(masteryProfile, masteryState)
-          : ""
+          : "",
+      dataRows: rows,
+      dataMeans: rows.length ? flumeMeans(flumeState, flumeSpec) : [],
+      dataCaption: spec ? spec.title : "",
+      graphModel: rows.length ? graphModel(dataState, dataCatalog, "cedar-hollow-flow") : null,
+      canInterpret: hasFairComparison(flumeState, flumeSpec)
     };
   }
 
+  function syncFlowDataset() {
+    setDatasetRows(dataState, "cedar-hollow-flow", flumeRows(flumeState, flumeSpec));
+    const dataset = dataState.datasets["cedar-hollow-flow"];
+    if (dataset && !dataset.xField) {
+      const spec = datasetSpecById(dataCatalog, "cedar-hollow-flow");
+      setGraphAxes(dataState, dataCatalog, "cedar-hollow-flow", spec.graph.suggestedX, spec.graph.suggestedY);
+    }
+  }
+
   function syncProgress() {
-    syncFromGameplay(masteryState, gameplaySnapshot({ discoveryState, missionState, invState }));
-    syncToolsFromGameplay(toolState, toolsCatalog, { journalOpened: taught.journal });
+    syncFromGameplay(masteryState, snapshot());
+    syncToolsFromGameplay(toolState, toolsCatalog, {
+      journalOpened: taught.journal,
+      datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted)
+    });
     if (regionMastered(masteryProfile, masteryState)) {
       const opened = applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
       if (opened.includes("high-country") && !taught.routeHighCountry) {
@@ -200,9 +293,262 @@ export async function boot(root = document) {
         taught,
         worldState,
         masteryState,
-        toolState
+        toolState,
+        flumeState,
+        dataState,
+        challengeState
       })
     );
+  }
+
+  function overlayBlocks() {
+    return Boolean(
+      dialogue ||
+        conclusionOpen ||
+        hypothesisOpen ||
+        confirmOpen ||
+        atlasOpen ||
+        flumeOpen ||
+        interpretOverlay ||
+        clearanceOpen
+    );
+  }
+
+  function readyForChallenge() {
+    return (
+      missionState.concluded &&
+      invState.concluded &&
+      hasFairComparison(flumeState, flumeSpec) &&
+      Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted)
+    );
+  }
+
+  function flumeView() {
+    return {
+      slopes: flumeSpec.slopes,
+      waters: flumeSpec.water,
+      slope: flumeState.slope,
+      water: flumeState.water,
+      trials: flumeState.trials.map((trial) => ({
+        ...trial,
+        label: slopeById(flumeSpec, trial.slope).label,
+        waterLabel: waterById(flumeSpec, trial.water).label
+      })),
+      status: flumeState.lastHint,
+      canReadNumbers: hasFairComparison(flumeState, flumeSpec)
+    };
+  }
+
+  function renderFlume() {
+    ui.showFlume(true, flumeView(), {
+      onSlope(id) {
+        setFlumeSlope(flumeState, id);
+        renderFlume();
+      },
+      onWater(id) {
+        setFlumeWater(flumeState, id);
+        renderFlume();
+      }
+    });
+  }
+
+  function openFlume() {
+    flumeState.introSeen = true;
+    flumeState.active = true;
+    flumeOpen = true;
+    journalOpen = false;
+    refreshJournal();
+    renderFlume();
+  }
+
+  function closeFlume() {
+    flumeOpen = false;
+    ui.showFlume(false, {});
+  }
+
+  function releaseWater() {
+    const result = runTrial(flumeState, flumeSpec);
+    syncFlowDataset();
+    persist();
+    renderFlume();
+    if (!result.fair) ui.showToast("Fair test", result.hint);
+    return result;
+  }
+
+  function interpretView() {
+    const spec = datasetSpecById(dataCatalog, "cedar-hollow-flow");
+    const dataset = dataState.datasets["cedar-hollow-flow"] || {};
+    const col = (id) => spec.columns.find((item) => item.id === id);
+    return {
+      xOptions: spec.graph.allowedX.map((id) => ({ id, label: col(id)?.label || id })),
+      yOptions: spec.graph.allowedY.map((id) => ({ id, label: col(id)?.label || id })),
+      xField: dataset.xField || spec.graph.suggestedX,
+      yField: dataset.yField || spec.graph.suggestedY,
+      patterns: spec.patterns,
+      conclusions: spec.conclusions,
+      patternId: dataset.patternId,
+      conclusionId: dataset.conclusionId,
+      graphModel: graphModel(dataState, dataCatalog, "cedar-hollow-flow"),
+      status: dataset.lastHint || "",
+      interpreted: Boolean(dataset.interpreted)
+    };
+  }
+
+  function renderInterpret() {
+    ui.showInterpret(true, interpretView(), {
+      onX(id) {
+        const y = dataState.datasets["cedar-hollow-flow"]?.yField || "speed";
+        setGraphAxes(dataState, dataCatalog, "cedar-hollow-flow", id, y);
+        renderInterpret();
+      },
+      onY(id) {
+        const x = dataState.datasets["cedar-hollow-flow"]?.xField || "slope";
+        setGraphAxes(dataState, dataCatalog, "cedar-hollow-flow", x, id);
+        renderInterpret();
+      },
+      onPattern(id) {
+        ensureDatasetDraft().patternId = id;
+        renderInterpret();
+      },
+      onConclusion(id) {
+        ensureDatasetDraft().conclusionId = id;
+        renderInterpret();
+      }
+    });
+  }
+
+  function ensureDatasetDraft() {
+    syncFlowDataset();
+    return dataState.datasets["cedar-hollow-flow"];
+  }
+
+  function openInterpret() {
+    if (!hasFairComparison(flumeState, flumeSpec)) {
+      ui.showToast("Keep measuring", "Comparable runs on more than one slope first.");
+      return;
+    }
+    syncFlowDataset();
+    interpretOverlay = true;
+    journalOpen = false;
+    flumeOpen = false;
+    ui.showFlume(false, {});
+    refreshJournal();
+    renderInterpret();
+  }
+
+  function closeInterpret() {
+    interpretOverlay = false;
+    ui.showInterpret(false, {});
+  }
+
+  function tryInterpret() {
+    const dataset = ensureDatasetDraft();
+    const result = tryInterpretation(
+      dataState,
+      dataCatalog,
+      "cedar-hollow-flow",
+      dataset.patternId,
+      dataset.conclusionId
+    );
+    persist();
+    renderInterpret();
+    refreshJournal();
+    if (result.ok) {
+      closeInterpret();
+      showDialogueLines("Ranger Wren", flumeSpec.wren.afterFair, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+    }
+  }
+
+  function clearanceView() {
+    const pick = challengeSpec.explanations.find((item) => item.id === challengeState.selectedExplanation);
+    const needsFollowUp = Boolean(pick?.correct && !challengeState.followUpDone && !challengeState.concluded);
+    return {
+      progress: challengeProgress(challengeState, challengeSpec),
+      explanations: challengeSpec.explanations,
+      selectedExplanation: challengeState.selectedExplanation,
+      needsFollowUp,
+      followOptions: challengeSpec.followUp.options,
+      followId: null,
+      status: challengeState.lastHint,
+      concluded: challengeState.concluded
+    };
+  }
+
+  let clearanceFollowId = null;
+
+  function renderClearance() {
+    const view = clearanceView();
+    view.followId = clearanceFollowId;
+    ui.showClearance(true, view, {
+      onExplanation(id) {
+        challengeState.selectedExplanation = id;
+        renderClearance();
+      },
+      onFollow(id) {
+        clearanceFollowId = id;
+        renderClearance();
+      }
+    });
+  }
+
+  function openClearance() {
+    clearanceOpen = true;
+    journalOpen = false;
+    refreshJournal();
+    renderClearance();
+  }
+
+  function closeClearance() {
+    clearanceOpen = false;
+    ui.showClearance(false, {});
+  }
+
+  function tryClearance() {
+    const result = tryChallengeExplanation(challengeState, challengeSpec, challengeState.selectedExplanation);
+    persist();
+    renderClearance();
+    if (result.ok && challengeState.concluded) afterClearanceSuccess();
+  }
+
+  function tryClearanceFollow() {
+    const result = tryChallengeFollowUp(challengeState, challengeSpec, clearanceFollowId);
+    persist();
+    renderClearance();
+    refreshJournal();
+    if (result.ok) afterClearanceSuccess();
+  }
+
+  function afterClearanceSuccess() {
+    closeClearance();
+    persist();
+    showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+      openAtlas("high-country");
+    });
+  }
+
+  function inspectChallenge(site) {
+    if (!site || inspectLock) return;
+    inspectLock = true;
+    const observed = observeSite(challengeState, challengeSpec, site.id);
+    const lines = [site.observe];
+    if (site.measure) {
+      const measured = measureSite(challengeState, challengeSpec, site.id);
+      if (!measured.already) lines.push(`${site.measure.label}: ${site.measure.value} (${site.measure.unit})`);
+    }
+    showDialogueLines(site.name, lines, 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+      inspectLock = false;
+      taught.inspect = true;
+      persist();
+      refreshJournal();
+      if (!observed.already) ui.showToast("Noted", site.name);
+    }, site.useful === false ? "Look closer" : "Field note");
   }
 
   function renderAtlas() {
@@ -383,6 +729,10 @@ export async function boot(root = document) {
 
   function inspectProp(prop) {
     if (!prop?.inspect || inspectLock) return;
+    if (prop.kind === "runoff-table") {
+      openFlume();
+      return;
+    }
     const result = addStoryNote(missionState, prop.inspect);
     inspectLock = true;
     showDialogueLines(prop.inspect.title, [prop.inspect.text], 0, () => {
@@ -405,10 +755,31 @@ export async function boot(root = document) {
     const rangerNear = nearRanger(region, player.x, player.y);
     const rangerD = Math.hypot(player.x - region.ranger.x, player.y - region.ranger.y);
     const options = [];
+    const rank = { challenge: 0, flume: 1, discovery: 2, feature: 3, prop: 4 };
+    if (challengeState.active) {
+      const site = nearestChallengeSite(challengeSpec, player.x, player.y, 72);
+      if (site) {
+        options.push({
+          kind: "challenge",
+          item: site,
+          x: site.x,
+          y: site.y,
+          d: Math.hypot(player.x - site.x, player.y - site.y),
+          name: site.name
+        });
+      }
+    }
+    const table = (region.props || []).find((item) => item.kind === "runoff-table");
+    if (table) {
+      const d = Math.hypot(player.x - table.x, player.y - table.y);
+      if (d < 56) options.push({ kind: "flume", item: table, x: table.x, y: table.y, d, name: "Runoff table" });
+    }
     if (disc) options.push({ kind: "discovery", item: disc, x: disc.x, y: disc.y, d: Math.hypot(player.x - disc.x, player.y - disc.y), name: displayName(disc, invState.interpreted) });
     if (feat) options.push({ kind: "feature", item: feat, x: feat.x, y: feat.y, d: Math.hypot(player.x - feat.x, player.y - feat.y), name: feat.name });
-    if (prop) options.push({ kind: "prop", item: prop, x: prop.x, y: prop.y, d: Math.hypot(player.x - prop.x, player.y - prop.y), name: prop.inspect.title });
-    options.sort((a, b) => a.d - b.d);
+    if (prop && prop.kind !== "runoff-table") {
+      options.push({ kind: "prop", item: prop, x: prop.x, y: prop.y, d: Math.hypot(player.x - prop.x, player.y - prop.y), name: prop.inspect.title });
+    }
+    options.sort((a, b) => a.d - b.d || (rank[a.kind] ?? 9) - (rank[b.kind] ?? 9));
     const closest = options[0] || null;
     if (rangerNear && (!closest || rangerD <= closest.d + 8)) {
       return { kind: "wren", x: region.ranger.x, y: region.ranger.y, name: "Ranger Wren" };
@@ -421,6 +792,8 @@ export async function boot(root = document) {
     if (target.kind === "wren") talkToWren();
     else if (target.kind === "discovery") inspectDiscovery(target.item);
     else if (target.kind === "prop") inspectProp(target.item);
+    else if (target.kind === "flume") openFlume();
+    else if (target.kind === "challenge") inspectChallenge(target.item);
     else inspectFeature(target.item);
   }
 
@@ -472,7 +845,7 @@ export async function boot(root = document) {
       });
       return;
     }
-    if (canProposeExplanation(investigation, invState)) {
+    if (canProposeExplanation(investigation, invState) && !invState.concluded) {
       ui.showDialogue(true, "Ranger Wren", investigation.wren.ready[0], [
         {
           label: "Build an explanation",
@@ -492,16 +865,90 @@ export async function boot(root = document) {
       ]);
       return;
     }
-    if (invState.concluded) {
-      showDialogueLines("Ranger Wren", investigation.wren.afterSuccess, 0, () => {
+    if (invState.active && !invState.concluded) {
+      const lines = pickLandscapeWren(investigation, invState, discoveryState);
+      showDialogueLines("Ranger Wren", lines, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
       });
       return;
     }
-    if (invState.active) {
-      const lines = pickLandscapeWren(investigation, invState, discoveryState);
-      showDialogueLines("Ranger Wren", lines, 0, () => {
+    if (invState.concluded && !flumeState.introSeen) {
+      showDialogueLines("Ranger Wren", flumeSpec.intro.lines, 0, () => {
+        flumeState.introSeen = true;
+        flumeState.active = true;
+        dialogue = null;
+        ui.showDialogue(false);
+        persist();
+        openFlume();
+      });
+      return;
+    }
+    if (hasFairComparison(flumeState, flumeSpec) && !dataState.datasets["cedar-hollow-flow"]?.interpreted) {
+      ui.showDialogue(true, "Ranger Wren", flumeSpec.wren.afterFair[0], [
+        {
+          label: "Look at the numbers",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openInterpret();
+          }
+        },
+        {
+          label: "Not yet",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (readyForChallenge() && !challengeState.introSeen) {
+      showDialogueLines("Ranger Wren", challengeSpec.intro.lines, 0, () => {
+        challengeState.introSeen = true;
+        challengeState.active = true;
+        dialogue = null;
+        ui.showDialogue(false);
+        persist();
+      });
+      return;
+    }
+    if (challengeState.active && !challengeState.concluded && canProposeChallenge(challengeState, challengeSpec)) {
+      ui.showDialogue(true, "Ranger Wren", "You've walked enough of the creek to try an explanation.", [
+        {
+          label: "Build an explanation",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openClearance();
+          }
+        },
+        {
+          label: "Keep looking",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (challengeState.concluded && !challengeState.presented) {
+      presentChallenge(challengeState);
+      persist();
+      showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openAtlas("high-country");
+      });
+      return;
+    }
+    if (invState.concluded) {
+      const stay = regionMastered(masteryProfile, masteryState)
+        ? ["The hollow is still here. High Country will wait until you want the mountains."]
+        : investigation.wren.afterSuccess;
+      showDialogueLines("Ranger Wren", stay, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
       });
@@ -660,6 +1107,18 @@ export async function boot(root = document) {
       if (event.key === "Escape") closeHypothesis();
       return;
     }
+    if (flumeOpen) {
+      if (event.key === "Escape") closeFlume();
+      return;
+    }
+    if (interpretOverlay) {
+      if (event.key === "Escape") closeInterpret();
+      return;
+    }
+    if (clearanceOpen) {
+      if (event.key === "Escape") closeClearance();
+      return;
+    }
     if (confirmOpen) {
       if (event.key === "Escape") {
         confirmOpen = false;
@@ -695,7 +1154,7 @@ export async function boot(root = document) {
   });
 
   canvas.addEventListener("pointerdown", (event) => {
-    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen || confirmOpen || atlasOpen) return;
+    if (mode !== "play" || overlayBlocks()) return;
     const worldPt = screenToWorld(event.clientX, event.clientY);
     const target = currentTarget();
     if (target && Math.hypot(worldPt.x - target.x, worldPt.y - target.y) < 70 && Math.hypot(player.x - target.x, player.y - target.y) < 100) {
@@ -744,6 +1203,18 @@ export async function boot(root = document) {
   root.querySelector("#hypothesis-open").addEventListener("click", () => {
     openHypothesis();
   });
+  root.querySelector("#flume-run")?.addEventListener("click", releaseWater);
+  root.querySelector("#flume-close")?.addEventListener("click", closeFlume);
+  root.querySelector("#flume-numbers")?.addEventListener("click", () => {
+    closeFlume();
+    openInterpret();
+  });
+  root.querySelector("#interpret-open")?.addEventListener("click", openInterpret);
+  root.querySelector("#interpret-try")?.addEventListener("click", tryInterpret);
+  root.querySelector("#interpret-close")?.addEventListener("click", closeInterpret);
+  root.querySelector("#clearance-try")?.addEventListener("click", tryClearance);
+  root.querySelector("#clearance-follow-try")?.addEventListener("click", tryClearanceFollow);
+  root.querySelector("#clearance-close")?.addEventListener("click", closeClearance);
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
     renderConclusion("Start again from the highest water you saw.");
@@ -778,7 +1249,7 @@ export async function boot(root = document) {
   function step(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen && !atlasOpen;
+    const playing = mode === "play" && !overlayBlocks();
     let ax = 0;
     let ay = 0;
     if (playing) {
@@ -843,21 +1314,29 @@ export async function boot(root = document) {
     }
 
     const target = currentTarget();
-    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen && !atlasOpen) {
+    if (mode === "play" && !overlayBlocks()) {
       ui.setHint(controlHintText());
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
         ui.setPrompt(
-          invState.concluded
-            ? "Talk to Wren · E"
-            : canProposeExplanation(investigation, invState)
-              ? "Share what shaped the hollow · E"
-              : missionState.concluded
+          canProposeChallenge(challengeState, challengeSpec) && !challengeState.concluded
+            ? "Share what you found · E"
+            : readyForChallenge() && !challengeState.introSeen
+              ? "Talk to Wren · E"
+              : hasFairComparison(flumeState, flumeSpec) && !dataState.datasets["cedar-hollow-flow"]?.interpreted
                 ? "Talk to Wren · E"
-                : canPresentFindings(missionState, mission)
-                  ? "Tell Wren what you found · E"
-                  : "Talk to Wren · E"
+                : invState.concluded && !flumeState.introSeen
+                  ? "Talk to Wren · E"
+                  : canProposeExplanation(investigation, invState) && !invState.concluded
+                    ? "Share what shaped the hollow · E"
+                    : canPresentFindings(missionState, mission) && !missionState.concluded
+                      ? "Tell Wren what you found · E"
+                      : "Talk to Wren · E"
         );
+      } else if (target.kind === "flume") {
+        ui.setPrompt("Use the runoff table · E");
+      } else if (target.kind === "challenge") {
+        ui.setPrompt("Look closer · E");
       } else if (target.kind === "discovery") {
         const pending = availableMeasurementAt(investigation, invState, discoveryState, target.item.id);
         ui.setPrompt(pending ? `${pending.actionLabel} · E` : "Look closer · E");
@@ -887,6 +1366,13 @@ export async function boot(root = document) {
       iceFlow: investigation.iceFlow,
       discoveries: catalog.items,
       nearTarget: target && target.kind !== "wren" ? target : null,
+      challengeActive: Boolean(challengeState.active),
+      challengeSites: challengeState.active
+        ? challengeSpec.sites.map((site) => ({
+            ...site,
+            observed: challengeState.observedIds.includes(site.id)
+          }))
+        : [],
       interpretiveLabels: interpretiveLabels(
         investigation,
         invState,
@@ -912,6 +1398,10 @@ export async function boot(root = document) {
       worldState,
       masteryState,
       toolState,
+      flumeState,
+      dataState,
+      challengeState,
+      flumeSpec,
       go(x, y) {
         player.x = x;
         player.y = y;
@@ -945,6 +1435,13 @@ export async function boot(root = document) {
       openHyp() {
         openHypothesis();
       },
+      openFlume,
+      openInterpret,
+      openClearance,
+      releaseWater,
+      tryInterpret,
+      tryClearance,
+      tryClearanceFollow,
       tryHyp() {
         tryHypothesis();
       },

@@ -1,0 +1,66 @@
+{
+  "id": "terrainbound-field-data",
+  "note": "Reusable field datasets. Visualization and interpretation are separate from collection.",
+  "datasets": [
+    {
+      "id": "cedar-hollow-flow",
+      "title": "Slope and flow",
+      "regionId": "cedar-hollow",
+      "sourceInvestigation": "what-makes-water-move",
+      "distanceMeters": 2,
+      "columns": [
+        { "id": "slope", "label": "Slope", "role": "independent" },
+        { "id": "trial", "label": "Trial", "role": "index" },
+        { "id": "seconds", "label": "Travel time (s)", "role": "dependent" },
+        { "id": "speed", "label": "Flow speed (m/s)", "role": "derived" }
+      ],
+      "graph": {
+        "suggestedX": "slope",
+        "suggestedY": "speed",
+        "allowedX": ["slope"],
+        "allowedY": ["speed", "seconds"],
+        "title": "Flow and slope"
+      },
+      "patterns": [
+        {
+          "id": "faster-with-slope",
+          "label": "As slope increased, water moved faster.",
+          "correct": true
+        },
+        {
+          "id": "slower-with-slope",
+          "label": "As slope increased, water moved slower.",
+          "correct": false,
+          "hint": "Steeper runs took less time to cover the same stretch."
+        },
+        {
+          "id": "exact-seconds",
+          "label": "Steep water always moves in exactly 4.0 seconds.",
+          "correct": false,
+          "weak": true,
+          "hint": "Your trials are close, but not identical. What does the overall pattern show?"
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "steeper-faster",
+          "label": "Water moved faster on steeper slopes.",
+          "correct": true
+        },
+        {
+          "id": "rain-only",
+          "label": "Rain is what made every run faster.",
+          "correct": false,
+          "hint": "These runs were on the table, not in last night's storm."
+        },
+        {
+          "id": "exact-claim",
+          "label": "Steep water always takes exactly 4.0 seconds.",
+          "correct": false,
+          "weak": true,
+          "hint": "The numbers cluster. They don't lock to one exact time."
+        }
+      ]
+    }
+  ]
+}

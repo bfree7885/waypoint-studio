@@ -12,6 +12,15 @@
       "permanent": true
     },
     {
+      "id": "field-data",
+      "name": "Field data",
+      "regionId": "cedar-hollow",
+      "description": "Tables, graphs, and interpretations of measurements the player collected.",
+      "earnedBy": "Interpreting a field dataset from measurements taken in Cedar Hollow.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
       "id": "topo-layer",
       "name": "Topographic layer",
       "regionId": "high-country",

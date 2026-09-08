@@ -306,11 +306,11 @@ check("route-open state persists locally and v1 saves migrate", () => {
     investigation: createInvestigationState()
   };
   const migrated = migrateSave(v1);
-  assert.equal(migrated.v, 2);
+  assert.equal(migrated.v, SAVE_VERSION);
   assert.deepEqual(migrated.world.accessibleRegions, ["cedar-hollow"]);
   const storageV1 = mockStorage({ [SAVE_KEY]: JSON.stringify(v1) });
   const fromDisk = readSave(storageV1);
-  assert.equal(fromDisk.v, 2);
+  assert.equal(fromDisk.v, SAVE_VERSION);
   assert.equal(fromDisk.player.x, 1688);
 });
 
@@ -334,7 +334,11 @@ check("field tools and hazards are architecture only except the journal", () => 
   assert.equal(hasTool(tools, "topo-layer"), false);
   earnTool(tools, toolsCatalog, "topo-layer");
   assert.equal(hasTool(tools, "topo-layer"), true);
-  assert.ok(toolsCatalog.tools.filter((item) => item.implemented).every((item) => item.id === "field-journal"));
+  assert.ok(
+    toolsCatalog.tools
+      .filter((item) => item.implemented)
+      .every((item) => item.id === "field-journal" || item.id === "field-data")
+  );
   assert.equal(hazardsCatalog.implemented, false);
   assert.equal(hazardsCatalog.hazards.every((item) => item.implemented === false), true);
   assert.ok(hazardsForRegion(hazardsCatalog, "firepeak").length >= 1);

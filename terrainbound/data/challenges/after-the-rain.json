@@ -1,0 +1,134 @@
+{
+  "id": "after-the-rain",
+  "title": "After the rain",
+  "kicker": "Field clearance",
+  "question": "Why is part of Pine Creek muddier and quicker this morning?",
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Pine Creek isn't the same color the whole way. Walk it. Measure what you can. Don't decide from the station porch."
+    ]
+  },
+  "sites": [
+    {
+      "id": "rain-gauge",
+      "name": "Rain gauge",
+      "x": 1896,
+      "y": 940,
+      "observe": "Last night's marks sit higher than the rest of the week. It rained. That doesn't say where the mud came from.",
+      "useful": true,
+      "role": "weather"
+    },
+    {
+      "id": "station-creek",
+      "name": "Creek below the station",
+      "x": 1500,
+      "y": 960,
+      "observe": "The water here still looks about as clear as a quiet morning.",
+      "measure": { "id": "clarity-station", "label": "Clarity", "value": 8, "unit": "clear" },
+      "useful": true,
+      "role": "upstream"
+    },
+    {
+      "id": "confluence",
+      "name": "Where Fox Run meets Pine Creek",
+      "x": 860,
+      "y": 690,
+      "observe": "A brown thread joins the creek here. The water looks quicker than it did up by the station.",
+      "measure": { "id": "clarity-confluence", "label": "Clarity", "value": 3, "unit": "muddy" },
+      "useful": true,
+      "role": "join"
+    },
+    {
+      "id": "westface-slump",
+      "name": "Fresh scar on Westface",
+      "x": 700,
+      "y": 520,
+      "observe": "Loose soil, a bite out of the slope, and Fox Run starting right below it.",
+      "useful": true,
+      "role": "source"
+    },
+    {
+      "id": "marsh",
+      "name": "Cattail marsh",
+      "x": 860,
+      "y": 1276,
+      "observe": "The marsh is tea-colored, the way it often is. It isn't pulsing brown the way the creek is above the pond.",
+      "measure": { "id": "clarity-marsh", "label": "Clarity", "value": 6, "unit": "tea" },
+      "useful": false,
+      "role": "usual"
+    },
+    {
+      "id": "willow-reach",
+      "name": "Willow Reach",
+      "x": 1210,
+      "y": 1470,
+      "observe": "Mud still hangs in the water downstream. Some of it is already dropping out.",
+      "measure": { "id": "clarity-reach", "label": "Clarity", "value": 4, "unit": "settling" },
+      "useful": true,
+      "role": "downstream"
+    },
+    {
+      "id": "high-look",
+      "name": "High Look",
+      "x": 1488,
+      "y": 400,
+      "observe": "From here the brown line starts where the little run meets Pine Creek, not at the pond.",
+      "useful": true,
+      "role": "systems"
+    },
+    {
+      "id": "crate-note",
+      "name": "Instrument crate",
+      "x": 1882,
+      "y": 978,
+      "observe": "A note about not leaving the meter in the marsh. Nothing about this morning's mud.",
+      "useful": false,
+      "role": "irrelevant"
+    }
+  ],
+  "minObserved": 3,
+  "minMeasured": 2,
+  "neededRoles": ["join", "source"],
+  "explanations": [
+    {
+      "id": "tributary-slump",
+      "label": "Rain loosened Westface soil. Fox Run carried it into Pine Creek.",
+      "correct": true,
+      "needs": ["join", "source"]
+    },
+    {
+      "id": "just-rain",
+      "label": "It rained, so the whole creek is muddier.",
+      "correct": false,
+      "hint": "The stretch by the station is still relatively clear. Rain fell on more than one place."
+    },
+    {
+      "id": "pond-overflow",
+      "label": "Mirror Pond overflowed and sent mud downstream.",
+      "correct": false,
+      "hint": "The brown water shows up where Fox Run joins, above the pond."
+    }
+  ],
+  "followUp": {
+    "prompt": "The marsh is brownish most days. Does that change the story?",
+    "options": [
+      {
+        "id": "marsh-caused",
+        "label": "Then the marsh caused it.",
+        "ok": false,
+        "hint": "The pulse of mud is above the pond, where the tributary joins."
+      },
+      {
+        "id": "marsh-usual",
+        "label": "The marsh isn't the pulse I measured.",
+        "ok": true,
+        "refinement": true
+      }
+    ]
+  },
+  "success": "Rain, a loose slope, and a tributary did this together. That's a system, not a single culprit.",
+  "wrenAfter": [
+    "You know how to work a problem now. High Country will ask you to work out where you are."
+  ]
+}

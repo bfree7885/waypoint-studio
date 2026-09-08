@@ -1,13 +1,19 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
- * v1 Cedar Hollow saves migrate to v2 (regions, mastery, tools).
+ * v1/v2 saves migrate to v3 (flume, field data, field challenge).
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
-export const SAVE_VERSION = 2;
+export const SAVE_VERSION = 3;
 
 export function emptyTaught() {
-  return { walk: false, inspect: false, journal: false, worldMap: false, routeHighCountry: false };
+  return {
+    walk: false,
+    inspect: false,
+    journal: false,
+    worldMap: false,
+    routeHighCountry: false
+  };
 }
 
 export function emptyWorldSave() {
@@ -26,19 +32,65 @@ export function emptyToolsSave() {
   return { earnedIds: [] };
 }
 
+export function emptyFlumeSave() {
+  return {
+    introSeen: false,
+    active: false,
+    slope: "moderate",
+    water: "one-cup",
+    trials: [],
+    lastHint: "",
+    lastSeconds: null,
+    unfairAttempted: false,
+    setupRevised: false
+  };
+}
+
+export function emptyDataSave() {
+  return { datasets: {}, activeId: null };
+}
+
+export function emptyChallengeSave() {
+  return {
+    introSeen: false,
+    active: false,
+    observedIds: [],
+    measuredIds: [],
+    selectedExplanation: null,
+    lastHint: "",
+    concluded: false,
+    presented: false,
+    revised: false,
+    followUpDone: false,
+    workingRoles: []
+  };
+}
+
 export function migrateSave(data) {
   if (!data || typeof data !== "object") return null;
-  if (data.v === 2) {
+  if (data.v === 3) {
     return {
       ...data,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
       world: { ...emptyWorldSave(), ...(data.world || {}) },
       mastery: { ...emptyMasterySave(), ...(data.mastery || {}) },
-      tools: { ...emptyToolsSave(), ...(data.tools || {}) }
+      tools: { ...emptyToolsSave(), ...(data.tools || {}) },
+      flume: { ...emptyFlumeSave(), ...(data.flume || {}) },
+      fieldData: { ...emptyDataSave(), ...(data.fieldData || {}) },
+      challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) }
     };
   }
+  if (data.v === 2) {
+    return migrateSave({
+      ...data,
+      v: 3,
+      flume: emptyFlumeSave(),
+      fieldData: emptyDataSave(),
+      challenge: emptyChallengeSave()
+    });
+  }
   if (data.v === 1) {
-    return {
+    return migrateSave({
       ...data,
       v: 2,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
@@ -46,7 +98,7 @@ export function migrateSave(data) {
       mastery: emptyMasterySave(),
       tools: emptyToolsSave(),
       currentRegion: data.regionId || "cedar-hollow"
-    };
+    });
   }
   return null;
 }
@@ -59,7 +111,10 @@ export function captureSave({
   taught,
   worldState,
   masteryState,
-  toolState
+  toolState,
+  flumeState,
+  dataState,
+  challengeState
 }) {
   return {
     v: SAVE_VERSION,
@@ -74,6 +129,12 @@ export function captureSave({
     },
     mastery: { records: masteryState?.records || [] },
     tools: { earnedIds: toolState?.earnedIds || [] },
+    flume: { ...emptyFlumeSave(), ...(flumeState || {}) },
+    fieldData: {
+      datasets: dataState?.datasets || {},
+      activeId: dataState?.activeId || null
+    },
+    challenge: { ...emptyChallengeSave(), ...(challengeState || {}) },
     mission: {
       introSeen: missionState.introSeen,
       observations: missionState.observations,
@@ -104,7 +165,19 @@ export function captureSave({
 
 export function applySave(
   data,
-  { player, missionState, discoveryState, invState, taught, worldState, masteryState, toolState }
+  {
+    player,
+    missionState,
+    discoveryState,
+    invState,
+    taught,
+    worldState,
+    masteryState,
+    toolState,
+    flumeState,
+    dataState,
+    challengeState
+  }
 ) {
   const migrated = migrateSave(data);
   if (!migrated) return false;
@@ -127,6 +200,14 @@ export function applySave(
   }
   if (toolState && migrated.tools) {
     toolState.earnedIds = [...(migrated.tools.earnedIds || [])];
+  }
+  if (flumeState && migrated.flume) Object.assign(flumeState, emptyFlumeSave(), migrated.flume);
+  if (dataState && migrated.fieldData) {
+    dataState.datasets = { ...(migrated.fieldData.datasets || {}) };
+    dataState.activeId = migrated.fieldData.activeId || null;
+  }
+  if (challengeState && migrated.challenge) {
+    Object.assign(challengeState, emptyChallengeSave(), migrated.challenge);
   }
   return true;
 }

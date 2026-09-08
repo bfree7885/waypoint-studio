@@ -52,6 +52,7 @@
         <button type="button" data-tab="evidence" id="tab-evidence-btn">Evidence</button>
         <button type="button" data-tab="sketch" id="tab-sketch-btn">Sketch</button>
         <button type="button" data-tab="world">World</button>
+        <button type="button" data-tab="data" id="tab-data-btn">Data</button>
       </nav>
       <section class="journal-section is-on" data-panel="notes">
         <h3 class="journal-kicker">Mission notes</h3>
@@ -78,6 +79,13 @@
         <p class="journal-empty" id="field-record-lead">Scientific habits shown in the hollow — not a grade.</p>
         <div id="field-record"></div>
         <button type="button" id="open-atlas">World map</button>
+      </section>
+      <section class="journal-section" data-panel="data" id="journal-data-section" hidden>
+        <h3 class="journal-kicker">Field data</h3>
+        <p id="data-caption" class="journal-empty">Measurements you take will live here.</p>
+        <div id="journal-data-table"></div>
+        <canvas id="journal-graph" width="320" height="160" aria-label="Field graph" hidden></canvas>
+        <button type="button" id="interpret-open" hidden>What do the numbers show?</button>
       </section>
       <footer class="journal-foot">
         <button type="button" id="journal-reset" class="quiet-btn">New exploration</button>
@@ -130,6 +138,62 @@
       </div>
     </div>
 
+    <div id="flume" hidden role="dialog" aria-label="What makes water move faster?">
+      <div class="hypothesis-card">
+        <h2>What makes water move faster?</h2>
+        <p class="hypothesis-lead">Same channel. Same two metres. Change one thing, then time the water.</p>
+        <p class="hypothesis-kicker">Slope</p>
+        <div id="flume-slopes" class="chip-row"></div>
+        <p class="hypothesis-kicker">Water</p>
+        <div id="flume-water" class="chip-row"></div>
+        <p id="flume-status"></p>
+        <div id="flume-log"></div>
+        <div class="conclusion-actions">
+          <button type="button" id="flume-run">Release water</button>
+          <button type="button" id="flume-numbers" hidden>Look at the numbers</button>
+          <button type="button" id="flume-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="interpret" hidden role="dialog" aria-label="What do the numbers show?">
+      <div class="hypothesis-card">
+        <h2>What do the numbers show?</h2>
+        <p class="hypothesis-lead">Your runs, not a worksheet. Put the variables where they belong, then say what the pattern is.</p>
+        <p class="hypothesis-kicker">Graph</p>
+        <div class="chip-row" id="interpret-x"></div>
+        <div class="chip-row" id="interpret-y"></div>
+        <canvas id="interpret-graph" width="420" height="180" aria-label="Slope and flow graph"></canvas>
+        <p class="hypothesis-kicker">Observed pattern</p>
+        <div id="interpret-patterns" class="chip-row"></div>
+        <p class="hypothesis-kicker">Conclusion</p>
+        <div id="interpret-conclusions" class="chip-row"></div>
+        <p id="interpret-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="interpret-try">Try this reading</button>
+          <button type="button" id="interpret-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="clearance" hidden role="dialog" aria-label="After the rain">
+      <div class="hypothesis-card">
+        <h2>After the rain</h2>
+        <p class="hypothesis-lead">Build an explanation from places you actually walked.</p>
+        <p id="clearance-progress"></p>
+        <p class="hypothesis-kicker">Explanation</p>
+        <div id="clearance-explanations" class="chip-row"></div>
+        <p class="hypothesis-kicker" id="clearance-follow-kicker" hidden>One more check</p>
+        <div id="clearance-follow" class="chip-row" hidden></div>
+        <p id="clearance-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="clearance-try">Try this explanation</button>
+          <button type="button" id="clearance-follow-try" hidden>Answer Wren</button>
+          <button type="button" id="clearance-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
     <div id="atlas" hidden role="dialog" aria-label="TerrainBound world map">
       <div class="atlas-card">
         <header>
@@ -154,6 +218,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p4"></script>
+  <script type="module" src="./js/main.js?v=p5"></script>
 </body>
 </html>

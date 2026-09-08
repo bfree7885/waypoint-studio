@@ -69,6 +69,7 @@
     "r": 78
   },
   "props": [
+    { "kind": "runoff-table", "x": 1840, "y": 1000, "inspect": { "id": "story-runoff", "title": "Runoff table", "text": "A short wooden channel, a cup, and marks at two metres. Same stretch, every time." } },
     { "kind": "rain-gauge", "x": 1896, "y": 940, "inspect": { "id": "story-rain-gauge", "title": "Rain gauge", "text": "A dented cylinder and a pencil tally on the post. Last night's marks go higher than the rest of the week." } },
     { "kind": "instrument-crate", "x": 1882, "y": 978, "inspect": { "id": "story-crate", "title": "Instrument crate", "text": "Soil sieves, a folded map, and a note: 'Don't leave the meter in the marsh overnight.'" } },
     { "kind": "sampling-flag", "x": 1608, "y": 1008, "inspect": { "id": "story-flag", "title": "Old sampling flag", "text": "Yellow tape, faded. Whoever left this didn't come back for the sample." } },

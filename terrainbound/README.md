@@ -24,6 +24,7 @@ node terrainbound/tests/phase1.test.mjs
 node terrainbound/tests/phase2.test.mjs
 node terrainbound/tests/phase3.test.mjs
 node terrainbound/tests/phase4.test.mjs
+node terrainbound/tests/phase5.test.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.
@@ -39,12 +40,14 @@ The world map is a stylized atlas, not GIS. Travel follows teaching order. A new
 Missions:
 - **Where Does the Water Go?** (storm water path)
 - **Reading the Landscape** (what shaped the hollow)
+- **What makes water move faster?** (slope and flow on the runoff table)
+- **After the rain** (regional field challenge)
 
-Discoveries: 12 optional field finds. Walk to them and inspect. Names stay hidden until found.
+Discoveries: 12 optional field finds. Walk to them and inspect. Names stay hidden until found. Mastery does not require collecting all of them.
 
-Field tablet (**J**): Mission notes, Discoveries, Evidence cards, a landscape sketch, and a **Field Record**. Evidence is a student's interpretation, not a minimap. World map: title screen, tablet World tab, or the World map control.
+Field tablet (**J**): Mission notes, Discoveries, Evidence cards, a landscape sketch, **Field data** (your measurements and graph), and a **Field Record**. Evidence is a student's interpretation, not a minimap. World map: title screen, tablet World tab, or the World map control.
 
-Ranger Wren: short comments, hints when useful, acknowledgement of finds. After enough landscape evidence, the player builds an explanation from a process plus recorded notes — not a quiz.
+Ranger Wren: short comments, hints when useful, acknowledgement of finds. After enough landscape evidence, the player builds an explanation from a process plus recorded notes — not a quiz. After a fair runoff-table comparison, the player's own numbers become the dataset. High Country opens when Topic 1 habits are demonstrated, not when every page is filled.
 
 ## Architecture
 
@@ -58,17 +61,22 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | `data/regions/` | Playable places (Cedar Hollow only) |
 | `data/missions/` | Missions |
 | `data/discoveries/` | Optional finds (data-driven) |
-| `data/investigations/` | Landscape interpretation |
+| `data/investigations/` | Landscape interpretation and runoff-table investigation |
+| `data/fielddata/` | Reusable field datasets |
+| `data/challenges/` | Regional field challenges |
 | `data/curriculum/` | Hidden standards placeholders |
 | `js/worldmap.js` | Atlas, previews, travel gate |
 | `js/mastery.js` | Evidence vs content completion |
+| `js/flume.js` | Fair tests, slope vs speed |
+| `js/fielddata.js` | Dataset, graph, interpretation |
+| `js/challenge.js` | After-the-rain field clearance |
 | `js/tools.js` / `js/hazards.js` | Toolkit and respond architecture |
 | `js/world.js` | Terrain, biomes, collision |
 | `js/mission.js` | Mission observations |
 | `js/discoveries.js` | Discovery log |
 | `js/investigation.js` | Evidence, measurements, hypothesis |
 | `js/curriculum.js` | Internal alignment |
-| `js/save.js` | Local field journal (v2, migrates v1) |
+| `js/save.js` | Local field journal (v3, migrates v1/v2) |
 | `js/audio.js` | Quiet audio bus |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |
 

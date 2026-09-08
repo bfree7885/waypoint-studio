@@ -22,8 +22,9 @@ export function earnTool(state, catalog, id) {
   return { ok: true, already: false, spec };
 }
 
-export function syncToolsFromGameplay(state, catalog, { journalOpened }) {
+export function syncToolsFromGameplay(state, catalog, { journalOpened, datasetInterpreted } = {}) {
   if (journalOpened) earnTool(state, catalog, "field-journal");
+  if (datasetInterpreted) earnTool(state, catalog, "field-data");
   return state;
 }
 

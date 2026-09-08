@@ -53,7 +53,7 @@ export function previewModel(world, worldState, regionId) {
   let routeLabel = "Route not yet open";
   let routeDetail = region.lockCopy;
   if (status === "here") {
-    routeLabel = "You are here";
+    routeLabel = worldState.masteredRegions.includes(region.id) ? "Field work complete" : "You are here";
     routeDetail = region.travelCopy;
   } else if (status === "open") {
     routeLabel = "Route open";
@@ -71,7 +71,8 @@ export function previewModel(world, worldState, regionId) {
     routeLabel,
     routeDetail,
     canEnter: canEnterRegion(world, worldState, region.id),
-    canPreview: true
+    canPreview: true,
+    mastered: worldState.masteredRegions.includes(region.id)
   };
 }
 

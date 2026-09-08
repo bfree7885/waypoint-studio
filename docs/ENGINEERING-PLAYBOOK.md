@@ -1640,3 +1640,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep `simulateMastery` behind `?field=1`. Student UI must not grow an unlock button because the gate is unfinished.
 - Save v1 must migrate in place. Changing the localStorage key would strand school laptops that already have a journal.
 
+### Lessons Learned — TerrainBound Phase 5 (2026-09-08)
+
+- Topic 1 mastery is a set of field habits, not a vocabulary test. A fair slope-vs-speed comparison, the player's own graph, and an unexplained creek change can elicit all nine slots without a multiple-choice exam.
+- Unfair tests must still run. Recording the extra-water trial and asking which change caused the result teaches control better than blocking the button.
+- One measurement is not enough. Require repeated trials so an outlier cannot become the conclusion.
+- Field data should be a reusable layer (definition, rows, graph, interpretation, evidence) even when Cedar Hollow is the only consumer. Later regions need elevation, weather, and seismic tables on the same tablet page.
+- Revision can be authentic without forcing a wrong first answer: evolving evidence (a follow-up about the marsh) refines the model.
+- Unlocking High Country is access to a place, not a ceremony. Open the atlas, leave the region walkable, and keep High Country preview-only.
+- Sharing a conclusion for travel clearance should be the regional Field Challenge, not the first water-path briefing. Tracing storm water still teaches pattern; it should not, by itself, open the mountains.
+

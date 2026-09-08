@@ -3,6 +3,7 @@
  */
 
 import { drawFieldSketch } from "./investigation.js";
+import { drawDatasetGraph } from "./fielddata.js";
 
 const SYMBOLS = {
   erratic: "◉",
@@ -70,6 +71,33 @@ export function bindUi(root) {
   const confirmReset = root.querySelector("#confirm-reset");
   const evidenceTab = root.querySelector("#tab-evidence-btn");
   const sketchTab = root.querySelector("#tab-sketch-btn");
+  const dataTab = root.querySelector("#tab-data-btn");
+  const dataSection = root.querySelector("#journal-data-section");
+  const dataCaption = root.querySelector("#data-caption");
+  const dataTable = root.querySelector("#journal-data-table");
+  const journalGraph = root.querySelector("#journal-graph");
+  const interpretOpen = root.querySelector("#interpret-open");
+  const flume = root.querySelector("#flume");
+  const flumeSlopes = root.querySelector("#flume-slopes");
+  const flumeWater = root.querySelector("#flume-water");
+  const flumeStatus = root.querySelector("#flume-status");
+  const flumeLog = root.querySelector("#flume-log");
+  const flumeNumbers = root.querySelector("#flume-numbers");
+  const interpret = root.querySelector("#interpret");
+  const interpretX = root.querySelector("#interpret-x");
+  const interpretY = root.querySelector("#interpret-y");
+  const interpretGraph = root.querySelector("#interpret-graph");
+  const interpretPatterns = root.querySelector("#interpret-patterns");
+  const interpretConclusions = root.querySelector("#interpret-conclusions");
+  const interpretStatus = root.querySelector("#interpret-status");
+  const clearance = root.querySelector("#clearance");
+  const clearanceProgress = root.querySelector("#clearance-progress");
+  const clearanceExplanations = root.querySelector("#clearance-explanations");
+  const clearanceFollow = root.querySelector("#clearance-follow");
+  const clearanceFollowKicker = root.querySelector("#clearance-follow-kicker");
+  const clearanceStatus = root.querySelector("#clearance-status");
+  const clearanceTry = root.querySelector("#clearance-try");
+  const clearanceFollowTry = root.querySelector("#clearance-follow-try");
   const tabButtons = [...root.querySelectorAll(".journal-tabs [data-tab]")];
   const panels = [...root.querySelectorAll("[data-panel]")];
 
@@ -218,12 +246,16 @@ export function bindUi(root) {
 
       const evidence = view.evidence;
       const showEvidence = view.landscapeActive || (evidence && evidence.cards.length);
+      const showData = Boolean(view.dataRows && view.dataRows.length);
       if (evidenceTab) evidenceTab.disabled = !showEvidence;
       if (sketchTab) sketchTab.disabled = !showEvidence;
+      if (dataTab) dataTab.disabled = !showData;
       if (!showEvidence && (journalTab === "evidence" || journalTab === "sketch")) showTab("notes");
+      else if (!showData && journalTab === "data") showTab("notes");
       else showTab(journalTab);
       if (evidenceSection) evidenceSection.hidden = journalTab !== "evidence" || !showEvidence;
       if (sketchSection) sketchSection.hidden = journalTab !== "sketch" || !showEvidence;
+      if (dataSection) dataSection.hidden = journalTab !== "data" || !showData;
       if (showEvidence && evidence) {
         evidenceCount.textContent = evidence.cards.length
           ? `${evidence.cards.length} field notes`
@@ -278,6 +310,21 @@ export function bindUi(root) {
           fieldRecord.appendChild(note);
         }
       }
+
+      if (dataTable) {
+        dataTable.replaceChildren();
+        if (showData) {
+          if (dataCaption) dataCaption.textContent = view.dataCaption || "Your runs.";
+          dataTable.appendChild(buildDataTable(view.dataRows, view.dataMeans));
+          if (journalGraph && view.graphModel) {
+            journalGraph.hidden = false;
+            drawDatasetGraph(journalGraph.getContext("2d"), journalGraph.width, journalGraph.height, view.graphModel);
+          } else if (journalGraph) {
+            journalGraph.hidden = true;
+          }
+          if (interpretOpen) interpretOpen.hidden = !view.canInterpret;
+        }
+      }
     },
     showAtlas(open) {
       if (atlas) atlas.hidden = !open;
@@ -287,7 +334,13 @@ export function bindUi(root) {
       if (atlasName) atlasName.textContent = model.name;
       if (atlasKicker) {
         atlasKicker.textContent =
-          model.status === "here" ? "You are here" : model.status === "open" ? "Route open" : "Preview";
+          model.status === "here"
+            ? model.mastered
+              ? "Field work complete"
+              : "You are here"
+            : model.status === "open"
+              ? "Route open"
+              : "Preview";
       }
       if (atlasSubtitle) atlasSubtitle.textContent = model.subtitle;
       if (atlasBlurb) atlasBlurb.textContent = model.shortPreview;
@@ -359,8 +412,107 @@ export function bindUi(root) {
       hypothesisStatus.classList.toggle("is-success", Boolean(view.concluded));
       if (hypothesisTry) hypothesisTry.hidden = Boolean(view.concluded);
       if (hypothesisClear) hypothesisClear.hidden = Boolean(view.concluded);
+    },
+    showFlume(open, view, handlers = {}) {
+      if (!flume) return;
+      flume.hidden = !open;
+      if (!open) return;
+      fillChips(flumeSlopes, view.slopes, view.slope, handlers.onSlope);
+      fillChips(flumeWater, view.waters, view.water, handlers.onWater);
+      if (flumeStatus) flumeStatus.textContent = view.status || "";
+      if (flumeLog) {
+        flumeLog.replaceChildren();
+        for (const trial of view.trials || []) {
+          const p = document.createElement("p");
+          p.textContent = `${trial.label} · ${trial.waterLabel} · ${trial.seconds} s`;
+          if (!trial.fair) p.style.opacity = "0.65";
+          flumeLog.appendChild(p);
+        }
+      }
+      if (flumeNumbers) flumeNumbers.hidden = !view.canReadNumbers;
+    },
+    showInterpret(open, view, handlers = {}) {
+      if (!interpret) return;
+      interpret.hidden = !open;
+      if (!open) return;
+      fillChips(interpretX, view.xOptions, view.xField, handlers.onX);
+      fillChips(interpretY, view.yOptions, view.yField, handlers.onY);
+      fillChips(interpretPatterns, view.patterns, view.patternId, handlers.onPattern);
+      fillChips(interpretConclusions, view.conclusions, view.conclusionId, handlers.onConclusion);
+      if (interpretGraph && view.graphModel) {
+        drawDatasetGraph(interpretGraph.getContext("2d"), interpretGraph.width, interpretGraph.height, view.graphModel);
+      }
+      if (interpretStatus) {
+        interpretStatus.textContent = view.status || "";
+        interpretStatus.classList.toggle("is-success", Boolean(view.interpreted));
+      }
+    },
+    showClearance(open, view, handlers = {}) {
+      if (!clearance) return;
+      clearance.hidden = !open;
+      if (!open) return;
+      if (clearanceProgress) clearanceProgress.textContent = view.progress || "";
+      fillChips(clearanceExplanations, view.explanations, view.selectedExplanation, handlers.onExplanation);
+      const follow = Boolean(view.needsFollowUp);
+      if (clearanceFollowKicker) clearanceFollowKicker.hidden = !follow;
+      if (clearanceFollow) {
+        clearanceFollow.hidden = !follow;
+        if (follow) fillChips(clearanceFollow, view.followOptions, view.followId, handlers.onFollow);
+      }
+      if (clearanceTry) clearanceTry.hidden = follow || view.concluded;
+      if (clearanceFollowTry) clearanceFollowTry.hidden = !follow || view.concluded;
+      if (clearanceStatus) {
+        clearanceStatus.textContent = view.status || "";
+        clearanceStatus.classList.toggle("is-success", Boolean(view.concluded));
+      }
     }
   };
+}
+
+function fillChips(rootEl, items, selected, onPick) {
+  if (!rootEl) return;
+  rootEl.replaceChildren();
+  for (const item of items || []) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = item.label;
+    btn.classList.toggle("is-on", selected === item.id);
+    btn.addEventListener("click", () => onPick?.(item.id));
+    rootEl.appendChild(btn);
+  }
+}
+
+function buildDataTable(rows, means) {
+  const wrap = document.createElement("div");
+  const table = document.createElement("table");
+  table.className = "data-table";
+  const head = document.createElement("tr");
+  for (const label of ["Slope", "Trial", "Time (s)", "Speed (m/s)"]) {
+    const th = document.createElement("th");
+    th.textContent = label;
+    head.appendChild(th);
+  }
+  table.appendChild(head);
+  for (const row of rows || []) {
+    const tr = document.createElement("tr");
+    for (const value of [row.slopeLabel || row.slope, row.trial, row.seconds, row.speed]) {
+      const td = document.createElement("td");
+      td.textContent = String(value);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  wrap.appendChild(table);
+  if (means?.length) {
+    const p = document.createElement("p");
+    p.className = "journal-empty";
+    p.textContent = means
+      .filter((item) => item.seconds != null)
+      .map((item) => `${item.label}: ${item.seconds} s (${item.speed} m/s)`)
+      .join(" · ");
+    wrap.appendChild(p);
+  }
+  return wrap;
 }
 
 function noteArticle(title, text) {

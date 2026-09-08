@@ -37,16 +37,43 @@ export function recordsFor(state, competencyId) {
   return state.records.filter((item) => item.competencyId === competencyId);
 }
 
-export function gameplaySnapshot({ discoveryState, missionState, invState }) {
+export function gameplaySnapshot({
+  discoveryState,
+  missionState,
+  invState,
+  flumeState,
+  dataState,
+  challengeState,
+  flumeSpec
+}) {
+  const challengeMeasured = challengeState?.measuredIds?.length || 0;
   return {
     foundCount: discoveryState?.foundIds?.length || 0,
     observationCount: missionState?.observations?.length || 0,
-    measurementCount: invState?.measuredIds?.length || 0,
+    measurementCount: (invState?.measuredIds?.length || 0) + challengeMeasured,
     waterComplete: Boolean(missionState?.concluded),
     landscapeComplete: Boolean(invState?.concluded),
     landscapeAttempts: invState?.attempts || 0,
-    landscapeInterpreted: Boolean(invState?.interpreted)
+    landscapeInterpreted: Boolean(invState?.interpreted),
+    fairVariableTest: Boolean(flumeSpec && flumeState && hasFairFlag(flumeState, flumeSpec)),
+    dataInterpreted: Boolean(dataState?.datasets?.["cedar-hollow-flow"]?.interpreted),
+    dataRevised: Boolean(dataState?.datasets?.["cedar-hollow-flow"]?.revised),
+    setupRevised: Boolean(flumeState?.setupRevised),
+    challengeConcluded: Boolean(challengeState?.concluded),
+    challengePresented: Boolean(challengeState?.presented),
+    challengeRevised: Boolean(challengeState?.revised),
+    challengeObserved: (challengeState?.observedIds?.length || 0) >= 1
   };
+}
+
+function hasFairFlag(flumeState, flumeSpec) {
+  const need = flumeSpec.minTrialsPerSlope || 2;
+  const per = {};
+  for (const trial of flumeState.trials || []) {
+    if (!trial.fair) continue;
+    per[trial.slope] = (per[trial.slope] || 0) + 1;
+  }
+  return (flumeSpec.slopes || []).every((slope) => (per[slope.id] || 0) >= need);
 }
 
 export function isContentComplete(snapshot, profile) {
@@ -113,12 +140,6 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
         action: "trace-water"
       })
     );
-    records.push(
-      derivedRecord("communication", "present-findings", "regional-challenge", snapshot, {
-        ...extra,
-        action: "present-to-wren"
-      })
-    );
   }
   if (snapshot.waterComplete && snapshot.landscapeComplete) {
     records.push(
@@ -143,6 +164,66 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
         ...extra,
         action: "revise-after-conflict",
         attempts: snapshot.landscapeAttempts
+      })
+    );
+  }
+  if (snapshot.fairVariableTest) {
+    records.push(
+      derivedRecord("variables", "variable-test", "investigation", snapshot, {
+        ...extra,
+        action: "fair-slope-comparison"
+      })
+    );
+  }
+  if (snapshot.dataInterpreted) {
+    records.push(
+      derivedRecord("data", "dataset-interpret", "data-analysis", snapshot, {
+        ...extra,
+        action: "interpret-flow-graph"
+      })
+    );
+    records.push(
+      derivedRecord("patterns", "water-path", "investigation", snapshot, {
+        ...extra,
+        action: "graph-trend"
+      })
+    );
+  }
+  if (snapshot.challengeConcluded) {
+    records.push(
+      derivedRecord("explanation", "supported-explanation", "explanation", snapshot, {
+        ...extra,
+        action: "challenge-explanation"
+      })
+    );
+    records.push(
+      derivedRecord("systems", "systems-link", "investigation", snapshot, {
+        ...extra,
+        action: "rain-slope-tributary"
+      })
+    );
+  }
+  if (snapshot.challengePresented) {
+    records.push(
+      derivedRecord("communication", "present-findings", "regional-challenge", snapshot, {
+        ...extra,
+        action: "field-clearance"
+      })
+    );
+  }
+  if (snapshot.setupRevised || snapshot.dataRevised || snapshot.challengeRevised) {
+    records.push(
+      derivedRecord("revision", "revised-explanation", "explanation", snapshot, {
+        ...extra,
+        action: "revise-model"
+      })
+    );
+  }
+  if (snapshot.challengeObserved) {
+    records.push(
+      derivedRecord("observation", "discovery-inspect", "observation", snapshot, {
+        ...extra,
+        action: "challenge-observe"
       })
     );
   }

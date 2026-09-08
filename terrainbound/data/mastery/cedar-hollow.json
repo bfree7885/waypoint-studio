@@ -3,7 +3,7 @@
   "regionId": "cedar-hollow",
   "curriculumTopic": 1,
   "curriculumTitle": "Scientific Thinking & Earth Systems",
-  "purpose": "Establish transferable scientific habits. Cedar Hollow does not currently elicit every Topic 1 competency.",
+  "purpose": "Establish transferable scientific habits the rest of TerrainBound will reuse: observation, evidence, patterns, variables, data, systems, explanation, revision, and communication.",
   "playerVisibleCodes": false,
   "contentCompletion": {
     "note": "Visiting discoveries, finishing mission screens, or time played is not mastery.",
@@ -56,7 +56,7 @@
       "id": "patterns",
       "internalLabel": "Patterns",
       "studentLabel": "Recognizing patterns",
-      "fieldRecord": false,
+      "fieldRecord": true,
       "description": "Recognize meaningful patterns in data or the environment.",
       "elicitedNow": true,
       "standardsSlot": {
@@ -78,8 +78,8 @@
       "studentLabel": "Testing variables",
       "fieldRecord": true,
       "description": "Use measurements and recognize relationships among variables.",
-      "elicitedNow": false,
-      "missingNote": "No Cedar Hollow experience yet asks the player to test or control variables.",
+      "elicitedNow": true,
+      "missingNote": null,
       "standardsSlot": {
         "pe": null,
         "sep": null,
@@ -99,8 +99,8 @@
       "studentLabel": "Working with field data",
       "fieldRecord": true,
       "description": "Interpret a graph, table, or field dataset.",
-      "elicitedNow": false,
-      "missingNote": "No Cedar Hollow experience yet asks the player to interpret a graph or table.",
+      "elicitedNow": true,
+      "missingNote": null,
       "standardsSlot": {
         "pe": null,
         "sep": null,
@@ -158,7 +158,7 @@
       "id": "revision",
       "internalLabel": "Revision",
       "studentLabel": "Revising an explanation",
-      "fieldRecord": false,
+      "fieldRecord": true,
       "description": "Revise a model or explanation when evidence conflicts with it.",
       "elicitedNow": true,
       "note": "First-try success is not revision. A rejected attempt followed by a supported explanation is.",
@@ -179,7 +179,7 @@
       "id": "communication",
       "internalLabel": "Communication",
       "studentLabel": "Sharing a conclusion",
-      "fieldRecord": false,
+      "fieldRecord": true,
       "description": "Communicate a defensible conclusion.",
       "elicitedNow": true,
       "standardsSlot": {

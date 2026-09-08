@@ -138,7 +138,10 @@ body {
 #conclusion,
 #hypothesis,
 #confirm-reset,
-#atlas {
+#atlas,
+#flume,
+#interpret,
+#clearance {
   position: absolute;
   inset: 0;
   place-items: center;
@@ -150,13 +153,22 @@ body {
 #conclusion:not([hidden]),
 #hypothesis:not([hidden]),
 #confirm-reset:not([hidden]),
-#atlas:not([hidden]) {
+#atlas:not([hidden]),
+#flume:not([hidden]),
+#interpret:not([hidden]),
+#clearance:not([hidden]) {
   display: grid;
   z-index: 8;
 }
 
 #atlas:not([hidden]) {
   z-index: 9;
+  background: rgba(12, 28, 22, 0.42);
+}
+
+#flume:not([hidden]),
+#interpret:not([hidden]),
+#clearance:not([hidden]) {
   background: rgba(12, 28, 22, 0.42);
 }
 
@@ -170,12 +182,18 @@ body {
 #hypothesis[hidden],
 #confirm-reset[hidden],
 #atlas[hidden],
+#flume[hidden],
+#interpret[hidden],
+#clearance[hidden],
 #toast[hidden],
 #inspect-prompt[hidden],
 #boot-error[hidden],
 #journal-evidence-section[hidden],
 #journal-sketch-section[hidden],
+#journal-data-section[hidden],
 #hypothesis-open[hidden],
+#interpret-open[hidden],
+#flume-numbers[hidden],
 #atlas-travel[hidden],
 .journal-section[hidden] {
   display: none;
@@ -648,6 +666,61 @@ body {
 #reset-actions {
   display: flex;
   gap: 8px;
+}
+
+#journal-graph {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #efe6d2;
+  border: 2px solid #d7c39a;
+  margin: 8px 0;
+}
+
+#journal-graph[hidden],
+#clearance-follow[hidden],
+#clearance-follow-kicker[hidden],
+#clearance-follow-try[hidden] {
+  display: none;
+}
+
+#interpret-graph {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #efe6d2;
+  border: 2px solid #d7c39a;
+  margin: 8px 0;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  margin: 8px 0;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid #ddd4c0;
+  padding: 4px 6px;
+  text-align: left;
+}
+
+#flume-log {
+  max-height: 8rem;
+  overflow: auto;
+  font-size: 0.88rem;
+}
+
+#flume-status,
+#interpret-status,
+#clearance-status {
+  min-height: 2.2em;
+  margin: 10px 0 8px;
+  line-height: 1.4;
 }
 
 #boot-error {

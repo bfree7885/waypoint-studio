@@ -26,7 +26,7 @@
       "masteryProfileId": "topic-1-cedar-hollow",
       "standardsSlots": ["observation", "evidence", "patterns", "variables", "data", "systems", "explanation", "revision", "communication"],
       "masteryRequirements": ["observation", "evidence", "patterns", "variables", "data", "systems", "explanation", "revision", "communication"],
-      "fieldToolsGained": ["field-journal"],
+      "fieldToolsGained": ["field-journal", "field-data"],
       "hazardIds": []
     },
     {

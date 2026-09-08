@@ -37,6 +37,7 @@ export function createRenderer(canvas, world, helpers) {
       if (state.flowVisible) drawFlowArrows(ctx, world, state.time);
       if (state.landscapeInterpreted) drawIceFlowArrows(ctx, state);
       drawStoryProps(ctx, world.region, state.time, state.reducedMotion);
+      drawChallengeSites(ctx, state);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion);
       if (!state.reducedMotion) drawLeaves(ctx, leaves, world.region, state.time);
@@ -368,6 +369,19 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.stroke();
       ctx.fillStyle = "#8aa0b0";
       ctx.fillRect(prop.x - 6, prop.y - 36, 12, 10);
+    } else if (prop.kind === "runoff-table") {
+      ctx.fillStyle = "#8a6238";
+      ctx.fillRect(prop.x - 28, prop.y - 8, 56, 10);
+      ctx.fillStyle = "#c4a46a";
+      ctx.beginPath();
+      ctx.moveTo(prop.x - 26, prop.y - 8);
+      ctx.lineTo(prop.x + 26, prop.y - 18);
+      ctx.lineTo(prop.x + 22, prop.y - 8);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = "#6d4c32";
+      ctx.fillRect(prop.x - 30, prop.y, 8, 8);
+      ctx.fillRect(prop.x + 22, prop.y - 10, 8, 8);
     } else if (prop.kind === "instrument-crate") {
       ctx.fillStyle = "#8a6238";
       ctx.fillRect(prop.x - 12, prop.y - 10, 24, 16);
@@ -433,6 +447,20 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.fillRect(prop.x - 5, prop.y - 12, 10, 6);
       ctx.fillRect(prop.x - 3, prop.y - 16, 6, 4);
     }
+  }
+}
+
+function drawChallengeSites(ctx, state) {
+  if (!state.challengeActive || !state.challengeSites?.length) return;
+  for (const site of state.challengeSites) {
+    const seen = site.observed;
+    ctx.beginPath();
+    ctx.arc(site.x, site.y, seen ? 5 : 7, 0, Math.PI * 2);
+    ctx.fillStyle = seen ? "rgba(196, 92, 38, 0.35)" : "rgba(196, 92, 38, 0.55)";
+    ctx.fill();
+    ctx.strokeStyle = "rgba(90, 48, 24, 0.55)";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
   }
 }
 

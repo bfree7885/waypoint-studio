@@ -1,0 +1,36 @@
+{
+  "id": "what-makes-water-move",
+  "title": "What makes water move faster?",
+  "question": "When the same water travels the same distance, what changes the time?",
+  "setupName": "Runoff table",
+  "location": "Beside Cedar Hollow Station",
+  "distanceMeters": 2,
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The creek isn't the same speed everywhere. There's a runoff table by the station. Same channel, same distance. Change one thing at a time."
+    ]
+  },
+  "slopes": [
+    { "id": "gentle", "label": "Gentle", "baseSeconds": 8.2 },
+    { "id": "moderate", "label": "Moderate", "baseSeconds": 5.6 },
+    { "id": "steep", "label": "Steep", "baseSeconds": 3.9 }
+  ],
+  "water": [
+    { "id": "one-cup", "label": "One cup", "fair": true, "speedScale": 1 },
+    { "id": "extra", "label": "Extra water", "fair": false, "speedScale": 0.78 }
+  ],
+  "minTrialsPerSlope": 2,
+  "unfairHint": "Two things changed. If the water moved faster, which change caused it?",
+  "repeatHint": "One run was odd. Would you trust one run, or try it again?",
+  "enoughHint": "You've got comparable runs. Look at the numbers before you decide what they mean.",
+  "constantsNote": "Channel, distance, and the cup stay the same unless you change them.",
+  "wren": {
+    "nudge": [
+      "Same channel. Same stretch. What are you actually changing?"
+    ],
+    "afterFair": [
+      "The times aren't identical. That's normal. What's the overall pattern?"
+    ]
+  }
+}

@@ -27,6 +27,7 @@
     "region-mastered",
     "route-opens"
   ],
+  "topic1Transfer": "After Cedar Hollow, later regions reuse observation, evidence, fair tests, graphs, supported explanations, and revision. They deepen those habits; they do not reteach them from zero.",
   "regions": [
     {
       "id": "cedar-hollow",
@@ -34,14 +35,14 @@
       "courseOrder": 1,
       "workingName": "Cedar Hollow",
       "environmentalIdentity": "Forested valley, field station, creek, granite hills.",
-      "curriculumPurpose": "Learn how to observe, measure, distinguish evidence from interpretation, identify patterns, reason about systems, and construct or revise explanations.",
+      "curriculumPurpose": "Learn how to observe, measure, distinguish evidence from interpretation, identify patterns, test a changing condition fairly, interpret field data, reason about systems, and construct or revise explanations. Later regions reuse these habits; they do not reteach them from zero.",
       "corePhenomenon": "What can you honestly say about this hollow from what you actually saw?",
-      "likelyExploration": ["station", "woods", "knob", "creek", "pond", "marsh", "overlook"],
-      "likelyInvestigations": ["Where Does the Water Go?", "Reading the Landscape"],
-      "likelySimulations": [],
+      "likelyExploration": ["station", "woods", "knob", "creek", "pond", "marsh", "overlook", "runoff table"],
+      "likelyInvestigations": ["Where Does the Water Go?", "Reading the Landscape", "What makes water move faster?", "After the rain"],
+      "likelySimulations": ["runoff table / slope and flow"],
       "likelyHazard": null,
-      "futureMasteryChallenge": "Interpret a small field dataset and test a changing variable without confusing observation with inference.",
-      "fieldToolsGained": ["field-journal"],
+      "futureMasteryChallenge": "After the rain — combine Topic 1 habits on an unexplained change in Pine Creek.",
+      "fieldToolsGained": ["field-journal", "field-data"],
       "prerequisiteRegion": null,
       "implementationState": "playable"
     },
