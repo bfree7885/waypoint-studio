@@ -51,6 +51,17 @@
         <p id="discovery-count">Cedar Hollow discoveries  0 / 0</p>
         <div id="journal-discoveries"></div>
       </section>
+      <section class="journal-section" id="journal-evidence-section" hidden>
+        <h3 class="journal-kicker">Evidence</h3>
+        <p id="evidence-count"></p>
+        <div id="journal-evidence"></div>
+      </section>
+      <section class="journal-section" id="journal-sketch-section" hidden>
+        <h3 class="journal-kicker">Landscape sketch</h3>
+        <p class="journal-empty" id="sketch-caption">A field drawing of Cedar Hollow — not a trail map.</p>
+        <canvas id="field-sketch" width="320" height="168" aria-label="Cedar Hollow field sketch"></canvas>
+        <button type="button" id="hypothesis-open" hidden>What shaped this hollow?</button>
+      </section>
     </aside>
 
     <div id="toast" hidden>
@@ -71,8 +82,25 @@
       </div>
     </div>
 
+    <div id="hypothesis" hidden role="dialog" aria-label="What shaped Cedar Hollow?">
+      <div class="hypothesis-card">
+        <h2>What shaped Cedar Hollow?</h2>
+        <p class="hypothesis-lead">Build an explanation from a process and the field notes you actually recorded.</p>
+        <p class="hypothesis-kicker">Process</p>
+        <div id="hypothesis-processes" class="chip-row"></div>
+        <p class="hypothesis-kicker">Evidence</p>
+        <div id="hypothesis-evidence" class="chip-row"></div>
+        <p id="hypothesis-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="hypothesis-try">Try this explanation</button>
+          <button type="button" id="hypothesis-clear">Clear</button>
+          <button type="button" id="hypothesis-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js"></script>
+  <script type="module" src="./js/main.js?v=p2"></script>
 </body>
 </html>

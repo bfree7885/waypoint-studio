@@ -79,6 +79,61 @@
         "code": null,
         "status": "pending-official-alignment"
       }
+    },
+    {
+      "id": "landscape-change",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "How landscapes change through processes acting over different timescales",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "glacial-processes",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Evidence that moving ice can shape valleys, transport rock, and scrape bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "interpreting-geologic-evidence",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Using field observations to reconstruct landscape history",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "constructing-explanations-from-evidence",
+      "playerVisible": false,
+      "sciencePractice": "Constructing explanations",
+      "topic": "Building and revising explanations from observed field evidence",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "scale-time-relationships",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "Relating daily water movement, modern streams, and older landscape-forming processes",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
     }
   ]
 }

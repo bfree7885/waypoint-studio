@@ -21,19 +21,22 @@ Needs a local http server (ES modules). Do not open `index.html` as `file://`.
 ```bash
 node terrainbound/tests/phase0.test.mjs
 node terrainbound/tests/phase1.test.mjs
+node terrainbound/tests/phase2.test.mjs
 ```
 
 ## What is playable
 
 Region: **Cedar Hollow** — station, woods, knob, creek, pond, marsh, rocky exposure, overlook.
 
-Mission: **Where Does the Water Go?** (optional to ignore).
+Missions:
+- **Where Does the Water Go?** (storm water path)
+- **Reading the Landscape** (what shaped the hollow)
 
 Discoveries: 12 optional field finds. Walk to them and inspect. Names stay hidden until found.
 
-Field tablet (**J**): Mission notes and Discoveries as separate notebook sections.
+Field tablet (**J**): Mission notes, Discoveries, Evidence cards, and a landscape sketch. Evidence is a student's interpretation, not a minimap.
 
-Ranger Wren: short comments, hints when useful, acknowledgement of finds. No lectures.
+Ranger Wren: short comments, hints when useful, acknowledgement of finds. After enough landscape evidence, the player builds an explanation from a process plus recorded notes — not a quiz.
 
 ## Architecture
 
@@ -42,10 +45,12 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. No lec
 | `data/regions/` | Places |
 | `data/missions/` | Missions |
 | `data/discoveries/` | Optional finds (data-driven) |
+| `data/investigations/` | Landscape interpretation |
 | `data/curriculum/` | Hidden standards placeholders |
 | `js/world.js` | Terrain, biomes, collision |
 | `js/mission.js` | Mission observations |
 | `js/discoveries.js` | Discovery log |
+| `js/investigation.js` | Evidence, measurements, hypothesis |
 | `js/curriculum.js` | Internal alignment |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |
 

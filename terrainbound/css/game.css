@@ -107,7 +107,8 @@ body {
 
 #title-screen,
 #dialogue,
-#conclusion {
+#conclusion,
+#hypothesis {
   position: absolute;
   inset: 0;
   place-items: center;
@@ -116,7 +117,8 @@ body {
 
 #title-screen:not([hidden]),
 #dialogue:not([hidden]),
-#conclusion:not([hidden]) {
+#conclusion:not([hidden]),
+#hypothesis:not([hidden]) {
   display: grid;
 }
 
@@ -127,9 +129,13 @@ body {
 #title-screen[hidden],
 #dialogue[hidden],
 #conclusion[hidden],
+#hypothesis[hidden],
 #toast[hidden],
 #inspect-prompt[hidden],
-#boot-error[hidden] {
+#boot-error[hidden],
+#journal-evidence-section[hidden],
+#journal-sketch-section[hidden],
+#hypothesis-open[hidden] {
   display: none;
 }
 
@@ -171,7 +177,9 @@ body {
 #enter-btn,
 .dialogue-card button,
 .conclusion-card button,
-#journal-close {
+.hypothesis-card button,
+#journal-close,
+#hypothesis-open {
   border: 0;
   background: var(--moss);
   color: white;
@@ -315,6 +323,12 @@ body {
     top: 64px;
     max-height: calc(100% - 110px);
   }
+
+  .hypothesis-card {
+    width: min(36rem, calc(100% - 24px));
+    max-height: calc(100% - 32px);
+    overflow: auto;
+  }
 }
 
 .journal-conclusion {
@@ -323,6 +337,110 @@ body {
   padding: 8px 10px;
   border-radius: 10px;
   border-top: 0;
+}
+
+.evidence-card {
+  border-top: 1px solid #ddd4c0;
+  padding-top: 8px;
+}
+
+.evidence-kind {
+  margin: 0 0 4px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a6238;
+}
+
+.evidence-sig,
+.evidence-q {
+  margin: 0 0 6px;
+  font-size: 0.88rem;
+  color: #44553d;
+}
+
+.evidence-q {
+  font-style: italic;
+}
+
+#field-sketch {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #efe6d2;
+  border: 2px solid #d7c39a;
+}
+
+#hypothesis-open {
+  margin-top: 8px;
+  width: 100%;
+}
+
+.hypothesis-card {
+  width: min(42rem, calc(100% - 32px));
+  padding: 18px 18px 16px;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+}
+
+.hypothesis-lead {
+  margin: 0 0 12px;
+  color: #44553d;
+}
+
+.hypothesis-kicker {
+  margin: 10px 0 6px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--moss);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-row button {
+  background: #f4efe2;
+  color: var(--ink);
+  border: 2px solid #cbbca0;
+  font-weight: 700;
+}
+
+.chip-row button.is-on {
+  background: #e7f0c8;
+  border-color: var(--moss);
+}
+
+.chip-row button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.chip-scale {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6a7360;
+  font-weight: 600;
+}
+
+#hypothesis-status {
+  min-height: 2.4em;
+  margin: 12px 0 8px;
+  line-height: 1.4;
+}
+
+#hypothesis-status.is-success {
+  background: #e7f0c8;
+  padding: 8px 10px;
+  border-radius: 10px;
 }
 
 #toast {

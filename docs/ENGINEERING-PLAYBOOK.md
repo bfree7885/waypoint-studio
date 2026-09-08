@@ -1618,3 +1618,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A demonstration map is what happens when every inspectable wears a permanent white ring. Nearby-only highlights make students notice the land instead of following HUD dots.
 - Discoveries must be data, not one-off if/else, and the journal must omit unfound names. A count (`4 / 12`) is enough hunger without an achievement board.
 - Wren should hint at places (“boulders near the north trail”), not deliver the vocabulary first. Curiosity before the glossary.
+
+### Lessons Learned — TerrainBound Phase 2 (2026-09-08)
+
+- Landscape history is a second investigation on the same map, not a new region. Reuse Phase 1 finds as evidence; a second inspect is the measurement.
+- Hypothesis UI should attach a process to recorded notes. Rejecting “flowing water + sand bar” with a scientific pushback teaches timescales better than a wrong/right quiz.
+- Do not auto-unlock undiscovered sites when an investigation needs them. Hint at the place (“east face is stripped”), never the answer.

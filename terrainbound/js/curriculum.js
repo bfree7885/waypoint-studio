@@ -27,7 +27,11 @@ export function slotsForDiscovery(curriculum, discovery) {
   return slotsFor(curriculum, discovery.curriculumSlotIds);
 }
 
-export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null) {
+export function slotsForInvestigation(curriculum, investigation) {
+  return slotsFor(curriculum, investigation.curriculumSlotIds);
+}
+
+export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null, investigation = null) {
   const forbidden = /\b[A-Z]{1,4}-ESS\d-\d+\b/;
   const playerText = [
     mission.title,
@@ -44,6 +48,23 @@ export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null) {
     for (const item of catalog.items) {
       playerText.push(item.name, item.prompt, item.text, item.location, item.wrenHint, item.wrenAck);
     }
+  }
+  if (investigation) {
+    playerText.push(
+      investigation.title,
+      investigation.question,
+      ...(investigation.intro?.lines || []),
+      investigation.hypothesis?.success,
+      investigation.completeJournalEntry?.title,
+      investigation.completeJournalEntry?.text
+    );
+    for (const item of investigation.measurements || []) {
+      playerText.push(item.actionLabel, item.prompt, item.result, item.missingHint);
+    }
+    for (const card of investigation.evidence || []) {
+      playerText.push(card.title, card.observation, card.significance, card.question);
+    }
+    for (const label of investigation.worldLabels || []) playerText.push(label.text);
   }
   const joined = playerText.filter(Boolean).join("\n");
   return {

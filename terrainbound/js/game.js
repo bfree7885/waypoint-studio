@@ -13,8 +13,27 @@ import {
   addDiscovery,
   nearestDiscovery,
   discoveryLogModel,
-  pickWrenLines
+  pickWrenLines,
+  isFound
 } from "./discoveries.js";
+import {
+  createInvestigationState,
+  beginInvestigation,
+  shouldIntroduceInvestigation,
+  syncPassiveEvidence,
+  recordMeasurement,
+  availableMeasurementAt,
+  blockedMeasurementAt,
+  canProposeExplanation,
+  evidenceModel,
+  sketchModel,
+  evaluateHypothesis,
+  setSelectedProcess,
+  toggleSelectedEvidence,
+  clearHypothesisDraft,
+  pickLandscapeWren,
+  interpretiveLabels
+} from "./investigation.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
 
@@ -32,17 +51,19 @@ const FLOW_MAP = [
 
 export async function boot(root = document) {
   const canvas = root.querySelector("#world");
-  const [region, mission, curriculum, catalog] = await Promise.all([
+  const [region, mission, curriculum, catalog, investigation] = await Promise.all([
     fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
     fetch("./data/missions/where-does-the-water-go.json").then((r) => r.json()),
     fetch("./data/curriculum/placeholders.json").then((r) => r.json()),
-    fetch("./data/discoveries/cedar-hollow.json").then((r) => r.json())
+    fetch("./data/discoveries/cedar-hollow.json").then((r) => r.json()),
+    fetch("./data/investigations/reading-the-landscape.json").then((r) => r.json())
   ]);
   void curriculum;
 
   const world = createWorld(region, 1842, catalog.items);
   const missionState = createMissionState(mission);
   const discoveryState = createDiscoveryState();
+  const invState = createInvestigationState();
   const ui = bindUi(root);
   const renderer = createRenderer(canvas, world, { heightAt, inCreek, onTrail });
   const keys = new Set();
@@ -62,17 +83,26 @@ export async function boot(root = document) {
   let journalOpen = false;
   let dialogue = null;
   let conclusionOpen = false;
+  let hypothesisOpen = false;
   let last = performance.now();
   let inspectLock = false;
 
   function journalView(open = journalOpen) {
+    const evidence = evidenceModel(investigation, invState);
     return {
       open,
       observations: missionState.observations,
       storyNotes: missionState.storyNotes,
       concluded: missionState.concluded,
       conclusionText: mission.completeJournalEntry,
-      discoveryLog: discoveryLogModel(catalog, discoveryState)
+      discoveryLog: discoveryLogModel(catalog, discoveryState),
+      landscapeActive: invState.active,
+      landscapeConcluded: invState.concluded,
+      landscapeConclusionText: investigation.completeJournalEntry,
+      evidence,
+      sketch: sketchModel(investigation, invState),
+      investigation,
+      canPropose: canProposeExplanation(investigation, invState)
     };
   }
 
@@ -146,17 +176,53 @@ export async function boot(root = document) {
 
   function inspectDiscovery(item) {
     if (!item || inspectLock) return;
-    const result = addDiscovery(discoveryState, catalog, item.id);
     inspectLock = true;
-    showDialogueLines(item.name, [item.prompt, item.text], 0, () => {
+
+    if (!isFound(discoveryState, item.id)) {
+      const result = addDiscovery(discoveryState, catalog, item.id);
+      showDialogueLines(item.name, [item.prompt, item.text], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        inspectLock = false;
+        if (!result.already) {
+          syncPassiveEvidence(invState, investigation, discoveryState);
+          ui.showToast("Discovery", item.name);
+          refreshJournal();
+        }
+      }, "Discovery");
+      return;
+    }
+
+    const pending = availableMeasurementAt(investigation, invState, discoveryState, item.id);
+    if (pending) {
+      showDialogueLines("Field measurement", [pending.prompt, pending.result], 0, () => {
+        const recorded = recordMeasurement(invState, investigation, pending.id, discoveryState);
+        dialogue = null;
+        ui.showDialogue(false);
+        inspectLock = false;
+        if (!recorded.already) {
+          ui.showToast("Measurement", pending.result);
+          refreshJournal();
+        }
+      }, pending.actionLabel);
+      return;
+    }
+
+    const blocked = blockedMeasurementAt(investigation, invState, discoveryState, item.id);
+    if (blocked) {
+      showDialogueLines(item.name, [item.text, blocked.missingHint], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        inspectLock = false;
+      });
+      return;
+    }
+
+    showDialogueLines(item.name, [item.text], 0, () => {
       dialogue = null;
       ui.showDialogue(false);
       inspectLock = false;
-      if (!result.already) {
-        ui.showToast("Discovery", item.name);
-        refreshJournal();
-      }
-    }, "Discovery");
+    });
   }
 
   function inspectProp(prop) {
@@ -223,11 +289,130 @@ export async function boot(root = document) {
       ]);
       return;
     }
+    const pendingAck = discoveryState.foundIds.find(
+      (id) => !discoveryState.acknowledgedIds.includes(id)
+    );
+    if (pendingAck) {
+      const lines = pickWrenLines(catalog, discoveryState, ready, done);
+      showDialogueLines("Ranger Wren", lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (shouldIntroduceInvestigation(invState, discoveryState, done)) {
+      showDialogueLines("Ranger Wren", investigation.intro.lines, 0, () => {
+        beginInvestigation(invState, investigation, discoveryState);
+        dialogue = null;
+        ui.showDialogue(false);
+        refreshJournal();
+      });
+      return;
+    }
+    if (canProposeExplanation(investigation, invState)) {
+      ui.showDialogue(true, "Ranger Wren", investigation.wren.ready[0], [
+        {
+          label: "Build an explanation",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openHypothesis();
+          }
+        },
+        {
+          label: "Not yet",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (invState.concluded) {
+      showDialogueLines("Ranger Wren", investigation.wren.afterSuccess, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (invState.active) {
+      const lines = pickLandscapeWren(investigation, invState, discoveryState);
+      showDialogueLines("Ranger Wren", lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
     const lines = pickWrenLines(catalog, discoveryState, ready, done);
     showDialogueLines("Ranger Wren", lines, 0, () => {
       dialogue = null;
       ui.showDialogue(false);
     });
+  }
+
+  function hypothesisView() {
+    const evidence = evidenceModel(investigation, invState);
+    const labels = Object.fromEntries(investigation.timescales.map((item) => [item.id, item.label]));
+    return {
+      processes: investigation.processes,
+      evidenceCards: evidence.cards.map((card) => ({
+        ...card,
+        timescaleLabel: labels[card.timescale]
+      })),
+      selectedProcess: invState.selectedProcess,
+      selectedEvidenceIds: invState.selectedEvidenceIds,
+      status: invState.lastHint,
+      concluded: invState.concluded
+    };
+  }
+
+  function renderHypothesis() {
+    ui.showHypothesis(true, hypothesisView(), {
+      onProcess(id) {
+        setSelectedProcess(invState, id);
+        renderHypothesis();
+      },
+      onEvidence(id) {
+        toggleSelectedEvidence(invState, id);
+        renderHypothesis();
+      }
+    });
+  }
+
+  function openHypothesis() {
+    if (!canProposeExplanation(investigation, invState) && !invState.concluded) {
+      ui.showToast("Keep looking", "Compare the boulder, the grooves, and the shape of the valley first.");
+      return;
+    }
+    hypothesisOpen = true;
+    journalOpen = false;
+    refreshJournal();
+    renderHypothesis();
+  }
+
+  function closeHypothesis() {
+    hypothesisOpen = false;
+    ui.showHypothesis(false, {});
+  }
+
+  function tryHypothesis() {
+    const result = evaluateHypothesis(
+      investigation,
+      invState,
+      invState.selectedProcess,
+      invState.selectedEvidenceIds
+    );
+    renderHypothesis();
+    if (result.ok && !result.already) {
+      journalOpen = true;
+      refreshJournal();
+      closeHypothesis();
+      showDialogueLines("Ranger Wren", [investigation.hypothesis.success], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+    }
   }
 
   function openConclusion() {
@@ -280,6 +465,10 @@ export async function boot(root = document) {
       }
       return;
     }
+    if (hypothesisOpen) {
+      if (event.key === "Escape") closeHypothesis();
+      return;
+    }
     keys.add(event.key.toLowerCase());
     if (event.key === "j" || event.key === "J") {
       journalOpen = !journalOpen;
@@ -299,7 +488,7 @@ export async function boot(root = document) {
   });
 
   canvas.addEventListener("pointerdown", (event) => {
-    if (mode !== "play" || dialogue || conclusionOpen) return;
+    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen) return;
     const worldPt = screenToWorld(event.clientX, event.clientY);
     const target = currentTarget();
     if (target && Math.hypot(worldPt.x - target.x, worldPt.y - target.y) < 70 && Math.hypot(player.x - target.x, player.y - target.y) < 100) {
@@ -320,6 +509,15 @@ export async function boot(root = document) {
   root.querySelector("#conclusion-close").addEventListener("click", () => {
     conclusionOpen = false;
     ui.showConclusion(false, [], [], new Set(), "");
+  });
+  root.querySelector("#hypothesis-close").addEventListener("click", closeHypothesis);
+  root.querySelector("#hypothesis-clear").addEventListener("click", () => {
+    clearHypothesisDraft(invState);
+    renderHypothesis();
+  });
+  root.querySelector("#hypothesis-try").addEventListener("click", tryHypothesis);
+  root.querySelector("#hypothesis-open").addEventListener("click", () => {
+    openHypothesis();
   });
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
@@ -353,7 +551,7 @@ export async function boot(root = document) {
   function step(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    const playing = mode === "play" && !dialogue && !conclusionOpen;
+    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen;
     let ax = 0;
     let ay = 0;
     if (playing) {
@@ -395,18 +593,23 @@ export async function boot(root = document) {
     }
 
     const target = currentTarget();
-    if (mode === "play" && !dialogue && !conclusionOpen) {
+    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen) {
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
         ui.setPrompt(
-          missionState.concluded
+          invState.concluded
             ? "Talk to Wren · E"
-            : canPresentFindings(missionState, mission)
-              ? "Tell Wren what you found · E"
-              : "Talk to Wren · E"
+            : canProposeExplanation(investigation, invState)
+              ? "Share what shaped the hollow · E"
+              : missionState.concluded
+                ? "Talk to Wren · E"
+                : canPresentFindings(missionState, mission)
+                  ? "Tell Wren what you found · E"
+                  : "Talk to Wren · E"
         );
       } else if (target.kind === "discovery") {
-        ui.setPrompt("Look closer · E");
+        const pending = availableMeasurementAt(investigation, invState, discoveryState, target.item.id);
+        ui.setPrompt(pending ? `${pending.actionLabel} · E` : "Look closer · E");
       } else {
         ui.setPrompt(`Inspect ${target.name} · E`);
       }
@@ -422,11 +625,69 @@ export async function boot(root = document) {
       destination,
       observations: missionState.observations,
       flowVisible: missionState.flowVisible,
+      landscapeInterpreted: invState.interpreted,
+      measuredIds: invState.measuredIds,
+      iceFlow: investigation.iceFlow,
       discoveries: catalog.items,
-      nearTarget: target && target.kind !== "wren" ? target : null
+      nearTarget: target && target.kind !== "wren" ? target : null,
+      interpretiveLabels: interpretiveLabels(
+        investigation,
+        invState,
+        catalog,
+        region,
+        player
+      )
     });
     requestAnimationFrame(step);
   }
 
   requestAnimationFrame(step);
+
+  if (new URLSearchParams(location.search).get("field") === "1") {
+    window.TB = {
+      player,
+      missionState,
+      discoveryState,
+      invState,
+      catalog,
+      investigation,
+      region,
+      go(x, y) {
+        player.x = x;
+        player.y = y;
+        destination = null;
+      },
+      inspectDiscovery(id) {
+        const item = catalog.items.find((entry) => entry.id === id);
+        if (!item) return false;
+        player.x = item.x;
+        player.y = item.y;
+        inspectDiscovery(item);
+        return true;
+      },
+      inspectFeature(id) {
+        const feature = region.features.find((entry) => entry.id === id);
+        if (!feature) return false;
+        player.x = feature.x;
+        player.y = feature.y;
+        inspectFeature(feature);
+        return true;
+      },
+      talk() {
+        player.x = region.ranger.x;
+        player.y = region.ranger.y;
+        talkToWren();
+      },
+      openJournal() {
+        journalOpen = true;
+        refreshJournal();
+      },
+      openHyp() {
+        openHypothesis();
+      },
+      tryHyp() {
+        tryHypothesis();
+      }
+    };
+  }
 }

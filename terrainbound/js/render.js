@@ -28,6 +28,7 @@ export function createRenderer(canvas, world, helpers) {
       ctx.drawImage(ground, 0, 0);
       drawWater(ctx, world, state.time, state.reducedMotion);
       if (state.flowVisible) drawFlowArrows(ctx, world, state.time);
+      if (state.landscapeInterpreted) drawIceFlowArrows(ctx, state);
       drawStoryProps(ctx, world.region, state.time, state.reducedMotion);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion);
@@ -225,6 +226,39 @@ function drawFlowArrows(ctx, world, time) {
   }
 }
 
+function drawIceFlowArrows(ctx, state) {
+  const path = state.iceFlow || [];
+  if (path.length < 2) return;
+  ctx.save();
+  ctx.strokeStyle = "rgba(90, 110, 140, 0.7)";
+  ctx.fillStyle = "rgba(90, 110, 140, 0.75)";
+  ctx.setLineDash([10, 7]);
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(path[0][0], path[0][1]);
+  for (let i = 1; i < path.length; i += 1) ctx.lineTo(path[i][0], path[i][1]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+  for (let i = 0; i < path.length - 1; i += 1) {
+    const a = path[i];
+    const b = path[i + 1];
+    const mx = lerp(a[0], b[0], 0.7);
+    const my = lerp(a[1], b[1], 0.7);
+    const ang = Math.atan2(b[1] - a[1], b[0] - a[0]);
+    ctx.save();
+    ctx.translate(mx, my);
+    ctx.rotate(ang);
+    ctx.beginPath();
+    ctx.moveTo(10, 0);
+    ctx.lineTo(-8, 7);
+    ctx.lineTo(-8, -7);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  ctx.restore();
+}
+
 function drawDetails(ctx, world, time, reduced) {
   const sorted = world.details.slice().sort((a, b) => a.y - b.y);
   for (const d of sorted) {
@@ -359,6 +393,21 @@ function drawDiscoveryLandmarks(ctx, world, state) {
       ctx.fillRect(-18, -8, 36, 14);
       ctx.fillStyle = "#a89884";
       ctx.fillRect(-16, -2, 32, 6);
+      const grooved =
+        item.symbol === "bedrock" &&
+        ((state.measuredIds || []).includes("bedrock-grooves") || state.landscapeInterpreted);
+      if (grooved) {
+        ctx.strokeStyle = "rgba(70, 60, 50, 0.75)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(-14, -6);
+        ctx.lineTo(12, -1);
+        ctx.moveTo(-14, -2);
+        ctx.lineTo(14, 3);
+        ctx.moveTo(-12, 2);
+        ctx.lineTo(12, 7);
+        ctx.stroke();
+      }
     } else if (item.symbol === "cobbles") {
       ctx.fillStyle = "#8a9aa8";
       ctx.beginPath();
@@ -595,6 +644,17 @@ function drawLabels(ctx, world, state) {
     ctx.fill();
     ctx.fillStyle = "#f7f3e8";
     ctx.fillText(label, feature.x, feature.y - 42);
+  }
+  const extras = state.interpretiveLabels || [];
+  ctx.font = "12px Trebuchet MS, sans-serif";
+  for (const extra of extras) {
+    const w = ctx.measureText(extra.text).width + 14;
+    ctx.fillStyle = "rgba(90, 110, 140, 0.82)";
+    ctx.beginPath();
+    roundRect(ctx, extra.x - w / 2, extra.y + 16, w, 20, 8);
+    ctx.fill();
+    ctx.fillStyle = "#f7f3e8";
+    ctx.fillText(extra.text, extra.x, extra.y + 30);
   }
 }
 

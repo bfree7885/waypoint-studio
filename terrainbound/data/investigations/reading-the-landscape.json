@@ -1,0 +1,297 @@
+{
+  "id": "reading-the-landscape",
+  "title": "Reading the Landscape",
+  "question": "What shaped Cedar Hollow?",
+  "regionId": "cedar-hollow",
+  "playerFacing": true,
+  "curriculumSlotIds": [
+    "landscape-change",
+    "glacial-processes",
+    "interpreting-geologic-evidence",
+    "constructing-explanations-from-evidence",
+    "scale-time-relationships",
+    "weathering-and-bedrock",
+    "erosion-and-deposition",
+    "transported-sediment"
+  ],
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "You traced last night. That's one clock. Cedar Hollow has older ones.",
+      "The boulder on the north trail doesn't match the hill. The knob's bare rock looks scraped. The valley is a round bowl, and the pond sits in a dip.",
+      "Those might be the same story. I don't have the story. I have a question.",
+      "What shaped Cedar Hollow? Walk it again. Compare. Measure. Then we'll try an explanation."
+    ]
+  },
+  "wren": {
+    "activeNudge": "Don't guess from the porch. Compare what doesn't fit.",
+    "ready": [
+      "You've got enough in the tablet to try an explanation. Process first, then the notes that actually support it."
+    ],
+    "afterSuccess": [
+      "You're not just walking Cedar Hollow now. You're reading it.",
+      "Same trees. Same creek. Different clocks, once you know where to look."
+    ],
+    "hints": {
+      "rock-compare": "There's a boulder on the north trail that doesn't match the hill. See it next to the knob's own rock.",
+      "bedrock-grooves": "The east face of the knob is stripped. Look at the surface itself — not just that it's bare.",
+      "valley-shape": "From the high ledge the whole bowl shows. Ask whether this valley was cut sharp or worn wide.",
+      "sediment-sort": "Pine Creek still has two jobs at the bend. Stand on both sides before you decide.",
+      "pond-basin": "West of the pond the ground stays wet. The dip is part of the shape, not just last night's puddle."
+    }
+  },
+  "timescales": [
+    { "id": "history", "label": "Older landscape" },
+    { "id": "river", "label": "The creek today" },
+    { "id": "water", "label": "Water right now" }
+  ],
+  "measurements": [
+    {
+      "id": "rock-compare",
+      "evidenceId": "transported-boulder",
+      "siteIds": ["glacial-erratic", "exposed-bedrock"],
+      "requires": ["glacial-erratic", "exposed-bedrock"],
+      "actionLabel": "Compare rock types",
+      "prompt": "Hold the boulder's color and grain against the knob's own rock.",
+      "result": "The rock types do not match.",
+      "missingHint": "To tell if this boulder belongs here, you need the knob's own rock too. The east face is stripped."
+    },
+    {
+      "id": "bedrock-grooves",
+      "evidenceId": "bedrock-grooves",
+      "siteIds": ["exposed-bedrock"],
+      "requires": ["exposed-bedrock"],
+      "actionLabel": "Examine the surface",
+      "prompt": "Get low. The light catches lines in the rock.",
+      "result": "Several parallel grooves run in the same direction.",
+      "missingHint": "The east face of the knob is stripped. You can see the mountain, not just the trees."
+    },
+    {
+      "id": "sediment-sort",
+      "evidenceId": "sediment-sort",
+      "siteIds": ["cut-bank", "point-bar"],
+      "requires": ["cut-bank", "point-bar"],
+      "actionLabel": "Compare the bend",
+      "prompt": "Look at what the water takes on one side and what it drops on the other.",
+      "result": "Sand and gravel are distributed differently.",
+      "missingHint": "Stand on both sides of this bend before you decide. One side is losing ground. The other is keeping some."
+    },
+    {
+      "id": "valley-shape",
+      "evidenceId": "rounded-valley",
+      "siteIds": ["watershed-rail"],
+      "requires": ["watershed-rail"],
+      "actionLabel": "Study the valley shape",
+      "prompt": "From the rail, ignore the trees for a moment. Watch the bowl.",
+      "result": "The valley is broad and rounded rather than sharply V-shaped.",
+      "missingHint": "There's a scrap of rail on the high ledge. Best place to see the whole hollow at once."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "transported-boulder",
+      "title": "Mismatched boulder",
+      "timescale": "history",
+      "kind": "comparison",
+      "source": "measurement",
+      "measurementId": "rock-compare",
+      "observation": "Large boulder differs from nearby exposed bedrock.",
+      "significance": "It may have been transported from somewhere else.",
+      "question": "If it didn't grow here, what was strong enough to park it on the north trail?",
+      "sketch": { "x": 42, "y": 16, "kind": "erratic", "label": "odd boulder" }
+    },
+    {
+      "id": "bedrock-grooves",
+      "title": "Grooved bedrock",
+      "timescale": "history",
+      "kind": "observation",
+      "source": "measurement",
+      "measurementId": "bedrock-grooves",
+      "observation": "Several parallel grooves run in the same direction across the knob's bare rock.",
+      "significance": "Something hard may have dragged over this surface, not just rain.",
+      "question": "What moves in a straight scrape across a whole hillside?",
+      "sketch": { "x": 58, "y": 22, "kind": "grooves", "label": "grooves" }
+    },
+    {
+      "id": "rounded-valley",
+      "title": "Rounded valley",
+      "timescale": "history",
+      "kind": "observation",
+      "source": "measurement",
+      "measurementId": "valley-shape",
+      "observation": "From High Look the hollow is a broad bowl, not a sharp mountain cut.",
+      "significance": "The whole valley shape may record an older process than Pine Creek's current bend.",
+      "question": "Did a small creek carve this entire bowl?",
+      "sketch": { "x": 50, "y": 40, "kind": "valley", "label": "broad bowl" }
+    },
+    {
+      "id": "pond-basin",
+      "title": "Pond in a dip",
+      "timescale": "history",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "cattail-marsh",
+      "observation": "Mirror Pond and the marsh sit in a low dip, not just a puddle on a slope.",
+      "significance": "The floor of the hollow may have been left uneven.",
+      "question": "Why is there a bowl here for water to keep?",
+      "sketch": { "x": 46, "y": 72, "kind": "pond", "label": "dip" }
+    },
+    {
+      "id": "weathered-face",
+      "title": "Crumbling ledge",
+      "timescale": "history",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "weathered-ledge",
+      "observation": "The knob's face is shedding into soil.",
+      "significance": "Rock here is breaking down slowly, even without a flood.",
+      "question": "How long does a mountain take to become dirt?",
+      "sketch": { "x": 64, "y": 28, "kind": "ledge", "label": "crumbly face" }
+    },
+    {
+      "id": "sediment-sort",
+      "title": "Bend sorting",
+      "timescale": "river",
+      "kind": "measurement",
+      "source": "measurement",
+      "measurementId": "sediment-sort",
+      "observation": "Sand and gravel are distributed differently on the inside and outside of the bend.",
+      "significance": "Pine Creek is still taking material from one bank and dropping it on the other.",
+      "question": "Is this how the whole valley was made — or only how the floor is being rewritten?",
+      "sketch": { "x": 38, "y": 52, "kind": "bend", "label": "cut / bar" }
+    },
+    {
+      "id": "cut-bank-now",
+      "title": "Outside bend",
+      "timescale": "river",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "cut-bank",
+      "observation": "The outside bank is undercut. Roots hang in empty air.",
+      "significance": "The creek is eroding this side today.",
+      "question": "How much of the hollow is the creek still changing?",
+      "sketch": { "x": 34, "y": 50, "kind": "cut", "label": "cut bank" }
+    },
+    {
+      "id": "sand-bar-now",
+      "title": "Inside bend",
+      "timescale": "river",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "point-bar",
+      "observation": "Pale sand piles where the current slackens.",
+      "significance": "The creek is depositing sediment here today.",
+      "question": "Same water, two jobs — taking and leaving.",
+      "sketch": { "x": 42, "y": 56, "kind": "bar", "label": "sand bar" }
+    },
+    {
+      "id": "rounded-bed",
+      "title": "Rolled stones",
+      "timescale": "river",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "rounded-stones",
+      "observation": "Stones in the creek are smoother than stones on the hill.",
+      "significance": "The water is still rounding rock as it moves.",
+      "question": "A quiet kind of clock — but is it the only one?",
+      "sketch": { "x": 44, "y": 62, "kind": "stones", "label": "rounded" }
+    },
+    {
+      "id": "high-water-now",
+      "title": "Last night's line",
+      "timescale": "water",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "high-water-post",
+      "observation": "A wrack line in the willows sits higher than the water is now.",
+      "significance": "Water still rises and falls through the hollow on a daily-to-storm clock.",
+      "question": "What does a single night explain — and what doesn't it?",
+      "sketch": { "x": 52, "y": 86, "kind": "gauge", "label": "high water" }
+    },
+    {
+      "id": "marsh-now",
+      "title": "Wet ground",
+      "timescale": "water",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "cattail-marsh",
+      "observation": "The marsh holds water in the ground even after the rain has passed.",
+      "significance": "Water is still moving and storing through the floor of the hollow.",
+      "question": "The pond isn't the only place water stays.",
+      "sketch": { "x": 38, "y": 74, "kind": "marsh", "label": "marsh" }
+    },
+    {
+      "id": "seep-now",
+      "title": "Hillside seep",
+      "timescale": "water",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "hillside-seep",
+      "observation": "Soil stays wet on the knob's south shoulder after the rain has stopped.",
+      "significance": "Water is coming out of the hill, not just off it.",
+      "question": "Today's water has more than one path.",
+      "sketch": { "x": 54, "y": 32, "kind": "seep", "label": "seep" }
+    },
+    {
+      "id": "fox-run-now",
+      "title": "Thin drainage",
+      "timescale": "water",
+      "kind": "observation",
+      "source": "discovery",
+      "discoveryId": "fox-run",
+      "observation": "A skinny run still carries slope water into Pine Creek.",
+      "significance": "After a rain, new threads of water still find the creek.",
+      "question": "Last night had a voice here. Quiet days hide it.",
+      "sketch": { "x": 28, "y": 38, "kind": "run", "label": "Fox Run" }
+    }
+  ],
+  "processes": [
+    { "id": "flowing-water", "label": "flowing water" },
+    { "id": "moving-ice", "label": "moving ice" },
+    { "id": "wind", "label": "wind" },
+    { "id": "volcanic", "label": "volcanic activity" }
+  ],
+  "hypothesis": {
+    "requiredProcess": "moving-ice",
+    "requiredEvidenceIds": ["transported-boulder", "bedrock-grooves", "rounded-valley"],
+    "helpfulEvidenceIds": ["pond-basin"],
+    "modernEvidenceIds": ["sediment-sort", "cut-bank-now", "sand-bar-now", "rounded-bed"],
+    "weakResponses": {
+      "flowing-water": "That explains what Pine Creek is doing today, but does it explain how the large boulder arrived on the north trail?",
+      "wind": "Wind can move dust and dry sand. This boulder is not dust, and the grooves are carved into bedrock.",
+      "volcanic": "There's no lava, no ash, no crater. The knob is old rock, not a volcano."
+    },
+    "missing": {
+      "transported-boulder": "Moving ice is a strong idea — but what about the boulder that doesn't match the hill?",
+      "bedrock-grooves": "A moving-ice explanation is stronger if the bedrock itself shows a direction of travel.",
+      "rounded-valley": "Look at the whole bowl from High Look. Is this a sharp mountain cut, or something broader?"
+    },
+    "iceWithoutHistory": "Moving ice could be right, but the notes you selected are about what the creek is doing now. What about the boulder, the grooves, and the shape of the valley?",
+    "noProcess": "Start with a process, then attach the field notes that actually support it.",
+    "noEvidence": "An explanation needs evidence you recorded, not a guess from the porch.",
+    "unrecorded": "Only use notes you actually recorded in the field.",
+    "success": "Ice moved through this valley long before last night's rain. It left the mismatched boulder, the parallel grooves, and the broad rounded bowl. Pine Creek is still at work on the floor — cutting one bank, dropping sand on the other. Water still seeps from the hill and floods the reach. Same hollow. Different clocks."
+  },
+  "completeJournalEntry": {
+    "title": "What shaped Cedar Hollow?",
+    "text": "Older moving ice shaped the bowl, parked a boulder that doesn't belong, and scraped the knob. Pine Creek keeps rewriting the floor. Water still moves through the hollow every day. The land records more than one clock."
+  },
+  "worldLabels": [
+    { "id": "glacial-erratic", "kind": "discovery", "text": "Didn't grow here" },
+    { "id": "exposed-bedrock", "kind": "discovery", "text": "Scratched one way" },
+    { "id": "watershed-rail", "kind": "discovery", "text": "A rounded valley" },
+    { "id": "cut-bank", "kind": "discovery", "text": "Creek still cutting" },
+    { "id": "point-bar", "kind": "discovery", "text": "Creek still dropping sand" },
+    { "id": "cattail-marsh", "kind": "discovery", "text": "A dip in the floor" },
+    { "id": "pine-creek", "kind": "feature", "text": "Still sorting sediment" },
+    { "id": "high-look", "kind": "feature", "text": "Broad, not sharp" },
+    { "id": "mirror-pond", "kind": "feature", "text": "Water keeping a bowl" }
+  ],
+  "iceFlow": [
+    [1180, 180],
+    [1320, 340],
+    [1200, 620],
+    [1080, 980],
+    [1040, 1240]
+  ]
+}

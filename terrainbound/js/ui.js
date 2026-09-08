@@ -2,6 +2,8 @@
  * Minimal HTML overlays. World stays primary; panels appear only when needed.
  */
 
+import { drawFieldSketch } from "./investigation.js";
+
 const SYMBOLS = {
   erratic: "◉",
   bedrock: "▣",
@@ -17,6 +19,12 @@ const SYMBOLS = {
   view: "△"
 };
 
+const KIND_LABEL = {
+  observation: "Observation",
+  comparison: "Comparison",
+  measurement: "Measurement"
+};
+
 export function bindUi(root) {
   const title = root.querySelector("#title-screen");
   const dialogue = root.querySelector("#dialogue");
@@ -28,6 +36,13 @@ export function bindUi(root) {
   const missionBody = root.querySelector("#journal-mission");
   const discoveryBody = root.querySelector("#journal-discoveries");
   const discoveryCount = root.querySelector("#discovery-count");
+  const evidenceSection = root.querySelector("#journal-evidence-section");
+  const evidenceBody = root.querySelector("#journal-evidence");
+  const evidenceCount = root.querySelector("#evidence-count");
+  const sketchSection = root.querySelector("#journal-sketch-section");
+  const sketchCanvas = root.querySelector("#field-sketch");
+  const sketchCaption = root.querySelector("#sketch-caption");
+  const hypothesisOpen = root.querySelector("#hypothesis-open");
   const toast = root.querySelector("#toast");
   const prompt = root.querySelector("#inspect-prompt");
   const hint = root.querySelector("#control-hint");
@@ -35,8 +50,15 @@ export function bindUi(root) {
   const pathStatus = root.querySelector("#path-status");
   const nodes = root.querySelector("#flow-nodes");
   const concludeHint = root.querySelector("#conclusion-hint");
+  const hypothesis = root.querySelector("#hypothesis");
+  const hypothesisProcesses = root.querySelector("#hypothesis-processes");
+  const hypothesisEvidence = root.querySelector("#hypothesis-evidence");
+  const hypothesisStatus = root.querySelector("#hypothesis-status");
+  const hypothesisTry = root.querySelector("#hypothesis-try");
+  const hypothesisClear = root.querySelector("#hypothesis-clear");
 
   let toastTimer = 0;
+  let hypothesisHandlers = { onProcess: null, onEvidence: null };
 
   return {
     showTitle(visible) {
@@ -85,6 +107,7 @@ export function bindUi(root) {
       journal.setAttribute("aria-hidden", open ? "false" : "true");
       missionBody.replaceChildren();
       discoveryBody.replaceChildren();
+      evidenceBody.replaceChildren();
 
       const observations = view.observations || [];
       const storyNotes = view.storyNotes || [];
@@ -102,6 +125,11 @@ export function bindUi(root) {
       }
       if (view.concluded && view.conclusionText) {
         const done = noteArticle(view.conclusionText.title, view.conclusionText.text);
+        done.classList.add("journal-conclusion");
+        missionBody.appendChild(done);
+      }
+      if (view.landscapeConcluded && view.landscapeConclusionText) {
+        const done = noteArticle(view.landscapeConclusionText.title, view.landscapeConclusionText.text);
         done.classList.add("journal-conclusion");
         missionBody.appendChild(done);
       }
@@ -141,6 +169,48 @@ export function bindUi(root) {
           discoveryBody.appendChild(rest);
         }
       }
+
+      const evidence = view.evidence;
+      const showEvidence = view.landscapeActive || (evidence && evidence.cards.length);
+      if (evidenceSection) evidenceSection.hidden = !showEvidence;
+      if (sketchSection) sketchSection.hidden = !showEvidence;
+      if (showEvidence && evidence) {
+        evidenceCount.textContent = evidence.cards.length
+          ? `${evidence.cards.length} field notes`
+          : "Compare what doesn't fit. Notes appear after you measure.";
+        if (!evidence.cards.length) {
+          const empty = document.createElement("p");
+          empty.className = "journal-empty";
+          empty.textContent = "No evidence cards yet. Inspect more closely at the boulder, the knob, the creek bend, and the high ledge.";
+          evidenceBody.appendChild(empty);
+        }
+        for (const group of evidence.groups) {
+          const kicker = document.createElement("p");
+          kicker.className = "journal-kicker";
+          kicker.textContent = group.label;
+          evidenceBody.appendChild(kicker);
+          for (const card of group.cards) {
+            evidenceBody.appendChild(evidenceArticle(card));
+          }
+        }
+      }
+
+      if (showEvidence && sketchCanvas && view.investigation && view.sketch) {
+        const ctx = sketchCanvas.getContext("2d");
+        drawFieldSketch(ctx, sketchCanvas.width, sketchCanvas.height, view.investigation, view.sketch);
+        if (sketchCaption) {
+          sketchCaption.textContent = view.landscapeConcluded
+            ? "Inferred ice-flow added after the explanation held."
+            : "A field drawing of Cedar Hollow — not a trail map.";
+        }
+      }
+
+      if (hypothesisOpen) {
+        hypothesisOpen.hidden = !view.canPropose && !view.landscapeConcluded;
+        hypothesisOpen.textContent = view.landscapeConcluded
+          ? "Review the explanation"
+          : "What shaped this hollow?";
+      }
     },
     showConclusion(open, features, path, observed, hintText) {
       conclusion.hidden = !open;
@@ -163,6 +233,46 @@ export function bindUi(root) {
       pathStatus.textContent = path.length
         ? path.map((id) => features.find((f) => f.id === id)?.short || id).join(" → ")
         : "Tap places you visited, starting high and moving downhill.";
+    },
+    showHypothesis(open, view, handlers = {}) {
+      hypothesis.hidden = !open;
+      if (!open) return;
+      hypothesisHandlers = handlers;
+      const processes = view.processes || [];
+      const cards = view.evidenceCards || [];
+      hypothesisProcesses.replaceChildren();
+      for (const process of processes) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = process.label;
+        btn.classList.toggle("is-on", view.selectedProcess === process.id);
+        btn.disabled = view.concluded;
+        btn.addEventListener("click", () => hypothesisHandlers.onProcess?.(process.id));
+        hypothesisProcesses.appendChild(btn);
+      }
+      hypothesisEvidence.replaceChildren();
+      if (!cards.length) {
+        const empty = document.createElement("p");
+        empty.className = "journal-empty";
+        empty.textContent = "Record field notes first. Only observed evidence can be used.";
+        hypothesisEvidence.appendChild(empty);
+      }
+      for (const card of cards) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.disabled = view.concluded;
+        const scale = document.createElement("span");
+        scale.className = "chip-scale";
+        scale.textContent = card.timescaleLabel || card.timescale;
+        btn.append(scale, document.createTextNode(card.title));
+        btn.classList.toggle("is-on", (view.selectedEvidenceIds || []).includes(card.id));
+        btn.addEventListener("click", () => hypothesisHandlers.onEvidence?.(card.id));
+        hypothesisEvidence.appendChild(btn);
+      }
+      hypothesisStatus.textContent = view.status || "";
+      hypothesisStatus.classList.toggle("is-success", Boolean(view.concluded));
+      if (hypothesisTry) hypothesisTry.hidden = Boolean(view.concluded);
+      if (hypothesisClear) hypothesisClear.hidden = Boolean(view.concluded);
     }
   };
 }
@@ -175,4 +285,27 @@ function noteArticle(title, text) {
   p.textContent = text;
   li.append(h, p);
   return li;
+}
+
+function evidenceArticle(card) {
+  const art = document.createElement("article");
+  art.className = "evidence-card";
+  const h = document.createElement("h3");
+  h.textContent = card.title;
+  const kind = document.createElement("p");
+  kind.className = "evidence-kind";
+  kind.textContent = KIND_LABEL[card.kind] || "Observation";
+  const obs = document.createElement("p");
+  obs.textContent = card.observation;
+  const sig = document.createElement("p");
+  sig.className = "evidence-sig";
+  sig.textContent = card.significance;
+  art.append(h, kind, obs, sig);
+  if (card.question) {
+    const q = document.createElement("p");
+    q.className = "evidence-q";
+    q.textContent = card.question;
+    art.appendChild(q);
+  }
+  return art;
 }
