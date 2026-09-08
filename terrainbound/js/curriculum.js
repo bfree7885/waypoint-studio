@@ -47,6 +47,8 @@ export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null, i
     playerText.push(...(catalog.wren?.idle || []), catalog.wren?.missionNudge, catalog.wren?.afterComplete);
     for (const item of catalog.items) {
       playerText.push(item.name, item.prompt, item.text, item.location, item.wrenHint, item.wrenAck);
+      if (item.interpretedName) playerText.push(item.interpretedName);
+      if (item.interpretedText) playerText.push(item.interpretedText);
     }
   }
   if (investigation) {

@@ -14,7 +14,9 @@ import {
   nearestDiscovery,
   discoveryLogModel,
   pickWrenLines,
-  isFound
+  isFound,
+  displayName,
+  displayText
 } from "./discoveries.js";
 import {
   createInvestigationState,
@@ -36,9 +38,13 @@ import {
 } from "./investigation.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
+import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, wipeRequiresConfirm } from "./save.js";
+import { createAudio } from "./audio.js";
 
-const WALK_SPEED = 210;
+const WALK_SPEED = 196;
 const VIEW_HEIGHT = 760;
+const ACCEL = 9.5;
+const CAMERA_FOLLOW = 4.4;
 
 const FLOW_MAP = [
   { id: "westface-slope", short: "Slope", mapX: 22, mapY: 28 },
@@ -64,8 +70,11 @@ export async function boot(root = document) {
   const missionState = createMissionState(mission);
   const discoveryState = createDiscoveryState();
   const invState = createInvestigationState();
+  const taught = emptyTaught();
   const ui = bindUi(root);
   const renderer = createRenderer(canvas, world, { heightAt, inCreek, onTrail });
+  const audio = createAudio({ reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
+  const storage = window.localStorage;
   const keys = new Set();
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -74,7 +83,8 @@ export async function boot(root = document) {
     y: region.spawn.y,
     vx: 0,
     vy: 0,
-    facing: -1
+    facing: -1,
+    pose: "idle"
   };
 
   const camera = { x: player.x, y: player.y - 40, scale: 1 };
@@ -84,8 +94,15 @@ export async function boot(root = document) {
   let dialogue = null;
   let conclusionOpen = false;
   let hypothesisOpen = false;
+  let confirmOpen = false;
   let last = performance.now();
   let inspectLock = false;
+  let camFocus = null;
+  let saveTimer = 0;
+  const existingSave = readSave(storage);
+  if (existingSave) applySave(existingSave, { player, missionState, discoveryState, invState, taught });
+  camera.x = player.x;
+  camera.y = player.y - 28;
 
   function journalView(open = journalOpen) {
     const evidence = evidenceModel(investigation, invState);
@@ -95,7 +112,7 @@ export async function boot(root = document) {
       storyNotes: missionState.storyNotes,
       concluded: missionState.concluded,
       conclusionText: mission.completeJournalEntry,
-      discoveryLog: discoveryLogModel(catalog, discoveryState),
+      discoveryLog: discoveryLogModel(catalog, discoveryState, invState.interpreted),
       landscapeActive: invState.active,
       landscapeConcluded: invState.concluded,
       landscapeConclusionText: investigation.completeJournalEntry,
@@ -106,8 +123,31 @@ export async function boot(root = document) {
     };
   }
 
+  function persist() {
+    writeSave(storage, captureSave({ player, missionState, discoveryState, invState, taught }));
+  }
+
   function refreshJournal() {
     ui.setJournal(journalView());
+  }
+
+  function pulseFocus(x, y, ms = 720) {
+    camFocus = { x, y, until: performance.now() + ms };
+  }
+
+  function teachWalk() {
+    if (!taught.walk) {
+      taught.walk = true;
+      persist();
+    }
+  }
+
+  function controlHintText() {
+    if (mode !== "play" || dialogue) return "";
+    if (!taught.walk) return "WASD / ARROWS · WALK";
+    if (!taught.inspect && currentTarget()) return "E · LOOK CLOSER";
+    if (taught.inspect && !taught.journal) return "J · FIELD TABLET";
+    return "";
   }
 
   function resize() {
@@ -129,10 +169,10 @@ export async function boot(root = document) {
 
   function openIntro() {
     missionState.introSeen = true;
+    persist();
     showDialogueLines(mission.intro.speaker, mission.intro.lines, 0, () => {
       dialogue = null;
       ui.showDialogue(false);
-      ui.setHint("WASD or click to walk · E inspect · J field tablet");
     });
   }
 
@@ -168,7 +208,9 @@ export async function boot(root = document) {
       ui.showDialogue(false);
       inspectLock = false;
       if (!result.already) {
-        ui.showToast("Observation added", spec.text);
+        taught.inspect = true;
+        ui.showToast("Noted", spec.title);
+        persist();
         refreshJournal();
       }
     });
@@ -180,28 +222,40 @@ export async function boot(root = document) {
 
     if (!isFound(discoveryState, item.id)) {
       const result = addDiscovery(discoveryState, catalog, item.id);
-      showDialogueLines(item.name, [item.prompt, item.text], 0, () => {
+      const name = displayName(item, false);
+      player.pose = "inspect";
+      pulseFocus(item.x, item.y);
+      audio.discover();
+      showDialogueLines(name, [item.prompt, displayText(item, false)], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
         inspectLock = false;
+        player.pose = "idle";
         if (!result.already) {
+          taught.inspect = true;
           syncPassiveEvidence(invState, investigation, discoveryState);
-          ui.showToast("Discovery", item.name);
+          ui.showToast("Noted", name);
+          persist();
           refreshJournal();
         }
-      }, "Discovery");
+      }, "Look closer");
       return;
     }
 
+    const name = displayName(item, invState.interpreted);
+    const text = displayText(item, invState.interpreted);
     const pending = availableMeasurementAt(investigation, invState, discoveryState, item.id);
     if (pending) {
+      player.pose = "inspect";
       showDialogueLines("Field measurement", [pending.prompt, pending.result], 0, () => {
         const recorded = recordMeasurement(invState, investigation, pending.id, discoveryState);
         dialogue = null;
         ui.showDialogue(false);
         inspectLock = false;
+        player.pose = "idle";
         if (!recorded.already) {
-          ui.showToast("Measurement", pending.result);
+          ui.showToast("Noted", pending.result);
+          persist();
           refreshJournal();
         }
       }, pending.actionLabel);
@@ -210,7 +264,7 @@ export async function boot(root = document) {
 
     const blocked = blockedMeasurementAt(investigation, invState, discoveryState, item.id);
     if (blocked) {
-      showDialogueLines(item.name, [item.text, blocked.missingHint], 0, () => {
+      showDialogueLines(name, [text, blocked.missingHint], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
         inspectLock = false;
@@ -218,7 +272,7 @@ export async function boot(root = document) {
       return;
     }
 
-    showDialogueLines(item.name, [item.text], 0, () => {
+    showDialogueLines(name, [text], 0, () => {
       dialogue = null;
       ui.showDialogue(false);
       inspectLock = false;
@@ -234,7 +288,9 @@ export async function boot(root = document) {
       ui.showDialogue(false);
       inspectLock = false;
       if (!result.already) {
-        ui.showToast("Field note", prop.inspect.title);
+        taught.inspect = true;
+        ui.showToast("Noted", prop.inspect.title);
+        persist();
         refreshJournal();
       }
     });
@@ -247,7 +303,7 @@ export async function boot(root = document) {
     const rangerNear = nearRanger(region, player.x, player.y);
     const rangerD = Math.hypot(player.x - region.ranger.x, player.y - region.ranger.y);
     const options = [];
-    if (disc) options.push({ kind: "discovery", item: disc, x: disc.x, y: disc.y, d: Math.hypot(player.x - disc.x, player.y - disc.y), name: disc.name });
+    if (disc) options.push({ kind: "discovery", item: disc, x: disc.x, y: disc.y, d: Math.hypot(player.x - disc.x, player.y - disc.y), name: displayName(disc, invState.interpreted) });
     if (feat) options.push({ kind: "feature", item: feat, x: feat.x, y: feat.y, d: Math.hypot(player.x - feat.x, player.y - feat.y), name: feat.name });
     if (prop) options.push({ kind: "prop", item: prop, x: prop.x, y: prop.y, d: Math.hypot(player.x - prop.x, player.y - prop.y), name: prop.inspect.title });
     options.sort((a, b) => a.d - b.d);
@@ -269,6 +325,10 @@ export async function boot(root = document) {
   function talkToWren() {
     const ready = canPresentFindings(missionState, mission);
     const done = missionState.concluded;
+    if (!missionState.introSeen) {
+      openIntro();
+      return;
+    }
     if (ready && !done) {
       ui.showDialogue(true, "Ranger Wren", "You've got mud on your boots and notes in the tablet. Trace the water with me.", [
         {
@@ -305,6 +365,7 @@ export async function boot(root = document) {
         beginInvestigation(invState, investigation, discoveryState);
         dialogue = null;
         ui.showDialogue(false);
+        persist();
         refreshJournal();
       });
       return;
@@ -405,6 +466,7 @@ export async function boot(root = document) {
     );
     renderHypothesis();
     if (result.ok && !result.already) {
+      persist();
       journalOpen = true;
       refreshJournal();
       closeHypothesis();
@@ -438,7 +500,8 @@ export async function boot(root = document) {
     mode = "play";
     ui.showTitle(false);
     canvas.focus();
-    if (!missionState.introSeen) openIntro();
+    audio.unlock();
+    ui.setHint(controlHintText());
   }
 
   root.querySelector("#enter-btn").addEventListener("click", enterWorld);
@@ -469,9 +532,21 @@ export async function boot(root = document) {
       if (event.key === "Escape") closeHypothesis();
       return;
     }
+    if (confirmOpen) {
+      if (event.key === "Escape") {
+        confirmOpen = false;
+        ui.showConfirmReset(false);
+      }
+      return;
+    }
     keys.add(event.key.toLowerCase());
     if (event.key === "j" || event.key === "J") {
       journalOpen = !journalOpen;
+      if (journalOpen) {
+        taught.journal = true;
+        audio.tablet();
+      }
+      persist();
       refreshJournal();
     }
     if (event.key === "e" || event.key === "E") {
@@ -488,7 +563,7 @@ export async function boot(root = document) {
   });
 
   canvas.addEventListener("pointerdown", (event) => {
-    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen) return;
+    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen || confirmOpen) return;
     const worldPt = screenToWorld(event.clientX, event.clientY);
     const target = currentTarget();
     if (target && Math.hypot(worldPt.x - target.x, worldPt.y - target.y) < 70 && Math.hypot(player.x - target.x, player.y - target.y) < 100) {
@@ -500,7 +575,25 @@ export async function boot(root = document) {
 
   root.querySelector("#journal-toggle").addEventListener("click", () => {
     journalOpen = !journalOpen;
+    if (journalOpen) {
+      taught.journal = true;
+      audio.tablet();
+    }
+    persist();
     refreshJournal();
+  });
+  root.querySelector("#journal-reset").addEventListener("click", () => {
+    confirmOpen = true;
+    ui.showConfirmReset(true);
+  });
+  root.querySelector("#reset-cancel").addEventListener("click", () => {
+    confirmOpen = false;
+    ui.showConfirmReset(false);
+  });
+  root.querySelector("#reset-confirm").addEventListener("click", () => {
+    if (!wipeRequiresConfirm(true)) return;
+    clearSave(storage);
+    window.location.reload();
   });
   root.querySelector("#journal-close").addEventListener("click", () => {
     journalOpen = false;
@@ -529,6 +622,7 @@ export async function boot(root = document) {
     const result = tryAddPathNode(missionState, mission, btn.dataset.featureId);
     if (result.ok && result.complete) {
       ui.showToast("The path is clear", mission.conclusion.successText);
+      persist();
       journalOpen = true;
       refreshJournal();
       conclusionOpen = false;
@@ -543,15 +637,16 @@ export async function boot(root = document) {
   });
 
   ui.showTitle(true);
+  ui.setEnterLabel(Boolean(existingSave));
   ui.setJournal(journalView(false));
-  ui.setHint("Enter Cedar Hollow to begin");
+  ui.setHint("");
   resize();
   window.addEventListener("resize", resize);
 
   function step(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen;
+    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen;
     let ax = 0;
     let ay = 0;
     if (playing) {
@@ -563,24 +658,33 @@ export async function boot(root = document) {
       if (!ax && !ay && destination) {
         const dx = destination.x - player.x;
         const dy = destination.y - player.y;
-        if (Math.hypot(dx, dy) < 12) destination = null;
+        if (Math.hypot(dx, dy) < 18) destination = null;
         else {
           ax = dx;
           ay = dy;
         }
       }
-      const len = Math.hypot(ax, ay) || 1;
-      const nx = (ax / len) * WALK_SPEED * dt;
-      const ny = (ay / len) * WALK_SPEED * dt;
-      const moved = moveWithCollision(world, player.x, player.y, nx, ny);
+      const wishLen = Math.hypot(ax, ay);
+      let wishX = 0;
+      let wishY = 0;
+      if (wishLen > 0) {
+        wishX = (ax / wishLen) * WALK_SPEED;
+        wishY = (ay / wishLen) * WALK_SPEED;
+        teachWalk();
+      }
+      const blend = 1 - Math.exp(-dt * ACCEL);
+      player.vx += (wishX - player.vx) * blend;
+      player.vy += (wishY - player.vy) * blend;
+      const moved = moveWithCollision(world, player.x, player.y, player.vx * dt, player.vy * dt);
       player.vx = (moved.x - player.x) / dt;
       player.vy = (moved.y - player.y) / dt;
       player.x = moved.x;
       player.y = moved.y;
       if (ax) player.facing = ax >= 0 ? 1 : -1;
+      if (Math.hypot(player.vx, player.vy) > 24) audio.footstep(now / 1000);
     } else {
-      player.vx = 0;
-      player.vy = 0;
+      player.vx *= Math.exp(-dt * 12);
+      player.vy *= Math.exp(-dt * 12);
     }
 
     if (mode === "title") {
@@ -588,12 +692,27 @@ export async function boot(root = document) {
       camera.x = 1100 + Math.sin(t * 0.18) * 220;
       camera.y = 720 + Math.cos(t * 0.14) * 160;
     } else {
-      camera.x += (player.x + player.facing * 24 - camera.x) * 0.08;
-      camera.y += (player.y - 18 - camera.y) * 0.08;
+      let lookX = player.x + player.facing * 40;
+      let lookY = player.y - 22;
+      const targetNow = currentTarget();
+      if (targetNow && targetNow.kind !== "wren" && Math.hypot(player.x - targetNow.x, player.y - targetNow.y) < 90) {
+        lookX = lookX * 0.72 + targetNow.x * 0.28;
+        lookY = lookY * 0.72 + targetNow.y * 0.28;
+      }
+      if (camFocus && now < camFocus.until) {
+        lookX = lookX * 0.4 + camFocus.x * 0.6;
+        lookY = lookY * 0.4 + camFocus.y * 0.6;
+      } else {
+        camFocus = null;
+      }
+      const follow = 1 - Math.exp(-dt * CAMERA_FOLLOW);
+      camera.x += (lookX - camera.x) * follow;
+      camera.y += (lookY - camera.y) * follow;
     }
 
     const target = currentTarget();
-    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen) {
+    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen) {
+      ui.setHint(controlHintText());
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
         ui.setPrompt(
@@ -611,10 +730,16 @@ export async function boot(root = document) {
         const pending = availableMeasurementAt(investigation, invState, discoveryState, target.item.id);
         ui.setPrompt(pending ? `${pending.actionLabel} · E` : "Look closer · E");
       } else {
-        ui.setPrompt(`Inspect ${target.name} · E`);
+        ui.setPrompt(`Look closer · E`);
       }
     } else if (!dialogue) {
       ui.setPrompt("");
+    }
+
+    saveTimer += dt;
+    if (saveTimer > 2.5 && mode === "play") {
+      saveTimer = 0;
+      persist();
     }
 
     renderer.draw({

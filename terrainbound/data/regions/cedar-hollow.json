@@ -74,7 +74,11 @@
     { "kind": "sampling-flag", "x": 1608, "y": 1008, "inspect": { "id": "story-flag", "title": "Old sampling flag", "text": "Yellow tape, faded. Whoever left this didn't come back for the sample." } },
     { "kind": "survey-stake", "x": 1576, "y": 708, "inspect": { "id": "story-survey", "title": "Survey marker", "text": "A brass cap, scratched almost smooth. Someone measured this hollow before the station was here." } },
     { "kind": "washout", "x": 1024, "y": 1108, "inspect": { "id": "story-washout", "title": "Washed-out trail", "text": "The path drops away. Exposed roots, then a bite of bare soil. Last night took a piece of the trail with it." } },
-    { "kind": "flood-gauge", "x": 1124, "y": 1304, "inspect": { "id": "story-flood-gauge", "title": "Staff gauge", "text": "Green paint for ordinary water. Red paint for trouble. The stain sits between them." } }
+    { "kind": "flood-gauge", "x": 1124, "y": 1304, "inspect": { "id": "story-flood-gauge", "title": "Staff gauge", "text": "Green paint for ordinary water. Red paint for trouble. The stain sits between them." } },
+    { "kind": "sawhorse", "x": 1540, "y": 860, "inspect": { "id": "story-sawhorse", "title": "Trail work", "text": "Fresh sawdust. Someone cleared a blowdown this week and left the horse for later." } },
+    { "kind": "lantern", "x": 1768, "y": 972 },
+    { "kind": "pack", "x": 1748, "y": 948 },
+    { "kind": "cairn", "x": 1340, "y": 420 }
   ],
   "trails": [
     {

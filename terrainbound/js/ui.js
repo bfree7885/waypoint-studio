@@ -57,12 +57,43 @@ export function bindUi(root) {
   const hypothesisTry = root.querySelector("#hypothesis-try");
   const hypothesisClear = root.querySelector("#hypothesis-clear");
 
+  const enterBtn = root.querySelector("#enter-btn");
+  const confirmReset = root.querySelector("#confirm-reset");
+  const evidenceTab = root.querySelector("#tab-evidence-btn");
+  const sketchTab = root.querySelector("#tab-sketch-btn");
+  const tabButtons = [...root.querySelectorAll(".journal-tabs [data-tab]")];
+  const panels = [...root.querySelectorAll("[data-panel]")];
+
   let toastTimer = 0;
   let hypothesisHandlers = { onProcess: null, onEvidence: null };
+  let journalTab = "notes";
+
+  function showTab(id) {
+    journalTab = id;
+    for (const btn of tabButtons) btn.classList.toggle("is-on", btn.dataset.tab === id);
+    for (const panel of panels) {
+      const on = panel.dataset.panel === id;
+      panel.hidden = !on;
+      panel.classList.toggle("is-on", on);
+    }
+  }
+
+  for (const btn of tabButtons) {
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      showTab(btn.dataset.tab);
+    });
+  }
 
   return {
     showTitle(visible) {
       title.hidden = !visible;
+    },
+    setEnterLabel(hasSave) {
+      if (enterBtn) enterBtn.textContent = hasSave ? "Continue" : "Begin";
+    },
+    showConfirmReset(open) {
+      if (confirmReset) confirmReset.hidden = !open;
     },
     showDialogue(open, speaker, text, actions, kicker = "") {
       dialogue.hidden = !open;
@@ -96,7 +127,7 @@ export function bindUi(root) {
       window.clearTimeout(toastTimer);
       toastTimer = window.setTimeout(() => {
         toast.hidden = true;
-      }, 4200);
+      }, 2800);
       toast.classList.remove("toast-pop");
       void toast.offsetWidth;
       toast.classList.add("toast-pop");
@@ -145,7 +176,13 @@ export function bindUi(root) {
         }
         for (const item of log.found) {
           const art = document.createElement("article");
-          art.className = "discovery-card";
+          art.className = "discovery-card" + (item.interpreted ? " is-interpreted" : "");
+          if (item.interpreted) {
+            const tag = document.createElement("span");
+            tag.className = "interpreted-mark";
+            tag.textContent = "Interpretation";
+            art.appendChild(tag);
+          }
           const h = document.createElement("h3");
           const mark = document.createElement("span");
           mark.className = "discovery-symbol";
@@ -172,8 +209,12 @@ export function bindUi(root) {
 
       const evidence = view.evidence;
       const showEvidence = view.landscapeActive || (evidence && evidence.cards.length);
-      if (evidenceSection) evidenceSection.hidden = !showEvidence;
-      if (sketchSection) sketchSection.hidden = !showEvidence;
+      if (evidenceTab) evidenceTab.disabled = !showEvidence;
+      if (sketchTab) sketchTab.disabled = !showEvidence;
+      if (!showEvidence && (journalTab === "evidence" || journalTab === "sketch")) showTab("notes");
+      else showTab(journalTab);
+      if (evidenceSection) evidenceSection.hidden = journalTab !== "evidence" || !showEvidence;
+      if (sketchSection) sketchSection.hidden = journalTab !== "sketch" || !showEvidence;
       if (showEvidence && evidence) {
         evidenceCount.textContent = evidence.cards.length
           ? `${evidence.cards.length} field notes`

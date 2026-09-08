@@ -19,6 +19,16 @@ export function isFound(state, id) {
   return state.foundIds.includes(id);
 }
 
+export function displayName(item, interpreted = false) {
+  if (interpreted && item.interpretedName) return item.interpretedName;
+  return item.name;
+}
+
+export function displayText(item, interpreted = false) {
+  if (interpreted && item.interpretedText) return item.interpretedText;
+  return item.text;
+}
+
 export function addDiscovery(state, catalog, id) {
   const spec = discoveryById(catalog, id);
   if (!spec) return null;
@@ -49,15 +59,16 @@ export function nearestDiscovery(catalog, x, y, range = 56) {
   return best;
 }
 
-export function discoveryLogModel(catalog, state) {
+export function discoveryLogModel(catalog, state, interpreted = false) {
   const found = catalog.items
     .filter((item) => isFound(state, item.id))
     .map((item) => ({
       id: item.id,
-      name: item.name,
+      name: displayName(item, interpreted),
       symbol: item.symbol,
-      text: item.text,
-      location: item.location
+      text: displayText(item, interpreted),
+      location: item.location,
+      interpreted: Boolean(interpreted && item.interpretedName)
     }));
   return {
     regionId: catalog.regionId,
@@ -78,6 +89,10 @@ export function playerFacingDiscoveryText(catalog) {
     texts.push(item.name, item.prompt, item.text, item.location, item.wrenHint, item.wrenAck);
   }
   return texts.filter(Boolean);
+}
+
+export function playerFacingObservationText(catalog) {
+  return playerFacingDiscoveryText(catalog);
 }
 
 export function pickWrenLines(catalog, discoveryState, missionReady, missionComplete) {

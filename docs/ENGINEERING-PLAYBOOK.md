@@ -1624,3 +1624,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Landscape history is a second investigation on the same map, not a new region. Reuse Phase 1 finds as evidence; a second inspect is the measurement.
 - Hypothesis UI should attach a process to recorded notes. Rejecting “flowing water + sand bar” with a scientific pushback teaches timescales better than a wrong/right quiz.
 - Do not auto-unlock undiscovered sites when an investigation needs them. Hint at the place (“east face is stripped”), never the answer.
+
+### Lessons Learned — TerrainBound Phase 3 (2026-09-08)
+
+- Observation is not interpretation. Naming the north-trail boulder “Glacial erratic” on first look answers the landscape question before the player earns it.
+- A control legend on screen forever makes a prototype. Contextual WASD / E / J prompts that vanish after use make a game.
+- LocalStorage is enough for a school-laptop journal. Reset must ask twice; reload after wipe is cleaner than trying to rebuild runtime state by hand.
+

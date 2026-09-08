@@ -22,7 +22,10 @@ Needs a local http server (ES modules). Do not open `index.html` as `file://`.
 node terrainbound/tests/phase0.test.mjs
 node terrainbound/tests/phase1.test.mjs
 node terrainbound/tests/phase2.test.mjs
+node terrainbound/tests/phase3.test.mjs
 ```
+
+Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.
 
 ## What is playable
 
@@ -52,6 +55,8 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | `js/discoveries.js` | Discovery log |
 | `js/investigation.js` | Evidence, measurements, hypothesis |
 | `js/curriculum.js` | Internal alignment |
+| `js/save.js` | Local field journal |
+| `js/audio.js` | Quiet audio bus |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |
 
 Canvas 2D, no build step, no paid services.

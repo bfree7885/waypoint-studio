@@ -14,6 +14,12 @@ export function createRenderer(canvas, world, helpers) {
   ground.width = world.region.width;
   ground.height = world.region.height;
   bakeGround(ground, world, helpers);
+  const leaves = Array.from({ length: 14 }, (_, i) => ({
+    x: ((i * 173) % world.region.width),
+    y: ((i * 97) % world.region.height),
+    s: 0.7 + (i % 4) * 0.15,
+    phase: i * 0.7
+  }));
 
   return {
     draw(state) {
@@ -22,6 +28,7 @@ export function createRenderer(canvas, world, helpers) {
       ctx.save();
       ctx.fillStyle = "#7ec8ea";
       ctx.fillRect(0, 0, width, height);
+      drawSky(ctx, width, height, state.time, state.reducedMotion);
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
@@ -32,6 +39,7 @@ export function createRenderer(canvas, world, helpers) {
       drawStoryProps(ctx, world.region, state.time, state.reducedMotion);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion);
+      if (!state.reducedMotion) drawLeaves(ctx, leaves, world.region, state.time);
       drawTrees(ctx, world, state.time, state.reducedMotion);
       drawStation(ctx, world.region);
       drawNearHint(ctx, world, state);
@@ -42,6 +50,34 @@ export function createRenderer(canvas, world, helpers) {
       ctx.restore();
     }
   };
+}
+
+function drawSky(ctx, width, height, time, reduced) {
+  const drift = reduced ? 0 : (time * 8) % (width + 240);
+  ctx.fillStyle = "rgba(255,255,255,0.22)";
+  for (let i = 0; i < 3; i += 1) {
+    const x = ((drift * (0.4 + i * 0.18) + i * 280) % (width + 200)) - 80;
+    const y = 36 + i * 22;
+    ctx.beginPath();
+    ctx.ellipse(x, y, 70 - i * 8, 18, 0, 0, Math.PI * 2);
+    ctx.ellipse(x + 36, y + 4, 48, 14, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function drawLeaves(ctx, leaves, region, time) {
+  for (const leaf of leaves) {
+    const x = (leaf.x + time * (8 + leaf.s * 6)) % region.width;
+    const y = (leaf.y + Math.sin(time * 0.7 + leaf.phase) * 18 + time * 3) % region.height;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(time * 0.4 + leaf.phase);
+    ctx.fillStyle = "rgba(196, 110, 38, 0.45)";
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 4 * leaf.s, 2.2 * leaf.s, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
 }
 
 function bakeGround(canvas, world, helpers) {
@@ -189,6 +225,10 @@ function drawWater(ctx, world, time, reduced) {
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.ellipse(p.cx, p.cy, p.rx - 30 + shimmer, p.ry - 22, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.strokeStyle = "rgba(255,255,255,0.18)";
+    ctx.beginPath();
+    ctx.ellipse(p.cx + 8, p.cy + 6, p.rx - 48 - shimmer * 0.5, p.ry - 36, 0.1, 0, Math.PI * 2);
     ctx.stroke();
   }
 }
@@ -366,6 +406,32 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.fillRect(prop.x - 8, prop.y - 18, 16, 3);
       ctx.fillStyle = "#c45c26";
       ctx.fillRect(prop.x - 8, prop.y - 28, 16, 3);
+    } else if (prop.kind === "sawhorse") {
+      ctx.strokeStyle = "#6d4c32";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(prop.x - 14, prop.y + 6);
+      ctx.lineTo(prop.x - 6, prop.y - 10);
+      ctx.lineTo(prop.x + 14, prop.y - 10);
+      ctx.lineTo(prop.x + 18, prop.y + 6);
+      ctx.stroke();
+    } else if (prop.kind === "lantern") {
+      ctx.fillStyle = "#3a342c";
+      ctx.fillRect(prop.x - 4, prop.y - 16, 8, 12);
+      ctx.fillStyle = "rgba(240, 196, 76, 0.55)";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 10, 5, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "pack") {
+      ctx.fillStyle = "#4a5c3a";
+      ctx.fillRect(prop.x - 8, prop.y - 10, 16, 12);
+      ctx.fillStyle = "#c45c26";
+      ctx.fillRect(prop.x - 6, prop.y - 14, 12, 5);
+    } else if (prop.kind === "cairn") {
+      ctx.fillStyle = "#b8aea0";
+      ctx.fillRect(prop.x - 8, prop.y - 6, 16, 8);
+      ctx.fillRect(prop.x - 5, prop.y - 12, 10, 6);
+      ctx.fillRect(prop.x - 3, prop.y - 16, 6, 4);
     }
   }
 }
@@ -434,6 +500,13 @@ function drawDiscoveryLandmarks(ctx, world, state) {
       ctx.beginPath();
       ctx.ellipse(0, 0, 18, 10, 0, 0, Math.PI * 2);
       ctx.fill();
+      if (!state.reducedMotion) {
+        const pulse = 10 + Math.sin(state.time * 2.4) * 3;
+        ctx.strokeStyle = "rgba(180, 220, 210, 0.45)";
+        ctx.beginPath();
+        ctx.ellipse(0, 2, pulse, pulse * 0.4, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
     } else if (item.symbol === "rills") {
       ctx.strokeStyle = "rgba(120, 90, 50, 0.7)";
       ctx.lineWidth = 2;
@@ -608,15 +681,45 @@ function drawRanger(ctx, region, time, reduced) {
 }
 
 function drawPlayer(ctx, player, time, reduced) {
-  const moving = Math.hypot(player.vx, player.vy) > 8;
-  const bob = reduced || !moving ? 0 : Math.sin(time * 12) * 2.2;
-  drawPerson(ctx, player.x, player.y, player.facing, bob, {
-    shirt: "#2a9d8f",
-    pants: "#3d4f66",
-    skin: "#f0c09a",
-    hair: "#2b241c",
-    pack: "#c45c26"
-  });
+  const moving = Math.hypot(player.vx || 0, player.vy || 0) > 12;
+  const inspecting = player.pose === "inspect";
+  const dir = player.facing >= 0 ? 1 : -1;
+  const bob = reduced ? 0 : inspecting ? 1 : moving ? Math.sin(time * 11) * 2 : Math.sin(time * 1.6) * 0.6;
+  const stride = reduced || !moving ? 0 : Math.sin(time * 11) * 5;
+  ctx.save();
+  ctx.translate(player.x, player.y);
+  ctx.fillStyle = "rgba(30,40,20,0.25)";
+  ctx.beginPath();
+  ctx.ellipse(0, 11, 15, 6, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#3d4f66";
+  ctx.fillRect(-9 + stride * 0.15, 2 + bob, 7, 12);
+  ctx.fillRect(2 - stride * 0.15, 2 + bob, 7, 12);
+  ctx.fillStyle = "#c45c26";
+  ctx.fillRect(-10, -16 + bob, 20, 16);
+  ctx.fillStyle = "#2a9d8f";
+  ctx.fillRect(-8, -20 + bob, 16, 8);
+  ctx.fillStyle = "#f0c09a";
+  ctx.beginPath();
+  ctx.arc(0, -26 + bob, 9, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#3a2a1c";
+  ctx.beginPath();
+  ctx.arc(-2, -29 + bob, 8, Math.PI, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#1c1c1c";
+  ctx.beginPath();
+  ctx.arc(dir * 3, -26 + bob, 1.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#6b4424";
+  ctx.fillRect(-5 - dir * 9, -14 + bob, 9, 11);
+  if (inspecting) {
+    ctx.fillStyle = "#f4efe2";
+    ctx.fillRect(dir * 10, -12 + bob, 8, 10);
+    ctx.strokeStyle = "#8a6238";
+    ctx.strokeRect(dir * 10, -12 + bob, 8, 10);
+  }
+  ctx.restore();
 }
 
 function drawDestination(ctx, state) {

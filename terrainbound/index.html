@@ -20,11 +20,9 @@
 
     <section id="title-screen">
       <div class="title-card">
-        <p class="kicker">Explore the land</p>
         <h1>TerrainBound</h1>
-        <p class="tag">A wilderness you can walk. Look closely. Follow the water.</p>
-        <button type="button" id="enter-btn">Enter Cedar Hollow</button>
-        <p class="title-note">Keyboard and mouse · wander as you like</p>
+        <p class="kicker">Cedar Hollow</p>
+        <button type="button" id="enter-btn" aria-label="Enter Cedar Hollow">Begin</button>
       </div>
     </section>
 
@@ -39,30 +37,51 @@
 
     <aside id="journal" aria-hidden="true">
       <header>
-        <h2>Field tablet</h2>
+        <p class="journal-brand">Field tablet</p>
+        <h2>Cedar Hollow</h2>
         <button type="button" id="journal-close">Close</button>
       </header>
-      <section class="journal-section">
+      <nav class="journal-tabs" role="tablist">
+        <button type="button" class="is-on" data-tab="notes">Notes</button>
+        <button type="button" data-tab="finds">Finds</button>
+        <button type="button" data-tab="evidence" id="tab-evidence-btn">Evidence</button>
+        <button type="button" data-tab="sketch" id="tab-sketch-btn">Sketch</button>
+      </nav>
+      <section class="journal-section is-on" data-panel="notes">
         <h3 class="journal-kicker">Mission notes</h3>
         <div id="journal-mission"></div>
       </section>
-      <section class="journal-section">
+      <section class="journal-section" data-panel="finds" hidden>
         <h3 class="journal-kicker">Discoveries</h3>
         <p id="discovery-count">Cedar Hollow discoveries  0 / 0</p>
         <div id="journal-discoveries"></div>
       </section>
-      <section class="journal-section" id="journal-evidence-section" hidden>
+      <section class="journal-section" data-panel="evidence" id="journal-evidence-section" hidden>
         <h3 class="journal-kicker">Evidence</h3>
         <p id="evidence-count"></p>
         <div id="journal-evidence"></div>
       </section>
-      <section class="journal-section" id="journal-sketch-section" hidden>
+      <section class="journal-section" data-panel="sketch" id="journal-sketch-section" hidden>
         <h3 class="journal-kicker">Landscape sketch</h3>
         <p class="journal-empty" id="sketch-caption">A field drawing of Cedar Hollow — not a trail map.</p>
         <canvas id="field-sketch" width="320" height="168" aria-label="Cedar Hollow field sketch"></canvas>
         <button type="button" id="hypothesis-open" hidden>What shaped this hollow?</button>
       </section>
+      <footer class="journal-foot">
+        <button type="button" id="journal-reset" class="quiet-btn">New exploration</button>
+      </footer>
     </aside>
+
+    <div id="confirm-reset" hidden role="dialog" aria-label="Start a new exploration">
+      <div class="dialogue-card">
+        <h2>Start a new exploration?</h2>
+        <p>This clears the field journal stored on this computer. It cannot be undone.</p>
+        <div id="reset-actions">
+          <button type="button" id="reset-confirm">Clear journal</button>
+          <button type="button" id="reset-cancel" class="quiet-btn">Keep notes</button>
+        </div>
+      </div>
+    </div>
 
     <div id="toast" hidden>
       <strong>Observation added</strong>
@@ -101,6 +120,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p2"></script>
+  <script type="module" src="./js/main.js?v=p3"></script>
 </body>
 </html>

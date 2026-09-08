@@ -2,25 +2,28 @@
   "regionId": "cedar-hollow",
   "wren": {
     "idle": [
-      "Creek's still a little loud from last night.",
-      "If you get mud on the tablet, wipe it on the grass, not the porch."
+      "You hear that? Creek's still talking about last night.",
+      "If the tablet gets muddy, grass — not the porch.",
+      "What doesn't fit is usually the useful part."
     ],
-    "missionNudge": "The water still has a story. Slope, creek, pond, reach.",
-    "afterComplete": "You traced the storm. The hollow's bigger than one rain, though."
+    "missionNudge": "Slope, creek, pond, reach. Did the water take the path you expected?",
+    "afterComplete": "You traced the storm. The hollow's bigger than one rain, though. What else doesn't sit right?"
   },
   "items": [
     {
       "id": "glacial-erratic",
-      "name": "Glacial erratic",
+      "name": "Strange boulder",
+      "interpretedName": "Glacial erratic",
       "symbol": "erratic",
       "x": 1418,
       "y": 312,
       "radius": 52,
       "location": "North trail, below Granite Knob",
       "prompt": "A boulder sits on smaller rock. They don't match.",
-      "text": "This boulder is very different from the bedrock beneath it. How did it get here?",
+      "text": "A large boulder sits by the north trail. Its rock looks different from Granite Knob.",
+      "interpretedText": "Moving ice carried this rock into Cedar Hollow. It did not grow on the knob.",
       "wrenHint": "If you're heading toward Granite Knob, take a look at the boulders near the north trail. Something about them doesn't quite fit.",
-      "wrenAck": "That odd boulder on the north trail? I still don't have a tidy story for it.",
+      "wrenAck": "That odd boulder on the north trail? I still don't have a tidy story for it. Do you?",
       "curriculumSlotIds": ["transported-sediment"]
     },
     {
@@ -34,7 +37,7 @@
       "prompt": "The mountain's skin is showing.",
       "text": "Layer after layer, the same rock as the knob. It looks older than the soil around it.",
       "wrenHint": "The east face of the knob is stripped. You can see the mountain, not just the trees.",
-      "wrenAck": "You found the bare rock on the knob. That's the hollow's bones.",
+      "wrenAck": "You found the bare rock on the knob. Same rock as the hill — or is it?",
       "curriculumSlotIds": ["weathering-and-bedrock"]
     },
     {
