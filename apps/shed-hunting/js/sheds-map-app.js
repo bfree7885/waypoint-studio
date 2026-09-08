@@ -3040,7 +3040,8 @@
    * Reuses base+terrain cache across Frame A/B switches.
    */
   function recomputeRadarP0(gen, wxPromise) {
-    if (!RadarP0 || !GisPack || !HabitatGis) {
+    var BaseLandscape = window.WaypointShedsRadarBaseLandscape;
+    if (!RadarP0 || !GisPack || !BaseLandscape) {
       paintRadarGrid(RadarP0 ? RadarP0.emptyRadarGrid("Radar modules unavailable.").grid : {
         cells: [], rows: 0, cols: 0, bounds: { west: 0, east: 0, south: 0, north: 0 },
         renderMode: "radar-interest", unavailable: true, habitatEmpty: true,
@@ -3119,7 +3120,7 @@
           rows: dims.rows,
           cols: dims.cols,
           cellSizeMApprox: dims.cellSizeMApprox,
-          HabitatGis: HabitatGis,
+          BaseLandscape: BaseLandscape,
           GisPack: GisPack
         });
         if (!built.ok) {

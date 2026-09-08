@@ -1851,3 +1851,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Outside pack AOI: empty/limited surface — never fabricate land-cover-rich radar.
 - Prototype controls and evidence belong in-branch; do not deploy P0 as production launch or rename UI to “Shed Radar.”
 - Experience proof requires enrichment-ready capture: without aspect, Frame A/B are analytically identical. Dismiss onboarding overlays for screenshots only; assert map-region pixel delta (not frame-button chrome) and heat-canvas fingerprint change.
+
+## Lessons Learned — Sheds RADAR P1 base landscape (2026-09-07)
+
+- Do not use HabitatGis 3-band collapse as the permanent RADAR foundation — continuous pack geography already exists and was being discarded.
+- Prefer a RADAR-specific scorer over rewriting HabitatGis so legacy Search Area / GIS channels stay stable.
+- Flatten searchable vegetation bases; suppress water/developed as **search practicality**, not deer ecology. Force water score to 0 so mild slope weight cannot resurrect interest.
+- Keep pack `edgeM` but withhold transition boost on developed/water cells; use conservative “land-cover transition” copy until opposite-side class is known.
+- Missing slope ≠ low: land-only partial status. Aspect/`featureKind` stay condition-only.
+- Feed Phase 1 via `landscapeScore` (unit scale) with modifier deltas × 1/3 — do not re-quantize continuous base to feed the old 0–3 GIS path.

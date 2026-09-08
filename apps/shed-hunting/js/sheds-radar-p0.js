@@ -1,15 +1,18 @@
 /**
- * Sheds RADAR P0 — viewport-scoped relative search-interest surface (architecture proof).
+ * Sheds RADAR — viewport-scoped relative search-interest surface.
+ *
+ * P1: continuous static base landscape (WaypointShedsRadarBaseLandscape).
+ * P0 proof: controlled condition frames A/B atop that base.
  *
  * Pure / deterministic. Reuses WaypointShedsSearchPriorityToday per cell.
  * NOT shed/find probability. NOT production launch. Pike pack AOI only.
  *
- * Spec: docs/sheds/SHEDS-RADAR-P0.md
+ * Spec: docs/sheds/SHEDS-RADAR-P1.md (base) · docs/sheds/SHEDS-RADAR-P0.md (frames)
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "radar-p0.1";
+  var VERSION = "radar-p1.0";
   var TARGET_CELL_M = 90;
   var TARGET_SPAN_M = 4500;
   var MAX_DIM = 56;
@@ -17,7 +20,7 @@
   var MIN_ZOOM = 11;
 
   /**
-   * Controlled condition frames for the P0 proof.
+   * Controlled condition frames for the P0 proof (regression on P1 base).
    * Frame A: cold / snow-limiting — no solar trigger.
    * Frame B: warming / thaw — solar_searchability on southish aspect.
    */
@@ -46,12 +49,16 @@
     })
   });
 
-  /** Phase 1 base score mapping (documented): GIS band → 0|1|2 */
+  /** Legacy P0 GIS band → 0|1|2 (kept for tests/docs; RADAR base no longer uses this). */
   var GIS_BASE = Object.freeze({
     stronger: 2,
     some: 1,
     limited: 0
   });
+
+  function getBaseLandscape() {
+    return global.WaypointShedsRadarBaseLandscape || null;
+  }
 
   function finiteNum(n) {
     return typeof n === "number" && isFinite(n);
@@ -162,16 +169,16 @@
   }
 
   /**
-   * Build BASE landscape field from pack GIS only (no conditions, no aspect yet).
-   * Observations intentionally excluded.
+   * Build STATIC base landscape field from pack GIS via RADAR P1 scorer.
+   * Observations / aspect / weather intentionally excluded from score.
    */
   function buildBaseField(opts) {
     opts = opts || {};
     var pack = opts.pack;
     var bounds = opts.bounds;
-    var HabitatGis = opts.HabitatGis || getHabitatGis();
+    var BaseLandscape = opts.BaseLandscape || getBaseLandscape();
     var GisPack = opts.GisPack || getGisPack();
-    if (!pack || !bounds || !HabitatGis || !GisPack) {
+    if (!pack || !bounds || !BaseLandscape || !GisPack) {
       return {
         ok: false,
         reason: "missing_inputs",
@@ -199,28 +206,27 @@
         var lng = bounds.west + u * (bounds.east - bounds.west);
         var inPack = GisPack.inBounds(pack, lat, lng);
         var sample = inPack ? GisPack.sample(pack, lat, lng) : null;
-        var scoredPt =
-          sample && HabitatGis.scorePoint
-            ? HabitatGis.scorePoint({
-                sample: sample,
-                lat: lat,
-                lng: lng,
-                includeObservations: false
-              })
-            : null;
-        var gisBand =
-          scoredPt && scoredPt.band && !scoredPt.unavailable ? scoredPt.band.id : null;
-        if (!(gisBand === "stronger" || gisBand === "some" || gisBand === "limited")) {
-          gisBand = null;
-        }
-        if (gisBand) scored += 1;
+        var landscape = BaseLandscape.scoreSample
+          ? BaseLandscape.scoreSample(sample)
+          : null;
+        var readyLandscape =
+          landscape &&
+          landscape.score != null &&
+          (landscape.status === "ready" || landscape.status === "partial");
+        if (readyLandscape) scored += 1;
         cells.push({
           row: r,
           col: c,
           lat: lat,
           lng: lng,
-          outsideArea: !inPack || !gisBand,
-          gisBand: gisBand,
+          outsideArea: !inPack || !readyLandscape,
+          /** Continuous P1 analytical base [0,1] — not GIS bands. */
+          baseScore: readyLandscape ? landscape.score : null,
+          landscapeScore: readyLandscape ? landscape.score : null,
+          landscapeLabel: readyLandscape ? landscape.displayLabel : null,
+          landscape: landscape || null,
+          /** Legacy optional — not the RADAR foundation. */
+          gisBand: null,
           slopeDeg: sample && sample.slopeDeg != null ? sample.slopeDeg : null,
           edgeM: sample && sample.edgeM != null ? sample.edgeM : null,
           structure: sample && sample.structure ? sample.structure : null,
@@ -228,8 +234,7 @@
           nlcd: sample && sample.nlcd != null ? sample.nlcd : null,
           aspectCardinal: null,
           featureKind: null,
-          elevM: null,
-          baseScore: gisBand != null ? GIS_BASE[gisBand] : null
+          elevM: null
         });
       }
     }
@@ -245,6 +250,7 @@
       reason: "ready",
       field: {
         version: VERSION,
+        baseModel: BaseLandscape.VERSION || "radar-base-landscape",
         packId: pack.packId,
         bounds: bounds,
         rows: rows,
@@ -317,14 +323,15 @@
   }
 
   function modelCellFromBase(cell) {
-    if (!cell || cell.outsideArea || !cell.gisBand) return null;
+    if (!cell || cell.outsideArea || cell.landscapeScore == null) return null;
     return {
       id: "radar-" + cell.row + "-" + cell.col,
       row: cell.row,
       col: cell.col,
       lat: cell.lat,
       lng: cell.lng,
-      gisBand: cell.gisBand,
+      landscapeScore: cell.landscapeScore,
+      landscapeLabel: cell.landscapeLabel || "base_landscape",
       slopeDeg: cell.slopeDeg,
       aspectCardinal: cell.aspectCardinal || null,
       featureKind: cell.featureKind || null
@@ -332,7 +339,92 @@
   }
 
   /**
-   * Apply condition frame via Phase 1 evaluateCell. Returns paint grid for heat layer.
+   * Paint static P1 base only (no condition modifiers) for inspection / evidence.
+   */
+  function paintStaticBase(baseField) {
+    if (!baseField || !baseField.cells) {
+      return emptyRadarGrid("No base landscape field.");
+    }
+    var cells = [];
+    var ready = 0;
+    var i;
+    for (i = 0; i < baseField.cells.length; i++) {
+      var src = baseField.cells[i];
+      var score = src.landscapeScore != null ? src.landscapeScore : src.baseScore;
+      var ok = !src.outsideArea && score != null;
+      if (ok) ready += 1;
+      var BaseLandscape = getBaseLandscape();
+      var label =
+        src.landscapeLabel ||
+        (BaseLandscape && BaseLandscape.displayLabel ? BaseLandscape.displayLabel(score) : null);
+      cells.push({
+        row: src.row,
+        col: src.col,
+        lat: src.lat,
+        lng: src.lng,
+        outsideArea: !ok,
+        band: label
+          ? label === "Stronger"
+            ? "stronger_interest"
+            : label === "Moderate"
+              ? "moderate_interest"
+              : "lower_interest"
+          : null,
+        priority: ok ? score : 0,
+        score: ok ? score : null,
+        scoreScale: "unit",
+        interest: null,
+        status: ok ? "ready" : "insufficient_spatial",
+        gisBand: null,
+        slopeDeg: src.slopeDeg,
+        aspectCardinal: src.aspectCardinal,
+        featureKind: src.featureKind,
+        edgeM: src.edgeM,
+        structure: src.structure,
+        structureLabel: src.structureLabel,
+        baseScore: src.baseScore,
+        landscapeScore: src.landscapeScore,
+        landscape: src.landscape,
+        factors: explainFactors(src, null)
+      });
+    }
+    return {
+      ok: ready > 0,
+      reason: ready > 0 ? "ready" : "insufficient_spatial",
+      grid: {
+        cells: cells,
+        rows: baseField.rows,
+        cols: baseField.cols,
+        bounds: baseField.bounds,
+        renderMode: "radar-interest",
+        smoothDisplay: true,
+        modelVersion: VERSION,
+        frameId: "BASE",
+        frameLabel: "Static base landscape",
+        habitatEmpty: ready === 0,
+        unavailable: ready === 0,
+        disclaimer:
+          "Relative landscape interest — static base; analysis ≈" +
+          Math.round(baseField.cellSizeMApprox) +
+          " m. Not find probability.",
+        coverage: {
+          level: ready ? "moderate" : "limited",
+          label: ready ? "Static base landscape" : "Limited radar coverage"
+        },
+        cellMetersApprox: baseField.cellSizeMApprox,
+        packId: baseField.packId,
+        baseKey: baseField.key,
+        terrainEnriched: !!baseField.terrainEnriched,
+        stats: { ready: ready, solarModifiers: 0, snowModifiers: 0 }
+      },
+      frame: { id: "BASE", label: "Static base landscape" },
+      baseKey: baseField.key
+    };
+  }
+
+  /**
+   * Apply condition frame via Phase 1 evaluateCell on continuous P1 landscapeScore.
+   * Returns paint grid for heat layer. Display priority is unit-scale [0,1].
    */
   function applyFrame(baseField, frameOrId, opts) {
     opts = opts || {};
@@ -374,13 +466,15 @@
           score: null,
           interest: null,
           status: "insufficient_spatial",
-          gisBand: src.gisBand,
+          gisBand: null,
           slopeDeg: src.slopeDeg,
           aspectCardinal: src.aspectCardinal,
           featureKind: src.featureKind,
           edgeM: src.edgeM,
           structure: src.structure,
           structureLabel: src.structureLabel,
+          baseScore: src.baseScore,
+          landscapeScore: src.landscapeScore,
           factors: []
         });
         continue;
@@ -394,6 +488,10 @@
       }
       var score = ev && ev.status === "ready" ? ev.score : null;
       var band = ev && ev.status === "ready" ? ev.band : null;
+      var unit =
+        ev && ev.scoreScale === "unit"
+          ? true
+          : score != null && score <= 1.0001;
       if (ev && ev.status === "ready") ready += 1;
       cells.push({
         row: src.row,
@@ -402,12 +500,13 @@
         lng: src.lng,
         outsideArea: !(ev && ev.status === "ready"),
         band: band,
-        // Continuous 0–1 for bilinear display only (score is 0–3 relative interest).
-        priority: score != null ? score / 3 : 0,
+        // Unit-scale continuous display (P1 base + scaled condition deltas).
+        priority: score != null ? (unit ? score : score / 3) : 0,
         score: score,
+        scoreScale: unit ? "unit" : "tri",
         interest: ev || null,
         status: ev ? ev.status : "insufficient_spatial",
-        gisBand: src.gisBand,
+        gisBand: null,
         slopeDeg: src.slopeDeg,
         aspectCardinal: src.aspectCardinal,
         featureKind: src.featureKind,
@@ -415,6 +514,8 @@
         structure: src.structure,
         structureLabel: src.structureLabel,
         baseScore: src.baseScore,
+        landscapeScore: src.landscapeScore,
+        landscape: src.landscape,
         factors: explainFactors(src, ev)
       });
     }
@@ -461,32 +562,36 @@
 
   function explainFactors(src, ev) {
     var factors = [];
-    if (src && src.gisBand) {
+    if (src && src.landscape && src.landscape.factors && src.landscape.factors.length) {
+      var lf = src.landscape.factors;
+      var k;
+      for (k = 0; k < lf.length; k++) {
+        factors.push(lf[k]);
+      }
+    } else if (src && src.landscapeScore != null) {
       factors.push({
-        id: "base_gis",
-        label: "Base habitat GIS band",
-        value: src.gisBand,
-        detail:
-          (src.structureLabel || src.structure || "structure") +
-          (src.edgeM != null ? " · edge ~" + Math.round(src.edgeM) + " m" : "")
+        id: "relative_landscape",
+        label: "Relative landscape interest",
+        value: src.landscapeLabel || String(src.landscapeScore),
+        detail: "Continuous geographic foundation — not an encounter claim."
       });
-    }
-    if (src && src.slopeDeg != null) {
-      factors.push({
-        id: "slope",
-        label: "Slope",
-        value: Math.round(src.slopeDeg) + "°",
-        detail: "From pack / elevation-derived terrain"
-      });
+      if (src.structure) {
+        factors.push({
+          id: "land_cover",
+          label: "Land cover",
+          value: src.structure,
+          detail: src.structureLabel || src.structure
+        });
+      }
     }
     if (src && src.aspectCardinal) {
       factors.push({
         id: "aspect",
         label: "Aspect",
         value: src.aspectCardinal,
-        detail: "Elevation-derived cardinal aspect"
+        detail: "Elevation-derived — used for condition interactions only, not static base"
       });
-    } else {
+    } else if (ev) {
       factors.push({
         id: "aspect_missing",
         label: "Aspect",
@@ -494,12 +599,12 @@
         detail: "No aspect — solar_searchability not applied"
       });
     }
-    if (src && src.featureKind) {
+    if (src && src.featureKind && ev) {
       factors.push({
         id: "feature",
         label: "Terrain feature",
         value: src.featureKind,
-        detail: "Elevation-derived feature kind"
+        detail: "Elevation-derived — condition interaction only, not static base score"
       });
     }
     if (ev && ev.modifiers) {
@@ -518,7 +623,10 @@
         id: "relative_score",
         label: "Relative interest score",
         value: String(ev.score),
-        detail: "0–3 relative scale — not probability"
+        detail:
+          ev.scoreScale === "unit"
+            ? "0–1 relative landscape + conditions — not an encounter claim"
+            : "0–3 relative scale — not an encounter claim"
       });
     }
     return factors;
@@ -638,6 +746,7 @@
     buildBaseField: buildBaseField,
     enrichWithTerrain: enrichWithTerrain,
     applyFrame: applyFrame,
+    paintStaticBase: paintStaticBase,
     explainAt: explainAt,
     diffFrames: diffFrames,
     emptyRadarGrid: emptyRadarGrid,

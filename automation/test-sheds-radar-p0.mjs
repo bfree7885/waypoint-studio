@@ -34,6 +34,7 @@ function loadScripts(files) {
 const sandbox = loadScripts([
   "apps/shed-hunting/js/sheds-habitat-gis.js",
   "apps/shed-hunting/js/sheds-gis-pack.js",
+  "apps/shed-hunting/js/sheds-radar-base-landscape.js",
   "apps/shed-hunting/js/sheds-search-priority.js",
   "apps/shed-hunting/js/sheds-search-priority-today.js",
   "apps/shed-hunting/js/sheds-search-priority-today-map.js",
@@ -43,10 +44,11 @@ const sandbox = loadScripts([
 const Radar = sandbox.WaypointShedsRadarP0;
 const Model = sandbox.WaypointShedsSearchPriorityToday;
 const HabitatGis = sandbox.WaypointShedsHabitatGis;
+const BaseLandscape = sandbox.WaypointShedsRadarBaseLandscape;
 const GisPack = sandbox.WaypointShedsGisPack;
 const Adapter = sandbox.WaypointShedsSearchPriorityTodayMap;
 
-assert.ok(Radar && Model && HabitatGis && GisPack, "core modules must load");
+assert.ok(Radar && Model && HabitatGis && BaseLandscape && GisPack, "core modules must load");
 
 const packPath = path.join(root, "apps/shed-hunting/gis/packs/pa-pike-milford-v1.json");
 assert.ok(fs.existsSync(packPath), "Pike pack must exist");
@@ -81,7 +83,7 @@ const base1 = Radar.buildBaseField({
   rows: dims.rows,
   cols: dims.cols,
   cellSizeMApprox: dims.cellSizeMApprox,
-  HabitatGis,
+  BaseLandscape,
   GisPack,
 });
 assert.equal(base1.ok, true, "A base field without Search Area");
@@ -94,13 +96,13 @@ const base2 = Radar.buildBaseField({
   rows: dims.rows,
   cols: dims.cols,
   cellSizeMApprox: dims.cellSizeMApprox,
-  HabitatGis,
+  BaseLandscape,
   GisPack,
 });
 assert.equal(base1.field.key, base2.field.key, "B same cache key");
 assert.equal(
-  JSON.stringify(base1.field.cells.map((c) => [c.gisBand, c.slopeDeg, c.baseScore])),
-  JSON.stringify(base2.field.cells.map((c) => [c.gisBand, c.slopeDeg, c.baseScore])),
+  JSON.stringify(base1.field.cells.map((c) => [c.landscapeScore, c.slopeDeg, c.baseScore])),
+  JSON.stringify(base2.field.cells.map((c) => [c.landscapeScore, c.slopeDeg, c.baseScore])),
   "B deterministic base"
 );
 
@@ -224,6 +226,8 @@ assert.ok(mapApp.includes("setSearchAreasVisible"), "M Search Areas API remains"
 assert.ok(mapApp.includes("scheduleSearchAreas"), "M Search Areas schedule remains");
 assert.ok(mapApp.includes("state.radarP0Enabled"), "M radar gated separately");
 assert.ok(mapApp.includes("fetchRadarElevations"), "K dedicated radar elev fetch");
+assert.ok(mapApp.includes("BaseLandscape"), "M map uses P1 BaseLandscape for radar base");
+assert.ok(mapApp.includes("WaypointShedsRadarBaseLandscape"), "M BaseLandscape global");
 assert.ok(
   /setRadarP0Frame[\s\S]*radarBaseCache[\s\S]*applyFrame/.test(mapApp),
   "J/K frame switch uses applyFrame on cached base"
@@ -273,6 +277,7 @@ assert.ok(!/shed probability|find probability|hotspot/i.test(JSON.stringify(expl
 // HTML + script wiring
 const mapHtml = fs.readFileSync(path.join(root, "apps/shed-hunting/map/index.html"), "utf8");
 assert.ok(mapHtml.includes("sheds-radar-p0.js"), "script tag present");
+assert.ok(mapHtml.includes("sheds-radar-base-landscape.js"), "P1 base scorer script present");
 assert.ok(mapHtml.includes("btn-radar-frame-a"), "frame A control");
 assert.ok(mapHtml.includes("btn-radar-frame-b"), "frame B control");
 assert.ok(mapHtml.includes("Relative Search Interest"), "honest product language");
@@ -294,7 +299,7 @@ const baseFix = Radar.buildBaseField({
   rows: elevFix.rows,
   cols: elevFix.cols,
   cellSizeMApprox: 90,
-  HabitatGis,
+  BaseLandscape,
   GisPack,
 });
 assert.equal(baseFix.ok, true, "fixture viewport base field");
