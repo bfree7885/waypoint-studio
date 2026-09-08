@@ -134,6 +134,17 @@
         "code": null,
         "status": "pending-official-alignment"
       }
+    },
+    {
+      "id": "topic-1-scientific-habits",
+      "playerVisible": false,
+      "sciencePractice": "Asking questions and defining problems",
+      "topic": "Topic 1 scientific thinking habits: observation, evidence, patterns, systems, explanation, and revision",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
     }
   ]
 }

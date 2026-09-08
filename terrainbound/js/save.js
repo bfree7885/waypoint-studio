@@ -1,21 +1,79 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
+ * v1 Cedar Hollow saves migrate to v2 (regions, mastery, tools).
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 export function emptyTaught() {
-  return { walk: false, inspect: false, journal: false };
+  return { walk: false, inspect: false, journal: false, worldMap: false, routeHighCountry: false };
 }
 
-export function captureSave({ player, missionState, discoveryState, invState, taught }) {
+export function emptyWorldSave() {
+  return {
+    currentRegion: "cedar-hollow",
+    accessibleRegions: ["cedar-hollow"],
+    masteredRegions: []
+  };
+}
+
+export function emptyMasterySave() {
+  return { records: [] };
+}
+
+export function emptyToolsSave() {
+  return { earnedIds: [] };
+}
+
+export function migrateSave(data) {
+  if (!data || typeof data !== "object") return null;
+  if (data.v === 2) {
+    return {
+      ...data,
+      taught: { ...emptyTaught(), ...(data.taught || {}) },
+      world: { ...emptyWorldSave(), ...(data.world || {}) },
+      mastery: { ...emptyMasterySave(), ...(data.mastery || {}) },
+      tools: { ...emptyToolsSave(), ...(data.tools || {}) }
+    };
+  }
+  if (data.v === 1) {
+    return {
+      ...data,
+      v: 2,
+      taught: { ...emptyTaught(), ...(data.taught || {}) },
+      world: emptyWorldSave(),
+      mastery: emptyMasterySave(),
+      tools: emptyToolsSave(),
+      currentRegion: data.regionId || "cedar-hollow"
+    };
+  }
+  return null;
+}
+
+export function captureSave({
+  player,
+  missionState,
+  discoveryState,
+  invState,
+  taught,
+  worldState,
+  masteryState,
+  toolState
+}) {
   return {
     v: SAVE_VERSION,
-    regionId: "cedar-hollow",
+    regionId: worldState?.currentRegion || "cedar-hollow",
     savedAt: Date.now(),
     player: { x: player.x, y: player.y, facing: player.facing },
     taught: { ...emptyTaught(), ...(taught || {}) },
+    world: {
+      currentRegion: worldState?.currentRegion || "cedar-hollow",
+      accessibleRegions: worldState?.accessibleRegions || ["cedar-hollow"],
+      masteredRegions: worldState?.masteredRegions || []
+    },
+    mastery: { records: masteryState?.records || [] },
+    tools: { earnedIds: toolState?.earnedIds || [] },
     mission: {
       introSeen: missionState.introSeen,
       observations: missionState.observations,
@@ -44,17 +102,32 @@ export function captureSave({ player, missionState, discoveryState, invState, ta
   };
 }
 
-export function applySave(data, { player, missionState, discoveryState, invState, taught }) {
-  if (!data || data.v !== SAVE_VERSION) return false;
-  if (data.player) {
-    player.x = data.player.x;
-    player.y = data.player.y;
-    player.facing = data.player.facing ?? player.facing;
+export function applySave(
+  data,
+  { player, missionState, discoveryState, invState, taught, worldState, masteryState, toolState }
+) {
+  const migrated = migrateSave(data);
+  if (!migrated) return false;
+  if (migrated.player) {
+    player.x = migrated.player.x;
+    player.y = migrated.player.y;
+    player.facing = migrated.player.facing ?? player.facing;
   }
-  if (data.taught) Object.assign(taught, emptyTaught(), data.taught);
-  if (data.mission) Object.assign(missionState, data.mission);
-  if (data.discoveries) Object.assign(discoveryState, data.discoveries);
-  if (data.investigation) Object.assign(invState, data.investigation);
+  if (migrated.taught) Object.assign(taught, emptyTaught(), migrated.taught);
+  if (migrated.mission) Object.assign(missionState, migrated.mission);
+  if (migrated.discoveries) Object.assign(discoveryState, migrated.discoveries);
+  if (migrated.investigation) Object.assign(invState, migrated.investigation);
+  if (worldState && migrated.world) {
+    worldState.currentRegion = migrated.world.currentRegion;
+    worldState.accessibleRegions = [...migrated.world.accessibleRegions];
+    worldState.masteredRegions = [...migrated.world.masteredRegions];
+  }
+  if (masteryState && migrated.mastery) {
+    masteryState.records = [...(migrated.mastery.records || [])];
+  }
+  if (toolState && migrated.tools) {
+    toolState.earnedIds = [...(migrated.tools.earnedIds || [])];
+  }
   return true;
 }
 
@@ -63,9 +136,7 @@ export function readSave(storage) {
   try {
     const raw = storage.getItem(SAVE_KEY);
     if (!raw) return null;
-    const data = JSON.parse(raw);
-    if (!data || data.v !== SAVE_VERSION) return null;
-    return data;
+    return migrateSave(JSON.parse(raw));
   } catch {
     return null;
   }

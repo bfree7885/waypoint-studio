@@ -1,0 +1,221 @@
+{
+  "id": "topic-1-cedar-hollow",
+  "regionId": "cedar-hollow",
+  "curriculumTopic": 1,
+  "curriculumTitle": "Scientific Thinking & Earth Systems",
+  "purpose": "Establish transferable scientific habits. Cedar Hollow does not currently elicit every Topic 1 competency.",
+  "playerVisibleCodes": false,
+  "contentCompletion": {
+    "note": "Visiting discoveries, finishing mission screens, or time played is not mastery.",
+    "discoveries": 12,
+    "missions": ["where-does-the-water-go", "reading-the-landscape"]
+  },
+  "competencies": [
+    {
+      "id": "observation",
+      "internalLabel": "Observation",
+      "studentLabel": "Careful observation",
+      "fieldRecord": true,
+      "description": "Distinguish what was actually observed from an interpretation.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "observation",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "discovery-inspect", "count": 1, "source": "observation" }
+      ]
+    },
+    {
+      "id": "evidence",
+      "internalLabel": "Evidence",
+      "studentLabel": "Evidence gathering",
+      "fieldRecord": true,
+      "description": "Gather relevant observations and measurements.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "evidence",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "mission-observation", "count": 3, "source": "observation" },
+        { "kind": "field-measurement", "count": 1, "source": "measurement" }
+      ]
+    },
+    {
+      "id": "patterns",
+      "internalLabel": "Patterns",
+      "studentLabel": "Recognizing patterns",
+      "fieldRecord": false,
+      "description": "Recognize meaningful patterns in data or the environment.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "patterns",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "water-path", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "variables",
+      "internalLabel": "Variables / Measurement",
+      "studentLabel": "Testing variables",
+      "fieldRecord": true,
+      "description": "Use measurements and recognize relationships among variables.",
+      "elicitedNow": false,
+      "missingNote": "No Cedar Hollow experience yet asks the player to test or control variables.",
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "variables",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "variable-test", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "data",
+      "internalLabel": "Data",
+      "studentLabel": "Working with field data",
+      "fieldRecord": true,
+      "description": "Interpret a graph, table, or field dataset.",
+      "elicitedNow": false,
+      "missingNote": "No Cedar Hollow experience yet asks the player to interpret a graph or table.",
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "data",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "dataset-interpret", "count": 1, "source": "data-analysis" }
+      ]
+    },
+    {
+      "id": "systems",
+      "internalLabel": "Systems",
+      "studentLabel": "Earth systems",
+      "fieldRecord": true,
+      "description": "Recognize interactions among Earth-system components.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "systems",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "systems-link", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "explanation",
+      "internalLabel": "Explanation",
+      "studentLabel": "Building explanations",
+      "fieldRecord": true,
+      "description": "Construct an explanation supported by evidence.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "explanation",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "supported-explanation", "count": 1, "source": "explanation" }
+      ]
+    },
+    {
+      "id": "revision",
+      "internalLabel": "Revision",
+      "studentLabel": "Revising an explanation",
+      "fieldRecord": false,
+      "description": "Revise a model or explanation when evidence conflicts with it.",
+      "elicitedNow": true,
+      "note": "First-try success is not revision. A rejected attempt followed by a supported explanation is.",
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "revision",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "revised-explanation", "count": 1, "source": "explanation" }
+      ]
+    },
+    {
+      "id": "communication",
+      "internalLabel": "Communication",
+      "studentLabel": "Sharing a conclusion",
+      "fieldRecord": false,
+      "description": "Communicate a defensible conclusion.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "communication",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "present-findings", "count": 1, "source": "regional-challenge" }
+      ]
+    }
+  ],
+  "travelRequirements": [
+    "observation",
+    "evidence",
+    "patterns",
+    "variables",
+    "data",
+    "systems",
+    "explanation",
+    "revision",
+    "communication"
+  ],
+  "unlocks": "high-country",
+  "statusWords": {
+    "demonstrated": "demonstrated",
+    "developing": "developing",
+    "none": "not yet observed"
+  },
+  "remediationVoice": {
+    "data": "You've made strong observations. I want to see what you do with a set of measurements before you head into High Country.",
+    "variables": "I want to see how you test a changing condition before that High Country route opens.",
+    "fallback": "The hollow still has scientific work that isn't in these notes yet."
+  }
+}

@@ -1631,3 +1631,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A control legend on screen forever makes a prototype. Contextual WASD / E / J prompts that vanish after use make a game.
 - LocalStorage is enough for a school-laptop journal. Reset must ask twice; reload after wipe is cleaner than trying to rebuild runtime state by hand.
 
+### Lessons Learned — TerrainBound Phase 4 (2026-09-08)
+
+- Twelve regions belong in a data manifest, not in renderer if/else. Working names will change; draw silhouettes and previews from fields.
+- Teaching order is not topic-number order. Store `courseOrder` separately from `curriculumTopic` and assert the sequence `[1, 2, 10, 11, 3, 4, 5, 6, 9, 7, 8, 12]`.
+- Content completion is not mastery. Gate travel on competency evidence that current missions cannot fully produce, so finishing Cedar Hollow's two investigations cannot accidentally open High Country.
+- A locked region still needs a place the player can want to go: color, silhouette, and a short preview. Grey padlocks and “score 80%” both fail.
+- Keep `simulateMastery` behind `?field=1`. Student UI must not grow an unlock button because the gate is unfinished.
+- Save v1 must migrate in place. Changing the localStorage key would strand school laptops that already have a journal.
+

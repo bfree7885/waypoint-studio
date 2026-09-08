@@ -56,6 +56,15 @@ export function bindUi(root) {
   const hypothesisStatus = root.querySelector("#hypothesis-status");
   const hypothesisTry = root.querySelector("#hypothesis-try");
   const hypothesisClear = root.querySelector("#hypothesis-clear");
+  const fieldRecord = root.querySelector("#field-record");
+  const atlas = root.querySelector("#atlas");
+  const atlasName = root.querySelector("#atlas-name");
+  const atlasSubtitle = root.querySelector("#atlas-subtitle");
+  const atlasBlurb = root.querySelector("#atlas-blurb");
+  const atlasKicker = root.querySelector("#atlas-kicker");
+  const atlasRouteLabel = root.querySelector("#atlas-route-label");
+  const atlasRoute = root.querySelector("#atlas-route");
+  const atlasTravel = root.querySelector("#atlas-travel");
 
   const enterBtn = root.querySelector("#enter-btn");
   const confirmReset = root.querySelector("#confirm-reset");
@@ -251,6 +260,42 @@ export function bindUi(root) {
         hypothesisOpen.textContent = view.landscapeConcluded
           ? "Review the explanation"
           : "What shaped this hollow?";
+      }
+
+      if (fieldRecord) {
+        fieldRecord.replaceChildren();
+        for (const item of view.fieldRecord || []) {
+          const row = document.createElement("p");
+          row.className = "field-record-row is-" + item.status;
+          const mark = item.status === "demonstrated" ? "✓" : item.status === "developing" ? "◐" : "○";
+          row.textContent = `${mark} ${item.label}`;
+          fieldRecord.appendChild(row);
+        }
+        if (view.missingLine) {
+          const note = document.createElement("p");
+          note.className = "journal-empty";
+          note.textContent = view.missingLine;
+          fieldRecord.appendChild(note);
+        }
+      }
+    },
+    showAtlas(open) {
+      if (atlas) atlas.hidden = !open;
+    },
+    setAtlasPreview(model) {
+      if (!model) return;
+      if (atlasName) atlasName.textContent = model.name;
+      if (atlasKicker) {
+        atlasKicker.textContent =
+          model.status === "here" ? "You are here" : model.status === "open" ? "Route open" : "Preview";
+      }
+      if (atlasSubtitle) atlasSubtitle.textContent = model.subtitle;
+      if (atlasBlurb) atlasBlurb.textContent = model.shortPreview;
+      if (atlasRouteLabel) atlasRouteLabel.textContent = "Travel route";
+      if (atlasRoute) atlasRoute.textContent = `${model.routeLabel}. ${model.routeDetail}`;
+      if (atlasTravel) {
+        atlasTravel.hidden = !model.canEnter;
+        atlasTravel.textContent = model.canEnter ? "Walk this region" : "";
       }
     },
     showConclusion(open, features, path, observed, hintText) {

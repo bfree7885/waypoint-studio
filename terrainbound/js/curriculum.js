@@ -31,7 +31,7 @@ export function slotsForInvestigation(curriculum, investigation) {
   return slotsFor(curriculum, investigation.curriculumSlotIds);
 }
 
-export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null, investigation = null) {
+export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null, investigation = null, extras = []) {
   const forbidden = /\b[A-Z]{1,4}-ESS\d-\d+\b/;
   const playerText = [
     mission.title,
@@ -68,6 +68,7 @@ export function assertNoPlayerFacingCodes(mission, curriculum, catalog = null, i
     }
     for (const label of investigation.worldLabels || []) playerText.push(label.text);
   }
+  playerText.push(...extras);
   const joined = playerText.filter(Boolean).join("\n");
   return {
     hasOfficialLookingCode: forbidden.test(joined),

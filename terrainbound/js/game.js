@@ -40,6 +40,27 @@ import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
 import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, wipeRequiresConfirm } from "./save.js";
 import { createAudio } from "./audio.js";
+import {
+  createMasteryState,
+  gameplaySnapshot,
+  syncFromGameplay,
+  fieldRecord,
+  missingEvidence,
+  regionMastered,
+  remediationLine,
+  simulateMastery as applySimulatedMastery
+} from "./mastery.js";
+import {
+  loadWorld,
+  createWorldState,
+  previewModel,
+  applyTravelUnlocks,
+  drawWorldMap,
+  hitTestRegion,
+  canEnterRegion
+} from "./worldmap.js";
+import { createToolState, syncToolsFromGameplay } from "./tools.js";
+import { createHazardState } from "./hazards.js";
 
 const WALK_SPEED = 196;
 const VIEW_HEIGHT = 760;
@@ -57,14 +78,27 @@ const FLOW_MAP = [
 
 export async function boot(root = document) {
   const canvas = root.querySelector("#world");
-  const [region, mission, curriculum, catalog, investigation] = await Promise.all([
-    fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
-    fetch("./data/missions/where-does-the-water-go.json").then((r) => r.json()),
-    fetch("./data/curriculum/placeholders.json").then((r) => r.json()),
-    fetch("./data/discoveries/cedar-hollow.json").then((r) => r.json()),
-    fetch("./data/investigations/reading-the-landscape.json").then((r) => r.json())
-  ]);
+  const [region, mission, curriculum, catalog, investigation, worldRaw, masteryProfile, toolsCatalog, hazardsCatalog] =
+    await Promise.all([
+      fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/missions/where-does-the-water-go.json").then((r) => r.json()),
+      fetch("./data/curriculum/placeholders.json").then((r) => r.json()),
+      fetch("./data/discoveries/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/investigations/reading-the-landscape.json").then((r) => r.json()),
+      fetch("./data/world/regions.json").then((r) => r.json()),
+      fetch("./data/mastery/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/world/tools.json").then((r) => r.json()),
+      fetch("./data/world/hazards.json").then((r) => r.json())
+    ]);
   void curriculum;
+  void hazardsCatalog;
+
+  const tbWorld = loadWorld(worldRaw);
+  const worldState = createWorldState(tbWorld);
+  const masteryState = createMasteryState();
+  const toolState = createToolState();
+  const hazardState = createHazardState();
+  void hazardState;
 
   const world = createWorld(region, 1842, catalog.items);
   const missionState = createMissionState(mission);
@@ -94,15 +128,29 @@ export async function boot(root = document) {
   let dialogue = null;
   let conclusionOpen = false;
   let hypothesisOpen = false;
+  let atlasOpen = false;
   let confirmOpen = false;
   let last = performance.now();
   let inspectLock = false;
   let camFocus = null;
   let saveTimer = 0;
   const existingSave = readSave(storage);
-  if (existingSave) applySave(existingSave, { player, missionState, discoveryState, invState, taught });
+  if (existingSave) {
+    applySave(existingSave, {
+      player,
+      missionState,
+      discoveryState,
+      invState,
+      taught,
+      worldState,
+      masteryState,
+      toolState
+    });
+  }
   camera.x = player.x;
   camera.y = player.y - 28;
+  syncFromGameplay(masteryState, gameplaySnapshot({ discoveryState, missionState, invState }));
+  syncToolsFromGameplay(toolState, toolsCatalog, { journalOpened: taught.journal });
 
   function journalView(open = journalOpen) {
     const evidence = evidenceModel(investigation, invState);
@@ -119,12 +167,66 @@ export async function boot(root = document) {
       evidence,
       sketch: sketchModel(investigation, invState),
       investigation,
-      canPropose: canProposeExplanation(investigation, invState)
+      canPropose: canProposeExplanation(investigation, invState),
+      fieldRecord: fieldRecord(masteryProfile, masteryState),
+      missingLine:
+        missionState.concluded && invState.concluded && !regionMastered(masteryProfile, masteryState)
+          ? remediationLine(masteryProfile, masteryState)
+          : ""
     };
   }
 
+  function syncProgress() {
+    syncFromGameplay(masteryState, gameplaySnapshot({ discoveryState, missionState, invState }));
+    syncToolsFromGameplay(toolState, toolsCatalog, { journalOpened: taught.journal });
+    if (regionMastered(masteryProfile, masteryState)) {
+      const opened = applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+      if (opened.includes("high-country") && !taught.routeHighCountry) {
+        taught.routeHighCountry = true;
+        ui.showToast("High Country", "Route open.");
+      }
+    }
+  }
+
   function persist() {
-    writeSave(storage, captureSave({ player, missionState, discoveryState, invState, taught }));
+    syncProgress();
+    writeSave(
+      storage,
+      captureSave({
+        player,
+        missionState,
+        discoveryState,
+        invState,
+        taught,
+        worldState,
+        masteryState,
+        toolState
+      })
+    );
+  }
+
+  function renderAtlas() {
+    const canvasEl = root.querySelector("#atlas-map");
+    if (!canvasEl) return;
+    const ctx = canvasEl.getContext("2d");
+    drawWorldMap(ctx, tbWorld, worldState, worldState.selectedRegionId);
+    ui.setAtlasPreview(previewModel(tbWorld, worldState, worldState.selectedRegionId));
+  }
+
+  function openAtlas(regionId) {
+    if (regionId) worldState.selectedRegionId = regionId;
+    atlasOpen = true;
+    journalOpen = false;
+    taught.worldMap = true;
+    persist();
+    refreshJournal();
+    ui.showAtlas(true);
+    renderAtlas();
+  }
+
+  function closeAtlas() {
+    atlasOpen = false;
+    ui.showAtlas(false);
   }
 
   function refreshJournal() {
@@ -505,9 +607,35 @@ export async function boot(root = document) {
   }
 
   root.querySelector("#enter-btn").addEventListener("click", enterWorld);
+  root.querySelector("#world-map-btn")?.addEventListener("click", () => openAtlas("cedar-hollow"));
+  root.querySelector("#map-toggle")?.addEventListener("click", () => openAtlas());
+  root.querySelector("#open-atlas")?.addEventListener("click", () => {
+    journalOpen = false;
+    refreshJournal();
+    openAtlas();
+  });
+  root.querySelector("#atlas-close")?.addEventListener("click", closeAtlas);
+  root.querySelector("#atlas-travel")?.addEventListener("click", () => {
+    if (!canEnterRegion(tbWorld, worldState, worldState.selectedRegionId)) return;
+    closeAtlas();
+    if (mode === "title") enterWorld();
+  });
+  root.querySelector("#atlas-map")?.addEventListener("pointerdown", (event) => {
+    const hit = hitTestRegion(tbWorld, event.currentTarget, event.clientX, event.clientY);
+    if (!hit) return;
+    worldState.selectedRegionId = hit.id;
+    renderAtlas();
+  });
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Tab") return;
+    if (atlasOpen) {
+      if (event.key === "Escape" || event.key === "m" || event.key === "M") {
+        event.preventDefault();
+        closeAtlas();
+      }
+      return;
+    }
     if (mode === "title" && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault();
       enterWorld();
@@ -549,6 +677,10 @@ export async function boot(root = document) {
       persist();
       refreshJournal();
     }
+    if (event.key === "m" || event.key === "M") {
+      event.preventDefault();
+      openAtlas();
+    }
     if (event.key === "e" || event.key === "E") {
       inspectTarget(currentTarget());
     }
@@ -563,7 +695,7 @@ export async function boot(root = document) {
   });
 
   canvas.addEventListener("pointerdown", (event) => {
-    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen || confirmOpen) return;
+    if (mode !== "play" || dialogue || conclusionOpen || hypothesisOpen || confirmOpen || atlasOpen) return;
     const worldPt = screenToWorld(event.clientX, event.clientY);
     const target = currentTarget();
     if (target && Math.hypot(worldPt.x - target.x, worldPt.y - target.y) < 70 && Math.hypot(player.x - target.x, player.y - target.y) < 100) {
@@ -646,7 +778,7 @@ export async function boot(root = document) {
   function step(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen;
+    const playing = mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen && !atlasOpen;
     let ax = 0;
     let ay = 0;
     if (playing) {
@@ -711,7 +843,7 @@ export async function boot(root = document) {
     }
 
     const target = currentTarget();
-    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen) {
+    if (mode === "play" && !dialogue && !conclusionOpen && !hypothesisOpen && !confirmOpen && !atlasOpen) {
       ui.setHint(controlHintText());
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
@@ -777,6 +909,9 @@ export async function boot(root = document) {
       catalog,
       investigation,
       region,
+      worldState,
+      masteryState,
+      toolState,
       go(x, y) {
         player.x = x;
         player.y = y;
@@ -812,6 +947,25 @@ export async function boot(root = document) {
       },
       tryHyp() {
         tryHypothesis();
+      },
+      openAtlas(id) {
+        openAtlas(id);
+      },
+      selectRegion(id) {
+        worldState.selectedRegionId = id;
+        if (!atlasOpen) openAtlas(id);
+        else renderAtlas();
+      },
+      simulateMastery(regionId = "cedar-hollow") {
+        applySimulatedMastery(masteryProfile, masteryState, regionId);
+        persist();
+        refreshJournal();
+        if (atlasOpen) renderAtlas();
+        return {
+          accessible: [...worldState.accessibleRegions],
+          mastered: [...worldState.masteredRegions],
+          missing: missingEvidence(masteryProfile, masteryState)
+        };
       }
     };
   }
