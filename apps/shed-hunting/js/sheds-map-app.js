@@ -3134,10 +3134,14 @@
       label: painted.grid && painted.grid.frameLabel
         ? painted.grid.frameLabel
         : "Relative Search Interest",
-      elevNote: elevMeta.fromCache
+      elevNote: elevMeta.elevNote
+        ? elevMeta.elevNote
+        : elevMeta.fromCache
         ? "Terrain cache reused · condition change did not refetch elevation."
         : field.terrainEnriched
-          ? "Terrain/aspect enriched from elevation."
+          ? field.terrainSource === "gis-pack"
+            ? "Terrain/aspect from local GIS pack."
+            : "Terrain/aspect enriched from elevation."
           : "Terrain/aspect limited — solar modifier only where aspect exists."
     });
   }
@@ -3295,55 +3299,28 @@
 
       // Already terrain-enriched for this key — skip elevation network.
       if (baseField.terrainEnriched) {
-        finishWithField(baseField, { fromCache: true });
+        finishWithField(baseField, {
+          fromCache: true,
+          elevNote:
+            baseField.terrainSource === "gis-pack"
+              ? "Terrain/aspect from local GIS pack (no live elevation)."
+              : undefined
+        });
         return;
       }
 
-      var elevKeyGuess = [
-        Number(win.bounds.west).toFixed(4),
-        Number(win.bounds.south).toFixed(4),
-        Number(win.bounds.east).toFixed(4),
-        Number(win.bounds.north).toFixed(4),
-        dims.rows,
-        dims.cols,
-        "radar"
-      ].join("|");
-      if (state.radarElevKey === elevKeyGuess && state.radarElevCache) {
-        var enrichedCached = RadarP0.enrichWithTerrain(baseField, state.radarElevCache, {
-          SearchPriority: SearchPriority,
-          zoom: zoom,
-          countedFetch: false
+      // Pack without aspect layer (legacy): do not use live Open-Meteo for normal RADAR.
+      // Prefer honest missing aspect over unreliable multi-chunk elevation.
+      if (GisPack && typeof GisPack.hasAspectLayer === "function" && !GisPack.hasAspectLayer(pack)) {
+        finishWithField(baseField, {
+          fromCache: false,
+          elevNote: "Pack has no aspect layer — solar limited; live elevation not used for RADAR."
         });
-        if (enrichedCached.ok && enrichedCached.field) {
-          state.radarBaseCache = enrichedCached.field;
-          state.radarBaseKey = key;
-          finishWithField(enrichedCached.field, { fromCache: true });
-          return;
-        }
-      }
-
-      if (state.offlineForced) {
-        finishWithField(baseField, { fromCache: false });
         return;
       }
 
-      setModelCoverageNote("Sampling elevation for aspect…");
-      fetchRadarElevations(win.bounds, dims.rows, dims.cols).then(function (elevPack) {
-        if (gen !== state.recomputeGen) return;
-        if (!elevPack || !elevPack.elevations) {
-          finishWithField(baseField, { fromCache: false });
-          return;
-        }
-        var enriched = RadarP0.enrichWithTerrain(baseField, elevPack.elevations, {
-          SearchPriority: SearchPriority,
-          zoom: zoom,
-          countedFetch: !elevPack.fromCache
-        });
-        var field = enriched.ok && enriched.field ? enriched.field : baseField;
-        state.radarBaseCache = field;
-        state.radarBaseKey = key;
-        finishWithField(field, { fromCache: !!elevPack.fromCache });
-      });
+      // Supported Pike packs carry aspect — never call fetchRadarElevations on normal path.
+      finishWithField(baseField, { fromCache: false });
     });
   }
 
@@ -7642,6 +7619,7 @@
             baseKey: state.radarBaseKey || "",
             elevKey: state.radarElevKey || "",
             elevFetchGen: state.radarElevFetchGen || 0,
+            terrainSource: field && field.terrainSource ? field.terrainSource : null,
             terrainEnriched: !!(field && field.terrainEnriched),
             rows: field ? field.rows : 0,
             cols: field ? field.cols : 0,
@@ -7660,9 +7638,9 @@
               state.radarP0Enabled &&
               field &&
               field.terrainEnriched &&
-              state.radarElevKey &&
               withAspect > 0 &&
               southish > 0 &&
+              (field.terrainSource === "gis-pack" || state.radarElevKey) &&
               state.lastGrid &&
               state.lastGrid.renderMode === "radar-interest"
             )

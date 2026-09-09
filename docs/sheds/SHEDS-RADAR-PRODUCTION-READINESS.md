@@ -41,29 +41,36 @@ Does **not** publish shedhunting.org.
 - Snow steep: **−0.20**
 - No positive snow boost on RADAR unit path
 
-## Elevation request limits
+## Elevation / pack terrain
 
-Open-Meteo `/v1/elevation` allows **≤100 coordinates** per request. RADAR
-`fetchRadarElevations` batches at **80** (same as Search Areas). A brief
-regression used **160**, which returned HTTP **400**
-(`must not exceed 100 coordinates`) and blocked live aspect enrichment.
+Open-Meteo `/v1/elevation` is **not** used for normal Pike RADAR.
 
-Chunked requests may still return **429**; the map retries with backoff and
-mild inter-chunk pacing. Live browser proof must not use elevation fixtures
-for the main gate.
+RADAR terrain now comes from the GIS pack:
+
+- `slopeDeg` (existing, USGS 3DEP–derived)
+- `aspectCardinal` (uint8 0–8, coarse ~90 m, same 3DEP DEM at pack build)
+
+Steep snow eligibility on the RADAR unit path uses pack `slopeDeg >= 22°`
+(same `STEEP_PENALTY` gate as SearchPriority `featureKind === "steep"`).
+
+Search Areas / Inspect may still call Open-Meteo elevation.
+
+Weather remains Open-Meteo forecast.
+
+Raw DEM is **not** shipped in the pack.
 
 ### Live browser proof status
 
 | Check | Result |
 |-------|--------|
-| Live Open-Meteo weather | **PASS** (`fresh`) |
-| Coordinate-cap defect | **Fixed** — RADAR chunk **80** (was 160 → HTTP 400) |
-| Full aspect enrichment | **Still blocked** — after fix, elev sequence starts with **200×8** then sustained **429** (no `Retry-After`); `terrainEnriched` false |
-| Classification (post-fix) | **A** external Open-Meteo rate limit on agent IP |
-| Fixture used for main proof | **No** |
-| Model | Unchanged (+0.20 solar / −0.20 snow steep) |
+| Pack aspect | Required for Pike RADAR |
+| Normal RADAR elev requests | Must be **0** |
+| Live weather | Open-Meteo forecast |
+| Model | Unchanged (+0.20 / −0.20) |
 
-Re-run `automation/capture-sheds-radar-production-readiness.mjs` from a cool network before publish.
+## Deployment
+
+Decision recorded in PR / session report. This doc does not authorize publish.
 
 ## Deployment
 

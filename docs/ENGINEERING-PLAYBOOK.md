@@ -1878,3 +1878,4 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dedicated-host prepare must exclude exploration assets (`antler-options`) and evidence packs; assert required RADAR runtime files are present before any publish consideration.
 - Live DEM proof without fixture interception is the production evidence gate; fixture captures are supplemental and must be labeled.
 - Open-Meteo free-tier elevation returns 429 under chunked halo sampling; retry with backoff + light pacing so one rate-limit does not abandon aspect enrichment.
+- For production Pike RADAR, precompute coarse aspect into the GIS pack from the same USGS 3DEP DEM used for slope; remove live elevation from the normal RADAR path. Keep Open-Meteo for weather only.

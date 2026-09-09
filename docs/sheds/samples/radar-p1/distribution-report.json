@@ -42,9 +42,9 @@
     "neighborHighFrac": 0.7199842022116903
   },
   "frameDiff": {
-    "changed": 1402,
-    "unchanged": 1098,
-    "solarGained": 252,
+    "changed": 465,
+    "unchanged": 2035,
+    "solarGained": 407,
     "uniformBoost": false
   },
   "constants": {

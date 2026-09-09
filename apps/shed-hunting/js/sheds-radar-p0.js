@@ -245,7 +245,7 @@
           structure: sample && sample.structure ? sample.structure : null,
           structureLabel: sample && sample.structureLabel ? sample.structureLabel : null,
           nlcd: sample && sample.nlcd != null ? sample.nlcd : null,
-          aspectCardinal: null,
+          aspectCardinal: sample && sample.aspectCardinal ? sample.aspectCardinal : null,
           featureKind: null,
           elevM: null
         });
@@ -258,6 +258,15 @@
         field: null
       };
     }
+    var withAspect = 0;
+    var ci;
+    for (ci = 0; ci < cells.length; ci++) {
+      if (cells[ci].aspectCardinal) withAspect += 1;
+    }
+    var packHasAspect =
+      GisPack && typeof GisPack.hasAspectLayer === "function"
+        ? GisPack.hasAspectLayer(pack)
+        : !!(pack && pack.aspectCardinal);
     return {
       ok: true,
       reason: "ready",
@@ -271,7 +280,9 @@
         cellSizeMApprox: dims.cellSizeMApprox,
         cells: cells,
         scoredCount: scored,
-        terrainEnriched: false,
+        /** Pack-backed aspect/slope — no live Open-Meteo elevation required. */
+        terrainEnriched: !!(packHasAspect && withAspect > 0),
+        terrainSource: packHasAspect ? "gis-pack" : "pending-elevation",
         elevFetchCount: 0,
         key: cacheKey(bounds, rows, cols, pack.packId)
       }

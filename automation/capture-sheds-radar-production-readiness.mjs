@@ -122,11 +122,23 @@ async function main() {
   const client = await connectCdp();
   await client.send("Page.enable");
   await client.send("Network.enable");
-
-  const networkLog = [];
-  // Track elevation + forecast without intercepting (live proof).
-  client.send("Network.requestWillBeSent").catch(() => {});
-  const origOn = client._ws; // unused; use CDP events via raw — simpler poll from page
+  await client.send("Page.addScriptToEvaluateOnNewDocument", {
+    source: `(() => {
+      window.__RADAR_ELEV_REQS = [];
+      window.__RADAR_WX_REQS = [];
+      const orig = window.fetch;
+      window.fetch = function (input, init) {
+        const u = String((input && input.url) || input || "");
+        if (/\\/v1\\/elevation/.test(u)) {
+          window.__RADAR_ELEV_REQS.push({ url: u.slice(0, 120), t: Date.now() });
+        }
+        if (/\\/v1\\/forecast/.test(u)) {
+          window.__RADAR_WX_REQS.push({ url: u.slice(0, 120), t: Date.now() });
+        }
+        return orig.apply(this, arguments);
+      };
+    })();`
+  });
 
   await client.send("Page.navigate", {
     url: BASE + "/apps/shed-hunting/map/?radarP0=1"
@@ -153,54 +165,48 @@ async function main() {
 
   let status = null;
   let elevClass = "unknown";
-  for (let i = 0; i < 180; i++) {
-    await delay(1000);
+  for (let i = 0; i < 60; i++) {
+    await delay(500);
     status = await client.ev(`(() => {
       const r = window.WaypointShedsMapApp && window.WaypointShedsMapApp._radarP0;
       if (!r || !r.getProofStatus) return { ready: false, reason: 'no-hook' };
       const s = r.getProofStatus();
       const frame = r.getConditionFrame && r.getConditionFrame();
       s.conditionFreshness = frame ? frame.freshness : null;
-      s.weatherReady = !!(frame && frame.freshness === 'fresh');
+      s.weatherReady = !!(frame && (frame.freshness === 'fresh' || frame.freshness === 'stale'));
       s.surfaceMode = r.getSurfaceMode && r.getSurfaceMode();
       s.toggleHidden = !!(document.querySelector('#btn-radar-p0-toggle') || {}).hidden;
       s.proofHidden = !!(document.querySelector('#radar-p0-proof-wrap') || {}).hidden;
       s.prototypeCopy = /Radar P0|Frame A|prototype/i.test(document.body.innerText || '');
       s.statusText = (document.querySelector('#radar-p0-status') || {}).textContent || '';
       s.frameLabel = (document.querySelector('#radar-p0-frame-label') || {}).textContent || '';
+      s.terrainSource = s.terrainSource || null;
+      s.elevReqCount = (window.__RADAR_ELEV_REQS || []).length;
+      s.wxReqCount = (window.__RADAR_WX_REQS || []).length;
       return s;
     })()`);
-    if (i % 10 === 0) {
+    if (i % 8 === 0) {
       console.log("wait", i, {
         ready: status && status.ready,
         terrainEnriched: status && status.terrainEnriched,
+        terrainSource: status && status.terrainSource,
         withAspect: status && status.withAspect,
         southish: status && status.southish,
         weatherReady: status && status.weatherReady,
-        elevKey: status && status.elevKey,
-        elevFetchGen: status && status.elevFetchGen
+        elevReqCount: status && status.elevReqCount,
+        wxReqCount: status && status.wxReqCount
       });
     }
-    if (status && status.ready) break;
+    if (status && status.ready && status.elevReqCount === 0) break;
   }
 
-  if (!status || !status.terrainEnriched || !(status.withAspect > 0)) {
-    const net = await client.ev(`(() => {
-      return {
-        online: navigator.onLine,
-        lastElevFail: window.__RADAR_ELEV_LAST_ERROR || null
-      };
-    })()`).catch(() => ({ online: null }));
-    elevClass =
-      net && net.online === false
-        ? "A_environment_offline"
-        : "A_rate_limit_or_timing_B_chunked_elevation";
+  if (!status || !status.terrainEnriched || !(status.withAspect > 0) || !(status.southish > 0)) {
+    elevClass = "pack_terrain_not_ready";
     const report = {
       ok: false,
       classification: elevClass,
       status,
-      network: net,
-      note: "Live terrain enrichment did not become ready. No fixture used for main proof. Likely Open-Meteo 429 on chunked elevation."
+      note: "Pack terrain did not become ready. No elevation fixture used."
     };
     fs.writeFileSync(path.join(OUT, "live-proof-report.json"), JSON.stringify(report, null, 2));
     console.error("LIVE TERRAIN PROOF FAILED", elevClass);
@@ -209,7 +215,22 @@ async function main() {
     process.exit(2);
   }
 
-  elevClass = "live_ok";
+  if (status.elevReqCount > 0) {
+    elevClass = "unexpected_elevation_requests";
+    const report = {
+      ok: false,
+      classification: elevClass,
+      status,
+      note: "Normal Pike RADAR must not call Open-Meteo elevation."
+    };
+    fs.writeFileSync(path.join(OUT, "live-proof-report.json"), JSON.stringify(report, null, 2));
+    console.error("LIVE TERRAIN PROOF FAILED", elevClass, "elevReqCount", status.elevReqCount);
+    try { await client.close(); } catch (e) {}
+    try { chrome.kill("SIGKILL"); } catch (e) {}
+    process.exit(2);
+  }
+
+  elevClass = "pack_ok";
 
   // Desktop Today
   await client.ev(`window.WaypointShedsMapApp._radarP0.setSurfaceMode('today')`);

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-09T00:06:50.403Z",
+  "generatedAt": "2026-09-09T19:31:03.502Z",
   "checkpoint": "radar-p2",
   "deltas": {
     "UNIT_SOLAR_DELTA": 0.2,
@@ -30,21 +30,21 @@
     }
   },
   "cold": {
-    "changed": 84,
+    "changed": 90,
     "increased": 0,
-    "decreased": 84,
-    "unchanged": 2416,
+    "decreased": 90,
+    "unchanged": 2410,
     "clampHigh": 0,
-    "clampLow": 4,
-    "changedFrac": 0.0336,
-    "meanAbsDelta": 0.00668239999999999,
+    "clampLow": 9,
+    "changedFrac": 0.036,
+    "meanAbsDelta": 0.007046399999999988,
     "maxAbsDelta": 0.20000000000000007,
-    "meanRankAbsMove": 39.2008,
+    "meanRankAbsMove": 39.928,
     "today": {
       "n": 2500,
       "min": 0,
       "max": 0.722,
-      "mean": 0.49047352000000194,
+      "mean": 0.4901095200000019,
       "p10": 0.172,
       "p25": 0.21,
       "p50": 0.522,
@@ -52,37 +52,37 @@
       "p90": 0.722,
       "labels": {
         "Lower": 771,
-        "Moderate": 493,
-        "Stronger": 1236
+        "Moderate": 494,
+        "Stronger": 1235
       },
       "frac": {
         "Lower": 0.3084,
-        "Moderate": 0.1972,
-        "Stronger": 0.4944
+        "Moderate": 0.1976,
+        "Stronger": 0.494
       }
     },
     "stats": {
       "ready": 2500,
       "solarModifiers": 0,
-      "snowModifiers": 84
+      "snowModifiers": 90
     }
   },
   "thaw": {
-    "changed": 390,
-    "increased": 390,
+    "changed": 407,
+    "increased": 407,
     "decreased": 0,
-    "unchanged": 2110,
+    "unchanged": 2093,
     "clampHigh": 0,
     "clampLow": 0,
-    "changedFrac": 0.156,
-    "meanAbsDelta": 0.031200000000000228,
+    "changedFrac": 0.1628,
+    "meanAbsDelta": 0.03256000000000025,
     "maxAbsDelta": 0.20000000000000007,
-    "meanRankAbsMove": 127.1928,
+    "meanRankAbsMove": 134.4576,
     "today": {
       "n": 2500,
       "min": 0,
       "max": 0.922,
-      "mean": 0.5283559200000055,
+      "mean": 0.5297159200000058,
       "p10": 0.172,
       "p25": 0.21,
       "p50": 0.682,
@@ -90,18 +90,18 @@
       "p90": 0.89,
       "labels": {
         "Lower": 748,
-        "Moderate": 371,
-        "Stronger": 1381
+        "Moderate": 369,
+        "Stronger": 1383
       },
       "frac": {
         "Lower": 0.2992,
-        "Moderate": 0.1484,
-        "Stronger": 0.5524
+        "Moderate": 0.1476,
+        "Stronger": 0.5532
       }
     },
     "stats": {
       "ready": 2500,
-      "solarModifiers": 390,
+      "solarModifiers": 407,
       "snowModifiers": 0
     }
   },
@@ -144,12 +144,12 @@
     }
   },
   "performance": {
-    "avgConditionApplyMs": 9.7
+    "avgConditionApplyMs": 12.4
   },
   "liveProof": {
     "attempted": true,
     "ok": true,
-    "sourceTimestamp": "2026-09-09T00:03:49.738Z",
+    "sourceTimestamp": "2026-09-09T19:31:03.481Z",
     "freshness": "fresh",
     "freezeThawStatus": "above_freezing",
     "tempTrendStatus": "little_change",
@@ -177,7 +177,6 @@
       "maxAbsDelta": 0,
       "meanRankAbsMove": 0
     },
-    "note": "Real Open-Meteo parse for Pike AOI. Neutral conditions → TODAY ≡ LANDSCAPE (honest). A later suite re-run received HTTP 429; this successful capture is retained as evidence.",
     "landscapeDist": {
       "n": 2500,
       "min": 0,
@@ -219,9 +218,7 @@
         "Moderate": 0.1848,
         "Stronger": 0.5156
       }
-    },
-    "retainedPriorSuccess": true,
-    "laterAttemptReason": "getaddrinfo ENOTFOUND api.open-meteo.com"
+    }
   },
   "browserEvidence": {
     "status": "not_captured_in_unit_suite",
