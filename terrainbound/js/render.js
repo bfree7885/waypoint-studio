@@ -406,6 +406,16 @@ function drawDetails(ctx, world, time, reduced, night = false) {
       ctx.fillRect(d.x - 8, d.y - 6, 16, 8);
       ctx.fillRect(d.x - 5, d.y - 12, 10, 6);
       ctx.fillRect(d.x - 3, d.y - 16, 6, 4);
+    } else if (d.kind === "stake-detail") {
+      ctx.fillStyle = "#c45c26";
+      ctx.fillRect(d.x - 2, d.y - 16, 4, 16);
+      ctx.fillStyle = "#f4efe2";
+      ctx.fillRect(d.x - 6, d.y - 22, 12, 7);
+    } else if (d.kind === "case-detail") {
+      ctx.fillStyle = "#6b4a2a";
+      ctx.fillRect(d.x - 10, d.y - 8, 20, 12);
+      ctx.fillStyle = "#c4a06a";
+      ctx.fillRect(d.x - 4, d.y - 5, 8, 4);
     }
   }
 }

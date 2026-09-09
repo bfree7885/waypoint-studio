@@ -452,6 +452,35 @@ export function createWorld(region, seed = 1842, extras = []) {
         rot: rng() * Math.PI
       });
     }
+    const meadow = [
+      [920, 1588, "tuft"],
+      [948, 1570, "tuft"],
+      [972, 1604, "flower"],
+      [1010, 1592, "tuft"],
+      [1088, 1576, "shrub"],
+      [1124, 1608, "tuft"],
+      [1160, 1554, "flower"],
+      [1196, 1588, "tuft"],
+      [1060, 1640, "tuft"],
+      [990, 1632, "shrub"],
+      [1148, 1636, "flower"],
+      [880, 1520, "rock"],
+      [892, 1536, "rock"],
+      [908, 1510, "talus"],
+      [1220, 1496, "rock"],
+      [1240, 1518, "boulder"],
+      [1188, 1488, "talus"],
+      [940, 1480, "soil"],
+      [1108, 1540, "soil"],
+      [1028, 1578, "cairn-detail"],
+      [1184, 1612, "stake-detail"],
+      [1080, 1618, "stake-detail"],
+      [960, 1556, "case-detail"],
+      [1136, 1524, "case-detail"]
+    ];
+    for (const item of meadow) {
+      details.push({ kind: item[2], x: item[0], y: item[1], s: 0.85, rot: 0.2 });
+    }
   } else if (region.terrainModel === "sunfall-desert") {
     for (let i = 0; i < 12; i += 1) {
       details.push({

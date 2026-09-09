@@ -1666,7 +1666,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Night is the payoff for a desert sky. A dark gradient, a cheap star field, and a Moon disc change the place more than extra daytime props.
 - Tools stay earned by use: logging three shadows, advancing the clock, measuring an eccentric orbit, and repeating Moon notes. Opening the Field Tablet still awards nothing.
 
-### Lessons Learned — TerrainBound Phase 7.6 (2026-09-09)
+### Lessons Learned — TerrainBound Phase 7.7 (2026-09-09)
+
+- A station meadow still reads empty if grass, trail wear, and a few field props are missing — even when the lookout has talus. Cluster those details; do not plant a forest.
+- Walk stills fail when both feet sit under the body. Keep a minimum stride offset and lift the passing foot so a single frame can read as moving.
+- `terrainbound.org` is parked at Namecheap. This repo's CNAME is `waypointstudio.org`. Publishing the game requires a companion Pages host plus registrar DNS, not a root CNAME swap.
+
 
 - Open alpine still needs geologic structure: clustered talus, drainage, and ridgelines read as place; uniform noise reads as unfinished.
 - Walk cycles that look fine zoomed in fail at gameplay camera. Exaggerated opposing legs and pack bounce are the readability budget, not extra frames.

@@ -66,7 +66,7 @@ export function poseFromIntent({ moving, journalOpen, talking, pose }) {
 function bootShadow(ctx, night, wide) {
   ctx.fillStyle = night ? "rgba(6, 8, 18, 0.5)" : "rgba(30, 40, 20, 0.3)";
   ctx.beginPath();
-  ctx.ellipse(0, 16, wide ? 22 : 18, 7, 0, 0, Math.PI * 2);
+  ctx.ellipse(wide ? 4 : 0, 16, wide ? 24 : 18, wide ? 6 : 7, wide ? 0.35 : 0, 0, Math.PI * 2);
   ctx.fill();
 }
 
@@ -136,8 +136,10 @@ export function drawExplorer(ctx, x, y, opts) {
   const sky = pose === "sky";
   const talk = pose === "talk";
   const tablet = pose === "tablet";
-  const cycle = reduced || !moving ? 0 : time * 8.4;
-  const stride = Math.sin(cycle) * (reduced ? 0 : 16);
+  const cycle = reduced || !moving ? 0 : time * 7.1;
+  const wave = reduced || !moving ? 0 : Math.sin(cycle);
+  const strideAmp = 20;
+  const stride = wave === 0 ? 0 : (Math.abs(wave) < 0.22 ? 0.22 * Math.sign(wave) : wave) * strideAmp;
   const bob = reduced
     ? 0
     : inspect
@@ -145,40 +147,42 @@ export function drawExplorer(ctx, x, y, opts) {
       : sky
         ? -3.2
         : moving
-          ? Math.abs(Math.sin(cycle)) * 4.6
+          ? Math.abs(wave) * 5.2
           : Math.sin(time * 1.7) * 0.8;
-  const lean = inspect ? 0.32 * dir : sky ? -0.42 : talk ? 0.1 * dir : moving ? dir * 0.04 : 0;
+  const lean = inspect ? 0.32 * dir : sky ? -0.42 : talk ? 0.1 * dir : moving ? dir * 0.1 : 0;
   ctx.save();
   ctx.translate(x, y);
-  ctx.scale(1.28, 1.28);
+  ctx.scale(1.32, 1.32);
   ctx.rotate(lean);
   bootShadow(ctx, night, moving || inspect);
 
   const leftFoot = moving ? stride : inspect ? 5 : 0;
   const rightFoot = moving ? -stride : inspect ? -3 : 0;
+  const leftLift = moving ? Math.max(0, -wave) * 6 : 0;
+  const rightLift = moving ? Math.max(0, wave) * 6 : 0;
   ctx.strokeStyle = "#2a241c";
-  ctx.lineWidth = 6.5;
+  ctx.lineWidth = 7;
   ctx.lineCap = "round";
   ctx.beginPath();
   ctx.moveTo(-5, 0 + bob + (inspect ? 5 : 0));
-  ctx.lineTo(-7 + leftFoot * 0.95, 17 + bob);
+  ctx.lineTo(-8 + leftFoot, 17 + bob - leftLift);
   ctx.moveTo(5, 0 + bob + (inspect ? 5 : 0));
-  ctx.lineTo(7 + rightFoot * 0.95, 17 + bob);
+  ctx.lineTo(8 + rightFoot, 17 + bob - rightLift);
   ctx.stroke();
   ctx.fillStyle = "#2a241c";
   ctx.beginPath();
-  ctx.ellipse(-7 + leftFoot * 0.95, 18 + bob, 6, 3.2, 0, 0, Math.PI * 2);
+  ctx.ellipse(-8 + leftFoot, 18 + bob - leftLift, 6.5, 3.4, moving ? dir * 0.25 : 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.beginPath();
-  ctx.ellipse(7 + rightFoot * 0.95, 18 + bob, 6, 3.2, 0, 0, Math.PI * 2);
+  ctx.ellipse(8 + rightFoot, 18 + bob - rightLift, 6.5, 3.4, moving ? dir * 0.25 : 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.fillStyle = "#3d4a56";
-  ctx.fillRect(-12 + leftFoot * 0.45, -2 + bob + (inspect ? 5 : 0), 10, 13);
-  ctx.fillRect(2 + rightFoot * 0.45, -2 + bob + (inspect ? 5 : 0), 10, 13);
+  ctx.fillRect(-12 + leftFoot * 0.5, -2 + bob + (inspect ? 5 : 0) - leftLift * 0.4, 10, 13);
+  ctx.fillRect(2 + rightFoot * 0.5, -2 + bob + (inspect ? 5 : 0) - rightLift * 0.4, 10, 13);
 
   ctx.fillStyle = "#5a3e22";
   ctx.beginPath();
-  ctx.moveTo(-6 - dir * 10, -18 + bob + (moving ? Math.sin(cycle) * 2.4 : 0));
+  ctx.moveTo(-6 - dir * 10, -18 + bob + (moving ? wave * 3.2 : 0));
   ctx.lineTo(4 - dir * 10, -18 + bob);
   ctx.lineTo(6 - dir * 11, -4 + bob);
   ctx.lineTo(-8 - dir * 11, -4 + bob);
@@ -195,7 +199,7 @@ export function drawExplorer(ctx, x, y, opts) {
   ctx.fillRect(-8, -18 + bob, 6, 5);
   ctx.fillRect(2, -18 + bob, 6, 5);
 
-  const armSwing = moving ? Math.sin(cycle + Math.PI) * 22 : 0;
+  const armSwing = moving ? Math.sin(cycle + Math.PI) * 30 : 0;
   ctx.fillStyle = pal.jacket;
   if (!tablet && !measure && !sky) {
     ctx.save();

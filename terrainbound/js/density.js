@@ -236,6 +236,56 @@ export function bakeAlpineStructure(ctx, region) {
   ctx.beginPath();
   ctx.ellipse(1288, 240, 22, 10, 0.2, 0, Math.PI * 2);
   ctx.fill();
+  bakeRidgeMeadow(ctx, region);
+}
+
+export function bakeRidgeMeadow(ctx, region) {
+  const s = region.station;
+  const cx = s.x + s.w * 0.55;
+  const cy = s.y + s.h + 70;
+  ctx.fillStyle = "rgba(168, 176, 132, 0.38)";
+  ctx.beginPath();
+  ctx.ellipse(cx + 40, cy + 20, 210, 95, -0.12, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(148, 162, 118, 0.28)";
+  ctx.beginPath();
+  ctx.ellipse(cx - 80, cy + 50, 120, 48, 0.2, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "rgba(186, 176, 140, 0.32)";
+  ctx.beginPath();
+  ctx.ellipse(cx + 150, cy - 10, 70, 36, -0.3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(130, 118, 96, 0.28)";
+  ctx.lineWidth = 7;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(s.x - 30, s.y + s.h + 8);
+  ctx.quadraticCurveTo(s.x + 80, s.y + s.h + 70, s.x + 210, s.y + s.h + 110);
+  ctx.stroke();
+  ctx.strokeStyle = "rgba(176, 164, 132, 0.4)";
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.moveTo(s.x + 20, s.y + s.h + 24);
+  ctx.quadraticCurveTo(s.x + 90, cy + 30, s.x + 160, cy + 80);
+  ctx.stroke();
+  ctx.fillStyle = "rgba(176, 168, 156, 0.5)";
+  ctx.beginPath();
+  ctx.moveTo(s.x - 90, s.y + 20);
+  ctx.lineTo(s.x - 20, s.y + 80);
+  ctx.lineTo(s.x + 40, s.y + 110);
+  ctx.lineTo(s.x - 40, s.y + 130);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = "rgba(196, 188, 168, 0.45)";
+  for (const patch of [
+    [s.x + 200, s.y + 40, 28, 14],
+    [s.x + 240, s.y + 90, 22, 12],
+    [s.x - 50, s.y + 150, 26, 11]
+  ]) {
+    ctx.beginPath();
+    ctx.ellipse(patch[0], patch[1], patch[2], patch[3], -0.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 export function bakeDesertStructure(ctx, region, night = false) {
@@ -389,3 +439,4 @@ export function drawRunoffBench(ctx, prop, visual = {}) {
 }
 
 export const DENSITY_MARK = "landcover-v76";
+export const MEADOW_MARK = "ridge-meadow-v77";
