@@ -1869,3 +1869,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Freshness ~75 minutes + Landscape fallback beats inventing movement on stale/unavailable weather.
 - One weather point + terrain spatial gates is sufficient for ~4.5 km viewports; do not fetch weather per cell.
 - Live Open-Meteo/browser proof is a merge gate separate from implementation completeness when the agent environment cannot reach the provider.
+
+## Lessons Learned — Sheds RADAR production readiness (2026-09-08)
+
+- Customer UI is Today/Landscape only; Interest On/Off and Cold/Thaw/Neutral fixtures stay behind `radarDebug` / `radarProof` query flags so production cannot accidentally show unfinished chrome.
+- Future `fetchedAt` must not grant unlimited freshness — clamp minor skew (≤5 min) and mark material future timestamps stale.
+- `instanceof Date` fails across Node `vm` realms; freshness helpers should accept Date-like/`getTime` or epoch numbers.
+- Dedicated-host prepare must exclude exploration assets (`antler-options`) and evidence packs; assert required RADAR runtime files are present before any publish consideration.
+- Live DEM proof without fixture interception is the production evidence gate; fixture captures are supplemental and must be labeled.
+- Open-Meteo free-tier elevation returns 429 under chunked halo sampling; retry with backoff + light pacing so one rate-limit does not abandon aspect enrichment.

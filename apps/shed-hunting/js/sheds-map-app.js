@@ -141,12 +141,14 @@
     terrainEnrichKey: "",
     /** Enrichment key already applied to Search Priority Today (loop guard). */
     interestEnrichAppliedKey: "",
-    /** RADAR — viewport Today/Landscape surface (prototype chrome still gated). */
+    /** RADAR — viewport Today/Landscape surface (always on for normal users). */
     radarP0Enabled: true,
     /** Customer surface: today | landscape. Fixture A/B/N only when radarProofFixtures. */
     radarSurfaceMode: "today",
     radarP0FrameId: null,
     radarProofFixtures: false,
+    /** Query-gated debug chrome (Interest On/Off toggle). */
+    radarDebugChrome: false,
     radarConditionFrame: null,
     radarConditionKey: "",
     radarBaseCache: null,
@@ -2885,6 +2887,28 @@
   }
 
   /**
+   * Open-Meteo elevation fetch with small 429 backoff.
+   * Chunked halo requests can trip free-tier rate limits; one 429 must not
+   * permanently abandon aspect enrichment for the viewport.
+   */
+  function fetchOpenMeteoElevationJson(url, opts, attempt) {
+    attempt = attempt || 0;
+    opts = opts || { credentials: "omit" };
+    return fetch(url, opts).then(function (res) {
+      if (res.status === 429 && attempt < 5) {
+        var waitMs = Math.min(8000, 400 * Math.pow(2, attempt));
+        return new Promise(function (resolve) {
+          setTimeout(resolve, waitMs);
+        }).then(function () {
+          return fetchOpenMeteoElevationJson(url, opts, attempt + 1);
+        });
+      }
+      if (!res.ok) throw new Error("elevation " + res.status);
+      return res.json();
+    });
+  }
+
+  /**
    * RADAR P0 — fetch halo elevations for viewport field (independent of Search Areas).
    * Cached by radar elev key; frame switches must not refetch.
    */
@@ -2913,7 +2937,7 @@
     state.radarElevAbort = ac;
     var gen = ++state.radarElevFetchGen;
     var chunks = [];
-    var size = 80;
+    var size = 160;
     var i;
     for (i = 0; i < pts.lats.length; i += size) {
       chunks.push({
@@ -2931,11 +2955,13 @@
           "&longitude=" + ch.lng.map(function (n) { return n.toFixed(5); }).join(",");
         var opts = { credentials: "omit" };
         if (ac && ac.signal) opts.signal = ac.signal;
-        return fetch(url, opts).then(function (res) {
-          if (!res.ok) throw new Error("elevation " + res.status);
-          return res.json();
-        }).then(function (data) {
+        return fetchOpenMeteoElevationJson(url, opts).then(function (data) {
           return acc.concat(data.elevation || []);
+        }).then(function (next) {
+          // Mild pacing between chunks to reduce free-tier 429 pressure.
+          return new Promise(function (resolve) {
+            setTimeout(function () { resolve(next); }, 250);
+          });
         });
       });
     }, Promise.resolve([])).then(function (allElev) {
@@ -2959,9 +2985,12 @@
       panel.setAttribute("data-mode", state.radarSurfaceMode || "today");
       panel.setAttribute("data-on", state.radarP0Enabled ? "true" : "false");
       panel.setAttribute("data-proof", state.radarProofFixtures ? "true" : "false");
+      panel.setAttribute("data-debug", state.radarDebugChrome ? "true" : "false");
     }
     var toggle = $("btn-radar-p0-toggle");
     if (toggle) {
+      // Production: surface stays on; On/Off is debug-only (?radarDebug=1).
+      toggle.hidden = !state.radarDebugChrome;
       toggle.setAttribute("aria-pressed", state.radarP0Enabled ? "true" : "false");
       toggle.textContent = state.radarP0Enabled ? "Interest · On" : "Interest · Off";
     }
@@ -3184,7 +3213,7 @@
         if (!GisPack.inBounds(pack, map.getCenter().lat, map.getCenter().lng)) {
           paintRadarGrid(
             RadarP0.emptyRadarGrid(
-              "Relative Search Interest is limited to the Pike/Milford pack AOI in this prototype."
+              "Relative Search Interest is limited to the Pike/Milford pack AOI."
             ).grid,
             { label: "Outside pack coverage" }
           );
@@ -3348,6 +3377,12 @@
   }
 
   function setRadarP0Enabled(on) {
+    // Normal product path keeps Interest on. Disable only via debug chrome.
+    if (!on && !state.radarDebugChrome) {
+      state.radarP0Enabled = true;
+      syncRadarP0Ui();
+      return;
+    }
     state.radarP0Enabled = !!on;
     syncRadarP0Ui();
     if (!state.radarP0Enabled) {
@@ -3449,10 +3484,7 @@
           "&longitude=" + ch.lng.map(function (n) { return n.toFixed(5); }).join(",");
         var opts = { credentials: "omit" };
         if (ac && ac.signal) opts.signal = ac.signal;
-        return fetch(url, opts).then(function (res) {
-          if (!res.ok) throw new Error("elevation " + res.status);
-          return res.json();
-        }).then(function (data) {
+        return fetchOpenMeteoElevationJson(url, opts).then(function (data) {
           var elev = data.elevation || [];
           return acc.concat(elev);
         });
@@ -3513,10 +3545,7 @@
           "&longitude=" + ch.lng.map(function (n) { return n.toFixed(5); }).join(",");
         var opts = { credentials: "omit" };
         if (ac && ac.signal) opts.signal = ac.signal;
-        return fetch(url, opts).then(function (res) {
-          if (!res.ok) throw new Error("elevation " + res.status);
-          return res.json();
-        }).then(function (data) {
+        return fetchOpenMeteoElevationJson(url, opts).then(function (data) {
           return acc.concat(data.elevation || []);
         });
       });
@@ -4302,7 +4331,7 @@
       return;
     }
 
-    // RADAR P0 prototype — viewport surface; Search Area not required.
+    // RADAR — viewport surface; Search Area not required.
     if (state.radarP0Enabled && RadarP0) {
       recomputeRadarP0(gen, wxPromise);
       return;
@@ -6326,11 +6355,7 @@
         } catch (e) { /* */ }
       }, 8000);
     }
-    fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
-      .then(function (res) {
-        if (!res.ok) throw new Error("elev " + res.status);
-        return res.json();
-      })
+    fetchOpenMeteoElevationJson(url, ctrl ? { signal: ctrl.signal, credentials: "omit" } : { credentials: "omit" })
       .then(function (data) {
         if (timer) clearTimeout(timer);
         if (gen !== state.inspectElevGen) return;
@@ -7498,18 +7523,20 @@
       // RADAR P0: if no saved view and radar is on, open Pike AOI so the proof is visible.
       try {
         var params = new URLSearchParams(location.search || "");
-        if (params.get("radarP0") === "0") {
+        if (params.get("radarDebug") === "1") {
+          state.radarDebugChrome = true;
+        }
+        // Disable Interest only when debug chrome is explicitly enabled.
+        if (params.get("radarP0") === "0" && state.radarDebugChrome) {
           state.radarP0Enabled = false;
-          syncRadarP0Ui();
         }
         if (params.get("radarProof") === "1") {
           state.radarProofFixtures = true;
-          syncRadarP0Ui();
         }
         if (params.get("radarMode") === "landscape") {
           state.radarSurfaceMode = "landscape";
-          syncRadarP0Ui();
         }
+        syncRadarP0Ui();
         var savedView = Store.loadMapView && Store.loadMapView();
         var pack0 = state.gisPacks && state.gisPacks[0];
         if (
@@ -7566,7 +7593,7 @@
       showHistoricalHunt: showHistoricalHunt,
       hideHistoricalHunt: hideHistoricalHunt,
       redrawHistoryTracks: redrawHistoryTracks,
-      /* RADAR test hooks — prototype / evidence */
+      /* RADAR test hooks — automated evidence / CDP; not product UI */
       _radarP0: {
         isEnabled: function () { return !!state.radarP0Enabled; },
         getFrameId: function () { return state.radarP0FrameId; },

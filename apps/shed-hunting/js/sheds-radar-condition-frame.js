@@ -12,6 +12,11 @@
   var SCHEMA_VERSION = 1;
   /** Mid of the 60–90 min inspection recommendation. */
   var FRESH_MS = 75 * 60 * 1000;
+  /**
+   * Tolerate minor client/server clock skew. Timestamps more than this far
+   * in the future are treated as stale (not unlimited-fresh).
+   */
+  var FUTURE_SKEW_MS = 5 * 60 * 1000;
   var VERSION = "radar-condition-frame-1.0";
 
   function finiteNum(n) {
@@ -88,9 +93,22 @@
     var stamp = opts.fetchedAt || opts.sourceTimestamp;
     var t = new Date(stamp).getTime();
     if (!isFinite(t)) return "unavailable";
-    var now = opts.now instanceof Date ? opts.now.getTime() : Date.now();
-    if (!isFinite(now)) now = Date.now();
-    if (now - t > FRESH_MS) return "stale";
+    // Prefer numeric/epoch or Date-like now; avoid cross-realm instanceof Date failures (vm tests).
+    var now = Date.now();
+    if (opts.now != null) {
+      var n =
+        typeof opts.now === "number"
+          ? opts.now
+          : opts.now && typeof opts.now.getTime === "function"
+            ? opts.now.getTime()
+            : new Date(opts.now).getTime();
+      if (isFinite(n)) now = n;
+    }
+    // Material future timestamps (bad data / severe clock skew) → stale.
+    // Minor skew within FUTURE_SKEW_MS is clamped to age 0 (still fresh).
+    if (t > now + FUTURE_SKEW_MS) return "stale";
+    var ageMs = Math.max(0, now - t);
+    if (ageMs > FRESH_MS) return "stale";
     return "fresh";
   }
 
@@ -320,6 +338,7 @@
   var api = {
     SCHEMA_VERSION: SCHEMA_VERSION,
     FRESH_MS: FRESH_MS,
+    FUTURE_SKEW_MS: FUTURE_SKEW_MS,
     VERSION: VERSION,
     emptyFrame: emptyFrame,
     resolveFreshness: resolveFreshness,

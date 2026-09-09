@@ -35,6 +35,10 @@ function copyDir(from, to, depth) {
     if (ent.name === "host") continue;
     // Design-history exploration only — keep in Studio source, never publish.
     if (ent.name === "antler-options") continue;
+    // Evidence / samples / fixture packs must never ship on the dedicated host.
+    if (/^(samples|fixtures|evidence|proof)$/i.test(ent.name)) continue;
+    if (/-evidence(\.|$)/i.test(ent.name)) continue;
+    if (/proof-report/i.test(ent.name)) continue;
     if (depth === 0 && ent.name === "index.html") continue;
     const src = path.join(from, ent.name);
     const dst = path.join(to, ent.name);
@@ -165,9 +169,16 @@ function main() {
 
   const leftover = [];
   const deepTraversal = [];
+  const forbiddenPublic = [];
+  const FORBIDDEN_NAME =
+    /(^|\/)(antler-options|samples|fixtures|evidence)(\/|$)|proof-report|browser-frame-|elev-fixture|distribution-report|(^|\/)docs(\/|$)/i;
   function scan(dir) {
     for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, ent.name);
+      const rel = path.relative(DEST, p);
+      if (FORBIDDEN_NAME.test(rel.replace(/\\/g, "/"))) {
+        forbiddenPublic.push(rel);
+      }
       if (ent.isDirectory()) scan(p);
       else if (/\.(html|css|js)$/.test(ent.name)) {
         const text = fs.readFileSync(p, "utf8");
@@ -188,6 +199,26 @@ function main() {
   if (deepTraversal.length) {
     console.error("prepare-shed-hunting-host: ../../ asset paths remain in", deepTraversal);
     process.exit(1);
+  }
+  if (forbiddenPublic.length) {
+    console.error("prepare-shed-hunting-host: evidence-only paths must not ship:", forbiddenPublic);
+    process.exit(1);
+  }
+
+  // Required RADAR runtime for Today / Landscape on dedicated host.
+  const requiredRadar = [
+    "js/sheds-radar-p0.js",
+    "js/sheds-radar-base-landscape.js",
+    "js/sheds-radar-condition-frame.js",
+    "js/sheds-map-app.js",
+    "map/index.html",
+    "css/sheds-map.css"
+  ];
+  for (const rel of requiredRadar) {
+    if (!fs.existsSync(path.join(DEST, rel))) {
+      console.error("prepare-shed-hunting-host: missing required RADAR file", rel);
+      process.exit(1);
+    }
   }
   console.log("wrote", path.relative(ROOT, DEST));
 }
