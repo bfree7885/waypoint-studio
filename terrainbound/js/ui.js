@@ -5,6 +5,7 @@
 import { drawFieldSketch } from "./investigation.js";
 import { drawDatasetGraph } from "./fielddata.js";
 import { drawFieldMap, drawProfileChart } from "./geomap.js";
+import { drawOrbitModel, drawMoonGeometry, drawEclipseGeometry } from "./celestial.js";
 
 const SYMBOLS = {
   erratic: "◉",
@@ -89,6 +90,9 @@ export function bindUi(root) {
   const geoBody = root.querySelector("#geo-body");
   const geoStatus = root.querySelector("#geo-status");
   const geoTry = root.querySelector("#geo-try");
+  const skyClock = root.querySelector("#sky-clock");
+  const skyClockLabel = root.querySelector("#sky-clock-label");
+  const skyClockJumps = root.querySelector("#sky-clock-jumps");
   const dataCaption = root.querySelector("#data-caption");
   const dataTable = root.querySelector("#journal-data-table");
   const journalGraph = root.querySelector("#journal-graph");
@@ -361,7 +365,8 @@ export function bindUi(root) {
         dataTable.replaceChildren();
         if (showData) {
           if (dataCaption) dataCaption.textContent = view.dataCaption || "Your runs.";
-          dataTable.appendChild(buildDataTable(view.dataRows, view.dataMeans));
+          if (view.dataColumns) dataTable.appendChild(buildGenericTable(view.dataColumns, view.dataRows));
+          else dataTable.appendChild(buildDataTable(view.dataRows, view.dataMeans));
           if (journalGraph && view.graphModel) {
             journalGraph.hidden = false;
             drawDatasetGraph(journalGraph.getContext("2d"), journalGraph.width, journalGraph.height, view.graphModel);
@@ -537,6 +542,20 @@ export function bindUi(root) {
           geoBody.appendChild(canvasEl);
           drawProfileChart(canvasEl.getContext("2d"), canvasEl.width, canvasEl.height, view.profile);
         }
+        if (view.diagram) {
+          const canvasEl = document.createElement("canvas");
+          canvasEl.width = 420;
+          canvasEl.height = 168;
+          canvasEl.setAttribute("aria-label", "Sky model");
+          geoBody.appendChild(canvasEl);
+          const g = canvasEl.getContext("2d");
+          if (view.diagram.kind === "orbit") drawOrbitModel(g, canvasEl.width, canvasEl.height, view.diagram);
+          else if (view.diagram.kind === "moon") drawMoonGeometry(g, canvasEl.width, canvasEl.height, view.diagram.moon);
+          else if (view.diagram.kind === "eclipse") drawEclipseGeometry(g, canvasEl.width, canvasEl.height, view.diagram.geo);
+        }
+        if (view.table) {
+          geoBody.appendChild(buildGenericTable(view.table.columns, view.table.rows));
+        }
         if (view.groups) {
           for (const group of view.groups) {
             const kicker = document.createElement("p");
@@ -548,6 +567,22 @@ export function bindUi(root) {
             geoBody.appendChild(row);
             fillChips(row, group.items, group.selected, (id) => handlers.onPick?.(group.id, id));
           }
+        }
+      }
+    },
+    showSkyClock(open, view = {}, handlers = {}) {
+      if (!skyClock) return;
+      skyClock.hidden = !open;
+      if (!open) return;
+      if (skyClockLabel) skyClockLabel.textContent = view.label || "Field observation";
+      if (skyClockJumps) {
+        skyClockJumps.replaceChildren();
+        for (const item of view.jumps || []) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = item.label;
+          btn.addEventListener("click", () => handlers.onJump?.(item.id));
+          skyClockJumps.appendChild(btn);
         }
       }
     }
@@ -565,6 +600,31 @@ function fillChips(rootEl, items, selected, onPick) {
     btn.addEventListener("click", () => onPick?.(item.id));
     rootEl.appendChild(btn);
   }
+}
+
+function buildGenericTable(columns, rows) {
+  const wrap = document.createElement("div");
+  const table = document.createElement("table");
+  table.className = "data-table";
+  const head = document.createElement("tr");
+  for (const label of columns || []) {
+    const th = document.createElement("th");
+    th.textContent = label;
+    head.appendChild(th);
+  }
+  table.appendChild(head);
+  for (const row of rows || []) {
+    const tr = document.createElement("tr");
+    const cells = Array.isArray(row) ? row : Object.values(row);
+    for (const cell of cells) {
+      const td = document.createElement("td");
+      td.textContent = cell;
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
+  }
+  wrap.appendChild(table);
+  return wrap;
 }
 
 function buildDataTable(rows, means) {

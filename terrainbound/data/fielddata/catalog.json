@@ -61,6 +61,39 @@
           "hint": "The numbers cluster. They don't lock to one exact time."
         }
       ]
+    },
+    {
+      "id": "sunfall-tides",
+      "title": "Coastal tide station",
+      "regionId": "sunfall-desert",
+      "sourceInvestigation": "sunfall-solar-system",
+      "columns": [
+        { "id": "date", "label": "Date", "role": "index" },
+        { "id": "phase", "label": "Moon phase", "role": "independent" },
+        { "id": "range", "label": "Tidal range (m)", "role": "dependent" },
+        { "id": "kind", "label": "Range kind", "role": "derived" }
+      ],
+      "graph": {
+        "suggestedX": "phase",
+        "suggestedY": "range",
+        "allowedX": ["phase"],
+        "allowedY": ["range"],
+        "title": "Tide range and Moon"
+      },
+      "patterns": [
+        {
+          "id": "spring-new-full",
+          "label": "Largest ranges sit with new and full Moon.",
+          "correct": true
+        }
+      ],
+      "conclusions": [
+        {
+          "id": "spring-new-full",
+          "label": "Spring tides sit with new and full Moon; neap tides with the quarters.",
+          "correct": true
+        }
+      ]
     }
   ]
 }

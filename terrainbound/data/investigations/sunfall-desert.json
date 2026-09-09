@@ -1,0 +1,155 @@
+{
+  "id": "sunfall-solar-system",
+  "regionId": "sunfall-desert",
+  "title": "Sunfall observing campaign",
+  "question": "What can you honestly say about the Sun, the Moon, and an orbit from what you measure here?",
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The notebooks from last year do not agree. One says the noon Sun sits higher in January. Another timed Sandskip-1 wrong.",
+      "We rebuild the record from this ground. The sky is the lab. You stay on it."
+    ]
+  },
+  "completeJournalEntry": {
+    "title": "Observation window",
+    "text": "The campaign has a window: night on the mesa rim, a thin Moon, and the return predicted from the orbit. The sky did what the notes said it would."
+  },
+  "gnomon": {
+    "x": 1512,
+    "y": 1120,
+    "name": "Solar marker",
+    "prompt": "Record the shadow. Direction, length, time. Then do it again when the light has changed."
+  },
+  "moonSite": {
+    "x": 380,
+    "y": 488,
+    "name": "Night-sky viewpoint",
+    "prompt": "From the mesa the station lights fall away. Log the Moon from here."
+  },
+  "orbitBoard": {
+    "x": 1460,
+    "y": 1096,
+    "name": "Orbit table"
+  },
+  "tideDesk": {
+    "x": 1336,
+    "y": 1136,
+    "name": "Coastal desk"
+  },
+  "planetDesk": {
+    "x": 1420,
+    "y": 1148,
+    "name": "Planet log"
+  },
+  "eclipseDesk": {
+    "x": 1360,
+    "y": 1088,
+    "name": "Alignment model"
+  },
+  "compareSample": {
+    "x": 1288,
+    "y": 1080,
+    "name": "Drawer sample",
+    "text": "A labeled fragment in the observatory drawer: dark, dense, a fused rind. If you found a rock like this on the crater floor, you would have something to compare."
+  },
+  "wren": {
+    "idle": [
+      "Start at the solar marker. Morning, noon, afternoon. Do not tell me what you think the Sun does until the shadows argue."
+    ],
+    "afterShadows": [
+      "Three times, one post. The shadow moved. Apparent motion is not yet an explanation."
+    ],
+    "afterRotation": [
+      "Same post, other dates. Winter, an equinox, summer — noon each time. Watch height, day length, and how far Earth sits from the Sun."
+    ],
+    "afterSeasons": [
+      "Sandskip-1 is a tracked rock. We have its distance from the Sun and not its period. The orbit table will take a number."
+    ],
+    "afterOrbit": [
+      "The Moon does not need a poster of eight pictures. Log it from the mesa. Then move the model."
+    ],
+    "afterMoon": [
+      "If the Moon goes around every month, why is there not an eclipse every month? The alignment model is on the dome table."
+    ],
+    "afterEclipse": [
+      "A coastal station sent tide range. We are not studying oceans here. We are asking whether the Moon and Sun leave a fingerprint in that table."
+    ],
+    "afterData": [
+      "The campaign needs a window. Where you stand, when you look, what the Moon is doing, and when Sandskip returns. Write a plan you can defend."
+    ],
+    "afterSuccess": [
+      "Sunfall will still be here at night. High Country and Cedar Hollow too. The tools stay with the tablet."
+    ]
+  },
+  "rotationChoices": [
+    { "id": "sun-flies", "label": "The Sun races around Earth each day." },
+    { "id": "earth-rotates", "label": "Earth turns. The Sun only appears to move." },
+    { "id": "shadows-wind", "label": "Wind moved the marker." }
+  ],
+  "seasonChoices": [
+    { "id": "closer", "label": "Summer happens because Earth is closer to the Sun." },
+    { "id": "tilt", "label": "Earth's tilt changes Sun angle and day length." },
+    { "id": "clouds", "label": "Clouds make winter." }
+  ],
+  "keplerChoices": [
+    { "id": "2", "label": "2 years" },
+    { "id": "4", "label": "4 years" },
+    { "id": "8", "label": "8 years" },
+    { "id": "16", "label": "16 years" }
+  ],
+  "moonChoices": [
+    { "id": "new", "label": "new" },
+    { "id": "waxing crescent", "label": "waxing crescent" },
+    { "id": "first quarter", "label": "first quarter" },
+    { "id": "waxing gibbous", "label": "waxing gibbous" },
+    { "id": "full", "label": "full" },
+    { "id": "waning gibbous", "label": "waning gibbous" },
+    { "id": "last quarter", "label": "last quarter" },
+    { "id": "waning crescent", "label": "waning crescent" }
+  ],
+  "eclipseChoices": [
+    { "id": "monthly", "label": "There is an eclipse every month; we just miss them." },
+    { "id": "tilt", "label": "The Moon's path is tilted, so alignments usually miss." },
+    { "id": "random", "label": "Eclipses happen at random." }
+  ],
+  "tideChoices": [
+    { "id": "spring-new-full", "label": "Largest ranges sit with new and full Moon." },
+    { "id": "random-weather", "label": "The range is just weather at the coast." },
+    { "id": "always-same", "label": "The range does not change with the Moon." }
+  ],
+  "planetChoices": [
+    { "id": "distance-period", "label": "Farther objects take longer to go around. Dense worlds cluster inward." },
+    { "id": "memorize", "label": "The names in order are the science." },
+    { "id": "size-only", "label": "Only radius matters." }
+  ],
+  "challenge": {
+    "title": "The Observation Window",
+    "goal": "Sandskip-1 will be faint. Choose a site, a time, a Moon, and the return you predicted.",
+    "sites": [
+      { "id": "mesa-rim", "label": "Mesa rim", "ok": true, "x": 380, "y": 488 },
+      { "id": "crater-floor", "label": "Crater floor", "ok": false, "x": 2088, "y": 900 },
+      { "id": "station-plaza", "label": "Station plaza", "ok": false, "x": 1408, "y": 1188 }
+    ],
+    "when": [
+      { "id": "noon", "label": "Solar noon" },
+      { "id": "night", "label": "Night" },
+      { "id": "morning", "label": "Morning" }
+    ],
+    "moon": [
+      { "id": "full", "label": "Full Moon" },
+      { "id": "thin", "label": "Thin crescent" },
+      { "id": "ignore", "label": "Moon does not matter" }
+    ],
+    "period": [
+      { "id": "2", "label": "Return in 2 years" },
+      { "id": "8", "label": "Return in 8 years" },
+      { "id": "16", "label": "Return in 16 years" }
+    ],
+    "reasons": [
+      { "id": "open-horizon", "label": "Open horizon — the rim does not eat the target" },
+      { "id": "dark-sky", "label": "Dark sky — sunlight and station glow stay out of the way" },
+      { "id": "return-time", "label": "The orbit says the object is back" },
+      { "id": "shortest-walk", "label": "Closest walk from the dome" }
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
- * v1/v2/v3 saves migrate to v4 (High Country region session).
+ * v1–v4 saves migrate to v5 (Sunfall Desert celestial session).
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
-export const SAVE_VERSION = 4;
+export const SAVE_VERSION = 5;
 
 export function emptyTaught() {
   return {
@@ -12,7 +12,8 @@ export function emptyTaught() {
     inspect: false,
     journal: false,
     worldMap: false,
-    routeHighCountry: false
+    routeHighCountry: false,
+    routeSunfall: false
   };
 }
 
@@ -51,7 +52,45 @@ export function emptyDataSave() {
 }
 
 export function emptyRegionPlayers() {
-  return { "cedar-hollow": null, "high-country": null };
+  return { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
+}
+
+export function emptySunfallSave() {
+  return {
+    introSeen: false,
+    sky: { minutes: 10 * 1440 + 8 * 60, nodeDeg: 18, tiltDeg: 5.1 },
+    clockUsed: false,
+    shadows: [],
+    rotationExplain: null,
+    seasonObs: [],
+    seasonExplain: null,
+    distanceConfronted: false,
+    orbit: { a: 1, e: 0.05, nuDeg: 20, measured: false, eccentricCompared: false },
+    kepler: { a: 4, predictedP: null, checked: false, ok: false },
+    moonLog: [],
+    moonGeometry: false,
+    moonPredict: null,
+    moonPredictOk: false,
+    eclipse: { aligned: false, tiltOn: true, understood: false },
+    tides: { compared: false, pattern: null },
+    planets: { classified: false, pattern: null },
+    challenge: {
+      site: null,
+      when: null,
+      moon: null,
+      period: null,
+      reasons: [],
+      checked: false,
+      ok: false,
+      revised: false,
+      presented: false
+    },
+    identifiedIds: [],
+    foundIds: [],
+    notes: [],
+    lastHint: "",
+    compareSampleSeen: false
+  };
 }
 
 export function emptyHighCountrySave() {
@@ -112,6 +151,28 @@ export function emptyChallengeSave() {
   };
 }
 
+function snapshotSunfall(state) {
+  const empty = emptySunfallSave();
+  if (!state) return empty;
+  return {
+    ...empty,
+    ...state,
+    sky: { ...empty.sky, ...(state.sky || {}) },
+    shadows: [...(state.shadows || [])],
+    seasonObs: [...(state.seasonObs || [])],
+    orbit: { ...empty.orbit, ...(state.orbit || {}) },
+    kepler: { ...empty.kepler, ...(state.kepler || {}) },
+    moonLog: [...(state.moonLog || [])],
+    eclipse: { ...empty.eclipse, ...(state.eclipse || {}) },
+    tides: { ...empty.tides, ...(state.tides || {}) },
+    planets: { ...empty.planets, ...(state.planets || {}) },
+    challenge: { ...empty.challenge, ...(state.challenge || {}), reasons: [...(state.challenge?.reasons || [])] },
+    identifiedIds: [...(state.identifiedIds || [])],
+    foundIds: [...(state.foundIds || [])],
+    notes: [...(state.notes || [])]
+  };
+}
+
 function snapshotHighCountry(state) {
   const empty = emptyHighCountrySave();
   if (!state) return empty;
@@ -135,7 +196,7 @@ function snapshotHighCountry(state) {
 
 export function migrateSave(data) {
   if (!data || typeof data !== "object") return null;
-  if (data.v === 4) {
+  if (data.v === 5) {
     return {
       ...data,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
@@ -146,8 +207,20 @@ export function migrateSave(data) {
       fieldData: { ...emptyDataSave(), ...(data.fieldData || {}) },
       challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) },
       highCountry: snapshotHighCountry(data.highCountry),
+      sunfall: snapshotSunfall(data.sunfall),
       regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) }
     };
+  }
+  if (data.v === 4) {
+    return migrateSave({
+      ...data,
+      v: 5,
+      sunfall: emptySunfallSave(),
+      regionPlayers: {
+        ...emptyRegionPlayers(),
+        ...(data.regionPlayers || {})
+      }
+    });
   }
   if (data.v === 3) {
     return migrateSave({
@@ -196,6 +269,7 @@ export function captureSave({
   dataState,
   challengeState,
   hcState,
+  sfState,
   regionPlayers
 }) {
   const current = worldState?.currentRegion || "cedar-hollow";
@@ -219,6 +293,7 @@ export function captureSave({
     },
     challenge: { ...emptyChallengeSave(), ...(challengeState || {}) },
     highCountry: snapshotHighCountry(hcState),
+    sunfall: snapshotSunfall(sfState),
     regionPlayers: {
       ...emptyRegionPlayers(),
       ...(regionPlayers || {}),
@@ -267,6 +342,7 @@ export function applySave(
     dataState,
     challengeState,
     hcState,
+    sfState,
     regionPlayers
   }
 ) {
@@ -304,6 +380,9 @@ export function applySave(
     const snap = snapshotHighCountry(migrated.highCountry);
     Object.assign(hcState, snap);
     hcState.mapState = { ...emptyHighCountrySave().mapState, ...(snap.mapState || {}) };
+  }
+  if (sfState && migrated.sunfall) {
+    Object.assign(sfState, snapshotSunfall(migrated.sunfall));
   }
   if (regionPlayers && migrated.regionPlayers) {
     Object.assign(regionPlayers, emptyRegionPlayers(), migrated.regionPlayers);

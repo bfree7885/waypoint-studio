@@ -173,14 +173,16 @@ check("only Cedar Hollow is accessible at start; High Country is playable but ga
   const worldState = createWorldState(tbWorld);
   assert.deepEqual(worldState.accessibleRegions, ["cedar-hollow"]);
   const playable = tbWorld.regions.filter((region) => region.implementationState === "playable");
-  assert.equal(playable.length, 2);
+  assert.equal(playable.length, 3);
   assert.ok(playable.some((region) => region.id === "cedar-hollow"));
   assert.ok(playable.some((region) => region.id === "high-country"));
+  assert.ok(playable.some((region) => region.id === "sunfall-desert"));
   assert.equal(isPlayable(tbWorld, "high-country"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), false);
-  assert.equal(isPlayable(tbWorld, "sunfall-desert"), false);
+  assert.equal(isPlayable(tbWorld, "sunfall-desert"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   const regionFiles = fs.readdirSync(path.join(root, "data/regions")).sort();
-  assert.deepEqual(regionFiles, ["cedar-hollow.json", "high-country.json"]);
+  assert.deepEqual(regionFiles, ["cedar-hollow.json", "high-country.json", "sunfall-desert.json"]);
 });
 
 check("High Country cannot unlock from content completion alone", () => {
@@ -337,7 +339,8 @@ check("field tools and hazards are architecture only except the journal", () => 
   assert.ok(implemented.includes("field-journal"));
   assert.ok(implemented.includes("field-data"));
   assert.ok(implemented.includes("coordinates"));
-  assert.equal(toolsCatalog.tools.find((item) => item.id === "solar-observation").implemented, false);
+  assert.equal(toolsCatalog.tools.find((item) => item.id === "solar-observation").implemented, true);
+  assert.equal(toolsCatalog.tools.find((item) => item.id === "astro-observation").implemented, false);
   assert.equal(hazardsCatalog.implemented, false);
   assert.equal(hazardsCatalog.hazards.every((item) => item.implemented === false), true);
   assert.ok(hazardsForRegion(hazardsCatalog, "firepeak").length >= 1);

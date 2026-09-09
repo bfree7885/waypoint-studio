@@ -164,15 +164,16 @@ check("High Country is enterable only after Cedar Hollow mastery", () => {
   assert.equal(canEnterRegion(tbWorld, worldState, "cedar-hollow"), true);
 });
 
-check("player can return to Cedar Hollow and Sunfall stays non-playable", () => {
+check("player can return to Cedar Hollow; Sunfall is playable but gated until High Country mastery", () => {
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
   worldState.currentRegion = "high-country";
   assert.equal(canEnterRegion(tbWorld, worldState, "cedar-hollow"), true);
-  assert.equal(isPlayable(tbWorld, "sunfall-desert"), false);
+  assert.equal(isPlayable(tbWorld, "sunfall-desert"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   const preview = previewModel(tbWorld, worldState, "sunfall-desert");
-  assert.equal(preview.playable, false);
+  assert.equal(preview.playable, true);
+  assert.equal(preview.canEnter, false);
 });
 
 check("High Country loads as a distinct alpine region", () => {
@@ -307,7 +308,7 @@ check("regional challenge integrates multiple geospatial competencies", () => {
 });
 
 check("save persists region state and Phase 5 saves migrate", () => {
-  assert.equal(SAVE_VERSION, 4);
+  assert.equal(SAVE_VERSION, 5);
   const played = playHighCountry();
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
@@ -324,7 +325,7 @@ check("save persists region state and Phase 5 saves migrate", () => {
     hcState: played.state,
     regionPlayers: { "cedar-hollow": { x: 1688, y: 940, facing: -1 }, "high-country": { x: 1280, y: 540, facing: 1 } }
   });
-  assert.equal(snap.v, 4);
+  assert.equal(snap.v, 5);
   assert.equal(snap.world.currentRegion, "high-country");
   assert.ok(snap.highCountry.contourOk);
   assert.equal(snap.regionPlayers["cedar-hollow"].x, 1688);
@@ -344,8 +345,9 @@ check("save persists region state and Phase 5 saves migrate", () => {
     challenge: { concluded: true }
   };
   const migrated = migrateSave(v3);
-  assert.equal(migrated.v, 4);
+  assert.equal(migrated.v, 5);
   assert.equal(migrated.highCountry.introSeen, false);
+  assert.equal(migrated.sunfall.introSeen, false);
   assert.equal(migrated.regionPlayers["cedar-hollow"].x, 1688);
   const hc2 = createHcState();
   const world2 = createWorldState(tbWorld);

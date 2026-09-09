@@ -1658,3 +1658,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Two trails to the same survey point beat a slope quiz. Distance, elevation gain, and contour spacing become a heavy-case decision; remote imagery can then veto the short trail that still looks whole on the sketch.
 - Save version bumps should wrap new region sessions beside the old journal key. Phase 5 v3 saves migrate in place to v4 without renaming `terrainbound.cedar-hollow.v1`.
 
+### Lessons Learned — TerrainBound Phase 7 (2026-09-08)
+
+- Time of day is a field instrument, not a waiting game. Keep celestial minutes on the region session so Cedar Hollow and High Country missions cannot be scrambled by a noon jump.
+- Seasons teach when winter noon can be closer to the Sun. Distance as a table column next to Sun height and day length contradicts the common story without a multiple-choice scold.
+- A third region is still a session switch: one more world/renderer pack, `regionPlayers` slot, and save version. `syncFromGameplay` must keep every non-Cedar record or High Country and Sunfall mastery vanish on persist.
+- Night is the payoff for a desert sky. A dark gradient, a cheap star field, and a Moon disc change the place more than extra daytime props.
+- Tools stay earned by use: logging three shadows, advancing the clock, measuring an eccentric orbit, and repeating Moon notes. Opening the Field Tablet still awards nothing.
+

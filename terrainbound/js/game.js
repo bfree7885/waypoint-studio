@@ -120,6 +120,38 @@ import {
   recordedMarkerCount,
   toggleMapLayer
 } from "./highcountry.js";
+import {
+  createSfState,
+  jumpObservation,
+  recordShadow,
+  explainRotation,
+  recordSeasonNoon,
+  explainSeasons,
+  setOrbitEccentricity,
+  measureOrbit,
+  predictKepler,
+  recordMoon,
+  useMoonGeometry,
+  predictMoon,
+  alignEclipse,
+  explainEclipse,
+  compareTides,
+  classifyPlanets,
+  planObservation,
+  presentSfChallenge,
+  addSfFind,
+  identifyFind,
+  sfNoteModel,
+  applySfEvidence,
+  sfReadyForChallenge,
+  sfInspectTarget,
+  sfToolsFlags,
+  sfBoardView,
+  liveSky,
+  playerLat,
+  tideRows
+} from "./sunfall.js";
+import { worldToLatLon, formatLatLon } from "./geomap.js";
 
 const WALK_SPEED = 196;
 const VIEW_HEIGHT = 760;
@@ -153,7 +185,11 @@ export async function boot(root = document) {
     hcRegion,
     hcCatalog,
     hcSpec,
-    hcProfile
+    hcProfile,
+    sfRegion,
+    sfCatalog,
+    sfSpec,
+    sfProfile
   ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
@@ -171,7 +207,11 @@ export async function boot(root = document) {
       fetch("./data/regions/high-country.json").then((r) => r.json()),
       fetch("./data/discoveries/high-country.json").then((r) => r.json()),
       fetch("./data/investigations/high-country.json").then((r) => r.json()),
-      fetch("./data/mastery/high-country.json").then((r) => r.json())
+      fetch("./data/mastery/high-country.json").then((r) => r.json()),
+      fetch("./data/regions/sunfall-desert.json").then((r) => r.json()),
+      fetch("./data/discoveries/sunfall-desert.json").then((r) => r.json()),
+      fetch("./data/investigations/sunfall-desert.json").then((r) => r.json()),
+      fetch("./data/mastery/sunfall-desert.json").then((r) => r.json())
     ]);
   void curriculum;
   void hazardsCatalog;
@@ -185,6 +225,7 @@ export async function boot(root = document) {
 
   const hollowWorld = createWorld(region, 1842, catalog.items);
   const hcWorld = createWorld(hcRegion, 2210, hcCatalog.items);
+  const sfWorld = createWorld(sfRegion, 3107, sfCatalog.items);
   let world = hollowWorld;
   const missionState = createMissionState(mission);
   const discoveryState = createDiscoveryState();
@@ -193,11 +234,13 @@ export async function boot(root = document) {
   const dataState = createDataState();
   const challengeState = createChallengeState();
   const hcState = createHcState();
-  const regionPlayers = { "cedar-hollow": null, "high-country": null };
+  const sfState = createSfState();
+  const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
   const taught = emptyTaught();
   const ui = bindUi(root);
   const hollowRenderer = createRenderer(canvas, hollowWorld, { heightAt, inCreek, onTrail });
   const hcRenderer = createRenderer(canvas, hcWorld, { heightAt, inCreek, onTrail });
+  const sfRenderer = createRenderer(canvas, sfWorld, { heightAt, inCreek, onTrail });
   let renderer = hollowRenderer;
   const audio = createAudio({ reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
   const storage = window.localStorage;
@@ -246,11 +289,15 @@ export async function boot(root = document) {
       dataState,
       challengeState,
       hcState,
+      sfState,
       regionPlayers
     });
   }
   function isHighCountry() {
     return worldState.currentRegion === "high-country";
+  }
+  function isSunfall() {
+    return worldState.currentRegion === "sunfall-desert";
   }
 
   function applyRegionWorld(id, { keepPlayer = false } = {}) {
@@ -266,6 +313,17 @@ export async function boot(root = document) {
       }
       ui.setPlace("High Country", "Ridgeline Station");
       canvas.setAttribute("aria-label", "High Country, alpine ridges you can explore");
+    } else if (id === "sunfall-desert") {
+      world = sfWorld;
+      renderer = sfRenderer;
+      if (!keepPlayer) {
+        const saved = regionPlayers["sunfall-desert"];
+        player.x = saved?.x ?? sfRegion.spawn.x;
+        player.y = saved?.y ?? sfRegion.spawn.y;
+        if (saved?.facing != null) player.facing = saved.facing;
+      }
+      ui.setPlace("Sunfall Desert", "Sunfall Observatory");
+      canvas.setAttribute("aria-label", "Sunfall Desert, an open high desert you can explore");
     } else {
       world = hollowWorld;
       renderer = hollowRenderer;
@@ -280,6 +338,7 @@ export async function boot(root = document) {
     }
     camera.x = player.x;
     camera.y = player.y - 28;
+    refreshSkyClock();
   }
 
   applyRegionWorld(worldState.currentRegion || "cedar-hollow", { keepPlayer: true });
@@ -292,7 +351,8 @@ export async function boot(root = document) {
   syncToolsFromGameplay(toolState, toolsCatalog, {
     journalOpened: taught.journal,
     datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted),
-    ...hcToolsFlags(hcState)
+    ...hcToolsFlags(hcState),
+    ...sfToolsFlags(sfState)
   });
 
   function snapshot() {
@@ -320,6 +380,7 @@ export async function boot(root = document) {
 
   function journalView(open = journalOpen) {
     if (isHighCountry()) return hcJournalView(open);
+    if (isSunfall()) return sfJournalView(open);
     const evidence = evidenceModel(investigation, invState);
     const flow = dataState.datasets["cedar-hollow-flow"];
     const rows = flow?.rows || [];
@@ -416,6 +477,49 @@ export async function boot(root = document) {
     };
   }
 
+  function sfJournalView(open = journalOpen) {
+    const notes = sfNoteModel(sfSpec, sfState);
+    const tides = tideRows();
+    const tools = mapToolFlags();
+    return {
+      open,
+      regionName: "Sunfall Desert",
+      emptyNotes: "The notebooks do not agree. Start at the solar marker.",
+      observations: notes,
+      storyNotes: [],
+      concluded: sfState.challenge.ok,
+      conclusionText: sfState.challenge.ok ? sfSpec.completeJournalEntry : null,
+      discoveryLog: discoveryLogModel(
+        sfCatalog,
+        { foundIds: sfState.foundIds, acknowledgedIds: [], identifiedIds: sfState.identifiedIds },
+        false
+      ),
+      landscapeActive: false,
+      landscapeConcluded: false,
+      evidence: { cards: [], groups: [] },
+      fieldRecord: fieldRecord(sfProfile, masteryState),
+      fieldRecordLead: "Sunfall Desert Field Record — not a grade.",
+      missingLine:
+        sfState.challenge.ok && !regionMastered(sfProfile, masteryState)
+          ? remediationLine(sfProfile, masteryState)
+          : "",
+      dataRows: sfState.tides.compared ? tides.map((row) => [row.date, row.phase, String(row.range), row.kind]) : [],
+      dataColumns: sfState.tides.compared ? ["Date", "Moon", "Range (m)", "Kind"] : null,
+      dataCaption: "Coastal tide station — remote numbers, not an ocean unit.",
+      showMap: true,
+      mapCaption: "Observatory, mesa, crater, and you. Coordinates still work here.",
+      mapModel: {
+        region: sfRegion,
+        player,
+        tools,
+        mapState: { mode: "world", layersOn: ["trails"] },
+        discoveries: sfCatalog.items.filter((item) => sfState.foundIds.includes(item.id)),
+        heightAtFn: heightAt
+      },
+      mapTools: [{ id: "trails", label: "Tracks", on: true }]
+    };
+  }
+
   function syncFlowDataset() {
     setDatasetRows(dataState, "cedar-hollow-flow", flumeRows(flumeState, flumeSpec));
     const dataset = dataState.datasets["cedar-hollow-flow"];
@@ -430,13 +534,21 @@ export async function boot(root = document) {
     syncToolsFromGameplay(toolState, toolsCatalog, {
       journalOpened: taught.journal,
       datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted),
-      ...hcToolsFlags(hcState)
+      ...hcToolsFlags(hcState),
+      ...sfToolsFlags(sfState)
     });
     if (regionMastered(masteryProfile, masteryState)) {
       const opened = applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
       if (opened.includes("high-country") && !taught.routeHighCountry) {
         taught.routeHighCountry = true;
         ui.showToast("High Country", "Route open.");
+      }
+    }
+    if (regionMastered(hcProfile, masteryState)) {
+      const opened = applyTravelUnlocks(tbWorld, worldState, "high-country");
+      if (opened.includes("sunfall-desert") && !taught.routeSunfall) {
+        taught.routeSunfall = true;
+        ui.showToast("Sunfall Desert", "Route open.");
       }
     }
   }
@@ -458,6 +570,7 @@ export async function boot(root = document) {
         dataState,
         challengeState,
         hcState,
+        sfState,
         regionPlayers
       })
     );
@@ -915,6 +1028,7 @@ export async function boot(root = document) {
     if (!canEnterRegion(tbWorld, worldState, id)) return false;
     regionPlayers[worldState.currentRegion] = { x: player.x, y: player.y, facing: player.facing };
     const firstHc = id === "high-country" && !hcState.introSeen;
+    const firstSf = id === "sunfall-desert" && !sfState.introSeen;
     dialogue = null;
     inspectLock = false;
     ui.showDialogue(false);
@@ -931,14 +1045,64 @@ export async function boot(root = document) {
         dialogue = null;
         ui.showDialogue(false);
       });
+    } else if (firstSf) {
+      sfState.introSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", sfSpec.intro.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
     }
     return true;
   }
 
   function takeEvidence(result) {
-    if (result?.evidence?.length) applyHcEvidence(masteryState, recordEvidence, result.evidence);
+    if (!result?.evidence?.length) {
+      persist();
+      refreshJournal();
+      refreshSkyClock();
+      return;
+    }
+    if (isSunfall()) applySfEvidence(masteryState, recordEvidence, result.evidence);
+    else applyHcEvidence(masteryState, recordEvidence, result.evidence);
     persist();
     refreshJournal();
+    refreshSkyClock();
+  }
+
+  function refreshSkyClock() {
+    if (!isSunfall() || mode !== "play") {
+      ui.showSkyClock(false);
+      return;
+    }
+    const sky = liveSky(sfState, sfRegion, player);
+    const lat = playerLat(sfRegion, player);
+    ui.showSkyClock(
+      true,
+      {
+        label: `${sky.label} · ${sky.timeName} · ${formatLatLon({ lat, lon: worldToLatLon(sfRegion, player.x, player.y).lon }, 3)}`,
+        jumps: [
+          { id: "morning", label: "Morning" },
+          { id: "noon", label: "Noon" },
+          { id: "sunset", label: "Sunset" },
+          { id: "night", label: "Night" },
+          { id: "+1d", label: "+1 day" },
+          { id: "+7d", label: "+7 days" },
+          { id: "+1m", label: "+1 month" },
+          { id: "winter", label: "Winter noon" },
+          { id: "equinox", label: "Equinox noon" },
+          { id: "summer", label: "Summer noon" }
+        ]
+      },
+      {
+        onJump(id) {
+          jumpObservation(sfState, id, sfRegion, player);
+          persist();
+          refreshSkyClock();
+          if (geoOpen) renderGeo();
+        }
+      }
+    );
   }
 
   function closeGeo() {
@@ -955,8 +1119,63 @@ export async function boot(root = document) {
     renderGeo();
   }
 
+  function renderSfGeo() {
+    const sky = liveSky(sfState, sfRegion, player);
+    const view = sfBoardView(geoKind, sfState, sfSpec, sky);
+    ui.showGeoBoard(true, view, {
+      onPick(group, id) {
+        if (geoKind === "shadow" && group === "explain") sfState.rotationExplain = id;
+        if (geoKind === "seasons" && group === "explain") sfState.seasonExplain = id;
+        if (geoKind === "orbit" && group === "ecc") setOrbitEccentricity(sfState, Number(id));
+        if (geoKind === "kepler" && group === "period") sfState.kepler.predictedP = Number(id);
+        if (geoKind === "moon" && group === "predict") sfState.moonPredict = id;
+        if (geoKind === "eclipse" && group === "tilt") alignEclipse(sfState, id !== "off");
+        if (geoKind === "eclipse" && group === "explain") sfState.lastHint = "";
+        if (geoKind === "eclipse") sfState._eclipseChoice = group === "explain" ? id : sfState._eclipseChoice;
+        if (geoKind === "tides" && group === "pattern") sfState.tides.pattern = id;
+        if (geoKind === "planets" && group === "pattern") sfState.planets.pattern = id;
+        if (geoKind === "challenge") {
+          if (group === "reason") {
+            const has = sfState.challenge.reasons.includes(id);
+            sfState.challenge.reasons = has
+              ? sfState.challenge.reasons.filter((item) => item !== id)
+              : [...sfState.challenge.reasons, id];
+          } else {
+            sfState.challenge[group] = id;
+          }
+        }
+        renderGeo();
+      },
+      onTry() {
+        let result = { ok: false };
+        if (geoKind === "shadow") result = explainRotation(sfState, sfState.rotationExplain);
+        else if (geoKind === "seasons") result = explainSeasons(sfState, sfState.seasonExplain);
+        else if (geoKind === "orbit") result = measureOrbit(sfState);
+        else if (geoKind === "kepler") result = predictKepler(sfState, sfState.kepler.predictedP);
+        else if (geoKind === "moon") {
+          useMoonGeometry(sfState);
+          takeEvidence({ evidence: [{ competencyId: "moon", kind: "moon-geometry" }] });
+          result = predictMoon(sfState, sfState.moonPredict);
+        } else if (geoKind === "eclipse") result = explainEclipse(sfState, sfState._eclipseChoice);
+        else if (geoKind === "tides") result = compareTides(sfState, sfState.tides.pattern);
+        else if (geoKind === "planets") result = classifyPlanets(sfState, sfState.planets.pattern);
+        else if (geoKind === "challenge") {
+          result = planObservation(sfState, sfSpec, sfState.challenge);
+          if (result.ok) presentSfChallenge(sfState);
+        }
+        takeEvidence(result);
+        renderGeo();
+        if (result.ok) ui.showToast("Noted", result.hint || view.title);
+      }
+    });
+  }
+
   function renderGeo() {
     if (!geoOpen) return;
+    if (isSunfall()) {
+      renderSfGeo();
+      return;
+    }
     if (geoKind === "routes") {
       ui.showGeoBoard(
         true,
@@ -1152,6 +1371,159 @@ export async function boot(root = document) {
         }
       );
     }
+  }
+
+  function sfCurrentTarget() {
+    const hit = sfInspectTarget(sfSpec, sfCatalog, sfRegion, player, sfState);
+    const rangerNear = nearRanger(sfRegion, player.x, player.y);
+    const rangerD = Math.hypot(player.x - sfRegion.ranger.x, player.y - sfRegion.ranger.y);
+    if (rangerNear && (!hit || rangerD <= 70)) {
+      return { kind: "wren", x: sfRegion.ranger.x, y: sfRegion.ranger.y, name: "Ranger Wren" };
+    }
+    if (!hit) return null;
+    return { ...hit, name: hit.spec?.name || hit.item?.name || hit.kind };
+  }
+
+  function inspectSf(target) {
+    if (!target || inspectLock) return;
+    if (target.kind === "wren") {
+      talkSfWren();
+      return;
+    }
+    if (target.kind === "gnomon") {
+      inspectLock = true;
+      const sky = liveSky(sfState, sfRegion, player);
+      showDialogueLines(
+        "Solar marker",
+        [`${sky.label}. Shadow ${sky.shadow.visible ? `${sky.shadow.length.toFixed(2)} m toward ${sky.shadow.directionDeg.toFixed(0)}°` : "is gone — wait for the Sun."}`],
+        0,
+        () => {
+          const skyNow = liveSky(sfState, sfRegion, player);
+          let result = recordShadow(sfState, sfSpec, sfRegion, player);
+          if (skyNow.timeName === "noon" && sfState.rotationExplain === "earth-rotates") {
+            const season = recordSeasonNoon(sfState, sfSpec, sfRegion, player);
+            if (season.ok) result = season;
+          }
+          inspectLock = false;
+          dialogue = null;
+          ui.showDialogue(false);
+          takeEvidence(result);
+          if (result.ok && result.row?.slot) {
+            ui.showToast("Shadow log", `${result.row.slot}: ${result.row.length} m ${result.row.direction}`);
+            if (sfState.shadows.length >= 3 && sfState.rotationExplain !== "earth-rotates") openGeo("shadow");
+          } else if (result.ok && result.row?.season) {
+            ui.showToast("Noon Sun", `${result.row.season}: ${result.row.altitude}°`);
+            if (sfState.seasonObs.length >= 3) openGeo("seasons");
+          } else if (result.hint) ui.showToast("Not yet", result.hint);
+        },
+        sky.timeName === "noon" && sfState.rotationExplain === "earth-rotates" ? "Record noon" : "Record shadow"
+      );
+      if (sky.timeName === "noon" && sfState.rotationExplain === "earth-rotates") {
+        // also allow season record via Try — handled in dialogue action by checking after
+      }
+      return;
+    }
+    if (target.kind === "moon-site") {
+      inspectLock = true;
+      showDialogueLines("Night-sky viewpoint", [sfSpec.moonSite.prompt], 0, () => {
+        const result = recordMoon(sfState, sfSpec, sfRegion, player);
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        takeEvidence(result);
+        if (result.ok) {
+          ui.showToast("Sky log", result.row.name);
+          if (sfState.moonLog.length >= 4) openGeo("moon");
+        } else if (result.hint) ui.showToast("Not yet", result.hint);
+      }, "Log the Moon");
+      return;
+    }
+    if (target.kind === "orbit-board") {
+      openGeo(sfState.orbit.measured ? "kepler" : "orbit");
+      return;
+    }
+    if (target.kind === "tide-desk") {
+      openGeo("tides");
+      return;
+    }
+    if (target.kind === "planet-desk") {
+      openGeo("planets");
+      return;
+    }
+    if (target.kind === "eclipse-desk") {
+      openGeo("eclipse");
+      return;
+    }
+    if (target.kind === "compare-sample") {
+      sfState.compareSampleSeen = true;
+      inspectLock = true;
+      showDialogueLines("Drawer sample", [sfSpec.compareSample.text], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        if (sfState.foundIds.includes("sf-dark-rock")) {
+          const named = identifyFind(sfState, "sf-dark-rock");
+          if (named.ok) ui.showToast("Comparison", "The dark rock matches the drawer sample.");
+        }
+        persist();
+        refreshJournal();
+      });
+      return;
+    }
+    if (target.kind === "discovery") {
+      addSfFind(sfState, target.id);
+      const item = target.item;
+      const named = sfState.identifiedIds.includes(item.id);
+      inspectLock = true;
+      showDialogueLines(named ? item.interpretedName || item.name : item.name, [named ? item.interpretedText || item.text : item.text], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        taught.inspect = true;
+        persist();
+        refreshJournal();
+      });
+      return;
+    }
+    if (target.kind === "feature") {
+      inspectLock = true;
+      showDialogueLines(target.spec.name, [`${target.spec.label || "Open land"}. The sky here is wide.`], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+    }
+  }
+
+  function talkSfWren() {
+    if (sfReadyForChallenge(sfState) && !sfState.challenge.ok) {
+      showDialogueLines("Ranger Wren", sfSpec.wren.afterData, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openGeo("challenge");
+      });
+      return;
+    }
+    if (sfState.challenge.ok) {
+      showDialogueLines("Ranger Wren", sfSpec.wren.afterSuccess, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    let lines = sfSpec.wren.idle;
+    if (sfState.planets.classified) lines = sfSpec.wren.afterData;
+    else if (sfState.tides.compared) lines = sfSpec.wren.afterData;
+    else if (sfState.eclipse.understood) lines = sfSpec.wren.afterEclipse;
+    else if (sfState.moonLog.length >= 4) lines = sfSpec.wren.afterMoon;
+    else if (sfState.kepler.ok) lines = sfSpec.wren.afterOrbit;
+    else if (sfState.seasonExplain === "tilt") lines = sfSpec.wren.afterSeasons;
+    else if (sfState.rotationExplain === "earth-rotates") lines = sfSpec.wren.afterRotation;
+    else if (sfState.shadows.length >= 3) lines = sfSpec.wren.afterShadows;
+    showDialogueLines("Ranger Wren", lines, 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+    });
   }
 
   function hcCurrentTarget() {
@@ -1353,6 +1725,7 @@ export async function boot(root = document) {
 
   function currentTarget() {
     if (isHighCountry()) return hcCurrentTarget();
+    if (isSunfall()) return sfCurrentTarget();
     const disc = nearestDiscovery(catalog, player.x, player.y);
     const feat = nearestInspectable(world, player.x, player.y, 90);
     const prop = nearestStoryProp(region, player.x, player.y);
@@ -1397,6 +1770,10 @@ export async function boot(root = document) {
       inspectHc(target);
       return;
     }
+    if (isSunfall()) {
+      inspectSf(target);
+      return;
+    }
     if (target.kind === "wren") talkToWren();
     else if (target.kind === "discovery") inspectDiscovery(target.item);
     else if (target.kind === "prop") inspectProp(target.item);
@@ -1408,6 +1785,10 @@ export async function boot(root = document) {
   function talkToWren() {
     if (isHighCountry()) {
       talkHcWren();
+      return;
+    }
+    if (isSunfall()) {
+      talkSfWren();
       return;
     }
     const ready = canPresentFindings(missionState, mission);
@@ -1663,6 +2044,7 @@ export async function boot(root = document) {
     canvas.focus();
     audio.unlock();
     ui.setHint(controlHintText());
+    refreshSkyClock();
   }
 
   root.querySelector("#enter-btn").addEventListener("click", enterWorld);
@@ -1914,6 +2296,9 @@ export async function boot(root = document) {
       if (isHighCountry()) {
         camera.x = 1280 + Math.sin(t * 0.18) * 280;
         camera.y = 980 + Math.cos(t * 0.14) * 220;
+      } else if (isSunfall()) {
+        camera.x = 1400 + Math.sin(t * 0.16) * 320;
+        camera.y = 980 + Math.cos(t * 0.12) * 180;
       } else {
         camera.x = 1100 + Math.sin(t * 0.18) * 220;
         camera.y = 720 + Math.cos(t * 0.14) * 160;
@@ -1943,7 +2328,11 @@ export async function boot(root = document) {
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
         ui.setPrompt(
-          isHighCountry()
+          isSunfall()
+            ? sfReadyForChallenge(sfState) && !sfState.challenge.ok
+              ? "Share an observing plan · E"
+              : "Talk to Wren · E"
+            : isHighCountry()
             ? hcReadyForChallenge(hcState) && !hcState.challengeOk
               ? "Share a field plan · E"
               : "Talk to Wren · E"
@@ -1969,6 +2358,18 @@ export async function boot(root = document) {
         ui.setPrompt("Read the stake · E");
       } else if (target.kind === "challenge") {
         ui.setPrompt("Look closer · E");
+      } else if (target.kind === "gnomon") {
+        ui.setPrompt("Record the shadow · E");
+      } else if (target.kind === "moon-site") {
+        ui.setPrompt("Log the Moon · E");
+      } else if (target.kind === "orbit-board") {
+        ui.setPrompt("Use the orbit table · E");
+      } else if (target.kind === "tide-desk") {
+        ui.setPrompt("Read the coastal desk · E");
+      } else if (target.kind === "planet-desk") {
+        ui.setPrompt("Read the planet log · E");
+      } else if (target.kind === "eclipse-desk") {
+        ui.setPrompt("Use the alignment model · E");
       } else if (target.kind === "discovery") {
         const pending = availableMeasurementAt(investigation, invState, discoveryState, target.item.id);
         ui.setPrompt(pending ? `${pending.actionLabel} · E` : "Look closer · E");
@@ -1991,24 +2392,24 @@ export async function boot(root = document) {
       time: now / 1000,
       reducedMotion,
       destination,
-      observations: isHighCountry() ? [] : missionState.observations,
-      flowVisible: isHighCountry() ? false : missionState.flowVisible,
-      landscapeInterpreted: isHighCountry() ? false : invState.interpreted,
-      measuredIds: isHighCountry() ? [] : invState.measuredIds,
+      sky: isSunfall() ? liveSky(sfState, sfRegion, player) : null,
+      observations: isHighCountry() || isSunfall() ? [] : missionState.observations,
+      flowVisible: isHighCountry() || isSunfall() ? false : missionState.flowVisible,
+      landscapeInterpreted: isHighCountry() || isSunfall() ? false : invState.interpreted,
+      measuredIds: isHighCountry() || isSunfall() ? [] : invState.measuredIds,
       iceFlow: investigation.iceFlow,
-      discoveries: isHighCountry() ? hcCatalog.items : catalog.items,
+      discoveries: isSunfall() ? sfCatalog.items : isHighCountry() ? hcCatalog.items : catalog.items,
       nearTarget: target && target.kind !== "wren" ? target : null,
-      challengeActive: isHighCountry() ? false : Boolean(challengeState.active),
+      challengeActive: isHighCountry() || isSunfall() ? false : Boolean(challengeState.active),
       challengeSites:
-        !isHighCountry() && challengeState.active
+        !isHighCountry() && !isSunfall() && challengeState.active
           ? challengeSpec.sites.map((site) => ({
               ...site,
               observed: challengeState.observedIds.includes(site.id)
             }))
           : [],
-      interpretiveLabels: isHighCountry()
-        ? []
-        : interpretiveLabels(investigation, invState, catalog, region, player)
+      interpretiveLabels:
+        isHighCountry() || isSunfall() ? [] : interpretiveLabels(investigation, invState, catalog, region, player)
     });
     requestAnimationFrame(step);
   }
@@ -2036,6 +2437,11 @@ export async function boot(root = document) {
       hcSpec,
       hcCatalog,
       hcProfile,
+      sfState,
+      sfRegion,
+      sfSpec,
+      sfCatalog,
+      sfProfile,
       go(x, y) {
         player.x = x;
         player.y = y;
@@ -2063,7 +2469,7 @@ export async function boot(root = document) {
         return true;
       },
       talk() {
-        const ranger = isHighCountry() ? hcRegion.ranger : region.ranger;
+        const ranger = isSunfall() ? sfRegion.ranger : isHighCountry() ? hcRegion.ranger : region.ranger;
         player.x = ranger.x;
         player.y = ranger.y;
         talkToWren();
@@ -2094,16 +2500,21 @@ export async function boot(root = document) {
         else renderAtlas();
       },
       simulateMastery(regionId = "cedar-hollow") {
-        const profile = regionId === "high-country" ? hcProfile : masteryProfile;
+        const profile =
+          regionId === "sunfall-desert" ? sfProfile : regionId === "high-country" ? hcProfile : masteryProfile;
         applySimulatedMastery(profile, masteryState, regionId);
         persist();
         refreshJournal();
+        refreshSkyClock();
         if (atlasOpen) renderAtlas();
         return {
           accessible: [...worldState.accessibleRegions],
           mastered: [...worldState.masteredRegions],
           missing: missingEvidence(profile, masteryState)
         };
+      },
+      jump(kind) {
+        return jumpObservation(sfState, kind, sfRegion, player);
       }
     };
   }

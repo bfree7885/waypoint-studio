@@ -60,16 +60,20 @@ export function nearestDiscovery(catalog, x, y, range = 56) {
 }
 
 export function discoveryLogModel(catalog, state, interpreted = false) {
+  const identified = state.identifiedIds || [];
   const found = catalog.items
     .filter((item) => isFound(state, item.id))
-    .map((item) => ({
-      id: item.id,
-      name: displayName(item, interpreted),
-      symbol: item.symbol,
-      text: displayText(item, interpreted),
-      location: item.location,
-      interpreted: Boolean(interpreted && item.interpretedName)
-    }));
+    .map((item) => {
+      const named = Boolean((interpreted || identified.includes(item.id)) && item.interpretedName);
+      return {
+        id: item.id,
+        name: displayName(item, named),
+        symbol: item.symbol,
+        text: displayText(item, named),
+        location: item.location,
+        interpreted: named
+      };
+    });
   return {
     regionId: catalog.regionId,
     found,

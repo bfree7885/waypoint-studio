@@ -230,10 +230,16 @@ function drawContours(ctx, region, heightAtFn, width, height, interval) {
 
 export function drawFieldMap(ctx, width, height, model) {
   const { region, player, tools = {}, mapState, discoveries = [], heightAtFn } = model;
+  const desert = region.terrainModel === "sunfall-desert";
   ctx.clearRect(0, 0, width, height);
   const sky = ctx.createLinearGradient(0, 0, 0, height);
-  sky.addColorStop(0, "#c9d6c8");
-  sky.addColorStop(1, "#8aa090");
+  if (desert) {
+    sky.addColorStop(0, "#e8d4a8");
+    sky.addColorStop(1, "#c4a06a");
+  } else {
+    sky.addColorStop(0, "#c9d6c8");
+    sky.addColorStop(1, "#8aa090");
+  }
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, width, height);
   ctx.fillStyle = "#3d4a3c";
@@ -256,7 +262,7 @@ export function drawFieldMap(ctx, width, height, model) {
     ctx.fillRect(8, height * 0.52, width * 0.42, height * 0.4);
   }
 
-  if (layers.includes("water") && region.pond) {
+  if (layers.includes("water") && region.pond && region.terrainModel !== "sunfall-desert") {
     const p = project(region, region.pond.cx, region.pond.cy, width, height);
     ctx.fillStyle = "rgba(70, 150, 180, 0.45)";
     ctx.beginPath();

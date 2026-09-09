@@ -3,6 +3,7 @@
  */
 
 import { groundColor, dist } from "./world.js";
+import { starField } from "./celestial.js";
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
@@ -21,30 +22,44 @@ export function createRenderer(canvas, world, helpers) {
     phase: i * 0.7
   }));
 
+  const stars = starField(2210, 90);
+
   return {
     draw(state) {
       const { width, height } = canvas;
+      const desert = world.region.terrainModel === "sunfall-desert";
+      const alpine = world.region.terrainModel === "high-country";
+      const sky = state.sky;
+      const night = Boolean(desert && sky?.night);
       ctx.clearRect(0, 0, width, height);
       ctx.save();
-      ctx.fillStyle = world.region.terrainModel === "high-country" ? "#8ec4e8" : "#7ec8ea";
+      if (night) ctx.fillStyle = "#0b1020";
+      else if (desert) ctx.fillStyle = "#9ad0f0";
+      else ctx.fillStyle = alpine ? "#8ec4e8" : "#7ec8ea";
       ctx.fillRect(0, 0, width, height);
-      drawSky(ctx, width, height, state.time, state.reducedMotion, world.region.terrainModel === "high-country");
+      drawSky(ctx, width, height, state.time, state.reducedMotion, alpine, desert, sky, stars);
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
       ctx.drawImage(ground, 0, 0);
-      drawWater(ctx, world, state.time, state.reducedMotion);
+      if (night) {
+        ctx.fillStyle = "rgba(8, 12, 28, 0.48)";
+        ctx.fillRect(0, 0, world.region.width, world.region.height);
+      }
+      if (!desert) drawWater(ctx, world, state.time, state.reducedMotion);
+      else drawDryWash(ctx, world);
       if (state.flowVisible) drawFlowArrows(ctx, world, state.time);
       if (state.landscapeInterpreted) drawIceFlowArrows(ctx, state);
       drawStoryProps(ctx, world.region, state.time, state.reducedMotion);
+      drawGnomonShadow(ctx, world.region, sky);
       drawChallengeSites(ctx, state);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion);
-      if (!state.reducedMotion && world.region.terrainModel !== "high-country") {
+      if (!state.reducedMotion && !alpine && !desert) {
         drawLeaves(ctx, leaves, world.region, state.time);
       }
       drawTrees(ctx, world, state.time, state.reducedMotion);
-      drawStation(ctx, world.region);
+      drawStation(ctx, world.region, night);
       drawNearHint(ctx, world, state);
       drawRanger(ctx, world.region, state.time, state.reducedMotion);
       drawPlayer(ctx, state.player, state.time, state.reducedMotion);
@@ -55,7 +70,65 @@ export function createRenderer(canvas, world, helpers) {
   };
 }
 
-function drawSky(ctx, width, height, time, reduced, alpine = false) {
+function drawSky(ctx, width, height, time, reduced, alpine = false, desert = false, sky = null, stars = []) {
+  if (desert && sky?.night) {
+    const band = ctx.createLinearGradient(0, 0, 0, height * 0.42);
+    band.addColorStop(0, "#070b18");
+    band.addColorStop(0.55, "#141a32");
+    band.addColorStop(1, "#2a2438");
+    ctx.fillStyle = band;
+    ctx.fillRect(0, 0, width, height * 0.42);
+    ctx.save();
+    ctx.globalAlpha = 0.22;
+    ctx.strokeStyle = "#c8d4f0";
+    ctx.lineWidth = 18;
+    ctx.beginPath();
+    ctx.moveTo(width * 0.05, height * 0.28);
+    ctx.quadraticCurveTo(width * 0.5, height * 0.02, width * 0.95, height * 0.22);
+    ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = "#f4efe2";
+    for (const star of stars) {
+      ctx.globalAlpha = 0.45 + star.s * 0.25;
+      ctx.beginPath();
+      ctx.arc(star.x * width, star.y * height, star.s, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    const moon = sky.moon;
+    if (moon && moon.altitudeDeg > -4) {
+      const mx = width * (0.2 + (moon.azimuthDeg / 360) * 0.6);
+      const my = height * 0.28 - (moon.altitudeDeg / 90) * height * 0.18;
+      ctx.fillStyle = "#e8e0c8";
+      ctx.beginPath();
+      ctx.arc(mx, my, 11, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "rgba(12, 16, 32, 0.65)";
+      ctx.beginPath();
+      ctx.arc(mx + (moon.waxing ? -5 : 5), my, 11, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return;
+  }
+  if (desert && sky) {
+    const alt = sky.sun?.altitudeDeg ?? 40;
+    if (alt < 8) {
+      const dusk = ctx.createLinearGradient(0, 0, 0, height * 0.38);
+      dusk.addColorStop(0, "#f0a060");
+      dusk.addColorStop(1, "#9ad0f0");
+      ctx.fillStyle = dusk;
+      ctx.fillRect(0, 0, width, height * 0.38);
+    }
+    if (sky.sun && sky.sun.altitudeDeg > 0) {
+      const sx = width * (0.15 + (sky.sun.azimuthDeg / 360) * 0.7);
+      const sy = Math.max(18, height * 0.32 - (sky.sun.altitudeDeg / 90) * height * 0.24);
+      ctx.fillStyle = "#f4d76a";
+      ctx.beginPath();
+      ctx.arc(sx, sy, 16, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return;
+  }
   const drift = reduced ? 0 : (time * 8) % (width + 240);
   ctx.fillStyle = alpine ? "rgba(255,255,255,0.32)" : "rgba(255,255,255,0.22)";
   for (let i = 0; i < 3; i += 1) {
@@ -66,6 +139,32 @@ function drawSky(ctx, width, height, time, reduced, alpine = false) {
     ctx.ellipse(x + 36, y + 4, 48, 14, 0, 0, Math.PI * 2);
     ctx.fill();
   }
+}
+
+function drawDryWash(ctx, world) {
+  const { region } = world;
+  if (!region.creek) return;
+  ctx.strokeStyle = "rgba(210, 176, 118, 0.7)";
+  ctx.lineWidth = region.creek.width * 1.6;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  strokeLine(ctx, region.creek.points);
+}
+
+function drawGnomonShadow(ctx, region, sky) {
+  const prop = (region.props || []).find((item) => item.kind === "gnomon");
+  if (!prop || !sky?.shadow?.visible) return;
+  const len = Math.min(90, 18 + sky.shadow.length * 16);
+  const rad = ((sky.shadow.directionDeg - 90) * Math.PI) / 180;
+  ctx.save();
+  ctx.strokeStyle = "rgba(40, 28, 16, 0.45)";
+  ctx.lineWidth = 5;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(prop.x, prop.y);
+  ctx.lineTo(prop.x + Math.cos(rad) * len, prop.y + Math.sin(rad) * len);
+  ctx.stroke();
+  ctx.restore();
 }
 
 function drawLeaves(ctx, leaves, region, time) {
@@ -113,7 +212,30 @@ function bakeGround(canvas, world, helpers) {
   ctx.putImageData(img, 0, 0);
 
   const peak = region.peak;
-  if (region.terrainModel === "high-country") {
+  if (region.terrainModel === "sunfall-desert") {
+    ctx.fillStyle = "#c48a52";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 280, peak.y + 180);
+    ctx.lineTo(peak.x - 120, peak.y - 20);
+    ctx.lineTo(peak.x + 40, peak.y - 50);
+    ctx.lineTo(peak.x + 220, peak.y + 160);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#d4a06a";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 40, peak.y + 20);
+    ctx.lineTo(peak.x + 20, peak.y - 58);
+    ctx.lineTo(peak.x + 90, peak.y + 40);
+    ctx.closePath();
+    ctx.fill();
+    if (region.pond) {
+      ctx.strokeStyle = "rgba(150, 96, 58, 0.55)";
+      ctx.lineWidth = 14;
+      ctx.beginPath();
+      ctx.ellipse(region.pond.cx, region.pond.cy, region.pond.rx + 10, region.pond.ry + 10, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+  } else if (region.terrainModel === "high-country") {
     ctx.fillStyle = "#d8d4cc";
     ctx.beginPath();
     ctx.moveTo(peak.x - 220, peak.y + 160);
@@ -177,9 +299,11 @@ function bakeGround(canvas, world, helpers) {
 
   ctx.strokeStyle = "rgba(214, 196, 120, 0.7)";
   ctx.lineWidth = 10;
-  ctx.beginPath();
-  ctx.ellipse(region.pond.cx, region.pond.cy, region.pond.rx + 8, region.pond.ry + 8, 0, 0, Math.PI * 2);
-  ctx.stroke();
+  if (region.pond && region.terrainModel !== "sunfall-desert") {
+    ctx.beginPath();
+    ctx.ellipse(region.pond.cx, region.pond.cy, region.pond.rx + 8, region.pond.ry + 8, 0, 0, Math.PI * 2);
+    ctx.stroke();
+  }
 }
 
 function strokeLine(ctx, points) {
@@ -402,6 +526,49 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.fillStyle = "#6d4c32";
       ctx.fillRect(prop.x - 30, prop.y, 8, 8);
       ctx.fillRect(prop.x + 22, prop.y - 10, 8, 8);
+    } else if (prop.kind === "gnomon") {
+      ctx.fillStyle = "#5a3e22";
+      ctx.fillRect(prop.x - 3, prop.y - 36, 6, 36);
+      ctx.fillStyle = "#d8c09a";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 36, 5, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "dome") {
+      ctx.fillStyle = "#c4a06a";
+      ctx.fillRect(prop.x - 18, prop.y - 10, 36, 16);
+      ctx.fillStyle = "#d8c8a0";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 10, 16, Math.PI, 0);
+      ctx.fill();
+    } else if (prop.kind === "sundial") {
+      ctx.fillStyle = "#c2b4a0";
+      ctx.beginPath();
+      ctx.ellipse(prop.x, prop.y, 16, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#6d4c32";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(prop.x, prop.y);
+      ctx.lineTo(prop.x + 6, prop.y - 12);
+      ctx.stroke();
+    } else if (prop.kind === "telescope-pad") {
+      ctx.fillStyle = "#b8aea0";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = "#6d4c32";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    } else if (prop.kind === "survey-post") {
+      ctx.fillStyle = "#c45c26";
+      ctx.fillRect(prop.x - 3, prop.y - 22, 6, 22);
+      ctx.fillStyle = "#d4b46a";
+      ctx.fillRect(prop.x - 8, prop.y - 30, 16, 8);
+    } else if (prop.kind === "alignment-stone") {
+      ctx.fillStyle = "#b8aea0";
+      ctx.fillRect(prop.x - 18, prop.y - 6, 10, 12);
+      ctx.fillRect(prop.x - 4, prop.y - 8, 10, 14);
+      ctx.fillRect(prop.x + 10, prop.y - 5, 10, 11);
     } else if (prop.kind === "instrument-crate") {
       ctx.fillStyle = "#8a6238";
       ctx.fillRect(prop.x - 12, prop.y - 10, 24, 16);
@@ -628,7 +795,14 @@ function drawTrees(ctx, world, time, reduced) {
     ctx.beginPath();
     ctx.ellipse(tree.x, tree.y + 8, tree.r * 0.7, tree.r * 0.28, 0, 0, Math.PI * 2);
     ctx.fill();
-    if (tree.pine) {
+    if (tree.cactus) {
+      ctx.fillStyle = "#3d6b3a";
+      ctx.fillRect(tree.x - 4, tree.y - 22, 8, 24);
+      ctx.fillRect(tree.x - 12, tree.y - 16, 8, 4);
+      ctx.fillRect(tree.x - 12, tree.y - 16, 4, 10);
+      ctx.fillRect(tree.x + 4, tree.y - 14, 8, 4);
+      ctx.fillRect(tree.x + 8, tree.y - 14, 4, 8);
+    } else if (tree.pine) {
       ctx.fillStyle = "#6b4424";
       ctx.fillRect(tree.x - 3, tree.y - 10, 6, 16);
       ctx.fillStyle = "#1f6b3a";
@@ -662,8 +836,40 @@ function drawTrees(ctx, world, time, reduced) {
   }
 }
 
-function drawStation(ctx, region) {
+function drawStation(ctx, region, night = false) {
   const s = region.station;
+  if (region.terrainModel === "sunfall-desert") {
+    ctx.fillStyle = "rgba(40, 30, 16, 0.22)";
+    ctx.fillRect(s.x + 8, s.y + s.h - 6, s.w, 16);
+    ctx.fillStyle = "#c4a06a";
+    ctx.fillRect(s.x - 12, s.y + s.h - 16, s.w + 28, 18);
+    ctx.fillStyle = "#d8c09a";
+    ctx.fillRect(s.x, s.y + 24, s.w, s.h - 24);
+    ctx.fillStyle = "#8a6a48";
+    ctx.fillRect(s.x + 12, s.y + s.h - 48, 22, 36);
+    ctx.fillStyle = night ? "rgba(240, 196, 76, 0.55)" : "#f4e2a8";
+    ctx.fillRect(s.x + 48, s.y + 40, 22, 16);
+    ctx.fillRect(s.x + s.w - 52, s.y + 40, 22, 16);
+    ctx.fillStyle = "#c4783c";
+    ctx.beginPath();
+    ctx.arc(s.x + s.w * 0.62, s.y + 18, 36, Math.PI, 0);
+    ctx.fill();
+    ctx.fillStyle = "#e8d2a8";
+    ctx.beginPath();
+    ctx.arc(s.x + s.w * 0.62, s.y + 18, 22, Math.PI, 0);
+    ctx.fill();
+    ctx.fillStyle = "#2f6b3a";
+    ctx.font = "bold 15px Trebuchet MS, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Sunfall Observatory", s.x + s.w / 2, s.y + s.h + 26);
+    if (night) {
+      ctx.fillStyle = "rgba(240, 196, 76, 0.18)";
+      ctx.beginPath();
+      ctx.arc(s.x + s.w * 0.3, s.y + 50, 36, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    return;
+  }
   ctx.fillStyle = "rgba(40, 50, 30, 0.2)";
   ctx.fillRect(s.x + 8, s.y + s.h - 6, s.w, 16);
   ctx.fillStyle = "#d8c09a";

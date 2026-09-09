@@ -31,6 +31,10 @@ export function syncToolsFromGameplay(state, catalog, flags = {}) {
   if (flags.elevationRead) earnTool(state, catalog, "elevation");
   if (flags.profileUsed) earnTool(state, catalog, "profile-tools");
   if (flags.gisUsed) earnTool(state, catalog, "gis-layers");
+  if (flags.solarUsed) earnTool(state, catalog, "solar-observation");
+  if (flags.clockUsed) earnTool(state, catalog, "celestial-clock");
+  if (flags.orbitUsed) earnTool(state, catalog, "orbit-model");
+  if (flags.skyLogUsed) earnTool(state, catalog, "sky-log");
   return state;
 }
 

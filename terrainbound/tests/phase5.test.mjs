@@ -476,7 +476,7 @@ check("High Country opens only after mastery and becomes enterable", () => {
   const home = previewModel(tbWorld, worldState, "cedar-hollow");
   assert.equal(home.mastered, true);
   assert.match(home.routeLabel, /field work complete/i);
-  assert.equal(isPlayable(tbWorld, "sunfall-desert"), false);
+  assert.equal(isPlayable(tbWorld, "sunfall-desert"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
 });
 
@@ -499,7 +499,7 @@ check("route-open state persists and Phase 4 saves migrate", () => {
     challengeState: done.challengeState
   });
   assert.equal(snap.v, SAVE_VERSION);
-  assert.equal(SAVE_VERSION, 4);
+  assert.equal(SAVE_VERSION, 5);
   assert.ok(snap.flume.trials.length >= 6);
   assert.ok(snap.fieldData.datasets["cedar-hollow-flow"].interpreted);
   writeSave(storage, snap);
@@ -541,12 +541,12 @@ check("route-open state persists and Phase 4 saves migrate", () => {
     investigation: createInvestigationState()
   };
   const migrated = migrateSave(v2);
-  assert.equal(migrated.v, 4);
+  assert.equal(migrated.v, 5);
   assert.deepEqual(migrated.flume.trials, []);
   const v1 = { v: 1, regionId: "cedar-hollow", player: { x: 1688, y: 940 }, taught: {}, mission: {}, discoveries: {}, investigation: {} };
-  assert.equal(migrateSave(v1).v, 4);
+  assert.equal(migrateSave(v1).v, 5);
   const fromDisk = readSave(mockStorage({ [SAVE_KEY]: JSON.stringify(v2) }));
-  assert.equal(fromDisk.v, 4);
+  assert.equal(fromDisk.v, 5);
 });
 
 check("field-data tool is earned by interpretation, not by opening the tablet", () => {

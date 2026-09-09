@@ -861,6 +861,61 @@ body {
   line-height: 1.4;
 }
 
+#sky-clock {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 18px;
+  z-index: 4;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(244, 239, 226, 0.92);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(20, 28, 22, 0.18);
+}
+
+#sky-clock[hidden] {
+  display: none;
+}
+
+.sky-clock-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6a5a32;
+}
+
+#sky-clock-label {
+  margin: 2px 0 8px;
+  font-weight: 600;
+}
+
+#sky-clock-jumps {
+  margin: 0;
+}
+
+#sky-clock-jumps button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #c4b49a;
+  background: #fffaf0;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  #sky-clock {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #journal {
     transition: none;

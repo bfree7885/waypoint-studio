@@ -76,11 +76,38 @@
     },
     {
       "id": "solar-observation",
-      "name": "Solar / celestial observation tools",
+      "name": "Solar observer",
       "regionId": "sunfall-desert",
-      "description": "Shadows, solar angle, and orbital models.",
-      "earnedBy": "Learning to measure the sky in Sunfall Desert.",
-      "implemented": false,
+      "description": "Sun altitude, azimuth-style notes, and shadow logging.",
+      "earnedBy": "Recording morning, noon, and afternoon shadows at the solar marker.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "celestial-clock",
+      "name": "Celestial clock",
+      "regionId": "sunfall-desert",
+      "description": "Controlled field observation time: morning, noon, night, days, and months.",
+      "earnedBy": "Advancing observation time in Sunfall Desert.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "orbit-model",
+      "name": "Orbit model",
+      "regionId": "sunfall-desert",
+      "description": "Ellipses, focus, distance, speed, and period relations.",
+      "earnedBy": "Measuring a model orbit in Sunfall Desert.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "sky-log",
+      "name": "Sky log",
+      "regionId": "sunfall-desert",
+      "description": "Moon and celestial observation records.",
+      "earnedBy": "Logging repeated Moon observations from the mesa.",
+      "implemented": true,
       "permanent": true
     },
     {

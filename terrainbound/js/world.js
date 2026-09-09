@@ -70,15 +70,42 @@ function highCountryHeight(region, x, y) {
   return Math.max(0, Math.min(1, h));
 }
 
+function sunfallHeight(region, x, y) {
+  let h = 0.22;
+  const mesa = Math.max(0, 1 - dist(x, y, 420, 500) / 340);
+  const butte = Math.max(0, 1 - dist(x, y, 700, 360) / 160);
+  h += mesa * 0.48 + butte * 0.22;
+  const crater = region.pond;
+  if (crater) {
+    const dx = (x - crater.cx) / crater.rx;
+    const dy = (y - crater.cy) / crater.ry;
+    const rr = dx * dx + dy * dy;
+    if (rr < 1) h -= 0.16 * (1 - Math.sqrt(Math.max(0, rr)));
+    else if (rr < 1.18) h += 0.08 * (1.18 - rr) / 0.18;
+  }
+  h -= Math.max(0, 1 - dist(x, y, 1320, 1288) / 180) * 0.04;
+  h += Math.max(0, 1 - dist(x, y, 1768, 1012) / 220) * 0.03;
+  return Math.max(0.04, Math.min(1, h));
+}
+
 export function heightAt(region, x, y) {
   if (region.terrainModel === "high-country" || region.id === "high-country") {
     return highCountryHeight(region, x, y);
   }
+  if (region.terrainModel === "sunfall-desert" || region.id === "sunfall-desert") {
+    return sunfallHeight(region, x, y);
+  }
   return cedarHollowHeight(region, x, y);
 }
 
+function isDry(region) {
+  return region.dryLandscape === true || region.terrainModel === "sunfall-desert";
+}
+
 export function inPond(region, x, y) {
+  if (isDry(region)) return false;
   const p = region.pond;
+  if (!p) return false;
   const dx = (x - p.cx) / p.rx;
   const dy = (y - p.cy) / p.ry;
   return dx * dx + dy * dy <= 1;
@@ -105,6 +132,7 @@ export function inTributary(region, x, y) {
 }
 
 export function inCreek(region, x, y) {
+  if (isDry(region)) return false;
   const creekW = region.creek.width;
   const outW = region.outlet.width;
   return (
@@ -131,6 +159,27 @@ function hash01(x, y) {
 
 export function biomeWeights(region, x, y) {
   const h = heightAt(region, x, y);
+  if (region.terrainModel === "sunfall-desert") {
+    const wash = region.creek ? polylineDistance(x, y, region.creek.points) < 28 : false;
+    const crater = region.pond
+      ? ((x - region.pond.cx) / region.pond.rx) ** 2 + ((y - region.pond.cy) / region.pond.ry) ** 2 <= 1
+      : false;
+    const rock = Math.max(h > 0.42 ? (h - 0.42) / 0.4 : 0, inOutcrop(region, x, y) ? 0.85 : 0);
+    const soil = onTrail(region, x, y) ? 0.85 : wash ? 0.7 : 0;
+    const sparse = Math.max(0, 1 - dist(x, y, 1400, 1180) / 520) * 0.12;
+    return {
+      water: 0,
+      trail: soil,
+      rock,
+      marsh: 0,
+      forest: sparse,
+      slope: Math.max(0, 1 - dist(x, y, 420, 500) / 280),
+      meadow: crater ? 0.15 : 0.55,
+      wash: wash ? 1 : 0,
+      crater: crater ? 1 : 0,
+      height: h
+    };
+  }
   if (region.terrainModel === "high-country") {
     const treeline = h < 0.58;
     const forest = treeline ? Math.max(0, 1 - dist(x, y, 1100, 1400) / 380) * 0.55 : 0;
@@ -187,6 +236,21 @@ const PALETTE = {
   soil: [186, 148, 96]
 };
 
+const DESERT_PALETTE = {
+  rockHi: [214, 176, 132],
+  rockLo: [168, 118, 78],
+  forest: [120, 132, 72],
+  forestFloor: [196, 154, 92],
+  slope: [186, 132, 78],
+  meadow: [214, 176, 108],
+  marsh: [196, 154, 92],
+  marshWet: [186, 148, 88],
+  trail: [210, 178, 124],
+  soil: [198, 150, 86],
+  wash: [222, 188, 132],
+  crater: [186, 142, 96]
+};
+
 const ALPINE_PALETTE = {
   rockHi: [228, 226, 222],
   rockLo: [148, 142, 136],
@@ -218,13 +282,20 @@ function rgbToHex(rgb) {
 }
 
 export function groundColor(region, x, y) {
-  const pal = region.terrainModel === "high-country" ? ALPINE_PALETTE : PALETTE;
-  if (inCreek(region, x, y) && !inTributary(region, x, y) && !inPond(region, x, y)) {
-    // Tributary handled as water by renderer; main creek/pond left transparent for animated water.
+  const pal =
+    region.terrainModel === "sunfall-desert"
+      ? DESERT_PALETTE
+      : region.terrainModel === "high-country"
+        ? ALPINE_PALETTE
+        : PALETTE;
+  if (!isDry(region)) {
+    if (inCreek(region, x, y) && !inTributary(region, x, y) && !inPond(region, x, y)) {
+      // Tributary handled as water by renderer; main creek/pond left transparent for animated water.
+    }
+    if (inPond(region, x, y)) return null;
+    if (polylineDistance(x, y, region.creek.points) < region.creek.width) return null;
+    if (polylineDistance(x, y, region.outlet.points) < region.outlet.width) return null;
   }
-  if (inPond(region, x, y)) return null;
-  if (polylineDistance(x, y, region.creek.points) < region.creek.width) return null;
-  if (polylineDistance(x, y, region.outlet.points) < region.outlet.width) return null;
 
   const w = biomeWeights(region, x, y);
   let rgb = pal.meadow;
@@ -234,6 +305,8 @@ export function groundColor(region, x, y) {
   if (w.marsh > 0.55) rgb = mixRgb(rgb, pal.marshWet, (w.marsh - 0.55) / 0.45);
   if (w.rock > 0.12) rgb = mixRgb(rgb, w.height > 0.78 ? pal.rockHi : pal.rockLo, Math.min(1, w.rock * 1.2));
   if (w.trail > 0.35) rgb = mixRgb(rgb, pal.trail, Math.min(1, w.trail));
+  if (w.wash > 0.4) rgb = mixRgb(rgb, pal.wash || pal.soil, Math.min(1, w.wash));
+  if (w.crater > 0.4) rgb = mixRgb(rgb, pal.crater || pal.soil, Math.min(1, w.crater));
   if (inTributary(region, x, y)) rgb = mixRgb(rgb, [90, 160, 170], 0.55);
 
   const n = hash01(x, y);
@@ -259,8 +332,9 @@ function reservedSpot(region, x, y, extras) {
 
 function plantTrees(region, rng, extras) {
   const alpine = region.terrainModel === "high-country";
+  const desert = region.terrainModel === "sunfall-desert";
   const trees = [];
-  const want = alpine ? 72 : 170;
+  const want = desert ? 22 : alpine ? 72 : 170;
   let guard = 0;
   while (trees.length < want && guard < 5000) {
     guard += 1;
@@ -268,20 +342,24 @@ function plantTrees(region, rng, extras) {
     const y = 80 + rng() * (region.height - 160);
     const h = heightAt(region, x, y);
     if (alpine && h > 0.56) continue;
-    if (h > 0.72) continue;
+    if (!desert && h > 0.72) continue;
+    if (desert && h > 0.62) continue;
     if (reservedSpot(region, x, y, extras)) continue;
     if (inWetland(region, x, y) && rng() > 0.12) continue;
-    const forestBoost = alpine
-      ? dist(x, y, 1100, 1420) < 320 || dist(x, y, 1680, 1320) < 220
-      : dist(x, y, 560, 800) < 340 || dist(x, y, 1500, 1100) < 200;
-    if (!forestBoost && rng() > (alpine ? 0.1 : 0.18)) continue;
-    if (trees.some((tree) => dist(x, y, tree.x, tree.y) < 38)) continue;
-    const pine = alpine ? true : dist(x, y, region.peak.x, region.peak.y) < 420 ? rng() > 0.28 : rng() > 0.55;
+    const forestBoost = desert
+      ? dist(x, y, 900, 1280) < 280 || dist(x, y, 1680, 1240) < 200
+      : alpine
+        ? dist(x, y, 1100, 1420) < 320 || dist(x, y, 1680, 1320) < 220
+        : dist(x, y, 560, 800) < 340 || dist(x, y, 1500, 1100) < 200;
+    if (!forestBoost && rng() > (desert ? 0.08 : alpine ? 0.1 : 0.18)) continue;
+    if (trees.some((tree) => dist(x, y, tree.x, tree.y) < (desert ? 52 : 38))) continue;
+    const pine = desert ? false : alpine ? true : dist(x, y, region.peak.x, region.peak.y) < 420 ? rng() > 0.28 : rng() > 0.55;
     trees.push({
       x,
       y,
-      r: alpine ? 12 + rng() * 6 : pine ? 16 + rng() * 8 : 18 + rng() * 10,
+      r: desert ? 8 + rng() * 5 : alpine ? 12 + rng() * 6 : pine ? 16 + rng() * 8 : 18 + rng() * 10,
       pine,
+      cactus: desert,
       shade: rng()
     });
   }
@@ -290,6 +368,7 @@ function plantTrees(region, rng, extras) {
 
 function scatterDetails(region, rng, extras) {
   const alpine = region.terrainModel === "high-country";
+  const desert = region.terrainModel === "sunfall-desert";
   const details = [];
   const tryAdd = (kind, n, test) => {
     let guard = 0;
@@ -305,13 +384,17 @@ function scatterDetails(region, rng, extras) {
       added += 1;
     }
   };
-  tryAdd("rock", alpine ? 48 : 28, (x, y) => heightAt(region, x, y) > (alpine ? 0.36 : 0.42) || inOutcrop(region, x, y));
-  tryAdd("boulder", alpine ? 16 : 8, (x, y) => heightAt(region, x, y) > 0.5);
-  tryAdd("log", alpine ? 4 : 10, (x, y) => !alpine && dist(x, y, 560, 800) < 380 && !inCreek(region, x, y));
-  tryAdd("shrub", alpine ? 14 : 24, (x, y) => heightAt(region, x, y) < 0.55 && !inWetland(region, x, y));
-  tryAdd("flower", alpine ? 8 : 18, (x, y) => heightAt(region, x, y) < (alpine ? 0.4 : 0.28) && !inWetland(region, x, y));
-  tryAdd("reed", alpine ? 12 : 36, (x, y) => inWetland(region, x, y) || (inPond(region, x, y) === false && dist(x, y, region.pond.cx, region.pond.cy) < region.pond.rx + 36));
-  tryAdd("soil", alpine ? 6 : 8, (x, y) => alpine ? dist(x, y, 620, 960) < 90 : dist(x, y, 1024, 1108) < 90 || heightAt(region, x, y) > 0.58);
+  tryAdd("rock", desert ? 56 : alpine ? 48 : 28, (x, y) => heightAt(region, x, y) > (alpine || desert ? 0.32 : 0.42) || inOutcrop(region, x, y));
+  tryAdd("boulder", desert ? 12 : alpine ? 16 : 8, (x, y) => heightAt(region, x, y) > (desert ? 0.38 : 0.5));
+  tryAdd("log", alpine ? 4 : desert ? 0 : 10, (x, y) => !alpine && !desert && dist(x, y, 560, 800) < 380 && !inCreek(region, x, y));
+  tryAdd("shrub", desert ? 28 : alpine ? 14 : 24, (x, y) => heightAt(region, x, y) < 0.55 && !inWetland(region, x, y));
+  tryAdd("flower", desert ? 4 : alpine ? 8 : 18, (x, y) => heightAt(region, x, y) < (alpine ? 0.4 : 0.28) && !inWetland(region, x, y));
+  if (!desert) {
+    tryAdd("reed", alpine ? 12 : 36, (x, y) => inWetland(region, x, y) || (inPond(region, x, y) === false && dist(x, y, region.pond.cx, region.pond.cy) < region.pond.rx + 36));
+  }
+  tryAdd("soil", desert ? 10 : alpine ? 6 : 8, (x, y) =>
+    desert ? dist(x, y, 1320, 1288) < 120 : alpine ? dist(x, y, 620, 960) < 90 : dist(x, y, 1024, 1108) < 90 || heightAt(region, x, y) > 0.58
+  );
   return details;
 }
 
@@ -340,7 +423,9 @@ export function blockingDetailAt(world, x, y) {
 export function isBlocked(world, x, y) {
   const { region } = world;
   if (x < 28 || y < 28 || x > region.width - 28 || y > region.height - 28) return true;
-  if (region.terrainModel === "high-country") {
+  if (region.terrainModel === "sunfall-desert") {
+    if (heightAt(region, x, y) > 0.92 && !onTrail(region, x, y)) return true;
+  } else if (region.terrainModel === "high-country") {
     if (heightAt(region, x, y) > 0.93 && !onTrail(region, x, y)) return true;
   } else if (heightAt(region, x, y) > 0.8) {
     return true;
