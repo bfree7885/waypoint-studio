@@ -352,9 +352,14 @@ body {
 }
 
 .quiet-btn {
-  background: transparent !important;
-  color: #5c6b54 !important;
-  border: 1px solid #cbbca0 !important;
+  background: rgba(31, 77, 50, 0.12);
+  color: var(--ink);
+  border: 1px solid #cbbca0;
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .discovery-card.is-interpreted {
@@ -867,13 +872,13 @@ body {
   right: 16px;
   bottom: 18px;
   z-index: 4;
-  max-width: 720px;
+  max-width: 560px;
   margin: 0 auto;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(244, 239, 226, 0.92);
+  padding: 12px 16px 14px;
+  border-radius: 18px;
+  background: #f3ead4;
   color: var(--ink);
-  box-shadow: 0 8px 24px rgba(20, 28, 22, 0.18);
+  box-shadow: 0 8px 24px rgba(20, 28, 22, 0.18), inset 0 0 0 2px #c4b48a;
 }
 
 #sky-clock[hidden] {
@@ -883,7 +888,7 @@ body {
 .sky-clock-kicker {
   margin: 0;
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #6a5a32;
 }
@@ -893,19 +898,58 @@ body {
   font-weight: 600;
 }
 
+.obs-marks,
 #sky-clock-jumps {
-  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 6px;
 }
 
+.obs-marks button,
 #sky-clock-jumps button {
-  font: inherit;
-  font-size: 0.85rem;
-  padding: 4px 10px;
+  min-width: 76px;
   border-radius: 999px;
-  border: 1px solid #c4b49a;
-  background: #fffaf0;
-  color: var(--ink);
+  border: 1px solid #b89a5a;
+  background: #fff8e8;
+  font: inherit;
+  font-weight: 700;
+  padding: 8px 12px;
   cursor: pointer;
+}
+
+.obs-steps,
+#sky-clock-extra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.obs-steps button,
+#sky-clock-extra button {
+  border: 0;
+  background: rgba(90, 70, 40, 0.08);
+  font: inherit;
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+#sky-clock-full {
+  margin-top: 8px;
+}
+
+.field-bench-kicker {
+  margin: 0 0 4px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--moss);
+}
+
+.field-bench {
+  border: 2px solid #c4b48a;
+  background: #f6edd8;
 }
 
 @media (max-width: 900px) {
@@ -996,17 +1040,6 @@ body {
   text-transform: uppercase;
   font-size: 0.68rem;
   color: var(--moss);
-}
-
-.quiet-btn {
-  border: 0;
-  background: rgba(31, 77, 50, 0.12);
-  color: var(--ink);
-  font: inherit;
-  font-weight: 700;
-  padding: 10px 16px;
-  border-radius: 999px;
-  cursor: pointer;
 }
 
 @media (prefers-reduced-motion: reduce) {

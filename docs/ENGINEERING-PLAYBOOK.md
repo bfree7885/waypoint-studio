@@ -1666,7 +1666,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Night is the payoff for a desert sky. A dark gradient, a cheap star field, and a Moon disc change the place more than extra daytime props.
 - Tools stay earned by use: logging three shadows, advancing the clock, measuring an eccentric orbit, and repeating Moon notes. Opening the Field Tablet still awards nothing.
 
-### Lessons Learned — TerrainBound Phase 7.5 (2026-09-08)
+### Lessons Learned — TerrainBound Phase 7.6 (2026-09-09)
+
+- Open alpine still needs geologic structure: clustered talus, drainage, and ridgelines read as place; uniform noise reads as unfinished.
+- Walk cycles that look fine zoomed in fail at gameplay camera. Exaggerated opposing legs and pack bounce are the readability budget, not extra frames.
+- Night is a second ground bake (cool, darker palette), not a black overlay on tan. Mesa faces and vegetation have to follow or the cheat is obvious.
+- Persistent landmark labels compete with terrain reading. Proximity/focus labels keep observation ahead of interpretation.
+- Scientific tools stay demanding when they look like instruments (channel that tilts, celestial clock with a task hierarchy). Do not delete fair-test copy to make a panel prettier.
+
 
 - A third region does not justify a new engine. Canvas 2D still carries stylized stations, a readable explorer, regional atmosphere, and a Field Tablet if the art language is shared instead of copied.
 - Character quality is silhouette first: vest, pack, boots, tablet. Short poses beat cutscenes; students should never wait through the same inspect animation twice.

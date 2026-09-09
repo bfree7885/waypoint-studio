@@ -93,6 +93,8 @@ export function bindUi(root) {
   const skyClock = root.querySelector("#sky-clock");
   const skyClockLabel = root.querySelector("#sky-clock-label");
   const skyClockJumps = root.querySelector("#sky-clock-jumps");
+  const skyClockExtra = root.querySelector("#sky-clock-extra");
+  const skyClockFull = root.querySelector("#sky-clock-full");
   const dataCaption = root.querySelector("#data-caption");
   const dataTable = root.querySelector("#journal-data-table");
   const journalGraph = root.querySelector("#journal-graph");
@@ -622,16 +624,26 @@ export function bindUi(root) {
       if (!skyClock) return;
       skyClock.hidden = !open;
       if (!open) return;
-      if (skyClockLabel) skyClockLabel.textContent = view.label || "Field observation";
-      if (skyClockJumps) {
-        skyClockJumps.replaceChildren();
-        for (const item of view.jumps || []) {
+      skyClock.dataset.mode = view.mode || "clock";
+      if (skyClockLabel) skyClockLabel.textContent = view.label || "Celestial clock";
+      const fillRow = (el, items) => {
+        if (!el) return;
+        el.replaceChildren();
+        for (const item of items || []) {
           const btn = document.createElement("button");
           btn.type = "button";
           btn.textContent = item.label;
           btn.addEventListener("click", () => handlers.onJump?.(item.id));
-          skyClockJumps.appendChild(btn);
+          el.appendChild(btn);
         }
+        el.hidden = !(items && items.length);
+      };
+      fillRow(skyClockJumps, view.primary || view.jumps);
+      fillRow(skyClockExtra, view.extra);
+      if (skyClockFull) {
+        skyClockFull.hidden = false;
+        skyClockFull.textContent = view.expanded ? "Hide extra steps" : "Full observation window";
+        skyClockFull.onclick = () => handlers.onFull?.();
       }
     }
   };

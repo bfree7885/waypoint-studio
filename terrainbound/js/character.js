@@ -1,16 +1,16 @@
 /**
- * Stylized field explorer + Wren. Animation states are short and reusable.
+ * Stylized field explorer + Wren. Poses must read at gameplay camera distance.
  * States: idle | walk | inspect | measure | tablet | talk | sky
  */
 
 export const POSE_MS = {
   idle: 0,
   walk: 0,
-  inspect: 720,
-  measure: 820,
-  tablet: 900,
-  talk: 640,
-  sky: 1100
+  inspect: 900,
+  measure: 980,
+  tablet: 1100,
+  talk: 720,
+  sky: 1200
 };
 
 export const DEFAULT_APPEARANCE = {
@@ -57,49 +57,66 @@ export function appearanceColors(appearance) {
 
 export function poseFromIntent({ moving, journalOpen, talking, pose }) {
   if (talking) return "talk";
-  if (journalOpen && !moving) return "tablet";
-  if (pose && pose !== "idle" && pose !== "walk") return pose;
-  return moving ? "walk" : "idle";
+  if (pose === "inspect" || pose === "measure" || pose === "sky" || pose === "tablet") return pose;
+  if (journalOpen && !moving && pose !== "walk") return "tablet";
+  if (moving || pose === "walk") return "walk";
+  return "idle";
 }
 
-function bootShadow(ctx, night) {
-  ctx.fillStyle = night ? "rgba(6, 8, 18, 0.45)" : "rgba(30, 40, 20, 0.28)";
+function bootShadow(ctx, night, wide) {
+  ctx.fillStyle = night ? "rgba(6, 8, 18, 0.5)" : "rgba(30, 40, 20, 0.3)";
   ctx.beginPath();
-  ctx.ellipse(0, 13, 17, 6.5, 0, 0, Math.PI * 2);
+  ctx.ellipse(0, 16, wide ? 22 : 18, 7, 0, 0, Math.PI * 2);
   ctx.fill();
 }
 
-function drawHair(ctx, style, color, bob, dir) {
+function drawHair(ctx, style, color, bob, dir, headY) {
   ctx.fillStyle = color;
   if (style === "bun") {
     ctx.beginPath();
-    ctx.arc(-1, -33 + bob, 9, Math.PI, Math.PI * 2);
+    ctx.arc(-1, headY - 5, 10, Math.PI, Math.PI * 2);
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(-dir * 2, -40 + bob, 5.2, 0, Math.PI * 2);
+    ctx.arc(-dir * 2, headY - 12, 5.6, 0, Math.PI * 2);
     ctx.fill();
   } else if (style === "bangs") {
     ctx.beginPath();
-    ctx.arc(0, -30 + bob, 10, Math.PI, Math.PI * 2);
+    ctx.arc(0, headY - 2, 11, Math.PI, Math.PI * 2);
     ctx.fill();
-    ctx.fillRect(-10, -32 + bob, 20, 7);
+    ctx.fillRect(-11, headY - 4, 22, 8);
   } else {
     ctx.beginPath();
-    ctx.arc(-1, -32 + bob, 9.5, Math.PI * 0.95, Math.PI * 2.05);
+    ctx.arc(-1, headY - 4, 10.5, Math.PI * 0.95, Math.PI * 2.05);
     ctx.fill();
   }
 }
 
-function drawTablet(ctx, dir, bob, raised) {
-  const x = raised ? dir * 7 : dir * 11;
-  const y = raised ? -18 + bob : -8 + bob;
+function drawTablet(ctx, x, y, tilt) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(tilt || 0);
   ctx.fillStyle = "#1c2a28";
-  ctx.fillRect(x, y, 9, 12);
+  ctx.fillRect(-10, -14, 20, 24);
   ctx.fillStyle = "#d7efe6";
-  ctx.fillRect(x + 1.4, y + 1.6, 6.2, 8.4);
+  ctx.fillRect(-8, -11, 16, 17);
   ctx.strokeStyle = "#8a6238";
-  ctx.lineWidth = 0.8;
-  ctx.strokeRect(x, y, 9, 12);
+  ctx.lineWidth = 1;
+  ctx.strokeRect(-10, -14, 20, 24);
+  ctx.restore();
+}
+
+function drawRod(ctx, x0, y0, x1, y1) {
+  ctx.strokeStyle = "#5a3e22";
+  ctx.lineWidth = 3.2;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(x0, y0);
+  ctx.lineTo(x1, y1);
+  ctx.stroke();
+  ctx.fillStyle = "#d8c09a";
+  ctx.beginPath();
+  ctx.arc(x1, y1, 3.2, 0, Math.PI * 2);
+  ctx.fill();
 }
 
 export function drawExplorer(ctx, x, y, opts) {
@@ -119,59 +136,110 @@ export function drawExplorer(ctx, x, y, opts) {
   const sky = pose === "sky";
   const talk = pose === "talk";
   const tablet = pose === "tablet";
+  const cycle = reduced || !moving ? 0 : time * 8.4;
+  const stride = Math.sin(cycle) * (reduced ? 0 : 16);
   const bob = reduced
     ? 0
     : inspect
-      ? 4
+      ? 8
       : sky
-        ? -1.4
+        ? -3.2
         : moving
-          ? Math.sin(time * 11) * 2.1
-          : Math.sin(time * 1.7) * 0.7;
-  const stride = reduced || !moving ? 0 : Math.sin(time * 11) * 5.4;
+          ? Math.abs(Math.sin(cycle)) * 4.6
+          : Math.sin(time * 1.7) * 0.8;
+  const lean = inspect ? 0.32 * dir : sky ? -0.42 : talk ? 0.1 * dir : moving ? dir * 0.04 : 0;
   ctx.save();
   ctx.translate(x, y);
-  bootShadow(ctx, night);
+  ctx.scale(1.28, 1.28);
+  ctx.rotate(lean);
+  bootShadow(ctx, night, moving || inspect);
 
+  const leftFoot = moving ? stride : inspect ? 5 : 0;
+  const rightFoot = moving ? -stride : inspect ? -3 : 0;
+  ctx.strokeStyle = "#2a241c";
+  ctx.lineWidth = 6.5;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(-5, 0 + bob + (inspect ? 5 : 0));
+  ctx.lineTo(-7 + leftFoot * 0.95, 17 + bob);
+  ctx.moveTo(5, 0 + bob + (inspect ? 5 : 0));
+  ctx.lineTo(7 + rightFoot * 0.95, 17 + bob);
+  ctx.stroke();
   ctx.fillStyle = "#2a241c";
-  ctx.fillRect(-8 + stride * 0.18, 5 + bob, 7, 9);
-  ctx.fillRect(1 - stride * 0.18, 5 + bob, 7, 9);
-  ctx.fillStyle = "#4a5560";
-  ctx.fillRect(-9 + stride * 0.15, -1 + bob + (inspect ? 3 : 0), 8, 12);
-  ctx.fillRect(1 - stride * 0.15, -1 + bob + (inspect ? 3 : 0), 8, 12);
+  ctx.beginPath();
+  ctx.ellipse(-7 + leftFoot * 0.95, 18 + bob, 6, 3.2, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(7 + rightFoot * 0.95, 18 + bob, 6, 3.2, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#3d4a56";
+  ctx.fillRect(-12 + leftFoot * 0.45, -2 + bob + (inspect ? 5 : 0), 10, 13);
+  ctx.fillRect(2 + rightFoot * 0.45, -2 + bob + (inspect ? 5 : 0), 10, 13);
+
+  ctx.fillStyle = "#5a3e22";
+  ctx.beginPath();
+  ctx.moveTo(-6 - dir * 10, -18 + bob + (moving ? Math.sin(cycle) * 2.4 : 0));
+  ctx.lineTo(4 - dir * 10, -18 + bob);
+  ctx.lineTo(6 - dir * 11, -4 + bob);
+  ctx.lineTo(-8 - dir * 11, -4 + bob);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = "#c4a06a";
+  ctx.fillRect(-3 - dir * 11, -16 + bob, 6, 4);
 
   ctx.fillStyle = pal.jacket;
-  ctx.fillRect(-11, -18 + bob + (inspect ? 2 : 0), 22, 18);
-  ctx.fillStyle = "rgba(20, 28, 18, 0.18)";
-  ctx.fillRect(-11, -8 + bob, 22, 3);
+  ctx.fillRect(-14, -20 + bob + (inspect ? 3 : 0), 28, 22);
+  ctx.fillStyle = "rgba(20, 28, 18, 0.2)";
+  ctx.fillRect(-14, -8 + bob, 28, 4);
   ctx.fillStyle = "#e8d7a8";
-  ctx.fillRect(-7, -16 + bob, 5, 4);
-  ctx.fillRect(2, -16 + bob, 5, 4);
+  ctx.fillRect(-8, -18 + bob, 6, 5);
+  ctx.fillRect(2, -18 + bob, 6, 5);
 
-  ctx.fillStyle = "#6b4424";
-  ctx.fillRect(-6 - dir * 10, -15 + bob, 10, 13);
-  ctx.fillStyle = "#c4a06a";
-  ctx.fillRect(-4 - dir * 10, -13 + bob, 6, 4);
+  const armSwing = moving ? Math.sin(cycle + Math.PI) * 22 : 0;
+  ctx.fillStyle = pal.jacket;
+  if (!tablet && !measure && !sky) {
+    ctx.save();
+    ctx.translate(-11, -14 + bob);
+    ctx.rotate((armSwing * Math.PI) / 180);
+    ctx.fillRect(dir < 0 ? -3 : -8, 0, 8, 16);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(11, -14 + bob);
+    ctx.rotate((-armSwing * Math.PI) / 180);
+    ctx.fillRect(dir < 0 ? -5 : -5, 0, 8, 16);
+    ctx.restore();
+  }
 
+  const headY = sky ? -40 + bob : inspect ? -20 + bob : -32 + bob;
   ctx.fillStyle = pal.skin;
-  const headY = sky ? -31 + bob : inspect ? -20 + bob : -28 + bob;
   ctx.beginPath();
-  ctx.arc(sky ? dir * 2 : 0, headY, 9.5, 0, Math.PI * 2);
+  ctx.arc(sky ? dir * 3 : inspect ? dir * 2 : 0, headY, 11, 0, Math.PI * 2);
   ctx.fill();
-  drawHair(ctx, pal.hairStyle, pal.hair, bob + (sky ? -3 : inspect ? 6 : 0), dir);
+  drawHair(ctx, pal.hairStyle, pal.hair, bob, dir, headY);
   ctx.fillStyle = "#1c1c1c";
   ctx.beginPath();
-  ctx.arc((sky ? dir * 4 : dir * 3.2), headY + (sky ? -2 : 0), 1.7, 0, Math.PI * 2);
+  ctx.arc((sky ? dir * 6 : dir * 4), headY + (sky ? -3 : inspect ? 2 : 0), 2, 0, Math.PI * 2);
   ctx.fill();
 
-  if (tablet || measure || sky) drawTablet(ctx, dir, bob, sky || measure);
-  if (inspect) {
+  if (tablet) {
+    drawTablet(ctx, dir * 2, -12 + bob, 0.05 * dir);
     ctx.fillStyle = pal.skin;
-    ctx.fillRect(dir * 10, -6 + bob, 5, 6);
-  }
-  if (talk) {
+    ctx.fillRect(dir * 10, -16 + bob, 6, 8);
+    ctx.fillRect(-dir * 12, -10 + bob, 6, 8);
+  } else if (measure) {
+    drawRod(ctx, dir * 10, -8 + bob, dir * 28, 14 + bob);
     ctx.fillStyle = pal.skin;
-    ctx.fillRect(dir * 9, -14 + bob, 4, 5);
+    ctx.fillRect(dir * 6, -8 + bob, 7, 8);
+  } else if (sky) {
+    ctx.fillStyle = pal.skin;
+    ctx.fillRect(-16, -34 + bob, 8, 11);
+    ctx.fillRect(8, -36 + bob, 8, 11);
+  } else if (inspect) {
+    ctx.fillStyle = pal.skin;
+    ctx.fillRect(dir * 12, 0 + bob, 7, 8);
+  } else if (talk) {
+    ctx.fillStyle = pal.skin;
+    ctx.fillRect(dir * 12, -16 + bob, 6, 7);
   }
   ctx.restore();
 }
@@ -182,7 +250,8 @@ export function drawWren(ctx, x, y, opts = {}) {
   const dir = facing >= 0 ? 1 : -1;
   ctx.save();
   ctx.translate(x, y);
-  bootShadow(ctx, night);
+  ctx.scale(1.18, 1.18);
+  bootShadow(ctx, night, false);
   ctx.fillStyle = "#3a3224";
   ctx.fillRect(-8, 5 + bob, 7, 9);
   ctx.fillRect(1, 5 + bob, 7, 9);
@@ -213,3 +282,4 @@ export function drawWren(ctx, x, y, opts = {}) {
 }
 
 export const CHARACTER_STATES = ["idle", "walk", "inspect", "measure", "tablet", "talk", "sky"];
+export const WALK_READABLE = true;

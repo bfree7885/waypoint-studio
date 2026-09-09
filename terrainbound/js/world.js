@@ -281,6 +281,18 @@ function rgbToHex(rgb) {
   );
 }
 
+export function desertNightColor(hex, moonLift = 0) {
+  if (!hex) return hex;
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const t = 0.34 + moonLift * 0.16;
+  const nr = r * t * 0.52 + 16 + moonLift * 18;
+  const ng = g * t * 0.55 + 20 + moonLift * 22;
+  const nb = b * t * 0.78 + 36 + moonLift * 28;
+  return rgbToHex([nr, ng, nb]);
+}
+
 export function groundColor(region, x, y) {
   const pal =
     region.terrainModel === "sunfall-desert"
@@ -334,7 +346,7 @@ function plantTrees(region, rng, extras) {
   const alpine = region.terrainModel === "high-country";
   const desert = region.terrainModel === "sunfall-desert";
   const trees = [];
-  const want = desert ? 22 : alpine ? 72 : 170;
+  const want = desert ? 26 : alpine ? 64 : 170;
   let guard = 0;
   while (trees.length < want && guard < 5000) {
     guard += 1;
@@ -379,16 +391,20 @@ function scatterDetails(region, rng, extras) {
       const y = 60 + rng() * (region.height - 120);
       if (!test(x, y)) continue;
       if (reservedSpot(region, x, y, extras) && kind !== "reed") continue;
-      if (details.some((d) => dist(x, y, d.x, d.y) < 22)) continue;
+      if (details.some((d) => dist(x, y, d.x, d.y) < (alpine ? 16 : 22))) continue;
       details.push({ kind, x, y, s: 0.7 + rng() * 0.6, rot: rng() * Math.PI });
       added += 1;
     }
   };
-  tryAdd("rock", desert ? 56 : alpine ? 48 : 28, (x, y) => heightAt(region, x, y) > (alpine || desert ? 0.32 : 0.42) || inOutcrop(region, x, y));
-  tryAdd("boulder", desert ? 12 : alpine ? 16 : 8, (x, y) => heightAt(region, x, y) > (desert ? 0.38 : 0.5));
-  tryAdd("log", alpine ? 4 : desert ? 0 : 10, (x, y) => !alpine && !desert && dist(x, y, 560, 800) < 380 && !inCreek(region, x, y));
-  tryAdd("shrub", desert ? 28 : alpine ? 14 : 24, (x, y) => heightAt(region, x, y) < 0.55 && !inWetland(region, x, y));
-  tryAdd("flower", desert ? 4 : alpine ? 8 : 18, (x, y) => heightAt(region, x, y) < (alpine ? 0.4 : 0.28) && !inWetland(region, x, y));
+  tryAdd("rock", desert ? 70 : alpine ? 96 : 34, (x, y) => heightAt(region, x, y) > (alpine || desert ? 0.28 : 0.42) || inOutcrop(region, x, y));
+  tryAdd("boulder", desert ? 16 : alpine ? 28 : 10, (x, y) => heightAt(region, x, y) > (desert ? 0.34 : alpine ? 0.42 : 0.5));
+  tryAdd("log", alpine ? 3 : desert ? 0 : 16, (x, y) => !alpine && !desert && dist(x, y, 560, 800) < 400 && !inCreek(region, x, y));
+  tryAdd("shrub", desert ? 22 : alpine ? 36 : 30, (x, y) => heightAt(region, x, y) < (alpine ? 0.62 : 0.55) && !inWetland(region, x, y));
+  tryAdd("flower", desert ? 6 : alpine ? 24 : 22, (x, y) => heightAt(region, x, y) < (alpine ? 0.48 : 0.3) && !inWetland(region, x, y));
+  tryAdd("tuft", alpine ? 40 : desert ? 8 : 12, (x, y) => alpine ? heightAt(region, x, y) < 0.5 && dist(x, y, 1988, 1140) < 380 : heightAt(region, x, y) < 0.35);
+  tryAdd("talus", alpine ? 28 : desert ? 10 : 0, (x, y) => alpine ? dist(x, y, 560, 720) < 220 || dist(x, y, 460, 508) < 140 : dist(x, y, 420, 500) < 160);
+  tryAdd("snow", alpine ? 12 : 0, (x, y) => alpine && heightAt(region, x, y) > 0.72);
+  tryAdd("pavement", desert ? 18 : 0, (x, y) => desert && heightAt(region, x, y) > 0.3 && heightAt(region, x, y) < 0.5);
   if (!desert) {
     tryAdd("reed", alpine ? 12 : 36, (x, y) => inWetland(region, x, y) || (inPond(region, x, y) === false && dist(x, y, region.pond.cx, region.pond.cy) < region.pond.rx + 36));
   }
@@ -402,6 +418,61 @@ export function createWorld(region, seed = 1842, extras = []) {
   const rng = mulberry32(seed);
   const trees = plantTrees(region, rng, extras);
   const details = scatterDetails(region, rng, extras);
+  if (region.terrainModel === "high-country") {
+    for (let i = 0; i < 18; i += 1) {
+      const a = rng() * Math.PI * 2;
+      const r = 24 + rng() * 90;
+      details.push({
+        kind: i % 3 === 0 ? "boulder" : "rock",
+        x: 460 + Math.cos(a) * r,
+        y: 508 + Math.sin(a) * r * 0.7,
+        s: 0.8 + rng() * 0.5,
+        rot: rng() * Math.PI
+      });
+    }
+    details.push({ kind: "cairn-detail", x: 490, y: 540, s: 1, rot: 0 });
+    details.push({ kind: "cairn-detail", x: 1288, y: 1568, s: 1, rot: 0 });
+    for (let i = 0; i < 14; i += 1) {
+      const a = rng() * Math.PI * 2;
+      const r = 20 + rng() * 70;
+      details.push({
+        kind: i % 4 === 0 ? "boulder" : i % 2 === 0 ? "talus" : "rock",
+        x: 980 + Math.cos(a) * r,
+        y: 1448 + Math.sin(a) * r * 0.55,
+        s: 0.7 + rng() * 0.5,
+        rot: rng() * Math.PI
+      });
+    }
+    for (let i = 0; i < 16; i += 1) {
+      details.push({
+        kind: i % 3 === 0 ? "tuft" : "shrub",
+        x: 1040 + (rng() - 0.5) * 220,
+        y: 1500 + (rng() - 0.5) * 160,
+        s: 0.7 + rng() * 0.4,
+        rot: rng() * Math.PI
+      });
+    }
+  } else if (region.terrainModel === "sunfall-desert") {
+    for (let i = 0; i < 12; i += 1) {
+      details.push({
+        kind: i % 3 === 0 ? "pavement" : "rock",
+        x: 420 + rng() * 80,
+        y: 500 + rng() * 90,
+        s: 0.7 + rng() * 0.4,
+        rot: rng() * Math.PI
+      });
+    }
+  } else {
+    for (let i = 0; i < 8; i += 1) {
+      details.push({
+        kind: "log",
+        x: 720 + rng() * 220,
+        y: 740 + rng() * 180,
+        s: 0.8 + rng() * 0.4,
+        rot: rng() * Math.PI
+      });
+    }
+  }
   return { region, trees, details, extras };
 }
 

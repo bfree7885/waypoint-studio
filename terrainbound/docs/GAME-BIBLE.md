@@ -192,6 +192,43 @@ Three identities:
 
 Same game. Different places.
 
+**CONTENT-HEAVY UNDERNEATH.**
+**LIGHT-FEELING ON THE SURFACE.**
+
+Scientific rigor comes from observation, measurement, comparison, pattern recognition, data interpretation, map interpretation, modeling, prediction, explanation, revision, and transfer — not from excessive prose.
+
+Player reads the environment first. Persistent HUD labels are a last resort.
+
+## Cumulative learning — lock
+
+**REGIONS ARE NOT ISOLATED UNITS.**
+
+Skills learned earlier continue to matter.
+
+- Cedar Hollow scientific reasoning continues everywhere.
+- High Country maps / topography / geospatial tools continue across later regions.
+- Sunfall seasonal / solar / orbital understanding can recur where scientifically relevant.
+
+## Three content layers — lock
+
+Every future region should contain:
+
+A. REQUIRED CORE INVESTIGATIONS — enough to genuinely demonstrate required understanding.
+B. EMBEDDED PRACTICE — short natural reuse of concepts during exploration.
+C. OPTIONAL DEPTH — discoveries that do not block progression.
+
+Do not use optional content to compensate for a weak required core.
+
+Learning progression: **NOTICE → MEASURE / COMPARE → USE → TRANSFER.**
+
+A later problem should sometimes require the student to recognize and use prior knowledge without the game reteaching it.
+
+Prefer world evidence, maps, graphs, measurements, models, observations, and decisions over long explanatory panels.
+
+Play rhythm (target, not a timer): 2–5 minutes exploration, then 1–3 minutes focused scientific interaction, then return to movement.
+
+See `docs/CONTENT-DENSITY-AUDIT.md` for the reusable region audit.
+
 ## Animation direction
 
 Short, responsive character states: idle, walk, inspect, measure, tablet, talk, observe sky.

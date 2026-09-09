@@ -39,9 +39,11 @@
     </section>
 
     <div id="sky-clock" hidden>
-      <p class="sky-clock-kicker">Field observation</p>
+      <p class="sky-clock-kicker">Field observation · Celestial clock</p>
       <p id="sky-clock-label"></p>
-      <div id="sky-clock-jumps" class="chip-row"></div>
+      <div id="sky-clock-jumps" class="obs-marks"></div>
+      <div id="sky-clock-extra" class="obs-steps"></div>
+      <button type="button" id="sky-clock-full" class="quiet-btn">Full observation window</button>
     </div>
 
     <div id="dialogue" hidden role="dialog" aria-labelledby="dialogue-speaker">
@@ -159,12 +161,13 @@
     </div>
 
     <div id="flume" hidden role="dialog" aria-label="What makes water move faster?">
-      <div class="hypothesis-card">
-        <h2>What makes water move faster?</h2>
+      <div class="hypothesis-card field-bench">
+        <p class="field-bench-kicker">Field bench</p>
+        <h2>Runoff table</h2>
         <p class="hypothesis-lead">Same channel. Same two metres. Change one thing, then time the water.</p>
-        <p class="hypothesis-kicker">Slope</p>
+        <p class="hypothesis-kicker">Channel slope</p>
         <div id="flume-slopes" class="chip-row"></div>
-        <p class="hypothesis-kicker">Water</p>
+        <p class="hypothesis-kicker">Measuring cup</p>
         <div id="flume-water" class="chip-row"></div>
         <p id="flume-status"></p>
         <div id="flume-log"></div>
@@ -257,6 +260,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p75"></script>
+  <script type="module" src="./js/main.js?v=p76"></script>
 </body>
 </html>

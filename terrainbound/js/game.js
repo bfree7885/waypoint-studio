@@ -277,6 +277,8 @@ export async function boot(root = document) {
   let atlasOpen = false;
   let geoOpen = false;
   let geoKind = null;
+  let skyClockExpanded = false;
+  let flumeRunUntil = 0;
   let confirmOpen = false;
   let last = performance.now();
   let inspectLock = false;
@@ -681,6 +683,7 @@ export async function boot(root = document) {
 
   function releaseWater() {
     const result = runTrial(flumeState, flumeSpec);
+    flumeRunUntil = performance.now() + 1400;
     syncFlowDataset();
     persist();
     renderFlume();
@@ -1124,6 +1127,38 @@ export async function boot(root = document) {
     refreshSkyClock();
   }
 
+  const SKY_JUMPS = [
+    { id: "morning", label: "Morning" },
+    { id: "noon", label: "Noon" },
+    { id: "sunset", label: "Sunset" },
+    { id: "night", label: "Night" },
+    { id: "+1d", label: "+1 day" },
+    { id: "+7d", label: "+7 days" },
+    { id: "+1m", label: "+1 month" },
+    { id: "winter", label: "Winter noon" },
+    { id: "equinox", label: "Equinox noon" },
+    { id: "summer", label: "Summer noon" }
+  ];
+
+  function skyClockPlan() {
+    const day = SKY_JUMPS.slice(0, 4);
+    const jumps = SKY_JUMPS.slice(4, 7);
+    const seasons = SKY_JUMPS.slice(7);
+    if (skyClockExpanded || geoKind === "challenge") {
+      return { primary: day, extra: [...jumps, ...seasons], mode: "window" };
+    }
+    if (geoKind === "seasons" || sfState.seasonObs.length) {
+      return { primary: day, extra: seasons, mode: "year" };
+    }
+    if (geoKind === "moon" || sfState.moonLog.length) {
+      return { primary: [SKY_JUMPS[3], ...jumps], extra: day.slice(0, 3), mode: "moon" };
+    }
+    if (geoKind === "shadow" || sfState.shadows.length < 3) {
+      return { primary: day.slice(0, 3), extra: [SKY_JUMPS[3]], mode: "shadow" };
+    }
+    return { primary: day, extra: [], mode: "clock" };
+  }
+
   function refreshSkyClock() {
     if (!isSunfall() || mode !== "play") {
       ui.showSkyClock(false);
@@ -1131,22 +1166,17 @@ export async function boot(root = document) {
     }
     const sky = liveSky(sfState, sfRegion, player);
     const lat = playerLat(sfRegion, player);
+    const plan = skyClockPlan();
     ui.showSkyClock(
       true,
       {
         label: `${sky.label} · ${sky.timeName} · ${formatLatLon({ lat, lon: worldToLatLon(sfRegion, player.x, player.y).lon }, 3)}`,
-        jumps: [
-          { id: "morning", label: "Morning" },
-          { id: "noon", label: "Noon" },
-          { id: "sunset", label: "Sunset" },
-          { id: "night", label: "Night" },
-          { id: "+1d", label: "+1 day" },
-          { id: "+7d", label: "+7 days" },
-          { id: "+1m", label: "+1 month" },
-          { id: "winter", label: "Winter noon" },
-          { id: "equinox", label: "Equinox noon" },
-          { id: "summer", label: "Summer noon" }
-        ]
+        sun: sky.timeName,
+        primary: plan.primary,
+        extra: plan.extra,
+        mode: plan.mode,
+        expanded: skyClockExpanded,
+        jumps: SKY_JUMPS
       },
       {
         onJump(id) {
@@ -1154,6 +1184,10 @@ export async function boot(root = document) {
           persist();
           refreshSkyClock();
           if (geoOpen) renderGeo();
+        },
+        onFull() {
+          skyClockExpanded = !skyClockExpanded;
+          refreshSkyClock();
         }
       }
     );
@@ -1820,6 +1854,15 @@ export async function boot(root = document) {
 
   function inspectTarget(target) {
     if (!target) return;
+    if (Math.abs(target.x - player.x) > 6) player.facing = target.x >= player.x ? 1 : -1;
+    const towardX = target.x - player.x;
+    const towardY = target.y - player.y;
+    const reach = Math.hypot(towardX, towardY);
+    if (reach > 18 && reach < 90) {
+      const step = Math.min(10, reach - 16);
+      player.x += (towardX / reach) * step;
+      player.y += (towardY / reach) * step;
+    }
     if (target.kind === "wren") setPose("talk");
     else if (target.kind === "gnomon" || target.kind === "moon-site") setPose("sky");
     else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake") setPose("measure");
@@ -2502,7 +2545,12 @@ export async function boot(root = document) {
             }))
           : [],
       interpretiveLabels:
-        isHighCountry() || isSunfall() ? [] : interpretiveLabels(investigation, invState, catalog, region, player)
+        isHighCountry() || isSunfall() ? [] : interpretiveLabels(investigation, invState, catalog, region, player),
+      flumeVisual: {
+        slope: flumeState.slope,
+        water: flumeState.water,
+        running: now < flumeRunUntil
+      }
     });
     requestAnimationFrame(step);
   }
@@ -2611,6 +2659,9 @@ export async function boot(root = document) {
         persist();
         refreshSkyClock();
         return result;
+      },
+      sky() {
+        return isSunfall() ? liveSky(sfState, sfRegion, player) : null;
       },
       presentation,
       setPose,

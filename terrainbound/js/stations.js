@@ -171,14 +171,20 @@ function drawSunfallStation(ctx, s, night) {
   ctx.arc(s.x + s.w * 0.62, s.y + 20, 24, Math.PI, 0);
   ctx.fill();
   if (night) {
-    ctx.fillStyle = "rgba(240, 196, 76, 0.16)";
+    ctx.fillStyle = "rgba(240, 196, 76, 0.22)";
     ctx.beginPath();
-    ctx.arc(s.x + 28, s.y + 48, 40, 0, Math.PI * 2);
+    ctx.arc(s.x + 28, s.y + s.h - 8, 52, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = "rgba(240, 196, 76, 0.2)";
+    ctx.fillStyle = "rgba(240, 196, 76, 0.28)";
     ctx.beginPath();
-    ctx.arc(s.x + s.w * 0.62, s.y + 8, 22, 0, Math.PI * 2);
+    ctx.arc(s.x + s.w * 0.62, s.y + 8, 26, 0, Math.PI * 2);
     ctx.fill();
+    ctx.fillStyle = "rgba(196, 64, 48, 0.35)";
+    ctx.beginPath();
+    ctx.arc(s.x + s.w + 10, s.y + s.h - 6, 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#c45c26";
+    ctx.fillRect(s.x + s.w + 6, s.y + s.h - 22, 6, 18);
   }
   radioMast(ctx, s.x + s.w + 18, s.y + s.h - 8, 48);
   drawEmblem(ctx, s.x + 24, s.y + 40, 1);

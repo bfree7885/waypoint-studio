@@ -2,11 +2,21 @@
  * Cartoon world renderer. Terrain is baked once; water, details, and characters animate.
  */
 
-import { groundColor, dist } from "./world.js";
+import { groundColor, dist, desertNightColor } from "./world.js";
 import { starField } from "./celestial.js";
 import { drawExplorer, drawWren, poseFromIntent } from "./character.js";
 import { drawStationBuilding, drawWorkProps } from "./stations.js";
 import { drawBackdrop, drawHaze, drawDust, drawBirds, shadeFromSun } from "./atmosphere.js";
+import {
+  blobPath,
+  drawCreekWater,
+  drawPondWater,
+  drawIrregularTree,
+  bakeAlpineStructure,
+  bakeDesertStructure,
+  bakeHollowRock,
+  drawRunoffBench
+} from "./density.js";
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
@@ -18,6 +28,12 @@ export function createRenderer(canvas, world, helpers) {
   ground.width = world.region.width;
   ground.height = world.region.height;
   bakeGround(ground, world, helpers);
+  const nightGround = document.createElement("canvas");
+  nightGround.width = world.region.width;
+  nightGround.height = world.region.height;
+  if (world.region.terrainModel === "sunfall-desert") {
+    bakeGround(nightGround, world, helpers, (hex) => desertNightColor(hex, 0));
+  }
   const leaves = Array.from({ length: 14 }, (_, i) => ({
     x: ((i * 173) % world.region.width),
     y: ((i * 97) % world.region.height),
@@ -52,29 +68,35 @@ export function createRenderer(canvas, world, helpers) {
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
-      ctx.drawImage(ground, 0, 0);
-      if (night) {
-        ctx.fillStyle = "rgba(8, 12, 28, 0.52)";
-        ctx.fillRect(0, 0, world.region.width, world.region.height);
-      } else if (desert && sky?.sun) {
+      const moonLift = night ? Math.max(0, (sky?.moon?.illumination || 0) * Math.max(0, (sky?.moon?.altitudeDeg || 0) / 70)) : 0;
+      if (night && world.region.terrainModel === "sunfall-desert") {
+        ctx.drawImage(nightGround, 0, 0);
+        if (moonLift > 0.05) {
+          ctx.fillStyle = `rgba(186, 206, 224, ${0.03 + moonLift * 0.09})`;
+          ctx.fillRect(0, 0, world.region.width, world.region.height);
+        }
+      } else {
+        ctx.drawImage(ground, 0, 0);
+      }
+      if (!night && desert && sky?.sun) {
         const shade = shadeFromSun(sky);
         ctx.fillStyle = `rgba(40, 24, 10, ${shade.alpha * 0.35})`;
         ctx.fillRect(0, 0, world.region.width, world.region.height);
       }
-      if (!desert) drawWater(ctx, world, state.time, state.reducedMotion);
-      else drawDryWash(ctx, world);
+      if (!desert) drawWater(ctx, world, state.time, state.reducedMotion, night);
+      else drawDryWash(ctx, world, night);
       if (state.flowVisible) drawFlowArrows(ctx, world, state.time);
       if (state.landscapeInterpreted) drawIceFlowArrows(ctx, state);
-      drawStoryProps(ctx, world.region, state.time, state.reducedMotion);
+      drawStoryProps(ctx, world.region, state.time, state.reducedMotion, state.flumeVisual, night);
       drawGnomonShadow(ctx, world.region, sky);
       drawChallengeSites(ctx, state);
       drawDiscoveryLandmarks(ctx, world, state);
-      drawDetails(ctx, world, state.time, state.reducedMotion);
+      drawDetails(ctx, world, state.time, state.reducedMotion, night);
       if (!state.reducedMotion && !alpine && !desert) {
         drawLeaves(ctx, leaves, world.region, state.time);
       }
-      drawDust(ctx, world, state.time, state.reducedMotion, atm);
-      drawTrees(ctx, world, state.time, state.reducedMotion);
+      if (!night) drawDust(ctx, world, state.time, state.reducedMotion, atm);
+      drawTrees(ctx, world, state.time, state.reducedMotion, night);
       drawStationBuilding(ctx, world.region, night);
       drawWorkProps(ctx, world.region, state.time, state.reducedMotion);
       drawNearHint(ctx, world, state);
@@ -110,84 +132,16 @@ export function createRenderer(canvas, world, helpers) {
   };
 }
 
-function drawSky(ctx, width, height, time, reduced, alpine = false, desert = false, sky = null, stars = []) {
-  if (desert && sky?.night) {
-    const band = ctx.createLinearGradient(0, 0, 0, height * 0.42);
-    band.addColorStop(0, "#070b18");
-    band.addColorStop(0.55, "#141a32");
-    band.addColorStop(1, "#2a2438");
-    ctx.fillStyle = band;
-    ctx.fillRect(0, 0, width, height * 0.42);
-    ctx.save();
-    ctx.globalAlpha = 0.22;
-    ctx.strokeStyle = "#c8d4f0";
-    ctx.lineWidth = 18;
-    ctx.beginPath();
-    ctx.moveTo(width * 0.05, height * 0.28);
-    ctx.quadraticCurveTo(width * 0.5, height * 0.02, width * 0.95, height * 0.22);
-    ctx.stroke();
-    ctx.restore();
-    ctx.fillStyle = "#f4efe2";
-    for (const star of stars) {
-      ctx.globalAlpha = 0.45 + star.s * 0.25;
-      ctx.beginPath();
-      ctx.arc(star.x * width, star.y * height, star.s, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-    const moon = sky.moon;
-    if (moon && moon.altitudeDeg > -4) {
-      const mx = width * (0.2 + (moon.azimuthDeg / 360) * 0.6);
-      const my = height * 0.28 - (moon.altitudeDeg / 90) * height * 0.18;
-      ctx.fillStyle = "#e8e0c8";
-      ctx.beginPath();
-      ctx.arc(mx, my, 11, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "rgba(12, 16, 32, 0.65)";
-      ctx.beginPath();
-      ctx.arc(mx + (moon.waxing ? -5 : 5), my, 11, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    return;
-  }
-  if (desert && sky) {
-    const alt = sky.sun?.altitudeDeg ?? 40;
-    if (alt < 8) {
-      const dusk = ctx.createLinearGradient(0, 0, 0, height * 0.38);
-      dusk.addColorStop(0, "#f0a060");
-      dusk.addColorStop(1, "#9ad0f0");
-      ctx.fillStyle = dusk;
-      ctx.fillRect(0, 0, width, height * 0.38);
-    }
-    if (sky.sun && sky.sun.altitudeDeg > 0) {
-      const sx = width * (0.15 + (sky.sun.azimuthDeg / 360) * 0.7);
-      const sy = Math.max(18, height * 0.32 - (sky.sun.altitudeDeg / 90) * height * 0.24);
-      ctx.fillStyle = "#f4d76a";
-      ctx.beginPath();
-      ctx.arc(sx, sy, 16, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    return;
-  }
-  const drift = reduced ? 0 : (time * 8) % (width + 240);
-  ctx.fillStyle = alpine ? "rgba(255,255,255,0.32)" : "rgba(255,255,255,0.22)";
-  for (let i = 0; i < 3; i += 1) {
-    const x = ((drift * (0.4 + i * 0.18) + i * 280) % (width + 200)) - 80;
-    const y = 36 + i * 22;
-    ctx.beginPath();
-    ctx.ellipse(x, y, 70 - i * 8, 18, 0, 0, Math.PI * 2);
-    ctx.ellipse(x + 36, y + 4, 48, 14, 0, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-function drawDryWash(ctx, world) {
+function drawDryWash(ctx, world, night = false) {
   const { region } = world;
   if (!region.creek) return;
-  ctx.strokeStyle = "rgba(210, 176, 118, 0.7)";
-  ctx.lineWidth = region.creek.width * 1.6;
+  ctx.strokeStyle = night ? "rgba(48, 40, 32, 0.85)" : "rgba(168, 132, 82, 0.75)";
+  ctx.lineWidth = region.creek.width * 1.8;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
+  strokeLine(ctx, region.creek.points);
+  ctx.strokeStyle = night ? "rgba(72, 58, 42, 0.7)" : "rgba(210, 176, 118, 0.55)";
+  ctx.lineWidth = region.creek.width * 0.9;
   strokeLine(ctx, region.creek.points);
 }
 
@@ -222,15 +176,17 @@ function drawLeaves(ctx, leaves, region, time) {
   }
 }
 
-function bakeGround(canvas, world, helpers) {
+function bakeGround(canvas, world, helpers, tintHex) {
   const ctx = canvas.getContext("2d");
   const { region } = world;
+  const night = Boolean(tintHex);
   const step = 2;
   const img = ctx.createImageData(region.width, region.height);
   const data = img.data;
   for (let y = 0; y < region.height; y += step) {
     for (let x = 0; x < region.width; x += step) {
-      const hex = groundColor(region, x, y);
+      let hex = groundColor(region, x, y);
+      if (hex && tintHex) hex = tintHex(hex, x, y);
       if (!hex) continue;
       const r = parseInt(hex.slice(1, 3), 16);
       const g = parseInt(hex.slice(3, 5), 16);
@@ -251,97 +207,36 @@ function bakeGround(canvas, world, helpers) {
   }
   ctx.putImageData(img, 0, 0);
 
-  const peak = region.peak;
   if (region.terrainModel === "sunfall-desert") {
-    ctx.fillStyle = "#c48a52";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 280, peak.y + 180);
-    ctx.lineTo(peak.x - 120, peak.y - 20);
-    ctx.lineTo(peak.x + 40, peak.y - 50);
-    ctx.lineTo(peak.x + 220, peak.y + 160);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#d4a06a";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 40, peak.y + 20);
-    ctx.lineTo(peak.x + 20, peak.y - 58);
-    ctx.lineTo(peak.x + 90, peak.y + 40);
-    ctx.closePath();
-    ctx.fill();
-    if (region.pond) {
-      ctx.strokeStyle = "rgba(150, 96, 58, 0.55)";
-      ctx.lineWidth = 14;
-      ctx.beginPath();
-      ctx.ellipse(region.pond.cx, region.pond.cy, region.pond.rx + 10, region.pond.ry + 10, 0, 0, Math.PI * 2);
-      ctx.stroke();
-    }
+    bakeDesertStructure(ctx, region, night);
   } else if (region.terrainModel === "high-country") {
-    ctx.fillStyle = "#d8d4cc";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 220, peak.y + 160);
-    ctx.lineTo(peak.x - 40, peak.y - 70);
-    ctx.lineTo(peak.x + 30, peak.y - 20);
-    ctx.lineTo(peak.x + 210, peak.y + 170);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#f2f4f6";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 36, peak.y - 20);
-    ctx.lineTo(peak.x - 40, peak.y - 78);
-    ctx.lineTo(peak.x + 18, peak.y - 8);
-    ctx.closePath();
-    ctx.fill();
+    bakeAlpineStructure(ctx, region);
   } else {
-    ctx.fillStyle = "#d8cfc2";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 260, peak.y + 140);
-    ctx.lineTo(peak.x - 80, peak.y - 40);
-    ctx.lineTo(peak.x, peak.y - 110);
-    ctx.lineTo(peak.x + 90, peak.y - 20);
-    ctx.lineTo(peak.x + 250, peak.y + 150);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#efe8dc";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 40, peak.y - 20);
-    ctx.lineTo(peak.x, peak.y - 118);
-    ctx.lineTo(peak.x + 48, peak.y - 10);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = "#b7a790";
-    ctx.beginPath();
-    ctx.moveTo(peak.x - 180, peak.y + 80);
-    ctx.lineTo(peak.x - 40, peak.y - 10);
-    ctx.lineTo(peak.x + 20, peak.y + 90);
-    ctx.closePath();
-    ctx.fill();
+    bakeHollowRock(ctx, region);
   }
 
   if (region.outcrop) {
-    ctx.fillStyle = "#c4b49a";
-    ctx.beginPath();
-    ctx.ellipse(region.outcrop.x, region.outcrop.y, 70, 42, -0.3, 0, Math.PI * 2);
+    ctx.fillStyle = night ? "#3a3834" : "#c4b49a";
+    blobPath(ctx, region.outcrop.x, region.outcrop.y, 70, 42, 4);
     ctx.fill();
-    ctx.fillStyle = "#a89880";
-    ctx.beginPath();
-    ctx.ellipse(region.outcrop.x + 8, region.outcrop.y + 6, 48, 22, 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = night ? "#2c2a26" : "#a89880";
+    blobPath(ctx, region.outcrop.x + 8, region.outcrop.y + 6, 48, 22, 9);
     ctx.fill();
   }
 
-  ctx.strokeStyle = "rgba(120, 96, 72, 0.45)";
+  ctx.strokeStyle = night ? "rgba(48, 40, 32, 0.7)" : "rgba(120, 96, 72, 0.45)";
   ctx.lineWidth = 16;
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
   for (const trail of region.trails) strokeLine(ctx, trail.points);
-  ctx.strokeStyle = "rgba(214, 188, 142, 0.92)";
+  ctx.strokeStyle = night ? "rgba(72, 62, 48, 0.8)" : "rgba(214, 188, 142, 0.92)";
   ctx.lineWidth = 8;
   for (const trail of region.trails) strokeLine(ctx, trail.points);
 
-  ctx.strokeStyle = "rgba(214, 196, 120, 0.7)";
-  ctx.lineWidth = 10;
+  ctx.strokeStyle = night ? "rgba(80, 68, 48, 0.4)" : "rgba(214, 196, 120, 0.55)";
+  ctx.lineWidth = 8;
   if (region.pond && region.terrainModel !== "sunfall-desert") {
-    ctx.beginPath();
-    ctx.ellipse(region.pond.cx, region.pond.cy, region.pond.rx + 8, region.pond.ry + 8, 0, 0, Math.PI * 2);
+    blobPath(ctx, region.pond.cx, region.pond.cy, region.pond.rx + 10, region.pond.ry + 8, 2);
     ctx.stroke();
   }
 }
@@ -355,67 +250,10 @@ function strokeLine(ctx, points) {
   ctx.stroke();
 }
 
-function drawWater(ctx, world, time, reduced) {
+function drawWater(ctx, world, time, reduced, night = false) {
   const { region } = world;
-  const shimmer = reduced ? 0 : Math.sin(time * 2.1) * 2;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  ctx.strokeStyle = "#2f8fbe";
-  ctx.lineWidth = region.creek.width * 2;
-  strokeLine(ctx, region.creek.points);
-  ctx.strokeStyle = "#3fb3d9";
-  ctx.lineWidth = region.creek.width * 1.35;
-  strokeLine(ctx, region.creek.points);
-  ctx.strokeStyle = "#7fe0ef";
-  ctx.lineWidth = 7;
-  ctx.setLineDash([18, 16]);
-  ctx.lineDashOffset = reduced ? 0 : -time * 28;
-  strokeLine(ctx, region.creek.points);
-  ctx.setLineDash([]);
-
-  if (region.tributary) {
-    ctx.strokeStyle = "#4aa8c8";
-    ctx.lineWidth = region.tributary.width * 1.8;
-    strokeLine(ctx, region.tributary.points);
-    ctx.strokeStyle = "#7fd4e6";
-    ctx.lineWidth = 3;
-    ctx.setLineDash([10, 10]);
-    ctx.lineDashOffset = reduced ? 0 : -time * 18;
-    strokeLine(ctx, region.tributary.points);
-    ctx.setLineDash([]);
-  }
-
-  ctx.strokeStyle = "#2f8fbe";
-  ctx.lineWidth = region.outlet.width * 2;
-  strokeLine(ctx, region.outlet.points);
-  ctx.strokeStyle = "#3fb3d9";
-  ctx.lineWidth = region.outlet.width * 1.3;
-  strokeLine(ctx, region.outlet.points);
-
-  const p = region.pond;
-  ctx.fillStyle = "#2f8fbe";
-  ctx.beginPath();
-  ctx.ellipse(p.cx, p.cy, p.rx, p.ry, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#46b7db";
-  ctx.beginPath();
-  ctx.ellipse(p.cx, p.cy - 6, p.rx - 18, p.ry - 18, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "rgba(255,255,255,0.28)";
-  ctx.beginPath();
-  ctx.ellipse(p.cx - 40, p.cy - 28, 54, 22, -0.4, 0, Math.PI * 2);
-  ctx.fill();
-  if (!reduced) {
-    ctx.strokeStyle = "rgba(255,255,255,0.35)";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.ellipse(p.cx, p.cy, p.rx - 30 + shimmer, p.ry - 22, 0, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.strokeStyle = "rgba(255,255,255,0.18)";
-    ctx.beginPath();
-    ctx.ellipse(p.cx + 8, p.cy + 6, p.rx - 48 - shimmer * 0.5, p.ry - 36, 0.1, 0, Math.PI * 2);
-    ctx.stroke();
-  }
+  drawCreekWater(ctx, region, time, reduced, night);
+  drawPondWater(ctx, region.pond, time, reduced, night, region.terrainModel === "high-country");
 }
 
 function drawFlowArrows(ctx, world, time) {
@@ -484,22 +322,30 @@ function drawIceFlowArrows(ctx, state) {
   ctx.restore();
 }
 
-function drawDetails(ctx, world, time, reduced) {
+function drawDetails(ctx, world, time, reduced, night = false) {
   const sorted = world.details.slice().sort((a, b) => a.y - b.y);
   for (const d of sorted) {
     const sway = reduced ? 0 : Math.sin(time * 1.6 + d.x * 0.02) * 1.8;
-    if (d.kind === "rock" || d.kind === "boulder") {
-      ctx.fillStyle = "rgba(40,40,30,0.18)";
+    if (d.kind === "rock" || d.kind === "boulder" || d.kind === "talus") {
+      ctx.fillStyle = night ? "rgba(8,10,16,0.35)" : "rgba(40,40,30,0.18)";
       ctx.beginPath();
       ctx.ellipse(d.x, d.y + 4, d.kind === "boulder" ? 16 : 9, 5, 0, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = d.kind === "boulder" ? "#8d8070" : "#9a8b78";
+      ctx.fillStyle = night
+        ? d.kind === "boulder"
+          ? "#3a3c44"
+          : "#4a4640"
+        : d.kind === "boulder"
+          ? "#8d8070"
+          : d.kind === "talus"
+            ? "#9a9084"
+            : "#9a8b78";
       ctx.beginPath();
-      ctx.ellipse(d.x, d.y, (d.kind === "boulder" ? 16 : 8) * d.s, (d.kind === "boulder" ? 11 : 6) * d.s, d.rot, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "rgba(255,255,255,0.18)";
-      ctx.beginPath();
-      ctx.ellipse(d.x - 3, d.y - 2, 4, 2, 0, 0, Math.PI * 2);
+      ctx.moveTo(d.x - 10 * d.s, d.y + 4);
+      ctx.lineTo(d.x - 4 * d.s, d.y - 7 * d.s);
+      ctx.lineTo(d.x + 8 * d.s, d.y - 5 * d.s);
+      ctx.lineTo(d.x + 11 * d.s, d.y + 5);
+      ctx.closePath();
       ctx.fill();
     } else if (d.kind === "log") {
       ctx.save();
@@ -513,19 +359,19 @@ function drawDetails(ctx, world, time, reduced) {
       ctx.fill();
       ctx.restore();
     } else if (d.kind === "shrub") {
-      ctx.fillStyle = "#3d7a40";
+      ctx.fillStyle = night ? "#1a2e1c" : "#3d7a40";
       ctx.beginPath();
       ctx.ellipse(d.x + sway * 0.4, d.y - 4, 10 * d.s, 8 * d.s, 0, 0, Math.PI * 2);
       ctx.fill();
     } else if (d.kind === "flower") {
-      ctx.fillStyle = "#3f8a3a";
+      ctx.fillStyle = night ? "#1c3018" : "#3f8a3a";
       ctx.fillRect(d.x - 1, d.y - 4, 2, 6);
-      ctx.fillStyle = d.s > 1 ? "#e8c84a" : "#d46aa0";
+      ctx.fillStyle = night ? "#6a5a38" : d.s > 1 ? "#e8c84a" : "#d46aa0";
       ctx.beginPath();
       ctx.arc(d.x, d.y - 6, 3, 0, Math.PI * 2);
       ctx.fill();
     } else if (d.kind === "reed") {
-      ctx.strokeStyle = "#4a6b38";
+      ctx.strokeStyle = night ? "#243428" : "#4a6b38";
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(d.x, d.y);
@@ -534,15 +380,37 @@ function drawDetails(ctx, world, time, reduced) {
       ctx.fillStyle = "#c4a24a";
       ctx.fillRect(d.x + sway - 1, d.y - 20 * d.s, 3, 7);
     } else if (d.kind === "soil") {
-      ctx.fillStyle = "rgba(176, 132, 80, 0.55)";
+      ctx.fillStyle = night ? "rgba(70, 56, 40, 0.55)" : "rgba(176, 132, 80, 0.55)";
       ctx.beginPath();
       ctx.ellipse(d.x, d.y, 16, 8, d.rot, 0, Math.PI * 2);
       ctx.fill();
+    } else if (d.kind === "tuft") {
+      ctx.fillStyle = night ? "#2a3a24" : "#6a8a44";
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y + 4);
+      ctx.lineTo(d.x - 5, d.y - 8);
+      ctx.lineTo(d.x, d.y - 3);
+      ctx.lineTo(d.x + 5, d.y - 9);
+      ctx.closePath();
+      ctx.fill();
+    } else if (d.kind === "snow") {
+      ctx.fillStyle = night ? "rgba(200, 210, 220, 0.35)" : "rgba(244, 248, 250, 0.8)";
+      ctx.beginPath();
+      ctx.ellipse(d.x, d.y, 14 * d.s, 7 * d.s, d.rot, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (d.kind === "pavement") {
+      ctx.fillStyle = night ? "rgba(70, 58, 46, 0.55)" : "rgba(186, 150, 104, 0.45)";
+      ctx.fillRect(d.x - 8, d.y - 5, 16, 10);
+    } else if (d.kind === "cairn-detail") {
+      ctx.fillStyle = night ? "#5a5854" : "#b8aea0";
+      ctx.fillRect(d.x - 8, d.y - 6, 16, 8);
+      ctx.fillRect(d.x - 5, d.y - 12, 10, 6);
+      ctx.fillRect(d.x - 3, d.y - 16, 6, 4);
     }
   }
 }
 
-function drawStoryProps(ctx, region, time, reduced) {
+function drawStoryProps(ctx, region, time, reduced, flumeVisual, night = false) {
   for (const prop of region.props || []) {
     if (prop.kind === "rain-gauge") {
       ctx.strokeStyle = "#4a5560";
@@ -554,18 +422,7 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.fillStyle = "#8aa0b0";
       ctx.fillRect(prop.x - 6, prop.y - 36, 12, 10);
     } else if (prop.kind === "runoff-table") {
-      ctx.fillStyle = "#8a6238";
-      ctx.fillRect(prop.x - 28, prop.y - 8, 56, 10);
-      ctx.fillStyle = "#c4a46a";
-      ctx.beginPath();
-      ctx.moveTo(prop.x - 26, prop.y - 8);
-      ctx.lineTo(prop.x + 26, prop.y - 18);
-      ctx.lineTo(prop.x + 22, prop.y - 8);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = "#6d4c32";
-      ctx.fillRect(prop.x - 30, prop.y, 8, 8);
-      ctx.fillRect(prop.x + 22, prop.y - 10, 8, 8);
+      drawRunoffBench(ctx, prop, flumeVisual || {});
     } else if (prop.kind === "gnomon") {
       ctx.fillStyle = "#5a3e22";
       ctx.fillRect(prop.x - 3, prop.y - 36, 6, 36);
@@ -827,53 +684,9 @@ function drawDiscoveryLandmarks(ctx, world, state) {
   }
 }
 
-function drawTrees(ctx, world, time, reduced) {
+function drawTrees(ctx, world, time, reduced, night = false) {
   const sorted = world.trees.slice().sort((a, b) => a.y - b.y);
-  for (const tree of sorted) {
-    const sway = reduced ? 0 : Math.sin(time * 1.4 + tree.x * 0.01) * 2.4;
-    ctx.fillStyle = "rgba(40, 60, 30, 0.22)";
-    ctx.beginPath();
-    ctx.ellipse(tree.x, tree.y + 8, tree.r * 0.7, tree.r * 0.28, 0, 0, Math.PI * 2);
-    ctx.fill();
-    if (tree.cactus) {
-      ctx.fillStyle = "#3d6b3a";
-      ctx.fillRect(tree.x - 4, tree.y - 22, 8, 24);
-      ctx.fillRect(tree.x - 12, tree.y - 16, 8, 4);
-      ctx.fillRect(tree.x - 12, tree.y - 16, 4, 10);
-      ctx.fillRect(tree.x + 4, tree.y - 14, 8, 4);
-      ctx.fillRect(tree.x + 8, tree.y - 14, 4, 8);
-    } else if (tree.pine) {
-      ctx.fillStyle = "#6b4424";
-      ctx.fillRect(tree.x - 3, tree.y - 10, 6, 16);
-      ctx.fillStyle = "#1f6b3a";
-      for (let i = 0; i < 3; i += 1) {
-        ctx.beginPath();
-        ctx.moveTo(tree.x + sway, tree.y - 18 - i * 14);
-        ctx.lineTo(tree.x - tree.r + i * 4, tree.y - i * 12);
-        ctx.lineTo(tree.x + tree.r - i * 4, tree.y - i * 12);
-        ctx.closePath();
-        ctx.fill();
-      }
-      ctx.fillStyle = "#2e8a4c";
-      ctx.beginPath();
-      ctx.moveTo(tree.x + sway, tree.y - 52);
-      ctx.lineTo(tree.x - tree.r * 0.55, tree.y - 18);
-      ctx.lineTo(tree.x + tree.r * 0.55, tree.y - 18);
-      ctx.closePath();
-      ctx.fill();
-    } else {
-      ctx.fillStyle = "#6b4424";
-      ctx.fillRect(tree.x - 4, tree.y - 8, 8, 16);
-      ctx.fillStyle = "#2f8a42";
-      ctx.beginPath();
-      ctx.ellipse(tree.x + sway, tree.y - 22, tree.r, tree.r * 0.85, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#49a85a";
-      ctx.beginPath();
-      ctx.ellipse(tree.x - 6 + sway, tree.y - 28, tree.r * 0.55, tree.r * 0.45, 0, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
+  for (const tree of sorted) drawIrregularTree(ctx, tree, time, reduced, night);
 }
 
 function drawNearHint(ctx, world, state) {
@@ -899,23 +712,26 @@ function drawDestination(ctx, state) {
 function drawLabels(ctx, world, state) {
   const px = state.player.x;
   const py = state.player.y;
-  ctx.font = "bold 15px Trebuchet MS, sans-serif";
+  const focus = state.nearTarget;
+  ctx.font = "bold 14px Trebuchet MS, sans-serif";
   ctx.textAlign = "center";
   for (const feature of world.region.features) {
     const d = dist(px, py, feature.x, feature.y);
-    if (d > 150) continue;
+    const focused = focus && Math.hypot(focus.x - feature.x, focus.y - feature.y) < 28;
+    if (d > 72 && !focused) continue;
     const label = feature.name;
-    ctx.fillStyle = "rgba(28, 44, 28, 0.72)";
-    const w = ctx.measureText(label).width + 18;
+    ctx.fillStyle = "rgba(28, 44, 28, 0.62)";
+    const w = ctx.measureText(label).width + 16;
     ctx.beginPath();
-    roundRect(ctx, feature.x - w / 2, feature.y - 58, w, 24, 10);
+    roundRect(ctx, feature.x - w / 2, feature.y - 54, w, 22, 10);
     ctx.fill();
     ctx.fillStyle = "#f7f3e8";
-    ctx.fillText(label, feature.x, feature.y - 42);
+    ctx.fillText(label, feature.x, feature.y - 39);
   }
   const extras = state.interpretiveLabels || [];
   ctx.font = "12px Trebuchet MS, sans-serif";
   for (const extra of extras) {
+    if (dist(px, py, extra.x, extra.y) > 90) continue;
     const w = ctx.measureText(extra.text).width + 14;
     ctx.fillStyle = "rgba(90, 110, 140, 0.82)";
     ctx.beginPath();
