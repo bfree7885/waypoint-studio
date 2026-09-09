@@ -41,21 +41,29 @@ Does **not** publish shedhunting.org.
 - Snow steep: **−0.20**
 - No positive snow boost on RADAR unit path
 
-## Elevation rate limits
+## Elevation request limits
 
-Chunked Open-Meteo `/v1/elevation` requests may return **429**. Map app retries with exponential backoff (≤5 attempts), uses larger chunks (160), and mild inter-chunk pacing. Live browser proof must not use elevation fixtures for the main gate.
+Open-Meteo `/v1/elevation` allows **≤100 coordinates** per request. RADAR
+`fetchRadarElevations` batches at **80** (same as Search Areas). A brief
+regression used **160**, which returned HTTP **400**
+(`must not exceed 100 coordinates`) and blocked live aspect enrichment.
 
-### Live browser proof status (this branch)
+Chunked requests may still return **429**; the map retries with backoff and
+mild inter-chunk pacing. Live browser proof must not use elevation fixtures
+for the main gate.
+
+### Live browser proof status
 
 | Check | Result |
 |-------|--------|
-| Live Open-Meteo weather | **PASS** (fresh condition frame in Chrome) |
-| Elevation requests wired | **PASS** (Network shows `/v1/elevation` Fetch) |
-| Full aspect enrichment | **FAIL in agent env** — Open-Meteo **429** mid-chunk after repeated proofs |
-| Classification | **A** environment/provider rate limit (+ **B** mitigated by retry/pacing) |
+| Live Open-Meteo weather | **PASS** (`fresh`) |
+| Coordinate-cap defect | **Fixed** — RADAR chunk **80** (was 160 → HTTP 400) |
+| Full aspect enrichment | **Still blocked** — after fix, elev sequence starts with **200×8** then sustained **429** (no `Retry-After`); `terrainEnriched` false |
+| Classification (post-fix) | **A** external Open-Meteo rate limit on agent IP |
 | Fixture used for main proof | **No** |
+| Model | Unchanged (+0.20 solar / −0.20 snow steep) |
 
-Re-run `automation/capture-sheds-radar-production-readiness.mjs` from a non-rate-limited network before publish.
+Re-run `automation/capture-sheds-radar-production-readiness.mjs` from a cool network before publish.
 
 ## Deployment
 

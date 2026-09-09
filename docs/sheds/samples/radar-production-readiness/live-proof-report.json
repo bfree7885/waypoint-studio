@@ -1,49 +1,37 @@
 {
   "ok": false,
-  "classification": "A_rate_limit_or_timing_B_chunked_elevation",
+  "classification": "A_external_rate_limit_after_chunk_cap_fix",
+  "defectFixed": {
+    "issue": "RADAR elev chunk size 160 exceeded Open-Meteo 100-coordinate limit (HTTP 400)",
+    "fix": "fetchRadarElevations var size = 80"
+  },
+  "postFixObservationalElev": {
+    "coordCounts": [80],
+    "sequence": [200, 200, 200, 200, 200, 200, 200, 200, 429, 429, 429, 429, 429, 429],
+    "okBeforeFirst429": 8,
+    "retryAfter": null,
+    "fixtureUsed": false
+  },
   "status": {
     "enabled": true,
     "surfaceMode": "today",
-    "frameId": null,
     "proofFixtures": false,
     "conditionFreshness": "fresh",
-    "conditionKey": "41.3300|-74.8001|2026-09-09T01:22:17.024Z|fresh",
-    "baseKey": "pa-pike-milford-v1|-74.8269|41.3097|-74.7731|41.3502|50|50|90",
-    "elevKey": "",
-    "elevFetchGen": 1,
     "terrainEnriched": false,
-    "rows": 50,
-    "cols": 50,
-    "bounds": {
-      "west": -74.82691635476459,
-      "east": -74.77308364523543,
-      "south": 41.309743138240485,
-      "north": 41.35016714111509
-    },
-    "cellCount": 2500,
+    "ready": false,
     "withAspect": 0,
     "southish": 0,
-    "aspects": {
-      "null": 2500
-    },
+    "cellCount": 2500,
     "stats": {
       "ready": 2500,
       "solarModifiers": 0,
       "snowModifiers": 0
     },
-    "renderMode": "radar-interest",
-    "conditionApplyMs": 9.5,
-    "ready": false,
     "weatherReady": true,
     "toggleHidden": true,
     "proofHidden": true,
-    "prototypeCopy": false,
-    "statusText": "Today — relative search interest with conditions as of 2026-09-09T01:22:17.024Z.",
-    "frameLabel": "Today"
+    "prototypeCopy": false
   },
-  "network": {
-    "online": true,
-    "lastElevFail": null
-  },
-  "note": "Live terrain enrichment did not become ready. No fixture used for main proof. Likely Open-Meteo 429 on chunked elevation."
+  "captureExit": 2,
+  "note": "Chunk-cap defect fixed (80). Live aspect enrichment still fails under Open-Meteo 429 after eight successful chunks. No fixture. No model change."
 }

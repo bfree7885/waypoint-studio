@@ -2937,7 +2937,9 @@
     state.radarElevAbort = ac;
     var gen = ++state.radarElevFetchGen;
     var chunks = [];
-    var size = 160;
+    // Open-Meteo elevation allows ≤100 coordinates per request; keep 80
+    // to match Search Areas batching and stay under the hard ceiling.
+    var size = 80;
     var i;
     for (i = 0; i < pts.lats.length; i += size) {
       chunks.push({

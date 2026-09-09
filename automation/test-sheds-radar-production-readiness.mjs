@@ -194,6 +194,41 @@ assert.ok(/data-shed-host="1"/.test(distMap), "I shed host rewrite");
 assert.ok(/fetchOpenMeteoElevationJson/.test(mapApp), "elev 429 retry helper present");
 assert.ok(/res\.status === 429/.test(mapApp), "elev retries on 429");
 
+// Elev batching — Open-Meteo ≤100 coordinates; RADAR uses 80 (matches Search Areas).
+const radarElevFn = mapApp.match(
+  /function fetchRadarElevations\([\s\S]*?function syncRadarP0Ui/
+);
+assert.ok(radarElevFn, "radar elev fn extractable");
+assert.ok(/var size = 80/.test(radarElevFn[0]), "radar elev chunk size is 80");
+assert.ok(!/var size = 1[6-9]0|var size = [2-9]\d{2}/.test(radarElevFn[0]), "radar elev chunk not >100");
+const GisPackSb = loadScripts([
+  "apps/shed-hunting/js/sheds-search-priority.js"
+]);
+const SP = GisPackSb.WaypointShedsSearchPriority;
+assert.ok(SP && SP.haloLatLngs, "halo helper");
+const halo = SP.haloLatLngs(
+  { west: -74.8269, east: -74.7731, south: 41.3097, north: 41.3502 },
+  50,
+  50
+);
+const RADAR_ELEV_CHUNK = 80;
+const OPEN_METEO_MAX = 100;
+assert.ok(RADAR_ELEV_CHUNK <= OPEN_METEO_MAX, "chunk under Open-Meteo cap");
+assert.equal(RADAR_ELEV_CHUNK, 80, "expected batch 80");
+const batches = [];
+for (let i = 0; i < halo.lats.length; i += RADAR_ELEV_CHUNK) {
+  const lat = halo.lats.slice(i, i + RADAR_ELEV_CHUNK);
+  const lng = halo.lngs.slice(i, i + RADAR_ELEV_CHUNK);
+  assert.ok(lat.length <= OPEN_METEO_MAX, "batch lat <=100");
+  assert.ok(lng.length <= OPEN_METEO_MAX, "batch lng <=100");
+  assert.equal(lat.length, lng.length, "paired coords");
+  batches.push(lat.length);
+}
+const reconstructed = batches.reduce((a, n) => a + n, 0);
+assert.equal(reconstructed, halo.lats.length, "full grid reconstructed — no drop");
+assert.equal(reconstructed, halo.lngs.length, "full grid reconstructed — no dup skew");
+assert.ok(batches.every((n) => n > 0 && n <= RADAR_ELEV_CHUNK), "batch sizes valid");
+
 // J — no Search Area gate for radar
 assert.ok(/Search Area not required/.test(mapApp), "J radar independent of Search Area");
 
