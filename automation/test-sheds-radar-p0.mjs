@@ -229,12 +229,15 @@ assert.ok(mapApp.includes("fetchRadarElevations"), "K dedicated radar elev fetch
 assert.ok(mapApp.includes("BaseLandscape"), "M map uses P1 BaseLandscape for radar base");
 assert.ok(mapApp.includes("WaypointShedsRadarBaseLandscape"), "M BaseLandscape global");
 assert.ok(
-  /setRadarP0Frame[\s\S]*radarBaseCache[\s\S]*applyFrame/.test(mapApp),
-  "J/K frame switch uses applyFrame on cached base"
+  /setRadarP0Frame[\s\S]*radarBaseCache[\s\S]*paintRadarSurface/.test(mapApp) ||
+    /setRadarP0Frame[\s\S]*radarBaseCache[\s\S]*applyFrame/.test(mapApp),
+  "J/K frame switch reuses cached base without rebuild"
 );
 assert.ok(
-  /elevNote: "Condition frame switched · base landscape \+ elevation cache reused/.test(mapApp),
-  "K frame switch documents no elev refetch"
+  /condition change did not refetch elevation|Condition frame switched · base landscape \+ elevation cache reused|Terrain cache reused/.test(
+    mapApp
+  ),
+  "K frame/mode switch documents no elev refetch"
 );
 
 // N Phase 1 model unchanged — fixture from Phase 1 suite
@@ -272,14 +275,22 @@ const explain = Radar.explainAt(paintedB.grid, {
   lng: paintedB.grid.cells.find((c) => !c.outsideArea).lng,
 });
 assert.ok(explain && explain.factors.length, "explain factors present");
-assert.ok(!/shed probability|find probability|hotspot/i.test(JSON.stringify(explain)));
+{
+  const blob = JSON.stringify(explain)
+    .replace(/not find probability/gi, "")
+    .replace(/Not find probability/g, "");
+  assert.ok(!/shed probability|find probability|hotspot/i.test(blob), "explain honest language");
+}
 
 // HTML + script wiring
 const mapHtml = fs.readFileSync(path.join(root, "apps/shed-hunting/map/index.html"), "utf8");
 assert.ok(mapHtml.includes("sheds-radar-p0.js"), "script tag present");
 assert.ok(mapHtml.includes("sheds-radar-base-landscape.js"), "P1 base scorer script present");
-assert.ok(mapHtml.includes("btn-radar-frame-a"), "frame A control");
-assert.ok(mapHtml.includes("btn-radar-frame-b"), "frame B control");
+assert.ok(mapHtml.includes("sheds-radar-condition-frame.js"), "P2 condition frame script present");
+assert.ok(mapHtml.includes("btn-radar-mode-today"), "Today mode control");
+assert.ok(mapHtml.includes("btn-radar-mode-landscape"), "Landscape mode control");
+assert.ok(mapHtml.includes("btn-radar-frame-a"), "fixture A control");
+assert.ok(mapHtml.includes("btn-radar-frame-b"), "fixture B control");
 assert.ok(mapHtml.includes("Relative Search Interest"), "honest product language");
 assert.ok(!/Shed Radar/.test(mapHtml.replace(/Radar P0/g, "")), "no production Shed Radar rename");
 

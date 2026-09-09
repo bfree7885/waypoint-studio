@@ -40,7 +40,8 @@ Search-priority / opportunity language is allowed. Find probability and “an an
 | **V2.0 Phase 1** | Search Priority Today (model + map) | **Shipped** (Studio main + sheds-site). Relative search-interest wash + Why these bands today. Spec: `SHEDS-V2-0-PHASE1-SEARCH-PRIORITY-TODAY.md`. |
 | **V2.0 Phase 1.x** | Aspect enrichment independent of Search Areas overlay | **Shipped.** |
 | **RADAR P0** | Viewport continuous Relative Search Interest surface (Pike AOI proof) | **Prototype architecture/data proof** — not production-ready. Spec: `SHEDS-RADAR-P0.md`. Do not deploy as launch. |
-| **RADAR P1** | Continuous static base landscape scorer (Pike pack) | **Implemented (Studio branch / draft PR)** — unpublished. Spec: `SHEDS-RADAR-P1.md`. Do not deploy as launch. |
+| **RADAR P1** | Continuous static base landscape scorer (Pike pack) | **Merged to Studio main (unpublished).** Spec: `SHEDS-RADAR-P1.md`. Do not deploy as launch. |
+| **RADAR P2** | Live current-condition Today surface | **Implemented (Studio draft PR / unpublished).** Spec: `SHEDS-RADAR-P2.md`. Live browser proof may still be required before merge. |
 
 V1.7 Hunt Tracks, observations, Shed Found records, and Hunt Records exist so later versions can use **private first-party field history**. They are not a heat map. V1.8 Hunt History is the review UI for those records. V1.9 stores a factual Condition Snapshot on new Hunt Records (weather/season/optional GPS altitude) without changing the History list.
 
@@ -55,8 +56,8 @@ Suggested sequence (evaluate against repo realities; do not skip honesty gates):
 | Milestone | Intent | Status |
 | --- | --- | --- |
 | **RADAR P0** | Architecture/data proof in Pike AOI | Prototype |
-| **RADAR P1** | Static base landscape surface | Implemented (unpublished; see `SHEDS-RADAR-P1.md`) |
-| **RADAR P2** | Current-condition dynamic surface | Not started |
+| **RADAR P1** | Static base landscape surface | Merged to Studio main (unpublished; see `SHEDS-RADAR-P1.md`) |
+| **RADAR P2** | Current-condition dynamic surface | Implemented on draft PR (unpublished; see `SHEDS-RADAR-P2.md`) — live browser proof may remain a merge gate |
 | **RADAR P3** | Time snapshots / playback prototype | Not started |
 | **RADAR P4** | Broader geographic coverage | Not started |
 | **RADAR P5** | Product integration / polish | Not started |

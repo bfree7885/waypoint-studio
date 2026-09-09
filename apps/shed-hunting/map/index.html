@@ -338,18 +338,27 @@
         </div>
       </div>
 
-      <!-- RADAR P0 prototype controls — architecture proof only -->
-      <div class="sheds-radar-p0" id="radar-p0-panel" data-frame="A" role="region" aria-label="Relative Search Interest prototype">
+      <!-- Relative Search Interest — Today / Landscape -->
+      <div class="sheds-radar-p0" id="radar-p0-panel" data-mode="today" role="region" aria-label="Relative Search Interest">
         <div class="sheds-radar-p0__head">
-          <p class="sheds-radar-p0__kicker">Prototype · Relative Search Interest</p>
-          <button type="button" class="sheds-btn sheds-btn--ghost sheds-radar-p0__toggle" id="btn-radar-p0-toggle" aria-pressed="true">Radar P0 · On</button>
+          <p class="sheds-radar-p0__kicker">Relative Search Interest</p>
+          <button type="button" class="sheds-btn sheds-btn--ghost sheds-radar-p0__toggle" id="btn-radar-p0-toggle" aria-pressed="true">Interest · On</button>
         </div>
         <p class="sheds-radar-p0__lede">Smoothed display; analysis ≈90 m. Not find probability. Pike AOI only.</p>
-        <div class="sheds-radar-p0__frames" role="group" aria-label="Condition frame">
-          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-a" aria-pressed="true">Neutral / Cold</button>
-          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-b" aria-pressed="false">Warming / Thaw</button>
+        <div class="sheds-radar-p0__frames" role="group" aria-label="Surface mode">
+          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-mode-today" aria-pressed="true">Today</button>
+          <button type="button" class="sheds-radar-p0__frame" id="btn-radar-mode-landscape" aria-pressed="false">Landscape</button>
         </div>
-        <p class="sheds-radar-p0__frame-label">Frame: <span id="radar-p0-frame-label">Neutral / Cold</span></p>
+        <p class="sheds-radar-p0__frame-label">Showing: <span id="radar-p0-frame-label">Today</span></p>
+        <p class="sheds-radar-p0__status" id="radar-p0-status">Today — relative search interest when current conditions are available.</p>
+        <div class="sheds-radar-p0__proof" id="radar-p0-proof-wrap" hidden>
+          <p class="sheds-radar-p0__kicker">Evidence fixtures only</p>
+          <div class="sheds-radar-p0__frames" role="group" aria-label="Proof condition fixtures">
+            <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-a" aria-pressed="false">Cold</button>
+            <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-b" aria-pressed="false">Thaw</button>
+            <button type="button" class="sheds-radar-p0__frame" id="btn-radar-frame-n" aria-pressed="false">Neutral</button>
+          </div>
+        </div>
         <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-radar-pike-aoi">Show Pike AOI</button>
       </div>
       <div class="sheds-radar-p0-explain" id="radar-p0-explain" hidden role="status" aria-live="polite">
@@ -1181,6 +1190,7 @@
   <script src="../js/sheds-gis-pack.js"></script>
   <script src="../js/sheds-habitat-gis.js"></script>
   <script src="../js/sheds-radar-base-landscape.js"></script>
+  <script src="../js/sheds-radar-condition-frame.js"></script>
   <script src="../js/sheds-sgl-overlay.js"></script>
   <script src="../js/sheds-field-plan.js"></script>
   <script src="../js/sheds-field-ui.js"></script>

@@ -1,0 +1,77 @@
+{
+  "attempted": true,
+  "ok": true,
+  "sourceTimestamp": "2026-09-09T00:03:49.738Z",
+  "freshness": "fresh",
+  "freezeThawStatus": "above_freezing",
+  "tempTrendStatus": "little_change",
+  "snowCoverStatus": "none",
+  "snowDepthKnown": true,
+  "snowDepthM": 0,
+  "limitations": [
+    "Snow conditions are based on point weather data for this map area, not a snow raster."
+  ],
+  "surfaceMode": "today",
+  "stats": {
+    "ready": 2500,
+    "solarModifiers": 0,
+    "snowModifiers": 0
+  },
+  "metrics": {
+    "changed": 0,
+    "increased": 0,
+    "decreased": 0,
+    "unchanged": 2500,
+    "clampHigh": 0,
+    "clampLow": 0,
+    "changedFrac": 0,
+    "meanAbsDelta": 0,
+    "maxAbsDelta": 0,
+    "meanRankAbsMove": 0
+  },
+  "note": "Real Open-Meteo parse for Pike AOI. Neutral conditions → TODAY ≡ LANDSCAPE (honest). A later suite re-run received HTTP 429; this successful capture is retained as evidence.",
+  "landscapeDist": {
+    "n": 2500,
+    "min": 0,
+    "max": 0.722,
+    "mean": 0.49715592000000125,
+    "p10": 0.172,
+    "p25": 0.21,
+    "p50": 0.66,
+    "p75": 0.722,
+    "p90": 0.722,
+    "labels": {
+      "Lower": 749,
+      "Moderate": 462,
+      "Stronger": 1289
+    },
+    "frac": {
+      "Lower": 0.2996,
+      "Moderate": 0.1848,
+      "Stronger": 0.5156
+    }
+  },
+  "todayDist": {
+    "n": 2500,
+    "min": 0,
+    "max": 0.722,
+    "mean": 0.49715592000000125,
+    "p10": 0.172,
+    "p25": 0.21,
+    "p50": 0.66,
+    "p75": 0.722,
+    "p90": 0.722,
+    "labels": {
+      "Lower": 749,
+      "Moderate": 462,
+      "Stronger": 1289
+    },
+    "frac": {
+      "Lower": 0.2996,
+      "Moderate": 0.1848,
+      "Stronger": 0.5156
+    }
+  },
+  "retainedPriorSuccess": true,
+  "laterAttemptReason": "getaddrinfo ENOTFOUND api.open-meteo.com"
+}

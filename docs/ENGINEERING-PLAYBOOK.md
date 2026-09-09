@@ -1860,3 +1860,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep pack `edgeM` but withhold transition boost on developed/water cells; use conservative “land-cover transition” copy until opposite-side class is known.
 - Missing slope ≠ low: land-only partial status. Aspect/`featureKind` stay condition-only.
 - Feed Phase 1 via `landscapeScore` (unit scale) with modifier deltas × 1/3 — do not re-quantize continuous base to feed the old 0–3 GIS path.
+
+## Lessons Learned — Sheds RADAR P2 live Today surface (2026-09-08)
+
+- Existing Open-Meteo → Weather derivation is enough; do not invent a second freeze/thaw or trend algorithm. RADAR must consume a condition frame adapter, never fetch Open-Meteo itself.
+- On continuous unit scores, positive snow bench boosts cause near-blanket recolor — P2 uses steep attenuation only (−0.20) and solar +0.20 on southish thaw/warming.
+- Keep legacy tri-scale Search Area modifiers (±1 including positive snow) so Phase 1 map regressions stay intact.
+- Freshness ~75 minutes + Landscape fallback beats inventing movement on stale/unavailable weather.
+- One weather point + terrain spatial gates is sufficient for ~4.5 km viewports; do not fetch weather per cell.
+- Live Open-Meteo/browser proof is a merge gate separate from implementation completeness when the agent environment cannot reach the provider.

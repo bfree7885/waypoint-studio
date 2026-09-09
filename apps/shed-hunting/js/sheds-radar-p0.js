@@ -2,17 +2,18 @@
  * Sheds RADAR — viewport-scoped relative search-interest surface.
  *
  * P1: continuous static base landscape (WaypointShedsRadarBaseLandscape).
- * P0 proof: controlled condition frames A/B atop that base.
+ * P2: live RadarConditionFrame + unit-scale selective modifiers (Today).
+ * Controlled Frame A/B/neutral remain test/evidence fixtures only.
  *
  * Pure / deterministic. Reuses WaypointShedsSearchPriorityToday per cell.
  * NOT shed/find probability. NOT production launch. Pike pack AOI only.
  *
- * Spec: docs/sheds/SHEDS-RADAR-P1.md (base) · docs/sheds/SHEDS-RADAR-P0.md (frames)
+ * Spec: docs/sheds/SHEDS-RADAR-P2.md
  */
 (function (global) {
   "use strict";
 
-  var VERSION = "radar-p1.0";
+  var VERSION = "radar-p2.0";
   var TARGET_CELL_M = 90;
   var TARGET_SPAN_M = 4500;
   var MAX_DIM = 56;
@@ -20,30 +21,42 @@
   var MIN_ZOOM = 11;
 
   /**
-   * Controlled condition frames for the P0 proof (regression on P1 base).
-   * Frame A: cold / snow-limiting — no solar trigger.
+   * Controlled condition frames for regression / evidence (not customer modes).
+   * Frame A: cold / snow-limiting — steep snow attenuation only on unit path.
    * Frame B: warming / thaw — solar_searchability on southish aspect.
+   * Frame N: neutral — no spatial modifiers.
    */
   var FRAMES = Object.freeze({
     A: Object.freeze({
       id: "A",
-      label: "Neutral / Cold",
+      label: "Cold / snow-limiting (fixture)",
       shortLabel: "Cold",
       conditions: Object.freeze({
         snowCoverStatus: "limiting",
-        freezeThawStatus: null,
+        freezeThawStatus: "below_freezing",
         tempTrendStatus: "cooling",
         seasonCategory: "late_winter"
       })
     }),
     B: Object.freeze({
       id: "B",
-      label: "Warming / Thaw",
+      label: "Warming / Thaw (fixture)",
       shortLabel: "Thaw",
       conditions: Object.freeze({
         snowCoverStatus: "light",
         freezeThawStatus: "freeze_thaw",
         tempTrendStatus: "warming",
+        seasonCategory: "late_winter"
+      })
+    }),
+    N: Object.freeze({
+      id: "N",
+      label: "Neutral (fixture)",
+      shortLabel: "Neutral",
+      conditions: Object.freeze({
+        snowCoverStatus: "none",
+        freezeThawStatus: "above_freezing",
+        tempTrendStatus: "little_change",
         seasonCategory: "late_winter"
       })
     })
@@ -332,6 +345,12 @@
       lng: cell.lng,
       landscapeScore: cell.landscapeScore,
       landscapeLabel: cell.landscapeLabel || "base_landscape",
+      landscape: cell.landscape || null,
+      structure: cell.structure || null,
+      water: !!(
+        cell.structure === "water" ||
+        (cell.landscape && cell.landscape.flags && cell.landscape.flags.water)
+      ),
       slopeDeg: cell.slopeDeg,
       aspectCardinal: cell.aspectCardinal || null,
       featureKind: cell.featureKind || null
@@ -399,53 +418,40 @@
         renderMode: "radar-interest",
         smoothDisplay: true,
         modelVersion: VERSION,
-        frameId: "BASE",
-        frameLabel: "Static base landscape",
+        frameId: "LANDSCAPE",
+        frameLabel: "Landscape",
+        surfaceMode: "landscape",
         habitatEmpty: ready === 0,
         unavailable: ready === 0,
         disclaimer:
-          "Relative landscape interest — static base; analysis ≈" +
+          "Landscape — static relative search interest; analysis ≈" +
           Math.round(baseField.cellSizeMApprox) +
           " m. Not find probability.",
         coverage: {
           level: ready ? "moderate" : "limited",
-          label: ready ? "Static base landscape" : "Limited radar coverage"
+          label: ready ? "Landscape · relative interest" : "Limited radar coverage"
         },
         cellMetersApprox: baseField.cellSizeMApprox,
         packId: baseField.packId,
         baseKey: baseField.key,
         terrainEnriched: !!baseField.terrainEnriched,
+        conditionStatus: null,
         stats: { ready: ready, solarModifiers: 0, snowModifiers: 0 }
       },
-      frame: { id: "BASE", label: "Static base landscape" },
+      frame: { id: "LANDSCAPE", label: "Landscape" },
       baseKey: baseField.key
     };
   }
 
-  /**
-   * Apply condition frame via Phase 1 evaluateCell on continuous P1 landscapeScore.
-   * Returns paint grid for heat layer. Display priority is unit-scale [0,1].
-   */
-  function applyFrame(baseField, frameOrId, opts) {
-    opts = opts || {};
-    var Model = opts.Model || getModel();
-    var frame =
-      typeof frameOrId === "string"
-        ? FRAMES[frameOrId]
-        : frameOrId && frameOrId.id
-          ? FRAMES[frameOrId.id] || frameOrId
-          : null;
+  function paintCellsFromConditions(baseField, conditions, meta) {
+    meta = meta || {};
+    var Model = meta.Model || getModel();
     if (!baseField || !baseField.cells) {
       return emptyRadarGrid("No base landscape field.");
-    }
-    if (!frame || !frame.conditions) {
-      return emptyRadarGrid("Unknown condition frame.");
     }
     if (!Model || !Model.evaluateCell) {
       return emptyRadarGrid("Search Priority Today model unavailable.");
     }
-
-    var conditions = frame.conditions;
     var cells = [];
     var changedBySolar = 0;
     var changedBySnow = 0;
@@ -487,6 +493,18 @@
         if (mods[j].id === "snow_practicality") changedBySnow += 1;
       }
       var score = ev && ev.status === "ready" ? ev.score : null;
+      // Hard water lock even if a caller bypassed evaluateCell guard.
+      if (adapted.water || src.landscapeScore === 0) {
+        score = 0;
+        if (ev && ev.status === "ready") {
+          ev = Object.assign({}, ev, {
+            score: 0,
+            band: Model.bandFromUnitScore ? Model.bandFromUnitScore(0) : "lower_interest",
+            modifiers: [],
+            flags: Object.assign({}, ev.flags || {}, { waterLocked: true })
+          });
+        }
+      }
       var band = ev && ev.status === "ready" ? ev.band : null;
       var unit =
         ev && ev.scoreScale === "unit"
@@ -500,7 +518,6 @@
         lng: src.lng,
         outsideArea: !(ev && ev.status === "ready"),
         band: band,
-        // Unit-scale continuous display (P1 base + scaled condition deltas).
         priority: score != null ? (unit ? score : score / 3) : 0,
         score: score,
         scoreScale: unit ? "unit" : "tri",
@@ -516,10 +533,12 @@
         baseScore: src.baseScore,
         landscapeScore: src.landscapeScore,
         landscape: src.landscape,
-        factors: explainFactors(src, ev)
+        factors: explainFactors(src, ev, meta.conditionFrame || null)
       });
     }
 
+    var frameId = meta.frameId || "TODAY";
+    var frameLabel = meta.frameLabel || "Today";
     return {
       ok: ready > 0,
       reason: ready > 0 ? "ready" : "insufficient_spatial",
@@ -531,72 +550,163 @@
         renderMode: "radar-interest",
         smoothDisplay: true,
         modelVersion: VERSION,
-        frameId: frame.id,
-        frameLabel: frame.label,
+        frameId: frameId,
+        frameLabel: frameLabel,
+        surfaceMode: meta.surfaceMode || "today",
         habitatEmpty: ready === 0,
         unavailable: ready === 0,
         disclaimer:
-          "Relative Search Interest — smoothed display; analysis ≈" +
-          Math.round(baseField.cellSizeMApprox) +
-          " m. Not find probability.",
+          meta.disclaimer ||
+          ("Today — relative search interest; analysis ≈" +
+            Math.round(baseField.cellSizeMApprox) +
+            " m. Not find probability."),
         coverage: {
           level: ready ? "moderate" : "limited",
           label: ready
-            ? "Relative Search Interest · " + frame.label
+            ? "Relative Search Interest · " + frameLabel
             : "Limited radar coverage"
         },
         cellMetersApprox: baseField.cellSizeMApprox,
         packId: baseField.packId,
         baseKey: baseField.key,
         terrainEnriched: !!baseField.terrainEnriched,
+        conditionStatus: meta.conditionStatus || null,
+        conditionFrame: meta.conditionFrame || null,
         stats: {
           ready: ready,
           solarModifiers: changedBySolar,
           snowModifiers: changedBySnow
         }
       },
-      frame: frame,
+      frame: { id: frameId, label: frameLabel, conditions: conditions },
       baseKey: baseField.key
     };
   }
 
-  function explainFactors(src, ev) {
+  /**
+   * Apply controlled fixture frame (A/B/N) via Phase 1 evaluateCell.
+   * Test/evidence only — not customer product modes.
+   */
+  function applyFrame(baseField, frameOrId, opts) {
+    opts = opts || {};
+    var frame =
+      typeof frameOrId === "string"
+        ? FRAMES[frameOrId]
+        : frameOrId && frameOrId.id
+          ? FRAMES[frameOrId.id] || frameOrId
+          : null;
+    if (!frame || !frame.conditions) {
+      return emptyRadarGrid("Unknown condition frame.");
+    }
+    return paintCellsFromConditions(baseField, frame.conditions, {
+      Model: opts.Model,
+      frameId: frame.id,
+      frameLabel: frame.label,
+      surfaceMode: "fixture",
+      disclaimer:
+        "Relative Search Interest (fixture) — smoothed display; analysis ≈" +
+        (baseField && baseField.cellSizeMApprox
+          ? Math.round(baseField.cellSizeMApprox)
+          : TARGET_CELL_M) +
+        " m. Not find probability."
+    });
+  }
+
+  /**
+   * Apply live RadarConditionFrame (from Weather package adapter — no fetch here).
+   */
+  function applyConditionFrame(baseField, conditionFrame, opts) {
+    opts = opts || {};
+    var FrameApi = opts.ConditionFrame || global.WaypointShedsRadarConditionFrame;
+    if (!conditionFrame) {
+      return paintStaticBase(baseField);
+    }
+    if (FrameApi && typeof FrameApi.canDriveTodaySurface === "function") {
+      if (!FrameApi.canDriveTodaySurface(conditionFrame)) {
+        var landscape = paintStaticBase(baseField);
+        if (landscape.grid) {
+          landscape.grid.conditionStatus =
+            FrameApi.statusMessage(conditionFrame, "today");
+          landscape.grid.conditionFrame = conditionFrame;
+          landscape.grid.fallbackReason = conditionFrame.freshness || "unavailable";
+        }
+        return landscape;
+      }
+    }
+    var conditions =
+      FrameApi && typeof FrameApi.toModelConditions === "function"
+        ? FrameApi.toModelConditions(conditionFrame)
+        : {
+            freezeThawStatus: conditionFrame.freezeThawStatus,
+            tempTrendStatus: conditionFrame.tempTrendStatus,
+            snowCoverStatus: conditionFrame.snowCoverStatus,
+            seasonCategory: conditionFrame.seasonCategory
+          };
+    return paintCellsFromConditions(baseField, conditions, {
+      Model: opts.Model,
+      frameId: "TODAY",
+      frameLabel: "Today",
+      surfaceMode: "today",
+      conditionFrame: conditionFrame,
+      conditionStatus:
+        FrameApi && FrameApi.statusMessage
+          ? FrameApi.statusMessage(conditionFrame, "today")
+          : null
+    });
+  }
+
+  function explainFactors(src, ev, conditionFrame) {
     var factors = [];
     if (src && src.landscape && src.landscape.factors && src.landscape.factors.length) {
       var lf = src.landscape.factors;
       var k;
       for (k = 0; k < lf.length; k++) {
-        factors.push(lf[k]);
+        factors.push(
+          Object.assign({}, lf[k], { group: lf[k].group || "landscape" })
+        );
       }
     } else if (src && src.landscapeScore != null) {
       factors.push({
         id: "relative_landscape",
         label: "Relative landscape interest",
         value: src.landscapeLabel || String(src.landscapeScore),
-        detail: "Continuous geographic foundation — not an encounter claim."
+        detail: "Continuous geographic foundation — not an encounter claim.",
+        group: "landscape"
       });
       if (src.structure) {
         factors.push({
           id: "land_cover",
           label: "Land cover",
           value: src.structure,
-          detail: src.structureLabel || src.structure
+          detail: src.structureLabel || src.structure,
+          group: "landscape"
         });
       }
+    }
+    if (src && finiteNum(src.slopeDeg)) {
+      factors.push({
+        id: "slope",
+        label: "Slope",
+        value: String(src.slopeDeg) + "°",
+        detail: "Elevation-derived slope context",
+        group: "landscape"
+      });
     }
     if (src && src.aspectCardinal) {
       factors.push({
         id: "aspect",
         label: "Aspect",
         value: src.aspectCardinal,
-        detail: "Elevation-derived — used for condition interactions only, not static base"
+        detail: "Elevation-derived — used for condition interactions only, not static base",
+        group: "landscape"
       });
     } else if (ev) {
       factors.push({
         id: "aspect_missing",
         label: "Aspect",
         value: "unavailable",
-        detail: "No aspect — solar_searchability not applied"
+        detail: "No aspect — solar searchability not applied",
+        group: "limitations"
       });
     }
     if (src && src.featureKind && ev) {
@@ -604,7 +714,8 @@
         id: "feature",
         label: "Terrain feature",
         value: src.featureKind,
-        detail: "Elevation-derived — condition interaction only, not static base score"
+        detail: "Elevation-derived — condition interaction only, not static base score",
+        group: "landscape"
       });
     }
     if (ev && ev.modifiers) {
@@ -612,9 +723,22 @@
       for (i = 0; i < ev.modifiers.length; i++) {
         factors.push({
           id: ev.modifiers[i].id,
-          label: ev.modifiers[i].id,
+          label: ev.modifiers[i].id.replace(/_/g, " "),
           value: (ev.modifiers[i].delta > 0 ? "+" : "") + ev.modifiers[i].delta,
-          detail: ev.modifiers[i].reason
+          detail: ev.modifiers[i].reason,
+          group: "today"
+        });
+      }
+    }
+    if (conditionFrame && conditionFrame.limitations && conditionFrame.limitations.length) {
+      var li;
+      for (li = 0; li < conditionFrame.limitations.length; li++) {
+        factors.push({
+          id: "limitation_" + li,
+          label: "Limitation",
+          value: "noted",
+          detail: conditionFrame.limitations[li],
+          group: "limitations"
         });
       }
     }
@@ -626,10 +750,61 @@
         detail:
           ev.scoreScale === "unit"
             ? "0–1 relative landscape + conditions — not an encounter claim"
-            : "0–3 relative scale — not an encounter claim"
+            : "0–3 relative scale — not an encounter claim",
+        group: "summary"
       });
     }
     return factors;
+  }
+
+  function bandDisplayLabel(band) {
+    if (band === "stronger_interest") return "Stronger relative interest";
+    if (band === "moderate_interest") return "Moderate relative interest";
+    if (band === "lower_interest") return "Lower relative interest";
+    return band || "Relative interest";
+  }
+
+  /**
+   * Honest tap explanation distinguishing Landscape vs Today's conditions.
+   */
+  function formatExplainText(explain) {
+    if (!explain) return "";
+    var lines = [];
+    var mode = explain.surfaceMode || "today";
+    lines.push(mode === "landscape" ? "LANDSCAPE" : "TODAY");
+    lines.push(bandDisplayLabel(explain.band));
+    if (explain.conditionStatus) lines.push(explain.conditionStatus);
+    lines.push("");
+    var landscape = [];
+    var today = [];
+    var limits = [];
+    var factors = explain.factors || [];
+    var i;
+    for (i = 0; i < factors.length; i++) {
+      var f = factors[i];
+      var bullet = "• " + (f.detail || f.label + ": " + f.value);
+      if (f.group === "today") today.push(bullet);
+      else if (f.group === "limitations") limits.push(bullet);
+      else if (f.group === "summary") continue;
+      else landscape.push(bullet);
+    }
+    if (landscape.length) {
+      lines.push("Landscape:");
+      lines = lines.concat(landscape);
+      lines.push("");
+    }
+    if (mode !== "landscape" && today.length) {
+      lines.push("Today's conditions:");
+      lines = lines.concat(today);
+      lines.push("");
+    }
+    if (limits.length) {
+      lines.push("Limitations:");
+      lines = lines.concat(limits);
+      lines.push("");
+    }
+    lines.push(explain.disclaimer || "");
+    return lines.join("\n");
   }
 
   function emptyRadarGrid(message) {
@@ -672,14 +847,16 @@
       cell: best,
       frameId: grid.frameId || null,
       frameLabel: grid.frameLabel || null,
+      surfaceMode: grid.surfaceMode || (grid.frameId === "LANDSCAPE" ? "landscape" : "today"),
+      conditionStatus: grid.conditionStatus || null,
       cellMetersApprox: grid.cellMetersApprox,
       factors: best.factors || [],
       score: best.score,
       band: best.band,
       disclaimer:
-        "Relative Search Interest at analysis ≈" +
+        "Relative search interest at analysis ≈" +
         Math.round(grid.cellMetersApprox || TARGET_CELL_M) +
-        " m — smoothed display is visual only."
+        " m — smoothed display is visual only. Not find probability."
     };
   }
 
@@ -746,8 +923,12 @@
     buildBaseField: buildBaseField,
     enrichWithTerrain: enrichWithTerrain,
     applyFrame: applyFrame,
+    applyConditionFrame: applyConditionFrame,
     paintStaticBase: paintStaticBase,
+    paintCellsFromConditions: paintCellsFromConditions,
     explainAt: explainAt,
+    formatExplainText: formatExplainText,
+    bandDisplayLabel: bandDisplayLabel,
     diffFrames: diffFrames,
     emptyRadarGrid: emptyRadarGrid,
     packDemoCenter: packDemoCenter,
