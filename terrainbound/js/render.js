@@ -4,6 +4,9 @@
 
 import { groundColor, dist } from "./world.js";
 import { starField } from "./celestial.js";
+import { drawExplorer, drawWren, poseFromIntent } from "./character.js";
+import { drawStationBuilding, drawWorkProps } from "./stations.js";
+import { drawBackdrop, drawHaze, drawDust, drawBirds, shadeFromSun } from "./atmosphere.js";
 
 function lerp(a, b, t) {
   return a + (b - a) * t;
@@ -31,19 +34,31 @@ export function createRenderer(canvas, world, helpers) {
       const alpine = world.region.terrainModel === "high-country";
       const sky = state.sky;
       const night = Boolean(desert && sky?.night);
+      const atm = state.atmosphere || {
+        skyTop: alpine ? "#6aa8d4" : desert ? "#8ec8f0" : "#7ec8ea",
+        skyHorizon: alpine ? "#d7e4ee" : desert ? "#f2d9a8" : "#c5e4c8",
+        haze: alpine ? 0.22 : 0.12,
+        wind: alpine ? 0.85 : 0.4,
+        clouds: alpine ? 4 : 3,
+        dust: desert ? 1 : 0,
+        birds: !desert,
+        water: !desert
+      };
       ctx.clearRect(0, 0, width, height);
       ctx.save();
-      if (night) ctx.fillStyle = "#0b1020";
-      else if (desert) ctx.fillStyle = "#9ad0f0";
-      else ctx.fillStyle = alpine ? "#8ec4e8" : "#7ec8ea";
+      ctx.fillStyle = night ? "#0b1020" : atm.skyHorizon;
       ctx.fillRect(0, 0, width, height);
-      drawSky(ctx, width, height, state.time, state.reducedMotion, alpine, desert, sky, stars);
+      drawBackdrop(ctx, width, height, state.time, state.reducedMotion, atm, sky, stars);
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
       ctx.drawImage(ground, 0, 0);
       if (night) {
-        ctx.fillStyle = "rgba(8, 12, 28, 0.48)";
+        ctx.fillStyle = "rgba(8, 12, 28, 0.52)";
+        ctx.fillRect(0, 0, world.region.width, world.region.height);
+      } else if (desert && sky?.sun) {
+        const shade = shadeFromSun(sky);
+        ctx.fillStyle = `rgba(40, 24, 10, ${shade.alpha * 0.35})`;
         ctx.fillRect(0, 0, world.region.width, world.region.height);
       }
       if (!desert) drawWater(ctx, world, state.time, state.reducedMotion);
@@ -58,14 +73,39 @@ export function createRenderer(canvas, world, helpers) {
       if (!state.reducedMotion && !alpine && !desert) {
         drawLeaves(ctx, leaves, world.region, state.time);
       }
+      drawDust(ctx, world, state.time, state.reducedMotion, atm);
       drawTrees(ctx, world, state.time, state.reducedMotion);
-      drawStation(ctx, world.region, night);
+      drawStationBuilding(ctx, world.region, night);
+      drawWorkProps(ctx, world.region, state.time, state.reducedMotion);
       drawNearHint(ctx, world, state);
-      drawRanger(ctx, world.region, state.time, state.reducedMotion);
-      drawPlayer(ctx, state.player, state.time, state.reducedMotion);
+      const ranger = world.region.ranger;
+      drawWren(ctx, ranger.x, ranger.y, {
+        time: state.time,
+        reduced: state.reducedMotion,
+        night,
+        pose: state.talking ? "talk" : "idle",
+        facing: ranger.x > (state.player?.x || 0) ? -1 : 1
+      });
+      const moving = Math.hypot(state.player.vx || 0, state.player.vy || 0) > 12;
+      const pose = poseFromIntent({
+        moving,
+        journalOpen: Boolean(state.journalOpen),
+        talking: Boolean(state.talking),
+        pose: state.player.pose
+      });
+      drawExplorer(ctx, state.player.x, state.player.y, {
+        facing: state.player.facing,
+        time: state.time,
+        reduced: state.reducedMotion,
+        pose,
+        appearance: state.appearance,
+        night
+      });
       drawDestination(ctx, state);
       drawLabels(ctx, world, state);
+      drawBirds(ctx, world, state.time, state.reducedMotion, atm);
       ctx.restore();
+      drawHaze(ctx, width, height, atm, night);
     }
   };
 }
@@ -836,84 +876,6 @@ function drawTrees(ctx, world, time, reduced) {
   }
 }
 
-function drawStation(ctx, region, night = false) {
-  const s = region.station;
-  if (region.terrainModel === "sunfall-desert") {
-    ctx.fillStyle = "rgba(40, 30, 16, 0.22)";
-    ctx.fillRect(s.x + 8, s.y + s.h - 6, s.w, 16);
-    ctx.fillStyle = "#c4a06a";
-    ctx.fillRect(s.x - 12, s.y + s.h - 16, s.w + 28, 18);
-    ctx.fillStyle = "#d8c09a";
-    ctx.fillRect(s.x, s.y + 24, s.w, s.h - 24);
-    ctx.fillStyle = "#8a6a48";
-    ctx.fillRect(s.x + 12, s.y + s.h - 48, 22, 36);
-    ctx.fillStyle = night ? "rgba(240, 196, 76, 0.55)" : "#f4e2a8";
-    ctx.fillRect(s.x + 48, s.y + 40, 22, 16);
-    ctx.fillRect(s.x + s.w - 52, s.y + 40, 22, 16);
-    ctx.fillStyle = "#c4783c";
-    ctx.beginPath();
-    ctx.arc(s.x + s.w * 0.62, s.y + 18, 36, Math.PI, 0);
-    ctx.fill();
-    ctx.fillStyle = "#e8d2a8";
-    ctx.beginPath();
-    ctx.arc(s.x + s.w * 0.62, s.y + 18, 22, Math.PI, 0);
-    ctx.fill();
-    ctx.fillStyle = "#2f6b3a";
-    ctx.font = "bold 15px Trebuchet MS, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText("Sunfall Observatory", s.x + s.w / 2, s.y + s.h + 26);
-    if (night) {
-      ctx.fillStyle = "rgba(240, 196, 76, 0.18)";
-      ctx.beginPath();
-      ctx.arc(s.x + s.w * 0.3, s.y + 50, 36, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    return;
-  }
-  ctx.fillStyle = "rgba(40, 50, 30, 0.2)";
-  ctx.fillRect(s.x + 8, s.y + s.h - 6, s.w, 16);
-  ctx.fillStyle = "#d8c09a";
-  ctx.fillRect(s.x - 18, s.y + s.h - 18, s.w + 36, 20);
-  ctx.fillStyle = "#c4783c";
-  ctx.fillRect(s.x, s.y, s.w, s.h);
-  ctx.fillStyle = "#8a3324";
-  ctx.beginPath();
-  ctx.moveTo(s.x - 16, s.y + 12);
-  ctx.lineTo(s.x + s.w / 2, s.y - 52);
-  ctx.lineTo(s.x + s.w + 16, s.y + 12);
-  ctx.closePath();
-  ctx.fill();
-  ctx.fillStyle = "#6d4c32";
-  ctx.fillRect(s.x + s.w / 2 - 16, s.y + s.h - 46, 32, 46);
-  ctx.fillStyle = "#f4e2a8";
-  ctx.fillRect(s.x + 18, s.y + 28, 28, 22);
-  ctx.fillRect(s.x + s.w - 46, s.y + 28, 28, 22);
-  ctx.fillStyle = "#7a3b1e";
-  ctx.fillRect(s.x + s.w - 28, s.y - 28, 14, 36);
-  ctx.fillStyle = "rgba(230,230,230,0.7)";
-  ctx.beginPath();
-  ctx.ellipse(s.x + s.w - 21, s.y - 40, 10, 14, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.strokeStyle = "#6d4c32";
-  ctx.lineWidth = 4;
-  ctx.beginPath();
-  ctx.moveTo(s.x + s.w + 36, s.y + 20);
-  ctx.lineTo(s.x + s.w + 36, s.y + s.h - 8);
-  ctx.stroke();
-  ctx.fillStyle = "#c45c26";
-  ctx.beginPath();
-  ctx.moveTo(s.x + s.w + 36, s.y + 20);
-  ctx.lineTo(s.x + s.w + 36, s.y + 48);
-  ctx.lineTo(s.x + s.w + 62, s.y + 34);
-  ctx.closePath();
-  ctx.fill();
-  ctx.fillStyle = "#2f6b3a";
-  ctx.font = "bold 16px Trebuchet MS, sans-serif";
-  ctx.textAlign = "center";
-  const stationName = (region.features || []).find((item) => item.kind === "station")?.name || `${region.name} Station`;
-  ctx.fillText(stationName, s.x + s.w / 2, s.y + s.h + 28);
-}
-
 function drawNearHint(ctx, world, state) {
   const target = state.nearTarget;
   if (!target) return;
@@ -923,94 +885,6 @@ function drawNearHint(ctx, world, state) {
   ctx.strokeStyle = target.kind === "discovery" ? "rgba(232, 176, 64, 0.85)" : "rgba(255,255,255,0.7)";
   ctx.lineWidth = 2;
   ctx.stroke();
-}
-
-function drawPerson(ctx, x, y, facing, bob, palette) {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.fillStyle = "rgba(30,40,20,0.25)";
-  ctx.beginPath();
-  ctx.ellipse(0, 10, 16, 7, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = palette.pants;
-  ctx.fillRect(-8, -2 + bob, 16, 14);
-  ctx.fillStyle = palette.shirt;
-  ctx.fillRect(-9, -18 + bob, 18, 18);
-  if (palette.hat) {
-    ctx.fillStyle = palette.hat;
-    ctx.fillRect(-12, -36 + bob, 24, 8);
-    ctx.fillRect(-8, -42 + bob, 16, 8);
-  }
-  ctx.fillStyle = palette.skin;
-  ctx.beginPath();
-  ctx.arc(0, -24 + bob, 10, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = palette.hair;
-  ctx.beginPath();
-  ctx.arc(0, -28 + bob, 10, Math.PI, Math.PI * 2);
-  ctx.fill();
-  const dir = facing >= 0 ? 1 : -1;
-  ctx.fillStyle = "#1c1c1c";
-  ctx.beginPath();
-  ctx.arc(dir * 3, -24 + bob, 1.6, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = palette.pack || palette.shirt;
-  ctx.fillRect(-6 - dir * 8, -16 + bob, 8, 12);
-  ctx.restore();
-}
-
-function drawRanger(ctx, region, time, reduced) {
-  const bob = reduced ? 0 : Math.sin(time * 2) * 1.2;
-  drawPerson(ctx, region.ranger.x, region.ranger.y, -1, bob, {
-    shirt: "#c4a35a",
-    pants: "#4a5c3a",
-    skin: "#e6b089",
-    hair: "#3a2a1c",
-    hat: "#5c4030",
-    pack: "#6b4424"
-  });
-}
-
-function drawPlayer(ctx, player, time, reduced) {
-  const moving = Math.hypot(player.vx || 0, player.vy || 0) > 12;
-  const inspecting = player.pose === "inspect";
-  const dir = player.facing >= 0 ? 1 : -1;
-  const bob = reduced ? 0 : inspecting ? 1 : moving ? Math.sin(time * 11) * 2 : Math.sin(time * 1.6) * 0.6;
-  const stride = reduced || !moving ? 0 : Math.sin(time * 11) * 5;
-  ctx.save();
-  ctx.translate(player.x, player.y);
-  ctx.fillStyle = "rgba(30,40,20,0.25)";
-  ctx.beginPath();
-  ctx.ellipse(0, 11, 15, 6, 0, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#3d4f66";
-  ctx.fillRect(-9 + stride * 0.15, 2 + bob, 7, 12);
-  ctx.fillRect(2 - stride * 0.15, 2 + bob, 7, 12);
-  ctx.fillStyle = "#c45c26";
-  ctx.fillRect(-10, -16 + bob, 20, 16);
-  ctx.fillStyle = "#2a9d8f";
-  ctx.fillRect(-8, -20 + bob, 16, 8);
-  ctx.fillStyle = "#f0c09a";
-  ctx.beginPath();
-  ctx.arc(0, -26 + bob, 9, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#3a2a1c";
-  ctx.beginPath();
-  ctx.arc(-2, -29 + bob, 8, Math.PI, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#1c1c1c";
-  ctx.beginPath();
-  ctx.arc(dir * 3, -26 + bob, 1.5, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.fillStyle = "#6b4424";
-  ctx.fillRect(-5 - dir * 9, -14 + bob, 9, 11);
-  if (inspecting) {
-    ctx.fillStyle = "#f4efe2";
-    ctx.fillRect(dir * 10, -12 + bob, 8, 10);
-    ctx.strokeStyle = "#8a6238";
-    ctx.strokeRect(dir * 10, -12 + bob, 8, 10);
-  }
-  ctx.restore();
 }
 
 function drawDestination(ctx, state) {

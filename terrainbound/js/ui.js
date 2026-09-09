@@ -152,7 +152,44 @@ export function bindUi(root) {
       if (journalTitle) journalTitle.textContent = name;
     },
     setEnterLabel(hasSave) {
-      if (enterBtn) enterBtn.textContent = hasSave ? "Continue" : "Begin";
+      if (enterBtn) {
+        enterBtn.textContent = hasSave ? "Continue" : "Begin";
+        enterBtn.hidden = false;
+      }
+      const freshBtn = root.querySelector("#new-explore-btn");
+      if (freshBtn) freshBtn.hidden = !hasSave;
+    },
+    showAppearance(open, presentation, appearance, onPick) {
+      const box = root.querySelector("#appearance-setup");
+      if (!box) return;
+      box.hidden = !open;
+      if (!open) return;
+      const spec = presentation?.appearance;
+      if (!spec) return;
+      const fill = (el, items, key) => {
+        if (!el) return;
+        el.replaceChildren();
+        for (const item of items) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = item.label;
+          btn.classList.toggle("is-on", appearance[key] === item.id);
+          btn.addEventListener("click", () => onPick?.(key, item.id));
+          el.appendChild(btn);
+        }
+      };
+      fill(root.querySelector("#appearance-skins"), spec.skins, "skin");
+      fill(root.querySelector("#appearance-hair"), spec.hair, "hair");
+      fill(root.querySelector("#appearance-jackets"), spec.jackets, "jacket");
+    },
+    showTravel(open, regionName, stationName) {
+      const card = root.querySelector("#travel-card");
+      if (!card) return;
+      card.hidden = !open;
+      const r = root.querySelector("#travel-region");
+      const s = root.querySelector("#travel-station");
+      if (r) r.textContent = regionName || "";
+      if (s) s.textContent = stationName || "";
     },
     showConfirmReset(open) {
       if (confirmReset) confirmReset.hidden = !open;
@@ -325,12 +362,23 @@ export function bindUi(root) {
 
       if (fieldRecord) {
         fieldRecord.replaceChildren();
-        for (const item of view.fieldRecord || []) {
-          const row = document.createElement("p");
-          row.className = "field-record-row is-" + item.status;
-          const mark = item.status === "demonstrated" ? "✓" : item.status === "developing" ? "◐" : "○";
-          row.textContent = `${mark} ${item.label}`;
-          fieldRecord.appendChild(row);
+        const groups = view.journeyRecord?.length
+          ? view.journeyRecord
+          : [{ title: "", items: view.fieldRecord || [] }];
+        for (const group of groups) {
+          if (group.title) {
+            const kicker = document.createElement("p");
+            kicker.className = "field-record-region";
+            kicker.textContent = group.title;
+            fieldRecord.appendChild(kicker);
+          }
+          for (const item of group.items || []) {
+            const row = document.createElement("p");
+            row.className = "field-record-row is-" + item.status;
+            const mark = item.status === "demonstrated" ? "✓" : item.status === "developing" ? "◐" : "○";
+            row.textContent = `${mark} ${item.label}`;
+            fieldRecord.appendChild(row);
+          }
         }
         if (view.missingLine) {
           const note = document.createElement("p");

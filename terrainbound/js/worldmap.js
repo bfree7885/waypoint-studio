@@ -279,7 +279,20 @@ export function drawWorldMap(ctx, world, worldState, selectedId) {
     if (selected) {
       ctx.strokeStyle = "#f4efe2";
       ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(x, y + 14, selected ? 7 : 5, 0, Math.PI * 2);
       ctx.stroke();
+    }
+    if (worldState.currentRegion === region.id) {
+      ctx.strokeStyle = "#f4efe2";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(x, y + 14, 11, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    if (region.implementationState === "playable") {
+      ctx.fillStyle = "#e8d7a8";
+      ctx.fillRect(x - 2, y - 18, 4, 6);
     }
     ctx.fillStyle = "#1d2a1c";
     ctx.font = selected ? "700 12px Trebuchet MS, sans-serif" : "600 11px Trebuchet MS, sans-serif";

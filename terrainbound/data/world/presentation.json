@@ -1,0 +1,69 @@
+{
+  "id": "terrainbound-presentation",
+  "fieldNetwork": {
+    "spokenName": "the Field Service",
+    "signName": "FIELD SERVICE",
+    "shortStamp": "FS",
+    "feeling": "scientific field network / ranger-research observing service"
+  },
+  "travelTitles": {
+    "cedar-hollow": { "region": "Cedar Hollow", "station": "Field Station" },
+    "high-country": { "region": "High Country", "station": "Ridgeline Station" },
+    "sunfall-desert": { "region": "Sunfall Desert", "station": "Observatory" }
+  },
+  "reveals": {
+    "cedar-hollow": { "x": 1100, "y": 900, "ms": 900 },
+    "high-country": { "x": 980, "y": 620, "ms": 1100 },
+    "sunfall-desert": { "x": 980, "y": 880, "ms": 1200 }
+  },
+  "atmosphere": {
+    "cedar-hollow": {
+      "skyTop": "#7ec8ea",
+      "skyHorizon": "#c5e4c8",
+      "haze": 0.12,
+      "wind": 0.35,
+      "clouds": 3,
+      "dust": 0,
+      "birds": true,
+      "water": true
+    },
+    "high-country": {
+      "skyTop": "#6aa8d4",
+      "skyHorizon": "#d7e4ee",
+      "haze": 0.22,
+      "wind": 0.85,
+      "clouds": 4,
+      "dust": 0,
+      "birds": true,
+      "water": true
+    },
+    "sunfall-desert": {
+      "skyTop": "#8ec8f0",
+      "skyHorizon": "#f2d9a8",
+      "haze": 0.08,
+      "wind": 0.45,
+      "clouds": 2,
+      "dust": 1,
+      "birds": false,
+      "water": false
+    }
+  },
+  "appearance": {
+    "skins": [
+      { "id": "sand", "label": "Sand", "color": "#f0c09a" },
+      { "id": "clay", "label": "Clay", "color": "#c6865a" },
+      { "id": "umber", "label": "Umber", "color": "#8d5a3c" }
+    ],
+    "hair": [
+      { "id": "short-dark", "label": "Short", "color": "#2a1c14", "style": "short" },
+      { "id": "bun-auburn", "label": "Tied", "color": "#6b3a1c", "style": "bun" },
+      { "id": "bangs-black", "label": "Bangs", "color": "#1a1410", "style": "bangs" }
+    ],
+    "jackets": [
+      { "id": "clay", "label": "Clay", "color": "#c45c26" },
+      { "id": "pine", "label": "Pine", "color": "#2a6b5a" },
+      { "id": "slate", "label": "Slate", "color": "#3d4f66" }
+    ],
+    "defaults": { "skin": "sand", "hair": "short-dark", "jacket": "clay" }
+  }
+}

@@ -1666,3 +1666,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Night is the payoff for a desert sky. A dark gradient, a cheap star field, and a Moon disc change the place more than extra daytime props.
 - Tools stay earned by use: logging three shadows, advancing the clock, measuring an eccentric orbit, and repeating Moon notes. Opening the Field Tablet still awards nothing.
 
+### Lessons Learned — TerrainBound Phase 7.5 (2026-09-08)
+
+- A third region does not justify a new engine. Canvas 2D still carries stylized stations, a readable explorer, regional atmosphere, and a Field Tablet if the art language is shared instead of copied.
+- Character quality is silhouette first: vest, pack, boots, tablet. Short poses beat cutscenes; students should never wait through the same inspect animation twice.
+- The Field Service should be painted on buildings, not explained in a lore dump. Wren stepping back on the radio is the character arc.
+- Opening copy belongs on the title card (“learning to read the Earth”), not in a lecture about twelve topics. Begin, then a two-line station greeting, then walk.
+- A 1366×768 screenshot set is not visual review. Night must actually be night in the capture (sky-state + clock refresh). Walk/sky poses are nearly unreadable at world camera distance — that is a production gap, not a missing PNG.
+

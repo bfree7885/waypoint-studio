@@ -1,6 +1,6 @@
 /**
  * Quiet audio bus. No music. No required files.
- * Procedural ambience starts only after a user gesture.
+ * Regional ambience starts only after a user gesture.
  */
 
 export function createAudio(options = {}) {
@@ -11,6 +11,8 @@ export function createAudio(options = {}) {
   let muted = false;
   let creek = null;
   let wind = null;
+  let regionId = "cedar-hollow";
+  let night = false;
   let stepAt = 0;
 
   function ensure() {
@@ -52,7 +54,7 @@ export function createAudio(options = {}) {
     filter.frequency.value = kind === "creek" ? 780 : 240;
     filter.Q.value = kind === "creek" ? 0.7 : 0.4;
     const gain = audio.createGain();
-    gain.gain.value = kind === "creek" ? 0.22 : 0.12;
+    gain.gain.value = 0.01;
     src.connect(filter);
     filter.connect(gain);
     gain.connect(master);
@@ -60,13 +62,25 @@ export function createAudio(options = {}) {
     return { src, gain };
   }
 
-  function blip(freq, dur, vol = 0.08) {
+  function mixForPlace() {
+    if (!creek || !wind) return;
+    const mixes = {
+      "cedar-hollow": { creek: 0.22, wind: 0.08 },
+      "high-country": { creek: 0.06, wind: 0.2 },
+      "sunfall-desert": { creek: 0.0, wind: night ? 0.08 : 0.16 }
+    };
+    const mix = mixes[regionId] || mixes["cedar-hollow"];
+    creek.gain.gain.value = mix.creek;
+    wind.gain.gain.value = mix.wind;
+  }
+
+  function blip(freq, dur, vol = 0.08, type = "sine") {
     const audio = ensure();
     if (!audio || !master || !enabled) return;
     const osc = audio.createOscillator();
     const gain = audio.createGain();
     osc.frequency.value = freq;
-    osc.type = "sine";
+    osc.type = type;
     gain.gain.value = vol;
     gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + dur);
     osc.connect(gain);
@@ -83,6 +97,12 @@ export function createAudio(options = {}) {
       if (!audio) return;
       if (!creek) creek = startLoop("creek");
       if (!wind) wind = startLoop("wind");
+      mixForPlace();
+    },
+    setPlace(id, isNight = false) {
+      regionId = id || regionId;
+      night = Boolean(isNight);
+      mixForPlace();
     },
     setMuted(value) {
       muted = Boolean(value);
@@ -96,12 +116,22 @@ export function createAudio(options = {}) {
       blip(740, 0.22, 0.04);
     },
     tablet() {
-      blip(210, 0.12, 0.04);
+      blip(210, 0.12, 0.04, "triangle");
     },
-    footstep(now) {
-      if (!enabled || muted || now - stepAt < 0.32) return;
+    measure() {
+      blip(340, 0.1, 0.05, "square");
+    },
+    map() {
+      blip(160, 0.14, 0.04);
+    },
+    notebook() {
+      blip(280, 0.08, 0.035);
+    },
+    footstep(now, kind = "soil") {
+      if (!enabled || muted || now - stepAt < 0.3) return;
       stepAt = now;
-      blip(90, 0.06, 0.03);
+      const freq = kind === "rock" ? 70 : kind === "water" ? 140 : 90;
+      blip(freq, 0.055, 0.028, "triangle");
     },
     stop() {
       try {

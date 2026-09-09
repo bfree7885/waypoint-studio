@@ -68,13 +68,14 @@ import {
 } from "./challenge.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
-import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, wipeRequiresConfirm } from "./save.js";
+import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, emptyPresentationSave, wipeRequiresConfirm } from "./save.js";
 import { createAudio } from "./audio.js";
 import {
   createMasteryState,
   gameplaySnapshot,
   syncFromGameplay,
   fieldRecord,
+  journeyRecord,
   missingEvidence,
   regionMastered,
   remediationLine,
@@ -152,11 +153,13 @@ import {
   tideRows
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
+import { POSE_MS, normalizeAppearance } from "./character.js";
+import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
 
 const WALK_SPEED = 196;
 const VIEW_HEIGHT = 760;
 const ACCEL = 9.5;
-const CAMERA_FOLLOW = 4.4;
+const CAMERA_FOLLOW = 3.6;
 
 const FLOW_MAP = [
   { id: "westface-slope", short: "Slope", mapX: 22, mapY: 28 },
@@ -189,7 +192,8 @@ export async function boot(root = document) {
     sfRegion,
     sfCatalog,
     sfSpec,
-    sfProfile
+    sfProfile,
+    presentationPack
   ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
@@ -211,7 +215,8 @@ export async function boot(root = document) {
       fetch("./data/regions/sunfall-desert.json").then((r) => r.json()),
       fetch("./data/discoveries/sunfall-desert.json").then((r) => r.json()),
       fetch("./data/investigations/sunfall-desert.json").then((r) => r.json()),
-      fetch("./data/mastery/sunfall-desert.json").then((r) => r.json())
+      fetch("./data/mastery/sunfall-desert.json").then((r) => r.json()),
+      fetch("./data/world/presentation.json").then((r) => r.json())
     ]);
   void curriculum;
   void hazardsCatalog;
@@ -237,6 +242,9 @@ export async function boot(root = document) {
   const sfState = createSfState();
   const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
   const taught = emptyTaught();
+  const presentation = emptyPresentationSave();
+  const travelState = createTravelState();
+  let poseUntil = 0;
   const ui = bindUi(root);
   const hollowRenderer = createRenderer(canvas, hollowWorld, { heightAt, inCreek, onTrail });
   const hcRenderer = createRenderer(canvas, hcWorld, { heightAt, inCreek, onTrail });
@@ -290,7 +298,8 @@ export async function boot(root = document) {
       challengeState,
       hcState,
       sfState,
-      regionPlayers
+      regionPlayers,
+      presentation
     });
   }
   function isHighCountry() {
@@ -339,6 +348,7 @@ export async function boot(root = document) {
     camera.x = player.x;
     camera.y = player.y - 28;
     refreshSkyClock();
+    audio.setPlace(id, Boolean(isSunfall() && liveSky(sfState, sfRegion, player).night));
   }
 
   applyRegionWorld(worldState.currentRegion || "cedar-hollow", { keepPlayer: true });
@@ -402,7 +412,8 @@ export async function boot(root = document) {
       investigation,
       canPropose: canProposeExplanation(investigation, invState),
       fieldRecord: fieldRecord(masteryProfile, masteryState),
-      fieldRecordLead: "Scientific habits shown in the hollow — not a grade.",
+      journeyRecord: journeyBlocks(),
+      fieldRecordLead: "Your Field Record across TerrainBound — not a grade.",
       missingLine:
         missionState.concluded && invState.concluded && !regionMastered(masteryProfile, masteryState)
           ? remediationLine(masteryProfile, masteryState)
@@ -444,7 +455,8 @@ export async function boot(root = document) {
       landscapeConcluded: false,
       evidence: { cards: [], groups: [] },
       fieldRecord: fieldRecord(hcProfile, masteryState),
-      fieldRecordLead: "High Country Field Record — not a grade.",
+      journeyRecord: journeyBlocks(),
+      fieldRecordLead: "Your Field Record across TerrainBound — not a grade.",
       missingLine:
         hcState.challengeOk && !regionMastered(hcProfile, masteryState)
           ? remediationLine(hcProfile, masteryState)
@@ -498,14 +510,15 @@ export async function boot(root = document) {
       landscapeConcluded: false,
       evidence: { cards: [], groups: [] },
       fieldRecord: fieldRecord(sfProfile, masteryState),
-      fieldRecordLead: "Sunfall Desert Field Record — not a grade.",
+      journeyRecord: journeyBlocks(),
+      fieldRecordLead: "Your Field Record across TerrainBound — not a grade.",
       missingLine:
         sfState.challenge.ok && !regionMastered(sfProfile, masteryState)
           ? remediationLine(sfProfile, masteryState)
           : "",
       dataRows: sfState.tides.compared ? tides.map((row) => [row.date, row.phase, String(row.range), row.kind]) : [],
       dataColumns: sfState.tides.compared ? ["Date", "Moon", "Range (m)", "Kind"] : null,
-      dataCaption: "Coastal tide station — remote numbers, not an ocean unit.",
+      dataCaption: "Coastal tide station — remote numbers, not an ocean investigation.",
       showMap: true,
       mapCaption: "Observatory, mesa, crater, and you. Coordinates still work here.",
       mapModel: {
@@ -571,7 +584,8 @@ export async function boot(root = document) {
         challengeState,
         hcState,
         sfState,
-        regionPlayers
+        regionPlayers,
+        presentation
       })
     );
   }
@@ -586,8 +600,31 @@ export async function boot(root = document) {
         flumeOpen ||
         interpretOverlay ||
         clearanceOpen ||
-        geoOpen
+        geoOpen ||
+        travelBlocking(travelState)
     );
+  }
+
+  function setPose(kind, ms) {
+    player.pose = kind;
+    poseUntil = performance.now() + (ms ?? POSE_MS[kind] ?? 700);
+  }
+
+  function wrenKicker() {
+    if (isSunfall()) return presentation.openingSeen ? "Radio · Ridgeline" : "Sunfall Observatory";
+    if (isHighCountry()) return "Ridgeline Station";
+    return "Cedar Hollow Station";
+  }
+
+  function journeyBlocks() {
+    const packs = [{ ...masteryProfile, regionTitle: "Cedar Hollow" }];
+    if (worldState.accessibleRegions.includes("high-country")) {
+      packs.push({ ...hcProfile, regionTitle: "High Country" });
+    }
+    if (worldState.accessibleRegions.includes("sunfall-desert")) {
+      packs.push({ ...sfProfile, regionTitle: "Sunfall Desert" });
+    }
+    return journeyRecord(packs, masteryState);
   }
 
   function readyForChallenge() {
@@ -840,6 +877,7 @@ export async function boot(root = document) {
     atlasOpen = true;
     journalOpen = false;
     taught.worldMap = true;
+    audio.map();
     persist();
     refreshJournal();
     ui.showAtlas(true);
@@ -894,15 +932,17 @@ export async function boot(root = document) {
   function openIntro() {
     missionState.introSeen = true;
     persist();
+    setPose("talk");
     showDialogueLines(mission.intro.speaker, mission.intro.lines, 0, () => {
       dialogue = null;
       ui.showDialogue(false);
-    });
+    }, wrenKicker());
   }
 
   function showDialogueLines(speaker, lines, index, onDone, kicker = "") {
     const line = lines[index];
     const lastLine = index >= lines.length - 1;
+    const voice = kicker || (speaker === "Ranger Wren" ? wrenKicker() : "");
     dialogue = { speaker, lines, index };
     ui.showDialogue(
       true,
@@ -913,11 +953,11 @@ export async function boot(root = document) {
           label: lastLine ? (speaker === "Ranger Wren" ? "Let's go" : "Got it") : "Continue",
           onClick: () => {
             if (lastLine) onDone();
-            else showDialogueLines(speaker, lines, index + 1, onDone, kicker);
+            else showDialogueLines(speaker, lines, index + 1, onDone, voice);
           }
         }
       ],
-      kicker
+      voice
     );
   }
 
@@ -1024,6 +1064,18 @@ export async function boot(root = document) {
     });
   }
 
+  function playTravelCard(id, after) {
+    const title = travelTitleFor(presentationPack, id);
+    beginTravel(travelState, id, worldState.currentRegion);
+    ui.showTravel(true, title.region, title.station);
+    const rev = presentationPack.reveals?.[id];
+    if (rev) camFocus = { x: rev.x, y: rev.y, until: performance.now() + Math.max(rev.ms, 1600) };
+    window.setTimeout(() => {
+      ui.showTravel(false);
+      after?.();
+    }, 1500);
+  }
+
   function travelTo(id) {
     if (!canEnterRegion(tbWorld, worldState, id)) return false;
     regionPlayers[worldState.currentRegion] = { x: player.x, y: player.y, facing: player.facing };
@@ -1038,21 +1090,23 @@ export async function boot(root = document) {
     applyRegionWorld(id, { keepPlayer: false });
     persist();
     refreshJournal();
-    if (firstHc) {
-      hcState.introSeen = true;
-      persist();
-      showDialogueLines("Ranger Wren", hcSpec.intro.lines, 0, () => {
-        dialogue = null;
-        ui.showDialogue(false);
-      });
-    } else if (firstSf) {
-      sfState.introSeen = true;
-      persist();
-      showDialogueLines("Ranger Wren", sfSpec.intro.lines, 0, () => {
-        dialogue = null;
-        ui.showDialogue(false);
-      });
-    }
+    playTravelCard(id, () => {
+      if (firstHc) {
+        hcState.introSeen = true;
+        persist();
+        showDialogueLines("Ranger Wren", hcSpec.intro.lines, 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        });
+      } else if (firstSf) {
+        sfState.introSeen = true;
+        persist();
+        showDialogueLines("Ranger Wren", sfSpec.intro.lines, 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        });
+      }
+    });
     return true;
   }
 
@@ -1766,6 +1820,12 @@ export async function boot(root = document) {
 
   function inspectTarget(target) {
     if (!target) return;
+    if (target.kind === "wren") setPose("talk");
+    else if (target.kind === "gnomon" || target.kind === "moon-site") setPose("sky");
+    else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake") setPose("measure");
+    else if (target.kind === "orbit-board" || target.kind === "tide-desk" || target.kind === "planet-desk" || target.kind === "eclipse-desk") {
+      setPose("tablet");
+    } else setPose("inspect");
     if (isHighCountry()) {
       inspectHc(target);
       return;
@@ -2041,14 +2101,30 @@ export async function boot(root = document) {
   function enterWorld() {
     mode = "play";
     ui.showTitle(false);
+    ui.showAppearance(false);
     canvas.focus();
     audio.unlock();
+    audio.setPlace(worldState.currentRegion, false);
     ui.setHint(controlHintText());
     refreshSkyClock();
+    if (!presentation.openingSeen) {
+      presentation.openingSeen = true;
+      persist();
+      playTravelCard("cedar-hollow", () => {
+        if (!missionState.introSeen) openIntro();
+      });
+    }
   }
 
   root.querySelector("#enter-btn").addEventListener("click", enterWorld);
-  root.querySelector("#world-map-btn")?.addEventListener("click", () => openAtlas("cedar-hollow"));
+  root.querySelector("#new-explore-btn")?.addEventListener("click", () => {
+    confirmOpen = true;
+    ui.showConfirmReset(true);
+  });
+  root.querySelector("#world-map-btn")?.addEventListener("click", () => {
+    audio.map();
+    openAtlas("cedar-hollow");
+  });
   root.querySelector("#map-toggle")?.addEventListener("click", () => openAtlas());
   root.querySelector("#open-atlas")?.addEventListener("click", () => {
     journalOpen = false;
@@ -2240,8 +2316,17 @@ export async function boot(root = document) {
     renderConclusion(result.ok ? mission.conclusion.prompt : result.hint);
   });
 
+  function refreshAppearancePicker(open) {
+    ui.showAppearance(open, presentationPack, presentation.appearance, (key, id) => {
+      presentation.appearance = normalizeAppearance({ ...presentation.appearance, [key]: id });
+      presentation.appearanceSet = true;
+      refreshAppearancePicker(true);
+    });
+  }
+
   ui.showTitle(true);
   ui.setEnterLabel(Boolean(existingSave));
+  refreshAppearancePicker(!existingSave);
   ui.setJournal(journalView(false));
   ui.setHint("");
   resize();
@@ -2285,7 +2370,11 @@ export async function boot(root = document) {
       player.x = moved.x;
       player.y = moved.y;
       if (ax) player.facing = ax >= 0 ? 1 : -1;
-      if (Math.hypot(player.vx, player.vy) > 24) audio.footstep(now / 1000);
+      if (Math.hypot(player.vx, player.vy) > 24) {
+        const kind = inCreek(world.region, player.x, player.y) ? "water" : onTrail(world.region, player.x, player.y) ? "rock" : "soil";
+        audio.footstep(now / 1000, kind);
+      }
+      if (player.pose !== "idle" && player.pose !== "walk" && now > poseUntil) player.pose = "idle";
     } else {
       player.vx *= Math.exp(-dt * 12);
       player.vy *= Math.exp(-dt * 12);
@@ -2392,6 +2481,10 @@ export async function boot(root = document) {
       time: now / 1000,
       reducedMotion,
       destination,
+      appearance: presentation.appearance,
+      journalOpen,
+      talking: Boolean(dialogue && dialogue.speaker === "Ranger Wren"),
+      atmosphere: presentationPack.atmosphere?.[worldState.currentRegion],
       sky: isSunfall() ? liveSky(sfState, sfRegion, player) : null,
       observations: isHighCountry() || isSunfall() ? [] : missionState.observations,
       flowVisible: isHighCountry() || isSunfall() ? false : missionState.flowVisible,
@@ -2514,8 +2607,15 @@ export async function boot(root = document) {
         };
       },
       jump(kind) {
-        return jumpObservation(sfState, kind, sfRegion, player);
-      }
+        const result = jumpObservation(sfState, kind, sfRegion, player);
+        persist();
+        refreshSkyClock();
+        return result;
+      },
+      presentation,
+      setPose,
+      enterWorld,
+      CHARACTER_STATES: ["idle", "walk", "inspect", "measure", "tablet", "talk", "sky"]
     };
   }
 }

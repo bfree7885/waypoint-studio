@@ -6,6 +6,15 @@
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
 export const SAVE_VERSION = 5;
 
+export function emptyPresentationSave() {
+  return {
+    appearance: { skin: "sand", hair: "short-dark", jacket: "clay" },
+    openingSeen: false,
+    appearanceSet: false,
+    travelSeen: {}
+  };
+}
+
 export function emptyTaught() {
   return {
     walk: false,
@@ -208,7 +217,8 @@ export function migrateSave(data) {
       challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) },
       highCountry: snapshotHighCountry(data.highCountry),
       sunfall: snapshotSunfall(data.sunfall),
-      regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) }
+      regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) },
+      presentation: { ...emptyPresentationSave(), ...(data.presentation || {}) }
     };
   }
   if (data.v === 4) {
@@ -270,7 +280,8 @@ export function captureSave({
   challengeState,
   hcState,
   sfState,
-  regionPlayers
+  regionPlayers,
+  presentation
 }) {
   const current = worldState?.currentRegion || "cedar-hollow";
   return {
@@ -299,6 +310,7 @@ export function captureSave({
       ...(regionPlayers || {}),
       [current]: { x: player.x, y: player.y, facing: player.facing }
     },
+    presentation: { ...emptyPresentationSave(), ...(presentation || {}) },
     mission: {
       introSeen: missionState.introSeen,
       observations: missionState.observations,
@@ -343,7 +355,8 @@ export function applySave(
     challengeState,
     hcState,
     sfState,
-    regionPlayers
+    regionPlayers,
+    presentation
   }
 ) {
   const migrated = migrateSave(data);
@@ -386,6 +399,14 @@ export function applySave(
   }
   if (regionPlayers && migrated.regionPlayers) {
     Object.assign(regionPlayers, emptyRegionPlayers(), migrated.regionPlayers);
+  }
+  if (presentation && migrated.presentation) {
+    Object.assign(presentation, emptyPresentationSave(), migrated.presentation);
+    presentation.appearance = {
+      ...emptyPresentationSave().appearance,
+      ...(migrated.presentation.appearance || {})
+    };
+    presentation.travelSeen = { ...(migrated.presentation.travelSeen || {}) };
   }
   return true;
 }

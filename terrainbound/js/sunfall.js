@@ -717,7 +717,7 @@ export function sfBoardView(kind, state, spec, sky) {
     const rows = tideRows();
     return {
       title: "A coastal tide station",
-      lead: "Remote numbers. Compare range with Moon phase. This is not an ocean unit.",
+      lead: "Remote numbers. Compare range with Moon phase. This is not an ocean investigation.",
       status: state.lastHint,
       ok: state.tides.compared,
       table: {

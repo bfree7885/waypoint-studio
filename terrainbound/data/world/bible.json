@@ -78,7 +78,7 @@
       "futureMasteryChallenge": "Predict a solar-system event from a model, then check it against observation.",
       "fieldToolsGained": ["solar-observation"],
       "prerequisiteRegion": "high-country",
-      "implementationState": "future"
+      "implementationState": "playable"
     },
     {
       "id": "dark-sky-basin",

@@ -273,6 +273,16 @@ export function fieldRecord(profile, state) {
     });
 }
 
+export function journeyRecord(profiles, state) {
+  return (profiles || [])
+    .map((profile) => ({
+      regionId: profile.regionId,
+      title: profile.regionTitle || profile.curriculumTitle,
+      items: fieldRecord(profile, state)
+    }))
+    .filter((block) => block.items.length);
+}
+
 export function missingEvidence(profile, state) {
   return profile.travelRequirements
     .map((id) => competencyById(profile, id))

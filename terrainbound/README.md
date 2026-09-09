@@ -25,15 +25,22 @@ node terrainbound/tests/phase2.test.mjs
 node terrainbound/tests/phase3.test.mjs
 node terrainbound/tests/phase4.test.mjs
 node terrainbound/tests/phase5.test.mjs
+node terrainbound/tests/phase6.test.mjs
+node terrainbound/tests/phase7.test.mjs
+node terrainbound/tests/phase7_5.test.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.
 
 ## What is playable
 
-Region: **Cedar Hollow** — station, woods, knob, creek, pond, marsh, rocky exposure, overlook. Topic 1, Scientific Thinking & Earth Systems.
+Three-region vertical slice:
 
-Eleven further regions exist on the **world map as previews only**. They are not walkable worlds yet.
+- **Cedar Hollow** — Field Station. Woods, knob, creek, pond, marsh. Topic 1, Scientific Thinking & Earth Systems.
+- **High Country** — Ridgeline Station. Maps, GIS, and geospatial thinking. Opens after Cedar Hollow field clearance.
+- **Sunfall Desert** — Sunfall Observatory. Solar system / sky lab. Opens after High Country field clearance.
+
+Nine further regions exist on the **world map as previews only**. They are not walkable worlds yet. Dark Sky Basin is visible and closed.
 
 The world map is a stylized atlas, not GIS. Travel follows teaching order. A new region opens when mastery evidence is sufficient — not XP, quizzes, or collectible completion.
 
@@ -55,10 +62,12 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | --- | --- |
 | `data/world/regions.json` | Twelve-region manifest (names, order, previews) |
 | `data/world/bible.json` | Design blueprint for future regions |
+| `data/world/presentation.json` | Travel titles, camera reveals, atmosphere |
 | `data/world/tools.json` | Field tools earned by learning |
 | `data/world/hazards.json` | Hazard / respond hooks (unimplemented) |
-| `data/mastery/` | Topic 1 competency slots and travel requirements |
-| `data/regions/` | Playable places (Cedar Hollow only) |
+| `data/mastery/` | Competency slots and travel requirements |
+| `data/regions/` | Playable places (Cedar Hollow, High Country, Sunfall Desert) |
+| `docs/GAME-BIBLE.md` | Production design (Field Service, explorer, no enemy) |
 | `data/missions/` | Missions |
 | `data/discoveries/` | Optional finds (data-driven) |
 | `data/investigations/` | Landscape interpretation and runoff-table investigation |
@@ -76,12 +85,13 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | `js/discoveries.js` | Discovery log |
 | `js/investigation.js` | Evidence, measurements, hypothesis |
 | `js/curriculum.js` | Internal alignment |
-| `js/save.js` | Local field journal (v3, migrates v1/v2) |
+| `js/save.js` | Local field journal (v5, migrates earlier saves) |
 | `js/audio.js` | Quiet audio bus |
+| `js/character.js` / `js/stations.js` / `js/atmosphere.js` / `js/travel.js` | Explorer, stations, sky, title cards |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |
 
 Canvas 2D, no build step, no paid services.
 
 ## Out of scope
 
-Teacher dashboard, accounts, quizzes, XP, playable regions 2–12, deploy, `terrainbound.org`.
+Teacher dashboard, accounts, quizzes, XP, Dark Sky Basin / regions 4–12 as playable worlds, deploy, `terrainbound.org`.

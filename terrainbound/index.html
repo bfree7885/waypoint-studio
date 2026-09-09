@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TerrainBound</title>
-  <meta name="description" content="Walk a cartoon wilderness. Twelve regions. Scientific understanding opens the road.">
+  <meta name="description" content="An exploration game about learning to read the Earth.">
   <link rel="stylesheet" href="./css/game.css">
 </head>
 <body>
@@ -21,11 +21,18 @@
 
     <section id="title-screen">
       <div class="title-card">
+        <p class="kicker">The Field Service</p>
         <h1>TerrainBound</h1>
-        <p class="kicker">Cedar Hollow</p>
-        <p class="tag">Twelve regions. One journey.</p>
+        <p class="tag">An exploration game about learning to read the Earth.</p>
+        <div id="appearance-setup" class="appearance-setup" hidden>
+          <p class="appearance-lead">Field kit. Keep it simple.</p>
+          <div id="appearance-skins" class="chip-row"></div>
+          <div id="appearance-hair" class="chip-row"></div>
+          <div id="appearance-jackets" class="chip-row"></div>
+        </div>
         <div class="title-actions">
           <button type="button" id="enter-btn" aria-label="Enter Cedar Hollow">Begin</button>
+          <button type="button" id="new-explore-btn" class="quiet-btn">New exploration</button>
           <button type="button" id="world-map-btn" class="quiet-btn">World map</button>
         </div>
       </div>
@@ -48,7 +55,7 @@
 
     <aside id="journal" aria-hidden="true">
       <header>
-        <p class="journal-brand">Field tablet</p>
+        <p class="journal-brand">Field tablet · Field Service</p>
         <h2 id="journal-title">Cedar Hollow</h2>
         <button type="button" id="journal-close">Close</button>
       </header>
@@ -242,8 +249,14 @@
       </div>
     </div>
 
+    <div id="travel-card" hidden>
+      <p class="travel-kicker">The Field Service</p>
+      <h2 id="travel-region">Cedar Hollow</h2>
+      <p id="travel-station">Field Station</p>
+    </div>
+
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p7"></script>
+  <script type="module" src="./js/main.js?v=p75"></script>
 </body>
 </html>

@@ -916,6 +916,99 @@ body {
   }
 }
 
+#title-screen[hidden],
+#dialogue[hidden],
+#conclusion[hidden],
+#hypothesis[hidden],
+#confirm-reset[hidden],
+#atlas[hidden],
+#flume[hidden],
+#interpret[hidden],
+#clearance[hidden],
+#travel-card[hidden],
+#appearance-setup[hidden],
+#toast[hidden],
+#inspect-prompt[hidden],
+#boot-error[hidden],
+#journal-evidence-section[hidden],
+#journal-sketch-section[hidden],
+#journal-data-section[hidden],
+#hypothesis-open[hidden],
+#interpret-open[hidden],
+#flume-numbers[hidden],
+#atlas-travel[hidden],
+.journal-section[hidden] {
+  display: none;
+}
+
+#travel-card:not([hidden]) {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 12;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(12, 28, 22, 0.28), rgba(12, 22, 18, 0.55));
+}
+
+#travel-card h2 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f4efe2;
+  text-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+#travel-card p {
+  margin: 6px 0 0;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8d7a8;
+}
+
+.travel-kicker {
+  font-size: 0.78rem;
+}
+
+.appearance-setup {
+  margin: 8px 0 4px;
+}
+
+.appearance-lead {
+  margin: 0 0 8px;
+  font-size: 0.82rem;
+  color: #44553d;
+}
+
+.appearance-setup .chip-row {
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+#journal {
+  border-left: 4px solid #2f6b3a;
+}
+
+.field-record-region {
+  margin: 10px 0 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  color: var(--moss);
+}
+
+.quiet-btn {
+  border: 0;
+  background: rgba(31, 77, 50, 0.12);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   #journal {
     transition: none;
