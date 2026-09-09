@@ -1,0 +1,214 @@
+{
+  "id": "high-country-geospatial",
+  "regionId": "high-country",
+  "title": "High Country field season",
+  "question": "How do you know where you are, and how do you show a route to someone who is not standing beside you?",
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The crew marked sites. The sketch in your tablet is all they had time to draw.",
+      "Survey point is north of here. If you lose the trail, the land will still be there."
+    ]
+  },
+  "completeJournalEntry": {
+    "title": "Field plan",
+    "text": "The route to the radio site is a choice with tradeoffs, written from coordinates, distance, elevation, and what the image showed that the sketch did not."
+  },
+  "wren": {
+    "idle": [
+      "Start with a marker. The tablet's first reading will be rough. Walk closer if the numbers feel too round."
+    ],
+    "afterMarkers": [
+      "Two trails reach the ridge. We need to move a heavy sampling case. Measure both before you pick."
+    ],
+    "afterRoutes": [
+      "Stand on the west cliff, then the east meadow. Toggle the topo layer when you have it. The land should explain the lines."
+    ],
+    "afterContours": [
+      "The radio site sits beyond a rise you cannot see from the junction. Guess the shape first. Then cut the profile."
+    ],
+    "afterProfile": [
+      "We need a temporary observation pad: near a trail, not in wet ground, not on the cliff, open enough to see sky. No single drawing answers that."
+    ],
+    "afterGis": [
+      "The west switchback still looks whole on the sketch. Look at the newer image. Then look at the ground."
+    ],
+    "afterImagery": [
+      "The radio site still needs a route a person can defend. Not the shortest line. The one you can walk."
+    ],
+    "afterSuccess": [
+      "High Country will still be here. Cedar Hollow too. The tools stay with the tablet."
+    ]
+  },
+  "markers": [
+    {
+      "id": "hc-1",
+      "propId": "marker-trailhead",
+      "name": "HC-1",
+      "x": 1280,
+      "y": 1548,
+      "hint": "Near the trailhead brass cap."
+    },
+    {
+      "id": "hc-2",
+      "propId": "marker-dock",
+      "name": "HC-2",
+      "x": 848,
+      "y": 1072,
+      "hint": "Above the tarn dock."
+    },
+    {
+      "id": "hc-3",
+      "propId": "marker-ridge",
+      "name": "HC-3",
+      "x": 1280,
+      "y": 548,
+      "hint": "Ridge junction."
+    },
+    {
+      "id": "hc-4",
+      "propId": "marker-meadow",
+      "name": "HC-4",
+      "x": 1988,
+      "y": 1140,
+      "hint": "East meadow."
+    }
+  ],
+  "routes": {
+    "goal": "We need to move a heavy sampling case to the ridge survey. Which trail makes more sense?",
+    "stormGoal": "A storm may arrive later. Which trail is faster, and what land does it cross?",
+    "a": {
+      "id": "west-switchback",
+      "label": "West switchback",
+      "blurb": "Shorter. Climbs the west face."
+    },
+    "b": {
+      "id": "east-meadow",
+      "label": "East meadow trail",
+      "blurb": "Longer. Stays on easier ground."
+    },
+    "reasons": [
+      { "id": "shorter", "label": "It is the shorter walk on the map." },
+      { "id": "gentler", "label": "It gains height more slowly." },
+      { "id": "tight-contours", "label": "The west face would show tight contour spacing." },
+      { "id": "wide-contours", "label": "The meadow would show wide contour spacing." },
+      { "id": "heavy-case", "label": "A heavy case is safer on the gentler trail." },
+      { "id": "speed", "label": "If we only cared about time, the short trail wins." }
+    ],
+    "strongHeavy": ["east-meadow"],
+    "needReasons": ["gentler", "heavy-case"]
+  },
+  "terrainCompares": [
+    { "id": "west-cliff", "expect": "tight", "prompt": "The drop is close. Contours here should sit tight." },
+    { "id": "east-meadow", "expect": "wide", "prompt": "The meadow is open. Contours here should sit far apart." },
+    { "id": "ridge-survey", "expect": "ridge", "prompt": "The junction sits on a rise. Contours would close around the high ground." }
+  ],
+  "stakes": [
+    { "id": "s-1380", "x": 1768, "y": 980, "elev": 1380 },
+    { "id": "s-1400a", "x": 1844, "y": 912, "elev": 1400 },
+    { "id": "s-1400b", "x": 1936, "y": 972, "elev": 1400 },
+    { "id": "s-1420a", "x": 1880, "y": 848, "elev": 1420 },
+    { "id": "s-1420b", "x": 1980, "y": 888, "elev": 1420 },
+    { "id": "s-1440", "x": 1904, "y": 804, "elev": 1440 }
+  ],
+  "contour": {
+    "interval": 20,
+    "targetElev": 1400,
+    "correctIds": ["s-1400a", "s-1400b"],
+    "wrongCrossHint": "That line crosses a point marked {elev} m but represents {target} m."
+  },
+  "profile": {
+    "a": { "id": "ridge-survey", "x": 1280, "y": 548, "label": "Ridge survey" },
+    "b": { "id": "radio-site", "x": 1348, "y": 240, "label": "Radio site" },
+    "shapes": [
+      { "id": "steady", "label": "A steady climb the whole way." },
+      { "id": "ridge-then-drop", "label": "Climb, then a drop, then a last rise to the mast." },
+      { "id": "flat-then-wall", "label": "Almost flat, then a wall." }
+    ],
+    "correctShape": "ridge-then-drop"
+  },
+  "gis": {
+    "prompt": "Find a temporary observation pad: near a trail, not in wet ground, not on a steep slope, open enough for sky.",
+    "sites": [
+      {
+        "id": "gis-wet",
+        "x": 700,
+        "y": 1196,
+        "label": "Tarn shore",
+        "ok": false,
+        "why": "Close to water. Soft ground."
+      },
+      {
+        "id": "gis-steep",
+        "x": 540,
+        "y": 720,
+        "label": "Cliff bench",
+        "ok": false,
+        "why": "Near trail, but the slope is a cliff."
+      },
+      {
+        "id": "gis-good",
+        "x": 1508,
+        "y": 708,
+        "label": "Saddle bench",
+        "ok": true,
+        "why": "Near the east trail, dry, open sky, not the cliff."
+      }
+    ],
+    "needLayers": ["trails", "water", "elevation"]
+  },
+  "layers": [
+    { "id": "terrain", "label": "Base terrain", "geometry": "raster", "example": "Elevation grid as cells." },
+    { "id": "trails", "label": "Trails", "geometry": "line", "example": "A trail is a line." },
+    { "id": "water", "label": "Water", "geometry": "polygon", "example": "The tarn and wetland are areas." },
+    { "id": "vegetation", "label": "Vegetation", "geometry": "polygon", "example": "Forest patches as areas." },
+    { "id": "elevation", "label": "Elevation / contours", "geometry": "line", "example": "Contour lines, once earned." },
+    { "id": "imagery", "label": "Field image", "geometry": "raster", "example": "A grid of cells from above." },
+    { "id": "sites", "label": "Observation sites", "geometry": "point", "example": "A marker is a point." }
+  ],
+  "imagery": {
+    "reveals": "west-washout",
+    "note": "The newer image shows a brown scar on the west switchback that the sketch still draws as a trail."
+  },
+  "bathymetry": {
+    "points": [
+      { "id": "d-2", "x": 820, "y": 1088, "depth": 2 },
+      { "id": "d-8", "x": 760, "y": 1088, "depth": 8 },
+      { "id": "d-14", "x": 700, "y": 1088, "depth": 14 }
+    ]
+  },
+  "challenge": {
+    "id": "route-above-treeline",
+    "title": "The route above treeline",
+    "prompt": "Plan a field route to the radio site. There is not one correct trail. There is a route you can defend.",
+    "routes": [
+      {
+        "id": "west-switchback",
+        "label": "West switchback",
+        "ok": false,
+        "hint": "The west trail is shorter on the sketch, but the image and the washout say that line is no longer a trail."
+      },
+      {
+        "id": "east-meadow",
+        "label": "East meadow trail",
+        "ok": true,
+        "hint": "Longer, gentler, and it still exists on the ground."
+      },
+      {
+        "id": "saddle-cut",
+        "label": "Saddle cut",
+        "ok": true,
+        "hint": "Not the shortest, not the gentlest — it misses the washout and the cliff band."
+      }
+    ],
+    "reasons": [
+      { "id": "avoids-washout", "label": "It avoids the broken west switchback." },
+      { "id": "avoids-cliff", "label": "It stays off the cliff band." },
+      { "id": "gentler", "label": "It asks for less steep climbing with gear." },
+      { "id": "shorter", "label": "It is the shortest line on the sketch." },
+      { "id": "profile-ok", "label": "The profile shows a rise we can actually walk." },
+      { "id": "dry", "label": "It stays out of the wet shore." }
+    ],
+    "needReasons": ["avoids-washout"]
+  }
+}

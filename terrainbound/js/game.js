@@ -78,7 +78,8 @@ import {
   missingEvidence,
   regionMastered,
   remediationLine,
-  simulateMastery as applySimulatedMastery
+  simulateMastery as applySimulatedMastery,
+  recordEvidence
 } from "./mastery.js";
 import {
   loadWorld,
@@ -89,8 +90,36 @@ import {
   hitTestRegion,
   canEnterRegion
 } from "./worldmap.js";
-import { createToolState, syncToolsFromGameplay } from "./tools.js";
+import { createToolState, syncToolsFromGameplay, hasTool } from "./tools.js";
 import { createHazardState } from "./hazards.js";
+import {
+  createHcState,
+  recordMarker,
+  measureRoute,
+  compareRoutes,
+  toggleHcTopo,
+  compareTerrain,
+  collectStake,
+  connectContour,
+  predictProfile,
+  generateProfile,
+  pickGisSite,
+  inspectLayerType,
+  compareImagery,
+  recordDepth,
+  planChallengeRoute,
+  presentChallenge as presentHcChallenge,
+  addHcFind,
+  hcNoteModel,
+  applyHcEvidence,
+  hcReadyForChallenge,
+  hcInspectTarget,
+  hcToolsFlags,
+  liveReading,
+  markerPrecision,
+  recordedMarkerCount,
+  toggleMapLayer
+} from "./highcountry.js";
 
 const WALK_SPEED = 196;
 const VIEW_HEIGHT = 760;
@@ -120,7 +149,11 @@ export async function boot(root = document) {
     hazardsCatalog,
     flumeSpec,
     dataCatalog,
-    challengeSpec
+    challengeSpec,
+    hcRegion,
+    hcCatalog,
+    hcSpec,
+    hcProfile
   ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
@@ -134,7 +167,11 @@ export async function boot(root = document) {
       fetch("./data/world/hazards.json").then((r) => r.json()),
       fetch("./data/investigations/what-makes-water-move.json").then((r) => r.json()),
       fetch("./data/fielddata/catalog.json").then((r) => r.json()),
-      fetch("./data/challenges/after-the-rain.json").then((r) => r.json())
+      fetch("./data/challenges/after-the-rain.json").then((r) => r.json()),
+      fetch("./data/regions/high-country.json").then((r) => r.json()),
+      fetch("./data/discoveries/high-country.json").then((r) => r.json()),
+      fetch("./data/investigations/high-country.json").then((r) => r.json()),
+      fetch("./data/mastery/high-country.json").then((r) => r.json())
     ]);
   void curriculum;
   void hazardsCatalog;
@@ -146,16 +183,22 @@ export async function boot(root = document) {
   const hazardState = createHazardState();
   void hazardState;
 
-  const world = createWorld(region, 1842, catalog.items);
+  const hollowWorld = createWorld(region, 1842, catalog.items);
+  const hcWorld = createWorld(hcRegion, 2210, hcCatalog.items);
+  let world = hollowWorld;
   const missionState = createMissionState(mission);
   const discoveryState = createDiscoveryState();
   const invState = createInvestigationState();
   const flumeState = createFlumeState();
   const dataState = createDataState();
   const challengeState = createChallengeState();
+  const hcState = createHcState();
+  const regionPlayers = { "cedar-hollow": null, "high-country": null };
   const taught = emptyTaught();
   const ui = bindUi(root);
-  const renderer = createRenderer(canvas, world, { heightAt, inCreek, onTrail });
+  const hollowRenderer = createRenderer(canvas, hollowWorld, { heightAt, inCreek, onTrail });
+  const hcRenderer = createRenderer(canvas, hcWorld, { heightAt, inCreek, onTrail });
+  let renderer = hollowRenderer;
   const audio = createAudio({ reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
   const storage = window.localStorage;
   const keys = new Set();
@@ -181,6 +224,8 @@ export async function boot(root = document) {
   let interpretOverlay = false;
   let clearanceOpen = false;
   let atlasOpen = false;
+  let geoOpen = false;
+  let geoKind = null;
   let confirmOpen = false;
   let last = performance.now();
   let inspectLock = false;
@@ -199,9 +244,45 @@ export async function boot(root = document) {
       toolState,
       flumeState,
       dataState,
-      challengeState
+      challengeState,
+      hcState,
+      regionPlayers
     });
   }
+  function isHighCountry() {
+    return worldState.currentRegion === "high-country";
+  }
+
+  function applyRegionWorld(id, { keepPlayer = false } = {}) {
+    worldState.currentRegion = id;
+    if (id === "high-country") {
+      world = hcWorld;
+      renderer = hcRenderer;
+      if (!keepPlayer) {
+        const saved = regionPlayers["high-country"];
+        player.x = saved?.x ?? hcRegion.spawn.x;
+        player.y = saved?.y ?? hcRegion.spawn.y;
+        if (saved?.facing != null) player.facing = saved.facing;
+      }
+      ui.setPlace("High Country", "Ridgeline Station");
+      canvas.setAttribute("aria-label", "High Country, alpine ridges you can explore");
+    } else {
+      world = hollowWorld;
+      renderer = hollowRenderer;
+      if (!keepPlayer) {
+        const saved = regionPlayers["cedar-hollow"];
+        player.x = saved?.x ?? region.spawn.x;
+        player.y = saved?.y ?? region.spawn.y;
+        if (saved?.facing != null) player.facing = saved.facing;
+      }
+      ui.setPlace("Cedar Hollow", "Granite Knob · Pine Creek");
+      canvas.setAttribute("aria-label", "Cedar Hollow, a forested valley you can explore");
+    }
+    camera.x = player.x;
+    camera.y = player.y - 28;
+  }
+
+  applyRegionWorld(worldState.currentRegion || "cedar-hollow", { keepPlayer: true });
   camera.x = player.x;
   camera.y = player.y - 28;
   syncFromGameplay(
@@ -210,7 +291,8 @@ export async function boot(root = document) {
   );
   syncToolsFromGameplay(toolState, toolsCatalog, {
     journalOpened: taught.journal,
-    datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted)
+    datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted),
+    ...hcToolsFlags(hcState)
   });
 
   function snapshot() {
@@ -225,13 +307,27 @@ export async function boot(root = document) {
     });
   }
 
+  function mapToolFlags() {
+    return {
+      coordinates: hasTool(toolState, "coordinates"),
+      scale: hasTool(toolState, "scale-distance"),
+      topo: hasTool(toolState, "topo-layer"),
+      elevation: hasTool(toolState, "elevation"),
+      profile: hasTool(toolState, "profile-tools"),
+      gis: hasTool(toolState, "gis-layers")
+    };
+  }
+
   function journalView(open = journalOpen) {
+    if (isHighCountry()) return hcJournalView(open);
     const evidence = evidenceModel(investigation, invState);
     const flow = dataState.datasets["cedar-hollow-flow"];
     const rows = flow?.rows || [];
     const spec = datasetSpecById(dataCatalog, "cedar-hollow-flow");
     return {
       open,
+      regionName: "Cedar Hollow",
+      emptyNotes: "No mission notes yet. Walk the hollow and inspect what you find.",
       observations: missionState.observations,
       storyNotes: missionState.storyNotes,
       concluded: missionState.concluded,
@@ -245,6 +341,7 @@ export async function boot(root = document) {
       investigation,
       canPropose: canProposeExplanation(investigation, invState),
       fieldRecord: fieldRecord(masteryProfile, masteryState),
+      fieldRecordLead: "Scientific habits shown in the hollow — not a grade.",
       missingLine:
         missionState.concluded && invState.concluded && !regionMastered(masteryProfile, masteryState)
           ? remediationLine(masteryProfile, masteryState)
@@ -253,7 +350,69 @@ export async function boot(root = document) {
       dataMeans: rows.length ? flumeMeans(flumeState, flumeSpec) : [],
       dataCaption: spec ? spec.title : "",
       graphModel: rows.length ? graphModel(dataState, dataCatalog, "cedar-hollow-flow") : null,
-      canInterpret: hasFairComparison(flumeState, flumeSpec)
+      canInterpret: hasFairComparison(flumeState, flumeSpec),
+      showMap: false
+    };
+  }
+
+  function hcJournalView(open = journalOpen) {
+    const notes = hcNoteModel(hcSpec, hcState);
+    const tools = mapToolFlags();
+    const mapTools = [{ id: "trails", label: "Trails", on: true }];
+    if (tools.topo) mapTools.push({ id: "topo", label: hcState.mapMode === "topo" ? "Topo on" : "World view", on: hcState.mapMode === "topo" });
+    if (tools.gis) {
+      for (const layer of hcSpec.layers) {
+        if (layer.id === "trails") continue;
+        mapTools.push({
+          id: layer.id,
+          label: layer.label,
+          on: (hcState.mapState.layersOn || []).includes(layer.id)
+        });
+      }
+    }
+    return {
+      open,
+      regionName: "High Country",
+      emptyNotes: "The sketch is thin. Walk a marker and record where you are.",
+      observations: notes,
+      storyNotes: [],
+      concluded: hcState.challengeOk,
+      conclusionText: hcState.challengeOk ? hcSpec.completeJournalEntry : null,
+      discoveryLog: discoveryLogModel(hcCatalog, { foundIds: hcState.foundIds, acknowledgedIds: [] }, false),
+      landscapeActive: false,
+      landscapeConcluded: false,
+      evidence: { cards: [], groups: [] },
+      fieldRecord: fieldRecord(hcProfile, masteryState),
+      fieldRecordLead: "High Country Field Record — not a grade.",
+      missingLine:
+        hcState.challengeOk && !regionMastered(hcProfile, masteryState)
+          ? remediationLine(hcProfile, masteryState)
+          : "",
+      dataRows: [],
+      showMap: true,
+      mapCaption: tools.topo
+        ? "Toggle world and topo. The land should explain the lines."
+        : "A sketch: region name, faint trails, and you. Other layers are earned.",
+      mapModel: {
+        region: hcRegion,
+        player,
+        tools,
+        mapState: hcState.mapState,
+        discoveries: hcCatalog.items.filter((item) => hcState.foundIds.includes(item.id)),
+        heightAtFn: heightAt
+      },
+      mapTools,
+      onMapTool(id) {
+        if (id === "topo") {
+          toggleHcTopo(hcState);
+          hcState.mapState.mode = hcState.mapMode;
+        } else {
+          toggleMapLayer(hcState.mapState, id);
+        }
+        hcState.mapOpened = true;
+        persist();
+        refreshJournal();
+      }
     };
   }
 
@@ -270,7 +429,8 @@ export async function boot(root = document) {
     syncFromGameplay(masteryState, snapshot());
     syncToolsFromGameplay(toolState, toolsCatalog, {
       journalOpened: taught.journal,
-      datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted)
+      datasetInterpreted: Boolean(dataState.datasets["cedar-hollow-flow"]?.interpreted),
+      ...hcToolsFlags(hcState)
     });
     if (regionMastered(masteryProfile, masteryState)) {
       const opened = applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
@@ -296,7 +456,9 @@ export async function boot(root = document) {
         toolState,
         flumeState,
         dataState,
-        challengeState
+        challengeState,
+        hcState,
+        regionPlayers
       })
     );
   }
@@ -310,7 +472,8 @@ export async function boot(root = document) {
         atlasOpen ||
         flumeOpen ||
         interpretOverlay ||
-        clearanceOpen
+        clearanceOpen ||
+        geoOpen
     );
   }
 
@@ -748,7 +911,448 @@ export async function boot(root = document) {
     });
   }
 
+  function travelTo(id) {
+    if (!canEnterRegion(tbWorld, worldState, id)) return false;
+    regionPlayers[worldState.currentRegion] = { x: player.x, y: player.y, facing: player.facing };
+    const firstHc = id === "high-country" && !hcState.introSeen;
+    dialogue = null;
+    inspectLock = false;
+    ui.showDialogue(false);
+    closeGeo();
+    journalOpen = false;
+    refreshJournal();
+    applyRegionWorld(id, { keepPlayer: false });
+    persist();
+    refreshJournal();
+    if (firstHc) {
+      hcState.introSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", hcSpec.intro.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+    }
+    return true;
+  }
+
+  function takeEvidence(result) {
+    if (result?.evidence?.length) applyHcEvidence(masteryState, recordEvidence, result.evidence);
+    persist();
+    refreshJournal();
+  }
+
+  function closeGeo() {
+    geoOpen = false;
+    geoKind = null;
+    ui.showGeoBoard(false);
+  }
+
+  function openGeo(kind) {
+    geoKind = kind;
+    geoOpen = true;
+    journalOpen = false;
+    refreshJournal();
+    renderGeo();
+  }
+
+  function renderGeo() {
+    if (!geoOpen) return;
+    if (geoKind === "routes") {
+      ui.showGeoBoard(
+        true,
+        {
+          title: "Which route?",
+          lead: hcSpec.routes.goal,
+          status: hcState.lastHint,
+          ok: hcState.routeCompared,
+          groups: [
+            {
+              id: "route",
+              label: "Trail",
+              selected: hcState.routeChoice,
+              items: [
+                { id: hcSpec.routes.a.id, label: hcSpec.routes.a.label },
+                { id: hcSpec.routes.b.id, label: hcSpec.routes.b.label }
+              ]
+            },
+            {
+              id: "reason",
+              label: "From the map",
+              selected: hcState.routeReasons,
+              items: hcSpec.routes.reasons
+            }
+          ]
+        },
+        {
+          onPick(group, id) {
+            if (group === "route") hcState.routeChoice = id;
+            else {
+              hcState.routeReasons = hcState.routeReasons.includes(id)
+                ? hcState.routeReasons.filter((item) => item !== id)
+                : [...hcState.routeReasons, id];
+            }
+            renderGeo();
+          },
+          onTry() {
+            const result = compareRoutes(hcState, hcSpec, hcState.routeChoice, hcState.routeReasons);
+            takeEvidence(result);
+            renderGeo();
+            if (result.ok) ui.showToast("Noted", "The longer trail asks less of a heavy case.");
+          }
+        }
+      );
+    } else if (geoKind === "contour") {
+      ui.showGeoBoard(
+        true,
+        {
+          title: "Uncharted basin",
+          lead: "A 1400 m line should meet the stakes marked 1400 m. Interval 20 m.",
+          status: hcState.contourHint,
+          ok: hcState.contourOk,
+          groups: [
+            {
+              id: "stakes",
+              label: "Connect",
+              selected: hcState.contourLine,
+              items: hcSpec.stakes.map((stake) => ({ id: stake.id, label: `${stake.elev} m` }))
+            }
+          ]
+        },
+        {
+          onPick(_group, id) {
+            hcState.contourLine = hcState.contourLine.includes(id)
+              ? hcState.contourLine.filter((item) => item !== id)
+              : [...hcState.contourLine, id];
+            renderGeo();
+          },
+          onTry() {
+            const result = connectContour(hcState, hcSpec, hcState.contourLine);
+            takeEvidence(result);
+            renderGeo();
+          }
+        }
+      );
+    } else if (geoKind === "profile") {
+      const generated = hcState.profileGenerated
+        ? generateProfile(hcState, hcSpec, hcRegion, heightAt).profile
+        : null;
+      ui.showGeoBoard(
+        true,
+        {
+          title: "What lies between?",
+          lead: "From the ridge survey to the radio site. Guess the side view, then cut the profile.",
+          status: hcState.profileMatch ? "Plan view is not the same as the walk." : hcState.lastHint,
+          ok: hcState.profileMatch,
+          tryLabel: hcState.profilePredict && !hcState.profileGenerated ? "Generate profile" : "Compare",
+          profile: generated,
+          profileCanvas: Boolean(generated),
+          groups: [
+            {
+              id: "shape",
+              label: "Your guess",
+              selected: hcState.profilePredict,
+              items: hcSpec.profile.shapes
+            }
+          ]
+        },
+        {
+          onPick(_group, id) {
+            predictProfile(hcState, hcSpec, id);
+            renderGeo();
+          },
+          onTry() {
+            if (!hcState.profilePredict) return;
+            const result = generateProfile(hcState, hcSpec, hcRegion, heightAt);
+            takeEvidence(result);
+            hcState.lastHint = result.match
+              ? "The rise, a small drop, then the last climb. Side view from plan view."
+              : "The generated line is not a steady ramp. Look at the dip before the mast.";
+            renderGeo();
+          }
+        }
+      );
+    } else if (geoKind === "gis") {
+      ui.showGeoBoard(
+        true,
+        {
+          title: "Observation pad",
+          lead: hcSpec.gis.prompt,
+          status: hcState.lastHint,
+          ok: hcState.gisOk,
+          groups: [
+            {
+              id: "site",
+              label: "Candidate",
+              selected: hcState.gisSite,
+              items: hcSpec.gis.sites.map((site) => ({ id: site.id, label: site.label }))
+            },
+            {
+              id: "layer",
+              label: "Layers on the tablet",
+              selected: hcState.mapState.layersOn,
+              items: hcSpec.layers.filter((layer) => ["trails", "water", "elevation", "vegetation", "imagery"].includes(layer.id))
+            }
+          ]
+        },
+        {
+          onPick(group, id) {
+            if (group === "site") hcState.gisSite = id;
+            else toggleMapLayer(hcState.mapState, id);
+            renderGeo();
+          },
+          onTry() {
+            const result = pickGisSite(hcState, hcSpec, hcState.gisSite);
+            takeEvidence(result);
+            if (result.ok) inspectLayerType(hcState, hcSpec, "trails");
+            takeEvidence(inspectLayerType(hcState, hcSpec, "imagery"));
+            renderGeo();
+          }
+        }
+      );
+    } else if (geoKind === "challenge") {
+      ui.showGeoBoard(
+        true,
+        {
+          title: hcSpec.challenge.title,
+          lead: hcSpec.challenge.prompt,
+          status: hcState.lastHint,
+          ok: hcState.challengeOk,
+          groups: [
+            {
+              id: "route",
+              label: "Route",
+              selected: hcState.challengeRoute,
+              items: hcSpec.challenge.routes.map((route) => ({ id: route.id, label: route.label }))
+            },
+            {
+              id: "reason",
+              label: "Evidence",
+              selected: hcState.challengeReasons,
+              items: hcSpec.challenge.reasons
+            }
+          ]
+        },
+        {
+          onPick(group, id) {
+            if (group === "route") hcState.challengeRoute = id;
+            else {
+              hcState.challengeReasons = hcState.challengeReasons.includes(id)
+                ? hcState.challengeReasons.filter((item) => item !== id)
+                : [...hcState.challengeReasons, id];
+            }
+            renderGeo();
+          },
+          onTry() {
+            const result = planChallengeRoute(hcState, hcSpec, hcState.challengeRoute, hcState.challengeReasons);
+            takeEvidence(result);
+            if (result.ok) presentHcChallenge(hcState);
+            renderGeo();
+            if (result.ok) ui.showToast("Field plan", "A route you can defend.");
+          }
+        }
+      );
+    }
+  }
+
+  function hcCurrentTarget() {
+    const hit = hcInspectTarget(hcSpec, hcCatalog, hcRegion, player, hcState);
+    const rangerNear = nearRanger(hcRegion, player.x, player.y);
+    const rangerD = Math.hypot(player.x - hcRegion.ranger.x, player.y - hcRegion.ranger.y);
+    if (rangerNear && (!hit || rangerD <= 70)) {
+      return { kind: "wren", x: hcRegion.ranger.x, y: hcRegion.ranger.y, name: "Ranger Wren" };
+    }
+    if (!hit) return null;
+    return { ...hit, name: hit.spec?.name || hit.item?.name || hit.kind };
+  }
+
+  function inspectHc(target) {
+    if (!target || inspectLock) return;
+    if (target.kind === "wren") {
+      talkHcWren();
+      return;
+    }
+    if (target.kind === "marker") {
+      inspectLock = true;
+      const digits = markerPrecision(player, target.spec);
+      const reading = liveReading(hcRegion, player, digits);
+      showDialogueLines(
+        target.spec.name,
+        [
+          `The tablet reads ${reading}. ${digits < 5 ? "Walk closer if you want a tighter pair of numbers." : "That is a tight pair of numbers."}`
+        ],
+        0,
+        () => {
+          const result = recordMarker(hcState, hcSpec, target.id, hcRegion, player);
+          inspectLock = false;
+          dialogue = null;
+          ui.showDialogue(false);
+          taught.inspect = true;
+          takeEvidence(result);
+          if (result.ok) ui.showToast(target.spec.name, result.reading);
+        },
+        "Record position"
+      );
+      return;
+    }
+    if (target.kind === "stake") {
+      inspectLock = true;
+      const result = collectStake(hcState, hcSpec, target.id, player);
+      showDialogueLines("Elevation stake", [`The post is marked ${result.elev || "—"} m.`], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        takeEvidence(result);
+        if (hcState.stakes.length >= 3 && !hcState.contourOk) openGeo("contour");
+      });
+      return;
+    }
+    if (target.kind === "terrain") {
+      const result = compareTerrain(hcState, hcSpec, target.id);
+      inspectLock = true;
+      showDialogueLines(target.feature.name, [result.prompt || target.feature.label], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        takeEvidence(result);
+      });
+      return;
+    }
+    if (target.kind === "washout") {
+      hcState.washoutSeen = true;
+      const result = compareImagery(hcState, hcSpec, player, { x: target.x, y: target.y });
+      inspectLock = true;
+      showDialogueLines("Broken switchback", [hcSpec.imagery.note], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        takeEvidence(result);
+      });
+      return;
+    }
+    if (target.kind === "depth") {
+      const result = recordDepth(hcState, hcSpec, target.id, player);
+      inspectLock = true;
+      showDialogueLines("Tarn depth", [`${result.depth ?? "—"} m on this transect.`], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        persist();
+      });
+      return;
+    }
+    if (target.kind === "gis-site") {
+      openGeo("gis");
+      return;
+    }
+    if (target.kind === "profile") {
+      openGeo("profile");
+      return;
+    }
+    if (target.kind === "discovery") {
+      inspectLock = true;
+      addHcFind(hcState, target.id);
+      const item = target.item;
+      showDialogueLines(item.name, [item.prompt, item.text], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        taught.inspect = true;
+        persist();
+        refreshJournal();
+        ui.showToast("Noted", item.name);
+      }, "Look closer");
+    }
+  }
+
+  function talkHcWren() {
+    if (!hcState.introSeen) {
+      hcState.introSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", hcSpec.intro.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (recordedMarkerCount(hcState) >= 2 && hcState.measuredRoutes.length < 2) {
+      ui.showDialogue(true, "Ranger Wren", hcSpec.wren.afterMarkers[0], [
+        {
+          label: "Measure the two trails",
+          onClick: () => {
+            measureRoute(hcState, hcSpec, hcRegion, heightAt, hcSpec.routes.a.id);
+            const second = measureRoute(hcState, hcSpec, hcRegion, heightAt, hcSpec.routes.b.id);
+            takeEvidence(second);
+            dialogue = null;
+            ui.showDialogue(false);
+            openGeo("routes");
+          }
+        },
+        {
+          label: "Keep walking",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (hcState.routeCompared && hcState.terrainCompares.length < 2) {
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterRoutes, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (hcState.contourOk && !hcState.profileMatch) {
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterContours, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openGeo("profile");
+      });
+      return;
+    }
+    if (hcState.profileMatch && !hcState.gisOk) {
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterProfile, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openGeo("gis");
+      });
+      return;
+    }
+    if (hcState.gisOk && !hcState.imageryCompared) {
+      hcState.mapState.layersOn = [...new Set([...(hcState.mapState.layersOn || []), "imagery"])];
+      const result = compareImagery(hcState, hcSpec, player, hcRegion.props.find((prop) => prop.kind === "washout"));
+      takeEvidence(result);
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterGis, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (hcReadyForChallenge(hcState) && !hcState.challengeOk) {
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterImagery, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openGeo("challenge");
+      });
+      return;
+    }
+    if (hcState.challengeOk) {
+      showDialogueLines("Ranger Wren", hcSpec.wren.afterSuccess, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    showDialogueLines("Ranger Wren", hcSpec.wren.idle, 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+    });
+  }
+
   function currentTarget() {
+    if (isHighCountry()) return hcCurrentTarget();
     const disc = nearestDiscovery(catalog, player.x, player.y);
     const feat = nearestInspectable(world, player.x, player.y, 90);
     const prop = nearestStoryProp(region, player.x, player.y);
@@ -789,6 +1393,10 @@ export async function boot(root = document) {
 
   function inspectTarget(target) {
     if (!target) return;
+    if (isHighCountry()) {
+      inspectHc(target);
+      return;
+    }
     if (target.kind === "wren") talkToWren();
     else if (target.kind === "discovery") inspectDiscovery(target.item);
     else if (target.kind === "prop") inspectProp(target.item);
@@ -798,6 +1406,10 @@ export async function boot(root = document) {
   }
 
   function talkToWren() {
+    if (isHighCountry()) {
+      talkHcWren();
+      return;
+    }
     const ready = canPresentFindings(missionState, mission);
     const done = missionState.concluded;
     if (!missionState.introSeen) {
@@ -1063,8 +1675,10 @@ export async function boot(root = document) {
   });
   root.querySelector("#atlas-close")?.addEventListener("click", closeAtlas);
   root.querySelector("#atlas-travel")?.addEventListener("click", () => {
-    if (!canEnterRegion(tbWorld, worldState, worldState.selectedRegionId)) return;
+    const id = worldState.selectedRegionId;
+    if (!canEnterRegion(tbWorld, worldState, id)) return;
     closeAtlas();
+    if (id !== worldState.currentRegion) travelTo(id);
     if (mode === "title") enterWorld();
   });
   root.querySelector("#atlas-map")?.addEventListener("pointerdown", (event) => {
@@ -1117,6 +1731,10 @@ export async function boot(root = document) {
     }
     if (clearanceOpen) {
       if (event.key === "Escape") closeClearance();
+      return;
+    }
+    if (geoOpen) {
+      if (event.key === "Escape") closeGeo();
       return;
     }
     if (confirmOpen) {
@@ -1215,6 +1833,7 @@ export async function boot(root = document) {
   root.querySelector("#clearance-try")?.addEventListener("click", tryClearance);
   root.querySelector("#clearance-follow-try")?.addEventListener("click", tryClearanceFollow);
   root.querySelector("#clearance-close")?.addEventListener("click", closeClearance);
+  root.querySelector("#geo-close")?.addEventListener("click", closeGeo);
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
     renderConclusion("Start again from the highest water you saw.");
@@ -1292,8 +1911,13 @@ export async function boot(root = document) {
 
     if (mode === "title") {
       const t = now / 1000;
-      camera.x = 1100 + Math.sin(t * 0.18) * 220;
-      camera.y = 720 + Math.cos(t * 0.14) * 160;
+      if (isHighCountry()) {
+        camera.x = 1280 + Math.sin(t * 0.18) * 280;
+        camera.y = 980 + Math.cos(t * 0.14) * 220;
+      } else {
+        camera.x = 1100 + Math.sin(t * 0.18) * 220;
+        camera.y = 720 + Math.cos(t * 0.14) * 160;
+      }
     } else {
       let lookX = player.x + player.facing * 40;
       let lookY = player.y - 22;
@@ -1319,7 +1943,11 @@ export async function boot(root = document) {
       if (!target) ui.setPrompt("");
       else if (target.kind === "wren") {
         ui.setPrompt(
-          canProposeChallenge(challengeState, challengeSpec) && !challengeState.concluded
+          isHighCountry()
+            ? hcReadyForChallenge(hcState) && !hcState.challengeOk
+              ? "Share a field plan · E"
+              : "Talk to Wren · E"
+            : canProposeChallenge(challengeState, challengeSpec) && !challengeState.concluded
             ? "Share what you found · E"
             : readyForChallenge() && !challengeState.introSeen
               ? "Talk to Wren · E"
@@ -1335,6 +1963,10 @@ export async function boot(root = document) {
         );
       } else if (target.kind === "flume") {
         ui.setPrompt("Use the runoff table · E");
+      } else if (target.kind === "marker") {
+        ui.setPrompt("Record this reading · E");
+      } else if (target.kind === "stake") {
+        ui.setPrompt("Read the stake · E");
       } else if (target.kind === "challenge") {
         ui.setPrompt("Look closer · E");
       } else if (target.kind === "discovery") {
@@ -1359,27 +1991,24 @@ export async function boot(root = document) {
       time: now / 1000,
       reducedMotion,
       destination,
-      observations: missionState.observations,
-      flowVisible: missionState.flowVisible,
-      landscapeInterpreted: invState.interpreted,
-      measuredIds: invState.measuredIds,
+      observations: isHighCountry() ? [] : missionState.observations,
+      flowVisible: isHighCountry() ? false : missionState.flowVisible,
+      landscapeInterpreted: isHighCountry() ? false : invState.interpreted,
+      measuredIds: isHighCountry() ? [] : invState.measuredIds,
       iceFlow: investigation.iceFlow,
-      discoveries: catalog.items,
+      discoveries: isHighCountry() ? hcCatalog.items : catalog.items,
       nearTarget: target && target.kind !== "wren" ? target : null,
-      challengeActive: Boolean(challengeState.active),
-      challengeSites: challengeState.active
-        ? challengeSpec.sites.map((site) => ({
-            ...site,
-            observed: challengeState.observedIds.includes(site.id)
-          }))
-        : [],
-      interpretiveLabels: interpretiveLabels(
-        investigation,
-        invState,
-        catalog,
-        region,
-        player
-      )
+      challengeActive: isHighCountry() ? false : Boolean(challengeState.active),
+      challengeSites:
+        !isHighCountry() && challengeState.active
+          ? challengeSpec.sites.map((site) => ({
+              ...site,
+              observed: challengeState.observedIds.includes(site.id)
+            }))
+          : [],
+      interpretiveLabels: isHighCountry()
+        ? []
+        : interpretiveLabels(investigation, invState, catalog, region, player)
     });
     requestAnimationFrame(step);
   }
@@ -1402,11 +2031,21 @@ export async function boot(root = document) {
       dataState,
       challengeState,
       flumeSpec,
+      hcState,
+      hcRegion,
+      hcSpec,
+      hcCatalog,
+      hcProfile,
       go(x, y) {
         player.x = x;
         player.y = y;
         destination = null;
       },
+      enterRegion(id) {
+        return travelTo(id);
+      },
+      openGeo,
+      closeGeo,
       inspectDiscovery(id) {
         const item = catalog.items.find((entry) => entry.id === id);
         if (!item) return false;
@@ -1424,8 +2063,9 @@ export async function boot(root = document) {
         return true;
       },
       talk() {
-        player.x = region.ranger.x;
-        player.y = region.ranger.y;
+        const ranger = isHighCountry() ? hcRegion.ranger : region.ranger;
+        player.x = ranger.x;
+        player.y = ranger.y;
         talkToWren();
       },
       openJournal() {
@@ -1454,14 +2094,15 @@ export async function boot(root = document) {
         else renderAtlas();
       },
       simulateMastery(regionId = "cedar-hollow") {
-        applySimulatedMastery(masteryProfile, masteryState, regionId);
+        const profile = regionId === "high-country" ? hcProfile : masteryProfile;
+        applySimulatedMastery(profile, masteryState, regionId);
         persist();
         refreshJournal();
         if (atlasOpen) renderAtlas();
         return {
           accessible: [...worldState.accessibleRegions],
           mastered: [...worldState.masteredRegions],
-          missing: missingEvidence(masteryProfile, masteryState)
+          missing: missingEvidence(profile, masteryState)
         };
       }
     };

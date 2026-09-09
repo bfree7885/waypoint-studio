@@ -21,21 +21,30 @@
       "permanent": true
     },
     {
+      "id": "coordinates",
+      "name": "Coordinates",
+      "regionId": "high-country",
+      "description": "Locate a place by latitude and longitude.",
+      "earnedBy": "Recording matching positions at High Country field markers.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "scale-distance",
+      "name": "Distance / scale",
+      "regionId": "high-country",
+      "description": "Measure route distance from map scale.",
+      "earnedBy": "Comparing trail distances in High Country.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
       "id": "topo-layer",
       "name": "Topographic layer",
       "regionId": "high-country",
       "description": "Contour and relief overlay for reading slope and drainage.",
-      "earnedBy": "Learning to read elevation in High Country.",
-      "implemented": false,
-      "permanent": true
-    },
-    {
-      "id": "coordinates",
-      "name": "Coordinates",
-      "regionId": "high-country",
-      "description": "Locate a place by grid reference.",
-      "earnedBy": "Learning geospatial location in High Country.",
-      "implemented": false,
+      "earnedBy": "Connecting contour lines to the land underfoot in High Country.",
+      "implemented": true,
       "permanent": true
     },
     {
@@ -43,8 +52,8 @@
       "name": "Elevation",
       "regionId": "high-country",
       "description": "Read height above a datum.",
-      "earnedBy": "Measuring relief in High Country.",
-      "implemented": false,
+      "earnedBy": "Reading elevation stakes in High Country.",
+      "implemented": true,
       "permanent": true
     },
     {
@@ -52,8 +61,8 @@
       "name": "Profile tools",
       "regionId": "high-country",
       "description": "Cross-section and transect measurement.",
-      "earnedBy": "Building a topographic profile in High Country.",
-      "implemented": false,
+      "earnedBy": "Comparing a predicted profile to the generated cross-section.",
+      "implemented": true,
       "permanent": true
     },
     {
@@ -61,8 +70,8 @@
       "name": "GIS / remote-sensing layers",
       "regionId": "high-country",
       "description": "Overlay imagery and spatial data without treating it as the land itself.",
-      "earnedBy": "Working with geospatial layers in High Country.",
-      "implemented": false,
+      "earnedBy": "Combining layers to choose a field site in High Country.",
+      "implemented": true,
       "permanent": true
     },
     {

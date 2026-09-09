@@ -12,7 +12,7 @@
     <canvas id="world" tabindex="0" role="img" aria-label="Cedar Hollow, a forested valley you can explore"></canvas>
 
     <div class="hud">
-      <div class="place-chip">Cedar Hollow <small>Granite Knob · Pine Creek</small></div>
+      <div class="place-chip"><span id="place-name">Cedar Hollow</span> <small id="place-sub">Granite Knob · Pine Creek</small></div>
       <div id="control-hint" class="control-hint"></div>
       <div id="inspect-prompt" class="inspect-prompt" hidden></div>
       <button type="button" id="map-toggle" class="map-toggle">World map</button>
@@ -43,7 +43,7 @@
     <aside id="journal" aria-hidden="true">
       <header>
         <p class="journal-brand">Field tablet</p>
-        <h2>Cedar Hollow</h2>
+        <h2 id="journal-title">Cedar Hollow</h2>
         <button type="button" id="journal-close">Close</button>
       </header>
       <nav class="journal-tabs" role="tablist">
@@ -51,6 +51,7 @@
         <button type="button" data-tab="finds">Finds</button>
         <button type="button" data-tab="evidence" id="tab-evidence-btn">Evidence</button>
         <button type="button" data-tab="sketch" id="tab-sketch-btn">Sketch</button>
+        <button type="button" data-tab="map" id="tab-map-btn">Map</button>
         <button type="button" data-tab="world">World</button>
         <button type="button" data-tab="data" id="tab-data-btn">Data</button>
       </nav>
@@ -74,9 +75,15 @@
         <canvas id="field-sketch" width="320" height="168" aria-label="Cedar Hollow field sketch"></canvas>
         <button type="button" id="hypothesis-open" hidden>What shaped this hollow?</button>
       </section>
+      <section class="journal-section" data-panel="map" id="journal-map-section" hidden>
+        <h3 class="journal-kicker">Field map</h3>
+        <p class="journal-empty" id="map-caption">A sketch of High Country. Layers arrive as you earn them.</p>
+        <canvas id="region-map" width="320" height="200" aria-label="Regional field map"></canvas>
+        <div id="map-tools" class="chip-row"></div>
+      </section>
       <section class="journal-section" data-panel="world" hidden>
         <h3 class="journal-kicker">Field Record</h3>
-        <p class="journal-empty" id="field-record-lead">Scientific habits shown in the hollow — not a grade.</p>
+        <p class="journal-empty" id="field-record-lead">Scientific habits shown in the field — not a grade.</p>
         <div id="field-record"></div>
         <button type="button" id="open-atlas">World map</button>
       </section>
@@ -194,6 +201,19 @@
       </div>
     </div>
 
+    <div id="geo-board" hidden role="dialog" aria-label="Field map work">
+      <div class="hypothesis-card">
+        <h2 id="geo-title">Field question</h2>
+        <p class="hypothesis-lead" id="geo-lead"></p>
+        <div id="geo-body"></div>
+        <p id="geo-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="geo-try">Try this</button>
+          <button type="button" id="geo-close">Back to the trail</button>
+        </div>
+      </div>
+    </div>
+
     <div id="atlas" hidden role="dialog" aria-label="TerrainBound world map">
       <div class="atlas-card">
         <header>
@@ -218,6 +238,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p5"></script>
+  <script type="module" src="./js/main.js?v=p6"></script>
 </body>
 </html>

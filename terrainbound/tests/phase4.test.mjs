@@ -169,19 +169,18 @@ check("every region can be previewed without being blank or padlock-only", () =>
   assert.equal(home.canEnter, true);
 });
 
-check("only Cedar Hollow is normally accessible and playable", () => {
+check("only Cedar Hollow is accessible at start; High Country is playable but gated", () => {
   const worldState = createWorldState(tbWorld);
   assert.deepEqual(worldState.accessibleRegions, ["cedar-hollow"]);
   const playable = tbWorld.regions.filter((region) => region.implementationState === "playable");
-  assert.equal(playable.length, 1);
-  assert.equal(playable[0].id, "cedar-hollow");
-  for (const region of tbWorld.regions) {
-    if (region.id === "cedar-hollow") continue;
-    assert.equal(isPlayable(tbWorld, region.id), false);
-    assert.equal(canEnterRegion(tbWorld, worldState, region.id), false);
-  }
-  const regionFiles = fs.readdirSync(path.join(root, "data/regions"));
-  assert.deepEqual(regionFiles, ["cedar-hollow.json"]);
+  assert.equal(playable.length, 2);
+  assert.ok(playable.some((region) => region.id === "cedar-hollow"));
+  assert.ok(playable.some((region) => region.id === "high-country"));
+  assert.equal(isPlayable(tbWorld, "high-country"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), false);
+  assert.equal(isPlayable(tbWorld, "sunfall-desert"), false);
+  const regionFiles = fs.readdirSync(path.join(root, "data/regions")).sort();
+  assert.deepEqual(regionFiles, ["cedar-hollow.json", "high-country.json"]);
 });
 
 check("High Country cannot unlock from content completion alone", () => {
@@ -232,7 +231,7 @@ check("missing mastery can be identified for later remediation", () => {
   assert.ok(missing.every((item) => !/HS-ESS|NYSSLS/.test(item.studentLabel)));
 });
 
-check("development harness can simulate mastery and open High Country without making it playable", () => {
+check("development harness can simulate mastery and open High Country as enterable", () => {
   const mastery = createMasteryState();
   const worldState = createWorldState(tbWorld);
   simulateMastery(profile, mastery, "cedar-hollow");
@@ -243,8 +242,8 @@ check("development harness can simulate mastery and open High Country without ma
   const preview = previewModel(tbWorld, worldState, "high-country");
   assert.equal(preview.status, "open");
   assert.match(preview.routeLabel, /route open/i);
-  assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), false);
-  assert.equal(preview.playable, false);
+  assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), true);
+  assert.equal(preview.playable, true);
 });
 
 check("normal student UI exposes no cheat unlock", () => {
@@ -334,11 +333,11 @@ check("field tools and hazards are architecture only except the journal", () => 
   assert.equal(hasTool(tools, "topo-layer"), false);
   earnTool(tools, toolsCatalog, "topo-layer");
   assert.equal(hasTool(tools, "topo-layer"), true);
-  assert.ok(
-    toolsCatalog.tools
-      .filter((item) => item.implemented)
-      .every((item) => item.id === "field-journal" || item.id === "field-data")
-  );
+  const implemented = toolsCatalog.tools.filter((item) => item.implemented).map((item) => item.id);
+  assert.ok(implemented.includes("field-journal"));
+  assert.ok(implemented.includes("field-data"));
+  assert.ok(implemented.includes("coordinates"));
+  assert.equal(toolsCatalog.tools.find((item) => item.id === "solar-observation").implemented, false);
   assert.equal(hazardsCatalog.implemented, false);
   assert.equal(hazardsCatalog.hazards.every((item) => item.implemented === false), true);
   assert.ok(hazardsForRegion(hazardsCatalog, "firepeak").length >= 1);

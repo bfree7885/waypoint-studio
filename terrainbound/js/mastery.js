@@ -231,8 +231,8 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
 }
 
 export function syncFromGameplay(state, snapshot, regionId = "cedar-hollow") {
-  const synthetic = state.records.filter((item) => item.synthetic);
-  state.records = [...synthetic, ...deriveGameplayRecords(snapshot, regionId)];
+  const keep = state.records.filter((item) => item.synthetic || item.regionId !== "cedar-hollow");
+  state.records = [...keep, ...deriveGameplayRecords(snapshot, regionId)];
   return state;
 }
 

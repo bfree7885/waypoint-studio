@@ -22,9 +22,15 @@ export function earnTool(state, catalog, id) {
   return { ok: true, already: false, spec };
 }
 
-export function syncToolsFromGameplay(state, catalog, { journalOpened, datasetInterpreted } = {}) {
-  if (journalOpened) earnTool(state, catalog, "field-journal");
-  if (datasetInterpreted) earnTool(state, catalog, "field-data");
+export function syncToolsFromGameplay(state, catalog, flags = {}) {
+  if (flags.journalOpened) earnTool(state, catalog, "field-journal");
+  if (flags.datasetInterpreted) earnTool(state, catalog, "field-data");
+  if (flags.coordinatesUsed) earnTool(state, catalog, "coordinates");
+  if (flags.scaleUsed) earnTool(state, catalog, "scale-distance");
+  if (flags.topoRead) earnTool(state, catalog, "topo-layer");
+  if (flags.elevationRead) earnTool(state, catalog, "elevation");
+  if (flags.profileUsed) earnTool(state, catalog, "profile-tools");
+  if (flags.gisUsed) earnTool(state, catalog, "gis-layers");
   return state;
 }
 

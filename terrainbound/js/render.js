@@ -26,9 +26,9 @@ export function createRenderer(canvas, world, helpers) {
       const { width, height } = canvas;
       ctx.clearRect(0, 0, width, height);
       ctx.save();
-      ctx.fillStyle = "#7ec8ea";
+      ctx.fillStyle = world.region.terrainModel === "high-country" ? "#8ec4e8" : "#7ec8ea";
       ctx.fillRect(0, 0, width, height);
-      drawSky(ctx, width, height, state.time, state.reducedMotion);
+      drawSky(ctx, width, height, state.time, state.reducedMotion, world.region.terrainModel === "high-country");
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
@@ -40,7 +40,9 @@ export function createRenderer(canvas, world, helpers) {
       drawChallengeSites(ctx, state);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion);
-      if (!state.reducedMotion) drawLeaves(ctx, leaves, world.region, state.time);
+      if (!state.reducedMotion && world.region.terrainModel !== "high-country") {
+        drawLeaves(ctx, leaves, world.region, state.time);
+      }
       drawTrees(ctx, world, state.time, state.reducedMotion);
       drawStation(ctx, world.region);
       drawNearHint(ctx, world, state);
@@ -53,9 +55,9 @@ export function createRenderer(canvas, world, helpers) {
   };
 }
 
-function drawSky(ctx, width, height, time, reduced) {
+function drawSky(ctx, width, height, time, reduced, alpine = false) {
   const drift = reduced ? 0 : (time * 8) % (width + 240);
-  ctx.fillStyle = "rgba(255,255,255,0.22)";
+  ctx.fillStyle = alpine ? "rgba(255,255,255,0.32)" : "rgba(255,255,255,0.22)";
   for (let i = 0; i < 3; i += 1) {
     const x = ((drift * (0.4 + i * 0.18) + i * 280) % (width + 200)) - 80;
     const y = 36 + i * 22;
@@ -111,29 +113,47 @@ function bakeGround(canvas, world, helpers) {
   ctx.putImageData(img, 0, 0);
 
   const peak = region.peak;
-  ctx.fillStyle = "#d8cfc2";
-  ctx.beginPath();
-  ctx.moveTo(peak.x - 260, peak.y + 140);
-  ctx.lineTo(peak.x - 80, peak.y - 40);
-  ctx.lineTo(peak.x, peak.y - 110);
-  ctx.lineTo(peak.x + 90, peak.y - 20);
-  ctx.lineTo(peak.x + 250, peak.y + 150);
-  ctx.closePath();
-  ctx.fill();
-  ctx.fillStyle = "#efe8dc";
-  ctx.beginPath();
-  ctx.moveTo(peak.x - 40, peak.y - 20);
-  ctx.lineTo(peak.x, peak.y - 118);
-  ctx.lineTo(peak.x + 48, peak.y - 10);
-  ctx.closePath();
-  ctx.fill();
-  ctx.fillStyle = "#b7a790";
-  ctx.beginPath();
-  ctx.moveTo(peak.x - 180, peak.y + 80);
-  ctx.lineTo(peak.x - 40, peak.y - 10);
-  ctx.lineTo(peak.x + 20, peak.y + 90);
-  ctx.closePath();
-  ctx.fill();
+  if (region.terrainModel === "high-country") {
+    ctx.fillStyle = "#d8d4cc";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 220, peak.y + 160);
+    ctx.lineTo(peak.x - 40, peak.y - 70);
+    ctx.lineTo(peak.x + 30, peak.y - 20);
+    ctx.lineTo(peak.x + 210, peak.y + 170);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#f2f4f6";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 36, peak.y - 20);
+    ctx.lineTo(peak.x - 40, peak.y - 78);
+    ctx.lineTo(peak.x + 18, peak.y - 8);
+    ctx.closePath();
+    ctx.fill();
+  } else {
+    ctx.fillStyle = "#d8cfc2";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 260, peak.y + 140);
+    ctx.lineTo(peak.x - 80, peak.y - 40);
+    ctx.lineTo(peak.x, peak.y - 110);
+    ctx.lineTo(peak.x + 90, peak.y - 20);
+    ctx.lineTo(peak.x + 250, peak.y + 150);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#efe8dc";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 40, peak.y - 20);
+    ctx.lineTo(peak.x, peak.y - 118);
+    ctx.lineTo(peak.x + 48, peak.y - 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = "#b7a790";
+    ctx.beginPath();
+    ctx.moveTo(peak.x - 180, peak.y + 80);
+    ctx.lineTo(peak.x - 40, peak.y - 10);
+    ctx.lineTo(peak.x + 20, peak.y + 90);
+    ctx.closePath();
+    ctx.fill();
+  }
 
   if (region.outcrop) {
     ctx.fillStyle = "#c4b49a";
@@ -446,6 +466,42 @@ function drawStoryProps(ctx, region, time, reduced) {
       ctx.fillRect(prop.x - 8, prop.y - 6, 16, 8);
       ctx.fillRect(prop.x - 5, prop.y - 12, 10, 6);
       ctx.fillRect(prop.x - 3, prop.y - 16, 6, 4);
+    } else if (prop.kind === "lookout") {
+      ctx.fillStyle = "#6d4c32";
+      ctx.fillRect(prop.x - 7, prop.y - 52, 5, 52);
+      ctx.fillRect(prop.x + 2, prop.y - 52, 5, 52);
+      ctx.fillStyle = "#c4a46a";
+      ctx.fillRect(prop.x - 16, prop.y - 68, 32, 18);
+      ctx.fillStyle = "#8a3324";
+      ctx.fillRect(prop.x - 18, prop.y - 76, 36, 8);
+    } else if (prop.kind === "radio-mast") {
+      ctx.strokeStyle = "#4a5560";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(prop.x, prop.y);
+      ctx.lineTo(prop.x, prop.y - 64);
+      ctx.moveTo(prop.x - 10, prop.y - 20);
+      ctx.lineTo(prop.x, prop.y - 40);
+      ctx.lineTo(prop.x + 10, prop.y - 20);
+      ctx.stroke();
+      ctx.fillStyle = "#c45c26";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 64, 4, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "dock") {
+      ctx.fillStyle = "#8a6238";
+      ctx.fillRect(prop.x - 40, prop.y - 8, 52, 16);
+      ctx.fillStyle = "#c4a46a";
+      for (let i = 0; i < 4; i += 1) ctx.fillRect(prop.x - 38 + i * 12, prop.y - 6, 10, 12);
+    } else if (prop.kind === "elevation-stake") {
+      ctx.fillStyle = "#d8c8a0";
+      ctx.fillRect(prop.x - 3, prop.y - 22, 6, 22);
+      ctx.fillStyle = "#f4efe2";
+      ctx.fillRect(prop.x - 10, prop.y - 28, 20, 10);
+      ctx.fillStyle = "#3d4a3c";
+      ctx.font = "9px Trebuchet MS, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(String(prop.elev || ""), prop.x, prop.y - 20);
     }
   }
 }
@@ -648,7 +704,8 @@ function drawStation(ctx, region) {
   ctx.fillStyle = "#2f6b3a";
   ctx.font = "bold 16px Trebuchet MS, sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("Cedar Hollow Station", s.x + s.w / 2, s.y + s.h + 28);
+  const stationName = (region.features || []).find((item) => item.kind === "station")?.name || `${region.name} Station`;
+  ctx.fillText(stationName, s.x + s.w / 2, s.y + s.h + 28);
 }
 
 function drawNearHint(ctx, world, state) {

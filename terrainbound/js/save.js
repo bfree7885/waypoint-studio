@@ -1,10 +1,10 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
- * v1/v2 saves migrate to v3 (flume, field data, field challenge).
+ * v1/v2/v3 saves migrate to v4 (High Country region session).
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
-export const SAVE_VERSION = 3;
+export const SAVE_VERSION = 4;
 
 export function emptyTaught() {
   return {
@@ -50,6 +50,52 @@ export function emptyDataSave() {
   return { datasets: {}, activeId: null };
 }
 
+export function emptyRegionPlayers() {
+  return { "cedar-hollow": null, "high-country": null };
+}
+
+export function emptyHighCountrySave() {
+  return {
+    introSeen: false,
+    mapOpened: false,
+    markers: {},
+    measuredRoutes: [],
+    routeChoice: null,
+    routeReasons: [],
+    routeCompared: false,
+    mapMode: "world",
+    terrainCompares: [],
+    stakes: [],
+    contourLine: [],
+    contourOk: false,
+    contourHint: "",
+    profilePredict: null,
+    profileGenerated: false,
+    profileMatch: false,
+    mapState: {
+      mode: "world",
+      layersOn: ["trails"],
+      measureA: null,
+      measureB: null,
+      profileA: null,
+      profileB: null
+    },
+    gisSite: null,
+    gisOk: false,
+    layerTypesInspected: [],
+    imageryCompared: false,
+    washoutSeen: false,
+    depths: [],
+    challengeRoute: null,
+    challengeReasons: [],
+    challengeOk: false,
+    challengePresented: false,
+    foundIds: [],
+    notes: [],
+    lastHint: ""
+  };
+}
+
 export function emptyChallengeSave() {
   return {
     introSeen: false,
@@ -66,9 +112,30 @@ export function emptyChallengeSave() {
   };
 }
 
+function snapshotHighCountry(state) {
+  const empty = emptyHighCountrySave();
+  if (!state) return empty;
+  return {
+    ...empty,
+    ...state,
+    markers: { ...(state.markers || {}) },
+    measuredRoutes: [...(state.measuredRoutes || [])],
+    routeReasons: [...(state.routeReasons || [])],
+    terrainCompares: [...(state.terrainCompares || [])],
+    stakes: [...(state.stakes || [])],
+    contourLine: [...(state.contourLine || [])],
+    layerTypesInspected: [...(state.layerTypesInspected || [])],
+    depths: [...(state.depths || [])],
+    challengeReasons: [...(state.challengeReasons || [])],
+    foundIds: [...(state.foundIds || [])],
+    notes: [...(state.notes || [])],
+    mapState: { ...empty.mapState, ...(state.mapState || {}) }
+  };
+}
+
 export function migrateSave(data) {
   if (!data || typeof data !== "object") return null;
-  if (data.v === 3) {
+  if (data.v === 4) {
     return {
       ...data,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
@@ -77,8 +144,21 @@ export function migrateSave(data) {
       tools: { ...emptyToolsSave(), ...(data.tools || {}) },
       flume: { ...emptyFlumeSave(), ...(data.flume || {}) },
       fieldData: { ...emptyDataSave(), ...(data.fieldData || {}) },
-      challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) }
+      challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) },
+      highCountry: snapshotHighCountry(data.highCountry),
+      regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) }
     };
+  }
+  if (data.v === 3) {
+    return migrateSave({
+      ...data,
+      v: 4,
+      highCountry: emptyHighCountrySave(),
+      regionPlayers: {
+        "cedar-hollow": data.player || null,
+        "high-country": null
+      }
+    });
   }
   if (data.v === 2) {
     return migrateSave({
@@ -114,16 +194,19 @@ export function captureSave({
   toolState,
   flumeState,
   dataState,
-  challengeState
+  challengeState,
+  hcState,
+  regionPlayers
 }) {
+  const current = worldState?.currentRegion || "cedar-hollow";
   return {
     v: SAVE_VERSION,
-    regionId: worldState?.currentRegion || "cedar-hollow",
+    regionId: current,
     savedAt: Date.now(),
     player: { x: player.x, y: player.y, facing: player.facing },
     taught: { ...emptyTaught(), ...(taught || {}) },
     world: {
-      currentRegion: worldState?.currentRegion || "cedar-hollow",
+      currentRegion: current,
       accessibleRegions: worldState?.accessibleRegions || ["cedar-hollow"],
       masteredRegions: worldState?.masteredRegions || []
     },
@@ -135,6 +218,12 @@ export function captureSave({
       activeId: dataState?.activeId || null
     },
     challenge: { ...emptyChallengeSave(), ...(challengeState || {}) },
+    highCountry: snapshotHighCountry(hcState),
+    regionPlayers: {
+      ...emptyRegionPlayers(),
+      ...(regionPlayers || {}),
+      [current]: { x: player.x, y: player.y, facing: player.facing }
+    },
     mission: {
       introSeen: missionState.introSeen,
       observations: missionState.observations,
@@ -176,7 +265,9 @@ export function applySave(
     toolState,
     flumeState,
     dataState,
-    challengeState
+    challengeState,
+    hcState,
+    regionPlayers
   }
 ) {
   const migrated = migrateSave(data);
@@ -208,6 +299,14 @@ export function applySave(
   }
   if (challengeState && migrated.challenge) {
     Object.assign(challengeState, emptyChallengeSave(), migrated.challenge);
+  }
+  if (hcState && migrated.highCountry) {
+    const snap = snapshotHighCountry(migrated.highCountry);
+    Object.assign(hcState, snap);
+    hcState.mapState = { ...emptyHighCountrySave().mapState, ...(snap.mapState || {}) };
+  }
+  if (regionPlayers && migrated.regionPlayers) {
+    Object.assign(regionPlayers, emptyRegionPlayers(), migrated.regionPlayers);
   }
   return true;
 }

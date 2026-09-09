@@ -59,9 +59,9 @@
       "likelySimulations": ["contour reading", "line-of-sight"],
       "likelyHazard": "landslide",
       "futureMasteryChallenge": "Choose a defensible route using elevation, distance, and a spatial layer — not a guess.",
-      "fieldToolsGained": ["topo-layer", "coordinates", "elevation", "profile-tools", "gis-layers"],
+      "fieldToolsGained": ["topo-layer", "coordinates", "scale-distance", "elevation", "profile-tools", "gis-layers"],
       "prerequisiteRegion": "cedar-hollow",
-      "implementationState": "preview"
+      "implementationState": "playable"
     },
     {
       "id": "sunfall-desert",

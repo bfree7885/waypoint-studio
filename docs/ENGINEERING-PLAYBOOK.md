@@ -1650,3 +1650,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Unlocking High Country is access to a place, not a ceremony. Open the atlas, leave the region walkable, and keep High Country preview-only.
 - Sharing a conclusion for travel clearance should be the regional Field Challenge, not the first water-path briefing. Tracing storm water still teaches pattern; it should not, by itself, open the mountains.
 
+### Lessons Learned — TerrainBound Phase 6 (2026-09-08)
+
+- A second region is a session switch, not a second game: persist per-region player positions, keep Cedar Hollow state intact, and rebuild only the active renderer/world pointer.
+- `syncFromGameplay` must keep records from other regions. Replacing the whole evidence log with Cedar Hollow derived rows would wipe High Country mastery on every save tick.
+- Maps teach when they start incomplete. A sketch with trails and no topo/GIS forces the player to walk markers and earn layers by use — opening the Map tab must not award tools.
+- Two trails to the same survey point beat a slope quiz. Distance, elevation gain, and contour spacing become a heavy-case decision; remote imagery can then veto the short trail that still looks whole on the sketch.
+- Save version bumps should wrap new region sessions beside the old journal key. Phase 5 v3 saves migrate in place to v4 without renaming `terrainbound.cedar-hollow.v1`.
+

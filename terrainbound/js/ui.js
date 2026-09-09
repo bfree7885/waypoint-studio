@@ -4,6 +4,7 @@
 
 import { drawFieldSketch } from "./investigation.js";
 import { drawDatasetGraph } from "./fielddata.js";
+import { drawFieldMap, drawProfileChart } from "./geomap.js";
 
 const SYMBOLS = {
   erratic: "◉",
@@ -72,7 +73,22 @@ export function bindUi(root) {
   const evidenceTab = root.querySelector("#tab-evidence-btn");
   const sketchTab = root.querySelector("#tab-sketch-btn");
   const dataTab = root.querySelector("#tab-data-btn");
+  const mapTab = root.querySelector("#tab-map-btn");
   const dataSection = root.querySelector("#journal-data-section");
+  const mapSection = root.querySelector("#journal-map-section");
+  const mapCaption = root.querySelector("#map-caption");
+  const regionMap = root.querySelector("#region-map");
+  const mapTools = root.querySelector("#map-tools");
+  const journalTitle = root.querySelector("#journal-title");
+  const placeName = root.querySelector("#place-name");
+  const placeSub = root.querySelector("#place-sub");
+  const fieldRecordLead = root.querySelector("#field-record-lead");
+  const geoBoard = root.querySelector("#geo-board");
+  const geoTitle = root.querySelector("#geo-title");
+  const geoLead = root.querySelector("#geo-lead");
+  const geoBody = root.querySelector("#geo-body");
+  const geoStatus = root.querySelector("#geo-status");
+  const geoTry = root.querySelector("#geo-try");
   const dataCaption = root.querySelector("#data-caption");
   const dataTable = root.querySelector("#journal-data-table");
   const journalGraph = root.querySelector("#journal-graph");
@@ -125,6 +141,11 @@ export function bindUi(root) {
   return {
     showTitle(visible) {
       title.hidden = !visible;
+    },
+    setPlace(name, sub) {
+      if (placeName) placeName.textContent = name;
+      if (placeSub) placeSub.textContent = sub;
+      if (journalTitle) journalTitle.textContent = name;
     },
     setEnterLabel(hasSave) {
       if (enterBtn) enterBtn.textContent = hasSave ? "Continue" : "Begin";
@@ -182,7 +203,7 @@ export function bindUi(root) {
       if (!observations.length && !storyNotes.length && !view.concluded) {
         const empty = document.createElement("p");
         empty.className = "journal-empty";
-        empty.textContent = "No mission notes yet. Walk the hollow and inspect what you find.";
+        empty.textContent = view.emptyNotes || "No mission notes yet. Walk the hollow and inspect what you find.";
         missionBody.appendChild(empty);
       }
       for (const item of observations) {
@@ -204,7 +225,7 @@ export function bindUi(root) {
 
       const log = view.discoveryLog;
       if (log) {
-        discoveryCount.textContent = `Cedar Hollow discoveries  ${log.foundCount} / ${log.total}`;
+        discoveryCount.textContent = `${view.regionName || "Cedar Hollow"} discoveries  ${log.foundCount} / ${log.total}`;
         if (!log.found.length) {
           const empty = document.createElement("p");
           empty.className = "journal-empty";
@@ -247,15 +268,19 @@ export function bindUi(root) {
       const evidence = view.evidence;
       const showEvidence = view.landscapeActive || (evidence && evidence.cards.length);
       const showData = Boolean(view.dataRows && view.dataRows.length);
+      const showMap = Boolean(view.showMap);
       if (evidenceTab) evidenceTab.disabled = !showEvidence;
       if (sketchTab) sketchTab.disabled = !showEvidence;
       if (dataTab) dataTab.disabled = !showData;
+      if (mapTab) mapTab.disabled = !showMap;
       if (!showEvidence && (journalTab === "evidence" || journalTab === "sketch")) showTab("notes");
       else if (!showData && journalTab === "data") showTab("notes");
+      else if (!showMap && journalTab === "map") showTab("notes");
       else showTab(journalTab);
       if (evidenceSection) evidenceSection.hidden = journalTab !== "evidence" || !showEvidence;
       if (sketchSection) sketchSection.hidden = journalTab !== "sketch" || !showEvidence;
       if (dataSection) dataSection.hidden = journalTab !== "data" || !showData;
+      if (mapSection) mapSection.hidden = journalTab !== "map" || !showMap;
       if (showEvidence && evidence) {
         evidenceCount.textContent = evidence.cards.length
           ? `${evidence.cards.length} field notes`
@@ -308,6 +333,27 @@ export function bindUi(root) {
           note.className = "journal-empty";
           note.textContent = view.missingLine;
           fieldRecord.appendChild(note);
+        }
+      }
+
+      if (fieldRecordLead && view.fieldRecordLead) {
+        fieldRecordLead.textContent = view.fieldRecordLead;
+      }
+
+      if (showMap && regionMap && view.mapModel) {
+        const ctx = regionMap.getContext("2d");
+        drawFieldMap(ctx, regionMap.width, regionMap.height, view.mapModel);
+        if (mapCaption) mapCaption.textContent = view.mapCaption || "A sketch map. Layers arrive as you earn them.";
+        if (mapTools) {
+          mapTools.replaceChildren();
+          for (const tool of view.mapTools || []) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = tool.label;
+            btn.classList.toggle("is-on", Boolean(tool.on));
+            btn.addEventListener("click", () => view.onMapTool?.(tool.id));
+            mapTools.appendChild(btn);
+          }
         }
       }
 
@@ -465,6 +511,45 @@ export function bindUi(root) {
         clearanceStatus.textContent = view.status || "";
         clearanceStatus.classList.toggle("is-success", Boolean(view.concluded));
       }
+    },
+    showGeoBoard(open, view = {}, handlers = {}) {
+      if (!geoBoard) return;
+      geoBoard.hidden = !open;
+      if (!open) return;
+      if (geoTitle) geoTitle.textContent = view.title || "Field question";
+      if (geoLead) geoLead.textContent = view.lead || "";
+      if (geoStatus) {
+        geoStatus.textContent = view.status || "";
+        geoStatus.classList.toggle("is-success", Boolean(view.ok));
+      }
+      if (geoTry) {
+        geoTry.hidden = Boolean(view.hideTry);
+        geoTry.textContent = view.tryLabel || "Try this";
+        geoTry.onclick = () => handlers.onTry?.();
+      }
+      if (geoBody) {
+        geoBody.replaceChildren();
+        if (view.profile && view.profileCanvas) {
+          const canvasEl = document.createElement("canvas");
+          canvasEl.width = 420;
+          canvasEl.height = 160;
+          canvasEl.setAttribute("aria-label", "Topographic profile");
+          geoBody.appendChild(canvasEl);
+          drawProfileChart(canvasEl.getContext("2d"), canvasEl.width, canvasEl.height, view.profile);
+        }
+        if (view.groups) {
+          for (const group of view.groups) {
+            const kicker = document.createElement("p");
+            kicker.className = "hypothesis-kicker";
+            kicker.textContent = group.label;
+            geoBody.appendChild(kicker);
+            const row = document.createElement("div");
+            row.className = "chip-row";
+            geoBody.appendChild(row);
+            fillChips(row, group.items, group.selected, (id) => handlers.onPick?.(group.id, id));
+          }
+        }
+      }
     }
   };
 }
@@ -476,7 +561,7 @@ function fillChips(rootEl, items, selected, onPick) {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.textContent = item.label;
-    btn.classList.toggle("is-on", selected === item.id);
+    btn.classList.toggle("is-on", Array.isArray(selected) ? selected.includes(item.id) : selected === item.id);
     btn.addEventListener("click", () => onPick?.(item.id));
     rootEl.appendChild(btn);
   }
