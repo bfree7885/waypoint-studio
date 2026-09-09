@@ -1804,6 +1804,19 @@ html.sheds-session-active .sheds-hunt-plan-hud {
   color: var(--sheds-muted, #a8b5ae);
 }
 
+.sheds-radar-p0__status {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--sheds-muted, #a8b5ae);
+}
+
+.sheds-radar-p0__proof {
+  margin: 0.35rem 0 0.5rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 .sheds-radar-p0-explain {
   position: absolute;
   top: calc(9.5rem + var(--sheds-safe-top));

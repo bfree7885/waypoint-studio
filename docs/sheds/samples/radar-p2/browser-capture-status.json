@@ -1,0 +1,11 @@
+{
+  "capturedAt": "2026-09-09T00:05:45.000Z",
+  "note": "Headless CDP capture of Today/Landscape UI chrome and fixture controls. Elevation/aspect enrichment did not finish in this headless run (withAspect=0); analytical PNGs + live-proof.json remain the primary condition/selectivity evidence. Re-run capture-sheds-radar-p0-style elev-fixture patch for enrichment-ready browser A/B if needed at merge review.",
+  "files": [
+    "browser-today-or-proof.png",
+    "browser-landscape.png",
+    "browser-fixture-thaw.png",
+    "browser-fixture-thaw-mobile-390.png",
+    "browser-fixture-thaw-mobile-320.png"
+  ]
+}

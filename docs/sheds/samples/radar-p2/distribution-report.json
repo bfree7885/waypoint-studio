@@ -1,0 +1,230 @@
+{
+  "generatedAt": "2026-09-09T00:06:50.403Z",
+  "checkpoint": "radar-p2",
+  "deltas": {
+    "UNIT_SOLAR_DELTA": 0.2,
+    "UNIT_SNOW_STEEP_DELTA": -0.2,
+    "positiveSnowBoostOnUnitPath": false,
+    "legacyTriPositiveSnow": true
+  },
+  "freshnessMs": 4500000,
+  "landscape": {
+    "n": 2500,
+    "min": 0,
+    "max": 0.722,
+    "mean": 0.49715592000000125,
+    "p10": 0.172,
+    "p25": 0.21,
+    "p50": 0.66,
+    "p75": 0.722,
+    "p90": 0.722,
+    "labels": {
+      "Lower": 749,
+      "Moderate": 462,
+      "Stronger": 1289
+    },
+    "frac": {
+      "Lower": 0.2996,
+      "Moderate": 0.1848,
+      "Stronger": 0.5156
+    }
+  },
+  "cold": {
+    "changed": 84,
+    "increased": 0,
+    "decreased": 84,
+    "unchanged": 2416,
+    "clampHigh": 0,
+    "clampLow": 4,
+    "changedFrac": 0.0336,
+    "meanAbsDelta": 0.00668239999999999,
+    "maxAbsDelta": 0.20000000000000007,
+    "meanRankAbsMove": 39.2008,
+    "today": {
+      "n": 2500,
+      "min": 0,
+      "max": 0.722,
+      "mean": 0.49047352000000194,
+      "p10": 0.172,
+      "p25": 0.21,
+      "p50": 0.522,
+      "p75": 0.714,
+      "p90": 0.722,
+      "labels": {
+        "Lower": 771,
+        "Moderate": 493,
+        "Stronger": 1236
+      },
+      "frac": {
+        "Lower": 0.3084,
+        "Moderate": 0.1972,
+        "Stronger": 0.4944
+      }
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 84
+    }
+  },
+  "thaw": {
+    "changed": 390,
+    "increased": 390,
+    "decreased": 0,
+    "unchanged": 2110,
+    "clampHigh": 0,
+    "clampLow": 0,
+    "changedFrac": 0.156,
+    "meanAbsDelta": 0.031200000000000228,
+    "maxAbsDelta": 0.20000000000000007,
+    "meanRankAbsMove": 127.1928,
+    "today": {
+      "n": 2500,
+      "min": 0,
+      "max": 0.922,
+      "mean": 0.5283559200000055,
+      "p10": 0.172,
+      "p25": 0.21,
+      "p50": 0.682,
+      "p75": 0.722,
+      "p90": 0.89,
+      "labels": {
+        "Lower": 748,
+        "Moderate": 371,
+        "Stronger": 1381
+      },
+      "frac": {
+        "Lower": 0.2992,
+        "Moderate": 0.1484,
+        "Stronger": 0.5524
+      }
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 390,
+      "snowModifiers": 0
+    }
+  },
+  "neutral": {
+    "changed": 0,
+    "increased": 0,
+    "decreased": 0,
+    "unchanged": 2500,
+    "clampHigh": 0,
+    "clampLow": 0,
+    "changedFrac": 0,
+    "meanAbsDelta": 0,
+    "maxAbsDelta": 0,
+    "meanRankAbsMove": 0,
+    "today": {
+      "n": 2500,
+      "min": 0,
+      "max": 0.722,
+      "mean": 0.49715592000000125,
+      "p10": 0.172,
+      "p25": 0.21,
+      "p50": 0.66,
+      "p75": 0.722,
+      "p90": 0.722,
+      "labels": {
+        "Lower": 749,
+        "Moderate": 462,
+        "Stronger": 1289
+      },
+      "frac": {
+        "Lower": 0.2996,
+        "Moderate": 0.1848,
+        "Stronger": 0.5156
+      }
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 0
+    }
+  },
+  "performance": {
+    "avgConditionApplyMs": 9.7
+  },
+  "liveProof": {
+    "attempted": true,
+    "ok": true,
+    "sourceTimestamp": "2026-09-09T00:03:49.738Z",
+    "freshness": "fresh",
+    "freezeThawStatus": "above_freezing",
+    "tempTrendStatus": "little_change",
+    "snowCoverStatus": "none",
+    "snowDepthKnown": true,
+    "snowDepthM": 0,
+    "limitations": [
+      "Snow conditions are based on point weather data for this map area, not a snow raster."
+    ],
+    "surfaceMode": "today",
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 0
+    },
+    "metrics": {
+      "changed": 0,
+      "increased": 0,
+      "decreased": 0,
+      "unchanged": 2500,
+      "clampHigh": 0,
+      "clampLow": 0,
+      "changedFrac": 0,
+      "meanAbsDelta": 0,
+      "maxAbsDelta": 0,
+      "meanRankAbsMove": 0
+    },
+    "note": "Real Open-Meteo parse for Pike AOI. Neutral conditions → TODAY ≡ LANDSCAPE (honest). A later suite re-run received HTTP 429; this successful capture is retained as evidence.",
+    "landscapeDist": {
+      "n": 2500,
+      "min": 0,
+      "max": 0.722,
+      "mean": 0.49715592000000125,
+      "p10": 0.172,
+      "p25": 0.21,
+      "p50": 0.66,
+      "p75": 0.722,
+      "p90": 0.722,
+      "labels": {
+        "Lower": 749,
+        "Moderate": 462,
+        "Stronger": 1289
+      },
+      "frac": {
+        "Lower": 0.2996,
+        "Moderate": 0.1848,
+        "Stronger": 0.5156
+      }
+    },
+    "todayDist": {
+      "n": 2500,
+      "min": 0,
+      "max": 0.722,
+      "mean": 0.49715592000000125,
+      "p10": 0.172,
+      "p25": 0.21,
+      "p50": 0.66,
+      "p75": 0.722,
+      "p90": 0.722,
+      "labels": {
+        "Lower": 749,
+        "Moderate": 462,
+        "Stronger": 1289
+      },
+      "frac": {
+        "Lower": 0.2996,
+        "Moderate": 0.1848,
+        "Stronger": 0.5156
+      }
+    },
+    "retainedPriorSuccess": true,
+    "laterAttemptReason": "getaddrinfo ENOTFOUND api.open-meteo.com"
+  },
+  "browserEvidence": {
+    "status": "not_captured_in_unit_suite",
+    "note": "Browser TODAY/LANDSCAPE screenshots remain a merge gate when live weather is available."
+  }
+}

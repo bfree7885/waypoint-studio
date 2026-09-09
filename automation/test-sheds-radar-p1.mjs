@@ -284,7 +284,7 @@ const evB = Model.evaluateCell({
 });
 assert.equal(evB.scoreScale, "unit");
 assert.ok(evB.modifiers.some((m) => m.id === "solar_searchability"));
-assert.ok(Math.abs(evB.modifiers.find((m) => m.id === "solar_searchability").delta - 1 / 3) < 1e-9);
+assert.ok(Math.abs(evB.modifiers.find((m) => m.id === "solar_searchability").delta - 0.2) < 1e-9);
 assert.ok(evB.score <= 1 && evB.score >= 0);
 
 // Sanity samples A–H

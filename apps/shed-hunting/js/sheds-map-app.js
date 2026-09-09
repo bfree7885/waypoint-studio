@@ -141,9 +141,14 @@
     terrainEnrichKey: "",
     /** Enrichment key already applied to Search Priority Today (loop guard). */
     interestEnrichAppliedKey: "",
-    /** RADAR P0 prototype — viewport surface (not production launch). */
+    /** RADAR — viewport Today/Landscape surface (prototype chrome still gated). */
     radarP0Enabled: true,
-    radarP0FrameId: "A",
+    /** Customer surface: today | landscape. Fixture A/B/N only when radarProofFixtures. */
+    radarSurfaceMode: "today",
+    radarP0FrameId: null,
+    radarProofFixtures: false,
+    radarConditionFrame: null,
+    radarConditionKey: "",
     radarBaseCache: null,
     radarBaseKey: "",
     radarElevCache: null,
@@ -2951,26 +2956,59 @@
     var panel = $("radar-p0-panel");
     if (panel) {
       panel.hidden = false;
-      panel.setAttribute("data-frame", state.radarP0FrameId || "A");
+      panel.setAttribute("data-mode", state.radarSurfaceMode || "today");
       panel.setAttribute("data-on", state.radarP0Enabled ? "true" : "false");
+      panel.setAttribute("data-proof", state.radarProofFixtures ? "true" : "false");
     }
     var toggle = $("btn-radar-p0-toggle");
     if (toggle) {
       toggle.setAttribute("aria-pressed", state.radarP0Enabled ? "true" : "false");
-      toggle.textContent = state.radarP0Enabled ? "Radar P0 · On" : "Radar P0 · Off";
+      toggle.textContent = state.radarP0Enabled ? "Interest · On" : "Interest · Off";
     }
-    var frames = $("radar-p0-frames-wrap") || ($("btn-radar-frame-a") && $("btn-radar-frame-a").parentNode);
-    if (frames && frames.classList && frames.classList.contains("sheds-radar-p0__frames")) {
-      frames.hidden = !state.radarP0Enabled;
+    var todayBtn = $("btn-radar-mode-today");
+    var landBtn = $("btn-radar-mode-landscape");
+    if (todayBtn) {
+      todayBtn.setAttribute("aria-pressed", state.radarSurfaceMode === "today" ? "true" : "false");
+    }
+    if (landBtn) {
+      landBtn.setAttribute(
+        "aria-pressed",
+        state.radarSurfaceMode === "landscape" ? "true" : "false"
+      );
+    }
+    var statusEl = $("radar-p0-status");
+    if (statusEl) {
+      var FrameApi = window.WaypointShedsRadarConditionFrame;
+      var msg =
+        FrameApi && FrameApi.statusMessage
+          ? FrameApi.statusMessage(state.radarConditionFrame, state.radarSurfaceMode)
+          : state.radarSurfaceMode === "landscape"
+            ? "Landscape — static geography only."
+            : "Today — relative search interest.";
+      if (state.lastGrid && state.lastGrid.conditionStatus) {
+        msg = state.lastGrid.conditionStatus;
+      }
+      statusEl.textContent = msg;
+    }
+    var proofWrap = $("radar-p0-proof-wrap");
+    if (proofWrap) {
+      proofWrap.hidden = !state.radarProofFixtures;
     }
     var aBtn = $("btn-radar-frame-a");
     var bBtn = $("btn-radar-frame-b");
+    var nBtn = $("btn-radar-frame-n");
     if (aBtn) aBtn.setAttribute("aria-pressed", state.radarP0FrameId === "A" ? "true" : "false");
     if (bBtn) bBtn.setAttribute("aria-pressed", state.radarP0FrameId === "B" ? "true" : "false");
+    if (nBtn) nBtn.setAttribute("aria-pressed", state.radarP0FrameId === "N" ? "true" : "false");
     var frameLabel = $("radar-p0-frame-label");
-    if (frameLabel && RadarP0 && RadarP0.FRAMES) {
-      var fr = RadarP0.FRAMES[state.radarP0FrameId] || RadarP0.FRAMES.A;
-      frameLabel.textContent = fr.label;
+    if (frameLabel) {
+      if (state.radarProofFixtures && state.radarP0FrameId && RadarP0 && RadarP0.FRAMES) {
+        var fr = RadarP0.FRAMES[state.radarP0FrameId];
+        frameLabel.textContent = fr ? fr.label : state.radarP0FrameId;
+      } else {
+        frameLabel.textContent =
+          state.radarSurfaceMode === "landscape" ? "Landscape" : "Today";
+      }
     }
   }
 
@@ -2984,23 +3022,93 @@
       body.textContent = "";
       return;
     }
-    var lines = [];
-    lines.push("Relative Search Interest");
-    if (explain.frameLabel) lines.push("Frame: " + explain.frameLabel);
-    if (explain.score != null) lines.push("Score: " + explain.score + " (0–3 relative — not probability)");
-    if (explain.band) lines.push("Band: " + explain.band);
-    lines.push("");
-    lines.push("Factors:");
-    var i;
-    var factors = explain.factors || [];
-    for (i = 0; i < factors.length; i++) {
-      var f = factors[i];
-      lines.push("• " + f.label + ": " + f.value + (f.detail ? " — " + f.detail : ""));
-    }
-    lines.push("");
-    lines.push(explain.disclaimer || "");
-    body.textContent = lines.join("\n");
+    body.textContent =
+      RadarP0 && RadarP0.formatExplainText
+        ? RadarP0.formatExplainText(explain)
+        : JSON.stringify(explain, null, 2);
     panel.hidden = false;
+  }
+
+  function buildRadarConditionFrame(weatherPkg) {
+    var FrameApi = window.WaypointShedsRadarConditionFrame;
+    if (!FrameApi || typeof FrameApi.fromWeatherPackage !== "function") return null;
+    var anchor = weatherAnchorLatLng();
+    return FrameApi.fromWeatherPackage(weatherPkg, {
+      lat: weatherPkg && weatherPkg.fetchLat != null
+        ? weatherPkg.fetchLat
+        : anchor && anchor.lat,
+      lon: weatherPkg && weatherPkg.fetchLng != null
+        ? weatherPkg.fetchLng
+        : anchor && anchor.lng,
+      anchorSource:
+        (weatherPkg && weatherPkg.anchorSource) ||
+        (anchor && anchor.source) ||
+        "map-center",
+      offline: !!state.offlineForced ||
+        (typeof navigator !== "undefined" && navigator.onLine === false),
+      now: new Date()
+    });
+  }
+
+  function paintRadarSurface(field, elevMeta) {
+    elevMeta = elevMeta || {};
+    var FrameApi = window.WaypointShedsRadarConditionFrame;
+    var painted;
+    var t0 =
+      typeof performance !== "undefined" && performance.now
+        ? performance.now()
+        : Date.now();
+
+    // Proof fixtures override live Today when explicitly enabled.
+    if (state.radarProofFixtures && state.radarP0FrameId && RadarP0.FRAMES[state.radarP0FrameId]) {
+      painted = RadarP0.applyFrame(field, state.radarP0FrameId, {
+        Model: SearchPriorityToday
+      });
+    } else if (state.radarSurfaceMode === "landscape") {
+      painted = RadarP0.paintStaticBase(field);
+      if (painted.grid) {
+        painted.grid.conditionStatus =
+          FrameApi && FrameApi.statusMessage
+            ? FrameApi.statusMessage(state.radarConditionFrame, "landscape")
+            : "Landscape — static geography only.";
+      }
+    } else {
+      var frame =
+        state.radarConditionFrame || buildRadarConditionFrame(state.weather);
+      state.radarConditionFrame = frame;
+      if (frame) {
+        state.radarConditionKey = [
+          frame.lat != null ? Number(frame.lat).toFixed(4) : "x",
+          frame.lon != null ? Number(frame.lon).toFixed(4) : "x",
+          frame.fetchedAt || "none",
+          frame.freshness || "x"
+        ].join("|");
+      }
+      painted = RadarP0.applyConditionFrame(field, frame, {
+        Model: SearchPriorityToday,
+        ConditionFrame: FrameApi
+      });
+    }
+
+    var elapsed =
+      ((typeof performance !== "undefined" && performance.now
+        ? performance.now()
+        : Date.now()) -
+        t0);
+    if (painted && painted.grid) {
+      painted.grid.conditionApplyMs = Math.round(elapsed * 10) / 10;
+    }
+    state.heatPhase = "refine";
+    paintRadarGrid(painted.grid, {
+      label: painted.grid && painted.grid.frameLabel
+        ? painted.grid.frameLabel
+        : "Relative Search Interest",
+      elevNote: elevMeta.fromCache
+        ? "Terrain cache reused · condition change did not refetch elevation."
+        : field.terrainEnriched
+          ? "Terrain/aspect enriched from elevation."
+          : "Terrain/aspect limited — solar modifier only where aspect exists."
+    });
   }
 
   function paintRadarGrid(grid, meta) {
@@ -3036,8 +3144,8 @@
   }
 
   /**
-   * RADAR P0 recompute: viewport field, no Search Area required.
-   * Reuses base+terrain cache across Frame A/B switches.
+   * RADAR recompute: viewport field, no Search Area required.
+   * Reuses base+terrain cache across Today/Landscape and condition updates.
    */
   function recomputeRadarP0(gen, wxPromise) {
     var BaseLandscape = window.WaypointShedsRadarBaseLandscape;
@@ -3046,7 +3154,7 @@
         cells: [], rows: 0, cols: 0, bounds: { west: 0, east: 0, south: 0, north: 0 },
         renderMode: "radar-interest", unavailable: true, habitatEmpty: true,
         coverage: { level: "limited", label: "Radar unavailable" }
-      }, { label: "Radar P0 unavailable" });
+      }, { label: "Relative Search Interest unavailable" });
       return;
     }
     var zoom = map.getZoom();
@@ -3137,18 +3245,21 @@
 
       function finishWithField(field, elevMeta) {
         if (gen !== state.recomputeGen) return;
-        var painted = RadarP0.applyFrame(field, state.radarP0FrameId || "A", {
-          Model: SearchPriorityToday
-        });
-        state.heatPhase = "refine";
-        paintRadarGrid(painted.grid, {
-          label: "Relative Search Interest",
-          elevNote: elevMeta && elevMeta.fromCache
-            ? "Terrain cache reused · frame switch did not refetch elevation."
-            : field.terrainEnriched
-              ? "Terrain/aspect enriched from elevation."
-              : "Terrain/aspect limited — solar modifier only where aspect exists."
-        });
+        function applyWx(w) {
+          if (gen !== state.recomputeGen) return;
+          if (w) state.weather = w;
+          if (!state.radarProofFixtures) {
+            state.radarConditionFrame = buildRadarConditionFrame(state.weather);
+          }
+          paintRadarSurface(field, elevMeta || {});
+        }
+        if (wxPromise) {
+          wxPromise.then(applyWx).catch(function () {
+            applyWx(state.weather || null);
+          });
+        } else {
+          applyWx(state.weather || null);
+        }
       }
 
       // Already terrain-enriched for this key — skip elevation network.
@@ -3202,30 +3313,35 @@
         state.radarBaseKey = key;
         finishWithField(field, { fromCache: !!elevPack.fromCache });
       });
-
-      if (wxPromise) {
-        wxPromise.then(function (w) {
-          if (gen !== state.recomputeGen) return;
-          if (w) state.weather = w;
-        });
-      }
     });
+  }
+
+  function setRadarSurfaceMode(mode) {
+    if (mode !== "today" && mode !== "landscape") return;
+    if (state.radarSurfaceMode === mode && !state.radarProofFixtures) return;
+    state.radarSurfaceMode = mode;
+    state.radarProofFixtures = false;
+    state.radarP0FrameId = null;
+    syncRadarP0Ui();
+    if (state.radarP0Enabled && state.radarBaseCache) {
+      paintRadarSurface(state.radarBaseCache, { fromCache: true });
+      return;
+    }
+    scheduleRecompute(80);
   }
 
   function setRadarP0Frame(frameId) {
     if (!RadarP0 || !RadarP0.FRAMES[frameId]) return;
-    if (state.radarP0FrameId === frameId) return;
+    state.radarProofFixtures = true;
+    if (state.radarP0FrameId === frameId) {
+      syncRadarP0Ui();
+      return;
+    }
     state.radarP0FrameId = frameId;
     syncRadarP0Ui();
-    // Frame switch: reuse base+elev cache — only re-apply conditions.
+    // Fixture switch: reuse base+elev cache — only re-apply conditions.
     if (state.radarP0Enabled && state.radarBaseCache) {
-      var painted = RadarP0.applyFrame(state.radarBaseCache, frameId, {
-        Model: SearchPriorityToday
-      });
-      paintRadarGrid(painted.grid, {
-        label: "Relative Search Interest",
-        elevNote: "Condition frame switched · base landscape + elevation cache reused (no elev refetch)."
-      });
+      paintRadarSurface(state.radarBaseCache, { fromCache: true });
       return;
     }
     scheduleRecompute(80);
@@ -3670,6 +3786,13 @@
     var prevLat = state.weather.fetchLat;
     var prevLng = state.weather.fetchLng;
     if (typeof prevLat !== "number" || typeof prevLng !== "number") return true;
+    // P2 freshness: refresh when weather package is older than ~75 minutes.
+    var FrameApi = window.WaypointShedsRadarConditionFrame;
+    var freshMs = FrameApi && FrameApi.FRESH_MS ? FrameApi.FRESH_MS : 75 * 60 * 1000;
+    if (state.weather.fetchedAt) {
+      var fetchedMs = new Date(state.weather.fetchedAt).getTime();
+      if (isFinite(fetchedMs) && Date.now() - fetchedMs > freshMs) return true;
+    }
     // ~55 km at mid-latitudes — refetch when the view/anchor moved meaningfully
     return Math.abs(prevLat - lat) > 0.5 || Math.abs(prevLng - lng) > 0.5;
   }
@@ -5175,7 +5298,7 @@
     var text;
     state.lastExplainLatLng = latlng;
 
-    // RADAR P0 tap explain — compact factors panel (no LLM narrative).
+    // RADAR tap explain — Landscape vs Today's conditions (no LLM narrative).
     if (
       state.radarP0Enabled &&
       RadarP0 &&
@@ -5186,25 +5309,18 @@
       renderRadarExplain(explain);
       if (explain) {
         text =
-          "Relative Search Interest\n" +
-          (explain.frameLabel ? "Frame: " + explain.frameLabel + "\n" : "") +
-          (explain.score != null ? "Score: " + explain.score + " (relative 0–3 — not probability)\n" : "") +
-          "\nFactors:\n• " +
-          (explain.factors || [])
-            .map(function (f) {
-              return f.label + ": " + f.value + (f.detail ? " — " + f.detail : "");
-            })
-            .join("\n• ") +
-          "\n\n" +
-          (explain.disclaimer || "");
+          RadarP0.formatExplainText
+            ? RadarP0.formatExplainText(explain)
+            : "Relative Search Interest";
         if (els.explainBreakdown) els.explainBreakdown.textContent = "";
         if (els.explainTaxonomy) els.explainTaxonomy.textContent = "";
         if (els.explainCompare) els.explainCompare.textContent = "";
         if (els.explainTech) {
           els.explainTech.textContent =
-            "RADAR P0 · smoothed display · analysis ≈" +
+            (explain.surfaceMode === "landscape" ? "Landscape" : "Today") +
+            " · smoothed display · analysis ≈" +
             Math.round(explain.cellMetersApprox || 90) +
-            " m · Phase 1 model modifiers";
+            " m · relative interest, not find probability";
         }
         els.explainBody.textContent = text;
         state.lastPerf.explainMs =
@@ -6989,6 +7105,16 @@
         setRadarP0Enabled(!state.radarP0Enabled);
       });
     }
+    if ($("btn-radar-mode-today")) {
+      $("btn-radar-mode-today").addEventListener("click", function () {
+        setRadarSurfaceMode("today");
+      });
+    }
+    if ($("btn-radar-mode-landscape")) {
+      $("btn-radar-mode-landscape").addEventListener("click", function () {
+        setRadarSurfaceMode("landscape");
+      });
+    }
     if ($("btn-radar-frame-a")) {
       $("btn-radar-frame-a").addEventListener("click", function () {
         setRadarP0Frame("A");
@@ -6997,6 +7123,11 @@
     if ($("btn-radar-frame-b")) {
       $("btn-radar-frame-b").addEventListener("click", function () {
         setRadarP0Frame("B");
+      });
+    }
+    if ($("btn-radar-frame-n")) {
+      $("btn-radar-frame-n").addEventListener("click", function () {
+        setRadarP0Frame("N");
       });
     }
     if ($("btn-radar-pike-aoi")) {
@@ -7371,6 +7502,14 @@
           state.radarP0Enabled = false;
           syncRadarP0Ui();
         }
+        if (params.get("radarProof") === "1") {
+          state.radarProofFixtures = true;
+          syncRadarP0Ui();
+        }
+        if (params.get("radarMode") === "landscape") {
+          state.radarSurfaceMode = "landscape";
+          syncRadarP0Ui();
+        }
         var savedView = Store.loadMapView && Store.loadMapView();
         var pack0 = state.gisPacks && state.gisPacks[0];
         if (
@@ -7427,15 +7566,23 @@
       showHistoricalHunt: showHistoricalHunt,
       hideHistoricalHunt: hideHistoricalHunt,
       redrawHistoryTracks: redrawHistoryTracks,
-      /* RADAR P0 test hooks — prototype only */
+      /* RADAR test hooks — prototype / evidence */
       _radarP0: {
         isEnabled: function () { return !!state.radarP0Enabled; },
         getFrameId: function () { return state.radarP0FrameId; },
+        getSurfaceMode: function () { return state.radarSurfaceMode; },
+        getConditionFrame: function () { return state.radarConditionFrame; },
+        getConditionKey: function () { return state.radarConditionKey; },
         getBaseKey: function () { return state.radarBaseKey; },
         getElevKey: function () { return state.radarElevKey; },
         getElevFetchGen: function () { return state.radarElevFetchGen; },
         setFrame: setRadarP0Frame,
+        setSurfaceMode: setRadarSurfaceMode,
         setEnabled: setRadarP0Enabled,
+        setProofFixtures: function (on) {
+          state.radarProofFixtures = !!on;
+          syncRadarP0Ui();
+        },
         getMap: function () { return map; },
         getLastGrid: function () { return state.lastGrid; },
         getBaseField: function () { return state.radarBaseCache; },
@@ -7456,7 +7603,13 @@
           }
           return {
             enabled: !!state.radarP0Enabled,
+            surfaceMode: state.radarSurfaceMode || null,
             frameId: state.radarP0FrameId || null,
+            proofFixtures: !!state.radarProofFixtures,
+            conditionFreshness: state.radarConditionFrame
+              ? state.radarConditionFrame.freshness
+              : null,
+            conditionKey: state.radarConditionKey || "",
             baseKey: state.radarBaseKey || "",
             elevKey: state.radarElevKey || "",
             elevFetchGen: state.radarElevFetchGen || 0,
@@ -7470,6 +7623,10 @@
             aspects: aspects,
             stats: state.lastGrid && state.lastGrid.stats ? state.lastGrid.stats : null,
             renderMode: state.lastGrid ? state.lastGrid.renderMode : null,
+            conditionApplyMs:
+              state.lastGrid && state.lastGrid.conditionApplyMs != null
+                ? state.lastGrid.conditionApplyMs
+                : null,
             ready: !!(
               state.radarP0Enabled &&
               field &&

@@ -96,10 +96,13 @@
   }
 
   /**
-   * When landscapeScore (0–1) is present, Phase 1 modifiers keep the same eligibility
-   * rules but scale deltas by 1/3 so solar/snow remain ± one relative step on a unit base.
+   * Legacy tri-scale (0–3 Search Area path) still uses model Δ ±1.
+   * RADAR continuous unit path (P2) uses fixed ±0.20 deltas and removes the
+   * positive snow bench boost (attenuation-only on steep terrain).
    */
-  var UNIT_MODIFIER_SCALE = 1 / 3;
+  var UNIT_MODIFIER_SCALE = 1 / 3; // retained for docs/tests naming; unit path uses UNIT_*_DELTA
+  var UNIT_SOLAR_DELTA = 0.2;
+  var UNIT_SNOW_STEEP_DELTA = -0.2;
 
   function resolveBase(cell) {
     cell = cell || {};
@@ -141,13 +144,20 @@
 
   /**
    * Condition × spatial modifiers. Each must change relative WHERE.
+   * @param {object} cell
+   * @param {object} conditions normalized
+   * @param {{ scale?: 'unit'|'tri' }} [opts]
+   *   unit = RADAR continuous landscape (P2 deltas)
+   *   tri  = legacy Search Area Phase 1 (±1, including positive snow on benches)
    * Returns { modifiers, limited }.
    */
-  function collectModifiers(cell, conditions) {
+  function collectModifiers(cell, conditions, opts) {
     var modifiers = [];
     var limited = false;
     cell = cell || {};
     conditions = conditions || {};
+    opts = opts || {};
+    var unitPath = opts.scale === "unit";
 
     if (!conditions.available) {
       return { modifiers: modifiers, limited: true };
@@ -167,14 +177,15 @@
       } else if (isSouthish(aspect)) {
         modifiers.push({
           id: "solar_searchability",
-          delta: 1,
-          reason:
-            "Sun-facing ground can become more searchable sooner during thaw or warming (searchability, not a find claim)."
+          delta: unitPath ? UNIT_SOLAR_DELTA : 1,
+          reason: unitPath
+            ? "Warming or thawing conditions interact with this southerly exposure (searchability, not a find claim)."
+            : "Sun-facing ground can become more searchable sooner during thaw or warming (searchability, not a find claim)."
         });
       }
     }
 
-    // snow_practicality: limiting/deep snow × steep vs bench/gentle
+    // snow_practicality
     var snow = conditions.snowCoverStatus;
     if (snow === "limiting" || snow === "deep") {
       if (!kind) {
@@ -182,11 +193,14 @@
       } else if (STEEPISH[kind]) {
         modifiers.push({
           id: "snow_practicality",
-          delta: -1,
-          reason:
-            "Limiting snow on steep ground usually reduces practical search effort versus gentler structure nearby."
+          delta: unitPath ? UNIT_SNOW_STEEP_DELTA : -1,
+          reason: unitPath
+            ? "Deeper snow can make this steeper terrain less practical to search."
+            : "Limiting snow on steep ground usually reduces practical search effort versus gentler structure nearby."
         });
-      } else if (BENCHISH[kind]) {
+      } else if (!unitPath && BENCHISH[kind]) {
+        // Legacy tri-scale only: positive relative boost on benches.
+        // RADAR unit path deliberately omits this (gentler ground stays unsuppressed).
         modifiers.push({
           id: "snow_practicality",
           delta: 1,
@@ -240,8 +254,54 @@
       };
     }
 
-    var collected = collectModifiers(cell, conditions);
     var unitScale = base.scale === "unit";
+
+    // Water / non-searchable landscape must stay cold — never resurrect via additives.
+    if (
+      unitScale &&
+      (base.score === 0 ||
+        cell.structure === "water" ||
+        (cell.landscape && cell.landscape.flags && cell.landscape.flags.water) ||
+        cell.water === true)
+    ) {
+      return {
+        version: VERSION,
+        status: "ready",
+        band: bandFromUnitScore(0),
+        score: 0,
+        scoreScale: "unit",
+        base: base,
+        modifiers: [],
+        reasons: [
+          "Base RADAR base landscape: " + (base.label || "water") + ".",
+          "Water and non-searchable ground stay at zero relative interest — conditions do not raise them."
+        ],
+        inputsUsed: ["base:" + base.source, "guard:water_non_searchable"],
+        limited: false,
+        flags: {
+          insufficientSpatial: false,
+          conditionsAvailable: conditions.available,
+          conditionsLimited: false,
+          waterLocked: true
+        }
+      };
+    }
+
+    var collected = collectModifiers(cell, conditions, { scale: unitScale ? "unit" : "tri" });
+
+    // Developed stays suppressed on RADAR unit path — do not apply positive condition lifts.
+    if (
+      unitScale &&
+      (cell.structure === "developed" ||
+        (cell.landscape && cell.landscape.flags && cell.landscape.flags.developed))
+    ) {
+      collected = {
+        modifiers: (collected.modifiers || []).filter(function (m) {
+          return !(m.delta > 0);
+        }),
+        limited: collected.limited
+      };
+    }
     var score = base.score;
     var reasons = [];
     var inputsUsed = ["base:" + base.source];
@@ -257,13 +317,22 @@
     var i;
     for (i = 0; i < collected.modifiers.length; i++) {
       var mod = collected.modifiers[i];
-      var appliedDelta = unitScale ? mod.delta * UNIT_MODIFIER_SCALE : mod.delta;
+      // Unit path already emits absolute ±0.20; tri path emits ±1.
+      var appliedDelta = mod.delta;
       score += appliedDelta;
       scaledModifiers.push({
         id: mod.id,
         delta: appliedDelta,
         reason: mod.reason,
-        modelDelta: mod.delta
+        modelDelta: unitScale
+          ? mod.id === "solar_searchability"
+            ? 1
+            : mod.id === "snow_practicality"
+              ? appliedDelta < 0
+                ? -1
+                : 1
+              : mod.delta
+          : mod.delta
       });
       reasons.push(mod.reason);
       inputsUsed.push("modifier:" + mod.id);
@@ -345,12 +414,15 @@
     VERSION: VERSION,
     BANDS: BANDS,
     UNIT_MODIFIER_SCALE: UNIT_MODIFIER_SCALE,
+    UNIT_SOLAR_DELTA: UNIT_SOLAR_DELTA,
+    UNIT_SNOW_STEEP_DELTA: UNIT_SNOW_STEEP_DELTA,
     evaluateCell: evaluateCell,
     evaluateArea: evaluateArea,
     orderingKey: orderingKey,
     bandFromScore: bandFromScore,
     bandFromUnitScore: bandFromUnitScore,
     normalizeConditions: normalizeConditions,
+    collectModifiers: collectModifiers,
     containsBannedLanguage: containsBannedLanguage,
     assertHonestOutput: assertHonestOutput
   };
