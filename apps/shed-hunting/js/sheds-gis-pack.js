@@ -1,6 +1,6 @@
 /**
  * Sheds Phase 2 — GIS pack loader / sampler.
- * Packs are compact JSON (NLCD + edgeM + slopeDeg) for PA AOIs.
+ * Packs are compact JSON (NLCD + edgeM + slopeDeg [+ aspectCardinal]) for PA AOIs.
  */
 (function (global) {
   "use strict";
@@ -38,6 +38,9 @@
     unknown: "Unknown class"
   };
 
+  /** Pack aspectCardinal uint8 → runtime cardinal (0 = unknown/flat). */
+  var ASPECT_CODE_TO_CARDINAL = [null, "N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+
   function decodeU8(b64) {
     var bin = atob(b64);
     var out = new Uint8Array(bin.length);
@@ -45,11 +48,22 @@
     return out;
   }
 
+  function decodeAspectCode(code) {
+    if (code == null || code === 0) return null;
+    if (code < 1 || code > 8) return null;
+    return ASPECT_CODE_TO_CARDINAL[code] || null;
+  }
+
+  function hasAspectLayer(pack) {
+    return !!(pack && typeof pack.aspectCardinal === "string" && pack.aspectCardinal.length);
+  }
+
   function inflate(pack) {
     if (pack._inflated) return pack;
     pack.nlcdArr = decodeU8(pack.nlcd);
     pack.edgeArr = decodeU8(pack.edgeM);
     pack.slopeArr = decodeU8(pack.slopeDeg);
+    pack.aspectArr = hasAspectLayer(pack) ? decodeU8(pack.aspectCardinal) : null;
     pack._inflated = true;
     return pack;
   }
@@ -70,6 +84,10 @@
     var i = row * pack.cols + col;
     var code = pack.nlcdArr[i] || 0;
     var structure = STRUCTURE[code] || "unknown";
+    var aspectCardinal = null;
+    if (pack.aspectArr && i < pack.aspectArr.length) {
+      aspectCardinal = decodeAspectCode(pack.aspectArr[i]);
+    }
     return {
       row: row,
       col: col,
@@ -78,6 +96,7 @@
       structureLabel: STRUCTURE_LABEL[structure] || STRUCTURE_LABEL.unknown,
       edgeM: pack.edgeArr[i],
       slopeDeg: pack.slopeArr[i],
+      aspectCardinal: aspectCardinal,
       cellSizeMApprox: pack.cellSizeMApprox,
       packId: pack.packId,
       resolutionNote: "~" + (pack.sources && pack.sources.nlcd && pack.sources.nlcd.nominalResolutionM
@@ -123,6 +142,7 @@
         nlcd: pack.nlcd,
         edgeM: pack.edgeM,
         slopeDeg: pack.slopeDeg,
+        aspectCardinal: pack.aspectCardinal || undefined,
         cachedAt: new Date().toISOString()
       };
       localStorage.setItem(CACHE_PREFIX + pack.packId, JSON.stringify(slim));
@@ -194,11 +214,14 @@
   global.WaypointShedsGisPack = {
     STRUCTURE: STRUCTURE,
     STRUCTURE_LABEL: STRUCTURE_LABEL,
+    ASPECT_CODE_TO_CARDINAL: ASPECT_CODE_TO_CARDINAL,
     listBundled: listBundled,
     loadPack: loadPack,
     sample: sample,
     inBounds: inBounds,
     findCoveringPack: findCoveringPack,
+    hasAspectLayer: hasAspectLayer,
+    decodeAspectCode: decodeAspectCode,
     cacheGet: cacheGet,
     cacheSet: cacheSet,
     invalidateCache: invalidateCache,

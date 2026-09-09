@@ -1,7 +1,7 @@
 {
   "attempted": true,
   "ok": true,
-  "sourceTimestamp": "2026-09-09T00:03:49.738Z",
+  "sourceTimestamp": "2026-09-09T19:31:03.481Z",
   "freshness": "fresh",
   "freezeThawStatus": "above_freezing",
   "tempTrendStatus": "little_change",
@@ -29,7 +29,6 @@
     "maxAbsDelta": 0,
     "meanRankAbsMove": 0
   },
-  "note": "Real Open-Meteo parse for Pike AOI. Neutral conditions → TODAY ≡ LANDSCAPE (honest). A later suite re-run received HTTP 429; this successful capture is retained as evidence.",
   "landscapeDist": {
     "n": 2500,
     "min": 0,
@@ -71,7 +70,5 @@
       "Moderate": 0.1848,
       "Stronger": 0.5156
     }
-  },
-  "retainedPriorSuccess": true,
-  "laterAttemptReason": "getaddrinfo ENOTFOUND api.open-meteo.com"
+  }
 }

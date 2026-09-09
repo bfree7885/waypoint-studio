@@ -1,0 +1,113 @@
+{
+  "ok": true,
+  "elevClassification": "pack_ok",
+  "fixtureUsedForMainProof": false,
+  "proofStatus": {
+    "enabled": true,
+    "surfaceMode": "today",
+    "frameId": null,
+    "proofFixtures": false,
+    "conditionFreshness": "fresh",
+    "conditionKey": "41.3300|-74.8001|2026-09-09T19:31:32.054Z|fresh",
+    "baseKey": "pa-pike-milford-v1|-74.8269|41.3097|-74.7731|41.3502|50|50|90",
+    "elevKey": "",
+    "elevFetchGen": 0,
+    "terrainSource": "gis-pack",
+    "terrainEnriched": true,
+    "rows": 50,
+    "cols": 50,
+    "bounds": {
+      "west": -74.82691635476459,
+      "east": -74.77308364523543,
+      "south": 41.309743138240485,
+      "north": 41.35016714111509
+    },
+    "cellCount": 2500,
+    "withAspect": 2099,
+    "southish": 1255,
+    "aspects": {
+      "NW": 256,
+      "N": 168,
+      "NE": 121,
+      "null": 401,
+      "SW": 217,
+      "S": 489,
+      "SE": 549,
+      "W": 151,
+      "E": 148
+    },
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 0
+    },
+    "renderMode": "radar-interest",
+    "conditionApplyMs": 19.9,
+    "ready": true,
+    "weatherReady": true,
+    "toggleHidden": true,
+    "proofHidden": true,
+    "prototypeCopy": false,
+    "statusText": "Today — relative search interest with conditions as of 2026-09-09T19:31:32.054Z.",
+    "frameLabel": "Today",
+    "elevReqCount": 0,
+    "wxReqCount": 2
+  },
+  "today": {
+    "surfaceMode": "today",
+    "frameLabel": "Today",
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 0
+    },
+    "conditionStatus": "Today — relative search interest with conditions as of 2026-09-09T19:31:32.054Z.",
+    "freshness": "fresh",
+    "freezeThawStatus": "above_freezing",
+    "tempTrendStatus": "little_change",
+    "snowCoverStatus": "none"
+  },
+  "landscape": {
+    "surfaceMode": "landscape",
+    "frameLabel": "Landscape",
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 0
+    },
+    "conditionStatus": "Landscape — static geography only (no current-condition modifiers)."
+  },
+  "explainToday": {
+    "visible": false,
+    "text": ""
+  },
+  "explainLandscape": {
+    "text": ""
+  },
+  "overflow390": false,
+  "overflow320": false,
+  "controlledThaw": {
+    "frameId": "B",
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 874,
+      "snowModifiers": 0
+    },
+    "label": "Warming / Thaw (fixture)"
+  },
+  "controlledCold": {
+    "frameId": "A",
+    "stats": {
+      "ready": 2500,
+      "solarModifiers": 0,
+      "snowModifiers": 59
+    },
+    "label": "Cold / snow-limiting (fixture)"
+  },
+  "normalUi": {
+    "toggleHidden": true,
+    "proofHidden": true,
+    "prototypeCopy": false
+  },
+  "capturedAt": "2026-09-09T19:31:41.362Z"
+}

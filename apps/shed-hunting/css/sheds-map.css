@@ -1723,7 +1723,7 @@ html.sheds-session-active .sheds-hunt-plan-hud {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
 }
 
-/* RADAR P0 prototype panel — forest tokens, not a brand redesign */
+/* Relative Search Interest panel — forest tokens; proof chrome is query-gated */
 .sheds-radar-p0 {
   position: absolute;
   top: calc(0.55rem + var(--sheds-safe-top));

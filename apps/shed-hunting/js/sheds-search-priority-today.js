@@ -186,19 +186,36 @@
     }
 
     // snow_practicality
+    // RADAR unit path: steep eligibility from pack slopeDeg using the same
+    // STEEP_PENALTY (22°) as SearchPriority featureKind==="steep" slope gates.
+    // Legacy tri-scale still uses featureKind (incl. bench boost).
     var snow = conditions.snowCoverStatus;
+    var RADAR_STEEP_SLOPE_DEG = 22;
     if (snow === "limiting" || snow === "deep") {
-      if (!kind) {
+      var steepFromPack =
+        unitPath && slope != null && slope >= RADAR_STEEP_SLOPE_DEG;
+      var steepFromKind = !!(kind && STEEPISH[kind]);
+      if (unitPath) {
+        if (slope == null && !kind) {
+          limited = true;
+        } else if (steepFromKind || steepFromPack) {
+          modifiers.push({
+            id: "snow_practicality",
+            delta: UNIT_SNOW_STEEP_DELTA,
+            reason:
+              "Deeper snow can make this steeper terrain less practical to search."
+          });
+        }
+      } else if (!kind) {
         limited = true;
       } else if (STEEPISH[kind]) {
         modifiers.push({
           id: "snow_practicality",
-          delta: unitPath ? UNIT_SNOW_STEEP_DELTA : -1,
-          reason: unitPath
-            ? "Deeper snow can make this steeper terrain less practical to search."
-            : "Limiting snow on steep ground usually reduces practical search effort versus gentler structure nearby."
+          delta: -1,
+          reason:
+            "Limiting snow on steep ground usually reduces practical search effort versus gentler structure nearby."
         });
-      } else if (!unitPath && BENCHISH[kind]) {
+      } else if (BENCHISH[kind]) {
         // Legacy tri-scale only: positive relative boost on benches.
         // RADAR unit path deliberately omits this (gentler ground stays unsuppressed).
         modifiers.push({

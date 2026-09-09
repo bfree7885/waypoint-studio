@@ -112,6 +112,20 @@ def build(args: argparse.Namespace) -> dict:
     dy = abs(gt[5]) * lat_m
     gy, gx = np.gradient(elev, dy, dx)
     slope = np.clip(np.degrees(np.arctan(np.sqrt(gx * gx + gy * gy))), 0, 90)
+    # Aspect: direction of steepest descent, matching sheds-search-priority.js
+    # slopeAspectFromElevNeighbors: atan2(-dzdx, dzdy) with dzdy southward / dzdx eastward.
+    # Row 0 is north (GDAL north-up); axis-0 gradient is southward.
+    aspect_deg = (np.degrees(np.arctan2(-gx, gy)) + 360.0) % 360.0
+    # Flat / no meaningful slope → 0 (unknown). ASPECT_MIN_SLOPE in runtime is 2°.
+    ASPECT_MIN_SLOPE = 2.0
+    # Encoding: 0=unknown/flat, 1=N … 8=NW (matches ASPECT_DIRS index+1)
+    aspect_ix = (np.rint(aspect_deg / 45.0).astype(np.int16) % 8) + 1
+    aspect_code = np.where(slope >= ASPECT_MIN_SLOPE, aspect_ix, 0).astype(np.uint8)
+    # No-data elev → unknown aspect
+    nodata = eds.GetRasterBand(1).GetNoDataValue()
+    if nodata is not None:
+        aspect_code = np.where(elev == nodata, 0, aspect_code).astype(np.uint8)
+    aspect_code = np.where(~np.isfinite(elev), 0, aspect_code).astype(np.uint8)
 
     forest = np.isin(nlcd, list(FOREST))
     pad = np.pad(forest.astype(np.uint8), 1, mode="edge")
@@ -176,16 +190,35 @@ def build(args: argparse.Namespace) -> dict:
                 "method": "numpy.gradient on 3DEP elev → degrees",
                 "class": "SOURCE_FACT derived",
             },
+            "aspect": {
+                "method": "numpy.gradient on same 3DEP elev → atan2(-gx, gy) degrees → 8-way cardinal",
+                "class": "SOURCE_FACT derived",
+                "precisionNote": "Coarse ~90 m orientation for RADAR; not microterrain",
+                "encodingCodes": {
+                    "0": "unknown/flat",
+                    "1": "N",
+                    "2": "NE",
+                    "3": "E",
+                    "4": "SE",
+                    "5": "S",
+                    "6": "SW",
+                    "7": "W",
+                    "8": "NW",
+                },
+            },
         },
         "encoding": {
             "nlcd": "uint8 row-major base64 NLCD codes",
             "edgeM": "uint8 meters to transition cap 255",
             "slopeDeg": "uint8 degrees 0-90",
+            "aspectCardinal": "uint8 row-major base64; 0=unknown/flat, 1=N … 8=NW",
         },
         "nlcd": b64(nlcd),
         "edgeM": b64(edge_m),
         "slopeDeg": b64(slope_q),
+        "aspectCardinal": b64(aspect_code),
         "classHistogram": dict(Counter(nlcd.flatten().tolist())),
+        "aspectHistogram": dict(Counter(aspect_code.flatten().tolist())),
     }
     blob = json.dumps({k: v for k, v in meta.items() if k != "sha256"}, sort_keys=True).encode()
     meta["sha256"] = hashlib.sha256(blob).hexdigest()
