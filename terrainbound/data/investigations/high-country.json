@@ -99,10 +99,23 @@
     "needReasons": ["gentler", "heavy-case"]
   },
   "terrainCompares": [
-    { "id": "west-cliff", "expect": "tight", "prompt": "The drop is close. Contours here should sit tight." },
-    { "id": "east-meadow", "expect": "wide", "prompt": "The meadow is open. Contours here should sit far apart." },
-    { "id": "ridge-survey", "expect": "ridge", "prompt": "The junction sits on a rise. Contours would close around the high ground." }
+    { "id": "west-cliff", "expect": "tight", "prompt": "Stand here. Turn topo on. How do the lines sit on this slope?" },
+    { "id": "east-meadow", "expect": "wide", "prompt": "Stand here. Turn topo on. How do the lines sit on this slope?" },
+    { "id": "ridge-survey", "expect": "ridge", "prompt": "Stand on the junction. How do the topo lines treat this high ground?" }
   ],
+  "spacingChoices": [
+    { "id": "tight", "label": "Lines sit close together" },
+    { "id": "wide", "label": "Lines sit far apart" },
+    { "id": "ridge", "label": "Lines close around the high point" }
+  ],
+  "cache": {
+    "id": "hc-cache",
+    "name": "Instrument cache",
+    "x": 1720,
+    "y": 700,
+    "hint": "No signboard. Match the live reading to the pair on your tablet."
+  },
+  "scaleBarMeters": 200,
   "stakes": [
     { "id": "s-1380", "x": 1768, "y": 980, "elev": 1380 },
     { "id": "s-1400a", "x": 1844, "y": 912, "elev": 1400 },
@@ -128,31 +141,31 @@
     "correctShape": "ridge-then-drop"
   },
   "gis": {
-    "prompt": "Find a temporary observation pad: near a trail, not in wet ground, not on a steep slope, open enough for sky.",
+    "prompt": "A pad needs a trail, dry ground, and sky. Layers will disagree. Decide which layer matters, then walk the ground if you are unsure.",
     "sites": [
       {
         "id": "gis-wet",
         "x": 700,
         "y": 1196,
-        "label": "Tarn shore",
+        "label": "Pad A",
         "ok": false,
-        "why": "Close to water. Soft ground."
+        "why": "Water layer and the ground both say soft. Walk the tarn shore if you need to feel it."
       },
       {
         "id": "gis-steep",
         "x": 540,
         "y": 720,
-        "label": "Cliff bench",
+        "label": "Pad B",
         "ok": false,
-        "why": "Near trail, but the slope is a cliff."
+        "why": "Elevation says cliff. The trail layer is not enough. Stand on the west face."
       },
       {
         "id": "gis-good",
         "x": 1508,
         "y": 708,
-        "label": "Saddle bench",
+        "label": "Pad C",
         "ok": true,
-        "why": "Near the east trail, dry, open sky, not the cliff."
+        "why": "Dry, near a trail, open sky. Water and elevation both allow it."
       }
     ],
     "needLayers": ["trails", "water", "elevation"]

@@ -41,6 +41,7 @@ import {
   runTrial,
   setFlumeSlope,
   setFlumeWater,
+  setFlumePrediction,
   hasFairComparison,
   flumeRows,
   flumeMeans,
@@ -64,7 +65,8 @@ import {
   tryChallengeExplanation,
   tryChallengeFollowUp,
   presentChallenge,
-  challengeProgress
+  challengeProgress,
+  predictPulse
 } from "./challenge.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
@@ -97,6 +99,9 @@ import {
   createHcState,
   recordMarker,
   measureRoute,
+  estimateScale,
+  recordCache,
+  cacheTarget,
   compareRoutes,
   toggleHcTopo,
   compareTerrain,
@@ -107,6 +112,7 @@ import {
   pickGisSite,
   inspectLayerType,
   compareImagery,
+  predictWashoutSlope,
   recordDepth,
   planChallengeRoute,
   presentChallenge as presentHcChallenge,
@@ -131,14 +137,19 @@ import {
   setOrbitEccentricity,
   measureOrbit,
   predictKepler,
+  advanceKeplerModel,
   recordMoon,
   useMoonGeometry,
   predictMoon,
+  predictMoonNow,
   alignEclipse,
+  predictEclipse,
   explainEclipse,
+  predictTide,
   compareTides,
   classifyPlanets,
   planObservation,
+  visitChallengeSite,
   presentSfChallenge,
   addSfFind,
   identifyFind,
@@ -153,6 +164,8 @@ import {
   tideRows
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
+import { fieldGuidance } from "./guidance.js";
+import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
 
@@ -358,7 +371,16 @@ export async function boot(root = document) {
   camera.y = player.y - 28;
   syncFromGameplay(
     masteryState,
-    gameplaySnapshot({ discoveryState, missionState, invState, flumeState, dataState, challengeState, flumeSpec })
+    gameplaySnapshot({
+      discoveryState,
+      missionState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      flumeSpec,
+      obsIntState: invState.obsInt
+    })
   );
   syncToolsFromGameplay(toolState, toolsCatalog, {
     journalOpened: taught.journal,
@@ -375,8 +397,33 @@ export async function boot(root = document) {
       flumeState,
       dataState,
       challengeState,
-      flumeSpec
+      flumeSpec,
+      obsIntState: invState.obsInt
     });
+  }
+
+  function currentGuide() {
+    return fieldGuidance({
+      regionId: worldState.currentRegion,
+      missionState,
+      discoveryState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      obsIntState: invState.obsInt,
+      hcState,
+      sfState,
+      hasFairComparison: hasFairComparison(flumeState, flumeSpec)
+    });
+  }
+
+  function refreshGuide() {
+    if (mode !== "play") {
+      ui.setGuide(null, false);
+      return;
+    }
+    ui.setGuide(currentGuide(), true);
   }
 
   function mapToolFlags() {
@@ -425,7 +472,8 @@ export async function boot(root = document) {
       dataCaption: spec ? spec.title : "",
       graphModel: rows.length ? graphModel(dataState, dataCatalog, "cedar-hollow-flow") : null,
       canInterpret: hasFairComparison(flumeState, flumeSpec),
-      showMap: false
+      showMap: false,
+      guide: currentGuide()
     };
   }
 
@@ -474,9 +522,11 @@ export async function boot(root = document) {
         tools,
         mapState: hcState.mapState,
         discoveries: hcCatalog.items.filter((item) => hcState.foundIds.includes(item.id)),
-        heightAtFn: heightAt
+        heightAtFn: heightAt,
+        scaleBarMeters: hcSpec.scaleBarMeters || 200
       },
       mapTools,
+      guide: currentGuide(),
       onMapTool(id) {
         if (id === "topo") {
           toggleHcTopo(hcState);
@@ -531,7 +581,8 @@ export async function boot(root = document) {
         discoveries: sfCatalog.items.filter((item) => sfState.foundIds.includes(item.id)),
         heightAtFn: heightAt
       },
-      mapTools: [{ id: "trails", label: "Tracks", on: true }]
+      mapTools: [{ id: "trails", label: "Tracks", on: true }],
+      guide: currentGuide()
     };
   }
 
@@ -570,6 +621,7 @@ export async function boot(root = document) {
 
   function persist() {
     syncProgress();
+    refreshGuide();
     writeSave(
       storage,
       captureSave({
@@ -650,7 +702,9 @@ export async function boot(root = document) {
         waterLabel: waterById(flumeSpec, trial.water).label
       })),
       status: flumeState.lastHint,
-      canReadNumbers: hasFairComparison(flumeState, flumeSpec)
+      canReadNumbers: hasFairComparison(flumeState, flumeSpec),
+      prediction: flumeState.prediction,
+      predictOptions: flumeSpec.slopes.map((item) => ({ id: item.id, label: `Predict: ${item.label}` }))
     };
   }
 
@@ -662,6 +716,10 @@ export async function boot(root = document) {
       },
       onWater(id) {
         setFlumeWater(flumeState, id);
+        renderFlume();
+      },
+      onPredict(id) {
+        setFlumePrediction(flumeState, id);
         renderFlume();
       }
     });
@@ -683,6 +741,11 @@ export async function boot(root = document) {
 
   function releaseWater() {
     const result = runTrial(flumeState, flumeSpec);
+    if (result.needPredict) {
+      ui.showToast("Predict first", result.hint);
+      renderFlume();
+      return result;
+    }
     flumeRunUntil = performance.now() + 1400;
     syncFlowDataset();
     persist();
@@ -780,11 +843,16 @@ export async function boot(root = document) {
 
   function clearanceView() {
     const pick = challengeSpec.explanations.find((item) => item.id === challengeState.selectedExplanation);
+    const needsPulse = Boolean(challengeSpec.pulsePredict && !challengeState.pulsePredict);
     const needsFollowUp = Boolean(pick?.correct && !challengeState.followUpDone && !challengeState.concluded);
     return {
       progress: challengeProgress(challengeState, challengeSpec),
       explanations: challengeSpec.explanations,
       selectedExplanation: challengeState.selectedExplanation,
+      needsPulse,
+      pulsePrompt: challengeSpec.pulsePredict?.prompt,
+      pulseOptions: challengeSpec.pulsePredict?.options || [],
+      pulseId: challengeState.pulsePredict,
       needsFollowUp,
       followOptions: challengeSpec.followUp.options,
       followId: null,
@@ -794,6 +862,7 @@ export async function boot(root = document) {
   }
 
   let clearanceFollowId = null;
+  let clearancePulseId = null;
 
   function renderClearance() {
     const view = clearanceView();
@@ -805,6 +874,11 @@ export async function boot(root = document) {
       },
       onFollow(id) {
         clearanceFollowId = id;
+        renderClearance();
+      },
+      onPulse(id) {
+        clearancePulseId = id;
+        challengeState.pulsePredict = id;
         renderClearance();
       }
     });
@@ -823,6 +897,16 @@ export async function boot(root = document) {
   }
 
   function tryClearance() {
+    if (challengeSpec.pulsePredict && !challengeState.pulsePredict) {
+      const result = predictPulse(challengeState, challengeSpec, clearancePulseId);
+      persist();
+      renderClearance();
+      if (result.ok) {
+        closeClearance();
+        ui.showToast("Predicted", result.hint);
+      }
+      return;
+    }
     const result = tryChallengeExplanation(challengeState, challengeSpec, challengeState.selectedExplanation);
     persist();
     renderClearance();
@@ -849,6 +933,11 @@ export async function boot(root = document) {
 
   function inspectChallenge(site) {
     if (!site || inspectLock) return;
+    if (challengeSpec.pulsePredict && !challengeState.pulsePredict) {
+      openClearance();
+      ui.showToast("Predict first", "Where should the brown pulse first show?");
+      return;
+    }
     inspectLock = true;
     const observed = observeSite(challengeState, challengeSpec, site.id);
     const lines = [site.observe];
@@ -870,9 +959,25 @@ export async function boot(root = document) {
   function renderAtlas() {
     const canvasEl = root.querySelector("#atlas-map");
     if (!canvasEl) return;
+    sizeAtlasCanvas();
     const ctx = canvasEl.getContext("2d");
     drawWorldMap(ctx, tbWorld, worldState, worldState.selectedRegionId);
     ui.setAtlasPreview(previewModel(tbWorld, worldState, worldState.selectedRegionId));
+  }
+
+  function sizeAtlasCanvas() {
+    const canvasEl = root.querySelector("#atlas-map");
+    const atlasEl = root.querySelector("#atlas");
+    if (!canvasEl || atlasEl?.hidden) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const cssW = Math.max(1, canvasEl.clientWidth);
+    const cssH = Math.max(1, canvasEl.clientHeight);
+    const w = Math.max(1, Math.floor(cssW * dpr));
+    const h = Math.max(1, Math.floor(cssH * dpr));
+    if (canvasEl.width !== w || canvasEl.height !== h) {
+      canvasEl.width = w;
+      canvasEl.height = h;
+    }
   }
 
   function openAtlas(regionId) {
@@ -884,7 +989,7 @@ export async function boot(root = document) {
     persist();
     refreshJournal();
     ui.showAtlas(true);
-    renderAtlas();
+    requestAnimationFrame(() => renderAtlas());
   }
 
   function closeAtlas() {
@@ -894,6 +999,7 @@ export async function boot(root = document) {
 
   function refreshJournal() {
     ui.setJournal(journalView());
+    refreshGuide();
   }
 
   function pulseFocus(x, y, ms = 720) {
@@ -920,6 +1026,7 @@ export async function boot(root = document) {
     canvas.width = Math.floor(canvas.clientWidth * dpr);
     canvas.height = Math.floor(canvas.clientHeight * dpr);
     camera.scale = canvas.height / VIEW_HEIGHT;
+    if (atlasOpen) renderAtlas();
   }
 
   function screenToWorld(clientX, clientY) {
@@ -1004,6 +1111,8 @@ export async function boot(root = document) {
           ui.showToast("Noted", name);
           persist();
           refreshJournal();
+          const sortCard = pendingCard(investigation.obsInt, invState.obsInt, discoveryState.foundIds);
+          if (sortCard && sortCard.discoveryId === item.id) openGeo("obsint");
         }
       }, "Look closer");
       return;
@@ -1036,6 +1145,13 @@ export async function boot(root = document) {
         ui.showDialogue(false);
         inspectLock = false;
       });
+      return;
+    }
+
+    const sortCard = pendingCard(investigation.obsInt, invState.obsInt, discoveryState.foundIds);
+    if (sortCard && sortCard.discoveryId === item.id) {
+      inspectLock = false;
+      openGeo("obsint");
       return;
     }
 
@@ -1210,17 +1326,23 @@ export async function boot(root = document) {
   function renderSfGeo() {
     const sky = liveSky(sfState, sfRegion, player);
     const view = sfBoardView(geoKind, sfState, sfSpec, sky);
+    if (geoKind === "challenge") {
+      const good = sfSpec.challenge.sites.find((site) => site.ok);
+      if (good) {
+        view.lead = `Walk to ${formatLatLon(worldToLatLon(sfRegion, good.x, good.y), 4)}. Match the live reading. Pair labels are not the answer.`;
+      }
+    }
     ui.showGeoBoard(true, view, {
       onPick(group, id) {
         if (geoKind === "shadow" && group === "explain") sfState.rotationExplain = id;
         if (geoKind === "seasons" && group === "explain") sfState.seasonExplain = id;
         if (geoKind === "orbit" && group === "ecc") setOrbitEccentricity(sfState, Number(id));
-        if (geoKind === "kepler" && group === "period") sfState.kepler.predictedP = Number(id);
-        if (geoKind === "moon" && group === "predict") sfState.moonPredict = id;
+        if (geoKind === "moon" && group === "now") sfState.pendingMoon = id;
         if (geoKind === "eclipse" && group === "tilt") alignEclipse(sfState, id !== "off");
-        if (geoKind === "eclipse" && group === "explain") sfState.lastHint = "";
-        if (geoKind === "eclipse") sfState._eclipseChoice = group === "explain" ? id : sfState._eclipseChoice;
+        if (geoKind === "eclipse" && group === "will") sfState._eclipseWill = id;
+        if (geoKind === "eclipse" && group === "explain") sfState._eclipseChoice = id;
         if (geoKind === "tides" && group === "pattern") sfState.tides.pattern = id;
+        if (geoKind === "tides" && group === "predict") predictTide(sfState, id);
         if (geoKind === "planets" && group === "pattern") sfState.planets.pattern = id;
         if (geoKind === "challenge") {
           if (group === "reason") {
@@ -1234,19 +1356,25 @@ export async function boot(root = document) {
         }
         renderGeo();
       },
+      onNumber(_id, value) {
+        if (geoKind === "kepler") sfState.kepler.predictedP = Number(value);
+      },
       onTry() {
         let result = { ok: false };
         if (geoKind === "shadow") result = explainRotation(sfState, sfState.rotationExplain);
         else if (geoKind === "seasons") result = explainSeasons(sfState, sfState.seasonExplain);
         else if (geoKind === "orbit") result = measureOrbit(sfState);
-        else if (geoKind === "kepler") result = predictKepler(sfState, sfState.kepler.predictedP);
-        else if (geoKind === "moon") {
-          useMoonGeometry(sfState);
-          takeEvidence({ evidence: [{ competencyId: "moon", kind: "moon-geometry" }] });
-          result = predictMoon(sfState, sfState.moonPredict);
-        } else if (geoKind === "eclipse") result = explainEclipse(sfState, sfState._eclipseChoice);
-        else if (geoKind === "tides") result = compareTides(sfState, sfState.tides.pattern);
-        else if (geoKind === "planets") result = classifyPlanets(sfState, sfState.planets.pattern);
+        else if (geoKind === "kepler") {
+          if (sfState.kepler.ok && !sfState.kepler.modelChecked) result = advanceKeplerModel(sfState);
+          else result = predictKepler(sfState, sfState.kepler.predictedP);
+        } else if (geoKind === "moon") {
+          result = predictMoonNow(sfState, sfState.pendingMoon);
+        } else if (geoKind === "eclipse") {
+          if (sfState._eclipseWill) predictEclipse(sfState, sfState._eclipseWill === "yes");
+          result = explainEclipse(sfState, sfState._eclipseChoice);
+        } else if (geoKind === "tides") {
+          result = compareTides(sfState, sfState.tides.pattern);
+        } else if (geoKind === "planets") result = classifyPlanets(sfState, sfState.planets.pattern);
         else if (geoKind === "challenge") {
           result = planObservation(sfState, sfSpec, sfState.challenge);
           if (result.ok) presentSfChallenge(sfState);
@@ -1254,6 +1382,7 @@ export async function boot(root = document) {
         takeEvidence(result);
         renderGeo();
         if (result.ok) ui.showToast("Noted", result.hint || view.title);
+        else if (result.hint) ui.showToast("Check the model", result.hint);
       }
     });
   }
@@ -1262,6 +1391,168 @@ export async function boot(root = document) {
     if (!geoOpen) return;
     if (isSunfall()) {
       renderSfGeo();
+      return;
+    }
+    if (geoKind === "obsint") {
+      const card = pendingCard(investigation.obsInt, invState.obsInt, discoveryState.foundIds);
+      ui.showGeoBoard(
+        true,
+        {
+          title: "What can you see?",
+          lead: "Pick the sentence that stays with the rock in front of you.",
+          status: invState.lastHint || "",
+          ok: false,
+          tryLabel: "Sort this pair",
+          obsInt: card
+            ? {
+                prompt: card.prompt,
+                observation: card.observation,
+                interpretation: card.interpretation,
+                selected: invState._obsChoice || null
+              }
+            : null,
+          hideTry: !card
+        },
+        {
+          onPick(_group, id) {
+            invState._obsChoice = id;
+            renderGeo();
+          },
+          onTry() {
+            if (!card) {
+              closeGeo();
+              return;
+            }
+            const result = classifyCard(invState.obsInt, investigation.obsInt, card.id, invState._obsChoice);
+            invState.lastHint = result.hint;
+            persist();
+            renderGeo();
+            if (result.ok) {
+              ui.showToast("Observation", result.hint);
+              closeGeo();
+            } else ui.showToast("Look again", result.hint);
+          }
+        }
+      );
+      return;
+    }
+    if (geoKind === "scale") {
+      const trails = [hcSpec.routes.a, hcSpec.routes.b];
+      ui.showGeoBoard(
+        true,
+        {
+          title: "How far on the land?",
+          lead: `The bar on the sketch is ${hcSpec.scaleBarMeters || 200} m. Count bars along a trail, then check the walk.`,
+          status: hcState.lastHint,
+          ok: (hcState.scaleEstimates || []).filter((row) => row.ok).length >= 2,
+          numberInput: { id: "meters", label: "Your estimate (m)", value: hcState._scaleGuess || "" },
+          groups: [
+            {
+              id: "trail",
+              label: "Trail",
+              selected: hcState._scaleTrail,
+              items: trails.map((trail) => ({ id: trail.id, label: trail.label }))
+            }
+          ],
+          tryLabel: "Check against the land"
+        },
+        {
+          onPick(_group, id) {
+            hcState._scaleTrail = id;
+            renderGeo();
+          },
+          onNumber(_id, value) {
+            hcState._scaleGuess = value;
+          },
+          onTry() {
+            const result = estimateScale(
+              hcState,
+              hcSpec,
+              hcRegion,
+              heightAt,
+              hcState._scaleTrail,
+              hcState._scaleGuess
+            );
+            takeEvidence(result);
+            renderGeo();
+            if (!result.ok) ui.showToast("Use the bar", result.hint);
+            else ui.showToast("Scale", result.hint);
+          }
+        }
+      );
+      return;
+    }
+    if (geoKind === "terrain") {
+      const featureId = hcState._terrainFocus;
+      const item = hcSpec.terrainCompares.find((entry) => entry.id === featureId);
+      ui.showGeoBoard(
+        true,
+        {
+          title: "How do the lines sit?",
+          lead: item?.prompt || "Stand on the slope. Then look at topo spacing.",
+          status: hcState.lastHint,
+          ok: hcState.terrainCompares.includes(featureId),
+          groups: [
+            {
+              id: "spacing",
+              label: "On the map",
+              selected: (hcState.terrainChoices || {})[featureId],
+              items: hcSpec.spacingChoices
+            }
+          ]
+        },
+        {
+          onPick(_group, id) {
+            const result = compareTerrain(hcState, hcSpec, featureId, id);
+            takeEvidence(result);
+            renderGeo();
+            if (!result.ok) ui.showToast("Walk the land", result.hint);
+          },
+          onTry() {
+            closeGeo();
+          }
+        }
+      );
+      return;
+    }
+    if (geoKind === "washout") {
+      ui.showGeoBoard(
+        true,
+        {
+          title: "Why did this bank fail?",
+          lead: "Predict which trail sheds water faster after rain. Then look at the scar.",
+          status: hcState.lastHint,
+          ok: hcState.imageryCompared,
+          groups: [
+            {
+              id: "slope",
+              label: "Which slope sheds faster after rain?",
+              selected: hcState.slopePredict,
+              items: [
+                { id: "west", label: "The west switchback" },
+                { id: "east", label: "The east meadow trail" }
+              ]
+            }
+          ],
+          tryLabel: hcState.slopePredict ? "Compare with the ground" : "Lock prediction"
+        },
+        {
+          onPick(_group, id) {
+            predictWashoutSlope(hcState, id);
+            renderGeo();
+          },
+          onTry() {
+            if (!hcState.slopePredict) return;
+            hcState.washoutSeen = true;
+            const wash = hcRegion.props.find((prop) => prop.kind === "washout");
+            const result = compareImagery(hcState, hcSpec, player, wash);
+            takeEvidence(result);
+            renderGeo();
+            if (result.ok) ui.showToast("Washout", result.note || result.hint);
+            else ui.showToast("Not yet", result.hint);
+          }
+        }
+      );
       return;
     }
     if (geoKind === "routes") {
@@ -1512,6 +1803,10 @@ export async function boot(root = document) {
       return;
     }
     if (target.kind === "moon-site") {
+      if (!sfState.moonGeometry || !sfState.pendingMoon) {
+        openGeo("moon");
+        return;
+      }
       inspectLock = true;
       showDialogueLines("Night-sky viewpoint", [sfSpec.moonSite.prompt], 0, () => {
         const result = recordMoon(sfState, sfSpec, sfRegion, player);
@@ -1521,7 +1816,7 @@ export async function boot(root = document) {
         takeEvidence(result);
         if (result.ok) {
           ui.showToast("Sky log", result.row.name);
-          if (sfState.moonLog.length >= 4) openGeo("moon");
+          if (sfState.moonLog.length >= 2) ui.showToast("Sky log", result.row.name);
         } else if (result.hint) ui.showToast("Not yet", result.hint);
       }, "Log the Moon");
       return;
@@ -1540,6 +1835,19 @@ export async function boot(root = document) {
     }
     if (target.kind === "eclipse-desk") {
       openGeo("eclipse");
+      return;
+    }
+    if (target.kind === "sf-site") {
+      const result = visitChallengeSite(sfState, sfSpec, player);
+      inspectLock = true;
+      const live = formatLatLon(worldToLatLon(sfRegion, player.x, player.y), 4);
+      showDialogueLines("Coordinate pair", [`Live reading ${live}.`], 0, () => {
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        persist();
+        if (result.ok) ui.showToast("On station", result.site.label);
+      }, "Record this pair");
       return;
     }
     if (target.kind === "compare-sample") {
@@ -1631,6 +1939,20 @@ export async function boot(root = document) {
       talkHcWren();
       return;
     }
+    if (target.kind === "cache") {
+      inspectLock = true;
+      const live = liveReading(hcRegion, player, 4);
+      showDialogueLines("No signboard", [`Live reading ${live}. Match the cache pair.`], 0, () => {
+        const result = recordCache(hcState, hcSpec, hcRegion, player);
+        inspectLock = false;
+        dialogue = null;
+        ui.showDialogue(false);
+        takeEvidence(result);
+        if (result.ok) ui.showToast("Cache", result.reading);
+        else ui.showToast("Keep walking", result.hint);
+      }, "Record if it matches");
+      return;
+    }
     if (target.kind === "marker") {
       inspectLock = true;
       const digits = markerPrecision(player, target.spec);
@@ -1667,26 +1989,12 @@ export async function boot(root = document) {
       return;
     }
     if (target.kind === "terrain") {
-      const result = compareTerrain(hcState, hcSpec, target.id);
-      inspectLock = true;
-      showDialogueLines(target.feature.name, [result.prompt || target.feature.label], 0, () => {
-        inspectLock = false;
-        dialogue = null;
-        ui.showDialogue(false);
-        takeEvidence(result);
-      });
+      hcState._terrainFocus = target.id;
+      openGeo("terrain");
       return;
     }
     if (target.kind === "washout") {
-      hcState.washoutSeen = true;
-      const result = compareImagery(hcState, hcSpec, player, { x: target.x, y: target.y });
-      inspectLock = true;
-      showDialogueLines("Broken switchback", [hcSpec.imagery.note], 0, () => {
-        inspectLock = false;
-        dialogue = null;
-        ui.showDialogue(false);
-        takeEvidence(result);
-      });
+      openGeo("washout");
       return;
     }
     if (target.kind === "depth") {
@@ -1734,17 +2042,26 @@ export async function boot(root = document) {
       });
       return;
     }
-    if (recordedMarkerCount(hcState) >= 2 && hcState.measuredRoutes.length < 2) {
+    if (recordedMarkerCount(hcState) >= 2 && !hcState.cacheFound) {
+      showDialogueLines(
+        "Ranger Wren",
+        [`Spare cache is at ${cacheTarget(hcRegion, hcSpec)}. Walk until your live reading matches. No signboard.`],
+        0,
+        () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        }
+      );
+      return;
+    }
+    if (hcState.cacheFound && (hcState.scaleEstimates || []).filter((row) => row.ok).length < 2) {
       ui.showDialogue(true, "Ranger Wren", hcSpec.wren.afterMarkers[0], [
         {
-          label: "Measure the two trails",
+          label: "Use the scale bar",
           onClick: () => {
-            measureRoute(hcState, hcSpec, hcRegion, heightAt, hcSpec.routes.a.id);
-            const second = measureRoute(hcState, hcSpec, hcRegion, heightAt, hcSpec.routes.b.id);
-            takeEvidence(second);
             dialogue = null;
             ui.showDialogue(false);
-            openGeo("routes");
+            openGeo("scale");
           }
         },
         {
@@ -1755,6 +2072,10 @@ export async function boot(root = document) {
           }
         }
       ]);
+      return;
+    }
+    if ((hcState.scaleEstimates || []).filter((row) => row.ok).length >= 2 && !hcState.routeCompared) {
+      openGeo("routes");
       return;
     }
     if (hcState.routeCompared && hcState.terrainCompares.length < 2) {
@@ -1781,12 +2102,10 @@ export async function boot(root = document) {
       return;
     }
     if (hcState.gisOk && !hcState.imageryCompared) {
-      hcState.mapState.layersOn = [...new Set([...(hcState.mapState.layersOn || []), "imagery"])];
-      const result = compareImagery(hcState, hcSpec, player, hcRegion.props.find((prop) => prop.kind === "washout"));
-      takeEvidence(result);
       showDialogueLines("Ranger Wren", hcSpec.wren.afterGis, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
+        openGeo("washout");
       });
       return;
     }
@@ -2150,6 +2469,7 @@ export async function boot(root = document) {
     audio.setPlace(worldState.currentRegion, false);
     ui.setHint(controlHintText());
     refreshSkyClock();
+    refreshGuide();
     if (!presentation.openingSeen) {
       presentation.openingSeen = true;
       persist();
@@ -2187,6 +2507,12 @@ export async function boot(root = document) {
     if (!hit) return;
     worldState.selectedRegionId = hit.id;
     renderAtlas();
+  });
+
+  root.querySelector("#inspect-prompt")?.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (mode !== "play" || overlayBlocks()) return;
+    inspectTarget(currentTarget());
   });
 
   window.addEventListener("keydown", (event) => {
@@ -2374,6 +2700,7 @@ export async function boot(root = document) {
   ui.setHint("");
   resize();
   window.addEventListener("resize", resize);
+  window.visualViewport?.addEventListener("resize", resize);
 
   function step(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
@@ -2484,12 +2811,16 @@ export async function boot(root = document) {
         );
       } else if (target.kind === "flume") {
         ui.setPrompt("Use the runoff table · E");
+      } else if (target.kind === "cache") {
+        ui.setPrompt("Match the cache pair · E");
       } else if (target.kind === "marker") {
         ui.setPrompt("Record this reading · E");
       } else if (target.kind === "stake") {
         ui.setPrompt("Read the stake · E");
       } else if (target.kind === "challenge") {
         ui.setPrompt("Look closer · E");
+      } else if (target.kind === "sf-site") {
+        ui.setPrompt("Record this coordinate pair · E");
       } else if (target.kind === "gnomon") {
         ui.setPrompt("Record the shadow · E");
       } else if (target.kind === "moon-site") {
@@ -2504,7 +2835,14 @@ export async function boot(root = document) {
         ui.setPrompt("Use the alignment model · E");
       } else if (target.kind === "discovery") {
         const pending = availableMeasurementAt(investigation, invState, discoveryState, target.item.id);
-        ui.setPrompt(pending ? `${pending.actionLabel} · E` : "Look closer · E");
+        const sortCard = pendingCard(investigation.obsInt, invState.obsInt, discoveryState.foundIds);
+        ui.setPrompt(
+          pending
+            ? `${pending.actionLabel} · E`
+            : sortCard && sortCard.discoveryId === target.item.id
+              ? "Sort seen vs guessed · E"
+              : "Look closer · E"
+        );
       } else {
         ui.setPrompt(`Look closer · E`);
       }

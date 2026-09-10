@@ -37,14 +37,18 @@ import {
   setOrbitEccentricity,
   measureOrbit,
   predictKepler,
+  advanceKeplerModel,
   recordMoon,
   useMoonGeometry,
   predictMoon,
+  predictMoonNow,
   alignEclipse,
   explainEclipse,
+  predictTide,
   compareTides,
   classifyPlanets,
   planObservation,
+  visitChallengeSite,
   presentSfChallenge,
   addSfFind,
   identifyFind,
@@ -149,29 +153,28 @@ function playSunfall() {
 
   setOrbitEccentricity(state, 0.45);
   take(measureOrbit(state));
-  take(predictKepler(state, 8));
+  predictKepler(state, 8);
+  take(advanceKeplerModel(state));
 
   const moon = moonPlayer();
   state.sky.minutes = minutesForPhase("first quarter");
-  take(recordMoon(state, sfSpec, sfRegion, moon));
-  addDays(state.sky, 4);
   jumpObservation(state, "night", sfRegion, moon);
+  take(predictMoonNow(state, moonPhase(state.sky.minutes).name));
   take(recordMoon(state, sfSpec, sfRegion, moon));
-  addDays(state.sky, 4);
+  addDays(state.sky, 7);
   jumpObservation(state, "night", sfRegion, moon);
+  take(predictMoonNow(state, moonPhase(state.sky.minutes).name));
   take(recordMoon(state, sfSpec, sfRegion, moon));
-  addDays(state.sky, 5);
-  jumpObservation(state, "night", sfRegion, moon);
-  take(recordMoon(state, sfSpec, sfRegion, moon));
-  take(useMoonGeometry(state));
-  state.sky.minutes = minutesForPhase("first quarter");
-  take(predictMoon(state, "full"));
 
+  alignEclipse(state, false);
   alignEclipse(state, true);
   take(explainEclipse(state, "tilt"));
+  take(predictTide(state, "larger"));
   take(compareTides(state, "spring-new-full"));
   take(classifyPlanets(state, "distance-period"));
 
+  const mesa = sfSpec.challenge.sites.find((site) => site.ok);
+  visitChallengeSite(state, sfSpec, { x: mesa.x, y: mesa.y });
   planObservation(state, sfSpec, {
     site: "crater-floor",
     when: "noon",
@@ -293,8 +296,14 @@ check("mathematical orbit prediction can be performed and checked", () => {
   assert.equal(keplerCheck(4, 8).ok, true);
   assert.equal(keplerCheck(4, 2).ok, false);
   const state = createSfState();
-  assert.equal(predictKepler(state, 2).ok, false);
-  assert.equal(predictKepler(state, 8).ok, true);
+  const wrong = predictKepler(state, 2);
+  assert.equal(wrong.ok, false);
+  assert.equal(wrong.pendingModel, false);
+  const right = predictKepler(state, 8);
+  assert.equal(right.ok, false);
+  assert.equal(right.pendingModel, true);
+  assert.equal(advanceKeplerModel(state).ok, true);
+  assert.equal(state.kepler.modelChecked, true);
 });
 
 check("Moon phases change coherently and can be explained from geometry", () => {
@@ -305,19 +314,15 @@ check("Moon phases change coherently and can be explained from geometry", () => 
   const state = createSfState();
   const moon = moonPlayer();
   state.sky.minutes = minutesForPhase("new");
+  jumpObservation(state, "night", sfRegion, moon);
+  assert.equal(recordMoon(state, sfSpec, sfRegion, moon).ok, false);
+  assert.equal(predictMoonNow(state, moonPhase(state.sky.minutes).name).ok, true);
   assert.equal(recordMoon(state, sfSpec, sfRegion, moon).ok, true);
   addDays(state.sky, 7);
   jumpObservation(state, "night", sfRegion, moon);
+  predictMoonNow(state, moonPhase(state.sky.minutes).name);
   recordMoon(state, sfSpec, sfRegion, moon);
-  addDays(state.sky, 7);
-  jumpObservation(state, "night", sfRegion, moon);
-  recordMoon(state, sfSpec, sfRegion, moon);
-  addDays(state.sky, 8);
-  jumpObservation(state, "night", sfRegion, moon);
-  recordMoon(state, sfSpec, sfRegion, moon);
-  assert.ok(state.moonLog.length >= 4);
-  const names = new Set(state.moonLog.map((row) => row.name));
-  assert.ok(names.size >= 3, "several distinct phases");
+  assert.ok(state.moonLog.length >= 2);
   assert.equal(useMoonGeometry(state).ok, true);
   state.sky.minutes = minutesForPhase("first quarter");
   assert.equal(predictMoon(state, "new").ok, false);
@@ -346,6 +351,8 @@ check("tidal dataset relates to Moon/Sun geometry", () => {
   assert.ok(neap.length >= 1);
   assert.ok(Math.max(...spring.map((row) => row.range)) > Math.max(...neap.map((row) => row.range)));
   const state = createSfState();
+  assert.equal(compareTides(state, "spring-new-full").ok, false);
+  predictTide(state, "larger");
   assert.equal(compareTides(state, "random-weather").ok, false);
   assert.equal(compareTides(state, "spring-new-full").ok, true);
   assert.equal(classifyPlanets(state, "distance-period").ok, true);
@@ -380,6 +387,10 @@ check("tools are earned by use; opening tools awards no mastery", () => {
 check("Sunfall Field Challenge integrates competencies and allows revision", () => {
   const state = createSfState();
   state.kepler.a = 4;
+  state.kepler.ok = true;
+  state.kepler.modelChecked = true;
+  const mesa = sfSpec.challenge.sites.find((site) => site.ok);
+  visitChallengeSite(state, sfSpec, { x: mesa.x, y: mesa.y });
   const weak = planObservation(state, sfSpec, {
     site: "crater-floor",
     when: "noon",
@@ -388,6 +399,7 @@ check("Sunfall Field Challenge integrates competencies and allows revision", () 
     reasons: ["shortest-walk"]
   });
   assert.equal(weak.ok, false);
+  visitChallengeSite(state, sfSpec, { x: mesa.x, y: mesa.y });
   const strong = planObservation(state, sfSpec, {
     site: "mesa-rim",
     when: "night",

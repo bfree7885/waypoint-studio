@@ -24,6 +24,8 @@ import {
   createHcState,
   recordMarker,
   measureRoute,
+  estimateScale,
+  recordCache,
   compareRoutes,
   compareTerrain,
   collectStake,
@@ -33,6 +35,7 @@ import {
   pickGisSite,
   inspectLayerType,
   compareImagery,
+  predictWashoutSlope,
   recordDepth,
   planChallengeRoute,
   presentChallenge as presentHcChallenge,
@@ -114,18 +117,27 @@ function at(x, y) {
 function playHighCountry() {
   const state = createHcState();
   const mastery = createMasteryState();
-  for (const marker of hcSpec.markers.slice(0, 3)) {
+  for (const marker of hcSpec.markers.slice(0, 2)) {
     const result = recordMarker(state, hcSpec, marker.id, hcRegion, at(marker.x, marker.y));
     applyHcEvidence(mastery, recordEvidence, result.evidence);
   }
-  const m1 = measureRoute(state, hcSpec, hcRegion, heightAt, hcSpec.routes.a.id);
-  applyHcEvidence(mastery, recordEvidence, m1.evidence);
-  const m2 = measureRoute(state, hcSpec, hcRegion, heightAt, hcSpec.routes.b.id);
-  applyHcEvidence(mastery, recordEvidence, m2.evidence);
+  applyHcEvidence(
+    mastery,
+    recordEvidence,
+    recordCache(state, hcSpec, hcRegion, at(hcSpec.cache.x, hcSpec.cache.y)).evidence
+  );
+  for (const trailId of [hcSpec.routes.a.id, hcSpec.routes.b.id]) {
+    const actual = routeMetrics(hcRegion, heightAt, trailById(hcRegion, trailId)).distance;
+    applyHcEvidence(
+      mastery,
+      recordEvidence,
+      estimateScale(state, hcSpec, hcRegion, heightAt, trailId, actual).evidence
+    );
+  }
   const routes = compareRoutes(state, hcSpec, "east-meadow", ["gentler", "heavy-case", "wide-contours"]);
   applyHcEvidence(mastery, recordEvidence, routes.evidence);
-  applyHcEvidence(mastery, recordEvidence, compareTerrain(state, hcSpec, "west-cliff").evidence);
-  applyHcEvidence(mastery, recordEvidence, compareTerrain(state, hcSpec, "east-meadow").evidence);
+  applyHcEvidence(mastery, recordEvidence, compareTerrain(state, hcSpec, "west-cliff", "tight").evidence);
+  applyHcEvidence(mastery, recordEvidence, compareTerrain(state, hcSpec, "east-meadow", "wide").evidence);
   for (const stake of hcSpec.stakes.slice(0, 3)) {
     applyHcEvidence(
       mastery,
@@ -145,6 +157,7 @@ function playHighCountry() {
   applyHcEvidence(mastery, recordEvidence, pickGisSite(state, hcSpec, "gis-good").evidence);
   applyHcEvidence(mastery, recordEvidence, inspectLayerType(state, hcSpec, "trails").evidence);
   toggleMapLayer(state.mapState, "imagery");
+  predictWashoutSlope(state, "west");
   const wash = hcRegion.props.find((prop) => prop.kind === "washout");
   applyHcEvidence(mastery, recordEvidence, compareImagery(state, hcSpec, at(wash.x, wash.y), wash).evidence);
   applyHcEvidence(
@@ -212,7 +225,9 @@ check("scale and distance measurements work", () => {
   const b = measureRoute(state, hcSpec, hcRegion, heightAt, "east-meadow");
   assert.ok(a.metrics.distance > 800);
   assert.ok(b.metrics.distance > a.metrics.distance);
-  assert.equal(state.measuredRoutes.length, 2);
+  assert.equal(a.evidence.length, 0, "computed route length is not scale mastery");
+  const guess = estimateScale(state, hcSpec, hcRegion, heightAt, "west-switchback", a.metrics.distance);
+  assert.equal(guess.ok, true);
   const trail = trailById(hcRegion, "west-switchback");
   assert.ok(polylineLengthMeters(hcRegion, trail.points) > 0);
 });
@@ -272,6 +287,8 @@ check("GIS layers toggle and multiple layers support a spatial decision", () => 
 check("remote sensing can be compared with field and map data", () => {
   const state = createHcState();
   const wash = hcRegion.props.find((prop) => prop.kind === "washout");
+  assert.equal(compareImagery(state, hcSpec, at(wash.x, wash.y), wash).ok, false);
+  predictWashoutSlope(state, "west");
   const result = compareImagery(state, hcSpec, at(wash.x, wash.y), wash);
   assert.equal(result.ok, true);
   assert.match(result.note, /scar|switchback|sketch/i);

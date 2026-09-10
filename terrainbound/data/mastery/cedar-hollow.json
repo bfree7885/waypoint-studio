@@ -28,7 +28,7 @@
         "playerVisible": false
       },
       "requires": [
-        { "kind": "discovery-inspect", "count": 1, "source": "observation" }
+        { "kind": "obs-int-sort", "count": 2, "source": "observation" }
       ]
     },
     {
@@ -119,7 +119,7 @@
       "internalLabel": "Systems",
       "studentLabel": "Earth systems",
       "fieldRecord": true,
-      "description": "Recognize interactions among Earth-system components.",
+      "description": "Link atmosphere, hydrosphere, and geosphere in one event — not by finishing two unrelated stories.",
       "elicitedNow": true,
       "standardsSlot": {
         "pe": null,

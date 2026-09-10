@@ -63,9 +63,9 @@
       "radius": 48,
       "location": "Outside bend of Pine Creek",
       "prompt": "The bank is undercut. Roots hang in empty air.",
-      "text": "The creek is taking this side. The other side is keeping what the water drops.",
+      "text": "The outside bank drops away. Roots hang over empty space. The inside of the bend is a different shape.",
       "wrenHint": "Watch the outside of the bend below the woods. The bank isn't as solid as it looks.",
-      "wrenAck": "That hanging-root bank? The creek's been chewing it for years. Last night just hurried.",
+      "wrenAck": "That hanging-root bank? Look at both sides of the bend before you decide what the creek is doing.",
       "curriculumSlotIds": ["erosion-and-deposition"]
     },
     {
@@ -77,7 +77,7 @@
       "radius": 48,
       "location": "Inside bend of Pine Creek",
       "prompt": "Pale sand piled where the current slackens.",
-      "text": "Fine stuff collected on the inside of the bend. The water slowed down here.",
+      "text": "Pale sand is piled on the inside of the bend. The water here looks slower than on the far bank.",
       "wrenHint": "If the outside of a bend is stealing dirt, the inside is usually keeping some.",
       "wrenAck": "You found the bar. Same creek, two different jobs.",
       "curriculumSlotIds": ["erosion-and-deposition"]
@@ -91,9 +91,9 @@
       "radius": 46,
       "location": "Pine Creek bed",
       "prompt": "The stones in the water are smoother than the ones on the hill.",
-      "text": "These have been rolled. The sharp ones are still upslope.",
+      "text": "Stones in the creek feel smoother than stones on the slope. The sharp ones are still upslope.",
       "wrenHint": "Compare a rock from the slope with one from the creek. Don't take them home — just look.",
-      "wrenAck": "Smoother in the water, sharper on the hill. That's a quiet kind of clock.",
+      "wrenAck": "Smoother in the water, sharper on the hill. Write what you saw before you name a clock.",
       "curriculumSlotIds": ["weathering-and-bedrock"]
     },
     {
@@ -105,7 +105,7 @@
       "radius": 58,
       "location": "West of Mirror Pond",
       "prompt": "The ground gives a little. It smells like wet leaves.",
-      "text": "Water isn't only in the creek. It's in the ground here, holding up the reeds.",
+      "text": "The ground gives underfoot. Reeds stand in wet soil west of the pond.",
       "wrenHint": "West of the pond it gets squishy. Boots tell the truth before maps do.",
       "wrenAck": "The marsh keeps water around even after the creek calms down.",
       "curriculumSlotIds": ["wetlands-and-groundwater"]
@@ -133,7 +133,7 @@
       "radius": 50,
       "location": "Westface Slope",
       "prompt": "Tiny channels after the rain, shining where the grass parted.",
-      "text": "The hill is moving, slowly, one night at a time.",
+      "text": "Tiny shining channels cut through the grass on the steep west face.",
       "wrenHint": "On the steep west face, look at the grass itself — it has new partings.",
       "wrenAck": "Those little rills are how a slope starts a creek.",
       "curriculumSlotIds": ["erosion-and-deposition"]
@@ -161,9 +161,9 @@
       "radius": 48,
       "location": "South shoulder of Granite Knob",
       "prompt": "The soil is wet here, even though the rain has stopped.",
-      "text": "Water is coming out of the hill, not just off it.",
+      "text": "Soil stays dark and wet on this shoulder after a dry morning. The grass upslope is not.",
       "wrenHint": "South of the knob the ground stays dark after a dry morning. Worth a look.",
-      "wrenAck": "The seep is shy. Most people walk past and think it's just shade.",
+      "wrenAck": "The seep is shy. Most people walk past. Wet soil after a dry morning is the observation.",
       "curriculumSlotIds": ["wetlands-and-groundwater"]
     },
     {

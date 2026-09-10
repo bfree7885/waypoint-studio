@@ -94,10 +94,12 @@ export function courseTopicNumbers(world) {
   return world.courseOrder.map((region) => region.curriculumTopic);
 }
 
-export function hitTestRegion(world, canvas, clientX, clientY, pad = 28) {
+export function hitTestRegion(world, canvas, clientX, clientY, padCss = 44) {
   const rect = canvas.getBoundingClientRect();
+  if (!rect.width || !rect.height) return null;
   const x = ((clientX - rect.left) / rect.width) * canvas.width;
   const y = ((clientY - rect.top) / rect.height) * canvas.height;
+  const pad = padCss * (canvas.width / rect.width);
   let best = null;
   let bestD = pad;
   for (const region of world.regions) {
@@ -123,9 +125,10 @@ function landPath(ctx, w, h) {
   ctx.closePath();
 }
 
-function drawSilhouette(ctx, type, x, y, color) {
+function drawSilhouette(ctx, type, x, y, color, s = 1) {
   ctx.save();
   ctx.translate(x, y);
+  ctx.scale(s, s);
   ctx.fillStyle = color;
   ctx.strokeStyle = "rgba(20, 32, 24, 0.35)";
   ctx.lineWidth = 1.2;
@@ -210,6 +213,9 @@ function drawSilhouette(ctx, type, x, y, color) {
 export function drawWorldMap(ctx, world, worldState, selectedId) {
   const w = ctx.canvas.width;
   const h = ctx.canvas.height;
+  const cssW = ctx.canvas.clientWidth || w;
+  const px = w / Math.max(cssW, 1);
+  const mark = Math.max(px, w / 720);
   ctx.clearRect(0, 0, w, h);
 
   const sky = ctx.createLinearGradient(0, 0, 0, h);
@@ -261,8 +267,8 @@ export function drawWorldMap(ctx, world, worldState, selectedId) {
     ctx.moveTo(ax, ay);
     ctx.lineTo(bx, by);
     ctx.strokeStyle = open ? "#c45c26" : "rgba(80, 70, 50, 0.45)";
-    ctx.lineWidth = open ? 3.5 : 2;
-    ctx.setLineDash(open ? [] : [6, 7]);
+    ctx.lineWidth = open ? 3.5 * mark : 2 * mark;
+    ctx.setLineDash(open ? [] : [6 * mark, 7 * mark]);
     ctx.stroke();
     ctx.setLineDash([]);
   }
@@ -271,32 +277,36 @@ export function drawWorldMap(ctx, world, worldState, selectedId) {
     const x = (region.map.x / 100) * w;
     const y = (region.map.y / 100) * h;
     const selected = region.id === selectedId;
-    drawSilhouette(ctx, region.silhouette, x, y - 6, region.colors.land);
+    drawSilhouette(ctx, region.silhouette, x, y - 6 * mark, region.colors.land, mark);
     ctx.beginPath();
-    ctx.arc(x, y + 14, selected ? 7 : 5, 0, Math.PI * 2);
+    ctx.arc(x, y + 14 * mark, (selected ? 7 : 5) * mark, 0, Math.PI * 2);
     ctx.fillStyle = region.colors.accent;
     ctx.fill();
     if (selected) {
       ctx.strokeStyle = "#f4efe2";
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2 * mark;
       ctx.beginPath();
-      ctx.arc(x, y + 14, selected ? 7 : 5, 0, Math.PI * 2);
+      ctx.arc(x, y + 14 * mark, (selected ? 7 : 5) * mark, 0, Math.PI * 2);
       ctx.stroke();
     }
     if (worldState.currentRegion === region.id) {
       ctx.strokeStyle = "#f4efe2";
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3 * mark;
       ctx.beginPath();
-      ctx.arc(x, y + 14, 11, 0, Math.PI * 2);
+      ctx.arc(x, y + 14 * mark, 11 * mark, 0, Math.PI * 2);
       ctx.stroke();
     }
     if (region.implementationState === "playable") {
       ctx.fillStyle = "#e8d7a8";
-      ctx.fillRect(x - 2, y - 18, 4, 6);
+      ctx.fillRect(x - 2 * mark, y - 18 * mark, 4 * mark, 6 * mark);
     }
     ctx.fillStyle = "#1d2a1c";
-    ctx.font = selected ? "700 12px Trebuchet MS, sans-serif" : "600 11px Trebuchet MS, sans-serif";
+    const fontPx = Math.round((selected ? 13 : 12) * px);
+    ctx.font = `${selected ? 700 : 600} ${fontPx}px Trebuchet MS, sans-serif`;
     ctx.textAlign = "center";
-    ctx.fillText(region.name, x, y + 30);
+    const labelSelected = selected || worldState.currentRegion === region.id;
+    if (cssW >= 360 || labelSelected) {
+      ctx.fillText(region.name, x, y + 30 * mark);
+    }
   }
 }

@@ -95,6 +95,12 @@ export function bindUi(root) {
   const skyClockJumps = root.querySelector("#sky-clock-jumps");
   const skyClockExtra = root.querySelector("#sky-clock-extra");
   const skyClockFull = root.querySelector("#sky-clock-full");
+  const guide = root.querySelector("#field-guide");
+  const guideQuestion = root.querySelector("#guide-question");
+  const guideVerb = root.querySelector("#guide-verb");
+  const guideNext = root.querySelector("#guide-next");
+  const guideWhere = root.querySelector("#guide-where");
+  const guidePairs = root.querySelector("#guide-pairs");
   const dataCaption = root.querySelector("#data-caption");
   const dataTable = root.querySelector("#journal-data-table");
   const journalGraph = root.querySelector("#journal-graph");
@@ -152,6 +158,33 @@ export function bindUi(root) {
       if (placeName) placeName.textContent = name;
       if (placeSub) placeSub.textContent = sub;
       if (journalTitle) journalTitle.textContent = name;
+    },
+    setGuide(model, visible = true) {
+      if (!guide) return;
+      if (!visible || !model) {
+        guide.hidden = true;
+        return;
+      }
+      guide.hidden = false;
+      if (guideQuestion) guideQuestion.textContent = model.question || "";
+      if (guideVerb) guideVerb.textContent = model.verb || "";
+      if (guideNext) guideNext.textContent = model.next || "";
+      if (guideWhere) {
+        const bits = [model.where, model.lookingFor].filter(Boolean);
+        guideWhere.textContent = bits.join(" · ");
+      }
+      if (guidePairs) {
+        const pairs = (model.pairs || []).filter((pair) => !pair.compared);
+        guidePairs.hidden = !pairs.length;
+        guidePairs.replaceChildren();
+        for (const pair of pairs) {
+          const li = document.createElement("li");
+          const left = pair.left.have ? "recorded" : "needed";
+          const right = pair.right.have ? "recorded" : "needed";
+          li.textContent = `${pair.left.label}: ${left}  ·  ${pair.right.label}: ${right}`;
+          guidePairs.appendChild(li);
+        }
+      }
     },
     setEnterLabel(hasSave) {
       if (enterBtn) {
@@ -248,6 +281,14 @@ export function bindUi(root) {
         empty.className = "journal-empty";
         empty.textContent = view.emptyNotes || "No mission notes yet. Walk the hollow and inspect what you find.";
         missionBody.appendChild(empty);
+      }
+      if (view.guide) {
+        missionBody.prepend(
+          noteArticle(
+            `${view.guide.verb} · ${view.guide.question}`,
+            `${view.guide.next}${view.guide.where ? " (" + view.guide.where + ")" : ""}`
+          )
+        );
       }
       for (const item of observations) {
         missionBody.appendChild(noteArticle(item.title, item.text));
@@ -520,6 +561,12 @@ export function bindUi(root) {
       if (!open) return;
       fillChips(flumeSlopes, view.slopes, view.slope, handlers.onSlope);
       fillChips(flumeWater, view.waters, view.water, handlers.onWater);
+      if (view.predictOptions) {
+        const pred = root.querySelector("#flume-predict") || flumeSlopes;
+        if (root.querySelector("#flume-predict")) {
+          fillChips(root.querySelector("#flume-predict"), view.predictOptions, view.prediction, handlers.onPredict);
+        }
+      }
       if (flumeStatus) flumeStatus.textContent = view.status || "";
       if (flumeLog) {
         flumeLog.replaceChildren();
@@ -553,14 +600,24 @@ export function bindUi(root) {
       clearance.hidden = !open;
       if (!open) return;
       if (clearanceProgress) clearanceProgress.textContent = view.progress || "";
-      fillChips(clearanceExplanations, view.explanations, view.selectedExplanation, handlers.onExplanation);
+      const pulse = Boolean(view.needsPulse);
+      if (clearanceExplanations) clearanceExplanations.hidden = pulse;
       const follow = Boolean(view.needsFollowUp);
-      if (clearanceFollowKicker) clearanceFollowKicker.hidden = !follow;
-      if (clearanceFollow) {
-        clearanceFollow.hidden = !follow;
-        if (follow) fillChips(clearanceFollow, view.followOptions, view.followId, handlers.onFollow);
+      if (clearanceFollowKicker) {
+        clearanceFollowKicker.hidden = !(follow || pulse);
+        if (pulse) clearanceFollowKicker.textContent = view.pulsePrompt || "Predict first";
+        else if (follow) clearanceFollowKicker.textContent = "One more check";
       }
-      if (clearanceTry) clearanceTry.hidden = follow || view.concluded;
+      if (clearanceFollow) {
+        clearanceFollow.hidden = !(follow || pulse);
+        if (pulse) fillChips(clearanceFollow, view.pulseOptions, view.pulseId, handlers.onPulse);
+        else if (follow) fillChips(clearanceFollow, view.followOptions, view.followId, handlers.onFollow);
+      }
+      if (!pulse) fillChips(clearanceExplanations, view.explanations, view.selectedExplanation, handlers.onExplanation);
+      if (clearanceTry) {
+        clearanceTry.hidden = follow || view.concluded;
+        clearanceTry.textContent = pulse ? "Record prediction" : "Try this explanation";
+      }
       if (clearanceFollowTry) clearanceFollowTry.hidden = !follow || view.concluded;
       if (clearanceStatus) {
         clearanceStatus.textContent = view.status || "";
@@ -605,6 +662,38 @@ export function bindUi(root) {
         }
         if (view.table) {
           geoBody.appendChild(buildGenericTable(view.table.columns, view.table.rows));
+        }
+        if (view.numberInput) {
+          const kicker = document.createElement("p");
+          kicker.className = "hypothesis-kicker";
+          kicker.textContent = view.numberInput.label || "Value";
+          geoBody.appendChild(kicker);
+          const input = document.createElement("input");
+          input.type = "number";
+          input.step = "any";
+          input.id = "geo-number";
+          input.setAttribute("aria-label", view.numberInput.label || "Value");
+          input.value = view.numberInput.value == null ? "" : String(view.numberInput.value);
+          input.addEventListener("input", () => handlers.onNumber?.(view.numberInput.id, input.value));
+          geoBody.appendChild(input);
+        }
+        if (view.obsInt) {
+          const kicker = document.createElement("p");
+          kicker.className = "hypothesis-kicker";
+          kicker.textContent = view.obsInt.prompt;
+          geoBody.appendChild(kicker);
+          const row = document.createElement("div");
+          row.className = "chip-row";
+          geoBody.appendChild(row);
+          fillChips(
+            row,
+            [
+              { id: "observation", label: view.obsInt.observation },
+              { id: "interpretation", label: view.obsInt.interpretation }
+            ],
+            view.obsInt.selected,
+            (id) => handlers.onPick?.("choice", id)
+          );
         }
         if (view.groups) {
           for (const group of view.groups) {
@@ -740,10 +829,13 @@ function evidenceArticle(card) {
   kind.textContent = KIND_LABEL[card.kind] || "Observation";
   const obs = document.createElement("p");
   obs.textContent = card.observation;
-  const sig = document.createElement("p");
-  sig.className = "evidence-sig";
-  sig.textContent = card.significance;
-  art.append(h, kind, obs, sig);
+  art.append(h, kind, obs);
+  if (card.interpreted && card.significance) {
+    const sig = document.createElement("p");
+    sig.className = "evidence-sig";
+    sig.textContent = card.significance;
+    art.appendChild(sig);
+  }
   if (card.question) {
     const q = document.createElement("p");
     q.className = "evidence-q";

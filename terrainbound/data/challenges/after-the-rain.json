@@ -87,9 +87,17 @@
       "role": "irrelevant"
     }
   ],
-  "minObserved": 3,
+  "minObserved": 4,
   "minMeasured": 2,
-  "neededRoles": ["join", "source"],
+  "neededRoles": ["weather", "join", "source"],
+  "pulsePredict": {
+    "prompt": "If last night's rain hit a steep loose slope, where should the creek first turn brown?",
+    "options": [
+      { "id": "station-creek", "label": "Below the station, before any tributary", "ok": false, "hint": "The stretch by the station can stay relatively clear. Walk farther." },
+      { "id": "confluence", "label": "Where a side run meets Pine Creek", "ok": true },
+      { "id": "mirror-pond", "label": "At Mirror Pond overflow", "ok": false, "hint": "The pond sits downstream of the join. Test that on the ground." }
+    ]
+  },
   "explanations": [
     {
       "id": "tributary-slump",

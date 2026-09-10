@@ -27,7 +27,10 @@
         "code": null,
         "playerVisible": false
       },
-      "requires": [{ "kind": "record-marker", "count": 3, "source": "investigation" }]
+      "requires": [
+        { "kind": "record-marker", "count": 2, "source": "investigation" },
+        { "kind": "navigate-coord", "count": 1, "source": "investigation" }
+      ]
     },
     {
       "id": "scale",

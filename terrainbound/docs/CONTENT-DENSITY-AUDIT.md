@@ -77,13 +77,34 @@ Flag any long uninterrupted tablet sequence that could have been a world action.
 
 These rows document the current three-region slice. They do not add curriculum.
 
+### BEFORE Phase 7.8B (audit 7.8A)
+
+| Region | Concept / skill | NOTICE | MEASURE / COMPARE | USE | TRANSFER | Gap |
+| --- | --- | --- | --- | --- | --- | --- |
+| Cedar Hollow | Observation vs interpretation | Inspect a find | One inspect awarded mastery | Notes in landscape case | Missing | One click |
+| Cedar Hollow | Fair test | See table | Time trials | Graph | Unfair extra water | Strong |
+| Cedar Hollow | Earth systems | Two stories | — | Challenge MC | — | Awarded for finishing stories |
+| High Country | Scale | Open map | Software computed length | Route compare | None | Player never used a bar |
+| High Country | Contours | Walk slope | Prompt said tight=steep | Connect 1400 m | Weak | Leaked |
+| High Country | Coordinates | Brass cap | Display lat/lon | — | None | Display ≠ find |
+| Sunfall | Kepler | Orbit table | Pick 8 from 2/4/8/16 | Plan window | None | Recognition |
+| Sunfall | Moon / eclipse / tides | Model / table | Log or toggle | Choose labeled sentence | None | MC repeats the table |
+| Cross-region | CH → HC, HC → SF | Isolated units | — | — | None | Mandatory gap |
+
+### AFTER Phase 7.8B
+
 | Region | Concept / skill | NOTICE | MEASURE / COMPARE | USE | TRANSFER | Layer | Evidence |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Cedar Hollow | Observation vs interpretation | Walk the hollow; inspect a feature | Record what was seen, not guessed | Use notes in the water-path case | Later regions still require observation before naming | A | discovery-inspect |
-| Cedar Hollow | Fair test (slope vs speed) | See the runoff table in the world | Time one change at a time | Compare two fair slope trials | Unfair extra-water trial must be rejected | A | fair-variable-test |
-| High Country | Coordinates / location | Find Ridgeline Station on the land | Record three field markers | Use coordinates to return | Later regions keep the map/tablet as equipment | A | record-marker |
-| High Country | Terrain / route | Read ridge, slope, washout without a lecture | Measure a segment; compare map vs ground | Choose a route from the profile | Maps remain tools after High Country | A | route / profile |
-| Sunfall | Daily sky / rotation | Watch the gnomon shadow | Log morning, noon, afternoon | Explain with Earth's rotation | Night/Moon work still uses the clock | A | shadow-log |
-| Sunfall | Seasons vs distance | Winter / equinox / summer noon | Compare Sun height and day length | Reject distance as the cause | Later sky work may reuse tilt | A | season-noon |
+| Cedar Hollow | Observation vs interpretation | Inspect boulder / bedrock | Sort seen vs guessed sentences (×2) | Use notes as evidence, not names | Later regions still require observation before naming | A | obs-int-sort |
+| Cedar Hollow | Fair test (slope vs speed) | See the runoff table | Predict, then time one change | Graph two fair slopes | Unfair extra-water trial must be rejected | A | fair-variable-test |
+| Cedar Hollow | Earth systems | Predict where the pulse starts | Rain gauge, Fox Run, Westface scar | Explain rain + slope + tributary | Washout slope in High Country | A | systems-link |
+| High Country | Coordinates / location | Brass cap on the land | Record a live reading on the cap | Walk an unlabeled cache to a coordinate pair | Sunfall observation window uses a walked pair | A | record-marker + navigate-coord |
+| High Country | Scale | 200 m bar on the sketch | Estimate trail length from the bar | Check against the walk; compare trails | Route still uses those distances | A | measure-route (estimate) |
+| High Country | Contours | Stand on cliff vs meadow | Choose how close the lines sit | Connect 1400 m stakes | Profile prediction from plan view | A | terrain-compare |
+| High Country | Slope / runoff (transfer) | Broken west switchback | Predict which slope sheds faster | Compare scar vs sketch | From Cedar Hollow, not reteached | B | washout slope predict |
+| Sunfall | Kepler | Sandskip-1 missing period | Compute P from P² = a³ | Advance the model to check | Return time in the observation plan | A | kepler-predict after model |
+| Sunfall | Moon geometry | Alignment model | Predict phase, then mesa at night | Geometry must match the sky | Thin Moon in the observation window | A | moon-geometry + moon-log |
+| Sunfall | Eclipses / tides | Hit and miss in the model | Predict new-Moon range before the table | Tilt explains why not every month | Window still needs thin Moon | A | eclipse-tilt + tide predict |
+| Sunfall | Maps (transfer) | Unlabeled coordinate pairs | Walk until live reading matches | Dark-sky site choice | From High Country, not announced | B | visitChallengeSite |
 
-Do not expand Cedar Hollow, High Country, or Sunfall curriculum in a density/readability phase.
+Do not expand remaining regions until this three-region template is inherited.

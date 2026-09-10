@@ -14,7 +14,9 @@ export function createChallengeState() {
     presented: false,
     revised: false,
     followUpDone: false,
-    workingRoles: []
+    workingRoles: [],
+    conflicted: false,
+    pulsePredict: null
   };
 }
 
@@ -73,6 +75,7 @@ export function challengeRows(state, spec) {
 
 export function canProposeChallenge(state, spec) {
   if (!state.active || state.concluded) return false;
+  if (spec.pulsePredict && !state.pulsePredict) return false;
   if (state.observedIds.length < (spec.minObserved || 3)) return false;
   if (state.measuredIds.length < (spec.minMeasured || 2)) return false;
   const roles = new Set(
@@ -90,7 +93,7 @@ export function tryChallengeExplanation(state, spec, explanationId) {
     return { ok: false, hint: state.lastHint };
   }
   if (!pick.correct) {
-    state.revised = true;
+    state.conflicted = true;
     state.lastHint = pick.hint;
     return { ok: false, hint: pick.hint };
   }
@@ -102,12 +105,12 @@ export function tryChallengeFollowUp(state, spec, optionId) {
   const option = spec.followUp.options.find((item) => item.id === optionId);
   if (!option) return { ok: false };
   if (!option.ok) {
-    state.revised = true;
+    state.conflicted = true;
     state.lastHint = option.hint;
     return { ok: false, hint: option.hint };
   }
+  if (state.conflicted) state.revised = true;
   state.followUpDone = true;
-  state.revised = true;
   state.concluded = true;
   state.presented = true;
   state.lastHint = spec.success;
@@ -128,3 +131,23 @@ export function challengeProgress(state, spec) {
   const counts = `${state.measuredIds.length} measurements`;
   return measured ? `${walked}. ${counts}. ${measured}` : `${walked}. ${counts}.`;
 }
+
+export function predictPulse(state, spec, optionId) {
+  const option = spec.pulsePredict?.options?.find((item) => item.id === optionId);
+  if (!option) return { ok: false, hint: "Predict where the brown pulse should start." };
+  state.pulsePredict = optionId;
+  if (!option.ok) {
+    state.lastHint = option.hint;
+    return { ok: false, hint: option.hint };
+  }
+  state.lastHint = "Now walk the creek and test that prediction.";
+  return { ok: true, hint: state.lastHint };
+}
+
+export function challengeHasSystems(state, spec) {
+  const roles = new Set(
+    (state.observedIds || []).map((id) => siteById(spec, id)?.role).filter(Boolean)
+  );
+  return (spec.neededRoles || ["weather", "join", "source"]).every((role) => roles.has(role));
+}
+

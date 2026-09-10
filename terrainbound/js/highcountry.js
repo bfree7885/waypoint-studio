@@ -50,14 +50,18 @@ export function createHcState() {
     challengePresented: false,
     foundIds: [],
     notes: [],
-    lastHint: ""
+    lastHint: "",
+    scaleEstimates: [],
+    cacheFound: false,
+    slopePredict: null,
+    terrainChoices: {}
   };
 }
 
 export function hcToolsFlags(state) {
   return {
-    coordinatesUsed: Object.keys(state.markers).length >= 3,
-    scaleUsed: state.measuredRoutes.length >= 2,
+    coordinatesUsed: recordedMarkerCount(state) >= 2 && Boolean(state.cacheFound),
+    scaleUsed: (state.scaleEstimates || []).filter((row) => row.ok).length >= 2,
     topoRead: state.contourOk || state.terrainCompares.length >= 2,
     elevationRead: state.stakes.length >= 3,
     profileUsed: state.profileMatch === true,
@@ -145,8 +149,60 @@ export function measureRoute(state, spec, region, heightAtFn, trailId) {
     ok: true,
     metrics,
     pair,
-    evidence: first ? [{ competencyId: "scale", kind: "measure-route" }] : []
+    evidence: []
   };
+}
+
+export function estimateScale(state, spec, region, heightAtFn, trailId, estimateMeters) {
+  const trail = trailById(region, trailId);
+  if (!trail) return { ok: false };
+  const actual = routeMetrics(region, heightAtFn, trail).distance;
+  const guess = Number(estimateMeters);
+  if (!Number.isFinite(guess) || guess <= 0) {
+    return { ok: false, hint: "Use the scale bar. Enter a distance in meters." };
+  }
+  const err = Math.abs(guess - actual) / actual;
+  const ok = err <= 0.3;
+  const row = { trailId, guess, actual: Math.round(actual), ok };
+  state.scaleEstimates = [...(state.scaleEstimates || []).filter((item) => item.trailId !== trailId), row];
+  if (!ok) {
+    state.lastHint = `The sketch bar is ${spec.scaleBarMeters || 200} m. Count bars along the trail. Your ${Math.round(guess)} m does not match the land.`;
+    return { ok: false, hint: state.lastHint, actual, guess };
+  }
+  if (!state.measuredRoutes.includes(trailId)) state.measuredRoutes = [...state.measuredRoutes, trailId];
+  state.lastHint = `You estimated ${Math.round(guess)} m. The walk is about ${Math.round(actual)} m. Close enough to trust the scale.`;
+  return {
+    ok: true,
+    hint: state.lastHint,
+    actual,
+    guess,
+    evidence: [{ competencyId: "scale", kind: "measure-route" }]
+  };
+}
+
+export function recordCache(state, spec, region, player) {
+  const cache = spec.cache;
+  if (!cache) return { ok: false };
+  if (!near(player, cache.x, cache.y, 48)) {
+    const live = liveReading(region, player, 4);
+    state.lastHint = `Keep walking. Live reading ${live}. Match the cache pair.`;
+    return { ok: false, hint: state.lastHint, live };
+  }
+  const already = state.cacheFound;
+  state.cacheFound = true;
+  const reading = liveReading(region, player, 5);
+  addNote(state, `Cache: ${reading}`);
+  return {
+    ok: true,
+    already,
+    reading,
+    evidence: already ? [] : [{ competencyId: "location", kind: "navigate-coord" }]
+  };
+}
+
+export function cacheTarget(region, spec) {
+  if (!spec?.cache) return "";
+  return formatLatLon(worldToLatLon(region, spec.cache.x, spec.cache.y), 4);
 }
 
 export function compareRoutes(state, spec, choiceId, reasonIds) {
@@ -180,9 +236,14 @@ export function toggleHcTopo(state) {
   return state.mapMode;
 }
 
-export function compareTerrain(state, spec, featureId) {
+export function compareTerrain(state, spec, featureId, spacingChoice) {
   const item = spec.terrainCompares.find((entry) => entry.id === featureId);
   if (!item) return { ok: false };
+  state.terrainChoices = { ...(state.terrainChoices || {}), [featureId]: spacingChoice };
+  if (spacingChoice !== item.expect) {
+    state.lastHint = "Walk the land. Then look at how close the topo lines sit. Do not guess from a vocabulary word.";
+    return { ok: false, hint: state.lastHint, prompt: item.prompt };
+  }
   if (!state.terrainCompares.includes(featureId)) {
     state.terrainCompares = [...state.terrainCompares, featureId];
   }
@@ -247,6 +308,10 @@ export function predictProfile(state, spec, shapeId) {
 }
 
 export function generateProfile(state, spec, region, heightAtFn) {
+  if (!state.profilePredict) {
+    state.lastHint = "Guess the side view from the map first. Then generate the profile.";
+    return { ok: false, hint: state.lastHint, profile: null, match: false };
+  }
   const a = spec.profile.a;
   const b = spec.profile.b;
   const profile = sampleProfile(region, heightAtFn, a.x, a.y, b.x, b.y);
@@ -255,11 +320,16 @@ export function generateProfile(state, spec, region, heightAtFn) {
   const predicted = state.profilePredict;
   const match = predicted === spec.profile.correctShape || predicted === shape;
   state.profileMatch = Boolean(predicted) && match;
+  state.lastHint = state.profileMatch
+    ? "The rise, a small drop, then the last climb. Side view from plan view."
+    : "The generated line is not a steady ramp. Walk the last rise or look at the topo. Then predict again.";
+  if (!state.profileMatch) state.profileGenerated = true;
   return {
     ok: true,
     profile,
     shape,
     match: state.profileMatch,
+    hint: state.lastHint,
     evidence: state.profileMatch ? [{ competencyId: "profile", kind: "profile-compare" }] : []
   };
 }
@@ -309,9 +379,21 @@ export function inspectLayerType(state, spec, layerId) {
   };
 }
 
+export function predictWashoutSlope(state, choiceId) {
+  state.slopePredict = choiceId;
+  const ok = choiceId === "west";
+  state.lastHint = ok
+      ? "Steep ground sheds water faster. That is why this bank failed."
+    : "Walk the west face, then the meadow. Which slope made your knees work?";
+  return { ok, hint: state.lastHint };
+}
+
 export function compareImagery(state, spec, player, washout) {
   const sawGround = state.washoutSeen || (washout && near(player, washout.x, washout.y, 90));
   if (sawGround) state.washoutSeen = true;
+  if (!state.slopePredict) {
+    return { ok: false, hint: "Before the image: predict which trail sheds water faster after rain." };
+  }
   const layersOn = hasLayer(state.mapState, "imagery");
   if (!sawGround && !layersOn) {
     return { ok: false, hint: "Look at the newer image, or walk the west switchback." };
@@ -419,19 +501,29 @@ export function applyHcEvidence(mastery, recordEvidenceFn, events) {
 
 export function hcReadyForChallenge(state) {
   return (
-    recordedMarkerCount(state) >= 3 &&
-    state.measuredRoutes.length >= 2 &&
+    recordedMarkerCount(state) >= 2 &&
+    state.cacheFound &&
+    (state.scaleEstimates || []).filter((row) => row.ok).length >= 2 &&
     state.routeCompared &&
+    state.terrainCompares.length >= 2 &&
     state.contourOk &&
     state.profileMatch &&
     state.gisOk &&
-    state.imageryCompared
+    state.imageryCompared &&
+    Boolean(state.slopePredict)
   );
 }
 
 export function hcInspectTarget(spec, catalog, region, player, state) {
   let best = null;
   let bestD = 70;
+  if (spec.cache) {
+    const d = dist(player.x, player.y, spec.cache.x, spec.cache.y);
+    if (d < 56) {
+      best = { kind: "cache", id: spec.cache.id, spec: spec.cache, x: spec.cache.x, y: spec.cache.y };
+      bestD = d;
+    }
+  }
   for (const marker of spec.markers) {
     const d = dist(player.x, player.y, marker.x, marker.y);
     if (d < bestD) {

@@ -18,6 +18,7 @@ import {
   runTrial,
   setFlumeSlope,
   setFlumeWater,
+  setFlumePrediction,
   hasFairComparison
 } from "../js/flume.js";
 import { loadCurriculumMap, assertNoPlayerFacingCodes } from "../js/curriculum.js";
@@ -157,6 +158,7 @@ check("celestial controls remain fully functional", () => {
 check("runoff fair-test mechanics unchanged", () => {
   assert.match(flumeSpec.unfairHint, /Two things changed/);
   const state = createFlumeState();
+  setFlumePrediction(state, "gentle");
   setFlumeSlope(state, "gentle");
   setFlumeWater(state, "extra");
   const unfair = runTrial(state, flumeSpec);

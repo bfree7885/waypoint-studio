@@ -12,7 +12,8 @@ export function createFlumeState() {
     lastHint: "",
     lastSeconds: null,
     unfairAttempted: false,
-    setupRevised: false
+    setupRevised: false,
+    prediction: null
   };
 }
 
@@ -42,7 +43,16 @@ export function trialSeconds(spec, slopeId, waterId, trialIndex) {
   return Math.round(seconds * 10) / 10;
 }
 
+export function setFlumePrediction(state, slopeId) {
+  state.prediction = slopeId;
+  return state;
+}
+
 export function runTrial(state, spec) {
+  if (!state.prediction) {
+    state.lastHint = "PREDICT which slope will finish first. Then pour.";
+    return { ok: false, needPredict: true, hint: state.lastHint };
+  }
   const water = waterById(spec, state.water);
   const fair = water.fair === true;
   const seconds = trialSeconds(spec, state.slope, state.water, state.trials.length);
@@ -68,7 +78,12 @@ export function runTrial(state, spec) {
   if (thisSlope.length === 1) {
     state.lastHint = spec.repeatHint;
   } else if (hasFairComparison(state, spec)) {
-    state.lastHint = spec.enoughHint;
+    const fastest = [...spec.slopes].sort((a, b) => a.baseSeconds - b.baseSeconds)[0];
+    if (state.prediction && state.prediction !== fastest.id) {
+      state.lastHint = `${fastest.label} finished first. That prediction did not match the table.`;
+    } else {
+      state.lastHint = spec.enoughHint;
+    }
   } else {
     state.lastHint = spec.constantsNote;
   }

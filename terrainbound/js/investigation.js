@@ -14,7 +14,8 @@ export function createInvestigationState() {
     lastHint: "",
     concluded: false,
     interpreted: false,
-    attempts: 0
+    attempts: 0,
+    obsInt: { sorts: [] }
   };
 }
 
@@ -124,7 +125,7 @@ export function evidenceModel(investigation, state) {
     active: state.active,
     concluded: state.concluded,
     interpreted: state.interpreted,
-    cards: found,
+    cards: found.map((card) => ({ ...card, interpreted: Boolean(state.interpreted) })),
     groups: groups.filter((group) => group.cards.length),
     hiddenIds: investigation.evidence.filter((card) => !hasEvidence(state, card.id)).map((card) => card.id)
   };

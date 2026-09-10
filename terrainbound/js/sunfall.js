@@ -42,13 +42,13 @@ export function createSfState() {
     seasonExplain: null,
     distanceConfronted: false,
     orbit: { a: 1, e: 0.05, nuDeg: 20, measured: false, eccentricCompared: false },
-    kepler: { a: 4, predictedP: null, checked: false, ok: false },
+    kepler: { a: 4, predictedP: null, checked: false, ok: false, modelChecked: false },
     moonLog: [],
     moonGeometry: false,
     moonPredict: null,
     moonPredictOk: false,
-    eclipse: { aligned: false, tiltOn: true, understood: false },
-    tides: { compared: false, pattern: null },
+    eclipse: { aligned: false, tiltOn: true, understood: false, seenHit: false, seenMiss: false },
+    tides: { compared: false, pattern: null, predict: null },
     planets: { classified: false, pattern: null },
     challenge: {
       site: null,
@@ -65,7 +65,9 @@ export function createSfState() {
     foundIds: [],
     notes: [],
     lastHint: "",
-    compareSampleSeen: false
+    compareSampleSeen: false,
+    pendingMoon: null,
+    visitedSite: null
   };
 }
 
@@ -74,7 +76,7 @@ export function sfToolsFlags(state) {
     solarUsed: state.shadows.length >= 3,
     clockUsed: state.clockUsed === true,
     orbitUsed: state.orbit.measured === true || state.orbit.eccentricCompared === true,
-    skyLogUsed: state.moonLog.length >= 3
+    skyLogUsed: state.moonLog.length >= 2
   };
 }
 
@@ -273,15 +275,32 @@ export function predictKepler(state, predictedP) {
   const check = keplerCheck(state.kepler.a, state.kepler.predictedP);
   state.kepler.checked = true;
   state.kepler.ok = check.ok;
+  state.kepler.modelChecked = false;
+  const a = state.kepler.a;
   state.lastHint = check.ok
-    ? "Sandskip-1 returns on that schedule. The sky matched the relation."
-    : "Advance the model. If the object is not back, the period is not that number.";
-  addNote(state, `Sandskip-1: a=${state.kepler.a} AU → predicted P=${predictedP}`);
+    ? "That period fits P² = a³. Advance the model. The rock should come back."
+    : `P² should equal a³. Here a = ${a} AU, so a³ = ${Math.pow(a, 3)}. P is in years.`;
+  addNote(state, `Sandskip-1: a=${a} AU → predicted P=${predictedP}`);
   return {
-    ok: check.ok,
+    ok: false,
+    pendingModel: check.ok,
     check,
     hint: state.lastHint,
-    evidence: check.ok ? [{ competencyId: "math-orbit", kind: "kepler-predict" }] : []
+    evidence: []
+  };
+}
+
+export function advanceKeplerModel(state) {
+  if (!state.kepler.ok) {
+    state.lastHint = "Enter a period that satisfies P² = a³ before you advance the model.";
+    return { ok: false, hint: state.lastHint };
+  }
+  state.kepler.modelChecked = true;
+  state.lastHint = "The model returned on that schedule. The relation held.";
+  return {
+    ok: true,
+    hint: state.lastHint,
+    evidence: [{ competencyId: "math-orbit", kind: "kepler-predict" }]
   };
 }
 
@@ -289,6 +308,9 @@ export function recordMoon(state, spec, region, player) {
   const site = spec.moonSite;
   if (!near(player, site.x, site.y, 100)) {
     return { ok: false, hint: "The night viewpoint is on the mesa rim. The station lights wash the sky here." };
+  }
+  if (!state.moonGeometry || !state.pendingMoon) {
+    return { ok: false, hint: "Predict the phase from the model first. Then check it from the mesa." };
   }
   const sky = liveSky(state, region, player);
   if (!sky.night) {
@@ -302,12 +324,20 @@ export function recordMoon(state, spec, region, player) {
     sunDown: sky.night,
     minutes: state.sky.minutes
   };
+  const matched = row.name === state.pendingMoon;
+  if (!matched) {
+    state.lastHint = `The mesa showed ${row.name}. Your prediction was ${state.pendingMoon}. Fix the geometry, then look again.`;
+    return { ok: false, hint: state.lastHint, row };
+  }
   state.moonLog = [...state.moonLog, row].slice(-8);
   addNote(state, `Moon ${row.label}: ${row.name}, ${Math.round(row.illumination * 100)}% lit`);
   return {
     ok: true,
     row,
-    evidence: state.moonLog.length >= 4 ? [{ competencyId: "moon", kind: "moon-log" }] : []
+    evidence: [
+      ...(state.moonLog.length >= 2 ? [{ competencyId: "moon", kind: "moon-log" }] : []),
+      { competencyId: "moon", kind: "moon-predict" }
+    ]
   };
 }
 
@@ -319,9 +349,26 @@ export function useMoonGeometry(state) {
   };
 }
 
+export function predictMoonNow(state, predictedName) {
+  state.moonGeometry = true;
+  state.pendingMoon = predictedName;
+  const current = moonPhase(state.sky.minutes);
+  const ok = predictedName === current.name;
+  state.lastHint = ok
+    ? "The model names that phase. Check it from the mesa at night."
+    : "The lit face in the model is not that name. Move the geometry.";
+  return {
+    ok,
+    current: current.name,
+    hint: state.lastHint,
+    evidence: ok ? [{ competencyId: "moon", kind: "moon-geometry" }] : []
+  };
+}
+
 export function predictMoon(state, predictedName) {
   const current = moonPhase(state.sky.minutes);
   state.moonPredict = predictedName;
+  state.pendingMoon = current.name;
   const later = moonPhase(state.sky.minutes + 7 * MINUTES_PER_DAY);
   const ok = later.name === predictedName;
   state.moonPredictOk = ok;
@@ -342,18 +389,40 @@ export function alignEclipse(state, tiltOn) {
   state.sky.tiltDeg = state.eclipse.tiltOn ? 5.1 : 0;
   state.eclipse.aligned = true;
   const geo = eclipseGeometry(state.sky.minutes, state.sky.tiltDeg, state.sky.nodeDeg);
-  return { ok: true, geo };
+  if (state.eclipse.tiltOn) state.eclipse.seenMiss = true;
+  else state.eclipse.seenHit = true;
+  const happening = Boolean(geo.solar || geo.lunar);
+  state.lastHint = happening
+    ? "This alignment produces an eclipse in the model."
+    : "This alignment misses. The shadows do not meet.";
+  return { ok: true, geo, happening, hint: state.lastHint };
+}
+
+export function predictEclipse(state, willEclipse) {
+  const geo = eclipseGeometry(state.sky.minutes, state.eclipse.tiltOn ? 5.1 : 0, state.sky.nodeDeg);
+  const happening = Boolean(geo.solar || geo.lunar || (!state.eclipse.tiltOn && (geo.isNew || geo.isFull)));
+  const ok = Boolean(willEclipse) === happening;
+  state.lastHint = ok
+    ? happening
+      ? "The model agrees: this one eclipses."
+      : "The model agrees: this one misses."
+    : happening
+      ? "The shadows meet in the model. Your prediction said they would miss."
+      : "The shadows miss. Tilt or nodes kept them apart.";
+  return { ok, happening, hint: state.lastHint };
 }
 
 export function explainEclipse(state, choiceId) {
   const geo = eclipseGeometry(state.sky.minutes, state.eclipse.tiltOn ? 5.1 : 0, state.sky.nodeDeg);
+  if (!state.eclipse.seenHit || !state.eclipse.seenMiss) {
+    state.lastHint = "Predict a hit and a miss. Turn tilt off, then on. Watch the model.";
+    return { ok: false, hint: state.lastHint, geo };
+  }
   const ok = choiceId === "tilt";
   state.eclipse.understood = ok;
   state.lastHint = ok
     ? "The Moon goes around every month. The path is tilted, so most months the shadows miss."
-    : geo.monthlyIfNoTilt
-      ? "With the tilt off, new and full line up. Turn the tilt back on."
-      : "If the Moon goes around every month, why is there not an eclipse every month?";
+    : "You already saw a month that lined up and a month that did not. What was different?";
   return {
     ok,
     geo,
@@ -367,13 +436,32 @@ export function explainEclipse(state, choiceId) {
   };
 }
 
+export function predictTide(state, kind) {
+  state.tides.predict = kind;
+  state.lastHint =
+    kind === "larger"
+      ? "You predicted a large range at new Moon. Open the station table and test it."
+      : "You predicted a small range at new Moon. Open the station table and test it.";
+  return { ok: true, hint: state.lastHint };
+}
+
 export function compareTides(state, patternId) {
+  if (!state.tides.predict) {
+    state.lastHint = "Before the table: at new Moon, should tidal range be larger or smaller?";
+    return { ok: false, hint: state.lastHint };
+  }
   state.tides.pattern = patternId;
-  const ok = patternId === "spring-new-full";
+  const predictOk = state.tides.predict === "larger";
+  const patternOk = patternId === "spring-new-full";
+  const ok = predictOk && patternOk;
+  if (!predictOk && patternOk) {
+    state.lastHint = "New and full sit with the large ranges. That first prediction missed. The geometry is spring tides.";
+  } else if (!patternOk) {
+    state.lastHint = "Look at range next to phase. Largest numbers sit with new and full.";
+  } else {
+    state.lastHint = "Spring tides sit with new and full Moon. Neap tides sit with the quarters. Geometry predicted the table.";
+  }
   state.tides.compared = ok;
-  state.lastHint = ok
-    ? "Spring tides sit with new and full Moon. Neap tides sit with the quarters."
-    : "Look at range next to phase, not at the water itself. This is a remote station.";
   return {
     ok,
     hint: state.lastHint,
@@ -405,7 +493,8 @@ export function sfReadyForChallenge(state) {
     state.seasonExplain === "tilt" &&
     state.orbit.measured &&
     state.kepler.ok &&
-    state.moonLog.length >= 4 &&
+    state.kepler.modelChecked &&
+    state.moonLog.length >= 2 &&
     state.moonGeometry &&
     state.eclipse.understood &&
     state.tides.compared &&
@@ -427,31 +516,44 @@ export function planObservation(state, spec, plan) {
   const siteOk = site?.ok === true;
   const whenOk = when === "night";
   const moonOk = moon === "thin";
-  const periodOk = Number(period) === periodFromA(state.kepler.a) || Number(period) === 8;
+  const periodOk = state.kepler.modelChecked && state.kepler.ok;
   const reasonOk =
     reasons.includes("open-horizon") && reasons.includes("dark-sky") && reasons.includes("return-time");
+  const siteWalked = state.visitedSite === site?.id;
   const wasChecked = state.challenge.checked;
   const wasOk = state.challenge.ok;
-  const ok = siteOk && whenOk && moonOk && periodOk && reasonOk;
+  const ok = siteOk && whenOk && moonOk && periodOk && reasonOk && siteWalked;
   state.challenge.checked = true;
   if (ok && wasChecked && !wasOk) state.challenge.revised = true;
   state.challenge.ok = ok;
   state.lastHint = ok
     ? "The window holds: dark sky, open horizon, thin Moon, and the return you predicted."
-    : !siteOk
-      ? "The crater rim eats the eastern sky. Pick a place that can actually see the target."
-      : !whenOk
-        ? "Daylight will wash a faint object. Night is the window."
-        : !moonOk
-          ? "A bright Moon will drown the target. Choose a thinner phase."
-          : !periodOk
-            ? "Use the period you predicted from the orbit, not a guess."
-            : "Say why: horizon, darkness, and return time.";
+    : !siteWalked
+      ? "Walk to the coordinate pair. The map still matters here."
+      : !siteOk
+        ? "That pair sits where a wall eats the eastern sky. Try the other pair."
+        : !whenOk
+          ? "Daylight will wash a faint object. Night is the window."
+          : !moonOk
+            ? "A bright Moon will drown the target. Choose a thinner phase."
+            : !periodOk
+              ? "Use the period you computed from P² = a³."
+              : "Say why: horizon, darkness, and return time.";
   return {
     ok,
     hint: state.lastHint,
     evidence: ok ? [{ competencyId: "prediction", kind: "observe-plan" }] : []
   };
+}
+
+export function visitChallengeSite(state, spec, player) {
+  for (const site of spec.challenge.sites) {
+    if (near(player, site.x, site.y, 90)) {
+      state.visitedSite = site.id;
+      return { ok: true, site };
+    }
+  }
+  return { ok: false };
 }
 
 export function presentSfChallenge(state) {
@@ -606,6 +708,13 @@ export function sfInspectTarget(spec, catalog, region, player, state) {
       bestD = d;
     }
   }
+  for (const site of spec.challenge?.sites || []) {
+    const d = dist(player.x, player.y, site.x, site.y);
+    if (d < 90 && d < bestD) {
+      best = { kind: "sf-site", id: site.id, spec: site, x: site.x, y: site.y };
+      bestD = d;
+    }
+  }
   return best;
 }
 
@@ -666,12 +775,15 @@ export function sfBoardView(kind, state, spec, sky) {
   if (kind === "kepler") {
     return {
       title: "When does Sandskip-1 return?",
-      lead: `Orbital radius a = ${state.kepler.a} AU. Period² follows a³ in these units. Predict the missing period.`,
+      lead: `a = ${state.kepler.a} AU. In these units P² = a³ (P in years). Compute P, then advance the model.`,
       status: state.lastHint,
-      ok: state.kepler.ok,
-      groups: [
-        { id: "period", label: "Predicted period", selected: state.kepler.predictedP != null ? String(state.kepler.predictedP) : null, items: spec.keplerChoices }
-      ]
+      ok: state.kepler.modelChecked,
+      numberInput: {
+        id: "period",
+        label: "Period (years)",
+        value: state.kepler.predictedP ?? ""
+      },
+      tryLabel: state.kepler.ok && !state.kepler.modelChecked ? "Advance the model" : "Check P² = a³"
     };
   }
   if (kind === "moon") {
@@ -685,11 +797,16 @@ export function sfBoardView(kind, state, spec, sky) {
         columns: ["When", "Appearance", "Lit"],
         rows: state.moonLog.map((row) => [row.label, row.name, `${Math.round(row.illumination * 100)}%`])
       },
-      groups: state.moonLog.length >= 4
-        ? [{ id: "predict", label: "Seven days from now, it should be", selected: state.moonPredict, items: spec.moonChoices }]
-        : [],
-      hideTry: state.moonLog.length < 4,
-      tryLabel: "Check prediction"
+      groups: [
+        {
+          id: "now",
+          label: "From this geometry, the phase is",
+          selected: state.pendingMoon,
+          items: spec.moonChoices
+        }
+      ],
+      hideTry: false,
+      tryLabel: "Lock prediction"
     };
   }
   if (kind === "eclipse") {
@@ -709,22 +826,48 @@ export function sfBoardView(kind, state, spec, sky) {
             { id: "on", label: "Tilt on" }
           ]
         },
+        {
+          id: "will",
+          label: "Does this alignment eclipse?",
+          selected: state._eclipseWill,
+          items: [
+            { id: "yes", label: "Yes — shadows meet" },
+            { id: "no", label: "No — they miss" }
+          ]
+        },
         { id: "explain", label: "Why isn't there an eclipse every month?", selected: null, items: spec.eclipseChoices }
       ]
     };
   }
   if (kind === "tides") {
     const rows = tideRows();
+    const revealed = Boolean(state.tides.predict);
     return {
       title: "A coastal tide station",
-      lead: "Remote numbers. Compare range with Moon phase. This is not an ocean investigation.",
+      lead: revealed
+        ? "Remote numbers. Compare range with Moon phase."
+        : "Before the table: at new Moon, should tidal range be larger or smaller?",
       status: state.lastHint,
       ok: state.tides.compared,
-      table: {
-        columns: ["Date", "Moon", "Range (m)", "Kind"],
-        rows: rows.map((row) => [row.date, row.phase, String(row.range), row.kind])
-      },
-      groups: [{ id: "pattern", label: "What does the table show?", selected: state.tides.pattern, items: spec.tideChoices }]
+      table: revealed
+        ? {
+            columns: ["Date", "Moon", "Range (m)", "Kind"],
+            rows: rows.map((row) => [row.date, row.phase, String(row.range), row.kind])
+          }
+        : null,
+      groups: revealed
+        ? [{ id: "pattern", label: "What does the table show?", selected: state.tides.pattern, items: spec.tideChoices }]
+        : [
+            {
+              id: "predict",
+              label: "New Moon range",
+              selected: state.tides.predict,
+              items: [
+                { id: "larger", label: "Larger (spring)" },
+                { id: "smaller", label: "Smaller (neap)" }
+              ]
+            }
+          ]
     };
   }
   if (kind === "planets") {
@@ -747,10 +890,9 @@ export function sfBoardView(kind, state, spec, sky) {
       status: state.lastHint,
       ok: state.challenge.ok,
       groups: [
-        { id: "site", label: "Where", selected: state.challenge.site, items: spec.challenge.sites },
+        { id: "site", label: "Coordinate pair (walk there)", selected: state.challenge.site, items: spec.challenge.sites },
         { id: "when", label: "When", selected: state.challenge.when, items: spec.challenge.when },
         { id: "moon", label: "Moon", selected: state.challenge.moon, items: spec.challenge.moon },
-        { id: "period", label: "Return", selected: state.challenge.period, items: spec.challenge.period },
         { id: "reason", label: "Why this plan", selected: state.challenge.reasons, items: spec.challenge.reasons }
       ],
       tryLabel: state.challenge.checked && !state.challenge.ok ? "Revise the plan" : "Try this plan"

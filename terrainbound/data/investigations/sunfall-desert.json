@@ -124,11 +124,11 @@
   ],
   "challenge": {
     "title": "The Observation Window",
-    "goal": "Sandskip-1 will be faint. Choose a site, a time, a Moon, and the return you predicted.",
+    "goal": "Sandskip-1 will be faint. Match a coordinate pair on the map, then choose night, Moon, and the period you computed.",
     "sites": [
-      { "id": "mesa-rim", "label": "Mesa rim", "ok": true, "x": 380, "y": 488 },
-      { "id": "crater-floor", "label": "Crater floor", "ok": false, "x": 2088, "y": 900 },
-      { "id": "station-plaza", "label": "Station plaza", "ok": false, "x": 1408, "y": 1188 }
+      { "id": "mesa-rim", "label": "Pair A", "ok": true, "x": 380, "y": 488 },
+      { "id": "crater-floor", "label": "Pair B", "ok": false, "x": 2088, "y": 900 },
+      { "id": "station-plaza", "label": "Pair C", "ok": false, "x": 1408, "y": 1188 }
     ],
     "when": [
       { "id": "noon", "label": "Solar noon" },

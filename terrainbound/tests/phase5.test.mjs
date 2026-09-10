@@ -21,6 +21,7 @@ import {
   runTrial,
   setFlumeSlope,
   setFlumeWater,
+  setFlumePrediction,
   hasFairComparison,
   flumeRows
 } from "../js/flume.js";
@@ -39,6 +40,7 @@ import {
   tryChallengeExplanation,
   tryChallengeFollowUp
 } from "../js/challenge.js";
+import { classifyCard } from "../js/obsint.js";
 import { loadCurriculumMap, assertNoPlayerFacingCodes } from "../js/curriculum.js";
 import {
   captureSave,
@@ -153,6 +155,7 @@ function completeWaterAndLandscape({ allDiscoveries = false, attempts = 2 } = {}
 }
 
 function completeFairFlume(state = createFlumeState()) {
+  setFlumePrediction(state, "steep");
   setFlumeWater(state, "one-cup");
   for (const slope of flumeSpec.slopes) {
     setFlumeSlope(state, slope.id);
@@ -180,20 +183,23 @@ function walkChallenge(neededOnly = false) {
   const state = createChallengeState();
   state.active = true;
   const ids = neededOnly
-    ? ["confluence", "westface-slump", "station-creek"]
+    ? ["rain-gauge", "confluence", "westface-slump", "station-creek"]
     : challengeSpec.sites.map((site) => site.id);
   for (const id of ids) {
     observeSite(state, challengeSpec, id);
     measureSite(state, challengeSpec, id);
   }
+  state.pulsePredict = "confluence";
   return state;
 }
 
 function legitimateMastery() {
   const { missionState, discoveryState, invState } = completeWaterAndLandscape({
     allDiscoveries: false,
-    attempts: 1
+    attempts: 2
   });
+  classifyCard(invState.obsInt, investigation.obsInt, "boulder-look", "observation");
+  classifyCard(invState.obsInt, investigation.obsInt, "groove-look", "observation");
   const flumeState = completeFairFlume();
   const { dataState } = interpretFlow(flumeState);
   const challengeState = walkChallenge(true);
@@ -209,7 +215,8 @@ function legitimateMastery() {
       flumeState,
       dataState,
       challengeState,
-      flumeSpec
+      flumeSpec,
+      obsIntState: invState.obsInt
     })
   );
   return { missionState, discoveryState, invState, flumeState, dataState, challengeState, mastery };
@@ -227,6 +234,7 @@ check("variables investigation is playable with three slopes", () => {
 
 check("player can manipulate a tested variable and record numerical trials", () => {
   const state = createFlumeState();
+  setFlumePrediction(state, "steep");
   setFlumeWater(state, "one-cup");
   setFlumeSlope(state, "gentle");
   const a = runTrial(state, flumeSpec);
@@ -240,6 +248,7 @@ check("player can manipulate a tested variable and record numerical trials", () 
 
 check("changing slope and water together is not a fair comparison", () => {
   const state = createFlumeState();
+  setFlumePrediction(state, "gentle");
   setFlumeSlope(state, "gentle");
   setFlumeWater(state, "extra");
   const result = runTrial(state, flumeSpec);
@@ -264,6 +273,7 @@ check("changing slope and water together is not a fair comparison", () => {
 
 check("repeated trials are required before a fair comparison", () => {
   const state = createFlumeState();
+  setFlumePrediction(state, "steep");
   setFlumeWater(state, "one-cup");
   for (const slope of flumeSpec.slopes) {
     setFlumeSlope(state, slope.id);

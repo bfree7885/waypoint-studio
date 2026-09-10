@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>TerrainBound</title>
   <meta name="description" content="An exploration game about learning to read the Earth.">
   <link rel="stylesheet" href="./css/game.css">
@@ -13,10 +13,20 @@
 
     <div class="hud">
       <div class="place-chip"><span id="place-name">Cedar Hollow</span> <small id="place-sub">Granite Knob · Pine Creek</small></div>
+      <aside id="field-guide" class="field-guide" hidden>
+        <p class="field-guide-q" id="guide-question"></p>
+        <p class="field-guide-next"><span id="guide-verb"></span> <span id="guide-next"></span></p>
+        <p class="field-guide-where" id="guide-where"></p>
+        <ul id="guide-pairs" class="guide-pairs" hidden></ul>
+      </aside>
       <div id="control-hint" class="control-hint"></div>
-      <div id="inspect-prompt" class="inspect-prompt" hidden></div>
-      <button type="button" id="map-toggle" class="map-toggle">World map</button>
-      <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
+      <div class="hud-dock">
+        <button type="button" id="inspect-prompt" class="inspect-prompt" hidden></button>
+        <div class="hud-tools">
+          <button type="button" id="map-toggle" class="map-toggle">World map</button>
+          <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
+        </div>
+      </div>
     </div>
 
     <section id="title-screen">
@@ -165,6 +175,8 @@
         <p class="field-bench-kicker">Field bench</p>
         <h2>Runoff table</h2>
         <p class="hypothesis-lead">Same channel. Same two metres. Change one thing, then time the water.</p>
+        <p class="hypothesis-kicker">Predict first</p>
+        <div id="flume-predict" class="chip-row"></div>
         <p class="hypothesis-kicker">Channel slope</p>
         <div id="flume-slopes" class="chip-row"></div>
         <p class="hypothesis-kicker">Measuring cup</p>
@@ -233,20 +245,22 @@
     <div id="atlas" hidden role="dialog" aria-label="TerrainBound world map">
       <div class="atlas-card">
         <header>
-          <p class="journal-brand">TerrainBound</p>
+          <p class="journal-brand">TerrainBound — World map</p>
           <button type="button" id="atlas-close">Close</button>
           <h2>The journey</h2>
         </header>
         <div class="atlas-body">
-          <canvas id="atlas-map" width="720" height="480" aria-label="Stylized regional map of TerrainBound"></canvas>
+          <div class="atlas-map-frame">
+            <canvas id="atlas-map" width="720" height="480" aria-label="Stylized regional map of TerrainBound"></canvas>
+          </div>
           <aside class="atlas-preview">
             <p class="atlas-kicker" id="atlas-kicker">Region</p>
             <h3 id="atlas-name">Cedar Hollow</h3>
             <p id="atlas-subtitle"></p>
             <p id="atlas-blurb"></p>
+            <button type="button" id="atlas-travel" hidden>Walk this region</button>
             <p class="atlas-route-label" id="atlas-route-label">Travel route</p>
             <p id="atlas-route"></p>
-            <button type="button" id="atlas-travel" hidden>Walk this region</button>
           </aside>
         </div>
       </div>
@@ -260,6 +274,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p77"></script>
+  <script type="module" src="./js/main.js?v=p78c"></script>
 </body>
 </html>

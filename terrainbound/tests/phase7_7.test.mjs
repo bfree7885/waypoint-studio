@@ -113,8 +113,8 @@ check("no death / XP / health", () => {
 
 check("production paths work at root deployment configuration", () => {
   assert.match(html, /href="\.\/css\/game\.css"/);
-  assert.match(html, /src="\.\/js\/main\.js\?v=p77"/);
-  assert.match(mainJs, /game\.js\?v=p77/);
+  assert.match(html, /src="\.\/js\/main\.js\?v=p7[78]c?"/);
+  assert.match(mainJs, /game\.js\?v=p7[78]c?/);
   assert.match(gameJs, /fetch\("\.\/data\//);
   assert.doesNotMatch(gameJs, /fetch\("\/terrainbound\//);
   assert.doesNotMatch(html, /href="\/terrainbound\//);

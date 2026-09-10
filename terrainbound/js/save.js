@@ -52,7 +52,8 @@ export function emptyFlumeSave() {
     lastHint: "",
     lastSeconds: null,
     unfairAttempted: false,
-    setupRevised: false
+    setupRevised: false,
+    prediction: null
   };
 }
 
@@ -75,13 +76,13 @@ export function emptySunfallSave() {
     seasonExplain: null,
     distanceConfronted: false,
     orbit: { a: 1, e: 0.05, nuDeg: 20, measured: false, eccentricCompared: false },
-    kepler: { a: 4, predictedP: null, checked: false, ok: false },
+    kepler: { a: 4, predictedP: null, checked: false, ok: false, modelChecked: false },
     moonLog: [],
     moonGeometry: false,
     moonPredict: null,
     moonPredictOk: false,
-    eclipse: { aligned: false, tiltOn: true, understood: false },
-    tides: { compared: false, pattern: null },
+    eclipse: { aligned: false, tiltOn: true, understood: false, seenHit: false, seenMiss: false },
+    tides: { compared: false, pattern: null, predict: null },
     planets: { classified: false, pattern: null },
     challenge: {
       site: null,
@@ -98,7 +99,9 @@ export function emptySunfallSave() {
     foundIds: [],
     notes: [],
     lastHint: "",
-    compareSampleSeen: false
+    compareSampleSeen: false,
+    pendingMoon: null,
+    visitedSite: null
   };
 }
 
@@ -140,7 +143,11 @@ export function emptyHighCountrySave() {
     challengePresented: false,
     foundIds: [],
     notes: [],
-    lastHint: ""
+    lastHint: "",
+    scaleEstimates: [],
+    cacheFound: false,
+    slopePredict: null,
+    terrainChoices: {}
   };
 }
 
@@ -156,7 +163,9 @@ export function emptyChallengeSave() {
     presented: false,
     revised: false,
     followUpDone: false,
-    workingRoles: []
+    workingRoles: [],
+    conflicted: false,
+    pulsePredict: null
   };
 }
 
@@ -199,6 +208,7 @@ function snapshotHighCountry(state) {
     challengeReasons: [...(state.challengeReasons || [])],
     foundIds: [...(state.foundIds || [])],
     notes: [...(state.notes || [])],
+    scaleEstimates: [...(state.scaleEstimates || [])],
     mapState: { ...empty.mapState, ...(state.mapState || {}) }
   };
 }
@@ -334,7 +344,8 @@ export function captureSave({
       lastHint: invState.lastHint,
       concluded: invState.concluded,
       interpreted: invState.interpreted,
-      attempts: invState.attempts
+      attempts: invState.attempts,
+      obsInt: { sorts: [...(invState.obsInt?.sorts || [])] }
     }
   };
 }
@@ -369,7 +380,11 @@ export function applySave(
   if (migrated.taught) Object.assign(taught, emptyTaught(), migrated.taught);
   if (migrated.mission) Object.assign(missionState, migrated.mission);
   if (migrated.discoveries) Object.assign(discoveryState, migrated.discoveries);
-  if (migrated.investigation) Object.assign(invState, migrated.investigation);
+  if (migrated.investigation) {
+    Object.assign(invState, migrated.investigation);
+    if (!invState.obsInt) invState.obsInt = { sorts: [] };
+    if (!Array.isArray(invState.obsInt.sorts)) invState.obsInt.sorts = [];
+  }
   if (worldState && migrated.world) {
     worldState.currentRegion = migrated.world.currentRegion;
     worldState.accessibleRegions = [...migrated.world.accessibleRegions];

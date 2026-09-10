@@ -326,8 +326,18 @@ export function drawFieldMap(ctx, width, height, model) {
   ctx.font = "11px Trebuchet MS, sans-serif";
   ctx.textAlign = "right";
   ctx.fillText(region.grid?.scaleLabel || "", width - 12, height - 12);
+  const barM = model.scaleBarMeters || 200;
+  const barWorld = barM / metersPerPixel(region);
+  const barPx = Math.max(24, barWorld * (width / region.width));
+  ctx.textAlign = "left";
+  ctx.strokeStyle = "#3d4a3c";
+  ctx.beginPath();
+  ctx.moveTo(12, height - 44);
+  ctx.lineTo(12 + barPx, height - 44);
+  ctx.stroke();
+  ctx.fillStyle = "#3d4a3c";
+  ctx.fillText(`${barM} m`, 12, height - 48);
   if (topo) {
-    ctx.textAlign = "left";
     ctx.fillText("Topo", 12, 48);
   }
 }

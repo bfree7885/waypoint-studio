@@ -44,9 +44,11 @@ export function gameplaySnapshot({
   flumeState,
   dataState,
   challengeState,
-  flumeSpec
+  flumeSpec,
+  obsIntState
 }) {
   const challengeMeasured = challengeState?.measuredIds?.length || 0;
+  const roles = new Set(challengeState?.workingRoles || []);
   return {
     foundCount: discoveryState?.foundIds?.length || 0,
     observationCount: missionState?.observations?.length || 0,
@@ -61,8 +63,15 @@ export function gameplaySnapshot({
     setupRevised: Boolean(flumeState?.setupRevised),
     challengeConcluded: Boolean(challengeState?.concluded),
     challengePresented: Boolean(challengeState?.presented),
-    challengeRevised: Boolean(challengeState?.revised),
-    challengeObserved: (challengeState?.observedIds?.length || 0) >= 1
+    challengeRevised: Boolean(challengeState?.conflicted || (challengeState?.revised && challengeState?.conflicted)),
+    challengeObserved: (challengeState?.observedIds?.length || 0) >= 1,
+    challengeSystems: Boolean(
+      challengeState?.concluded &&
+        roles.has("weather") &&
+        roles.has("join") &&
+        roles.has("source")
+    ),
+    obsIntCount: (obsIntState?.sorts || invState?.classifications || []).filter((row) => row.ok).length
   };
 }
 
@@ -106,12 +115,12 @@ function derivedRecord(competencyId, kind, source, snapshot, extra = {}) {
 export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
   const records = [];
   const extra = { regionId };
-  if (snapshot.foundCount >= 1) {
+  if (snapshot.obsIntCount >= 2) {
     records.push(
-      derivedRecord("observation", "discovery-inspect", "observation", snapshot, {
+      derivedRecord("observation", "obs-int-sort", "observation", snapshot, {
         ...extra,
-        action: "inspect-discovery",
-        attempts: snapshot.foundCount
+        action: "sort-observation-interpretation",
+        attempts: snapshot.obsIntCount
       })
     );
   }
@@ -141,11 +150,11 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
       })
     );
   }
-  if (snapshot.waterComplete && snapshot.landscapeComplete) {
+  if (snapshot.challengeSystems) {
     records.push(
       derivedRecord("systems", "systems-link", "investigation", snapshot, {
         ...extra,
-        action: "connect-water-and-landscape"
+        action: "rain-slope-tributary"
       })
     );
   }
@@ -196,12 +205,6 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
         action: "challenge-explanation"
       })
     );
-    records.push(
-      derivedRecord("systems", "systems-link", "investigation", snapshot, {
-        ...extra,
-        action: "rain-slope-tributary"
-      })
-    );
   }
   if (snapshot.challengePresented) {
     records.push(
@@ -216,14 +219,6 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
       derivedRecord("revision", "revised-explanation", "explanation", snapshot, {
         ...extra,
         action: "revise-model"
-      })
-    );
-  }
-  if (snapshot.challengeObserved) {
-    records.push(
-      derivedRecord("observation", "discovery-inspect", "observation", snapshot, {
-        ...extra,
-        action: "challenge-observe"
       })
     );
   }

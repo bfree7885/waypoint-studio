@@ -1672,6 +1672,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Walk stills fail when both feet sit under the body. Keep a minimum stride offset and lift the passing foot so a single frame can read as moving.
 - `terrainbound.org` is parked at Namecheap. This repo's CNAME is `waypointstudio.org`. Publishing the game requires a companion Pages host plus registrar DNS, not a root CNAME swap.
 
+### Lessons Learned — TerrainBound Phase 7.8B (2026-09-09)
+
+- Interface mystery is not scientific mystery. A persistent “what / next / where / already” strip lets students investigate without Summit or a teacher telling them which button to press.
+- Observation mastery cannot be a single inspect. Students must sort a seen sentence from a guessed sentence, then keep using the seen sentence as evidence.
+- Revision is a conflict, not a checkbox. First-try success is success; only a rejected model that is later repaired counts as revision.
+- Map tools teach when the player estimates, walks, and predicts before the software draws the answer. Computed route length, “tight = steep,” and labeled GIS “good site” are recognition, not geospatial thinking.
+- Earlier science has to keep mattering. High Country washout slope is Cedar Hollow runoff without a new lesson; Sunfall’s observation window is a walked coordinate pair without “use your Topic 2 skill.”
+
 
 - Open alpine still needs geologic structure: clustered talus, drainage, and ridgelines read as place; uniform noise reads as unfinished.
 - Walk cycles that look fine zoomed in fail at gameplay camera. Exaggerated opposing legs and pack bounce are the readability budget, not extra frames.
@@ -1685,4 +1693,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - The Field Service should be painted on buildings, not explained in a lore dump. Wren stepping back on the radio is the character arc.
 - Opening copy belongs on the title card (“learning to read the Earth”), not in a lecture about twelve topics. Begin, then a two-line station greeting, then walk.
 - A 1366×768 screenshot set is not visual review. Night must actually be night in the capture (sky-state + clock refresh). Walk/sky poses are nearly unreadable at world camera distance — that is a production gap, not a missing PNG.
+
+### Lessons Learned — TerrainBound Phase 7.8C (2026-09-10)
+
+- A two-column world map that still applies at `max-width: 1366px` will squeeze the canvas on iPhone portrait. Stack below an explicit mobile breakpoint and lock the map in a 3:2 frame; do not let grid stretch distort the canvas.
+- Bottom HUD pills that are independently absolutely positioned will collide on a narrow width. A mobile dock (contextual action above, tools in a row) is safer than shrinking tap targets.
+- Field notes need max-height + vertical scroll + sticky actions and safe-area padding. On a short phone, hide the HUD dock and field-guide while a blocking overlay is open so Continue cannot sit on World map / Field tablet.
 
