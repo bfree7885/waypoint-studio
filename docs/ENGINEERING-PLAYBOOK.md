@@ -1886,3 +1886,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Elevation API docs also require Copernicus credit when OM elevation-derived facts are shown; do not attach that credit to USGS 3DEP pack RADAR terrain.
 - Attribution compliance is separate from free-endpoint commercial/non-commercial clearance — never claim terms are fully cleared in UI or provenance.
 - Keep source credits restrained (`sheds-data-credit`) near weather/condition/elev UI; avoid banners and load-time modals.
+
+## Lessons Learned — Sheds RADAR static visual intensity (2026-09-10)
+
+- ±0.20 analytical deltas were nearly invisible because paint used near-linear priority with very low per-pixel alpha × ~0.42 layer opacity — a rendering problem, not a biology problem.
+- Keep analytical `priority` / explain scores untouched; map display through an explicit `displayIntensity` transfer (monotonic, ranking-preserving) in `sheds-radar-display.js`.
+- Prefer midrange contrast gain over global gamma-lift — lift plateaus the field and washes hierarchy.
+- Neutral parity is automatic when Neutral scores match Landscape; never style frames differently.
+- Measure success by human glance + meanAbs on changed pixels, not only % pixels changed (same cells can change with larger magnitude).
