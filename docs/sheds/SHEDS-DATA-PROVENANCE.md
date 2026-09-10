@@ -53,7 +53,7 @@ Search Areas / Inspect still request Open-Meteo **elevation** for visible-map / 
 | Commercial-use status | **UNVERIFIED for a future paid Sheds+ product on the free endpoint.** Open-Meteo states commercial use of the hosted API requires a paid customer endpoint (`customer-api.open-meteo.com` + API key). CC BY 4.0 covers the *data* with attribution; it does not by itself authorize unbounded use of their free infrastructure. |
 | Redistribution status | **UNVERIFIED** as a standalone weather API / bulk dump. CC BY 4.0 allows sharing with attribution; Open-Meteo terms still restrict free-API commercial use. Do not ship a weather API that is just their response. |
 | Derivative-work status | Condition Snapshots store compact normalized facts + documented freeze/thaw classification. Treat that as a Sheds-derived fact layer on third-party source data — **not** a license to resell Open-Meteo. |
-| Attribution | Required next to displayed Open-Meteo data: “Weather data by Open-Meteo.com” linking https://open-meteo.com/ (CC BY 4.0). |
+| Attribution | Required next to displayed Open-Meteo data: linked “Weather data by Open-Meteo.com” (see `js/sheds-data-attribution.js`). CC BY 4.0 licence link included. **Does not clear** free-endpoint commercial/non-commercial classification — that remains an owner decision / Open-Meteo confirmation. |
 | Retention / cache | In-memory 10-minute de-dupe for snapshot fetches. Durable copy only when attached to a private Hunt Record on-device. Today’s Hunt keeps a session weather package in memory, not as a public dataset. |
 | Notes | Legacy field `snowMm` is daily `snowfall_sum` in **cm**, not snow depth. `snow_depth` is meters. Do not substitute. Underlying NWP model licenses (GFS, ECMWF, etc.) are **UNVERIFIED** beyond Open-Meteo’s CC BY 4.0 statement. |
 
@@ -70,7 +70,7 @@ Search Areas / Inspect still request Open-Meteo **elevation** for visible-map / 
 | Commercial-use status | **UNVERIFIED** for paid productization on the free endpoint (same customer-API requirement as forecast). Copernicus DEM GLO-90 licence for *derived commercial products* is **UNVERIFIED** — confirm before selling elevation-derived surfaces. |
 | Redistribution status | **UNVERIFIED**. Do not harvest DEM tiles for a public elevation API. |
 | Derivative-work status | Slope/aspect from a local elevation halo is a Sheds-derived terrain fact for on-device Search Areas. Not a V1.9 Hunt Record field except optional **device GPS altitude**. |
-| Attribution | Open-Meteo CC BY 4.0 attribution when elevation/weather from them is shown. Copernicus DEM attribution **UNVERIFIED** beyond Open-Meteo’s documentation. |
+| Attribution | Open-Meteo + Copernicus program credit when elevation-derived Inspect / Search Area facts are shown (`js/sheds-data-attribution.js`; DEM DOI https://doi.org/10.5270/ESA-c5d3d65). Not claimed for Pike RADAR pack terrain (USGS 3DEP). |
 | Retention / cache | In-memory / session elevation cache for the visible search grid. Not written into Condition Snapshots. |
 | Notes | Hunt-start snapshots do **not** extra-fetch this API. |
 
@@ -108,17 +108,17 @@ Search Areas / Inspect still request Open-Meteo **elevation** for visible-map / 
 | Retention / cache | Shipped in-repo; optional `localStorage` pack cache keyed `waypoint-sheds-gis-pack-v1:`. |
 | Notes | V1.9 does not add land-cover to Condition Snapshots. |
 
-### 5. USGS 3DEP-derived slope in the GIS pack
+### 5. USGS 3DEP-derived slope / aspect in the GIS pack
 
 | Field | Value |
 | --- | --- |
-| Provider | USGS 3DEP (via the bundled pack; Search Areas otherwise uses Open-Meteo elevation) |
-| Dataset / API | Slope degrees inside `pa-pike-milford-v1.json` |
-| Purpose | Habitat slope fallback in pack AOI |
+| Provider | USGS 3DEP (via the bundled pack; Search Areas / Inspect may still use Open-Meteo elevation) |
+| Dataset / API | `slopeDeg` + `aspectCardinal` inside `pa-pike-milford-v1.json` |
+| Purpose | Habitat slope fallback; Pike RADAR landscape + condition aspect (no live elev on normal RADAR path) |
 | License / terms | USGS 3DEP is generally public domain; confirm pack build notes. |
 | Commercial-use / redistribution / derivative | **UNVERIFIED** as a standalone DEM product. Same caution as NLCD pack. |
-| Attribution | USGS 3DEP when this source is cited. |
-| Notes | Not stored on Hunt Record snapshots. |
+| Attribution | USGS 3DEP when this source is cited (map RADAR credit line when pack terrain is shown). Do not label pack terrain as Open-Meteo/Copernicus. |
+| Notes | Not stored on Hunt Record snapshots. Raw DEM is not shipped. |
 
 ### 6. PASDA / Pennsylvania Game Commission State Game Lands
 

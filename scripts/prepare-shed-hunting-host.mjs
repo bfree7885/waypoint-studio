@@ -210,6 +210,7 @@ function main() {
     "js/sheds-radar-p0.js",
     "js/sheds-radar-base-landscape.js",
     "js/sheds-radar-condition-frame.js",
+    "js/sheds-data-attribution.js",
     "js/sheds-map-app.js",
     "map/index.html",
     "css/sheds-map.css"

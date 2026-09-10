@@ -470,10 +470,21 @@
         limitation,
         "Slope and aspect are derived from a neighborhood elevation sample (~60 m), not a surveyed contour."
       );
+      pushUnique(
+        limitation,
+        "Elevation sample via Open-Meteo; DEM source Copernicus (GLO-90)."
+      );
     } else if (slopeSource === "gis-pack-slope") {
       pushUnique(
         limitation,
-        "Slope is from the bundled GIS pack (3DEP-derived). Aspect is unavailable without a neighborhood elevation sample."
+        "Slope is from the bundled GIS pack (USGS 3DEP-derived). Aspect is unavailable without a neighborhood elevation sample."
+      );
+    }
+
+    if (elevStatus === "ready" && elevM != null && isFinite(elevM)) {
+      pushUnique(
+        limitation,
+        "Elevation sample via Open-Meteo; DEM source Copernicus (GLO-90)."
       );
     }
 

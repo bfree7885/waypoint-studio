@@ -60,6 +60,19 @@
     Hunt.fillHuntRoot(root, hunt, { includeQuestion: false, openMapHref: openMapHref() });
     setStatus("");
     showPrompt(!!(hunt && hunt.status === "need_location"));
+    syncWeatherCredit(hunt);
+  }
+
+  function syncWeatherCredit(hunt) {
+    var Attr = global.WaypointShedsDataAttribution;
+    var el = document.getElementById("sheds-weather-credit");
+    if (!Attr || !el) return;
+    var usable = !!(
+      hunt &&
+      hunt.support &&
+      hunt.support.weatherStatus === "ready"
+    );
+    Attr.setCredit(el, Attr.weatherCreditHtml(), usable);
   }
 
   function composeAt(loc, weather, weatherStatus) {

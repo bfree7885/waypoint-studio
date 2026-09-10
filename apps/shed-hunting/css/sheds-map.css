@@ -1811,6 +1811,31 @@ html.sheds-session-active .sheds-hunt-plan-hud {
   color: var(--sheds-muted, #a8b5ae);
 }
 
+.sheds-radar-p0 .sheds-data-credit,
+.sheds-search-legend .sheds-data-credit,
+.sheds-inspect-hud .sheds-data-credit {
+  margin: 0.35rem 0 0.45rem;
+  max-width: 100%;
+  font-size: 0.62rem;
+  line-height: 1.4;
+  color: var(--sheds-muted, #a8b5ae);
+}
+
+.sheds-radar-p0 .sheds-data-credit a,
+.sheds-search-legend .sheds-data-credit a,
+.sheds-inspect-hud .sheds-data-credit a {
+  color: var(--sheds-accent, #c45a3c);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.sheds-radar-p0 .sheds-data-credit a:focus-visible,
+.sheds-search-legend .sheds-data-credit a:focus-visible,
+.sheds-inspect-hud .sheds-data-credit a:focus-visible {
+  outline: 2px solid var(--sheds-accent, #c45a3c);
+  outline-offset: 2px;
+}
+
 .sheds-radar-p0__proof {
   margin: 0.35rem 0 0.5rem;
   padding-top: 0.35rem;

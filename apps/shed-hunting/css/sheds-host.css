@@ -178,6 +178,26 @@ button.sheds-host-btn {
   }
 }
 
+/* Restrained Open-Meteo / terrain source credit (CC BY display requirement). */
+.sheds-data-credit {
+  margin: 0.65rem 0 0;
+  max-width: 36rem;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--sheds-text, #efe6d4) 58%, transparent);
+}
+
+.sheds-data-credit a {
+  color: var(--sheds-accent, #c45a3c);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.sheds-data-credit a:focus-visible {
+  outline: 2px solid var(--sheds-accent, #c45a3c);
+  outline-offset: 2px;
+}
+
 @media (max-width: 360px) {
   .sheds-host-brand__powered {
     display: none;

@@ -1879,3 +1879,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Live DEM proof without fixture interception is the production evidence gate; fixture captures are supplemental and must be labeled.
 - Open-Meteo free-tier elevation returns 429 under chunked halo sampling; retry with backoff + light pacing so one rate-limit does not abandon aspect enrichment.
 - For production Pike RADAR, precompute coarse aspect into the GIS pack from the same USGS 3DEP DEM used for slope; remove live elevation from the normal RADAR path. Keep Open-Meteo for weather only.
+
+## Lessons Learned — Sheds Open-Meteo attribution (2026-09-10)
+
+- Open-Meteo CC BY display credit must be a visible linked “Weather data by Open-Meteo.com” (plus licence link), not plain-text-only mentions in privacy copy.
+- Elevation API docs also require Copernicus credit when OM elevation-derived facts are shown; do not attach that credit to USGS 3DEP pack RADAR terrain.
+- Attribution compliance is separate from free-endpoint commercial/non-commercial clearance — never claim terms are fully cleared in UI or provenance.
+- Keep source credits restrained (`sheds-data-credit`) near weather/condition/elev UI; avoid banners and load-time modals.
