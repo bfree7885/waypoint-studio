@@ -113,13 +113,15 @@ function completeCurrentInvestigations(attempts = 1) {
   recordMeasurement(invState, investigation, "rock-compare", discoveryState);
   recordMeasurement(invState, investigation, "bedrock-grooves", discoveryState);
   recordMeasurement(invState, investigation, "valley-shape", discoveryState);
+  recordMeasurement(invState, investigation, "sediment-sort", discoveryState);
   if (attempts > 1) {
-    evaluateHypothesis(investigation, invState, "flowing-water", ["transported-boulder"]);
+    evaluateHypothesis(investigation, invState, "only-rain", ["transported-boulder"]);
   }
-  evaluateHypothesis(investigation, invState, "moving-ice", [
+  evaluateHypothesis(investigation, invState, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
-    "rounded-valley"
+    "rounded-valley",
+    "sediment-sort"
   ]);
   return { missionState, discoveryState, invState };
 }

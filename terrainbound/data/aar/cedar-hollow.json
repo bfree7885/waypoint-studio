@@ -1,0 +1,99 @@
+{
+  "regionId": "cedar-hollow",
+  "title": "After Action Report",
+  "kicker": "Field debrief",
+  "open": "You've got enough to make a case. Walk it to me like I wasn't there.",
+  "clearance": {
+    "title": "Field clearance earned",
+    "lines": [
+      "That's a case I can take. The hollow taught you how to look, measure, and change your mind when the land disagreed.",
+      "High Country will ask you to work out where you are. The road is open when you want the mountains."
+    ]
+  },
+  "moreEvidence": {
+    "title": "More evidence needed",
+    "lead": "Not a restart. The hollow still has a hole in the case. Go back to the work that isn't in the tablet yet."
+  },
+  "items": [
+    {
+      "id": "aar-obs",
+      "puzzleId": "CH-01",
+      "competencyId": "observation",
+      "stem": "At the boulder that doesn't match the hill, what actually belongs in the tablet?",
+      "choices": [
+        { "id": "seen", "label": "The boulder has a different color and grain from the nearby hill rock.", "kind": "good" },
+        { "id": "story", "label": "The boulder was carried here — that's what I saw.", "kind": "misconception" },
+        { "id": "name", "label": "Naming it was the observation.", "kind": "misconception" },
+        { "id": "porch", "label": "I could tell from the station porch.", "kind": "incomplete" }
+      ]
+    },
+    {
+      "id": "aar-table",
+      "puzzleId": "CH-03",
+      "competencyId": "variables",
+      "stem": "What did the runoff table actually show?",
+      "choices": [
+        { "id": "fair", "label": "Steeper slope, same water, shorter times — that's the fair comparison.", "kind": "good" },
+        { "id": "extra", "label": "The extra water run proves slope doesn't matter.", "kind": "misconception" },
+        { "id": "once", "label": "One steep run was enough.", "kind": "incomplete" },
+        { "id": "toy", "label": "The table is just a toy; the creek is different so the numbers don't count.", "kind": "overclaim" }
+      ]
+    },
+    {
+      "id": "aar-pulse",
+      "puzzleId": "CH-05",
+      "competencyId": "systems",
+      "stem": "Why was part of Pine Creek muddier this morning?",
+      "choices": [
+        { "id": "system", "label": "Rain on a loose steep slope, then Fox Run, then Pine Creek.", "kind": "good" },
+        { "id": "rained", "label": "It rained, so the whole creek is muddier.", "kind": "misconception" },
+        { "id": "marsh", "label": "The marsh is always brown, so the marsh did it.", "kind": "misconception" },
+        { "id": "willows", "label": "Atmosphere, water, and rock were all involved; the willows were in the way, not the cause.", "kind": "good", "also": "systems" }
+      ]
+    },
+    {
+      "id": "aar-clocks",
+      "puzzleId": "CH-06",
+      "competencyId": "explanation",
+      "stem": "Last night is one clock. What about the boulder and the scraped face?",
+      "choices": [
+        { "id": "two", "label": "Last night's bar is the creek. The mismatched boulder needs a longer clock.", "kind": "good" },
+        { "id": "one", "label": "One process did all of it.", "kind": "misconception" },
+        { "id": "jargon", "label": "It's a glacier because this is Earth Science.", "kind": "misconception" },
+        { "id": "rain-only", "label": "Last night's rain made the boulder too.", "kind": "misconception" }
+      ]
+    },
+    {
+      "id": "aar-return",
+      "puzzleId": "CH-09",
+      "competencyId": "communication",
+      "stem": "If we went back to the station reach, what should still be true?",
+      "choices": [
+        { "id": "clear", "label": "It should still be relatively clear compared with the join.", "kind": "good" },
+        { "id": "all-mud", "label": "The whole creek should look the same if it rained.", "kind": "misconception" },
+        { "id": "guess", "label": "Whatever I pick is fine — I already walked there.", "kind": "overclaim" },
+        { "id": "forget", "label": "I don't need the notes. I remember the answer.", "kind": "incomplete" }
+      ]
+    }
+  ],
+  "retry": [
+    {
+      "id": "aar-obs",
+      "stem": "What can you still point to on the boulder itself?",
+      "choices": [
+        { "id": "seen", "label": "Color and grain that don't match the hill rock.", "kind": "good" },
+        { "id": "story", "label": "The carrying event — I watched it.", "kind": "misconception" },
+        { "id": "name", "label": "The scientific name is the observation.", "kind": "misconception" }
+      ]
+    },
+    {
+      "id": "aar-table",
+      "stem": "Which runoff-table claim can your fair runs actually carry?",
+      "choices": [
+        { "id": "fair", "label": "Same water, steeper channel, shorter times.", "kind": "good" },
+        { "id": "extra", "label": "Extra water is the slope test.", "kind": "misconception" },
+        { "id": "once", "label": "The first steep number is the pattern.", "kind": "incomplete" }
+      ]
+    }
+  ]
+}

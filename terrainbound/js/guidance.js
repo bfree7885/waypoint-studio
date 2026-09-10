@@ -98,60 +98,16 @@ function chGuidance(ctx) {
       pairs
     );
   }
-  if (!found.includes("glacial-erratic") || !found.includes("exposed-bedrock")) {
+  if (!found.includes("glacial-erratic") || !found.includes("exposed-bedrock") || sorts < 2) {
     const where = found.includes("glacial-erratic") ? "East face of Granite Knob" : "North trail, below Granite Knob";
     return pack(
-      "What shaped Cedar Hollow?",
+      "What can you see, and what are you guessing?",
       "VISIT",
       found.includes("glacial-erratic")
-        ? "Visit the knob's own rock so you can compare it with the boulder."
+        ? "Visit the knob's own rock. Sort what you can see from a guess."
         : "Visit the boulder on the north trail that does not match the hill.",
       where,
-      "Two rocks you can stand beside.",
-      done,
-      pairs
-    );
-  }
-  if (!inv.measuredIds?.includes("rock-compare")) {
-    return pack(
-      "What shaped Cedar Hollow?",
-      "COMPARE",
-      "Compare the boulder with the knob rock — both notes must be in the pair.",
-      "Boulder and east-face bedrock",
-      "Whether the two rocks match.",
-      done,
-      pairs
-    );
-  }
-  if (!inv.measuredIds?.includes("bedrock-grooves")) {
-    return pack(
-      "What shaped Cedar Hollow?",
-      "OBSERVE",
-      "Examine the knob surface itself. Look for lines in the rock.",
-      "East face of Granite Knob",
-      "Marks on bedrock, not a name for them yet.",
-      done,
-      pairs
-    );
-  }
-  if (!inv.measuredIds?.includes("valley-shape")) {
-    return pack(
-      "What shaped Cedar Hollow?",
-      "OBSERVE",
-      "From High Look, study the shape of the whole valley.",
-      "High Look rail",
-      "The bowl of the hollow — sharp or rounded.",
-      done,
-      pairs
-    );
-  }
-  if (!inv.concluded) {
-    return pack(
-      "What shaped Cedar Hollow?",
-      "RECORD",
-      "In the tablet, attach the notes that support a process. Do not guess from the porch.",
-      "Field Tablet · evidence",
-      "Boulder mismatch, grooves, and valley shape.",
+      "Color, grain, and lines — not a story about how they got here.",
       done,
       pairs
     );
@@ -241,8 +197,103 @@ function chGuidance(ctx) {
       "Why is part of Pine Creek muddier this morning?",
       "RECORD",
       "Build an explanation from rain, slope, and tributary — then check the marsh follow-up.",
-      "Field clearance card",
+      "After the rain",
       "A system, not a single culprit.",
+      done,
+      pairs
+    );
+  }
+
+  if (!inv.measuredIds?.includes("rock-compare")) {
+    return pack(
+      "Two clocks in the hollow",
+      "COMPARE",
+      "Compare the boulder with the knob rock — both notes must be in the pair.",
+      "Boulder and east-face bedrock",
+      "Whether the two rocks match. Last night's rain cannot park that boulder.",
+      done,
+      pairs
+    );
+  }
+  if (!inv.measuredIds?.includes("bedrock-grooves")) {
+    return pack(
+      "Two clocks in the hollow",
+      "OBSERVE",
+      "Examine the knob surface itself. Look for lines in the rock.",
+      "East face of Granite Knob",
+      "Marks on bedrock, not a name for them yet.",
+      done,
+      pairs
+    );
+  }
+  if (!inv.measuredIds?.includes("valley-shape")) {
+    return pack(
+      "Two clocks in the hollow",
+      "OBSERVE",
+      "From High Look, study the shape of the whole valley.",
+      "High Look rail",
+      "The bowl of the hollow — sharp or rounded.",
+      done,
+      pairs
+    );
+  }
+  if (!inv.measuredIds?.includes("sediment-sort")) {
+    return pack(
+      "Two clocks in the hollow",
+      "COMPARE",
+      "Stand on both sides of the creek bend. Last night's creek is still taking and leaving.",
+      "Cut bank and sand bar",
+      "A living creek clock, not just the older bowl.",
+      done,
+      pairs
+    );
+  }
+  if (!inv.concluded) {
+    return pack(
+      "Two clocks in the hollow",
+      "RECORD",
+      "In the tablet, attach last night's creek notes and the older landscape notes.",
+      "Field Tablet · evidence",
+      "A modern-only story cannot carry the boulder. An ancient-only story cannot carry the sand bar.",
+      done,
+      pairs
+    );
+  }
+
+  const puzzles = ctx.puzzleState || {};
+  if (!puzzles.systems?.concluded) {
+    return pack(
+      "Is this one event with parts?",
+      "RECORD",
+      "Map sky, slope, water, and living things to roles. The willows took a hit — they didn't start it.",
+      "Talk to Wren at the station",
+      "A system, not four separate stories.",
+      done,
+      pairs
+    );
+  }
+  const revised =
+    (inv.concluded && (inv.attempts || 0) > 1) ||
+    Boolean(challenge.conflicted && challenge.revised) ||
+    Boolean(puzzles.conflict?.repaired);
+  if (!revised) {
+    return pack(
+      "When the story breaks",
+      "RECORD",
+      "A crate note and a clear station reach conflict with a tidy whole-creek story. Narrow the case.",
+      "Talk to Wren at the station",
+      "Revision is dropping a false cause, not adding every brown place.",
+      done,
+      pairs
+    );
+  }
+  if (puzzles.aar?.result !== "clearance") {
+    return pack(
+      "Make the case",
+      "RECORD",
+      "Walk the case to Wren like she wasn't there. Use evidence you actually hold.",
+      "Cedar Hollow Station",
+      "Field clearance, or more evidence needed — not a score.",
       done,
       pairs
     );
@@ -251,9 +302,9 @@ function chGuidance(ctx) {
   return pack(
     "Cedar Hollow field work",
     "RECORD",
-    "Your Field Record should now show the habits this valley asked for. High Country opens when they do.",
-    "Field Tablet · Field Record",
-    "Evidence, not a full discovery list.",
+    "Field clearance is earned. High Country is open when you want the mountains.",
+    "World map",
+    "The hollow is still here.",
     done,
     pairs
   );

@@ -1,10 +1,10 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
- * v1–v4 saves migrate to v5 (Sunfall Desert celestial session).
+ * v1–v5 saves migrate to v6 (Cedar Hollow puzzle / After Action Report).
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
-export const SAVE_VERSION = 5;
+export const SAVE_VERSION = 6;
 
 export function emptyPresentationSave() {
   return {
@@ -151,6 +151,15 @@ export function emptyHighCountrySave() {
   };
 }
 
+export function emptyPuzzleSave() {
+  return {
+    siteReads: {},
+    systems: { roles: {}, predict: null, concluded: false },
+    conflict: { seen: false, repaired: false, seed: "crate-marsh" },
+    aar: { itemIds: [], answers: {}, result: null, attempts: 0, remediation: [] }
+  };
+}
+
 export function emptyChallengeSave() {
   return {
     introSeen: false,
@@ -166,6 +175,17 @@ export function emptyChallengeSave() {
     workingRoles: [],
     conflicted: false,
     pulsePredict: null
+  };
+}
+
+function snapshotPuzzles(state) {
+  const empty = emptyPuzzleSave();
+  if (!state) return empty;
+  return {
+    siteReads: { ...(state.siteReads || {}) },
+    systems: { ...empty.systems, ...(state.systems || {}), roles: { ...(state.systems?.roles || {}) } },
+    conflict: { ...empty.conflict, ...(state.conflict || {}) },
+    aar: { ...empty.aar, ...(state.aar || {}), answers: { ...(state.aar?.answers || {}) }, remediation: [...(state.aar?.remediation || [])] }
   };
 }
 
@@ -215,7 +235,13 @@ function snapshotHighCountry(state) {
 
 export function migrateSave(data) {
   if (!data || typeof data !== "object") return null;
-  if (data.v === 5) {
+  if (data.v === 6) {
+    const puzzles = snapshotPuzzles(data.puzzles);
+    if (data.world?.masteredRegions?.includes("cedar-hollow") && !puzzles.aar.result) {
+      puzzles.aar.result = "clearance";
+      puzzles.systems.concluded = true;
+      puzzles.conflict.repaired = true;
+    }
     return {
       ...data,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
@@ -225,11 +251,25 @@ export function migrateSave(data) {
       flume: { ...emptyFlumeSave(), ...(data.flume || {}) },
       fieldData: { ...emptyDataSave(), ...(data.fieldData || {}) },
       challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) },
+      puzzles,
       highCountry: snapshotHighCountry(data.highCountry),
       sunfall: snapshotSunfall(data.sunfall),
       regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) },
       presentation: { ...emptyPresentationSave(), ...(data.presentation || {}) }
     };
+  }
+  if (data.v === 5) {
+    const puzzles = emptyPuzzleSave();
+    if (data.world?.masteredRegions?.includes("cedar-hollow") || data.challenge?.presented) {
+      puzzles.aar.result = "clearance";
+      puzzles.systems.concluded = true;
+      puzzles.conflict.repaired = true;
+    }
+    return migrateSave({
+      ...data,
+      v: 6,
+      puzzles
+    });
   }
   if (data.v === 4) {
     return migrateSave({
@@ -288,6 +328,7 @@ export function captureSave({
   flumeState,
   dataState,
   challengeState,
+  puzzleState,
   hcState,
   sfState,
   regionPlayers,
@@ -313,6 +354,7 @@ export function captureSave({
       activeId: dataState?.activeId || null
     },
     challenge: { ...emptyChallengeSave(), ...(challengeState || {}) },
+    puzzles: snapshotPuzzles(puzzleState),
     highCountry: snapshotHighCountry(hcState),
     sunfall: snapshotSunfall(sfState),
     regionPlayers: {
@@ -364,6 +406,7 @@ export function applySave(
     flumeState,
     dataState,
     challengeState,
+    puzzleState,
     hcState,
     sfState,
     regionPlayers,
@@ -403,6 +446,13 @@ export function applySave(
   }
   if (challengeState && migrated.challenge) {
     Object.assign(challengeState, emptyChallengeSave(), migrated.challenge);
+  }
+  if (puzzleState && migrated.puzzles) {
+    const snap = snapshotPuzzles(migrated.puzzles);
+    puzzleState.siteReads = snap.siteReads;
+    puzzleState.systems = snap.systems;
+    puzzleState.conflict = snap.conflict;
+    puzzleState.aar = snap.aar;
   }
   if (hcState && migrated.highCountry) {
     const snap = snapshotHighCountry(migrated.highCountry);

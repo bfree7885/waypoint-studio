@@ -25,7 +25,11 @@ const SYMBOLS = {
 const KIND_LABEL = {
   observation: "Observation",
   comparison: "Comparison",
-  measurement: "Measurement"
+  measurement: "Measurement",
+  pattern: "Pattern",
+  "system-relationship": "System relationship",
+  "revised-explanation": "Revised explanation",
+  "map-evidence": "Map evidence"
 };
 
 export function bindUi(root) {
@@ -126,6 +130,19 @@ export function bindUi(root) {
   const clearanceStatus = root.querySelector("#clearance-status");
   const clearanceTry = root.querySelector("#clearance-try");
   const clearanceFollowTry = root.querySelector("#clearance-follow-try");
+  const systemsMap = root.querySelector("#systems-map");
+  const systemsLead = root.querySelector("#systems-lead");
+  const systemsRoles = root.querySelector("#systems-roles");
+  const systemsPredict = root.querySelector("#systems-predict");
+  const systemsStatus = root.querySelector("#systems-status");
+  const aar = root.querySelector("#aar");
+  const aarTitle = root.querySelector("#aar-title");
+  const aarLead = root.querySelector("#aar-lead");
+  const aarStem = root.querySelector("#aar-stem");
+  const aarChoices = root.querySelector("#aar-choices");
+  const aarStatus = root.querySelector("#aar-status");
+  const aarNext = root.querySelector("#aar-next");
+  const aarSubmit = root.querySelector("#aar-submit");
   const tabButtons = [...root.querySelectorAll(".journal-tabs [data-tab]")];
   const panels = [...root.querySelectorAll("[data-panel]")];
 
@@ -391,8 +408,26 @@ export function bindUi(root) {
         drawFieldSketch(ctx, sketchCanvas.width, sketchCanvas.height, view.investigation, view.sketch);
         if (sketchCaption) {
           sketchCaption.textContent = view.landscapeConcluded
-            ? "Inferred ice-flow added after the explanation held."
+            ? "Older landscape notes added after the explanation held."
             : "A field drawing of Cedar Hollow — not a trail map.";
+        }
+      }
+      if (showEvidence && view.puzzleEvidence?.length) {
+        const kicker = document.createElement("p");
+        kicker.className = "journal-kicker";
+        kicker.textContent = "Puzzle evidence";
+        evidenceBody.appendChild(kicker);
+        for (const row of view.puzzleEvidence) {
+          const article = document.createElement("article");
+          const kind = document.createElement("p");
+          kind.className = "chip-scale";
+          kind.textContent = KIND_LABEL[row.category] || "Evidence";
+          const title = document.createElement("h4");
+          title.textContent = row.title;
+          const note = document.createElement("p");
+          note.textContent = row.note;
+          article.append(kind, title, note);
+          evidenceBody.appendChild(article);
         }
       }
 
@@ -400,7 +435,7 @@ export function bindUi(root) {
         hypothesisOpen.hidden = !view.canPropose && !view.landscapeConcluded;
         hypothesisOpen.textContent = view.landscapeConcluded
           ? "Review the explanation"
-          : "What shaped this hollow?";
+          : "Two clocks in the hollow";
       }
 
       if (fieldRecord) {
@@ -623,6 +658,45 @@ export function bindUi(root) {
         clearanceStatus.textContent = view.status || "";
         clearanceStatus.classList.toggle("is-success", Boolean(view.concluded));
       }
+    },
+    showSystems(open, view = {}, handlers = {}) {
+      if (!systemsMap) return;
+      systemsMap.hidden = !open;
+      if (!open) return;
+      if (systemsLead) systemsLead.textContent = view.lead || "";
+      if (systemsRoles) {
+        systemsRoles.replaceChildren();
+        for (const role of view.roles || []) {
+          const kicker = document.createElement("p");
+          kicker.className = "hypothesis-kicker";
+          kicker.textContent = role.label;
+          const row = document.createElement("div");
+          row.className = "chip-row";
+          systemsRoles.append(kicker, row);
+          fillChips(row, role.options, role.selected, (id) => handlers.onRole?.(role.id, id));
+        }
+      }
+      fillChips(systemsPredict, view.predictOptions || [], view.predictId, handlers.onPredict);
+      if (systemsStatus) {
+        systemsStatus.textContent = view.status || "";
+        systemsStatus.classList.toggle("is-success", Boolean(view.concluded));
+      }
+    },
+    showAar(open, view = {}, handlers = {}) {
+      if (!aar) return;
+      aar.hidden = !open;
+      if (!open) return;
+      if (aarTitle) aarTitle.textContent = view.title || "After Action Report";
+      if (aarLead) aarLead.textContent = view.lead || "";
+      if (aarStem) aarStem.textContent = view.stem || "";
+      fillChips(aarChoices, view.choices || [], view.choiceId, handlers.onChoice);
+      if (aarStatus) {
+        aarStatus.textContent = view.status || "";
+        aarStatus.classList.toggle("is-success", view.result === "clearance");
+      }
+      if (aarNext) aarNext.hidden = Boolean(view.done || view.result);
+      if (aarSubmit) aarSubmit.hidden = !view.done || Boolean(view.result);
+      if (aarChoices) aarChoices.hidden = Boolean(view.result);
     },
     showGeoBoard(open, view = {}, handlers = {}) {
       if (!geoBoard) return;

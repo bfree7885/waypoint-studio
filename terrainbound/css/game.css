@@ -211,7 +211,9 @@ input#geo-number {
 #atlas,
 #flume,
 #interpret,
-#clearance {
+#clearance,
+#systems-map,
+#aar {
   position: absolute;
   inset: 0;
   place-items: center;
@@ -226,7 +228,9 @@ input#geo-number {
 #atlas:not([hidden]),
 #flume:not([hidden]),
 #interpret:not([hidden]),
-#clearance:not([hidden]) {
+#clearance:not([hidden]),
+#systems-map:not([hidden]),
+#aar:not([hidden]) {
   display: grid;
   z-index: 8;
 }
@@ -238,7 +242,9 @@ input#geo-number {
 
 #flume:not([hidden]),
 #interpret:not([hidden]),
-#clearance:not([hidden]) {
+#clearance:not([hidden]),
+#systems-map:not([hidden]),
+#aar:not([hidden]) {
   background: rgba(12, 28, 22, 0.42);
 }
 
@@ -255,6 +261,8 @@ input#geo-number {
 #flume[hidden],
 #interpret[hidden],
 #clearance[hidden],
+#systems-map[hidden],
+#aar[hidden],
 #toast[hidden],
 #inspect-prompt[hidden],
 #boot-error[hidden],
@@ -761,6 +769,14 @@ input#geo-number {
   padding-top: 8px;
 }
 
+#systems-map #systems-predict {
+  padding-bottom: 0.5rem;
+}
+
+#systems-map .conclusion-actions {
+  position: static;
+}
+
 #journal-graph {
   display: block;
   width: 100%;
@@ -1073,6 +1089,8 @@ input#geo-number {
 #flume[hidden],
 #interpret[hidden],
 #clearance[hidden],
+#systems-map[hidden],
+#aar[hidden],
 #travel-card[hidden],
 #appearance-setup[hidden],
 #toast[hidden],
@@ -1226,8 +1244,11 @@ input#geo-number {
     :has(#flume:not([hidden])),
     :has(#interpret:not([hidden])),
     :has(#clearance:not([hidden])),
+    :has(#systems-map:not([hidden])),
+    :has(#aar:not([hidden])),
     :has(#geo-board:not([hidden])),
-    :has(#title-screen:not([hidden]))
+    :has(#title-screen:not([hidden])),
+    :has(#journal.is-open)
   ) .hud-dock,
   #game-root:is(
     :has(#dialogue:not([hidden])),
@@ -1238,8 +1259,11 @@ input#geo-number {
     :has(#flume:not([hidden])),
     :has(#interpret:not([hidden])),
     :has(#clearance:not([hidden])),
+    :has(#systems-map:not([hidden])),
+    :has(#aar:not([hidden])),
     :has(#geo-board:not([hidden])),
-    :has(#title-screen:not([hidden]))
+    :has(#title-screen:not([hidden])),
+    :has(#journal.is-open)
   ) .field-guide {
     visibility: hidden;
     pointer-events: none;
@@ -1248,7 +1272,9 @@ input#geo-number {
   #dialogue:not([hidden]),
   #hypothesis:not([hidden]),
   #conclusion:not([hidden]),
-  #confirm-reset:not([hidden]) {
+  #confirm-reset:not([hidden]),
+  #systems-map:not([hidden]),
+  #aar:not([hidden]) {
     background: rgba(12, 28, 22, 0.28);
     padding-bottom: max(8px, env(safe-area-inset-bottom, 0px));
   }
@@ -1343,6 +1369,33 @@ input#geo-number {
   .conclusion-card {
     width: calc(100% - 16px);
     max-height: calc(100dvh - 16px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+
+  #systems-roles .hypothesis-kicker {
+    margin-top: 8px;
+  }
+
+  #systems-map .hypothesis-card {
+    padding: 12px 12px 10px;
+  }
+
+  #systems-map h2 {
+    font-size: 1.35rem;
+    margin: 0 0 6px;
+  }
+
+  #systems-map .hypothesis-lead {
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+  }
+
+  #systems-map .hypothesis-kicker {
+    margin: 6px 0 4px;
+  }
+
+  #systems-map .chip-row button {
+    padding: 7px 10px;
+    font-size: 0.86rem;
   }
 }
 

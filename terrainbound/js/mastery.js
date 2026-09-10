@@ -45,7 +45,8 @@ export function gameplaySnapshot({
   dataState,
   challengeState,
   flumeSpec,
-  obsIntState
+  obsIntState,
+  puzzleState
 }) {
   const challengeMeasured = challengeState?.measuredIds?.length || 0;
   const roles = new Set(challengeState?.workingRoles || []);
@@ -62,16 +63,18 @@ export function gameplaySnapshot({
     dataRevised: Boolean(dataState?.datasets?.["cedar-hollow-flow"]?.revised),
     setupRevised: Boolean(flumeState?.setupRevised),
     challengeConcluded: Boolean(challengeState?.concluded),
-    challengePresented: Boolean(challengeState?.presented),
+    challengePresented: Boolean(puzzleState?.aar?.result === "clearance"),
     challengeRevised: Boolean(challengeState?.conflicted || (challengeState?.revised && challengeState?.conflicted)),
     challengeObserved: (challengeState?.observedIds?.length || 0) >= 1,
     challengeSystems: Boolean(
-      challengeState?.concluded &&
+      (challengeState?.concluded &&
         roles.has("weather") &&
         roles.has("join") &&
-        roles.has("source")
+        roles.has("source")) ||
+        puzzleState?.systems?.concluded
     ),
-    obsIntCount: (obsIntState?.sorts || invState?.classifications || []).filter((row) => row.ok).length
+    obsIntCount: (obsIntState?.sorts || invState?.classifications || []).filter((row) => row.ok).length,
+    conflictRepaired: Boolean(puzzleState?.conflict?.repaired)
   };
 }
 
@@ -210,11 +213,11 @@ export function deriveGameplayRecords(snapshot, regionId = "cedar-hollow") {
     records.push(
       derivedRecord("communication", "present-findings", "regional-challenge", snapshot, {
         ...extra,
-        action: "field-clearance"
+        action: "after-action-report"
       })
     );
   }
-  if (snapshot.setupRevised || snapshot.dataRevised || snapshot.challengeRevised) {
+  if (snapshot.setupRevised || snapshot.dataRevised || snapshot.challengeRevised || snapshot.conflictRepaired) {
     records.push(
       derivedRecord("revision", "revised-explanation", "explanation", snapshot, {
         ...extra,

@@ -32,6 +32,7 @@ node terrainbound/tests/phase7_6.test.mjs
 node terrainbound/tests/phase7_7.test.mjs
 node terrainbound/tests/phase7_8.test.mjs
 node terrainbound/tests/phase7_8c.test.mjs
+node terrainbound/tests/phase7_9a.test.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.
@@ -48,17 +49,19 @@ Nine further regions exist on the **world map as previews only**. They are not w
 
 The world map is a stylized atlas, not GIS. Travel follows teaching order. A new region opens when mastery evidence is sufficient — not XP, quizzes, or collectible completion.
 
-Missions:
-- **Where Does the Water Go?** (storm water path)
-- **Reading the Landscape** (what shaped the hollow)
-- **What makes water move faster?** (slope and flow on the runoff table)
-- **After the rain** (regional field challenge)
+- **Where Does the Water Go?** (CH-02 storm water path)
+- **What You Can See** (CH-01 observation vs interpretation)
+- **What makes water move faster?** (CH-03–04 runoff table + graph)
+- **After the rain** (CH-05 systems in the creek)
+- **Two clocks** (CH-06 timescales — not glacial mastery)
+- **The hollow is a system** / **When the story breaks** (CH-07–08)
+- **Make the case** (CH-09 Wren After Action Report → field clearance)
 
 Discoveries: 12 optional field finds. Walk to them and inspect. Names stay hidden until found. Mastery does not require collecting all of them.
 
-Field tablet (**J**): Mission notes, Discoveries, Evidence cards, a landscape sketch, **Field data** (your measurements and graph), and a **Field Record**. Evidence is a student's interpretation, not a minimap. World map: title screen, tablet World tab, or the World map control.
+Field tablet (**J**): Mission notes, Discoveries, Evidence cards, a landscape sketch, **Field data** (your measurements and graph), **puzzle evidence**, and a **Field Record**. Evidence is a student's interpretation, not a minimap. World map: title screen, tablet World tab, or the World map control.
 
-Ranger Wren: short comments, hints when useful, acknowledgement of finds. After enough landscape evidence, the player builds an explanation from a process plus recorded notes — not a quiz. After a fair runoff-table comparison, the player's own numbers become the dataset. High Country opens when Topic 1 habits are demonstrated, not when every page is filled.
+Ranger Wren: short comments, hints when useful, acknowledgement of finds. After enough landscape evidence, the player builds an explanation from a process plus recorded notes — not a quiz. After a fair runoff-table comparison, the player's own numbers become the dataset. High Country opens when the After Action Report earns **field clearance**, not when every page is filled.
 
 ## Architecture
 
@@ -89,7 +92,11 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | `js/discoveries.js` | Discovery log |
 | `js/investigation.js` | Evidence, measurements, hypothesis |
 | `js/curriculum.js` | Internal alignment |
-| `js/save.js` | Local field journal (v5, migrates earlier saves) |
+| `data/puzzles/` | Cedar Hollow Layer A puzzle spec |
+| `data/aar/` | After Action Report stems |
+| `js/puzzles.js` | Puzzle use, systems map, conflict, tablet evidence |
+| `js/aar.js` | Field debrief scoring (clearance vs more evidence) |
+| `js/save.js` | Local field journal (v6, migrates earlier saves) |
 | `js/audio.js` | Quiet audio bus |
 | `js/character.js` / `js/stations.js` / `js/atmosphere.js` / `js/travel.js` / `js/density.js` | Explorer, stations, sky, title cards, landcover |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |

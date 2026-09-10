@@ -1,7 +1,7 @@
 {
   "id": "after-the-rain",
   "title": "After the rain",
-  "kicker": "Field clearance",
+  "kicker": "After the rain",
   "question": "Why is part of Pine Creek muddier and quicker this morning?",
   "intro": {
     "speaker": "Ranger Wren",
@@ -137,6 +137,6 @@
   },
   "success": "Rain, a loose slope, and a tributary did this together. That's a system, not a single culprit.",
   "wrenAfter": [
-    "You know how to work a problem now. High Country will ask you to work out where you are."
+    "Rain, slope, and a tributary — that's a system. The case isn't closed until you can walk it back to me."
   ]
 }

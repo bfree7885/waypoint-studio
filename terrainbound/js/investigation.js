@@ -221,6 +221,12 @@ export function evaluateHypothesis(investigation, state, processId, evidenceIds)
       state.lastHint = spec.iceWithoutHistory;
       return { ok: false, reason: "modern-only", hint: spec.iceWithoutHistory };
     }
+    const modern = spec.modernEvidenceIds || [];
+    const hasModern = modern.some((id) => evidenceIds.includes(id));
+    if (!hasModern && spec.historyWithoutModern) {
+      state.lastHint = spec.historyWithoutModern;
+      return { ok: false, reason: "history-only", hint: spec.historyWithoutModern };
+    }
     const missing = required.find((id) => !evidenceIds.includes(id));
     const hint = spec.missing[missing] || spec.iceWithoutHistory;
     state.lastHint = hint;
@@ -295,6 +301,7 @@ export function playerFacingInvestigationText(investigation) {
     investigation.hypothesis?.noEvidence,
     investigation.hypothesis?.unrecorded,
     investigation.hypothesis?.iceWithoutHistory,
+    investigation.hypothesis?.historyWithoutModern,
     ...Object.values(investigation.hypothesis?.weakResponses || {}),
     ...Object.values(investigation.hypothesis?.missing || {}),
     investigation.completeJournalEntry?.title,

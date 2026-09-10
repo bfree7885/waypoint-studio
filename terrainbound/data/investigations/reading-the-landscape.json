@@ -1,7 +1,7 @@
 {
   "id": "reading-the-landscape",
   "title": "Reading the Landscape",
-  "question": "What shaped Cedar Hollow?",
+  "question": "Two clocks in the hollow",
   "regionId": "cedar-hollow",
   "playerFacing": true,
   "curriculumSlotIds": [
@@ -36,20 +36,20 @@
     "speaker": "Ranger Wren",
     "lines": [
       "You traced last night. That's one clock. Cedar Hollow has older ones.",
-      "The boulder on the north trail doesn't match the hill. The knob's bare rock looks scraped. The valley is a round bowl, and the pond sits in a dip.",
-      "Those might be the same story. I don't have the story. I have a question.",
-      "What shaped Cedar Hollow? Walk it again. Compare. Measure. Then we'll try an explanation."
+      "The boulder on the north trail doesn't match the hill. The knob's bare rock looks scraped. The valley is a round bowl.",
+      "A modern-creek-only story cannot carry that boulder. An ancient-only story cannot carry last night's sand bar.",
+      "Walk it again. Attach each note to a clock. Then we'll try an explanation."
     ]
   },
   "wren": {
     "activeNudge": "Don't guess from the porch. Compare what doesn't fit.",
     "ready": [
-      "You've got enough in the tablet to try an explanation. Process first, then the notes that actually support it."
+      "You've got enough in the tablet to try an explanation. Two clocks, then the notes that actually support them."
     ],
     "afterSuccess": [
       "You're not just walking Cedar Hollow now. You're reading it.",
-      "That boulder on the north trail? I'd call it an erratic now. You earned the word.",
-      "Same trees. Same creek. Different clocks, once you know where to look."
+      "Last night's creek is still at work. Something older parked a boulder that doesn't belong.",
+      "Ice as the older agent is a question for another valley. Here, the habit is two clocks."
     ],
     "hints": {
       "rock-compare": "There's a boulder on the north trail that doesn't match the hill. See it next to the knob's own rock.",
@@ -265,35 +265,39 @@
     }
   ],
   "processes": [
-    { "id": "flowing-water", "label": "flowing water" },
-    { "id": "moving-ice", "label": "moving ice" },
-    { "id": "wind", "label": "wind" },
-    { "id": "volcanic", "label": "volcanic activity" }
+    { "id": "two-clocks", "label": "two clocks — last night and something older" },
+    { "id": "only-rain", "label": "last night's rain made the whole hollow" },
+    { "id": "only-ancient", "label": "one old process made everything, including today's sand bar" },
+    { "id": "named-ice", "label": "a glacier — that's the Earth Science word" }
   ],
   "hypothesis": {
-    "requiredProcess": "moving-ice",
-    "requiredEvidenceIds": ["transported-boulder", "bedrock-grooves", "rounded-valley"],
+    "requiredProcess": "two-clocks",
+    "requiredEvidenceIds": ["transported-boulder", "bedrock-grooves", "rounded-valley", "sediment-sort"],
     "helpfulEvidenceIds": ["pond-basin"],
     "modernEvidenceIds": ["sediment-sort", "cut-bank-now", "sand-bar-now", "rounded-bed"],
+    "historyEvidenceIds": ["transported-boulder", "bedrock-grooves", "rounded-valley", "pond-basin"],
     "weakResponses": {
-      "flowing-water": "That explains what Pine Creek is doing today, but does it explain how the large boulder arrived on the north trail?",
-      "wind": "Wind can move dust and dry sand. This boulder is not dust, and the grooves are carved into bedrock.",
-      "volcanic": "There's no lava, no ash, no crater. The knob is old rock, not a volcano."
+      "only-rain": "That explains last night. It does not park a mismatched boulder or scrape parallel lines into bedrock.",
+      "only-ancient": "An old landscape can leave a bowl and a boulder. It cannot be today's sand bar and cut bank.",
+      "named-ice": "A vocabulary word is not the case. What in the tablet actually needs a longer clock than last night?",
+      "flowing-water": "That explains what Pine Creek is doing today, but does it explain how the large boulder arrived on the north trail?"
     },
     "missing": {
-      "transported-boulder": "Moving ice is a strong idea — but what about the boulder that doesn't match the hill?",
-      "bedrock-grooves": "A moving-ice explanation is stronger if the bedrock itself shows a direction of travel.",
-      "rounded-valley": "Look at the whole bowl from High Look. Is this a sharp mountain cut, or something broader?"
+      "transported-boulder": "Two clocks is a strong idea — but what about the boulder that doesn't match the hill?",
+      "bedrock-grooves": "A longer clock is stronger if the bedrock itself shows a direction of travel.",
+      "rounded-valley": "Look at the whole bowl from High Look. Is this a sharp mountain cut, or something broader?",
+      "sediment-sort": "If the creek is still at work, the bend should still be taking and leaving sediment. Stand on both sides."
     },
-    "iceWithoutHistory": "Moving ice could be right, but the notes you selected are about what the creek is doing now. What about the boulder, the grooves, and the shape of the valley?",
+    "iceWithoutHistory": "Those notes are about what the creek is doing now. What about the boulder, the grooves, and the shape of the valley?",
+    "historyWithoutModern": "Those notes are the longer clock. Last night's bar and cut bank are still happening. An ancient-only story cannot carry them.",
     "noProcess": "Start with a process, then attach the field notes that actually support it.",
     "noEvidence": "An explanation needs evidence you recorded, not a guess from the porch.",
     "unrecorded": "Only use notes you actually recorded in the field.",
-    "success": "Ice moved through this valley long before last night's rain. It left the mismatched boulder, the parallel grooves, and the broad rounded bowl. Pine Creek is still at work on the floor — cutting one bank, dropping sand on the other. Water still seeps from the hill and floods the reach. Same hollow. Different clocks."
+    "success": "Last night's creek is one clock: it still cuts one bank and drops sand on the other. The mismatched boulder, the parallel grooves, and the broad bowl need a longer clock than one rain. Same hollow. Different clocks. Naming the older agent is later work."
   },
   "completeJournalEntry": {
-    "title": "What shaped Cedar Hollow?",
-    "text": "Older moving ice shaped the bowl, parked a boulder that doesn't belong, and scraped the knob. Pine Creek keeps rewriting the floor. Water still moves through the hollow every day. The land records more than one clock."
+    "title": "Two clocks in the hollow",
+    "text": "Pine Creek keeps rewriting the floor. The boulder that doesn't match the hill, the scraped knob, and the rounded bowl are not one rain. The land records more than one clock."
   },
   "worldLabels": [
     { "id": "glacial-erratic", "kind": "discovery", "text": "Didn't grow here" },

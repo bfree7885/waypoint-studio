@@ -99,12 +99,12 @@ check("travel gates unchanged", () => {
 });
 
 check("save v5 compatibility", () => {
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   const fromV4 = migrateSave({ v: 4, player: { x: 12, y: 18, facing: -1 } });
-  assert.equal(fromV4.v, 5);
+  assert.equal(fromV4.v, 6);
   assert.ok(fromV4.sunfall);
   const fromV5 = migrateSave({ v: 5, presentation: { openingSeen: true } });
-  assert.equal(fromV5.v, 5);
+  assert.equal(fromV5.v, 6);
   assert.equal(fromV5.presentation.openingSeen, true);
 });
 

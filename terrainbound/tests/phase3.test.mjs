@@ -128,12 +128,16 @@ check("water mission and landscape hypothesis still complete", () => {
   recordMeasurement(inv, investigation, "rock-compare", disc);
   recordMeasurement(inv, investigation, "bedrock-grooves", disc);
   recordMeasurement(inv, investigation, "valley-shape", disc);
-  const weak = evaluateHypothesis(investigation, inv, "flowing-water", ["transported-boulder"]);
+  addDiscovery(disc, catalog, "cut-bank");
+  addDiscovery(disc, catalog, "point-bar");
+  recordMeasurement(inv, investigation, "sediment-sort", disc);
+  const weak = evaluateHypothesis(investigation, inv, "only-rain", ["transported-boulder"]);
   assert.equal(weak.ok, false);
-  const ok = evaluateHypothesis(investigation, inv, "moving-ice", [
+  const ok = evaluateHypothesis(investigation, inv, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
-    "rounded-valley"
+    "rounded-valley",
+    "sediment-sort"
   ]);
   assert.equal(ok.ok, true);
 });

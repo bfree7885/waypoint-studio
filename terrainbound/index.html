@@ -98,7 +98,7 @@
         <h3 class="journal-kicker">Landscape sketch</h3>
         <p class="journal-empty" id="sketch-caption">A field drawing of Cedar Hollow — not a trail map.</p>
         <canvas id="field-sketch" width="320" height="168" aria-label="Cedar Hollow field sketch"></canvas>
-        <button type="button" id="hypothesis-open" hidden>What shaped this hollow?</button>
+        <button type="button" id="hypothesis-open" hidden>Two clocks in the hollow</button>
       </section>
       <section class="journal-section" data-panel="map" id="journal-map-section" hidden>
         <h3 class="journal-kicker">Field map</h3>
@@ -153,9 +153,9 @@
       </div>
     </div>
 
-    <div id="hypothesis" hidden role="dialog" aria-label="What shaped Cedar Hollow?">
+    <div id="hypothesis" hidden role="dialog" aria-label="Two clocks in the hollow">
       <div class="hypothesis-card">
-        <h2>What shaped Cedar Hollow?</h2>
+        <h2>Two clocks in the hollow</h2>
         <p class="hypothesis-lead">Build an explanation from a process and the field notes you actually recorded.</p>
         <p class="hypothesis-kicker">Process</p>
         <div id="hypothesis-processes" class="chip-row"></div>
@@ -229,6 +229,38 @@
       </div>
     </div>
 
+    <div id="systems-map" hidden role="dialog" aria-label="The hollow is a system">
+      <div class="hypothesis-card">
+        <p class="field-bench-kicker">Field systems</p>
+        <h2>The hollow is a system</h2>
+        <p class="hypothesis-lead" id="systems-lead">Last night wasn't four separate stories.</p>
+        <div id="systems-roles"></div>
+        <p class="hypothesis-kicker">If the marsh stored water, what should still be true?</p>
+        <div id="systems-predict" class="chip-row"></div>
+        <p id="systems-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="systems-try">Try this map</button>
+          <button type="button" id="systems-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="aar" hidden role="dialog" aria-label="After Action Report">
+      <div class="hypothesis-card">
+        <p class="field-bench-kicker">Field debrief</p>
+        <h2 id="aar-title">After Action Report</h2>
+        <p class="hypothesis-lead" id="aar-lead"></p>
+        <p class="hypothesis-kicker" id="aar-stem"></p>
+        <div id="aar-choices" class="chip-row"></div>
+        <p id="aar-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="aar-next">Next</button>
+          <button type="button" id="aar-submit" hidden>Make the case</button>
+          <button type="button" id="aar-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
     <div id="geo-board" hidden role="dialog" aria-label="Field map work">
       <div class="hypothesis-card">
         <h2 id="geo-title">Field question</h2>
@@ -274,6 +306,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p78c"></script>
+  <script type="module" src="./js/main.js?v=p79a"></script>
 </body>
 </html>

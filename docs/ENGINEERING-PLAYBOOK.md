@@ -1700,3 +1700,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Bottom HUD pills that are independently absolutely positioned will collide on a narrow width. A mobile dock (contextual action above, tools in a row) is safer than shrinking tap targets.
 - Field notes need max-height + vertical scroll + sticky actions and safe-area padding. On a short phone, hide the HUD dock and field-guide while a blocking overlay is open so Continue cannot sit on World map / Field tablet.
 
+### Lessons Learned — TerrainBound Phase 7.9A (2026-09-10)
+
+- Cedar Hollow already had the Topic 1 *habits*. The missing architecture was naming them as puzzles, converting landscape from a glacier answer to two clocks, and withholding travel until an After Action Report could catch a lucky click.
+- First-try success is not revision. If the player never broke a story, CH-08 has to introduce a conflicting observation and require a narrowed case.
+- FIELD CLEARANCE EARNED / MORE EVIDENCE NEEDED are the only player-facing AAR results. Do not print a score. Send them back to the specific missing puzzle.
+- Guidance that asks “what shaped this hollow” before the runoff table turns Cedar Hollow back into a glacier quest. Walk-and-water, then observation vs interpretation, then predict-test, then After the Rain, then two clocks.
+
+

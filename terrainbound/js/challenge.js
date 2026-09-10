@@ -112,7 +112,6 @@ export function tryChallengeFollowUp(state, spec, optionId) {
   if (state.conflicted) state.revised = true;
   state.followUpDone = true;
   state.concluded = true;
-  state.presented = true;
   state.lastHint = spec.success;
   return { ok: true, hint: spec.success };
 }

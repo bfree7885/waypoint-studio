@@ -64,10 +64,22 @@ import {
   canProposeChallenge,
   tryChallengeExplanation,
   tryChallengeFollowUp,
-  presentChallenge,
   challengeProgress,
   predictPulse
 } from "./challenge.js";
+import {
+  createPuzzleState,
+  puzzleUse,
+  aarEligible,
+  incompletePuzzles,
+  classifySite,
+  trySystemsRole,
+  trySystemsPredict,
+  concludeSystems,
+  tryConflict,
+  tabletEvidence
+} from "./puzzles.js";
+import { itemsForAttempt, submitAar, resetAarAnswers } from "./aar.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
 import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, emptyPresentationSave, wipeRequiresConfirm } from "./save.js";
@@ -198,6 +210,8 @@ export async function boot(root = document) {
     flumeSpec,
     dataCatalog,
     challengeSpec,
+    puzzleSpec,
+    aarSpec,
     hcRegion,
     hcCatalog,
     hcSpec,
@@ -221,6 +235,8 @@ export async function boot(root = document) {
       fetch("./data/investigations/what-makes-water-move.json").then((r) => r.json()),
       fetch("./data/fielddata/catalog.json").then((r) => r.json()),
       fetch("./data/challenges/after-the-rain.json").then((r) => r.json()),
+      fetch("./data/puzzles/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/aar/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/regions/high-country.json").then((r) => r.json()),
       fetch("./data/discoveries/high-country.json").then((r) => r.json()),
       fetch("./data/investigations/high-country.json").then((r) => r.json()),
@@ -251,6 +267,7 @@ export async function boot(root = document) {
   const flumeState = createFlumeState();
   const dataState = createDataState();
   const challengeState = createChallengeState();
+  const puzzleState = createPuzzleState();
   const hcState = createHcState();
   const sfState = createSfState();
   const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
@@ -287,6 +304,9 @@ export async function boot(root = document) {
   let flumeOpen = false;
   let interpretOverlay = false;
   let clearanceOpen = false;
+  let systemsOpen = false;
+  let aarOpen = false;
+  let aarIndex = 0;
   let atlasOpen = false;
   let geoOpen = false;
   let geoKind = null;
@@ -311,6 +331,7 @@ export async function boot(root = document) {
       flumeState,
       dataState,
       challengeState,
+      puzzleState,
       hcState,
       sfState,
       regionPlayers,
@@ -398,7 +419,22 @@ export async function boot(root = document) {
       dataState,
       challengeState,
       flumeSpec,
-      obsIntState: invState.obsInt
+      obsIntState: invState.obsInt,
+      puzzleState
+    });
+  }
+
+  function currentPuzzleUse() {
+    return puzzleUse({
+      missionState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      obsIntState: invState.obsInt,
+      puzzleState,
+      investigation,
+      hasFairComparison: hasFairComparison(flumeState, flumeSpec)
     });
   }
 
@@ -414,6 +450,7 @@ export async function boot(root = document) {
       obsIntState: invState.obsInt,
       hcState,
       sfState,
+      puzzleState,
       hasFairComparison: hasFairComparison(flumeState, flumeSpec)
     });
   }
@@ -457,6 +494,11 @@ export async function boot(root = document) {
       landscapeConcluded: invState.concluded,
       landscapeConclusionText: investigation.completeJournalEntry,
       evidence,
+      puzzleEvidence: tabletEvidence(puzzleSpec, currentPuzzleUse(), {
+        invState,
+        challengeState,
+        puzzleState
+      }),
       sketch: sketchModel(investigation, invState),
       investigation,
       canPropose: canProposeExplanation(investigation, invState),
@@ -636,6 +678,7 @@ export async function boot(root = document) {
         flumeState,
         dataState,
         challengeState,
+        puzzleState,
         hcState,
         sfState,
         regionPlayers,
@@ -654,6 +697,8 @@ export async function boot(root = document) {
         flumeOpen ||
         interpretOverlay ||
         clearanceOpen ||
+        systemsOpen ||
+        aarOpen ||
         geoOpen ||
         travelBlocking(travelState)
     );
@@ -927,8 +972,191 @@ export async function boot(root = document) {
     showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
       dialogue = null;
       ui.showDialogue(false);
-      openAtlas("high-country");
+      if (!puzzleState.systems.concluded) openSystems();
     });
+  }
+
+  function systemsView() {
+    const spec = puzzleSpec.systems;
+    return {
+      lead: spec.lead,
+      roles: spec.roles.map((role) => ({
+        id: role.id,
+        label: role.label,
+        selected: puzzleState.systems.roles[role.id] || null,
+        options: role.options.map((item) => ({ id: item.id, label: item.label }))
+      })),
+      predictOptions: spec.predict.options.map((item) => ({ id: item.id, label: item.label })),
+      predictId: puzzleState.systems.predict,
+      status: puzzleState.systems.concluded ? "That's one event with parts." : "",
+      concluded: puzzleState.systems.concluded
+    };
+  }
+
+  function renderSystems() {
+    ui.showSystems(true, systemsView(), {
+      onRole(roleId, optionId) {
+        const result = trySystemsRole(puzzleState, puzzleSpec, roleId, optionId);
+        persist();
+        renderSystems();
+        if (!result.ok) ui.showToast("The land disagrees", result.hint);
+      },
+      onPredict(id) {
+        const result = trySystemsPredict(puzzleState, puzzleSpec, id);
+        persist();
+        renderSystems();
+        if (!result.ok) ui.showToast("Check the marsh", result.hint);
+      }
+    });
+  }
+
+  function openSystems() {
+    systemsOpen = true;
+    renderSystems();
+  }
+
+  function closeSystems() {
+    systemsOpen = false;
+    ui.showSystems(false, {});
+  }
+
+  function trySystemsMap() {
+    const result = concludeSystems(puzzleState, puzzleSpec);
+    persist();
+    renderSystems();
+    if (!result.ok) {
+      ui.showToast("Keep mapping", result.hint);
+      return;
+    }
+    closeSystems();
+    showDialogueLines("Ranger Wren", ["Atmosphere, water, and rock took part. The willows took a hit — they didn't start it."], 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+      const use = currentPuzzleUse();
+      if (!use["CH-08"]) openConflict();
+      else if (aarEligible(puzzleSpec, use)) openAar();
+    });
+  }
+
+  function openConflict() {
+    puzzleState.conflict.seen = true;
+    persist();
+    ui.showDialogue(true, "Ranger Wren", puzzleSpec.conflict.lead + " " + puzzleSpec.conflict.prompt, puzzleSpec.conflict.options.map((option) => ({
+      label: option.label,
+      onClick: () => {
+        const judged = tryConflict(puzzleState, puzzleSpec, option.id);
+        persist();
+        if (!judged.ok) {
+          ui.showDialogue(true, "Ranger Wren", judged.hint, [
+            {
+              label: "Revise the story",
+              onClick: () => {
+                dialogue = null;
+                ui.showDialogue(false);
+                openConflict();
+              }
+            }
+          ]);
+          return;
+        }
+        dialogue = null;
+        ui.showDialogue(false);
+        showDialogueLines("Ranger Wren", ["That's revision. You dropped the false cause because the land disagreed."], 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+          const use = currentPuzzleUse();
+          if (aarEligible(puzzleSpec, use)) openAar();
+        });
+      }
+    })), wrenKicker());
+  }
+
+  function aarItems() {
+    return itemsForAttempt(aarSpec, (puzzleState.aar.attempts || 0) + 1);
+  }
+
+  function aarView() {
+    const items = aarItems();
+    const item = items[aarIndex] || items[0];
+    const done = aarIndex >= items.length - 1 && Boolean(puzzleState.aar.answers[item?.id]);
+    if (puzzleState.aar.result) {
+      return {
+        title: puzzleState.aar.result === "clearance" ? aarSpec.clearance.title : aarSpec.moreEvidence.title,
+        lead: puzzleState.aar.result === "clearance" ? aarSpec.clearance.lines[0] : puzzleState.aar.remediation.join(" "),
+        stem: "",
+        choices: [],
+        result: puzzleState.aar.result,
+        status: puzzleState.aar.result === "clearance" ? "The road to High Country is open." : aarSpec.moreEvidence.lead,
+        done: true
+      };
+    }
+    return {
+      title: aarSpec.title,
+      lead: aarSpec.open,
+      stem: item?.stem || "",
+      choices: (item?.choices || []).map((choice) => ({ id: choice.id, label: choice.label })),
+      choiceId: item ? puzzleState.aar.answers[item.id] : null,
+      done,
+      result: null,
+      status: ""
+    };
+  }
+
+  function renderAar() {
+    ui.showAar(true, aarView(), {
+      onChoice(id) {
+        const items = aarItems();
+        const item = items[aarIndex];
+        if (!item) return;
+        puzzleState.aar.answers = { ...puzzleState.aar.answers, [item.id]: id };
+        persist();
+        renderAar();
+      }
+    });
+  }
+
+  function openAar() {
+    aarOpen = true;
+    if (puzzleState.aar.result === "more-evidence") resetAarAnswers(puzzleState);
+    if (puzzleState.aar.result !== "clearance") aarIndex = 0;
+    renderAar();
+  }
+
+  function closeAar() {
+    aarOpen = false;
+    ui.showAar(false, {});
+  }
+
+  function aarAdvance() {
+    const items = aarItems();
+    const item = items[aarIndex];
+    if (!item || !puzzleState.aar.answers[item.id]) {
+      ui.showToast("Make a case", "Pick the line your notes can actually carry.");
+      return;
+    }
+    if (aarIndex < items.length - 1) {
+      aarIndex += 1;
+      renderAar();
+      return;
+    }
+    submitAarCase();
+  }
+
+  function submitAarCase() {
+    const use = currentPuzzleUse();
+    const missing = incompletePuzzles(puzzleSpec, use);
+    const result = submitAar(puzzleState, aarSpec, puzzleSpec, puzzleState.aar.answers, missing);
+    persist();
+    renderAar();
+    refreshJournal();
+    if (result.result === "clearance") {
+      closeAar();
+      showDialogueLines("Ranger Wren", aarSpec.clearance.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        openAtlas("high-country");
+      });
+    }
   }
 
   function inspectChallenge(site) {
@@ -1078,6 +1306,42 @@ export async function boot(root = document) {
     inspectLock = true;
     const spec = result.spec;
     showDialogueLines("Field note", [spec.prompt, spec.text], 0, () => {
+      const inquiry = puzzleSpec.siteInquiries?.[feature.id];
+      const read = puzzleState.siteReads[feature.id];
+      if (inquiry && !read?.ok) {
+        ui.showDialogue(
+          true,
+          "Field note",
+          inquiry.prompt,
+          inquiry.options.map((option) => ({
+            label: option.label,
+            onClick: () => {
+              const judged = classifySite(puzzleState, puzzleSpec, feature.id, option.id);
+              dialogue = null;
+              inspectLock = false;
+              if (judged.ok) {
+                ui.showDialogue(false);
+                ui.showToast("Noted", spec.title);
+                persist();
+                refreshJournal();
+              } else {
+                ui.showDialogue(true, "Field note", judged.hint, [
+                  {
+                    label: "Look again",
+                    onClick: () => {
+                      dialogue = null;
+                      ui.showDialogue(false);
+                    }
+                  }
+                ]);
+                persist();
+              }
+            }
+          })),
+          ""
+        );
+        return;
+      }
       dialogue = null;
       ui.showDialogue(false);
       inspectLock = false;
@@ -2250,7 +2514,7 @@ export async function boot(root = document) {
       });
       return;
     }
-    if (shouldIntroduceInvestigation(invState, discoveryState, done)) {
+    if (challengeState.concluded && !invState.concluded && shouldIntroduceInvestigation(invState, discoveryState, done)) {
       showDialogueLines("Ranger Wren", investigation.intro.lines, 0, () => {
         beginInvestigation(invState, investigation, discoveryState);
         dialogue = null;
@@ -2349,13 +2613,71 @@ export async function boot(root = document) {
       ]);
       return;
     }
-    if (challengeState.concluded && !challengeState.presented) {
-      presentChallenge(challengeState);
-      persist();
-      showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
+    if (challengeState.concluded && !puzzleState.systems.concluded) {
+      ui.showDialogue(true, "Ranger Wren", "Last night, the slope, the creek, the marsh, and the living bank. Separate stories, or one event with parts?", [
+        {
+          label: "Map the system",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openSystems();
+          }
+        },
+        {
+          label: "Keep looking",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    const useNow = currentPuzzleUse();
+    if (challengeState.concluded && puzzleState.systems.concluded && !useNow["CH-08"]) {
+      ui.showDialogue(true, "Ranger Wren", "A tidy first story just met a crate note and a clear station reach.", [
+        {
+          label: "Face the conflict",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openConflict();
+          }
+        },
+        {
+          label: "Not yet",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (aarEligible(puzzleSpec, useNow) && puzzleState.aar.result !== "clearance") {
+      ui.showDialogue(true, "Ranger Wren", aarSpec.open, [
+        {
+          label: "Make the case",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openAar();
+          }
+        },
+        {
+          label: "Not yet",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (puzzleState.aar.result === "more-evidence") {
+      showDialogueLines("Ranger Wren", puzzleState.aar.remediation.length ? puzzleState.aar.remediation : [aarSpec.moreEvidence.lead], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
-        openAtlas("high-country");
       });
       return;
     }
@@ -2560,6 +2882,14 @@ export async function boot(root = document) {
       if (event.key === "Escape") closeClearance();
       return;
     }
+    if (systemsOpen) {
+      if (event.key === "Escape") closeSystems();
+      return;
+    }
+    if (aarOpen) {
+      if (event.key === "Escape") closeAar();
+      return;
+    }
     if (geoOpen) {
       if (event.key === "Escape") closeGeo();
       return;
@@ -2660,6 +2990,11 @@ export async function boot(root = document) {
   root.querySelector("#clearance-try")?.addEventListener("click", tryClearance);
   root.querySelector("#clearance-follow-try")?.addEventListener("click", tryClearanceFollow);
   root.querySelector("#clearance-close")?.addEventListener("click", closeClearance);
+  root.querySelector("#systems-try")?.addEventListener("click", trySystemsMap);
+  root.querySelector("#systems-close")?.addEventListener("click", closeSystems);
+  root.querySelector("#aar-next")?.addEventListener("click", aarAdvance);
+  root.querySelector("#aar-submit")?.addEventListener("click", submitAarCase);
+  root.querySelector("#aar-close")?.addEventListener("click", closeAar);
   root.querySelector("#geo-close")?.addEventListener("click", closeGeo);
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
@@ -2910,6 +3245,9 @@ export async function boot(root = document) {
       flumeState,
       dataState,
       challengeState,
+      puzzleState,
+      puzzleSpec,
+      aarSpec,
       flumeSpec,
       hcState,
       hcRegion,
@@ -2963,6 +3301,9 @@ export async function boot(root = document) {
       openFlume,
       openInterpret,
       openClearance,
+      openSystems,
+      openAar,
+      openConflict,
       releaseWater,
       tryInterpret,
       tryClearance,

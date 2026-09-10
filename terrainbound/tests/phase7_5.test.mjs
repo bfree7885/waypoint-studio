@@ -173,7 +173,7 @@ check("travel works among unlocked regions", () => {
 });
 
 check("save v5 migrates and loads presentation without a version bump", () => {
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   const v5 = migrateSave({
     v: 5,
     player: { x: 10, y: 10, facing: 1 },
@@ -182,7 +182,7 @@ check("save v5 migrates and loads presentation without a version bump", () => {
   });
   assert.equal(v5.presentation.appearance.jacket, "clay");
   const v4 = migrateSave({ v: 4, player: { x: 1, y: 2, facing: -1 }, taught: {}, world: {} });
-  assert.equal(v4.v, 5);
+  assert.equal(v4.v, 6);
   assert.ok(v4.presentation);
   const snap = captureSave({
     player: { x: 8, y: 9, facing: 1 },
@@ -201,7 +201,7 @@ check("save v5 migrates and loads presentation without a version bump", () => {
     regionPlayers: {},
     presentation: emptyPresentationSave()
   });
-  assert.equal(snap.v, 5);
+  assert.equal(snap.v, 6);
   assert.equal(snap.presentation.openingSeen, false);
   const look = normalizeAppearance({ skin: "umber", hair: "bun-auburn", jacket: "pine" });
   assert.equal(look.jacket, "pine");

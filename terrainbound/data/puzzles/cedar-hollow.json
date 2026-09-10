@@ -1,0 +1,180 @@
+{
+  "regionId": "cedar-hollow",
+  "corePhenomenon": "What can you honestly say about this hollow from what you actually saw, measured, and tested?",
+  "puzzles": [
+    {
+      "id": "CH-01",
+      "name": "What You Can See",
+      "layer": "A",
+      "competencyIds": ["observation"],
+      "mechanic": "field-investigation",
+      "evidenceCategory": "observation"
+    },
+    {
+      "id": "CH-02",
+      "name": "Where Did Last Night's Water Go?",
+      "layer": "A",
+      "competencyIds": ["evidence", "patterns"],
+      "mechanic": "spatial-sequencing",
+      "evidenceCategory": "pattern"
+    },
+    {
+      "id": "CH-03",
+      "name": "What Makes Water Move Faster?",
+      "layer": "A",
+      "competencyIds": ["variables"],
+      "mechanic": "controlled-experiment",
+      "evidenceCategory": "measurement"
+    },
+    {
+      "id": "CH-04",
+      "name": "The Numbers Mean a Pattern",
+      "layer": "A",
+      "competencyIds": ["data", "patterns"],
+      "mechanic": "graphs-data",
+      "evidenceCategory": "pattern"
+    },
+    {
+      "id": "CH-05",
+      "name": "After the Rain",
+      "layer": "A",
+      "competencyIds": ["systems", "explanation"],
+      "mechanic": "competing-explanations",
+      "evidenceCategory": "system-relationship"
+    },
+    {
+      "id": "CH-06",
+      "name": "Two Clocks",
+      "layer": "A",
+      "competencyIds": ["explanation"],
+      "mechanic": "chronology",
+      "evidenceCategory": "observation"
+    },
+    {
+      "id": "CH-07",
+      "name": "The Hollow Is a System",
+      "layer": "A",
+      "competencyIds": ["systems"],
+      "mechanic": "systems-model",
+      "evidenceCategory": "system-relationship"
+    },
+    {
+      "id": "CH-08",
+      "name": "When the Story Breaks",
+      "layer": "A",
+      "competencyIds": ["revision"],
+      "mechanic": "genuine-revision",
+      "evidenceCategory": "revised-explanation"
+    },
+    {
+      "id": "CH-09",
+      "name": "Make the Case",
+      "layer": "A",
+      "competencyIds": ["communication"],
+      "mechanic": "field-debrief",
+      "evidenceCategory": "revised-explanation"
+    }
+  ],
+  "siteInquiries": {
+    "westface-slope": {
+      "prompt": "Rills score the slope. Which way did last night's water actually go?",
+      "options": [
+        { "id": "downhill", "label": "Downhill, toward the creek", "ok": true },
+        { "id": "stayed", "label": "It stayed on this slope", "ok": false, "hint": "The rills run toward lower ground. Walk that way." },
+        { "id": "uphill", "label": "Toward the top of Granite Knob", "ok": false, "hint": "Water does not climb the knob. Look at the rills." }
+      ]
+    },
+    "high-look": {
+      "prompt": "From here the hollow tilts. Where should last night's water still linger?",
+      "options": [
+        { "id": "low", "label": "The pond and the willow bench — lowest ground", "ok": true },
+        { "id": "knob", "label": "Pooled on top of Granite Knob", "ok": false, "hint": "The knob is the high point. Water doesn't sit there." },
+        { "id": "equal", "label": "Everywhere equally, because it rained", "ok": false, "hint": "The ridges shed. Look downhill of what you can see from here." }
+      ]
+    },
+    "mirror-pond": {
+      "prompt": "The pond is high. Is this where last night's water stopped?",
+      "options": [
+        { "id": "pause", "label": "A pause — water still has a way out", "ok": true },
+        { "id": "end", "label": "This is the end of the path", "ok": false, "hint": "Look for an outlet, then follow it." },
+        { "id": "vanish", "label": "The rain soaked in here and vanished", "ok": false, "hint": "There's an outlet on the far side." }
+      ]
+    }
+  },
+  "systems": {
+    "title": "The hollow is a system",
+    "lead": "Last night, the slope, the creek, the marsh, and the living bank. Separate stories, or one event with parts?",
+    "predict": {
+      "prompt": "If the marsh stored water instead of causing the pulse, what should still be true?",
+      "options": [
+        { "id": "still-wet", "label": "The marsh should still be wet after the pulse passed", "ok": true },
+        { "id": "dry", "label": "The marsh should be dry now", "ok": false, "hint": "A store holds water. Check the seep and marsh." },
+        { "id": "trees", "label": "The willows should have stopped the flood", "ok": false, "hint": "The roots are hanging in air. They were in the way, not the engine." }
+      ]
+    },
+    "roles": [
+      {
+        "id": "atmosphere",
+        "label": "Sky / weather",
+        "options": [
+          { "id": "rain", "label": "Last night's rain on the gauge", "ok": true },
+          { "id": "trees-weather", "label": "The willows called the storm", "ok": false, "hint": "Weather is what the gauge recorded, not what the trees wanted." }
+        ]
+      },
+      {
+        "id": "geosphere",
+        "label": "Slope / rock",
+        "options": [
+          { "id": "scar", "label": "Loose Westface soil that failed", "ok": true },
+          { "id": "pond-rock", "label": "The pond floor cracked open", "ok": false, "hint": "The scar sits above Fox Run, not under the pond." }
+        ]
+      },
+      {
+        "id": "hydrosphere",
+        "label": "Moving water",
+        "options": [
+          { "id": "fox-run", "label": "Fox Run carried the pulse into Pine Creek", "ok": true },
+          { "id": "whole-creek", "label": "The whole creek muddied equally", "ok": false, "hint": "The stretch by the station stayed relatively clear." }
+        ]
+      },
+      {
+        "id": "biosphere",
+        "label": "Living things",
+        "options": [
+          { "id": "affected", "label": "Willow roots hanging in air — affected, not the cause", "ok": true },
+          { "id": "caused", "label": "The trees caused the flood", "ok": false, "hint": "The willows took a hit. They did not start the mud." }
+        ]
+      }
+    ]
+  },
+  "conflict": {
+    "title": "When the story breaks",
+    "lead": "The crate still says leave the meter in the marsh. The marsh is tea-colored most days. The station reach stayed clear.",
+    "prompt": "Does last night's story still hold, or does it need to narrow?",
+    "options": [
+      {
+        "id": "keep-rain",
+        "label": "It rained, so every brown place is the pulse.",
+        "ok": false,
+        "hint": "The stretch by the station stayed clear. Rain fell on more than one place."
+      },
+      {
+        "id": "add-marsh",
+        "label": "Add the marsh as a second cause and keep the rest.",
+        "ok": false,
+        "hint": "The pulse of mud is above the pond, where the tributary joins. Adding every brown place does not make a better model."
+      },
+      {
+        "id": "narrow",
+        "label": "The pulse is rain on a loose slope into Fox Run. The marsh is its usual color.",
+        "ok": true
+      },
+      {
+        "id": "pond",
+        "label": "Replace the whole story with pond overflow.",
+        "ok": false,
+        "hint": "The brown water shows up where Fox Run joins, above the pond."
+      }
+    ]
+  }
+}

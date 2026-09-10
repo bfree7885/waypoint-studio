@@ -76,11 +76,11 @@ function collectHistoryMeasurements(disc, invState) {
   recordMeasurement(invState, investigation, "valley-shape", disc);
 }
 
-check("investigation asks what shaped Cedar Hollow", () => {
+check("investigation asks about two clocks, not glacial reconstruction", () => {
   assert.equal(investigation.id, "reading-the-landscape");
-  assert.match(investigation.question, /What shaped Cedar Hollow/);
+  assert.match(investigation.question, /Two clocks in the hollow/);
   assert.equal(investigation.measurements.length, 4);
-  assert.ok(investigation.processes.some((item) => item.id === "moving-ice"));
+  assert.ok(investigation.processes.some((item) => item.id === "two-clocks"));
 });
 
 check("water mission still completes beside the landscape investigation", () => {
@@ -193,7 +193,7 @@ check("modern stream evidence cannot substitute for glacial evidence", () => {
   assert.match(waterOnly.hint, /boulder/i);
   assert.doesNotMatch(waterOnly.hint, /\bwrong\b/i);
 
-  const iceModern = evaluateHypothesis(investigation, inv, "moving-ice", [
+  const iceModern = evaluateHypothesis(investigation, inv, "two-clocks", [
     "sediment-sort",
     "cut-bank-now",
     "sand-bar-now"
@@ -206,7 +206,7 @@ check("unrecorded evidence cannot be used, then a weak hypothesis can be revised
   const disc = createDiscoveryState();
   const inv = createInvestigationState();
   collectHistoryMeasurements(disc, inv);
-  const stolen = evaluateHypothesis(investigation, inv, "moving-ice", [
+  const stolen = evaluateHypothesis(investigation, inv, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
     "rounded-valley",
@@ -215,22 +215,25 @@ check("unrecorded evidence cannot be used, then a weak hypothesis can be revised
   assert.equal(stolen.ok, false);
   assert.equal(stolen.reason, "unrecorded");
 
-  const weak = evaluateHypothesis(investigation, inv, "wind", ["transported-boulder"]);
+  const weak = evaluateHypothesis(investigation, inv, "named-ice", ["transported-boulder"]);
   assert.equal(weak.ok, false);
-  assert.match(weak.hint, /dust/i);
+  assert.match(weak.hint, /vocabulary|longer clock/i);
   assert.equal(inv.concluded, false);
 
+  findIds(disc, ["cut-bank", "point-bar"]);
+  recordMeasurement(inv, investigation, "sediment-sort", disc);
   assert.equal(canProposeExplanation(investigation, inv), true);
-  const ok = evaluateHypothesis(investigation, inv, "moving-ice", [
+  const ok = evaluateHypothesis(investigation, inv, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
-    "rounded-valley"
+    "rounded-valley",
+    "sediment-sort"
   ]);
   assert.equal(ok.ok, true);
   assert.equal(inv.concluded, true);
   assert.equal(inv.interpreted, true);
   assert.match(ok.successText, /different clocks/i);
-  assert.match(ok.successText, /Pine Creek/i);
+  assert.match(ok.successText, /creek/i);
 });
 
 check("sketch only plots recorded evidence and gains ice flow after success", () => {
@@ -240,13 +243,16 @@ check("sketch only plots recorded evidence and gains ice flow after success", ()
   assert.equal(empty.marks.length, 0);
   assert.equal(empty.iceArrows, false);
   collectHistoryMeasurements(disc, inv);
+  findIds(disc, ["cut-bank", "point-bar"]);
+  recordMeasurement(inv, investigation, "sediment-sort", disc);
   const mid = sketchModel(investigation, inv);
   assert.ok(mid.marks.some((mark) => mark.id === "transported-boulder"));
   assert.equal(mid.marks.some((mark) => mark.id === "cut-bank-now"), false);
-  evaluateHypothesis(investigation, inv, "moving-ice", [
+  evaluateHypothesis(investigation, inv, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
-    "rounded-valley"
+    "rounded-valley",
+    "sediment-sort"
   ]);
   const done = sketchModel(investigation, inv);
   assert.equal(done.iceArrows, true);

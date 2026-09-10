@@ -41,6 +41,8 @@ import {
   tryChallengeFollowUp
 } from "../js/challenge.js";
 import { classifyCard } from "../js/obsint.js";
+import { createPuzzleState, concludeSystems, trySystemsRole, trySystemsPredict, tryConflict } from "../js/puzzles.js";
+import { submitAar } from "../js/aar.js";
 import { loadCurriculumMap, assertNoPlayerFacingCodes } from "../js/curriculum.js";
 import {
   captureSave,
@@ -101,6 +103,8 @@ const flumeSpec = JSON.parse(
 );
 const dataCatalog = JSON.parse(fs.readFileSync(path.join(root, "data/fielddata/catalog.json"), "utf8"));
 const challengeSpec = JSON.parse(fs.readFileSync(path.join(root, "data/challenges/after-the-rain.json"), "utf8"));
+const puzzleSpec = JSON.parse(fs.readFileSync(path.join(root, "data/puzzles/cedar-hollow.json"), "utf8"));
+const aarSpec = JSON.parse(fs.readFileSync(path.join(root, "data/aar/cedar-hollow.json"), "utf8"));
 const region = JSON.parse(fs.readFileSync(path.join(root, "data/regions/cedar-hollow.json"), "utf8"));
 const placeholders = JSON.parse(fs.readFileSync(path.join(root, "data/curriculum/placeholders.json"), "utf8"));
 const curriculum = loadCurriculumMap(placeholders);
@@ -143,13 +147,15 @@ function completeWaterAndLandscape({ allDiscoveries = false, attempts = 2 } = {}
   recordMeasurement(invState, investigation, "rock-compare", discoveryState);
   recordMeasurement(invState, investigation, "bedrock-grooves", discoveryState);
   recordMeasurement(invState, investigation, "valley-shape", discoveryState);
+  recordMeasurement(invState, investigation, "sediment-sort", discoveryState);
   if (attempts > 1) {
-    evaluateHypothesis(investigation, invState, "flowing-water", ["transported-boulder"]);
+    evaluateHypothesis(investigation, invState, "only-rain", ["transported-boulder"]);
   }
-  evaluateHypothesis(investigation, invState, "moving-ice", [
+  evaluateHypothesis(investigation, invState, "two-clocks", [
     "transported-boulder",
     "bedrock-grooves",
-    "rounded-valley"
+    "rounded-valley",
+    "sediment-sort"
   ]);
   return { missionState, discoveryState, invState };
 }
@@ -205,6 +211,20 @@ function legitimateMastery() {
   const challengeState = walkChallenge(true);
   tryChallengeExplanation(challengeState, challengeSpec, "tributary-slump");
   tryChallengeFollowUp(challengeState, challengeSpec, "marsh-usual");
+  const puzzleState = createPuzzleState();
+  for (const role of puzzleSpec.systems.roles) {
+    const pick = role.options.find((item) => item.ok);
+    trySystemsRole(puzzleState, puzzleSpec, role.id, pick.id);
+  }
+  trySystemsPredict(puzzleState, puzzleSpec, "still-wet");
+  concludeSystems(puzzleState, puzzleSpec);
+  submitAar(puzzleState, aarSpec, puzzleSpec, {
+    "aar-obs": "seen",
+    "aar-table": "fair",
+    "aar-pulse": "system",
+    "aar-clocks": "two",
+    "aar-return": "clear"
+  }, []);
   const mastery = createMasteryState();
   syncFromGameplay(
     mastery,
@@ -216,10 +236,11 @@ function legitimateMastery() {
       dataState,
       challengeState,
       flumeSpec,
-      obsIntState: invState.obsInt
+      obsIntState: invState.obsInt,
+      puzzleState
     })
   );
-  return { missionState, discoveryState, invState, flumeState, dataState, challengeState, mastery };
+  return { missionState, discoveryState, invState, flumeState, dataState, challengeState, puzzleState, mastery };
 }
 
 check("variables investigation is playable with three slopes", () => {
@@ -509,7 +530,7 @@ check("route-open state persists and Phase 4 saves migrate", () => {
     challengeState: done.challengeState
   });
   assert.equal(snap.v, SAVE_VERSION);
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   assert.ok(snap.flume.trials.length >= 6);
   assert.ok(snap.fieldData.datasets["cedar-hollow-flow"].interpreted);
   writeSave(storage, snap);
@@ -551,12 +572,12 @@ check("route-open state persists and Phase 4 saves migrate", () => {
     investigation: createInvestigationState()
   };
   const migrated = migrateSave(v2);
-  assert.equal(migrated.v, 5);
+  assert.equal(migrated.v, 6);
   assert.deepEqual(migrated.flume.trials, []);
   const v1 = { v: 1, regionId: "cedar-hollow", player: { x: 1688, y: 940 }, taught: {}, mission: {}, discoveries: {}, investigation: {} };
-  assert.equal(migrateSave(v1).v, 5);
+  assert.equal(migrateSave(v1).v, 6);
   const fromDisk = readSave(mockStorage({ [SAVE_KEY]: JSON.stringify(v2) }));
-  assert.equal(fromDisk.v, 5);
+  assert.equal(fromDisk.v, 6);
 });
 
 check("field-data tool is earned by interpretation, not by opening the tablet", () => {

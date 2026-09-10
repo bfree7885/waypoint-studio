@@ -435,7 +435,7 @@ check("Dark Sky Basin remains non-playable", () => {
 });
 
 check("save persists Sunfall state and Phase 6 saves migrate", () => {
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   const played = playSunfall();
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
@@ -458,7 +458,7 @@ check("save persists Sunfall state and Phase 6 saves migrate", () => {
       "sunfall-desert": { x: 1512, y: 1120, facing: 1 }
     }
   });
-  assert.equal(snap.v, 5);
+  assert.equal(snap.v, 6);
   assert.equal(snap.world.currentRegion, "sunfall-desert");
   assert.equal(snap.sunfall.challenge.ok, true);
   assert.ok(snap.sunfall.shadows.length >= 3);
@@ -481,7 +481,7 @@ check("save persists Sunfall state and Phase 6 saves migrate", () => {
     investigation: createInvestigationState()
   };
   const migrated = migrateSave(v4);
-  assert.equal(migrated.v, 5);
+  assert.equal(migrated.v, 6);
   assert.equal(migrated.sunfall.introSeen, false);
   assert.equal(migrated.highCountry.contourOk, true);
   const sf2 = createSfState();

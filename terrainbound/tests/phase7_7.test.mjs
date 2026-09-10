@@ -86,9 +86,9 @@ check("all region gates unchanged", () => {
 });
 
 check("save v5 works", () => {
-  assert.equal(SAVE_VERSION, 5);
+  assert.equal(SAVE_VERSION, 6);
   const migrated = migrateSave({ v: 4, player: { x: 8, y: 9, facing: 1 } });
-  assert.equal(migrated.v, 5);
+  assert.equal(migrated.v, 6);
 });
 
 check("Dark Sky remains closed", () => {
@@ -113,8 +113,8 @@ check("no death / XP / health", () => {
 
 check("production paths work at root deployment configuration", () => {
   assert.match(html, /href="\.\/css\/game\.css"/);
-  assert.match(html, /src="\.\/js\/main\.js\?v=p7[78]c?"/);
-  assert.match(mainJs, /game\.js\?v=p7[78]c?/);
+  assert.match(html, /src="\.\/js\/main\.js\?v=p79a"/);
+  assert.match(mainJs, /game\.js\?v=p79a/);
   assert.match(gameJs, /fetch\("\.\/data\//);
   assert.doesNotMatch(gameJs, /fetch\("\/terrainbound\//);
   assert.doesNotMatch(html, /href="\/terrainbound\//);

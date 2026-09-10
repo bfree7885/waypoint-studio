@@ -1,4 +1,4 @@
-import { boot } from "./game.js?v=p78c";
+import { boot } from "./game.js?v=p79a";
 
 boot().catch((err) => {
   const box = document.querySelector("#boot-error");
