@@ -278,7 +278,7 @@
 
     if (wx.source) {
       signals.push(signal("weather-source", "Weather source", "fact",
-        "Live weather from Open-Meteo (current + short forecast)."));
+        "Live weather from Open-Meteo (see linked credit: Weather data by Open-Meteo.com)."));
     } else {
       signals.push(signal("weather-source", "Weather source", "uncertain",
         "Weather feed unavailable — season and local notes only."));

@@ -137,6 +137,8 @@
     searchAreasTimer: null,
     searchAreasStatus: "idle",
     lastSearchAreasGrid: null,
+    /** True only after a successful Open-Meteo elev fetch for Search Areas. */
+    searchAreasElevFromOpenMeteo: false,
     /** Viewport terrain-enrichment cache key (bounds+grid+zoom). Memory only. */
     terrainEnrichKey: "",
     /** Enrichment key already applied to Search Priority Today (loop guard). */
@@ -3041,6 +3043,34 @@
           state.radarSurfaceMode === "landscape" ? "Landscape" : "Today";
       }
     }
+    syncRadarDataCredit();
+  }
+
+  function syncRadarDataCredit() {
+    var Attr = window.WaypointShedsDataAttribution;
+    var el = $("radar-data-credit");
+    if (!Attr || !el) return;
+    if (!state.radarP0Enabled) {
+      Attr.setCredit(el, "", false);
+      return;
+    }
+    var packTerrain =
+      (state.lastGrid && state.lastGrid.terrainSource === "gis-pack") ||
+      (state.radarBaseCache &&
+        state.radarBaseCache.field &&
+        state.radarBaseCache.field.terrainSource === "gis-pack");
+    var frame = state.radarConditionFrame;
+    var weatherShown =
+      state.radarSurfaceMode === "today" &&
+      frame &&
+      (frame.freshness === "fresh" || frame.freshness === "stale");
+    var html = "";
+    if (weatherShown) html += Attr.weatherCreditHtml();
+    if (packTerrain) {
+      if (html) html += "<br>";
+      html += Attr.radarPackCreditHtml();
+    }
+    Attr.setCredit(el, html, !!html);
   }
 
   function renderRadarExplain(explain) {
@@ -3601,8 +3631,15 @@
     if (body) body.hidden = !state.searchAreasVisible;
     var status = $("search-areas-legend-status");
     if (!status) return;
+    var Attr = window.WaypointShedsDataAttribution;
+    var credit = $("search-areas-data-credit");
+    var elevUsed =
+      state.searchAreasVisible &&
+      state.searchAreasStatus === "ready" &&
+      state.searchAreasElevFromOpenMeteo;
     if (!state.searchAreasVisible) {
       status.textContent = "Terrain search priority — off";
+      if (Attr) Attr.setCredit(credit, "", false);
       return;
     }
     if (state.searchAreasStatus === "loading") status.textContent = "Reading terrain…";
@@ -3611,6 +3648,13 @@
     else if (state.searchAreasStatus === "incomplete") status.textContent = "Not enough terrain data";
     else if (state.searchAreasStatus === "failed") status.textContent = "Terrain intelligence unavailable here";
     else status.textContent = "Higher / Moderate / Lower — not a find chance";
+    if (Attr) {
+      Attr.setCredit(
+        credit,
+        Attr.elevationCreditHtml(),
+        !!(elevUsed && state.searchAreasStatus === "ready")
+      );
+    }
   }
 
   function paintSearchAreasLayer(grid) {
@@ -3698,6 +3742,7 @@
     }
     if (zoom < (SearchPriority.MIN_ZOOM || 12)) {
       state.searchAreasStatus = "insufficient_zoom";
+      state.searchAreasElevFromOpenMeteo = false;
       applySearchAreasGrid(SearchPriority.evaluateGrid({
         zoom: zoom,
         bounds: searchBounds,
@@ -3709,6 +3754,7 @@
     }
     if (state.offlineForced || (typeof navigator !== "undefined" && navigator.onLine === false)) {
       state.searchAreasStatus = "unavailable";
+      state.searchAreasElevFromOpenMeteo = false;
       applySearchAreasGrid({
         renderMode: "search-priority",
         status: "unavailable",
@@ -3726,6 +3772,7 @@
       if (!terrainEnrichmentNeeded()) return;
       if (elev && elev.failed) {
         state.searchAreasStatus = "failed";
+        state.searchAreasElevFromOpenMeteo = false;
         applySearchAreasGrid({
           renderMode: "search-priority",
           status: "failed",
@@ -3746,6 +3793,7 @@
         elevations: elev
       });
       state.searchAreasStatus = grid.status || "ready";
+      state.searchAreasElevFromOpenMeteo = state.searchAreasStatus === "ready";
       applySearchAreasGrid(grid);
     });
   }
@@ -6277,6 +6325,22 @@
     if (moreBody) moreBody.textContent = moreText;
     if (more) {
       more.hidden = !String(moreText).trim();
+    }
+    var Attr = window.WaypointShedsDataAttribution;
+    var credit = $("inspect-data-credit");
+    if (Attr && credit) {
+      var elevReady =
+        state.inspectElevStatus === "ready" &&
+        state.inspectElevM != null &&
+        isFinite(state.inspectElevM);
+      var terrainOm =
+        state.inspectTerrainDerived &&
+        state.inspectTerrainDerived.source === "open-meteo-neighborhood";
+      Attr.setCredit(
+        credit,
+        Attr.elevationCreditHtml(),
+        !!(elevReady || terrainOm)
+      );
     }
     hud.removeAttribute("hidden");
     var scoutActions = $("inspect-scout-actions");

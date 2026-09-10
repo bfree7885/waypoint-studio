@@ -73,6 +73,7 @@
           </div>
           <p class="sheds-inspect-hud__lede">Search priority and terrain — not a claim that deer or antlers are here.</p>
           <pre class="sheds-inspect-hud__body" id="inspect-body"></pre>
+          <p class="sheds-data-credit" id="inspect-data-credit" hidden></p>
           <p class="sheds-inspect-hud__note" id="inspect-field-note"></p>
           <div class="sheds-inspect-hud__actions" id="inspect-scout-actions" hidden>
             <button type="button" class="sheds-btn sheds-btn--primary" id="btn-save-scout-spot">Save Scout Spot</button>
@@ -351,6 +352,7 @@
         </div>
         <p class="sheds-radar-p0__frame-label">Showing: <span id="radar-p0-frame-label">Today</span></p>
         <p class="sheds-radar-p0__status" id="radar-p0-status">Today — relative search interest when current conditions are available.</p>
+        <p class="sheds-data-credit" id="radar-data-credit" hidden></p>
         <div class="sheds-radar-p0__proof" id="radar-p0-proof-wrap" hidden>
           <p class="sheds-radar-p0__kicker">Evidence fixtures only</p>
           <div class="sheds-radar-p0__frames" role="group" aria-label="Proof condition fixtures">
@@ -379,6 +381,7 @@
           <span><i class="sheds-swatch sheds-swatch--search-moderate" aria-hidden="true"></i>Moderate</span>
           <span><i class="sheds-swatch sheds-swatch--search-lower" aria-hidden="true"></i>Lower</span>
           <span class="sheds-search-legend__status" id="search-areas-legend-status">Terrain search priority — not a find chance</span>
+          <p class="sheds-data-credit" id="search-areas-data-credit" hidden></p>
         </div>
       </div>
 
@@ -1178,6 +1181,7 @@
   <script src="../js/sheds-habitat.js"></script>
   <script src="../js/sheds-searchability.js"></script>
   <script src="../js/sheds-weather.js"></script>
+  <script src="../js/sheds-data-attribution.js"></script>
   <script src="../js/sheds-condition-snapshot.js"></script>
   <script src="../js/sheds-condition-service.js"></script>
   <script src="../js/sheds-today-hunt.js"></script>

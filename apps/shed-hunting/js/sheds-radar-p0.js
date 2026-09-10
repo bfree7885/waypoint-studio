@@ -415,7 +415,7 @@
         baseScore: src.baseScore,
         landscapeScore: src.landscapeScore,
         landscape: src.landscape,
-        factors: explainFactors(src, null)
+        factors: explainFactors(src, null, null, baseField.terrainSource)
       });
     }
     return {
@@ -446,6 +446,7 @@
         packId: baseField.packId,
         baseKey: baseField.key,
         terrainEnriched: !!baseField.terrainEnriched,
+        terrainSource: baseField.terrainSource || null,
         conditionStatus: null,
         stats: { ready: ready, solarModifiers: 0, snowModifiers: 0 }
       },
@@ -544,7 +545,7 @@
         baseScore: src.baseScore,
         landscapeScore: src.landscapeScore,
         landscape: src.landscape,
-        factors: explainFactors(src, ev, meta.conditionFrame || null)
+        factors: explainFactors(src, ev, meta.conditionFrame || null, baseField.terrainSource)
       });
     }
 
@@ -581,6 +582,7 @@
         packId: baseField.packId,
         baseKey: baseField.key,
         terrainEnriched: !!baseField.terrainEnriched,
+        terrainSource: baseField.terrainSource || null,
         conditionStatus: meta.conditionStatus || null,
         conditionFrame: meta.conditionFrame || null,
         stats: {
@@ -666,8 +668,9 @@
     });
   }
 
-  function explainFactors(src, ev, conditionFrame) {
+  function explainFactors(src, ev, conditionFrame, terrainSource) {
     var factors = [];
+    var packTerrain = terrainSource === "gis-pack";
     if (src && src.landscape && src.landscape.factors && src.landscape.factors.length) {
       var lf = src.landscape.factors;
       var k;
@@ -699,7 +702,9 @@
         id: "slope",
         label: "Slope",
         value: String(src.slopeDeg) + "°",
-        detail: "Elevation-derived slope context",
+        detail: packTerrain
+          ? "USGS 3DEP–derived slope from the local GIS pack"
+          : "Elevation-derived slope context",
         group: "landscape"
       });
     }
@@ -708,7 +713,9 @@
         id: "aspect",
         label: "Aspect",
         value: src.aspectCardinal,
-        detail: "Elevation-derived — used for condition interactions only, not static base",
+        detail: packTerrain
+          ? "USGS 3DEP–derived aspect from the local GIS pack — condition interactions only, not static base"
+          : "Elevation-derived — used for condition interactions only, not static base",
         group: "landscape"
       });
     } else if (ev) {
@@ -725,7 +732,9 @@
         id: "feature",
         label: "Terrain feature",
         value: src.featureKind,
-        detail: "Elevation-derived — condition interaction only, not static base score",
+        detail: packTerrain
+          ? "Derived from pack slope/aspect — condition interaction only, not static base score"
+          : "Elevation-derived — condition interaction only, not static base score",
         group: "landscape"
       });
     }
