@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 Sep 2026 01:52:15 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 15:24:06 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -209,22 +209,58 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/fr
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis Mission Patches</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
-    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Do black holes have hidden hair? Scientists are searching</title>
+    <link>https://earthsky.org/space/black-holes-have-hidden-hair-matter-gravity-waves/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/black-holes-have-hidden-hair-matter-gravity-waves/</guid>
+    <pubDate>Thu, 10 Sep 2026 11:58:55 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+Summary: If black holes have extra matter around them - aka hidden hair - astronomers could find it by measuring the different characteristics of these ripples. The post Do black holes have hidden hair? Scientists are searching first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+Read the original article at the publisher: https://earthsky.org/space/black-holes-have-hidden-hair-matter-gravity-waves/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Zodiacal light: Start watching for it now</title>
+    <link>https://earthsky.org/astronomy-essentials/everything-you-need-to-know-zodiacal-light-or-false-dawn/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/everything-you-need-to-know-zodiacal-light-or-false-dawn/</guid>
+    <pubDate>Thu, 10 Sep 2026 11:45:08 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The zodiacal light is an eerie light extending up from the horizon before dawn around the Northern Hemisphere autumn. Southern Hemisphere? Look after sunset! The post Zodiacal light: Start watching for it now first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/everything-you-need-to-know-zodiacal-light-or-false-dawn/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>What is an Equal Earth projection map? See comparisons here</title>
+    <link>https://earthsky.org/earth/mercator-projection-vs-equal-earth-projection-map/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/mercator-projection-vs-equal-earth-projection-map/</guid>
+    <pubDate>Thu, 10 Sep 2026 11:35:22 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Everyone is familiar with the Mercator map, a flattened view of Earth. But what is the Equal Earth projection map, and how does it compare? The post What is an Equal Earth projection map? See comparisons here first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/earth/mercator-projection-vs-equal-earth-projection-map/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Peptides in Venus’ clouds could form life-giving shapes</title>
@@ -263,24 +299,6 @@ Read the original article at the publisher: https://earthsky.org/tonight/orions-
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>How many stars can you see on a moonless night?</title>
-    <link>https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</guid>
-    <pubDate>Wed, 09 Sep 2026 05:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Have you ever wondered how many stars are visible on a given night? It depends on factors including how dark your sky is and what your age is. The post How many stars can you see on a moonless night? first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/how-many-stars-could-you-see-on-a-clear-moonless-night/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Lunar Occultation of Venus</title>
     <link>https://www.nasa.gov/image-detail/amf-nhq202606170001/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-nhq202606170001/</guid>
@@ -295,6 +313,24 @@ Waypoint’s Take: For someone heading outside, the useful question is observati
 Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-nhq202606170001/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis Mission Patches</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
+    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -482,11 +518,11 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ks
     <title>Visible planets and night sky guide for September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Wed, 09 Sep 2026 07:00:08 GMT</pubDate>
+    <pubDate>Thu, 10 Sep 2026 11:00:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Look for 3 bright planets in the early morning sky: Saturn, Mars and Jupiter, along path the sun travels during the day. The post Visible planets and night sky guide for September first appeared on EarthSky .
+Summary: Visible planets and night sky guide: New moon is September 11. And the September equinox is near. Time to look for the zodiacal light! Look east before dawn. Southern Hemisphere? Look west after evening twilight ends. The post Visible planets and night sky guide for September first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -496,56 +532,19 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Small asteroid hit Earth’s atmosphere Sunday near Australia</title>
-    <link>https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</guid>
-    <pubDate>Mon, 07 Sep 2026 12:19:54 GMT</pubDate>
+    <title>Delta Cephei helps measure cosmic distances</title>
+    <link>https://earthsky.org/brightest-stars/delta-cephei-the-kings-famous-variable-star/</link>
+    <guid isPermaLink="true">https://earthsky.org/brightest-stars/delta-cephei-the-kings-famous-variable-star/</guid>
+    <pubDate>Thu, 10 Sep 2026 10:30:12 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: A small asteroid impacted Earth&apos;s atmosphere harmlessly on Sunday. Scientists spotted it just 6 hours earlier. It was the 13th asteroid spotted before impact. The post Small asteroid hit Earth’s atmosphere Sunday near Australia first appeared on EarthSky .
+Summary: Delta Cephei is an inconspicuous variable star in the northern constellation Cepheus the King. This important star helped establish the cosmic distance scale. The post Delta Cephei helps measure cosmic distances first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/small-asteroid-impact-australia-sep-6-2026/</description>
+Read the original article at the publisher: https://earthsky.org/brightest-stars/delta-cephei-the-kings-famous-variable-star/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Reef fish survival threatened by motorboat noise</title>
-    <link>https://earthsky.org/earth/reef-fish-growth-and-survival-threatened-by-motorboat-noise/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/reef-fish-growth-and-survival-threatened-by-motorboat-noise/</guid>
-    <pubDate>Mon, 07 Sep 2026 11:00:54 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Reef fish exposed to motorboat noise can end up smaller and struggle to escape predators, says new research into dangerous underwater noise. The post Reef fish survival threatened by motorboat noise first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/reef-fish-growth-and-survival-threatened-by-motorboat-noise/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>These microbes in Antarctica don’t live anywhere else</title>
-    <link>https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</guid>
-    <pubDate>Sun, 06 Sep 2026 11:45:02 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Researchers have discovered that some microbes in Antarctica are unique to the icy continent and are found nowhere else on Earth. The post These microbes in Antarctica don’t live anywhere else first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/microbes-in-antarctica-arthrobacter-endemic/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
