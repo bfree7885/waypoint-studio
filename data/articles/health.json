@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-09T15:28:21.623Z",
+  "checkedAt": "2026-09-10T01:52:15.754Z",
   "status": "ok",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 117,
+      "ms": 228,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 158,
+      "ms": 202,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 158,
+      "ms": 280,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 173,
+      "ms": 485,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 866,
+      "ms": 347,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 648,
+      "ms": 120,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 204,
+      "ms": 356,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1420,
+      "ms": 314,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 441,
+      "ms": 256,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 222,
+      "ms": 383,
       "enabled": true
     },
     {
@@ -231,17 +231,17 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 144,
+      "ms": 239,
       "enabled": true
     },
     {
       "id": "adirondack-explorer",
       "name": "Adirondack Explorer",
       "ok": true,
-      "itemCount": 9,
+      "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 150,
+      "ms": 292,
       "enabled": true
     },
     {
@@ -251,10 +251,10 @@
       "itemCount": 2,
       "error": null,
       "warnings": [],
-      "ms": 268,
+      "ms": 169,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-10T03:28:21.623Z"
+  "staleAfter": "2026-09-10T13:52:15.754Z"
 }
