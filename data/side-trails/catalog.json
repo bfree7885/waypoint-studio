@@ -1,22 +1,35 @@
 {
-  "version": "2.0.0",
-  "updatedAt": "2026-08-27",
-  "title": "Waypoint Deck",
-  "tagline": "Local-first Linux field computer.",
-  "message": "Waypoint Deck is a distinct field-computing project — not a Studio web app.",
-  "statuses": ["in-development", "planned", "existing"],
+  "version": "2.1.0",
+  "updatedAt": "2026-09-11",
+  "title": "Side Trails",
+  "tagline": "Independent projects beside Waypoint Studio.",
+  "message": "Deck is direction-stage. Global Watch is an unlisted owner field-test MVP (standalone host).",
+  "statuses": ["in-development", "experimental", "beta", "stable", "archived", "retired"],
   "projects": [
     {
       "id": "waypoint-deck",
       "title": "Waypoint Deck",
       "tagline": "Offline-first Linux field computer · maps, weather, radio, local knowledge.",
-      "description": "A local-first field computer for when connectivity is poor or gone. Direction includes offline maps/GPS, local AI, weather, radio/SDR, offline reference knowledge, sensors, and system awareness. Early-stage — do not assume these systems already ship.",
+      "description": "A local-first field computer for when connectivity is poor or gone. Early-stage — do not assume these systems already ship.",
       "icon": "assets/images/side-trails/waypoint-deck.svg",
       "category": "Active",
       "status": "in-development",
       "ctaLabel": "Read the direction",
       "url": "side-trails/waypoint-deck/",
       "order": 1,
+      "featured": true
+    },
+    {
+      "id": "global-watch",
+      "title": "Global Watch",
+      "tagline": "Open-source intelligence situational awareness.",
+      "description": "Detect change. Identify unusual activity. Correlate independent evidence. Assess what the evidence supports. Owner field-test MVP — not operationally authoritative. Standalone application (not embedded in Studio).",
+      "icon": "assets/images/side-trails/global-watch.svg",
+      "category": "Field test",
+      "status": "experimental",
+      "ctaLabel": "Launch Global Watch",
+      "url": "http://127.0.0.1:4173/",
+      "order": 2,
       "featured": true
     }
   ]

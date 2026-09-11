@@ -74,7 +74,9 @@ Local-first / offline Linux field computer. Direction includes offline maps, GPS
 
 Public copy must distinguish **existing**, **in development**, and **planned**. Do not claim planned functionality is operational. Do not implement Deck OS unless explicitly instructed.
 
-Canonical public URL: `/side-trails/waypoint-deck/`. Primary navigation uses the label **Deck**. The `/side-trails/` collection URL silently redirects here. Do not rebuild a Side Trails catalog of discontinued projects.
+Canonical public URL: `/side-trails/waypoint-deck/`. Primary navigation uses the label **Deck**.
+
+`/side-trails/` is an unlisted (noindex) catalog for independent projects. It lists Waypoint Deck and **Global Watch** (standalone owner field-test MVP — absolute/standalone launch, source not copied into Studio). Do not reintroduce discontinued Side Trails (OpenRoad, SignalTerrain, Global Signals, Civic Trails).
 
 ### 4. Waypoint Publishing
 

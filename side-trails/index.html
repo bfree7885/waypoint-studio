@@ -1,15 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-product="side-trails">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://waypointstudio.org/side-trails/waypoint-deck/">
-  <meta http-equiv="refresh" content="0;url=https://waypointstudio.org/side-trails/waypoint-deck/">
-  <title>Waypoint Studio</title>
-  <script>location.replace("https://waypointstudio.org/side-trails/waypoint-deck/");</script>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Side Trails — Waypoint Deck and Global Watch field-test. Unlisted laboratory links.">
+  <title>Side Trails — Waypoint Studio</title>
+  <link rel="canonical" href="https://waypointstudio.org/side-trails/">
+  <link rel="stylesheet" href="../design-system/css/wds.css">
+  <link rel="stylesheet" href="../design-system/css/wds-side-trails.css">
 </head>
 <body>
-  <p><a href="https://waypointstudio.org/side-trails/waypoint-deck/">Continue to Waypoint Studio</a></p>
+  <a class="wds-skip" href="#main">Skip to content</a>
+  <div class="wds-app was-shell" data-wds-app-shell data-product="side-trails" data-hide-local="true" data-shell-depth="0">
+    <div data-wds-app-global data-shell-depth="0"></div>
+    <main id="main" class="wcs-page wst-page">
+      <header class="wcs-hero wst-hero">
+        <p class="wds-eyebrow">Independent projects</p>
+        <h1 id="wst-title">Side Trails</h1>
+        <p id="wst-tagline" class="wst-lede">
+          Independent projects beside Waypoint Studio flagships.
+        </p>
+        <p class="wst-lede">
+          Studio flagships remain Dashboard, Scenes, and Sheds.
+          Side Trails are separate products — currently Waypoint Deck (direction)
+          and Global Watch (owner field-test MVP).
+        </p>
+        <p id="wst-status" class="wst-status" data-status="empty" role="status"></p>
+      </header>
+
+      <section class="wcs-section" aria-labelledby="wst-active-heading">
+        <h2 id="wst-active-heading" class="wst-section-title">Active Side Trails</h2>
+        <div id="wst-grid-active" class="wst-grid wst-grid--featured" aria-live="polite"></div>
+      </section>
+
+      <section class="wcs-section wst-archive" aria-labelledby="wst-archive-heading" hidden>
+        <h2 id="wst-archive-heading" class="wst-section-title">Archive</h2>
+        <div id="wst-grid" class="wst-grid" aria-live="polite"></div>
+      </section>
+
+      <footer class="wst-footnote">
+        <p>
+          Start on <a href="../">Home</a> ·
+          <a href="../apps/dashboard/">Dashboard</a> ·
+          <a href="../apps/scenes/">Scenes</a> ·
+          <a href="../apps/shed-hunting/">Sheds</a>
+        </p>
+      </footer>
+    </main>
+    <div data-wds-app-footer data-shell-depth="0"></div>
+  </div>
+  <script src="../design-system/js/platform/wds-app-nav-config.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-app-nav.js?v=local" defer></script>
+  <script src="../design-system/js/platform/wds-app-shell.js?v=local" defer></script>
+  <script src="../design-system/js/side-trails/wds-side-trails.js?v=local" defer></script>
+  <script src="../design-system/js/side-trails/wds-side-trails-app.js?v=local" defer></script>
 </body>
 </html>
