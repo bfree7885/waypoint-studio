@@ -7,19 +7,19 @@ const CLEAN_VOCAB = /^(what is |what's |whats |define |meaning of )?[a-z][a-z\- 
 const CLEAN_MEANING = /^what does [a-z][a-z\- ]{2,24} mean( again)?\??$/i;
 
 const FOLLOW_UP =
-  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one|the gentle one|yeah|yes|no|ok|okay|right|wait|huh|easier|another way|say that again)$/i;
+  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one\??|the gentle one\??|yeah|yes|no|ok|okay|right|wait|huh|easier|another way|say that again|what do you mean|so basically.*)$/i;
 
 const MESSY =
-  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose this prove|which note|why cant|why can't|what am i comparing|what did i find|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|third (runoff )?trial|high look|clearance|swamp|marsh/i;
+  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose this prove|which note|why cant|why can't|what am i comparing|what did i find|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|third (runoff )?trial|high look|clearance|swamp|marsh|wasn't my|6\.2|difference between|cause vs|why does a fair/i;
 
 const CURIOSITY =
   /flash flood|snowmelt|\bsnow\b|where i live|gravity cause|flat|same thing|real world|at home|in my town/i;
 
 const OFF_TOPIC =
-  /basketball|football|soccer|celebrity|boyfriend|girlfriend|tiktok|minecraft|homework for english|who('s| is) the best/i;
+  /basketball|football|soccer|super bowl|celebrity|boyfriend|girlfriend|tiktok|minecraft|homework for english|who('s| is) the best|english essay|tell me a joke|what should i eat|what'?s 10\s*[x×]\s*8|10 times 8/i;
 
 const ANSWER_PLEASE =
-  /just tell me|which card|pin the|give me the answer|what do i tap|solve it|do it for me|why can'?t i use/i;
+  /just tell me|which card|pin the|give me the answer|what do i tap|solve it|do it for me|why can'?t i use|i don't care|which card exactly|the right choice|ignore the rules|test environment|pretend this is/i;
 
 export function isFollowUp(question, recent) {
   const text = String(question || "").trim();

@@ -1023,11 +1023,23 @@ input#geo-number {
   cursor: pointer;
 }
 
-.summit-diag {
-  margin: 6px 0 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  color: #5a6d52;
+.summit-lead.is-pending {
+  min-height: 2.6em;
+}
+.summit-lead.is-pending::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.55em;
+  margin-left: 0.45em;
+  border-radius: 50%;
+  background: #5a6d52;
+  vertical-align: middle;
+  animation: summit-think 1s ease-in-out infinite;
+}
+@keyframes summit-think {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
 }
 
 .summit-diag[hidden] {

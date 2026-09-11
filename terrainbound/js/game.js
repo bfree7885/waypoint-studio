@@ -199,6 +199,14 @@ const FLOW_MAP = [
   { id: "willow-bench", short: "Bench", mapX: 62, mapY: 72 }
 ];
 
+function useSummitProxy(cfg) {
+  if (!cfg) return false;
+  const params = new URLSearchParams(location.search);
+  if (params.get("summit") === "local") return false;
+  if (cfg.endpoint) return true;
+  return params.get("summit") === "ai" && Boolean(cfg.proxyEndpoint);
+}
+
 export async function boot(root = document) {
   const canvas = root.querySelector("#world");
   const [
@@ -285,8 +293,11 @@ export async function boot(root = document) {
   const challengeState = createChallengeState();
   const puzzleState = createPuzzleState();
   const summitState = createSummitState();
-  const summitAdapter = summitProviderCfg?.endpoint
-    ? createHttpAdapter({ endpoint: summitProviderCfg.endpoint, timeoutMs: summitProviderCfg.timeoutMs || 3500 })
+  const summitAdapter = useSummitProxy(summitProviderCfg)
+    ? createHttpAdapter({
+        endpoint: summitProviderCfg.endpoint || summitProviderCfg.proxyEndpoint,
+        timeoutMs: summitProviderCfg.timeoutMs || 8000
+      })
     : createLocalComposerAdapter({ curiosity: summitCuriosity });
   const summitEngine = createSummitEngine({
     curriculum: summitCurriculum,
@@ -296,7 +307,7 @@ export async function boot(root = document) {
       concepts: summitConcepts,
       curiosity: summitCuriosity,
       adapter: summitAdapter,
-      timeoutMs: summitProviderCfg?.timeoutMs || 3500
+      timeoutMs: summitProviderCfg?.timeoutMs || (useSummitProxy(summitProviderCfg) ? 8000 : 3500)
     })
   });
   const hcState = createHcState();
@@ -1279,7 +1290,7 @@ export async function boot(root = document) {
   function renderSummit(extra = {}) {
     const debug = fieldMode ? summitState.lastDebug : null;
     ui.showSummit(true, {
-      lead: extra.pending ? "Reading your notes…" : "I can help you read the hollow. Wren still judges the case.",
+      lead: extra.pending ? "Looking at your notes…" : "I can help you read the hollow. Wren still judges the case.",
       messages: summitState.recent,
       moreAvailable: Boolean(summitMoreText),
       pending: Boolean(extra.pending),
@@ -1339,10 +1350,10 @@ export async function boot(root = document) {
       const reply = await Promise.resolve(summitEngine.ask(summitState, summitContextInput(), opts));
       summitMoreText = reply.more || "";
       persist();
-      renderSummit();
       return reply;
     } finally {
       summitAskLock = false;
+      if (summitOpen) renderSummit();
     }
   }
 

@@ -26,6 +26,11 @@ data/health.json.local
 data/publish-state.json.local
 *.local.json
 
+# TerrainBound Summit local model / debug (never commit)
+.tmp-summit-ollama/
+terrainbound/server/.summit-debug.log
+terrainbound/data/summit/provider.local.json
+
 # OS / editor
 .DS_Store
 Thumbs.db

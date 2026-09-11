@@ -280,9 +280,17 @@ Do not hardwire a vendor in Summit UI or the engine. Choose the adapter at the b
 
 ## Evaluation strategy
 
-`data/summit/eval-utterances.json` holds 50+ realistic 9th–10th-grade lines across clean questions, typos, fragments, vague asks, repeated why, misconceptions, follow-ups, evidence, graph/data, transfer, unrelated, answer-reveal attempts, simpler, and deeper asks. `tests/phase7_9d.test.mjs` checks routing, grounding, fallback, privacy, and a short conversation thread. Hallucination probes (third trial, High Look, false clearance, pin-this-card) must not invent facts.
+`data/summit/eval-utterances.json` holds 75+ realistic 9th–10th-grade lines. `tests/phase7_9d.test.mjs` and `tests/phase7_9e.test.mjs` cover routing and architecture. Live model evaluation is `tests/phase7_9e-live.mjs` (environment credentials; loopback proxy). Hallucination probes must not invent facts.
 
-Live classroom testing still requires a real model behind the proxy, teacher review of curiosity answers, and a privacy review of whatever upstream is chosen. This phase does not deploy that.
+## Phase 7.9E real-model pilot
+
+Connect **one** lightweight model through `server/summit-proxy.mjs`. The browser never sees a vendor URL or API key. Use `?summit=ai` to point the game at `provider.json` `proxyEndpoint` (`http://127.0.0.1:8787/summit-ai`). Leave `endpoint` empty so offline play still uses LocalComposer.
+
+The proxy forwards only `prompt` + `question` (plus the compact packet is **not** sent upstream). It requests JSON-schema / JSON-object replies, strips markdown fences, and returns usage/latency metadata. `SUMMIT_DEBUG=1` writes redacted meta to `server/.summit-debug.log` (gitignored) — not student transcripts.
+
+Validation now also rejects agreeing with false numeric premises, false clearance/High Country-open claims, invented rainfall/water-level observations, and off-topic answers that do not redirect to the tutor role. Invalid model text never reaches the student; DeterministicProvider speaks instead. Empty `response` fields are retried once at the proxy, then rejected.
+
+This pilot is not a production declaration. Cedar Hollow only.
 
 ## Grounding / hallucination contract
 
@@ -337,4 +345,7 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `data/summit/provider.json` — adapter endpoint (empty by default)
 - `data/summit/eval-utterances.json` — evaluation set
 - `server/summit-proxy.mjs` — optional loopback proxy
+- `tests/phase7_9e.test.mjs` — architecture and fallback tests
+- `tests/phase7_9e-live.mjs` — live remote-model evaluation (env credentials)
+- `tests/evidence/phase79e/` — live metrics, teacher review, captures
 - `js/guidance.js` — Wren/interface next-action strip (not Summit)

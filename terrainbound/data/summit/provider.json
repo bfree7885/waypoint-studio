@@ -1,5 +1,6 @@
 {
   "endpoint": "",
-  "timeoutMs": 3500,
-  "note": "Leave endpoint empty for offline Summit. A same-origin or localhost proxy may be set without placing API keys in this file."
+  "proxyEndpoint": "http://127.0.0.1:8787/summit-ai",
+  "timeoutMs": 8000,
+  "note": "Leave endpoint empty for offline Summit (LocalComposer). Pass ?summit=ai to use proxyEndpoint. API keys never belong in this file."
 }

@@ -25,8 +25,11 @@ export function buildSummitPrompt(packet, request) {
   return [
     "You are Summit, a calm field scientist tutoring a younger scientist in Cedar Hollow.",
     "TerrainBound owns every fact below. You may explain them. You may not change them.",
-    "Do not invent measurements, visits, notes, or clearance.",
+    "Do not invent measurements, visits, notes, rainfall, water-level changes, or clearance.",
+    "If the student asserts a fact that is not in AUTHORITATIVE GAME STATE, disagree. Do not play along.",
     "Do not use internal codes. Do not name a tablet card to pin. The student still acts.",
+    "Stay an Earth Science tutor. Off-topic questions get a brief redirect, not a general answer.",
+    "response must be a non-empty 1-3 sentence tutoring reply. Never leave response as an empty string.",
     `Support level ${tutoring.allowedLevel} (${tutoring.ladder}). Stay at or below that level.`,
     `Region: ${facts.region}. Puzzle: ${facts.puzzle}. Stage: ${facts.stage}.`,
     times ? `Recorded fair times: ${times}.` : "No fair runoff times are in this packet.",
@@ -37,7 +40,7 @@ export function buildSummitPrompt(packet, request) {
     facts.evidenceTitles?.length ? `Tablet titles: ${facts.evidenceTitles.join("; ")}` : "Tablet titles: none in packet.",
     recent ? `Recent:\n${recent}` : "",
     `Student: ${request.question || request.action || ""}`,
-    'Reply JSON: {"response":"","concept":null,"referencedEvidence":[],"suggestedAction":null,"supportLevel":0,"offTopic":false}'
+    'Reply JSON only: {"response":"","concept":null,"referencedEvidence":[],"suggestedAction":null,"supportLevel":0,"offTopic":false,"agreesWithStudentPremise":false}'
   ]
     .filter(Boolean)
     .join("\n");
@@ -73,10 +76,12 @@ export function createAiProvider({ adapter, timeoutMs = 3500, cacheSize = 24 } =
       if (!checked.ok) {
         const err = new Error(checked.reason);
         err.code = checked.reason;
+        err.raw = parsed;
         throw err;
       }
       checked.reply.provider = "ai";
       checked.reply.adapterId = adapter.id || "ai";
+      checked.reply.rawModel = parsed;
       if (cacheSize > 0) {
         cache.set(prompt, { ...checked.reply });
         if (cache.size > cacheSize) cache.delete(cache.keys().next().value);
@@ -105,12 +110,24 @@ export function createHttpAdapter({ endpoint, timeoutMs = 3500 } = {}) {
           body: JSON.stringify({ packet, prompt, question }),
           signal: ctrl.signal
         });
+        if (res.status === 429) {
+          const err = new Error("rate-limit");
+          err.code = "rate-limit";
+          throw err;
+        }
         if (!res.ok) {
           const err = new Error("http");
           err.code = "http";
           throw err;
         }
         return await res.json();
+      } catch (err) {
+        if (err?.name === "AbortError") {
+          const timeout = new Error("timeout");
+          timeout.code = "timeout";
+          throw timeout;
+        }
+        throw err;
       } finally {
         clearTimeout(timer);
       }

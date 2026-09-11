@@ -51,7 +51,8 @@ export function createHybridProvider({
             provider: reply.provider || "ai",
             route: decision,
             fallbackReason: "",
-            packet
+            packet,
+            rawModel: reply.rawModel || null
           })
         )
         .catch((err) =>
@@ -59,7 +60,8 @@ export function createHybridProvider({
             provider: "deterministic",
             route: decision,
             fallbackReason: err.code || err.message || "unavailable",
-            packet
+            packet,
+            rawModel: err.raw || null
           })
         );
     }
@@ -72,6 +74,7 @@ function tag(reply, extra) {
     provider: extra.provider || reply.provider,
     route: extra.route,
     fallbackReason: extra.fallbackReason || "",
-    packet: extra.packet || reply.packet || null
+    packet: extra.packet || reply.packet || null,
+    rawModel: extra.rawModel || reply.rawModel || null
   };
 }

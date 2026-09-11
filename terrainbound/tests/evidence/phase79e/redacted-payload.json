@@ -1,0 +1,50 @@
+{
+  "note": "REDACTED example. No name, email, school, or account fields exist in this payload.",
+  "destination": "loopback Summit proxy, then OpenAI-compatible upstream",
+  "body": {
+    "facts": {
+      "region": "Cedar Hollow",
+      "puzzle": "What Makes Water Move Faster?",
+      "stage": "",
+      "fairTrialCount": 1,
+      "measurements": [
+        {
+          "slope": "steep",
+          "seconds": 10.2,
+          "water": "one-cup"
+        }
+      ],
+      "inspectedHighLook": false,
+      "clearance": false,
+      "evidenceTitles": [],
+      "near": []
+    },
+    "tutoring": {
+      "allowedLevel": 2,
+      "ladder": "reason",
+      "doNotRevealCards": true,
+      "doNotGrantClearance": true,
+      "concept": null,
+      "allowCuriosity": true
+    },
+    "recent": [
+      {
+        "role": "student",
+        "text": "i dont get this"
+      }
+    ],
+    "privacy": {
+      "noName": true,
+      "noSchool": true,
+      "noAccount": true
+    },
+    "omitted": [
+      "student name",
+      "email",
+      "school",
+      "account id",
+      "CH-## ids",
+      "full save"
+    ]
+  }
+}

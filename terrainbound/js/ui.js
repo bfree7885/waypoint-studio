@@ -751,7 +751,11 @@ export function bindUi(root) {
       summit.hidden = !open;
       if (summitToggle) summitToggle.setAttribute("aria-expanded", open ? "true" : "false");
       if (!open) return;
-      if (summitLead) summitLead.textContent = view.lead || "I can help you read the hollow. Wren still judges the case.";
+      if (summitLead) {
+        summitLead.textContent = view.lead || "I can help you read the hollow. Wren still judges the case.";
+        summitLead.classList.toggle("is-pending", Boolean(view.pending));
+      }
+      if (summit) summit.setAttribute("aria-busy", view.pending ? "true" : "false");
       if (summitLog) {
         summitLog.replaceChildren();
         for (const row of view.messages || []) {

@@ -1732,4 +1732,14 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Empty `endpoint` plus a local composer is not a live AI test. Say so. Keys stay on a loopback proxy; the browser never sees `Authorization`.
 - Typed “What should I notice?” is not the HUD notice button. Quick-actions require an empty question so routing does not swallow real student prose.
 
+### Lessons Learned — TerrainBound Phase 7.9E (2026-09-10)
+
+- A real model is only “connected” when the request leaves the browser for a loopback proxy that holds the key. Empty `endpoint` plus LocalComposer is still not a live-model test.
+- Pattern validation must check false premises (invented seconds, uncleared High Country) against the packet, not only forbidden tokens. Real llama3.2:3b output also invented rainfall and water-level drops without forbidden tokens — reject those observations, then fall back.
+- Small models often return valid JSON with an empty `response`. Retry once at the proxy; if still empty, treat it as malformed and show authored Summit.
+- Off-topic answers like “80” can pass a token blacklist. If the question is off-topic, require a tutor redirect.
+- `?summit=ai` is the student-safe way to opt into the proxy URL. Do not put vendor hosts or keys in `provider.json`.
+- Close must work during “Looking at your notes…”. Never reopen Summit after the student dismissed it.
+- CPU 3B inference can sit at 5–17s. An 8s in-game timeout will fall back often; measure live latency before calling a model classroom-ready.
+
 

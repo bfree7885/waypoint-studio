@@ -116,7 +116,8 @@ function finalize(summitState, puzzleId, intent, slot, studentText, reply, conte
     fallbackReason: reply.fallbackReason || "",
     validation: reply.fallbackReason ? "fallback" : reply.provider === "ai" ? "ok" : "skipped",
     packetKeys: reply.packet ? Object.keys(reply.packet.facts || {}) : [],
-    cached: Boolean(reply.cached)
+    cached: Boolean(reply.cached),
+    rawBlocked: Boolean(reply.rawModel) && Boolean(reply.fallbackReason)
   };
 
   return {

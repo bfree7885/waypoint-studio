@@ -4,6 +4,7 @@
  */
 
 import { LEVEL, conceptKey } from "./summit-policy.js";
+import { isOffTopic } from "./summit-route.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of/i;
 
@@ -139,6 +140,27 @@ function buildReply(request, curriculum, concepts) {
   const packFor = puzzlePack(curriculum, id);
   if (!packFor) {
     return pack("I only tutor Cedar Hollow in this slice. Wren still runs the field work.");
+  }
+
+  if (isOffTopic(request.question)) {
+    return pack(
+      "I'm your field science tutor here. I will not answer that. If you want, I can help with what you're seeing in Cedar Hollow.",
+      { level, worldCue: packFor.worldCue }
+    );
+  }
+
+  if (/clearance/i.test(request.question || "") && context.aar?.result !== "clearance") {
+    return pack("Wren has not granted field clearance yet. The case is still yours to support with notes you actually collected.", {
+      level,
+      worldCue: packFor.worldCue
+    });
+  }
+
+  if (/high look/i.test(request.question || "") && !(context.observations || []).includes("high-look")) {
+    return pack("You haven't inspected High Look yet. I will not describe a view you have not stood in. Walk the high ledge if you want that note.", {
+      level,
+      worldCue: "High Look is the ledge above the hollow."
+    });
   }
 
   if (intent === "vocab") {

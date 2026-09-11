@@ -1,33 +1,69 @@
 #!/usr/bin/env node
 /**
- * Optional Summit AI proxy. Keys stay on the server.
+ * Summit AI proxy. Keys stay on the server. Browser talks only to this loopback API.
+ *
  *   SUMMIT_API_KEY=... SUMMIT_AI_URL=... SUMMIT_AI_MODEL=... node terrainbound/server/summit-proxy.mjs
- * Default: disabled / no key. The game remains fully playable without this process.
+ *
+ * OpenAI-compatible upstream (Groq, OpenAI, Ollama /v1/chat/completions).
+ * Default: unconfigured — the game stays fully playable without this process.
+ *
+ * Dev-only logging: SUMMIT_DEBUG=1 writes redacted meta (not student prose) to
+ * terrainbound/server/.summit-debug.log  (gitignored).
  */
 import http from "node:http";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const PORT = Number(process.env.SUMMIT_PROXY_PORT || 8787);
 const UPSTREAM = process.env.SUMMIT_AI_URL || "";
 const KEY = process.env.SUMMIT_API_KEY || "";
-const MODEL = process.env.SUMMIT_AI_MODEL || "local-small";
+const MODEL = process.env.SUMMIT_AI_MODEL || "llama-3.1-8b-instant";
+const DEBUG = process.env.SUMMIT_DEBUG === "1";
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
+const DEBUG_LOG = path.join(ROOT, ".summit-debug.log");
+
+export const SUMMIT_REPLY_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    response: { type: "string", minLength: 1 },
+    concept: { type: ["string", "null"] },
+    referencedEvidence: { type: "array", items: { type: "string" } },
+    suggestedAction: { type: ["string", "null"] },
+    supportLevel: { type: "number" },
+    offTopic: { type: "boolean" },
+    agreesWithStudentPremise: { type: "boolean" }
+  },
+  required: ["response", "supportLevel"]
+};
 
 const server = http.createServer(async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8085");
+  const origin = String(req.headers.origin || "");
+  if (/^http:\/\/127\.0\.0\.1:\d+$/.test(origin) || /^http:\/\/localhost:\d+$/.test(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   res.setHeader("Access-Control-Allow-Headers", "content-type");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   if (req.method === "OPTIONS") {
     res.writeHead(204);
     res.end();
     return;
   }
+  if (req.method === "GET" && (req.url === "/health" || req.url === "/summit-ai/health")) {
+    json(res, KEY && UPSTREAM ? 200 : 503, {
+      ok: Boolean(KEY && UPSTREAM),
+      model: MODEL,
+      configured: Boolean(KEY && UPSTREAM)
+    });
+    return;
+  }
   if (req.method !== "POST" || req.url !== "/summit-ai") {
-    res.writeHead(404, { "content-type": "application/json" });
-    res.end(JSON.stringify({ error: "not-found" }));
+    json(res, 404, { error: "not-found" });
     return;
   }
   if (!KEY || !UPSTREAM) {
-    res.writeHead(503, { "content-type": "application/json" });
-    res.end(JSON.stringify({ error: "unconfigured" }));
+    json(res, 503, { error: "unconfigured" });
     return;
   }
   const body = await readBody(req);
@@ -35,34 +71,157 @@ const server = http.createServer(async (req, res) => {
   try {
     payload = JSON.parse(body);
   } catch {
-    res.writeHead(400, { "content-type": "application/json" });
-    res.end(JSON.stringify({ error: "malformed" }));
+    json(res, 400, { error: "malformed" });
     return;
   }
+  const started = Date.now();
   try {
-    const upstream = await fetch(UPSTREAM, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${KEY}`
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [
-          { role: "system", content: payload.prompt || "" },
-          { role: "user", content: payload.question || "" }
-        ]
-      })
+    let upstream = await callUpstream(payload, true);
+    let parsed = parseUpstream(upstream);
+    if ((!upstream.ok || !parsed || !String(parsed.response || "").trim()) && upstream.status !== 429) {
+      upstream = await callUpstream(
+        {
+          ...payload,
+          question: `${payload.question || ""}\n\nWrite a 1-3 sentence tutoring reply in JSON field "response". Never leave it empty.`
+        },
+        false
+      );
+      parsed = parseUpstream(upstream);
+    }
+    const data = upstream.data;
+    const latencyMs = Date.now() - started;
+    if (upstream.status === 429) {
+      debug({ event: "rate-limit", latencyMs, status: 429 });
+      json(res, 429, { error: "rate-limit" });
+      return;
+    }
+    if (!upstream.ok) {
+      debug({ event: "upstream-http", latencyMs, status: upstream.status });
+      json(res, 502, { error: "upstream" });
+      return;
+    }
+    if (!parsed || !String(parsed.response || "").trim()) {
+      debug({ event: "malformed-model", latencyMs, model: MODEL });
+      json(res, 502, { error: "malformed" });
+      return;
+    }
+    const usage = data.usage || {
+      prompt_tokens: data.prompt_eval_count || 0,
+      completion_tokens: data.eval_count || 0,
+      total_tokens: (data.prompt_eval_count || 0) + (data.eval_count || 0)
+    };
+    debug({
+      event: "ok",
+      latencyMs,
+      model: data.model || MODEL,
+      promptTokens: usage.prompt_tokens || usage.input_tokens || 0,
+      completionTokens: usage.completion_tokens || usage.output_tokens || 0,
+      promptChars: String(payload.prompt || "").length,
+      questionChars: String(payload.question || "").length
     });
-    const data = await upstream.json();
-    const text = data.choices?.[0]?.message?.content || data.response || "";
-    res.writeHead(upstream.ok ? 200 : 502, { "content-type": "application/json" });
-    res.end(typeof text === "string" && text.trim().startsWith("{") ? text : JSON.stringify({ response: String(text || "") }));
+    json(res, 200, {
+      ...parsed,
+      usage: {
+        promptTokens: usage.prompt_tokens || usage.input_tokens || 0,
+        completionTokens: usage.completion_tokens || usage.output_tokens || 0,
+        totalTokens: usage.total_tokens || 0,
+        latencyMs,
+        model: data.model || MODEL
+      }
+    });
   } catch {
-    res.writeHead(502, { "content-type": "application/json" });
-    res.end(JSON.stringify({ error: "upstream" }));
+    debug({ event: "upstream-throw", latencyMs: Date.now() - started });
+    json(res, 502, { error: "upstream" });
   }
 });
+
+export function upstreamBody(payload, structured = true) {
+  const body = {
+    model: MODEL,
+    temperature: 0.2,
+    max_tokens: 280,
+    messages: [
+      { role: "system", content: String(payload.prompt || "") },
+      { role: "user", content: String(payload.question || payload.action || "") }
+    ]
+  };
+  if (structured) {
+    body.response_format = {
+      type: "json_schema",
+      json_schema: { name: "summit_reply", schema: SUMMIT_REPLY_SCHEMA, strict: true }
+    };
+  } else {
+    body.response_format = { type: "json_object" };
+  }
+  return body;
+}
+
+function parseUpstream(upstream) {
+  const data = upstream?.data || {};
+  const text = data.choices?.[0]?.message?.content || data.response || data.message?.content || "";
+  return normalizeReply(coerceJson(text));
+}
+
+function normalizeReply(parsed) {
+  if (!parsed || typeof parsed !== "object") return parsed;
+  if (typeof parsed.response === "string" && parsed.response.trim()) {
+    return { ...parsed, response: parsed.response.trim() };
+  }
+  const alt = parsed.message || parsed.text || parsed.answer || parsed.content;
+  if (typeof alt === "string" && alt.trim()) {
+    return { ...parsed, response: alt.trim() };
+  }
+  return parsed;
+}
+
+async function callUpstream(payload, structured) {
+  const res = await fetch(UPSTREAM, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      authorization: `Bearer ${KEY}`
+    },
+    body: JSON.stringify(upstreamBody(payload, structured))
+  });
+  const data = await res.json().catch(() => ({}));
+  return { ok: res.ok, status: res.status, data };
+}
+
+export function coerceJson(text) {
+  const raw = String(text || "").trim();
+  if (!raw) return null;
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  const candidate = fenced ? fenced[1].trim() : raw;
+  try {
+    const parsed = JSON.parse(candidate);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    const start = candidate.indexOf("{");
+    const end = candidate.lastIndexOf("}");
+    if (start >= 0 && end > start) {
+      try {
+        return JSON.parse(candidate.slice(start, end + 1));
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  }
+}
+
+function json(res, status, obj) {
+  res.writeHead(status, { "content-type": "application/json" });
+  res.end(JSON.stringify(obj));
+}
+
+function debug(row) {
+  if (!DEBUG) return;
+  try {
+    fs.appendFileSync(DEBUG_LOG, JSON.stringify({ ts: new Date().toISOString(), ...row }) + "\n");
+  } catch {
+    /* ignore */
+  }
+}
 
 function readBody(req) {
   return new Promise((resolve, reject) => {
@@ -73,6 +232,11 @@ function readBody(req) {
   });
 }
 
-server.listen(PORT, "127.0.0.1", () => {
-  console.log(`Summit proxy on 127.0.0.1:${PORT} (configured=${Boolean(KEY && UPSTREAM)} model=${MODEL})`);
-});
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) {
+  server.listen(PORT, "127.0.0.1", () => {
+    console.log(`Summit proxy on 127.0.0.1:${PORT} (configured=${Boolean(KEY && UPSTREAM)} model=${MODEL})`);
+  });
+}
+
+export { server };
