@@ -1023,6 +1023,17 @@ input#geo-number {
   cursor: pointer;
 }
 
+.summit-diag {
+  margin: 6px 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: #5a6d52;
+}
+
+.summit-diag[hidden] {
+  display: none;
+}
+
 #journal-graph {
   display: block;
   width: 100%;

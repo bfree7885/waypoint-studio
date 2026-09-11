@@ -14,7 +14,7 @@ export const LEVEL = {
 const INTENTS = [
   { id: "what_now", re: /what (am i|should i) (supposed to )?do|where do i (start|go)|what next|i'?m lost|what now/i },
   { id: "notice", re: /what should i (notice|look( for)?|inspect)|what am i looking|what did i (see|find)|high look/i },
-  { id: "why_wrong", re: /why (was|is) (that|it|this|my (answer|case|evidence))? ?wrong|why (didn'?t|doesn'?t) (this|that|it) work|why reject|wren (said|rejected)/i },
+  { id: "why_wrong", re: /why (was|is) (that|it|this|mine|my (answer|case|evidence))? ?wrong|why (didn'?t|doesn'?t) (this|that|it) work|why reject|wren (said|rejected)/i },
   { id: "why_evidence", re: /why (doesn'?t|didn'?t) this evidence|what evidence am i missing|which (note|evidence)|pin/i },
   { id: "compare", re: /what should i compare|compare|which (trial|slope|reach) /i },
   { id: "graph", re: /graph|table|numbers|times? (i )?recorded|axis|plot/i },

@@ -1,6 +1,6 @@
 # Summit Tutor Architecture
 
-Design authority for TerrainBound’s Earth Science tutor. Cedar Hollow is the vertical slice. This document does not implement High Country, Dark Sky Basin, or a paid AI API.
+Design authority for TerrainBound’s Earth Science tutor. Cedar Hollow is the vertical slice. This document does not implement High Country, Dark Sky Basin, or a required paid AI API. Hybrid tutoring is proven here with a local grounded composer; a remote model is optional behind a loopback proxy.
 
 ## Product purpose
 
@@ -22,18 +22,34 @@ Do not combine them. Do not rename `fieldGuidance` to Summit.
 ## Pipeline
 
 ```
-GAME STATE
-    ↓
-SUMMIT CONTEXT BUILDER   (js/summit-context.js)
-    ↓
-CURRICULUM / TUTOR POLICY (data/summit/*, js/summit-policy.js)
-    ↓
-RESPONSE PROVIDER         (DeterministicProvider now; AIProvider later)
-    ↓
-SUMMIT UI                 (sheet/drawer, not the world)
+STUDENT QUESTION
+        ↓
+TERRAINBOUND STRUCTURED STATE
+        ↓
+SUMMIT CONTEXT BUILDER        (js/summit-context.js)
+        ↓
+TUTOR POLICY / CURRICULUM     (js/summit-policy.js, data/summit/*)
+        ↓
+HYBRID ROUTER                 (js/summit-route.js)
+        ↓
+   authored path                    conversational path
+DeterministicProvider               grounding packet → AIProvider
+                                    → validation
+        ↓                                   ↓
+        └──────── on failure ───────────────┘
+                         ↓
+                  SUMMIT RESPONSE
 ```
 
-Game state, evidence, measurements, clearance, and competencies remain deterministic TerrainBound systems. A provider only writes tutoring language.
+Game state, evidence, measurements, clearance, and competencies remain deterministic TerrainBound systems. A provider only writes tutoring language. The UI never talks to a vendor SDK.
+
+## Core rule
+
+The model writes the conversation. TerrainBound owns the truth.
+
+The conversational layer may interpret messy wording, explain, ask Socratic questions, restate directions, compare evidence that exists, teach vocabulary, and connect related Earth Science ideas.
+
+It may not authoritatively decide what the student collected, measurements, puzzle or competency completion, Wren judgment, clearance, unlocks, region progression, or grades.
 
 ## Context builder
 
@@ -81,15 +97,192 @@ Today’s tablet cards are puzzle summaries. Context already has a `raw` slot fo
 
 ## Deterministic provider
 
-`createDeterministicProvider` is the offline engine: intent recognition, authored puzzle lines, misconception lines, vocabulary, evidence-aware AAR help. It is not an LLM. Do not call the scripted menu an AI tutor.
+`createDeterministicProvider` is the offline engine: intent recognition, authored puzzle lines, misconception lines, vocabulary, evidence-aware AAR help. It is not an LLM. Do not call the scripted menu an AI tutor. The game remains fully usable with this provider alone. `createSummitEngine` still defaults to it so authored tests stay honest.
 
-## Future AI provider boundary
+## Hybrid tutoring architecture
+
+`createHybridProvider` sits behind the same `provider.respond(request)` contract as Phase 7.9C.
+
+| Provider | Role |
+| --- | --- |
+| `DeterministicProvider` | Authored Cedar Hollow lines. Offline. Default. |
+| `AIProvider` | Conversational wording from a compact grounding packet. Adapters only. |
+| `createHybridProvider` | Routes, validates, and falls back silently. |
+
+Default play wiring in `game.js` uses hybrid. The engine API did not change for callers except that `ask` may return a Promise.
+
+## AIProvider
+
+`createAiProvider({ adapter, timeoutMs })` never holds an API key. It:
+
+1. Uses the packet already selected by the hybrid layer (or builds one).
+2. Builds a compact prompt (`buildSummitPrompt`).
+3. Calls `adapter.complete({ packet, prompt, question, recent })`.
+4. Parses structured output.
+5. Runs `validateSummitOutput`.
+6. Throws on failure so hybrid can fall back.
+
+Adapters:
+
+- `createLocalComposerAdapter` — grounded local composer. **Not a neural model.** Used when `data/summit/provider.json` has an empty `endpoint` (the shipped default).
+- `createHttpAdapter({ endpoint })` — POST JSON to a same-origin or localhost proxy. No `Authorization` header in the browser.
+- `createFixtureAdapter` — tests.
+
+Optional Node proxy: `server/summit-proxy.mjs`. It reads `SUMMIT_API_KEY`, `SUMMIT_AI_URL`, and `SUMMIT_AI_MODEL` from the environment and binds `127.0.0.1` only. Do not commit secrets. Do not put keys in `provider.json`, frontend config, fixtures, or screenshots.
+
+## Hybrid routing logic
+
+`routeSummit` decides whether a turn is worth a conversational call. Not every button press hits a model.
+
+Prefer **deterministic** (`useAi: false`):
+
+| Reason | When |
+| --- | --- |
+| `first-hint` | Empty question, first authored hint |
+| `quick-action` | Empty question + What should I do / notice / hint / explain |
+| `vocab-library` | Clean “what is runoff?” / “what does X mean?” definition ask |
+| `objective` | Exact “what am I supposed to do?” |
+| `structured-data` | Graph / compare intents that already have authored data lines |
+| `default-deterministic` | Everything else that is not messy, curious, or a follow-up |
+
+Prefer **conversational** (`useAi: true`):
+
+| Reason | When |
+| --- | --- |
+| `messy-language` | Typos, fragments, “what am I even doing”, invented-state probes |
+| `follow-up` | Short thread turns (“that part”, “why though”, “the steep one”) |
+| `rephrase` | “explain it easier / another way / explain more” |
+| `curiosity` | Relevant Earth Science transfer (flash flood, snowmelt, gravity, “where I live”) |
+| `why-or-reveal` | Why-wrong, evidence mismatch, “just tell me which card” |
+| `off-topic` | Redirect; do not become a general chatbot |
+
+Typed “What should I notice?” is not a quick-action. Quick-actions are the HUD buttons (`action` without a typed question).
+
+## Context-selection strategy
+
+`selectSummitPacket` sends only what the current question needs. It does **not** dump Cedar Hollow, the full tablet, or unbounded chat.
+
+Always included (compact): region name (not an id dump), puzzle title, stage, up to three competencies, nearby place names, fair-trial count, up to six fair times (slope / seconds / water), tablet **titles** (never `CH-##`), missing-evidence count, allowed support level.
+
+Included only when relevant:
+
+- High Look observation if the student asked about High Look
+- Wren claim, pinned titles, `lastJudge` kind/hint if AAR is open or the question is about pinning / Wren / evidence
+- Last **four** tutoring turns, each clipped to 220 characters, with `CH-##` stripped
+
+Never included: student name, email, account, school, internal card ids, unused region lore, full curriculum JSON, full chat history.
+
+## Grounding packet
+
+The packet has two sides:
+
+**`facts` (authoritative game state).** The conversational layer may explain these and must not change them. Example:
 
 ```
-createSummitEngine({ provider })
+Region: Cedar Hollow
+Puzzle: runoff investigation
+Fair trial count: 2
+gentle slope = 18.4s
+steep slope = 10.2s
+High Look inspected: false
+Clearance: false
 ```
 
-A later `AIProvider` may generate conversational wording from the same request `{ context, intent, level, question }`. It may not become the authority for game state, evidence, measurements, correct puzzle completion, clearance, competency, or unlocks. If context says a note is missing, the model may not claim it exists. API keys never belong in browser code. This phase does not add a paid API.
+**`tutoring` (instructions).** Allowed support level, ladder name, do-not-reveal-cards, do-not-grant-clearance, optional concept, allowCuriosity.
+
+If a fact is absent, the field is empty or false. Providers must not invent a third trial, a High Look view, or clearance.
+
+## Output schema
+
+Preferred adapter payload:
+
+```
+{
+  "response": string,
+  "concept": string | null,
+  "referencedEvidence": string[],   // tablet titles, not ids
+  "suggestedAction": string | null,
+  "supportLevel": number,
+  "offTopic": boolean
+}
+```
+
+`validateSummitOutput` maps a valid payload onto the existing provider reply (`text`, `conceptIds`, `revealsAnswer: false`, …). Arbitrary prose is not displayed.
+
+## Validation layer
+
+Reject and fall back if output:
+
+- is missing / empty / longer than 800 characters / not JSON
+- contains `CH-##`, quiz stems, HTTP/API/JSON error copy
+- commands a pin (`pin the … card`, `tap CH-`)
+- claims to grant / unlock / complete
+- claims clearance when `facts.clearance` is false
+- names evidence titles that are not in the packet
+- invents measurements (recorded times not in `facts.numbers`)
+- invents a High Look visit
+- invents a third trial when `fairTrialCount < 3`
+- claims a support level above the allowed ladder (unless already at 4)
+
+Where feasible, referenced titles are checked against packet titles. Internal ids never reach the student UI (`stripCodes`).
+
+## Deterministic fallback behavior
+
+If the network is down, the model is missing, the call times out, JSON is malformed, validation fails, the proxy returns 429/5xx, or `endpoint` is empty and no local composer is wired, hybrid catches the error and returns `DeterministicProvider` text.
+
+Students do not see HTTP 429, API failure, JSON parsing errors, or “provider unavailable.” `fallbackReason` is stored on `summitState.lastDebug` only. Developer `?field=1` may show a quiet diag line.
+
+## Multi-turn conversation behavior
+
+Summit memory still caps recent turns in save (8). The packet sends the last 4. Follow-ups like “the steep one” / “why though” / “explain it easier” are routed to the conversational path so the student does not have to restate the original question. The composer (or a future model) reads those recent lines plus current measurements.
+
+This is pedagogical continuity, not a student profile. Do not keep unbounded free-text.
+
+## Wren / AAR protections
+
+During the After Action Report Summit may explain why a pin did not hold. It may not select the card.
+
+Bad: “Pin the runoff measurement card.” / “Pin CH-03.”
+
+Good (level 2): “Wren is asking about a specific kind of evidence. Look for a note that actually answers that question.”
+
+Good (level 4): “Your slope trials measured travel time directly. Evidence based on those measurements would address Wren's question — you still choose the note.”
+
+Wren still judges. Summit still does not grant clearance.
+
+## Privacy boundary
+
+Send: the current question, selected game facts, relevant evidence titles, curriculum concept id, at most four recent tutoring turns.
+
+Do not send: student name, email, account identifiers, school identifiers, unnecessary history, or personal information. There is no student profiling. `lastDebug` is not written into the save snapshot.
+
+Until a classroom proxy is configured, nothing leaves the browser: the local composer runs in-process.
+
+## Secret / API architecture
+
+No API key in client JavaScript. `data/summit/provider.json` stores only an optional proxy `endpoint` and `timeoutMs`. A remote model, if used, is reached through `server/summit-proxy.mjs` (loopback, env key). Tests and docs must not embed credentials.
+
+## Cost-control strategy
+
+- Compact prompts; selected context only.
+- Bounded history (4 in packet, 8 in save) and bounded output (800 chars).
+- Hybrid routing skips the conversational path for vocab, first hint, objectives, and structured graph/compare asks.
+- Safe in-memory cache on identical prompts (24 entries) inside `AIProvider`.
+- Timeouts (~3.5s) then authored text.
+- No conversational call for HUD button presses that already have authored lines.
+- Design assumption: a small, inexpensive model. Do not dump the world.
+
+## Model configuration strategy
+
+Do not hardwire a vendor in Summit UI or the engine. Choose the adapter at the boundary (`provider.json` endpoint, or inject `adapter` into `createHybridProvider`).
+
+`SUMMIT_MODEL_REQUIREMENTS`: inexpensive, low latency, reliable structured output, adequate instructional language, sufficient basic Earth Science, short conversational context. A huge frontier model is not required; TerrainBound supplies the facts.
+
+## Evaluation strategy
+
+`data/summit/eval-utterances.json` holds 50+ realistic 9th–10th-grade lines across clean questions, typos, fragments, vague asks, repeated why, misconceptions, follow-ups, evidence, graph/data, transfer, unrelated, answer-reveal attempts, simpler, and deeper asks. `tests/phase7_9d.test.mjs` checks routing, grounding, fallback, privacy, and a short conversation thread. Hallucination probes (third trial, High Look, false clearance, pin-this-card) must not invent facts.
+
+Live classroom testing still requires a real model behind the proxy, teacher review of curiosity answers, and a privacy review of whatever upstream is chosen. This phase does not deploy that.
 
 ## Grounding / hallucination contract
 
@@ -110,9 +303,13 @@ Normal progress: quiet. One mistake: optional idea. Repeated fails: climb the la
 
 Typed questions, short quick actions, Explain more, vocabulary, graph/table help, evidence reminders, restated steps. The scientific standard does not drop. 44px controls. Mobile bottom sheet with sticky input. Desktop compact drawer.
 
+## Developer diagnostics
+
+`?field=1` may show `#summit-diag` with provider/adapter, authored vs conversational path, intent, support level, route reason, validation/fallback, and a short list of packet fact keys. `window.TB.summitDebug` exposes the same record. Normal student UI leaves this hidden. Do not put HTTP errors in the student log.
+
 ## Privacy
 
-Local save only. No accounts. No network tutor. Recent lines are capped. Do not ship student questions to a remote model in this phase.
+See **Privacy boundary** above. Local save only. No accounts. Recent lines are capped. A remote model is optional and must go through a server-side proxy; the shipped game does not send student text off-machine.
 
 ## Curriculum traceability
 
@@ -127,7 +324,17 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `js/summit-context.js` — context builder
 - `js/summit-policy.js` — intents, ladder, memory helpers
 - `js/summit-provider.js` — DeterministicProvider
+- `js/summit-packet.js` — compact grounding packet
+- `js/summit-route.js` — hybrid router
+- `js/summit-ai.js` — AIProvider, prompt, HTTP/fixture adapters
+- `js/summit-compose.js` — local grounded composer (not an LLM)
+- `js/summit-validate.js` — grounding gate
+- `js/summit-hybrid.js` — route → AI or authored → fallback
 - `js/summit.js` — engine
 - `data/summit/cedar-hollow.json` — puzzle tutoring
 - `data/summit/concepts.json` — concept library
+- `data/summit/curiosity.json` — compact transfer explanations
+- `data/summit/provider.json` — adapter endpoint (empty by default)
+- `data/summit/eval-utterances.json` — evaluation set
+- `server/summit-proxy.mjs` — optional loopback proxy
 - `js/guidance.js` — Wren/interface next-action strip (not Summit)

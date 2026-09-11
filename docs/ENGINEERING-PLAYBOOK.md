@@ -1724,4 +1724,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Tablet cards are still summaries. If raw trial seconds exist in state, use them. If they do not, say the student has not measured that yet. Never invent a High Look view or a runoff time.
 - Future conversational wording can sit behind `AIProvider`. Game state, evidence, measurements, and clearance stay deterministic. API keys do not belong in the browser.
 
+### Lessons Learned — TerrainBound Phase 7.9D (2026-09-10)
+
+- Regex intent is not enough for 9th–10th-grade wording. Route messy language and follow-ups through a conversational provider, but keep vocab, first hints, and HUD buttons on authored lines so classroom cost stays low.
+- The model writes conversation; TerrainBound owns truth. Validate titles, times, visits, and clearance against a compact packet. If validation fails, show the deterministic tutor — never the suspect sentence.
+- Do not dump Cedar Hollow into the prompt. Four recent turns, fair times, and tablet titles are enough for a small model (or a local composer) to stay coherent without reconstructing the region.
+- Empty `endpoint` plus a local composer is not a live AI test. Say so. Keys stay on a loopback proxy; the browser never sees `Authorization`.
+- Typed “What should I notice?” is not the HUD notice button. Quick-actions require an empty question so routing does not swallow real student prose.
+
 

@@ -767,7 +767,14 @@ export function bindUi(root) {
         summitLog.scrollTop = (view.messages || []).length <= 2 ? 0 : summitLog.scrollHeight;
       }
       if (summitMore) summitMore.hidden = !view.moreAvailable;
-      if (open) summitAsk?.focus();
+      if (summitAsk) summitAsk.disabled = Boolean(view.pending);
+      const diag = root.querySelector("#summit-diag");
+      if (diag) {
+        diag.hidden = !view.diag;
+        diag.setAttribute("aria-hidden", view.diag ? "false" : "true");
+        diag.textContent = view.diag || "";
+      }
+      if (open && !view.pending) summitAsk?.focus();
     },
     showGeoBoard(open, view = {}, handlers = {}) {
       if (!geoBoard) return;

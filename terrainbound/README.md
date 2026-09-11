@@ -35,6 +35,7 @@ node terrainbound/tests/phase7_8c.test.mjs
 node terrainbound/tests/phase7_9a.test.mjs
 node terrainbound/tests/phase7_9b.test.mjs
 node terrainbound/tests/phase7_9c.test.mjs
+node terrainbound/tests/phase7_9d.test.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.
@@ -98,12 +99,13 @@ Ranger Wren: short comments, hints when useful, acknowledgement of finds. After 
 | `data/aar/` | After Action Report stems |
 | `js/puzzles.js` | Puzzle use, systems map, conflict, tablet evidence |
 | `js/aar.js` | Field debrief scoring (clearance vs more evidence) |
+| `js/summit*.js` + `data/summit/` | Cedar Hollow Summit tutor (authored + hybrid conversational layer) |
 | `js/save.js` | Local field journal (v6, migrates earlier saves) |
 | `js/audio.js` | Quiet audio bus |
 | `js/character.js` / `js/stations.js` / `js/atmosphere.js` / `js/travel.js` / `js/density.js` | Explorer, stations, sky, title cards, landcover |
 | `js/render.js` + `js/ui.js` + `js/game.js` | Game loop |
 
-Canvas 2D, no build step, no paid services.
+Canvas 2D, no build step, no paid services required. Summit stays fully playable offline. An optional loopback proxy (`terrainbound/server/summit-proxy.mjs`) can sit behind `data/summit/provider.json` without placing API keys in the browser.
 
 ## Out of scope
 

@@ -180,7 +180,7 @@ import {
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
 import { fieldGuidance } from "./guidance.js";
-import { createSummitEngine, createSummitState, noteStruggle, noteSuccess } from "./summit.js";
+import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess } from "./summit.js";
 import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
@@ -218,6 +218,8 @@ export async function boot(root = document) {
     aarSpec,
     summitCurriculum,
     summitConcepts,
+    summitCuriosity,
+    summitProviderCfg,
     hcRegion,
     hcCatalog,
     hcSpec,
@@ -245,6 +247,12 @@ export async function boot(root = document) {
       fetch("./data/aar/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/summit/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/summit/concepts.json").then((r) => r.json()),
+      fetch("./data/summit/curiosity.json")
+        .then((r) => r.json())
+        .catch(() => ({})),
+      fetch("./data/summit/provider.json")
+        .then((r) => r.json())
+        .catch(() => ({ endpoint: "", timeoutMs: 3500 })),
       fetch("./data/regions/high-country.json").then((r) => r.json()),
       fetch("./data/discoveries/high-country.json").then((r) => r.json()),
       fetch("./data/investigations/high-country.json").then((r) => r.json()),
@@ -277,7 +285,20 @@ export async function boot(root = document) {
   const challengeState = createChallengeState();
   const puzzleState = createPuzzleState();
   const summitState = createSummitState();
-  const summitEngine = createSummitEngine({ curriculum: summitCurriculum, concepts: summitConcepts });
+  const summitAdapter = summitProviderCfg?.endpoint
+    ? createHttpAdapter({ endpoint: summitProviderCfg.endpoint, timeoutMs: summitProviderCfg.timeoutMs || 3500 })
+    : createLocalComposerAdapter({ curiosity: summitCuriosity });
+  const summitEngine = createSummitEngine({
+    curriculum: summitCurriculum,
+    concepts: summitConcepts,
+    provider: createHybridProvider({
+      curriculum: summitCurriculum,
+      concepts: summitConcepts,
+      curiosity: summitCuriosity,
+      adapter: summitAdapter,
+      timeoutMs: summitProviderCfg?.timeoutMs || 3500
+    })
+  });
   const hcState = createHcState();
   const sfState = createSfState();
   const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
@@ -318,6 +339,8 @@ export async function boot(root = document) {
   let aarOpen = false;
   let summitOpen = false;
   let summitMoreText = "";
+  let summitAskLock = false;
+  const fieldMode = new URLSearchParams(location.search).get("field") === "1";
   let aarIndex = 0;
   let aarConfirmed = [];
   let atlasOpen = false;
@@ -1253,11 +1276,27 @@ export async function boot(root = document) {
     };
   }
 
-  function renderSummit() {
+  function renderSummit(extra = {}) {
+    const debug = fieldMode ? summitState.lastDebug : null;
     ui.showSummit(true, {
-      lead: "I can help you read the hollow. Wren still judges the case.",
+      lead: extra.pending ? "Reading your notes…" : "I can help you read the hollow. Wren still judges the case.",
       messages: summitState.recent,
-      moreAvailable: Boolean(summitMoreText)
+      moreAvailable: Boolean(summitMoreText),
+      pending: Boolean(extra.pending),
+      diag: debug
+        ? [
+            debug.adapterId ? `${debug.provider}/${debug.adapterId}` : debug.provider,
+            debug.useAi ? "ai-path" : "authored",
+            debug.intent || "intent",
+            `L${debug.supportLevel}`,
+            debug.route || "route",
+            debug.validation || "validation",
+            debug.fallbackReason ? `fallback ${debug.fallbackReason}` : "",
+            debug.packetKeys?.length ? `ctx ${debug.packetKeys.slice(0, 8).join(",")}` : ""
+          ]
+            .filter(Boolean)
+            .join(" · ")
+        : ""
     });
     ui.setSummitIdea(Boolean(summitState.idea));
   }
@@ -1267,7 +1306,7 @@ export async function boot(root = document) {
     summitState.idea = false;
     ui.setSummitIdea(false);
     if (!summitState.recent.length) {
-      askSummit({ action: "what_now" });
+      void askSummit({ action: "what_now" });
       return;
     }
     renderSummit();
@@ -1278,7 +1317,7 @@ export async function boot(root = document) {
     ui.showSummit(false, {});
   }
 
-  function askSummit(opts) {
+  async function askSummit(opts) {
     if (worldState.currentRegion !== "cedar-hollow") {
       summitState.recent = [
         ...(summitState.recent || []),
@@ -1293,11 +1332,18 @@ export async function boot(root = document) {
       renderSummit();
       return;
     }
-    const reply = summitEngine.ask(summitState, summitContextInput(), opts);
-    summitMoreText = reply.more || "";
-    persist();
-    renderSummit();
-    return reply;
+    if (summitAskLock) return;
+    summitAskLock = true;
+    if (summitOpen) renderSummit({ pending: true });
+    try {
+      const reply = await Promise.resolve(summitEngine.ask(summitState, summitContextInput(), opts));
+      summitMoreText = reply.more || "";
+      persist();
+      renderSummit();
+      return reply;
+    } finally {
+      summitAskLock = false;
+    }
   }
 
   function maybeSummitIdea(kind) {
@@ -3557,6 +3603,10 @@ export async function boot(root = document) {
       openSummit,
       askSummit,
       closeSummit,
+      get summitDebug() {
+        return summitState.lastDebug || null;
+      },
+      summitAdapterId: summitAdapter.id,
       openConflict,
       releaseWater,
       tryInterpret,
