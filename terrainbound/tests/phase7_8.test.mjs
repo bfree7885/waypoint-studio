@@ -359,14 +359,13 @@ check("High Country map skill transfers into Sunfall site choice without a lectu
   assert.doesNotMatch(sfGuide.next, /Topic 2|High Country skill/i);
 });
 
-check("Dark Sky stays closed; Summit is not implemented; Studio app is untouched", () => {
+check("Dark Sky stays closed; Studio app is untouched", () => {
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
   assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
   assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
-  assert.doesNotMatch(gameJs, /Summit tutor|always-available Earth Science tutor/i);
   assert.match(studioApp, /Fieldry|redirect/i);
 });
 

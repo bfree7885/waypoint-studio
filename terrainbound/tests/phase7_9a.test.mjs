@@ -362,9 +362,9 @@ check("tablet evidence is categorized and AAR UI is wired", () => {
   assert.match(css, /\.aar-card-btn/);
 });
 
-check("Dark Sky, Summit, and other regions stay unimplemented", () => {
+check("Dark Sky and other regions stay unimplemented", () => {
   assert.doesNotMatch(gameJs, /dark-sky-basin/);
-  assert.doesNotMatch(html, /Summit/);
+  assert.doesNotMatch(html, /Summit trail/);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
   assert.match(retired, /Terrainbound is retired/);
   const hcPuzzles = fs.existsSync(path.join(root, "data/puzzles/high-country.json"));

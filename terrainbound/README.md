@@ -34,6 +34,7 @@ node terrainbound/tests/phase7_8.test.mjs
 node terrainbound/tests/phase7_8c.test.mjs
 node terrainbound/tests/phase7_9a.test.mjs
 node terrainbound/tests/phase7_9b.test.mjs
+node terrainbound/tests/phase7_9c.test.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.

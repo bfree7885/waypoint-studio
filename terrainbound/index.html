@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
   <title>TerrainBound</title>
   <meta name="description" content="An exploration game about learning to read the Earth.">
   <link rel="stylesheet" href="./css/game.css">
@@ -25,6 +25,7 @@
         <div class="hud-tools">
           <button type="button" id="map-toggle" class="map-toggle">World map</button>
           <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
+          <button type="button" id="summit-toggle" class="summit-toggle" aria-expanded="false">Summit</button>
         </div>
       </div>
     </div>
@@ -256,9 +257,37 @@
         <p id="aar-status"></p>
         <div class="conclusion-actions">
           <button type="button" id="aar-next">Show Wren</button>
+          <button type="button" id="aar-summit">Ask Summit</button>
           <button type="button" id="aar-submit" hidden>That's the case</button>
           <button type="button" id="aar-close">Back to the hollow</button>
         </div>
+      </div>
+    </div>
+
+    <div id="summit" hidden role="dialog" aria-label="Summit, Earth Science tutor">
+      <div class="summit-sheet">
+        <header class="summit-head">
+          <div>
+            <p class="field-bench-kicker">Earth Science tutor</p>
+            <h2>Summit</h2>
+          </div>
+          <button type="button" id="summit-close">Close</button>
+        </header>
+        <p class="summit-lead" id="summit-lead">I can help you read the hollow. Wren still judges the case.</p>
+        <div id="summit-log" class="summit-log" role="log" aria-live="polite"></div>
+        <div class="summit-quick" id="summit-quick">
+          <button type="button" data-summit="what_now">What should I do?</button>
+          <button type="button" data-summit="notice">What should I notice?</button>
+          <button type="button" data-summit="hint">Hint</button>
+          <button type="button" data-summit="why_wrong">Why was that wrong?</button>
+          <button type="button" data-summit="explain">Explain this</button>
+        </div>
+        <button type="button" id="summit-more" hidden>Explain more</button>
+        <form id="summit-form" class="summit-form">
+          <label class="visually-hidden" for="summit-ask">Ask Summit</label>
+          <input id="summit-ask" name="ask" type="text" maxlength="240" autocomplete="off" enterkeyhint="send" placeholder="Ask Summit…">
+          <button type="submit">Ask</button>
+        </form>
       </div>
     </div>
 
@@ -307,6 +336,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p79b"></script>
+  <script type="module" src="./js/main.js?v=p79c"></script>
 </body>
 </html>

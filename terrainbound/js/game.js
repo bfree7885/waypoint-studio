@@ -180,6 +180,7 @@ import {
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
 import { fieldGuidance } from "./guidance.js";
+import { createSummitEngine, createSummitState, noteStruggle, noteSuccess } from "./summit.js";
 import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
@@ -215,6 +216,8 @@ export async function boot(root = document) {
     challengeSpec,
     puzzleSpec,
     aarSpec,
+    summitCurriculum,
+    summitConcepts,
     hcRegion,
     hcCatalog,
     hcSpec,
@@ -240,6 +243,8 @@ export async function boot(root = document) {
       fetch("./data/challenges/after-the-rain.json").then((r) => r.json()),
       fetch("./data/puzzles/cedar-hollow.json").then((r) => r.json()),
       fetch("./data/aar/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/summit/cedar-hollow.json").then((r) => r.json()),
+      fetch("./data/summit/concepts.json").then((r) => r.json()),
       fetch("./data/regions/high-country.json").then((r) => r.json()),
       fetch("./data/discoveries/high-country.json").then((r) => r.json()),
       fetch("./data/investigations/high-country.json").then((r) => r.json()),
@@ -271,6 +276,8 @@ export async function boot(root = document) {
   const dataState = createDataState();
   const challengeState = createChallengeState();
   const puzzleState = createPuzzleState();
+  const summitState = createSummitState();
+  const summitEngine = createSummitEngine({ curriculum: summitCurriculum, concepts: summitConcepts });
   const hcState = createHcState();
   const sfState = createSfState();
   const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
@@ -309,6 +316,8 @@ export async function boot(root = document) {
   let clearanceOpen = false;
   let systemsOpen = false;
   let aarOpen = false;
+  let summitOpen = false;
+  let summitMoreText = "";
   let aarIndex = 0;
   let aarConfirmed = [];
   let atlasOpen = false;
@@ -335,8 +344,9 @@ export async function boot(root = document) {
       flumeState,
       dataState,
       challengeState,
-      puzzleState,
-      hcState,
+        puzzleState,
+        summitState,
+        hcState,
       sfState,
       regionPlayers,
       presentation
@@ -684,6 +694,7 @@ export async function boot(root = document) {
         dataState,
         challengeState,
         puzzleState,
+        summitState,
         hcState,
         sfState,
         regionPlayers,
@@ -704,6 +715,7 @@ export async function boot(root = document) {
         clearanceOpen ||
         systemsOpen ||
         aarOpen ||
+        summitOpen ||
         geoOpen ||
         travelBlocking(travelState)
     );
@@ -800,7 +812,12 @@ export async function boot(root = document) {
     syncFlowDataset();
     persist();
     renderFlume();
-    if (!result.fair) ui.showToast("Fair test", result.hint);
+    if (!result.fair) {
+      ui.showToast("Fair test", result.hint);
+      maybeSummitIdea("unfair-test");
+    } else if (hasFairComparison(flumeState, flumeSpec)) {
+      noteSuccess(summitState, "CH-03");
+    }
     return result;
   }
 
@@ -883,11 +900,14 @@ export async function boot(root = document) {
     renderInterpret();
     refreshJournal();
     if (result.ok) {
+      noteSuccess(summitState, "CH-04");
       closeInterpret();
       showDialogueLines("Ranger Wren", flumeSpec.wren.afterFair, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
       });
+    } else {
+      maybeSummitIdea("pattern");
     }
   }
 
@@ -972,6 +992,7 @@ export async function boot(root = document) {
   }
 
   function afterClearanceSuccess() {
+    noteSuccess(summitState, "CH-05");
     closeClearance();
     persist();
     showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
@@ -1019,6 +1040,7 @@ export async function boot(root = document) {
     refreshGuide();
     if (!judged.ok) {
       ui.showToast("The land disagrees", judged.hint);
+      maybeSummitIdea("systems");
       return judged;
     }
     const site = systemsSiteById(puzzleSpec, siteId);
@@ -1083,8 +1105,10 @@ export async function boot(root = document) {
     renderSystems();
     if (!result.ok) {
       ui.showToast("Keep mapping", result.hint);
+      maybeSummitIdea("systems");
       return;
     }
+    noteSuccess(summitState, "CH-07");
     closeSystems();
     showDialogueLines("Ranger Wren", ["Source, slope, path, store — and the willows took a hit. That's one event with parts."], 0, () => {
       dialogue = null;
@@ -1104,6 +1128,7 @@ export async function boot(root = document) {
         const judged = tryConflict(puzzleState, puzzleSpec, option.id);
         persist();
         if (!judged.ok) {
+          maybeSummitIdea("revision");
           ui.showDialogue(true, "Ranger Wren", judged.hint, [
             {
               label: "Revise the story",
@@ -1116,6 +1141,7 @@ export async function boot(root = document) {
           ]);
           return;
         }
+        noteSuccess(summitState, "CH-08");
         dialogue = null;
         ui.showDialogue(false);
         showDialogueLines("Ranger Wren", ["That's revision. You dropped the false cause because the land disagreed."], 0, () => {
@@ -1203,6 +1229,87 @@ export async function boot(root = document) {
     ui.showAar(false, {});
   }
 
+  function summitContextInput() {
+    return {
+      regionId: worldState.currentRegion,
+      player,
+      region: isHighCountry() || isSunfall() ? { features: [] } : region,
+      catalog: isHighCountry() || isSunfall() ? { items: [] } : catalog,
+      missionState,
+      discoveryState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      puzzleState,
+      puzzleSpec,
+      aarSpec,
+      flumeSpec,
+      investigation,
+      aarOpen,
+      aarIndex,
+      summitState,
+      systemsPrompt: currentSystemsPrompt(puzzleState, puzzleSpec)
+    };
+  }
+
+  function renderSummit() {
+    ui.showSummit(true, {
+      lead: "I can help you read the hollow. Wren still judges the case.",
+      messages: summitState.recent,
+      moreAvailable: Boolean(summitMoreText)
+    });
+    ui.setSummitIdea(Boolean(summitState.idea));
+  }
+
+  function openSummit() {
+    summitOpen = true;
+    summitState.idea = false;
+    ui.setSummitIdea(false);
+    if (!summitState.recent.length) {
+      askSummit({ action: "what_now" });
+      return;
+    }
+    renderSummit();
+  }
+
+  function closeSummit() {
+    summitOpen = false;
+    ui.showSummit(false, {});
+  }
+
+  function askSummit(opts) {
+    if (worldState.currentRegion !== "cedar-hollow") {
+      summitState.recent = [
+        ...(summitState.recent || []),
+        {
+          role: "summit",
+          kind: "orient",
+          intent: "what_now",
+          text: "This version of Summit tutors Cedar Hollow. Wren still runs the field work in other regions."
+        }
+      ].slice(-8);
+      persist();
+      renderSummit();
+      return;
+    }
+    const reply = summitEngine.ask(summitState, summitContextInput(), opts);
+    summitMoreText = reply.more || "";
+    persist();
+    renderSummit();
+    return reply;
+  }
+
+  function maybeSummitIdea(kind) {
+    noteStruggle(summitState, summitContextInput().activePuzzleId || "CH-02", kind || "fail");
+    ui.setSummitIdea(Boolean(summitState.idea));
+    if (summitState.idea && !summitState.ideaSeen) {
+      summitState.ideaSeen = true;
+      ui.showToast("Summit has an idea", "Ask when you want a hand reading the hollow.");
+    }
+    persist();
+  }
+
   function aarAdvance() {
     const items = aarItems();
     const item = items[aarIndex];
@@ -1213,8 +1320,16 @@ export async function boot(root = document) {
       return;
     }
     const judged = judgeClaim(item, selected);
+    puzzleState.aar.lastJudge = {
+      kind: judged.kind,
+      hint: judged.hint,
+      good: judged.good,
+      claimId: item.id,
+      pinned: selected
+    };
     persist();
     if (!judged.good) {
+      maybeSummitIdea(judged.kind);
       renderAar(judged.hint);
       return;
     }
@@ -1240,6 +1355,7 @@ export async function boot(root = document) {
     refreshJournal();
     closeAar();
     if (result.result === "clearance") {
+      noteSuccess(summitState, "CH-09");
       showDialogueLines("Ranger Wren", aarSpec.clearance.lines, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
@@ -2989,6 +3105,13 @@ export async function boot(root = document) {
       if (event.key === "Escape") closeSystems();
       return;
     }
+    if (summitOpen) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeSummit();
+      }
+      return;
+    }
     if (aarOpen) {
       if (event.key === "Escape") closeAar();
       return;
@@ -3097,8 +3220,31 @@ export async function boot(root = document) {
   root.querySelector("#systems-walk")?.addEventListener("click", walkSystemsSite);
   root.querySelector("#systems-close")?.addEventListener("click", closeSystems);
   root.querySelector("#aar-next")?.addEventListener("click", aarAdvance);
+  root.querySelector("#aar-summit")?.addEventListener("click", openSummit);
   root.querySelector("#aar-submit")?.addEventListener("click", submitAarCase);
   root.querySelector("#aar-close")?.addEventListener("click", closeAar);
+  root.querySelector("#summit-toggle")?.addEventListener("click", () => {
+    if (summitOpen) closeSummit();
+    else openSummit();
+  });
+  root.querySelector("#summit-close")?.addEventListener("click", closeSummit);
+  root.querySelector("#summit-more")?.addEventListener("click", () => askSummit({ action: "explain_more", question: "Explain more" }));
+  root.querySelector("#summit-quick")?.addEventListener("click", (event) => {
+    const btn = event.target.closest("[data-summit]");
+    if (!btn) return;
+    askSummit({ action: btn.dataset.summit });
+  });
+  root.querySelector("#summit-form")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const input = root.querySelector("#summit-ask");
+    const question = input?.value?.trim();
+    if (!question) {
+      askSummit({ action: "what_now" });
+      return;
+    }
+    input.value = "";
+    askSummit({ question });
+  });
   root.querySelector("#geo-close")?.addEventListener("click", closeGeo);
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
@@ -3350,6 +3496,7 @@ export async function boot(root = document) {
       dataState,
       challengeState,
       puzzleState,
+      summitState,
       puzzleSpec,
       aarSpec,
       flumeSpec,
@@ -3407,6 +3554,9 @@ export async function boot(root = document) {
       openClearance,
       openSystems,
       openAar,
+      openSummit,
+      askSummit,
+      closeSummit,
       openConflict,
       releaseWater,
       tryInterpret,

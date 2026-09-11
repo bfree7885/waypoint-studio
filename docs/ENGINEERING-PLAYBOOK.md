@@ -1715,4 +1715,13 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Allowed evidence is the required set plus a short useful set. Listing every distractor is brittle; any extra card not on that list is overclaim.
 - A missing `}` in `inspectFeature` will parse in surprising ways and `window.TB` never appears. Syntax-check `game.js` before blaming Chrome or the capture harness.
 
+### Lessons Learned — TerrainBound Phase 7.9C (2026-09-10)
+
+- Do not rename `guidance.js` Summit. Field next-action copy is Wren/interface; the tutor is a separate context → policy → provider → UI pipeline.
+- Structured game context is the tutor's source of truth. An authored engine can sound context-aware without an LLM if it reads tablet notes, flume times, and `judgeClaim` instead of inferring from chat prose.
+- Wren rejects evidence; Summit explains the scientific mismatch. Naming `CH-04` or “pin this card” completes the AAR for the student. Name the category and send them back to the tablet.
+- There is no hint cap and no score penalty. Struggle climbs the ladder (orient → notice → reason → teach → scaffold). Using Summit must not change clearance or competency.
+- Tablet cards are still summaries. If raw trial seconds exist in state, use them. If they do not, say the student has not measured that yet. Never invent a High Look view or a runoff time.
+- Future conversational wording can sit behind `AIProvider`. Game state, evidence, measurements, and clearance stay deterministic. API keys do not belong in the browser.
+
 

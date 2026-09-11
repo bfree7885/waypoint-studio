@@ -146,6 +146,12 @@ export function bindUi(root) {
   const aarStatus = root.querySelector("#aar-status");
   const aarNext = root.querySelector("#aar-next");
   const aarSubmit = root.querySelector("#aar-submit");
+  const summit = root.querySelector("#summit");
+  const summitLog = root.querySelector("#summit-log");
+  const summitLead = root.querySelector("#summit-lead");
+  const summitMore = root.querySelector("#summit-more");
+  const summitToggle = root.querySelector("#summit-toggle");
+  const summitAsk = root.querySelector("#summit-ask");
   const tabButtons = [...root.querySelectorAll(".journal-tabs [data-tab]")];
   const panels = [...root.querySelectorAll("[data-panel]")];
 
@@ -736,6 +742,32 @@ export function bindUi(root) {
       }
       if (aarNext) aarNext.hidden = Boolean(view.done || view.result);
       if (aarSubmit) aarSubmit.hidden = !view.done || Boolean(view.result);
+    },
+    setSummitIdea(on) {
+      summitToggle?.classList.toggle("has-idea", Boolean(on));
+    },
+    showSummit(open, view = {}) {
+      if (!summit) return;
+      summit.hidden = !open;
+      if (summitToggle) summitToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (!open) return;
+      if (summitLead) summitLead.textContent = view.lead || "I can help you read the hollow. Wren still judges the case.";
+      if (summitLog) {
+        summitLog.replaceChildren();
+        for (const row of view.messages || []) {
+          const p = document.createElement("p");
+          p.className = `summit-msg ${row.role === "student" ? "is-student" : "is-summit"}`;
+          const cite = document.createElement("cite");
+          cite.textContent = row.role === "student" ? "You" : "Summit";
+          const body = document.createElement("span");
+          body.textContent = row.text;
+          p.append(cite, body);
+          summitLog.appendChild(p);
+        }
+        summitLog.scrollTop = (view.messages || []).length <= 2 ? 0 : summitLog.scrollHeight;
+      }
+      if (summitMore) summitMore.hidden = !view.moreAvailable;
+      if (open) summitAsk?.focus();
     },
     showGeoBoard(open, view = {}, handlers = {}) {
       if (!geoBoard) return;

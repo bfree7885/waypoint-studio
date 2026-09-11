@@ -58,7 +58,9 @@ Early puzzles may provide substantial guidance (what / next / where / already). 
 
 Interface mystery is not scientific mystery. Persistent guidance stays. Summit, when it exists, teaches science and never tells the player how to beat a puzzle.
 
-### 1.3 Roles (design only — do not implement Summit)
+### 1.3 Roles (Wren vs Summit)
+
+Summit’s Cedar Hollow tutor is specified in `SUMMIT-TUTOR-ARCHITECTURE.md` (Phase 7.9C). This course map still treats High Country / later regions as unwired.
 
 | Role | Function |
 | --- | --- |
@@ -2774,9 +2776,9 @@ This is a **field debrief**, not a school test. Tone matches the Game Bible: “
 
 Each later region needs a similar bank tied to *that region’s* decisions (route choice, Kepler number, mineral tests, forecast miss, etc.).
 
-### 8.5 Summit (future)
+### 8.5 Summit
 
-If the player is stuck on science, Summit may explain fair tests or spectra. Summit may **not** say “go to Fox Run” or “pick the east trail.” Wren handles field next-steps through the guidance HUD, which fades as the course proceeds.
+Cedar Hollow Summit (Phase 7.9C) is specified in `SUMMIT-TUTOR-ARCHITECTURE.md`. Summit teaches science. It may **not** name a Field Tablet card id or finish Wren’s After Action Report. Wren still handles field next-steps through the guidance HUD. Later regions are not wired.
 
 ---
 
@@ -3033,7 +3035,7 @@ Preserve useful foundations. Do not keep old structures merely because they exis
 | Awarding observation on first inspect | **REMOVE** | Already replaced by obs-int-sort |
 | Finishing two stories = systems | **REMOVE** | Systems = CH-05/07 + AAR |
 | Player-facing standards codes | **REMOVE** (never add) | |
-| Summit | **DO NOT IMPLEMENT** | Role reserved |
+| Summit | **CEDAR HOLLOW (Phase 7.9C)** | Design authority: `SUMMIT-TUTOR-ARCHITECTURE.md`. Not a High Country tutor. |
 | Dark Sky playable world | **DO NOT START** | Inventory only |
 | Dynamic hazards | **DO NOT IMPLEMENT** | §13 opportunities only |
 | `apps/terrainbound/`, DNS, Pages | **DO NOT TOUCH** | |
@@ -3073,7 +3075,7 @@ These often appear in a 9th–10th grade ESS course / ESRT-style practice. They 
 
 ### 16.3 Production / pedagogy gaps (not curriculum content)
 
-- Summit unbuilt (tutor, not spoiler)
+- Summit built for Cedar Hollow only (see `SUMMIT-TUTOR-ARCHITECTURE.md`); not a course-wide AI tutor
 - Dynamic hazards unbuilt
 - AAR dialogue engine unbuilt
 - Puzzle-state save model (vs current mission/challenge blobs)

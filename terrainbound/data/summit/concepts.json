@@ -1,0 +1,98 @@
+{
+  "observation": {
+    "id": "observation",
+    "term": "observation",
+    "short": "An observation is what you can point to: color, shape, water, time. It is not yet a story about why.",
+    "more": "If you cannot show it on the ground or in a measurement you took, it is not an observation yet. A carrying story can wait until the notes hold it."
+  },
+  "interpretation": {
+    "id": "interpretation",
+    "term": "interpretation",
+    "short": "Interpretation is the story you attach after the notes exist. It can be wrong even when the observation is real.",
+    "more": "Sorting seen vs guessed is the habit: keep the sentence you can still point to, and hold the cause loosely until more notes agree."
+  },
+  "evidence": {
+    "id": "evidence",
+    "term": "evidence",
+    "short": "Evidence is a note you actually collected that can support or weaken a claim.",
+    "more": "A real note can still be the wrong note for this claim. Wren is asking whether this evidence answers this question — not whether you visited a place."
+  },
+  "variable": {
+    "id": "variable",
+    "term": "variable",
+    "short": "A variable is the one thing you change on purpose so you can see what it does.",
+    "more": "On the runoff table the tested variable is slope. Water amount is a different change. Change both at once and you cannot say which one mattered."
+  },
+  "fair-test": {
+    "id": "fair-test",
+    "term": "fair test",
+    "short": "A fair test changes one thing, keeps the rest the same, and repeats the run.",
+    "more": "One trial can be a fluke. Two or more on each slope, same cup of water, is a comparison you can defend."
+  },
+  "runoff": {
+    "id": "runoff",
+    "term": "runoff",
+    "short": "Runoff is rainwater moving over the ground instead of soaking in right away.",
+    "more": "Steeper, looser ground sheds water faster. Flatter, vegetated, or marshy ground holds it longer. That difference shows up as travel time and as a muddy pulse."
+  },
+  "slope": {
+    "id": "slope",
+    "term": "slope",
+    "short": "Slope is how steep the ground is. Water on a steeper slope usually gets where it is going sooner.",
+    "more": "Gravity pulls downhill. Steepness changes the speed, not the direction. Direction still follows the fall of the land."
+  },
+  "gravity": {
+    "id": "gravity",
+    "term": "gravity",
+    "short": "Gravity pulls water downhill. It does not pull water up Granite Knob.",
+    "more": "Rills, outlets, and tributaries are the map of that pull. If a story needs water to climb, the land is disagreeing."
+  },
+  "pattern": {
+    "id": "pattern",
+    "term": "pattern",
+    "short": "A pattern is what repeats in numbers or places you actually recorded — not a one-off.",
+    "more": "On the runoff graph, look at whether steeper channels keep finishing sooner across trials. One fast run is not yet a pattern."
+  },
+  "system": {
+    "id": "system",
+    "term": "system",
+    "short": "A system is parts that work together in one event: source, path, store, and what got hit.",
+    "more": "Last night's rain, the Westface scar, Fox Run, the marsh, and the willows are not four separate stories. Change one part and the downstream response can change."
+  },
+  "storage": {
+    "id": "storage",
+    "term": "storage",
+    "short": "Storage holds water for a while. It can change timing without starting the flood.",
+    "more": "The marsh stays wet most days. That is not the same as the brown pulse that rode Fox Run after the slope failed."
+  },
+  "downstream": {
+    "id": "downstream",
+    "term": "downstream",
+    "short": "Downstream is the direction water already chose — toward lower ground.",
+    "more": "A change on Westface shows up later at the join, then the pond, then further creek. The station reach can stay relatively clear if the pulse took a tributary instead."
+  },
+  "timescale": {
+    "id": "timescale",
+    "term": "timescale",
+    "short": "A timescale is how long a process needs. Last night is one clock. The mismatched boulder needs a longer one.",
+    "more": "A rain can move sand and mud. It does not park a boulder that does not match the hill. Those notes can both be true."
+  },
+  "revision": {
+    "id": "revision",
+    "term": "revision",
+    "short": "Revision is dropping a cause that the land disagrees with — not adding every brown place to the story.",
+    "more": "A first story that never broke is not revision. When a crate note or a clear reach conflicts, the honest move is to narrow the case."
+  },
+  "cause": {
+    "id": "cause",
+    "term": "cause",
+    "short": "A cause is what actually made the change. Being nearby is not enough.",
+    "more": "Willows took a hit. They did not call the storm. Rain fell widely. The pulse still needed a loose slope and a path."
+  },
+  "correlation": {
+    "id": "correlation",
+    "term": "correlation",
+    "short": "Two things can happen together without one causing the other.",
+    "more": "It rained and the willows look torn. The rain still does not make trees the engine of the pulse. Ask which part moved the water."
+  }
+}

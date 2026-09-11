@@ -1,6 +1,6 @@
 /**
  * Local field journal. Browser storage only — no accounts, no network.
- * v1–v5 saves migrate to v6 (Cedar Hollow puzzle / After Action Report).
+ * v1–v5 saves migrate to v6 (puzzles / AAR). Summit tutor memory is a v6 field.
  */
 
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
@@ -151,12 +151,44 @@ export function emptyHighCountrySave() {
   };
 }
 
+export function emptySummitSave() {
+  return {
+    byPuzzle: {},
+    conceptsExplained: [],
+    misconceptionsAddressed: [],
+    idea: false,
+    ideaSeen: false,
+    turns: 0,
+    struggle: { puzzleId: "", fails: 0, lastKind: "" },
+    recent: [],
+    lastIntent: "",
+    lastLevel: 0
+  };
+}
+
+function snapshotSummit(state) {
+  const empty = emptySummitSave();
+  if (!state) return empty;
+  return {
+    byPuzzle: { ...(state.byPuzzle || {}) },
+    conceptsExplained: [...(state.conceptsExplained || [])],
+    misconceptionsAddressed: [...(state.misconceptionsAddressed || [])],
+    idea: Boolean(state.idea),
+    ideaSeen: Boolean(state.ideaSeen),
+    turns: state.turns || 0,
+    struggle: { ...empty.struggle, ...(state.struggle || {}) },
+    recent: [...(state.recent || [])].slice(-8),
+    lastIntent: state.lastIntent || "",
+    lastLevel: state.lastLevel || 0
+  };
+}
+
 export function emptyPuzzleSave() {
   return {
     siteReads: {},
     systems: { roles: {}, predict: null, concluded: false, active: false },
     conflict: { seen: false, repaired: false, seed: "crate-marsh" },
-    aar: { itemIds: [], answers: {}, result: null, attempts: 0, remediation: [] }
+    aar: { itemIds: [], answers: {}, result: null, attempts: 0, remediation: [], lastJudge: null }
   };
 }
 
@@ -185,7 +217,13 @@ function snapshotPuzzles(state) {
     siteReads: { ...(state.siteReads || {}) },
     systems: { ...empty.systems, ...(state.systems || {}), roles: { ...(state.systems?.roles || {}) } },
     conflict: { ...empty.conflict, ...(state.conflict || {}) },
-    aar: { ...empty.aar, ...(state.aar || {}), answers: { ...(state.aar?.answers || {}) }, remediation: [...(state.aar?.remediation || [])] }
+    aar: {
+      ...empty.aar,
+      ...(state.aar || {}),
+      answers: { ...(state.aar?.answers || {}) },
+      remediation: [...(state.aar?.remediation || [])],
+      lastJudge: state.aar?.lastJudge || null
+    }
   };
 }
 
@@ -252,6 +290,7 @@ export function migrateSave(data) {
       fieldData: { ...emptyDataSave(), ...(data.fieldData || {}) },
       challenge: { ...emptyChallengeSave(), ...(data.challenge || {}) },
       puzzles,
+      summit: snapshotSummit(data.summit),
       highCountry: snapshotHighCountry(data.highCountry),
       sunfall: snapshotSunfall(data.sunfall),
       regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) },
@@ -329,6 +368,7 @@ export function captureSave({
   dataState,
   challengeState,
   puzzleState,
+  summitState,
   hcState,
   sfState,
   regionPlayers,
@@ -355,6 +395,7 @@ export function captureSave({
     },
     challenge: { ...emptyChallengeSave(), ...(challengeState || {}) },
     puzzles: snapshotPuzzles(puzzleState),
+    summit: snapshotSummit(summitState),
     highCountry: snapshotHighCountry(hcState),
     sunfall: snapshotSunfall(sfState),
     regionPlayers: {
@@ -407,6 +448,7 @@ export function applySave(
     dataState,
     challengeState,
     puzzleState,
+    summitState,
     hcState,
     sfState,
     regionPlayers,
@@ -453,6 +495,19 @@ export function applySave(
     puzzleState.systems = snap.systems;
     puzzleState.conflict = snap.conflict;
     puzzleState.aar = snap.aar;
+  }
+  if (summitState && migrated.summit) {
+    const snap = snapshotSummit(migrated.summit);
+    summitState.byPuzzle = snap.byPuzzle;
+    summitState.conceptsExplained = snap.conceptsExplained;
+    summitState.misconceptionsAddressed = snap.misconceptionsAddressed;
+    summitState.idea = snap.idea;
+    summitState.ideaSeen = snap.ideaSeen;
+    summitState.turns = snap.turns;
+    summitState.struggle = snap.struggle;
+    summitState.recent = snap.recent;
+    summitState.lastIntent = snap.lastIntent;
+    summitState.lastLevel = snap.lastLevel;
   }
   if (hcState && migrated.highCountry) {
     const snap = snapshotHighCountry(migrated.highCountry);
