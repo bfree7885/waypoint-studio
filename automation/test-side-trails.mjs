@@ -36,6 +36,14 @@ assert.match(index, /wst-grid-active/);
 assert.doesNotMatch(index, /location\.replace/);
 assert.doesNotMatch(index, /OpenRoad|SignalTerrain|Global Signals/i);
 
+// Catalog may list Global Watch, but primary discovery must not depend on /side-trails/ nav.
+const home = read("index.html");
+assert.doesNotMatch(
+  home,
+  /href=["'][^"']*\/side-trails\/["']|href=["']side-trails\/["']/,
+  "Home must not link the Side Trails catalog index",
+);
+
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 assert.ok(Array.isArray(catalog.projects));
 assert.equal(catalog.projects.some((p) => p.id === "waypoint-deck"), true);
@@ -55,7 +63,8 @@ assert.equal(
 const gwLanding = read("side-trails/global-watch/index.html");
 assert.match(gwLanding, /noindex/i);
 assert.match(gwLanding, /127\.0\.0\.1:4173/);
-assert.match(gwLanding, /Launch Global Watch/);
+assert.match(gwLanding, /Open local field-test host|Launch Global Watch/);
+assert.match(gwLanding, /not publicly hosted/i);
 
 const sitemap = read("sitemap.xml");
 assert.match(sitemap, /side-trails\/waypoint-deck\//);
