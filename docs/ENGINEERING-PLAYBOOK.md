@@ -1707,4 +1707,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - FIELD CLEARANCE EARNED / MORE EVIDENCE NEEDED are the only player-facing AAR results. Do not print a score. Send them back to the specific missing puzzle.
 - Guidance that asks “what shaped this hollow” before the runoff table turns Cedar Hollow back into a glacier quest. Walk-and-water, then observation vs interpretation, then predict-test, then After the Rain, then two clocks.
 
+### Lessons Learned — TerrainBound Phase 7.9B (2026-09-10)
+
+- A systems “role chip” overlay is still a quiz. Tapping places on a hollow sketch — and allowing the same assignment by walking to the site — keeps the land in the problem.
+- An After Action Report with four stems is a test even with good science copy. Pinning Field Tablet notes to a Wren claim is the same competency check without “select the best answer.”
+- Irrelevant evidence has to fail even when a required card is also pinned. Otherwise students staple every note to every claim.
+- Allowed evidence is the required set plus a short useful set. Listing every distractor is brittle; any extra card not on that list is overclaim.
+- A missing `}` in `inspectFeature` will parse in surprising ways and `window.TB` never appears. Syntax-check `game.js` before blaming Chrome or the capture harness.
+
 

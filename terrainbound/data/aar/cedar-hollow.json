@@ -1,99 +1,124 @@
 {
   "regionId": "cedar-hollow",
-  "title": "After Action Report",
+  "title": "Make the case",
   "kicker": "Field debrief",
-  "open": "You've got enough to make a case. Walk it to me like I wasn't there.",
+  "open": "You've got a lot in that tablet. Show me what actually supports your explanation.",
   "clearance": {
     "title": "Field clearance earned",
     "lines": [
-      "That's a case I can take. The hollow taught you how to look, measure, and change your mind when the land disagreed.",
+      "That's a case I can take. You used what you actually saw, measured, and revised.",
       "High Country will ask you to work out where you are. The road is open when you want the mountains."
     ]
   },
   "moreEvidence": {
     "title": "More evidence needed",
-    "lead": "Not a restart. The hollow still has a hole in the case. Go back to the work that isn't in the tablet yet."
+    "lead": "Not a restart. The hollow still has a hole in the case. Keep the notes that hold. Go get the ones that don't."
   },
-  "items": [
+  "claims": [
     {
       "id": "aar-obs",
       "puzzleId": "CH-01",
       "competencyId": "observation",
-      "stem": "At the boulder that doesn't match the hill, what actually belongs in the tablet?",
-      "choices": [
-        { "id": "seen", "label": "The boulder has a different color and grain from the nearby hill rock.", "kind": "good" },
-        { "id": "story", "label": "The boulder was carried here — that's what I saw.", "kind": "misconception" },
-        { "id": "name", "label": "Naming it was the observation.", "kind": "misconception" },
-        { "id": "porch", "label": "I could tell from the station porch.", "kind": "incomplete" }
-      ]
+      "wren": "The boulder doesn't match the hill. Show me the note that is what you saw — not a carrying story.",
+      "retry": "What can you still point to on the boulder itself?",
+      "required": ["CH-01"],
+      "useful": ["CH-01"],
+      "misconception": [],
+      "irrelevant": ["CH-02", "CH-03", "CH-04", "CH-05", "CH-06", "CH-07", "CH-08"],
+      "why": {
+        "CH-02": "The water path is last night. It isn't the boulder note.",
+        "CH-03": "Those times are about slope. They don't tell me the color of the boulder.",
+        "CH-04": "A graph of runoff isn't an observation of the rock.",
+        "CH-05": "That's last night's pulse. Different question.",
+        "CH-06": "Two clocks is later reasoning. First show me the seen sentence.",
+        "CH-07": "Systems come after. I still need what you can point to.",
+        "CH-08": "Revision is later. Start with what you saw."
+      },
+      "need": "I still need the boulder note you sorted as seen, not guessed.",
+      "ok": "That's what you can point to. A carrying story waits until the evidence holds it.",
+      "overclaim": "That extra card doesn't help this claim. Drop what isn't about the boulder."
     },
     {
       "id": "aar-table",
       "puzzleId": "CH-03",
       "competencyId": "variables",
-      "stem": "What did the runoff table actually show?",
-      "choices": [
-        { "id": "fair", "label": "Steeper slope, same water, shorter times — that's the fair comparison.", "kind": "good" },
-        { "id": "extra", "label": "The extra water run proves slope doesn't matter.", "kind": "misconception" },
-        { "id": "once", "label": "One steep run was enough.", "kind": "incomplete" },
-        { "id": "toy", "label": "The table is just a toy; the creek is different so the numbers don't count.", "kind": "overclaim" }
-      ]
+      "wren": "What evidence shows runoff moves differently across this hollow?",
+      "retry": "Show me the fair comparison — same water, different slope.",
+      "required": ["CH-03"],
+      "useful": ["CH-03", "CH-04", "CH-02"],
+      "misconception": [],
+      "irrelevant": ["CH-01", "CH-05", "CH-06", "CH-07", "CH-08"],
+      "why": {
+        "CH-01": "The boulder is a different clock. It doesn't measure last night's slope.",
+        "CH-06": "Two clocks explain the mismatched rock. They don't time the runoff table.",
+        "CH-05": "The pulse is later. I need the fair trials first.",
+        "CH-07": "That's the system map. Where are the times you recorded?",
+        "CH-08": "Revision isn't a slope test."
+      },
+      "need": "You've shown me downhill water, but not a fair slope test.",
+      "ok": "Steeper channel, same water, shorter times. That's a comparison I can use.",
+      "overclaim": "The boulder and the older landscape don't time last night's water. Drop them for this claim."
     },
     {
       "id": "aar-pulse",
       "puzzleId": "CH-05",
       "competencyId": "systems",
-      "stem": "Why was part of Pine Creek muddier this morning?",
-      "choices": [
-        { "id": "system", "label": "Rain on a loose steep slope, then Fox Run, then Pine Creek.", "kind": "good" },
-        { "id": "rained", "label": "It rained, so the whole creek is muddier.", "kind": "misconception" },
-        { "id": "marsh", "label": "The marsh is always brown, so the marsh did it.", "kind": "misconception" },
-        { "id": "willows", "label": "Atmosphere, water, and rock were all involved; the willows were in the way, not the cause.", "kind": "good", "also": "systems" }
-      ]
+      "wren": "Why was only part of Pine Creek muddier? Pin the notes that locate the pulse.",
+      "retry": "Rain on everything equally doesn't fit. What notes say where it changed?",
+      "required": ["CH-05"],
+      "useful": ["CH-05", "CH-07", "CH-02", "CH-08"],
+      "misconception": ["CH-06"],
+      "irrelevant": ["CH-01", "CH-03", "CH-04"],
+      "why": {
+        "CH-01": "The boulder doesn't locate this morning's mud.",
+        "CH-03": "Those times say steep is faster. They don't say why THIS reach muddied.",
+        "CH-04": "The graph is slope versus speed, not Fox Run versus the station.",
+        "CH-06": "The older clock doesn't explain this morning's pulse."
+      },
+      "need": "You have runoff measurements, but your case doesn't connect them to what happened after the rain.",
+      "ok": "Rain, a loose slope, Fox Run — not the whole creek equally.",
+      "overclaim": "The mismatched boulder is a longer clock. It doesn't locate this morning's pulse."
     },
     {
       "id": "aar-clocks",
       "puzzleId": "CH-06",
       "competencyId": "explanation",
-      "stem": "Last night is one clock. What about the boulder and the scraped face?",
-      "choices": [
-        { "id": "two", "label": "Last night's bar is the creek. The mismatched boulder needs a longer clock.", "kind": "good" },
-        { "id": "one", "label": "One process did all of it.", "kind": "misconception" },
-        { "id": "jargon", "label": "It's a glacier because this is Earth Science.", "kind": "misconception" },
-        { "id": "rain-only", "label": "Last night's rain made the boulder too.", "kind": "misconception" }
-      ]
+      "wren": "Last night is one clock. What in the tablet still needs a longer one?",
+      "retry": "A vocabulary word isn't the case. Which notes actually need more time than one rain?",
+      "required": ["CH-06"],
+      "useful": ["CH-06", "CH-01"],
+      "misconception": [],
+      "irrelevant": ["CH-02", "CH-03", "CH-04", "CH-05", "CH-07", "CH-08"],
+      "why": {
+        "CH-03": "Fair trials time last night's water. They don't park the boulder.",
+        "CH-04": "The graph is this morning's slope, not the scraped face.",
+        "CH-05": "The pulse is one clock. The boulder still needs another.",
+        "CH-07": "Systems last night don't make the boulder local rock.",
+        "CH-02": "The water path is last night. The boulder isn't."
+      },
+      "need": "Last night's bar is the creek. I still need the notes that don't fit one rain.",
+      "ok": "Last night's creek is still at work. The mismatched boulder needs a longer clock.",
+      "overclaim": "Last night's pulse doesn't carry the boulder. Keep the notes that need a longer clock."
     },
     {
       "id": "aar-return",
       "puzzleId": "CH-09",
       "competencyId": "communication",
-      "stem": "If we went back to the station reach, what should still be true?",
-      "choices": [
-        { "id": "clear", "label": "It should still be relatively clear compared with the join.", "kind": "good" },
-        { "id": "all-mud", "label": "The whole creek should look the same if it rained.", "kind": "misconception" },
-        { "id": "guess", "label": "Whatever I pick is fine — I already walked there.", "kind": "overclaim" },
-        { "id": "forget", "label": "I don't need the notes. I remember the answer.", "kind": "incomplete" }
-      ]
-    }
-  ],
-  "retry": [
-    {
-      "id": "aar-obs",
-      "stem": "What can you still point to on the boulder itself?",
-      "choices": [
-        { "id": "seen", "label": "Color and grain that don't match the hill rock.", "kind": "good" },
-        { "id": "story", "label": "The carrying event — I watched it.", "kind": "misconception" },
-        { "id": "name", "label": "The scientific name is the observation.", "kind": "misconception" }
-      ]
-    },
-    {
-      "id": "aar-table",
-      "stem": "Which runoff-table claim can your fair runs actually carry?",
-      "choices": [
-        { "id": "fair", "label": "Same water, steeper channel, shorter times.", "kind": "good" },
-        { "id": "extra", "label": "Extra water is the slope test.", "kind": "misconception" },
-        { "id": "once", "label": "The first steep number is the pattern.", "kind": "incomplete" }
-      ]
+      "wren": "If we walked back to the station reach, which notes say what we should still see?",
+      "retry": "Don't guess from memory. Which tablet notes still hold at the station?",
+      "required": ["CH-05"],
+      "useful": ["CH-05", "CH-08", "CH-07", "CH-02"],
+      "misconception": [],
+      "irrelevant": ["CH-01", "CH-03", "CH-04", "CH-06"],
+      "why": {
+        "CH-01": "The boulder isn't at the station reach.",
+        "CH-03": "Table times don't tell me how the station reach looks this morning.",
+        "CH-04": "The graph isn't a creek-clarity note.",
+        "CH-06": "The longer clock isn't what we'd still see at the station."
+      },
+      "need": "You've shown me downhill water, but not what should still be true at the station reach.",
+      "ok": "It should still be relatively clear compared with the join. That's in the notes.",
+      "overclaim": "The boulder and the older landscape aren't what we'd check at the station reach."
     }
   ]
 }

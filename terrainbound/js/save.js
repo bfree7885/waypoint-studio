@@ -154,7 +154,7 @@ export function emptyHighCountrySave() {
 export function emptyPuzzleSave() {
   return {
     siteReads: {},
-    systems: { roles: {}, predict: null, concluded: false },
+    systems: { roles: {}, predict: null, concluded: false, active: false },
     conflict: { seen: false, repaired: false, seed: "crate-marsh" },
     aar: { itemIds: [], answers: {}, result: null, attempts: 0, remediation: [] }
   };

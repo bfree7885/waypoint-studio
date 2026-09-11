@@ -262,12 +262,13 @@ function chGuidance(ctx) {
 
   const puzzles = ctx.puzzleState || {};
   if (!puzzles.systems?.concluded) {
+    const sys = ctx.systemsPrompt;
     return pack(
       "Is this one event with parts?",
-      "RECORD",
-      "Map sky, slope, water, and living things to roles. The willows took a hit — they didn't start it.",
-      "Talk to Wren at the station",
-      "A system, not four separate stories.",
+      sys?.kind === "predict" ? "PREDICT" : "VISIT",
+      sys?.prompt || "Map the places that took part last night. Tap the sketch or walk there.",
+      sys?.where || "Hollow sketch, or the land itself",
+      "Source, slope, path, store, and what took a hit — not four separate stories.",
       done,
       pairs
     );
@@ -291,7 +292,7 @@ function chGuidance(ctx) {
     return pack(
       "Make the case",
       "RECORD",
-      "Walk the case to Wren like she wasn't there. Use evidence you actually hold.",
+      "Show Wren the tablet notes that actually support the claim. Pin evidence. Drop what doesn't belong.",
       "Cedar Hollow Station",
       "Field clearance, or more evidence needed — not a score.",
       done,

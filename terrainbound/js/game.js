@@ -73,13 +73,16 @@ import {
   aarEligible,
   incompletePuzzles,
   classifySite,
-  trySystemsRole,
-  trySystemsPredict,
+  trySystemsTap,
+  currentSystemsPrompt,
+  hitSystemsSite,
+  systemsSiteForWorld,
+  systemsSiteById,
   concludeSystems,
   tryConflict,
   tabletEvidence
 } from "./puzzles.js";
-import { itemsForAttempt, submitAar, resetAarAnswers } from "./aar.js";
+import { claimsForAttempt, submitAar, resetAarAnswers, selectedIds, toggleEvidence, judgeClaim } from "./aar.js";
 import { createRenderer } from "./render.js";
 import { bindUi } from "./ui.js";
 import { captureSave, applySave, readSave, writeSave, clearSave, emptyTaught, emptyPresentationSave, wipeRequiresConfirm } from "./save.js";
@@ -307,6 +310,7 @@ export async function boot(root = document) {
   let systemsOpen = false;
   let aarOpen = false;
   let aarIndex = 0;
+  let aarConfirmed = [];
   let atlasOpen = false;
   let geoOpen = false;
   let geoKind = null;
@@ -451,6 +455,7 @@ export async function boot(root = document) {
       hcState,
       sfState,
       puzzleState,
+      systemsPrompt: currentSystemsPrompt(puzzleState, puzzleSpec),
       hasFairComparison: hasFairComparison(flumeState, flumeSpec)
     });
   }
@@ -972,45 +977,66 @@ export async function boot(root = document) {
     showDialogueLines("Ranger Wren", challengeSpec.wrenAfter, 0, () => {
       dialogue = null;
       ui.showDialogue(false);
-      if (!puzzleState.systems.concluded) openSystems();
+      if (!puzzleState.systems.concluded) {
+        puzzleState.systems.active = true;
+        openSystems();
+      }
     });
   }
 
   function systemsView() {
-    const spec = puzzleSpec.systems;
+    const prompt = currentSystemsPrompt(puzzleState, puzzleSpec);
     return {
-      lead: spec.lead,
-      roles: spec.roles.map((role) => ({
-        id: role.id,
-        label: role.label,
-        selected: puzzleState.systems.roles[role.id] || null,
-        options: role.options.map((item) => ({ id: item.id, label: item.label }))
-      })),
-      predictOptions: spec.predict.options.map((item) => ({ id: item.id, label: item.label })),
-      predictId: puzzleState.systems.predict,
-      status: puzzleState.systems.concluded ? "That's one event with parts." : "",
-      concluded: puzzleState.systems.concluded
+      spec: puzzleSpec,
+      state: puzzleState,
+      lead: puzzleSpec.systems.lead,
+      prompt: prompt.prompt,
+      ready: prompt.kind === "ready" || prompt.kind === "done",
+      concluded: puzzleState.systems.concluded,
+      status: puzzleState.systems.concluded
+        ? "That's one event with parts."
+        : prompt.kind === "ready"
+          ? "That's one event with parts. Check it against the land."
+          : ""
     };
   }
 
   function renderSystems() {
     ui.showSystems(true, systemsView(), {
-      onRole(roleId, optionId) {
-        const result = trySystemsRole(puzzleState, puzzleSpec, roleId, optionId);
-        persist();
-        renderSystems();
-        if (!result.ok) ui.showToast("The land disagrees", result.hint);
-      },
-      onPredict(id) {
-        const result = trySystemsPredict(puzzleState, puzzleSpec, id);
-        persist();
-        renderSystems();
-        if (!result.ok) ui.showToast("Check the marsh", result.hint);
+      onTap(x, y, w, h) {
+        const site = hitSystemsSite(puzzleSpec, w, h, x, y);
+        if (!site) return;
+        applySystemsTap(site.id);
       }
     });
   }
 
+  function applySystemsTap(siteId) {
+    puzzleState.systems.active = true;
+    const judged = trySystemsTap(puzzleState, puzzleSpec, siteId);
+    persist();
+    if (systemsOpen) renderSystems();
+    refreshGuide();
+    if (!judged.ok) {
+      ui.showToast("The land disagrees", judged.hint);
+      return judged;
+    }
+    const site = systemsSiteById(puzzleSpec, siteId);
+    ui.showToast("On the map", site?.label || "Noted");
+    return judged;
+  }
+
+  function maybeSystemsTap(worldId) {
+    if (puzzleState.systems.concluded) return false;
+    if (!puzzleState.systems.active && !challengeState.concluded) return false;
+    const site = systemsSiteForWorld(puzzleSpec, worldId);
+    if (!site) return false;
+    applySystemsTap(site.id);
+    return true;
+  }
+
   function openSystems() {
+    puzzleState.systems.active = true;
     systemsOpen = true;
     renderSystems();
   }
@@ -1018,6 +1044,37 @@ export async function boot(root = document) {
   function closeSystems() {
     systemsOpen = false;
     ui.showSystems(false, {});
+  }
+
+  function walkSystemsSite() {
+    const prompt = currentSystemsPrompt(puzzleState, puzzleSpec);
+    const site =
+      prompt.kind === "predict"
+        ? systemsSiteById(puzzleSpec, puzzleSpec.systems.predict.ok)
+        : (puzzleSpec.systems.sites || []).find((item) => item.role === prompt.role?.id);
+    const point = worldPointForSite(site);
+    closeSystems();
+    if (point) {
+      player.x = point.x;
+      player.y = point.y;
+      destination = null;
+    }
+    ui.showToast("Walk it", prompt.where || "Inspect the land that matches the question.");
+  }
+
+  function worldPointForSite(site) {
+    if (!site) return null;
+    for (const id of site.worldIds || []) {
+      const feat = region.features.find((item) => item.id === id);
+      if (feat) return feat;
+      const prop = (region.props || []).find((item) => item.kind === id);
+      if (prop) return prop;
+      const disc = catalog.items.find((item) => item.id === id);
+      if (disc) return disc;
+      const ch = (challengeSpec.sites || []).find((item) => item.id === id);
+      if (ch) return ch;
+    }
+    return null;
   }
 
   function trySystemsMap() {
@@ -1029,7 +1086,7 @@ export async function boot(root = document) {
       return;
     }
     closeSystems();
-    showDialogueLines("Ranger Wren", ["Atmosphere, water, and rock took part. The willows took a hit — they didn't start it."], 0, () => {
+    showDialogueLines("Ranger Wren", ["Source, slope, path, store — and the willows took a hit. That's one event with parts."], 0, () => {
       dialogue = null;
       ui.showDialogue(false);
       const use = currentPuzzleUse();
@@ -1072,43 +1129,61 @@ export async function boot(root = document) {
   }
 
   function aarItems() {
-    return itemsForAttempt(aarSpec, (puzzleState.aar.attempts || 0) + 1);
+    return claimsForAttempt(aarSpec, (puzzleState.aar.attempts || 0) + 1);
   }
 
   function aarView() {
     const items = aarItems();
     const item = items[aarIndex] || items[0];
-    const done = aarIndex >= items.length - 1 && Boolean(puzzleState.aar.answers[item?.id]);
+    const done = items.length > 0 && items.every((claim) => aarConfirmed.includes(claim.id));
     if (puzzleState.aar.result) {
       return {
         title: puzzleState.aar.result === "clearance" ? aarSpec.clearance.title : aarSpec.moreEvidence.title,
         lead: puzzleState.aar.result === "clearance" ? aarSpec.clearance.lines[0] : puzzleState.aar.remediation.join(" "),
         stem: "",
-        choices: [],
+        evidence: [],
+        selected: [],
         result: puzzleState.aar.result,
         status: puzzleState.aar.result === "clearance" ? "The road to High Country is open." : aarSpec.moreEvidence.lead,
         done: true
       };
     }
+    const use = currentPuzzleUse();
+    const evidence = tabletEvidence(puzzleSpec, use, {
+      missionState,
+      invState,
+      flumeState,
+      dataState,
+      challengeState,
+      puzzleState
+    });
     return {
       title: aarSpec.title,
-      lead: aarSpec.open,
-      stem: item?.stem || "",
-      choices: (item?.choices || []).map((choice) => ({ id: choice.id, label: choice.label })),
-      choiceId: item ? puzzleState.aar.answers[item.id] : null,
+      lead: aarIndex === 0 ? aarSpec.open : "Pin what actually supports this — drop what doesn't.",
+      stem: item?.wren || item?.stem || "",
+      evidence,
+      selected: item ? selectedIds(puzzleState.aar.answers, item.id) : [],
       done,
       result: null,
-      status: ""
+      status: evidence.length
+        ? ""
+        : "Your tablet is still thin. Walk the hollow first, then pin notes you actually recorded."
     };
   }
 
-  function renderAar() {
-    ui.showAar(true, aarView(), {
-      onChoice(id) {
+  function renderAar(status) {
+    const view = aarView();
+    if (status) view.status = status;
+    ui.showAar(true, view, {
+      onToggle(id) {
         const items = aarItems();
         const item = items[aarIndex];
         if (!item) return;
-        puzzleState.aar.answers = { ...puzzleState.aar.answers, [item.id]: id };
+        const next = toggleEvidence(selectedIds(puzzleState.aar.answers, item.id), id);
+        puzzleState.aar.answers = { ...puzzleState.aar.answers, [item.id]: next };
+        if (aarConfirmed.includes(item.id) && !judgeClaim(item, next).good) {
+          aarConfirmed = aarConfirmed.filter((claimId) => claimId !== item.id);
+        }
         persist();
         renderAar();
       }
@@ -1117,6 +1192,7 @@ export async function boot(root = document) {
 
   function openAar() {
     aarOpen = true;
+    aarConfirmed = [];
     if (puzzleState.aar.result === "more-evidence") resetAarAnswers(puzzleState);
     if (puzzleState.aar.result !== "clearance") aarIndex = 0;
     renderAar();
@@ -1130,8 +1206,22 @@ export async function boot(root = document) {
   function aarAdvance() {
     const items = aarItems();
     const item = items[aarIndex];
-    if (!item || !puzzleState.aar.answers[item.id]) {
-      ui.showToast("Make a case", "Pick the line your notes can actually carry.");
+    if (!item) return;
+    const selected = selectedIds(puzzleState.aar.answers, item.id);
+    if (!selected.length) {
+      ui.showToast("Show me the notes", "Pin the Field Tablet evidence that actually supports this.");
+      return;
+    }
+    const judged = judgeClaim(item, selected);
+    persist();
+    if (!judged.good) {
+      renderAar(judged.hint);
+      return;
+    }
+    const already = aarConfirmed.includes(item.id);
+    if (!already) aarConfirmed.push(item.id);
+    if (!already) {
+      renderAar(judged.hint);
       return;
     }
     if (aarIndex < items.length - 1) {
@@ -1139,7 +1229,7 @@ export async function boot(root = document) {
       renderAar();
       return;
     }
-    submitAarCase();
+    renderAar("If the whole case still stands, show me.");
   }
 
   function submitAarCase() {
@@ -1147,16 +1237,20 @@ export async function boot(root = document) {
     const missing = incompletePuzzles(puzzleSpec, use);
     const result = submitAar(puzzleState, aarSpec, puzzleSpec, puzzleState.aar.answers, missing);
     persist();
-    renderAar();
     refreshJournal();
+    closeAar();
     if (result.result === "clearance") {
-      closeAar();
       showDialogueLines("Ranger Wren", aarSpec.clearance.lines, 0, () => {
         dialogue = null;
         ui.showDialogue(false);
         openAtlas("high-country");
       });
+      return;
     }
+    showDialogueLines("Ranger Wren", result.lines.length ? result.lines : [aarSpec.moreEvidence.lead], 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+    });
   }
 
   function inspectChallenge(site) {
@@ -1181,6 +1275,7 @@ export async function boot(root = document) {
       persist();
       refreshJournal();
       if (!observed.already) ui.showToast("Noted", site.name);
+      maybeSystemsTap(site.id);
     }, site.useful === false ? "Look closer" : "Field note");
   }
 
@@ -1324,6 +1419,7 @@ export async function boot(root = document) {
                 ui.showToast("Noted", spec.title);
                 persist();
                 refreshJournal();
+                maybeSystemsTap(feature.id);
               } else {
                 ui.showDialogue(true, "Field note", judged.hint, [
                   {
@@ -1351,6 +1447,7 @@ export async function boot(root = document) {
         persist();
         refreshJournal();
       }
+      maybeSystemsTap(feature.id);
     });
   }
 
@@ -1375,6 +1472,7 @@ export async function boot(root = document) {
           ui.showToast("Noted", name);
           persist();
           refreshJournal();
+          maybeSystemsTap(item.id);
           const sortCard = pendingCard(investigation.obsInt, invState.obsInt, discoveryState.foundIds);
           if (sortCard && sortCard.discoveryId === item.id) openGeo("obsint");
         }
@@ -1423,6 +1521,7 @@ export async function boot(root = document) {
       dialogue = null;
       ui.showDialogue(false);
       inspectLock = false;
+      maybeSystemsTap(item.id);
     });
   }
 
@@ -1444,6 +1543,7 @@ export async function boot(root = document) {
         persist();
         refreshJournal();
       }
+      maybeSystemsTap(prop.kind);
     });
   }
 
@@ -2614,12 +2714,13 @@ export async function boot(root = document) {
       return;
     }
     if (challengeState.concluded && !puzzleState.systems.concluded) {
-      ui.showDialogue(true, "Ranger Wren", "Last night, the slope, the creek, the marsh, and the living bank. Separate stories, or one event with parts?", [
+      ui.showDialogue(true, "Ranger Wren", "Last night wasn't four separate stories. Map it on the hollow — or walk the places that took part.", [
         {
-          label: "Map the system",
+          label: "Map the hollow",
           onClick: () => {
             dialogue = null;
             ui.showDialogue(false);
+            puzzleState.systems.active = true;
             openSystems();
           }
         },
@@ -2628,12 +2729,14 @@ export async function boot(root = document) {
           onClick: () => {
             dialogue = null;
             ui.showDialogue(false);
+            puzzleState.systems.active = true;
+            persist();
+            refreshGuide();
           }
         }
       ]);
       return;
     }
-    const useNow = currentPuzzleUse();
     if (challengeState.concluded && puzzleState.systems.concluded && !useNow["CH-08"]) {
       ui.showDialogue(true, "Ranger Wren", "A tidy first story just met a crate note and a clear station reach.", [
         {
@@ -2991,6 +3094,7 @@ export async function boot(root = document) {
   root.querySelector("#clearance-follow-try")?.addEventListener("click", tryClearanceFollow);
   root.querySelector("#clearance-close")?.addEventListener("click", closeClearance);
   root.querySelector("#systems-try")?.addEventListener("click", trySystemsMap);
+  root.querySelector("#systems-walk")?.addEventListener("click", walkSystemsSite);
   root.querySelector("#systems-close")?.addEventListener("click", closeSystems);
   root.querySelector("#aar-next")?.addEventListener("click", aarAdvance);
   root.querySelector("#aar-submit")?.addEventListener("click", submitAarCase);

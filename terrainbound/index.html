@@ -230,32 +230,33 @@
     </div>
 
     <div id="systems-map" hidden role="dialog" aria-label="The hollow is a system">
-      <div class="hypothesis-card">
+      <div class="hypothesis-card systems-card">
         <p class="field-bench-kicker">Field systems</p>
         <h2>The hollow is a system</h2>
         <p class="hypothesis-lead" id="systems-lead">Last night wasn't four separate stories.</p>
-        <div id="systems-roles"></div>
-        <p class="hypothesis-kicker">If the marsh stored water, what should still be true?</p>
-        <div id="systems-predict" class="chip-row"></div>
+        <canvas id="systems-sketch" width="560" height="340" aria-label="Tap places on the Cedar Hollow sketch"></canvas>
+        <p class="hypothesis-kicker" id="systems-prompt"></p>
         <p id="systems-status"></p>
         <div class="conclusion-actions">
-          <button type="button" id="systems-try">Try this map</button>
+          <button type="button" id="systems-try">That's the system</button>
+          <button type="button" id="systems-walk">Walk there</button>
           <button type="button" id="systems-close">Back to the hollow</button>
         </div>
       </div>
     </div>
 
-    <div id="aar" hidden role="dialog" aria-label="After Action Report">
-      <div class="hypothesis-card">
+    <div id="aar" hidden role="dialog" aria-label="Make the case">
+      <div class="hypothesis-card aar-card">
         <p class="field-bench-kicker">Field debrief</p>
-        <h2 id="aar-title">After Action Report</h2>
+        <h2 id="aar-title">Make the case</h2>
         <p class="hypothesis-lead" id="aar-lead"></p>
-        <p class="hypothesis-kicker" id="aar-stem"></p>
-        <div id="aar-choices" class="chip-row"></div>
+        <p class="aar-wren" id="aar-stem"></p>
+        <p class="hypothesis-kicker" id="aar-evidence-kicker">From your Field Tablet</p>
+        <div id="aar-evidence" class="aar-evidence"></div>
         <p id="aar-status"></p>
         <div class="conclusion-actions">
-          <button type="button" id="aar-next">Next</button>
-          <button type="button" id="aar-submit" hidden>Make the case</button>
+          <button type="button" id="aar-next">Show Wren</button>
+          <button type="button" id="aar-submit" hidden>That's the case</button>
           <button type="button" id="aar-close">Back to the hollow</button>
         </div>
       </div>
@@ -306,6 +307,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p79a"></script>
+  <script type="module" src="./js/main.js?v=p79b"></script>
 </body>
 </html>

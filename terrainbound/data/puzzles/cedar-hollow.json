@@ -103,47 +103,190 @@
   },
   "systems": {
     "title": "The hollow is a system",
-    "lead": "Last night, the slope, the creek, the marsh, and the living bank. Separate stories, or one event with parts?",
-    "predict": {
-      "prompt": "If the marsh stored water instead of causing the pulse, what should still be true?",
-      "options": [
-        { "id": "still-wet", "label": "The marsh should still be wet after the pulse passed", "ok": true },
-        { "id": "dry", "label": "The marsh should be dry now", "ok": false, "hint": "A store holds water. Check the seep and marsh." },
-        { "id": "trees", "label": "The willows should have stopped the flood", "ok": false, "hint": "The roots are hanging in air. They were in the way, not the engine." }
-      ]
-    },
+    "lead": "Last night wasn't four separate stories. Tap the places that actually took part.",
+    "walk": "You can close this sketch and inspect the land. The question stays the same.",
     "roles": [
       {
-        "id": "atmosphere",
-        "label": "Sky / weather",
-        "options": [
-          { "id": "rain", "label": "Last night's rain on the gauge", "ok": true },
-          { "id": "trees-weather", "label": "The willows called the storm", "ok": false, "hint": "Weather is what the gauge recorded, not what the trees wanted." }
-        ]
+        "id": "source",
+        "label": "Source",
+        "prompt": "Tap where last night started — the weather you actually recorded.",
+        "where": "Rain gauge by the station",
+        "miss": "Last night started as rain on the gauge, not as a story about trees."
       },
       {
-        "id": "geosphere",
-        "label": "Slope / rock",
-        "options": [
-          { "id": "scar", "label": "Loose Westface soil that failed", "ok": true },
-          { "id": "pond-rock", "label": "The pond floor cracked open", "ok": false, "hint": "The scar sits above Fox Run, not under the pond." }
-        ]
+        "id": "slope",
+        "label": "Slope",
+        "prompt": "Tap the loose ground that failed and fed the tributary.",
+        "where": "Westface scar",
+        "miss": "The scar sits on Westface, above Fox Run — not under the pond."
       },
       {
-        "id": "hydrosphere",
-        "label": "Moving water",
-        "options": [
-          { "id": "fox-run", "label": "Fox Run carried the pulse into Pine Creek", "ok": true },
-          { "id": "whole-creek", "label": "The whole creek muddied equally", "ok": false, "hint": "The stretch by the station stayed relatively clear." }
-        ]
+        "id": "runoff",
+        "label": "Runoff",
+        "prompt": "Tap the path that carried the brown pulse into Pine Creek.",
+        "where": "Fox Run confluence",
+        "miss": "The station reach stayed relatively clear. The pulse rode Fox Run."
       },
       {
-        "id": "biosphere",
-        "label": "Living things",
-        "options": [
-          { "id": "affected", "label": "Willow roots hanging in air — affected, not the cause", "ok": true },
-          { "id": "caused", "label": "The trees caused the flood", "ok": false, "hint": "The willows took a hit. They did not start the mud." }
-        ]
+        "id": "storage",
+        "label": "Storage",
+        "prompt": "Tap what held water without starting the mud.",
+        "where": "Marsh and seep",
+        "miss": "A store holds water. The marsh is tea-colored most days — it didn't fire the pulse."
+      },
+      {
+        "id": "affected",
+        "label": "Affected",
+        "prompt": "Tap what took a hit but did not start the flood.",
+        "where": "Willow bank",
+        "miss": "The willows took a hit. They did not start the mud."
+      }
+    ],
+    "predict": {
+      "prompt": "If Fox Run carried the pulse, tap the reach that should still look clearer.",
+      "ok": "station-creek",
+      "where": "Creek by the station",
+      "hints": {
+        "fox-run": "That's where the pulse joined. Look for the stretch that stayed relatively clear.",
+        "marsh": "The marsh is usually tea-colored. That is storage, not this morning's pulse.",
+        "westface": "The scar is upstream of the pulse. The clearer water is below the station.",
+        "pond": "The pond is a pause. The station reach is the comparison.",
+        "willows": "The roots are hanging in air. They were in the way, not the clearer water.",
+        "rain-gauge": "The gauge recorded rain. It doesn't tell you which reach stayed clear.",
+        "knob": "The knob is the high point. Last night's comparison is in the creek."
+      }
+    },
+    "sites": [
+      {
+        "id": "rain-gauge",
+        "label": "Rain gauge",
+        "x": 82,
+        "y": 28,
+        "lx": 82,
+        "ly": 18,
+        "role": "source",
+        "worldIds": ["rain-gauge"],
+        "hints": {
+          "slope": "That's last night's weather, not the scar.",
+          "runoff": "Rain fell. The pulse still needed a path.",
+          "storage": "The gauge doesn't hold creek water.",
+          "affected": "The gauge recorded rain. It didn't take a hit like the willows."
+        }
+      },
+      {
+        "id": "westface",
+        "label": "Westface",
+        "x": 16,
+        "y": 32,
+        "lx": 22,
+        "ly": 22,
+        "role": "slope",
+        "worldIds": ["westface-slope", "westface-slump"],
+        "hints": {
+          "source": "The scar is rock and soil, not the rain tally.",
+          "runoff": "The scar fed Fox Run. The path is the tributary itself.",
+          "storage": "Loose soil failed here. It didn't store the pulse.",
+          "affected": "The slope failed. The willows were downstream of that."
+        }
+      },
+      {
+        "id": "fox-run",
+        "label": "Fox Run",
+        "x": 28,
+        "y": 48,
+        "lx": 14,
+        "ly": 48,
+        "role": "runoff",
+        "worldIds": ["fox-run", "confluence"],
+        "hints": {
+          "source": "Fox Run carried water. It didn't make the rain.",
+          "slope": "The tributary is the path, not the failed slope.",
+          "storage": "Moving water, not a store.",
+          "affected": "Fox Run is the conveyor. The willows took the hit later."
+        }
+      },
+      {
+        "id": "marsh",
+        "label": "Marsh",
+        "x": 52,
+        "y": 84,
+        "lx": 66,
+        "ly": 84,
+        "role": "storage",
+        "worldIds": ["cattail-marsh", "willow-bench", "hillside-seep"],
+        "hints": {
+          "source": "The marsh didn't call the storm.",
+          "slope": "The scar is on Westface, not in the cattails.",
+          "runoff": "The pulse joined above the pond, at Fox Run.",
+          "affected": "Storage isn't the same as the hanging roots."
+        }
+      },
+      {
+        "id": "willows",
+        "label": "Willows",
+        "x": 66,
+        "y": 58,
+        "lx": 66,
+        "ly": 70,
+        "role": "affected",
+        "worldIds": ["willow-reach", "cut-bank"],
+        "hints": {
+          "source": "The willows did not call the storm.",
+          "slope": "The trees didn't fail the hillside.",
+          "runoff": "The roots are hanging in air. They were in the way, not the engine.",
+          "storage": "The bank took a hit. The marsh is the store."
+        }
+      },
+      {
+        "id": "pond",
+        "label": "Pond",
+        "x": 40,
+        "y": 66,
+        "lx": 28,
+        "ly": 74,
+        "role": null,
+        "worldIds": ["mirror-pond"],
+        "hints": {
+          "source": "The pond didn't make the rain.",
+          "slope": "The pond floor didn't crack. The scar is on Westface.",
+          "runoff": "The pulse shows up where Fox Run joins, above the pond.",
+          "storage": "The pond is a pause. The marsh is the store that stayed wet.",
+          "affected": "The hanging roots are on the willow bank."
+        }
+      },
+      {
+        "id": "station-creek",
+        "label": "Station",
+        "x": 86,
+        "y": 50,
+        "lx": 86,
+        "ly": 62,
+        "role": null,
+        "worldIds": ["station-creek", "research-station"],
+        "hints": {
+          "source": "The station reach stayed relatively clear. Rain started at the gauge.",
+          "slope": "The scar is on Westface.",
+          "runoff": "This stretch stayed clearer. The pulse rode Fox Run.",
+          "storage": "Clearer water isn't a store.",
+          "affected": "The willows are downstream on the cut bank."
+        }
+      },
+      {
+        "id": "knob",
+        "label": "Knob",
+        "x": 50,
+        "y": 12,
+        "lx": 50,
+        "ly": 22,
+        "role": null,
+        "worldIds": ["granite-knob", "high-look"],
+        "hints": {
+          "source": "The knob is the high point. Last night's tally is on the gauge.",
+          "slope": "The failed soil is Westface, not the summit.",
+          "runoff": "Water sheds off the knob. The pulse path is Fox Run.",
+          "storage": "Water doesn't pool on the knob.",
+          "affected": "The hanging roots are on the willow bank."
+        }
       }
     ]
   },

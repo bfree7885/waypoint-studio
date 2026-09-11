@@ -41,8 +41,8 @@ import {
   tryChallengeFollowUp
 } from "../js/challenge.js";
 import { classifyCard } from "../js/obsint.js";
-import { createPuzzleState, concludeSystems, trySystemsRole, trySystemsPredict, tryConflict } from "../js/puzzles.js";
-import { submitAar } from "../js/aar.js";
+import { createPuzzleState, completeSystems, tryConflict } from "../js/puzzles.js";
+import { submitAar, goodEvidenceCase } from "../js/aar.js";
 import { loadCurriculumMap, assertNoPlayerFacingCodes } from "../js/curriculum.js";
 import {
   captureSave,
@@ -212,19 +212,8 @@ function legitimateMastery() {
   tryChallengeExplanation(challengeState, challengeSpec, "tributary-slump");
   tryChallengeFollowUp(challengeState, challengeSpec, "marsh-usual");
   const puzzleState = createPuzzleState();
-  for (const role of puzzleSpec.systems.roles) {
-    const pick = role.options.find((item) => item.ok);
-    trySystemsRole(puzzleState, puzzleSpec, role.id, pick.id);
-  }
-  trySystemsPredict(puzzleState, puzzleSpec, "still-wet");
-  concludeSystems(puzzleState, puzzleSpec);
-  submitAar(puzzleState, aarSpec, puzzleSpec, {
-    "aar-obs": "seen",
-    "aar-table": "fair",
-    "aar-pulse": "system",
-    "aar-clocks": "two",
-    "aar-return": "clear"
-  }, []);
+  completeSystems(puzzleState, puzzleSpec);
+  submitAar(puzzleState, aarSpec, puzzleSpec, goodEvidenceCase(), []);
   const mastery = createMasteryState();
   syncFromGameplay(
     mastery,

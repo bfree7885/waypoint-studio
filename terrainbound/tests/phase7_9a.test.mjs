@@ -31,14 +31,14 @@ import {
   puzzleUse,
   aarEligible,
   incompletePuzzles,
-  trySystemsRole,
-  trySystemsPredict,
-  concludeSystems,
+  trySystemsTap,
+  currentSystemsPrompt,
+  completeSystems,
   tryConflict,
   classifySite,
   tabletEvidence
 } from "../js/puzzles.js";
-import { submitAar, scoreAnswers, aarResult } from "../js/aar.js";
+import { submitAar, scoreAnswers, aarResult, judgeClaim, goodEvidenceCase } from "../js/aar.js";
 import {
   createMasteryState,
   gameplaySnapshot,
@@ -136,13 +136,7 @@ function completeUsePath({ revise = true, systems = true, conflict = true } = {}
   tryChallengeExplanation(challengeState, challengeSpec, "tributary-slump");
   tryChallengeFollowUp(challengeState, challengeSpec, "marsh-usual");
   const puzzleState = createPuzzleState();
-  if (systems) {
-    for (const role of puzzleSpec.systems.roles) {
-      trySystemsRole(puzzleState, puzzleSpec, role.id, role.options.find((item) => item.ok).id);
-    }
-    trySystemsPredict(puzzleState, puzzleSpec, "still-wet");
-    concludeSystems(puzzleState, puzzleSpec);
-  }
+  if (systems) completeSystems(puzzleState, puzzleSpec);
   if (conflict) tryConflict(puzzleState, puzzleSpec, "narrow");
   return { missionState, discoveryState, invState, flumeState, dataState, challengeState, puzzleState };
 }
@@ -204,14 +198,10 @@ check("CH-06 refuses a creek-only story and a jargon glacier word", () => {
 
 check("systems map rejects trees-caused-the-flood", () => {
   const state = createPuzzleState();
-  const bad = trySystemsRole(state, puzzleSpec, "biosphere", "caused");
+  const bad = trySystemsTap(state, puzzleSpec, "willows");
   assert.equal(bad.ok, false);
-  trySystemsRole(state, puzzleSpec, "biosphere", "affected");
-  trySystemsRole(state, puzzleSpec, "atmosphere", "rain");
-  trySystemsRole(state, puzzleSpec, "geosphere", "scar");
-  trySystemsRole(state, puzzleSpec, "hydrosphere", "fox-run");
-  trySystemsPredict(state, puzzleSpec, "still-wet");
-  assert.equal(concludeSystems(state, puzzleSpec).ok, true);
+  assert.match(bad.hint, /willows|storm|start/i);
+  assert.equal(completeSystems(createPuzzleState(), puzzleSpec).ok, true);
 });
 
 check("CH-08 revision requires conflict then repair, not a first-try success", () => {
@@ -226,15 +216,12 @@ check("CH-08 revision requires conflict then repair, not a first-try success", (
 
 check("AAR misconception is more evidence needed, not a score", () => {
   const answers = {
-    "aar-obs": "seen",
-    "aar-table": "extra",
-    "aar-pulse": "system",
-    "aar-clocks": "two",
-    "aar-return": "clear"
+    ...goodEvidenceCase(),
+    "aar-pulse": ["CH-05", "CH-06"]
   };
   const score = scoreAnswers(aarSpec, answers, 1);
   assert.equal(aarResult(score, []).startsWith("more"), true);
-  assert.ok(score.misconception.some((row) => row.itemId === "aar-table"));
+  assert.ok(score.misconception.some((row) => row.itemId === "aar-pulse"));
 });
 
 check("CH-06 use requires the two-clocks process, not any concluded landscape", () => {
@@ -285,13 +272,7 @@ check("good AAR plus complete use is field clearance earned", () => {
     path.puzzleState,
     aarSpec,
     puzzleSpec,
-    {
-      "aar-obs": "seen",
-      "aar-table": "fair",
-      "aar-pulse": "system",
-      "aar-clocks": "two",
-      "aar-return": "clear"
-    },
+    goodEvidenceCase(),
     incompletePuzzles(puzzleSpec, use)
   );
   assert.equal(result.result, "clearance");
@@ -368,6 +349,8 @@ check("tablet evidence is categorized and AAR UI is wired", () => {
   assert.ok(rows.some((row) => row.category === "observation"));
   assert.ok(rows.some((row) => row.category === "pattern"));
   assert.match(html, /id="aar"/);
+  assert.match(html, /id="systems-sketch"/);
+  assert.match(html, /id="aar-evidence"/);
   assert.match(html, /id="systems-map"/);
   assert.match(css, /#aar:not\(\[hidden\]\)/);
   assert.match(css, /#systems-map:not\(\[hidden\]\)/);
@@ -375,7 +358,8 @@ check("tablet evidence is categorized and AAR UI is wired", () => {
   assert.match(css, /@media \(max-width: 720px\)/);
   assert.match(css, /aspect-ratio:\s*3\s*\/\s*2/);
   assert.match(css, /:has\(#journal\.is-open\)/);
-  assert.match(css, /#systems-map #systems-predict/);
+  assert.match(css, /#systems-map canvas/);
+  assert.match(css, /\.aar-card-btn/);
 });
 
 check("Dark Sky, Summit, and other regions stay unimplemented", () => {

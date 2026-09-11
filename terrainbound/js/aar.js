@@ -3,41 +3,87 @@
  * Player sees FIELD CLEARANCE EARNED or MORE EVIDENCE NEEDED.
  */
 
-const PASS = 0.6;
+export function claimsForAttempt(spec, attempt = 0) {
+  const claims = spec.claims || spec.items || [];
+  if (attempt <= 1) return claims;
+  return claims.map((claim) => ({
+    ...claim,
+    wren: claim.retry || claim.wren
+  }));
+}
 
-export function itemsForAttempt(spec, attempt = 0) {
-  if (attempt <= 1) return spec.items || [];
-  const retry = spec.retry || [];
-  const byId = new Map((spec.items || []).map((item) => [item.id, item]));
-  return (spec.items || []).map((item) => retry.find((row) => row.id === item.id) || byId.get(item.id));
+export function selectedIds(answers, claimId) {
+  const value = answers?.[claimId];
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === "string" && value.startsWith("CH-")) return [value];
+  return [];
+}
+
+export function toggleEvidence(selected, evidenceId) {
+  const set = new Set(selected || []);
+  if (set.has(evidenceId)) set.delete(evidenceId);
+  else set.add(evidenceId);
+  return [...set];
+}
+
+export function judgeClaim(claim, selected) {
+  const picks = [...new Set(selected || [])];
+  const required = claim.required || [];
+  const allowed = new Set([...required, ...(claim.useful || [])]);
+  const misconception = picks.filter((id) => (claim.misconception || []).includes(id));
+  if (misconception.length) {
+    return {
+      kind: "misconception",
+      good: false,
+      hint: claim.why?.[misconception[0]] || claim.need
+    };
+  }
+  const missing = required.filter((id) => !picks.includes(id));
+  if (missing.length) {
+    return {
+      kind: "incomplete",
+      good: false,
+      hint: claim.need
+    };
+  }
+  const extra = picks.filter((id) => !allowed.has(id));
+  if (extra.length) {
+    return {
+      kind: "overclaim",
+      good: false,
+      hint: claim.why?.[extra[0]] || claim.overclaim
+    };
+  }
+  return { kind: "good", good: true, hint: claim.ok };
 }
 
 export function scoreAnswers(spec, answers, attempt = 0) {
-  const items = itemsForAttempt(spec, attempt);
+  const claims = claimsForAttempt(spec, attempt);
   const rows = [];
-  for (const item of items) {
-    const choiceId = answers[item.id];
-    const choice = (item.choices || []).find((row) => row.id === choiceId);
-    const good = choice?.kind === "good";
+  for (const claim of claims) {
+    const choiceIds = selectedIds(answers, claim.id);
+    const judged = choiceIds.length ? judgeClaim(claim, choiceIds) : { kind: "missing", good: false, hint: claim.need };
     rows.push({
-      itemId: item.id,
-      puzzleId: item.puzzleId,
-      competencyId: item.competencyId,
-      choiceId: choiceId || null,
-      kind: choice?.kind || "missing",
-      good
+      itemId: claim.id,
+      puzzleId: claim.puzzleId,
+      competencyId: claim.competencyId,
+      choiceId: choiceIds[0] || null,
+      evidenceIds: choiceIds,
+      kind: judged.kind,
+      good: judged.good,
+      hint: judged.hint
     });
   }
-  const answered = rows.filter((row) => row.choiceId);
   const hits = rows.filter((row) => row.good).length;
-  const score = answered.length ? hits / items.length : 0;
+  const score = claims.length ? hits / claims.length : 0;
   const misconception = rows.filter((row) => row.kind === "misconception");
-  return { rows, score, hits, total: items.length, misconception };
+  return { rows, score, hits, total: claims.length, misconception };
 }
 
 export function aarResult(score, useIncomplete) {
   if (useIncomplete.length) return "more-evidence";
-  if (score.score >= PASS && score.misconception.length === 0) return "clearance";
+  if (score.misconception.length) return "more-evidence";
+  if (score.hits === score.total && score.total > 0) return "clearance";
   return "more-evidence";
 }
 
@@ -49,30 +95,17 @@ export function remediationFor(spec, score, useIncomplete, puzzleSpec) {
   }
   for (const row of score.rows) {
     if (row.good) continue;
-    const item = (spec.items || []).find((entry) => entry.id === row.itemId);
-    if (row.kind === "misconception") {
-      lines.push(misconceptionVoice(row.itemId));
-    } else if (item) {
-      lines.push(`I still need a defensible line on ${names[item.puzzleId] || item.puzzleId}.`);
-    }
+    if (row.hint) lines.push(row.hint);
+    else lines.push(`I still need a defensible line on ${names[row.puzzleId] || row.puzzleId}.`);
   }
   if (!lines.length) lines.push(spec.moreEvidence.lead);
   return [...new Set(lines)];
 }
 
-function misconceptionVoice(itemId) {
-  if (itemId === "aar-obs") return "The boulder still has a color and grain you can point to. A carrying story is a guess until later work holds it.";
-  if (itemId === "aar-table") return "Your unfair run changed two things. That cannot be the slope claim.";
-  if (itemId === "aar-pulse") return "The stretch by the station stayed clear. Rain on everything equally does not fit.";
-  if (itemId === "aar-clocks") return "Last night's bar is the creek. The mismatched boulder still needs a longer clock — not a vocabulary word.";
-  if (itemId === "aar-return") return "If we went back to the station reach, it should still be relatively clear compared with the join.";
-  return "The land still disagrees with that line.";
-}
-
 export function submitAar(puzzleState, spec, puzzleSpec, answers, useIncomplete) {
   puzzleState.aar.attempts = (puzzleState.aar.attempts || 0) + 1;
   puzzleState.aar.answers = { ...answers };
-  puzzleState.aar.itemIds = itemsForAttempt(spec, puzzleState.aar.attempts).map((item) => item.id);
+  puzzleState.aar.itemIds = claimsForAttempt(spec, puzzleState.aar.attempts).map((item) => item.id);
   const score = scoreAnswers(spec, answers, puzzleState.aar.attempts);
   const result = aarResult(score, useIncomplete);
   puzzleState.aar.result = result;
@@ -89,4 +122,14 @@ export function resetAarAnswers(puzzleState) {
   puzzleState.aar.answers = {};
   puzzleState.aar.result = null;
   return puzzleState;
+}
+
+export function goodEvidenceCase() {
+  return {
+    "aar-obs": ["CH-01"],
+    "aar-table": ["CH-03", "CH-02"],
+    "aar-pulse": ["CH-05", "CH-07"],
+    "aar-clocks": ["CH-06", "CH-01"],
+    "aar-return": ["CH-05", "CH-08"]
+  };
 }
