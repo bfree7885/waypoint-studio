@@ -19,7 +19,7 @@
 |------|------|
 | `/side-trails/waypoint-deck/` | Public Deck direction page (indexed) |
 | `/side-trails/global-watch/` | Noindex Studio bridge to LOCAL field-test host |
-| `/side-trails/` | Unlisted/noindex legacy catalog shell — not linked from Home/primary nav |
+| `/side-trails/` | Unlisted/noindex legacy shell — not linked from Home/primary nav |
 | Discontinued landings (SignalTerrain, Global Signals, OpenRoad) | Archived/retired; robots Disallow; not catalog peers |
 
 ## Catalog

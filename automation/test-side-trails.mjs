@@ -52,17 +52,17 @@ const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 assert.ok(Array.isArray(catalog.projects));
 assert.equal(catalog.projects.some((p) => p.id === "waypoint-deck"), true);
 const gw = catalog.projects.find((p) => p.id === "global-watch");
-assert.ok(gw, "catalog must include global-watch");
+assert.ok(gw, "legacy JSON registry must include global-watch");
 assert.match(
   String(gw.url),
   /^https?:\/\//,
-  "Global Watch catalog URL must be absolute (standalone / LOCAL host)",
+  "Global Watch registry URL must be absolute (standalone / LOCAL host)",
 );
-assert.match(String(gw.url), /127\.0\.0\.1:4173/, "catalog must point at LOCAL field-test host");
+assert.match(String(gw.url), /127\.0\.0\.1:4173/, "registry must point at LOCAL field-test host");
 assert.equal(
   catalog.projects.some((p) => p.id === "civic-trails" || p.id === "openroad-pa" || p.id === "signalterrain"),
   false,
-  "discontinued projects must not remain in the catalog",
+  "discontinued projects must not remain in the legacy JSON registry",
 );
 
 const gwLanding = read("side-trails/global-watch/index.html");
@@ -79,4 +79,4 @@ assert.doesNotMatch(sitemap, /side-trails\/global-watch/);
 const stReadme = read("docs/side-trails/README.md");
 assert.match(stReadme, /legacy\/unlisted|Not a current/i);
 
-console.log("Legacy /side-trails/ shell + Global Watch LOCAL catalog checks passed.");
+console.log("Legacy /side-trails/ shell + Global Watch LOCAL host checks passed.");

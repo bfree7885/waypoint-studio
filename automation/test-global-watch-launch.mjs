@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Global Watch Studio bridge — Support/Deck discovery; LOCAL launch labeled honestly.
- * Side Trails catalog is legacy/unlisted and must not be required for discovery.
+ * Legacy /side-trails/ JSON registry is unlisted and must not be required for discovery.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
