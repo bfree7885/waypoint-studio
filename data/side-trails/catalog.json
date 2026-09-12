@@ -1,9 +1,9 @@
 {
   "version": "2.1.0",
   "updatedAt": "2026-09-11",
-  "title": "Side Trails",
-  "tagline": "Independent projects beside Waypoint Studio.",
-  "message": "Deck is direction-stage. Global Watch is an unlisted owner field-test MVP (standalone host).",
+  "title": "Unlisted path (not a product section)",
+  "tagline": "Legacy /side-trails/ infrastructure — not current Studio IA.",
+  "message": "Not a product category. Deck public page and Global Watch LOCAL field-test bridge live under this path. Support → Experiences is temporary discovery for Global Watch.",
   "statuses": ["in-development", "experimental", "beta", "stable", "archived", "retired"],
   "projects": [
     {
@@ -27,7 +27,7 @@
       "icon": "assets/images/side-trails/global-watch.svg",
       "category": "Field test",
       "status": "experimental",
-      "ctaLabel": "Launch Global Watch",
+      "ctaLabel": "Open LOCAL field-test host",
       "url": "http://127.0.0.1:4173/",
       "order": 2,
       "featured": true

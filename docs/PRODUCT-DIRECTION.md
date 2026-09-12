@@ -76,9 +76,27 @@ Public copy must distinguish **existing**, **in development**, and **planned**. 
 
 Canonical public URL: `/side-trails/waypoint-deck/`. Primary navigation uses the label **Deck**.
 
-`/side-trails/` remains an unlisted (noindex) technical path — **not** a primary product section and **not** linked from Home or primary nav. Do not rebuild a public Side Trails catalog discovery surface.
+### Global Watch / `/side-trails/` freeze (agents)
 
-**Global Watch** (standalone owner field-test MVP) is discoverable from **Support → Experiences** and a short note on the Deck page, both linking to the noindex bridge `/side-trails/global-watch/`. Launch is local-host only unless the owner later approves a public host. Do not copy Global Watch source into Studio. Do not reintroduce discontinued Side Trails (OpenRoad, SignalTerrain, Global Signals, Civic Trails).
+Architecture (do not invent a different one):
+
+```
+Global Watch          → standalone repo/application (not Studio source)
+Waypoint Studio       → Support → Experiences → Global Watch bridge
+                      → localhost:4173 when the owner runs the app locally
+```
+
+- **Support → Experiences → Global Watch** is a **TEMPORARY field-test discovery path**. It is not necessarily Global Watch’s permanent product location.
+- Global Watch remains **architecturally independent** from Waypoint Studio. Do not copy its source into Studio. Do not embed it.
+- **`/side-trails/` is legacy/unlisted infrastructure**, not a current product category. Deck’s public URL happens to live under that path; that does **not** make “Side Trails” part of current Studio IA.
+- Agents must **not** infer that files under `/side-trails/` mean Side Trails is a product section, primary nav item, or Home pathway.
+- **“Merged” or “deployed” does not mean “discoverable.”** Any claim about user discoverability must be verified by walking normal user-facing navigation starting from the **live Home page**.
+- Localhost URLs (`http://127.0.0.1:4173`, etc.) must always be labeled **LOCAL** and must **never** be described as a public deployment.
+- Do not restore Side Trails to primary nav, Home, About, footer, or sitemap.
+- Do not add Global Watch to Home or primary navigation without explicit owner instruction.
+- Do not deploy a public Global Watch host without explicit owner approval.
+
+**Global Watch** (standalone owner field-test MVP) is currently reachable from **Support → Experiences** (temporary) and a short note on the Deck page, both linking to the noindex bridge `/side-trails/global-watch/`. Launch is **LOCAL** only (`http://127.0.0.1:4173`) unless the owner later approves a public host. Do not reintroduce discontinued Side Trails (OpenRoad, SignalTerrain, Global Signals, Civic Trails).
 
 ### 4. Waypoint Publishing
 
@@ -165,7 +183,7 @@ One **subscription** across the Studio web ecosystem. Deck commercial intent is 
 - **Articles** — public entry to Publishing (content surface, not a fourth Studio instrument).
 - **Deck** — distinct field-computing project.
 - Do not expose Scenes, discontinued product names, or a Side Trails catalog in primary nav, footer, homepage, About, or sitemaps.
-- Global Watch may appear on Support Experiences and the Deck page as an owner field-test bridge (local host), not as a peer Studio product.
+- Global Watch may appear on Support Experiences (temporary field-test discovery) and the Deck page as an owner field-test bridge (**LOCAL** host only), not as a peer Studio product and not as a permanent product slot.
 
 Homepage introduces **Dashboard-first Studio**, then Shed Hunting as a sibling, then Publishing and Deck as distinct.
 
@@ -209,6 +227,9 @@ Do **not**:
 3. Do not promote unpublished Scenes in public discovery. Keep the code.  
 4. Do not build Waypoint Deck OS in this repo unless explicitly instructed.  
 5. Prefer KEEP / REFACTOR over DELETE for useful code; remove obsolete **public identity**.  
-6. Prefer incremental consolidation over theoretical rewrites.  
+6. Prefer incremental consolidation over theoretical rewrites.
+7. Do not treat `/side-trails/` as a current product section. Files there are legacy/unlisted path infrastructure (Deck lives under that path for historical URL reasons).
+8. Do not claim Global Watch is publicly hosted or Home-reachable unless verified from live Home navigation. Localhost is **LOCAL** only.
+9. Support → Experiences → Global Watch is temporary field-test discovery — not a permanent IA claim.  
 7. Public Shed Hunting links use `https://shedhunting.org`. Origin-config flag is true. Do not revert it without an explicit rollback.  
 8. Shed Hunting versions follow [`docs/sheds/SHEDS-PRODUCT-ROADMAP.md`](sheds/SHEDS-PRODUCT-ROADMAP.md). Do not implement the V2.x dynamic search-priority heat map in V1.7. Do not treat private Hunt Tracks as licensable B2B data.

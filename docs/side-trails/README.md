@@ -1,49 +1,27 @@
-# Side Trails
+# Side Trails path — legacy / unlisted
 
-**Route:** `/side-trails/`  
-**Catalog:** `data/side-trails/catalog.json`  
+**Status:** Not a current Waypoint Studio product section.  
 **Canonical portfolio:** [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md)
 
-Side Trails is not an active public catalog. **Deck** is the remaining distinct project
-(`/side-trails/waypoint-deck/`). Do not restore Dashboard · Scenes · Sheds as equal Studio apps
-— see [`../PRODUCT-DIRECTION.md`](../PRODUCT-DIRECTION.md).
+## Freeze rules (agents)
 
-Cards render from a JSON catalog only. The page never invents projects.
+- **`/side-trails/` is legacy/unlisted infrastructure**, not a product category.
+- Primary nav label for the Deck project is **Deck** → `/side-trails/waypoint-deck/`. That URL path is historical; it does **not** restore “Side Trails” as IA.
+- Do **not** add “Side Trails” to primary nav, Home, About, footer, or sitemap.
+- Do **not** infer that a catalog JSON or files under `side-trails/` mean Side Trails is part of current Studio IA.
+- **Merged / deployed ≠ discoverable.** Verify discoverability from the live Home page navigation only.
+- **Global Watch** is a **standalone** application (separate repository). Studio only hosts a noindex bridge at `/side-trails/global-watch/`.
+- Owner discovery today (temporary): **Support → Experiences → Global Watch** → bridge → **LOCAL** `http://127.0.0.1:4173` when the owner runs the app. Not a permanent product location. Not a public cloud host.
 
----
+## What lives under this path
 
-## Hierarchy
+| Path | Role |
+|------|------|
+| `/side-trails/waypoint-deck/` | Public Deck direction page (indexed) |
+| `/side-trails/global-watch/` | Noindex Studio bridge to LOCAL field-test host |
+| `/side-trails/` | Unlisted/noindex legacy catalog shell — not linked from Home/primary nav |
+| Discontinued landings (SignalTerrain, Global Signals, OpenRoad) | Archived/retired; robots Disallow; not catalog peers |
 
-### Active Side Trail
+## Catalog
 
-| Id | Title | Status | Open |
-| --- | --- | --- | --- |
-| `waypoint-deck` | Waypoint Deck | **In development** | `/side-trails/waypoint-deck/` |
-
-Offline-first Linux field computer (local AI, maps/GPS, weather, radio, offline knowledge, situational awareness). Public page describes **direction**, not shipping claims.
-
-### Archive · past experiments
-
-| Id | Title | Status | Open |
-| --- | --- | --- | --- |
-| `signalterrain` | SignalTerrain | **Archived** research | `/side-trails/signalterrain/` |
-| `global-signals` | Global Signals | **Archived** research | `/side-trails/global-signals/` |
-| `openroad-pa` | OpenRoad PA | **Retired** | `/side-trails/openroad-pa/` |
-
-**Global Signals / Cyber (SignalTerrain)** are not standalone active products. Useful concepts may later feed **Waypoint Deck** situational awareness when connectivity exists. Do not promote them as peers of Deck.
-
-### Not Side Trails
-
-| Item | Status |
-| --- | --- |
-| Fieldry | **Paused** (Studio history / incubator — not an active Side Trail) |
-| Savant Sommelier | **Not active** (do not feature beside Deck) |
-
----
-
-## Rules
-
-- Do not hardcode project lists in HTML.
-- Do not invent projects when the catalog fails.
-- Do not present archived/retired entries as peers of Dashboard / Scenes / Sheds or as equal to Deck.
-- Do not claim unfinished Deck capabilities already work.
+`data/side-trails/catalog.json` may list Deck and Global Watch for the unlisted shell. That file is **not** a public product registry and must not drive Home or primary nav.

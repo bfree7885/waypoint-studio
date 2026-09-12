@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Global Watch Studio bridge — visible from Support / Deck; localhost launch labeled honestly.
- * Side Trails catalog is unlisted and must not be required for discovery.
+ * Global Watch Studio bridge — Support/Deck discovery; LOCAL launch labeled honestly.
+ * Side Trails catalog is legacy/unlisted and must not be required for discovery.
  */
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -24,6 +24,7 @@ for (const rel of [
   "side-trails/global-watch/index.html",
   "data/side-trails/catalog.json",
   "docs/PRODUCT-DIRECTION.md",
+  "docs/global-watch-studio-bridge.md",
 ]) {
   assert.ok(exists(rel), "missing " + rel);
 }
@@ -31,7 +32,8 @@ for (const rel of [
 const support = read("support.html");
 assert.match(support, /side-trails\/global-watch\//);
 assert.match(support, /Global Watch/);
-assert.match(support, /local host required|Local field test|127\.0\.0\.1:4173/i);
+assert.match(support, /local host required|Local field test|LOCAL|127\.0\.0\.1:4173/i);
+assert.match(support, /Temporary field-test discovery/i);
 
 const deck = read("side-trails/waypoint-deck/index.html");
 assert.match(deck, /global-watch\//);
@@ -41,7 +43,7 @@ assert.match(deck, /127\.0\.0\.1:4173/);
 const gw = read("side-trails/global-watch/index.html");
 assert.match(gw, /noindex/i);
 assert.match(gw, /127\.0\.0\.1:4173/);
-assert.match(gw, /local field-test host|Local field test|local host/i);
+assert.match(gw, /local field-test host|Local field test|local host|LOCAL/i);
 assert.match(gw, /not publicly hosted/i);
 assert.doesNotMatch(gw, /production-hardened|operationally authoritative cloud/i);
 
@@ -51,9 +53,12 @@ assert.doesNotMatch(home, /Global Watch/i);
 
 const nav = read("design-system/ecosystem/nav-registry.json");
 assert.doesNotMatch(nav, /global-watch/i);
+assert.doesNotMatch(nav, /"label":\s*"Side Trails"/);
 assert.match(nav, /waypoint-deck/);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
 assert.ok(catalog.projects.some((p) => p.id === "global-watch"));
+const gwCat = catalog.projects.find((p) => p.id === "global-watch");
+assert.match(String(gwCat.url), /127\.0\.0\.1:4173|global-watch/i);
 
-console.log("Global Watch visible-launch checks passed (Support + Deck → bridge).");
+console.log("Global Watch visible-launch checks passed (Support + Deck → LOCAL bridge).");

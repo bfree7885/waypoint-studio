@@ -76,12 +76,21 @@ assert(
 assert("Deck in primary nav", labels.includes("Deck"));
 assert("Side Trails catalog not a primary nav label", !labels.includes("Side Trails"));
 assert(
+  "Global Watch not a primary nav label",
+  !labels.includes("Global Watch"),
+);
+assert(
   "old peers absent from primary nav labels",
   !OLD_PRIMARY_PEERS.some((p) => labels.includes(p)),
   labels.join("|")
 );
 
 const navReg = JSON.parse(read("design-system/ecosystem/nav-registry.json"));
+assert(
+  "homeSideTrails must remain empty (Side Trails is not current IA)",
+  Array.isArray(navReg.homeSideTrails) && navReg.homeSideTrails.length === 0,
+  String(navReg.homeSideTrails),
+);
 assert(
   "nav-registry studioPrimaryNav matches",
   (navReg.studioPrimaryNav || []).map((i) => i.label).join("|") === REQUIRED.join("|")
