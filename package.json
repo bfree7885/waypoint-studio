@@ -2,6 +2,9 @@
   "name": "waypoint-studio",
   "private": true,
   "type": "module",
+  "scripts": {
+    "fieldtest:summit": "node terrainbound/scripts/fieldtest-summit.mjs"
+  },
   "dependencies": {
     "ws": "^8.18.0"
   }

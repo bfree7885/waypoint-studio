@@ -27,7 +27,7 @@ const STATE_PROBE =
   /high look|third (runoff )?trial|trial three|3rd trial|clearance|clear me|wren clear|already finish|did i already|what notes do i have|what evidence do i have|what did i find before|what did the (gentle|steep) slope|gentle slope do|what was my third/i;
 
 const SCIENCE_WHY =
-  /why (did|does|is|were)|go faster|steep matter|slope matter|gravity gets|gravity get |get stronger|is gravity stronger|does gravity get|runoff speed|why though|two steep times|path is longer|farther to travel|downhill force|steeper means farther|pull harder/i;
+  /why (did|does|is|were)|go faster|steep matter|slope matter|gravity gets|gravity get |get stronger|gravity is stronger|is gravity stronger|does gravity get|runoff speed|why though|two steep times|path is longer|farther to travel|downhill force|steeper means farther|pull harder/i;
 
 const FAIR_TEST_PROBE =
   /proved steep|i proved|did two steep|two steep trials|both steep|they'?re both steep|bro they|which slope was faster|can i conclude|didn't i already do gentle|did i already do gentle|was gentle \d|gentle 12|but i did it twice|10\.2.{0,40}10\.4.{0,20}gentle|so 10\.2 was steep|already compared slopes|repeated trials mean|at once is that fair/i;

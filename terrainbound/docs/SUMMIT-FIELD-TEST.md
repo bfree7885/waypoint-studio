@@ -6,17 +6,30 @@ GPT-OSS 20B remains the language layer only. TerrainBound still owns game state,
 
 ## Activation
 
-Open Cedar Hollow with:
+From the repository root, with `terrainbound/data/summit/.env` containing `SUMMIT_API_KEY`:
+
+```bash
+npm run fieldtest:summit
+```
+
+The command prints:
 
 ```
-/terrainbound/?summit=fieldtest
+TerrainBound Summit Field Test
+Game: http://127.0.0.1:8086/terrainbound/?summit=fieldtest
+Summit provider: GPT-OSS 20B
+Proxy: ready
 ```
 
-Developer captures may also use `field=1` for `window.TB`. Hosted Summit still requires the loopback proxy (`data/summit/provider.json` `proxyEndpoint`).
+Open the printed Game URL. Developer captures may add `field=1` for `window.TB`. Stop with Ctrl+C.
 
-Without `?summit=fieldtest`, Summit behavior is unchanged. Hosted GPT-OSS is **not** the default.
+Without `?summit=fieldtest`, Summit behavior is unchanged. Hosted GPT-OSS is **not** the default. Do not put the Groq key in client JavaScript, HTML, `provider.json`, git, GitHub Pages, query strings, localStorage, or exported logs.
 
-The Summit panel shows an internal **FIELD TEST** mark and optional observer controls. Students in a normal session never see those controls.
+The Summit panel shows **SUMMIT FIELD TEST** and optional observer controls. Students in a normal session never see those controls.
+
+## Granite Knob observation (7.9I)
+
+The utterance “gravity is stronger on the steep slope” used to miss the science-talk router (`is gravity stronger` did not match `gravity is stronger`) and fell through to a default Cedar Hollow gravity glossary line about Granite Knob. 7.9J adds that student wording to the science-talk route. It is not a new science blacklist. Human testers should still note whether gravity-strength talk feels clear.
 
 ## What to tell the tester
 

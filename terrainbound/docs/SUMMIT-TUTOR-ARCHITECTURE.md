@@ -353,6 +353,14 @@ Do not retune Summit against synthetic evals. `?summit=fieldtest` is an explicit
 
 See `docs/SUMMIT-FIELD-TEST.md`. Evidence: `tests/evidence/phase79i/`.
 
+## Phase 7.9J field-test release candidate
+
+GitHub Pages at `terrainbound.org` is static and currently a 7.7 build. It cannot host the Summit proxy. The owner starts a local field-test RC with `npm run fieldtest:summit`. The Groq key stays in gitignored `.env` and the loopback proxy. GPT-OSS is still not the default.
+
+The 7.9I utterance “gravity is stronger on the steep slope” now matches science-talk (`gravity is stronger`). That is a routing hole, not a new science blacklist.
+
+Evidence: `tests/evidence/phase79j/`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -410,6 +418,9 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `js/summit-fieldtest.js` — anonymous supervised field-test log, marks, and summaries
 - `docs/SUMMIT-FIELD-TEST.md` — human field-test script
 - `tests/phase7_9i.test.mjs` — field-test harness
+- `scripts/fieldtest-summit.mjs` — one-command local field-test RC
+- `tests/phase7_9j.test.mjs` — field-test RC launcher
+- `tests/evidence/phase79i/` — 7.9I evidence
 - `tests/evidence/phase79h/` — 7.9H evidence
 - `js/summit-validate.js` — grounding gate
 - `js/summit-hybrid.js` — route → AI or authored → fallback

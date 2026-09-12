@@ -4,34 +4,56 @@ TerrainBound is a standalone static site. It is **not** the Waypoint Studio Page
 
 This repository's root `CNAME` is `waypointstudio.org`. Do not replace it.
 
-## Observed production state (2026-09-09)
+## Observed production state (2026-09-12)
 
-`https://terrainbound.org/` does **not** currently serve the game.
+`https://terrainbound.org/` serves a **static** TerrainBound build from the companion GitHub Pages repository `bfree7885/terrainbound-site`.
 
-DNS (Namecheap registrar `dns1.registrar-servers.com` / `dns2.registrar-servers.com`):
+| Fact | Value |
+| --- | --- |
+| Source repo for the live site | `bfree7885/terrainbound-site` (public; copies `terrainbound/` from this repo) |
+| Canonical game source | this repo, folder `terrainbound/` |
+| Studio Pages repo | `bfree7885/waypoint-studio` → `https://waypointstudio.org/` (`CNAME` `waypointstudio.org`, Actions Pages) |
+| terrainbound.org Pages | GitHub Pages **legacy** (branch `main`, site root `/`) |
+| Custom domain | `terrainbound.org` (HTTPS enforced); `www` 301s to the apex |
+| Apex DNS | GitHub Pages A records `185.199.108.153`–`185.199.111.153` |
+| `www` DNS | CNAME `bfree7885.github.io` |
+| Server-side runtime | **none** (static files only) |
+| Live cache-bust observed | `?v=p77` (Phase 7.7; last-modified 2026-09-10). **Not** the 7.9I/7.9J field-test branch. |
 
-| Name | Type | Value |
-| --- | --- | --- |
-| `@` | A | `192.64.119.222` (Namecheap parking) |
-| `www` | CNAME | `parkingpage.namecheap.com` |
-| `@` | TXT | SPF for Namecheap email forward |
+GitHub Pages cannot run `terrainbound/server/summit-proxy.mjs`. The Groq key must stay off the client, off git, and off Pages. The loopback proxy is **development / supervised field-test only** (`127.0.0.1`, CORS limited to localhost).
 
-HTTP `terrainbound.org` 302-forwards to `www.terrainbound.org`, which is a Namecheap parking / auction lander. HTTPS on the apex timed out. There is no GitHub Pages A/AAAA set and no CNAME to `*.github.io`.
+Do not put `terrainbound.org` in this repository's root `CNAME`. Do not deploy the field-test RC to Pages in this phase.
 
-No service workers ship with TerrainBound. Asset URLs are relative (`./css`, `./js`, `./data`) and are safe if the `terrainbound/` folder is published as the **site root**.
+## Field-test delivery (Phase 7.9J)
 
-## Required host
+Supervised human tests use a **local** one-command build:
 
-GitHub Pages companion repository (same pattern as other dedicated domains). Suggested:
+```bash
+npm run fieldtest:summit
+```
 
-- Repo: `bfree7885/terrainbound-site` (or equivalent)
+Printed URL:
+
+```
+http://127.0.0.1:8086/terrainbound/?summit=fieldtest
+```
+
+Credentials load from gitignored `terrainbound/data/summit/.env` (`SUMMIT_API_KEY`). See `docs/SUMMIT-FIELD-TEST.md`.
+
+## Older parking note (2026-09-09)
+
+Before the companion Pages attach, Namecheap parked the domain (`192.64.119.222` / `parkingpage.namecheap.com`). That is no longer the live DNS.
+
+## Required host (unchanged)
+
+GitHub Pages companion repository:
+
+- Repo: `bfree7885/terrainbound-site`
 - Pages: branch `main`, site root `/`
 - Custom domain: `terrainbound.org`
 - Publish the contents of `terrainbound/` (not the Studio repo root)
 
-Do not put `terrainbound.org` in this repository's root `CNAME`.
-
-## DNS to attach after Pages is ready
+## DNS (already attached; do not change in this phase)
 
 GitHub Pages apex:
 
@@ -40,20 +62,15 @@ GitHub Pages apex:
 @  A     185.199.109.153
 @  A     185.199.110.153
 @  A     185.199.111.153
-www CNAME  <github-user>.github.io
+www CNAME  bfree7885.github.io
 ```
 
-Optional IPv6 AAAA records from GitHub's current Pages docs. Preserve MX/SPF if email forwarding is in use.
-
-These registrar changes cannot be made from this repository.
+Preserve MX/SPF if email forwarding is in use.
 
 ## Rollback
 
-Pre-launch parking is the current live state. After a successful attach, the rollback is:
-
-1. Restore the companion Pages repo to the annotated tag `terrainbound-prelaunch-2026-09` (created on the source SHA before first publish).
-2. Or restore Namecheap parking A/`www` CNAME records recorded above.
+Companion Pages rollback is an operator action on `bfree7885/terrainbound-site`, not a CNAME swap in this repo.
 
 ## Cache
 
-Cache-bust query: `?v=p77` on `main.js` / `game.js`.
+Cache-bust query: `?v=p79j` on `main.js` / `game.js`.

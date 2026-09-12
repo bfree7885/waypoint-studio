@@ -1353,7 +1353,7 @@ export async function boot(root = document) {
       fieldTestTurnId: lastTurn?.id || "",
       diag: debug
         ? [
-            "FIELD TEST",
+            fieldTestMode ? "SUMMIT FIELD TEST" : "FIELD",
             debug.adapterId ? `${debug.provider}/${debug.adapterId}` : debug.provider,
             debug.useAi ? "ai-path" : "authored",
             debug.intent || "intent",
@@ -1366,7 +1366,7 @@ export async function boot(root = document) {
             .filter(Boolean)
             .join(" · ")
         : fieldTestMode
-          ? "FIELD TEST · local anonymous log · Summit is the language layer only"
+          ? "SUMMIT FIELD TEST · local anonymous log · Summit is the language layer only"
           : ""
     });
     ui.setSummitIdea(Boolean(summitState.idea));

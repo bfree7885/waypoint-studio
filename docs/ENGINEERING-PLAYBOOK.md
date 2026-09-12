@@ -1771,4 +1771,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A hosted tutor that passed synthetic science bars still needs a supervised human log before anyone else uses it. Keep that log local, anonymous, and derived from game state. Do not add analytics products to learn whether Summit helped.
 - Opt-in query flags (`?summit=fieldtest`) are safer than silently promoting the hosted path. Observer marks must stay optional and ungamified.
 
+### Lessons Learned — TerrainBound Phase 7.9J (2026-09-12)
+
+- `terrainbound.org` is GitHub Pages (static). It cannot hold the Groq key or run the Summit proxy. For the first few supervised testers, a local one-command launcher is safer than new cloud infrastructure.
+- `is gravity stronger` does not match `gravity is stronger on the steep slope`. Student word order is a routing hole, not a reason to retune the whole science eval.
+
+
 
