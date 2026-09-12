@@ -37,9 +37,10 @@ node terrainbound/tests/phase7_9b.test.mjs
 node terrainbound/tests/phase7_9c.test.mjs
 node terrainbound/tests/phase7_9d.test.mjs
 node terrainbound/tests/phase7_9e.test.mjs
-# Live model (requires SUMMIT_AI_URL + SUMMIT_API_KEY; starts nothing by default):
-# SUMMIT_AI_URL=... SUMMIT_API_KEY=... SUMMIT_AI_MODEL=... node terrainbound/tests/phase7_9e-live.mjs
-# Optional captures: node terrainbound/tests/capture-phase79e.mjs
+node terrainbound/tests/phase7_9f.test.mjs
+# Hosted bakeoff (requires SUMMIT_API_KEY; Groq OpenAI-compatible URL default):
+# SUMMIT_API_KEY=... node terrainbound/tests/phase7_9f-live.mjs
+# Optional captures: node terrainbound/tests/capture-phase79f.mjs
 ```
 
 Progress is stored in this browser only. **New exploration** in the Field Tablet clears it after confirmation.

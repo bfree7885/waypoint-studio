@@ -142,6 +142,8 @@ Prefer **deterministic** (`useAi: false`):
 | `quick-action` | Empty question + What should I do / notice / hint / explain |
 | `vocab-library` | Clean “what is runoff?” / “what does X mean?” definition ask |
 | `objective` | Exact “what am I supposed to do?” |
+| `evidence-inventory` | Exact “what notes/evidence do I have” |
+| `off-topic` | Sports, homework, jokes — authored tutor redirect |
 | `structured-data` | Graph / compare intents that already have authored data lines |
 | `default-deterministic` | Everything else that is not messy, curious, or a follow-up |
 
@@ -150,13 +152,12 @@ Prefer **conversational** (`useAi: true`):
 | Reason | When |
 | --- | --- |
 | `messy-language` | Typos, fragments, “what am I even doing”, invented-state probes |
-| `follow-up` | Short thread turns (“that part”, “why though”, “the steep one”) |
+| `follow-up` | Short thread turns (“that part”, “why though”, “the steep one”, “so gravity?”) |
 | `rephrase` | “explain it easier / another way / explain more” |
 | `curiosity` | Relevant Earth Science transfer (flash flood, snowmelt, gravity, “where I live”) |
 | `why-or-reveal` | Why-wrong, evidence mismatch, “just tell me which card” |
-| `off-topic` | Redirect; do not become a general chatbot |
 
-Typed “What should I notice?” is not a quick-action. Quick-actions are the HUD buttons (`action` without a typed question).
+Typed “What should I notice?” is not a quick-action. Quick-actions are the HUD buttons (`action` without a typed question). Off-topic does **not** spend a model call.
 
 ## Context-selection strategy
 
@@ -292,6 +293,14 @@ Validation now also rejects agreeing with false numeric premises, false clearanc
 
 This pilot is not a production declaration. Cedar Hollow only.
 
+## Phase 7.9F hosted small-model bakeoff
+
+Do not promote local `llama3.2:3b`. Compare **at most two** hosted lightweight models through the same loopback proxy (`SUMMIT_AI_URL`, `SUMMIT_API_KEY`, `SUMMIT_AI_MODEL`). Candidates and published list prices live in `data/summit/bakeoff.json` (no keys). Live runner: `tests/phase7_9f-live.mjs`. Evidence: `tests/evidence/phase79f/`.
+
+A candidate may become the Cedar Hollow conversational default only if median latency ≤ 3s, gameplay facts stay grounded, follow-ups stay on slope/gravity/runoff, validator rejection ≤ 10%, and cost is classroom-viable. Cheap or fast alone is not enough.
+
+**7.9F hosted result (Groq, 2026-09-11, pass 2):** neither `openai/gpt-oss-20b` nor `qwen/qwen3.6-27b` is the Cedar Hollow conversational default. GPT-OSS 20B is the better of the two when a reply lands (blind 10–1, cheaper, stronger slope/gravity when unblocked). Qwen’s raw science is often fine but `unknown-evidence` rejected 30/55 parsed outputs (54.5%). Both invented student-visible gameplay (tap/click instructions; High Look / Wren permission). Successful model latency meets median ≤ 3s and p95 ≤ 5s; eval timeouts (29 and 17 of 72 AI-routed turns at 15s) would be authored fallbacks at the game’s 5s timeout. Validator rejection 20.9% / 54.5% misses the ≤10% bar. Do not student-test yet. Details: `tests/evidence/phase79f/`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -344,8 +353,13 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `data/summit/curiosity.json` — compact transfer explanations
 - `data/summit/provider.json` — adapter endpoint (empty by default)
 - `data/summit/eval-utterances.json` — evaluation set
+- `data/summit/eval-bakeoff-extra.json` — 7.9F targeted extras
+- `data/summit/bakeoff.json` — hosted candidate ids and list prices (no keys)
 - `server/summit-proxy.mjs` — optional loopback proxy
 - `tests/phase7_9e.test.mjs` — architecture and fallback tests
 - `tests/phase7_9e-live.mjs` — live remote-model evaluation (env credentials)
-- `tests/evidence/phase79e/` — live metrics, teacher review, captures
+- `tests/phase7_9f.test.mjs` — hosted bakeoff architecture
+- `tests/phase7_9f-live.mjs` — two-model hosted bakeoff (env credentials)
+- `tests/evidence/phase79e/` — 7.9E live metrics, teacher review, captures
+- `tests/evidence/phase79f/` — 7.9F bakeoff evidence
 - `js/guidance.js` — Wren/interface next-action strip (not Summit)

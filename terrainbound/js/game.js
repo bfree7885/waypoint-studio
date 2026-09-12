@@ -296,7 +296,7 @@ export async function boot(root = document) {
   const summitAdapter = useSummitProxy(summitProviderCfg)
     ? createHttpAdapter({
         endpoint: summitProviderCfg.endpoint || summitProviderCfg.proxyEndpoint,
-        timeoutMs: summitProviderCfg.timeoutMs || 8000
+        timeoutMs: summitProviderCfg.timeoutMs || 5000
       })
     : createLocalComposerAdapter({ curiosity: summitCuriosity });
   const summitEngine = createSummitEngine({
@@ -307,7 +307,7 @@ export async function boot(root = document) {
       concepts: summitConcepts,
       curiosity: summitCuriosity,
       adapter: summitAdapter,
-      timeoutMs: summitProviderCfg?.timeoutMs || (useSummitProxy(summitProviderCfg) ? 8000 : 3500)
+      timeoutMs: summitProviderCfg?.timeoutMs || (useSummitProxy(summitProviderCfg) ? 5000 : 3500)
     })
   });
   const hcState = createHcState();

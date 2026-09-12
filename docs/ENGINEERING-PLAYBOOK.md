@@ -1742,4 +1742,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Close must work during “Looking at your notes…”. Never reopen Summit after the student dismissed it.
 - CPU 3B inference can sit at 5–17s. An 8s in-game timeout will fall back often; measure live latency before calling a model classroom-ready.
 
+### Lessons Learned — TerrainBound Phase 7.9F (2026-09-11)
+
+- Do not promote a local CPU 3B because it is “real.” Hosted small models are the latency question. Groq’s current self-serve pair is GPT-OSS 20B (fast/cheap) and a slightly stronger small/mid model (Qwen3.6 27B); Llama 3.1 8B Instant is enterprise-only.
+- Off-topic turns do not need a model. Routing them deterministic saves money and stops “80” leaks without more validator patches.
+- Do not add keyword patches to rescue conceptual science. If a hosted candidate still needs that, it fails the bakeoff.
+- Live hosted evaluation requires `SUMMIT_API_KEY` in the environment (gitignored `data/summit/.env` is an allowed local loader). GitHub Models is retired (410). Empty composer results are not a bakeoff.
+- Groq structured output rejects schemas whose `required` array omits any `properties` key. Nullable unions + `minLength` burned GPT-OSS reasoning tokens before a valid document. Qwen 3.6 defaults to thinking and will 429 on output-token TPM unless `reasoning_effort` is `none` (and `reasoning_format=hidden` with JSON).
+- A 429 storm is not a model-quality result. Count rate-limit / HTTP / timeout separately from validator rejection. A model that is constantly caught (`unknown-evidence` on otherwise good slope/gravity prose) is not a good Summit model.
+- Successful Groq replies were 0.4–1.6s, but 17–29 of 72 AI-routed eval turns still hit the 15s abort. In-game 5s timeout would fall back even more often. Fast median is not classroom-ready if p95 is a timeout.
+- Neither bakeoff candidate is Cedar Hollow’s conversational default. GPT-OSS 20B is the better small hosted tutor of the two; both leaked student-visible gameplay inventions. Do not field-test yet.
+
 

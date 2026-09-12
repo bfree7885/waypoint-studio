@@ -30,6 +30,8 @@ data/publish-state.json.local
 .tmp-summit-ollama/
 terrainbound/server/.summit-debug.log
 terrainbound/data/summit/provider.local.json
+terrainbound/data/summit/.env
+terrainbound/data/summit/.env.save
 
 # OS / editor
 .DS_Store

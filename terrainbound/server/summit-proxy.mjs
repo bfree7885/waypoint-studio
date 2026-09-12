@@ -27,15 +27,23 @@ export const SUMMIT_REPLY_SCHEMA = {
   type: "object",
   additionalProperties: false,
   properties: {
-    response: { type: "string", minLength: 1 },
-    concept: { type: ["string", "null"] },
+    response: { type: "string" },
+    concept: { type: "string" },
     referencedEvidence: { type: "array", items: { type: "string" } },
-    suggestedAction: { type: ["string", "null"] },
+    suggestedAction: { type: "string" },
     supportLevel: { type: "number" },
     offTopic: { type: "boolean" },
     agreesWithStudentPremise: { type: "boolean" }
   },
-  required: ["response", "supportLevel"]
+  required: [
+    "response",
+    "concept",
+    "referencedEvidence",
+    "suggestedAction",
+    "supportLevel",
+    "offTopic",
+    "agreesWithStudentPremise"
+  ]
 };
 
 const server = http.createServer(async (req, res) => {
@@ -76,16 +84,23 @@ const server = http.createServer(async (req, res) => {
   }
   const started = Date.now();
   try {
-    let upstream = await callUpstream(payload, true);
+    let retried = false;
+    let upstream = await callUpstream(payload, "json_schema");
     let parsed = parseUpstream(upstream);
     if ((!upstream.ok || !parsed || !String(parsed.response || "").trim()) && upstream.status !== 429) {
+      retried = true;
       upstream = await callUpstream(
         {
           ...payload,
           question: `${payload.question || ""}\n\nWrite a 1-3 sentence tutoring reply in JSON field "response". Never leave it empty.`
         },
-        false
+        "json_object"
       );
+      parsed = parseUpstream(upstream);
+    }
+    if ((!upstream.ok || !parsed || !String(parsed.response || "").trim()) && upstream.status !== 429) {
+      retried = true;
+      upstream = await callUpstream(payload, "plain");
       parsed = parseUpstream(upstream);
     }
     const data = upstream.data;
@@ -126,7 +141,8 @@ const server = http.createServer(async (req, res) => {
         completionTokens: usage.completion_tokens || usage.output_tokens || 0,
         totalTokens: usage.total_tokens || 0,
         latencyMs,
-        model: data.model || MODEL
+        model: data.model || MODEL,
+        retried
       }
     });
   } catch {
@@ -135,30 +151,43 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-export function upstreamBody(payload, structured = true) {
+export function upstreamBody(payload, mode = "json_schema") {
   const body = {
     model: MODEL,
     temperature: 0.2,
-    max_tokens: 280,
+    max_tokens: Number(process.env.SUMMIT_MAX_TOKENS || 400),
     messages: [
       { role: "system", content: String(payload.prompt || "") },
       { role: "user", content: String(payload.question || payload.action || "") }
     ]
   };
-  if (structured) {
+  if (mode === "json_schema") {
     body.response_format = {
       type: "json_schema",
       json_schema: { name: "summit_reply", schema: SUMMIT_REPLY_SCHEMA, strict: true }
     };
-  } else {
+  } else if (mode === "json_object") {
     body.response_format = { type: "json_object" };
+  }
+  const id = String(MODEL).toLowerCase();
+  if (id.includes("qwen")) {
+    body.reasoning_effort = "none";
+    if (body.response_format) body.reasoning_format = "hidden";
+  } else if (id.includes("gpt-oss")) {
+    body.reasoning_effort = process.env.SUMMIT_REASONING_EFFORT || "low";
+    body.include_reasoning = false;
   }
   return body;
 }
 
 function parseUpstream(upstream) {
   const data = upstream?.data || {};
-  const text = data.choices?.[0]?.message?.content || data.response || data.message?.content || "";
+  const text =
+    data.choices?.[0]?.message?.content ||
+    data.response ||
+    data.message?.content ||
+    data.error?.failed_generation ||
+    "";
   return normalizeReply(coerceJson(text));
 }
 
@@ -174,14 +203,14 @@ function normalizeReply(parsed) {
   return parsed;
 }
 
-async function callUpstream(payload, structured) {
+async function callUpstream(payload, mode) {
   const res = await fetch(UPSTREAM, {
     method: "POST",
     headers: {
       "content-type": "application/json",
       authorization: `Bearer ${KEY}`
     },
-    body: JSON.stringify(upstreamBody(payload, structured))
+    body: JSON.stringify(upstreamBody(payload, mode))
   });
   const data = await res.json().catch(() => ({}));
   return { ok: res.ok, status: res.status, data };

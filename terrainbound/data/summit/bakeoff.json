@@ -1,0 +1,23 @@
+{
+  "provider": "groq",
+  "upstream": "https://api.groq.com/openai/v1/chat/completions",
+  "note": "Hosted bakeoff candidates. Keys never belong in this file. Retrieved Groq production/preview list prices 2026-09-11.",
+  "candidates": [
+    {
+      "id": "A",
+      "model": "openai/gpt-oss-20b",
+      "role": "fast-inexpensive",
+      "inputUsdPerMillion": 0.075,
+      "outputUsdPerMillion": 0.3,
+      "pricingSource": "https://console.groq.com/docs/models GPT OSS 20B production"
+    },
+    {
+      "id": "B",
+      "model": "qwen/qwen3.6-27b",
+      "role": "slightly-stronger-small",
+      "inputUsdPerMillion": 0.6,
+      "outputUsdPerMillion": 3.0,
+      "pricingSource": "https://console.groq.com/docs/models Qwen3.6-27B preview"
+    }
+  ]
+}

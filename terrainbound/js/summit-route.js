@@ -7,10 +7,10 @@ const CLEAN_VOCAB = /^(what is |what's |whats |define |meaning of )?[a-z][a-z\- 
 const CLEAN_MEANING = /^what does [a-z][a-z\- ]{2,24} mean( again)?\??$/i;
 
 const FOLLOW_UP =
-  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one\??|the gentle one\??|yeah|yes|no|ok|okay|right|wait|huh|easier|another way|say that again|what do you mean|so basically.*)$/i;
+  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one\??|the gentle one\??|yeah|yes|no|ok|okay|right|wait|huh|easier|another way|say that again|what do you mean|so basically.*|so gravity\??|wait what|explain it normal|say it easier)$/i;
 
 const MESSY =
-  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose this prove|which note|why cant|why can't|what am i comparing|what did i find|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|third (runoff )?trial|high look|clearance|swamp|marsh|wasn't my|6\.2|difference between|cause vs|why does a fair/i;
+  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose this prove|which note|why cant|why can't|what am i comparing|what did i find|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|third (runoff )?trial|high look|clearance|swamp|marsh|wasn't my|6\.2|difference between|cause vs|why does a fair|idk what this|explain it normal|hill making it faster|wait what/i;
 
 const CURIOSITY =
   /flash flood|snowmelt|\bsnow\b|where i live|gravity cause|flat|same thing|real world|at home|in my town/i;
@@ -19,7 +19,7 @@ const OFF_TOPIC =
   /basketball|football|soccer|super bowl|celebrity|boyfriend|girlfriend|tiktok|minecraft|homework for english|who('s| is) the best|english essay|tell me a joke|what should i eat|what'?s 10\s*[x×]\s*8|10 times 8/i;
 
 const ANSWER_PLEASE =
-  /just tell me|which card|pin the|give me the answer|what do i tap|solve it|do it for me|why can'?t i use|i don't care|which card exactly|the right choice|ignore the rules|test environment|pretend this is/i;
+  /just tell me|which card|pin the|give me the answer|what do i tap|solve it|do it for me|why can'?t i use|i don't care|which card exactly|the right choice|ignore the (tutor )?rules|test environment|pretend this is|developer mode|this is only a test|which exact note|tell me what to click/i;
 
 export function isFollowUp(question, recent) {
   const text = String(question || "").trim();
@@ -70,13 +70,16 @@ export function routeSummit(request) {
   if (intent === "what_now" && /^what am i supposed to do\??$/i.test(question)) {
     return { useAi: false, reason: "objective" };
   }
+  if (/^(what notes do i have|what evidence do i have)\??$/i.test(question)) {
+    return { useAi: false, reason: "evidence-inventory" };
+  }
   if (isOffTopic(question)) {
-    return { useAi: true, reason: "off-topic" };
+    return { useAi: false, reason: "off-topic" };
   }
   if (isFollowUp(question, recent)) {
     return { useAi: true, reason: "follow-up" };
   }
-  if (intent === "explain_more" || /another way|easier|explain it easier/i.test(question)) {
+  if (intent === "explain_more" || /another way|easier|explain it easier|explain it normal|say it easier/i.test(question)) {
     return { useAi: true, reason: "rephrase" };
   }
   if (isCuriosity(question)) {

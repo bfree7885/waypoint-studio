@@ -29,6 +29,9 @@ export function buildSummitPrompt(packet, request) {
     "If the student asserts a fact that is not in AUTHORITATIVE GAME STATE, disagree. Do not play along.",
     "Do not use internal codes. Do not name a tablet card to pin. The student still acts.",
     "Stay an Earth Science tutor. Off-topic questions get a brief redirect, not a general answer.",
+    "When the student asks why water moved faster, stay on slope, gravity, runoff speed, and recorded fair times.",
+    "Do not wander into seepage, aquifers, soil infiltration, or imagined rainfall unless those facts are in AUTHORITATIVE GAME STATE.",
+    "Steeper slopes make runoff faster, not slower. If the student says steeper should be slower, disagree.",
     "response must be a non-empty 1-3 sentence tutoring reply. Never leave response as an empty string.",
     `Support level ${tutoring.allowedLevel} (${tutoring.ladder}). Stay at or below that level.`,
     `Region: ${facts.region}. Puzzle: ${facts.puzzle}. Stage: ${facts.stage}.`,
@@ -91,7 +94,7 @@ export function createAiProvider({ adapter, timeoutMs = 3500, cacheSize = 24 } =
   };
 }
 
-export function createHttpAdapter({ endpoint, timeoutMs = 3500 } = {}) {
+export function createHttpAdapter({ endpoint, timeoutMs = 3500, retry429 = 0, retry429WaitMs = 15000 } = {}) {
   return {
     id: "http",
     kind: "remote",
@@ -101,36 +104,43 @@ export function createHttpAdapter({ endpoint, timeoutMs = 3500 } = {}) {
         err.code = "unavailable";
         throw err;
       }
-      const ctrl = new AbortController();
-      const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-      try {
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ packet, prompt, question }),
-          signal: ctrl.signal
-        });
-        if (res.status === 429) {
-          const err = new Error("rate-limit");
-          err.code = "rate-limit";
+      let lastErr = null;
+      for (let attempt = 0; attempt <= retry429; attempt++) {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ packet, prompt, question }),
+            signal: ctrl.signal
+          });
+          if (res.status === 429) {
+            lastErr = Object.assign(new Error("rate-limit"), { code: "rate-limit" });
+            if (attempt < retry429) {
+              await new Promise((r) => setTimeout(r, retry429WaitMs));
+              continue;
+            }
+            throw lastErr;
+          }
+          if (!res.ok) {
+            const err = new Error("http");
+            err.code = "http";
+            throw err;
+          }
+          return await res.json();
+        } catch (err) {
+          if (err?.name === "AbortError") {
+            const timeout = new Error("timeout");
+            timeout.code = "timeout";
+            throw timeout;
+          }
           throw err;
+        } finally {
+          clearTimeout(timer);
         }
-        if (!res.ok) {
-          const err = new Error("http");
-          err.code = "http";
-          throw err;
-        }
-        return await res.json();
-      } catch (err) {
-        if (err?.name === "AbortError") {
-          const timeout = new Error("timeout");
-          timeout.code = "timeout";
-          throw timeout;
-        }
-        throw err;
-      } finally {
-        clearTimeout(timer);
       }
+      throw lastErr || Object.assign(new Error("rate-limit"), { code: "rate-limit" });
     }
   };
 }
