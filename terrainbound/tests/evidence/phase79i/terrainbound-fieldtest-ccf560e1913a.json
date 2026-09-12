@@ -1,0 +1,871 @@
+{
+  "session": {
+    "version": 1,
+    "fieldTest": true,
+    "sessionId": "ccf560e1913a859edf205f2fa5d1f894",
+    "startedAt": 1789223736584,
+    "endedAt": 1789223741457,
+    "region": "cedar-hollow",
+    "events": [
+      {
+        "type": "world",
+        "id": "w1",
+        "atMs": 1877,
+        "kind": "inspect",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "summit",
+        "id": "t1",
+        "prevTurnId": "",
+        "atMs": 2227,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "what_now",
+        "action": "what_now",
+        "routeKind": "deterministic",
+        "routeReason": "quick-action",
+        "concept": "runoff",
+        "supportLevel": 0,
+        "modelLatencyMs": null,
+        "fullLoopMs": 2,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "You are trying to say, honestly, where last night's water went — from high ground to water still moving. Walk the ground. The hollow is the lesson, not this panel.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t2",
+        "prevTurnId": "t1",
+        "atMs": 2889,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "why did the water move faster?",
+        "action": "",
+        "routeKind": "hosted",
+        "routeReason": "follow-up",
+        "concept": "Gravity and slope",
+        "supportLevel": 3,
+        "modelLatencyMs": 628,
+        "fullLoopMs": 645,
+        "validatorResult": "ok",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "On a steeper slope, a larger component of gravity pulls the water downhill, so it accelerates faster than on a gentler slope.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t3",
+        "prevTurnId": "t2",
+        "atMs": 3187,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "huh",
+        "action": "",
+        "routeKind": "hosted",
+        "routeReason": "follow-up",
+        "concept": "Gravity and slope",
+        "supportLevel": 3,
+        "modelLatencyMs": 280,
+        "fullLoopMs": 292,
+        "validatorResult": "ok",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "Because a steeper slope lets more of gravity’s pull act straight downhill, the water accelerates faster than on a gentler slope.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t4",
+        "prevTurnId": "t3",
+        "atMs": 3194,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "gravity is stronger on the steep slope",
+        "action": "",
+        "routeKind": "deterministic",
+        "routeReason": "default-deterministic",
+        "concept": "gravity",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 1,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "Gravity pulls water downhill. It does not pull water up Granite Knob.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t5",
+        "prevTurnId": "t4",
+        "atMs": 3475,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "the steep one?",
+        "action": "",
+        "routeKind": "hosted",
+        "routeReason": "follow-up",
+        "concept": "gravity",
+        "supportLevel": 3,
+        "modelLatencyMs": 264,
+        "fullLoopMs": 267,
+        "validatorResult": "ok",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "Gravity pulls water downhill the same way on any slope; a steeper slope just lets more of that pull act directly downhill, so the water can move faster.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t6",
+        "prevTurnId": "t5",
+        "atMs": 4189,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "it took 6.2 seconds, right?",
+        "action": "",
+        "routeKind": "hosted",
+        "routeReason": "messy-language",
+        "concept": "Runoff Speed",
+        "supportLevel": 3,
+        "modelLatencyMs": 694,
+        "fullLoopMs": 697,
+        "validatorResult": "ok",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "We haven’t recorded the runoff times yet, so we can’t say whether it was 6.2 seconds. Once we measure the time on the steep slope and compare it to a gentle slope, we can determine if the steep slope was faster.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t7",
+        "prevTurnId": "t6",
+        "atMs": 4196,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "just tell me the answer",
+        "action": "",
+        "routeKind": "deterministic",
+        "routeReason": "answer-ladder",
+        "concept": "",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 0,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "I will not finish the case or name a card. Look for a note that actually answers Wren's question.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t8",
+        "prevTurnId": "t7",
+        "atMs": 4211,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "what do I do next",
+        "action": "",
+        "routeKind": "deterministic",
+        "routeReason": "next-action",
+        "concept": "",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 0,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "Time the same amount of water on one slope, then you will have a measurement to talk about.",
+        "nextActionAppended": "Time the same amount of water on one slope, then you will have a measurement to talk about.",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": true,
+        "progressSignals": [
+          "completed-required-action",
+          "earned-evidence"
+        ],
+        "followedByRepeatHelp": false,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "world",
+        "id": "w2",
+        "atMs": 4226,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w3",
+        "atMs": 4230,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 1,
+          "fairTrialCount": 1,
+          "comparisonReady": false,
+          "steepMeasured": true,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w4",
+        "atMs": 4230,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 1,
+          "fairTrialCount": 2,
+          "comparisonReady": false,
+          "steepMeasured": true,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w5",
+        "atMs": 4230,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 1,
+          "fairTrialCount": 3,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w6",
+        "atMs": 4231,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 1,
+          "fairTrialCount": 4,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w7",
+        "atMs": 4231,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 1,
+          "fairTrialCount": 5,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w8",
+        "atMs": 4231,
+        "kind": "trial",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 2,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w9",
+        "atMs": 4231,
+        "kind": "fair-comparison",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 2,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w10",
+        "atMs": 4258,
+        "kind": "interpreted",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 3,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "summit",
+        "id": "t9",
+        "prevTurnId": "t8",
+        "atMs": 4312,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "High Look",
+        "studentUtterance": "can I conclude steep is faster now?",
+        "action": "",
+        "routeKind": "deterministic",
+        "routeReason": "fair-test",
+        "concept": "fair-test",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 1,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "You have both slopes in the log: Trial 1: steep slope, 3.9 s; Trial 2: steep slope, 3.8 s; Trial 3: gentle slope, 8.3 s; Trial 4: gentle slope, 8.2 s; Trial 5: moderate slope, 5.7 s; Trial 6: moderate slope, 5.4 s; High Look: inspected; the hollow tilts toward low ground. Compare those measured times; do not invent extra ones.",
+        "nextActionAppended": "",
+        "comparisonReady": true,
+        "steepMeasured": true,
+        "gentleMeasured": true,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 3,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": true,
+        "progressSignals": [
+          "revised-explanation",
+          "earned-evidence",
+          "progressed-puzzle",
+          "clearance"
+        ],
+        "followedByRepeatHelp": false,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "world",
+        "id": "w11",
+        "atMs": 4327,
+        "kind": "aar",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 3,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "more-evidence",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "world",
+        "id": "w12",
+        "atMs": 4773,
+        "kind": "clearance",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-09",
+          "puzzleName": "Make the Case",
+          "stage": "cleared",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 8,
+          "fairTrialCount": 6,
+          "comparisonReady": true,
+          "steepMeasured": true,
+          "gentleMeasured": true,
+          "inspectedHighLook": true,
+          "clearance": true,
+          "aarOpen": false,
+          "aarResult": "clearance",
+          "hypothesisReady": false
+        }
+      }
+    ],
+    "marks": [
+      {
+        "turnId": "t2",
+        "mark": "HELPED",
+        "note": "natural slope why",
+        "atMs": 2893
+      },
+      {
+        "turnId": "t3",
+        "mark": "CONFUSING",
+        "note": "vague",
+        "atMs": 3191
+      },
+      {
+        "turnId": "t4",
+        "mark": "WRONG",
+        "note": "gravity misconception",
+        "atMs": 3205
+      },
+      {
+        "turnId": "t5",
+        "mark": "HELPED",
+        "note": "followup",
+        "atMs": 3488
+      },
+      {
+        "turnId": "t6",
+        "mark": "WRONG",
+        "note": "false premise",
+        "atMs": 4193
+      },
+      {
+        "turnId": "t7",
+        "mark": "TOO_MUCH",
+        "note": "answer ladder",
+        "atMs": 4207
+      },
+      {
+        "turnId": "t8",
+        "mark": "HELPED",
+        "note": "next action",
+        "atMs": 4223
+      },
+      {
+        "turnId": "t9",
+        "mark": "HELPED",
+        "note": "after fair comparison",
+        "atMs": 4323
+      }
+    ]
+  },
+  "summary": {
+    "sessionId": "ccf560e1913a859edf205f2fa5d1f894",
+    "durationMs": 4873,
+    "puzzlesAttempted": [
+      "CH-02"
+    ],
+    "puzzlesCompleted": [
+      "CH-02"
+    ],
+    "summitTurns": 9,
+    "deterministicTurns": 5,
+    "hostedTurns": 4,
+    "fallbacks": 0,
+    "validatorRejections": 0,
+    "latency": {
+      "model": {
+        "n": 4,
+        "mean": 467,
+        "median": 280,
+        "p95": 694
+      },
+      "fullLoop": {
+        "n": 9,
+        "mean": 212,
+        "median": 2,
+        "p95": 697
+      }
+    },
+    "supportLevels": {
+      "0": 1,
+      "3": 8
+    },
+    "conceptsAsked": {
+      "runoff": 1,
+      "Gravity and slope": 2,
+      "gravity": 2,
+      "Runoff Speed": 1,
+      "fair-test": 1
+    },
+    "repeatedMisconceptions": [],
+    "marks": {
+      "HELPED": 4,
+      "CONFUSING": 1,
+      "WRONG": 2,
+      "TOO_MUCH": 1
+    },
+    "helpedThenProgressed": 2,
+    "repeatHelpWithoutProgress": 7,
+    "clearance": true,
+    "aarResult": "clearance"
+  }
+}

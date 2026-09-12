@@ -347,6 +347,12 @@ Fair-test and epistemic asks stay deterministic. Slope “why” questions may s
 
 Live eval: `tests/phase7_9h-live.mjs`. Science utterances: `data/summit/eval-science.json`. Evidence: `tests/evidence/phase79h/`.
 
+## Phase 7.9I supervised field test
+
+Do not retune Summit against synthetic evals. `?summit=fieldtest` is an explicit opt-in: hosted GPT-OSS when the loopback proxy is configured, plus an anonymous local session log and optional observer marks. Normal loads stay unchanged. The model still writes language only. Wren still grants clearance.
+
+See `docs/SUMMIT-FIELD-TEST.md`. Evidence: `tests/evidence/phase79i/`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -401,6 +407,9 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `tests/phase7_9h.test.mjs` — science-precision architecture
 - `tests/phase7_9h-live.mjs` — GPT-OSS science-precision live eval (env credentials)
 - `tests/evidence/phase79g/` — 7.9G evidence
+- `js/summit-fieldtest.js` — anonymous supervised field-test log, marks, and summaries
+- `docs/SUMMIT-FIELD-TEST.md` — human field-test script
+- `tests/phase7_9i.test.mjs` — field-test harness
 - `tests/evidence/phase79h/` — 7.9H evidence
 - `js/summit-validate.js` — grounding gate
 - `js/summit-hybrid.js` — route → AI or authored → fallback

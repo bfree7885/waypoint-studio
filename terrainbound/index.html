@@ -268,7 +268,7 @@
       <div class="summit-sheet">
         <header class="summit-head">
           <div>
-            <p class="field-bench-kicker">Earth Science tutor</p>
+            <p class="field-bench-kicker">Earth Science tutor <span id="summit-fieldtest-flag" hidden>· FIELD TEST</span></p>
             <h2>Summit</h2>
           </div>
           <button type="button" id="summit-close">Close</button>
@@ -289,6 +289,22 @@
           <button type="submit">Ask</button>
         </form>
         <p id="summit-diag" class="summit-diag" hidden aria-hidden="true"></p>
+        <div id="summit-fieldtest" class="summit-fieldtest" hidden>
+          <p class="summit-fieldtest-kicker">Field test · observer marks (optional)</p>
+          <div class="summit-fieldtest-marks" role="group" aria-label="Summit response marks">
+            <button type="button" data-ft-mark="HELPED">Helped</button>
+            <button type="button" data-ft-mark="CONFUSING">Confusing</button>
+            <button type="button" data-ft-mark="TOO_MUCH">Too much</button>
+            <button type="button" data-ft-mark="WRONG">Wrong</button>
+            <button type="button" data-ft-mark="OTHER">Other</button>
+          </div>
+          <label class="visually-hidden" for="summit-fieldtest-note">Observer note</label>
+          <input id="summit-fieldtest-note" type="text" maxlength="240" autocomplete="off" placeholder="Optional observer note">
+          <div class="summit-fieldtest-export">
+            <button type="button" id="summit-fieldtest-json">Export JSON</button>
+            <button type="button" id="summit-fieldtest-md">Export summary</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -337,6 +353,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p79h"></script>
+  <script type="module" src="./js/main.js?v=p79i"></script>
 </body>
 </html>

@@ -181,6 +181,20 @@ import {
 import { worldToLatLon, formatLatLon } from "./geomap.js";
 import { fieldGuidance } from "./guidance.js";
 import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess } from "./summit.js";
+import { buildSummitContext } from "./summit-context.js";
+import {
+  isFieldTestMode,
+  createFieldTestSession,
+  recordSummitTurn,
+  recordWorldEvent,
+  markTurn,
+  serializeFieldTest,
+  formatFieldTestMarkdown,
+  worldSnapshot,
+  routeKind,
+  validatorResult,
+  exportFilenames
+} from "./summit-fieldtest.js";
 import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
@@ -202,9 +216,10 @@ const FLOW_MAP = [
 function useSummitProxy(cfg) {
   if (!cfg) return false;
   const params = new URLSearchParams(location.search);
-  if (params.get("summit") === "local") return false;
+  const summit = params.get("summit");
+  if (summit === "local") return false;
   if (cfg.endpoint) return true;
-  return params.get("summit") === "ai" && Boolean(cfg.proxyEndpoint);
+  return (summit === "ai" || summit === "fieldtest") && Boolean(cfg.proxyEndpoint);
 }
 
 export async function boot(root = document) {
@@ -353,6 +368,8 @@ export async function boot(root = document) {
   let summitMoreText = "";
   let summitAskLock = false;
   const fieldMode = new URLSearchParams(location.search).get("field") === "1";
+  const fieldTestMode = isFieldTestMode(location.search);
+  const fieldTestSession = fieldTestMode ? createFieldTestSession() : null;
   let aarIndex = 0;
   let aarConfirmed = [];
   let atlasOpen = false;
@@ -711,6 +728,39 @@ export async function boot(root = document) {
     }
   }
 
+  function fieldSnap() {
+    return worldSnapshot(buildSummitContext({ ...summitContextInput(), summitState }));
+  }
+
+  function fieldObserve(kind) {
+    if (!fieldTestMode || !fieldTestSession) return;
+    recordWorldEvent(fieldTestSession, {
+      kind,
+      snapshot: fieldSnap(),
+      atMs: Date.now() - fieldTestSession.startedAt
+    });
+  }
+
+  function fieldTestPayload() {
+    if (!fieldTestSession) return null;
+    fieldTestSession.endedAt = Date.now();
+    return serializeFieldTest(fieldTestSession);
+  }
+
+  function downloadFieldTest(kind) {
+    const packed = fieldTestPayload();
+    if (!packed) return null;
+    const names = exportFilenames(packed.session);
+    const body = kind === "md" ? formatFieldTestMarkdown(packed.session, packed.summary) : JSON.stringify(packed, null, 2);
+    const blob = new Blob([body], { type: kind === "md" ? "text/markdown;charset=utf-8" : "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = kind === "md" ? names.md : names.json;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    return packed;
+  }
+
   function persist() {
     syncProgress();
     refreshGuide();
@@ -847,11 +897,13 @@ export async function boot(root = document) {
     syncFlowDataset();
     persist();
     renderFlume();
+    fieldObserve("trial");
     if (!result.fair) {
       ui.showToast("Fair test", result.hint);
       maybeSummitIdea("unfair-test");
     } else if (hasFairComparison(flumeState, flumeSpec)) {
       noteSuccess(summitState, "CH-03");
+      fieldObserve("fair-comparison");
     }
     return result;
   }
@@ -936,6 +988,7 @@ export async function boot(root = document) {
     refreshJournal();
     if (result.ok) {
       noteSuccess(summitState, "CH-04");
+      fieldObserve("interpreted");
       closeInterpret();
       showDialogueLines("Ranger Wren", flumeSpec.wren.afterFair, 0, () => {
         dialogue = null;
@@ -1290,13 +1343,17 @@ export async function boot(root = document) {
 
   function renderSummit(extra = {}) {
     const debug = fieldMode ? summitState.lastDebug : null;
+    const lastTurn = fieldTestSession?.events?.filter((row) => row.type === "summit").slice(-1)[0] || null;
     ui.showSummit(true, {
       lead: extra.pending ? "Looking at your notes…" : "I can help you read the hollow. Wren still judges the case.",
       messages: summitState.recent,
       moreAvailable: Boolean(summitMoreText),
       pending: Boolean(extra.pending),
+      fieldTest: fieldTestMode,
+      fieldTestTurnId: lastTurn?.id || "",
       diag: debug
         ? [
+            "FIELD TEST",
             debug.adapterId ? `${debug.provider}/${debug.adapterId}` : debug.provider,
             debug.useAi ? "ai-path" : "authored",
             debug.intent || "intent",
@@ -1308,7 +1365,9 @@ export async function boot(root = document) {
           ]
             .filter(Boolean)
             .join(" · ")
-        : ""
+        : fieldTestMode
+          ? "FIELD TEST · local anonymous log · Summit is the language layer only"
+          : ""
     });
     ui.setSummitIdea(Boolean(summitState.idea));
   }
@@ -1347,9 +1406,39 @@ export async function boot(root = document) {
     if (summitAskLock) return;
     summitAskLock = true;
     if (summitOpen) renderSummit({ pending: true });
+    const t0 = typeof performance !== "undefined" ? performance.now() : Date.now();
     try {
       const reply = await Promise.resolve(summitEngine.ask(summitState, summitContextInput(), opts));
       summitMoreText = reply.more || "";
+      if (fieldTestSession) {
+        const snap = fieldSnap();
+        const usage = reply.rawModel?.usage || {};
+        recordSummitTurn(fieldTestSession, {
+          studentUtterance: opts.question || opts.action || "",
+          action: opts.action || "",
+          region: snap.region,
+          puzzle: snap.puzzleId,
+          puzzleStage: snap.stage,
+          locationCategory: (snap.near || []).join(", "),
+          routeKind: routeKind(reply),
+          routeReason: reply.route?.reason || "",
+          concept: (reply.conceptIds || [])[0] || "",
+          supportLevel: reply.level,
+          modelLatencyMs: usage.latencyMs,
+          fullLoopMs: Math.round((typeof performance !== "undefined" ? performance.now() : Date.now()) - t0),
+          validatorResult: validatorResult(reply),
+          fallbackOccurred: Boolean(reply.fallbackReason),
+          fallbackReason: reply.fallbackReason || "",
+          visibleResponse: reply.text,
+          nextActionText: reply.packet?.nextAction?.text || "",
+          comparisonReady: snap.comparisonReady,
+          steepMeasured: snap.steepMeasured,
+          gentleMeasured: snap.gentleMeasured,
+          misconceptionId: reply.misconceptionId || "",
+          snapshot: snap,
+          atMs: Date.now() - fieldTestSession.startedAt
+        });
+      }
       persist();
       return reply;
     } finally {
@@ -1412,6 +1501,7 @@ export async function boot(root = document) {
     persist();
     refreshJournal();
     closeAar();
+    fieldObserve(result.result === "clearance" ? "clearance" : "aar");
     if (result.result === "clearance") {
       noteSuccess(summitState, "CH-09");
       showDialogueLines("Ranger Wren", aarSpec.clearance.lines, 0, () => {
@@ -1419,12 +1509,13 @@ export async function boot(root = document) {
         ui.showDialogue(false);
         openAtlas("high-country");
       });
-      return;
+      return result;
     }
     showDialogueLines("Ranger Wren", result.lines.length ? result.lines : [aarSpec.moreEvidence.lead], 0, () => {
       dialogue = null;
       ui.showDialogue(false);
     });
+    return result;
   }
 
   function inspectChallenge(site) {
@@ -1572,6 +1663,7 @@ export async function boot(root = document) {
     if (!feature || inspectLock) return;
     const result = addObservation(missionState, mission, feature.id);
     if (!result) return;
+    fieldObserve("inspect");
     inspectLock = true;
     const spec = result.spec;
     showDialogueLines("Field note", [spec.prompt, spec.text], 0, () => {
@@ -1631,6 +1723,7 @@ export async function boot(root = document) {
 
     if (!isFound(discoveryState, item.id)) {
       const result = addDiscovery(discoveryState, catalog, item.id);
+      fieldObserve("discovery");
       const name = displayName(item, false);
       player.pose = "inspect";
       pulseFocus(item.x, item.y);
@@ -3303,6 +3396,19 @@ export async function boot(root = document) {
     input.value = "";
     askSummit({ question });
   });
+  root.querySelector("#summit-fieldtest")?.addEventListener("click", (event) => {
+    const markBtn = event.target.closest("[data-ft-mark]");
+    if (markBtn && fieldTestSession) {
+      const turns = fieldTestSession.events.filter((row) => row.type === "summit");
+      const last = turns[turns.length - 1];
+      if (!last) return;
+      const note = root.querySelector("#summit-fieldtest-note")?.value || "";
+      markTurn(fieldTestSession, last.id, markBtn.dataset.ftMark, note);
+      ui.showToast("Marked", markBtn.dataset.ftMark.replace("_", " ").toLowerCase());
+    }
+  });
+  root.querySelector("#summit-fieldtest-json")?.addEventListener("click", () => downloadFieldTest("json"));
+  root.querySelector("#summit-fieldtest-md")?.addEventListener("click", () => downloadFieldTest("md"));
   root.querySelector("#geo-close")?.addEventListener("click", closeGeo);
   root.querySelector("#path-reset").addEventListener("click", () => {
     resetPath(missionState);
@@ -3612,6 +3718,7 @@ export async function boot(root = document) {
       openClearance,
       openSystems,
       openAar,
+      submitAar: submitAarCase,
       openSummit,
       askSummit,
       closeSummit,
@@ -3619,6 +3726,20 @@ export async function boot(root = document) {
         return summitState.lastDebug || null;
       },
       summitAdapterId: summitAdapter.id,
+      fieldTest: fieldTestMode
+        ? {
+            session: () => fieldTestSession,
+            payload: fieldTestPayload,
+            mark(mark, note) {
+              const turns = fieldTestSession?.events.filter((row) => row.type === "summit") || [];
+              const last = turns[turns.length - 1];
+              if (!last) return null;
+              return markTurn(fieldTestSession, last.id, mark, note);
+            },
+            exportJson: () => downloadFieldTest("json"),
+            exportMd: () => downloadFieldTest("md")
+          }
+        : null,
       openConflict,
       releaseWater,
       tryInterpret,

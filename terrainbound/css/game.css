@@ -1042,8 +1042,77 @@ input#geo-number {
   50% { opacity: 1; }
 }
 
+.summit-diag {
+  overflow-wrap: anywhere;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
 .summit-diag[hidden] {
   display: none;
+}
+
+.summit-fieldtest[hidden],
+#summit-fieldtest-flag[hidden] {
+  display: none;
+}
+
+.summit-sheet:has(#summit-fieldtest:not([hidden])) {
+  overflow-y: auto;
+}
+
+.summit-sheet:has(#summit-fieldtest:not([hidden])) .summit-log {
+  min-height: 5.5rem;
+}
+
+.summit-sheet:has(#summit-fieldtest:not([hidden])) .summit-quick {
+  max-height: 4.25rem;
+}
+
+.summit-fieldtest {
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #d7c39a;
+}
+
+.summit-fieldtest-kicker {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5a6d52;
+}
+
+.summit-fieldtest-marks,
+.summit-fieldtest-export {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.summit-fieldtest button {
+  border: 2px solid #cbbca0;
+  background: #f4efe2;
+  color: #243226;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.summit-fieldtest input {
+  width: 100%;
+  min-height: 44px;
+  border: 2px solid #cbbca0;
+  border-radius: 12px;
+  padding: 8px 10px;
+  font: inherit;
+  background: #fffdf8;
+  margin-bottom: 6px;
 }
 
 #journal-graph {

@@ -31,6 +31,22 @@ import { composeStudentVisible } from "./summit-compose.js";
 import { buildSummitTruth } from "./summit-truth.js";
 import { SUMMIT_CONCEPTS, comparisonStatus } from "./summit-concepts.js";
 import { checkConceptClaims } from "./summit-science.js";
+import {
+  isFieldTestMode,
+  createFieldTestSession,
+  recordSummitTurn,
+  recordWorldEvent,
+  markTurn,
+  summarizeFieldTest,
+  serializeFieldTest,
+  formatFieldTestMarkdown,
+  worldSnapshot,
+  routeKind,
+  validatorResult,
+  exportFilenames,
+  logLooksPrivate,
+  FIELDTEST_MARKS
+} from "./summit-fieldtest.js";
 
 export {
   createSummitState,
@@ -52,6 +68,20 @@ export {
   SUMMIT_CONCEPTS,
   comparisonStatus,
   checkConceptClaims,
+  isFieldTestMode,
+  createFieldTestSession,
+  recordSummitTurn,
+  recordWorldEvent,
+  markTurn,
+  summarizeFieldTest,
+  serializeFieldTest,
+  formatFieldTestMarkdown,
+  worldSnapshot,
+  routeKind,
+  validatorResult,
+  exportFilenames,
+  logLooksPrivate,
+  FIELDTEST_MARKS,
   SUMMIT_MODEL_REQUIREMENTS
 };
 

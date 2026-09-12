@@ -1766,4 +1766,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Teach known / expected / unknown as structured lists, not as extra prompt paragraphs. The validator should fail measured-relationship claims, not scientific expectations.
 - Do not grow a science-phrase blacklist. Path-length and gravity-strength checks need the claim plus whether the reply already corrected it.
 
+### Lessons Learned — TerrainBound Phase 7.9I (2026-09-12)
+
+- A hosted tutor that passed synthetic science bars still needs a supervised human log before anyone else uses it. Keep that log local, anonymous, and derived from game state. Do not add analytics products to learn whether Summit helped.
+- Opt-in query flags (`?summit=fieldtest`) are safer than silently promoting the hosted path. Observer marks must stay optional and ungamified.
+
 

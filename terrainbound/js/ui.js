@@ -778,6 +778,13 @@ export function bindUi(root) {
         diag.setAttribute("aria-hidden", view.diag ? "false" : "true");
         diag.textContent = view.diag || "";
       }
+      const ft = root.querySelector("#summit-fieldtest");
+      const ftFlag = root.querySelector("#summit-fieldtest-flag");
+      if (ftFlag) ftFlag.hidden = !view.fieldTest;
+      if (ft) {
+        ft.hidden = !view.fieldTest;
+        ft.dataset.turnId = view.fieldTestTurnId || "";
+      }
       if (open && !view.pending) summitAsk?.focus();
     },
     showGeoBoard(open, view = {}, handlers = {}) {
