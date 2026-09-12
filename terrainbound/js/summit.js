@@ -29,6 +29,8 @@ import { routeSummit, isGameplayAsk, isNextActionAsk } from "./summit-route.js";
 import { validateSummitOutput } from "./summit-validate.js";
 import { composeStudentVisible } from "./summit-compose.js";
 import { buildSummitTruth } from "./summit-truth.js";
+import { SUMMIT_CONCEPTS, comparisonStatus } from "./summit-concepts.js";
+import { checkConceptClaims } from "./summit-science.js";
 
 export {
   createSummitState,
@@ -47,6 +49,9 @@ export {
   buildSummitTruth,
   isGameplayAsk,
   isNextActionAsk,
+  SUMMIT_CONCEPTS,
+  comparisonStatus,
+  checkConceptClaims,
   SUMMIT_MODEL_REQUIREMENTS
 };
 

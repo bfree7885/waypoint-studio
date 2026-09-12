@@ -29,6 +29,20 @@ export function composeLocal(packet, question, curiosity = {}) {
     );
   }
 
+  if (/gravity (get|gets|is) stronger|stronger gravity/i.test(q)) {
+    return out("Gravity does not get stronger on a steep hill. More of the same pull acts downhill along the surface.", {
+      concept: "slope",
+      supportLevel: level
+    });
+  }
+
+  if (/path is longer|farther to travel|further to travel|steeper means farther/i.test(q)) {
+    return out("No. A longer path is not the reason. The key idea is how the slope changes the downhill part of gravity.", {
+      concept: "slope",
+      supportLevel: level
+    });
+  }
+
   if (wantsDirectAnswer(q)) {
     const stronger =
       level >= 4
@@ -85,18 +99,48 @@ export function composeLocal(packet, question, curiosity = {}) {
     return out(line, { supportLevel: level });
   }
 
+  if (/difference between observation and interpretation|observation or a cause/i.test(q)) {
+    return out(
+      "Observation is what you directly saw or measured. Interpretation is the explanation you give those facts.",
+      { concept: "observation", supportLevel: level }
+    );
+  }
+
+  if (/i saw that runoff is caused|i think steep made it faster|proves slope/i.test(q)) {
+    return out(
+      "A time you recorded is an observation. “Steep made it faster” is an interpretation, and it needs a fair steep-versus-gentle comparison before it is a result.",
+      { concept: "observation", supportLevel: level }
+    );
+  }
+
+  if (/the water moved 10\.2/i.test(q)) {
+    const has = (facts.numbers || []).some((n) => Number(n).toFixed(1) === "10.2");
+    return out(
+      has
+        ? "10.2 seconds is a measured travel time — that is an observation. Why it happened is a separate interpretation."
+        : "I do not see 10.2 seconds in the times I can read. I will not invent it.",
+      { concept: "observation", supportLevel: level }
+    );
+  }
+
   if (/what am i comparing|compare/i.test(q) && facts.measurements?.length) {
-    return out(timesLine(facts) + " Which slope finished sooner with the same water?", {
-      concept: "fair-test",
-      supportLevel: level
-    });
+    const ready = Boolean(facts.comparisonStatus?.comparisonReady);
+    return out(
+      ready
+        ? timesLine(facts) + " Which slope finished sooner with the same water?"
+        : timesLine(facts) + " Repeating the steep setup is not a steep-versus-gentle comparison yet.",
+      { concept: "fair-test", supportLevel: level }
+    );
   }
 
   if (/makes no sense|why did it|faster|slower/i.test(q) && facts.measurements?.length) {
+    const ready = Boolean(facts.comparisonStatus?.comparisonReady);
+    const science =
+      "On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.";
     return out(
-      level >= 3
-        ? timesLine(facts) + " On the steeper surface, gravity pulls the same water downhill more effectively, so it usually finishes sooner."
-        : timesLine(facts) + " Compare those two. Which trial had the shorter time?",
+      ready
+        ? timesLine(facts) + " " + science
+        : timesLine(facts) + " " + science + " Your log has not shown the gentler slope yet.",
       { concept: "slope", supportLevel: level }
     );
   }
@@ -143,32 +187,43 @@ function timesLine(facts) {
 function followUpLine(q, packet, recent, level) {
   const last = [...recent].reverse().find((row) => row.role === "summit")?.text || "";
   const facts = packet.facts || {};
-  if (/gravity gets stronger/i.test(q)) {
-    return "Gravity is not getting stronger. Steeper ground just lets more of that same pull act along the slope, so the water usually speeds up.";
+  const ready = Boolean(facts.comparisonStatus?.comparisonReady);
+  if (/gravity gets stronger|gravity stronger/i.test(q)) {
+    return "Gravity does not get stronger on a steep hill. More of the same pull acts downhill along the surface.";
+  }
+  if (/path|farther|further|longer/i.test(q)) {
+    return "A longer path is not the reason. The slope changes how much of gravity's pull acts downhill.";
   }
   if (/steep matter/i.test(q)) {
     return level >= 3
-      ? "Steepness changes how much of gravity's pull acts along the surface. The water is the same; the slope is not."
-      : "Steepness is the thing that changed. Compare the times you actually recorded.";
+      ? "On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger."
+      : "Steepness is the thing that would change in a fair slope test.";
   }
-  if (/steep/i.test(q) && facts.measurements?.length) {
-    return "That's what your measurements support here. Steeper channels finished sooner when the water stayed the same.";
-  }
-  if (/gentle|slow/i.test(q) && facts.measurements?.length) {
+  if (/gentle|slow/i.test(q)) {
+    if (!facts.comparisonStatus?.gentleMeasured) {
+      return "The gentler slope has not been measured yet. Science expects it to take longer if other conditions stay comparable, but your log has not shown that yet.";
+    }
     return "Yes — the gentler run took longer in the times you logged. Slope changed; the cup of water did not.";
   }
+  if (/steep/i.test(q) && facts.measurements?.length) {
+    if (!ready) {
+      return "Your steep trials are measurements of that one setup. They do not yet show steep versus gentle.";
+    }
+    return "That's what your measurements support here. Steeper channels finished sooner when the water stayed the same.";
+  }
   if (/so\??$|faster\?$/i.test(q) || /steeper means faster/i.test(q)) {
+    if (ready) return "That's what your measurements support here.";
     return facts.measurements?.length
-      ? "That's what your measurements support here."
+      ? "Science expects the steeper slope to be faster if other conditions stay comparable. Your log has not shown the gentle comparison yet."
       : "I do not have fair times to confirm that yet. Time the same cup on more than one slope.";
   }
   if (/easier|another way/i.test(q)) return easierLine(packet, level);
-  if (/why though|why\??$/i.test(q)) {
+  if (/why though|why\??$|huh/i.test(q)) {
     if (level >= 3) {
-      return "Gravity still pulls downhill. Steeper ground gives that pull more of a run, so the same water usually arrives sooner.";
+      return "Gravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.";
     }
     if (facts.measurements?.length) {
-      return "Look at the two measurements again. Something changed when the slope changed.";
+      return "Look at the measurements you actually have. Repeating the same slope is consistency, not a slope comparison.";
     }
     return last
       ? `Stay with that. ${ladderPrompt(level, facts)}`
@@ -184,18 +239,29 @@ function followUpLine(q, packet, recent, level) {
 
 function easierLine(packet, level) {
   const facts = packet.facts || {};
-  if (facts.measurements?.length) {
+  const ready = Boolean(facts.comparisonStatus?.comparisonReady);
+  if (ready && facts.measurements?.length) {
     return "Short version: same water, different slope, different time. The steeper run finished first in your log. That is slope, not a new storm.";
+  }
+  if (facts.measurements?.length) {
+    return "Short version: you have steep-slope times. Science expects steep to be faster, but you still need a gentler-slope measurement for a fair comparison.";
   }
   return `Short version: you are figuring out ${facts.puzzle}. Look at the land or the tablet, then take the next small step.`;
 }
 
 function ladderPrompt(level, facts) {
+  const ready = Boolean(facts.comparisonStatus?.comparisonReady);
   if (level <= 0) return `You are trying to understand ${facts.puzzle}.`;
   if (level === 1) return facts.near?.length ? `You are near ${facts.near.join(", ")}. Look there before asking for the answer.` : "Notice one useful thing in the hollow or on the table.";
-  if (level === 2) return "Compare two things you already have — two times, two places, or two notes.";
-  if (level === 3) return "The science is that gravity pulls runoff downhill; steeper, looser ground usually sheds it faster.";
-  return "The relationship is slope and time: if the cup stayed the same, the faster run is the steeper channel. You still record or pin it.";
+  if (level === 2) {
+    return ready
+      ? "Compare two things you already have — two times, two places, or two notes."
+      : "You tested one setup. What would you need to change to compare slope?";
+  }
+  if (level === 3) return "On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.";
+  return ready
+    ? "The relationship is slope and time: if the cup stayed the same, the faster run is the steeper channel. You still record or pin it."
+    : "Repeated steep trials can be consistent without proving steep versus gentle. Measure the other slope next.";
 }
 
 function curiosityLine(q, curiosity, facts) {

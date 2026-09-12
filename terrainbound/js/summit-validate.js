@@ -5,6 +5,7 @@
 
 import { packetNumbers, stripCodes } from "./summit-packet.js";
 import { isGameplayAsk, isOffTopic } from "./summit-route.js";
+import { checkConceptClaims } from "./summit-science.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of|HTTP \d+|API failure|JSON parsing/i;
 const CLEARANCE_CLAIM =
@@ -43,6 +44,8 @@ export function validateSummitOutput(raw, packet, request = {}) {
   if (inventedTrialCount(response, packet)) return fail("invented-trial");
   if (inventedObservation(response)) return fail("invented-observation");
   if (agreesWithSlopeMisconception(response, request.question || "")) return fail("misconception-agree");
+  const conceptFail = checkConceptClaims(response, packet, request.question || "");
+  if (conceptFail) return fail(conceptFail);
   if (isOffTopic(request.question) && !/field science tutor|Cedar Hollow|I'm your|I am your|tutor here/i.test(response)) {
     return fail("off-topic-answer");
   }

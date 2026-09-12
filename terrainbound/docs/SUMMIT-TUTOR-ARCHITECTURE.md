@@ -328,6 +328,25 @@ Timeout diagnosis from 7.9F: successful Groq replies were usually <1.5s, but man
 
 Live eval: `tests/phase7_9g-live.mjs` (GPT-OSS only, 5s, no 429 backoff). Evidence: `tests/evidence/phase79g/`. Constrained utterances: `data/summit/eval-constrained.json`.
 
+## Phase 7.9H science precision
+
+Do not shop models. Keep the 7.9G language-layer contract. This pass adds structured Cedar Hollow concept truth so Summit can distinguish measured facts from scientific expectations.
+
+Deterministic objects:
+
+- `comparisonStatus`: `{ variable: "slope", steepMeasured, gentleMeasured, comparisonReady }`
+- `known` / `expected` / `unknown` lists from the trial log, not from student prose
+- `evidenceStatus`: observed, measured, predicted, inferred, not yet tested
+- compact concept claims for slope, fair-test, and observation vs interpretation
+
+When `comparisonReady` is false, Summit may discuss measured steep times, explain a fair comparison, ask what to test next, or help form a prediction. It must not treat two steep trials as steep-versus-gentle, invent a gentle result, or explain steepness as a longer path. Gravity strength stays constant; more of the same pull acts downhill on a steeper surface.
+
+Concept checks are state-based (`path-length-mechanism`, `gravity-strength`, `unready-comparison`, `split-steep-trials`). They are not a growing science-phrase blacklist.
+
+Fair-test and epistemic asks stay deterministic. Slope “why” questions may still use GPT-OSS as the language layer.
+
+Live eval: `tests/phase7_9h-live.mjs`. Science utterances: `data/summit/eval-science.json`. Evidence: `tests/evidence/phase79h/`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -371,12 +390,18 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `js/summit-packet.js` — compact grounding packet
 - `js/summit-route.js` — hybrid router
 - `js/summit-ai.js` — AIProvider, prompt, HTTP/fixture adapters
-- `js/summit-truth.js` — deterministic known / unknown / science / next-action packet
+- `js/summit-truth.js` — deterministic known / expected / unknown / science / next-action packet
+- `js/summit-concepts.js` — compact concept claims, comparisonStatus, epistemic lists
+- `js/summit-science.js` — state-based concept claim checks
 - `js/summit-compose.js` — local grounded composer (not an LLM) plus student-visible compose
 - `data/summit/eval-constrained.json` — 7.9G constrained evaluation set
+- `data/summit/eval-science.json` — 7.9H Cedar Hollow science evaluation set
 - `tests/phase7_9g.test.mjs` — constrained architecture
 - `tests/phase7_9g-live.mjs` — GPT-OSS-only live eval (env credentials)
+- `tests/phase7_9h.test.mjs` — science-precision architecture
+- `tests/phase7_9h-live.mjs` — GPT-OSS science-precision live eval (env credentials)
 - `tests/evidence/phase79g/` — 7.9G evidence
+- `tests/evidence/phase79h/` — 7.9H evidence
 - `js/summit-validate.js` — grounding gate
 - `js/summit-hybrid.js` — route → AI or authored → fallback
 - `js/summit.js` — engine

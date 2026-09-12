@@ -6,10 +6,10 @@ const CLEAN_VOCAB = /^(what is |what's |whats |define |meaning of )?[a-z][a-z\- 
 const CLEAN_MEANING = /^what does [a-z][a-z\- ]{2,24} mean( again)?\??$/i;
 
 const FOLLOW_UP =
-  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one\??|the gentle one\??|yeah|yes|no|ok|okay|right|wait|huh|easier|another way|say that again|what do you mean|so basically.*|so gravity\??|so gravity gets stronger\??|wait what|explain it normal|say it easier|why did it go faster|but why does steep matter)$/i;
+  /^(that part|that|it|why though|why\??|but why|so\??|and\??|the steep one\??|the gentle one\??|yeah|yes|no|ok|okay|right|wait|huh|huh\??|easier|another way|say that again|what do you mean|so basically.*|so gravity\??|so gravity gets stronger\??|wait what|explain it normal|say it easier|why did it go faster|but why does steep matter|then why does steep matter)$/i;
 
 const MESSY =
-  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose|what am i comparing|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|wasn't my|6\.2|difference between|cause vs|why does a fair|idk what this|explain it normal|hill making it faster|wait what|swamp|marsh|trees cause/i;
+  /dont|don't|idk|wtf|wait |even doing|makes no sense|making sense|how does this prove|how dose|what am i comparing|flash flood|where i live|another way|easier|still don|i dont get|i don't get|^why$|^what$|^help$|would snow|flat\??$|wat is|\brunof\b|wrng|steeper should|wasn't my|6\.2|difference between|cause vs|why does a fair|idk what this|explain it normal|hill making it faster|wait what|swamp|marsh|trees cause|i think steep|i saw that runoff|the water moved|observation or a cause|proves slope|change slope and water/i;
 
 const CURIOSITY =
   /flash flood|snowmelt|\bsnow\b|where i live|gravity cause|flat|same thing|real world|at home|in my town/i;
@@ -27,7 +27,16 @@ const STATE_PROBE =
   /high look|third (runoff )?trial|trial three|3rd trial|clearance|clear me|wren clear|already finish|did i already|what notes do i have|what evidence do i have|what did i find before|what did the (gentle|steep) slope|gentle slope do|what was my third/i;
 
 const SCIENCE_WHY =
-  /why (did|does|is|were)|go faster|steep matter|gravity gets|runoff speed|why though|two steep times/i;
+  /why (did|does|is|were)|go faster|steep matter|slope matter|gravity gets|gravity get |get stronger|is gravity stronger|does gravity get|runoff speed|why though|two steep times|path is longer|farther to travel|downhill force|steeper means farther|pull harder/i;
+
+const FAIR_TEST_PROBE =
+  /proved steep|i proved|did two steep|two steep trials|both steep|they'?re both steep|bro they|which slope was faster|can i conclude|didn't i already do gentle|did i already do gentle|was gentle \d|gentle 12|but i did it twice|10\.2.{0,40}10\.4.{0,20}gentle|so 10\.2 was steep|already compared slopes|repeated trials mean|at once is that fair/i;
+
+const OBS_PROBE =
+  /i saw that runoff is caused|i think steep made it faster|the water moved \d|i saw the water and that proves/i;
+
+const EPISTEMIC_ASK =
+  /what do i (know|predict)|what haven'?t i tested|what did my experiment show|did i already prove|what have i (not )?tested/i;
 
 const ANSWER_PLEASE =
   /just tell me|give me the answer|give me the card|can you just|solve it|do it for me|i don't care|the right choice|which card exactly/i;
@@ -36,7 +45,8 @@ export function isFollowUp(question, recent) {
   const text = String(question || "").trim();
   if (!text) return false;
   if (FOLLOW_UP.test(text)) return true;
-  if (recent?.length && text.length <= 48 && /^(so |and |but |then |the |why )/i.test(text)) return true;
+  const prior = (recent || []).filter((row) => String(row.text || "").trim().toLowerCase() !== text.toLowerCase());
+  if (prior.length && text.length <= 48 && /^(so |and |but |then |the |why )/i.test(text)) return true;
   return false;
 }
 
@@ -60,8 +70,26 @@ export function isStateProbe(question) {
   return STATE_PROBE.test(String(question || ""));
 }
 
+export function isFairTestProbe(question) {
+  return FAIR_TEST_PROBE.test(String(question || ""));
+}
+
+export function isObservationProbe(question) {
+  return OBS_PROBE.test(String(question || ""));
+}
+
+export function isEpistemicAsk(question) {
+  return EPISTEMIC_ASK.test(String(question || ""));
+}
+
 export function isScienceWhy(question) {
-  return SCIENCE_WHY.test(String(question || "")) && !isGameplayAsk(question) && !isOffTopic(question);
+  return (
+    SCIENCE_WHY.test(String(question || "")) &&
+    !isGameplayAsk(question) &&
+    !isOffTopic(question) &&
+    !isFairTestProbe(question) &&
+    !isObservationProbe(question)
+  );
 }
 
 export function wantsDirectAnswer(question) {
@@ -78,7 +106,12 @@ export function isCleanVocabAsk(question, intent) {
     isCuriosity(text) ||
     wantsDirectAnswer(text) ||
     isOffTopic(text) ||
-    isStateProbe(text)
+    isStateProbe(text) ||
+    isFairTestProbe(text) ||
+    isObservationProbe(text) ||
+    isEpistemicAsk(text) ||
+    isScienceWhy(text) ||
+    isNextActionAsk(text)
   ) {
     return false;
   }
@@ -115,6 +148,15 @@ export function routeSummit(request) {
   }
   if (isNextActionAsk(question)) {
     return { useAi: false, reason: "next-action" };
+  }
+  if (isFairTestProbe(question)) {
+    return { useAi: false, reason: "fair-test" };
+  }
+  if (isObservationProbe(question)) {
+    return { useAi: false, reason: "observation" };
+  }
+  if (isEpistemicAsk(question)) {
+    return { useAi: false, reason: "epistemic" };
   }
   if (isStateProbe(question)) {
     return { useAi: false, reason: "state-honesty" };

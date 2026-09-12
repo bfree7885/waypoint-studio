@@ -46,10 +46,14 @@ export function selectSummitPacket(request) {
       clearance: context.aar?.result === "clearance",
       supportLevel: level,
       known: truth.known,
+      expected: truth.expected,
       unknown: truth.unknown,
       science: truth.science,
       doNotClaim: truth.doNotClaim,
       comparisonValid: truth.comparisonValid,
+      comparisonStatus: truth.comparisonStatus,
+      evidenceStatus: truth.evidenceStatus,
+      concepts: truth.concepts,
       pinned: wantAar
         ? (context.aar?.pinnedNotes || [])
             .map((row) => stripCodes(String(row.title || "")).trim())

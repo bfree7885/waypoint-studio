@@ -1,31 +1,31 @@
 /**
  * Deterministic Cedar Hollow truth for Summit.
- * The model may explain known facts. It does not choose the next game action.
+ * Known / expected / unknown come from state, not from model prose.
  */
+
+import {
+  comparisonStatus,
+  epistemicLists,
+  evidenceStatus,
+  SUMMIT_CONCEPTS
+} from "./summit-concepts.js";
 
 export function buildSummitTruth(context = {}) {
   const fair = (context.raw?.flume?.fairTrials || []).slice();
-  const known = [];
-  const unknown = [];
+  const slopes = new Set(fair.map((row) => row.slope));
+  const comparison = comparisonStatus(fair);
+  const epistemic = epistemicLists(fair, comparison);
+  const known = [...epistemic.measured];
+  const unknown = [...epistemic.unknown];
   const doNotClaim = [];
-  const slopes = new Set();
-  fair.forEach((row, i) => {
-    const slope = row.slope || "unknown slope";
-    slopes.add(slope);
-    known.push(`Trial ${i + 1}: ${slope} slope, ${Number(row.seconds).toFixed(1)} s`);
-  });
+
   if (!fair.length) {
-    unknown.push("no fair runoff times recorded yet");
+    unknown.unshift("no fair runoff times recorded yet");
     doNotClaim.push("any runoff travel time");
   }
-  if (!slopes.has("gentle")) {
-    unknown.push("gentle slope: not yet measured");
-    doNotClaim.push("a gentle-slope result");
-  }
-  if (!slopes.has("steep")) {
-    unknown.push("steep slope: not yet measured");
-    doNotClaim.push("a steep-slope result");
-  }
+  if (!comparison.gentleMeasured) doNotClaim.push("a measured gentle-slope result");
+  if (!comparison.steepMeasured) doNotClaim.push("a measured steep-slope result");
+  if (!comparison.comparisonReady) doNotClaim.push("a completed steep-vs-gentle result from this experiment");
   if (fair.length < 3) {
     unknown.push("third trial: not recorded");
     doNotClaim.push("a third-trial result");
@@ -42,23 +42,43 @@ export function buildSummitTruth(context = {}) {
     unknown.push("clearance: not granted");
     doNotClaim.push("field clearance or High Country unlock");
   }
-  doNotClaim.push("rainfall totals", "water-level changes", "invented buttons or cards");
+  doNotClaim.push(
+    "rainfall totals",
+    "water-level changes",
+    "invented buttons or cards",
+    "path length as the reason steep is faster",
+    "gravity becoming stronger on a steep slope"
+  );
+
+  const slope = SUMMIT_CONCEPTS.slope;
+  const fairTest = SUMMIT_CONCEPTS["fair-test"];
 
   return {
     known,
+    expected: epistemic.expected,
     unknown,
     science: [
       "gravity pulls water downhill",
-      "steeper slopes make runoff faster, not slower",
-      "a fair comparison changes the intended variable and holds the rest steady"
+      "on a steeper slope, more of gravity's pull acts downhill",
+      "all else equal, water tends to move faster on the steeper slope",
+      "gravity itself is not stronger",
+      "steepness is not explained by a longer path",
+      "two steep trials show consistency, not a steep-vs-gentle comparison"
     ],
     doNotClaim,
-    nextAction: chooseNextAction({ fair, slopes, inspectedHighLook, clearance, context }),
-    comparisonValid: slopes.has("steep") && slopes.has("gentle")
+    nextAction: chooseNextAction({ fair, slopes, inspectedHighLook, clearance, context, comparison }),
+    comparisonValid: comparison.comparisonReady,
+    comparisonStatus: comparison,
+    evidenceStatus: evidenceStatus(context, comparison),
+    concepts: {
+      slope: slope.claims,
+      fairTest: fairTest.claims,
+      observation: SUMMIT_CONCEPTS.observation.claims
+    }
   };
 }
 
-export function chooseNextAction({ fair, slopes, inspectedHighLook, clearance, context } = {}) {
+export function chooseNextAction({ fair, slopes, inspectedHighLook, clearance, context, comparison } = {}) {
   if (clearance) {
     return { id: "cleared", text: "Wren already accepted the case. You can keep exploring the hollow." };
   }
@@ -68,13 +88,13 @@ export function chooseNextAction({ fair, slopes, inspectedHighLook, clearance, c
       text: "Time the same amount of water on one slope, then you will have a measurement to talk about."
     };
   }
-  if (slopes && slopes.has("steep") && !slopes.has("gentle")) {
+  if (comparison ? !comparison.gentleMeasured && comparison.steepMeasured : slopes.has("steep") && !slopes.has("gentle")) {
     return {
       id: "measure-gentle",
       text: "Time the same cup on the gentler slope next so the comparison is fair."
     };
   }
-  if (slopes && slopes.has("gentle") && !slopes.has("steep")) {
+  if (comparison ? !comparison.steepMeasured && comparison.gentleMeasured : slopes.has("gentle") && !slopes.has("steep")) {
     return {
       id: "measure-steep",
       text: "Time the same cup on the steeper slope next so the comparison is fair."

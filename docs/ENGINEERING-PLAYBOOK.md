@@ -1760,4 +1760,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - “why did it go faster” must stay science talk. If `detectIntent` falls through to `what_now` and the follow-up list only has `move faster`, the turn becomes authored objective copy. Match natural “go faster” / “steep matter” follow-ups, and keep “what should I test next” on deterministic `nextAction`.
 - The model is the language layer. TerrainBound composes any valid next investigation from game state. Gameplay probes (button, tap, walk, pin, Wren clearance) never need a hosted call.
 
+### Lessons Learned — TerrainBound Phase 7.9H (2026-09-12)
+
+- Constrained output is not enough if the truth packet does not name comparison readiness. Two steep trials can look like a slope comparison in prose; `comparisonReady` must come from the trial log.
+- Teach known / expected / unknown as structured lists, not as extra prompt paragraphs. The validator should fail measured-relationship claims, not scientific expectations.
+- Do not grow a science-phrase blacklist. Path-length and gravity-strength checks need the claim plus whether the reply already corrected it.
+
 

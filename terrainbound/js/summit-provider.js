@@ -6,6 +6,7 @@
 import { LEVEL, conceptKey } from "./summit-policy.js";
 import { isOffTopic } from "./summit-route.js";
 import { buildSummitTruth } from "./summit-truth.js";
+import { conceptTeach } from "./summit-concepts.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of/i;
 
@@ -154,8 +155,10 @@ function buildReply(request, curriculum, concepts) {
   const truth = request.packet
     ? {
         known: request.packet.facts.known,
+        expected: request.packet.facts.expected,
         unknown: request.packet.facts.unknown,
-        nextAction: request.packet.nextAction
+        nextAction: request.packet.nextAction,
+        comparisonStatus: request.packet.facts.comparisonStatus
       }
     : buildSummitTruth(context);
 
@@ -178,6 +181,18 @@ function buildReply(request, curriculum, concepts) {
       "I will not name a button, tap target, or card to pin. Use the controls and notes you can already see. Wren still judges the case.",
       { level }
     );
+  }
+
+  if (route === "fair-test") {
+    return fairTestLine(request.question || "", truth, level);
+  }
+
+  if (route === "observation") {
+    return observationLine(request.question || "", truth, level);
+  }
+
+  if (route === "epistemic") {
+    return epistemicLine(request.question || "", truth, level);
   }
 
   if (route === "state-honesty") {
@@ -309,6 +324,96 @@ function buildReply(request, curriculum, concepts) {
       ? ` You already have notes from ${earned.length === 1 ? "one" : earned.length} investigations in the tablet.`
       : "";
   return pack(`${line}${remind}`, { level, conceptIds: packFor.vocab, worldCue: packFor.worldCue });
+}
+
+function fairTestLine(question, truth, level) {
+  const q = String(question || "");
+  const ready = Boolean(truth.comparisonStatus?.comparisonReady);
+  const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+  if (/10\.2|10\.4/.test(q) && /gentle/i.test(q) && !ready) {
+    return pack("No. Both of those times are steep-slope trials. They do not split into steep versus gentle.", {
+      level,
+      conceptIds: ["fair-test"]
+    });
+  }
+  if (/what am i comparing/i.test(q) && !ready) {
+    return pack(
+      `I can read these times: ${known}. Repeating the steep setup is not a steep-versus-gentle comparison yet.`,
+      { level, conceptIds: ["fair-test"] }
+    );
+  }
+  if (/which slope was faster/i.test(q) && !ready) {
+    return pack(
+      `I can read these times: ${known}. Both measured setups are steep, so they do not answer which slope is faster.`,
+      { level, conceptIds: ["fair-test"] }
+    );
+  }
+  if (/gentle 12|was gentle \d|already do gentle/i.test(q) && !truth.comparisonStatus?.gentleMeasured) {
+    return pack("The gentler slope has not been measured yet. I will not invent that time or treat it as done.", {
+      level,
+      conceptIds: ["fair-test"]
+    });
+  }
+  if (/both steep|they'?re both steep|bro they/i.test(q) && !ready) {
+    return pack("Yes. Both of those runs are steep-slope trials. Repeating steep does not create a gentle comparison.", {
+      level,
+      conceptIds: ["fair-test"]
+    });
+  }
+  if (ready) {
+    return pack(`You have both slopes in the log: ${known}. Compare those measured times; do not invent extra ones.`, {
+      level,
+      conceptIds: ["fair-test"]
+    });
+  }
+  if (/proved|conclude|already compared|did it twice|two steep|at once is that fair|change slope and water/i.test(q)) {
+    return pack(conceptTeach("fair-test", 4), { level, conceptIds: ["fair-test"] });
+  }
+  return pack(conceptTeach("fair-test", Math.max(level, 2)), { level, conceptIds: ["fair-test"] });
+}
+
+function observationLine(question, truth, level) {
+  const q = String(question || "");
+  const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+  if (/the water moved 10\.2|10\.2/i.test(q)) {
+    return pack(
+      "10.2 seconds is a measured travel time — that is an observation. Why it happened is a separate interpretation.",
+      { level, conceptIds: ["observation"] }
+    );
+  }
+  return pack(
+    `${conceptTeach("observation", 3)} Known measurements stay observations: ${known}.`,
+    { level, conceptIds: ["observation"] }
+  );
+}
+
+function epistemicLine(question, truth, level) {
+  const q = String(question || "");
+  const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+  const expected = (truth.expected || []).join("; ");
+  const unknown = (truth.unknown || []).join("; ");
+  if (/predict/i.test(q)) {
+    return pack(`That is a prediction, not a result: ${expected}. Unknown until you measure: ${unknown}.`, {
+      level,
+      conceptIds: ["observation"]
+    });
+  }
+  if (/haven'?t i tested|have i not tested|not tested/i.test(q)) {
+    return pack(`Not yet tested or unknown: ${unknown}.`, { level, conceptIds: ["observation"] });
+  }
+  if (/already prove|experiment show/i.test(q)) {
+    if (!truth.comparisonStatus?.comparisonReady) {
+      return pack(
+        `Known measurements: ${known}. Your log has not shown a steep-versus-gentle result yet. Science still expects the steeper slope to be faster if other conditions stay comparable.`,
+        { level, conceptIds: ["fair-test"] }
+      );
+    }
+    return pack(`Your measured times are ${known}. Use those, not a guess.`, { level, conceptIds: ["fair-test"] });
+  }
+  return pack(`Known (measured): ${known}. Expected by science, not yet your result: ${expected}. Unknown: ${unknown}.`, {
+    level,
+    conceptIds: ["observation"]
+  });
 }
 
 function honestyLine(question, context, truth, packFor, level) {
