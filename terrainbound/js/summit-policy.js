@@ -19,7 +19,7 @@ const INTENTS = [
   { id: "compare", re: /what should i compare|compare|which (trial|slope|reach) /i },
   { id: "graph", re: /graph|table|numbers|times? (i )?recorded|axis|plot/i },
   { id: "explain_more", re: /explain more|say more|more detail|i still don'?t|still don'?t get/i },
-  { id: "explain", re: /explain|what does that mean|help me understand|teach me|i don'?t understand|why did the water|move faster/i },
+  { id: "explain", re: /explain|what does that mean|help me understand|teach me|i don'?t understand|why did the water|move faster|go faster|why does steep/i },
   { id: "hint", re: /hint|clue|another hint|i'?m stuck|stuck|nudge/i },
   { id: "vocab", re: /what is |what'?s |define |meaning of |runoff|slope|fair test|variable|observation|interpretation|system|storage|timescale|revision|gravity|pattern|downstream|evidence|cause/i },
   { id: "missing", re: /missing|don'?t have|haven'?t (got|measured|collected)|need more evidence/i }

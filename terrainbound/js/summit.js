@@ -25,8 +25,10 @@ import { createHybridProvider } from "./summit-hybrid.js";
 import { createAiProvider, createHttpAdapter, createFixtureAdapter, SUMMIT_MODEL_REQUIREMENTS } from "./summit-ai.js";
 import { createLocalComposerAdapter } from "./summit-compose.js";
 import { selectSummitPacket } from "./summit-packet.js";
-import { routeSummit } from "./summit-route.js";
+import { routeSummit, isGameplayAsk, isNextActionAsk } from "./summit-route.js";
 import { validateSummitOutput } from "./summit-validate.js";
+import { composeStudentVisible } from "./summit-compose.js";
+import { buildSummitTruth } from "./summit-truth.js";
 
 export {
   createSummitState,
@@ -41,6 +43,10 @@ export {
   selectSummitPacket,
   routeSummit,
   validateSummitOutput,
+  composeStudentVisible,
+  buildSummitTruth,
+  isGameplayAsk,
+  isNextActionAsk,
   SUMMIT_MODEL_REQUIREMENTS
 };
 

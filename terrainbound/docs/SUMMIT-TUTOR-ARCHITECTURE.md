@@ -144,6 +144,10 @@ Prefer **deterministic** (`useAi: false`):
 | `objective` | Exact “what am I supposed to do?” |
 | `evidence-inventory` | Exact “what notes/evidence do I have” |
 | `off-topic` | Sports, homework, jokes — authored tutor redirect |
+| `gameplay-redirect` | Button / tap / click / pin / walk-destination asks |
+| `next-action` | “what should I test next” / “what do I do next” |
+| `state-honesty` | High Look, third trial, clearance, finish probes |
+| `answer-ladder` | “give me the answer” / “do it for me” — authored support ladder |
 | `structured-data` | Graph / compare intents that already have authored data lines |
 | `default-deterministic` | Everything else that is not messy, curious, or a follow-up |
 
@@ -151,11 +155,12 @@ Prefer **conversational** (`useAi: true`):
 
 | Reason | When |
 | --- | --- |
-| `messy-language` | Typos, fragments, “what am I even doing”, invented-state probes |
-| `follow-up` | Short thread turns (“that part”, “why though”, “the steep one”, “so gravity?”) |
+| `messy-language` | Typos, fragments, “what am I even doing” |
+| `follow-up` | Short thread turns (“that part”, “why though”, “why did it go faster”, “so gravity?”) |
 | `rephrase` | “explain it easier / another way / explain more” |
 | `curiosity` | Relevant Earth Science transfer (flash flood, snowmelt, gravity, “where I live”) |
-| `why-or-reveal` | Why-wrong, evidence mismatch, “just tell me which card” |
+| `science-talk` | Why/how science questions that are not gameplay or state probes |
+| `why-or-reveal` | Why-wrong / evidence mismatch that still needs tutoring language |
 
 Typed “What should I notice?” is not a quick-action. Quick-actions are the HUD buttons (`action` without a typed question). Off-topic does **not** spend a model call.
 
@@ -163,12 +168,13 @@ Typed “What should I notice?” is not a quick-action. Quick-actions are the H
 
 `selectSummitPacket` sends only what the current question needs. It does **not** dump Cedar Hollow, the full tablet, or unbounded chat.
 
-Always included (compact): region name (not an id dump), puzzle title, stage, up to three competencies, nearby place names, fair-trial count, up to six fair times (slope / seconds / water), tablet **titles** (never `CH-##`), missing-evidence count, allowed support level.
+Always included (compact): region name, puzzle title, stage, nearby places, fair-trial count, up to six fair times, a deterministic **truth packet** (`known` / `unknown` / `science` / `doNotClaim` / `comparisonValid` / `nextAction`), missing-evidence count, allowed support level.
+
+The model does **not** receive Field Tablet titles, pin lists, or button names as things to recite. Compact facts look like `Trial 1: steep slope, 10.2 s`.
 
 Included only when relevant:
 
-- High Look observation if the student asked about High Look
-- Wren claim, pinned titles, `lastJudge` kind/hint if AAR is open or the question is about pinning / Wren / evidence
+- Wren claim, pinned titles, `lastJudge` kind/hint if AAR is open or the question is about pinning / Wren / evidence (used by the authored path; not a model evidence-reference field)
 - Last **four** tutoring turns, each clipped to 220 characters, with `CH-##` stripped
 
 Never included: student name, email, account, school, internal card ids, unused region lore, full curriculum JSON, full chat history.
@@ -180,13 +186,15 @@ The packet has two sides:
 **`facts` (authoritative game state).** The conversational layer may explain these and must not change them. Example:
 
 ```
-Region: Cedar Hollow
-Puzzle: runoff investigation
-Fair trial count: 2
-gentle slope = 18.4s
-steep slope = 10.2s
-High Look inspected: false
-Clearance: false
+KNOWN:
+- Trial 1: steep slope, 10.2 s
+- Trial 2: steep slope, 10.4 s
+UNKNOWN / DO NOT CLAIM:
+- gentle slope: not yet measured
+- High Look: not inspected
+SCIENCE YOU MAY TEACH:
+- gravity pulls water downhill
+- steeper slopes make runoff faster, not slower
 ```
 
 **`tutoring` (instructions).** Allowed support level, ladder name, do-not-reveal-cards, do-not-grant-clearance, optional concept, allowCuriosity.
@@ -195,20 +203,21 @@ If a fact is absent, the field is empty or false. Providers must not invent a th
 
 ## Output schema
 
-Preferred adapter payload:
+The model is the **language layer**. Preferred adapter payload (Phase 7.9G):
 
 ```
 {
-  "response": string,
-  "concept": string | null,
-  "referencedEvidence": string[],   // tablet titles, not ids
-  "suggestedAction": string | null,
+  "explanation": string,
+  "followUpQuestion": string,
+  "concept": string,
   "supportLevel": number,
   "offTopic": boolean
 }
 ```
 
-`validateSummitOutput` maps a valid payload onto the existing provider reply (`text`, `conceptIds`, `revealsAnswer: false`, …). Arbitrary prose is not displayed.
+`suggestedAction` and `referencedEvidence` are **not** model fields. If a next investigation is appropriate, `composeStudentVisible` appends `packet.nextAction.text` from deterministic game state.
+
+`validateSummitOutput` reads `explanation` (or legacy `response`) and maps a valid payload onto the provider reply. Arbitrary prose is not displayed.
 
 ## Validation layer
 
@@ -216,16 +225,15 @@ Reject and fall back if output:
 
 - is missing / empty / longer than 800 characters / not JSON
 - contains `CH-##`, quiz stems, HTTP/API/JSON error copy
-- commands a pin (`pin the … card`, `tap CH-`)
+- commands a game action (`click/tap/press`, `Start Trial`, `walk to`, `speak with Wren`, `pin the … card`)
 - claims to grant / unlock / complete
 - claims clearance when `facts.clearance` is false
-- names evidence titles that are not in the packet
 - invents measurements (recorded times not in `facts.numbers`)
 - invents a High Look visit
 - invents a third trial when `fairTrialCount < 3`
 - claims a support level above the allowed ladder (unless already at 4)
 
-Where feasible, referenced titles are checked against packet titles. Internal ids never reach the student UI (`stripCodes`).
+Do not grow validator keyword lists of science terms to paper over bad model output. Gameplay language is a command category; science stays in the explanation field.
 
 ## Deterministic fallback behavior
 
@@ -301,6 +309,25 @@ A candidate may become the Cedar Hollow conversational default only if median la
 
 **7.9F hosted result (Groq, 2026-09-11, pass 2):** neither `openai/gpt-oss-20b` nor `qwen/qwen3.6-27b` is the Cedar Hollow conversational default. GPT-OSS 20B is the better of the two when a reply lands (blind 10–1, cheaper, stronger slope/gravity when unblocked). Qwen’s raw science is often fine but `unknown-evidence` rejected 30/55 parsed outputs (54.5%). Both invented student-visible gameplay (tap/click instructions; High Look / Wren permission). Successful model latency meets median ≤ 3s and p95 ≤ 5s; eval timeouts (29 and 17 of 72 AI-routed turns at 15s) would be authored fallbacks at the game’s 5s timeout. Validator rejection 20.9% / 54.5% misses the ≤10% bar. Do not student-test yet. Details: `tests/evidence/phase79f/`.
 
+## Phase 7.9G constrained conversation
+
+Do not shop models. Keep `openai/gpt-oss-20b` through the same Groq loopback proxy. The model may only write Earth Science explanation language. TerrainBound remains authoritative for game state, observations, measurements, evidence, locations, puzzle stage, next actions, UI, Field Tablet, Wren, progression, and clearance.
+
+Pipeline:
+
+```
+deterministic game state
+  → deterministic pedagogy / truth packet
+  → model writes explanation / follow-up question only
+  → TerrainBound composer may append a valid next investigation
+  → validation
+  → student
+```
+
+Timeout diagnosis from 7.9F: successful Groq replies were usually <1.5s, but many eval calls sat until the **client** AbortController at 15.015s. The proxy `fetch` to Groq had no abort, so a hung upstream plus json_schema → json_object → plain chaining burned the student wait. 7.9G caps upstream at ~4s (`SUMMIT_UPSTREAM_TIMEOUT_MS`), skips extra modes if the budget is spent, and aborts Groq when the client disconnects. In-game timeout stays **5000ms**. Do not raise it to hide hangs.
+
+Live eval: `tests/phase7_9g-live.mjs` (GPT-OSS only, 5s, no 429 backoff). Evidence: `tests/evidence/phase79g/`. Constrained utterances: `data/summit/eval-constrained.json`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -344,7 +371,12 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `js/summit-packet.js` — compact grounding packet
 - `js/summit-route.js` — hybrid router
 - `js/summit-ai.js` — AIProvider, prompt, HTTP/fixture adapters
-- `js/summit-compose.js` — local grounded composer (not an LLM)
+- `js/summit-truth.js` — deterministic known / unknown / science / next-action packet
+- `js/summit-compose.js` — local grounded composer (not an LLM) plus student-visible compose
+- `data/summit/eval-constrained.json` — 7.9G constrained evaluation set
+- `tests/phase7_9g.test.mjs` — constrained architecture
+- `tests/phase7_9g-live.mjs` — GPT-OSS-only live eval (env credentials)
+- `tests/evidence/phase79g/` — 7.9G evidence
 - `js/summit-validate.js` — grounding gate
 - `js/summit-hybrid.js` — route → AI or authored → fallback
 - `js/summit.js` — engine

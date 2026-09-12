@@ -164,7 +164,7 @@ await check("validator blocks false measurement premises", () => {
       packet,
       { question: "what do i tap" }
     ).reason,
-    "pin-command"
+    "gameplay-command"
   );
   assert.equal(
     validateSummitOutput(
@@ -317,7 +317,7 @@ await check("timeout and malformed adapters fall back without leaking errors", a
   const missing = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "I don't get it." }));
   assert.equal(missing.provider, "deterministic");
   assert.ok(missing.fallbackReason);
-  assert.match(missing.text, /Cedar Hollow|rainwater|field science|honestly/i);
+  assert.match(missing.text, /Cedar Hollow|rainwater|field science|honestly|working on|actually see/i);
 });
 
 await check("docs describe the real-model pilot boundary", () => {

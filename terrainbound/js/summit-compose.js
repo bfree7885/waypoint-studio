@@ -4,7 +4,7 @@
  */
 
 import { stripCodes } from "./summit-packet.js";
-import { isCuriosity, isFollowUp, isOffTopic, wantsDirectAnswer } from "./summit-route.js";
+import { isCuriosity, isFollowUp, isNextActionAsk, isOffTopic, wantsDirectAnswer } from "./summit-route.js";
 
 export function createLocalComposerAdapter({ curiosity = {} } = {}) {
   return {
@@ -34,7 +34,7 @@ export function composeLocal(packet, question, curiosity = {}) {
       level >= 4
         ? "Your slope trials measured travel time directly. Evidence based on those measurements would address Wren's question — you still choose the note."
         : "Wren is asking about a specific kind of evidence. Look for a note that actually answers that question. I will not name a card for you to pin.";
-    return out(stronger, { supportLevel: level, suggestedAction: "open-tablet" });
+    return out(stronger, { supportLevel: level });
   }
 
   if (/third (runoff )?trial|trial three|3rd trial/i.test(q)) {
@@ -82,7 +82,7 @@ export function composeLocal(packet, question, curiosity = {}) {
     const line = pin
       ? `“${pin}” is a real note, but Wren asked: ${facts.wrenClaim} Ask whether that note answers that question.`
       : `Wren asked: ${facts.wrenClaim} Pin a note that matches that question. I will not name a cheat card.`;
-    return out(line, { supportLevel: level, referencedEvidence: pin ? [pin] : [] });
+    return out(line, { supportLevel: level });
   }
 
   if (/what am i comparing|compare/i.test(q) && facts.measurements?.length) {
@@ -143,6 +143,14 @@ function timesLine(facts) {
 function followUpLine(q, packet, recent, level) {
   const last = [...recent].reverse().find((row) => row.role === "summit")?.text || "";
   const facts = packet.facts || {};
+  if (/gravity gets stronger/i.test(q)) {
+    return "Gravity is not getting stronger. Steeper ground just lets more of that same pull act along the slope, so the water usually speeds up.";
+  }
+  if (/steep matter/i.test(q)) {
+    return level >= 3
+      ? "Steepness changes how much of gravity's pull acts along the surface. The water is the same; the slope is not."
+      : "Steepness is the thing that changed. Compare the times you actually recorded.";
+  }
   if (/steep/i.test(q) && facts.measurements?.length) {
     return "That's what your measurements support here. Steeper channels finished sooner when the water stayed the same.";
   }
@@ -206,12 +214,23 @@ function curiosityConcept(q) {
   return "system";
 }
 
+export function composeStudentVisible(explanation, packet, request = {}) {
+  const science = stripCodes(explanation).trim();
+  const parts = [];
+  if (science) parts.push(science);
+  if (isNextActionAsk(request.question) || request.route?.reason === "next-action") {
+    const action = packet?.nextAction?.text;
+    if (action) parts.push(action);
+  }
+  return parts.join(" ");
+}
+
 function out(response, extra = {}) {
   return {
+    explanation: stripCodes(response),
     response: stripCodes(response),
-    concept: extra.concept || null,
-    referencedEvidence: extra.referencedEvidence || [],
-    suggestedAction: extra.suggestedAction || null,
+    followUpQuestion: extra.followUpQuestion || "",
+    concept: extra.concept || "",
     supportLevel: extra.supportLevel ?? 0,
     offTopic: Boolean(extra.offTopic)
   };

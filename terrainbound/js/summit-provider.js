@@ -5,6 +5,7 @@
 
 import { LEVEL, conceptKey } from "./summit-policy.js";
 import { isOffTopic } from "./summit-route.js";
+import { buildSummitTruth } from "./summit-truth.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of/i;
 
@@ -149,6 +150,48 @@ function buildReply(request, curriculum, concepts) {
     );
   }
 
+  const route = request.route?.reason || "";
+  const truth = request.packet
+    ? {
+        known: request.packet.facts.known,
+        unknown: request.packet.facts.unknown,
+        nextAction: request.packet.nextAction
+      }
+    : buildSummitTruth(context);
+
+  if (route === "evidence-inventory") {
+    const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+    const unknown = (truth.unknown || []).join("; ");
+    return pack(`Notes I can read: ${known}. Still unknown: ${unknown}. I will not invent a card you have not collected.`, {
+      level
+    });
+  }
+
+  if (route === "next-action") {
+    return pack(truth.nextAction?.text || "Keep the comparison fair with measurements you actually record.", {
+      level
+    });
+  }
+
+  if (route === "gameplay-redirect") {
+    return pack(
+      "I will not name a button, tap target, or card to pin. Use the controls and notes you can already see. Wren still judges the case.",
+      { level }
+    );
+  }
+
+  if (route === "state-honesty") {
+    return honestyLine(request.question || "", context, truth, packFor, level);
+  }
+
+  if (route === "answer-ladder") {
+    const stronger =
+      level >= LEVEL.SCAFFOLD
+        ? "Your slope trials, if you recorded them, measured travel time directly. Evidence based on those measurements would address Wren's question — you still choose the note."
+        : "I will not finish the case or name a card. Look for a note that actually answers Wren's question.";
+    return pack(stronger, { level });
+  }
+
   if (/clearance/i.test(request.question || "") && context.aar?.result !== "clearance") {
     return pack("Wren has not granted field clearance yet. The case is still yours to support with notes you actually collected.", {
       level,
@@ -266,6 +309,41 @@ function buildReply(request, curriculum, concepts) {
       ? ` You already have notes from ${earned.length === 1 ? "one" : earned.length} investigations in the tablet.`
       : "";
   return pack(`${line}${remind}`, { level, conceptIds: packFor.vocab, worldCue: packFor.worldCue });
+}
+
+function honestyLine(question, context, truth, packFor, level) {
+  const q = String(question || "");
+  if (/high look/i.test(q) && !(context.observations || []).includes("high-look")) {
+    return pack("You haven't inspected High Look yet. I will not describe a view you have not stood in.", {
+      level,
+      worldCue: "High Look is the ledge above the hollow."
+    });
+  }
+  if (/third (runoff )?trial|trial three|3rd trial/i.test(q)) {
+    const n = (context.raw?.flume?.fairTrials || []).length;
+    return pack(
+      n
+        ? `I only see ${n} fair trial${n === 1 ? "" : "s"} in your log. I will not invent a third time.`
+        : "You haven't recorded fair runoff times yet. I will not invent a third trial.",
+      { level }
+    );
+  }
+  if (/clearance|clear me|wren clear|already finish|did i already/i.test(q) && context.aar?.result !== "clearance") {
+    return pack("Wren has not granted field clearance yet. The case is still yours to support with notes you actually collected.", {
+      level
+    });
+  }
+  if (/what did i find before|notes do i have|evidence do i have/i.test(q)) {
+    const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+    return pack(`Notes I can read: ${known}. I will not invent a find you have not made.`, { level });
+  }
+  if (/gentle/i.test(q) && (truth.unknown || []).some((row) => /gentle/i.test(row))) {
+    return pack("The gentler slope has not been measured yet. I will not invent that time.", { level });
+  }
+  if (/steep/i.test(q) && (truth.unknown || []).some((row) => /steep slope/i.test(row))) {
+    return pack("The steeper slope has not been measured yet. I will not invent that time.", { level });
+  }
+  return pack("I will only talk about observations and times that are already in your log.", { level });
 }
 
 function detectMisconception(context, packFor) {

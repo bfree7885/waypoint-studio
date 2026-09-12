@@ -4,7 +4,8 @@
 
 import { createDeterministicProvider } from "./summit-provider.js";
 import { createAiProvider } from "./summit-ai.js";
-import { createLocalComposerAdapter } from "./summit-compose.js";
+import { createLocalComposerAdapter, composeLocal } from "./summit-compose.js";
+import { validateSummitOutput } from "./summit-validate.js";
 import { routeSummit } from "./summit-route.js";
 import { selectSummitPacket } from "./summit-packet.js";
 
@@ -32,18 +33,19 @@ export function createHybridProvider({
     respond(request) {
       const decision = routeSummit(request);
       request.route = decision;
-      if (!decision.useAi) {
-        return tag(authored.respond(request), {
-          provider: "deterministic",
-          route: decision,
-          fallbackReason: ""
-        });
-      }
       const packet = selectSummitPacket({
         ...request,
         recentTurns: request.context?.summitRecent || request.recentTurns || []
       });
       request.packet = packet;
+      if (!decision.useAi) {
+        return tag(authored.respond(request), {
+          provider: "deterministic",
+          route: decision,
+          packet,
+          fallbackReason: ""
+        });
+      }
       return Promise.resolve()
         .then(() => talker.respond(request))
         .then((reply) =>
@@ -55,15 +57,33 @@ export function createHybridProvider({
             rawModel: reply.rawModel || null
           })
         )
-        .catch((err) =>
-          tag(authored.respond(request), {
+        .catch((err) => {
+          const local = composeLocal(packet, request.question, curiosity);
+          const checked = validateSummitOutput(local, packet, request);
+          if (checked.ok) {
+            return tag(
+              {
+                ...checked.reply,
+                text: checked.reply.text,
+                provider: "deterministic"
+              },
+              {
+                provider: "deterministic",
+                route: decision,
+                fallbackReason: err.code || err.message || "unavailable",
+                packet,
+                rawModel: err.raw || null
+              }
+            );
+          }
+          return tag(authored.respond(request), {
             provider: "deterministic",
             route: decision,
             fallbackReason: err.code || err.message || "unavailable",
             packet,
             rawModel: err.raw || null
-          })
-        );
+          });
+        });
     }
   };
 }

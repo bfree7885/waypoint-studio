@@ -296,7 +296,8 @@ export async function boot(root = document) {
   const summitAdapter = useSummitProxy(summitProviderCfg)
     ? createHttpAdapter({
         endpoint: summitProviderCfg.endpoint || summitProviderCfg.proxyEndpoint,
-        timeoutMs: summitProviderCfg.timeoutMs || 5000
+        timeoutMs: summitProviderCfg.timeoutMs || 5000,
+        retry429: 0
       })
     : createLocalComposerAdapter({ curiosity: summitCuriosity });
   const summitEngine = createSummitEngine({

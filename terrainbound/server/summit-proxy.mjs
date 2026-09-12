@@ -20,6 +20,8 @@ const UPSTREAM = process.env.SUMMIT_AI_URL || "";
 const KEY = process.env.SUMMIT_API_KEY || "";
 const MODEL = process.env.SUMMIT_AI_MODEL || "llama-3.1-8b-instant";
 const DEBUG = process.env.SUMMIT_DEBUG === "1";
+const UPSTREAM_TIMEOUT_MS = Number(process.env.SUMMIT_UPSTREAM_TIMEOUT_MS || 4000);
+const MODE_BUDGET_MS = Number(process.env.SUMMIT_MODE_BUDGET_MS || 4500);
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
 const DEBUG_LOG = path.join(ROOT, ".summit-debug.log");
 
@@ -27,23 +29,13 @@ export const SUMMIT_REPLY_SCHEMA = {
   type: "object",
   additionalProperties: false,
   properties: {
-    response: { type: "string" },
+    explanation: { type: "string" },
+    followUpQuestion: { type: "string" },
     concept: { type: "string" },
-    referencedEvidence: { type: "array", items: { type: "string" } },
-    suggestedAction: { type: "string" },
     supportLevel: { type: "number" },
-    offTopic: { type: "boolean" },
-    agreesWithStudentPremise: { type: "boolean" }
+    offTopic: { type: "boolean" }
   },
-  required: [
-    "response",
-    "concept",
-    "referencedEvidence",
-    "suggestedAction",
-    "supportLevel",
-    "offTopic",
-    "agreesWithStudentPremise"
-  ]
+  required: ["explanation", "followUpQuestion", "concept", "supportLevel", "offTopic"]
 };
 
 const server = http.createServer(async (req, res) => {
@@ -83,24 +75,39 @@ const server = http.createServer(async (req, res) => {
     return;
   }
   const started = Date.now();
+  const client = abortFromRequest(req);
   try {
     let retried = false;
-    let upstream = await callUpstream(payload, "json_schema");
+    let upstream = await callUpstream(payload, "json_schema", client.signal);
     let parsed = parseUpstream(upstream);
-    if ((!upstream.ok || !parsed || !String(parsed.response || "").trim()) && upstream.status !== 429) {
+    const remaining = () => MODE_BUDGET_MS - (Date.now() - started);
+    if (
+      !client.signal.aborted &&
+      remaining() > 800 &&
+      (!upstream.ok || !parsed || !replyText(parsed)) &&
+      upstream.status !== 429 &&
+      upstream.status !== 504
+    ) {
       retried = true;
       upstream = await callUpstream(
         {
           ...payload,
-          question: `${payload.question || ""}\n\nWrite a 1-3 sentence tutoring reply in JSON field "response". Never leave it empty.`
+          question: `${payload.question || ""}\n\nWrite a 1-2 sentence science explanation in JSON field "explanation". Never leave it empty. Do not give game instructions.`
         },
-        "json_object"
+        "json_object",
+        client.signal
       );
       parsed = parseUpstream(upstream);
     }
-    if ((!upstream.ok || !parsed || !String(parsed.response || "").trim()) && upstream.status !== 429) {
+    if (
+      !client.signal.aborted &&
+      remaining() > 800 &&
+      (!upstream.ok || !parsed || !replyText(parsed)) &&
+      upstream.status !== 429 &&
+      upstream.status !== 504
+    ) {
       retried = true;
-      upstream = await callUpstream(payload, "plain");
+      upstream = await callUpstream(payload, "plain", client.signal);
       parsed = parseUpstream(upstream);
     }
     const data = upstream.data;
@@ -108,16 +115,24 @@ const server = http.createServer(async (req, res) => {
     if (upstream.status === 429) {
       debug({ event: "rate-limit", latencyMs, status: 429 });
       json(res, 429, { error: "rate-limit" });
+      client.done();
       return;
     }
     if (!upstream.ok) {
-      debug({ event: "upstream-http", latencyMs, status: upstream.status });
-      json(res, 502, { error: "upstream" });
+      debug({
+        event: upstream.status === 504 ? "upstream-timeout" : "upstream-http",
+        latencyMs,
+        status: upstream.status,
+        retried
+      });
+      json(res, 502, { error: upstream.status === 504 ? "timeout" : "upstream" });
+      client.done();
       return;
     }
-    if (!parsed || !String(parsed.response || "").trim()) {
-      debug({ event: "malformed-model", latencyMs, model: MODEL });
+    if (!parsed || !replyText(parsed)) {
+      debug({ event: "malformed-model", latencyMs, model: MODEL, retried });
       json(res, 502, { error: "malformed" });
+      client.done();
       return;
     }
     const usage = data.usage || {
@@ -145,9 +160,12 @@ const server = http.createServer(async (req, res) => {
         retried
       }
     });
-  } catch {
-    debug({ event: "upstream-throw", latencyMs: Date.now() - started });
-    json(res, 502, { error: "upstream" });
+    client.done();
+  } catch (err) {
+    const timeout = err?.name === "AbortError" || err?.code === "timeout";
+    debug({ event: timeout ? "upstream-timeout" : "upstream-throw", latencyMs: Date.now() - started });
+    json(res, 502, { error: timeout ? "timeout" : "upstream" });
+    client.done();
   }
 });
 
@@ -180,6 +198,11 @@ export function upstreamBody(payload, mode = "json_schema") {
   return body;
 }
 
+function replyText(parsed) {
+  if (!parsed || typeof parsed !== "object") return "";
+  return String(parsed.explanation || parsed.response || "").trim();
+}
+
 function parseUpstream(upstream) {
   const data = upstream?.data || {};
   const text =
@@ -193,27 +216,60 @@ function parseUpstream(upstream) {
 
 function normalizeReply(parsed) {
   if (!parsed || typeof parsed !== "object") return parsed;
-  if (typeof parsed.response === "string" && parsed.response.trim()) {
-    return { ...parsed, response: parsed.response.trim() };
-  }
-  const alt = parsed.message || parsed.text || parsed.answer || parsed.content;
-  if (typeof alt === "string" && alt.trim()) {
-    return { ...parsed, response: alt.trim() };
+  const explanation = replyText(parsed);
+  if (explanation) {
+    return { ...parsed, explanation, response: explanation };
   }
   return parsed;
 }
 
-async function callUpstream(payload, mode) {
-  const res = await fetch(UPSTREAM, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      authorization: `Bearer ${KEY}`
-    },
-    body: JSON.stringify(upstreamBody(payload, mode))
-  });
-  const data = await res.json().catch(() => ({}));
-  return { ok: res.ok, status: res.status, data };
+async function callUpstream(payload, mode, clientSignal) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), UPSTREAM_TIMEOUT_MS);
+  const onClient = () => ctrl.abort();
+  if (clientSignal) {
+    if (clientSignal.aborted) ctrl.abort();
+    else clientSignal.addEventListener("abort", onClient, { once: true });
+  }
+  try {
+    const res = await fetch(UPSTREAM, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${KEY}`
+      },
+      body: JSON.stringify(upstreamBody(payload, mode)),
+      signal: ctrl.signal
+    });
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok, status: res.status, data };
+  } catch (err) {
+    if (err?.name === "AbortError") {
+      return { ok: false, status: 504, data: { error: "upstream-timeout" } };
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+    if (clientSignal) clientSignal.removeEventListener("abort", onClient);
+  }
+}
+
+function abortFromRequest(req) {
+  const ctrl = new AbortController();
+  let finished = false;
+  const abort = () => {
+    if (!finished) ctrl.abort();
+  };
+  req.on("close", abort);
+  req.on("aborted", abort);
+  return {
+    signal: ctrl.signal,
+    done() {
+      finished = true;
+      req.off("close", abort);
+      req.off("aborted", abort);
+    }
+  };
 }
 
 export function coerceJson(text) {

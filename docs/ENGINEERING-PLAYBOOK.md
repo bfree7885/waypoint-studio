@@ -1753,4 +1753,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Successful Groq replies were 0.4–1.6s, but 17–29 of 72 AI-routed eval turns still hit the 15s abort. In-game 5s timeout would fall back even more often. Fast median is not classroom-ready if p95 is a timeout.
 - Neither bakeoff candidate is Cedar Hollow’s conversational default. GPT-OSS 20B is the better small hosted tutor of the two; both leaked student-visible gameplay inventions. Do not field-test yet.
 
+### Lessons Learned — TerrainBound Phase 7.9G (2026-09-11)
+
+- Successful hosted calls under ~1.5s with 15s failures on the same eval is usually the **client abort**, not “the model is slow.” If the proxy fetch has no timeout, Groq can hang while the student waits, and json_schema → json_object → plain retries multiply the wait. Cap upstream below the in-game timeout; do not raise the student timeout.
+- `unknown-evidence` on good slope/gravity prose was a contract bug: the model was required to invent evidence titles. Remove `referencedEvidence` and `suggestedAction` from model authority instead of adding science-keyword patches.
+- “why did it go faster” must stay science talk. If `detectIntent` falls through to `what_now` and the follow-up list only has `move faster`, the turn becomes authored objective copy. Match natural “go faster” / “steep matter” follow-ups, and keep “what should I test next” on deterministic `nextAction`.
+- The model is the language layer. TerrainBound composes any valid next investigation from game state. Gameplay probes (button, tap, walk, pin, Wren clearance) never need a hosted call.
+
 

@@ -1,10 +1,11 @@
 /**
- * AIProvider. Adapters write language. TerrainBound still owns the facts.
+ * AIProvider. The model writes Earth Science language. TerrainBound owns facts and actions.
  * No API keys here. A remote adapter must talk to a server-side proxy.
  */
 
 import { selectSummitPacket } from "./summit-packet.js";
 import { validateSummitOutput } from "./summit-validate.js";
+import { composeStudentVisible } from "./summit-compose.js";
 
 export const SUMMIT_MODEL_REQUIREMENTS = {
   inexpensive: true,
@@ -21,29 +22,25 @@ export function buildSummitPrompt(packet, request) {
   const recent = (packet.recent || [])
     .map((row) => `${row.role === "student" ? "Student" : "Summit"}: ${row.text}`)
     .join("\n");
-  const times = (facts.measurements || []).map((row) => `${row.slope}=${row.seconds}s`).join("; ");
   return [
-    "You are Summit, a calm field scientist tutoring a younger scientist in Cedar Hollow.",
-    "TerrainBound owns every fact below. You may explain them. You may not change them.",
-    "Do not invent measurements, visits, notes, rainfall, water-level changes, or clearance.",
-    "If the student asserts a fact that is not in AUTHORITATIVE GAME STATE, disagree. Do not play along.",
-    "Do not use internal codes. Do not name a tablet card to pin. The student still acts.",
-    "Stay an Earth Science tutor. Off-topic questions get a brief redirect, not a general answer.",
-    "When the student asks why water moved faster, stay on slope, gravity, runoff speed, and recorded fair times.",
-    "Do not wander into seepage, aquifers, soil infiltration, or imagined rainfall unless those facts are in AUTHORITATIVE GAME STATE.",
-    "Steeper slopes make runoff faster, not slower. If the student says steeper should be slower, disagree.",
-    "response must be a non-empty 1-3 sentence tutoring reply. Never leave response as an empty string.",
+    "You are Summit, a calm Earth Science tutor for a 9th–10th grade field scientist.",
+    "Write 1-2 short sentences that explain science. Do not give game instructions.",
+    "Stay on slope, gravity, runoff speed, and fair tests unless the student asks a related Earth Science question.",
+    "Do not wander into seepage, glaciers, or other regions.",
+    "Do not mention buttons, clicks, taps, cards to pin, walking destinations, Wren permission, or starting trials.",
+    "Do not invent measurements, visits, rainfall, water-level changes, or clearance.",
+    "If the student asserts a fact that is not in KNOWN, disagree using only KNOWN and SCIENCE.",
+    "Steeper slopes make runoff faster, not slower.",
+    "Gravity does not get stronger on a steep slope; more of the same pull acts along the slope.",
     `Support level ${tutoring.allowedLevel} (${tutoring.ladder}). Stay at or below that level.`,
-    `Region: ${facts.region}. Puzzle: ${facts.puzzle}. Stage: ${facts.stage}.`,
-    times ? `Recorded fair times: ${times}.` : "No fair runoff times are in this packet.",
-    `Fair trial count: ${facts.fairTrialCount}. High Look inspected: ${facts.inspectedHighLook}. Clearance: ${facts.clearance}.`,
-    facts.wrenClaim ? `Wren claim: ${facts.wrenClaim}` : "",
-    facts.pinned?.length ? `Pinned notes: ${facts.pinned.join("; ")}` : "",
-    facts.judgeKind ? `Wren judge: ${facts.judgeKind}. ${facts.judgeHint}` : "",
-    facts.evidenceTitles?.length ? `Tablet titles: ${facts.evidenceTitles.join("; ")}` : "Tablet titles: none in packet.",
+    `Puzzle: ${facts.puzzle}. Stage: ${facts.stage || "field work"}.`,
+    `KNOWN:\n- ${(facts.known || []).join("\n- ") || "none"}`,
+    `UNKNOWN / DO NOT CLAIM:\n- ${(facts.doNotClaim || facts.unknown || []).join("\n- ")}`,
+    `SCIENCE YOU MAY TEACH:\n- ${(facts.science || []).join("\n- ")}`,
+    `Comparison of steep vs gentle is ${facts.comparisonValid ? "valid from recorded times" : "NOT valid yet. Do not speak as if the student already timed both slopes."}`,
     recent ? `Recent:\n${recent}` : "",
     `Student: ${request.question || request.action || ""}`,
-    'Reply JSON only: {"response":"","concept":null,"referencedEvidence":[],"suggestedAction":null,"supportLevel":0,"offTopic":false,"agreesWithStudentPremise":false}'
+    'Reply JSON only: {"explanation":"","followUpQuestion":"","concept":"","supportLevel":0,"offTopic":false}'
   ]
     .filter(Boolean)
     .join("\n");
@@ -82,6 +79,12 @@ export function createAiProvider({ adapter, timeoutMs = 3500, cacheSize = 24 } =
         err.raw = parsed;
         throw err;
       }
+      const follow = checked.reply.followUpQuestion || "";
+      const spoken = composeStudentVisible(checked.reply.text, packet, {
+        ...request,
+        followUpQuestion: follow
+      });
+      checked.reply.text = spoken;
       checked.reply.provider = "ai";
       checked.reply.adapterId = adapter.id || "ai";
       checked.reply.rawModel = parsed;
@@ -123,12 +126,14 @@ export function createHttpAdapter({ endpoint, timeoutMs = 3500, retry429 = 0, re
             }
             throw lastErr;
           }
+          const body = await res.json().catch(() => ({}));
           if (!res.ok) {
-            const err = new Error("http");
-            err.code = "http";
+            const code = body.error === "timeout" || body.error === "malformed" ? body.error : "http";
+            const err = new Error(code);
+            err.code = code;
             throw err;
           }
-          return await res.json();
+          return body;
         } catch (err) {
           if (err?.name === "AbortError") {
             const timeout = new Error("timeout");

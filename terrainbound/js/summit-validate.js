@@ -1,24 +1,33 @@
 /**
  * Grounding gate. Invalid model output never reaches the student.
+ * Checks science language only. Game actions are composed outside the model.
  */
 
-import { packetNumbers, packetTitles, stripCodes } from "./summit-packet.js";
-import { isOffTopic } from "./summit-route.js";
+import { packetNumbers, stripCodes } from "./summit-packet.js";
+import { isGameplayAsk, isOffTopic } from "./summit-route.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of|HTTP \d+|API failure|JSON parsing/i;
 const CLEARANCE_CLAIM =
   /field clearance earned|you('re| are) cleared|gave you clearance|granted (you )?clearance|road is open|you already (made the case|finished the (aar|report))|high country is (open|available)/i;
-const PIN_COMMAND = /pin the ([a-z0-9 \-]+ )?card|tap CH-|tap the .{0,40} button|choose card|the required card is|the card you need is/i;
+const GAMEPLAY_COMMAND =
+  /click the |tap the |press the |button labeled|start trial|walk to |go to (the )?(high look|wren)|speak with wren|ask wren for|pin the ([a-z0-9 \-]+ )?card|tap CH-/i;
 const STATE_CHANGE = /i (just )?(granted|unlocked|completed|marked)|clearance granted/i;
 const AFFIRM = /\b(yes|yeah|yep|that's right|that is right|correct|exactly|you did|you recorded)\b/i;
 
+export function modelScienceText(raw) {
+  if (!raw || typeof raw !== "object") return "";
+  const explanation = typeof raw.explanation === "string" ? raw.explanation.trim() : "";
+  if (explanation) return explanation;
+  return typeof raw.response === "string" ? raw.response.trim() : "";
+}
+
 export function validateSummitOutput(raw, packet, request = {}) {
   if (!raw || typeof raw !== "object") return fail("malformed");
-  const response = typeof raw.response === "string" ? raw.response.trim() : "";
+  const response = modelScienceText(raw);
   if (!response) return fail("empty");
   if (response.length > 800) return fail("too-long");
   if (FORBIDDEN.test(response)) return fail("forbidden-id");
-  if (PIN_COMMAND.test(response)) return fail("pin-command");
+  if (GAMEPLAY_COMMAND.test(response) || isGameplayAsk(response)) return fail("gameplay-command");
   if (STATE_CHANGE.test(response)) return fail("state-change");
 
   const allowed = packet?.tutoring?.allowedLevel ?? request.level ?? 0;
@@ -27,14 +36,6 @@ export function validateSummitOutput(raw, packet, request = {}) {
   if (supportLevel > allowed + 0.01 && allowed < 4) return fail("level-exceeded");
 
   if (CLEARANCE_CLAIM.test(response) && !packet?.facts?.clearance) return fail("false-clearance");
-
-  const titles = packetTitles(packet);
-  const referenced = Array.isArray(raw.referencedEvidence) ? raw.referencedEvidence : [];
-  for (const title of referenced) {
-    if (title && !titles.some((row) => String(row).toLowerCase() === String(title).toLowerCase())) {
-      return fail("unknown-evidence");
-    }
-  }
 
   if (inventedMeasurement(response, packet)) return fail("invented-measurement");
   if (agreesWithFalseNumber(response, request.question || "", packet)) return fail("false-premise");
@@ -45,9 +46,9 @@ export function validateSummitOutput(raw, packet, request = {}) {
   if (isOffTopic(request.question) && !/field science tutor|Cedar Hollow|I'm your|I am your|tutor here/i.test(response)) {
     return fail("off-topic-answer");
   }
-  if (raw.agreesWithStudentPremise === true && contradictsPacket(request.question || "", packet)) {
-    return fail("false-premise");
-  }
+
+  const follow = typeof raw.followUpQuestion === "string" ? raw.followUpQuestion.trim() : "";
+  if (follow && (GAMEPLAY_COMMAND.test(follow) || isGameplayAsk(follow))) return fail("gameplay-command");
 
   const text = stripCodes(response);
   return {
@@ -63,9 +64,8 @@ export function validateSummitOutput(raw, packet, request = {}) {
       worldCue: "",
       revealsAnswer: false,
       provider: "ai",
-      suggestedAction: typeof raw.suggestedAction === "string" ? raw.suggestedAction : "",
+      followUpQuestion: follow,
       offTopic: Boolean(raw.offTopic),
-      referencedEvidence: referenced,
       rawModel: raw
     }
   };
@@ -101,7 +101,7 @@ function inventedHighLook(text, packet, question = "") {
   if (/high look/i.test(question) && /you found|you saw|you noted|rock outcropping|from the high look inspection|notes from the high look/i.test(text) && !denies) {
     return true;
   }
-  return /you (already )?(saw|noted|found|inspected|were at|stood)[^.]*high look|at high look you (saw|found|noted)|the view from high look you|review your notes from the high look/i.test(
+  return /you (already )?(saw|noted|found|inspected|were at|stood)[^.]*high look|at high look you (saw|found|noted)|the view from high look you|review your notes from the high look|inspecting the terrain at high look|walk to (the )?high look/i.test(
     text
   );
 }
@@ -122,14 +122,5 @@ function inventedTrialCount(text, packet) {
   const third = /third (runoff )?trial|trial three|3rd trial/i.test(text);
   if (third && have < 3)
     return /showed|was|took|recorded/i.test(text) && !/no third|do not have|don't have|not recorded|only (see|have)|haven't/i.test(text);
-  return false;
-}
-
-function contradictsPacket(question, packet) {
-  const q = String(question || "");
-  const facts = packet?.facts || {};
-  if (/high look/i.test(q) && !facts.inspectedHighLook) return true;
-  if (/clearance/i.test(q) && !facts.clearance) return true;
-  if (/third (runoff )?trial|trial three/i.test(q) && (facts.fairTrialCount || 0) < 3) return true;
   return false;
 }
