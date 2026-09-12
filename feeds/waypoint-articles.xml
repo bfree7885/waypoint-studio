@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Sep 2026 15:25:36 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 12 Sep 2026 01:56:20 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,24 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Overdue hikers located by Forest Rangers</title>
+    <link>https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</guid>
+    <pubDate>Fri, 11 Sep 2026 21:21:29 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Overdue hikers located by Forest Rangers. Silver Lakes wilderness area rescue. Photo courtesy of DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-29.jpg?fit=556%2C417&amp;ssl=1&quot; /&gt; Plus: Reports of an aggressive subject and ill hikers
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</description>
+    <category>Forests and Plants</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Fall foliage reports: Send in your photos</title>
@@ -65,6 +83,24 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>NASA&apos;s Chandra Spots Galactic Gem</title>
+    <link>https://www.nasa.gov/image-detail/galaxies-iizw096/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-iizw096/</guid>
+    <pubDate>Fri, 11 Sep 2026 17:22:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Galaxies are like cosmic gems, each with characteristics including size and shape that make them distinct. A gallery from NASA’s Chandra X-ray Observatory and other telescopes displays a collection of galactic images that showcase this variety.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-iizw096/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Dust and Water in Sagittarius A*</title>
     <link>https://www.nasa.gov/image-detail/55459350878-2e1468b664-o/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/55459350878-2e1468b664-o/</guid>
@@ -101,6 +137,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ms
     <author>NASA</author>
   </item>
   <item>
+    <title>Superbubble in the Large Magellanic Cloud</title>
+    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
+    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Seeing Rangelands Through a New Lens</title>
     <link>https://www.audubon.org/california/news/seeing-rangelands-through-new-lens</link>
     <guid isPermaLink="true">https://www.audubon.org/california/news/seeing-rangelands-through-new-lens</guid>
@@ -120,22 +174,23 @@ Read the original article at the publisher: https://www.audubon.org/california/n
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Mayday Mayday!</title>
+    <link>https://www.fws.gov/story/2026-09/mayday-mayday</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-09/mayday-mayday</guid>
+    <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
+Summary: In Alaska, both chokecherry and Mayday trees (collectively referred to throughout as chokecherry) are invasive species. They are one of the top disruptive plants in both urban and semi-urban landscapes. Recognizing these significant ecological impacts, members from the Alaska Invasive Species
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+Read the original article at the publisher: https://www.fws.gov/story/2026-09/mayday-mayday</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>2026 Wounded Warrior Fishing Event at Wolf Creek National Fish Hatchery</title>
@@ -232,79 +287,21 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>A tale of two Adirondack fire towers: So different but worth the effort</title>
-    <link>https://www.adirondackexplorer.org/recreation/hiking/a-tale-of-two-adirondack-fire-towers-so-different-but-worth-the-effort/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/a-tale-of-two-adirondack-fire-towers-so-different-but-worth-the-effort/</guid>
-    <pubDate>Wed, 09 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Seasonal forecasts could give northern India months of warning before severe winter air pollution</title>
+    <link>https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</guid>
+    <pubDate>Fri, 11 Sep 2026 16:20:04 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: Stillwater Mountain’s Osborne Fire Finder device. Photo courtesy of Jenn Woltjen. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/375dddd0-8369-4a13-b94b-075a0b876745_2048x1536.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Hikes up Lyon Mountain and Stillwater Mountain provide different yet similarly enjoyable experiences from the fire towers at the summits
+Summary: Northern India experiences some of the world&apos;s worst winter air pollution, with dangerous episodes often prompting emergency control efforts. In major cities like Delhi, the Air Quality Index has reached levels above 999—over 30 times the World Health Organization&apos;s safety limit.
 
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: compare the claimed seasonal cue with what your local places actually show. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/a-tale-of-two-adirondack-fire-towers-so-different-but-worth-the-effort/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>The Ninety-Miler</title>
-    <link>https://www.adirondackexplorer.org/recreation/paddling/the-ninety-miler/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/paddling/the-ninety-miler/</guid>
-    <pubDate>Wed, 09 Sep 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Canoes on the water at the start of the 90-Miler race. Photo by Jamie Organski, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/09/boatsonwater.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Long-time Adirondack paddler Matthew Skeels shares a poem capturing what makes the 90-Miler so special
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/paddling/the-ninety-miler/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>A Plan to Repeal the Roadless Rule Threatens Prime Habitat in National Forests</title>
-    <link>https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</link>
-    <guid isPermaLink="true">https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</guid>
-    <pubDate>Wed, 09 Sep 2026 20:00:29 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Nearly 45 million acres of the nation’s most intact forests—an area larger than Oklahoma—could soon open to logging and road building under a proposal from the U.S. Forest Service. The plan...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
+Read the original article at the publisher: https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</description>
+    <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Which Birdsong Is the Most Beautiful? Here&apos;s What Scientists Found</title>
-    <link>https://www.audubon.org/magazine/most-beautiful-birdsong-study</link>
-    <guid isPermaLink="true">https://www.audubon.org/magazine/most-beautiful-birdsong-study</guid>
-    <pubDate>Wed, 09 Sep 2026 19:10:14 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Ask any birder to name their favorite birdsong, and you’ll get a variety of answers, from the cheery, rich tunes of the Baltimore Oriole and American Robin to the more musical notes of a Wood...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/magazine/most-beautiful-birdsong-study</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Igniting Roman&apos;s Journey</title>
@@ -468,6 +465,23 @@ Read the original article at the publisher: https://blog.nature.org/2026/09/06/a
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>The Nature Conservancy</author>
+  </item>
+  <item>
+    <title>Lighting fire towers and harvesting from the Inlet Community Garden</title>
+    <link>https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</guid>
+    <pubDate>Fri, 11 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A colorful dahlia. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/397fbb39-064e-444c-ba26-25140d0e8f8d.jpgdahlia-2026.jpg?fit=780%2C1040&amp;ssl=1&quot; /&gt; Gary Lee shares a national weather update and his experience from the fire tower lighting this past week with views from the cab
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</description>
+    <category>Weather</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>NOAA names Mississippi State University to host new Northern Gulf research institute</title>
@@ -652,6 +666,43 @@ Read the original article at the publisher: https://earthsky.org/earth/mercator-
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>A Plan to Repeal the Roadless Rule Threatens Prime Habitat in National Forests</title>
+    <link>https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</guid>
+    <pubDate>Wed, 09 Sep 2026 20:00:29 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Nearly 45 million acres of the nation’s most intact forests—an area larger than Oklahoma—could soon open to logging and road building under a proposal from the U.S. Forest Service. The plan...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/magazine/plan-repeal-roadless-rule-threatens-prime-habitat-national-forests</description>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Discussion: Are you a Champ believer?</title>
+    <link>https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</guid>
+    <pubDate>Fri, 11 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A group of area residents filmed and photographed a strange wave phenomenon off Point au Roche that appeared to be created by a large dark shadow beneath the surface. Photo Courtesy of Susan Sisti. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Champy4-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; The idea of the lake monster Champ has been a favorite topic of discussion for residents and visitors to Lake Champlain for decades
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Fly of the Week: X-Caddis</title>
     <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</guid>
@@ -690,43 +741,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Law Enforcement Torch Run to honor Special Olympics athletes in Plattsburgh</title>
-    <link>https://www.adirondackexplorer.org/communities/law-enforcement-torch-run-to-honor-special-olympics-athletes-in-plattsburgh/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/law-enforcement-torch-run-to-honor-special-olympics-athletes-in-plattsburgh/</guid>
-    <pubDate>Thu, 10 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A New York State Police car. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/New_York_State_Police_Ford_Taurus_Police_Interceptor_Front.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; North Country law enforcement will participate in an event honoring Special Olympics athletes and those lost in the September 11 attacks
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/law-enforcement-torch-run-to-honor-special-olympics-athletes-in-plattsburgh/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>A stronger-than-normal El Nino alarms scientists over Galápagos wildlife and forests</title>
-    <link>https://phys.org/news/2026-09-stronger-el-nino-alarms-scientists.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-stronger-el-nino-alarms-scientists.html</guid>
-    <pubDate>Thu, 10 Sep 2026 07:34:55 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: The prediction that this season&apos;s El Niño phenomenon will be stronger than normal has alarmed the Ecuadorian scientific community, which has warned of its impact on the flora and fauna of the Galapagos Islands, home to the highest concentration of species not found elsewhere on Earth.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-stronger-el-nino-alarms-scientists.html</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Global</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Restoring Fish Habitat - Saint Sebastian River</title>
     <link>https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</guid>
@@ -763,18 +777,18 @@ Read the original article at the publisher: https://www.audubon.org/news/state-p
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>The Issue with Tissue—a Boreal Love Story</title>
-    <link>https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</link>
-    <guid isPermaLink="true">https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</guid>
-    <pubDate>Fri, 04 Sep 2026 20:55:52 GMT</pubDate>
+    <title>Which Birdsong Is the Most Beautiful? Here&apos;s What Scientists Found</title>
+    <link>https://www.audubon.org/magazine/most-beautiful-birdsong-study</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/most-beautiful-birdsong-study</guid>
+    <pubDate>Wed, 09 Sep 2026 19:10:14 GMT</pubDate>
     <source url="https://www.audubon.org/">National Audubon Society</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: Born and raised in Montreal, Michael Zelniker is a lifelong environmentalist as well as an award-winning actor and filmmaker. Then after more than 30 years of working on film, television, and theater...
+Summary: Ask any birder to name their favorite birdsong, and you’ll get a variety of answers, from the cheery, rich tunes of the Baltimore Oriole and American Robin to the more musical notes of a Wood...
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/canada/news/issue-tissue-boreal-love-story</description>
+Read the original article at the publisher: https://www.audubon.org/magazine/most-beautiful-birdsong-study</description>
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>
@@ -817,6 +831,23 @@ Read the original article at the publisher: https://www.audubon.org/great-lakes/
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>New study offers a detailed look at how wildfire smoke impacts Reno&apos;s air quality</title>
+    <link>https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</guid>
+    <pubDate>Fri, 11 Sep 2026 18:00:05 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: With Western wildfires increasing in size, duration and intensity, millions of Americans are now exposed to wildfire smoke each year. In California, 2020 and 2021 were particularly challenging, with a 10-fold increase in fires compared with any time in the state&apos;s history. Northern Nevada is positioned to receive much of the smoke from California wildfires, and Reno residents experienced months of smoke-shrouded skies during this time.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: read it as a field-safety brief — confirm the hazard, then decide whether to adjust timing or route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</description>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Researchers eye AI revolution in natural disaster forecasts</title>
@@ -888,42 +919,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-08/bi
     <category>Rivers and Water</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Artemis Mission Patches</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1304/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1304/</guid>
-    <pubDate>Thu, 20 Aug 2026 15:15:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: A NASA jacket containing Artemis I and II mission patches, along with other NASA patches hangs on the back of a chair on Thursday, Aug. 6, 2026, inside Firing Room 1 of the Rocco A. Petrone Launch Control Center at NASA’s Kennedy Space Center in Florida during a terminal countdown simulation for the Artemis III mission.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1304/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Ancient Milky Way Merger</title>
-    <link>https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</guid>
-    <pubDate>Wed, 19 Aug 2026 16:20:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: About 12 billion years ago, a dwarf galaxy known as LKH collided with a young Milky Way and merged with it. This artist’s concept portrays that collision. NASA’s Hubble Space Telescope uncovered definitive evidence of this collision by studying globular star clusters.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01kz4n4d8g9ak26cf28hd5nt5n-d2d764/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
   </item>
   </channel>
 </rss>
