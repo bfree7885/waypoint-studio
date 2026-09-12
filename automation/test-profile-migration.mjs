@@ -40,18 +40,21 @@ async function startChrome() {
       "--no-sandbox",
       "--disable-extensions",
       "--disable-dev-shm-usage",
+      "--remote-debugging-address=127.0.0.1",
       `--user-data-dir=${PROFILE}`,
       `--remote-debugging-port=${PORT}`,
       "about:blank"
     ],
     { stdio: "ignore" }
   );
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 50; i++) {
     await delay(250);
     try {
       const targets = await fetchJson(`http://127.0.0.1:${PORT}/json/list`);
-      const page = targets.find((t) => t.type === "page");
-      if (page) return { proc, wsUrl: page.webSocketDebuggerUrl };
+      const page = (targets || []).find((t) => t.type === "page" && t.webSocketDebuggerUrl && !/chrome-extension:/.test(t.url || ""));
+      const any = (targets || []).find((t) => t.type === "page" && t.webSocketDebuggerUrl);
+      const chosen = page || any;
+      if (chosen) return { proc, wsUrl: chosen.webSocketDebuggerUrl };
     } catch (_) { /* retry */ }
   }
   throw new Error("No page CDP target");
@@ -182,9 +185,10 @@ function isTransientCdpError(err) {
 }
 
 async function run() {
-  const attempts = 2;
+  const attempts = 4;
+  const basePort = Number(process.env.WAYPOINT_MIG_CDP_PORT || 9340);
   for (let i = 0; i < attempts; i++) {
-    PORT = Number(process.env.WAYPOINT_MIG_CDP_PORT || 9225) + i;
+    PORT = basePort + i;
     PROFILE = path.join(os.tmpdir(), `waypoint-migration-profile-${process.pid}-${i}`);
     try {
       const code = await main();

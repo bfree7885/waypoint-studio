@@ -134,6 +134,174 @@ Include:
 
 ## Lessons Learned
 
+### 2026-09-06 — SignalTerrain V1.2 static catalogue importer (preparation)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.2-STATIC-CATALOGUE-IMPORT.md`
+
+- Finding `summitslist.csv` is not permission to redistribute it. Keep GENERATE → REVIEW → PERMISSION → PROMOTE → REGISTER, and lock registration until confirmation.
+- The importer must take a local path only. Refuse URLs. Do not fetch the SOTA API or scrape. Hash the raw file bytes into pack provenance.
+- Map CSV columns by header name; parse association/region codes from `SummitCode` when those columns are names. Do not assume US state codes are SOTA regions.
+- Write staged packs outside `apps/summit-signal/data`. Synthetic `XX/…` fixtures are for importer tests only.
+
+### 2026-09-06 — SignalTerrain V1.2 data-acquisition blocker
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.2.md`
+
+- Honest coverage (V1.1) is not the same as useful coverage (V1.2). Do not declare V1.2 success because the map explains that NJ/PA data is missing.
+- SOTA API ToS: no AI-generated software may connect to the API without prior approval; no commercial use without a licence. Do not retrieve neighboring region packs from this agent.
+- OSM `communication:amateur_radio:sota` is ODbL, not a substitute official catalogue. High Point NJ’s OSM peak node has no SOTA tag — cannot invent the reference.
+- If no permissible pack exists, STOP. Wait for a human-prepared labeled fixture in the V0.1 pattern.
+
+### 2026-09-06 — SignalTerrain V1.1 geographic summit coverage
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.1.md`
+
+- A region envelope is not coverage. Fitting the map to W2/GC min/max made PA/NJ look empty of SOTA summits; they were only missing from the loaded pack.
+- Visible map area and loaded summit catalogue are not assumed to be the same thing. Say so on the map.
+- Do not invent neighboring SOTA references. If High Point NJ is not in a permissible fixture, report absence and bound coverage honestly.
+- Deduplicate merged packs by SOTA reference, not summit name. Conflicting coordinates for the same ref must fail.
+- Do not expand live SOTA API usage to fill a coverage hole.
+
+### 2026-09-05 — PR CI merges `main`; color gate is not branch-HEAD
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b`
+
+- `pull_request` CI checks out `refs/pull/*/merge`, not the feature branch tip. A test that passes on the branch can fail against `origin/main` files GitHub merged in.
+- Sheds forest brand on `main` inlines `--wp-warm: #6f7d5f` just past a 500-character window that expected `var(--wp-sage)`. Diagnose merge-commit tokens before blaming SignalTerrain.
+- Do not revert Sheds CSS from this branch to make the gate pass.
+
+### 2026-09-05 — SignalTerrain V1.0 field validation (no product change)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V1.0-FIELD-TEST.md`
+
+- Keep the GitHub Pages tab open. Reload/close while offline is `ERR_INTERNET_DISCONNECTED` (Pages `max-age=600` is not an offline pack).
+- Parking list is OSM candidates ordered by straight-line distance — first-time Slide users can tap Giant Ledge instead of Slide Mountain Parking Area.
+- GPS line “Inside mapped Activation Zone” omits the geographic-only note on that row; lede/caveat/plan still say it is not a valid activation.
+- Do not add weather, GPX, offline, or SOTA logging from this audit. Wait for the real outing.
+
+### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host published
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
+
+- Fine-grained PAT `SHEDHUNTING_DEPLOY_TOKEN` needed `waypoint-studio-site` added to its selected repositories with Contents: Read and write. REST `permissions.push` on public repos is a red herring (owner perms, not token Contents).
+- After the grant, existing prepare/publish scripts pushed `04c45bd6` to `bfree7885/waypoint-studio-site` `main`. Rollback tag `legacy-waypoint-studio-site-pre-st-v09` = `c45abc7e`.
+- Unlisted URL: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`. Not authenticated. Do not merge to `main`. Do not use `sheds-site`.
+
+### 2026-09-05 — SignalTerrain V0.9 unlisted field-test host
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
+
+- Studio Pages is `main` → `waypointstudio.org` only. Do not dispatch `pages.yml` from a feature branch.
+- New GitHub repo creation 403’d. Existing isolated Pages project is `waypoint-studio-site` (no CNAME).
+- `SHEDHUNTING_DEPLOY_TOKEN` can write **only** to `sheds-site` (blob 201). It cannot create repos or push `waypoint-studio-site` (403). Do not publish SignalTerrain to Sheds.
+- Intended URL: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`. Unlisted, not authenticated. **Not live** until contents:write exists on that companion repo.
+
+### 2026-09-05 — SignalTerrain V0.9 field-test host inspection (not deployed)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.9.md`
+
+- Studio production is GitHub Pages from `main` only (`pages.yml`). There is no branch/preview URL.
+- One Pages project = one custom domain. A phone field-test cannot be isolated without a companion Pages repo (Sheds pattern) or a main merge.
+- Dispatching `pages.yml` from a feature branch overwrites waypointstudio.org with the unmerged tree. Do not do that.
+- GitHub Pages here is unlisted at best, never authenticated. Do not call it private.
+- Stop when deploy requires merging to production main. Record the inspection; do not improvise a host.
+
+### 2026-09-05 — SignalTerrain V0.8 field-test access + Maps handoff
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.8.md`
+
+- Inspect and Start hike here are different actions. Marker click must not call the router.
+- Close/hide of the summit sheet must not call `clearSelection()`. Phone map inspection needs the route, AZ, and plan to stay in memory.
+- Surface existing OSM `access`/`fee` tags as “Mapped … tag: value”. Never translate `access=yes` into legal parking.
+- Maps handoff is coordinates only. Do not geocode a feature name (it can resolve to the summit).
+- Unnamed parking stays unnamed. Copy Plan includes start coordinates without access-legality claims.
+
+### 2026-09-05 — SignalTerrain V0.7 Activation Plan + Field Readiness
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.7.md`
+
+- Synthesize existing summit/access/route/AZ/GPS evidence into one Activation Plan model. Do not duplicate provider payloads in the DOM.
+- Field Readiness is information completeness (`KNOWN` / `UNKNOWN` / `UNAVAILABLE` / `VERIFY` / `NOT INTEGRATED`), never a score or “valid activation.”
+- Mapped OSM parking stays a candidate (`VERIFY`). Do not say parking is confirmed or legal.
+- Personal checklist is localStorage, per summit, with an explicit reset. It is not SOTA required equipment.
+- Provider failures must leave the rest of the plan standing.
+
+### 2026-09-05 — SignalTerrain V0.6 Route to Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.6.md`
+
+- Keep Route to Summit as an explicit mode. Do not silently prefix the V0.3 route and call it an AZ destination.
+- AZ-entry candidates must come from the Valhalla geometry × calculated AZ, not a centroid, vertex, or straight-line nearest point.
+- Cache Route-to-AZ separately from Route-to-Summit; the V0.3 route id does not include destination mode.
+- Prefix elevation must re-smooth clipped 3DEP samples. Do not scale summit gain by distance.
+- If AZ-route gain equals summit-route gain (short remaining spur vs sample spacing), report that honestly.
+
+### 2026-09-05 — SignalTerrain V0.5 second W2/GC Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.5.md`
+
+- Prove the existing AZ engine on a second real catalogue summit before adding workflow features. Do not special-case the new summit in the algorithm.
+- Hunter Mountain’s 25 m contour is a southeast plateau/spine, not a Slide-like cone. A 500 m DEM window clips it; the same 10 m analysis grid with a larger labeled window lets the contour close.
+- Neighbour-snap-before-elevation-conflict (`cb627c08`) stays in the engine even when the second summit seeds on the nearest cell.
+- Keep at least one loaded W2 summit without an AZ fixture so unsupported-region stays testable.
+
+### 2026-09-04 — SignalTerrain V0.4 Activation Zone
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.4.md`
+
+- The SOTA AZ is a closed contour at Vertical Distance below the summit (GR v1.21, normally 25 m), never a radius.
+- Threshold uses the SOTA catalogue elevation. DEM is geometry + a discrepancy check; do not silently rewrite the SOTA record.
+- 4-connected flood fill from the summit cell; discard disconnected above-threshold blobs (neighbouring peaks).
+- Thin ridges and single-cell peaks need a cell-edge outline, not interpolated marching squares. The polygon is still a closed contour of qualifying terrain, never a radius.
+- Keep the V0.3 route geometry; only report whether it enters the polygon.
+- Never say “activated” because GPS is inside the polygon.
+
+### 2026-09-04 — SignalTerrain V0.3 hike routing + 3DEP
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.3.md`
+
+- Do not auto-start a route from nearest parking. Start hike here is the user confirmation.
+- FOSSGIS Valhalla is development-only. Default to a labeled real route fixture; `?route=live=1` is opt-in; production must self-host.
+- Never substitute Haversine for a failed hike. Elevation failure must keep a valid route.
+- A 3 m rise threshold on ~30 m 1 m-lidar samples undercounts real climbing. Use a moving average, then sum all smoothed deltas.
+- Route polylines must be visually heavier/cyan than OSM path fragments.
+- Label formatters (`formatDurationEstimate`) must not throw if an older cached `ss-geo.js` is in the browser. A valid Valhalla route must still display. Cache-bust V0.3 scripts (`?v=0.3`).
+
+### 2026-09-04 — SignalTerrain V0.2 OSM access layer
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.2.md`
+
+- Selected-summit Overpass/fixture queries beat region-wide OSM dumps. 5000 m around Catskills peaks captures CR-47 parking that 2500 m would miss.
+- Empty successful OSM results are not the same as unavailable, and neither means “no trail exists.”
+- Draw OSM ways as they are. Do not stitch hiking relations into a fake summit route.
+- Straight-line to parking/trailhead must be labeled straight-line, never hike distance.
+- Access failure must not block the SOTA map. CI must use a labeled real OSM fixture, not live Overpass.
+- When inserting a helper such as `maybeFocusAccess`, keep `function loadAccessForSummit` as its own declaration. A missing function header is a parse error that takes down the whole map, including SOTA markers.
+- Desktop summit-detail sheet sits on the right. Layer chips must stay on the left of the map (next to zoom), not `right: 12px`, or the sheet covers the toggles.
+
+### 2026-09-04 — SignalTerrain V0.1 (SOTA rebrand of Summit Signal)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.1.md`
+
+- **SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** Keep the SOTA app at `/apps/summit-signal/`. Do not occupy `/apps/signalterrain/` or `/side-trails/signalterrain/`. Do not overwrite `docs/SIGNALTERRAIN-*.md`. Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`.
+- Use collision-safe internals (`SignalTerrainSota*`, `signalterrain-sota-*`, `data-product="signalterrain-sota"`). Do not take the retired cyber package’s identifiers.
+- Public-portfolio tests still treat the string `SignalTerrain` as a discontinued *public* name. Do not weaken those lists so the unpublished SOTA app can appear on homepage/nav/About. The name belongs in the unpublished app and development docs only.
+- SOTA API/data terms must be reviewed before public launch or commercialization. Do not assume commercial API use is permitted. Keep attribution and the independent-app disclaimer. Do not implement billing.
+- CSS classes / DOM ids (`ss-*`) and the `/apps/summit-signal/` path were retained to avoid a destructive rename of a working map.
+
+### 2026-09-04 — Summit Signal V0.1 foundation (superseded name)
+
+**Branch:** `cursor/summit-signal-v0-1-9f7b` · **Doc:** `docs/signal-terrain/V0.1.md` (was `docs/summit-signal/V0.1.md`)
+
+- New Waypoint field apps can live under `/apps/` without becoming public architecture peers. Use `noindex`, robots Disallow, and keep them out of primary nav, homepage, About/Support, and the sitemap.
+- Do not couple a new map product to Shed Hunting modules. Vendor Leaflet independently; reuse public Esri tile URLs, not `sheds-tile-provider.js`.
+- SOTA live APIs are useful, but CORS and reliability argue for a **labeled fixture of real retrieved records** plus a provider that can switch to live later. Never invent summit or hike facts to fill the map.
+- Planning placeholders (trailhead, parking, route, gain, time, activation zone) establish product direction only when they are explicitly **not yet integrated**. Empty is honest; guessed AllTrails-like numbers are not.
+- SOTA Activation Zone is a ~25 m vertical contour. Do not draw a pretty circle or guessed polygon without a DEM. Keep an empty overlay layer instead.
+- CI smoke `hScroll` on ForageCast / SignalTerrain is usually the **homepage after a silent redirect**, not those apps. Do not patch retired-app CSS for it. Skip overflow when `currentPath` is no longer the URL under test; studio-home still owns `/` overflow.
+- Dashboard intel `toolLinks` for golden hour / dark sky are empty because Scenes is unpublished. Happening Now already asserts that. Do not restore Scenes CTAs to make `test-dashboard-rebuild-intel.mjs` green.
+- `test-profile-migration.mjs` can miss a CDP page target after a long CI Chrome sequence. Wait for `webSocketDebuggerUrl`, use an unused port, and retry more than once. Do not treat that flake as a Kansas-migration product regression.
+
 ### 2026-08-28 — Dusk-desert color reconciliation
 
 **Branch:** `cursor/dusk-desert-color-system-3501` · **Doc:** `docs/SOUTHWEST-COLOR-SYSTEM.md`

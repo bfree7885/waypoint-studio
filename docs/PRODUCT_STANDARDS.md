@@ -81,7 +81,10 @@ Shed Hunting is a public sibling destination. Cross-product discovery lives in t
 **global nav**. App bodies must not become studio directories or promo grids.
 The Homepage (`/`) is a Dashboard-first entrance; every other app keeps one job.
 Scenes remains available at existing URLs but is unpublished — do not promote it
-as a peer Studio application.
+as a peer Studio application. SignalTerrain (SOTA, unpublished) is an
+in-development field app at `/apps/summit-signal/` — do not add it to primary
+nav or public product lists until it is published. It is not the retired
+SignalTerrain Cyber product and must not occupy `/apps/signalterrain/`.
 
 Canonical rule: `docs/APP-SURFACE-ARCHITECTURE.md`. Canonical portfolio:
 `docs/PRODUCT-DIRECTION.md`.
@@ -222,7 +225,7 @@ Canonical portfolio: [`PRODUCT-DIRECTION.md`](PRODUCT-DIRECTION.md).
 - Fieldry — paused indefinitely (not an active Side Trail)
 - OpenRoad PA — retired
 - Savant Sommelier — not an active priority
-- Cyber / SignalTerrain / Global Signals — not standalone active products (archived research; may inform Waypoint Deck situational awareness later)
+- Cyber / SignalTerrain Cyber / Global Signals — not standalone active products (archived research; may inform Waypoint Deck situational awareness later). The unpublished SOTA app now named SignalTerrain lives at `/apps/summit-signal/` and is not a revival of this cyber product.
 - ForageCast, Steepleaf, Volunteer — supporting or incubator only
 
 Each active experience keeps its own purpose while sharing philosophy, design

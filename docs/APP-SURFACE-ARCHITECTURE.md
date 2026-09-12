@@ -65,6 +65,12 @@ Not marketing, not an app directory, not decorative weather cards for other prod
 - Studio legacy routes noindex and cut over to the dedicated host. See `docs/sheds/SHEDHUNTING-ORG-PHASE-3C.md`.
 - Version sequence and V2.x flagship dynamic search-priority map: `docs/sheds/SHEDS-PRODUCT-ROADMAP.md`. Do not implement that map in V1.7.
 
+## SignalTerrain (SOTA) specifically
+
+In-development, unpublished. Product name **SignalTerrain**. Route: `/apps/summit-signal/`. Map-first SOTA explorer with a V0.2 OpenStreetMap candidate access layer, V0.3 user-selected hiking routes, V0.4 terrain-derived Activation Zone, V0.5 fixture coverage for a second W2/GC summit, V0.6 Route to Activation Zone, V0.7 Activation Plan + Field Readiness, and V0.8 field-test start inspection with a Maps handoff to the selected trailhead; not a Studio architecture peer. V0.9 publishes an unlisted github.io companion host (`waypoint-studio-site`). V1.1 adds honest multi-pack summit coverage (loaded catalogue ≠ visible map). Keep it off primary nav, homepage, About/Support active lists, and the sitemap. `noindex` + robots Disallow. Do not couple it to Shed Hunting modules. Do not occupy `/apps/signalterrain/` (retired SignalTerrain Cyber redirect). Do not import `design-system/signalterrain/**` or `wds-signalterrain-*`. See `docs/signal-terrain/V0.1.md`, `docs/signal-terrain/V0.2.md`, `docs/signal-terrain/V0.3.md`, `docs/signal-terrain/V0.4.md`, `docs/signal-terrain/V0.5.md`, `docs/signal-terrain/V0.6.md`, `docs/signal-terrain/V0.7.md`, `docs/signal-terrain/V0.8.md`, `docs/signal-terrain/V0.9.md`, and `docs/signal-terrain/V1.1.md`.
+
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.** The “SignalTerrain” mention in Forbidden promo cards above refers to not promoting the *retired cyber* product (or this unpublished SOTA app) from other app bodies.
+
 ## Scenes specifically
 
 Retained internally. URLs must keep working. Absent from primary nav, homepage, About/Support active lists, sitemap, and Dashboard public CTAs. `noindex` + robots Disallow.

@@ -1,0 +1,24 @@
+# SignalTerrain (SOTA, unpublished)
+
+**SignalTerrain (SOTA/outdoor, unpublished) is a new product definition and is not the retired SignalTerrain Cyber product.**
+
+Canonical V0.1 write-up: [`V0.1.md`](V0.1.md)  
+Canonical V0.2 write-up: [`V0.2.md`](V0.2.md)  
+Canonical V0.3 write-up: [`V0.3.md`](V0.3.md)  
+Canonical V0.4 write-up: [`V0.4.md`](V0.4.md)  
+Canonical V0.5 write-up: [`V0.5.md`](V0.5.md)  
+Canonical V0.6 write-up: [`V0.6.md`](V0.6.md)  
+Canonical V0.7 write-up: [`V0.7.md`](V0.7.md)  
+Canonical V0.8 write-up: [`V0.8.md`](V0.8.md)  
+Canonical V0.9 write-up: [`V0.9.md`](V0.9.md)  
+V1.0 field-test card: [`V1.0-FIELD-TEST.md`](V1.0-FIELD-TEST.md)  
+Canonical V1.1 write-up: [`V1.1.md`](V1.1.md)  
+V1.2 coverage (not shipped): [`V1.2.md`](V1.2.md)  
+V1.2 data acquisition: [`V1.2-DATA-ACQUISITION.md`](V1.2-DATA-ACQUISITION.md)  
+V1.2 static importer (preparation): [`V1.2-STATIC-CATALOGUE-IMPORT.md`](V1.2-STATIC-CATALOGUE-IMPORT.md)
+
+Unlisted field-test host: `https://bfree7885.github.io/waypoint-studio-site/apps/summit-signal/`
+
+Runtime in this increment: `/apps/summit-signal/` (do not occupy `/apps/signalterrain/`).
+
+Historical cyber documentation remains at `docs/SIGNALTERRAIN-*.md` and must not be overwritten by this product.
