@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Global Watch Studio bridge — visible from Support / Deck; localhost launch labeled honestly.
+ * Global Watch Studio bridge — Support / Deck discoverability;
+ * launch target is the verified public field-test host.
  * Side Trails catalog is unlisted and must not be required for discovery.
  */
 import assert from "node:assert/strict";
@@ -9,6 +10,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const PUBLIC_GW = "https://global-watch-nine.vercel.app";
 
 function read(rel) {
   return fs.readFileSync(path.join(root, rel), "utf8");
@@ -31,19 +33,24 @@ for (const rel of [
 const support = read("support.html");
 assert.match(support, /side-trails\/global-watch\//);
 assert.match(support, /Global Watch/);
-assert.match(support, /local host required|Local field test|127\.0\.0\.1:4173/i);
+assert.match(support, /Public Field Test/i);
+assert.match(support, /global-watch-nine\.vercel\.app/);
+assert.doesNotMatch(support, /127\.0\.0\.1:4173/);
 
 const deck = read("side-trails/waypoint-deck/index.html");
 assert.match(deck, /global-watch\//);
 assert.match(deck, /Global Watch/);
-assert.match(deck, /127\.0\.0\.1:4173/);
+assert.match(deck, /global-watch-nine\.vercel\.app/);
+assert.doesNotMatch(deck, /127\.0\.0\.1:4173/);
 
 const gw = read("side-trails/global-watch/index.html");
 assert.match(gw, /noindex/i);
-assert.match(gw, /127\.0\.0\.1:4173/);
-assert.match(gw, /local field-test host|Local field test|local host/i);
-assert.match(gw, /not publicly hosted/i);
-assert.doesNotMatch(gw, /production-hardened|operationally authoritative cloud/i);
+assert.match(gw, /Public Field Test/i);
+assert.match(gw, /Launch Global Watch/);
+assert.match(gw, new RegExp(PUBLIC_GW.replace(/\./g, "\\.")));
+assert.doesNotMatch(gw, /127\.0\.0\.1:4173/);
+assert.doesNotMatch(gw, /:4173/);
+assert.doesNotMatch(gw, /production-hardened|continuous monitoring guaranteed/i);
 
 const home = read("index.html");
 assert.doesNotMatch(home, /href=["'][^"']*side-trails\/["']/);
@@ -54,6 +61,11 @@ assert.doesNotMatch(nav, /global-watch/i);
 assert.match(nav, /waypoint-deck/);
 
 const catalog = JSON.parse(read("data/side-trails/catalog.json"));
-assert.ok(catalog.projects.some((p) => p.id === "global-watch"));
+const entry = catalog.projects.find((p) => p.id === "global-watch");
+assert.ok(entry);
+assert.equal(String(entry.url).replace(/\/$/, ""), PUBLIC_GW);
+assert.doesNotMatch(String(entry.url), /127\.0\.0\.1|:4173|localhost/i);
 
-console.log("Global Watch visible-launch checks passed (Support + Deck → bridge).");
+console.log(
+  "Global Watch visible-launch checks passed (Support + Deck → public field-test host).",
+);

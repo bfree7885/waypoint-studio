@@ -62,9 +62,11 @@ assert.equal(
 
 const gwLanding = read("side-trails/global-watch/index.html");
 assert.match(gwLanding, /noindex/i);
-assert.match(gwLanding, /127\.0\.0\.1:4173/);
-assert.match(gwLanding, /Open local field-test host|Launch Global Watch/);
-assert.match(gwLanding, /not publicly hosted/i);
+assert.match(gwLanding, /global-watch-nine\.vercel\.app/);
+assert.match(gwLanding, /Launch Global Watch/);
+assert.match(gwLanding, /Public Field Test/i);
+assert.doesNotMatch(gwLanding, /127\.0\.0\.1:4173/);
+assert.match(String(gw.url), /global-watch-nine\.vercel\.app/);
 
 const sitemap = read("sitemap.xml");
 assert.match(sitemap, /side-trails\/waypoint-deck\//);

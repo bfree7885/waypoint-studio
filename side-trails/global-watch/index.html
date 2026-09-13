@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Global Watch — standalone owner field-test application. Local host required; not a public Studio deployment.">
-  <title>Global Watch — field test · Waypoint Studio</title>
+  <meta name="description" content="Global Watch — standalone public field test. Not continuous monitoring or an emergency warning system.">
+  <title>Global Watch — Public Field Test · Waypoint Studio</title>
   <link rel="canonical" href="https://waypointstudio.org/side-trails/global-watch/">
   <link rel="stylesheet" href="../../design-system/css/wds.css">
   <link rel="stylesheet" href="../../design-system/css/wds-side-trails.css">
@@ -16,7 +16,7 @@
     <div data-wds-app-global data-shell-depth="1"></div>
     <main id="main" class="wcs-page wst-page">
       <header class="wcs-hero wst-hero">
-        <p class="wds-eyebrow">Independent project · Owner field test</p>
+        <p class="wds-eyebrow">Independent project · Public Field Test</p>
         <h1>Global Watch</h1>
         <p class="wst-lede">
           Open-source intelligence situational awareness.
@@ -25,37 +25,26 @@
           Detect change. Identify unusual activity. Correlate independent evidence.
           Assess what the evidence supports.
         </p>
-        <p><span class="was-home__status">Local field test only</span>
-          — not publicly hosted · not operationally authoritative · separate repository</p>
+        <p><span class="was-home__status">Public Field Test</span>
+          — not continuous monitoring · not an emergency warning system · separate repository</p>
       </header>
 
       <section class="wcs-section">
-        <h2 class="wst-section-title">How to launch</h2>
+        <h2 class="wst-section-title">Launch</h2>
         <p class="wst-lede">
-          Global Watch runs as a <strong>standalone application on your machine</strong>.
+          Global Watch runs as a <strong>standalone public application</strong>.
           Waypoint Studio only provides this bridge page — it does not embed or host the app.
         </p>
-        <ol class="wst-deck__list">
-          <li>In a terminal, open the Global Watch repository.</li>
-          <li>Run <code>npm ci && npm run build && npm start</code>.</li>
-          <li>When the host prints ready, use the button below (opens
-            <code>http://127.0.0.1:4173/</code> on <em>this</em> computer).</li>
-        </ol>
-        <pre style="overflow:auto;padding:1rem;background:#0b1218;color:#e8eef2;border-radius:8px;font-size:0.85rem"><code>cd /path/to/global-watch
-npm ci
-npm run build
-npm start
-# listens on http://127.0.0.1:4173</code></pre>
         <p style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.25rem">
-          <a class="wds-btn wds-btn--primary" href="http://127.0.0.1:4173/" target="_blank" rel="noopener noreferrer">
-            Open local field-test host
+          <a class="wds-btn wds-btn--primary" href="https://global-watch-nine.vercel.app/" target="_blank" rel="noopener noreferrer">
+            Launch Global Watch
           </a>
           <a class="wds-btn" href="../../support.html">Back to Support</a>
           <a class="wds-btn" href="../waypoint-deck/">Deck</a>
         </p>
         <p class="wst-lede" style="margin-top:1rem;font-size:0.9rem">
-          If the local host is not running, that button will fail to load.
-          That is expected — this is not a cloud deployment.
+          Opens the public field-test host at
+          <code>https://global-watch-nine.vercel.app</code>.
         </p>
       </section>
     </main>

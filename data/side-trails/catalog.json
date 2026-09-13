@@ -3,7 +3,7 @@
   "updatedAt": "2026-09-11",
   "title": "Side Trails",
   "tagline": "Independent projects beside Waypoint Studio.",
-  "message": "Deck is direction-stage. Global Watch is an unlisted owner field-test MVP (standalone host).",
+  "message": "Deck is direction-stage. Global Watch is an unlisted public field-test (standalone host).",
   "statuses": ["in-development", "experimental", "beta", "stable", "archived", "retired"],
   "projects": [
     {
@@ -23,12 +23,12 @@
       "id": "global-watch",
       "title": "Global Watch",
       "tagline": "Open-source intelligence situational awareness.",
-      "description": "Detect change. Identify unusual activity. Correlate independent evidence. Assess what the evidence supports. Owner field-test MVP — not operationally authoritative. Standalone application (not embedded in Studio).",
+      "description": "Detect change. Identify unusual activity. Correlate independent evidence. Assess what the evidence supports. Public Field Test — not continuous monitoring, not an emergency warning system. Standalone application (not embedded in Studio).",
       "icon": "assets/images/side-trails/global-watch.svg",
       "category": "Field test",
       "status": "experimental",
       "ctaLabel": "Launch Global Watch",
-      "url": "http://127.0.0.1:4173/",
+      "url": "https://global-watch-nine.vercel.app/",
       "order": 2,
       "featured": true
     }

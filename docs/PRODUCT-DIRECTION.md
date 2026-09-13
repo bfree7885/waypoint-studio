@@ -78,7 +78,7 @@ Canonical public URL: `/side-trails/waypoint-deck/`. Primary navigation uses the
 
 `/side-trails/` remains an unlisted (noindex) technical path — **not** a primary product section and **not** linked from Home or primary nav. Do not rebuild a public Side Trails catalog discovery surface.
 
-**Global Watch** (standalone owner field-test MVP) is discoverable from **Support → Experiences** and a short note on the Deck page, both linking to the noindex bridge `/side-trails/global-watch/`. Launch is local-host only unless the owner later approves a public host. Do not copy Global Watch source into Studio. Do not reintroduce discontinued Side Trails (OpenRoad, SignalTerrain, Global Signals, Civic Trails).
+**Global Watch** (standalone public field test) is discoverable from **Support → Experiences** and a short note on the Deck page, both linking to the noindex bridge `/side-trails/global-watch/`. Launch opens the standalone public host (`https://global-watch-nine.vercel.app`). Do not copy Global Watch source into Studio. Do not reintroduce discontinued Side Trails (OpenRoad, SignalTerrain, Global Signals, Civic Trails).
 
 ### 4. Waypoint Publishing
 
@@ -165,7 +165,7 @@ One **subscription** across the Studio web ecosystem. Deck commercial intent is 
 - **Articles** — public entry to Publishing (content surface, not a fourth Studio instrument).
 - **Deck** — distinct field-computing project.
 - Do not expose Scenes, discontinued product names, or a Side Trails catalog in primary nav, footer, homepage, About, or sitemaps.
-- Global Watch may appear on Support Experiences and the Deck page as an owner field-test bridge (local host), not as a peer Studio product.
+- Global Watch may appear on Support Experiences and the Deck page as a public field-test bridge (standalone host), not as a peer Studio product.
 
 Homepage introduces **Dashboard-first Studio**, then Shed Hunting as a sibling, then Publishing and Deck as distinct.
 
