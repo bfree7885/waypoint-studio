@@ -1,0 +1,326 @@
+[
+  {
+    "viewport": "320x568",
+    "play": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 86.640625,
+        "y": 462,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 144,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 164,
+        "y": 514,
+        "w": 144,
+        "h": 44
+      }
+    },
+    "atlas": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.511,
+      "atlasWidth": 276,
+      "atlasHeight": 182.65625,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 144,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 164,
+        "y": 514,
+        "w": 144,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "375x667",
+    "play": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 114.140625,
+        "y": 561,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 171.5,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 191.5,
+        "y": 613,
+        "w": 171.5,
+        "h": 44
+      }
+    },
+    "atlas": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.509,
+      "atlasWidth": 331,
+      "atlasHeight": 219.328125,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 171.5,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 191.5,
+        "y": 613,
+        "w": 171.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "390x844",
+    "play": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 121.640625,
+        "y": 738,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 179,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 199,
+        "y": 790,
+        "w": 179,
+        "h": 44
+      }
+    },
+    "atlas": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.509,
+      "atlasWidth": 346,
+      "atlasHeight": 229.328125,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 179,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 199,
+        "y": 790,
+        "w": 179,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "393x852",
+    "play": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 123.140625,
+        "y": 746,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 180.5,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 200.5,
+        "y": 798,
+        "w": 180.5,
+        "h": 44
+      }
+    },
+    "atlas": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.509,
+      "atlasWidth": 349,
+      "atlasHeight": 231.328125,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 180.5,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 200.5,
+        "y": 798,
+        "w": 180.5,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "430x932",
+    "play": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 141.640625,
+        "y": 826,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 199,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 219,
+        "y": 878,
+        "w": 199,
+        "h": 44
+      }
+    },
+    "atlas": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.508,
+      "atlasWidth": 386,
+      "atlasHeight": 256,
+      "stacked": true,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 199,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 219,
+        "y": 878,
+        "w": 199,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "1280x800",
+    "play": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "atlasWidth": 0,
+      "atlasHeight": 0,
+      "stacked": false,
+      "hudOverlap": false,
+      "prompt": {
+        "x": 564.6484375,
+        "y": 734,
+        "w": 150.703125,
+        "h": 38
+      },
+      "mapBtn": {
+        "x": 1047.375,
+        "y": 747,
+        "w": 92.625,
+        "h": 31
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      }
+    },
+    "atlas": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": 1.505,
+      "atlasWidth": 624,
+      "atlasHeight": 414.65625,
+      "stacked": false,
+      "hudOverlap": false,
+      "prompt": null,
+      "mapBtn": {
+        "x": 1047.375,
+        "y": 747,
+        "w": 92.625,
+        "h": 31
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      }
+    }
+  }
+]

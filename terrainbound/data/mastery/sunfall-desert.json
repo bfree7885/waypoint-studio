@@ -1,0 +1,218 @@
+{
+  "id": "topic-10-sunfall-desert",
+  "regionId": "sunfall-desert",
+  "curriculumTopic": 10,
+  "curriculumTitle": "Solar System",
+  "purpose": "Learn solar-system motion by observing, measuring, modeling, and predicting the sky from the ground — not from a worksheet about planets.",
+  "playerVisibleCodes": false,
+  "contentCompletion": {
+    "note": "Opening a sky tool or visiting a landmark is not mastery.",
+    "discoveries": 4,
+    "missions": ["sunfall-solar-system"]
+  },
+  "competencies": [
+    {
+      "id": "rotation",
+      "internalLabel": "ROTATION",
+      "studentLabel": "Reading the daily sky",
+      "fieldRecord": true,
+      "description": "Explain apparent daily solar motion using Earth's rotation and recorded shadows.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "rotation",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "shadow-log", "count": 1, "source": "investigation" },
+        { "kind": "rotation-explain", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "seasons",
+      "internalLabel": "SEASONS",
+      "studentLabel": "Tracking the seasons",
+      "fieldRecord": true,
+      "description": "Use tilt, Sun angle, and daylight — not Earth–Sun distance — to explain seasonal cycles.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "seasons",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "season-obs", "count": 1, "source": "investigation" },
+        { "kind": "reject-distance", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "orbit",
+      "internalLabel": "ORBIT SHAPE",
+      "studentLabel": "Reading an orbit",
+      "fieldRecord": true,
+      "description": "Interpret elliptical geometry and changing speed with distance.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "orbit-shape",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "orbit-eccentric", "count": 1, "source": "investigation" },
+        { "kind": "orbit-speed", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "math-orbit",
+      "internalLabel": "MATHEMATICAL ORBIT",
+      "studentLabel": "Predicting orbital motion",
+      "fieldRecord": true,
+      "description": "Use a simplified period–distance relation to predict a return and check it.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "mathematical-orbit",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "kepler-predict", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "moon",
+      "internalLabel": "MOON PHASES",
+      "studentLabel": "Following the Moon",
+      "fieldRecord": true,
+      "description": "Explain and predict phase from Earth–Moon–Sun geometry.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "moon-phases",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "moon-log", "count": 1, "source": "investigation" },
+        { "kind": "moon-geometry", "count": 1, "source": "investigation" },
+        { "kind": "moon-predict", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "eclipses",
+      "internalLabel": "ECLIPSES",
+      "studentLabel": "Explaining eclipses",
+      "fieldRecord": true,
+      "description": "Use orbital tilt to explain why eclipses do not happen every month.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "eclipses",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "eclipse-align", "count": 1, "source": "investigation" },
+        { "kind": "eclipse-tilt", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "data",
+      "internalLabel": "CELESTIAL DATA",
+      "studentLabel": "Working with sky data",
+      "fieldRecord": true,
+      "description": "Interpret remote tide records and planetary tables without memorizing lists.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "celestial-data",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "tide-compare", "count": 1, "source": "investigation" },
+        { "kind": "planet-class", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "prediction",
+      "internalLabel": "PREDICTION",
+      "studentLabel": "Planning an observation",
+      "fieldRecord": true,
+      "description": "Make and test a defensible observing plan, and revise it if the sky disagrees.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "prediction",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "observe-plan", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "model",
+      "internalLabel": "MODEL",
+      "studentLabel": "Using a sky model",
+      "fieldRecord": false,
+      "description": "Use or revise an orbital model based on evidence.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "model",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "orbit-eccentric", "count": 1, "source": "investigation" }]
+    }
+  ],
+  "travelRequirements": [
+    "rotation",
+    "seasons",
+    "orbit",
+    "math-orbit",
+    "moon",
+    "eclipses",
+    "data",
+    "prediction"
+  ],
+  "unlocks": "dark-sky-basin",
+  "statusWords": {
+    "demonstrated": "demonstrated",
+    "developing": "developing",
+    "none": "not yet observed"
+  },
+  "remediationVoice": {
+    "rotation": "The solar marker still needs morning, noon, and afternoon before we talk about what moved.",
+    "seasons": "Same post, three dates at noon. Then look at Earth–Sun distance before you explain summer.",
+    "prediction": "The observing window still needs a plan you can defend — and revise if it fails.",
+    "fallback": "Sunfall still has sky work that is not in these notes yet."
+  }
+}

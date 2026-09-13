@@ -1,0 +1,114 @@
+{
+  "printedUrl": "http://127.0.0.1:8086/terrainbound/?summit=fieldtest",
+  "probeMs": 1271,
+  "ownerUrl": "http://127.0.0.1:8086/terrainbound/?summit=fieldtest&field=1",
+  "flag": "· SUMMIT FIELD TEST",
+  "hosted": {
+    "adapter": "http",
+    "debug": {
+      "provider": "deterministic",
+      "adapterId": "",
+      "route": "follow-up",
+      "useAi": true,
+      "intent": "explain",
+      "supportLevel": 3,
+      "fallbackReason": "malformed",
+      "validation": "fallback",
+      "packetKeys": [
+        "region",
+        "puzzle",
+        "stage",
+        "near",
+        "competencies",
+        "inspectedHighLook",
+        "fairTrialCount",
+        "measurements",
+        "numbers",
+        "prediction",
+        "unfairAttempted",
+        "missingCount",
+        "wrenClaim",
+        "judgeKind",
+        "judgeHint",
+        "clearance",
+        "supportLevel",
+        "known",
+        "expected",
+        "unknown",
+        "science",
+        "doNotClaim",
+        "comparisonValid",
+        "comparisonStatus",
+        "evidenceStatus",
+        "concepts",
+        "pinned"
+      ],
+      "cached": false,
+      "rawBlocked": true
+    },
+    "last": {
+      "role": "summit",
+      "kind": "explain",
+      "intent": "explain",
+      "text": "I do not have fair times to confirm that yet. Time the same cup on more than one slope."
+    }
+  },
+  "nextAction": {
+    "useAi": false,
+    "route": "next-action",
+    "provider": "deterministic",
+    "adapterId": ""
+  },
+  "summary": {
+    "sessionId": "f0f7b886535c7460cfb74b791292b6eb",
+    "durationMs": 2802,
+    "puzzlesAttempted": [
+      "CH-02"
+    ],
+    "puzzlesCompleted": [],
+    "summitTurns": 3,
+    "deterministicTurns": 2,
+    "hostedTurns": 0,
+    "fallbacks": 1,
+    "validatorRejections": 1,
+    "latency": {
+      "model": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null
+      },
+      "fullLoop": {
+        "n": 3,
+        "mean": 425,
+        "median": 3,
+        "p95": 1272
+      }
+    },
+    "supportLevels": {
+      "0": 1,
+      "3": 2
+    },
+    "conceptsAsked": {
+      "runoff": 1
+    },
+    "repeatedMisconceptions": [],
+    "marks": {
+      "HELPED": 1
+    },
+    "helpedThenProgressed": 1,
+    "repeatHelpWithoutProgress": 2,
+    "clearance": false,
+    "aarResult": ""
+  },
+  "privacy": {
+    "logLooksPrivate": false,
+    "keyInLog": false,
+    "launcherLeakedKey": false
+  },
+  "shutdown": {
+    "launcherExit": 0,
+    "gamePortFree": true,
+    "proxyPortFree": true
+  }
+}

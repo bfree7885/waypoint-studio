@@ -1,0 +1,144 @@
+{
+  "upstream": "https://api.groq.com/openai/v1/chat/completions",
+  "candidates": [
+    {
+      "id": "A",
+      "model": "openai/gpt-oss-20b",
+      "role": "fast-inexpensive"
+    },
+    {
+      "id": "B",
+      "model": "qwen/qwen3.6-27b",
+      "role": "slightly-stronger-small"
+    }
+  ],
+  "A": {
+    "id": "A",
+    "model": "openai/gpt-oss-20b",
+    "role": "fast-inexpensive",
+    "upstream": "https://api.groq.com/openai/v1/chat/completions",
+    "utterances": 89,
+    "hostedCallsRouted": 72,
+    "routing": {
+      "deterministic": 17,
+      "model": 34,
+      "fallback": 38,
+      "infra": 29,
+      "validatorRejected": 9,
+      "deterministicPct": 19.1,
+      "modelPct": 38.2,
+      "fallbackPct": 42.7,
+      "infraPct": 40.3,
+      "fallbackReasons": {
+        "timeout": 29,
+        "unknown-evidence": 7,
+        "invented-trial": 2
+      }
+    },
+    "validatorRejectionPct": 20.9,
+    "structuredOutputSuccessPct": 59.7,
+    "structuredRetry": 37,
+    "malformedOrEmpty": 0,
+    "structuredUsablePct": 59.7,
+    "tokens": {
+      "prompt": 20629,
+      "completion": 5303
+    },
+    "latencyVisibleMs": {
+      "n": 72,
+      "mean": 6592,
+      "median": 1184,
+      "p95": 15013,
+      "min": 419,
+      "max": 15015
+    },
+    "latencyModelMs": {
+      "n": 43,
+      "mean": 912,
+      "median": 899,
+      "p95": 1231,
+      "min": 417,
+      "max": 1613
+    },
+    "pricing": {
+      "inputUsdPerMillion": 0.075,
+      "outputUsdPerMillion": 0.3,
+      "source": "https://console.groq.com/docs/models GPT OSS 20B production",
+      "thisEvalUsd": 0.003138,
+      "perAiResponseUsd": 0.000073,
+      "assumptions": {
+        "sessionTurns": 12,
+        "aiFraction": 0.809
+      },
+      "perStudentSessionUsd": 0.000708,
+      "class25Usd": 0.018,
+      "class100Usd": 0.071,
+      "class1000Usd": 0.708,
+      "class10000Usd": 7.085
+    }
+  },
+  "B": {
+    "id": "B",
+    "model": "qwen/qwen3.6-27b",
+    "role": "slightly-stronger-small",
+    "upstream": "https://api.groq.com/openai/v1/chat/completions",
+    "utterances": 89,
+    "hostedCallsRouted": 72,
+    "routing": {
+      "deterministic": 17,
+      "model": 25,
+      "fallback": 47,
+      "infra": 17,
+      "validatorRejected": 30,
+      "deterministicPct": 19.1,
+      "modelPct": 28.1,
+      "fallbackPct": 52.8,
+      "infraPct": 23.6,
+      "fallbackReasons": {
+        "unknown-evidence": 30,
+        "timeout": 17
+      }
+    },
+    "validatorRejectionPct": 54.5,
+    "structuredOutputSuccessPct": 76.4,
+    "structuredRetry": 4,
+    "malformedOrEmpty": 0,
+    "structuredUsablePct": 76.4,
+    "tokens": {
+      "prompt": 28391,
+      "completion": 5516
+    },
+    "latencyVisibleMs": {
+      "n": 72,
+      "mean": 3954,
+      "median": 512,
+      "p95": 15013,
+      "min": 243,
+      "max": 15013
+    },
+    "latencyModelMs": {
+      "n": 55,
+      "mean": 534,
+      "median": 450,
+      "p95": 1112,
+      "min": 241,
+      "max": 2030
+    },
+    "pricing": {
+      "inputUsdPerMillion": 0.6,
+      "outputUsdPerMillion": 3,
+      "source": "https://console.groq.com/docs/models Qwen3.6-27B preview",
+      "thisEvalUsd": 0.033583,
+      "perAiResponseUsd": 0.000611,
+      "assumptions": {
+        "sessionTurns": 12,
+        "aiFraction": 0.809
+      },
+      "perStudentSessionUsd": 0.005928,
+      "class25Usd": 0.148,
+      "class100Usd": 0.593,
+      "class1000Usd": 5.928,
+      "class10000Usd": 59.276
+    }
+  }
+}

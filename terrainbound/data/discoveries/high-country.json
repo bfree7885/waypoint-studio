@@ -1,0 +1,118 @@
+{
+  "id": "high-country-discoveries",
+  "regionId": "high-country",
+  "wren": {
+    "idle": [
+      "The sketch in your tablet is what we had time to draw. The land is larger than that.",
+      "If you lose the trail, stop. Look at the slope. The map only helps if it still matches the ground."
+    ],
+    "missionNudge": "The crew marked sites. North of here the trails split. I would start by standing on a marker and asking the tablet where it thinks you are.",
+    "afterComplete": "The radio site is still up there. A route on paper is not the same as a route you can walk."
+  },
+  "items": [
+    {
+      "id": "hc-lookout",
+      "name": "Old lookout",
+      "symbol": "view",
+      "x": 460,
+      "y": 508,
+      "radius": 56,
+      "location": "West ridge",
+      "prompt": "A tower on the drop.",
+      "text": "From the platform the valley looks vertical. The sketch map in the tablet is a few pale lines. Standing here, you can see why those lines are not enough.",
+      "wrenHint": "There is an old lookout on the west ridge. The drop from there will tell you more than a vocabulary word.",
+      "wrenAck": "Tight land, tight lines — if you ever get contours."
+    },
+    {
+      "id": "hc-tarn",
+      "name": "High tarn",
+      "symbol": "seep",
+      "x": 862,
+      "y": 1088,
+      "radius": 60,
+      "location": "West of the trailhead",
+      "prompt": "Cold water under a cold sky.",
+      "text": "An alpine lake with a short dock. The surface is a map of the sky. Underneath is another map, if anyone measured depth.",
+      "wrenHint": "The tarn sits west of the station. The dock is the easy way to ask how deep it is.",
+      "wrenAck": "Water has a shape too. Not only land."
+    },
+    {
+      "id": "hc-washout",
+      "name": "Broken switchback",
+      "symbol": "rills",
+      "x": 620,
+      "y": 960,
+      "radius": 54,
+      "location": "West trail",
+      "prompt": "The line on the sketch continues. The trail does not.",
+      "text": "Loose rock, a bitten bank, and flagging that used to mark a switchback. A newer image of this slope would not agree with the old sketch.",
+      "wrenHint": "The west trail used to be the short way. Used to.",
+      "wrenAck": "If the map and the ground argue, believe the ground — then update the map."
+    },
+    {
+      "id": "hc-cliff",
+      "name": "West cliff",
+      "symbol": "bedrock",
+      "x": 600,
+      "y": 760,
+      "radius": 58,
+      "location": "West face",
+      "prompt": "The land stands up.",
+      "text": "A cliff band. You can feel the slope in your knees. On a contour map this would be a tight stack of lines. The meadow to the east would not.",
+      "wrenHint": "Walk the west face, then walk the east meadow. Same mountain. Different spacing.",
+      "wrenAck": "Steep is not a word. It is how close the lines sit."
+    },
+    {
+      "id": "hc-meadow",
+      "name": "East meadow",
+      "symbol": "marsh",
+      "x": 1988,
+      "y": 1140,
+      "radius": 64,
+      "location": "East basin",
+      "prompt": "Open ground, long light.",
+      "text": "A broad meadow. You can see the radio mast as a speck. The walk is longer. The land does not shove you backward.",
+      "wrenHint": "The east side is the long way. Long is not always worse.",
+      "wrenAck": "Wide land, wide lines."
+    },
+    {
+      "id": "hc-basin",
+      "name": "Uncharted basin",
+      "symbol": "sediment",
+      "x": 1880,
+      "y": 880,
+      "radius": 62,
+      "location": "Northeast of the meadow",
+      "prompt": "Stakes in a bowl the sketch never finished.",
+      "text": "Elevation stakes stand in a small basin. Equal numbers belong on the same line — if you can tell which numbers match.",
+      "wrenHint": "Northeast of the meadow someone left stakes and never drew the contours.",
+      "wrenAck": "A contour is just the set of places that share a height."
+    },
+    {
+      "id": "hc-ridge",
+      "name": "Ridge survey",
+      "symbol": "gauge",
+      "x": 1280,
+      "y": 548,
+      "radius": 56,
+      "location": "Trail junction",
+      "prompt": "Two trails, one brass cap.",
+      "text": "The junction. From here the radio site is still north, over a rise you cannot see in plan view until you draw a profile.",
+      "wrenHint": "The survey point is where the trails meet, not at the mast.",
+      "wrenAck": "A junction is a decision, not a destination."
+    },
+    {
+      "id": "hc-radio",
+      "name": "Radio site",
+      "symbol": "view",
+      "x": 1348,
+      "y": 240,
+      "radius": 52,
+      "location": "Above treeline",
+      "prompt": "The mast, finally.",
+      "text": "Wind, rock, and a locked instrument box. Getting here with a heavy case is a different problem than getting here with a day pack.",
+      "wrenHint": "The radio site sits north of the junction, over the last rise.",
+      "wrenAck": "Above treeline the map has fewer trees to hide behind. The land does not get simpler."
+    }
+  ]
+}

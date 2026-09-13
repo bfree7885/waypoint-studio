@@ -1,0 +1,239 @@
+{
+  "id": "high-country",
+  "name": "High Country",
+  "blurb": "Ridgelines, switchbacks, and a sketch map that is not yet the land.",
+  "terrainModel": "high-country",
+  "width": 2600,
+  "height": 1800,
+  "spawn": { "x": 1280, "y": 1580 },
+  "peak": { "x": 520, "y": 420 },
+  "grid": {
+    "originLat": 40.2100,
+    "originLon": -105.6200,
+    "latSpan": 0.0288,
+    "lonSpan": 0.0364,
+    "metersPerPixel": 1.25,
+    "scaleLabel": "1 cm on the tablet ≈ 160 m on the ground"
+  },
+  "elevation": {
+    "baseMeters": 1280,
+    "rangeMeters": 520,
+    "datum": "local field datum",
+    "contourInterval": 20
+  },
+  "ranger": {
+    "id": "ranger-wren",
+    "name": "Ranger Wren",
+    "x": 1248,
+    "y": 1564,
+    "greetRadius": 90
+  },
+  "station": {
+    "x": 980,
+    "y": 1448,
+    "w": 150,
+    "h": 100
+  },
+  "pond": {
+    "id": "tarn-lake",
+    "cx": 740,
+    "cy": 1088,
+    "rx": 132,
+    "ry": 88
+  },
+  "creek": {
+    "id": "ridge-run",
+    "width": 18,
+    "points": [
+      [1100, 520],
+      [980, 680],
+      [860, 860],
+      [780, 1000],
+      [740, 1088]
+    ]
+  },
+  "outlet": {
+    "width": 16,
+    "points": [
+      [740, 1176],
+      [820, 1320],
+      [900, 1488]
+    ]
+  },
+  "tributary": null,
+  "wetland": {
+    "cx": 680,
+    "cy": 1208,
+    "rx": 110,
+    "ry": 70
+  },
+  "outcrop": {
+    "x": 600,
+    "y": 760,
+    "r": 70
+  },
+  "props": [
+    { "kind": "lookout", "x": 460, "y": 508, "inspect": { "id": "story-lookout", "title": "Old lookout", "text": "A wooden tower on the west ridge. From here the valley drops away so fast the sketch map feels too small." } },
+    { "kind": "radio-mast", "x": 1348, "y": 228, "inspect": { "id": "story-radio", "title": "Survey radio site", "text": "A mast and a locked box. The crew wants a route to this site that a person can still walk with gear." } },
+    { "kind": "dock", "x": 862, "y": 1088, "inspect": { "id": "story-dock", "title": "Research dock", "text": "A short pier on the tarn. Depth marks are painted on the far post — if anyone recorded them." } },
+    { "kind": "washout", "x": 620, "y": 960, "inspect": { "id": "story-hc-washout", "title": "Broken switchback", "text": "The west trail ends in a bite of loose rock. The sketch still draws a line through here. The ground does not." } },
+    { "kind": "survey-stake", "x": 1280, "y": 1548, "inspect": { "id": "marker-trailhead", "title": "Marker HC-1", "text": "A brass cap near the trailhead. The crew wrote HC-1 on the flagging, then ran out of time to copy the numbers." } },
+    { "kind": "survey-stake", "x": 848, "y": 1072, "inspect": { "id": "marker-dock", "title": "Marker HC-2", "text": "HC-2 sits above the dock. East of the trailhead, if the map is telling the truth." } },
+    { "kind": "survey-stake", "x": 1280, "y": 548, "inspect": { "id": "marker-ridge", "title": "Marker HC-3", "text": "HC-3 on the ridge junction. Two trails meet. One sketch line is missing a piece." } },
+    { "kind": "survey-stake", "x": 1988, "y": 1140, "inspect": { "id": "marker-meadow", "title": "Marker HC-4", "text": "HC-4 in the east meadow. The land is open and the contours, if you had them, would sit far apart." } },
+    { "kind": "elevation-stake", "x": 1768, "y": 980, "elev": 1380 },
+    { "kind": "elevation-stake", "x": 1844, "y": 912, "elev": 1400 },
+    { "kind": "elevation-stake", "x": 1936, "y": 972, "elev": 1400 },
+    { "kind": "elevation-stake", "x": 1880, "y": 848, "elev": 1420 },
+    { "kind": "elevation-stake", "x": 1980, "y": 888, "elev": 1420 },
+    { "kind": "elevation-stake", "x": 1904, "y": 804, "elev": 1440 },
+    { "kind": "cairn", "x": 1620, "y": 360 },
+    { "kind": "pack", "x": 1228, "y": 1540 },
+    { "kind": "lantern", "x": 1310, "y": 1528 }
+  ],
+  "trails": [
+    {
+      "id": "west-switchback",
+      "name": "West switchback",
+      "role": "route-a",
+      "points": [
+        [1280, 1560],
+        [1040, 1320],
+        [780, 1120],
+        [600, 920],
+        [520, 720],
+        [700, 560],
+        [1280, 540],
+        [1340, 220]
+      ]
+    },
+    {
+      "id": "east-meadow",
+      "name": "East meadow trail",
+      "role": "route-b",
+      "points": [
+        [1280, 1560],
+        [1500, 1520],
+        [1720, 1460],
+        [1900, 1360],
+        [2060, 1240],
+        [2160, 1100],
+        [2140, 960],
+        [2020, 820],
+        [1840, 700],
+        [1640, 620],
+        [1440, 580],
+        [1280, 540],
+        [1340, 220]
+      ]
+    },
+    {
+      "id": "saddle-cut",
+      "name": "Saddle cut",
+      "role": "route-c",
+      "points": [
+        [1280, 1560],
+        [1480, 1500],
+        [1600, 1280],
+        [1680, 1040],
+        [1600, 820],
+        [1480, 660],
+        [1340, 560],
+        [1280, 540],
+        [1340, 220]
+      ]
+    },
+    {
+      "id": "station-spur",
+      "name": "Station spur",
+      "role": "local",
+      "points": [
+        [1240, 1540],
+        [1280, 1560]
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "ridge-station",
+      "name": "Ridgeline Station",
+      "kind": "station",
+      "x": 1288,
+      "y": 1528,
+      "radius": 88,
+      "label": "trailhead"
+    },
+    {
+      "id": "west-cliff",
+      "name": "West cliff",
+      "kind": "cliff",
+      "x": 600,
+      "y": 760,
+      "radius": 80,
+      "label": "cliff"
+    },
+    {
+      "id": "east-meadow",
+      "name": "East meadow",
+      "kind": "meadow",
+      "x": 1988,
+      "y": 1140,
+      "radius": 92,
+      "label": "meadow"
+    },
+    {
+      "id": "tarn-lake",
+      "name": "High tarn",
+      "kind": "pond",
+      "x": 862,
+      "y": 1088,
+      "radius": 86,
+      "label": "lake"
+    },
+    {
+      "id": "ridge-survey",
+      "name": "Ridge survey",
+      "kind": "overlook",
+      "x": 1280,
+      "y": 548,
+      "radius": 78,
+      "label": "survey"
+    },
+    {
+      "id": "radio-site",
+      "name": "Radio site",
+      "kind": "mountain",
+      "x": 1348,
+      "y": 240,
+      "radius": 72,
+      "label": "radio"
+    },
+    {
+      "id": "lookout-tower",
+      "name": "Lookout tower",
+      "kind": "overlook",
+      "x": 468,
+      "y": 520,
+      "radius": 70,
+      "label": "lookout"
+    },
+    {
+      "id": "uncharted-basin",
+      "name": "Uncharted basin",
+      "kind": "lowland",
+      "x": 1880,
+      "y": 880,
+      "radius": 90,
+      "label": "basin"
+    },
+    {
+      "id": "high-overlook",
+      "name": "North overlook",
+      "kind": "overlook",
+      "x": 1620,
+      "y": 368,
+      "radius": 70,
+      "label": "overlook"
+    }
+  ]
+}

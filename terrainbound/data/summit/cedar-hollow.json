@@ -1,0 +1,190 @@
+{
+  "regionId": "cedar-hollow",
+  "tutor": "summit",
+  "playOrder": ["CH-02", "CH-01", "CH-03", "CH-04", "CH-05", "CH-06", "CH-07", "CH-08", "CH-09"],
+  "puzzles": {
+    "CH-02": {
+      "id": "CH-02",
+      "name": "Where Did Last Night's Water Go?",
+      "competencyIds": ["evidence", "patterns"],
+      "vocab": ["runoff", "gravity", "downstream", "observation"],
+      "orient": "This investigation is about where last night's water went — from high ground to water that's still moving.",
+      "notice": "Stand on ground you have not inspected yet. Look for rills, an outlet, and whether water is still moving downhill.",
+      "reason": "Put the places you actually stood in downhill order. If a step requires water to climb, the land is disagreeing.",
+      "teach": "Gravity pulls runoff downhill. A pond can pause water. It is not automatically the end of the path if an outlet exists.",
+      "scaffold": "Visit Westface, the creek, the pond, and the willow reach if any of those notes are still missing. Then open the tablet and tap that path high to low.",
+      "explainMore": [
+        "High ground sheds. Low ground receives. The pond is a pause if water still has a way out.",
+        "You still have to walk it. The tablet path is places you stood, not a guess from the title screen."
+      ],
+      "misconceptions": {
+        "water-climbs": "Water does not climb Granite Knob. Follow the rills toward lower ground.",
+        "pond-is-end": "A full pond can still have an outlet. Look for water leaving, then follow it.",
+        "rain-everywhere": "Rain can fall widely and still move differently once it hits slope and storage."
+      },
+      "worldCue": "The creek is leaving clues if you walk it."
+    },
+    "CH-01": {
+      "id": "CH-01",
+      "name": "What You Can See",
+      "competencyIds": ["observation"],
+      "vocab": ["observation", "interpretation", "evidence"],
+      "orient": "You're separating what you can still point to from a story about how it got here.",
+      "notice": "At the strange boulder, stay with color, grain, and size. Do the same at the knob's own rock.",
+      "reason": "One site is not the habit. Compare the boulder with the knob rock using only seen sentences.",
+      "teach": "An observation is a seen sentence. An interpretation is a cause you add. Ice is a carrying story until the notes can hold it.",
+      "scaffold": "Sort a seen sentence from a guessed sentence at the north-trail boulder, then again at the knob bedrock. Keep the seen lines.",
+      "explainMore": [
+        "If you cannot point to it on the rock, it is a guess — even if it is a good Earth Science word.",
+        "You will need those seen sentences later when Wren asks what you actually saw."
+      ],
+      "misconceptions": {
+        "obs-vs-interp": "A cause is not what you saw. Keep the sentence you can still point to on the stone.",
+        "glacier-jargon": "A vocabulary word is not an observation. Color and grain still have to come first."
+      },
+      "worldCue": "Go back to the rock. Point at it. Then sort the sentences."
+    },
+    "CH-03": {
+      "id": "CH-03",
+      "name": "What Makes Water Move Faster?",
+      "competencyIds": ["variables"],
+      "vocab": ["variable", "fair-test", "slope", "runoff"],
+      "orient": "You're testing what makes water move faster in the same channel, with one change at a time.",
+      "notice": "At the runoff table, predict first. Then change slope, keep the same cup of water, and time more than one run.",
+      "reason": "Compare steep against gentle with the same water. Extra water is a second change — it is not the slope test.",
+      "teach": "Slope is the variable under test. Gravity still pulls downhill; steeper channels usually finish sooner if water is held constant.",
+      "scaffold": "Predict, then run at least two fair trials on each slope with the same measuring cup. Do not change slope and water together if you want a slope claim.",
+      "explainMore": [
+        "A fair test repeats. One fast run can be a fluke.",
+        "If you already tried extra water, that note still matters — it taught you a second variable. Go back to one cup and finish the slope comparison."
+      ],
+      "misconceptions": {
+        "unfair-test": "Slope and extra water together are two changes. You cannot say which one made the time drop.",
+        "one-trial": "One measurement is not a comparison yet. Repeat the fair runs."
+      },
+      "worldCue": "The table is an instrument. Use it, then read the times you actually recorded."
+    },
+    "CH-04": {
+      "id": "CH-04",
+      "name": "The Numbers Mean a Pattern",
+      "competencyIds": ["data", "patterns"],
+      "vocab": ["pattern", "variable", "runoff"],
+      "orient": "You're reading a pattern in times you recorded — not decorating a graph.",
+      "notice": "Open the numbers. Put slope where it belongs and time or speed on the other axis.",
+      "reason": "Ask whether steeper channels keep finishing sooner across the trials you already ran.",
+      "teach": "A pattern is what repeats. The graph is a way to see your table, not a separate worksheet answer.",
+      "scaffold": "Use the graph of your runs. Choose the reading that matches the times you recorded, then say what the pattern is.",
+      "explainMore": [
+        "If the points do not show steeper-is-sooner, say that honestly. The table is the authority, not a hoped-for slope story.",
+        "You still have to place the variables. The software should not decide the axes for you."
+      ],
+      "misconceptions": {
+        "pattern-one-point": "One point is not a trend. Look across the trials.",
+        "graph-as-decoration": "The graph has to match the runs you timed. It is not a poster."
+      },
+      "worldCue": "Look at your own numbers before you ask for a definition of slope."
+    },
+    "CH-05": {
+      "id": "CH-05",
+      "name": "After the Rain",
+      "competencyIds": ["systems", "explanation"],
+      "vocab": ["system", "runoff", "downstream", "cause"],
+      "orient": "You're explaining why only part of Pine Creek muddied — not why it rained.",
+      "notice": "Walk creek sites. Compare the station reach with the join. Predict where the brown pulse should show first.",
+      "reason": "Rain on everything equally does not fit a clear stretch next to a muddy tributary.",
+      "teach": "A pulse needs a source of water, a slope that failed, and a path. Living things can be in the way without being the engine.",
+      "scaffold": "Check the station reach, Fox Run, and Westface. Build the explanation from those places, then answer Wren's follow-up.",
+      "explainMore": [
+        "Storage in the marsh can be tea-colored most days. That is not automatically this morning's pulse.",
+        "If the station reach stayed relatively clear, the pulse probably did not ride the whole creek equally."
+      ],
+      "misconceptions": {
+        "rain-everywhere": "Rain can fall on the whole hollow and still move through only some of it.",
+        "trees-as-cause": "Willows can take a hit without starting the flood. Ask what moved the water.",
+        "marsh-as-pulse": "A store holds water. It does not have to be the conveyor of this morning's mud."
+      },
+      "worldCue": "Walk the creek. The pulse is in the land, not in a chip label."
+    },
+    "CH-06": {
+      "id": "CH-06",
+      "name": "Two Clocks",
+      "competencyIds": ["explanation"],
+      "vocab": ["timescale", "observation", "interpretation"],
+      "orient": "You're attaching last night's creek notes and the older landscape notes to the right clocks.",
+      "notice": "The sand bar and the muddy pulse can belong to last night. The mismatched boulder still does not look like the hill.",
+      "reason": "A modern-only story cannot carry the boulder. An ancient-only story cannot carry this morning's mud.",
+      "teach": "Earth processes run on more than one timescale. Last night is one clock. Some notes need a longer one.",
+      "scaffold": "In the tablet, keep last night's water on the short clock. Keep the boulder and knob rock on the longer one. Do not pick a jargon word instead of those notes.",
+      "explainMore": [
+        "Two clocks is not a vocabulary quiz. It is which notes fit one rain and which notes do not.",
+        "You already walked those places. Use those notes, not a new story from this panel."
+      ],
+      "misconceptions": {
+        "one-clock": "One rain can move mud and still fail to explain a boulder that does not match the hill.",
+        "glacier-jargon": "A long-ago word without the boulder note is still a guess."
+      },
+      "worldCue": "Open the tablet and look at the notes you already have. Which ones cannot be last night?"
+    },
+    "CH-07": {
+      "id": "CH-07",
+      "name": "The Hollow Is a System",
+      "competencyIds": ["systems"],
+      "vocab": ["system", "storage", "downstream", "runoff", "slope"],
+      "orient": "You're mapping last night as one event with parts: source, slope, path, store, and what got hit.",
+      "notice": "On the sketch — or on the ground — tap the place that matches the question. Trees did not call the storm.",
+      "reason": "If Fox Run carried the pulse, the station reach should still look relatively clear. Storage is not the same as the conveyor.",
+      "teach": "Source, slope, runoff, storage, and downstream response are relationships in the hollow you walked — not four separate stories.",
+      "scaffold": "Match last night's weather to the instrument you recorded, the failed ground to the loose western slope, the path to the muddy tributary, storage to the wetland, and the hit to the hanging roots. Then predict which reach stayed clearer.",
+      "explainMore": [
+        "You can close the sketch and inspect the land. The question stays the same.",
+        "A wrong tap is the land disagreeing. Read the hint, then try another place you actually visited."
+      ],
+      "misconceptions": {
+        "trees-as-cause": "The willows did not start last night. They were in the way.",
+        "marsh-as-pulse": "The marsh is a store. The clearer comparison after a Fox Run pulse is the station reach."
+      },
+      "worldCue": "Tap the sketch or walk there. The hollow is still the model."
+    },
+    "CH-08": {
+      "id": "CH-08",
+      "name": "When the Story Breaks",
+      "competencyIds": ["revision"],
+      "vocab": ["revision", "cause", "evidence"],
+      "orient": "A tidy first story just met a conflicting note. Narrow the case; don't start over.",
+      "notice": "A crate note and a clear station reach can disagree with a whole-creek story.",
+      "reason": "Revision drops the false cause. Adding every brown place is not a repair.",
+      "teach": "A first-try success is success. Revision only counts after a story breaks and you change it because the land disagreed.",
+      "scaffold": "Talk to Wren, face the conflict, and drop the cause that cannot survive the clear reach or the crate note.",
+      "explainMore": [
+        "You keep the notes that still hold. You do not erase last night.",
+        "The honest repair is smaller, not louder."
+      ],
+      "misconceptions": {
+        "add-all-brown": "More brown places are not automatically a better explanation.",
+        "restart": "Revision is not a reset of Cedar Hollow. Keep what still holds."
+      },
+      "worldCue": "The conflict is in notes you already have. Narrow them with Wren, then keep walking if a hole remains."
+    },
+    "CH-09": {
+      "id": "CH-09",
+      "name": "Make the Case",
+      "competencyIds": ["communication"],
+      "vocab": ["evidence", "observation", "timescale", "system"],
+      "orient": "Wren is asking you to defend the hollow with notes already in the tablet — not to pick a memorized sentence.",
+      "notice": "Read Wren's claim first. Then pin only the notes that actually answer that claim.",
+      "reason": "A real note can still be the wrong clock. Boulder notes do not time this morning's water. Slope times do not locate the pulse by themselves.",
+      "teach": "Claims need supporting evidence of the right kind. Extra cards that answer a different question weaken the case.",
+      "scaffold": "For this claim, keep notes in the matching category — seen rock, fair slope times, the pulse places, or the longer clock — and drop the rest. You still have to pin them.",
+      "explainMore": [
+        "Wren judges sufficiency. I can help you see why a note does not fit. I will not finish the case for you.",
+        "If a note is missing from the tablet, the honest move is to go get it in the hollow — not to invent it here."
+      ],
+      "misconceptions": {
+        "overclaim": "That evidence is real, but it answers a different question than Wren asked.",
+        "timescale": "The older clock does not locate this morning's mud. Last night's pulse does not park the boulder.",
+        "incomplete": "A conclusion without the supporting note is still a hole in the case."
+      },
+      "worldCue": "Stay with the tablet notes you earned. Pin what supports this claim. Drop what does not."
+    }
+  }
+}

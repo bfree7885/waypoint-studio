@@ -1,0 +1,1004 @@
+[
+  {
+    "viewport": "320x568",
+    "play": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 86.640625,
+        "y": 462,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 113.328125,
+        "y": 514,
+        "w": 93.34375,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 214.671875,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 113.328125,
+        "y": 514,
+        "w": 93.34375,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 214.671875,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 108.96875,
+        "w": 304,
+        "h": 443.03125
+      },
+      "ask": {
+        "x": 24,
+        "y": 496,
+        "w": 206.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 113.328125,
+        "y": 514,
+        "w": 93.34375,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 214.671875,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 108.96875,
+        "w": 304,
+        "h": 443.03125
+      },
+      "ask": {
+        "x": 24,
+        "y": 496,
+        "w": 206.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 156.828125,
+        "y": 456,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 113.328125,
+        "y": 514,
+        "w": 93.34375,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 214.671875,
+        "y": 514,
+        "w": 93.328125,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 108.96875,
+        "w": 304,
+        "h": 443.03125
+      },
+      "ask": {
+        "x": 24,
+        "y": 496,
+        "w": 206.640625,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "375x667",
+    "play": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 114.140625,
+        "y": 561,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 111.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 131.65625,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 251.328125,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 111.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 131.65625,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 251.328125,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 130.75,
+        "w": 359,
+        "h": 520.25
+      },
+      "ask": {
+        "x": 24,
+        "y": 595,
+        "w": 261.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 111.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 131.65625,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 251.328125,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 130.75,
+        "w": 359,
+        "h": 520.25
+      },
+      "ask": {
+        "x": 24,
+        "y": 595,
+        "w": 261.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 375,
+      "clientWidth": 375,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 156.828125,
+        "y": 555,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 613,
+        "w": 111.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 131.65625,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 251.328125,
+        "y": 613,
+        "w": 111.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 130.75,
+        "w": 359,
+        "h": 520.25
+      },
+      "ask": {
+        "x": 24,
+        "y": 595,
+        "w": 261.640625,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "390x844",
+    "play": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 121.640625,
+        "y": 738,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 116.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 136.65625,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 261.328125,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 116.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 136.65625,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 261.328125,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 299.609375,
+        "w": 374,
+        "h": 528.390625
+      },
+      "ask": {
+        "x": 24,
+        "y": 772,
+        "w": 276.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 116.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 136.65625,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 261.328125,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 169.6875,
+        "w": 374,
+        "h": 658.3125
+      },
+      "ask": {
+        "x": 24,
+        "y": 772,
+        "w": 276.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 156.828125,
+        "y": 732,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 790,
+        "w": 116.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 136.65625,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 261.328125,
+        "y": 790,
+        "w": 116.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 169.6875,
+        "w": 374,
+        "h": 658.3125
+      },
+      "ask": {
+        "x": 24,
+        "y": 772,
+        "w": 276.640625,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "393x852",
+    "play": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 123.140625,
+        "y": 746,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 117.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 137.65625,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 263.328125,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 117.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 137.65625,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 263.328125,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 307.609375,
+        "w": 377,
+        "h": 528.390625
+      },
+      "ask": {
+        "x": 24,
+        "y": 780,
+        "w": 279.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 117.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 137.65625,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 263.328125,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 171.453125,
+        "w": 377,
+        "h": 664.546875
+      },
+      "ask": {
+        "x": 24,
+        "y": 780,
+        "w": 279.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 393,
+      "clientWidth": 393,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 156.828125,
+        "y": 740,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 798,
+        "w": 117.65625,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 137.65625,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 263.328125,
+        "y": 798,
+        "w": 117.671875,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 171.453125,
+        "w": 377,
+        "h": 664.546875
+      },
+      "ask": {
+        "x": 24,
+        "y": 780,
+        "w": 279.640625,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "430x932",
+    "play": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 141.640625,
+        "y": 826,
+        "w": 146.703125,
+        "h": 44
+      },
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 150,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 288,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 150,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 288,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 387.609375,
+        "w": 414,
+        "h": 528.390625
+      },
+      "ask": {
+        "x": 24,
+        "y": 860,
+        "w": 316.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 150,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 288,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 189.046875,
+        "w": 414,
+        "h": 726.953125
+      },
+      "ask": {
+        "x": 24,
+        "y": 860,
+        "w": 316.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 156.828125,
+        "y": 820,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 12,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "journalBtn": {
+        "x": 150,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "summitBtn": {
+        "x": 288,
+        "y": 878,
+        "w": 130,
+        "h": 44
+      },
+      "sheet": {
+        "x": 8,
+        "y": 189.046875,
+        "w": 414,
+        "h": 726.953125
+      },
+      "ask": {
+        "x": 24,
+        "y": 860,
+        "w": 316.640625,
+        "h": 44
+      }
+    }
+  },
+  {
+    "viewport": "1280x800",
+    "play": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": false,
+      "aarSummit": null,
+      "prompt": {
+        "x": 564.6484375,
+        "y": 734,
+        "w": 150.703125,
+        "h": 38
+      },
+      "mapBtn": {
+        "x": 964.140625,
+        "y": 743,
+        "w": 100.625,
+        "h": 35
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      },
+      "summitBtn": {
+        "x": 1072.765625,
+        "y": 743,
+        "w": 80.875,
+        "h": 35
+      },
+      "sheet": null,
+      "ask": null
+    },
+    "summit": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 964.140625,
+        "y": 743,
+        "w": 100.625,
+        "h": 35
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      },
+      "summitBtn": {
+        "x": 1072.765625,
+        "y": 743,
+        "w": 80.875,
+        "h": 35
+      },
+      "sheet": {
+        "x": 852,
+        "y": 293.609375,
+        "w": 416,
+        "h": 490.390625
+      },
+      "ask": {
+        "x": 868,
+        "y": 728,
+        "w": 318.640625,
+        "h": 44
+      }
+    },
+    "input": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": null,
+      "prompt": null,
+      "mapBtn": {
+        "x": 964.140625,
+        "y": 743,
+        "w": 100.625,
+        "h": 35
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      },
+      "summitBtn": {
+        "x": 1072.765625,
+        "y": 743,
+        "w": 80.875,
+        "h": 35
+      },
+      "sheet": {
+        "x": 852,
+        "y": 176,
+        "w": 416,
+        "h": 608
+      },
+      "ask": {
+        "x": 868,
+        "y": 728,
+        "w": 318.640625,
+        "h": 44
+      }
+    },
+    "aarSummit": {
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "horizontalOverflow": false,
+      "atlasRatio": null,
+      "hudOverlap": false,
+      "summitSheetOverflow": false,
+      "askReachable": true,
+      "aarSummit": {
+        "x": 452.828125,
+        "y": 682,
+        "w": 128.46875,
+        "h": 38
+      },
+      "prompt": null,
+      "mapBtn": {
+        "x": 964.140625,
+        "y": 743,
+        "w": 100.625,
+        "h": 35
+      },
+      "journalBtn": {
+        "x": 1161.640625,
+        "y": 743,
+        "w": 102.359375,
+        "h": 35
+      },
+      "summitBtn": {
+        "x": 1072.765625,
+        "y": 743,
+        "w": 80.875,
+        "h": 35
+      },
+      "sheet": {
+        "x": 852,
+        "y": 176,
+        "w": 416,
+        "h": 608
+      },
+      "ask": {
+        "x": 868,
+        "y": 728,
+        "w": 318.640625,
+        "h": 44
+      }
+    }
+  }
+]

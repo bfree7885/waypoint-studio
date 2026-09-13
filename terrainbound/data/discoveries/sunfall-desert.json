@@ -1,0 +1,133 @@
+{
+  "id": "sunfall-discoveries",
+  "regionId": "sunfall-desert",
+  "wren": {
+    "idle": [
+      "The sky is the work. The ground still keeps old tools if you look.",
+      "A rock is a rock until you have something to compare it with."
+    ],
+    "missionNudge": "The solar marker is east of the dome. Start there before you chase the crater.",
+    "afterComplete": "The campaign window is written. The desert will still be here after dark."
+  },
+  "items": [
+    {
+      "id": "sf-dark-rock",
+      "name": "Dark heavy rock",
+      "interpretedName": "Meteorite fragment",
+      "symbol": "erratic",
+      "x": 2220,
+      "y": 1180,
+      "radius": 56,
+      "location": "Crater floor",
+      "prompt": "A dark, dense stone.",
+      "text": "Dark, heavier than the pale stones around it, a dull rind. It is a rock until you have a comparison.",
+      "interpretedText": "The drawer sample matches: dense, dark, a fused rind. A meteorite fragment, earned by comparison, not by guessing the crater.",
+      "wrenHint": "There is a dark stone on the crater floor. Do not name it from a story.",
+      "wrenAck": "Heavy and dark is observation. Meteorite is interpretation. They are not the same sentence."
+    },
+    {
+      "id": "sf-sundial",
+      "name": "Old sundial",
+      "symbol": "view",
+      "x": 1568,
+      "y": 1084,
+      "radius": 48,
+      "location": "East of the dome",
+      "prompt": "Worn numerals in stone.",
+      "text": "A sundial with a cracked face. Someone trusted this shadow before the notebooks started arguing.",
+      "wrenHint": "East of the dome there is an older way of asking the Sun what time it is.",
+      "wrenAck": "A sundial is a gnomon with manners."
+    },
+    {
+      "id": "sf-weathered",
+      "name": "Solar-weathered marker",
+      "symbol": "weathered",
+      "x": 1100,
+      "y": 900,
+      "radius": 50,
+      "location": "Toward the mesa",
+      "prompt": "Paint blistered by light.",
+      "text": "A stake whose paint has gone pale on the south face and held color on the north. Light has a direction here.",
+      "wrenHint": "On the way to the mesa a stake has been cooked by the Sun on one side only.",
+      "wrenAck": "South face fades first. That is a year of light, not a week of wind."
+    },
+    {
+      "id": "sf-varnish",
+      "name": "Desert varnish",
+      "symbol": "bedrock",
+      "x": 560,
+      "y": 900,
+      "radius": 54,
+      "location": "West outcrop",
+      "prompt": "A dark skin on rock.",
+      "text": "The outcrop wears a dark film on the exposed face. The underside, where you can reach, is paler.",
+      "wrenHint": "The west outcrop is stained. Look at which face takes the sky.",
+      "wrenAck": "A coating is not the rock. Same rule as a shadow is not the Sun."
+    },
+    {
+      "id": "sf-crater-rim",
+      "name": "Crater rim",
+      "symbol": "cobbles",
+      "x": 1920,
+      "y": 760,
+      "radius": 58,
+      "location": "East basin",
+      "prompt": "A raised ring.",
+      "text": "Broken rock on a raised ring around a low basin. From here the eastern sky sits later than it does on the mesa.",
+      "wrenHint": "Walk the east ring. Notice what the wall does to sunrise.",
+      "wrenAck": "A wall can hide a rising Sun. That matters if you pick a site at night."
+    },
+    {
+      "id": "sf-survey",
+      "name": "Historic survey post",
+      "symbol": "view",
+      "x": 1768,
+      "y": 1012,
+      "radius": 48,
+      "location": "East of station",
+      "prompt": "A brass cap in the dust.",
+      "text": "Latitude is stamped on the post. The tablet should agree if you stand close.",
+      "wrenHint": "There is an older survey post east of the dome. Coordinates still work in a desert.",
+      "wrenAck": "The number on the post is a pair, not a decoration."
+    },
+    {
+      "id": "sf-foundation",
+      "name": "Telescope foundation",
+      "symbol": "sediment",
+      "x": 1260,
+      "y": 1008,
+      "radius": 50,
+      "location": "Behind the dome",
+      "prompt": "Bolts in a ring.",
+      "text": "A concrete ring and empty bolts. Whatever sat here was aimed at sky, not at the wash.",
+      "wrenHint": "Behind the dome the pad is still there. The instrument is not.",
+      "wrenAck": "A foundation remembers a pointing even when the tube is gone."
+    },
+    {
+      "id": "sf-stones",
+      "name": "Alignment stones",
+      "symbol": "bedrock",
+      "x": 1688,
+      "y": 1324,
+      "radius": 52,
+      "location": "South of the wash",
+      "prompt": "Three stones in a line.",
+      "text": "Three stones. The line points at the mesa rim, not at the dome. Someone cared where the sky met the land.",
+      "wrenHint": "South of the wash, stones in a short line. See where they aim.",
+      "wrenAck": "A line on the ground can be a horizon note."
+    },
+    {
+      "id": "sf-night-view",
+      "name": "Night-sky viewpoint",
+      "symbol": "view",
+      "x": 380,
+      "y": 488,
+      "radius": 56,
+      "location": "West mesa rim",
+      "prompt": "The station lights fall away.",
+      "text": "From the rim the desert is a dark plate and the sky is the rest of the world. This is where Moon notes belong.",
+      "wrenHint": "The mesa rim is the dark site. Station lights stay in the basin.",
+      "wrenAck": "Night is not a theme. It is a working condition."
+    }
+  ]
+}

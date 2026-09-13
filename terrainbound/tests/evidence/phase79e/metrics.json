@@ -1,0 +1,44 @@
+{
+  "model": "llama3.2:3b",
+  "upstream": "http://127.0.0.1:11434/v1/chat/completions",
+  "proxy": "http://127.0.0.1:8787/summit-ai",
+  "utterances": 77,
+  "remoteModelCalls": 60,
+  "deterministicTurns": 8,
+  "fallbackTurns": 9,
+  "cacheHits": 1,
+  "routing": {
+    "deterministicPct": 10.4,
+    "remotePct": 77.9,
+    "fallbackPct": 11.7
+  },
+  "latencyMs": {
+    "n": 69,
+    "average": 9895,
+    "median": 10138,
+    "p95": 13426
+  },
+  "tokens": {
+    "prompt": 21881,
+    "completion": 4586,
+    "note": "from upstream usage"
+  },
+  "avgInputChars": 909,
+  "groqLlama31_8bUsdPerMillion": {
+    "input": 0.05,
+    "output": 0.08,
+    "source": "published Groq Llama 3.1 8B-class rates, 2026"
+  },
+  "cost": {
+    "thisEvalUsdAtGroq8bRates": 0.001461,
+    "assumptions": {
+      "sessionTurns": 12,
+      "aiFraction": 0.779,
+      "tokensIfUnreported": "4 chars/token input; 80 completion tokens per remote reply"
+    },
+    "perStudentSessionUsd": 0.000228,
+    "class25Usd": 0.006,
+    "class100Usd": 0.023,
+    "class1000Usd": 0.228
+  }
+}

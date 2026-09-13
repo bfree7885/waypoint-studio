@@ -1,0 +1,192 @@
+{
+  "session": {
+    "version": 1,
+    "fieldTest": true,
+    "sessionId": "f8f46016375b6d8bb01ec08f56be5db1",
+    "startedAt": 1789308780887,
+    "endedAt": 1789308816462,
+    "region": "cedar-hollow",
+    "events": [
+      {
+        "type": "world",
+        "id": "w1",
+        "atMs": 16102,
+        "kind": "inspect",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Willow Bench"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      },
+      {
+        "type": "summit",
+        "id": "t1",
+        "prevTurnId": "",
+        "atMs": 25699,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "Willow Bench",
+        "studentUtterance": "what_now",
+        "action": "what_now",
+        "routeKind": "deterministic",
+        "routeReason": "quick-action",
+        "concept": "runoff",
+        "supportLevel": 0,
+        "modelLatencyMs": null,
+        "fullLoopMs": 5,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "You are trying to say, honestly, where last night's water went — from high ground to water still moving. Walk the ground. The hollow is the lesson, not this panel.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Willow Bench"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t2",
+        "prevTurnId": "t1",
+        "atMs": 28067,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "Willow Bench",
+        "studentUtterance": "what_now",
+        "action": "what_now",
+        "routeKind": "deterministic",
+        "routeReason": "quick-action",
+        "concept": "runoff",
+        "supportLevel": 0,
+        "modelLatencyMs": null,
+        "fullLoopMs": 1,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "You are trying to say, honestly, where last night's water went — from high ground to water still moving. Walk the ground. The hollow is the lesson, not this panel.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Willow Bench"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": false,
+        "repeatedMisconception": false
+      }
+    ],
+    "marks": [
+      {
+        "turnId": "t2",
+        "mark": "HELPED",
+        "note": "",
+        "atMs": 33293
+      },
+      {
+        "turnId": "t2",
+        "mark": "HELPED",
+        "note": "",
+        "atMs": 34108
+      }
+    ]
+  },
+  "summary": {
+    "sessionId": "f8f46016375b6d8bb01ec08f56be5db1",
+    "durationMs": 35575,
+    "puzzlesAttempted": [
+      "CH-02"
+    ],
+    "puzzlesCompleted": [],
+    "summitTurns": 2,
+    "deterministicTurns": 2,
+    "hostedTurns": 0,
+    "fallbacks": 0,
+    "validatorRejections": 0,
+    "latency": {
+      "model": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null
+      },
+      "fullLoop": {
+        "n": 2,
+        "mean": 3,
+        "median": 1,
+        "p95": 5
+      }
+    },
+    "supportLevels": {
+      "0": 2
+    },
+    "conceptsAsked": {
+      "runoff": 2
+    },
+    "repeatedMisconceptions": [],
+    "marks": {
+      "HELPED": 2
+    },
+    "helpedThenProgressed": 0,
+    "repeatHelpWithoutProgress": 1,
+    "clearance": false,
+    "aarResult": ""
+  }
+}

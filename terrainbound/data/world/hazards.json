@@ -1,0 +1,88 @@
+{
+  "id": "terrainbound-hazards",
+  "note": "Architecture only. Hazards use environmental conditions and authentic safety procedures, not arcade damage. None are implemented in Phase 4.",
+  "implemented": false,
+  "pillars": ["explore", "investigate", "respond"],
+  "hazards": [
+    {
+      "id": "flash-flood",
+      "name": "Flash flood",
+      "regions": ["glacier-country", "high-sierra"],
+      "conditionHooks": ["intense-rain", "steep-drainage", "saturated-soil"],
+      "authenticResponse": "Move to higher ground. Do not enter flowing water.",
+      "implemented": false
+    },
+    {
+      "id": "thunderstorm",
+      "name": "Thunderstorm",
+      "regions": ["stormlands"],
+      "conditionHooks": ["unstable-air", "lightning", "strong-wind"],
+      "authenticResponse": "Seek sturdy shelter. Avoid ridgelines and open water.",
+      "implemented": false
+    },
+    {
+      "id": "hurricane",
+      "name": "Hurricane",
+      "regions": ["island-coast", "stormlands"],
+      "conditionHooks": ["tropical-cyclone", "storm-surge", "extreme-wind"],
+      "authenticResponse": "Evacuate or shelter according to the forecast and local guidance.",
+      "implemented": false
+    },
+    {
+      "id": "tornado",
+      "name": "Tornado",
+      "regions": ["stormlands"],
+      "conditionHooks": ["severe-thunderstorm", "rotation"],
+      "authenticResponse": "Move to an interior, lowest-level shelter. Stay away from windows.",
+      "implemented": false
+    },
+    {
+      "id": "landslide",
+      "name": "Landslide",
+      "regions": ["high-country", "glacier-country"],
+      "conditionHooks": ["steep-slope", "saturation", "disturbed-soil"],
+      "authenticResponse": "Leave the slide path. Do not return for belongings.",
+      "implemented": false
+    },
+    {
+      "id": "earthquake",
+      "name": "Earthquake",
+      "regions": ["firepeak", "high-sierra"],
+      "conditionHooks": ["fault-motion", "ground-shaking"],
+      "authenticResponse": "Drop, cover, and hold on. After shaking, watch for aftershocks and damaged ground.",
+      "implemented": false
+    },
+    {
+      "id": "volcanic",
+      "name": "Volcanic hazard",
+      "regions": ["firepeak"],
+      "conditionHooks": ["ash", "lahar", "lava", "gas"],
+      "authenticResponse": "Follow exclusion zones. Avoid valleys that can carry lahars.",
+      "implemented": false
+    },
+    {
+      "id": "tsunami",
+      "name": "Tsunami",
+      "regions": ["island-coast"],
+      "conditionHooks": ["coastal-earthquake", "unusual-drawback"],
+      "authenticResponse": "Move inland and uphill immediately. Do not wait for an official wave.",
+      "implemented": false
+    },
+    {
+      "id": "wildfire",
+      "name": "Wildfire",
+      "regions": ["high-sierra"],
+      "conditionHooks": ["dry-fuels", "wind", "ignition"],
+      "authenticResponse": "Leave early on a known route. Do not shelter in dense smoke.",
+      "implemented": false
+    },
+    {
+      "id": "winter-storm",
+      "name": "Winter storm",
+      "regions": ["icewater-bay", "high-sierra"],
+      "conditionHooks": ["heavy-snow", "ice", "wind-chill"],
+      "authenticResponse": "Stay sheltered. Avoid travel on untreated roads and exposed ridges.",
+      "implemented": false
+    }
+  ]
+}
