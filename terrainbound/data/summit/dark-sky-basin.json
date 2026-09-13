@@ -1,0 +1,47 @@
+{
+  "regionId": "dark-sky-basin",
+  "tutor": "summit",
+  "playOrder": ["DS-01", "DS-02"],
+  "puzzles": {
+    "DS-01": {
+      "id": "DS-01",
+      "name": "The twins that aren't",
+      "competencyIds": ["spectra"],
+      "vocab": ["spectrum", "appearance", "calibration", "evidence"],
+      "orient": "Two bright white stars were logged as twins because they look alike in the eyepiece. Appearance is a starting observation, not identity.",
+      "notice": "Look at both targets. Read the inherited log. If the eyepiece is not enough, the basin still has a known light south of the dome.",
+      "reason": "A spectrum is a record of structure in the light. Two objects can look the same and still leave different traces.",
+      "teach": "Visible color and brightness do not prove two stars are the same kind. A known lamp gives a repeatable pattern you can compare against stellar traces.",
+      "scaffold": "Walk to Lamp Bench for a fair reference, then bring that pattern back to the plate spectrograph. Try to align the two stellar traces. Log what refuses to match.",
+      "explainMore": [
+        "Looking the same from far away does not prove much. I should know.",
+        "The lamp is not a lecture. It is a light you can test because you already know the source."
+      ],
+      "misconceptions": {
+        "eyepiece-twins": "If they look white and bright, they still might not be the same light. The traces have to agree.",
+        "spectrum-quiz": "This is not a vocabulary match. You are comparing patterns you recorded."
+      },
+      "worldCue": "The dome wash is the problem. The lamp is south of here, on purpose."
+    },
+    "DS-02": {
+      "id": "DS-02",
+      "name": "The cooler ember",
+      "competencyIds": ["stellar-temp"],
+      "vocab": ["peak", "wavelength", "color", "temperature"],
+      "orient": "The old notes treat a reddish star as an ember, like a hot coal. Color folklore is not a temperature measurement.",
+      "notice": "Compare the reddish target with a white one you already logged. Watch where each trace is brightest, not only the color you saw.",
+      "reason": "A peak sitting farther toward longer wavelength is not evidence that the source is hotter.",
+      "teach": "Visible redness is one observation. Peak position is another. Temperature inference has to follow the evidence you actually marked.",
+      "scaffold": "Slide the peak marker to each trace's brightest place. Use the wavelength marks, not color memory.",
+      "explainMore": [
+        "Fire-color folklore is stubborn. The trace does not care what a coal looks like.",
+        "I will not invent a temperature you did not measure."
+      ],
+      "misconceptions": {
+        "red-hotter": "Red as fire is a story. Peak position is the evidence on this bench.",
+        "color-only": "Color without a peak mark is not enough here."
+      },
+      "worldCue": "The reddish target is still in the same sky. The spectrograph can hold both traces."
+    }
+  }
+}

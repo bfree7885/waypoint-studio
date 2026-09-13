@@ -1,0 +1,24 @@
+{
+  "id": "dark-sky-light-as-evidence",
+  "regionId": "dark-sky-basin",
+  "title": "Light as field evidence",
+  "question": "What can starlight honestly say about objects you will never visit?",
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Ridgeline to Dark Sky. The inherited log treats two bright white stars as twins because they look the same through the eyepiece.",
+      "I need that checked before the catalog treats a nickname as a fact. I'm on radio. Walk the basin. The light is the evidence."
+    ]
+  },
+  "afterTwins": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The eyepiece twins were not the same light. There's a reddish star the old notes call an ember — like a coal.",
+      "See what its light actually shows. Don't let fire-color folklore write the catalog."
+    ]
+  },
+  "idle": [
+    "The catalog stays honest only if the light does. I'm still on radio."
+  ],
+  "completeJournalEntry": null
+}

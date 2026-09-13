@@ -1,0 +1,65 @@
+{
+  "id": "dark-sky-basin-catalog",
+  "version": 1,
+  "regionId": "dark-sky-basin",
+  "nightLock": true,
+  "wavelength": { "minNm": 380, "maxNm": 760 },
+  "notes": "Authored, deterministic starlight. Later Dark Sky investigations append targets. Do not replace this schema. No live astronomy, n-body, or external catalogs.",
+  "targets": [
+    {
+      "id": "west-twin",
+      "label": "West target",
+      "playerName": "the western white star",
+      "role": "ds-01",
+      "sky": { "az": 0.27, "alt": 0.58 },
+      "visual": { "color": "#f4f6fb", "brightness": 0.94, "size": 3.35 },
+      "peakNm": 428,
+      "lines": [
+        { "nm": 410, "depth": 0.72, "kind": "absorption" },
+        { "nm": 434, "depth": 0.8, "kind": "absorption" },
+        { "nm": 486, "depth": 0.88, "kind": "absorption" },
+        { "nm": 656, "depth": 0.48, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "east-twin",
+      "label": "East target",
+      "playerName": "the eastern white star",
+      "role": "ds-01",
+      "sky": { "az": 0.61, "alt": 0.54 },
+      "visual": { "color": "#f6f4ee", "brightness": 0.9, "size": 3.2 },
+      "peakNm": 496,
+      "lines": [
+        { "nm": 422, "depth": 0.38, "kind": "absorption" },
+        { "nm": 518, "depth": 0.74, "kind": "absorption" },
+        { "nm": 589, "depth": 0.86, "kind": "absorption" },
+        { "nm": 656, "depth": 0.22, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "cooler-ember",
+      "label": "Ember",
+      "playerName": "the reddish star",
+      "role": "ds-02",
+      "sky": { "az": 0.79, "alt": 0.4 },
+      "visual": { "color": "#f09a68", "brightness": 0.7, "size": 2.7 },
+      "peakNm": 628,
+      "lines": [
+        { "nm": 516, "depth": 0.28, "kind": "absorption" },
+        { "nm": 589, "depth": 0.5, "kind": "absorption" },
+        { "nm": 656, "depth": 0.78, "kind": "absorption" },
+        { "nm": 760, "depth": 0.42, "kind": "absorption" }
+      ]
+    }
+  ],
+  "lamp": {
+    "id": "cal-lamp",
+    "label": "bench lamp",
+    "visual": { "color": "#fff1c8" },
+    "emission": [
+      { "nm": 436, "height": 0.82 },
+      { "nm": 546, "height": 1 },
+      { "nm": 579, "height": 0.58 }
+    ]
+  }
+}

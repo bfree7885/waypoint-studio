@@ -39,6 +39,7 @@ export function validateSummitOutput(raw, packet, request = {}) {
   if (CLEARANCE_CLAIM.test(response) && !packet?.facts?.clearance) return fail("false-clearance");
 
   if (inventedMeasurement(response, packet)) return fail("invented-measurement");
+  if (inventedDarkSkyState(response, packet, request.question || "")) return fail("invented-astronomy");
   if (agreesWithFalseNumber(response, request.question || "", packet)) return fail("false-premise");
   if (inventedHighLook(response, packet, request.question || "")) return fail("invented-visit");
   if (inventedTrialCount(response, packet)) return fail("invented-trial");
@@ -76,6 +77,29 @@ export function validateSummitOutput(raw, packet, request = {}) {
 
 function fail(reason) {
   return { ok: false, reason, reply: null };
+}
+
+function inventedDarkSkyState(text, packet, question = "") {
+  if (packet?.facts?.region !== "Dark Sky Basin") return false;
+  const facts = packet.facts || {};
+  const denies = /have not|haven't|not yet|no calibration|unknown|did not|didn't/i.test(text);
+  if (/lamp/i.test(text) && /calibrat|you (already )?(measured|logged|inspected) the lamp/i.test(text) && !facts.lampCalibrated && !denies) {
+    return true;
+  }
+  if (/lamp bench/i.test(text) && /you (walked|visited|were at)/i.test(text) && !facts.visitedLamp && !denies) {
+    return true;
+  }
+  if (/\b\d+(\.\d+)?\s*nm\b/i.test(text)) {
+    const allowed = new Set((facts.numbers || []).map((n) => Math.round(Number(n))));
+    const hits = [...text.matchAll(/(\d+)(?:\.\d+)?\s*nm/gi)].map((row) => Number(row[1]));
+    if (hits.some((n) => !allowed.has(n) && !allowed.has(Math.round(n)))) return true;
+  }
+  if (/\bmagnitude\b|\bkelvin\b|\bOBAFGKM\b/i.test(text) && !denies) return true;
+  if (/you (already )?(compared|matched) the (two )?(traces|spectra)/i.test(text) && !facts.twinsConcluded && !denies) {
+    return true;
+  }
+  if (/red(der)? (means|is) hotter/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  return /i (measured|observed|invented)/i.test(question) ? false : false;
 }
 
 function inventedMeasurement(text, packet) {

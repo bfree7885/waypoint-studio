@@ -1,0 +1,22 @@
+{
+  "regionId": "dark-sky-basin",
+  "corePhenomenon": "What can starlight tell you about objects you will never visit?",
+  "puzzles": [
+    {
+      "id": "DS-01",
+      "name": "The twins that aren't",
+      "layer": "A",
+      "competencyIds": ["spectra"],
+      "mechanic": "field-spectroscopy",
+      "evidenceCategory": "comparison"
+    },
+    {
+      "id": "DS-02",
+      "name": "The cooler ember",
+      "layer": "A",
+      "competencyIds": ["stellar-temp"],
+      "mechanic": "peak-color-evidence",
+      "evidenceCategory": "pattern"
+    }
+  ]
+}

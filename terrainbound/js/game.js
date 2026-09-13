@@ -198,6 +198,34 @@ import {
 import { classifyIntentCategory } from "./summit-character.js";
 import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
+import {
+  emptyDarkSkySave,
+  nightSkyState,
+  darkSkyEvidence,
+  darkSkyNotes,
+  darkSkyGuidance,
+  observeTarget,
+  readTwinsLog,
+  markEyepieceSeen,
+  setLampOn,
+  markVisited,
+  logLampCalibration,
+  openSpectrograph,
+  tryStellarAlign,
+  markStellarFeature,
+  logStellarCompare,
+  logTwinsConclusion,
+  logEmberPeaks,
+  logEmberConclusion,
+  twinsObservationReady,
+  ds01Complete,
+  ds02Complete,
+  atFeature,
+  catalogTarget,
+  twinTargets,
+  buildDarkSkySummitContext,
+  EMBER_ID
+} from "./darksky.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
 
 const WALK_SPEED = 196;
@@ -220,6 +248,7 @@ function useSummitProxy(cfg) {
 
 export async function boot(root = document) {
   const canvas = root.querySelector("#world");
+  const gameRoot = root.querySelector("#game-root") || (root.id === "game-root" ? root : document.querySelector("#game-root"));
   const [
     region,
     mission,
@@ -247,7 +276,12 @@ export async function boot(root = document) {
     sfCatalog,
     sfSpec,
     sfProfile,
-    presentationPack
+    presentationPack,
+    dsRegion,
+    dsCatalog,
+    dsSpec,
+    dsPuzzles,
+    dsSummit
   ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
@@ -280,9 +314,15 @@ export async function boot(root = document) {
       fetch("./data/discoveries/sunfall-desert.json").then((r) => r.json()),
       fetch("./data/investigations/sunfall-desert.json").then((r) => r.json()),
       fetch("./data/mastery/sunfall-desert.json").then((r) => r.json()),
-      fetch("./data/world/presentation.json").then((r) => r.json())
+      fetch("./data/world/presentation.json").then((r) => r.json()),
+      fetch("./data/regions/dark-sky-basin.json").then((r) => r.json()),
+      fetch("./data/darksky/catalog.json").then((r) => r.json()),
+      fetch("./data/investigations/dark-sky-basin.json").then((r) => r.json()),
+      fetch("./data/puzzles/dark-sky-basin.json").then((r) => r.json()),
+      fetch("./data/summit/dark-sky-basin.json").then((r) => r.json())
     ]);
   void curriculum;
+  void dsPuzzles;
   void hazardsCatalog;
 
   const tbWorld = loadWorld(worldRaw);
@@ -317,10 +357,16 @@ export async function boot(root = document) {
       })
     : createLocalComposerAdapter({ curiosity: summitCuriosity });
   const summitEngine = createSummitEngine({
-    curriculum: summitCurriculum,
+    curriculum: {
+      ...summitCurriculum,
+      puzzles: { ...(summitCurriculum.puzzles || {}), ...(dsSummit.puzzles || {}) }
+    },
     concepts: summitConcepts,
     provider: createHybridProvider({
-      curriculum: summitCurriculum,
+      curriculum: {
+        ...summitCurriculum,
+        puzzles: { ...(summitCurriculum.puzzles || {}), ...(dsSummit.puzzles || {}) }
+      },
       concepts: summitConcepts,
       curiosity: summitCuriosity,
       adapter: summitAdapter,
@@ -329,7 +375,8 @@ export async function boot(root = document) {
   });
   const hcState = createHcState();
   const sfState = createSfState();
-  const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
+  const dsState = emptyDarkSkySave();
+  const regionPlayers = { "cedar-hollow": null, "high-country": null, "sunfall-desert": null, "dark-sky-basin": null };
   const taught = emptyTaught();
   const presentation = emptyPresentationSave();
   const travelState = createTravelState();
@@ -338,6 +385,8 @@ export async function boot(root = document) {
   const hollowRenderer = createRenderer(canvas, hollowWorld, { heightAt, inCreek, onTrail });
   const hcRenderer = createRenderer(canvas, hcWorld, { heightAt, inCreek, onTrail });
   const sfRenderer = createRenderer(canvas, sfWorld, { heightAt, inCreek, onTrail });
+  const dsWorld = createWorld(dsRegion, 4113, []);
+  const dsRenderer = createRenderer(canvas, dsWorld, { heightAt, inCreek, onTrail });
   let renderer = hollowRenderer;
   const audio = createAudio({ reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches });
   const storage = window.localStorage;
@@ -366,9 +415,13 @@ export async function boot(root = document) {
   let systemsOpen = false;
   let aarOpen = false;
   let summitOpen = false;
+  let spectrumOpen = false;
+  let skyEyeOpen = false;
   let summitMoreText = "";
   let summitAskLock = false;
-  const fieldMode = new URLSearchParams(location.search).get("field") === "1";
+  const params = new URLSearchParams(location.search);
+  const fieldMode = params.get("field") === "1";
+  const darkSkyReview = fieldMode && params.get("region") === "dark-sky-basin";
   const fieldTestMode = isFieldTestMode(location.search);
   const fieldTestSession = fieldTestMode ? createFieldTestSession() : null;
   let aarIndex = 0;
@@ -401,6 +454,7 @@ export async function boot(root = document) {
         summitState,
         hcState,
       sfState,
+      dsState,
       regionPlayers,
       presentation
     });
@@ -410,6 +464,9 @@ export async function boot(root = document) {
   }
   function isSunfall() {
     return worldState.currentRegion === "sunfall-desert";
+  }
+  function isDarkSky() {
+    return worldState.currentRegion === "dark-sky-basin";
   }
 
   function applyRegionWorld(id, { keepPlayer = false } = {}) {
@@ -436,6 +493,17 @@ export async function boot(root = document) {
       }
       ui.setPlace("Sunfall Desert", "Sunfall Observatory");
       canvas.setAttribute("aria-label", "Sunfall Desert, an open high desert you can explore");
+    } else if (id === "dark-sky-basin") {
+      world = dsWorld;
+      renderer = dsRenderer;
+      if (!keepPlayer) {
+        const saved = regionPlayers["dark-sky-basin"];
+        player.x = saved?.x ?? dsRegion.spawn.x;
+        player.y = saved?.y ?? dsRegion.spawn.y;
+        if (saved?.facing != null) player.facing = saved.facing;
+      }
+      ui.setPlace("Dark Sky Basin", "North Rim Station");
+      canvas.setAttribute("aria-label", "Dark Sky Basin, a high desert night basin you can explore");
     } else {
       world = hollowWorld;
       renderer = hollowRenderer;
@@ -448,13 +516,27 @@ export async function boot(root = document) {
       ui.setPlace("Cedar Hollow", "Granite Knob · Pine Creek");
       canvas.setAttribute("aria-label", "Cedar Hollow, a forested valley you can explore");
     }
+    if (gameRoot) gameRoot.dataset.region = id;
     camera.x = player.x;
     camera.y = player.y - 28;
     refreshSkyClock();
-    audio.setPlace(id, Boolean(isSunfall() && liveSky(sfState, sfRegion, player).night));
+    audio.setPlace(id, Boolean((isSunfall() && liveSky(sfState, sfRegion, player).night) || isDarkSky()));
   }
 
+  if (!darkSkyReview && worldState.currentRegion === "dark-sky-basin") {
+    worldState.currentRegion = "cedar-hollow";
+  }
   applyRegionWorld(worldState.currentRegion || "cedar-hollow", { keepPlayer: true });
+  const resumeRegion =
+    worldState.currentRegion && worldState.currentRegion !== "dark-sky-basin"
+      ? worldState.currentRegion
+      : "cedar-hollow";
+  if (!regionPlayers[resumeRegion]) {
+    regionPlayers[resumeRegion] = { x: player.x, y: player.y, facing: player.facing };
+  }
+  if (darkSkyReview) {
+    applyRegionWorld("dark-sky-basin", { keepPlayer: false });
+  }
   camera.x = player.x;
   camera.y = player.y - 28;
   syncFromGameplay(
@@ -517,6 +599,7 @@ export async function boot(root = document) {
       obsIntState: invState.obsInt,
       hcState,
       sfState,
+      dsState,
       puzzleState,
       systemsPrompt: currentSystemsPrompt(puzzleState, puzzleSpec),
       hasFairComparison: hasFairComparison(flumeState, flumeSpec)
@@ -545,6 +628,7 @@ export async function boot(root = document) {
   function journalView(open = journalOpen) {
     if (isHighCountry()) return hcJournalView(open);
     if (isSunfall()) return sfJournalView(open);
+    if (isDarkSky()) return dsJournalView(open);
     const evidence = evidenceModel(investigation, invState);
     const flow = dataState.datasets["cedar-hollow-flow"];
     const rows = flow?.rows || [];
@@ -696,6 +780,41 @@ export async function boot(root = document) {
     };
   }
 
+  function dsJournalView(open = journalOpen) {
+    const evidence = darkSkyEvidence(dsState);
+    return {
+      open,
+      regionName: "Dark Sky Basin",
+      emptyNotes: "Night notes start at the dome. The inherited log is on the plate desk.",
+      observations: darkSkyNotes(dsState, dsSpec),
+      storyNotes: [],
+      concluded: false,
+      conclusionText: null,
+      discoveryLog: { found: [], remaining: 0 },
+      landscapeActive: false,
+      landscapeConcluded: false,
+      evidence,
+      puzzleEvidence: [],
+      fieldRecord: fieldRecord(masteryProfile, masteryState),
+      journeyRecord: journeyBlocks(),
+      fieldRecordLead: "Your Field Record across TerrainBound — not a grade.",
+      missingLine: "",
+      dataRows: [],
+      showMap: true,
+      mapCaption: "North Rim Station, Lamp Bench, and the basin floor between them.",
+      mapModel: {
+        region: dsRegion,
+        player,
+        tools: mapToolFlags(),
+        mapState: { mode: "world", layersOn: ["trails"] },
+        discoveries: [],
+        heightAtFn: heightAt
+      },
+      mapTools: [{ id: "trails", label: "Tracks", on: true }],
+      guide: currentGuide()
+    };
+  }
+
   function syncFlowDataset() {
     setDatasetRows(dataState, "cedar-hollow-flow", flumeRows(flumeState, flumeSpec));
     const dataset = dataState.datasets["cedar-hollow-flow"];
@@ -765,6 +884,7 @@ export async function boot(root = document) {
   function persist() {
     syncProgress();
     refreshGuide();
+    regionPlayers[worldState.currentRegion] = { x: player.x, y: player.y, facing: player.facing };
     writeSave(
       storage,
       captureSave({
@@ -783,6 +903,7 @@ export async function boot(root = document) {
         summitState,
         hcState,
         sfState,
+        dsState,
         regionPlayers,
         presentation
       })
@@ -802,6 +923,8 @@ export async function boot(root = document) {
         systemsOpen ||
         aarOpen ||
         summitOpen ||
+        spectrumOpen ||
+        skyEyeOpen ||
         geoOpen ||
         travelBlocking(travelState)
     );
@@ -813,6 +936,7 @@ export async function boot(root = document) {
   }
 
   function wrenKicker() {
+    if (isDarkSky()) return "Radio · North Rim";
     if (isSunfall()) return presentation.openingSeen ? "Radio · Ridgeline" : "Sunfall Observatory";
     if (isHighCountry()) return "Ridgeline Station";
     return "Cedar Hollow Station";
@@ -1319,6 +1443,16 @@ export async function boot(root = document) {
   }
 
   function summitContextInput() {
+    if (isDarkSky()) {
+      return buildDarkSkySummitContext({
+        state: dsState,
+        catalog: dsCatalog,
+        region: dsRegion,
+        player,
+        spec: dsSummit,
+        summitState
+      });
+    }
     return {
       regionId: worldState.currentRegion,
       player,
@@ -1353,7 +1487,11 @@ export async function boot(root = document) {
       misconceptionId: last.misconceptionId || ""
     });
     ui.showSummit(true, {
-      lead: extra.pending ? "Looking at the notes you actually have…" : "Curious about the hollow. Serious about the science.",
+      lead: extra.pending
+        ? "Looking at the notes you actually have…"
+        : isDarkSky()
+          ? "Curious about the night. Serious about the science."
+          : "Curious about the hollow. Serious about the science.",
       messages: summitState.recent,
       moreAvailable: Boolean(summitMoreText),
       pending: Boolean(extra.pending),
@@ -1388,7 +1526,14 @@ export async function boot(root = document) {
     ui.setSummitIdea(false);
     if (!summitState.recent.length) {
       summitState.recent = [
-        { role: "summit", kind: "greet", intent: "character", text: SUMMIT_GREETING }
+        {
+          role: "summit",
+          kind: "greet",
+          intent: "character",
+          text: isDarkSky()
+            ? "I'm Summit. Looking the same from far away doesn't prove much. I should know. Ask me about the light you actually recorded — Wren still runs the expedition."
+            : SUMMIT_GREETING
+        }
       ];
       persist();
     }
@@ -1401,7 +1546,7 @@ export async function boot(root = document) {
   }
 
   async function askSummit(opts) {
-    if (worldState.currentRegion !== "cedar-hollow") {
+    if (worldState.currentRegion !== "cedar-hollow" && worldState.currentRegion !== "dark-sky-basin") {
       summitState.recent = [
         ...(summitState.recent || []),
         {
@@ -1845,10 +1990,12 @@ export async function boot(root = document) {
   }
 
   function travelTo(id) {
-    if (!canEnterRegion(tbWorld, worldState, id)) return false;
+    const reviewOk = fieldMode && id === "dark-sky-basin";
+    if (!reviewOk && !canEnterRegion(tbWorld, worldState, id)) return false;
     regionPlayers[worldState.currentRegion] = { x: player.x, y: player.y, facing: player.facing };
     const firstHc = id === "high-country" && !hcState.introSeen;
     const firstSf = id === "sunfall-desert" && !sfState.introSeen;
+    const firstDs = id === "dark-sky-basin" && !dsState.introSeen;
     dialogue = null;
     inspectLock = false;
     ui.showDialogue(false);
@@ -1870,6 +2017,13 @@ export async function boot(root = document) {
         sfState.introSeen = true;
         persist();
         showDialogueLines("Ranger Wren", sfSpec.intro.lines, 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        });
+      } else if (firstDs) {
+        dsState.introSeen = true;
+        persist();
+        showDialogueLines("Ranger Wren", dsSpec.intro.lines, 0, () => {
           dialogue = null;
           ui.showDialogue(false);
         });
@@ -2779,7 +2933,323 @@ export async function boot(root = document) {
     });
   }
 
+  function dsCurrentTarget() {
+    const ranger = dsRegion.ranger;
+    const rangerD = Math.hypot(player.x - ranger.x, player.y - ranger.y);
+    const rangerNear = rangerD < ranger.greetRadius;
+    const options = [];
+    for (const feat of dsRegion.features || []) {
+      const d = Math.hypot(player.x - feat.x, player.y - feat.y);
+      if (d <= (feat.radius || 70)) {
+        options.push({ kind: feat.kind, item: feat, x: feat.x, y: feat.y, d, name: feat.name });
+      }
+    }
+    options.sort((a, b) => a.d - b.d);
+    const closest = options[0] || null;
+    if (rangerNear && (!closest || rangerD <= closest.d + 8)) {
+      return { kind: "wren", x: ranger.x, y: ranger.y, name: "Ranger Wren" };
+    }
+    return closest;
+  }
+
+  function talkDsWren() {
+    if (!dsState.introSeen) {
+      dsState.introSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.intro.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds01Complete(dsState) && !dsState.emberRadioSeen) {
+      dsState.emberRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterTwins.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    showDialogueLines("Ranger Wren", dsSpec.idle, 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+    });
+  }
+
+  function inspectDs(target) {
+    if (!target) return;
+    if (target.kind === "wren") {
+      talkDsWren();
+      return;
+    }
+    if (target.kind === "eyepiece") {
+      openSkyEyepiece();
+      return;
+    }
+    if (target.kind === "plate-desk") {
+      const result = readTwinsLog(dsState);
+      persist();
+      refreshJournal();
+      showDialogueLines("Inherited field log", [
+        "Two bright white stars. Logged as twins because they look the same through the eyepiece. The page treats that as identity."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        if (!result.already) ui.showToast("Noted", "Inherited log");
+      });
+      return;
+    }
+    if (target.kind === "lamp") {
+      markVisited(dsState, "lamp");
+      openLampBench();
+      return;
+    }
+    if (target.kind === "spectrograph") {
+      markVisited(dsState, "station");
+      openDsSpectrograph();
+      return;
+    }
+    if (target.kind === "station") {
+      markVisited(dsState, "station");
+      showDialogueLines("North Rim Station", [
+        "A small field observatory. Dim red windows. The basin drops away south. The sky is the rest of the room."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    const prop = (dsRegion.props || []).find((row) => row.kind === target.kind && row.inspect);
+    if (prop?.inspect) {
+      inspectProp(prop);
+    }
+  }
+
+  function openSkyEyepiece() {
+    markEyepieceSeen(dsState);
+    skyEyeOpen = true;
+    persist();
+    renderSkyEyepiece();
+  }
+
+  function closeSkyEyepiece() {
+    skyEyeOpen = false;
+    ui.showSkyEyepiece(false);
+    persist();
+    refreshJournal();
+  }
+
+  function renderSkyEyepiece() {
+    ui.showSkyEyepiece(true, {
+      title: "Dome eyepiece",
+      lead: ds01Complete(dsState)
+        ? "The two white targets still look alike. A reddish star sits off to one side."
+        : "Two bright points. Both white. Both easy to treat as the same kind of object if you only look.",
+      targets: dsCatalog.targets
+        .filter((star) => star.id !== EMBER_ID || ds01Complete(dsState))
+        .map((star) => ({
+        id: star.id,
+        label: star.label,
+        color: star.visual.color,
+        size: star.visual.size,
+        az: star.sky.az,
+        alt: star.sky.alt,
+        seen: (dsState.observedIds || []).includes(star.id)
+      })),
+      status: twinsObservationReady(dsState)
+        ? "Both white targets looked bright and white."
+        : "Tap each bright white target."
+    }, {
+      onPick(id) {
+        const result = observeTarget(dsState, id);
+        persist();
+        renderSkyEyepiece();
+        if (!result.already) ui.showToast("Noted", catalogTarget(dsCatalog, id)?.label || "Star");
+      },
+      onClose: closeSkyEyepiece
+    });
+  }
+
+  function openLampBench() {
+    spectrumOpen = true;
+    renderLampBench();
+  }
+
+  function renderLampBench() {
+    const lamp = dsCatalog.lamp;
+    ui.showSpectrum(true, {
+      title: dsState.lampOn ? "Known light" : "Lamp Bench",
+      lead: dsState.lampOn
+        ? "The lamp looks simple. Its trace is not. Slide markers onto the two strongest spikes."
+        : "A shielded lamp on a concrete pad, south of the dome wash. Turn it on, then inspect the light.",
+      mode: "lamp",
+      lampOn: dsState.lampOn,
+      traces: dsState.lampOn ? [{ spec: lamp, color: "#fff1c8", label: "bench lamp", shiftNm: 0 }] : [],
+      markers: (dsState.lampDraft || []).map((nm) => ({ nm, kind: "lamp" })),
+      readout: dsState.lampOn ? "Shorter ←  wavelength  → longer" : "The lamp is off.",
+      status: dsState.lastHint || (dsState.lampCalibrated ? "The spike pattern repeated." : ""),
+      logLabel: "Log this pattern",
+      closeLabel: "Back to the basin"
+    }, {
+      onToggleLamp() {
+        setLampOn(dsState, !dsState.lampOn);
+        persist();
+        renderLampBench();
+      },
+      onCanvas(nm) {
+        if (!dsState.lampOn) return;
+        const marks = [...(dsState.lampDraft || []), nm].slice(-3);
+        dsState.lampDraft = marks;
+        persist();
+        renderLampBench();
+      },
+      onLog() {
+        const result = logLampCalibration(dsState, dsCatalog, dsState.lampDraft || [], true);
+        persist();
+        if (result.ok) {
+          ui.showToast("Noted", "Bench lamp");
+          closeSpectrum();
+          refreshJournal();
+        } else {
+          renderLampBench();
+        }
+      },
+      onClose: closeSpectrum
+    });
+  }
+
+  function openDsSpectrograph() {
+    const opened = openSpectrograph(dsState, true);
+    persist();
+    if (!opened.ok) {
+      showDialogueLines("Plate spectrograph", [
+        opened.washed
+          ? "The traces are washed by the dome. A known light on the south pad would be a fair reference."
+          : dsState.lastHint || "The plate spectrograph stays at North Rim Station."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    spectrumOpen = true;
+    if (ds01Complete(dsState) && !ds02Complete(dsState)) renderEmberSpectrum();
+    else renderTwinSpectrum();
+  }
+
+  function renderTwinSpectrum() {
+    const [west, east] = twinTargets(dsCatalog);
+    const shift = dsState.stellarShiftNm || 0;
+    ui.showSpectrum(true, {
+      title: "Plate spectrograph",
+      lead: "The lamp gave you a known pattern. See whether these two traces actually agree.",
+      mode: "twins",
+      traces: [
+        { spec: west, color: "#d7e7ff", label: west.label, shiftNm: 0 },
+        { spec: east, color: "#f3d2a8", label: east.label, shiftNm: shift }
+      ],
+      shift,
+      markers: dsState.stellarMarks || [],
+      readout: "Shorter ←  wavelength  → longer · appearance is not on this plate",
+      status: dsState.lastHint || (dsState.stellarCompared ? "The traces did not match." : ""),
+      logLabel: dsState.stellarCompared ? "Log the claim" : "Log the mismatch",
+      closeLabel: "Back to the basin",
+      showAlign: true
+    }, {
+      onShift(value) {
+        tryStellarAlign(dsState, dsCatalog, Number(value));
+        persist();
+        renderTwinSpectrum();
+      },
+      onCanvas(nm) {
+        markStellarFeature(dsState, nm, "diff");
+        persist();
+        renderTwinSpectrum();
+      },
+      onLog() {
+        if (!dsState.stellarCompared) {
+          const compared = logStellarCompare(dsState);
+          persist();
+          if (!compared.ok) {
+            renderTwinSpectrum();
+            return;
+          }
+        }
+        const done = logTwinsConclusion(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Twins claim");
+          closeSpectrum();
+          refreshJournal();
+          if (!dsState.emberRadioSeen) talkDsWren();
+        } else {
+          renderTwinSpectrum();
+        }
+      },
+      onClose: closeSpectrum
+    });
+  }
+
+  function renderEmberSpectrum() {
+    const white = catalogTarget(dsCatalog, "west-twin");
+    const ember = catalogTarget(dsCatalog, EMBER_ID);
+    observeTarget(dsState, EMBER_ID);
+    ui.showSpectrum(true, {
+      title: "Plate spectrograph",
+      lead: "The old notes call the reddish target an ember, like a coal. Mark the brightest place on each trace. Use the wavelength ticks, not the color you remember.",
+      mode: "ember",
+      traces: [
+        { spec: white, color: "#d7e7ff", label: `${white.label} · peak mark`, shiftNm: 0 },
+        { spec: ember, color: "#f09a68", label: `${ember.label} · peak mark`, shiftNm: 0 }
+      ],
+      markers: [
+        dsState.whitePeakDraft != null ? { nm: dsState.whitePeakDraft, kind: "peak" } : null,
+        dsState.emberPeakDraft != null ? { nm: dsState.emberPeakDraft, kind: "peak" } : null
+      ].filter(Boolean),
+      readout: "Peak position is a place on the axis, not a color name.",
+      status: dsState.lastHint || "",
+      logLabel: dsState.emberCompared ? "Log the claim" : "Log the peak marks",
+      closeLabel: "Back to the basin",
+      emberMark: dsState.emberPeakDraft,
+      whiteMark: dsState.whitePeakDraft
+    }, {
+      onPeak(kind, nm) {
+        if (kind === "ember") dsState.emberPeakDraft = nm;
+        else dsState.whitePeakDraft = nm;
+        persist();
+        renderEmberSpectrum();
+      },
+      onLog() {
+        if (!dsState.emberCompared) {
+          const marked = logEmberPeaks(dsState, dsCatalog, dsState.emberPeakDraft, dsState.whitePeakDraft);
+          persist();
+          if (!marked.ok) {
+            renderEmberSpectrum();
+            return;
+          }
+        }
+        const done = logEmberConclusion(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Ember claim");
+          closeSpectrum();
+          refreshJournal();
+        } else {
+          renderEmberSpectrum();
+        }
+      },
+      onClose: closeSpectrum
+    });
+  }
+
+  function closeSpectrum() {
+    spectrumOpen = false;
+    ui.showSpectrum(false);
+  }
+
   function currentTarget() {
+    if (isDarkSky()) return dsCurrentTarget();
     if (isHighCountry()) return hcCurrentTarget();
     if (isSunfall()) return sfCurrentTarget();
     const disc = nearestDiscovery(catalog, player.x, player.y);
@@ -2832,11 +3302,15 @@ export async function boot(root = document) {
       player.y += (towardY / reach) * step;
     }
     if (target.kind === "wren") setPose("talk");
-    else if (target.kind === "gnomon" || target.kind === "moon-site") setPose("sky");
-    else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake") setPose("measure");
-    else if (target.kind === "orbit-board" || target.kind === "tide-desk" || target.kind === "planet-desk" || target.kind === "eclipse-desk") {
+    else if (target.kind === "gnomon" || target.kind === "moon-site" || target.kind === "eyepiece") setPose("sky");
+    else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake" || target.kind === "lamp") setPose("measure");
+    else if (target.kind === "orbit-board" || target.kind === "tide-desk" || target.kind === "planet-desk" || target.kind === "eclipse-desk" || target.kind === "spectrograph" || target.kind === "plate-desk") {
       setPose("tablet");
     } else setPose("inspect");
+    if (isDarkSky()) {
+      inspectDs(target);
+      return;
+    }
     if (isHighCountry()) {
       inspectHc(target);
       return;
@@ -2854,6 +3328,10 @@ export async function boot(root = document) {
   }
 
   function talkToWren() {
+    if (isDarkSky()) {
+      talkDsWren();
+      return;
+    }
     if (isHighCountry()) {
       talkHcWren();
       return;
@@ -3176,7 +3654,27 @@ export async function boot(root = document) {
     ui.showAppearance(false);
     canvas.focus();
     audio.unlock();
-    audio.setPlace(worldState.currentRegion, false);
+    if (darkSkyReview) {
+      applyRegionWorld("dark-sky-basin", { keepPlayer: false });
+      audio.setPlace("dark-sky-basin", true);
+      ui.setHint(controlHintText());
+      refreshSkyClock();
+      refreshGuide();
+      presentation.openingSeen = true;
+      persist();
+      playTravelCard("dark-sky-basin", () => {
+        if (!dsState.introSeen) {
+          dsState.introSeen = true;
+          persist();
+          showDialogueLines("Ranger Wren", dsSpec.intro.lines, 0, () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          });
+        }
+      });
+      return;
+    }
+    audio.setPlace(worldState.currentRegion, Boolean(isDarkSky()));
     ui.setHint(controlHintText());
     refreshSkyClock();
     refreshGuide();
@@ -3256,6 +3754,14 @@ export async function boot(root = document) {
     }
     if (hypothesisOpen) {
       if (event.key === "Escape") closeHypothesis();
+      return;
+    }
+    if (spectrumOpen) {
+      if (event.key === "Escape") closeSpectrum();
+      return;
+    }
+    if (skyEyeOpen) {
+      if (event.key === "Escape") closeSkyEyepiece();
       return;
     }
     if (flumeOpen) {
@@ -3507,6 +4013,10 @@ export async function boot(root = document) {
       player.x = moved.x;
       player.y = moved.y;
       if (ax) player.facing = ax >= 0 ? 1 : -1;
+      if (isDarkSky()) {
+        if (atFeature(dsRegion, player, "lamp-bench", 20)) markVisited(dsState, "lamp");
+        if (atFeature(dsRegion, player, "north-rim-station", 40)) markVisited(dsState, "station");
+      }
       if (Math.hypot(player.vx, player.vy) > 24) {
         const kind = inCreek(world.region, player.x, player.y) ? "water" : onTrail(world.region, player.x, player.y) ? "rock" : "soil";
         audio.footstep(now / 1000, kind);
@@ -3525,13 +4035,16 @@ export async function boot(root = document) {
       } else if (isSunfall()) {
         camera.x = 1400 + Math.sin(t * 0.16) * 320;
         camera.y = 980 + Math.cos(t * 0.12) * 180;
+      } else if (isDarkSky()) {
+        camera.x = 1280 + Math.sin(t * 0.14) * 260;
+        camera.y = 720 + Math.cos(t * 0.11) * 200;
       } else {
         camera.x = 1100 + Math.sin(t * 0.18) * 220;
         camera.y = 720 + Math.cos(t * 0.14) * 160;
       }
     } else {
       let lookX = player.x + player.facing * 40;
-      let lookY = player.y - 22;
+      let lookY = player.y - (isDarkSky() ? 78 : 22);
       const targetNow = currentTarget();
       if (targetNow && targetNow.kind !== "wren" && Math.hypot(player.x - targetNow.x, player.y - targetNow.y) < 90) {
         lookX = lookX * 0.72 + targetNow.x * 0.28;
@@ -3562,6 +4075,8 @@ export async function boot(root = document) {
             ? hcReadyForChallenge(hcState) && !hcState.challengeOk
               ? "Share a field plan · E"
               : "Talk to Wren · E"
+            : isDarkSky()
+              ? "Talk to Wren · E"
             : canProposeChallenge(challengeState, challengeSpec) && !challengeState.concluded
             ? "Share what you found · E"
             : readyForChallenge() && !challengeState.introSeen
@@ -3598,6 +4113,16 @@ export async function boot(root = document) {
         ui.setPrompt("Read the coastal desk · E");
       } else if (target.kind === "planet-desk") {
         ui.setPrompt("Read the planet log · E");
+      } else if (target.kind === "eyepiece") {
+        ui.setPrompt("Look through the eyepiece · E");
+      } else if (target.kind === "plate-desk") {
+        ui.setPrompt("Read the inherited log · E");
+      } else if (target.kind === "spectrograph") {
+        ui.setPrompt("Use the plate spectrograph · E");
+      } else if (target.kind === "lamp") {
+        ui.setPrompt(dsState.lampOn ? "Inspect the lamp light · E" : "Use the calibration lamp · E");
+      } else if (target.kind === "station") {
+        ui.setPrompt("Look over the basin · E");
       } else if (target.kind === "eclipse-desk") {
         ui.setPrompt("Use the alignment model · E");
       } else if (target.kind === "discovery") {
@@ -3633,24 +4158,25 @@ export async function boot(root = document) {
       journalOpen,
       talking: Boolean(dialogue && dialogue.speaker === "Ranger Wren"),
       atmosphere: presentationPack.atmosphere?.[worldState.currentRegion],
-      sky: isSunfall() ? liveSky(sfState, sfRegion, player) : null,
-      observations: isHighCountry() || isSunfall() ? [] : missionState.observations,
-      flowVisible: isHighCountry() || isSunfall() ? false : missionState.flowVisible,
-      landscapeInterpreted: isHighCountry() || isSunfall() ? false : invState.interpreted,
-      measuredIds: isHighCountry() || isSunfall() ? [] : invState.measuredIds,
+      sky: isDarkSky() ? nightSkyState(dsCatalog) : isSunfall() ? liveSky(sfState, sfRegion, player) : null,
+      lampOn: isDarkSky() ? Boolean(dsState.lampOn) : false,
+      observations: isHighCountry() || isSunfall() || isDarkSky() ? [] : missionState.observations,
+      flowVisible: isHighCountry() || isSunfall() || isDarkSky() ? false : missionState.flowVisible,
+      landscapeInterpreted: isHighCountry() || isSunfall() || isDarkSky() ? false : invState.interpreted,
+      measuredIds: isHighCountry() || isSunfall() || isDarkSky() ? [] : invState.measuredIds,
       iceFlow: investigation.iceFlow,
-      discoveries: isSunfall() ? sfCatalog.items : isHighCountry() ? hcCatalog.items : catalog.items,
+      discoveries: isDarkSky() ? [] : isSunfall() ? sfCatalog.items : isHighCountry() ? hcCatalog.items : catalog.items,
       nearTarget: target && target.kind !== "wren" ? target : null,
-      challengeActive: isHighCountry() || isSunfall() ? false : Boolean(challengeState.active),
+      challengeActive: isHighCountry() || isSunfall() || isDarkSky() ? false : Boolean(challengeState.active),
       challengeSites:
-        !isHighCountry() && !isSunfall() && challengeState.active
+        !isHighCountry() && !isSunfall() && !isDarkSky() && challengeState.active
           ? challengeSpec.sites.map((site) => ({
               ...site,
               observed: challengeState.observedIds.includes(site.id)
             }))
           : [],
       interpretiveLabels:
-        isHighCountry() || isSunfall() ? [] : interpretiveLabels(investigation, invState, catalog, region, player),
+        isHighCountry() || isSunfall() || isDarkSky() ? [] : interpretiveLabels(investigation, invState, catalog, region, player),
       flumeVisual: {
         slope: flumeState.slope,
         water: flumeState.water,
@@ -3692,6 +4218,10 @@ export async function boot(root = document) {
       sfSpec,
       sfCatalog,
       sfProfile,
+      dsState,
+      dsRegion,
+      dsCatalog,
+      dsSpec,
       go(x, y) {
         player.x = x;
         player.y = y;
@@ -3711,18 +4241,54 @@ export async function boot(root = document) {
         return true;
       },
       inspectFeature(id) {
-        const feature = region.features.find((entry) => entry.id === id);
+        const live = isDarkSky() ? dsRegion : isSunfall() ? sfRegion : isHighCountry() ? hcRegion : region;
+        const feature = (live.features || []).find((entry) => entry.id === id);
         if (!feature) return false;
         player.x = feature.x;
         player.y = feature.y;
-        inspectFeature(feature);
+        if (isDarkSky()) {
+          inspectDs({ kind: feature.kind, item: feature, x: feature.x, y: feature.y, name: feature.name });
+        } else {
+          inspectFeature(feature);
+        }
         return true;
       },
       talk() {
-        const ranger = isSunfall() ? sfRegion.ranger : isHighCountry() ? hcRegion.ranger : region.ranger;
+        const ranger = isDarkSky() ? dsRegion.ranger : isSunfall() ? sfRegion.ranger : isHighCountry() ? hcRegion.ranger : region.ranger;
         player.x = ranger.x;
         player.y = ranger.y;
         talkToWren();
+      },
+      openDsEyepiece() {
+        const feat = dsRegion.features.find((row) => row.id === "eyepiece");
+        if (feat) {
+          player.x = feat.x;
+          player.y = feat.y;
+        }
+        openSkyEyepiece();
+        return true;
+      },
+      openDsLamp() {
+        const feat = dsRegion.features.find((row) => row.id === "lamp-bench");
+        if (feat) {
+          player.x = feat.x;
+          player.y = feat.y;
+        }
+        markVisited(dsState, "lamp");
+        openLampBench();
+        return true;
+      },
+      openDsSpectrograph() {
+        const feat = dsRegion.features.find((row) => row.id === "spectrograph");
+        if (feat) {
+          player.x = feat.x;
+          player.y = feat.y;
+        }
+        openDsSpectrograph();
+        return true;
+      },
+      dsObserve(id) {
+        return observeTarget(dsState, id);
       },
       openJournal() {
         journalOpen = true;

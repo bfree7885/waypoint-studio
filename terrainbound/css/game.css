@@ -334,6 +334,8 @@ input#geo-number {
 #interpret-open[hidden],
 #flume-numbers[hidden],
 #atlas-travel[hidden],
+#sky-eyepiece[hidden],
+#spectrum-bench[hidden],
 .journal-section[hidden] {
   display: none;
 }
@@ -1490,6 +1492,8 @@ input#geo-number {
 #interpret-open[hidden],
 #flume-numbers[hidden],
 #atlas-travel[hidden],
+#sky-eyepiece[hidden],
+#spectrum-bench[hidden],
 .journal-section[hidden] {
   display: none;
 }
@@ -1712,6 +1716,13 @@ input#geo-number {
     flex: 1 1 calc(50% - 6px);
   }
 
+  @media (max-width: 360px) {
+    .summit-quick button {
+      flex: 1 1 100%;
+      font-size: 0.88rem;
+    }
+  }
+
   #toast {
     left: 12px;
     right: 12px;
@@ -1840,3 +1851,75 @@ input#geo-number {
     padding: 8px 10px;
   }
 }
+
+#sky-eyepiece:not([hidden]),
+#spectrum-bench:not([hidden]) {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  display: grid;
+  place-items: center;
+  background: rgba(6, 8, 16, 0.46);
+  overflow: auto;
+  padding: max(8px, env(safe-area-inset-top, 0px)) 8px max(8px, env(safe-area-inset-bottom, 0px));
+}
+
+.spectrum-card {
+  width: min(42rem, calc(100% - 16px));
+  max-height: calc(100% - 16px);
+  overflow: auto;
+  background: #12141c;
+  color: #e8eef6;
+  border-color: #3a4254;
+}
+
+.spectrum-card h2,
+.spectrum-card .hypothesis-lead,
+.spectrum-card .field-bench-kicker {
+  color: #e8eef6;
+}
+
+.spectrum-card canvas {
+  width: 100%;
+  height: auto;
+  max-height: min(42vh, 280px);
+  background: #0b1020;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+
+.spectrum-tools {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.spectrum-tools label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.spectrum-tools input[type="range"] {
+  width: 100%;
+}
+
+#game-root[data-region="dark-sky-basin"] .place-chip,
+#game-root[data-region="dark-sky-basin"] .control-hint {
+  background: rgba(12, 16, 28, 0.78);
+}
+
+#game-root[data-region="dark-sky-basin"] .inspect-prompt {
+  background: #1c283c;
+  color: #f4efe2;
+}
+
+@media (max-width: 430px) {
+  .spectrum-card {
+    width: calc(100% - 12px);
+  }
+  .spectrum-card canvas {
+    max-height: 36vh;
+  }
+}
+

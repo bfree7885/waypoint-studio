@@ -7,6 +7,7 @@ import { drawDatasetGraph } from "./fielddata.js";
 import { drawFieldMap, drawProfileChart } from "./geomap.js";
 import { drawOrbitModel, drawMoonGeometry, drawEclipseGeometry } from "./celestial.js";
 import { drawSystemsSketch } from "./puzzles.js";
+import { drawSpectrumBench } from "./darksky.js";
 
 const SYMBOLS = {
   erratic: "◉",
@@ -100,6 +101,22 @@ export function bindUi(root) {
   const skyClockJumps = root.querySelector("#sky-clock-jumps");
   const skyClockExtra = root.querySelector("#sky-clock-extra");
   const skyClockFull = root.querySelector("#sky-clock-full");
+  const skyEyepiece = root.querySelector("#sky-eyepiece");
+  const skyEyeTitle = root.querySelector("#sky-eye-title");
+  const skyEyeLead = root.querySelector("#sky-eye-lead");
+  const skyEyeCanvas = root.querySelector("#sky-eye-canvas");
+  const skyEyeStatus = root.querySelector("#sky-eye-status");
+  const skyEyeClose = root.querySelector("#sky-eye-close");
+  const spectrumBench = root.querySelector("#spectrum-bench");
+  const spectrumTitle = root.querySelector("#spectrum-title");
+  const spectrumLead = root.querySelector("#spectrum-lead");
+  const spectrumCanvas = root.querySelector("#spectrum-canvas");
+  const spectrumReadout = root.querySelector("#spectrum-readout");
+  const spectrumTools = root.querySelector("#spectrum-tools");
+  const spectrumStatus = root.querySelector("#spectrum-status");
+  const spectrumLamp = root.querySelector("#spectrum-lamp");
+  const spectrumLog = root.querySelector("#spectrum-log");
+  const spectrumClose = root.querySelector("#spectrum-close");
   const guide = root.querySelector("#field-guide");
   const guideQuestion = root.querySelector("#guide-question");
   const guideVerb = root.querySelector("#guide-verb");
@@ -903,6 +920,159 @@ export function bindUi(root) {
         skyClockFull.hidden = false;
         skyClockFull.textContent = view.expanded ? "Hide extra steps" : "Full observation window";
         skyClockFull.onclick = () => handlers.onFull?.();
+      }
+    },
+    showSkyEyepiece(open, view = {}, handlers = {}) {
+      if (!skyEyepiece) return;
+      skyEyepiece.hidden = !open;
+      if (!open) return;
+      if (skyEyeTitle) skyEyeTitle.textContent = view.title || "Dome eyepiece";
+      if (skyEyeLead) skyEyeLead.textContent = view.lead || "";
+      if (skyEyeStatus) skyEyeStatus.textContent = view.status || "";
+      if (skyEyeClose) skyEyeClose.onclick = () => handlers.onClose?.();
+      if (skyEyeCanvas) {
+        const ctx = skyEyeCanvas.getContext("2d");
+        const width = skyEyeCanvas.width;
+        const height = skyEyeCanvas.height;
+        ctx.fillStyle = "#07091a";
+        ctx.fillRect(0, 0, width, height);
+        ctx.fillStyle = "#1c283c";
+        ctx.fillRect(0, height * 0.72, width, height * 0.28);
+        ctx.fillStyle = "#f4efe2";
+        for (let i = 0; i < 48; i += 1) {
+          const x = ((i * 97) % width);
+          const y = ((i * 53) % Math.floor(height * 0.7));
+          ctx.globalAlpha = 0.35 + (i % 5) * 0.08;
+          ctx.beginPath();
+          ctx.arc(x, y, 0.8 + (i % 3) * 0.3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        skyEyeCanvas.onclick = (event) => {
+          const box = skyEyeCanvas.getBoundingClientRect();
+          const x = ((event.clientX - box.left) / box.width) * width;
+          const y = ((event.clientY - box.top) / box.height) * height;
+          let best = null;
+          let bestD = 36;
+          for (const star of view.targets || []) {
+            const sx = 40 + star.az * (width - 80);
+            const sy = 36 + (1 - star.alt) * (height * 0.55);
+            const d = Math.hypot(x - sx, y - sy);
+            if (d < bestD) {
+              best = star;
+              bestD = d;
+            }
+          }
+          if (best) handlers.onPick?.(best.id);
+        };
+        for (const star of view.targets || []) {
+          const x = 40 + star.az * (width - 80);
+          const y = 36 + (1 - star.alt) * (height * 0.55);
+          ctx.fillStyle = star.color || "#f4f6fb";
+          ctx.globalAlpha = 0.25;
+          ctx.beginPath();
+          ctx.arc(x, y, star.size * 4, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = 1;
+          ctx.beginPath();
+          ctx.arc(x, y, star.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#c8d4e8";
+          ctx.font = "12px Trebuchet MS, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText(star.seen ? `${star.label} · logged` : star.label, x, y + 22);
+        }
+        skyEyeCanvas.onkeydown = (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            const unseen = (view.targets || []).find((row) => !row.seen);
+            if (unseen) handlers.onPick?.(unseen.id);
+          }
+        };
+        skyEyeCanvas.tabIndex = 0;
+      }
+    },
+    showSpectrum(open, view = {}, handlers = {}) {
+      if (!spectrumBench) return;
+      spectrumBench.hidden = !open;
+      if (!open) return;
+      if (spectrumTitle) spectrumTitle.textContent = view.title || "Field spectrograph";
+      if (spectrumLead) spectrumLead.textContent = view.lead || "";
+      if (spectrumReadout) spectrumReadout.textContent = view.readout || "";
+      if (spectrumStatus) spectrumStatus.textContent = view.status || "";
+      if (spectrumLog) {
+        spectrumLog.textContent = view.logLabel || "Log this reading";
+        spectrumLog.onclick = () => handlers.onLog?.();
+      }
+      if (spectrumClose) {
+        spectrumClose.textContent = view.closeLabel || "Back to the basin";
+        spectrumClose.onclick = () => handlers.onClose?.();
+      }
+      if (spectrumLamp) {
+        spectrumLamp.hidden = view.mode !== "lamp";
+        spectrumLamp.textContent = view.lampOn ? "Turn lamp off" : "Turn lamp on";
+        spectrumLamp.onclick = () => handlers.onToggleLamp?.();
+      }
+      if (spectrumTools) {
+        spectrumTools.replaceChildren();
+        if (view.showAlign) {
+          const label = document.createElement("label");
+          label.textContent = "Slide east trace";
+          const slider = document.createElement("input");
+          slider.type = "range";
+          slider.min = "-80";
+          slider.max = "80";
+          slider.value = String(view.shift || 0);
+          slider.setAttribute("aria-label", "Slide one spectrum against the other");
+          slider.addEventListener("input", () => handlers.onShift?.(Number(slider.value)));
+          label.appendChild(slider);
+          spectrumTools.appendChild(label);
+        }
+        if (view.mode === "ember") {
+          const white = document.createElement("label");
+          const whiteSlide = document.createElement("input");
+          whiteSlide.type = "range";
+          whiteSlide.min = "380";
+          whiteSlide.max = "760";
+          whiteSlide.value = String(view.whiteMark || 428);
+          whiteSlide.setAttribute("aria-label", "White target peak wavelength in nanometers");
+          const whiteText = document.createTextNode(`White peak ${whiteSlide.value} nm`);
+          white.append(whiteText, whiteSlide);
+          whiteSlide.addEventListener("input", () => {
+            whiteText.textContent = `White peak ${whiteSlide.value} nm`;
+            handlers.onPeak?.("white", Number(whiteSlide.value));
+          });
+          const ember = document.createElement("label");
+          const emberSlide = document.createElement("input");
+          emberSlide.type = "range";
+          emberSlide.min = "380";
+          emberSlide.max = "760";
+          emberSlide.value = String(view.emberMark || 628);
+          emberSlide.setAttribute("aria-label", "Reddish target peak wavelength in nanometers");
+          const emberText = document.createTextNode(`Reddish peak ${emberSlide.value} nm`);
+          ember.append(emberText, emberSlide);
+          emberSlide.addEventListener("input", () => {
+            emberText.textContent = `Reddish peak ${emberSlide.value} nm`;
+            handlers.onPeak?.("ember", Number(emberSlide.value));
+          });
+          spectrumTools.append(white, ember);
+        }
+      }
+      if (spectrumCanvas) {
+        const ctx = spectrumCanvas.getContext("2d");
+        drawSpectrumBench(ctx, view);
+        spectrumCanvas.tabIndex = 0;
+        spectrumCanvas.onclick = (event) => {
+          const box = spectrumCanvas.getBoundingClientRect();
+          const x = ((event.clientX - box.left) / box.width) * spectrumCanvas.width;
+          const nm = 380 + ((x - 28) / Math.max(1, spectrumCanvas.width - 56)) * 380;
+          handlers.onCanvas?.(Math.max(380, Math.min(760, nm)));
+        };
+        spectrumCanvas.onkeydown = (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            const mid = view.mode === "lamp" ? 546 : view.mode === "ember" ? Number(view.emberMark || 628) : 486;
+            handlers.onCanvas?.(mid);
+          }
+        };
       }
     }
   };

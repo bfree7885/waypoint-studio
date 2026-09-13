@@ -95,11 +95,34 @@ export function heightAt(region, x, y) {
   if (region.terrainModel === "sunfall-desert" || region.id === "sunfall-desert") {
     return sunfallHeight(region, x, y);
   }
+  if (region.terrainModel === "dark-sky-basin" || region.id === "dark-sky-basin") {
+    return darkSkyHeight(region, x, y);
+  }
   return cedarHollowHeight(region, x, y);
 }
 
 function isDry(region) {
-  return region.dryLandscape === true || region.terrainModel === "sunfall-desert";
+  return region.dryLandscape === true || region.terrainModel === "sunfall-desert" || region.terrainModel === "dark-sky-basin";
+}
+
+function darkSkyHeight(region, x, y) {
+  let h = 0.18;
+  const northRim = Math.max(0, 1 - y / 520) * 0.42;
+  const westRim = Math.max(0, 1 - x / 520) * 0.28;
+  const eastRim = Math.max(0, (x - 1960) / 420) * 0.32;
+  const southRim = Math.max(0, (y - 1480) / 280) * 0.22;
+  h += northRim + westRim + eastRim + southRim;
+  h += Math.max(0, 1 - dist(x, y, region.peak.x, region.peak.y) / 280) * 0.22;
+  const pan = region.pond;
+  if (pan) {
+    const dx = (x - pan.cx) / pan.rx;
+    const dy = (y - pan.cy) / pan.ry;
+    const r = dx * dx + dy * dy;
+    if (r < 1) h -= 0.14 * (1 - Math.sqrt(Math.max(0, r)));
+  }
+  h += Math.max(0, 1 - dist(x, y, 1680, 420) / 180) * 0.12;
+  h += Math.max(0, 1 - dist(x, y, 1180, 340) / 160) * 0.06;
+  return Math.max(0.04, Math.min(1, h));
 }
 
 export function inPond(region, x, y) {
@@ -180,6 +203,26 @@ export function biomeWeights(region, x, y) {
       height: h
     };
   }
+  if (region.terrainModel === "dark-sky-basin") {
+    const wash = region.creek ? polylineDistance(x, y, region.creek.points) < 26 : false;
+    const pan = region.pond
+      ? ((x - region.pond.cx) / region.pond.rx) ** 2 + ((y - region.pond.cy) / region.pond.ry) ** 2 <= 1
+      : false;
+    const rock = Math.max(h > 0.46 ? (h - 0.46) / 0.4 : 0, inOutcrop(region, x, y) ? 0.8 : 0);
+    const soil = onTrail(region, x, y) ? 0.9 : wash ? 0.65 : 0;
+    return {
+      water: 0,
+      trail: soil,
+      rock,
+      marsh: 0,
+      forest: 0.04,
+      slope: Math.max(0, 1 - dist(x, y, region.peak.x, region.peak.y) / 320),
+      meadow: pan ? 0.2 : 0.5,
+      wash: wash || pan ? 1 : 0,
+      crater: pan ? 0.6 : 0,
+      height: h
+    };
+  }
   if (region.terrainModel === "high-country") {
     const treeline = h < 0.58;
     const forest = treeline ? Math.max(0, 1 - dist(x, y, 1100, 1400) / 380) * 0.55 : 0;
@@ -251,6 +294,21 @@ const DESERT_PALETTE = {
   crater: [186, 142, 96]
 };
 
+const BASIN_PALETTE = {
+  rockHi: [186, 184, 196],
+  rockLo: [102, 100, 118],
+  forest: [86, 96, 78],
+  forestFloor: [92, 90, 82],
+  slope: [108, 106, 122],
+  meadow: [126, 118, 104],
+  marsh: [110, 108, 98],
+  marshWet: [118, 114, 102],
+  trail: [164, 156, 142],
+  soil: [132, 124, 110],
+  wash: [176, 170, 158],
+  crater: [168, 162, 150]
+};
+
 const ALPINE_PALETTE = {
   rockHi: [228, 226, 222],
   rockLo: [148, 142, 136],
@@ -281,6 +339,18 @@ function rgbToHex(rgb) {
   );
 }
 
+export function basinNightColor(hex) {
+  if (!hex) return hex;
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const t = 0.46;
+  const nr = r * t * 0.48 + 28;
+  const ng = g * t * 0.52 + 34;
+  const nb = b * t * 0.78 + 58;
+  return rgbToHex([nr, ng, nb]);
+}
+
 export function desertNightColor(hex, moonLift = 0) {
   if (!hex) return hex;
   const r = parseInt(hex.slice(1, 3), 16);
@@ -297,9 +367,11 @@ export function groundColor(region, x, y) {
   const pal =
     region.terrainModel === "sunfall-desert"
       ? DESERT_PALETTE
-      : region.terrainModel === "high-country"
-        ? ALPINE_PALETTE
-        : PALETTE;
+      : region.terrainModel === "dark-sky-basin"
+        ? BASIN_PALETTE
+        : region.terrainModel === "high-country"
+          ? ALPINE_PALETTE
+          : PALETTE;
   if (!isDry(region)) {
     if (inCreek(region, x, y) && !inTributary(region, x, y) && !inPond(region, x, y)) {
       // Tributary handled as water by renderer; main creek/pond left transparent for animated water.
@@ -345,8 +417,9 @@ function reservedSpot(region, x, y, extras) {
 function plantTrees(region, rng, extras) {
   const alpine = region.terrainModel === "high-country";
   const desert = region.terrainModel === "sunfall-desert";
+  const basin = region.terrainModel === "dark-sky-basin";
   const trees = [];
-  const want = desert ? 26 : alpine ? 64 : 170;
+  const want = basin ? 10 : desert ? 26 : alpine ? 64 : 170;
   let guard = 0;
   while (trees.length < want && guard < 5000) {
     guard += 1;
@@ -354,24 +427,27 @@ function plantTrees(region, rng, extras) {
     const y = 80 + rng() * (region.height - 160);
     const h = heightAt(region, x, y);
     if (alpine && h > 0.56) continue;
-    if (!desert && h > 0.72) continue;
-    if (desert && h > 0.62) continue;
+    if (!desert && !basin && h > 0.72) continue;
+    if ((desert || basin) && h > 0.62) continue;
     if (reservedSpot(region, x, y, extras)) continue;
     if (inWetland(region, x, y) && rng() > 0.12) continue;
-    const forestBoost = desert
-      ? dist(x, y, 900, 1280) < 280 || dist(x, y, 1680, 1240) < 200
-      : alpine
-        ? dist(x, y, 1100, 1420) < 320 || dist(x, y, 1680, 1320) < 220
-        : dist(x, y, 560, 800) < 340 || dist(x, y, 1500, 1100) < 200;
-    if (!forestBoost && rng() > (desert ? 0.08 : alpine ? 0.1 : 0.18)) continue;
-    if (trees.some((tree) => dist(x, y, tree.x, tree.y) < (desert ? 52 : 38))) continue;
-    const pine = desert ? false : alpine ? true : dist(x, y, region.peak.x, region.peak.y) < 420 ? rng() > 0.28 : rng() > 0.55;
+    const forestBoost = basin
+      ? dist(x, y, 1760, 620) < 180
+      : desert
+        ? dist(x, y, 900, 1280) < 280 || dist(x, y, 1680, 1240) < 200
+        : alpine
+          ? dist(x, y, 1100, 1420) < 320 || dist(x, y, 1680, 1320) < 220
+          : dist(x, y, 560, 800) < 340 || dist(x, y, 1500, 1100) < 200;
+    if (!forestBoost && rng() > (basin ? 0.05 : desert ? 0.08 : alpine ? 0.1 : 0.18)) continue;
+    if (trees.some((tree) => dist(x, y, tree.x, tree.y) < (basin || desert ? 52 : 38))) continue;
+    const pine = desert || basin ? false : alpine ? true : dist(x, y, region.peak.x, region.peak.y) < 420 ? rng() > 0.28 : rng() > 0.55;
     trees.push({
       x,
       y,
-      r: desert ? 8 + rng() * 5 : alpine ? 12 + rng() * 6 : pine ? 16 + rng() * 8 : 18 + rng() * 10,
+      r: basin || desert ? 8 + rng() * 5 : alpine ? 12 + rng() * 6 : pine ? 16 + rng() * 8 : 18 + rng() * 10,
       pine,
-      cactus: desert,
+      cactus: desert && !basin,
+      sage: basin,
       shade: rng()
     });
   }
@@ -380,7 +456,8 @@ function plantTrees(region, rng, extras) {
 
 function scatterDetails(region, rng, extras) {
   const alpine = region.terrainModel === "high-country";
-  const desert = region.terrainModel === "sunfall-desert";
+  const desert = region.terrainModel === "sunfall-desert" || region.terrainModel === "dark-sky-basin";
+  const basin = region.terrainModel === "dark-sky-basin";
   const details = [];
   const tryAdd = (kind, n, test) => {
     let guard = 0;
@@ -396,8 +473,8 @@ function scatterDetails(region, rng, extras) {
       added += 1;
     }
   };
-  tryAdd("rock", desert ? 70 : alpine ? 96 : 34, (x, y) => heightAt(region, x, y) > (alpine || desert ? 0.28 : 0.42) || inOutcrop(region, x, y));
-  tryAdd("boulder", desert ? 16 : alpine ? 28 : 10, (x, y) => heightAt(region, x, y) > (desert ? 0.34 : alpine ? 0.42 : 0.5));
+  tryAdd("rock", basin ? 58 : desert ? 70 : alpine ? 96 : 34, (x, y) => heightAt(region, x, y) > (alpine || desert ? 0.28 : 0.42) || inOutcrop(region, x, y));
+  tryAdd("boulder", basin ? 12 : desert ? 16 : alpine ? 28 : 10, (x, y) => heightAt(region, x, y) > (desert ? 0.34 : alpine ? 0.42 : 0.5));
   tryAdd("log", alpine ? 3 : desert ? 0 : 16, (x, y) => !alpine && !desert && dist(x, y, 560, 800) < 400 && !inCreek(region, x, y));
   tryAdd("shrub", desert ? 22 : alpine ? 36 : 30, (x, y) => heightAt(region, x, y) < (alpine ? 0.62 : 0.55) && !inWetland(region, x, y));
   tryAdd("flower", desert ? 6 : alpine ? 24 : 22, (x, y) => heightAt(region, x, y) < (alpine ? 0.48 : 0.3) && !inWetland(region, x, y));
@@ -491,6 +568,17 @@ export function createWorld(region, seed = 1842, extras = []) {
         rot: rng() * Math.PI
       });
     }
+  } else if (region.terrainModel === "dark-sky-basin") {
+    details.push({ kind: "lamp-pad", x: 1588, y: 1368, s: 1, rot: 0 });
+    for (let i = 0; i < 10; i += 1) {
+      details.push({
+        kind: i % 2 === 0 ? "rock" : "talus",
+        x: 1080 + rng() * 220,
+        y: 240 + rng() * 80,
+        s: 0.7 + rng() * 0.4,
+        rot: rng() * Math.PI
+      });
+    }
   } else {
     for (let i = 0; i < 8; i += 1) {
       details.push({
@@ -523,7 +611,7 @@ export function blockingDetailAt(world, x, y) {
 export function isBlocked(world, x, y) {
   const { region } = world;
   if (x < 28 || y < 28 || x > region.width - 28 || y > region.height - 28) return true;
-  if (region.terrainModel === "sunfall-desert") {
+  if (region.terrainModel === "sunfall-desert" || region.terrainModel === "dark-sky-basin") {
     if (heightAt(region, x, y) > 0.92 && !onTrail(region, x, y)) return true;
   } else if (region.terrainModel === "high-country") {
     if (heightAt(region, x, y) > 0.93 && !onTrail(region, x, y)) return true;

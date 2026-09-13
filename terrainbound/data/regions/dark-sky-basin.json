@@ -1,0 +1,211 @@
+{
+  "id": "dark-sky-basin",
+  "name": "Dark Sky Basin",
+  "blurb": "A high desert hollow whose rims still keep the night dark enough to work.",
+  "terrainModel": "dark-sky-basin",
+  "dryLandscape": true,
+  "width": 2480,
+  "height": 1760,
+  "spawn": { "x": 1240, "y": 500 },
+  "peak": { "x": 1180, "y": 210 },
+  "grid": {
+    "originLat": 37.62,
+    "originLon": -113.04,
+    "latSpan": 0.018,
+    "lonSpan": 0.028,
+    "metersPerPixel": 2.1,
+    "scaleLabel": "1 cm on the tablet ≈ 250 m on the ground"
+  },
+  "elevation": {
+    "baseMeters": 1680,
+    "rangeMeters": 220,
+    "datum": "local field datum",
+    "contourInterval": 20
+  },
+  "ranger": {
+    "id": "ranger-wren-radio",
+    "name": "Ranger Wren",
+    "x": 1188,
+    "y": 488,
+    "greetRadius": 78
+  },
+  "station": {
+    "x": 1088,
+    "y": 268,
+    "w": 188,
+    "h": 122
+  },
+  "pond": {
+    "id": "quiet-pan",
+    "cx": 1288,
+    "cy": 980,
+    "rx": 260,
+    "ry": 170
+  },
+  "creek": {
+    "id": "pale-drain",
+    "width": 18,
+    "points": [
+      [980, 620],
+      [1160, 780],
+      [1320, 980],
+      [1480, 1180],
+      [1620, 1380]
+    ]
+  },
+  "outlet": {
+    "width": 10,
+    "points": [
+      [1548, 1120],
+      [1680, 1280],
+      [1760, 1480]
+    ]
+  },
+  "tributary": null,
+  "wetland": null,
+  "outcrop": {
+    "x": 1680,
+    "y": 420,
+    "r": 70
+  },
+  "lampBench": { "x": 1588, "y": 1368 },
+  "props": [
+    {
+      "kind": "dome",
+      "x": 1228,
+      "y": 332,
+      "inspect": {
+        "id": "story-dome",
+        "title": "North Rim Station",
+        "text": "A small white dome and a plate desk. The windows are dim red on purpose. From here the basin floor drops away and the sky is the rest of the room."
+      }
+    },
+    {
+      "kind": "plate-desk",
+      "x": 1296,
+      "y": 428,
+      "inspect": {
+        "id": "twins-log",
+        "title": "Inherited field log",
+        "text": "Two bright white stars. Logged as twins because they look the same through the eyepiece. The page treats that as identity."
+      }
+    },
+    {
+      "kind": "eyepiece",
+      "x": 1204,
+      "y": 404,
+      "inspect": {
+        "id": "story-eyepiece",
+        "title": "Dome eyepiece",
+        "text": "Two bright points, both white, both easy to mistake for the same kind of object if you only look."
+      }
+    },
+    {
+      "kind": "spectrograph",
+      "x": 1328,
+      "y": 396,
+      "inspect": {
+        "id": "story-spectrograph",
+        "title": "Plate spectrograph",
+        "text": "A working trace bench. Dome wash makes a known outdoor light the fair reference."
+      }
+    },
+    {
+      "kind": "radio",
+      "x": 1164,
+      "y": 468,
+      "inspect": {
+        "id": "story-radio",
+        "title": "Wren's radio",
+        "text": "Ridgeline to basin. Wren is on the other end of this set, not standing over the eyepiece."
+      }
+    },
+    {
+      "kind": "lamp-bench",
+      "x": 1588,
+      "y": 1368,
+      "inspect": {
+        "id": "story-lamp",
+        "title": "Lamp Bench",
+        "text": "A concrete pad and a shielded calibration lamp, south of the dome and out of its wash."
+      }
+    },
+    { "kind": "pack", "x": 1260, "y": 508 },
+    { "kind": "instrument-crate", "x": 1348, "y": 452 }
+  ],
+  "trails": [
+    {
+      "id": "rim-to-lamp",
+      "name": "Basin walk",
+      "role": "lamp",
+      "points": [
+        [1240, 500],
+        [1288, 640],
+        [1220, 820],
+        [1300, 980],
+        [1420, 1140],
+        [1520, 1260],
+        [1588, 1368]
+      ]
+    },
+    {
+      "id": "station-pad",
+      "name": "Station pad",
+      "role": "local",
+      "points": [
+        [1240, 500],
+        [1296, 428],
+        [1228, 332],
+        [1204, 404],
+        [1240, 500]
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "north-rim-station",
+      "name": "North Rim Station",
+      "kind": "station",
+      "x": 1240,
+      "y": 508,
+      "radius": 96,
+      "label": "station"
+    },
+    {
+      "id": "plate-desk",
+      "name": "Inherited field log",
+      "kind": "plate-desk",
+      "x": 1296,
+      "y": 428,
+      "radius": 64,
+      "label": "log"
+    },
+    {
+      "id": "eyepiece",
+      "name": "Dome eyepiece",
+      "kind": "eyepiece",
+      "x": 1204,
+      "y": 404,
+      "radius": 62,
+      "label": "eyepiece"
+    },
+    {
+      "id": "spectrograph",
+      "name": "Plate spectrograph",
+      "kind": "spectrograph",
+      "x": 1328,
+      "y": 396,
+      "radius": 62,
+      "label": "spectrograph"
+    },
+    {
+      "id": "lamp-bench",
+      "name": "Lamp Bench",
+      "kind": "lamp",
+      "x": 1588,
+      "y": 1368,
+      "radius": 78,
+      "label": "lamp"
+    }
+  ]
+}

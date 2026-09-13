@@ -136,7 +136,7 @@ check("field stations share Field Service identity", () => {
   assert.match(stations, /Cedar Hollow Station/);
   assert.match(stations, /Ridgeline Station/);
   assert.match(stations, /Sunfall Observatory/);
-  assert.deepEqual(STATION_IDENTITY.variants.sort(), ["cedar-hollow", "high-country", "sunfall-desert"]);
+  assert.deepEqual(STATION_IDENTITY.variants.sort(), ["cedar-hollow", "dark-sky-basin", "high-country", "sunfall-desert"]);
   assert.equal(presentation.fieldNetwork.signName, "FIELD SERVICE");
 });
 

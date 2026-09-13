@@ -80,6 +80,75 @@ function missingHonesty(context, needId, haveLine, missLine) {
   return missLine;
 }
 
+function darkSkyReply(request, packFor, level) {
+  const context = request.context || {};
+  const truth = request.packet
+    ? {
+        known: request.packet.facts.known,
+        expected: request.packet.facts.expected,
+        unknown: request.packet.facts.unknown,
+        nextAction: request.packet.nextAction
+      }
+    : { known: [], unknown: [], nextAction: { text: packFor.orient } };
+  const route = request.route?.reason || "";
+  const question = request.question || "";
+  const raw = context.raw?.darkSky || {};
+  const aboutTwins = /twin|white star|look alike|eyepiece|appearance|same kind/i.test(question);
+
+  if (isOffTopic(question)) {
+    return pack("I'm Summit. That isn't this basin's question. We can stay with the light you actually recorded.", { level });
+  }
+  if (route === "game-help") {
+    return pack("Walk the basin. Inspect what you can reach. The tablet holds what you measured, not a worksheet.", { level });
+  }
+  if (route === "character") {
+    return pack("Looking the same from far away doesn't prove much. I should know. The light still has to be checked.", { level });
+  }
+  if (route === "evidence-inventory" || /what do I (know|have)|notes/i.test(question)) {
+    const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
+    const unknown = (truth.unknown || []).join("; ") || "whatever you have not walked or measured";
+    return pack(`Notes I can read: ${known}. Still unknown: ${unknown}. I will not invent a star measurement.`, { level });
+  }
+  if (aboutTwins) {
+    if (raw.twinsConcluded) {
+      return pack(
+        "They looked alike in the eyepiece. The traces did not. Appearance was not enough to keep the inherited twins claim.",
+        { level, misconceptionId: "eyepiece-twins" }
+      );
+    }
+    return pack(
+      "Two bright white stars were logged as twins because they look alike. Appearance is a starting observation, not identity. Check whether the traces agree.",
+      { level, misconceptionId: "eyepiece-twins" }
+    );
+  }
+  if ((route === "next-action" || request.intent === "what_now") && !aboutTwins) {
+    return pack(truth.nextAction?.text || packFor.orient, { level, worldCue: packFor.worldCue });
+  }
+  if (/calibrat|lamp/i.test(question) && !raw.lampCalibrated) {
+    return pack("You have not logged a lamp pattern yet. I will not invent one. The fair reference is south of the dome, out of the wash.", {
+      level,
+      worldCue: packFor.worldCue
+    });
+  }
+  if (/twin|same kind|look alike|eyepiece/i.test(question) && !raw.twinsConcluded) {
+    return pack(ladderLine(packFor, level), { level, worldCue: packFor.worldCue, misconceptionId: "eyepiece-twins" });
+  }
+  if (/red|hotter|ember|temperature|peak/i.test(question)) {
+    if (!raw.emberConcluded && !raw.twinsConcluded) {
+      return pack("We do not have a temperature claim from this basin yet. Color folklore is not a measurement.", { level });
+    }
+    return pack(ladderLine(packFor, Math.max(level, 2)), {
+      level,
+      misconceptionId: "red-hotter",
+      worldCue: packFor.worldCue
+    });
+  }
+  if (request.intent === "vocab") {
+    return pack(packFor.teach, { level: 3, worldCue: packFor.worldCue });
+  }
+  return pack(ladderLine(packFor, level), { level, worldCue: packFor.worldCue, more: (packFor.explainMore || [])[0] || "" });
+}
+
 function ladderLine(packFor, level) {
   if (level <= LEVEL.ORIENT) return packFor.orient;
   if (level === LEVEL.NOTICE) return packFor.notice;
@@ -147,7 +216,11 @@ function buildReply(request, curriculum, concepts) {
   const id = context.activePuzzleId || "CH-02";
   const packFor = puzzlePack(curriculum, id);
   if (!packFor) {
-    return pack("I only tutor Cedar Hollow in this slice. Wren still runs the field work.");
+    return pack("I only tutor the investigation in front of you. Wren still runs the field work.");
+  }
+
+  if (context.regionId === "dark-sky-basin") {
+    return darkSkyReply(request, packFor, level);
   }
 
   if (isOffTopic(request.question)) {

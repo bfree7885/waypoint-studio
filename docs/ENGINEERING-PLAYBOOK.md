@@ -2083,3 +2083,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - The region fantasy has to make *this basin* necessary: stray-light geography and a walked rim baseline, not an indoor spectrograph worksheet.
 - Summit may explain starlight only from a structured catalog and player measurements. Do not let a hosted model invent magnitudes.
 
+### Lessons Learned — TerrainBound Phase 8B (2026-09-13)
+
+- Dark Sky Basin's first playable slice is field spectroscopy, not a second Sunfall. Night lock plus an authored catalog is enough; do not reopen seasons, Moon, or the celestial clock.
+- Appearance-as-identity only breaks if the player first sees why the twins log was plausible, then has to walk to a known light. Opening a spectrograph overlay is not evidence.
+- Summit may talk about this basin only from structured measurements. Hosted language still cannot invent lamp calibration, line lists, magnitudes, or visits.
+- Keep Dark Sky `implementationState: "future"` on the atlas. Owner review uses an explicit `?field=1&region=dark-sky-basin` URL so unfinished night work cannot leak onto production.
+

@@ -3,13 +3,20 @@
  * Interface mystery does not.
  */
 
+import { darkSkyGuidance } from "./darksky.js";
+
 const VERBS = ["OBSERVE", "VISIT", "COMPARE", "MEASURE", "RECORD", "TEST", "PREDICT"];
 
 export function fieldGuidance(ctx) {
   const region = ctx.regionId || "cedar-hollow";
   if (region === "high-country") return hcGuidance(ctx);
   if (region === "sunfall-desert") return sfGuidance(ctx);
+  if (region === "dark-sky-basin") return dsGuidance(ctx);
   return chGuidance(ctx);
+}
+
+function dsGuidance(ctx) {
+  return darkSkyGuidance(ctx.dsState || {});
 }
 
 function pack(question, verb, next, where, looking, done, pairs = []) {

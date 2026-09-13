@@ -9,8 +9,12 @@ import {
   evidenceStatus,
   SUMMIT_CONCEPTS
 } from "./summit-concepts.js";
+import { buildDarkSkyTruth } from "./darksky.js";
 
 export function buildSummitTruth(context = {}) {
+  if (context.regionId === "dark-sky-basin") {
+    return context.darkSkyTruth || buildDarkSkyTruth();
+  }
   const fair = (context.raw?.flume?.fairTrials || []).slice();
   const slopes = new Set(fair.map((row) => row.slope));
   const comparison = comparisonStatus(fair);

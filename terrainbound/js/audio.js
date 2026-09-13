@@ -67,7 +67,8 @@ export function createAudio(options = {}) {
     const mixes = {
       "cedar-hollow": { creek: 0.22, wind: 0.08 },
       "high-country": { creek: 0.06, wind: 0.2 },
-      "sunfall-desert": { creek: 0.0, wind: night ? 0.08 : 0.16 }
+      "sunfall-desert": { creek: 0.0, wind: night ? 0.08 : 0.16 },
+      "dark-sky-basin": { creek: 0.0, wind: 0.11 }
     };
     const mix = mixes[regionId] || mixes["cedar-hollow"];
     creek.gain.gain.value = mix.creek;
