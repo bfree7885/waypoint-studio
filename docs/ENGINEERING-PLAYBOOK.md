@@ -2077,3 +2077,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Studio `main` had moved independently. Merge 7.9L by keeping current Studio files on conflicts and taking `terrainbound/` from the accepted SHA. Do not replay pre-TB Studio commits that already landed through other PRs.
 - Do not redeploy TerrainBound, change the Worker, or configure `summit.terrainbound.org` for housekeeping. Future TerrainBound work starts from this production Summit baseline.
 
+### Lessons Learned — TerrainBound Phase 8A (2026-09-13)
+
+- Dark Sky Basin is Topic 11 (Stars & the Universe), not a second Sunfall. Seasons, Moon, and the celestial clock stay in Topic 10.
+- The region fantasy has to make *this basin* necessary: stray-light geography and a walked rim baseline, not an indoor spectrograph worksheet.
+- Summit may explain starlight only from a structured catalog and player measurements. Do not let a hosted model invent magnitudes.
+
