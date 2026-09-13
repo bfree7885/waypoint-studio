@@ -14,6 +14,7 @@ export const STATIC_FILES = ["index.html"];
 export const FORBIDDEN = [
   "data/summit/.env",
   "data/summit/.env.save",
+  "data/summit/.env.example",
   "server",
   "tests",
   "scripts",
@@ -40,7 +41,7 @@ export async function publishStatic(dest) {
       filter: (src) => {
         const rel = path.relative(TB, src).replace(/\\/g, "/");
         if (!rel || rel === dir) return true;
-        if (rel.endsWith(".env") || rel.endsWith(".env.save")) return false;
+        if (rel.endsWith(".env") || rel.endsWith(".env.save") || rel.endsWith(".env.example")) return false;
         return !isForbiddenRel(rel);
       }
     });

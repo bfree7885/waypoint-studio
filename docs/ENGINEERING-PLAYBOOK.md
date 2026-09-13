@@ -1788,6 +1788,7 @@ dynamic_visual + commercial visual + production inspection evidence.
 - GitHub Pages cannot hold the Groq key. A Worker in front of Pages is enough for one POST route; do not move the static game off Pages to host Summit.
 - Production CORS, payload caps, and rate limits belong on the gateway. Client fallback already knew how to stay silent about HTTP.
 - GPT-OSS `json_object` often emits `answer` instead of `explanation` after a failed `json_schema` call. Map those aliases on the gateway; do not add a third unbounded retry.
+- A healthy `workers.dev` Worker is enough for production Summit. Do not move GitHub Pages DNS or create a Cloudflare zone only to obtain `summit.terrainbound.org`.
 
 
 

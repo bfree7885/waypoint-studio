@@ -4,7 +4,7 @@
  */
 
 export const PRODUCTION_HOSTS = ["terrainbound.org", "www.terrainbound.org"];
-export const PRODUCTION_ENDPOINT = "https://summit.terrainbound.org/summit";
+export const PRODUCTION_ENDPOINT = "https://terrainbound-summit.bfree7885.workers.dev/summit";
 
 export function resolveSummitRuntime({ hostname = "", search = "", cfg = {} } = {}) {
   const params = new URLSearchParams(String(search || "").replace(/^\?/, ""));

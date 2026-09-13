@@ -122,7 +122,7 @@ const env = {
 
 await check("production origins and client endpoint are explicit", () => {
   assert.deepEqual([...PRODUCTION_ORIGINS], ["https://terrainbound.org", "https://www.terrainbound.org"]);
-  assert.equal(PRODUCTION_ENDPOINT, "https://summit.terrainbound.org/summit");
+  assert.equal(PRODUCTION_ENDPOINT, "https://terrainbound-summit.bfree7885.workers.dev/summit");
   assert.equal(providerCfg.productionEndpoint, PRODUCTION_ENDPOINT);
   assert.equal(providerCfg.endpoint, "");
   assert.match(providerCfg.proxyEndpoint, /127\.0\.0\.1:8787/);
@@ -372,8 +372,10 @@ await check("Summit HUD shows a Sasquatch face without field-test chrome by defa
   assert.doesNotMatch(html, /GPT-OSS|Groq|AI provider/i);
   assert.match(gameJs, /fieldTestMode/);
   assert.match(gameJs, /summitRuntime\.endpoint/);
-  assert.match(prodDoc, /Cloudflare Worker/);
+  assert.match(prodDoc, /workers\.dev/);
+  assert.doesNotMatch(providerCfg.productionEndpoint, /summit\.terrainbound\.org/);
   assert.equal(isForbiddenRel("data/summit/.env"), true);
+  assert.equal(isForbiddenRel("data/summit/.env.example"), true);
   assert.equal(isForbiddenRel("server/summit-gateway.mjs"), true);
   assert.equal(isForbiddenRel("js/game.js"), false);
 });
@@ -386,6 +388,7 @@ await check("publish-static copies game files and omits secrets", async () => {
   assert.equal(fs.existsSync(path.join(dest, "assets/summit/summit-neutral.svg")), true);
   assert.equal(fs.existsSync(path.join(dest, "data/summit/provider.json")), true);
   assert.equal(fs.existsSync(path.join(dest, "data/summit/.env")), false);
+  assert.equal(fs.existsSync(path.join(dest, "data/summit/.env.example")), false);
   assert.equal(fs.existsSync(path.join(dest, "server")), false);
   assert.equal(fs.existsSync(path.join(dest, "tests")), false);
   const published = fs.readFileSync(path.join(dest, "data/summit/provider.json"), "utf8");

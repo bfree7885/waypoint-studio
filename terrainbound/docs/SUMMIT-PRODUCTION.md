@@ -9,10 +9,12 @@ https://terrainbound.org   (GitHub Pages, bfree7885/terrainbound-site)
         ↓
 TerrainBound client
         ↓ HTTPS POST /summit
-https://summit.terrainbound.org   (Cloudflare Worker)
+https://terrainbound-summit.bfree7885.workers.dev   (Cloudflare Worker)
         ↓
 Groq  openai/gpt-oss-20b
 ```
+
+`summit.terrainbound.org` is a **deferred** DNS enhancement. It is not required for production Summit. Do not move `terrainbound.org` Pages DNS.
 
 The browser never receives `SUMMIT_API_KEY`. If the Worker is unreachable, rate-limited, slow, or returns unusable JSON, the client uses the existing deterministic Summit fallback. Students do not see HTTP status, Groq, or JSON errors.
 
@@ -70,7 +72,7 @@ The Worker accepts only `prompt`, `question`, and a compact packet (facts, tutor
 
 | Host / flag | Mode | Endpoint |
 | --- | --- | --- |
-| `terrainbound.org` | production | `https://summit.terrainbound.org/summit` |
+| `terrainbound.org` | production | `https://terrainbound-summit.bfree7885.workers.dev/summit` |
 | `?summit=ai` on localhost | local-ai | loopback proxy |
 | `?summit=fieldtest` | fieldtest | loopback proxy + observer chrome |
 | `?summit=local` | offline | LocalComposer only |
@@ -95,7 +97,13 @@ npx wrangler secret put SUMMIT_API_KEY
 npx wrangler deploy
 ```
 
-Then point `summit.terrainbound.org` CNAME at the Worker route (Cloudflare DNS) **or** set `productionEndpoint` in `data/summit/provider.json` to the assigned `*.workers.dev` URL.
+Worker URL after deploy:
+
+```
+https://terrainbound-summit.bfree7885.workers.dev
+```
+
+`summit.terrainbound.org` is deferred. Do not create a Cloudflare zone or change Pages apex DNS for it.
 
 Do not put the key in `wrangler.toml`, Pages, or the companion site repo.
 
@@ -114,7 +122,7 @@ The script copies `index.html`, `css/`, `js/`, `assets/`, and `data/` except `.e
 ## Health check
 
 ```
-curl -sS https://summit.terrainbound.org/health
+curl -sS https://terrainbound-summit.bfree7885.workers.dev/health
 ```
 
 Expect `{ "ok": true, "configured": true }`.

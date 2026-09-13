@@ -18,8 +18,9 @@ This repository's root `CNAME` is `waypointstudio.org`. Do not replace it.
 | Apex DNS | GitHub Pages A records `185.199.108.153`–`185.199.111.153` |
 | `www` DNS | CNAME `bfree7885.github.io` |
 | Server-side runtime on Pages | **none** (static files only) |
-| Summit language layer | Cloudflare Worker at `https://summit.terrainbound.org` (separate origin; not Pages) |
-| Live cache-bust observed | `?v=p77` (Phase 7.7) until the 7.9L static candidate is published |
+| Summit language layer | Cloudflare Worker at `https://terrainbound-summit.bfree7885.workers.dev` (separate origin; not Pages) |
+| `summit.terrainbound.org` | **Deferred** — not required for production Summit |
+| Live cache-bust | `?v=p79l` on `main.js` / `game.js` |
 
 GitHub Pages cannot run the Summit gateway or hold `SUMMIT_API_KEY`. The Groq key stays in the Worker secret store (or the local loopback proxy for development). Ordinary Cedar Hollow play on `terrainbound.org` uses the production Worker and does not need `?summit=fieldtest`.
 
@@ -68,13 +69,7 @@ www CNAME  bfree7885.github.io
 
 Preserve MX/SPF if email forwarding is in use.
 
-Production Summit needs one extra DNS name after the Worker is deployed (owner action; do not change Pages A records):
-
-```
-summit  CNAME  <worker-host>.workers.dev
-```
-
-or a Cloudflare zone route for `summit.terrainbound.org`. Details: `docs/SUMMIT-PRODUCTION.md`.
+Do not change Pages A records. `summit.terrainbound.org` is a deferred DNS enhancement, not a release blocker. Production Summit currently uses the Worker `workers.dev` URL. Details: `docs/SUMMIT-PRODUCTION.md`.
 
 ## Rollback
 
@@ -84,4 +79,4 @@ Companion Pages rollback is an operator action on `bfree7885/terrainbound-site`,
 
 Cache-bust query: `?v=p79l` on `main.js` / `game.js`.
 
-Production Summit language layer is a Cloudflare Worker at `https://summit.terrainbound.org/summit`. Pages never holds `SUMMIT_API_KEY`. See `docs/SUMMIT-PRODUCTION.md`.
+Production Summit language layer is a Cloudflare Worker at `https://terrainbound-summit.bfree7885.workers.dev/summit`. Pages never holds `SUMMIT_API_KEY`. See `docs/SUMMIT-PRODUCTION.md`.

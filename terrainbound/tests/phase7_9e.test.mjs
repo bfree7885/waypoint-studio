@@ -92,7 +92,10 @@ function baseInput(extra = {}) {
 await check("no secrets; proxy is loopback", () => {
   assert.equal(providerCfg.endpoint, "");
   assert.match(providerCfg.proxyEndpoint, /127\.0\.0\.1:8787/);
-  assert.match(providerCfg.productionEndpoint, /^https:\/\/summit\.terrainbound\.org\/summit$/);
+  assert.match(
+    providerCfg.productionEndpoint,
+    /^https:\/\/terrainbound-summit\.bfree7885\.workers\.dev\/summit$/
+  );
   assert.doesNotMatch(gameJs, /sk-[a-zA-Z0-9]|SUMMIT_API_KEY|Bearer /);
   assert.match(proxy, /127\.0\.0\.1/);
   assert.match(proxy, /SUMMIT_DEBUG/);

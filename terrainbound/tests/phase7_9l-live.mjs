@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { PRODUCTION_ENDPOINT } from "../js/summit-runtime.js";
 import { handleSummitRequest, FIELDTEST_MODEL, createRateLimiter } from "../server/summit-gateway.mjs";
 import { loadSummitEnv } from "../scripts/fieldtest-summit.mjs";
 import { createPuzzleState } from "../js/puzzles.js";
@@ -183,3 +184,43 @@ for (const [id, question] of [
 }
 
 console.log(JSON.stringify({ ok: true, probe: "product-path", product }));
+
+const publicHealth = await fetch(PRODUCTION_ENDPOINT.replace(/\/summit$/, "/health"), {
+  headers: { origin: "https://terrainbound.org" }
+});
+const publicHealthBody = await publicHealth.json();
+assert.equal(publicHealth.status, 200);
+assert.equal(publicHealthBody.ok, true);
+assert.equal(publicHealthBody.configured, true);
+assert.equal(publicHealth.headers.get("access-control-allow-origin"), "https://terrainbound.org");
+assert.doesNotMatch(JSON.stringify(publicHealthBody), /gsk_|sk-|SUMMIT_API_KEY/i);
+
+const publicStarted = Date.now();
+const publicRes = await fetch(PRODUCTION_ENDPOINT, {
+  method: "POST",
+  headers: {
+    origin: "https://terrainbound.org",
+    "content-type": "application/json"
+  },
+  body: JSON.stringify({
+    prompt:
+      "You are Summit, a Sasquatch Earth Science companion. Write 1-2 short sentences. Do not give game instructions. JSON only.",
+    question: "Does a steeper slope tend to make runoff faster?",
+    packet: { facts: { puzzle: "field work", known: [], expected: [], unknown: [] } }
+  })
+});
+const publicBody = await publicRes.json();
+assert.equal(publicRes.status, 200, JSON.stringify({ status: publicRes.status, error: publicBody.error }));
+assert.ok(String(publicBody.explanation || "").length > 8);
+assert.doesNotMatch(publicBody.explanation, /click the|tap the|HTTP|Groq/i);
+assert.doesNotMatch(JSON.stringify(publicBody), /gsk_|SUMMIT_API_KEY/i);
+console.log(
+  JSON.stringify({
+    ok: true,
+    probe: "workers-dev",
+    endpoint: PRODUCTION_ENDPOINT,
+    status: publicRes.status,
+    latencyMs: publicBody.usage?.latencyMs ?? Date.now() - publicStarted,
+    explanationChars: String(publicBody.explanation || "").length
+  })
+);
