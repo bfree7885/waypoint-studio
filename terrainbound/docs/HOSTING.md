@@ -4,7 +4,11 @@ TerrainBound is a standalone static site. It is **not** the Waypoint Studio Page
 
 This repository's root `CNAME` is `waypointstudio.org`. Do not replace it.
 
-## Observed production state (2026-09-12)
+## Production baseline (2026-09-13)
+
+First public release with Summit. Source SHA `db2b7cc04bcbcd548657b5daa5addd42520c0eff`. Published site SHA `1618cd695e0b6b8b6473867671678c0895eb4ca1`. Tag `terrainbound-summit-production-2026-09`.
+
+## Observed production state (2026-09-13)
 
 `https://terrainbound.org/` serves a **static** TerrainBound build from the companion GitHub Pages repository `bfree7885/terrainbound-site`.
 

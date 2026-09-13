@@ -2,6 +2,21 @@
 
 Phase 7.9L. Summit is a Cedar Hollow product feature. GitHub Pages stays static. A small Cloudflare Worker holds the Groq key.
 
+## Production baseline (first live Summit)
+
+Accepted 2026-09-13. Future TerrainBound work starts here.
+
+| Item | Value |
+| --- | --- |
+| Source SHA | `db2b7cc04bcbcd548657b5daa5addd42520c0eff` |
+| Companion Pages SHA | `1618cd695e0b6b8b6473867671678c0895eb4ca1` (`bfree7885/terrainbound-site`) |
+| Live site | `https://terrainbound.org` (GitHub Pages; cache-bust `?v=p79l`) |
+| Summit Worker | `https://terrainbound-summit.bfree7885.workers.dev` |
+| Tag | `terrainbound-summit-production-2026-09` |
+| `summit.terrainbound.org` | Deferred — not required |
+
+Do not move Pages DNS. Do not change the Worker for housekeeping. Do not treat the custom hostname as a release blocker.
+
 ## Architecture
 
 ```

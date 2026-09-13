@@ -1,8 +1,10 @@
 # TerrainBound — Cedar Hollow
 
-A small cartoon wilderness you can walk. This folder is a **standalone prototype**, not a Waypoint Studio app.
+A small cartoon wilderness you can walk. This folder is a **standalone game**, not a Waypoint Studio app.
 
-It is **not** the retired trail-endurance page at `apps/terrainbound/`. Do not wire this game into Studio nav, product registries, DNS, or `terrainbound.org`.
+It is **not** the retired trail-endurance page at `apps/terrainbound/`. Do not wire this game into Studio nav or product registries. Public hosting is the companion Pages repo `bfree7885/terrainbound-site` → `https://terrainbound.org`. See `docs/HOSTING.md` and `docs/SUMMIT-PRODUCTION.md`.
+
+**Production Summit baseline:** `db2b7cc04bcbcd548657b5daa5addd42520c0eff` (tag `terrainbound-summit-production-2026-09`).
 
 ## Run
 
@@ -125,4 +127,4 @@ Canvas 2D, no build step, no paid services required. Summit stays fully playable
 
 ## Out of scope
 
-Teacher dashboard, accounts, quizzes, XP, Dark Sky Basin / regions 4–12 as playable worlds, deploy, `terrainbound.org`.
+Teacher dashboard, accounts, quizzes, XP, Dark Sky Basin / regions 4–12 as playable worlds. Public deploy is already live on GitHub Pages; do not move `terrainbound.org` DNS or put secrets on Pages.
