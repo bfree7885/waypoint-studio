@@ -1,0 +1,242 @@
+{
+  "session": {
+    "version": 1,
+    "fieldTest": true,
+    "sessionId": "f0f7b886535c7460cfb74b791292b6eb",
+    "startedAt": 1789255608348,
+    "endedAt": 1789255611150,
+    "region": "cedar-hollow",
+    "events": [
+      {
+        "type": "summit",
+        "id": "t1",
+        "prevTurnId": "",
+        "atMs": 1328,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "Westface Slope, rill-scars",
+        "studentUtterance": "what_now",
+        "action": "what_now",
+        "routeKind": "deterministic",
+        "routeReason": "quick-action",
+        "concept": "runoff",
+        "supportLevel": 0,
+        "modelLatencyMs": null,
+        "fullLoopMs": 3,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "You are trying to say, honestly, where last night's water went — from high ground to water still moving. Walk the ground. The hollow is the lesson, not this panel.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Westface Slope",
+            "rill-scars"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t2",
+        "prevTurnId": "t1",
+        "atMs": 2621,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "Westface Slope, rill-scars",
+        "studentUtterance": "why did the water move faster?",
+        "action": "",
+        "routeKind": "fallback",
+        "routeReason": "follow-up",
+        "concept": "",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 1272,
+        "validatorResult": "rejected",
+        "fallbackOccurred": true,
+        "fallbackReason": "malformed",
+        "visibleResponse": "I do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+        "nextActionAppended": "",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Westface Slope",
+            "rill-scars"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": false,
+        "progressSignals": [],
+        "followedByRepeatHelp": true,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "summit",
+        "id": "t3",
+        "prevTurnId": "t2",
+        "atMs": 2650,
+        "region": "cedar-hollow",
+        "puzzle": "CH-02",
+        "puzzleStage": "in-progress",
+        "locationCategory": "Westface Slope, rill-scars",
+        "studentUtterance": "what do I do next",
+        "action": "",
+        "routeKind": "deterministic",
+        "routeReason": "next-action",
+        "concept": "",
+        "supportLevel": 3,
+        "modelLatencyMs": null,
+        "fullLoopMs": 0,
+        "validatorResult": "skipped",
+        "fallbackOccurred": false,
+        "fallbackReason": "",
+        "visibleResponse": "Time the same amount of water on one slope, then you will have a measurement to talk about.",
+        "nextActionAppended": "Time the same amount of water on one slope, then you will have a measurement to talk about.",
+        "comparisonReady": false,
+        "steepMeasured": false,
+        "gentleMeasured": false,
+        "misconceptionId": "",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "Westface Slope",
+            "rill-scars"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": false,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        },
+        "followedByProgress": true,
+        "progressSignals": [
+          "completed-required-action"
+        ],
+        "followedByRepeatHelp": false,
+        "repeatedMisconception": false
+      },
+      {
+        "type": "world",
+        "id": "w1",
+        "atMs": 2654,
+        "kind": "inspect",
+        "snapshot": {
+          "region": "cedar-hollow",
+          "puzzleId": "CH-02",
+          "puzzleName": "Where Did Last Night's Water Go?",
+          "stage": "in-progress",
+          "near": [
+            "High Look"
+          ],
+          "evidenceCount": 0,
+          "fairTrialCount": 0,
+          "comparisonReady": false,
+          "steepMeasured": false,
+          "gentleMeasured": false,
+          "inspectedHighLook": true,
+          "clearance": false,
+          "aarOpen": false,
+          "aarResult": "",
+          "hypothesisReady": false
+        }
+      }
+    ],
+    "marks": [
+      {
+        "turnId": "t2",
+        "mark": "HELPED",
+        "note": "natural science",
+        "atMs": 2638
+      }
+    ]
+  },
+  "summary": {
+    "sessionId": "f0f7b886535c7460cfb74b791292b6eb",
+    "durationMs": 2802,
+    "puzzlesAttempted": [
+      "CH-02"
+    ],
+    "puzzlesCompleted": [],
+    "summitTurns": 3,
+    "deterministicTurns": 2,
+    "hostedTurns": 0,
+    "fallbacks": 1,
+    "validatorRejections": 1,
+    "latency": {
+      "model": {
+        "n": 0,
+        "mean": null,
+        "median": null,
+        "p95": null
+      },
+      "fullLoop": {
+        "n": 3,
+        "mean": 425,
+        "median": 3,
+        "p95": 1272
+      }
+    },
+    "supportLevels": {
+      "0": 1,
+      "3": 2
+    },
+    "conceptsAsked": {
+      "runoff": 1
+    },
+    "repeatedMisconceptions": [],
+    "marks": {
+      "HELPED": 1
+    },
+    "helpedThenProgressed": 1,
+    "repeatHelpWithoutProgress": 2,
+    "clearance": false,
+    "aarResult": ""
+  }
+}

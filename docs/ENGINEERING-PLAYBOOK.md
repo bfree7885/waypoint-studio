@@ -1886,3 +1886,194 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Elevation API docs also require Copernicus credit when OM elevation-derived facts are shown; do not attach that credit to USGS 3DEP pack RADAR terrain.
 - Attribution compliance is separate from free-endpoint commercial/non-commercial clearance — never claim terms are fully cleared in UI or provenance.
 - Keep source credits restrained (`sheds-data-credit`) near weather/condition/elev UI; avoid banners and load-time modals.
+
+### Lessons Learned — TerrainBound Phase 0 (2026-09-07)
+
+- The retired Studio page at `apps/terrainbound/` is a Fieldry redirect, not this game. Keep the Earth Science prototype isolated at `terrainbound/` and do not register it in Studio nav or product registries.
+- A small authored region plus Canvas 2D beats procedural worlds and 3D engines for school-computer prototypes: no build step, readable cartoon landforms, and room to add regions later.
+- Curriculum metadata must stay in a separate data layer with `code: null` until official NYS ESS / NYSSLS codes are supplied. Player-facing copy should never contain standards codes.
+- Inspection points have to be walkable. Putting inspect targets on peaks, inside buildings, or in deep water makes the “walk the land” loop impossible.
+
+### Lessons Learned — TerrainBound Phase 1 (2026-09-08)
+
+- A demonstration map is what happens when every inspectable wears a permanent white ring. Nearby-only highlights make students notice the land instead of following HUD dots.
+- Discoveries must be data, not one-off if/else, and the journal must omit unfound names. A count (`4 / 12`) is enough hunger without an achievement board.
+- Wren should hint at places (“boulders near the north trail”), not deliver the vocabulary first. Curiosity before the glossary.
+
+### Lessons Learned — TerrainBound Phase 2 (2026-09-08)
+
+- Landscape history is a second investigation on the same map, not a new region. Reuse Phase 1 finds as evidence; a second inspect is the measurement.
+- Hypothesis UI should attach a process to recorded notes. Rejecting “flowing water + sand bar” with a scientific pushback teaches timescales better than a wrong/right quiz.
+- Do not auto-unlock undiscovered sites when an investigation needs them. Hint at the place (“east face is stripped”), never the answer.
+
+### Lessons Learned — TerrainBound Phase 3 (2026-09-08)
+
+- Observation is not interpretation. Naming the north-trail boulder “Glacial erratic” on first look answers the landscape question before the player earns it.
+- A control legend on screen forever makes a prototype. Contextual WASD / E / J prompts that vanish after use make a game.
+- LocalStorage is enough for a school-laptop journal. Reset must ask twice; reload after wipe is cleaner than trying to rebuild runtime state by hand.
+
+### Lessons Learned — TerrainBound Phase 4 (2026-09-08)
+
+- Twelve regions belong in a data manifest, not in renderer if/else. Working names will change; draw silhouettes and previews from fields.
+- Teaching order is not topic-number order. Store `courseOrder` separately from `curriculumTopic` and assert the sequence `[1, 2, 10, 11, 3, 4, 5, 6, 9, 7, 8, 12]`.
+- Content completion is not mastery. Gate travel on competency evidence that current missions cannot fully produce, so finishing Cedar Hollow's two investigations cannot accidentally open High Country.
+- A locked region still needs a place the player can want to go: color, silhouette, and a short preview. Grey padlocks and “score 80%” both fail.
+- Keep `simulateMastery` behind `?field=1`. Student UI must not grow an unlock button because the gate is unfinished.
+- Save v1 must migrate in place. Changing the localStorage key would strand school laptops that already have a journal.
+
+### Lessons Learned — TerrainBound Phase 5 (2026-09-08)
+
+- Topic 1 mastery is a set of field habits, not a vocabulary test. A fair slope-vs-speed comparison, the player's own graph, and an unexplained creek change can elicit all nine slots without a multiple-choice exam.
+- Unfair tests must still run. Recording the extra-water trial and asking which change caused the result teaches control better than blocking the button.
+- One measurement is not enough. Require repeated trials so an outlier cannot become the conclusion.
+- Field data should be a reusable layer (definition, rows, graph, interpretation, evidence) even when Cedar Hollow is the only consumer. Later regions need elevation, weather, and seismic tables on the same tablet page.
+- Revision can be authentic without forcing a wrong first answer: evolving evidence (a follow-up about the marsh) refines the model.
+- Unlocking High Country is access to a place, not a ceremony. Open the atlas, leave the region walkable, and keep High Country preview-only.
+- Sharing a conclusion for travel clearance should be the regional Field Challenge, not the first water-path briefing. Tracing storm water still teaches pattern; it should not, by itself, open the mountains.
+
+### Lessons Learned — TerrainBound Phase 6 (2026-09-08)
+
+- A second region is a session switch, not a second game: persist per-region player positions, keep Cedar Hollow state intact, and rebuild only the active renderer/world pointer.
+- `syncFromGameplay` must keep records from other regions. Replacing the whole evidence log with Cedar Hollow derived rows would wipe High Country mastery on every save tick.
+- Maps teach when they start incomplete. A sketch with trails and no topo/GIS forces the player to walk markers and earn layers by use — opening the Map tab must not award tools.
+- Two trails to the same survey point beat a slope quiz. Distance, elevation gain, and contour spacing become a heavy-case decision; remote imagery can then veto the short trail that still looks whole on the sketch.
+- Save version bumps should wrap new region sessions beside the old journal key. Phase 5 v3 saves migrate in place to v4 without renaming `terrainbound.cedar-hollow.v1`.
+
+### Lessons Learned — TerrainBound Phase 7 (2026-09-08)
+
+- Time of day is a field instrument, not a waiting game. Keep celestial minutes on the region session so Cedar Hollow and High Country missions cannot be scrambled by a noon jump.
+- Seasons teach when winter noon can be closer to the Sun. Distance as a table column next to Sun height and day length contradicts the common story without a multiple-choice scold.
+- A third region is still a session switch: one more world/renderer pack, `regionPlayers` slot, and save version. `syncFromGameplay` must keep every non-Cedar record or High Country and Sunfall mastery vanish on persist.
+- Night is the payoff for a desert sky. A dark gradient, a cheap star field, and a Moon disc change the place more than extra daytime props.
+- Tools stay earned by use: logging three shadows, advancing the clock, measuring an eccentric orbit, and repeating Moon notes. Opening the Field Tablet still awards nothing.
+
+### Lessons Learned — TerrainBound Phase 7.7 (2026-09-09)
+
+- A station meadow still reads empty if grass, trail wear, and a few field props are missing — even when the lookout has talus. Cluster those details; do not plant a forest.
+- Walk stills fail when both feet sit under the body. Keep a minimum stride offset and lift the passing foot so a single frame can read as moving.
+- `terrainbound.org` is parked at Namecheap. This repo's CNAME is `waypointstudio.org`. Publishing the game requires a companion Pages host plus registrar DNS, not a root CNAME swap.
+
+### Lessons Learned — TerrainBound Phase 7.8B (2026-09-09)
+
+- Interface mystery is not scientific mystery. A persistent “what / next / where / already” strip lets students investigate without Summit or a teacher telling them which button to press.
+- Observation mastery cannot be a single inspect. Students must sort a seen sentence from a guessed sentence, then keep using the seen sentence as evidence.
+- Revision is a conflict, not a checkbox. First-try success is success; only a rejected model that is later repaired counts as revision.
+- Map tools teach when the player estimates, walks, and predicts before the software draws the answer. Computed route length, “tight = steep,” and labeled GIS “good site” are recognition, not geospatial thinking.
+- Earlier science has to keep mattering. High Country washout slope is Cedar Hollow runoff without a new lesson; Sunfall’s observation window is a walked coordinate pair without “use your Topic 2 skill.”
+
+
+- Open alpine still needs geologic structure: clustered talus, drainage, and ridgelines read as place; uniform noise reads as unfinished.
+- Walk cycles that look fine zoomed in fail at gameplay camera. Exaggerated opposing legs and pack bounce are the readability budget, not extra frames.
+- Night is a second ground bake (cool, darker palette), not a black overlay on tan. Mesa faces and vegetation have to follow or the cheat is obvious.
+- Persistent landmark labels compete with terrain reading. Proximity/focus labels keep observation ahead of interpretation.
+- Scientific tools stay demanding when they look like instruments (channel that tilts, celestial clock with a task hierarchy). Do not delete fair-test copy to make a panel prettier.
+
+
+- A third region does not justify a new engine. Canvas 2D still carries stylized stations, a readable explorer, regional atmosphere, and a Field Tablet if the art language is shared instead of copied.
+- Character quality is silhouette first: vest, pack, boots, tablet. Short poses beat cutscenes; students should never wait through the same inspect animation twice.
+- The Field Service should be painted on buildings, not explained in a lore dump. Wren stepping back on the radio is the character arc.
+- Opening copy belongs on the title card (“learning to read the Earth”), not in a lecture about twelve topics. Begin, then a two-line station greeting, then walk.
+- A 1366×768 screenshot set is not visual review. Night must actually be night in the capture (sky-state + clock refresh). Walk/sky poses are nearly unreadable at world camera distance — that is a production gap, not a missing PNG.
+
+### Lessons Learned — TerrainBound Phase 7.8C (2026-09-10)
+
+- A two-column world map that still applies at `max-width: 1366px` will squeeze the canvas on iPhone portrait. Stack below an explicit mobile breakpoint and lock the map in a 3:2 frame; do not let grid stretch distort the canvas.
+- Bottom HUD pills that are independently absolutely positioned will collide on a narrow width. A mobile dock (contextual action above, tools in a row) is safer than shrinking tap targets.
+- Field notes need max-height + vertical scroll + sticky actions and safe-area padding. On a short phone, hide the HUD dock and field-guide while a blocking overlay is open so Continue cannot sit on World map / Field tablet.
+
+### Lessons Learned — TerrainBound Phase 7.9A (2026-09-10)
+
+- Cedar Hollow already had the Topic 1 *habits*. The missing architecture was naming them as puzzles, converting landscape from a glacier answer to two clocks, and withholding travel until an After Action Report could catch a lucky click.
+- First-try success is not revision. If the player never broke a story, CH-08 has to introduce a conflicting observation and require a narrowed case.
+- FIELD CLEARANCE EARNED / MORE EVIDENCE NEEDED are the only player-facing AAR results. Do not print a score. Send them back to the specific missing puzzle.
+- Guidance that asks “what shaped this hollow” before the runoff table turns Cedar Hollow back into a glacier quest. Walk-and-water, then observation vs interpretation, then predict-test, then After the Rain, then two clocks.
+
+### Lessons Learned — TerrainBound Phase 7.9B (2026-09-10)
+
+- A systems “role chip” overlay is still a quiz. Tapping places on a hollow sketch — and allowing the same assignment by walking to the site — keeps the land in the problem.
+- An After Action Report with four stems is a test even with good science copy. Pinning Field Tablet notes to a Wren claim is the same competency check without “select the best answer.”
+- Irrelevant evidence has to fail even when a required card is also pinned. Otherwise students staple every note to every claim.
+- Allowed evidence is the required set plus a short useful set. Listing every distractor is brittle; any extra card not on that list is overclaim.
+- A missing `}` in `inspectFeature` will parse in surprising ways and `window.TB` never appears. Syntax-check `game.js` before blaming Chrome or the capture harness.
+
+### Lessons Learned — TerrainBound Phase 7.9C (2026-09-10)
+
+- Do not rename `guidance.js` Summit. Field next-action copy is Wren/interface; the tutor is a separate context → policy → provider → UI pipeline.
+- Structured game context is the tutor's source of truth. An authored engine can sound context-aware without an LLM if it reads tablet notes, flume times, and `judgeClaim` instead of inferring from chat prose.
+- Wren rejects evidence; Summit explains the scientific mismatch. Naming `CH-04` or “pin this card” completes the AAR for the student. Name the category and send them back to the tablet.
+- There is no hint cap and no score penalty. Struggle climbs the ladder (orient → notice → reason → teach → scaffold). Using Summit must not change clearance or competency.
+- Tablet cards are still summaries. If raw trial seconds exist in state, use them. If they do not, say the student has not measured that yet. Never invent a High Look view or a runoff time.
+- Future conversational wording can sit behind `AIProvider`. Game state, evidence, measurements, and clearance stay deterministic. API keys do not belong in the browser.
+
+### Lessons Learned — TerrainBound Phase 7.9D (2026-09-10)
+
+- Regex intent is not enough for 9th–10th-grade wording. Route messy language and follow-ups through a conversational provider, but keep vocab, first hints, and HUD buttons on authored lines so classroom cost stays low.
+- The model writes conversation; TerrainBound owns truth. Validate titles, times, visits, and clearance against a compact packet. If validation fails, show the deterministic tutor — never the suspect sentence.
+- Do not dump Cedar Hollow into the prompt. Four recent turns, fair times, and tablet titles are enough for a small model (or a local composer) to stay coherent without reconstructing the region.
+- Empty `endpoint` plus a local composer is not a live AI test. Say so. Keys stay on a loopback proxy; the browser never sees `Authorization`.
+- Typed “What should I notice?” is not the HUD notice button. Quick-actions require an empty question so routing does not swallow real student prose.
+
+### Lessons Learned — TerrainBound Phase 7.9E (2026-09-10)
+
+- A real model is only “connected” when the request leaves the browser for a loopback proxy that holds the key. Empty `endpoint` plus LocalComposer is still not a live-model test.
+- Pattern validation must check false premises (invented seconds, uncleared High Country) against the packet, not only forbidden tokens. Real llama3.2:3b output also invented rainfall and water-level drops without forbidden tokens — reject those observations, then fall back.
+- Small models often return valid JSON with an empty `response`. Retry once at the proxy; if still empty, treat it as malformed and show authored Summit.
+- Off-topic answers like “80” can pass a token blacklist. If the question is off-topic, require a tutor redirect.
+- `?summit=ai` is the student-safe way to opt into the proxy URL. Do not put vendor hosts or keys in `provider.json`.
+- Close must work during “Looking at your notes…”. Never reopen Summit after the student dismissed it.
+- CPU 3B inference can sit at 5–17s. An 8s in-game timeout will fall back often; measure live latency before calling a model classroom-ready.
+
+### Lessons Learned — TerrainBound Phase 7.9F (2026-09-11)
+
+- Do not promote a local CPU 3B because it is “real.” Hosted small models are the latency question. Groq’s current self-serve pair is GPT-OSS 20B (fast/cheap) and a slightly stronger small/mid model (Qwen3.6 27B); Llama 3.1 8B Instant is enterprise-only.
+- Off-topic turns do not need a model. Routing them deterministic saves money and stops “80” leaks without more validator patches.
+- Do not add keyword patches to rescue conceptual science. If a hosted candidate still needs that, it fails the bakeoff.
+- Live hosted evaluation requires `SUMMIT_API_KEY` in the environment (gitignored `data/summit/.env` is an allowed local loader). GitHub Models is retired (410). Empty composer results are not a bakeoff.
+- Groq structured output rejects schemas whose `required` array omits any `properties` key. Nullable unions + `minLength` burned GPT-OSS reasoning tokens before a valid document. Qwen 3.6 defaults to thinking and will 429 on output-token TPM unless `reasoning_effort` is `none` (and `reasoning_format=hidden` with JSON).
+- A 429 storm is not a model-quality result. Count rate-limit / HTTP / timeout separately from validator rejection. A model that is constantly caught (`unknown-evidence` on otherwise good slope/gravity prose) is not a good Summit model.
+- Successful Groq replies were 0.4–1.6s, but 17–29 of 72 AI-routed eval turns still hit the 15s abort. In-game 5s timeout would fall back even more often. Fast median is not classroom-ready if p95 is a timeout.
+- Neither bakeoff candidate is Cedar Hollow’s conversational default. GPT-OSS 20B is the better small hosted tutor of the two; both leaked student-visible gameplay inventions. Do not field-test yet.
+
+### Lessons Learned — TerrainBound Phase 7.9G (2026-09-11)
+
+- Successful hosted calls under ~1.5s with 15s failures on the same eval is usually the **client abort**, not “the model is slow.” If the proxy fetch has no timeout, Groq can hang while the student waits, and json_schema → json_object → plain retries multiply the wait. Cap upstream below the in-game timeout; do not raise the student timeout.
+- `unknown-evidence` on good slope/gravity prose was a contract bug: the model was required to invent evidence titles. Remove `referencedEvidence` and `suggestedAction` from model authority instead of adding science-keyword patches.
+- “why did it go faster” must stay science talk. If `detectIntent` falls through to `what_now` and the follow-up list only has `move faster`, the turn becomes authored objective copy. Match natural “go faster” / “steep matter” follow-ups, and keep “what should I test next” on deterministic `nextAction`.
+- The model is the language layer. TerrainBound composes any valid next investigation from game state. Gameplay probes (button, tap, walk, pin, Wren clearance) never need a hosted call.
+
+### Lessons Learned — TerrainBound Phase 7.9H (2026-09-12)
+
+- Constrained output is not enough if the truth packet does not name comparison readiness. Two steep trials can look like a slope comparison in prose; `comparisonReady` must come from the trial log.
+- Teach known / expected / unknown as structured lists, not as extra prompt paragraphs. The validator should fail measured-relationship claims, not scientific expectations.
+- Do not grow a science-phrase blacklist. Path-length and gravity-strength checks need the claim plus whether the reply already corrected it.
+
+### Lessons Learned — TerrainBound Phase 7.9I (2026-09-12)
+
+- A hosted tutor that passed synthetic science bars still needs a supervised human log before anyone else uses it. Keep that log local, anonymous, and derived from game state. Do not add analytics products to learn whether Summit helped.
+- Opt-in query flags (`?summit=fieldtest`) are safer than silently promoting the hosted path. Observer marks must stay optional and ungamified.
+
+### Lessons Learned — TerrainBound Phase 7.9J (2026-09-12)
+
+- `terrainbound.org` is GitHub Pages (static). It cannot hold the Groq key or run the Summit proxy. For the first few supervised testers, a local one-command launcher is safer than new cloud infrastructure.
+- `is gravity stronger` does not match `gravity is stronger on the steep slope`. Student word order is a routing hole, not a reason to retune the whole science eval.
+
+### Lessons Learned — TerrainBound Phase 7.9K (2026-09-13)
+
+- Opening Summit with an auto “What should I do?” dumps the puzzle objective. A first-session “how do I play?” needs a deterministic game-help loop, not CH-02 orient copy.
+- Summit is Sasquatch. A human tutor portrait would fight the established character bible. The LLM must not pick facial expressions.
+- Playful voice belongs around the explanation. Gravity, comparisonReady, and inventory stay authored.
+- Off-topic grounding still checked for “field science tutor” after the visible copy changed. Redirect identity lives in the validator too, not only in composer strings.
+
+### Lessons Learned — TerrainBound Phase 7.9L (2026-09-13)
+
+- GitHub Pages cannot hold the Groq key. A Worker in front of Pages is enough for one POST route; do not move the static game off Pages to host Summit.
+- Production CORS, payload caps, and rate limits belong on the gateway. Client fallback already knew how to stay silent about HTTP.
+- GPT-OSS `json_object` often emits `answer` instead of `explanation` after a failed `json_schema` call. Map those aliases on the gateway; do not add a third unbounded retry.
+- A healthy `workers.dev` Worker is enough for production Summit. Do not move GitHub Pages DNS or create a Cloudflare zone only to obtain `summit.terrainbound.org`.
+
+### Lessons Learned — TerrainBound 7.9L production baseline (2026-09-13)
+
+- Accepted production Summit SHA is `db2b7cc04bcbcd548657b5daa5addd42520c0eff`. Companion Pages SHA is `1618cd695e0b6b8b6473867671678c0895eb4ca1`. Live cache-bust remains `?v=p79l`.
+- Studio `main` had moved independently. Merge 7.9L by keeping current Studio files on conflicts and taking `terrainbound/` from the accepted SHA. Do not replay pre-TB Studio commits that already landed through other PRs.
+- Do not redeploy TerrainBound, change the Worker, or configure `summit.terrainbound.org` for housekeeping. Future TerrainBound work starts from this production Summit baseline.
+

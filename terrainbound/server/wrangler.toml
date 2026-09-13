@@ -1,0 +1,16 @@
+name = "terrainbound-summit"
+main = "summit-worker.js"
+compatibility_date = "2026-09-13"
+
+[vars]
+SUMMIT_AI_MODEL = "openai/gpt-oss-20b"
+SUMMIT_AI_URL = "https://api.groq.com/openai/v1/chat/completions"
+SUMMIT_ALLOW_LOCAL = "0"
+SUMMIT_MAX_TOKENS = "120"
+SUMMIT_UPSTREAM_TIMEOUT_MS = "4000"
+SUMMIT_MODE_BUDGET_MS = "4500"
+
+# After the zone is on Cloudflare, uncomment:
+# [[routes]]
+# pattern = "summit.terrainbound.org/*"
+# zone_name = "terrainbound.org"

@@ -1,0 +1,127 @@
+[
+  {
+    "id": "D1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "D2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "D4",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "F1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "F4",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "G2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "H2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "H7",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "I5",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "I6",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "J1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "K4",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "K6",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "L1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "L5",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "L10",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "N2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "O1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "O2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "C2",
+    "left": "B",
+    "right": "A"
+  },
+  {
+    "id": "G5",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "G7",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "M1",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "H3",
+    "left": "A",
+    "right": "B"
+  },
+  {
+    "id": "X5",
+    "left": "A",
+    "right": "B"
+  }
+]

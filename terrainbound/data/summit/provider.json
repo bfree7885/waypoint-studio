@@ -1,0 +1,7 @@
+{
+  "endpoint": "",
+  "proxyEndpoint": "http://127.0.0.1:8787/summit-ai",
+  "productionEndpoint": "https://terrainbound-summit.bfree7885.workers.dev/summit",
+  "timeoutMs": 5000,
+  "note": "terrainbound.org uses productionEndpoint (workers.dev until summit.terrainbound.org is a deferred DNS enhancement). Local hosted AI is ?summit=ai against proxyEndpoint. Keys never belong in this file."
+}

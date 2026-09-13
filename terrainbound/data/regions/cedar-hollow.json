@@ -1,0 +1,224 @@
+{
+  "id": "cedar-hollow",
+  "name": "Cedar Hollow",
+  "blurb": "A small forested valley under Granite Knob, drained by Pine Creek.",
+  "width": 2400,
+  "height": 1600,
+  "spawn": { "x": 1688, "y": 940 },
+  "peak": { "x": 1180, "y": 250 },
+  "ranger": {
+    "id": "ranger-wren",
+    "name": "Ranger Wren",
+    "x": 1648,
+    "y": 980,
+    "greetRadius": 86
+  },
+  "station": {
+    "x": 1710,
+    "y": 820,
+    "w": 168,
+    "h": 118
+  },
+  "pond": {
+    "id": "mirror-pond",
+    "cx": 1080,
+    "cy": 1188,
+    "rx": 168,
+    "ry": 110
+  },
+  "creek": {
+    "id": "pine-creek",
+    "width": 34,
+    "points": [
+      [620, 430],
+      [740, 560],
+      [860, 690],
+      [980, 820],
+      [1040, 980],
+      [1080, 1100],
+      [1080, 1188]
+    ]
+  },
+  "outlet": {
+    "width": 30,
+    "points": [
+      [1080, 1288],
+      [1100, 1380],
+      [1140, 1488]
+    ]
+  },
+  "tributary": {
+    "id": "fox-run",
+    "width": 12,
+    "points": [
+      [680, 500],
+      [740, 560],
+      [804, 628],
+      [860, 690]
+    ]
+  },
+  "wetland": {
+    "cx": 860,
+    "cy": 1276,
+    "rx": 150,
+    "ry": 96
+  },
+  "outcrop": {
+    "x": 1310,
+    "y": 360,
+    "r": 78
+  },
+  "props": [
+    { "kind": "runoff-table", "x": 1840, "y": 1000, "inspect": { "id": "story-runoff", "title": "Runoff table", "text": "A short wooden channel, a cup, and marks at two metres. Same stretch, every time." } },
+    { "kind": "rain-gauge", "x": 1896, "y": 940, "inspect": { "id": "story-rain-gauge", "title": "Rain gauge", "text": "A dented cylinder and a pencil tally on the post. Last night's marks go higher than the rest of the week." } },
+    { "kind": "instrument-crate", "x": 1882, "y": 978, "inspect": { "id": "story-crate", "title": "Instrument crate", "text": "Soil sieves, a folded map, and a note: 'Don't leave the meter in the marsh overnight.'" } },
+    { "kind": "sampling-flag", "x": 1608, "y": 1008, "inspect": { "id": "story-flag", "title": "Old sampling flag", "text": "Yellow tape, faded. Whoever left this didn't come back for the sample." } },
+    { "kind": "survey-stake", "x": 1576, "y": 708, "inspect": { "id": "story-survey", "title": "Survey marker", "text": "A brass cap, scratched almost smooth. Someone measured this hollow before the station was here." } },
+    { "kind": "washout", "x": 1024, "y": 1108, "inspect": { "id": "story-washout", "title": "Washed-out trail", "text": "The path drops away. Exposed roots, then a bite of bare soil. Last night took a piece of the trail with it." } },
+    { "kind": "flood-gauge", "x": 1124, "y": 1304, "inspect": { "id": "story-flood-gauge", "title": "Staff gauge", "text": "Green paint for ordinary water. Red paint for trouble. The stain sits between them." } },
+    { "kind": "sawhorse", "x": 1540, "y": 860, "inspect": { "id": "story-sawhorse", "title": "Trail work", "text": "Fresh sawdust. Someone cleared a blowdown this week and left the horse for later." } },
+    { "kind": "lantern", "x": 1768, "y": 972 },
+    { "kind": "pack", "x": 1748, "y": 948 },
+    { "kind": "cairn", "x": 1340, "y": 420 }
+  ],
+  "trails": [
+    {
+      "id": "station-creek",
+      "points": [
+        [1710, 940],
+        [1500, 960],
+        [1280, 900],
+        [1100, 840],
+        [980, 800]
+      ]
+    },
+    {
+      "id": "station-overlook",
+      "points": [
+        [1710, 880],
+        [1620, 720],
+        [1540, 560],
+        [1488, 420]
+      ]
+    },
+    {
+      "id": "station-slope",
+      "points": [
+        [1680, 960],
+        [1420, 980],
+        [1180, 860],
+        [920, 700],
+        [760, 560]
+      ]
+    },
+    {
+      "id": "pond-loop",
+      "points": [
+        [980, 800],
+        [980, 980],
+        [1020, 1100],
+        [1180, 1220],
+        [1220, 1340]
+      ]
+    },
+    {
+      "id": "marsh-spur",
+      "points": [
+        [1020, 1100],
+        [940, 1180],
+        [880, 1260]
+      ]
+    },
+    {
+      "id": "knob-ledge",
+      "points": [
+        [1488, 420],
+        [1400, 380],
+        [1320, 370]
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "granite-knob",
+      "name": "Granite Knob",
+      "kind": "mountain",
+      "x": 1180,
+      "y": 430,
+      "radius": 110,
+      "label": "mountain"
+    },
+    {
+      "id": "high-look",
+      "name": "High Look",
+      "kind": "overlook",
+      "x": 1488,
+      "y": 400,
+      "radius": 78,
+      "label": "overlook"
+    },
+    {
+      "id": "westface-slope",
+      "name": "Westface Slope",
+      "kind": "slope",
+      "x": 730,
+      "y": 540,
+      "radius": 92,
+      "label": "slope"
+    },
+    {
+      "id": "alder-woods",
+      "name": "Alder Woods",
+      "kind": "forest",
+      "x": 560,
+      "y": 820,
+      "radius": 88,
+      "label": "forest"
+    },
+    {
+      "id": "pine-creek",
+      "name": "Pine Creek",
+      "kind": "stream",
+      "x": 1048,
+      "y": 780,
+      "radius": 86,
+      "label": "stream"
+    },
+    {
+      "id": "willow-bench",
+      "name": "Willow Bench",
+      "kind": "lowland",
+      "x": 1220,
+      "y": 1320,
+      "radius": 82,
+      "label": "low ground"
+    },
+    {
+      "id": "mirror-pond",
+      "name": "Mirror Pond",
+      "kind": "pond",
+      "x": 1288,
+      "y": 1188,
+      "radius": 96,
+      "label": "pond"
+    },
+    {
+      "id": "willow-reach",
+      "name": "Willow Reach",
+      "kind": "downstream",
+      "x": 1210,
+      "y": 1470,
+      "radius": 90,
+      "label": "downstream"
+    },
+    {
+      "id": "research-station",
+      "name": "Cedar Hollow Station",
+      "kind": "station",
+      "x": 1790,
+      "y": 952,
+      "radius": 78,
+      "label": "station"
+    }
+  ]
+}

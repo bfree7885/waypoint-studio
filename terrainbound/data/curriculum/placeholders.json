@@ -1,0 +1,150 @@
+{
+  "status": "placeholders-only",
+  "playerVisible": false,
+  "disclaimer": "Exact NYS ESS / NYSSLS codes have not been supplied. These slots are internal metadata only. Do not display them to players or present them as official standards.",
+  "slots": [
+    {
+      "id": "water-movement-through-terrain",
+      "playerVisible": false,
+      "sciencePractice": "Planning and carrying out investigations",
+      "topic": "How water moves across land: slope, streams, collection, and downstream flow",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "interpreting-landforms",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Reading elevation and landform relationships in a small watershed",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "evidence-based-explanation",
+      "playerVisible": false,
+      "sciencePractice": "Engaging in argument from evidence",
+      "topic": "Using field observations to explain a hydrologic event",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "transported-sediment",
+      "playerVisible": false,
+      "sciencePractice": "Constructing explanations",
+      "topic": "Rocks and sediment that do not match local bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "weathering-and-bedrock",
+      "playerVisible": false,
+      "sciencePractice": "Planning and carrying out investigations",
+      "topic": "Weathering, rounding, and exposed bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "erosion-and-deposition",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "Erosion, cut banks, bars, and rills in a small stream system",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "wetlands-and-groundwater",
+      "playerVisible": false,
+      "sciencePractice": "Obtaining, evaluating, and communicating information",
+      "topic": "Wetlands, seeps, and water stored in the ground",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "landscape-change",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "How landscapes change through processes acting over different timescales",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "glacial-processes",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Evidence that moving ice can shape valleys, transport rock, and scrape bedrock",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "interpreting-geologic-evidence",
+      "playerVisible": false,
+      "sciencePractice": "Analyzing and interpreting data",
+      "topic": "Using field observations to reconstruct landscape history",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "constructing-explanations-from-evidence",
+      "playerVisible": false,
+      "sciencePractice": "Constructing explanations",
+      "topic": "Building and revising explanations from observed field evidence",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "scale-time-relationships",
+      "playerVisible": false,
+      "sciencePractice": "Developing and using models",
+      "topic": "Relating daily water movement, modern streams, and older landscape-forming processes",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    },
+    {
+      "id": "topic-1-scientific-habits",
+      "playerVisible": false,
+      "sciencePractice": "Asking questions and defining problems",
+      "topic": "Topic 1 scientific thinking habits: observation, evidence, patterns, systems, explanation, and revision",
+      "placeholderAlignment": {
+        "framework": "NYS ESS / NYSSLS",
+        "code": null,
+        "status": "pending-official-alignment"
+      }
+    }
+  ]
+}

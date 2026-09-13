@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+  <title>TerrainBound</title>
+  <meta name="description" content="An exploration game about learning to read the Earth.">
+  <link rel="stylesheet" href="./css/game.css">
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="world" tabindex="0" role="img" aria-label="Cedar Hollow, a forested valley you can explore"></canvas>
+
+    <div class="hud">
+      <div class="place-chip"><span id="place-name">Cedar Hollow</span> <small id="place-sub">Granite Knob · Pine Creek</small></div>
+      <aside id="field-guide" class="field-guide" hidden>
+        <p class="field-guide-q" id="guide-question"></p>
+        <p class="field-guide-next"><span id="guide-verb"></span> <span id="guide-next"></span></p>
+        <p class="field-guide-where" id="guide-where"></p>
+        <ul id="guide-pairs" class="guide-pairs" hidden></ul>
+      </aside>
+      <div id="control-hint" class="control-hint"></div>
+      <div class="hud-dock">
+        <button type="button" id="inspect-prompt" class="inspect-prompt" hidden></button>
+        <div class="hud-tools">
+          <button type="button" id="map-toggle" class="map-toggle">World map</button>
+          <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
+          <button type="button" id="summit-toggle" class="summit-toggle" aria-expanded="false" aria-label="Open Summit, Earth Science companion">
+            <img class="summit-toggle-face" src="./assets/summit/summit-neutral.svg" width="28" height="28" alt="">
+            Summit
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section id="title-screen">
+      <div class="title-card">
+        <p class="kicker">The Field Service</p>
+        <h1>TerrainBound</h1>
+        <p class="tag">An exploration game about learning to read the Earth.</p>
+        <div id="appearance-setup" class="appearance-setup" hidden>
+          <p class="appearance-lead">Field kit. Keep it simple.</p>
+          <div id="appearance-skins" class="chip-row"></div>
+          <div id="appearance-hair" class="chip-row"></div>
+          <div id="appearance-jackets" class="chip-row"></div>
+        </div>
+        <div class="title-actions">
+          <button type="button" id="enter-btn" aria-label="Enter Cedar Hollow">Begin</button>
+          <button type="button" id="new-explore-btn" class="quiet-btn">New exploration</button>
+          <button type="button" id="world-map-btn" class="quiet-btn">World map</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="sky-clock" hidden>
+      <p class="sky-clock-kicker">Field observation · Celestial clock</p>
+      <p id="sky-clock-label"></p>
+      <div id="sky-clock-jumps" class="obs-marks"></div>
+      <div id="sky-clock-extra" class="obs-steps"></div>
+      <button type="button" id="sky-clock-full" class="quiet-btn">Full observation window</button>
+    </div>
+
+    <div id="dialogue" hidden role="dialog" aria-labelledby="dialogue-speaker">
+      <div class="dialogue-card">
+        <p id="dialogue-kicker" class="dialogue-kicker" hidden></p>
+        <h2 id="dialogue-speaker"></h2>
+        <p id="dialogue-text"></p>
+        <div id="dialogue-actions"></div>
+      </div>
+    </div>
+
+    <aside id="journal" aria-hidden="true">
+      <header>
+        <p class="journal-brand">Field tablet · Field Service</p>
+        <h2 id="journal-title">Cedar Hollow</h2>
+        <button type="button" id="journal-close">Close</button>
+      </header>
+      <nav class="journal-tabs" role="tablist">
+        <button type="button" class="is-on" data-tab="notes">Notes</button>
+        <button type="button" data-tab="finds">Finds</button>
+        <button type="button" data-tab="evidence" id="tab-evidence-btn">Evidence</button>
+        <button type="button" data-tab="sketch" id="tab-sketch-btn">Sketch</button>
+        <button type="button" data-tab="map" id="tab-map-btn">Map</button>
+        <button type="button" data-tab="world">World</button>
+        <button type="button" data-tab="data" id="tab-data-btn">Data</button>
+      </nav>
+      <section class="journal-section is-on" data-panel="notes">
+        <h3 class="journal-kicker">Mission notes</h3>
+        <div id="journal-mission"></div>
+      </section>
+      <section class="journal-section" data-panel="finds" hidden>
+        <h3 class="journal-kicker">Discoveries</h3>
+        <p id="discovery-count">Cedar Hollow discoveries  0 / 0</p>
+        <div id="journal-discoveries"></div>
+      </section>
+      <section class="journal-section" data-panel="evidence" id="journal-evidence-section" hidden>
+        <h3 class="journal-kicker">Evidence</h3>
+        <p id="evidence-count"></p>
+        <div id="journal-evidence"></div>
+      </section>
+      <section class="journal-section" data-panel="sketch" id="journal-sketch-section" hidden>
+        <h3 class="journal-kicker">Landscape sketch</h3>
+        <p class="journal-empty" id="sketch-caption">A field drawing of Cedar Hollow — not a trail map.</p>
+        <canvas id="field-sketch" width="320" height="168" aria-label="Cedar Hollow field sketch"></canvas>
+        <button type="button" id="hypothesis-open" hidden>Two clocks in the hollow</button>
+      </section>
+      <section class="journal-section" data-panel="map" id="journal-map-section" hidden>
+        <h3 class="journal-kicker">Field map</h3>
+        <p class="journal-empty" id="map-caption">A sketch of High Country. Layers arrive as you earn them.</p>
+        <canvas id="region-map" width="320" height="200" aria-label="Regional field map"></canvas>
+        <div id="map-tools" class="chip-row"></div>
+      </section>
+      <section class="journal-section" data-panel="world" hidden>
+        <h3 class="journal-kicker">Field Record</h3>
+        <p class="journal-empty" id="field-record-lead">Scientific habits shown in the field — not a grade.</p>
+        <div id="field-record"></div>
+        <button type="button" id="open-atlas">World map</button>
+      </section>
+      <section class="journal-section" data-panel="data" id="journal-data-section" hidden>
+        <h3 class="journal-kicker">Field data</h3>
+        <p id="data-caption" class="journal-empty">Measurements you take will live here.</p>
+        <div id="journal-data-table"></div>
+        <canvas id="journal-graph" width="320" height="160" aria-label="Field graph" hidden></canvas>
+        <button type="button" id="interpret-open" hidden>What do the numbers show?</button>
+      </section>
+      <footer class="journal-foot">
+        <button type="button" id="journal-reset" class="quiet-btn">New exploration</button>
+      </footer>
+    </aside>
+
+    <div id="confirm-reset" hidden role="dialog" aria-label="Start a new exploration">
+      <div class="dialogue-card">
+        <h2>Start a new exploration?</h2>
+        <p>This clears the field journal stored on this computer. It cannot be undone.</p>
+        <div id="reset-actions">
+          <button type="button" id="reset-confirm">Clear journal</button>
+          <button type="button" id="reset-cancel" class="quiet-btn">Keep notes</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" hidden>
+      <strong>Observation added</strong>
+      <p></p>
+    </div>
+
+    <div id="conclusion" hidden role="dialog" aria-label="Trace the water">
+      <div class="conclusion-card">
+        <h2>Where does the water go?</h2>
+        <p id="path-status"></p>
+        <div class="sketch" id="flow-nodes"></div>
+        <p id="conclusion-hint"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="path-reset">Clear path</button>
+          <button type="button" id="conclusion-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="hypothesis" hidden role="dialog" aria-label="Two clocks in the hollow">
+      <div class="hypothesis-card">
+        <h2>Two clocks in the hollow</h2>
+        <p class="hypothesis-lead">Build an explanation from a process and the field notes you actually recorded.</p>
+        <p class="hypothesis-kicker">Process</p>
+        <div id="hypothesis-processes" class="chip-row"></div>
+        <p class="hypothesis-kicker">Evidence</p>
+        <div id="hypothesis-evidence" class="chip-row"></div>
+        <p id="hypothesis-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="hypothesis-try">Try this explanation</button>
+          <button type="button" id="hypothesis-clear">Clear</button>
+          <button type="button" id="hypothesis-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="flume" hidden role="dialog" aria-label="What makes water move faster?">
+      <div class="hypothesis-card field-bench">
+        <p class="field-bench-kicker">Field bench</p>
+        <h2>Runoff table</h2>
+        <p class="hypothesis-lead">Same channel. Same two metres. Change one thing, then time the water.</p>
+        <p class="hypothesis-kicker">Predict first</p>
+        <div id="flume-predict" class="chip-row"></div>
+        <p class="hypothesis-kicker">Channel slope</p>
+        <div id="flume-slopes" class="chip-row"></div>
+        <p class="hypothesis-kicker">Measuring cup</p>
+        <div id="flume-water" class="chip-row"></div>
+        <p id="flume-status"></p>
+        <div id="flume-log"></div>
+        <div class="conclusion-actions">
+          <button type="button" id="flume-run">Release water</button>
+          <button type="button" id="flume-numbers" hidden>Look at the numbers</button>
+          <button type="button" id="flume-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="interpret" hidden role="dialog" aria-label="What do the numbers show?">
+      <div class="hypothesis-card">
+        <h2>What do the numbers show?</h2>
+        <p class="hypothesis-lead">Your runs, not a worksheet. Put the variables where they belong, then say what the pattern is.</p>
+        <p class="hypothesis-kicker">Graph</p>
+        <div class="chip-row" id="interpret-x"></div>
+        <div class="chip-row" id="interpret-y"></div>
+        <canvas id="interpret-graph" width="420" height="180" aria-label="Slope and flow graph"></canvas>
+        <p class="hypothesis-kicker">Observed pattern</p>
+        <div id="interpret-patterns" class="chip-row"></div>
+        <p class="hypothesis-kicker">Conclusion</p>
+        <div id="interpret-conclusions" class="chip-row"></div>
+        <p id="interpret-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="interpret-try">Try this reading</button>
+          <button type="button" id="interpret-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="clearance" hidden role="dialog" aria-label="After the rain">
+      <div class="hypothesis-card">
+        <h2>After the rain</h2>
+        <p class="hypothesis-lead">Build an explanation from places you actually walked.</p>
+        <p id="clearance-progress"></p>
+        <p class="hypothesis-kicker">Explanation</p>
+        <div id="clearance-explanations" class="chip-row"></div>
+        <p class="hypothesis-kicker" id="clearance-follow-kicker" hidden>One more check</p>
+        <div id="clearance-follow" class="chip-row" hidden></div>
+        <p id="clearance-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="clearance-try">Try this explanation</button>
+          <button type="button" id="clearance-follow-try" hidden>Answer Wren</button>
+          <button type="button" id="clearance-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="systems-map" hidden role="dialog" aria-label="The hollow is a system">
+      <div class="hypothesis-card systems-card">
+        <p class="field-bench-kicker">Field systems</p>
+        <h2>The hollow is a system</h2>
+        <p class="hypothesis-lead" id="systems-lead">Last night wasn't four separate stories.</p>
+        <canvas id="systems-sketch" width="560" height="340" aria-label="Tap places on the Cedar Hollow sketch"></canvas>
+        <p class="hypothesis-kicker" id="systems-prompt"></p>
+        <p id="systems-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="systems-try">That's the system</button>
+          <button type="button" id="systems-walk">Walk there</button>
+          <button type="button" id="systems-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="aar" hidden role="dialog" aria-label="Make the case">
+      <div class="hypothesis-card aar-card">
+        <p class="field-bench-kicker">Field debrief</p>
+        <h2 id="aar-title">Make the case</h2>
+        <p class="hypothesis-lead" id="aar-lead"></p>
+        <p class="aar-wren" id="aar-stem"></p>
+        <p class="hypothesis-kicker" id="aar-evidence-kicker">From your Field Tablet</p>
+        <div id="aar-evidence" class="aar-evidence"></div>
+        <p id="aar-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="aar-next">Show Wren</button>
+          <button type="button" id="aar-summit">Ask Summit</button>
+          <button type="button" id="aar-submit" hidden>That's the case</button>
+          <button type="button" id="aar-close">Back to the hollow</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="summit" hidden role="dialog" aria-label="Summit, Earth Science companion">
+      <div class="summit-sheet">
+        <header class="summit-head">
+          <div class="summit-identity">
+            <img id="summit-portrait" class="summit-portrait" src="./assets/summit/summit-neutral.svg" width="80" height="80" alt="Summit, a Sasquatch Earth Science companion">
+            <div class="summit-identity-text">
+              <h2>Summit</h2>
+              <p class="summit-role" id="summit-role">Earth Science Companion</p>
+            </div>
+          </div>
+          <button type="button" id="summit-close">Close</button>
+        </header>
+        <p class="summit-lead" id="summit-lead">Curious about the hollow. Serious about the science.</p>
+        <div id="summit-log" class="summit-log" role="log" aria-live="polite"></div>
+        <div class="summit-quick" id="summit-quick">
+          <button type="button" data-summit="what_now">What should I do?</button>
+          <button type="button" data-summit="notice">What should I notice?</button>
+          <button type="button" data-summit="explain">Explain this</button>
+          <button type="button" data-summit="why">Why?</button>
+        </div>
+        <button type="button" id="summit-more" hidden>Explain more</button>
+        <form id="summit-form" class="summit-form">
+          <label class="visually-hidden" for="summit-ask">Ask Summit</label>
+          <input id="summit-ask" name="ask" type="text" maxlength="240" autocomplete="off" enterkeyhint="send" placeholder="Ask Summit…">
+          <button type="submit">Ask</button>
+        </form>
+        <p id="summit-diag" class="summit-diag" hidden aria-hidden="true"></p>
+        <div id="summit-fieldtest" class="summit-fieldtest" hidden>
+          <p class="summit-fieldtest-kicker">SUMMIT FIELD TEST · observer tools, not the student conversation</p>
+          <div class="summit-fieldtest-marks" role="group" aria-label="Summit response marks">
+            <button type="button" data-ft-mark="HELPED">Helped</button>
+            <button type="button" data-ft-mark="CONFUSING">Confusing</button>
+            <button type="button" data-ft-mark="TOO_MUCH">Too much</button>
+            <button type="button" data-ft-mark="WRONG">Wrong</button>
+            <button type="button" data-ft-mark="OTHER">Other</button>
+          </div>
+          <label class="visually-hidden" for="summit-fieldtest-note">Observer note</label>
+          <input id="summit-fieldtest-note" type="text" maxlength="240" autocomplete="off" placeholder="Optional observer note">
+          <div class="summit-fieldtest-export">
+            <button type="button" id="summit-fieldtest-json">Export JSON</button>
+            <button type="button" id="summit-fieldtest-md">Export summary</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="geo-board" hidden role="dialog" aria-label="Field map work">
+      <div class="hypothesis-card">
+        <h2 id="geo-title">Field question</h2>
+        <p class="hypothesis-lead" id="geo-lead"></p>
+        <div id="geo-body"></div>
+        <p id="geo-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="geo-try">Try this</button>
+          <button type="button" id="geo-close">Back to the trail</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="atlas" hidden role="dialog" aria-label="TerrainBound world map">
+      <div class="atlas-card">
+        <header>
+          <p class="journal-brand">TerrainBound — World map</p>
+          <button type="button" id="atlas-close">Close</button>
+          <h2>The journey</h2>
+        </header>
+        <div class="atlas-body">
+          <div class="atlas-map-frame">
+            <canvas id="atlas-map" width="720" height="480" aria-label="Stylized regional map of TerrainBound"></canvas>
+          </div>
+          <aside class="atlas-preview">
+            <p class="atlas-kicker" id="atlas-kicker">Region</p>
+            <h3 id="atlas-name">Cedar Hollow</h3>
+            <p id="atlas-subtitle"></p>
+            <p id="atlas-blurb"></p>
+            <button type="button" id="atlas-travel" hidden>Walk this region</button>
+            <p class="atlas-route-label" id="atlas-route-label">Travel route</p>
+            <p id="atlas-route"></p>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <div id="travel-card" hidden>
+      <p class="travel-kicker">The Field Service</p>
+      <h2 id="travel-region">Cedar Hollow</h2>
+      <p id="travel-station">Field Station</p>
+    </div>
+
+    <div id="boot-error" hidden></div>
+  </div>
+  <script type="module" src="./js/main.js?v=p79l"></script>
+</body>
+</html>

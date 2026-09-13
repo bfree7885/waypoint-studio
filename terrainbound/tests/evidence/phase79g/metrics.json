@@ -1,0 +1,75 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "upstream": "https://api.groq.com/openai/v1/chat/completions",
+  "timeoutMs": 5000,
+  "utterances": 46,
+  "hostedCallsRouted": 25,
+  "routing": {
+    "deterministic": 21,
+    "model": 25,
+    "fallback": 0,
+    "infra": 0,
+    "validatorRejected": 0,
+    "studentVisibleFallback": 0,
+    "deterministicPct": 45.7,
+    "modelPct": 54.3,
+    "fallbackPct": 0,
+    "fallbackReasons": {}
+  },
+  "validatorRejectionPct": 0,
+  "structuredOutputSuccessPct": 100,
+  "structuredRetry": 0,
+  "malformedOrEmpty": 0,
+  "hallucinations": {
+    "beforeValidation": 0,
+    "afterValidation": 0
+  },
+  "tokens": {
+    "prompt": 13460,
+    "completion": 2394
+  },
+  "latencyAllHostedVisibleMs": {
+    "n": 25,
+    "mean": 419,
+    "median": 353,
+    "p95": 673,
+    "min": 232,
+    "max": 745
+  },
+  "latencySuccessfulHostedModelMs": {
+    "n": 25,
+    "mean": 415,
+    "median": 351,
+    "p95": 659,
+    "min": 227,
+    "max": 743
+  },
+  "latencySuccessfulHostedLoopMs": {
+    "n": 25,
+    "mean": 419,
+    "median": 353,
+    "p95": 673,
+    "min": 232,
+    "max": 745
+  },
+  "latencyModelMs": {
+    "n": 25,
+    "mean": 415,
+    "median": 351,
+    "p95": 659,
+    "min": 227,
+    "max": 743
+  },
+  "pricing": {
+    "inputUsdPerMillion": 0.075,
+    "outputUsdPerMillion": 0.3,
+    "source": "https://console.groq.com/docs/models GPT OSS 20B production",
+    "thisEvalUsd": 0.001728,
+    "perAiResponseUsd": 0.000069,
+    "assumptions": {
+      "sessionTurns": 12,
+      "aiFraction": 0.543
+    },
+    "perStudentSessionUsd": 0.000451
+  }
+}

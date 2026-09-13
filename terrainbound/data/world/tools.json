@@ -1,0 +1,168 @@
+{
+  "id": "terrainbound-field-tools",
+  "note": "Tools are earned by learning to use them, never purchased. Most catalogs are architecture only.",
+  "tools": [
+    {
+      "id": "field-journal",
+      "name": "Field journal",
+      "regionId": "cedar-hollow",
+      "description": "Observation notes, discoveries, and explanations kept on this computer.",
+      "earnedBy": "Using the Field Tablet to record observations.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "field-data",
+      "name": "Field data",
+      "regionId": "cedar-hollow",
+      "description": "Tables, graphs, and interpretations of measurements the player collected.",
+      "earnedBy": "Interpreting a field dataset from measurements taken in Cedar Hollow.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "coordinates",
+      "name": "Coordinates",
+      "regionId": "high-country",
+      "description": "Locate a place by latitude and longitude.",
+      "earnedBy": "Recording matching positions at High Country field markers.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "scale-distance",
+      "name": "Distance / scale",
+      "regionId": "high-country",
+      "description": "Measure route distance from map scale.",
+      "earnedBy": "Comparing trail distances in High Country.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "topo-layer",
+      "name": "Topographic layer",
+      "regionId": "high-country",
+      "description": "Contour and relief overlay for reading slope and drainage.",
+      "earnedBy": "Connecting contour lines to the land underfoot in High Country.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "elevation",
+      "name": "Elevation",
+      "regionId": "high-country",
+      "description": "Read height above a datum.",
+      "earnedBy": "Reading elevation stakes in High Country.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "profile-tools",
+      "name": "Profile tools",
+      "regionId": "high-country",
+      "description": "Cross-section and transect measurement.",
+      "earnedBy": "Comparing a predicted profile to the generated cross-section.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "gis-layers",
+      "name": "GIS / remote-sensing layers",
+      "regionId": "high-country",
+      "description": "Overlay imagery and spatial data without treating it as the land itself.",
+      "earnedBy": "Combining layers to choose a field site in High Country.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "solar-observation",
+      "name": "Solar observer",
+      "regionId": "sunfall-desert",
+      "description": "Sun altitude, azimuth-style notes, and shadow logging.",
+      "earnedBy": "Recording morning, noon, and afternoon shadows at the solar marker.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "celestial-clock",
+      "name": "Celestial clock",
+      "regionId": "sunfall-desert",
+      "description": "Controlled field observation time: morning, noon, night, days, and months.",
+      "earnedBy": "Advancing observation time in Sunfall Desert.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "orbit-model",
+      "name": "Orbit model",
+      "regionId": "sunfall-desert",
+      "description": "Ellipses, focus, distance, speed, and period relations.",
+      "earnedBy": "Measuring a model orbit in Sunfall Desert.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "sky-log",
+      "name": "Sky log",
+      "regionId": "sunfall-desert",
+      "description": "Moon and celestial observation records.",
+      "earnedBy": "Logging repeated Moon observations from the mesa.",
+      "implemented": true,
+      "permanent": true
+    },
+    {
+      "id": "astro-observation",
+      "name": "Astronomical observing tools",
+      "regionId": "dark-sky-basin",
+      "description": "Light, spectra, and distance evidence.",
+      "earnedBy": "Learning to observe the night sky in Dark Sky Basin.",
+      "implemented": false,
+      "permanent": true
+    },
+    {
+      "id": "rock-kit",
+      "name": "Rock and mineral testing kit",
+      "regionId": "painted-badlands",
+      "description": "Properties used to identify Earth materials.",
+      "earnedBy": "Learning to test rocks and minerals in Painted Badlands.",
+      "implemented": false,
+      "permanent": true
+    },
+    {
+      "id": "surface-process-tools",
+      "name": "Surface-process measurement tools",
+      "regionId": "glacier-country",
+      "description": "Slope, sediment, ice, and water measurements.",
+      "earnedBy": "Measuring change in Glacier Country.",
+      "implemented": false,
+      "permanent": true
+    },
+    {
+      "id": "seismic-tools",
+      "name": "Seismic tools",
+      "regionId": "firepeak",
+      "description": "Wave and motion evidence for what cannot be seen directly.",
+      "earnedBy": "Working with seismic evidence at Firepeak.",
+      "implemented": false,
+      "permanent": true
+    },
+    {
+      "id": "water-instruments",
+      "name": "Water and ocean instruments",
+      "regionId": "island-coast",
+      "description": "Tides, salinity, currents, and coastal measurements.",
+      "earnedBy": "Learning water-system measurement at Island Coast.",
+      "implemented": false,
+      "permanent": true
+    },
+    {
+      "id": "weather-instruments",
+      "name": "Portable weather instruments",
+      "regionId": "stormlands",
+      "description": "Atmosphere observations used to read changing conditions.",
+      "earnedBy": "Learning to read the atmosphere in Stormlands.",
+      "implemented": false,
+      "permanent": true
+    }
+  ]
+}

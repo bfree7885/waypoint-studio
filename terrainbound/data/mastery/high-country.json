@@ -1,0 +1,242 @@
+{
+  "id": "topic-2-high-country",
+  "regionId": "high-country",
+  "curriculumTopic": 2,
+  "curriculumTitle": "Maps, GIS & Geospatial Thinking",
+  "purpose": "Learn to locate, measure, represent, and decide using maps as field tools — not as a worksheet about maps.",
+  "playerVisibleCodes": false,
+  "contentCompletion": {
+    "note": "Opening a map tool or visiting a landmark is not mastery.",
+    "discoveries": 4,
+    "missions": ["high-country-geospatial"]
+  },
+  "competencies": [
+    {
+      "id": "location",
+      "internalLabel": "LOCATION",
+      "studentLabel": "Finding location",
+      "fieldRecord": true,
+      "description": "Use coordinates as a pair of values to establish where a place is.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "location",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "record-marker", "count": 2, "source": "investigation" },
+        { "kind": "navigate-coord", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "scale",
+      "internalLabel": "SCALE",
+      "studentLabel": "Measuring distance",
+      "fieldRecord": true,
+      "description": "Use map scale to measure or compare distance on the land.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "scale",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "measure-route", "count": 2, "source": "investigation" }]
+    },
+    {
+      "id": "elevation",
+      "internalLabel": "ELEVATION",
+      "studentLabel": "Reading elevation",
+      "fieldRecord": true,
+      "description": "Read height above a datum and compare relief.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "elevation",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "read-elevation", "count": 3, "source": "investigation" }]
+    },
+    {
+      "id": "contours",
+      "internalLabel": "CONTOURS",
+      "studentLabel": "Reading terrain",
+      "fieldRecord": true,
+      "description": "Connect what the land looks like underfoot with contour spacing and shape.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "contours",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [
+        { "kind": "terrain-compare", "count": 2, "source": "investigation" },
+        { "kind": "connect-contour", "count": 1, "source": "investigation" }
+      ]
+    },
+    {
+      "id": "gradient",
+      "internalLabel": "GRADIENT",
+      "studentLabel": "Comparing routes",
+      "fieldRecord": true,
+      "description": "Use elevation and distance to reason about steepness for a real travel problem.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "gradient",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "compare-routes", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "profile",
+      "internalLabel": "PROFILE",
+      "studentLabel": "Building profiles",
+      "fieldRecord": true,
+      "description": "Translate a plan-view map into a side-view cross-section.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "profile",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "profile-compare", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "gis",
+      "internalLabel": "GIS",
+      "studentLabel": "Using map layers",
+      "fieldRecord": true,
+      "description": "Combine more than one spatial layer to answer a field question.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "gis",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "combine-layers", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "remote",
+      "internalLabel": "REMOTE SENSING",
+      "studentLabel": "Reading imagery",
+      "fieldRecord": true,
+      "description": "Use remotely sensed imagery with field and map evidence.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "remote",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "compare-imagery", "count": 1, "source": "investigation" }]
+    },
+    {
+      "id": "decision",
+      "internalLabel": "DECISION",
+      "studentLabel": "Making a field plan",
+      "fieldRecord": true,
+      "description": "Use geospatial evidence to choose and defend a route.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "decision",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "plan-route", "count": 1, "source": "regional-challenge" }]
+    },
+    {
+      "id": "spatial",
+      "internalLabel": "SPATIAL PATTERNS",
+      "studentLabel": "Reading terrain",
+      "fieldRecord": false,
+      "description": "Identify spatial relationships among terrain, water, trails, and features.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "spatial",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "terrain-compare", "count": 2, "source": "investigation" }]
+    },
+    {
+      "id": "representation",
+      "internalLabel": "REPRESENTATION",
+      "studentLabel": "Using map layers",
+      "fieldRecord": false,
+      "description": "Notice that different representations of one place reveal different properties.",
+      "elicitedNow": true,
+      "standardsSlot": {
+        "pe": null,
+        "sep": null,
+        "dci": null,
+        "ccc": null,
+        "localCompetency": "representation",
+        "code": null,
+        "playerVisible": false
+      },
+      "requires": [{ "kind": "inspect-layer-type", "count": 1, "source": "investigation" }]
+    }
+  ],
+  "travelRequirements": [
+    "location",
+    "scale",
+    "elevation",
+    "contours",
+    "gradient",
+    "profile",
+    "gis",
+    "remote",
+    "decision"
+  ],
+  "unlocks": "sunfall-desert",
+  "statusWords": {
+    "demonstrated": "demonstrated",
+    "developing": "developing",
+    "none": "not yet observed"
+  },
+  "remediationVoice": {
+    "location": "The markers are still out there. I want a recorded position from more than one of them before we call this located.",
+    "scale": "Two trails reach the ridge. Measure both before you choose.",
+    "decision": "A plan for the radio site still needs a route you can defend with the map.",
+    "fallback": "High Country still has map work that isn't in these notes yet."
+  }
+}

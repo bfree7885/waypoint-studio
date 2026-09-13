@@ -1,0 +1,106 @@
+{
+  "id": "where-does-the-water-go",
+  "title": "Where Does the Water Go?",
+  "regionId": "cedar-hollow",
+  "playerFacing": true,
+  "curriculumSlotIds": [
+    "water-movement-through-terrain",
+    "interpreting-landforms",
+    "evidence-based-explanation"
+  ],
+  "intro": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "I'm Wren. Field Service, Cedar Hollow Station.",
+      "Walk it first. If something doesn't fit, look closer — the tablet keeps what you actually saw."
+    ]
+  },
+  "observations": [
+    {
+      "id": "obs-knob",
+      "featureId": "granite-knob",
+      "title": "Granite Knob",
+      "text": "This is the high point of Cedar Hollow. Everything I can see leans away from the knob.",
+      "prompt": "Bare rock and a thin wind. The valley is a bowl beneath the mountain."
+    },
+    {
+      "id": "obs-overlook",
+      "featureId": "high-look",
+      "title": "High Look",
+      "text": "From the overlook, Granite Knob is the high point. The whole hollow tilts downhill toward the south.",
+      "prompt": "The valley falls away beneath you. Ridges, woods, and a silver thread of creek."
+    },
+    {
+      "id": "obs-slope",
+      "featureId": "westface-slope",
+      "title": "Westface Slope",
+      "text": "Water from the western slope drains toward Pine Creek. Nothing here holds a rainstorm in place.",
+      "prompt": "The ground is steep and scored with tiny rills. Last night's rain left them shining."
+    },
+    {
+      "id": "obs-creek",
+      "featureId": "pine-creek",
+      "title": "Pine Creek",
+      "text": "Pine Creek is pulling water from the west and carrying it southeast, into the hollow.",
+      "prompt": "The creek is loud and tea-colored. Current runs clearly downhill."
+    },
+    {
+      "id": "obs-woods",
+      "featureId": "alder-woods",
+      "title": "Alder Woods",
+      "text": "The forest floor is damp, but the woods sit above the creek. Water here still has somewhere lower to go.",
+      "prompt": "Ferns and leaf litter. The ground slopes, faintly, toward the sound of water."
+    },
+    {
+      "id": "obs-pond",
+      "featureId": "mirror-pond",
+      "title": "Mirror Pond",
+      "text": "Mirror Pond collects Pine Creek from the northwest, then lets it continue south. A pause, not an ending.",
+      "prompt": "The pond is higher than usual. An inlet on one side, an outlet on the other."
+    },
+    {
+      "id": "obs-lowland",
+      "featureId": "willow-bench",
+      "title": "Willow Bench",
+      "text": "This bench is lower than the woods around it. Water would linger here after a hard rain.",
+      "prompt": "Soft ground. Willows. A faint wrack line of sticks from last night."
+    },
+    {
+      "id": "obs-downstream",
+      "featureId": "willow-reach",
+      "title": "Willow Reach",
+      "text": "High-water marks on the willows. Last night's runoff ended up downstream of the pond.",
+      "prompt": "The reach is still swollen. Grass lies flattened in the direction of flow."
+    },
+    {
+      "id": "obs-station",
+      "featureId": "research-station",
+      "title": "Research Station",
+      "text": "The station sits on a shoulder above the hollow — high enough to stay dry, close enough to watch the drainage.",
+      "prompt": "A small cabin, a rain gauge, and a porch that looks west into the valley."
+    }
+  ],
+  "requiredObservationIds": [
+    "obs-slope",
+    "obs-creek",
+    "obs-pond",
+    "obs-downstream"
+  ],
+  "conclusion": {
+    "prompt": "Trace last night's water. Tap the places you actually walked, in the order water would travel.",
+    "validPath": [
+      "westface-slope",
+      "pine-creek",
+      "mirror-pond",
+      "willow-reach"
+    ],
+    "successText": "That's the story. Rain on Westface Slope ran to Pine Creek, paused in Mirror Pond, then pushed out Willow Reach. That's why the water jumped downstream.",
+    "uphillHint": "Water doesn't climb. Check the high ground against the low ground in your notes.",
+    "incompleteHint": "Your tablet still has blank pages. Walk a little more before we trace the path.",
+    "unobservedHint": "You can only trace places you've actually stood. Go see the land first."
+  },
+  "completeJournalEntry": {
+    "title": "Where the water went",
+    "text": "Runoff from Westface Slope fed Pine Creek, filled Mirror Pond, and continued downstream to Willow Reach."
+  }
+}

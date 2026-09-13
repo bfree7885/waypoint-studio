@@ -1,0 +1,2306 @@
+[
+  {
+    "viewport": "320x568",
+    "hudClosed": {
+      "hidden": true,
+      "busy": "",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": false,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "opened": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 163,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 496,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 387.25
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 387.25
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 449.25
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 449.25
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "help": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 482,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 369.078125
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 369.078125
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 431.078125
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 431.078125
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "pending": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 872,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "arrived": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 872,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "marked": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 872,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 379.5
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 441.5
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "thread": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 852,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 379.171875
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 379.171875
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 441.171875
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 441.171875
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "keyboard": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 852,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 379.171875
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 379.171875
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 441.171875
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 441.171875
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "closed": {
+      "hidden": true,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "notice",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "Youthe steep one?SummitStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.Youwhy thoughSummitGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.Youexplain it easierSummitShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.Youwhat should I notice?SummitYou are near Westface Slope, rill-scars. Stand on ground you have not inspected yet. Look for rills, an outlet, and whether water is still moving downhill. The creek is leaving clues if you walk it.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "fallback": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 437,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 410.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 366.90625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 366.90625
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 428.90625
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 428.90625
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nI don't get it.\n\nSUMMIT\nTell me which part is muddy \u2014 the land, a measurement, or Wren's question. Right now you're working on Where Did Last Night's Water Go?. I can walk the science; I won't finish the case for you.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "normal": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 163,
+      "horizontalOverflow": false,
+      "sheetH": 443.03125,
+      "askY": 496,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 133,
+          "h": 56,
+          "y": 387.25
+        },
+        {
+          "label": "What should I notice?",
+          "w": 133,
+          "h": 56,
+          "y": 387.25
+        },
+        {
+          "label": "Explain this",
+          "w": 133,
+          "h": 44,
+          "y": 449.25
+        },
+        {
+          "label": "Why?",
+          "w": 133,
+          "h": 44,
+          "y": 449.25
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "debug": null
+  },
+  {
+    "viewport": "390x844",
+    "hudClosed": {
+      "hidden": true,
+      "busy": "",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": false,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "opened": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 452.78125,
+      "askY": 772,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 650
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 650
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 712
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 712
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "help": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 414,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 596.78125
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 596.78125
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 658.78125
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 658.78125
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "pending": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "arrived": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "marked": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 626.765625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 688.765625
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "thread": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 762,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 626.890625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 626.890625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 688.890625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 688.890625
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "keyboard": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 762,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 626.890625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 626.890625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 688.890625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 688.890625
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "closed": {
+      "hidden": true,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "notice",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "Youthe steep one?SummitStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.Youwhy thoughSummitGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.Youexplain it easierSummitShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.Youwhat should I notice?SummitYou are near Westface Slope, rill-scars. Stand on ground you have not inspected yet. Look for rills, an outlet, and whether water is still moving downhill. The creek is leaving clues if you walk it.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "fallback": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 370,
+      "horizontalOverflow": false,
+      "sheetH": 658.3125,
+      "askY": 686.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 589.625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 589.625
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 651.625
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 651.625
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nI don't get it.\n\nSUMMIT\nTell me which part is muddy \u2014 the land, a measurement, or Wren's question. Right now you're working on Where Did Last Night's Water Go?. I can walk the science; I won't finish the case for you.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "normal": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 452.78125,
+      "askY": 772,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 168,
+          "h": 56,
+          "y": 650
+        },
+        {
+          "label": "What should I notice?",
+          "w": 168,
+          "h": 56,
+          "y": 650
+        },
+        {
+          "label": "Explain this",
+          "w": 168,
+          "h": 44,
+          "y": 712
+        },
+        {
+          "label": "Why?",
+          "w": 168,
+          "h": 44,
+          "y": 712
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "debug": null
+  },
+  {
+    "viewport": "430x932",
+    "hudClosed": {
+      "hidden": true,
+      "busy": "",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": false,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "opened": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 434.78125,
+      "askY": 860,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 738
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 738
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 800
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 800
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "help": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 414,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 774.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 666.71875
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 666.71875
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 728.71875
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 728.71875
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "pending": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 790.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "arrived": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 790.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "marked": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 790.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 717.609375
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 779.609375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "thread": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 718,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 790.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 714.640625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 714.640625
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 776.640625
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 776.640625
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "keyboard": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 718,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 790.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 714.640625
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 714.640625
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 776.640625
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 776.640625
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "closed": {
+      "hidden": true,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "notice",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "Youthe steep one?SummitStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.Youwhy thoughSummitGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.Youexplain it easierSummitShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.Youwhat should I notice?SummitYou are near Westface Slope, rill-scars. Stand on ground you have not inspected yet. Look for rills, an outlet, and whether water is still moving downhill. The creek is leaving clues if you walk it.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "fallback": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 370,
+      "horizontalOverflow": false,
+      "sheetH": 726.953125,
+      "askY": 774.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 657.828125
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 657.828125
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 719.828125
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 719.828125
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nI don't get it.\n\nSUMMIT\nTell me which part is muddy \u2014 the land, a measurement, or Wren's question. Right now you're working on Where Did Last Night's Water Go?. I can walk the science; I won't finish the case for you.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "normal": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 64,
+      "portraitH": 64,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 434.78125,
+      "askY": 860,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 188,
+          "h": 56,
+          "y": 738
+        },
+        {
+          "label": "What should I notice?",
+          "w": 188,
+          "h": 56,
+          "y": 738
+        },
+        {
+          "label": "Explain this",
+          "w": 188,
+          "h": 44,
+          "y": 800
+        },
+        {
+          "label": "Why?",
+          "w": 188,
+          "h": 44,
+          "y": 800
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "debug": null
+  },
+  {
+    "viewport": "1280x800",
+    "hudClosed": {
+      "hidden": true,
+      "busy": "",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": false,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "opened": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 430.78125,
+      "askY": 728,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 618
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 618
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 668
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 668
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "help": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 414,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 642.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 532.84375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 532.84375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 582.84375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 582.84375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "pending": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 658.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 598.375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 598.375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "arrived": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 658.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 598.375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 598.375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "marked": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 760,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 658.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 598.375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 598.375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nhow do i play\n\nSUMMIT\nWalk Cedar Hollow and pay attention to what you can actually observe. Wren gives you the investigation; you gather evidence, test ideas, and build the case in your Field Tablet. If the science gets confusing, ask me. Wren decides when the case is strong enough for field clearance\n\nYOU\nare you bigfoot\n\nSUMMIT\nSasquatch, technically. Summit, personally. I help with the Earth Science; Wren still runs the expedition.\n\nYOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "thread": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 740,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 658.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 598.375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 598.375
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "keyboard": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "explain",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 740,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 658.375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 548.375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 598.375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 598.375
+        }
+      ],
+      "log": "YOU\nwhy did the water move faster?\n\nSUMMIT\nI do not have fair times to confirm that yet. Time the same cup on more than one slope.\n\nYOU\nthe steep one?\n\nSUMMIT\nStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.\n\nYOU\nwhy though\n\nSUMMIT\nGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.\n\nYOU\nexplain it easier\n\nSUMMIT\nShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "closed": {
+      "hidden": true,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "notice",
+      "portraitW": 0,
+      "portraitH": 0,
+      "portraitVisible": false,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": false,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 0,
+      "horizontalOverflow": false,
+      "sheetH": 0,
+      "askY": 0,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "What should I notice?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Explain this",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        },
+        {
+          "label": "Why?",
+          "w": 0,
+          "h": 0,
+          "y": 0
+        }
+      ],
+      "log": "Youthe steep one?SummitStay with that. On a steeper slope, more of gravity's pull acts downhill, so the same water tends to move faster. Gravity itself is not stronger.Youwhy thoughSummitGravity still pulls downhill. On a steeper slope more of that pull acts downhill, so the same water usually arrives sooner.Youexplain it easierSummitShort version: you are figuring out Where Did Last Night's Water Go?. Look at the land or the tablet, then take the next small step.Youwhat should I notice?SummitYou are near Westface Slope, rill-scars. Stand on ground you have not inspected yet. Look for rills, an outlet, and whether water is still moving downhill. The creek is leaving clues if you walk it.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "fallback": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 370,
+      "horizontalOverflow": false,
+      "sheetH": 608,
+      "askY": 642.84375,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 532.84375
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 532.84375
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 582.84375
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 582.84375
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.\n\nYOU\nI don't get it.\n\nSUMMIT\nTell me which part is muddy \u2014 the land, a measurement, or Wren's question. Right now you're working on Where Did Last Night's Water Go?. I can walk the science; I won't finish the case for you.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "normal": {
+      "hidden": false,
+      "busy": "false",
+      "lead": "Curious about the hollow. Serious about the science.",
+      "role": "Earth Science Companion",
+      "expression": "neutral",
+      "portraitW": 72,
+      "portraitH": 72,
+      "portraitVisible": true,
+      "toggleVisible": true,
+      "toggleFaceVisible": true,
+      "toggleLabel": "Summit",
+      "pending": false,
+      "closeEnabled": true,
+      "askDisabled": false,
+      "askFocused": true,
+      "logScroll": 141,
+      "horizontalOverflow": false,
+      "sheetH": 430.78125,
+      "askY": 728,
+      "quick": [
+        {
+          "label": "What should I do?",
+          "w": 166.640625,
+          "h": 44,
+          "y": 618
+        },
+        {
+          "label": "What should I notice?",
+          "w": 194.21875,
+          "h": 44,
+          "y": 618
+        },
+        {
+          "label": "Explain this",
+          "w": 117.796875,
+          "h": 44,
+          "y": 668
+        },
+        {
+          "label": "Why?",
+          "w": 71.546875,
+          "h": 44,
+          "y": 668
+        }
+      ],
+      "log": "SUMMIT\nI'm Summit. I live in this hollow and I know a thing or two about how land and water work. Ask me about the science \u2014 Wren still runs the expedition.",
+      "hasHttpError": false,
+      "fieldTestHidden": true,
+      "fieldTestButtons": 5,
+      "exportJson": true
+    },
+    "debug": null
+  }
+]

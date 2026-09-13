@@ -1,0 +1,186 @@
+{
+  "id": "sunfall-desert",
+  "name": "Sunfall Desert",
+  "blurb": "Open high desert, a crater basin, and a sky wide enough to measure.",
+  "terrainModel": "sunfall-desert",
+  "dryLandscape": true,
+  "width": 2600,
+  "height": 1600,
+  "spawn": { "x": 1408, "y": 1188 },
+  "peak": { "x": 420, "y": 480 },
+  "grid": {
+    "originLat": 34.5100,
+    "originLon": -111.4300,
+    "latSpan": 0.0216,
+    "lonSpan": 0.0328,
+    "metersPerPixel": 1.8,
+    "scaleLabel": "1 cm on the tablet ≈ 220 m on the ground"
+  },
+  "elevation": {
+    "baseMeters": 1120,
+    "rangeMeters": 280,
+    "datum": "local field datum",
+    "contourInterval": 20
+  },
+  "ranger": {
+    "id": "ranger-wren",
+    "name": "Ranger Wren",
+    "x": 1384,
+    "y": 1164,
+    "greetRadius": 90
+  },
+  "station": {
+    "x": 1288,
+    "y": 1048,
+    "w": 168,
+    "h": 108
+  },
+  "pond": {
+    "id": "crater-basin",
+    "cx": 2088,
+    "cy": 900,
+    "rx": 188,
+    "ry": 142
+  },
+  "creek": {
+    "id": "dry-wash",
+    "width": 22,
+    "points": [
+      [780, 1480],
+      [1040, 1360],
+      [1320, 1288],
+      [1680, 1220],
+      [1960, 1140]
+    ]
+  },
+  "outlet": {
+    "width": 14,
+    "points": [
+      [2088, 1040],
+      [1980, 1180],
+      [1860, 1320]
+    ]
+  },
+  "tributary": null,
+  "wetland": null,
+  "outcrop": {
+    "x": 560,
+    "y": 900,
+    "r": 64
+  },
+  "props": [
+    { "kind": "gnomon", "x": 1512, "y": 1120, "inspect": { "id": "story-gnomon", "title": "Solar marker", "text": "A straight post in packed earth. The ground around it is scored with old chalk lines. Someone used to keep time with this shadow." } },
+    { "kind": "dome", "x": 1360, "y": 1088, "inspect": { "id": "story-dome", "title": "Sunfall Observatory", "text": "A small dome and a work table. The seasonal campaign starts when the old notebooks stop arguing with the sky." } },
+    { "kind": "sundial", "x": 1568, "y": 1084, "inspect": { "id": "story-sundial", "title": "Old sundial", "text": "A cracked face, numerals worn almost smooth. It still knows east and west if the Sun is out." } },
+    { "kind": "telescope-pad", "x": 1260, "y": 1008, "inspect": { "id": "story-pad", "title": "Telescope foundation", "text": "Bolts in a concrete ring. The instrument is gone. The horizon from here is still honest." } },
+    { "kind": "survey-post", "x": 1768, "y": 1012, "inspect": { "id": "story-survey", "title": "Historic survey post", "text": "A weathered post with a brass cap. Latitude is stamped on the side if you crouch." } },
+    { "kind": "alignment-stone", "x": 1688, "y": 1324, "inspect": { "id": "story-stones", "title": "Alignment stones", "text": "Three stones in a short line. They point toward the mesa rim, not toward magnetic north." } },
+    { "kind": "lantern", "x": 1420, "y": 1148 },
+    { "kind": "lantern", "x": 1336, "y": 1136 },
+    { "kind": "pack", "x": 1372, "y": 1176 },
+    { "kind": "instrument-crate", "x": 1460, "y": 1096 }
+  ],
+  "trails": [
+    {
+      "id": "station-loop",
+      "name": "Station loop",
+      "role": "local",
+      "points": [
+        [1408, 1188],
+        [1512, 1120],
+        [1360, 1088],
+        [1260, 1008],
+        [1408, 1188]
+      ]
+    },
+    {
+      "id": "mesa-rim",
+      "name": "Mesa rim path",
+      "role": "horizon",
+      "points": [
+        [1408, 1188],
+        [1100, 1040],
+        [780, 860],
+        [520, 680],
+        [380, 500]
+      ]
+    },
+    {
+      "id": "crater-path",
+      "name": "Crater path",
+      "role": "basin",
+      "points": [
+        [1408, 1188],
+        [1680, 1100],
+        [1920, 980],
+        [2100, 900],
+        [2220, 1180]
+      ]
+    }
+  ],
+  "features": [
+    {
+      "id": "sunfall-station",
+      "name": "Sunfall Observatory",
+      "kind": "station",
+      "x": 1408,
+      "y": 1196,
+      "radius": 92,
+      "label": "observatory"
+    },
+    {
+      "id": "solar-marker",
+      "name": "Solar marker",
+      "kind": "gnomon",
+      "x": 1512,
+      "y": 1120,
+      "radius": 70,
+      "label": "gnomon"
+    },
+    {
+      "id": "west-mesa",
+      "name": "West mesa",
+      "kind": "mesa",
+      "x": 420,
+      "y": 500,
+      "radius": 88,
+      "label": "mesa"
+    },
+    {
+      "id": "night-rim",
+      "name": "Night-sky viewpoint",
+      "kind": "overlook",
+      "x": 380,
+      "y": 488,
+      "radius": 72,
+      "label": "night"
+    },
+    {
+      "id": "crater-floor",
+      "name": "Crater basin",
+      "kind": "crater",
+      "x": 2088,
+      "y": 900,
+      "radius": 96,
+      "label": "crater"
+    },
+    {
+      "id": "crater-rim",
+      "name": "Crater rim",
+      "kind": "rim",
+      "x": 1920,
+      "y": 760,
+      "radius": 70,
+      "label": "rim"
+    },
+    {
+      "id": "dry-wash",
+      "name": "Dry wash",
+      "kind": "wash",
+      "x": 1320,
+      "y": 1288,
+      "radius": 70,
+      "label": "wash"
+    }
+  ]
+}
