@@ -251,7 +251,11 @@ import {
   rejectCompeting,
   pointHorn,
   pinOrigin,
-  logOriginCase,
+  originEvidenceReady,
+  tickLookbackWalk,
+  noteGlowLeak,
+  markEnvelopeSeen,
+  markMassPlatesSeen,
   setLaterTonight,
   readDistantPoster,
   logLookback,
@@ -465,6 +469,7 @@ export async function boot(root = document) {
   const params = new URLSearchParams(location.search);
   const fieldMode = params.get("field") === "1";
   const darkSkyReview = fieldMode && params.get("region") === "dark-sky-basin";
+  let summitDiagOpen = false;
   const fieldTestMode = isFieldTestMode(location.search);
   const fieldTestSession = fieldTestMode ? createFieldTestSession() : null;
   let aarIndex = 0;
@@ -1453,7 +1458,7 @@ export async function boot(root = document) {
         });
     return {
       title: spec.title,
-      lead: aarIndex === 0 ? spec.open : "Pin what actually supports this — drop what doesn't.",
+      lead: aarIndex === 0 ? spec.open : "Which notes actually support this claim? Leave the rest in the tablet.",
       stem: item?.wren || item?.stem || "",
       evidence,
       selected: item ? selectedIds(host.aar.answers, item.id) : [],
@@ -1558,7 +1563,9 @@ export async function boot(root = document) {
       portraitSrc: summitPortraitSrc(expression),
       fieldTest: fieldTestMode,
       fieldTestTurnId: lastTurn?.id || "",
-      diag: debug
+      fieldDebug: fieldMode,
+      diagOpen: summitDiagOpen,
+      diag: debug && summitDiagOpen
         ? [
             fieldTestMode ? "SUMMIT FIELD TEST" : "FIELD",
             debug.adapterId ? `${debug.provider}/${debug.adapterId}` : debug.provider,
@@ -3131,6 +3138,57 @@ export async function boot(root = document) {
     });
   }
 
+  function dsInspectPrompt(kind) {
+    if (kind === "eyepiece") {
+      if (ds07Complete(dsState) && !ds09Complete(dsState)) {
+        return dsState.laterTonight ? "Look again — nearby vs distant · E" : "Watch the nearby star · E";
+      }
+      return "Look through the eyepiece · E";
+    }
+    if (kind === "plate-desk") {
+      if (ds06Complete(dsState) && !ds07Complete(dsState)) return "Galaxy plates are on this desk · E";
+      if (ds09Complete(dsState) && !ds10Complete(dsState)) {
+        return dsState.envelopeSeen ? "Write a bounded claim · E" : "The unlabeled envelope waits on the spectrograph";
+      }
+      if (dsState.logRead) return "The inherited log is already noted";
+      return "Read the inherited log · E";
+    }
+    if (kind === "spectrograph") {
+      if (!ds01Complete(dsState)) return "Compare the two white traces · E";
+      if (!ds02Complete(dsState)) return "Mark the peaks · E";
+      if (ds04Complete(dsState) && !ds05Complete(dsState)) return "Compare massive and sun-like plates · E";
+      if (ds05Complete(dsState) && dsState.rockPicked && !ds06Complete(dsState)) return "Compare metal lines with the floor rock · E";
+      if (ds06Complete(dsState) && !ds07Complete(dsState)) return "Compare rest pattern to galaxy plates · E";
+      if (ds09Complete(dsState) && !ds10Complete(dsState)) return "Look at the unlabeled envelope · E";
+      return "Use the plate spectrograph · E";
+    }
+    if (kind === "west-stake") {
+      return ds03Complete(dsState) ? "West rim baseline is in the tablet" : "Compare season plates from this cairn · E";
+    }
+    if (kind === "east-stake") {
+      return ds03Complete(dsState) ? "East rim baseline is in the tablet" : "Compare season plates from the far cairn · E";
+    }
+    if (kind === "plot-board") {
+      if (ds06Complete(dsState) && !ds07Complete(dsState)) {
+        return dsState.redshiftTried ? "Plot shift versus distance rank · E" : "Shift versus distance still needs a spectrograph comparison";
+      }
+      if (!ds03Complete(dsState)) return "Empty axes — measurements first";
+      if (!ds04Complete(dsState)) return "Place measured stars on empty axes · E";
+      return "Your unlabeled diagram is on this board";
+    }
+    if (kind === "burst-poster") {
+      if (!ds07Complete(dsState)) return "Read the event poster · E";
+      if (ds09Complete(dsState)) return "The poster is not tonight's news";
+      return dsState.nearbyChanged ? "Refuse happening-now · E" : "Read the happening-now caption · E";
+    }
+    if (kind === "horn") {
+      if (!ds07Complete(dsState)) return "The horn waits until expansion is in the tablet";
+      if (ds08Complete(dsState)) return "Leftover sky is already in the tablet";
+      return "Point the Quiet Floor horn · E";
+    }
+    return "Look closer · E";
+  }
+
   function inspectDs(target) {
     if (!target) return;
     if (target.kind === "wren") {
@@ -3143,10 +3201,24 @@ export async function boot(root = document) {
     }
     if (target.kind === "plate-desk") {
       if (ds06Complete(dsState) && !ds07Complete(dsState)) {
-        openRedshiftDesk();
+        showDialogueLines("Galaxy plates", [
+          "Three galaxy plates on the desk. The spectrograph can compare them to a rest pattern you already know. Redshift is not a red-colored object."
+        ], 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        });
         return;
       }
       if (ds09Complete(dsState) && !ds10Complete(dsState)) {
+        if (!dsState.envelopeSeen) {
+          showDialogueLines("Unlabeled envelope", [
+            "The envelope is unlabeled on purpose. Look at the light on the spectrograph first. Then come back and say what you can honestly claim."
+          ], 0, () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          });
+          return;
+        }
         openEnvelope();
         return;
       }
@@ -3173,6 +3245,10 @@ export async function boot(root = document) {
       return;
     }
     if (target.kind === "plot-board") {
+      if (ds06Complete(dsState) && !ds07Complete(dsState)) {
+        openRedshiftPlotFromBoard();
+        return;
+      }
       openPlotBoard();
       return;
     }
@@ -3185,7 +3261,9 @@ export async function boot(root = document) {
       }
       showDialogueLines("Event poster", [
         "DISTANT OUTBURST — HAPPENING NOW. The caption treats a far plate as tonight's news.",
-        ds07Complete(dsState) ? "Use later tonight at the eyepiece, then come back." : "The basin still has other light to record first."
+        ds07Complete(dsState)
+          ? "A nearby star can still change. Walk away from the dome, then look through the eyepiece again."
+          : "The basin still has other light to record first."
       ], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
@@ -3223,13 +3301,15 @@ export async function boot(root = document) {
       return;
     }
     if (target.kind === "glow-notch") {
-      markVisited(dsState, "glow");
+      const noted = noteGlowLeak(dsState);
       persist();
+      refreshJournal();
       showDialogueLines("Glow Notch", [
-        "A dip in the west rim. Faint town glow leaks here. This is why the work happens in the basin, not on the notch."
+        "A dip in the west rim. Faint town glow leaks here. The basin floor stays darker — that is why the work happens down there, not on the rim of the leak."
       ], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
+        if (!noted.already) ui.showToast("Noted", "Why the basin is dark");
       });
       return;
     }
@@ -3237,7 +3317,7 @@ export async function boot(root = document) {
       markVisited(dsState, "picnic");
       persist();
       showDialogueLines("East picnic table", [
-        "A leftover table and a cold thermos. Optional. The catalog does not need a sandwich."
+        "A leftover table and a cold thermos. Optional rest. Nothing here is required for clearance."
       ], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
@@ -3305,23 +3385,6 @@ export async function boot(root = document) {
       },
       onClose: closeSkyEyepiece
     });
-    if (ds07Complete(dsState) && !ds09Complete(dsState)) {
-      const extra = root.querySelector("#sky-eye-status");
-      if (extra && !root.querySelector("#sky-later")) {
-        const btn = document.createElement("button");
-        btn.id = "sky-later";
-        btn.type = "button";
-        btn.textContent = dsState.laterTonight ? "Return to earlier tonight" : "Look later tonight";
-        extra.insertAdjacentElement("beforebegin", btn);
-        btn.onclick = () => {
-          setLaterTonight(dsState, !dsState.laterTonight);
-          persist();
-          const old = root.querySelector("#sky-later");
-          if (old) old.remove();
-          renderSkyEyepiece();
-        };
-      }
-    }
   }
 
   function eyepieceIds() {
@@ -3336,8 +3399,8 @@ export async function boot(root = document) {
   function eyepieceLead() {
     if (ds07Complete(dsState) && !ds09Complete(dsState)) {
       return dsState.laterTonight
-        ? "Later tonight. Watch the nearby variable. The distant outburst is still the same plate."
-        : "A nearby star can still change. A distant outburst on a poster is not live weather.";
+        ? "You walked away and came back. Watch the nearby variable. The distant outburst is still the same plate."
+        : "A nearby star can still change. A distant outburst on a poster is not live weather. Leave the dome, then look again.";
     }
     if (ds01Complete(dsState) && !ds02Complete(dsState)) {
       return "The two white targets still look alike. A reddish star sits off to one side.";
@@ -3347,6 +3410,9 @@ export async function boot(root = document) {
 
   function eyepieceStatus() {
     if (dsState.laterTonight && dsState.nearbyChanged) return "The nearby target dimmed. The distant one did not become tonight's news.";
+    if (ds07Complete(dsState) && (dsState.observedIds || []).includes("nearby-variable") && !dsState.lookbackLeftStation) {
+      return "The nearby star is logged. Time away from the dome is what makes lookback mean something.";
+    }
     if (twinsObservationReady(dsState)) return "Both white targets looked bright and white.";
     return "Tap each bright white target.";
   }
@@ -3417,8 +3483,9 @@ export async function boot(root = document) {
     if (!ds01Complete(dsState)) renderTwinSpectrum();
     else if (!ds02Complete(dsState)) renderEmberSpectrum();
     else if (ds05Complete(dsState) && dsState.rockPicked && !ds06Complete(dsState)) renderMetalSpectrum();
-    else if (ds04Complete(dsState) && !ds05Complete(dsState)) renderMassSpectrum();
+    else if (ds04Complete(dsState) && !ds05Complete(dsState)) renderMassPlates();
     else if (ds06Complete(dsState) && !ds07Complete(dsState)) renderRedshiftSpectrum();
+    else if (ds09Complete(dsState) && !ds10Complete(dsState)) renderEnvelopeSpectrum();
     else renderTwinSpectrum();
   }
 
@@ -3641,29 +3708,40 @@ export async function boot(root = document) {
   }
 
   function renderPlotBoard() {
+    const west = catalogTarget(dsCatalog, "west-twin");
+    const ember = catalogTarget(dsCatalog, EMBER_ID);
+    const far = catalogTarget(dsCatalog, "cairn-far");
     const labels = { "west-twin": "hot white", "cooler-ember": "ember", "cairn-far": "far cairn" };
+    const measurements = {
+      "west-twin": west?.peakNm ? `peak ~${Math.round(west.peakNm)} nm` : "",
+      "cooler-ember": ember?.peakNm ? `peak ~${Math.round(ember.peakNm)} nm` : "",
+      "cairn-far": far?.distanceRank != null ? `farther rank ${far.distanceRank}` : "farther cairn"
+    };
     ui.showGeoBoard(true, {
       title: "Unlabeled plot",
-      lead: "No poster legend. Place the hot white star, the cooler ember, and the far cairn star from your notes.",
+      lead: "No poster legend. These three already have numbers in your tablet. Place them where your notes say they belong.",
       canvasKind: "plot",
       canvasLabel: "Unlabeled temperature versus brightness plot",
       canvasWidth: 420,
       canvasHeight: 240,
       placements: dsState.plotPlacements || {},
       labels,
+      measurements,
       groups: [
         {
           id: "star",
-          label: "Star to place",
+          label: "Star from your notes",
           selected: dsState.plotDraftId || "west-twin",
           items: [
-            { id: "west-twin", label: "Hot white" },
-            { id: "cooler-ember", label: "Cooler ember" },
-            { id: "cairn-far", label: "Far cairn star" }
+            { id: "west-twin", label: `Hot white · ${measurements["west-twin"]}` },
+            { id: "cooler-ember", label: `Cooler ember · ${measurements["cooler-ember"]}` },
+            { id: "cairn-far", label: `Far cairn · ${measurements["cairn-far"]}` }
           ]
         }
       ],
-      status: dsState.lastHint || (dsState.plotLogged ? "The pattern arrived after the points." : "Tap the board to place the selected star."),
+      status: ds04Complete(dsState)
+        ? "The pattern arrived after the points."
+        : (dsState.lastHint || "Tap the board to place the selected star."),
       tryLabel: "Log the diagram"
     }, {
       onPick(_group, id) {
@@ -3691,13 +3769,42 @@ export async function boot(root = document) {
     });
   }
 
+  function renderMassPlates() {
+    const hot = catalogTarget(dsCatalog, "hot-mass");
+    const sun = catalogTarget(dsCatalog, "sun-like");
+    const remnant = catalogTarget(dsCatalog, "blue-remnant");
+    ui.showSpectrum(true, {
+      title: "Massive, sun-like, remnant",
+      lead: "These are not vocabulary stages. Compare the peaks. If mass differs, the futures will not share one ending.",
+      mode: "twins",
+      traces: [
+        { spec: hot, color: "#9ec7ff", label: `${hot.label} · ${hot.peakNm} nm`, shiftNm: 0 },
+        { spec: sun, color: "#f3d2a8", label: `${sun.label} · ${sun.peakNm} nm`, shiftNm: 0 },
+        { spec: remnant, color: "#c8b8e8", label: `${remnant.label} · ${remnant.peakNm} nm`, shiftNm: 0 }
+      ],
+      markers: [],
+      readout: "Peak place is evidence. A cartoon lifecycle is not.",
+      status: dsState.lastHint || "The remnant plate does not sit with the sun-like star.",
+      logLabel: dsState.massPlatesSeen ? "Mark the branches" : "These peaks are not the same",
+      closeLabel: "Back to the basin"
+    }, {
+      onLog() {
+        markMassPlatesSeen(dsState);
+        persist();
+        closeSpectrum();
+        renderMassSpectrum();
+      },
+      onClose: closeSpectrum
+    });
+  }
+
   function renderMassSpectrum() {
     const hot = catalogTarget(dsCatalog, "hot-mass");
     const sun = catalogTarget(dsCatalog, "sun-like");
     const remnant = catalogTarget(dsCatalog, "blue-remnant");
     ui.showGeoBoard(true, {
       title: "Not one life",
-      lead: "Massive and sun-like stars do not share a cartoon lifecycle. Branch both, then match the remnant plate.",
+      lead: "You compared the plates. Massive and sun-like stars do not share a cartoon lifecycle. Mark both futures, then match the remnant.",
       groups: [
         {
           id: "hot",
@@ -3835,12 +3942,27 @@ export async function boot(root = document) {
     renderRedshiftSpectrum();
   }
 
+  function openRedshiftPlotFromBoard() {
+    if (!dsState.redshiftTried) {
+      showDialogueLines("Unlabeled plot", [
+        "This board can hold shift versus distance rank. Compare a known rest pattern to the galaxy plates on the spectrograph first."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    renderRedshiftPlot();
+  }
+
   function renderRedshiftSpectrum() {
+    dsState.redshiftTried = true;
+    persist();
     const gal = catalogTarget(dsCatalog, dsState.redshiftGalaxyId || "galaxy-far");
     const rest = { peakNm: 520, lines: (gal?.restLines || [486, 656]).map((nm) => ({ nm, depth: 0.7 })) };
     ui.showSpectrum(true, {
       title: "Galaxy plates",
-      lead: "Same rest pattern you already know. See whether the whole pattern has slid. Redshift is not a red-colored object.",
+      lead: "Same rest pattern you already used at Lamp Bench and on the twins plates. See whether the whole pattern has slid. Redshift is not a red-colored object.",
       mode: "twins",
       showAlign: true,
       shift: dsState.redshiftShiftNm || 0,
@@ -3851,7 +3973,7 @@ export async function boot(root = document) {
       markers: (gal.restLines || []).map((nm) => ({ nm: nm + (dsState.redshiftShiftNm || 0), kind: "diff" })),
       readout: "Shorter ←  wavelength  → longer · color is not this slide",
       status: dsState.lastHint || "",
-      logLabel: "Open the shift plot",
+      logLabel: "The pattern moved",
       closeLabel: "Back to the basin",
       toolChips: {
         selected: dsState.redshiftGalaxyId || "galaxy-far",
@@ -3870,7 +3992,7 @@ export async function boot(root = document) {
       },
       onLog() {
         closeSpectrum();
-        renderRedshiftPlot();
+        ui.showToast("Moved pattern", "The unlabeled board can hold shift versus distance rank.");
       },
       onClose: closeSpectrum
     });
@@ -3879,7 +4001,7 @@ export async function boot(root = document) {
   function renderRedshiftPlot() {
     ui.showGeoBoard(true, {
       title: "Shift versus distance rank",
-      lead: "Place the three plates. Then reject the story that every plate shifts the same amount.",
+      lead: "Place the three plates from the spectrograph comparison. Then reject the story that every plate shifts the same amount.",
       canvasKind: "redshift",
       canvasLabel: "Line-pattern shift versus distance rank",
       canvasWidth: 420,
@@ -3953,9 +4075,10 @@ export async function boot(root = document) {
   }
 
   function renderHorn() {
+    const ready = originEvidenceReady(dsState);
     ui.showGeoBoard(true, {
       title: "Quiet Floor horn",
-      lead: "Point the horn. The station wall is noisy. Overhead is quieter. Pin three independent lines — not a famous name.",
+      lead: "Station wall is noisy. Overhead is quieter. This horn only adds leftover sky. Expansion and abundance have to already be in the tablet.",
       canvasKind: "horn",
       canvasLabel: "Horn pointing: zenith, wall, horizon",
       canvasWidth: 420,
@@ -3967,18 +4090,14 @@ export async function boot(root = document) {
         { id: "wall", label: "Point wall", on: dsState.hornPoint === "wall" },
         { id: "horizon", label: "Point horizon", on: dsState.hornPoint === "horizon" }
       ],
-      groups: [
-        {
-          id: "origin",
-          label: "Evidence lines to pin",
-          selected: dsState.originPinned || [],
-          items: [
-            { id: "expansion", label: "Galaxy shifts / expansion" },
-            { id: "leftover", label: "Leftover quiet sky" },
-            { id: "abundance", label: "Metals not all present at the start" }
-          ]
-        }
-      ],
+      table: {
+        columns: ["Evidence", "Status"],
+        rows: [
+          ["Galaxy shifts / expansion", ready.expansion ? "Already in the tablet" : "Still missing"],
+          ["Floor-rock metals", ready.abundance ? "Already in the tablet" : "Still missing"],
+          ["Quiet leftover sky", ready.leftover ? "Horn found it overhead" : "Point wall, then zenith"]
+        ]
+      },
       status: dsState.lastHint || "",
       tryLabel: "Log the case"
     }, {
@@ -3987,8 +4106,7 @@ export async function boot(root = document) {
         persist();
         renderHorn();
       },
-      onPick(_group, id) {
-        pinOrigin(dsState, id);
+      onPick() {
         persist();
         renderHorn();
       },
@@ -4014,7 +4132,7 @@ export async function boot(root = document) {
   function renderLookback() {
     ui.showGeoBoard(true, {
       title: "Not tonight",
-      lead: "The poster said happening now. The nearby variable can still change. The distant plate cannot become live weather.",
+      lead: "The poster said happening now. You watched a nearby star, left the dome, and looked again. Nearby light can still change. Distant light already left.",
       groups: [
         {
           id: "claim",
@@ -4026,7 +4144,7 @@ export async function boot(root = document) {
           ]
         }
       ],
-      status: dsState.lastHint || (dsState.nearbyChanged && dsState.distantPosterSeen ? "Nearby changed later tonight. Distant plate did not." : "Read the poster, then use later tonight at the eyepiece."),
+      status: dsState.lastHint || (dsState.nearbyChanged && dsState.distantPosterSeen ? "Nearby changed after you left the station. Distant plate did not." : "Read the poster, watch the nearby star, then leave the dome and look again."),
       tryLabel: "Log the lookback"
     }, {
       onPick(_group, id) {
@@ -4050,6 +4168,35 @@ export async function boot(root = document) {
     });
   }
 
+  function renderEnvelopeSpectrum() {
+    const env = catalogTarget(dsCatalog, "envelope-x");
+    const white = catalogTarget(dsCatalog, "west-twin");
+    markEnvelopeSeen(dsState);
+    persist();
+    ui.showSpectrum(true, {
+      title: "Unlabeled envelope",
+      lead: "No catalog name. Record what the light shows. Do not fill in a story.",
+      mode: "ember",
+      traces: [
+        { spec: white, color: "#d7e7ff", label: `${white.label} · already marked`, shiftNm: 0 },
+        { spec: env, color: "#e8c48a", label: "Unlabeled envelope", shiftNm: 0 }
+      ],
+      markers: dsState.whitePeakMark != null ? [{ nm: dsState.whitePeakMark, kind: "peak" }] : [],
+      readout: "Observed first. Inference second. Present tense is not on this plate.",
+      status: dsState.lastHint || "The envelope has a peak and a shape. It does not name itself.",
+      logLabel: "Write a bounded claim",
+      closeLabel: "Back to the basin",
+      emberMark: env?.peakNm,
+      whiteMark: dsState.whitePeakMark
+    }, {
+      onLog() {
+        closeSpectrum();
+        openEnvelope();
+      },
+      onClose: closeSpectrum
+    });
+  }
+
   function openEnvelope() {
     renderEnvelope();
   }
@@ -4057,7 +4204,7 @@ export async function boot(root = document) {
   function renderEnvelope() {
     ui.showGeoBoard(true, {
       title: "Unlabeled envelope",
-      lead: "Say what the light shows, what you can infer, what stays unknown, and what you refuse.",
+      lead: "You looked at the unlabeled trace. Finish the case: what the light showed, what you can infer, what stays unknown, and one sentence you refuse.",
       groups: [
         {
           id: "observed",
@@ -4778,6 +4925,10 @@ export async function boot(root = document) {
     else openSummit();
   });
   root.querySelector("#summit-close")?.addEventListener("click", closeSummit);
+  root.querySelector("#summit-diag-toggle")?.addEventListener("click", () => {
+    summitDiagOpen = !summitDiagOpen;
+    if (summitOpen) renderSummit();
+  });
   root.querySelector("#summit-more")?.addEventListener("click", () => askSummit({ action: "explain_more", question: "Explain more" }));
   root.querySelector("#summit-quick")?.addEventListener("click", (event) => {
     const btn = event.target.closest("[data-summit]");
@@ -4894,6 +5045,7 @@ export async function boot(root = document) {
         if (atFeature(dsRegion, player, "west-rim-stake", 20)) markVisited(dsState, "west");
         if (atFeature(dsRegion, player, "east-rim-stake", 20)) markVisited(dsState, "east");
         if (atFeature(dsRegion, player, "quiet-floor", 24) || atFeature(dsRegion, player, "floor-rock", 12)) markVisited(dsState, "floor");
+        tickLookbackWalk(dsState, atFeature(dsRegion, player, "north-rim-station", 90));
       }
       if (Math.hypot(player.vx, player.vy) > 24) {
         const kind = inCreek(world.region, player.x, player.y) ? "water" : onTrail(world.region, player.x, player.y) ? "rock" : "soil";
@@ -4992,31 +5144,31 @@ export async function boot(root = document) {
       } else if (target.kind === "planet-desk") {
         ui.setPrompt("Read the planet log · E");
       } else if (target.kind === "eyepiece") {
-        ui.setPrompt("Look through the eyepiece · E");
+        ui.setPrompt(dsInspectPrompt("eyepiece"));
       } else if (target.kind === "plate-desk") {
-        ui.setPrompt("Read the inherited log · E");
+        ui.setPrompt(dsInspectPrompt("plate-desk"));
       } else if (target.kind === "spectrograph") {
-        ui.setPrompt("Use the plate spectrograph · E");
+        ui.setPrompt(dsInspectPrompt("spectrograph"));
       } else if (target.kind === "lamp") {
         ui.setPrompt(dsState.lampOn ? "Inspect the lamp light · E" : "Use the calibration lamp · E");
       } else if (target.kind === "west-stake") {
-        ui.setPrompt("Compare season plates from this cairn · E");
+        ui.setPrompt(dsInspectPrompt("west-stake"));
       } else if (target.kind === "east-stake") {
-        ui.setPrompt("Compare season plates from the far cairn · E");
+        ui.setPrompt(dsInspectPrompt("east-stake"));
       } else if (target.kind === "plot-board") {
-        ui.setPrompt("Place measured stars on empty axes · E");
+        ui.setPrompt(dsInspectPrompt("plot-board"));
       } else if (target.kind === "burst-poster") {
-        ui.setPrompt("Read the event poster · E");
+        ui.setPrompt(dsInspectPrompt("burst-poster"));
       } else if (target.kind === "basin-rock") {
         ui.setPrompt(dsState.rockPicked ? "The floor rock is in hand" : "Pick up the basin rock · E");
       } else if (target.kind === "horn") {
-        ui.setPrompt("Point the Quiet Floor horn · E");
+        ui.setPrompt(dsInspectPrompt("horn"));
       } else if (target.kind === "quiet-floor") {
         ui.setPrompt("Stand on the quiet pan · E");
       } else if (target.kind === "glow-notch") {
-        ui.setPrompt("Look at the town glow leak · E");
+        ui.setPrompt(dsState.glowNoted ? "Town glow still leaks here" : "Look at the town glow leak · E");
       } else if (target.kind === "picnic") {
-        ui.setPrompt("Optional picnic table · E");
+        ui.setPrompt("Optional rest · E");
       } else if (target.kind === "station") {
         ui.setPrompt("Look over the basin · E");
       } else if (target.kind === "eclipse-desk") {

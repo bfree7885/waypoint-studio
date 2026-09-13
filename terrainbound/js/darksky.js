@@ -40,7 +40,12 @@ export {
   rejectCompeting,
   pointHorn,
   pinOrigin,
+  originEvidenceReady,
   logOriginCase,
+  tickLookbackWalk,
+  noteGlowLeak,
+  markEnvelopeSeen,
+  markMassPlatesSeen,
   setLaterTonight,
   readDistantPoster,
   logLookback,
@@ -952,7 +957,7 @@ export function nightSkyState(catalog) {
 }
 
 function pack(question, verb, next, where) {
-  return { question, verb, next, where, lookingFor: next, done: [], pairs: [] };
+  return { question, verb, next, where, lookingFor: "", done: [], pairs: [] };
 }
 
 function pushNote(state, id, text) {

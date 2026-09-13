@@ -56,9 +56,8 @@ import {
   logRedshiftTrend,
   rejectCompeting,
   pointHorn,
-  pinOrigin,
   logOriginCase,
-  setLaterTonight,
+  tickLookbackWalk,
   readDistantPoster,
   logLookback,
   toggleEnvelope,
@@ -232,10 +231,6 @@ check("DS-08 assembles three origin lines, not a slogan", () => {
   assert.equal(pointHorn(state, "zenith", false).ok, false);
   pointHorn(state, "wall", true);
   pointHorn(state, "zenith", true);
-  pinOrigin(state, "expansion");
-  assert.equal(logOriginCase(state).ok, false);
-  pinOrigin(state, "abundance");
-  pinOrigin(state, "leftover");
   assert.equal(logOriginCase(state).ok, true);
   assert.equal(ds08Complete(state), true);
 });
@@ -244,7 +239,9 @@ check("DS-09 lookback refuses happening-now", () => {
   const state = through("DS-08");
   assert.equal(logLookback(state, "earlier-light").ok, false);
   readDistantPoster(state);
-  setLaterTonight(state, true);
+  if (!state.observedIds.includes("nearby-variable")) state.observedIds.push("nearby-variable");
+  tickLookbackWalk(state, false);
+  tickLookbackWalk(state, true);
   assert.equal(logLookback(state, "happening-now").ok, false);
   assert.equal(logLookback(state, "earlier-light").ok, true);
   assert.equal(ds09Complete(state), true);
@@ -401,8 +398,9 @@ check("Summit truth stays packet-bound and blocks astronomy hallucinations", () 
 });
 
 check("interaction vocabulary is not overlay-slider-only", () => {
-  assert.match(gameJs, /openRimPlates|renderPlotBoard|openHorn|openEnvelope|openFloorRock|later tonight/i);
-  assert.match(gameJs, /Walked baseline|Point zenith|Unlabeled plot/);
+  assert.match(gameJs, /openRimPlates|renderPlotBoard|openHorn|openEnvelope|openFloorRock|tickLookbackWalk/i);
+  assert.match(gameJs, /Walked baseline|Point zenith|Unlabeled plot|openRedshiftPlotFromBoard/);
+  assert.doesNotMatch(gameJs, /Look later tonight/);
 });
 
 if (failures.length) {

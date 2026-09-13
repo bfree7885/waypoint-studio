@@ -54,7 +54,13 @@ export function completeEmptyFields() {
     redshiftMarks: [],
     redshiftPoints: {},
     redshiftTrend: false,
+    redshiftPatternSeen: false,
+    redshiftAlignedIds: [],
     competingRejected: false,
+    massPlatesSeen: false,
+    lookbackLeftStation: false,
+    glowNoted: false,
+    envelopeSeen: false,
     hornPoint: null,
     hornTried: [],
     originPinned: [],
@@ -88,6 +94,7 @@ export function completeSnapshot(state = {}) {
     plotPlacements: { ...(state.plotPlacements || {}) },
     redshiftMarks: [...(state.redshiftMarks || [])],
     redshiftPoints: { ...(state.redshiftPoints || {}) },
+    redshiftAlignedIds: [...(state.redshiftAlignedIds || [])],
     hornTried: [...(state.hornTried || [])],
     originPinned: [...(state.originPinned || [])],
     envelopeObserved: [...(state.envelopeObserved || [])],
@@ -360,7 +367,14 @@ export function tryGalaxyAlign(state, catalog, galaxyId, shiftNm) {
     const best = (gal?.lines || []).reduce((min, line) => Math.min(min, Math.abs(line.nm - moved)), 80);
     return sum + best;
   }, 0) / rest.length;
-  return { ok: true, score, matched: Math.abs(shiftNm - want) <= 8 && score < 18, want };
+  const matched = Math.abs(shiftNm - want) <= 8 && score < 18;
+  if (matched) {
+    state.redshiftPatternSeen = true;
+    const ids = new Set(state.redshiftAlignedIds || []);
+    ids.add(galaxyId);
+    state.redshiftAlignedIds = [...ids];
+  }
+  return { ok: true, score, matched, want };
 }
 
 export function markRedshiftFeature(state, nm) {
@@ -447,21 +461,30 @@ export function pinOrigin(state, id) {
   return { ok: true, pinned: state.originPinned };
 }
 
+export function originEvidenceReady(state) {
+  return {
+    expansion: Boolean(state.redshiftTrend),
+    abundance: Boolean(state.nucleosynthesisLogged),
+    leftover: Boolean(state.hornPoint === "zenith" && (state.hornTried || []).includes("wall"))
+  };
+}
+
 export function logOriginCase(state) {
   if (!ds07Complete(state) || !ds06Complete(state)) {
-    state.lastHint = "Expansion and abundance have to be in the tablet before a third line can join them.";
+    state.lastHint = "Expansion and abundance have to be in the tablet before leftover sky can join them.";
     return { ok: false, reason: "need-prior" };
   }
   if (state.hornPoint !== "zenith" || !(state.hornTried || []).includes("wall")) {
-    state.lastHint = "Point the horn at the wall and then overhead. One noisy line stays weak by itself.";
+    state.lastHint = "Point the horn at the station wall, then overhead. Leftover sky is the quiet direction, not a slogan.";
     return { ok: false, reason: "horn" };
   }
-  const pinned = new Set(state.originPinned || []);
-  if (!ORIGIN_LINES.every((id) => pinned.has(id))) {
-    state.lastHint = "Pin expansion, leftover glow, and abundance. A famous name is not a substitute.";
+  const ready = originEvidenceReady(state);
+  if (!ready.expansion || !ready.abundance || !ready.leftover) {
+    state.lastHint = "The horn only adds leftover sky. Galaxy shift and floor-rock abundance have to already be in the tablet.";
     return { ok: false, reason: "pins" };
   }
   const already = Boolean(state.originLogged);
+  state.originPinned = ORIGIN_LINES.filter((id) => ready[id]);
   state.originLogged = true;
   pushNote(
     state,
@@ -474,6 +497,43 @@ export function logOriginCase(state) {
 
 export function ds08Complete(state) {
   return Boolean(state.originLogged && ds07Complete(state));
+}
+
+export function tickLookbackWalk(state, atStation) {
+  if (!ds07Complete(state) || ds09Complete(state)) return { ok: false, changed: false };
+  const sawNearby = (state.observedIds || []).includes("nearby-variable");
+  if (!state.distantPosterSeen || !sawNearby) return { ok: false, changed: false };
+  if (!atStation) {
+    state.lookbackLeftStation = true;
+    return { ok: true, changed: false, left: true };
+  }
+  if (state.lookbackLeftStation && !state.laterTonight) {
+    setLaterTonight(state, true);
+    return { ok: true, changed: true };
+  }
+  return { ok: true, changed: false };
+}
+
+export function noteGlowLeak(state) {
+  state.visitedGlow = true;
+  const already = Boolean(state.glowNoted);
+  state.glowNoted = true;
+  pushNote(
+    state,
+    "glow-notch",
+    "Town glow leaks at the west notch. The basin floor stays darker — that is why the work happens down there, not on the rim of the leak."
+  );
+  return { ok: true, already };
+}
+
+export function markEnvelopeSeen(state) {
+  state.envelopeSeen = true;
+  return { ok: true };
+}
+
+export function markMassPlatesSeen(state) {
+  state.massPlatesSeen = true;
+  return { ok: true };
 }
 
 export function setLaterTonight(state, on) {
@@ -494,7 +554,7 @@ export function logLookback(state, claimId) {
     return { ok: false, reason: "need-prior" };
   }
   if (!state.distantPosterSeen || !state.nearbyChanged) {
-    state.lastHint = "Read the poster, then use later tonight at the eyepiece. The nearby star can change; the distant plate does not become live weather.";
+    state.lastHint = "Read the poster, watch the nearby star, then leave the station and look again. Nearby light can still change. Distant light already left.";
     return { ok: false, reason: "need-contrast" };
   }
   if (claimId === "happening-now") {
@@ -586,39 +646,42 @@ export function dsAarEligible(state, ds01, ds02) {
 export function completeGuidance(state, ds01, ds02) {
   if (!ds03Complete(state)) {
     if (!state.visitedWest) {
-      return pack("Two stars look equally bright. Is brightness distance?", "WALK", "Leave the station for the west rim cairn.", "West Rim Stake");
+      return pack("Two stars look equally bright. Is that enough to rank distance?", "ASK", "Appearance is the first observation, not the last.", "Opposite rim cairns");
     }
     if (!state.visitedEast) {
-      return pack("Does the shift reverse if you change ends of the baseline?", "WALK", "Carry the plates to the east rim.", "East Rim Stake");
+      return pack("Does a nearby shift reverse if you change ends of the baseline?", "ASK", "One cairn is not a baseline.", "The other rim");
     }
-    return pack("Which star actually moved with the baseline?", "COMPARE", "Switch plate A and plate B from both cairns.", "West and East Rim Stakes");
+    return pack("Which star actually moved with the walked baseline?", "COMPARE", "Equal brightness is not the question.", "West and East Rim Stakes");
   }
   if (!ds04Complete(state)) {
-    return pack("What pattern appears if you place your own measurements?", "PLOT", "Put three measured stars on the unlabeled board.", "North Rim Station · unlabeled plot");
+    return pack("What pattern appears if you place your own measurements?", "PLOT", "The board has no legend until you put points on it.", "Unlabeled board at the station");
   }
   if (!ds05Complete(state)) {
-    return pack("Do all stars live the same life?", "PREDICT", "Branch massive vs sun-like, then check the remnant plate.", "Station spectrograph");
+    return pack("Do all stars live the same life?", "COMPARE", "Massive and sun-like plates are already in the spectrograph.", "Station spectrograph");
   }
   if (!ds06Complete(state)) {
     if (!state.rockPicked) {
-      return pack("What is the quiet pan made of?", "WALK", "Descend to the Quiet Floor and pick up the silicate.", "Quiet Floor");
+      return pack("What is this quiet pan made of?", "WALK", "Ordinary stone still has a cosmic history.", "Quiet Floor");
     }
-    return pack("Where did the metals in ordinary rock come from?", "COMPARE", "Mark a metal line present in one star and nearly absent in the other.", "Station spectrograph · Quiet Floor rock");
+    return pack("Where did the metals in ordinary rock come from?", "COMPARE", "Not every nucleus has the same chapter.", "Floor rock, then station plates");
   }
   if (!ds07Complete(state)) {
-    return pack("Did the known line pattern move?", "ALIGN", "Compare rest marks with galaxy plates, then plot shift against distance rank.", "Plate desk");
+    if (!state.redshiftTried) {
+      return pack("Did a known line pattern move?", "COMPARE", "Reuse the rest pattern you already learned. Redshift is not a red color.", "Plate spectrograph");
+    }
+    return pack("Does farther light sit at a larger shift?", "PLOT", "The spectrograph showed a moved pattern. Distance rank still needs a board.", "Unlabeled plot board");
   }
   if (!ds08Complete(state)) {
-    return pack("Can one famous name replace evidence?", "ASSEMBLE", "Point the horn on the Quiet Floor and pin three independent lines.", "Quiet Floor horn");
+    return pack("Can one famous name replace independent evidence?", "ASSEMBLE", "Expansion and abundance are already in the tablet. The horn is for leftover sky.", "Quiet Floor horn");
   }
   if (!ds09Complete(state)) {
-    return pack("Is the distant outburst happening now?", "WATCH", "Read the poster, then use later tonight at the eyepiece.", "Station poster · dome eyepiece");
+    return pack("Is a distant outburst happening now?", "WATCH", "Nearby light can still change. Distant light already left.", "Poster, eyepiece, then time away from the dome");
   }
   if (!ds10Complete(state)) {
-    return pack("What can you honestly say about an unlabeled target?", "BOUND", "Sort observed, inferred, unknown, and a sentence you refuse.", "Plate desk · unlabeled envelope");
+    return pack("What can this unlabeled envelope actually support?", "BOUND", "Start with the light. Stop where the light stops.", "Spectrograph, then the plate desk");
   }
   if (state.aar?.result !== "clearance") {
-    return pack("What case does the tablet actually support?", "REPORT", "Make the case with Wren using evidence you earned.", "Wren's radio");
+    return pack("What case does the tablet actually support?", "REPORT", "Pin notes you earned. Leave the rest.", "Wren's radio");
   }
   void ds01;
   void ds02;
@@ -689,6 +752,14 @@ export function appendCompleteEvidence(groups, state) {
       observation: "A pale silicate picked up on the quiet pan."
     });
   }
+  if (state.glowNoted) {
+    saw.cards.push({
+      id: "ds-saw-glow",
+      kind: "observation",
+      title: "Glow Notch",
+      observation: "Town glow leaks at the west notch. The basin floor stays darker."
+    });
+  }
   if (state.distantPosterSeen) {
     saw.cards.push({
       id: "ds-saw-poster",
@@ -720,8 +791,8 @@ export function appendCompleteEvidence(groups, state) {
     tested.cards.push({
       id: "ds-tested-later",
       kind: "measurement",
-      title: "Later tonight",
-      observation: "The nearby variable changed. The distant plate did not become a live feed."
+      title: "Time away",
+      observation: "After leaving the station and looking again, the nearby variable had changed. The distant plate did not become a live feed."
     });
   }
   if (state.metalCompared) {
@@ -960,9 +1031,9 @@ export function drawUnlabeledPlot(ctx, view) {
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#12141c";
   ctx.fillRect(0, 0, width, height);
-  const left = 46;
+  const left = 54;
   const top = 18;
-  const plotW = width - 64;
+  const plotW = width - 72;
   const plotH = height - 48;
   ctx.strokeStyle = "rgba(200, 210, 230, 0.4)";
   ctx.strokeRect(left, top, plotW, plotH);
@@ -972,7 +1043,7 @@ export function drawUnlabeledPlot(ctx, view) {
   ctx.fillText("shorter-wavelength peak", left + 70, height - 8);
   ctx.fillText("longer-wavelength peak", left + plotW - 80, height - 8);
   ctx.save();
-  ctx.translate(14, top + plotH / 2);
+  ctx.translate(16, top + plotH / 2);
   ctx.rotate(-Math.PI / 2);
   ctx.fillText("brighter after distance", 0, 0);
   ctx.restore();
@@ -985,8 +1056,15 @@ export function drawUnlabeledPlot(ctx, view) {
     ctx.fill();
     ctx.fillStyle = "#e8eef8";
     ctx.font = "10px Trebuchet MS, sans-serif";
-    ctx.textAlign = "left";
-    ctx.fillText(view.labels?.[id] || id, x + 10, y + 4);
+    const extra = view.measurements?.[id] ? ` · ${view.measurements[id]}` : "";
+    const label = `${view.labels?.[id] || id}${extra}`;
+    if (put.x > 62) {
+      ctx.textAlign = "right";
+      ctx.fillText(label, x - 10, y + 4);
+    } else {
+      ctx.textAlign = "left";
+      ctx.fillText(label, x + 10, y + 4);
+    }
   }
 }
 
@@ -1077,6 +1155,7 @@ export function debugCompleteThrough(state, catalog, stopId, helpers) {
   logMetalCompare(state, 518);
   logNucleosynthesis(state, "heavy-from-stars");
   if (stopId === "DS-06") return state;
+  tryGalaxyAlign(state, catalog, "galaxy-far", 40);
   placeRedshiftPoint(state, "galaxy-near", 22, 28);
   placeRedshiftPoint(state, "galaxy-mid", 48, 52);
   placeRedshiftPoint(state, "galaxy-far", 78, 82);
@@ -1085,15 +1164,16 @@ export function debugCompleteThrough(state, catalog, stopId, helpers) {
   if (stopId === "DS-07") return state;
   pointHorn(state, "wall", true);
   pointHorn(state, "zenith", true);
-  pinOrigin(state, "expansion");
-  pinOrigin(state, "abundance");
-  pinOrigin(state, "leftover");
   logOriginCase(state);
   if (stopId === "DS-08") return state;
   readDistantPoster(state);
+  if (!state.observedIds) state.observedIds = [];
+  if (!state.observedIds.includes("nearby-variable")) state.observedIds.push("nearby-variable");
+  state.lookbackLeftStation = true;
   setLaterTonight(state, true);
   logLookback(state, "earlier-light");
   if (stopId === "DS-09") return state;
+  state.envelopeSeen = true;
   toggleEnvelope(state, "observed", "spectrum-shape");
   toggleEnvelope(state, "observed", "peak-place");
   toggleEnvelope(state, "inferred", "not-hotter");
@@ -1121,7 +1201,7 @@ function pushNote(state, id, text) {
 }
 
 function pack(question, verb, next, where) {
-  return { question, verb, next, where, lookingFor: next, done: [], pairs: [] };
+  return { question, verb, next, where, lookingFor: "", done: [], pairs: [] };
 }
 
 function clamp(n, a, b) {

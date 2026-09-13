@@ -1,6 +1,6 @@
-# Dark Sky Basin — Implementation (Phase 8C)
+# Dark Sky Basin — Implementation (Phase 8C / 8D)
 
-Phase 8B SHA `8a9503e1a8ca97a3c0b157e07fe75ff45b51a3b8` remains the DS-01/DS-02 foundation. This file records what 8C actually shipped, including places implementation diverged from the 8A architecture without rewriting that history.
+Phase 8B SHA `8a9503e1a8ca97a3c0b157e07fe75ff45b51a3b8` remains the DS-01/DS-02 foundation. Phase 8C shipped the full region. Phase 8D is owner-playthrough refinement: later-region movement, less geo-board residue, field-guide echo, stale inspect prompts, AAR peek, Summit debug chrome.
 
 **Not a deploy.** Atlas `implementationState` for Dark Sky is still `"future"`. Owner review: `http://127.0.0.1:<port>/terrainbound/?field=1&region=dark-sky-basin&summit=local&v=p79l`
 
@@ -30,12 +30,35 @@ Trails connect station → lamp, west rim, east rim, floor, and the two optional
 | DS-04 | Click-place three measured stars on unlabeled axes |
 | DS-05 | Branch massive vs sun-like futures; match remnant plate |
 | DS-06 | Pick up floor rock, mark a metal line present/absent, refuse “all in stars” |
-| DS-07 | Align rest vs galaxy pattern, plot shift vs distance rank, reject equal-shift |
-| DS-08 | Point horn zenith/wall/horizon, pin expansion + leftover + abundance |
-| DS-09 | Read poster, later-tonight eyepiece jump, refuse present tense |
-| DS-10 | Sort observed / inferred / unknown / refuse |
+| DS-07 | Align rest vs galaxy pattern at the spectrograph, then walk to the unlabeled board for shift vs distance |
+| DS-08 | Point the Quiet Floor horn. Expansion and abundance are already in the tablet |
+| DS-09 | Read poster, watch a nearby star, leave the dome, look again; refuse present tense |
+| DS-10 | Envelope spectrum first, then bounded observed / inferred / unknown / refuse |
 
-DS-01/DS-02 overlays were not rebuilt. Spectroscopy is still a bench overlay (accepted 8B compromise).
+## Phase 8D refinements
+
+DS-01/DS-02 overlays were not rebuilt.
+
+| ID | 8D change |
+| --- | --- |
+| DS-04 | Chip labels include the player's measured peak / distance rank |
+| DS-05 | Spectrograph plate comparison first, then branch board |
+| DS-07 | Spectrograph reuses rest-pattern skill; shift-vs-distance lives on the unlabeled **plot board** (walk) |
+| DS-08 | Horn only points. Expansion and abundance come from tablet work already done |
+| DS-09 | Time away from the dome replaces the "later tonight" eyepiece button |
+| DS-10 | Envelope spectrum on the spectrograph, bounded claim at the plate desk |
+| Guide | Question + place. `lookingFor` no longer repeats the next instruction |
+| Inspect | Stage-aware prompts (plate desk is not always "read the inherited log") |
+| AAR | Evidence list scrolls above a static footer; no peek of the next card |
+| Glow Notch | Optional stray-light note. Picnic stays optional rest, not clearance |
+| Summit | `?field=1` route debug is a collapsed "Route debug" control |
+
+## Known compromises (after 8D)
+
+- DS-01/DS-02 still use the spectrograph overlay (accepted 8B).
+- DS-05 branch picks and DS-10 sentence buckets remain overlay UI after the fieldwork.
+- Field Record `ds-puzzle` kinds are still not derived by the shared mastery engine.
+- Dome wash is still described more than visualized.
 
 ## Deterministic astronomy model
 
@@ -75,14 +98,12 @@ Plate stars have labels (Star 1 / Star 2), not color-only. Plot/redshift canvase
 
 ## Known compromises
 
-- DS-01/DS-02 still use the spectrograph overlay (accepted 8B).
-- DS-07 reuses that overlay for rest-vs-shifted traces, then a separate plot board.
-- Field guide can still repeat next-step language.
-- Dome wash is still described more than visualized.
-- Glow Notch / picnic are thin flavor, not systems.
-- Field Record competencies use `ds-puzzle` requires that the shared mastery engine does not yet derive automatically; Wren AAR is the clearance authority.
-- `later tonight` is a button on the eyepiece, not a sky-clock curriculum (on purpose).
-- Several later investigations still open a geo-board overlay. Plate and horn **actions sit above the canvas** so they are not below the fold; the overlay itself remains an accepted compromise.
+See Phase 8D list above. Remaining 8C-era notes that still hold:
+
+- Spectroscopy overlays for DS-01/DS-02 (accepted 8B).
+- Dome wash is described more than visualized.
+- Field Record `ds-puzzle` kinds are not derived by the shared mastery engine.
+- Lookback is an authored leave-and-return contrast, not a sky-clock simulation.
 
 ## Deferred polish
 

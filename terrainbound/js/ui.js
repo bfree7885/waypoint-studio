@@ -799,6 +799,11 @@ export function bindUi(root) {
       }
       if (summitMore) summitMore.hidden = !view.moreAvailable;
       if (summitAsk) summitAsk.disabled = Boolean(view.pending);
+      const diagToggle = root.querySelector("#summit-diag-toggle");
+      if (diagToggle) {
+        diagToggle.hidden = !view.fieldDebug;
+        diagToggle.textContent = view.diagOpen ? "Hide route debug" : "Route debug";
+      }
       const diag = root.querySelector("#summit-diag");
       if (diag) {
         diag.hidden = !view.diag;
@@ -917,13 +922,16 @@ export function bindUi(root) {
           }
         }
         if (view.canvasKind) {
+          const wrap = document.createElement("div");
+          wrap.className = "ds-field-canvas-wrap";
           const canvasEl = document.createElement("canvas");
           canvasEl.className = "ds-field-canvas";
           canvasEl.width = view.canvasWidth || 420;
           canvasEl.height = view.canvasHeight || 220;
           canvasEl.setAttribute("aria-label", view.canvasLabel || "Field diagram");
           canvasEl.tabIndex = 0;
-          geoBody.appendChild(canvasEl);
+          wrap.appendChild(canvasEl);
+          geoBody.appendChild(wrap);
           const g = canvasEl.getContext("2d");
           if (view.canvasKind === "plates") drawSeasonPlates(g, view);
           else if (view.canvasKind === "plot") drawUnlabeledPlot(g, view);
@@ -1014,6 +1022,7 @@ export function bindUi(root) {
           }
           if (best) handlers.onPick?.(best.id);
         };
+        const labelBoxes = [];
         for (const star of view.targets || []) {
           const x = 40 + star.az * (width - 80);
           const y = 36 + (1 - star.alt) * (height * 0.55);
@@ -1028,8 +1037,19 @@ export function bindUi(root) {
           ctx.fill();
           ctx.fillStyle = "#c8d4e8";
           ctx.font = "12px Trebuchet MS, sans-serif";
-          ctx.textAlign = "center";
-          ctx.fillText(star.seen ? `${star.label} · logged` : star.label, x, y + 22);
+          const text = star.seen ? `${star.label} · logged` : star.label;
+          let lx = x;
+          let ly = y + 20;
+          let align = star.az > 0.55 ? "left" : "right";
+          if (align === "right") lx = x - 12;
+          else lx = x + 12;
+          for (const prev of labelBoxes) {
+            if (Math.abs(ly - prev.y) < 14 && Math.abs(lx - prev.x) < 90) ly = prev.y + 14;
+          }
+          if (ly > height * 0.7) ly = y - 10;
+          ctx.textAlign = align;
+          ctx.fillText(text, lx, ly);
+          labelBoxes.push({ x: lx, y: ly });
         }
         skyEyeCanvas.onkeydown = (event) => {
           if (event.key === "Enter" || event.key === " ") {

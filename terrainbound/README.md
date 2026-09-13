@@ -48,6 +48,7 @@ node terrainbound/tests/phase7_9k.test.mjs
 node terrainbound/tests/phase7_9l.test.mjs
 node terrainbound/tests/phase8_b.test.mjs
 node terrainbound/tests/phase8_c.test.mjs
+node terrainbound/tests/phase8_d.test.mjs
 # Supervised field-test RC (local; not the default):
 # npm run fieldtest:summit
 # Optional captures: node terrainbound/tests/capture-phase79l.mjs

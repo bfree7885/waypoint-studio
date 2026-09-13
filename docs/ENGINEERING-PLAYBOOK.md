@@ -2099,3 +2099,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - If a geo-board canvas is tall, put plate/horn **actions above the drawing**. Status copy (`lastHint`) must clear on a successful log, or the next investigation inherits the previous prompt.
 - Dark Sky AAR close copy cannot stay “Back to the hollow.” Pin notes must not repeat the puzzle title.
 
+### Lessons Learned — TerrainBound Phase 8D (2026-09-13)
+
+- Field-guide echo was `lookingFor` duplicating `next`. Blank `lookingFor` and ask a question; do not reprint the inspect prompt.
+- Later Dark Sky beats need a second instrument or a second time, not a second chip row. Redshift plot belongs on the unlabeled board. Lookback is leaving the dome. Origin leftover is the horn; expansion and abundance are already in the tablet.
+- `?field=1` Summit route strings must stay collapsed. Owner playthrough cannot be judged with a debug footer in the conversation.
+- A 180px `min-height` on a canvas with a fixed aspect ratio will overflow a 320px card and clip axis labels. Let the plot keep `width: 100%` and scroll the board body; do not force height.
+
