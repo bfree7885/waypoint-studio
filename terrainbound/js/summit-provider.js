@@ -7,6 +7,12 @@ import { LEVEL, conceptKey } from "./summit-policy.js";
 import { isOffTopic } from "./summit-route.js";
 import { buildSummitTruth } from "./summit-truth.js";
 import { conceptTeach } from "./summit-concepts.js";
+import {
+  GAME_HELP_LINE,
+  characterReply,
+  clarificationReply,
+  whyPromptReply
+} from "./summit-character.js";
 
 const FORBIDDEN = /\bCH-\d+\b|pin CH-|select the best|correct!|incorrect!|question \d of/i;
 
@@ -146,8 +152,8 @@ function buildReply(request, curriculum, concepts) {
 
   if (isOffTopic(request.question)) {
     return pack(
-      "I'm your field science tutor here. I will not answer that. If you want, I can help with what you're seeing in Cedar Hollow.",
-      { level, worldCue: packFor.worldCue }
+      "I'm Summit, the hollow's Earth Science companion. That question isn't on this trail. If you want, we can stay with what you're seeing in Cedar Hollow.",
+      { level }
     );
   }
 
@@ -161,6 +167,21 @@ function buildReply(request, curriculum, concepts) {
         comparisonStatus: request.packet.facts.comparisonStatus
       }
     : buildSummitTruth(context);
+
+  if (route === "game-help") {
+    return pack(GAME_HELP_LINE, { level });
+  }
+
+  if (route === "character") {
+    return pack(characterReply(request.question), { level });
+  }
+
+  if (route === "clarification") {
+    if (!request.question && request.action === "why") {
+      return pack(whyPromptReply(), { level });
+    }
+    return pack(clarificationReply(request.packet), { level, worldCue: packFor.worldCue });
+  }
 
   if (route === "evidence-inventory") {
     const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
@@ -256,7 +277,7 @@ function buildReply(request, curriculum, concepts) {
     return aarWhy(context, packFor, level);
   }
 
-  if (intent === "notice") {
+  if (route === "notice" || intent === "notice") {
     const highLook = (context.observations || []).includes("high-look");
     if (/high look/i.test(request.question || "")) {
       return pack(
@@ -331,7 +352,7 @@ function fairTestLine(question, truth, level) {
   const ready = Boolean(truth.comparisonStatus?.comparisonReady);
   const known = truth.known?.length ? truth.known.join("; ") : "none recorded yet";
   if (/10\.2|10\.4/.test(q) && /gentle/i.test(q) && !ready) {
-    return pack("No. Both of those times are steep-slope trials. They do not split into steep versus gentle.", {
+    return pack("Not quite. Both of those times are steep-slope trials. They do not split into steep versus gentle.", {
       level,
       conceptIds: ["fair-test"]
     });

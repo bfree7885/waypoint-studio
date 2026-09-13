@@ -248,7 +248,7 @@ await check("timeout and malformed still fall back", async () => {
       }
     })
   });
-  const a = await Promise.resolve(timed.ask(createSummitState(), baseInput(), { question: "i dont get this" }));
+  const a = await Promise.resolve(timed.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(a.provider, "deterministic");
   assert.equal(a.fallbackReason, "timeout");
 
@@ -276,7 +276,7 @@ await check("timeout and malformed still fall back", async () => {
       adapter: createHttpAdapter({ endpoint: "http://127.0.0.1:1/summit-ai", timeoutMs: 200 })
     })
   });
-  const c = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "what am i even doing" }));
+  const c = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(c.provider, "deterministic");
 
   const det = createDeterministicProvider({ curriculum, concepts });
@@ -286,7 +286,7 @@ await check("timeout and malformed still fall back", async () => {
     level: 0,
     context: { activePuzzleId: "CH-02", aar: {}, observations: [] }
   });
-  assert.match(d.text, /field science tutor/i);
+  assert.match(d.text, /Earth Science companion|Cedar Hollow/i);
 });
 
 await check("docs describe constrained language-layer architecture", () => {

@@ -61,6 +61,12 @@ Ask only:
 - Did Summit ever give away too much?
 - Was there anything you wanted to ask that it could not answer?
 - Did Summit feel like part of the game or like a separate chatbot?
+- Did students see Summit as a character?
+- Did “how do I play?” make sense?
+
+## Phase 7.9K
+
+Summit is a Sasquatch Earth Science companion with a visible portrait. Game-help questions stay deterministic. Observer tools remain below the student conversation.
 - Would you use it again if you were stuck?
 
 Do not run a long survey.

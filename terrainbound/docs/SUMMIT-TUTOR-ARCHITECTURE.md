@@ -139,13 +139,16 @@ Prefer **deterministic** (`useAi: false`):
 | Reason | When |
 | --- | --- |
 | `first-hint` | Empty question, first authored hint |
-| `quick-action` | Empty question + What should I do / notice / hint / explain |
+| `quick-action` | Empty question + hint / explain |
+| `notice` | “What should I notice?” / look-at prompts |
+| `game-help` | “How do I play?”, “I'm lost”, “what's the point” — TerrainBound loop, not the current puzzle dump |
+| `character` | “Are you Bigfoot?”, “who are you?” |
+| `clarification` | “I don't get this” / empty Why? prompt |
 | `vocab-library` | Clean “what is runoff?” / “what does X mean?” definition ask |
-| `objective` | Exact “what am I supposed to do?” |
 | `evidence-inventory` | Exact “what notes/evidence do I have” |
-| `off-topic` | Sports, homework, jokes — authored tutor redirect |
+| `off-topic` | Sports, homework, jokes — authored redirect |
 | `gameplay-redirect` | Button / tap / click / pin / walk-destination asks |
-| `next-action` | “what should I test next” / “what do I do next” |
+| `next-action` | “what should I do next”, HUD What should I do?, empty `what_now` |
 | `state-honesty` | High Look, third trial, clearance, finish probes |
 | `answer-ladder` | “give me the answer” / “do it for me” — authored support ladder |
 | `structured-data` | Graph / compare intents that already have authored data lines |
@@ -155,7 +158,7 @@ Prefer **conversational** (`useAi: true`):
 
 | Reason | When |
 | --- | --- |
-| `messy-language` | Typos, fragments, “what am I even doing” |
+| `messy-language` | Typos, fragments, “idk this runoff thing” |
 | `follow-up` | Short thread turns (“that part”, “why though”, “why did it go faster”, “so gravity?”) |
 | `rephrase` | “explain it easier / another way / explain more” |
 | `curiosity` | Relevant Earth Science transfer (flash flood, snowmelt, gravity, “where I live”) |
@@ -361,6 +364,12 @@ The 7.9I utterance “gravity is stronger on the steep slope” now matches scie
 
 Evidence: `tests/evidence/phase79j/`.
 
+## Phase 7.9K Summit Sasquatch character
+
+Summit is a Sasquatch Earth Science companion, not a help panel and not a human tutor. Character copy lives in `docs/SUMMIT-CHARACTER.md` and `js/summit-character.js`. Portrait slots are `assets/summit/summit-{neutral,thinking,notice,explain}.svg`; TerrainBound chooses the face. “How do I play?” is deterministic `game-help`. Wren still owns clearance.
+
+Evidence: `tests/evidence/phase79k/`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.
@@ -416,7 +425,13 @@ Do not clone Summit into High Country until Cedar Hollow proves context-aware tu
 - `tests/phase7_9h-live.mjs` — GPT-OSS science-precision live eval (env credentials)
 - `tests/evidence/phase79g/` — 7.9G evidence
 - `js/summit-fieldtest.js` — anonymous supervised field-test log, marks, and summaries
-- `docs/SUMMIT-FIELD-TEST.md` — human field-test script
+- `js/summit-character.js` — Sasquatch identity, game-help, character questions
+- `js/summit-portrait.js` — deterministic expression choice
+- `assets/summit/` — Summit bust portraits
+- `docs/SUMMIT-CHARACTER.md` — character bible
+- `tests/phase7_9k.test.mjs` — character + conversational UX
+- `tests/evidence/phase79k/` — 7.9K evidence, including preserved 7.9J human export
+
 - `tests/phase7_9i.test.mjs` — field-test harness
 - `scripts/fieldtest-summit.mjs` — one-command local field-test RC
 - `tests/phase7_9j.test.mjs` — field-test RC launcher

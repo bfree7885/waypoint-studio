@@ -752,8 +752,15 @@ export function bindUi(root) {
       if (summitToggle) summitToggle.setAttribute("aria-expanded", open ? "true" : "false");
       if (!open) return;
       if (summitLead) {
-        summitLead.textContent = view.lead || "I can help you read the hollow. Wren still judges the case.";
+        summitLead.textContent = view.lead || "Curious about the hollow. Serious about the science.";
         summitLead.classList.toggle("is-pending", Boolean(view.pending));
+      }
+      const portrait = root.querySelector("#summit-portrait");
+      if (portrait) {
+        const src = view.portraitSrc || "./assets/summit/summit-neutral.svg";
+        if (portrait.getAttribute("src") !== src) portrait.setAttribute("src", src);
+        portrait.dataset.expression = view.expression || "neutral";
+        portrait.alt = "Summit, a Sasquatch Earth Science companion";
       }
       if (summit) summit.setAttribute("aria-busy", view.pending ? "true" : "false");
       if (summitLog) {

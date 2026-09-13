@@ -264,23 +264,25 @@
       </div>
     </div>
 
-    <div id="summit" hidden role="dialog" aria-label="Summit, Earth Science tutor">
+    <div id="summit" hidden role="dialog" aria-label="Summit, Earth Science companion">
       <div class="summit-sheet">
         <header class="summit-head">
-          <div>
-            <p class="field-bench-kicker">Earth Science tutor <span id="summit-fieldtest-flag" hidden>· SUMMIT FIELD TEST</span></p>
-            <h2>Summit</h2>
+          <div class="summit-identity">
+            <img id="summit-portrait" class="summit-portrait" src="./assets/summit/summit-neutral.svg" width="80" height="80" alt="Summit, a Sasquatch Earth Science companion">
+            <div class="summit-identity-text">
+              <h2>Summit</h2>
+              <p class="summit-role" id="summit-role">Earth Science Companion</p>
+            </div>
           </div>
           <button type="button" id="summit-close">Close</button>
         </header>
-        <p class="summit-lead" id="summit-lead">I can help you read the hollow. Wren still judges the case.</p>
+        <p class="summit-lead" id="summit-lead">Curious about the hollow. Serious about the science.</p>
         <div id="summit-log" class="summit-log" role="log" aria-live="polite"></div>
         <div class="summit-quick" id="summit-quick">
           <button type="button" data-summit="what_now">What should I do?</button>
           <button type="button" data-summit="notice">What should I notice?</button>
-          <button type="button" data-summit="hint">Hint</button>
-          <button type="button" data-summit="why_wrong">Why was that wrong?</button>
           <button type="button" data-summit="explain">Explain this</button>
+          <button type="button" data-summit="why">Why?</button>
         </div>
         <button type="button" id="summit-more" hidden>Explain more</button>
         <form id="summit-form" class="summit-form">
@@ -290,7 +292,7 @@
         </form>
         <p id="summit-diag" class="summit-diag" hidden aria-hidden="true"></p>
         <div id="summit-fieldtest" class="summit-fieldtest" hidden>
-          <p class="summit-fieldtest-kicker">Field test · observer marks (optional)</p>
+          <p class="summit-fieldtest-kicker">SUMMIT FIELD TEST · observer tools, not the student conversation</p>
           <div class="summit-fieldtest-marks" role="group" aria-label="Summit response marks">
             <button type="button" data-ft-mark="HELPED">Helped</button>
             <button type="button" data-ft-mark="CONFUSING">Confusing</button>
@@ -353,6 +355,6 @@
 
     <div id="boot-error" hidden></div>
   </div>
-  <script type="module" src="./js/main.js?v=p79j"></script>
+  <script type="module" src="./js/main.js?v=p79k"></script>
 </body>
 </html>

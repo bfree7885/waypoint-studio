@@ -169,7 +169,7 @@ await check("structured vocab and first hint stay deterministic", async () => {
 
 await check("messy language uses the conversational provider", async () => {
   const engine = hybridEngine();
-  const reply = await ask(engine, createSummitState(), baseInput(), { question: "what am i even doing" });
+  const reply = await ask(engine, createSummitState(), baseInput(), { question: "idk this runoff thing" });
   assert.equal(reply.route.useAi, true);
   assert.match(reply.text, /working on|trying|hollow|runoff|water/i);
   assert.doesNotMatch(reply.text, /CH-\d+|HTTP 429|API failure/i);
@@ -234,7 +234,7 @@ await check("malformed AI falls back without student-facing errors", async () =>
       throw Object.assign(new Error("timeout"), { code: "timeout" });
     })
   );
-  const reply = await ask(engine, createSummitState(), baseInput(), { question: "what am i even doing" });
+  const reply = await ask(engine, createSummitState(), baseInput(), { question: "idk this runoff thing" });
   assert.equal(reply.provider, "deterministic");
   assert.equal(reply.fallbackReason, "timeout");
   assert.doesNotMatch(reply.text, /timeout|HTTP|JSON parsing|API/i);
@@ -276,7 +276,7 @@ await check("AAR pin request does not name a card id", async () => {
 await check("off-topic redirects; curiosity is allowed", async () => {
   const engine = hybridEngine();
   const hoop = await ask(engine, createSummitState(), baseInput(), { question: "Who is the best basketball player?" });
-  assert.match(hoop.text, /field science tutor|Cedar Hollow/i);
+  assert.match(hoop.text, /Earth Science companion|Cedar Hollow|I'm Summit/i);
   const flood = await ask(engine, createSummitState(), baseInput(), { question: "is this like a flash flood" });
   assert.match(flood.text, /flash flood|runoff|slope/i);
   const snow = await ask(engine, createSummitState(), baseInput(), { question: "would snow do the same thing" });
@@ -347,7 +347,7 @@ await check("invalid model output is discarded, not shown", async () => {
       supportLevel: 4
     }))
   );
-  const reply = await ask(engine, createSummitState(), baseInput(), { question: "what am i even doing" });
+  const reply = await ask(engine, createSummitState(), baseInput(), { question: "idk this runoff thing" });
   assert.equal(reply.provider, "deterministic");
   assert.ok(reply.fallbackReason);
   assert.doesNotMatch(reply.text, /99\.9|Pin CH-03|already gave you clearance/i);
@@ -358,14 +358,15 @@ await check("I don't get it / that part / why though stays a thread", async () =
   const state = createSummitState();
   const input = baseInput();
   const first = await ask(engine, state, input, { question: "I don't get it." });
-  assert.match(first.text, /working on|trying|hollow|notice|compare/i);
+  assert.match(first.text, /working on|muddy|hollow|notice|compare|science/i);
+  assert.equal(first.route.reason, "clarification");
   const part = await ask(engine, state, input, { question: "that part" });
-  assert.match(part.text, /that part|working on|trying|compare/i);
+  assert.match(part.text, /that part|working on|trying|compare|muddy/i);
   const why = await ask(engine, state, input, { question: "why though" });
-  assert.match(why.text, /gravity|slope|changed|compare|one thing|trying to understand|stay with/i);
+  assert.match(why.text, /gravity|slope|changed|compare|one thing|trying to understand|stay with|job is/i);
   const easy = await ask(engine, state, input, { question: "explain it easier" });
   assert.match(easy.text, /short version|figuring out|look at the land/i);
-  assert.equal(first.adapterId, "local-composer");
+  assert.equal(part.adapterId, "local-composer");
 });
 
 await check("every eval utterance stays grounded through local composer", async () => {

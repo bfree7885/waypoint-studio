@@ -2,6 +2,13 @@
  * Hybrid router. Science talk may use a model. Game state and next actions stay deterministic.
  */
 
+import {
+  isCharacterAsk,
+  isClarificationAsk,
+  isGameHelpAsk,
+  isNoticeAsk
+} from "./summit-character.js";
+
 const CLEAN_VOCAB = /^(what is |what's |whats |define |meaning of )?[a-z][a-z\- ]{2,24}\??$/i;
 const CLEAN_MEANING = /^what does [a-z][a-z\- ]{2,24} mean( again)?\??$/i;
 
@@ -21,7 +28,7 @@ const GAMEPLAY_ASK =
   /what (button|do i tap|do i click)|tell me what to click|which (exact )?note|which card|pin the|what do i tap|exactly where to walk|tell me exactly where|start (the )?(trial|run)|speak with wren|ask wren|developer mode|test environment|this is only a test|ignore the (tutor )?rules/i;
 
 const NEXT_ACTION =
-  /what should i test next|what do i (do|test|try) next|what next\??$|where (do|should) i (go|walk) next/i;
+  /what should i (do|test|try)( next)?\??$|what do i (do|test|try) next|what next\??$|where (do|should) i (go|walk) next/i;
 
 const STATE_PROBE =
   /high look|third (runoff )?trial|trial three|3rd trial|clearance|clear me|wren clear|already finish|did i already|what notes do i have|what evidence do i have|what did i find before|what did the (gentle|steep) slope|gentle slope do|what was my third/i;
@@ -63,8 +70,12 @@ export function isGameplayAsk(question) {
 }
 
 export function isNextActionAsk(question) {
-  return NEXT_ACTION.test(String(question || "").trim());
+  const text = String(question || "").trim();
+  if (isGameHelpAsk(text)) return false;
+  return NEXT_ACTION.test(text);
 }
+
+export { isCharacterAsk, isClarificationAsk, isGameHelpAsk, isNoticeAsk };
 
 export function isStateProbe(question) {
   return STATE_PROBE.test(String(question || ""));
@@ -111,7 +122,11 @@ export function isCleanVocabAsk(question, intent) {
     isObservationProbe(text) ||
     isEpistemicAsk(text) ||
     isScienceWhy(text) ||
-    isNextActionAsk(text)
+    isNextActionAsk(text) ||
+    isGameHelpAsk(text) ||
+    isCharacterAsk(text) ||
+    isClarificationAsk(text) ||
+    isNoticeAsk(text)
   ) {
     return false;
   }
@@ -128,14 +143,29 @@ export function routeSummit(request) {
   if (!question && action === "hint" && hintAsks <= 1) {
     return { useAi: false, reason: "first-hint" };
   }
-  if (!question && (action === "what_now" || action === "notice" || action === "hint" || action === "explain")) {
+  if (!question && action === "what_now") {
+    return { useAi: false, reason: "next-action" };
+  }
+  if (!question && action === "why") {
+    return { useAi: false, reason: "clarification" };
+  }
+  if (!question && (action === "notice" || action === "hint" || action === "explain")) {
     return { useAi: false, reason: "quick-action" };
+  }
+  if (isGameHelpAsk(question)) {
+    return { useAi: false, reason: "game-help" };
+  }
+  if (isCharacterAsk(question)) {
+    return { useAi: false, reason: "character" };
+  }
+  if (isClarificationAsk(question)) {
+    return { useAi: false, reason: "clarification" };
+  }
+  if (isNoticeAsk(question)) {
+    return { useAi: false, reason: "notice" };
   }
   if (isCleanVocabAsk(question, intent)) {
     return { useAi: false, reason: "vocab-library" };
-  }
-  if (intent === "what_now" && /^what am i supposed to do\??$/i.test(question)) {
-    return { useAi: false, reason: "objective" };
   }
   if (/^(what notes do i have|what evidence do i have)\??$/i.test(question)) {
     return { useAi: false, reason: "evidence-inventory" };

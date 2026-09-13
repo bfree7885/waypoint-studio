@@ -1776,5 +1776,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `terrainbound.org` is GitHub Pages (static). It cannot hold the Groq key or run the Summit proxy. For the first few supervised testers, a local one-command launcher is safer than new cloud infrastructure.
 - `is gravity stronger` does not match `gravity is stronger on the steep slope`. Student word order is a routing hole, not a reason to retune the whole science eval.
 
+### Lessons Learned — TerrainBound Phase 7.9K (2026-09-13)
+
+- Opening Summit with an auto “What should I do?” dumps the puzzle objective. A first-session “how do I play?” needs a deterministic game-help loop, not CH-02 orient copy.
+- Summit is Sasquatch. A human tutor portrait would fight the established character bible. The LLM must not pick facial expressions.
+- Playful voice belongs around the explanation. Gravity, comparisonReady, and inventory stay authored.
+- Off-topic grounding still checked for “field science tutor” after the visible copy changed. Redirect identity lives in the validator too, not only in composer strings.
+
 
 

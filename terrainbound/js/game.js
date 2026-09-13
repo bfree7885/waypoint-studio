@@ -180,7 +180,7 @@ import {
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
 import { fieldGuidance } from "./guidance.js";
-import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess } from "./summit.js";
+import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess, SUMMIT_GREETING, chooseSummitExpression, summitPortraitSrc } from "./summit.js";
 import { buildSummitContext } from "./summit-context.js";
 import {
   isFieldTestMode,
@@ -195,6 +195,7 @@ import {
   validatorResult,
   exportFilenames
 } from "./summit-fieldtest.js";
+import { classifyIntentCategory } from "./summit-character.js";
 import { classifyCard, pendingCard } from "./obsint.js";
 import { POSE_MS, normalizeAppearance } from "./character.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
@@ -1343,12 +1344,21 @@ export async function boot(root = document) {
 
   function renderSummit(extra = {}) {
     const debug = fieldMode ? summitState.lastDebug : null;
+    const last = summitState.lastDebug || {};
     const lastTurn = fieldTestSession?.events?.filter((row) => row.type === "summit").slice(-1)[0] || null;
+    const expression = chooseSummitExpression({
+      pending: Boolean(extra.pending),
+      intent: last.intent || summitState.lastIntent || "",
+      routeReason: last.route || "",
+      misconceptionId: last.misconceptionId || ""
+    });
     ui.showSummit(true, {
-      lead: extra.pending ? "Looking at your notes…" : "I can help you read the hollow. Wren still judges the case.",
+      lead: extra.pending ? "Looking at the notes you actually have…" : "Curious about the hollow. Serious about the science.",
       messages: summitState.recent,
       moreAvailable: Boolean(summitMoreText),
       pending: Boolean(extra.pending),
+      expression,
+      portraitSrc: summitPortraitSrc(expression),
       fieldTest: fieldTestMode,
       fieldTestTurnId: lastTurn?.id || "",
       diag: debug
@@ -1377,8 +1387,10 @@ export async function boot(root = document) {
     summitState.idea = false;
     ui.setSummitIdea(false);
     if (!summitState.recent.length) {
-      void askSummit({ action: "what_now" });
-      return;
+      summitState.recent = [
+        { role: "summit", kind: "greet", intent: "character", text: SUMMIT_GREETING }
+      ];
+      persist();
     }
     renderSummit();
   }
@@ -1435,6 +1447,12 @@ export async function boot(root = document) {
           steepMeasured: snap.steepMeasured,
           gentleMeasured: snap.gentleMeasured,
           misconceptionId: reply.misconceptionId || "",
+          intentCategory: classifyIntentCategory({
+            question: opts.question || "",
+            action: opts.action || "",
+            routeReason: reply.route?.reason || "",
+            intent: reply.intent || ""
+          }),
           snapshot: snap,
           atMs: Date.now() - fieldTestSession.startedAt
         });

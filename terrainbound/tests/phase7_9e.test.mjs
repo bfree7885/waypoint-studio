@@ -185,7 +185,7 @@ await check("HttpAdapter is used only through the proxy URL, not a vendor SDK", 
   const adapter = createHttpAdapter({ endpoint: "http://127.0.0.1:8787/summit-ai" });
   assert.equal(adapter.kind, "remote");
   assert.match(gameJs, /useSummitProxy/);
-  assert.match(gameJs, /summit"\) === "ai"/);
+  assert.match(gameJs, /summit === "ai"/);
   assert.match(html, /Looking at your notes|summit-close/);
   assert.match(gameJs, /if \(summitOpen\) renderSummit/);
 });
@@ -205,7 +205,7 @@ await check("fixture invalid output still falls back (FixtureAdapter path)", asy
     })
   });
   const reply = await Promise.resolve(
-    engine.ask(createSummitState(), baseInput(), { question: "what am i even doing" })
+    engine.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" })
   );
   assert.equal(reply.provider, "deterministic");
   assert.ok(reply.fallbackReason);
@@ -226,7 +226,7 @@ await check("LocalComposer remains available", async () => {
   const reply = await Promise.resolve(
     engine.ask(createSummitState(), baseInput(), { question: "Who won the Super Bowl?" })
   );
-  assert.match(reply.text, /field science tutor|Cedar Hollow/i);
+  assert.match(reply.text, /Earth Science companion|Cedar Hollow|I'm Summit/i);
 });
 
 await check("DeterministicProvider still works without any adapter", async () => {
@@ -259,7 +259,7 @@ await check("validator rejects invented observations and off-topic answers", () 
   assert.equal(
     validateSummitOutput(
       {
-        response: "I'm your field science tutor here. If you want, I can help with what you're seeing in Cedar Hollow.",
+        response: "I'm Summit, the hollow's Earth Science companion. If you want, I can help with what you're seeing in Cedar Hollow.",
         supportLevel: 0
       },
       packet,
@@ -285,7 +285,7 @@ await check("timeout and malformed adapters fall back without leaking errors", a
       }
     })
   });
-  const timed = await Promise.resolve(slow.ask(createSummitState(), baseInput(), { question: "i dont get this" }));
+  const timed = await Promise.resolve(slow.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(timed.provider, "deterministic");
   assert.equal(timed.fallbackReason, "timeout");
   assert.doesNotMatch(timed.text, /timeout|HTTP|API failure/i);
@@ -314,10 +314,10 @@ await check("timeout and malformed adapters fall back without leaking errors", a
       adapter: createHttpAdapter({ endpoint: "http://127.0.0.1:1/summit-ai", timeoutMs: 200 })
     })
   });
-  const missing = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "I don't get it." }));
+  const missing = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(missing.provider, "deterministic");
   assert.ok(missing.fallbackReason);
-  assert.match(missing.text, /Cedar Hollow|rainwater|field science|honestly|working on|actually see/i);
+  assert.match(missing.text, /Cedar Hollow|rainwater|field science|honestly|working on|actually see|job is/i);
 });
 
 await check("docs describe the real-model pilot boundary", () => {

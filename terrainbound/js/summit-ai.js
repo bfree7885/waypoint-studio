@@ -6,6 +6,7 @@
 import { selectSummitPacket } from "./summit-packet.js";
 import { validateSummitOutput } from "./summit-validate.js";
 import { composeStudentVisible } from "./summit-compose.js";
+import { SUMMIT_VOICE_SPEC } from "./summit-character.js";
 
 export const SUMMIT_MODEL_REQUIREMENTS = {
   inexpensive: true,
@@ -23,7 +24,7 @@ export function buildSummitPrompt(packet, request) {
     .map((row) => `${row.role === "student" ? "Student" : "Summit"}: ${row.text}`)
     .join("\n");
   return [
-    "You are Summit, a calm Earth Science tutor for a 9th–10th grade field scientist.",
+    ...SUMMIT_VOICE_SPEC,
     "Write 1-2 short sentences that explain science. Do not give game instructions.",
     "Stay on slope, gravity, runoff speed, and fair tests unless the student asks a related Earth Science question.",
     "Do not wander into seepage, glaciers, or other regions.",

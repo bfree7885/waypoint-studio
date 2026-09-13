@@ -199,8 +199,8 @@ check("docs and cache-bust mention field-test isolation", () => {
   assert.match(script, /summit=fieldtest/);
   assert.match(script, /Explore Cedar Hollow and complete the investigation/);
   assert.match(arch, /Phase 7\.9I|field test/i);
-  assert.match(html, /p79j/);
-  assert.match(mainJs, /p79j/);
+  assert.match(html, /p79k/);
+  assert.match(mainJs, /p79k/);
   assert.doesNotMatch(gameJs, /analytics|mixpanel|segment\.com|student profile/i);
   assert.doesNotMatch(gameJs, /FIELDTEST_STORAGE_KEY/);
 });

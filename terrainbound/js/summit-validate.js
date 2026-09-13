@@ -46,7 +46,7 @@ export function validateSummitOutput(raw, packet, request = {}) {
   if (agreesWithSlopeMisconception(response, request.question || "")) return fail("misconception-agree");
   const conceptFail = checkConceptClaims(response, packet, request.question || "");
   if (conceptFail) return fail(conceptFail);
-  if (isOffTopic(request.question) && !/field science tutor|Cedar Hollow|I'm your|I am your|tutor here/i.test(response)) {
+  if (isOffTopic(request.question) && !/Cedar Hollow|I'm Summit|Earth Science companion/i.test(response)) {
     return fail("off-topic-answer");
   }
 

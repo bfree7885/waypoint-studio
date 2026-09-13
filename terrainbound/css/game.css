@@ -920,8 +920,35 @@ input#geo-number {
   gap: 12px;
 }
 
+.summit-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.summit-portrait {
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  border-radius: 50%;
+  background: #d7e4c4;
+  object-fit: cover;
+}
+
+.summit-identity-text {
+  min-width: 0;
+}
+
 .summit-head h2 {
   margin: 0;
+  line-height: 1.15;
+}
+
+.summit-role {
+  margin: 2px 0 0;
+  color: #44553d;
+  font-size: 0.88rem;
 }
 
 .summit-lead {
@@ -1042,6 +1069,13 @@ input#geo-number {
   50% { opacity: 1; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .summit-lead.is-pending::after {
+    animation: none;
+    opacity: 0.55;
+  }
+}
+
 .summit-diag {
   overflow-wrap: anywhere;
   font-size: 0.72rem;
@@ -1071,9 +1105,11 @@ input#geo-number {
 
 .summit-fieldtest {
   flex-shrink: 0;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid #d7c39a;
+  margin-top: 10px;
+  padding: 8px 8px 4px;
+  border-top: 1px dashed #c4b48a;
+  background: #f3eee3;
+  border-radius: 10px;
 }
 
 .summit-fieldtest-kicker {
@@ -1636,6 +1672,12 @@ input#geo-number {
     margin: auto 8px 8px;
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
+  }
+
+  .summit-portrait {
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
   }
 
   .summit-quick {

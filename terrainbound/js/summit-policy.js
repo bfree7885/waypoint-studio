@@ -12,8 +12,11 @@ export const LEVEL = {
 };
 
 const INTENTS = [
-  { id: "what_now", re: /what (am i|should i) (supposed to )?do|where do i (start|go)|what next|i'?m lost|what now/i },
-  { id: "notice", re: /what should i (notice|look( for)?|inspect)|what am i looking|what did i (see|find)|high look/i },
+  { id: "game_help", re: /how do (i|you|we) play|how does (this|the game) work|what('?s| is) the point|help me play|what do i do in this (game|hollow)|what am i supposed to do(?! next)|where do i start|i'?m lost|im lost|bro what am i doing|what am i even doing|^help\??$/i },
+  { id: "character", re: /who are you|what are you|what do you do.{0,20}summit|are you (a )?(bigfoot|sasquatch)|why are you (hairy|a sasquatch|bigfoot)|are you real/i },
+  { id: "clarification", re: /^(i )?(don'?t|dont) get (it|this)[?.!]*$/i },
+  { id: "what_now", re: /what should i do(?! next)|what now|where do i go/i },
+  { id: "notice", re: /what should i (notice|look( at| for)?|inspect)|what am i looking|what did i (see|find)|high look/i },
   { id: "why_wrong", re: /why (was|is) (that|it|this|mine|my (answer|case|evidence))? ?wrong|why (didn'?t|doesn'?t) (this|that|it) work|why reject|wren (said|rejected)/i },
   { id: "why_evidence", re: /why (doesn'?t|didn'?t) this evidence|what evidence am i missing|which (note|evidence)|pin/i },
   { id: "compare", re: /what should i compare|compare|which (trial|slope|reach) /i },
@@ -50,6 +53,7 @@ export function detectIntent(question, action) {
   if (action === "notice") return { intent: "notice", conceptId: null };
   if (action === "why_wrong") return { intent: "why_wrong", conceptId: null };
   if (action === "explain") return { intent: "explain", conceptId: null };
+  if (action === "why") return { intent: "explain", conceptId: null };
   if (action === "explain_more") return { intent: "explain_more", conceptId: null };
   const text = String(question || "").trim();
   if (!text) return { intent: "what_now", conceptId: null };

@@ -5,6 +5,7 @@
 
 import { comparisonStatus } from "./summit-concepts.js";
 import { isNextActionAsk } from "./summit-route.js";
+import { classifyIntentCategory } from "./summit-character.js";
 
 export const FIELDTEST_MARKS = ["HELPED", "CONFUSING", "TOO_MUCH", "WRONG", "OTHER"];
 // Intentionally unused: field-test logs stay in memory until export. Do not write transcripts to localStorage.
@@ -141,6 +142,12 @@ export function recordSummitTurn(session, payload = {}) {
     steepMeasured: Boolean(payload.steepMeasured),
     gentleMeasured: Boolean(payload.gentleMeasured),
     misconceptionId: payload.misconceptionId || "",
+    intentCategory: payload.intentCategory || classifyIntentCategory({
+      question: payload.studentUtterance || payload.question || "",
+      action: payload.action || "",
+      routeReason: payload.routeReason || "",
+      intent: payload.intent || ""
+    }),
     snapshot: payload.snapshot || null
   };
   session.events.push(turn);

@@ -5,6 +5,7 @@
 
 import { stripCodes } from "./summit-packet.js";
 import { isCuriosity, isFollowUp, isNextActionAsk, isOffTopic, wantsDirectAnswer } from "./summit-route.js";
+import { GAME_HELP_LINE, characterReply, isCharacterAsk, isGameHelpAsk } from "./summit-character.js";
 
 export function createLocalComposerAdapter({ curiosity = {} } = {}) {
   return {
@@ -24,9 +25,17 @@ export function composeLocal(packet, question, curiosity = {}) {
 
   if (isOffTopic(q)) {
     return out(
-      "I'm your field science tutor here. If you want, I can help with what you're seeing in Cedar Hollow.",
+      "I'm Summit, the hollow's Earth Science companion. That question isn't on this trail. Cedar Hollow is.",
       { offTopic: true, supportLevel: level }
     );
+  }
+
+  if (isGameHelpAsk(q)) {
+    return out(GAME_HELP_LINE, { supportLevel: level });
+  }
+
+  if (isCharacterAsk(q)) {
+    return out(characterReply(q), { supportLevel: level });
   }
 
   if (/gravity (get|gets|is) stronger|stronger gravity/i.test(q)) {
@@ -163,11 +172,11 @@ export function composeLocal(packet, question, curiosity = {}) {
     return out(easierLine(packet, level), { supportLevel: level });
   }
 
-  if (/what am i even doing|i dont get|i don't get|^why$|^what$|^help$/i.test(q)) {
+  if (/i dont get|i don't get|^why$|^what$/i.test(q)) {
     return out(
       level <= 0
-        ? `Right now you are working on ${facts.puzzle}. Walk the ground or use the table, then ask about what you actually see.`
-        : `Right now you are working on ${facts.puzzle}. ${ladderPrompt(level, facts)}`,
+        ? `Right now you're working on ${facts.puzzle}. Look at the land or the tablet, then ask about what you actually see.`
+        : `Right now you're working on ${facts.puzzle}. ${ladderPrompt(level, facts)}`,
       { supportLevel: level }
     );
   }
@@ -251,7 +260,7 @@ function easierLine(packet, level) {
 
 function ladderPrompt(level, facts) {
   const ready = Boolean(facts.comparisonStatus?.comparisonReady);
-  if (level <= 0) return `You are trying to understand ${facts.puzzle}.`;
+  if (level <= 0) return `Right now the job is ${facts.puzzle}.`;
   if (level === 1) return facts.near?.length ? `You are near ${facts.near.join(", ")}. Look there before asking for the answer.` : "Notice one useful thing in the hollow or on the table.";
   if (level === 2) {
     return ready

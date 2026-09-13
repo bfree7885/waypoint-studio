@@ -125,7 +125,7 @@ await check("off-topic and evidence inventory stay deterministic", () => {
   const notes = routeSummit({ question: "what notes do i have", intent: "explain" });
   assert.equal(notes.useAi, false);
   assert.equal(notes.reason, "evidence-inventory");
-  const messy = routeSummit({ question: "what am i even doing", intent: "explain" });
+  const messy = routeSummit({ question: "idk this runoff thing", intent: "explain" });
   assert.equal(messy.useAi, true);
   const follow = routeSummit({ question: "so gravity?", intent: "explain", recentTurns: [{ role: "student", text: "why" }] });
   assert.equal(follow.useAi, true);
@@ -155,7 +155,7 @@ await check("timeout, rate-limit, and malformed still fall back", async () => {
       }
     })
   });
-  const a = await Promise.resolve(timed.ask(createSummitState(), baseInput(), { question: "i dont get this" }));
+  const a = await Promise.resolve(timed.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(a.provider, "deterministic");
   assert.equal(a.fallbackReason, "timeout");
 
@@ -210,7 +210,7 @@ await check("timeout, rate-limit, and malformed still fall back", async () => {
       adapter: createHttpAdapter({ endpoint: "http://127.0.0.1:1/summit-ai", timeoutMs: 200 })
     })
   });
-  const d = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "what am i even doing" }));
+  const d = await Promise.resolve(down.ask(createSummitState(), baseInput(), { question: "idk this runoff thing" }));
   assert.equal(d.provider, "deterministic");
 
   const det = createSummitEngine({
@@ -219,7 +219,7 @@ await check("timeout, rate-limit, and malformed still fall back", async () => {
     provider: createDeterministicProvider({ curriculum, concepts })
   });
   const e = await Promise.resolve(det.ask(createSummitState(), baseInput(), { question: "Who won the Super Bowl?" }));
-  assert.match(e.text, /field science tutor/i);
+  assert.match(e.text, /Earth Science companion|Cedar Hollow/i);
 });
 
 await check("docs describe hosted bakeoff without promoting llama3.2:3b", () => {

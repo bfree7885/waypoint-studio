@@ -90,12 +90,13 @@ check("A. CH puzzles remain completable without Summit", () => {
   assert.doesNotMatch(gameJs, /noteStruggle\(.*clearance/);
 });
 
-check("B. What am I supposed to do orients without revealing a card id", () => {
+check("B. How do I play explains the loop without revealing a card id", () => {
   const state = createSummitState();
   const reply = ask(state, baseInput(), { question: "What am I supposed to do?" });
-  assert.match(reply.text, /water|hollow|trying/i);
-  assert.doesNotMatch(reply.text, /CH-\d+|pin CH-/i);
-  assert.equal(reply.intent, "what_now");
+  assert.match(reply.text, /Field Tablet|Wren|observe/i);
+  assert.doesNotMatch(reply.text, /CH-\d+|pin CH-|You are trying to say/i);
+  assert.equal(reply.intent, "game_help");
+  assert.equal(reply.route.reason, "game-help");
   assert.equal(reply.level, 0);
 });
 

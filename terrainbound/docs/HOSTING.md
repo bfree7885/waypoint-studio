@@ -73,4 +73,4 @@ Companion Pages rollback is an operator action on `bfree7885/terrainbound-site`,
 
 ## Cache
 
-Cache-bust query: `?v=p79j` on `main.js` / `game.js`.
+Cache-bust query: `?v=p79k` on `main.js` / `game.js`.

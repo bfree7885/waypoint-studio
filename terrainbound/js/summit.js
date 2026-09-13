@@ -32,6 +32,12 @@ import { buildSummitTruth } from "./summit-truth.js";
 import { SUMMIT_CONCEPTS, comparisonStatus } from "./summit-concepts.js";
 import { checkConceptClaims } from "./summit-science.js";
 import {
+  classifyIntentCategory,
+  GAME_HELP_LINE,
+  SUMMIT_GREETING
+} from "./summit-character.js";
+import { chooseSummitExpression, summitPortraitSrc } from "./summit-portrait.js";
+import {
   isFieldTestMode,
   createFieldTestSession,
   recordSummitTurn,
@@ -68,6 +74,11 @@ export {
   SUMMIT_CONCEPTS,
   comparisonStatus,
   checkConceptClaims,
+  classifyIntentCategory,
+  GAME_HELP_LINE,
+  SUMMIT_GREETING,
+  chooseSummitExpression,
+  summitPortraitSrc,
   isFieldTestMode,
   createFieldTestSession,
   recordSummitTurn,
@@ -113,6 +124,7 @@ export function createSummitEngine({ curriculum, concepts, curiosity, provider, 
         hint: "Hint",
         why_wrong: "Why was that wrong?",
         explain: "Explain this",
+        why: "Why?",
         explain_more: "Explain more"
       }[action] || action);
     if (studentText) rememberRecent(summitState, { role: "student", kind: action || "ask", intent, text: studentText });
@@ -126,20 +138,33 @@ export function createSummitEngine({ curriculum, concepts, curiosity, provider, 
       level: slot.level,
       recentTurns: summitState.recent
     };
+    request.route = routeSummit(request);
 
     const reply = talker.respond(request);
     if (reply && typeof reply.then === "function") {
-      return reply.then((row) => finalize(summitState, puzzleId, intent, slot, studentText, row, context));
+      return reply.then((row) => finalize(summitState, puzzleId, intent, slot, studentText, row, context, request.route));
     }
-    return finalize(summitState, puzzleId, intent, slot, studentText, reply, context);
+    return finalize(summitState, puzzleId, intent, slot, studentText, reply, context, request.route);
   }
 
   return { ask, providerId: talker.id };
 }
 
-function finalize(summitState, puzzleId, intent, slot, studentText, reply, context) {
+function shouldAppendWorldCue(intent, routeReason) {
+  if (["game_help", "character", "clarification"].includes(intent)) return false;
+  if (["game-help", "character", "next-action", "evidence-inventory", "clarification"].includes(routeReason)) {
+    return false;
+  }
+  return true;
+}
+
+function finalize(summitState, puzzleId, intent, slot, studentText, reply, context, route) {
   const spoken =
-    intent !== "vocab" && reply.worldCue && reply.text && !String(reply.text).includes(reply.worldCue)
+    shouldAppendWorldCue(intent, reply.route?.reason || route?.reason) &&
+    intent !== "vocab" &&
+    reply.worldCue &&
+    reply.text &&
+    !String(reply.text).includes(reply.worldCue)
       ? `${reply.text} ${reply.worldCue}`
       : reply.text;
 
@@ -147,22 +172,25 @@ function finalize(summitState, puzzleId, intent, slot, studentText, reply, conte
   for (const id of reply.conceptIds || []) rememberConcept(summitState, puzzleId, id);
   if (reply.misconceptionId) rememberMisconception(summitState, puzzleId, reply.misconceptionId);
 
+  const attached = reply.route || route || null;
   summitState.lastDebug = {
     provider: reply.provider || "deterministic",
     adapterId: reply.adapterId || "",
-    route: reply.route?.reason || "",
-    useAi: Boolean(reply.route?.useAi),
+    route: attached?.reason || "",
+    useAi: Boolean(attached?.useAi),
     intent,
     supportLevel: slot.level,
     fallbackReason: reply.fallbackReason || "",
     validation: reply.fallbackReason ? "fallback" : reply.provider === "ai" ? "ok" : "skipped",
     packetKeys: reply.packet ? Object.keys(reply.packet.facts || {}) : [],
     cached: Boolean(reply.cached),
-    rawBlocked: Boolean(reply.rawModel) && Boolean(reply.fallbackReason)
+    rawBlocked: Boolean(reply.rawModel) && Boolean(reply.fallbackReason),
+    misconceptionId: reply.misconceptionId || ""
   };
 
   return {
     ...reply,
+    route: attached,
     text: spoken,
     puzzleId,
     intent,
