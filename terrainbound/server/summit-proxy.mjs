@@ -1,327 +1,63 @@
-#!/usr/bin/env node
 /**
- * Summit AI proxy. Keys stay on the server. Browser talks only to this loopback API.
+ * Local loopback Summit proxy. Keys stay on this machine.
+ * Production uses summit-gateway.mjs as a Cloudflare Worker.
+ * SUMMIT_DEBUG is unused; ops logs never include student prose.
  *
  *   SUMMIT_API_KEY=... SUMMIT_AI_URL=... SUMMIT_AI_MODEL=... node terrainbound/server/summit-proxy.mjs
- *
- * OpenAI-compatible upstream (Groq, OpenAI, Ollama /v1/chat/completions).
- * Default: unconfigured — the game stays fully playable without this process.
- *
- * Dev-only logging: SUMMIT_DEBUG=1 writes redacted meta (not student prose) to
- * terrainbound/server/.summit-debug.log  (gitignored).
  */
 import http from "node:http";
-import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  SUMMIT_REPLY_SCHEMA,
+  coerceJson,
+  handleSummitRequest,
+  upstreamBody
+} from "./summit-gateway.mjs";
+
+export { SUMMIT_REPLY_SCHEMA, coerceJson, upstreamBody };
 
 const PORT = Number(process.env.SUMMIT_PROXY_PORT || 8787);
-const UPSTREAM = process.env.SUMMIT_AI_URL || "";
-const KEY = process.env.SUMMIT_API_KEY || "";
-const MODEL = process.env.SUMMIT_AI_MODEL || "llama-3.1-8b-instant";
-const DEBUG = process.env.SUMMIT_DEBUG === "1";
-const UPSTREAM_TIMEOUT_MS = Number(process.env.SUMMIT_UPSTREAM_TIMEOUT_MS || 4000);
-const MODE_BUDGET_MS = Number(process.env.SUMMIT_MODE_BUDGET_MS || 4500);
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)));
-const DEBUG_LOG = path.join(ROOT, ".summit-debug.log");
 
-export const SUMMIT_REPLY_SCHEMA = {
-  type: "object",
-  additionalProperties: false,
-  properties: {
-    explanation: { type: "string" },
-    followUpQuestion: { type: "string" },
-    concept: { type: "string" },
-    supportLevel: { type: "number" },
-    offTopic: { type: "boolean" }
-  },
-  required: ["explanation", "followUpQuestion", "concept", "supportLevel", "offTopic"]
-};
+function nodeToRequest(req, body) {
+  const host = req.headers.host || `127.0.0.1:${PORT}`;
+  const url = `http://${host}${req.url || "/"}`;
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(req.headers)) {
+    if (value == null) continue;
+    headers.set(key, Array.isArray(value) ? value.join(", ") : String(value));
+  }
+  const method = req.method || "GET";
+  const init = { method, headers };
+  if (method !== "GET" && method !== "HEAD") init.body = body;
+  return new Request(url, init);
+}
 
-const server = http.createServer(async (req, res) => {
-  const origin = String(req.headers.origin || "");
-  if (/^http:\/\/127\.0\.0\.1:\d+$/.test(origin) || /^http:\/\/localhost:\d+$/.test(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Headers", "content-type");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  if (req.method === "OPTIONS") {
-    res.writeHead(204);
-    res.end();
-    return;
-  }
-  if (req.method === "GET" && (req.url === "/health" || req.url === "/summit-ai/health")) {
-    json(res, KEY && UPSTREAM ? 200 : 503, {
-      ok: Boolean(KEY && UPSTREAM),
-      model: MODEL,
-      configured: Boolean(KEY && UPSTREAM)
-    });
-    return;
-  }
-  if (req.method !== "POST" || req.url !== "/summit-ai") {
-    json(res, 404, { error: "not-found" });
-    return;
-  }
-  if (!KEY || !UPSTREAM) {
-    json(res, 503, { error: "unconfigured" });
-    return;
-  }
-  const body = await readBody(req);
-  let payload;
+export const server = http.createServer(async (req, res) => {
+  const chunks = [];
   try {
-    payload = JSON.parse(body);
+    for await (const chunk of req) chunks.push(chunk);
+    const body = Buffer.concat(chunks);
+    const request = nodeToRequest(req, body);
+    const response = await handleSummitRequest(request, process.env, { allowLocal: true });
+    const out = Buffer.from(await response.arrayBuffer());
+    const headers = {};
+    response.headers.forEach((value, key) => {
+      headers[key] = value;
+    });
+    res.writeHead(response.status, headers);
+    res.end(out);
   } catch {
-    json(res, 400, { error: "malformed" });
-    return;
-  }
-  const started = Date.now();
-  const client = abortFromRequest(req);
-  try {
-    let retried = false;
-    let upstream = await callUpstream(payload, "json_schema", client.signal);
-    let parsed = parseUpstream(upstream);
-    const remaining = () => MODE_BUDGET_MS - (Date.now() - started);
-    if (
-      !client.signal.aborted &&
-      remaining() > 800 &&
-      (!upstream.ok || !parsed || !replyText(parsed)) &&
-      upstream.status !== 429 &&
-      upstream.status !== 504
-    ) {
-      retried = true;
-      upstream = await callUpstream(
-        {
-          ...payload,
-          question: `${payload.question || ""}\n\nWrite a 1-2 sentence science explanation in JSON field "explanation". Never leave it empty. Do not give game instructions.`
-        },
-        "json_object",
-        client.signal
-      );
-      parsed = parseUpstream(upstream);
-    }
-    if (
-      !client.signal.aborted &&
-      remaining() > 800 &&
-      (!upstream.ok || !parsed || !replyText(parsed)) &&
-      upstream.status !== 429 &&
-      upstream.status !== 504
-    ) {
-      retried = true;
-      upstream = await callUpstream(payload, "plain", client.signal);
-      parsed = parseUpstream(upstream);
-    }
-    const data = upstream.data;
-    const latencyMs = Date.now() - started;
-    if (upstream.status === 429) {
-      debug({ event: "rate-limit", latencyMs, status: 429 });
-      json(res, 429, { error: "rate-limit" });
-      client.done();
-      return;
-    }
-    if (!upstream.ok) {
-      debug({
-        event: upstream.status === 504 ? "upstream-timeout" : "upstream-http",
-        latencyMs,
-        status: upstream.status,
-        retried
-      });
-      json(res, 502, { error: upstream.status === 504 ? "timeout" : "upstream" });
-      client.done();
-      return;
-    }
-    if (!parsed || !replyText(parsed)) {
-      debug({ event: "malformed-model", latencyMs, model: MODEL, retried });
-      json(res, 502, { error: "malformed" });
-      client.done();
-      return;
-    }
-    const usage = data.usage || {
-      prompt_tokens: data.prompt_eval_count || 0,
-      completion_tokens: data.eval_count || 0,
-      total_tokens: (data.prompt_eval_count || 0) + (data.eval_count || 0)
-    };
-    debug({
-      event: "ok",
-      latencyMs,
-      model: data.model || MODEL,
-      promptTokens: usage.prompt_tokens || usage.input_tokens || 0,
-      completionTokens: usage.completion_tokens || usage.output_tokens || 0,
-      promptChars: String(payload.prompt || "").length,
-      questionChars: String(payload.question || "").length
-    });
-    json(res, 200, {
-      ...parsed,
-      usage: {
-        promptTokens: usage.prompt_tokens || usage.input_tokens || 0,
-        completionTokens: usage.completion_tokens || usage.output_tokens || 0,
-        totalTokens: usage.total_tokens || 0,
-        latencyMs,
-        model: data.model || MODEL,
-        retried
-      }
-    });
-    client.done();
-  } catch (err) {
-    const timeout = err?.name === "AbortError" || err?.code === "timeout";
-    debug({ event: timeout ? "upstream-timeout" : "upstream-throw", latencyMs: Date.now() - started });
-    json(res, 502, { error: timeout ? "timeout" : "upstream" });
-    client.done();
+    res.writeHead(502, { "content-type": "application/json" });
+    res.end(JSON.stringify({ error: "unavailable" }));
   }
 });
-
-export function upstreamBody(payload, mode = "json_schema") {
-  const body = {
-    model: MODEL,
-    temperature: 0.2,
-    max_tokens: Number(process.env.SUMMIT_MAX_TOKENS || 400),
-    messages: [
-      { role: "system", content: String(payload.prompt || "") },
-      { role: "user", content: String(payload.question || payload.action || "") }
-    ]
-  };
-  if (mode === "json_schema") {
-    body.response_format = {
-      type: "json_schema",
-      json_schema: { name: "summit_reply", schema: SUMMIT_REPLY_SCHEMA, strict: true }
-    };
-  } else if (mode === "json_object") {
-    body.response_format = { type: "json_object" };
-  }
-  const id = String(MODEL).toLowerCase();
-  if (id.includes("qwen")) {
-    body.reasoning_effort = "none";
-    if (body.response_format) body.reasoning_format = "hidden";
-  } else if (id.includes("gpt-oss")) {
-    body.reasoning_effort = process.env.SUMMIT_REASONING_EFFORT || "low";
-    body.include_reasoning = false;
-  }
-  return body;
-}
-
-function replyText(parsed) {
-  if (!parsed || typeof parsed !== "object") return "";
-  return String(parsed.explanation || parsed.response || "").trim();
-}
-
-function parseUpstream(upstream) {
-  const data = upstream?.data || {};
-  const text =
-    data.choices?.[0]?.message?.content ||
-    data.response ||
-    data.message?.content ||
-    data.error?.failed_generation ||
-    "";
-  return normalizeReply(coerceJson(text));
-}
-
-function normalizeReply(parsed) {
-  if (!parsed || typeof parsed !== "object") return parsed;
-  const explanation = replyText(parsed);
-  if (explanation) {
-    return { ...parsed, explanation, response: explanation };
-  }
-  return parsed;
-}
-
-async function callUpstream(payload, mode, clientSignal) {
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), UPSTREAM_TIMEOUT_MS);
-  const onClient = () => ctrl.abort();
-  if (clientSignal) {
-    if (clientSignal.aborted) ctrl.abort();
-    else clientSignal.addEventListener("abort", onClient, { once: true });
-  }
-  try {
-    const res = await fetch(UPSTREAM, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${KEY}`
-      },
-      body: JSON.stringify(upstreamBody(payload, mode)),
-      signal: ctrl.signal
-    });
-    const data = await res.json().catch(() => ({}));
-    return { ok: res.ok, status: res.status, data };
-  } catch (err) {
-    if (err?.name === "AbortError") {
-      return { ok: false, status: 504, data: { error: "upstream-timeout" } };
-    }
-    throw err;
-  } finally {
-    clearTimeout(timer);
-    if (clientSignal) clientSignal.removeEventListener("abort", onClient);
-  }
-}
-
-function abortFromRequest(req) {
-  const ctrl = new AbortController();
-  let finished = false;
-  const abort = () => {
-    if (!finished) ctrl.abort();
-  };
-  req.on("close", abort);
-  req.on("aborted", abort);
-  return {
-    signal: ctrl.signal,
-    done() {
-      finished = true;
-      req.off("close", abort);
-      req.off("aborted", abort);
-    }
-  };
-}
-
-export function coerceJson(text) {
-  const raw = String(text || "").trim();
-  if (!raw) return null;
-  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i);
-  const candidate = fenced ? fenced[1].trim() : raw;
-  try {
-    const parsed = JSON.parse(candidate);
-    return parsed && typeof parsed === "object" ? parsed : null;
-  } catch {
-    const start = candidate.indexOf("{");
-    const end = candidate.lastIndexOf("}");
-    if (start >= 0 && end > start) {
-      try {
-        return JSON.parse(candidate.slice(start, end + 1));
-      } catch {
-        return null;
-      }
-    }
-    return null;
-  }
-}
-
-function json(res, status, obj) {
-  res.writeHead(status, { "content-type": "application/json" });
-  res.end(JSON.stringify(obj));
-}
-
-function debug(row) {
-  if (!DEBUG) return;
-  try {
-    fs.appendFileSync(DEBUG_LOG, JSON.stringify({ ts: new Date().toISOString(), ...row }) + "\n");
-  } catch {
-    /* ignore */
-  }
-}
-
-function readBody(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    req.on("data", (chunk) => chunks.push(chunk));
-    req.on("end", () => resolve(Buffer.concat(chunks).toString("utf8")));
-    req.on("error", reject);
-  });
-}
 
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (isMain) {
   server.listen(PORT, "127.0.0.1", () => {
-    console.log(`Summit proxy on 127.0.0.1:${PORT} (configured=${Boolean(KEY && UPSTREAM)} model=${MODEL})`);
+    const configured = Boolean(process.env.SUMMIT_API_KEY && process.env.SUMMIT_AI_URL);
+    const model = process.env.SUMMIT_AI_MODEL || "openai/gpt-oss-20b";
+    console.log(`Summit proxy on 127.0.0.1:${PORT} (configured=${configured} model=${model})`);
   });
 }
-
-export { server };

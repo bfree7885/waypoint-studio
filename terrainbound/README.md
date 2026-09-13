@@ -43,9 +43,10 @@ node terrainbound/tests/phase7_9h.test.mjs
 node terrainbound/tests/phase7_9i.test.mjs
 node terrainbound/tests/phase7_9j.test.mjs
 node terrainbound/tests/phase7_9k.test.mjs
+node terrainbound/tests/phase7_9l.test.mjs
 # Supervised field-test RC (local; not the default):
 # npm run fieldtest:summit
-# Optional captures: node terrainbound/tests/capture-phase79k.mjs
+# Optional captures: node terrainbound/tests/capture-phase79l.mjs
 # Constrained GPT-OSS eval (requires SUMMIT_API_KEY; Groq OpenAI-compatible URL default):
 # SUMMIT_API_KEY=... node terrainbound/tests/phase7_9g-live.mjs
 # Science-precision GPT-OSS eval:

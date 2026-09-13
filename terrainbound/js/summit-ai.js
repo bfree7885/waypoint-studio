@@ -7,6 +7,7 @@ import { selectSummitPacket } from "./summit-packet.js";
 import { validateSummitOutput } from "./summit-validate.js";
 import { composeStudentVisible } from "./summit-compose.js";
 import { SUMMIT_VOICE_SPEC } from "./summit-character.js";
+import { toGatewayBody } from "./summit-runtime.js";
 
 export const SUMMIT_MODEL_REQUIREMENTS = {
   inexpensive: true,
@@ -122,7 +123,7 @@ export function createHttpAdapter({ endpoint, timeoutMs = 3500, retry429 = 0, re
           const res = await fetch(endpoint, {
             method: "POST",
             headers: { "content-type": "application/json" },
-            body: JSON.stringify({ packet, prompt, question }),
+            body: JSON.stringify(toGatewayBody({ packet, prompt, question })),
             signal: ctrl.signal
           });
           if (res.status === 429) {

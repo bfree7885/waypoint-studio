@@ -42,6 +42,7 @@ function check(name, fn) {
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const mainJs = fs.readFileSync(path.join(root, "js/main.js"), "utf8");
 const gameJs = fs.readFileSync(path.join(root, "js/game.js"), "utf8");
+const runtimeJs = fs.readFileSync(path.join(root, "js/summit-runtime.js"), "utf8");
 const arch = fs.readFileSync(path.join(root, "docs/SUMMIT-TUTOR-ARCHITECTURE.md"), "utf8");
 const script = fs.readFileSync(path.join(root, "docs/SUMMIT-FIELD-TEST.md"), "utf8");
 const constrained = JSON.parse(fs.readFileSync(path.join(root, "data/summit/eval-constrained.json"), "utf8"));
@@ -54,8 +55,8 @@ check("field-test mode is opt-in and isolated", () => {
   assert.equal(isFieldTestMode("summit=local"), false);
   assert.equal(isFieldTestMode("summit=fieldtest"), true);
   assert.equal(isFieldTestMode("?field=1&summit=fieldtest"), true);
-  assert.match(gameJs, /summit === "fieldtest"/);
-  assert.match(gameJs, /summit === "ai"/);
+  assert.match(runtimeJs, /flag === "fieldtest"/);
+  assert.match(runtimeJs, /flag === "ai"/);
   assert.match(html, /summit-fieldtest/);
   assert.match(html, /hidden/);
 });
@@ -199,8 +200,8 @@ check("docs and cache-bust mention field-test isolation", () => {
   assert.match(script, /summit=fieldtest/);
   assert.match(script, /Explore Cedar Hollow and complete the investigation/);
   assert.match(arch, /Phase 7\.9I|field test/i);
-  assert.match(html, /p79k/);
-  assert.match(mainJs, /p79k/);
+  assert.match(html, /p79l/);
+  assert.match(mainJs, /p79l/);
   assert.doesNotMatch(gameJs, /analytics|mixpanel|segment\.com|student profile/i);
   assert.doesNotMatch(gameJs, /FIELDTEST_STORAGE_KEY/);
 });

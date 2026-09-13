@@ -1,6 +1,7 @@
 {
   "endpoint": "",
   "proxyEndpoint": "http://127.0.0.1:8787/summit-ai",
+  "productionEndpoint": "https://summit.terrainbound.org/summit",
   "timeoutMs": 5000,
-  "note": "Leave endpoint empty for offline Summit (LocalComposer). Pass ?summit=ai or ?summit=fieldtest to use proxyEndpoint. API keys never belong in this file."
+  "note": "terrainbound.org uses productionEndpoint. Local hosted AI is ?summit=ai against proxyEndpoint. Keys never belong in this file."
 }

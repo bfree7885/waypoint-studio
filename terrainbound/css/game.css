@@ -95,9 +95,21 @@ body {
   background: #2c4a38;
   color: var(--paper);
   font-weight: 700;
-  padding: 10px 16px;
+  padding: 6px 14px 6px 6px;
   border-radius: 999px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.summit-toggle-face {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e8d9b8;
+  display: block;
+  flex: 0 0 28px;
 }
 
 .journal-toggle {
@@ -1597,6 +1609,17 @@ input#geo-number {
     text-overflow: ellipsis;
     white-space: nowrap;
     pointer-events: auto;
+  }
+
+  .summit-toggle {
+    padding: 6px 8px 6px 6px;
+    gap: 6px;
+  }
+
+  .summit-toggle-face {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
   }
 
   .place-chip {

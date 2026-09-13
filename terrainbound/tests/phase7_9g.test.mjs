@@ -64,6 +64,7 @@ const aarSpec = JSON.parse(fs.readFileSync(path.join(root, "data/aar/cedar-hollo
 const flumeSpec = JSON.parse(fs.readFileSync(path.join(root, "data/investigations/what-makes-water-move.json"), "utf8"));
 const gameJs = fs.readFileSync(path.join(root, "js/game.js"), "utf8");
 const proxySrc = fs.readFileSync(path.join(root, "server/summit-proxy.mjs"), "utf8");
+const gatewaySrc = fs.readFileSync(path.join(root, "server/summit-gateway.mjs"), "utf8");
 const arch = fs.readFileSync(path.join(root, "docs/SUMMIT-TUTOR-ARCHITECTURE.md"), "utf8");
 const liveG = fs.readFileSync(path.join(root, "tests/phase7_9g-live.mjs"), "utf8");
 
@@ -106,9 +107,10 @@ await check("constrained schema drops gameplay fields from model authority", asy
   assert.deepEqual(keys, ["concept", "explanation", "followUpQuestion", "offTopic", "supportLevel"]);
   assert.ok(!SUMMIT_REPLY_SCHEMA.properties.suggestedAction);
   assert.ok(!SUMMIT_REPLY_SCHEMA.properties.referencedEvidence);
-  assert.match(proxySrc, /SUMMIT_UPSTREAM_TIMEOUT_MS/);
-  assert.match(proxySrc, /ctrl\.abort/);
-  assert.match(proxySrc, /MODE_BUDGET_MS/);
+  assert.ok(proxySrc.includes("127.0.0.1"));
+  assert.match(gatewaySrc, /SUMMIT_UPSTREAM_TIMEOUT_MS/);
+  assert.match(gatewaySrc, /ctrl\.abort/);
+  assert.match(gatewaySrc, /MODE_BUDGET_MS/);
 });
 
 await check("7.9G live runner is GPT-OSS only and 5s", () => {

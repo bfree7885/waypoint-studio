@@ -180,7 +180,7 @@ import {
 } from "./sunfall.js";
 import { worldToLatLon, formatLatLon } from "./geomap.js";
 import { fieldGuidance } from "./guidance.js";
-import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess, SUMMIT_GREETING, chooseSummitExpression, summitPortraitSrc } from "./summit.js";
+import { createSummitEngine, createSummitState, createHybridProvider, createHttpAdapter, createLocalComposerAdapter, noteStruggle, noteSuccess, SUMMIT_GREETING, chooseSummitExpression, summitPortraitSrc, resolveSummitRuntime } from "./summit.js";
 import { buildSummitContext } from "./summit-context.js";
 import {
   isFieldTestMode,
@@ -215,12 +215,7 @@ const FLOW_MAP = [
 ];
 
 function useSummitProxy(cfg) {
-  if (!cfg) return false;
-  const params = new URLSearchParams(location.search);
-  const summit = params.get("summit");
-  if (summit === "local") return false;
-  if (cfg.endpoint) return true;
-  return (summit === "ai" || summit === "fieldtest") && Boolean(cfg.proxyEndpoint);
+  return Boolean(resolveSummitRuntime({ hostname: location.hostname, search: location.search, cfg }).endpoint);
 }
 
 export async function boot(root = document) {
@@ -309,9 +304,14 @@ export async function boot(root = document) {
   const challengeState = createChallengeState();
   const puzzleState = createPuzzleState();
   const summitState = createSummitState();
-  const summitAdapter = useSummitProxy(summitProviderCfg)
+  const summitRuntime = resolveSummitRuntime({
+    hostname: location.hostname,
+    search: location.search,
+    cfg: summitProviderCfg
+  });
+  const summitAdapter = summitRuntime.endpoint
     ? createHttpAdapter({
-        endpoint: summitProviderCfg.endpoint || summitProviderCfg.proxyEndpoint,
+        endpoint: summitRuntime.endpoint,
         timeoutMs: summitProviderCfg.timeoutMs || 5000,
         retry429: 0
       })
@@ -324,7 +324,7 @@ export async function boot(root = document) {
       concepts: summitConcepts,
       curiosity: summitCuriosity,
       adapter: summitAdapter,
-      timeoutMs: summitProviderCfg?.timeoutMs || (useSummitProxy(summitProviderCfg) ? 5000 : 3500)
+      timeoutMs: summitProviderCfg?.timeoutMs || (summitRuntime.endpoint ? 5000 : 3500)
     })
   });
   const hcState = createHcState();

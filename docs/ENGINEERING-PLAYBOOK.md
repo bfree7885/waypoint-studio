@@ -1783,5 +1783,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Playful voice belongs around the explanation. Gravity, comparisonReady, and inventory stay authored.
 - Off-topic grounding still checked for “field science tutor” after the visible copy changed. Redirect identity lives in the validator too, not only in composer strings.
 
+### Lessons Learned — TerrainBound Phase 7.9L (2026-09-13)
+
+- GitHub Pages cannot hold the Groq key. A Worker in front of Pages is enough for one POST route; do not move the static game off Pages to host Summit.
+- Production CORS, payload caps, and rate limits belong on the gateway. Client fallback already knew how to stay silent about HTTP.
+- GPT-OSS `json_object` often emits `answer` instead of `explanation` after a failed `json_schema` call. Map those aliases on the gateway; do not add a third unbounded retry.
+
 
 

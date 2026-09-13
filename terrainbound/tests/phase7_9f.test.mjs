@@ -86,12 +86,12 @@ function baseInput(extraIn = {}) {
 }
 
 await check("Groq JSON schema lists every property as required", async () => {
-  const proxy = fs.readFileSync(path.join(root, "server/summit-proxy.mjs"), "utf8");
+  const gateway = fs.readFileSync(path.join(root, "server/summit-gateway.mjs"), "utf8");
   const { SUMMIT_REPLY_SCHEMA } = await import(path.join(root, "server/summit-proxy.mjs"));
   const keys = Object.keys(SUMMIT_REPLY_SCHEMA.properties).sort();
   assert.deepEqual([...SUMMIT_REPLY_SCHEMA.required].sort(), keys);
-  assert.match(proxy, /json_schema/);
-  assert.match(proxy, /failed_generation/);
+  assert.match(gateway, /json_schema/);
+  assert.match(gateway, /failed_generation/);
 });
 
 await check("bakeoff names two hosted candidates and no secrets", () => {

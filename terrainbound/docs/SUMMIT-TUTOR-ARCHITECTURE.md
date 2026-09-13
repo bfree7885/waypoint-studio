@@ -370,6 +370,12 @@ Summit is a Sasquatch Earth Science companion, not a help panel and not a human 
 
 Evidence: `tests/evidence/phase79k/`.
 
+## Phase 7.9L production Summit
+
+GitHub Pages stays static. Hosted science language goes to a Cloudflare Worker (`POST /summit`) that owns the Groq key, CORS allowlist, payload caps, and per-client rate limits. `terrainbound.org` uses that endpoint with no query flag. Localhost stays on LocalComposer unless `?summit=ai` or `?summit=fieldtest`. Observer chrome is developer-only. Publish with `scripts/publish-static.mjs`.
+
+See `docs/SUMMIT-PRODUCTION.md`.
+
 ## Grounding / hallucination contract
 
 - Structured context is the source of truth.

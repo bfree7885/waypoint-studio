@@ -93,8 +93,8 @@ check("gravity-is-stronger student wording is science-talk, not Granite Knob def
 check("field-test identity and 7.9I harness remain", () => {
   assert.match(html, /SUMMIT FIELD TEST/);
   assert.match(html, /summit-fieldtest/);
-  assert.match(html, /p79k/);
-  assert.match(mainJs, /p79k/);
+  assert.match(html, /p79l/);
+  assert.match(mainJs, /p79l/);
   assert.match(gameJs, /isFieldTestMode/);
   assert.match(script, /Helped, Confusing, Too much, Wrong, Other/);
 });

@@ -296,8 +296,8 @@ await check("path-length and gravity fallbacks stay correct", async () => {
 
 await check("docs and cache-bust mention 7.9H science precision", () => {
   assert.match(arch, /Phase 7\.9H|science precision|comparisonReady/i);
-  assert.match(html, /p79k/);
-  assert.match(mainJs, /p79k/);
+  assert.match(html, /p79l/);
+  assert.match(mainJs, /p79l/);
 });
 
 if (failures.length) {

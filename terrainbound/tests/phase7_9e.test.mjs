@@ -55,6 +55,7 @@ function check(name, fn) {
 const utterances = JSON.parse(fs.readFileSync(path.join(root, "data/summit/eval-utterances.json"), "utf8"));
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const gameJs = fs.readFileSync(path.join(root, "js/game.js"), "utf8");
+const runtimeJs = fs.readFileSync(path.join(root, "js/summit-runtime.js"), "utf8");
 const proxy = fs.readFileSync(path.join(root, "server/summit-proxy.mjs"), "utf8");
 const providerCfg = JSON.parse(fs.readFileSync(path.join(root, "data/summit/provider.json"), "utf8"));
 const curriculum = JSON.parse(fs.readFileSync(path.join(root, "data/summit/cedar-hollow.json"), "utf8"));
@@ -91,6 +92,7 @@ function baseInput(extra = {}) {
 await check("no secrets; proxy is loopback", () => {
   assert.equal(providerCfg.endpoint, "");
   assert.match(providerCfg.proxyEndpoint, /127\.0\.0\.1:8787/);
+  assert.match(providerCfg.productionEndpoint, /^https:\/\/summit\.terrainbound\.org\/summit$/);
   assert.doesNotMatch(gameJs, /sk-[a-zA-Z0-9]|SUMMIT_API_KEY|Bearer /);
   assert.match(proxy, /127\.0\.0\.1/);
   assert.match(proxy, /SUMMIT_DEBUG/);
@@ -185,7 +187,7 @@ await check("HttpAdapter is used only through the proxy URL, not a vendor SDK", 
   const adapter = createHttpAdapter({ endpoint: "http://127.0.0.1:8787/summit-ai" });
   assert.equal(adapter.kind, "remote");
   assert.match(gameJs, /useSummitProxy/);
-  assert.match(gameJs, /summit === "ai"/);
+  assert.match(runtimeJs, /flag === "ai"/);
   assert.match(html, /Looking at your notes|summit-close/);
   assert.match(gameJs, /if \(summitOpen\) renderSummit/);
 });

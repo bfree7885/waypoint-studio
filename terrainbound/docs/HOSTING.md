@@ -17,12 +17,13 @@ This repository's root `CNAME` is `waypointstudio.org`. Do not replace it.
 | Custom domain | `terrainbound.org` (HTTPS enforced); `www` 301s to the apex |
 | Apex DNS | GitHub Pages A records `185.199.108.153`–`185.199.111.153` |
 | `www` DNS | CNAME `bfree7885.github.io` |
-| Server-side runtime | **none** (static files only) |
-| Live cache-bust observed | `?v=p77` (Phase 7.7; last-modified 2026-09-10). **Not** the 7.9I/7.9J field-test branch. |
+| Server-side runtime on Pages | **none** (static files only) |
+| Summit language layer | Cloudflare Worker at `https://summit.terrainbound.org` (separate origin; not Pages) |
+| Live cache-bust observed | `?v=p77` (Phase 7.7) until the 7.9L static candidate is published |
 
-GitHub Pages cannot run `terrainbound/server/summit-proxy.mjs`. The Groq key must stay off the client, off git, and off Pages. The loopback proxy is **development / supervised field-test only** (`127.0.0.1`, CORS limited to localhost).
+GitHub Pages cannot run the Summit gateway or hold `SUMMIT_API_KEY`. The Groq key stays in the Worker secret store (or the local loopback proxy for development). Ordinary Cedar Hollow play on `terrainbound.org` uses the production Worker and does not need `?summit=fieldtest`.
 
-Do not put `terrainbound.org` in this repository's root `CNAME`. Do not deploy the field-test RC to Pages in this phase.
+Do not put `terrainbound.org` in this repository's root `CNAME`. Publish static files with `terrainbound/scripts/publish-static.mjs`. See `docs/SUMMIT-PRODUCTION.md`.
 
 ## Field-test delivery (Phase 7.9J)
 
@@ -53,7 +54,7 @@ GitHub Pages companion repository:
 - Custom domain: `terrainbound.org`
 - Publish the contents of `terrainbound/` (not the Studio repo root)
 
-## DNS (already attached; do not change in this phase)
+## DNS (Pages apex already attached)
 
 GitHub Pages apex:
 
@@ -67,10 +68,20 @@ www CNAME  bfree7885.github.io
 
 Preserve MX/SPF if email forwarding is in use.
 
+Production Summit needs one extra DNS name after the Worker is deployed (owner action; do not change Pages A records):
+
+```
+summit  CNAME  <worker-host>.workers.dev
+```
+
+or a Cloudflare zone route for `summit.terrainbound.org`. Details: `docs/SUMMIT-PRODUCTION.md`.
+
 ## Rollback
 
 Companion Pages rollback is an operator action on `bfree7885/terrainbound-site`, not a CNAME swap in this repo.
 
 ## Cache
 
-Cache-bust query: `?v=p79k` on `main.js` / `game.js`.
+Cache-bust query: `?v=p79l` on `main.js` / `game.js`.
+
+Production Summit language layer is a Cloudflare Worker at `https://summit.terrainbound.org/summit`. Pages never holds `SUMMIT_API_KEY`. See `docs/SUMMIT-PRODUCTION.md`.

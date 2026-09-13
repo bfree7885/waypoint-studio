@@ -37,6 +37,7 @@ import {
   SUMMIT_GREETING
 } from "./summit-character.js";
 import { chooseSummitExpression, summitPortraitSrc } from "./summit-portrait.js";
+import { resolveSummitRuntime, useSummitProxy } from "./summit-runtime.js";
 import {
   isFieldTestMode,
   createFieldTestSession,
@@ -93,7 +94,9 @@ export {
   exportFilenames,
   logLooksPrivate,
   FIELDTEST_MARKS,
-  SUMMIT_MODEL_REQUIREMENTS
+  SUMMIT_MODEL_REQUIREMENTS,
+  resolveSummitRuntime,
+  useSummitProxy
 };
 
 export function createSummitEngine({ curriculum, concepts, curiosity, provider, adapter, timeoutMs } = {}) {
