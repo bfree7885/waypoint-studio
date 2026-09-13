@@ -15,7 +15,7 @@ export function claimsForAttempt(spec, attempt = 0) {
 export function selectedIds(answers, claimId) {
   const value = answers?.[claimId];
   if (Array.isArray(value)) return value.filter(Boolean);
-  if (typeof value === "string" && value.startsWith("CH-")) return [value];
+  if (typeof value === "string" && /^(CH-|DS-)/.test(value)) return [value];
   return [];
 }
 

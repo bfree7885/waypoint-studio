@@ -1,7 +1,81 @@
 /**
- * Dark Sky Basin — first playable slice (DS-01, DS-02).
+ * Dark Sky Basin — Topic 11 region engine.
+ * DS-01/DS-02 remain the approved 8B foundation. DS-03–10 live in darksky-complete.js.
  * Light as field evidence. Authored catalog. No live astronomy.
  */
+
+export {
+  CAIRN_NEAR,
+  CAIRN_FAR,
+  PLOT_STARS,
+  GALAXY_IDS,
+  ORIGIN_LINES,
+  ds03Complete,
+  ds04Complete,
+  ds05Complete,
+  ds06Complete,
+  ds07Complete,
+  ds08Complete,
+  ds09Complete,
+  ds10Complete,
+  dsAarEligible,
+  logBrightnessGuess,
+  setPlateSet,
+  viewRimPlate,
+  plateStarLayout,
+  markShiftedStar,
+  logCairnClaim,
+  placePlotStar,
+  logPlot,
+  pickMassBranch,
+  checkRemnant,
+  logMassClaim,
+  pickUpRock,
+  logMetalCompare,
+  logNucleosynthesis,
+  tryGalaxyAlign,
+  markRedshiftFeature,
+  placeRedshiftPoint,
+  logRedshiftTrend,
+  rejectCompeting,
+  pointHorn,
+  pinOrigin,
+  logOriginCase,
+  setLaterTonight,
+  readDistantPoster,
+  logLookback,
+  toggleEnvelope,
+  logEnvelope,
+  completePuzzleUse,
+  completeAarState,
+  drawSeasonPlates,
+  drawUnlabeledPlot,
+  drawRedshiftPlot,
+  drawHornField,
+  debugCompleteThrough
+} from "./darksky-complete.js";
+
+import {
+  completeEmptyFields,
+  completeSnapshot,
+  markCompleteVisit,
+  appendCompleteEvidence,
+  appendCompleteNotes,
+  appendCompleteTruth,
+  completeGuidance,
+  completeActivePuzzle,
+  completeNext,
+  completePuzzleUse,
+  ds03Complete,
+  ds04Complete,
+  ds05Complete,
+  ds06Complete,
+  ds07Complete,
+  ds08Complete,
+  ds09Complete,
+  ds10Complete,
+  dsAarEligible
+} from "./darksky-complete.js";
 
 export const DARK_SKY_ID = "dark-sky-basin";
 export const TWIN_IDS = ["west-twin", "east-twin"];
@@ -37,16 +111,19 @@ export function emptyDarkSkySave() {
     emberCompared: false,
     emberConcluded: false,
     notes: [],
-    lastHint: ""
+    lastHint: "",
+    ...completeEmptyFields()
   };
 }
 
 export function snapshotDarkSky(state) {
   const empty = emptyDarkSkySave();
   if (!state) return empty;
+  const extra = completeSnapshot(state);
   return {
     ...empty,
     ...state,
+    ...extra,
     observedIds: [...(state.observedIds || [])],
     lampMarkers: [...(state.lampMarkers || [])],
     stellarMarks: [...(state.stellarMarks || [])],
@@ -185,6 +262,7 @@ export function setLampOn(state, on) {
 export function markVisited(state, place) {
   if (place === "station") state.visitedStation = true;
   if (place === "lamp") state.visitedLamp = true;
+  markCompleteVisit(state, place);
 }
 
 export function logLampCalibration(state, catalog, placedNm, atLamp) {
@@ -380,8 +458,58 @@ export function darkSkyEvidence(state) {
       observation: "Redder light, with a longer-wavelength peak, is not evidence that the source is hotter."
     });
   }
+  appendCompleteEvidence(groups, state);
   const cards = groups.flatMap((group) => group.cards);
   return { cards, groups: groups.filter((group) => group.cards.length) };
+}
+
+export function darkSkyPuzzleEvidence(state) {
+  const use = completePuzzleUse(state, ds01Complete(state), ds02Complete(state));
+  const names = {
+    "DS-01": "The twins that aren't",
+    "DS-02": "The cooler ember",
+    "DS-03": "Two cairns",
+    "DS-04": "Unlabeled plot",
+    "DS-05": "Not one life",
+    "DS-06": "What the floor is made of",
+    "DS-07": "Lines that moved",
+    "DS-08": "Three lines, no label",
+    "DS-09": "Not tonight",
+    "DS-10": "The unlabeled envelope"
+  };
+  const categories = {
+    "DS-01": "comparison",
+    "DS-02": "pattern",
+    "DS-03": "measurement",
+    "DS-04": "pattern",
+    "DS-05": "system",
+    "DS-06": "relationship",
+    "DS-07": "pattern",
+    "DS-08": "revised-explanation",
+    "DS-09": "measurement",
+    "DS-10": "claim"
+  };
+  const notes = {
+    "DS-01": "Two white stars. The traces did not match.",
+    "DS-02": "The reddish target's peak sat at longer wavelength — not hotter.",
+    "DS-03": "Equal apparent brightness. Only one star reversed with the walked baseline.",
+    "DS-04": "I placed measured stars on unlabeled axes. The pattern arrived after the points.",
+    "DS-05": "Massive and sun-like stars do not share one ending.",
+    "DS-06": "Floor silicate and metal lines. Heavier nuclei are not all from the first minutes.",
+    "DS-07": "A known line pattern sat at longer wavelength on farther plates — not a red color.",
+    "DS-08": "Expansion, leftover glow, and abundance. A famous name is not a substitute.",
+    "DS-09": "Nearby changed later tonight. The distant plate is not happening now.",
+    "DS-10": "Observed, inferred, unknown, and one refused overclaim."
+  };
+  return Object.keys(names)
+    .filter((id) => use[id])
+    .map((id) => ({
+      id,
+      title: names[id],
+      category: categories[id],
+      competencyIds: [id],
+      note: notes[id]
+    }));
 }
 
 export function darkSkyNotes(state, spec) {
@@ -414,6 +542,7 @@ export function darkSkyNotes(state, spec) {
       text: "The old notes call it an ember, like a coal."
     });
   }
+  appendCompleteNotes(rows, state);
   if (!rows.length && spec?.question) {
     return [];
   }
@@ -453,29 +582,39 @@ export function darkSkyGuidance(state) {
       "North Rim Station · spectrograph"
     );
   }
-  return pack(
-    "What can this light honestly say so far?",
-    "RECORD",
-    "Reopen the tablet. The basin still has more sky, but this slice stops here.",
-    "Field tablet"
-  );
+  return completeGuidance(state, ds01Complete(state), ds02Complete(state));
 }
 
 export function activeDarkSkyPuzzle(state) {
-  if (!ds01Complete(state)) return "DS-01";
-  return "DS-02";
+  return completeActivePuzzle(state, ds01Complete(state), ds02Complete(state));
 }
 
 export function darkSkyPuzzleStage(state) {
   const id = activeDarkSkyPuzzle(state);
+  if (id === "DS-01") {
+    if (ds01Complete(state)) return "complete";
+    if (state.stellarTriedAlign || state.lampCalibrated) return "testing";
+    if (twinsObservationReady(state) || state.logRead) return "in-progress";
+    return "in-progress";
+  }
   if (id === "DS-02") {
     if (ds02Complete(state)) return "complete";
     if (state.emberCompared) return "testing";
     return "in-progress";
   }
-  if (ds01Complete(state)) return "complete";
-  if (state.stellarTriedAlign || state.lampCalibrated) return "testing";
-  if (twinsObservationReady(state) || state.logRead) return "in-progress";
+  const done = {
+    "DS-03": ds03Complete(state),
+    "DS-04": ds04Complete(state),
+    "DS-05": ds05Complete(state),
+    "DS-06": ds06Complete(state),
+    "DS-07": ds07Complete(state),
+    "DS-08": ds08Complete(state),
+    "DS-09": ds09Complete(state),
+    "DS-10": ds10Complete(state)
+  };
+  if (done[id]) return "complete";
+  if (id === "DS-03" && (state.visitedWest || state.visitedEast)) return "testing";
+  if (id === "DS-10" && (state.envelopeObserved || []).length) return "testing";
   return "in-progress";
 }
 
@@ -551,7 +690,7 @@ export function buildDarkSkyTruth(state = emptyDarkSkySave(), catalog = { target
   const east = catalogTarget(catalog, "east-twin");
   const ember = catalogTarget(catalog, EMBER_ID);
 
-  return {
+  const truth = {
     known,
     expected: [
       "a spectrum can hold structure that color and brightness do not show",
@@ -576,6 +715,9 @@ export function buildDarkSkyTruth(state = emptyDarkSkySave(), catalog = { target
       lampLines: state.lampCalibrated ? (catalog.lamp?.emission || []).map((row) => row.nm) : []
     }
   };
+  appendCompleteTruth(truth, state, catalog);
+  truth.nextAction = chooseDarkSkyNext(state);
+  return truth;
 }
 
 export function chooseDarkSkyNext(state) {
@@ -603,22 +745,27 @@ export function chooseDarkSkyNext(state) {
       text: "Mark the brightest place on the reddish trace and on a white trace you already logged."
     };
   }
-  return {
-    id: "hold-claims",
-    text: "Keep the claims bounded to the light you actually recorded. This slice does not clear the basin."
-  };
+  return completeNext(state, ds01Complete(state), ds02Complete(state));
 }
 
 export function buildDarkSkySummitContext({ state, catalog, region, player, spec, summitState }) {
   const truth = buildDarkSkyTruth(state, catalog);
   const puzzleId = activeDarkSkyPuzzle(state);
   const puzzle = spec?.puzzles?.[puzzleId] || { name: puzzleId };
+  const evidence = darkSkyEvidence(state);
+  const use = completePuzzleUse(state, ds01Complete(state), ds02Complete(state));
   const near = [];
   if (atFeature(region, player, "lamp-bench", 12)) near.push("Lamp Bench");
   if (atFeature(region, player, "north-rim-station", 40) || atFeature(region, player, "eyepiece", 8)) {
     near.push("North Rim Station");
   }
-  const evidence = darkSkyEvidence(state);
+  if (atFeature(region, player, "west-rim-stake", 12)) near.push("West Rim Stake");
+  if (atFeature(region, player, "east-rim-stake", 12)) near.push("East Rim Stake");
+  if (atFeature(region, player, "quiet-floor", 20) || atFeature(region, player, "floor-horn", 8) || atFeature(region, player, "floor-rock", 8)) {
+    near.push("Quiet Floor");
+  }
+  if (atFeature(region, player, "glow-notch", 12)) near.push("Glow Notch");
+  const clearance = state.aar?.result === "clearance";
   return {
     regionId: DARK_SKY_ID,
     location: { x: player?.x || 0, y: player?.y || 0, near },
@@ -631,14 +778,15 @@ export function buildDarkSkySummitContext({ state, catalog, region, player, spec
     measuredIds: [
       state.lampCalibrated ? "lamp-calibration" : null,
       state.stellarCompared ? "stellar-traces" : null,
-      state.emberCompared ? "peak-marks" : null
+      state.emberCompared ? "peak-marks" : null,
+      state.cairnCompared ? "baseline-shift" : null,
+      state.plotLogged ? "unlabeled-plot" : null,
+      state.metalCompared ? "metal-lines" : null,
+      state.redshiftTrend ? "redshift-trend" : null
     ].filter(Boolean),
     predictions: { flume: null, pulse: null },
-    evidenceEarned: [
-      ds01Complete(state) ? "DS-01" : null,
-      ds02Complete(state) ? "DS-02" : null
-    ].filter(Boolean),
-    evidenceMissing: [ds01Complete(state) ? null : "DS-01", ds02Complete(state) ? null : "DS-02"].filter(Boolean),
+    evidenceEarned: Object.entries(use).filter(([, ok]) => ok).map(([id]) => id),
+    evidenceMissing: Object.entries(use).filter(([, ok]) => !ok).map(([id]) => id),
     tablet: evidence.cards.map((card) => ({ id: card.id, title: card.title })),
     raw: {
       flume: { prediction: null, unfairAttempted: false, trials: [], fairTrials: [] },
@@ -647,21 +795,38 @@ export function buildDarkSkySummitContext({ state, catalog, region, player, spec
         lampOn: Boolean(state.lampOn),
         lampCalibrated: Boolean(state.lampCalibrated),
         visitedLamp: Boolean(state.visitedLamp),
+        visitedWest: Boolean(state.visitedWest),
+        visitedEast: Boolean(state.visitedEast),
+        visitedFloor: Boolean(state.visitedFloor),
         logRead: Boolean(state.logRead),
         twinsConcluded: Boolean(state.twinsConcluded),
         emberConcluded: Boolean(state.emberConcluded),
+        cairnConcluded: Boolean(state.cairnConcluded),
+        plotLogged: Boolean(state.plotLogged),
+        massLogged: Boolean(state.massLogged),
+        rockPicked: Boolean(state.rockPicked),
+        nucleosynthesisLogged: Boolean(state.nucleosynthesisLogged),
+        redshiftTrend: Boolean(state.redshiftTrend),
+        originLogged: Boolean(state.originLogged),
+        lookbackLogged: Boolean(state.lookbackLogged),
+        envelopeLogged: Boolean(state.envelopeLogged),
+        hornPoint: state.hornPoint || null,
+        plateSet: state.plateSet || "A",
+        laterTonight: Boolean(state.laterTonight),
+        aarResult: state.aar?.result || null,
         observedIds: [...(state.observedIds || [])],
         lampMarkers: [...(state.lampMarkers || [])],
         emberPeakMark: state.emberPeakMark,
-        whitePeakMark: state.whitePeakMark
+        whitePeakMark: state.whitePeakMark,
+        metalMarkNm: state.metalMarkNm
       }
     },
-    rejected: { lastHint: state.lastHint || "", conflictSeen: false, unfairAttempted: false },
-    revisions: { conflictRepaired: false, flumeRevised: false, landscapeAttempts: 0 },
+    rejected: { lastHint: state.lastHint || "", conflictSeen: Boolean(state.notes?.some((row) => row.id === "brightness-revision")), unfairAttempted: false },
+    revisions: { conflictRepaired: Boolean(state.notes?.some((row) => row.id === "brightness-revision")), flumeRevised: false, landscapeAttempts: 0 },
     aar: {
       open: false,
-      eligible: false,
-      result: null,
+      eligible: dsAarEligible(state, ds01Complete(state), ds02Complete(state)),
+      result: state.aar?.result || null,
       claimId: null,
       claimText: "",
       required: [],
@@ -672,8 +837,8 @@ export function buildDarkSkySummitContext({ state, catalog, region, player, spec
       judged: null,
       lastJudge: null
     },
-    puzzlesComplete: ["DS-01", "DS-02"].filter((id) => (id === "DS-01" ? ds01Complete(state) : ds02Complete(state))),
-    puzzlesIncomplete: ["DS-01", "DS-02"].filter((id) => (id === "DS-01" ? !ds01Complete(state) : !ds02Complete(state))),
+    puzzlesComplete: Object.entries(use).filter(([, ok]) => ok).map(([id]) => id),
+    puzzlesIncomplete: Object.entries(use).filter(([, ok]) => !ok).map(([id]) => id),
     systemsPrompt: null,
     summit: {
       level: 0,
@@ -684,8 +849,9 @@ export function buildDarkSkySummitContext({ state, catalog, region, player, spec
       turns: summitState?.turns || 0,
       struggle: { ...(summitState?.struggle || {}) }
     },
-    use: { "DS-01": ds01Complete(state), "DS-02": ds02Complete(state) },
-    darkSkyTruth: truth
+    use,
+    darkSkyTruth: truth,
+    clearance
   };
 }
 
@@ -696,6 +862,7 @@ export function darkSkyPacketFacts(context) {
   for (const nm of raw.lampMarkers || []) if (Number.isFinite(nm)) numbers.push(nm);
   if (Number.isFinite(raw.emberPeakMark)) numbers.push(raw.emberPeakMark);
   if (Number.isFinite(raw.whitePeakMark)) numbers.push(raw.whitePeakMark);
+  if (Number.isFinite(raw.metalMarkNm)) numbers.push(raw.metalMarkNm);
   return {
     region: "Dark Sky Basin",
     puzzle: context.puzzleName || "field work",
@@ -709,13 +876,23 @@ export function darkSkyPacketFacts(context) {
     observedIds: [...(raw.observedIds || [])],
     twinsConcluded: Boolean(raw.twinsConcluded),
     emberConcluded: Boolean(raw.emberConcluded),
+    cairnConcluded: Boolean(raw.cairnConcluded),
+    visitedWest: Boolean(raw.visitedWest),
+    visitedEast: Boolean(raw.visitedEast),
+    visitedFloor: Boolean(raw.visitedFloor),
+    rockPicked: Boolean(raw.rockPicked),
+    redshiftTrend: Boolean(raw.redshiftTrend),
+    originLogged: Boolean(raw.originLogged),
+    lookbackLogged: Boolean(raw.lookbackLogged),
+    envelopeLogged: Boolean(raw.envelopeLogged),
+    aarResult: raw.aarResult || null,
     numbers,
     known: truth.known,
     expected: truth.expected,
     unknown: truth.unknown,
     science: truth.science,
     doNotClaim: truth.doNotClaim,
-    clearance: false,
+    clearance: raw.aarResult === "clearance",
     inspectedHighLook: false,
     fairTrialCount: 0,
     measurements: [],

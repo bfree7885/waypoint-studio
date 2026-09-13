@@ -570,6 +570,9 @@ export function createWorld(region, seed = 1842, extras = []) {
     }
   } else if (region.terrainModel === "dark-sky-basin") {
     details.push({ kind: "lamp-pad", x: 1588, y: 1368, s: 1, rot: 0 });
+    details.push({ kind: "cairn-detail", x: 380, y: 440, s: 1.1, rot: 0 });
+    details.push({ kind: "cairn-detail", x: 2140, y: 400, s: 1.1, rot: 0 });
+    details.push({ kind: "stake-detail", x: 1288, y: 980, s: 1, rot: 0 });
     for (let i = 0; i < 10; i += 1) {
       details.push({
         kind: i % 2 === 0 ? "rock" : "talus",

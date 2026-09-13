@@ -220,11 +220,51 @@ import {
   twinsObservationReady,
   ds01Complete,
   ds02Complete,
+  ds03Complete,
+  ds04Complete,
+  ds05Complete,
+  ds06Complete,
+  ds07Complete,
+  ds08Complete,
+  ds09Complete,
+  ds10Complete,
+  dsAarEligible,
+  darkSkyPuzzleEvidence,
+  completePuzzleUse,
+  logBrightnessGuess,
+  setPlateSet,
+  viewRimPlate,
+  plateStarLayout,
+  markShiftedStar,
+  logCairnClaim,
+  placePlotStar,
+  logPlot,
+  pickMassBranch,
+  checkRemnant,
+  logMassClaim,
+  pickUpRock,
+  logMetalCompare,
+  logNucleosynthesis,
+  tryGalaxyAlign,
+  placeRedshiftPoint,
+  logRedshiftTrend,
+  rejectCompeting,
+  pointHorn,
+  pinOrigin,
+  logOriginCase,
+  setLaterTonight,
+  readDistantPoster,
+  logLookback,
+  toggleEnvelope,
+  logEnvelope,
+  debugCompleteThrough,
   atFeature,
   catalogTarget,
   twinTargets,
   buildDarkSkySummitContext,
-  EMBER_ID
+  EMBER_ID,
+  CAIRN_NEAR,
+  GALAXY_IDS
 } from "./darksky.js";
 import { createTravelState, beginTravel, travelBlocking, travelTitleFor } from "./travel.js";
 
@@ -281,7 +321,9 @@ export async function boot(root = document) {
     dsCatalog,
     dsSpec,
     dsPuzzles,
-    dsSummit
+    dsSummit,
+    dsAarSpec,
+    dsProfile
   ] =
     await Promise.all([
       fetch("./data/regions/cedar-hollow.json").then((r) => r.json()),
@@ -319,10 +361,11 @@ export async function boot(root = document) {
       fetch("./data/darksky/catalog.json").then((r) => r.json()),
       fetch("./data/investigations/dark-sky-basin.json").then((r) => r.json()),
       fetch("./data/puzzles/dark-sky-basin.json").then((r) => r.json()),
-      fetch("./data/summit/dark-sky-basin.json").then((r) => r.json())
+      fetch("./data/summit/dark-sky-basin.json").then((r) => r.json()),
+      fetch("./data/aar/dark-sky-basin.json").then((r) => r.json()),
+      fetch("./data/mastery/dark-sky-basin.json").then((r) => r.json())
     ]);
   void curriculum;
-  void dsPuzzles;
   void hazardsCatalog;
 
   const tbWorld = loadWorld(worldRaw);
@@ -794,14 +837,14 @@ export async function boot(root = document) {
       landscapeActive: false,
       landscapeConcluded: false,
       evidence,
-      puzzleEvidence: [],
-      fieldRecord: fieldRecord(masteryProfile, masteryState),
+      puzzleEvidence: darkSkyPuzzleEvidence(dsState),
+      fieldRecord: fieldRecord(dsProfile, masteryState),
       journeyRecord: journeyBlocks(),
       fieldRecordLead: "Your Field Record across TerrainBound — not a grade.",
       missingLine: "",
       dataRows: [],
       showMap: true,
-      mapCaption: "North Rim Station, Lamp Bench, and the basin floor between them.",
+      mapCaption: "North Rim Station, opposite rims, Quiet Floor, and Lamp Bench. Where you stand changes what the light can mean.",
       mapModel: {
         region: dsRegion,
         player,
@@ -1367,46 +1410,58 @@ export async function boot(root = document) {
     })), wrenKicker());
   }
 
+  function liveAarSpec() {
+    return isDarkSky() ? dsAarSpec : aarSpec;
+  }
+
+  function liveAarHost() {
+    return isDarkSky() ? dsState : puzzleState;
+  }
+
   function aarItems() {
-    return claimsForAttempt(aarSpec, (puzzleState.aar.attempts || 0) + 1);
+    const host = liveAarHost();
+    return claimsForAttempt(liveAarSpec(), (host.aar.attempts || 0) + 1);
   }
 
   function aarView() {
+    const spec = liveAarSpec();
+    const host = liveAarHost();
     const items = aarItems();
     const item = items[aarIndex] || items[0];
     const done = items.length > 0 && items.every((claim) => aarConfirmed.includes(claim.id));
-    if (puzzleState.aar.result) {
+    if (host.aar.result) {
       return {
-        title: puzzleState.aar.result === "clearance" ? aarSpec.clearance.title : aarSpec.moreEvidence.title,
-        lead: puzzleState.aar.result === "clearance" ? aarSpec.clearance.lines[0] : puzzleState.aar.remediation.join(" "),
+        title: host.aar.result === "clearance" ? spec.clearance.title : spec.moreEvidence.title,
+        lead: host.aar.result === "clearance" ? spec.clearance.lines[0] : host.aar.remediation.join(" "),
         stem: "",
         evidence: [],
         selected: [],
-        result: puzzleState.aar.result,
-        status: puzzleState.aar.result === "clearance" ? "The road to High Country is open." : aarSpec.moreEvidence.lead,
+        result: host.aar.result,
+        status: host.aar.result === "clearance" ? spec.clearance.title : spec.moreEvidence.lead,
         done: true
       };
     }
-    const use = currentPuzzleUse();
-    const evidence = tabletEvidence(puzzleSpec, use, {
-      missionState,
-      invState,
-      flumeState,
-      dataState,
-      challengeState,
-      puzzleState
-    });
+    const evidence = isDarkSky()
+      ? darkSkyPuzzleEvidence(dsState)
+      : tabletEvidence(puzzleSpec, currentPuzzleUse(), {
+          missionState,
+          invState,
+          flumeState,
+          dataState,
+          challengeState,
+          puzzleState
+        });
     return {
-      title: aarSpec.title,
-      lead: aarIndex === 0 ? aarSpec.open : "Pin what actually supports this — drop what doesn't.",
+      title: spec.title,
+      lead: aarIndex === 0 ? spec.open : "Pin what actually supports this — drop what doesn't.",
       stem: item?.wren || item?.stem || "",
       evidence,
-      selected: item ? selectedIds(puzzleState.aar.answers, item.id) : [],
+      selected: item ? selectedIds(host.aar.answers, item.id) : [],
       done,
       result: null,
       status: evidence.length
         ? ""
-        : "Your tablet is still thin. Walk the hollow first, then pin notes you actually recorded."
+        : "Your tablet is still thin. Walk the field first, then pin notes you actually recorded."
     };
   }
 
@@ -1418,8 +1473,9 @@ export async function boot(root = document) {
         const items = aarItems();
         const item = items[aarIndex];
         if (!item) return;
-        const next = toggleEvidence(selectedIds(puzzleState.aar.answers, item.id), id);
-        puzzleState.aar.answers = { ...puzzleState.aar.answers, [item.id]: next };
+        const host = liveAarHost();
+        const next = toggleEvidence(selectedIds(host.aar.answers, item.id), id);
+        host.aar.answers = { ...host.aar.answers, [item.id]: next };
         if (aarConfirmed.includes(item.id) && !judgeClaim(item, next).good) {
           aarConfirmed = aarConfirmed.filter((claimId) => claimId !== item.id);
         }
@@ -1432,8 +1488,11 @@ export async function boot(root = document) {
   function openAar() {
     aarOpen = true;
     aarConfirmed = [];
-    if (puzzleState.aar.result === "more-evidence") resetAarAnswers(puzzleState);
-    if (puzzleState.aar.result !== "clearance") aarIndex = 0;
+    const host = liveAarHost();
+    if (host.aar.result === "more-evidence") resetAarAnswers(host);
+    if (host.aar.result !== "clearance") aarIndex = 0;
+    const closeBtn = root.querySelector("#aar-close");
+    if (closeBtn) closeBtn.textContent = isDarkSky() ? "Back to the basin" : "Back to the hollow";
     renderAar();
   }
 
@@ -1624,13 +1683,14 @@ export async function boot(root = document) {
     const items = aarItems();
     const item = items[aarIndex];
     if (!item) return;
-    const selected = selectedIds(puzzleState.aar.answers, item.id);
+    const host = liveAarHost();
+    const selected = selectedIds(host.aar.answers, item.id);
     if (!selected.length) {
       ui.showToast("Show me the notes", "Pin the Field Tablet evidence that actually supports this.");
       return;
     }
     const judged = judgeClaim(item, selected);
-    puzzleState.aar.lastJudge = {
+    host.aar.lastJudge = {
       kind: judged.kind,
       hint: judged.hint,
       good: judged.good,
@@ -1658,6 +1718,27 @@ export async function boot(root = document) {
   }
 
   function submitAarCase() {
+    if (isDarkSky()) {
+      const use = completePuzzleUse(dsState, ds01Complete(dsState), ds02Complete(dsState));
+      const missing = incompletePuzzles(dsPuzzles, use);
+      const result = submitAar(dsState, dsAarSpec, dsPuzzles, dsState.aar.answers, missing);
+      persist();
+      refreshJournal();
+      closeAar();
+      fieldObserve(result.result === "clearance" ? "clearance" : "aar");
+      if (result.result === "clearance") {
+        showDialogueLines("Ranger Wren", dsAarSpec.clearance.lines, 0, () => {
+          dialogue = null;
+          ui.showDialogue(false);
+        });
+        return result;
+      }
+      showDialogueLines("Ranger Wren", result.lines.length ? result.lines : [dsAarSpec.moreEvidence.lead], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return result;
+    }
     const use = currentPuzzleUse();
     const missing = incompletePuzzles(puzzleSpec, use);
     const result = submitAar(puzzleState, aarSpec, puzzleSpec, puzzleState.aar.answers, missing);
@@ -2953,6 +3034,7 @@ export async function boot(root = document) {
   }
 
   function talkDsWren() {
+    const use = completePuzzleUse(dsState, ds01Complete(dsState), ds02Complete(dsState));
     if (!dsState.introSeen) {
       dsState.introSeen = true;
       persist();
@@ -2966,6 +3048,78 @@ export async function boot(root = document) {
       dsState.emberRadioSeen = true;
       persist();
       showDialogueLines("Ranger Wren", dsSpec.afterTwins.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds02Complete(dsState) && !dsState.cairnRadioSeen) {
+      dsState.cairnRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterEmber.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds03Complete(dsState) && !dsState.plotRadioSeen) {
+      dsState.plotRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterCairns.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds05Complete(dsState) && !dsState.floorRadioSeen) {
+      dsState.floorRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterMass.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds07Complete(dsState) && !dsState.originRadioSeen) {
+      dsState.originRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterShift.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (ds09Complete(dsState) && !dsState.envelopeRadioSeen) {
+      dsState.envelopeRadioSeen = true;
+      persist();
+      showDialogueLines("Ranger Wren", dsSpec.afterLookback.lines, 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (dsAarEligible(dsState, use["DS-01"], use["DS-02"]) && dsState.aar?.result !== "clearance") {
+      ui.showDialogue(true, "Ranger Wren", dsAarSpec.open, [
+        {
+          label: "Make the case",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+            openAar();
+          }
+        },
+        {
+          label: "Not yet",
+          onClick: () => {
+            dialogue = null;
+            ui.showDialogue(false);
+          }
+        }
+      ]);
+      return;
+    }
+    if (dsState.aar?.result === "more-evidence") {
+      showDialogueLines("Ranger Wren", dsState.aar.remediation.length ? dsState.aar.remediation : [dsAarSpec.moreEvidence.lead], 0, () => {
         dialogue = null;
         ui.showDialogue(false);
       });
@@ -2988,6 +3142,14 @@ export async function boot(root = document) {
       return;
     }
     if (target.kind === "plate-desk") {
+      if (ds06Complete(dsState) && !ds07Complete(dsState)) {
+        openRedshiftDesk();
+        return;
+      }
+      if (ds09Complete(dsState) && !ds10Complete(dsState)) {
+        openEnvelope();
+        return;
+      }
       const result = readTwinsLog(dsState);
       persist();
       refreshJournal();
@@ -3008,6 +3170,78 @@ export async function boot(root = document) {
     if (target.kind === "spectrograph") {
       markVisited(dsState, "station");
       openDsSpectrograph();
+      return;
+    }
+    if (target.kind === "plot-board") {
+      openPlotBoard();
+      return;
+    }
+    if (target.kind === "burst-poster") {
+      readDistantPoster(dsState);
+      persist();
+      if (ds07Complete(dsState) && dsState.nearbyChanged) {
+        renderLookback();
+        return;
+      }
+      showDialogueLines("Event poster", [
+        "DISTANT OUTBURST — HAPPENING NOW. The caption treats a far plate as tonight's news.",
+        ds07Complete(dsState) ? "Use later tonight at the eyepiece, then come back." : "The basin still has other light to record first."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+        ui.showToast("Noted", "Poster");
+      });
+      return;
+    }
+    if (target.kind === "west-stake") {
+      markVisited(dsState, "west");
+      openRimPlates("west");
+      return;
+    }
+    if (target.kind === "east-stake") {
+      markVisited(dsState, "east");
+      openRimPlates("east");
+      return;
+    }
+    if (target.kind === "basin-rock") {
+      openFloorRock();
+      return;
+    }
+    if (target.kind === "horn") {
+      openHorn();
+      return;
+    }
+    if (target.kind === "quiet-floor") {
+      markVisited(dsState, "floor");
+      persist();
+      showDialogueLines("Quiet Floor", [
+        "Salt-pale pan. Almost no vegetation. Station lights fall away. A rock you can pick up. A horn you can point."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (target.kind === "glow-notch") {
+      markVisited(dsState, "glow");
+      persist();
+      showDialogueLines("Glow Notch", [
+        "A dip in the west rim. Faint town glow leaks here. This is why the work happens in the basin, not on the notch."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    if (target.kind === "picnic") {
+      markVisited(dsState, "picnic");
+      persist();
+      showDialogueLines("East picnic table", [
+        "A leftover table and a cold thermos. Optional. The catalog does not need a sandwich."
+      ], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
       return;
     }
     if (target.kind === "station") {
@@ -3041,25 +3275,27 @@ export async function boot(root = document) {
   }
 
   function renderSkyEyepiece() {
+    root.querySelector("#sky-later")?.remove();
+    const later = Boolean(dsState.laterTonight);
+    const allowed = eyepieceIds();
     ui.showSkyEyepiece(true, {
       title: "Dome eyepiece",
-      lead: ds01Complete(dsState)
-        ? "The two white targets still look alike. A reddish star sits off to one side."
-        : "Two bright points. Both white. Both easy to treat as the same kind of object if you only look.",
+      lead: eyepieceLead(),
       targets: dsCatalog.targets
-        .filter((star) => star.id !== EMBER_ID || ds01Complete(dsState))
-        .map((star) => ({
-        id: star.id,
-        label: star.label,
-        color: star.visual.color,
-        size: star.visual.size,
-        az: star.sky.az,
-        alt: star.sky.alt,
-        seen: (dsState.observedIds || []).includes(star.id)
-      })),
-      status: twinsObservationReady(dsState)
-        ? "Both white targets looked bright and white."
-        : "Tap each bright white target."
+        .filter((star) => allowed.includes(star.id))
+        .map((star) => {
+          const vis = later && star.laterVisual ? star.laterVisual : star.visual;
+          return {
+            id: star.id,
+            label: star.label,
+            color: vis.color,
+            size: vis.size,
+            az: star.sky?.az ?? 0.5,
+            alt: star.sky?.alt ?? 0.5,
+            seen: (dsState.observedIds || []).includes(star.id)
+          };
+        }),
+      status: eyepieceStatus()
     }, {
       onPick(id) {
         const result = observeTarget(dsState, id);
@@ -3069,6 +3305,50 @@ export async function boot(root = document) {
       },
       onClose: closeSkyEyepiece
     });
+    if (ds07Complete(dsState) && !ds09Complete(dsState)) {
+      const extra = root.querySelector("#sky-eye-status");
+      if (extra && !root.querySelector("#sky-later")) {
+        const btn = document.createElement("button");
+        btn.id = "sky-later";
+        btn.type = "button";
+        btn.textContent = dsState.laterTonight ? "Return to earlier tonight" : "Look later tonight";
+        extra.insertAdjacentElement("beforebegin", btn);
+        btn.onclick = () => {
+          setLaterTonight(dsState, !dsState.laterTonight);
+          persist();
+          const old = root.querySelector("#sky-later");
+          if (old) old.remove();
+          renderSkyEyepiece();
+        };
+      }
+    }
+  }
+
+  function eyepieceIds() {
+    const ids = ["west-twin", "east-twin"];
+    if (ds01Complete(dsState)) ids.push(EMBER_ID);
+    if (ds02Complete(dsState)) ids.push("cairn-near", "cairn-far");
+    if (ds07Complete(dsState)) ids.push("nearby-variable", "distant-burst");
+    if (ds09Complete(dsState)) ids.push("envelope-x");
+    return ids;
+  }
+
+  function eyepieceLead() {
+    if (ds07Complete(dsState) && !ds09Complete(dsState)) {
+      return dsState.laterTonight
+        ? "Later tonight. Watch the nearby variable. The distant outburst is still the same plate."
+        : "A nearby star can still change. A distant outburst on a poster is not live weather.";
+    }
+    if (ds01Complete(dsState) && !ds02Complete(dsState)) {
+      return "The two white targets still look alike. A reddish star sits off to one side.";
+    }
+    return "Two bright points. Both white. Both easy to treat as the same kind of object if you only look.";
+  }
+
+  function eyepieceStatus() {
+    if (dsState.laterTonight && dsState.nearbyChanged) return "The nearby target dimmed. The distant one did not become tonight's news.";
+    if (twinsObservationReady(dsState)) return "Both white targets looked bright and white.";
+    return "Tap each bright white target.";
   }
 
   function openLampBench() {
@@ -3134,7 +3414,11 @@ export async function boot(root = document) {
       return;
     }
     spectrumOpen = true;
-    if (ds01Complete(dsState) && !ds02Complete(dsState)) renderEmberSpectrum();
+    if (!ds01Complete(dsState)) renderTwinSpectrum();
+    else if (!ds02Complete(dsState)) renderEmberSpectrum();
+    else if (ds05Complete(dsState) && dsState.rockPicked && !ds06Complete(dsState)) renderMetalSpectrum();
+    else if (ds04Complete(dsState) && !ds05Complete(dsState)) renderMassSpectrum();
+    else if (ds06Complete(dsState) && !ds07Complete(dsState)) renderRedshiftSpectrum();
     else renderTwinSpectrum();
   }
 
@@ -3235,6 +3519,7 @@ export async function boot(root = document) {
           ui.showToast("Noted", "Ember claim");
           closeSpectrum();
           refreshJournal();
+          maybeDsRadio();
         } else {
           renderEmberSpectrum();
         }
@@ -3246,6 +3531,596 @@ export async function boot(root = document) {
   function closeSpectrum() {
     spectrumOpen = false;
     ui.showSpectrum(false);
+  }
+
+  function closeDsBoard() {
+    ui.showGeoBoard(false, {});
+  }
+
+  function maybeDsRadio() {
+    if (ds02Complete(dsState) && !dsState.cairnRadioSeen) talkDsWren();
+    else if (ds03Complete(dsState) && !dsState.plotRadioSeen) talkDsWren();
+    else if (ds05Complete(dsState) && !dsState.floorRadioSeen) talkDsWren();
+    else if (ds07Complete(dsState) && !dsState.originRadioSeen) talkDsWren();
+    else if (ds09Complete(dsState) && !dsState.envelopeRadioSeen) talkDsWren();
+  }
+
+  function openRimPlates(rim) {
+    if (ds02Complete(dsState) && !dsState.brightnessGuess) {
+      ui.showDialogue(true, rim === "west" ? "West Rim Stake" : "East Rim Stake", "Two stars here look about equally bright. What is your first explanation?", [
+        {
+          label: "Same brightness, same distance",
+          onClick: () => {
+            logBrightnessGuess(dsState, "same-distance");
+            persist();
+            dialogue = null;
+            ui.showDialogue(false);
+            renderRimPlates(rim);
+          }
+        },
+        {
+          label: "I can still rank distance by eye",
+          onClick: () => {
+            logBrightnessGuess(dsState, "one-closer-by-eye");
+            persist();
+            dialogue = null;
+            ui.showDialogue(false);
+            renderRimPlates(rim);
+          }
+        }
+      ]);
+      return;
+    }
+    renderRimPlates(rim);
+  }
+
+  function renderRimPlates(rim) {
+    viewRimPlate(dsState, rim);
+    persist();
+    const stars = plateStarLayout(dsCatalog, rim, dsState.plateSet);
+    ui.showGeoBoard(true, {
+      title: rim === "west" ? "West Rim Stake" : "East Rim Stake",
+      lead: "Season plates from this cairn. Equal look is not the question. Which star reverses when you change plate and rim?",
+      canvasKind: "plates",
+      canvasLabel: "Season plates of two equally bright stars",
+      canvasWidth: 420,
+      canvasHeight: 200,
+      rimLabel: rim === "west" ? "West rim" : "East rim",
+      plateSet: dsState.plateSet,
+      stars,
+      status: dsState.lastHint || (dsState.cairnCompared ? "Only one star reversed with the baseline." : "Stand here. Switch plates. Then walk the other rim."),
+      tryLabel: dsState.cairnCompared ? "Log the claim" : "Log the star that shifted",
+      actionLabel: "Plates and which star shifted",
+      actions: [
+        { id: "plate-a", label: "Plate A", on: dsState.plateSet !== "B" },
+        { id: "plate-b", label: "Plate B", on: dsState.plateSet === "B" },
+        { id: CAIRN_NEAR, label: "Star 1 shifted", on: dsState.shiftStarId === CAIRN_NEAR },
+        { id: "cairn-far", label: "Star 2 shifted", on: dsState.shiftStarId === "cairn-far" }
+      ]
+    }, {
+      onAction(id) {
+        if (id === "plate-a" || id === "plate-b") {
+          setPlateSet(dsState, id === "plate-b" ? "B" : "A");
+          persist();
+          renderRimPlates(rim);
+          return;
+        }
+        const marked = markShiftedStar(dsState, id);
+        persist();
+        if (!marked.ok) {
+          renderRimPlates(rim);
+          return;
+        }
+        renderRimPlates(rim);
+      },
+      onTry() {
+        const done = logCairnClaim(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Cairn baseline");
+          closeDsBoard();
+          refreshJournal();
+          maybeDsRadio();
+        } else {
+          renderRimPlates(rim);
+        }
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function openPlotBoard() {
+    if (!ds03Complete(dsState)) {
+      showDialogueLines("Unlabeled plot", ["Empty axes. The board only takes stars you already measured — peaks and a distance rank."], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    renderPlotBoard();
+  }
+
+  function renderPlotBoard() {
+    const labels = { "west-twin": "hot white", "cooler-ember": "ember", "cairn-far": "far cairn" };
+    ui.showGeoBoard(true, {
+      title: "Unlabeled plot",
+      lead: "No poster legend. Place the hot white star, the cooler ember, and the far cairn star from your notes.",
+      canvasKind: "plot",
+      canvasLabel: "Unlabeled temperature versus brightness plot",
+      canvasWidth: 420,
+      canvasHeight: 240,
+      placements: dsState.plotPlacements || {},
+      labels,
+      groups: [
+        {
+          id: "star",
+          label: "Star to place",
+          selected: dsState.plotDraftId || "west-twin",
+          items: [
+            { id: "west-twin", label: "Hot white" },
+            { id: "cooler-ember", label: "Cooler ember" },
+            { id: "cairn-far", label: "Far cairn star" }
+          ]
+        }
+      ],
+      status: dsState.lastHint || (dsState.plotLogged ? "The pattern arrived after the points." : "Tap the board to place the selected star."),
+      tryLabel: "Log the diagram"
+    }, {
+      onPick(_group, id) {
+        dsState.plotDraftId = id;
+        persist();
+        renderPlotBoard();
+      },
+      onCanvas(x, y) {
+        placePlotStar(dsState, dsState.plotDraftId || "west-twin", x, y);
+        persist();
+        renderPlotBoard();
+      },
+      onTry() {
+        const done = logPlot(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Player-built diagram");
+          closeDsBoard();
+          refreshJournal();
+        } else {
+          renderPlotBoard();
+        }
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function renderMassSpectrum() {
+    const hot = catalogTarget(dsCatalog, "hot-mass");
+    const sun = catalogTarget(dsCatalog, "sun-like");
+    const remnant = catalogTarget(dsCatalog, "blue-remnant");
+    ui.showGeoBoard(true, {
+      title: "Not one life",
+      lead: "Massive and sun-like stars do not share a cartoon lifecycle. Branch both, then match the remnant plate.",
+      groups: [
+        {
+          id: "hot",
+          label: "Hot massive future",
+          selected: dsState.massHot,
+          items: [
+            { id: "remnant", label: "Violent late stage, remnant" },
+            { id: "same-life", label: "Same quiet ending as every star" }
+          ]
+        },
+        {
+          id: "sun",
+          label: "Sun-like future",
+          selected: dsState.massSun,
+          items: [
+            { id: "no-supernova", label: "Will not explode as a supernova" },
+            { id: "supernova", label: "Every star goes supernova" }
+          ]
+        },
+        {
+          id: "remnant",
+          label: "Which plate matches the massive branch?",
+          selected: dsState.remnantPick,
+          items: [
+            { id: "blue-remnant", label: "Outburst remnant" },
+            { id: "sun-like", label: "Still the sun-like star" }
+          ]
+        }
+      ],
+      table: {
+        columns: ["Plate", "Peak (nm)"],
+        rows: [
+          [hot.label, String(hot.peakNm)],
+          [sun.label, String(sun.peakNm)],
+          [remnant.label, String(remnant.peakNm)]
+        ]
+      },
+      status: dsState.lastHint || "",
+      tryLabel: "Log the branch"
+    }, {
+      onPick(group, id) {
+        if (group === "hot" || group === "sun") pickMassBranch(dsState, group, id);
+        if (group === "remnant") checkRemnant(dsState, id);
+        persist();
+        renderMassSpectrum();
+      },
+      onTry() {
+        const done = logMassClaim(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Mass branches lives");
+          closeDsBoard();
+          refreshJournal();
+          maybeDsRadio();
+        } else {
+          renderMassSpectrum();
+        }
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function openFloorRock() {
+    const result = pickUpRock(dsState, true);
+    persist();
+    showDialogueLines("Basin floor rock", [
+      "A pale silicate you can pick up. Ordinary stone, sitting on the quiet pan, with a history that did not start in this hollow."
+    ], 0, () => {
+      dialogue = null;
+      ui.showDialogue(false);
+      if (result.ok) ui.showToast("In hand", "Floor rock");
+      refreshJournal();
+    });
+  }
+
+  function renderMetalSpectrum() {
+    const poor = catalogTarget(dsCatalog, "metal-poor");
+    const rich = catalogTarget(dsCatalog, "metal-rich");
+    ui.showSpectrum(true, {
+      title: "Metal lines and floor rock",
+      lead: "The stone is in hand. Mark a metal feature that is strong in one stellar trace and nearly missing in the other. Not a periodic-table quiz.",
+      mode: "twins",
+      traces: [
+        { spec: poor, color: "#d7e7ff", label: poor.label, shiftNm: 0 },
+        { spec: rich, color: "#f3d2a8", label: rich.label, shiftNm: 0 }
+      ],
+      markers: dsState.metalMarkNm != null ? [{ nm: dsState.metalMarkNm, kind: "diff" }] : [],
+      readout: "Hydrogen lines can be shared. Metals are not equally present.",
+      status: dsState.lastHint || "",
+      logLabel: dsState.metalCompared ? "Log the material claim" : "Log the missing metal line",
+      closeLabel: "Back to the basin",
+      toolChips: {
+      selected: dsState.nucleoDraft || dsState.nucleoClaim,
+        items: [
+          { id: "heavy-from-stars", label: "Heavier metals needed stars" },
+          { id: "all-in-stars", label: "Everything was made in stars" },
+          { id: "all-at-start", label: "All metals were here at the start" }
+        ]
+      }
+    }, {
+      onCanvas(nm) {
+        dsState.metalMarkNm = nm;
+        persist();
+        renderMetalSpectrum();
+      },
+      onTool(id) {
+        dsState.nucleoDraft = id;
+        persist();
+        renderMetalSpectrum();
+      },
+      onLog() {
+        if (!dsState.metalCompared) {
+          const compared = logMetalCompare(dsState, dsState.metalMarkNm);
+          persist();
+          if (!compared.ok) {
+            renderMetalSpectrum();
+            return;
+          }
+        }
+        const done = logNucleosynthesis(dsState, dsState.nucleoDraft || dsState.nucleoClaim);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Floor rock");
+          closeSpectrum();
+          refreshJournal();
+        } else {
+          renderMetalSpectrum();
+        }
+      },
+      onClose: closeSpectrum
+    });
+  }
+
+  function openRedshiftDesk() {
+    renderRedshiftSpectrum();
+  }
+
+  function renderRedshiftSpectrum() {
+    const gal = catalogTarget(dsCatalog, dsState.redshiftGalaxyId || "galaxy-far");
+    const rest = { peakNm: 520, lines: (gal?.restLines || [486, 656]).map((nm) => ({ nm, depth: 0.7 })) };
+    ui.showSpectrum(true, {
+      title: "Galaxy plates",
+      lead: "Same rest pattern you already know. See whether the whole pattern has slid. Redshift is not a red-colored object.",
+      mode: "twins",
+      showAlign: true,
+      shift: dsState.redshiftShiftNm || 0,
+      traces: [
+        { spec: rest, color: "#d7e7ff", label: "lab rest", shiftNm: 0 },
+        { spec: gal, color: "#c8b8e8", label: gal.label, shiftNm: 0 }
+      ],
+      markers: (gal.restLines || []).map((nm) => ({ nm: nm + (dsState.redshiftShiftNm || 0), kind: "diff" })),
+      readout: "Shorter ←  wavelength  → longer · color is not this slide",
+      status: dsState.lastHint || "",
+      logLabel: "Open the shift plot",
+      closeLabel: "Back to the basin",
+      toolChips: {
+        selected: dsState.redshiftGalaxyId || "galaxy-far",
+        items: GALAXY_IDS.map((id) => ({ id, label: catalogTarget(dsCatalog, id).label }))
+      }
+    }, {
+      onShift(value) {
+        tryGalaxyAlign(dsState, dsCatalog, dsState.redshiftGalaxyId || "galaxy-far", Number(value));
+        persist();
+        renderRedshiftSpectrum();
+      },
+      onTool(id) {
+        dsState.redshiftGalaxyId = id;
+        persist();
+        renderRedshiftSpectrum();
+      },
+      onLog() {
+        closeSpectrum();
+        renderRedshiftPlot();
+      },
+      onClose: closeSpectrum
+    });
+  }
+
+  function renderRedshiftPlot() {
+    ui.showGeoBoard(true, {
+      title: "Shift versus distance rank",
+      lead: "Place the three plates. Then reject the story that every plate shifts the same amount.",
+      canvasKind: "redshift",
+      canvasLabel: "Line-pattern shift versus distance rank",
+      canvasWidth: 420,
+      canvasHeight: 220,
+      points: dsState.redshiftPoints || {},
+      labels: Object.fromEntries(GALAXY_IDS.map((id) => [id, catalogTarget(dsCatalog, id).label])),
+      groups: [
+        {
+          id: "galaxy",
+          label: "Plate to place",
+          selected: dsState.redshiftGalaxyId || "galaxy-far",
+          items: GALAXY_IDS.map((id) => ({ id, label: catalogTarget(dsCatalog, id).label }))
+        },
+        {
+          id: "story",
+          label: "Which competing story fails the farthest plate?",
+          selected: dsState.competingRejected ? "all-same" : null,
+          items: [
+            { id: "all-same", label: "Every plate shifts the same" },
+            { id: "red-color", label: "They look red, so they recede" }
+          ]
+        }
+      ],
+      status: dsState.lastHint || "",
+      tryLabel: "Log the trend"
+    }, {
+      onPick(group, id) {
+        if (group === "galaxy") dsState.redshiftGalaxyId = id;
+        if (group === "story") rejectCompeting(dsState, id);
+        persist();
+        renderRedshiftPlot();
+      },
+      onCanvas(x, y) {
+        placeRedshiftPoint(dsState, dsState.redshiftGalaxyId || "galaxy-far", x, y);
+        persist();
+        renderRedshiftPlot();
+      },
+      onTry() {
+        if (!dsState.redshiftTrend) {
+          const trend = logRedshiftTrend(dsState, dsCatalog);
+          persist();
+          if (!trend.ok) {
+            renderRedshiftPlot();
+            return;
+          }
+        }
+        if (!dsState.competingRejected) {
+          dsState.lastHint = "Reject the story that every plate shifts the same amount.";
+          persist();
+          renderRedshiftPlot();
+          return;
+        }
+        ui.showToast("Noted", "Moved lines");
+        closeDsBoard();
+        refreshJournal();
+        maybeDsRadio();
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function openHorn() {
+    if (!ds07Complete(dsState)) {
+      showDialogueLines("Quiet Floor horn", ["A coarse radio horn. Point it later, when expansion and abundance are already in the tablet."], 0, () => {
+        dialogue = null;
+        ui.showDialogue(false);
+      });
+      return;
+    }
+    renderHorn();
+  }
+
+  function renderHorn() {
+    ui.showGeoBoard(true, {
+      title: "Quiet Floor horn",
+      lead: "Point the horn. The station wall is noisy. Overhead is quieter. Pin three independent lines — not a famous name.",
+      canvasKind: "horn",
+      canvasLabel: "Horn pointing: zenith, wall, horizon",
+      canvasWidth: 420,
+      canvasHeight: 180,
+      hornPoint: dsState.hornPoint,
+      actionLabel: "Point the horn",
+      actions: [
+        { id: "zenith", label: "Point zenith", on: dsState.hornPoint === "zenith" },
+        { id: "wall", label: "Point wall", on: dsState.hornPoint === "wall" },
+        { id: "horizon", label: "Point horizon", on: dsState.hornPoint === "horizon" }
+      ],
+      groups: [
+        {
+          id: "origin",
+          label: "Evidence lines to pin",
+          selected: dsState.originPinned || [],
+          items: [
+            { id: "expansion", label: "Galaxy shifts / expansion" },
+            { id: "leftover", label: "Leftover quiet sky" },
+            { id: "abundance", label: "Metals not all present at the start" }
+          ]
+        }
+      ],
+      status: dsState.lastHint || "",
+      tryLabel: "Log the case"
+    }, {
+      onAction(id) {
+        pointHorn(dsState, id, true);
+        persist();
+        renderHorn();
+      },
+      onPick(_group, id) {
+        pinOrigin(dsState, id);
+        persist();
+        renderHorn();
+      },
+      onTry() {
+        const done = logOriginCase(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Three lines");
+          closeDsBoard();
+          refreshJournal();
+        } else {
+          renderHorn();
+        }
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function openLookback() {
+    renderLookback();
+  }
+
+  function renderLookback() {
+    ui.showGeoBoard(true, {
+      title: "Not tonight",
+      lead: "The poster said happening now. The nearby variable can still change. The distant plate cannot become live weather.",
+      groups: [
+        {
+          id: "claim",
+          label: "What can you claim about the distant outburst?",
+          selected: dsState.lookbackClaim,
+          items: [
+            { id: "earlier-light", label: "We see earlier light, not now" },
+            { id: "happening-now", label: "It is happening now" }
+          ]
+        }
+      ],
+      status: dsState.lastHint || (dsState.nearbyChanged && dsState.distantPosterSeen ? "Nearby changed later tonight. Distant plate did not." : "Read the poster, then use later tonight at the eyepiece."),
+      tryLabel: "Log the lookback"
+    }, {
+      onPick(_group, id) {
+        dsState.lookbackDraft = id;
+        persist();
+        renderLookback();
+      },
+      onTry() {
+        const done = logLookback(dsState, dsState.lookbackDraft || dsState.lookbackClaim);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Lookback");
+          closeDsBoard();
+          refreshJournal();
+          maybeDsRadio();
+        } else {
+          renderLookback();
+        }
+      },
+      onClose: closeDsBoard
+    });
+  }
+
+  function openEnvelope() {
+    renderEnvelope();
+  }
+
+  function renderEnvelope() {
+    ui.showGeoBoard(true, {
+      title: "Unlabeled envelope",
+      lead: "Say what the light shows, what you can infer, what stays unknown, and what you refuse.",
+      groups: [
+        {
+          id: "observed",
+          label: "Directly observed",
+          selected: dsState.envelopeObserved || [],
+          items: [
+            { id: "spectrum-shape", label: "The trace structure" },
+            { id: "peak-place", label: "Where the peak sits" },
+            { id: "happening-now", label: "It is happening now" },
+            { id: "famous-name", label: "A famous catalog name" }
+          ]
+        },
+        {
+          id: "inferred",
+          label: "Can be inferred",
+          selected: dsState.envelopeInferred || [],
+          items: [
+            { id: "not-hotter", label: "Not hotter than the marked white star" },
+            { id: "happening-now", label: "Live weather at the source" }
+          ]
+        },
+        {
+          id: "unknown",
+          label: "Still unknown",
+          selected: dsState.envelopeUnknown || [],
+          items: [
+            { id: "distance", label: "Distance" },
+            { id: "present-state", label: "What is happening there now" }
+          ]
+        },
+        {
+          id: "refuse",
+          label: "Refuse to claim",
+          selected: dsState.envelopeRefused || [],
+          items: [
+            { id: "happening-now", label: "Happening now" },
+            { id: "famous-name", label: "A famous name" },
+            { id: "exact-kelvin", label: "An exact kelvin temperature" }
+          ]
+        }
+      ],
+      status: dsState.lastHint || "",
+      tryLabel: "Log the bounded case"
+    }, {
+      onPick(group, id) {
+        toggleEnvelope(dsState, group, id);
+        persist();
+        renderEnvelope();
+      },
+      onTry() {
+        const done = logEnvelope(dsState);
+        persist();
+        if (done.ok) {
+          ui.showToast("Noted", "Bounded claims");
+          closeDsBoard();
+          refreshJournal();
+          maybeDsRadio();
+        } else {
+          renderEnvelope();
+        }
+      },
+      onClose: closeDsBoard
+    });
   }
 
   function currentTarget() {
@@ -3303,8 +4178,8 @@ export async function boot(root = document) {
     }
     if (target.kind === "wren") setPose("talk");
     else if (target.kind === "gnomon" || target.kind === "moon-site" || target.kind === "eyepiece") setPose("sky");
-    else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake" || target.kind === "lamp") setPose("measure");
-    else if (target.kind === "orbit-board" || target.kind === "tide-desk" || target.kind === "planet-desk" || target.kind === "eclipse-desk" || target.kind === "spectrograph" || target.kind === "plate-desk") {
+    else if (target.kind === "flume" || target.kind === "marker" || target.kind === "stake" || target.kind === "lamp" || target.kind === "west-stake" || target.kind === "east-stake" || target.kind === "horn") setPose("measure");
+    else if (target.kind === "orbit-board" || target.kind === "tide-desk" || target.kind === "planet-desk" || target.kind === "eclipse-desk" || target.kind === "spectrograph" || target.kind === "plate-desk" || target.kind === "plot-board") {
       setPose("tablet");
     } else setPose("inspect");
     if (isDarkSky()) {
@@ -4016,6 +4891,9 @@ export async function boot(root = document) {
       if (isDarkSky()) {
         if (atFeature(dsRegion, player, "lamp-bench", 20)) markVisited(dsState, "lamp");
         if (atFeature(dsRegion, player, "north-rim-station", 40)) markVisited(dsState, "station");
+        if (atFeature(dsRegion, player, "west-rim-stake", 20)) markVisited(dsState, "west");
+        if (atFeature(dsRegion, player, "east-rim-stake", 20)) markVisited(dsState, "east");
+        if (atFeature(dsRegion, player, "quiet-floor", 24) || atFeature(dsRegion, player, "floor-rock", 12)) markVisited(dsState, "floor");
       }
       if (Math.hypot(player.vx, player.vy) > 24) {
         const kind = inCreek(world.region, player.x, player.y) ? "water" : onTrail(world.region, player.x, player.y) ? "rock" : "soil";
@@ -4121,6 +4999,24 @@ export async function boot(root = document) {
         ui.setPrompt("Use the plate spectrograph · E");
       } else if (target.kind === "lamp") {
         ui.setPrompt(dsState.lampOn ? "Inspect the lamp light · E" : "Use the calibration lamp · E");
+      } else if (target.kind === "west-stake") {
+        ui.setPrompt("Compare season plates from this cairn · E");
+      } else if (target.kind === "east-stake") {
+        ui.setPrompt("Compare season plates from the far cairn · E");
+      } else if (target.kind === "plot-board") {
+        ui.setPrompt("Place measured stars on empty axes · E");
+      } else if (target.kind === "burst-poster") {
+        ui.setPrompt("Read the event poster · E");
+      } else if (target.kind === "basin-rock") {
+        ui.setPrompt(dsState.rockPicked ? "The floor rock is in hand" : "Pick up the basin rock · E");
+      } else if (target.kind === "horn") {
+        ui.setPrompt("Point the Quiet Floor horn · E");
+      } else if (target.kind === "quiet-floor") {
+        ui.setPrompt("Stand on the quiet pan · E");
+      } else if (target.kind === "glow-notch") {
+        ui.setPrompt("Look at the town glow leak · E");
+      } else if (target.kind === "picnic") {
+        ui.setPrompt("Optional picnic table · E");
       } else if (target.kind === "station") {
         ui.setPrompt("Look over the basin · E");
       } else if (target.kind === "eclipse-desk") {
@@ -4289,6 +5185,30 @@ export async function boot(root = document) {
       },
       dsObserve(id) {
         return observeTarget(dsState, id);
+      },
+      dsCompleteThrough(id) {
+        debugCompleteThrough(dsState, dsCatalog, id, {
+          seed01(state, catalog) {
+            markEyepieceSeen(state);
+            observeTarget(state, "west-twin");
+            observeTarget(state, "east-twin");
+            readTwinsLog(state);
+            setLampOn(state, true);
+            logLampCalibration(state, catalog, [436, 546], true);
+            tryStellarAlign(state, catalog, 0);
+            markStellarFeature(dsState, 486, "diff");
+            markStellarFeature(dsState, 589, "diff");
+            logStellarCompare(state);
+            logTwinsConclusion(state);
+          },
+          seed02(state, catalog) {
+            observeTarget(state, EMBER_ID);
+            logEmberPeaks(state, catalog, 628, 428);
+            logEmberConclusion(state);
+          }
+        });
+        persist();
+        return completePuzzleUse(dsState, ds01Complete(dsState), ds02Complete(dsState));
       },
       openJournal() {
         journalOpen = true;

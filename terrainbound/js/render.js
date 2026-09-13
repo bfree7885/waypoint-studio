@@ -139,7 +139,7 @@ export function createRenderer(canvas, world, helpers) {
 }
 
 function drawAuthoredSky(ctx, width, height, sky) {
-  const targets = sky?.catalog?.targets || [];
+  const targets = (sky?.catalog?.targets || []).filter((star) => star.skyVisible !== false && star.sky);
   for (const star of targets) {
     const x = width * (0.08 + (star.sky?.az ?? 0.5) * 0.84);
     const y = height * (0.06 + (1 - (star.sky?.alt ?? 0.5)) * 0.28);
@@ -542,6 +542,40 @@ function drawStoryProps(ctx, region, time, reduced, flumeVisual, night = false) 
       ctx.beginPath();
       ctx.arc(prop.x, prop.y - 28, 8, 0, Math.PI * 2);
       ctx.fill();
+    } else if (prop.kind === "plot-board") {
+      ctx.fillStyle = night ? "#2a303c" : "#6b4a2a";
+      ctx.fillRect(prop.x - 16, prop.y - 18, 32, 22);
+      ctx.strokeStyle = night ? "#c8d0dc" : "#e8d7a8";
+      ctx.strokeRect(prop.x - 12, prop.y - 14, 24, 14);
+    } else if (prop.kind === "burst-poster") {
+      ctx.fillStyle = night ? "#3a3048" : "#8a6238";
+      ctx.fillRect(prop.x - 10, prop.y - 22, 20, 24);
+      ctx.fillStyle = night ? "#f4d0ff" : "#f0c070";
+      ctx.fillRect(prop.x - 7, prop.y - 18, 14, 8);
+    } else if (prop.kind === "horn") {
+      ctx.fillStyle = night ? "#4a505c" : "#6a7080";
+      ctx.beginPath();
+      ctx.moveTo(prop.x - 4, prop.y);
+      ctx.lineTo(prop.x + 18, prop.y - 16);
+      ctx.lineTo(prop.x + 18, prop.y + 8);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillRect(prop.x - 10, prop.y - 4, 12, 8);
+    } else if (prop.kind === "basin-rock") {
+      ctx.fillStyle = night ? "#8a8680" : "#c4bca8";
+      ctx.beginPath();
+      ctx.ellipse(prop.x, prop.y, 14, 8, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "glow-notch") {
+      ctx.fillStyle = "rgba(255, 186, 120, 0.12)";
+      ctx.beginPath();
+      ctx.ellipse(prop.x, prop.y, 36, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "picnic") {
+      ctx.fillStyle = night ? "#3a342c" : "#6d4c32";
+      ctx.fillRect(prop.x - 16, prop.y - 8, 32, 8);
+      ctx.fillRect(prop.x - 14, prop.y, 4, 10);
+      ctx.fillRect(prop.x + 10, prop.y, 4, 10);
     } else if (prop.kind === "sundial") {
       ctx.fillStyle = "#c2b4a0";
       ctx.beginPath();

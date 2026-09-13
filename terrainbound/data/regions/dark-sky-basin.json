@@ -69,6 +69,11 @@
     "r": 70
   },
   "lampBench": { "x": 1588, "y": 1368 },
+  "westRim": { "x": 380, "y": 440 },
+  "eastRim": { "x": 2140, "y": 400 },
+  "quietFloor": { "x": 1288, "y": 980 },
+  "glowNotch": { "x": 280, "y": 720 },
+  "picnic": { "x": 1860, "y": 1180 },
   "props": [
     {
       "kind": "dome",
@@ -130,6 +135,86 @@
         "text": "A concrete pad and a shielded calibration lamp, south of the dome and out of its wash."
       }
     },
+    {
+      "kind": "plot-board",
+      "x": 1264,
+      "y": 360,
+      "inspect": {
+        "id": "story-plot",
+        "title": "Unlabeled plot",
+        "text": "Empty axes. No poster legend. Points only count if they come from measurements you already made."
+      }
+    },
+    {
+      "kind": "burst-poster",
+      "x": 1348,
+      "y": 348,
+      "inspect": {
+        "id": "story-poster",
+        "title": "Event poster",
+        "text": "A field-office print: DISTANT OUTBURST — HAPPENING NOW. The caption treats a far plate as tonight's news."
+      }
+    },
+    {
+      "kind": "cairn",
+      "x": 380,
+      "y": 440,
+      "inspect": {
+        "id": "story-west",
+        "title": "West Rim Stake",
+        "text": "A cairn and a painted baseline mark. The matching post is on the east rim. Walking this line is the measurement."
+      }
+    },
+    {
+      "kind": "survey-stake",
+      "x": 2140,
+      "y": 400,
+      "inspect": {
+        "id": "story-east",
+        "title": "East Rim Stake",
+        "text": "The other end of the baseline. Season plates from here should reverse a nearby shift, not a jump in the star."
+      }
+    },
+    {
+      "kind": "basin-rock",
+      "x": 1220,
+      "y": 1020,
+      "inspect": {
+        "id": "story-rock",
+        "title": "Basin floor rock",
+        "text": "A pale silicate you can pick up. Ordinary stone, sitting on the quiet pan, with a history that did not start in this hollow."
+      }
+    },
+    {
+      "kind": "horn",
+      "x": 1360,
+      "y": 940,
+      "inspect": {
+        "id": "story-horn",
+        "title": "Quiet Floor horn",
+        "text": "A coarse radio horn. Point it. The station wall is noisy. Overhead is quieter. That difference is evidence, not a slogan."
+      }
+    },
+    {
+      "kind": "glow-notch",
+      "x": 280,
+      "y": 720,
+      "inspect": {
+        "id": "story-glow",
+        "title": "Glow Notch",
+        "text": "A dip in the west rim. Faint town glow leaks here. This is why the work happens in the basin, not on the notch."
+      }
+    },
+    {
+      "kind": "picnic",
+      "x": 1860,
+      "y": 1180,
+      "inspect": {
+        "id": "story-picnic",
+        "title": "East picnic table",
+        "text": "A leftover table and a cold thermos. Optional. The catalog does not need a sandwich."
+      }
+    },
     { "kind": "pack", "x": 1260, "y": 508 },
     { "kind": "instrument-crate", "x": 1348, "y": 452 }
   ],
@@ -158,6 +243,60 @@
         [1228, 332],
         [1204, 404],
         [1240, 500]
+      ]
+    },
+    {
+      "id": "rim-west",
+      "name": "West rim trail",
+      "role": "baseline",
+      "points": [
+        [1240, 500],
+        [980, 470],
+        [700, 450],
+        [380, 440]
+      ]
+    },
+    {
+      "id": "rim-east",
+      "name": "East rim trail",
+      "role": "baseline",
+      "points": [
+        [1240, 500],
+        [1480, 460],
+        [1780, 420],
+        [2140, 400]
+      ]
+    },
+    {
+      "id": "floor-cut",
+      "name": "Floor descent",
+      "role": "quiet",
+      "points": [
+        [1240, 500],
+        [1260, 720],
+        [1288, 980],
+        [1220, 1020],
+        [1360, 940]
+      ]
+    },
+    {
+      "id": "glow-wander",
+      "name": "Glow Notch wander",
+      "role": "optional",
+      "points": [
+        [380, 440],
+        [320, 560],
+        [280, 720]
+      ]
+    },
+    {
+      "id": "picnic-wander",
+      "name": "East picnic wander",
+      "role": "optional",
+      "points": [
+        [1588, 1368],
+        [1720, 1260],
+        [1860, 1180]
       ]
     }
   ],
@@ -199,6 +338,24 @@
       "label": "spectrograph"
     },
     {
+      "id": "plot-board",
+      "name": "Unlabeled plot",
+      "kind": "plot-board",
+      "x": 1264,
+      "y": 360,
+      "radius": 56,
+      "label": "plot"
+    },
+    {
+      "id": "burst-poster",
+      "name": "Event poster",
+      "kind": "burst-poster",
+      "x": 1348,
+      "y": 348,
+      "radius": 52,
+      "label": "poster"
+    },
+    {
       "id": "lamp-bench",
       "name": "Lamp Bench",
       "kind": "lamp",
@@ -206,6 +363,69 @@
       "y": 1368,
       "radius": 78,
       "label": "lamp"
+    },
+    {
+      "id": "west-rim-stake",
+      "name": "West Rim Stake",
+      "kind": "west-stake",
+      "x": 380,
+      "y": 440,
+      "radius": 78,
+      "label": "west rim"
+    },
+    {
+      "id": "east-rim-stake",
+      "name": "East Rim Stake",
+      "kind": "east-stake",
+      "x": 2140,
+      "y": 400,
+      "radius": 78,
+      "label": "east rim"
+    },
+    {
+      "id": "quiet-floor",
+      "name": "Quiet Floor",
+      "kind": "quiet-floor",
+      "x": 1288,
+      "y": 980,
+      "radius": 110,
+      "label": "quiet floor"
+    },
+    {
+      "id": "floor-rock",
+      "name": "Basin floor rock",
+      "kind": "basin-rock",
+      "x": 1220,
+      "y": 1020,
+      "radius": 64,
+      "label": "rock"
+    },
+    {
+      "id": "floor-horn",
+      "name": "Quiet Floor horn",
+      "kind": "horn",
+      "x": 1360,
+      "y": 940,
+      "radius": 64,
+      "label": "horn"
+    },
+    {
+      "id": "glow-notch",
+      "name": "Glow Notch",
+      "kind": "glow-notch",
+      "x": 280,
+      "y": 720,
+      "radius": 70,
+      "label": "glow notch"
+    },
+    {
+      "id": "picnic",
+      "name": "East picnic table",
+      "kind": "picnic",
+      "x": 1860,
+      "y": 1180,
+      "radius": 64,
+      "label": "picnic"
     }
   ]
 }

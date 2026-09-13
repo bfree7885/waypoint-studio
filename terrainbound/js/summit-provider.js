@@ -109,6 +109,61 @@ function darkSkyReply(request, packFor, level) {
     const unknown = (truth.unknown || []).join("; ") || "whatever you have not walked or measured";
     return pack(`Notes I can read: ${known}. Still unknown: ${unknown}. I will not invent a star measurement.`, { level });
   }
+  if (/brighter.{0,24}closer|closer.{0,24}brighter|brightness.{0,24}distance/i.test(question)) {
+    if (raw.cairnConcluded) {
+      return pack("They looked about equally bright. Only one shifted with the walked baseline. Brightness was not distance.", {
+        level,
+        misconceptionId: "brighter-closer"
+      });
+    }
+    return pack("Apparent brightness is not a distance rule. If two stars look similar, you still need another observation.", {
+      level,
+      misconceptionId: "brighter-closer",
+      worldCue: packFor.worldCue
+    });
+  }
+  if (/redshift.{0,20}(red|color)|looks red|galaxy looks red/i.test(question)) {
+    return pack("Redshift is a moved line pattern, not a red-colored object. A red star can still have unshifted lines.", {
+      level,
+      misconceptionId: "redshift-is-red"
+    });
+  }
+  if (/gravity.{0,24}(burn|fire|fuel)|gravity makes stars/i.test(question)) {
+    return pack("Gravity holds a star together. It is not a campfire starter. Fusion is a different claim than folklore fire.", {
+      level,
+      misconceptionId: "gravity-burns"
+    });
+  }
+  if (/every star.{0,24}supernova|all stars.{0,20}(explode|supernova)/i.test(question)) {
+    return pack("Not every star becomes a supernova. Initial mass branches the path. A sun-like star will not explode that way.", {
+      level,
+      misconceptionId: "all-supernova"
+    });
+  }
+  if (/everything.{0,24}made in stars|all elements.{0,24}stars/i.test(question)) {
+    return pack("Not all elements were made in stars. Hydrogen and helium have an earlier chapter. Many heavier ones need stellar processes, and some of the heaviest need explosions or neutron-star events.", {
+      level,
+      misconceptionId: "all-in-stars"
+    });
+  }
+  if (/light-?year.{0,24}(time|duration|how long)|light year is time/i.test(question)) {
+    return pack("A light-year is a distance — how far light travels in a year — not a clock you set.", {
+      level,
+      misconceptionId: "light-year-time"
+    });
+  }
+  if (/happening now|seeing (it|that|the galaxy) right now|telescopes see (the )?present/i.test(question)) {
+    return pack("Looking farther can mean seeing earlier. A distant plate is not a live feed. I will not describe what is happening there now.", {
+      level,
+      misconceptionId: "seeing-now"
+    });
+  }
+  if (/big bang.{0,32}explosion in (space|empty)|firecracker/i.test(question)) {
+    return pack("An explosion in already-existing empty space is the wrong picture. Origin here is an inference from more than one line of evidence, not a slogan.", {
+      level,
+      misconceptionId: "explosion-in-space"
+    });
+  }
   if (aboutTwins) {
     if (raw.twinsConcluded) {
       return pack(

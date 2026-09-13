@@ -335,7 +335,7 @@ No accounts, multiplayer, cloud saves, or production deploy in Phase 8.
 7. Summit Dark Sky packet + hosted science-talk for this region.
 8. Layer C picnic / cosmetics.
 
-**8A stops at these documents.**
+**8A stops at these documents.** Implementation of the full region is recorded in `DARK-SKY-BASIN-IMPLEMENTATION.md` (Phase 8C). Do not treat that file as a rewrite of this architecture.
 
 ---
 

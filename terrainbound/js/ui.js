@@ -7,7 +7,7 @@ import { drawDatasetGraph } from "./fielddata.js";
 import { drawFieldMap, drawProfileChart } from "./geomap.js";
 import { drawOrbitModel, drawMoonGeometry, drawEclipseGeometry } from "./celestial.js";
 import { drawSystemsSketch } from "./puzzles.js";
-import { drawSpectrumBench } from "./darksky.js";
+import { drawSpectrumBench, drawSeasonPlates, drawUnlabeledPlot, drawRedshiftPlot, drawHornField } from "./darksky.js";
 
 const SYMBOLS = {
   erratic: "◉",
@@ -29,6 +29,9 @@ const KIND_LABEL = {
   comparison: "Comparison",
   measurement: "Measurement",
   pattern: "Pattern",
+  system: "System",
+  relationship: "Relationship",
+  claim: "What I can claim",
   "system-relationship": "System relationship",
   "revised-explanation": "Revised explanation",
   "map-evidence": "Map evidence"
@@ -894,6 +897,52 @@ export function bindUi(root) {
             fillChips(row, group.items, group.selected, (id) => handlers.onPick?.(group.id, id));
           }
         }
+        if (view.actions) {
+          if (view.actionLabel) {
+            const kicker = document.createElement("p");
+            kicker.className = "hypothesis-kicker";
+            kicker.textContent = view.actionLabel;
+            geoBody.appendChild(kicker);
+          }
+          const row = document.createElement("div");
+          row.className = "chip-row";
+          geoBody.appendChild(row);
+          for (const action of view.actions) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = action.label;
+            btn.classList.toggle("is-on", Boolean(action.on));
+            btn.addEventListener("click", () => handlers.onAction?.(action.id));
+            row.appendChild(btn);
+          }
+        }
+        if (view.canvasKind) {
+          const canvasEl = document.createElement("canvas");
+          canvasEl.className = "ds-field-canvas";
+          canvasEl.width = view.canvasWidth || 420;
+          canvasEl.height = view.canvasHeight || 220;
+          canvasEl.setAttribute("aria-label", view.canvasLabel || "Field diagram");
+          canvasEl.tabIndex = 0;
+          geoBody.appendChild(canvasEl);
+          const g = canvasEl.getContext("2d");
+          if (view.canvasKind === "plates") drawSeasonPlates(g, view);
+          else if (view.canvasKind === "plot") drawUnlabeledPlot(g, view);
+          else if (view.canvasKind === "redshift") drawRedshiftPlot(g, view);
+          else if (view.canvasKind === "horn") drawHornField(g, view);
+          canvasEl.onclick = (event) => {
+            const box = canvasEl.getBoundingClientRect();
+            const x = ((event.clientX - box.left) / box.width) * 100;
+            const y = (1 - (event.clientY - box.top) / box.height) * 100;
+            handlers.onCanvas?.(x, y);
+          };
+          canvasEl.onkeydown = (event) => {
+            if (event.key === "Enter" || event.key === " ") handlers.onCanvas?.(50, 50);
+            if (event.key === "ArrowLeft") handlers.onCanvas?.(20, 50);
+            if (event.key === "ArrowRight") handlers.onCanvas?.(80, 50);
+            if (event.key === "ArrowUp") handlers.onCanvas?.(50, 80);
+            if (event.key === "ArrowDown") handlers.onCanvas?.(50, 20);
+          };
+        }
       }
     },
     showSkyClock(open, view = {}, handlers = {}) {
@@ -1055,6 +1104,12 @@ export function bindUi(root) {
             handlers.onPeak?.("ember", Number(emberSlide.value));
           });
           spectrumTools.append(white, ember);
+        }
+        if (view.toolChips) {
+          const row = document.createElement("div");
+          row.className = "chip-row";
+          spectrumTools.appendChild(row);
+          fillChips(row, view.toolChips.items, view.toolChips.selected, (id) => handlers.onTool?.(id));
         }
       }
       if (spectrumCanvas) {

@@ -1,9 +1,10 @@
 {
   "id": "dark-sky-basin-catalog",
-  "version": 1,
+  "version": 2,
   "regionId": "dark-sky-basin",
   "nightLock": true,
   "wavelength": { "minNm": 380, "maxNm": 760 },
+  "hydrogenRestNm": [486, 656],
   "notes": "Authored, deterministic starlight. Later Dark Sky investigations append targets. Do not replace this schema. No live astronomy, n-body, or external catalogs.",
   "targets": [
     {
@@ -14,6 +15,8 @@
       "sky": { "az": 0.27, "alt": 0.58 },
       "visual": { "color": "#f4f6fb", "brightness": 0.94, "size": 3.35 },
       "peakNm": 428,
+      "distanceRank": 3,
+      "massProxy": "massive",
       "lines": [
         { "nm": 410, "depth": 0.72, "kind": "absorption" },
         { "nm": 434, "depth": 0.8, "kind": "absorption" },
@@ -29,6 +32,8 @@
       "sky": { "az": 0.61, "alt": 0.54 },
       "visual": { "color": "#f6f4ee", "brightness": 0.9, "size": 3.2 },
       "peakNm": 496,
+      "distanceRank": 3,
+      "massProxy": "sunlike",
       "lines": [
         { "nm": 422, "depth": 0.38, "kind": "absorption" },
         { "nm": 518, "depth": 0.74, "kind": "absorption" },
@@ -44,11 +49,229 @@
       "sky": { "az": 0.79, "alt": 0.4 },
       "visual": { "color": "#f09a68", "brightness": 0.7, "size": 2.7 },
       "peakNm": 628,
+      "distanceRank": 3,
+      "massProxy": "sunlike",
       "lines": [
         { "nm": 516, "depth": 0.28, "kind": "absorption" },
         { "nm": 589, "depth": 0.5, "kind": "absorption" },
         { "nm": 656, "depth": 0.78, "kind": "absorption" },
         { "nm": 760, "depth": 0.42, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "cairn-near",
+      "label": "Near cairn star",
+      "playerName": "the star that shifted with the baseline",
+      "role": "ds-03",
+      "sky": { "az": 0.18, "alt": 0.62 },
+      "visual": { "color": "#eef2f8", "brightness": 0.84, "size": 2.85 },
+      "peakNm": 510,
+      "parallaxShiftPx": 22,
+      "distanceRank": 1,
+      "massProxy": "sunlike",
+      "lines": [
+        { "nm": 434, "depth": 0.4, "kind": "absorption" },
+        { "nm": 486, "depth": 0.62, "kind": "absorption" },
+        { "nm": 518, "depth": 0.55, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "cairn-far",
+      "label": "Far cairn star",
+      "playerName": "the equally bright star that barely moved",
+      "role": "ds-03",
+      "sky": { "az": 0.22, "alt": 0.66 },
+      "visual": { "color": "#f2f4fa", "brightness": 0.86, "size": 2.9 },
+      "peakNm": 438,
+      "parallaxShiftPx": 2,
+      "distanceRank": 6,
+      "massProxy": "massive",
+      "lines": [
+        { "nm": 410, "depth": 0.7, "kind": "absorption" },
+        { "nm": 434, "depth": 0.78, "kind": "absorption" },
+        { "nm": 486, "depth": 0.82, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "hot-mass",
+      "label": "Hot massive",
+      "playerName": "the hotter, more massive star",
+      "role": "ds-05",
+      "sky": { "az": 0.48, "alt": 0.72 },
+      "visual": { "color": "#dce8ff", "brightness": 0.88, "size": 3.1 },
+      "peakNm": 412,
+      "distanceRank": 4,
+      "massProxy": "massive",
+      "remnantTag": "core-collapse",
+      "lines": [
+        { "nm": 410, "depth": 0.84, "kind": "absorption" },
+        { "nm": 434, "depth": 0.8, "kind": "absorption" },
+        { "nm": 486, "depth": 0.9, "kind": "absorption" },
+        { "nm": 656, "depth": 0.36, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "sun-like",
+      "label": "Sun-like",
+      "playerName": "the cooler, lower-mass star",
+      "role": "ds-05",
+      "sky": { "az": 0.52, "alt": 0.68 },
+      "visual": { "color": "#fff4d2", "brightness": 0.76, "size": 2.6 },
+      "peakNm": 560,
+      "distanceRank": 2,
+      "massProxy": "sunlike",
+      "remnantTag": "white-dwarf",
+      "lines": [
+        { "nm": 486, "depth": 0.46, "kind": "absorption" },
+        { "nm": 518, "depth": 0.62, "kind": "absorption" },
+        { "nm": 589, "depth": 0.7, "kind": "absorption" },
+        { "nm": 656, "depth": 0.5, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "blue-remnant",
+      "label": "Outburst remnant",
+      "playerName": "the leftover after a massive star's late stage",
+      "role": "ds-05",
+      "skyVisible": false,
+      "visual": { "color": "#b8d4ff", "brightness": 0.42, "size": 1.8 },
+      "peakNm": 468,
+      "massProxy": "remnant",
+      "remnantTag": "core-collapse",
+      "lines": [
+        { "nm": 468, "depth": 0.7, "kind": "absorption" },
+        { "nm": 541, "depth": 0.58, "kind": "absorption" },
+        { "nm": 656, "depth": 0.22, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "metal-poor",
+      "label": "Metal-poor star",
+      "playerName": "the star whose metal lines are nearly absent",
+      "role": "ds-06",
+      "sky": { "az": 0.12, "alt": 0.5 },
+      "visual": { "color": "#f0f4ff", "brightness": 0.62, "size": 2.2 },
+      "peakNm": 430,
+      "distanceRank": 5,
+      "lines": [
+        { "nm": 410, "depth": 0.7, "kind": "absorption" },
+        { "nm": 434, "depth": 0.74, "kind": "absorption" },
+        { "nm": 486, "depth": 0.86, "kind": "absorption" },
+        { "nm": 656, "depth": 0.4, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "metal-rich",
+      "label": "Metal-rich star",
+      "playerName": "the star with extra metal lines",
+      "role": "ds-06",
+      "sky": { "az": 0.86, "alt": 0.48 },
+      "visual": { "color": "#fff0dc", "brightness": 0.64, "size": 2.25 },
+      "peakNm": 502,
+      "distanceRank": 3,
+      "lines": [
+        { "nm": 434, "depth": 0.42, "kind": "absorption" },
+        { "nm": 486, "depth": 0.58, "kind": "absorption" },
+        { "nm": 518, "depth": 0.82, "kind": "absorption" },
+        { "nm": 589, "depth": 0.88, "kind": "absorption" },
+        { "nm": 656, "depth": 0.36, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "galaxy-near",
+      "label": "Nearby galaxy plate",
+      "playerName": "the nearer galaxy plate",
+      "role": "ds-07",
+      "skyVisible": false,
+      "visual": { "color": "#d8c8f0", "brightness": 0.4, "size": 4.2 },
+      "peakNm": 520,
+      "distanceRank": 2,
+      "redshiftNm": 8,
+      "restLines": [486, 656],
+      "lines": [
+        { "nm": 494, "depth": 0.7, "kind": "absorption" },
+        { "nm": 664, "depth": 0.62, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "galaxy-mid",
+      "label": "Middle galaxy plate",
+      "playerName": "the middle-distance galaxy plate",
+      "role": "ds-07",
+      "skyVisible": false,
+      "visual": { "color": "#c8b8e8", "brightness": 0.34, "size": 3.6 },
+      "peakNm": 534,
+      "distanceRank": 4,
+      "redshiftNm": 22,
+      "restLines": [486, 656],
+      "lines": [
+        { "nm": 508, "depth": 0.68, "kind": "absorption" },
+        { "nm": 678, "depth": 0.6, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "galaxy-far",
+      "label": "Far galaxy plate",
+      "playerName": "the farther galaxy plate",
+      "role": "ds-07",
+      "skyVisible": false,
+      "visual": { "color": "#b8a8d8", "brightness": 0.28, "size": 3.1 },
+      "peakNm": 548,
+      "distanceRank": 7,
+      "redshiftNm": 40,
+      "restLines": [486, 656],
+      "lines": [
+        { "nm": 526, "depth": 0.66, "kind": "absorption" },
+        { "nm": 696, "depth": 0.58, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "nearby-variable",
+      "label": "Nearby variable",
+      "playerName": "the nearby star that can change tonight",
+      "role": "ds-09",
+      "sky": { "az": 0.34, "alt": 0.44 },
+      "visual": { "color": "#ffe0a8", "brightness": 0.72, "size": 2.8 },
+      "laterVisual": { "color": "#ffd078", "brightness": 0.38, "size": 2.1 },
+      "peakNm": 540,
+      "distanceRank": 1,
+      "canChangeTonight": true,
+      "lines": [
+        { "nm": 486, "depth": 0.5, "kind": "absorption" },
+        { "nm": 656, "depth": 0.46, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "distant-burst",
+      "label": "Distant event",
+      "playerName": "the distant outburst on the poster",
+      "role": "ds-09",
+      "sky": { "az": 0.7, "alt": 0.78 },
+      "visual": { "color": "#f4d0ff", "brightness": 0.5, "size": 2.4 },
+      "laterVisual": { "color": "#f4d0ff", "brightness": 0.5, "size": 2.4 },
+      "peakNm": 490,
+      "distanceRank": 8,
+      "lookback": true,
+      "posterNow": false,
+      "lines": [
+        { "nm": 486, "depth": 0.4, "kind": "absorption" },
+        { "nm": 656, "depth": 0.3, "kind": "absorption" }
+      ]
+    },
+    {
+      "id": "envelope-x",
+      "label": "Unlabeled envelope",
+      "playerName": "the unlabeled target",
+      "role": "ds-10",
+      "sky": { "az": 0.58, "alt": 0.36 },
+      "visual": { "color": "#e8dcc8", "brightness": 0.58, "size": 2.5 },
+      "peakNm": 572,
+      "distanceRank": null,
+      "unknown": ["distance", "present-state", "catalog-name"],
+      "lines": [
+        { "nm": 518, "depth": 0.48, "kind": "absorption" },
+        { "nm": 589, "depth": 0.7, "kind": "absorption" },
+        { "nm": 656, "depth": 0.44, "kind": "absorption" }
       ]
     }
   ],

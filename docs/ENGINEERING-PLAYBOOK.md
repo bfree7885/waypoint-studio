@@ -2090,3 +2090,12 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Summit may talk about this basin only from structured measurements. Hosted language still cannot invent lamp calibration, line lists, magnitudes, or visits.
 - Keep Dark Sky `implementationState: "future"` on the atlas. Owner review uses an explicit `?field=1&region=dark-sky-basin` URL so unfinished night work cannot leak onto production.
 
+### Lessons Learned — TerrainBound Phase 8C (2026-09-13)
+
+- Completing Topic 11 is a geography problem first: opposite-rim plates, Quiet Floor rock/horn, and later-tonight at the dome. Eight spectrograph sliders would have been a worksheet even with correct astrophysics.
+- “All elements were made in stars” has to be a blocked claim, not flavor copy. Light elements and stellar/supernova/neutron-star processes are different chapters.
+- Wren AAR for Dark Sky must live on `dsState.aar`, not Cedar Hollow `puzzleState.aar`, or a basin debrief would rewrite a hollow save.
+- Historical `apps/terrainbound/` redirect assertions are not Dark Sky regressions. Do not “fix” that Studio file to make old TB suites green.
+- If a geo-board canvas is tall, put plate/horn **actions above the drawing**. Status copy (`lastHint`) must clear on a successful log, or the next investigation inherits the previous prompt.
+- Dark Sky AAR close copy cannot stay “Back to the hollow.” Pin notes must not repeat the puzzle title.
+

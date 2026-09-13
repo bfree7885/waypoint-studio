@@ -89,16 +89,31 @@ function inventedDarkSkyState(text, packet, question = "") {
   if (/lamp bench/i.test(text) && /you (walked|visited|were at)/i.test(text) && !facts.visitedLamp && !denies) {
     return true;
   }
+  if (/west rim/i.test(text) && /you (walked|visited|were at|stood)/i.test(text) && !facts.visitedWest && !denies) {
+    return true;
+  }
+  if (/east rim/i.test(text) && /you (walked|visited|were at|stood)/i.test(text) && !facts.visitedEast && !denies) {
+    return true;
+  }
+  if (/quiet floor|picked up.{0,24}rock/i.test(text) && /you (walked|visited|picked)/i.test(text) && !facts.visitedFloor && !facts.rockPicked && !denies) {
+    return true;
+  }
   if (/\b\d+(\.\d+)?\s*nm\b/i.test(text)) {
     const allowed = new Set((facts.numbers || []).map((n) => Math.round(Number(n))));
     const hits = [...text.matchAll(/(\d+)(?:\.\d+)?\s*nm/gi)].map((row) => Number(row[1]));
     if (hits.some((n) => !allowed.has(n) && !allowed.has(Math.round(n)))) return true;
   }
-  if (/\bmagnitude\b|\bkelvin\b|\bOBAFGKM\b/i.test(text) && !denies) return true;
+  if (/\bmagnitude\b|\bkelvin\b|\bOBAFGKM\b|\bparsec\b|\bHertzsprung/i.test(text) && !denies) return true;
   if (/you (already )?(compared|matched) the (two )?(traces|spectra)/i.test(text) && !facts.twinsConcluded && !denies) {
     return true;
   }
+  if (/field clearance earned|you (are|were) cleared/i.test(text) && facts.aarResult !== "clearance" && !denies) return true;
   if (/red(der)? (means|is) hotter/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  if (/brighter (one |star )?(is|means) closer/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  if (/redshift means.{0,24}(looks|is) red/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  if (/everything was made in stars|all elements were made in stars/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  if (/every star becomes a supernova/i.test(text) && !/not|isn't|does not/i.test(text)) return true;
+  if (/happening now|seeing that galaxy right now/i.test(text) && !/not|cannot|can't|do not|don't/i.test(text)) return true;
   return /i (measured|observed|invented)/i.test(question) ? false : false;
 }
 

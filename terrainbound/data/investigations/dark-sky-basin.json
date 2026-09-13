@@ -17,6 +17,62 @@
       "See what its light actually shows. Don't let fire-color folklore write the catalog."
     ]
   },
+  "afterEmber": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Color folklore didn't survive the peak marks. Two more stars look about equally bright from the station.",
+      "Walk the west rim, then the east. The baseline is the distance. Appearance is not."
+    ]
+  },
+  "afterCairns": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Equal brightness, different shift. The unlabeled board at the station is empty on purpose.",
+      "Put the stars you actually measured on it. Don't copy a poster."
+    ]
+  },
+  "afterPlot": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The board is starting to show a pattern. The wall cartoon still pretends every star lives one life.",
+      "Mass is not a vocabulary word here. Branch the two paths and check the remnant plate."
+    ]
+  },
+  "afterMass": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Not one life. Walk down to the Quiet Floor. There's a rock you can pick up.",
+      "I want to know what that stone has to do with the metal lines you can still measure."
+    ]
+  },
+  "afterFloor": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "The pan has ordinary stone and a quieter sky. The plate desk has galaxy plates whose lines don't sit at the lab rest.",
+      "Same element, moved pattern. Don't call a shifted line a red star."
+    ]
+  },
+  "afterShift": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "You've got expansion in the plates. Don't stamp a famous name on it yet.",
+      "Point the horn on the Quiet Floor. Assemble more than one line of evidence."
+    ]
+  },
+  "afterOrigin": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Three lines beat a slogan. The station poster still says a distant outburst is happening now.",
+      "Look later tonight at the nearby variable. Then tell me what the distant plate cannot claim."
+    ]
+  },
+  "afterLookback": {
+    "speaker": "Ranger Wren",
+    "lines": [
+      "Looking farther can mean seeing earlier. There's an unlabeled envelope on the desk.",
+      "Say what the light shows. Say what you refuse. Then we'll make the case."
+    ]
+  },
   "idle": [
     "The catalog stays honest only if the light does. I'm still on radio."
   ],
