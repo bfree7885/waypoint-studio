@@ -344,6 +344,51 @@ export function bakeDesertStructure(ctx, region, night = false) {
   }
 }
 
+export function bakeBasinStructure(ctx, region, night = false) {
+  const rim = night ? "#2a3040" : "#6a7080";
+  const face = night ? "#3a4254" : "#8a90a0";
+  const pan = night ? "#4a4e58" : "#c4bca8";
+  const peak = region.peak;
+  ctx.fillStyle = rim;
+  ctx.beginPath();
+  ctx.moveTo(80, 80);
+  ctx.lineTo(peak.x - 80, peak.y - 20);
+  ctx.lineTo(peak.x + 220, peak.y + 40);
+  ctx.lineTo(2100, 160);
+  ctx.lineTo(2360, 420);
+  ctx.lineTo(2280, 80);
+  ctx.closePath();
+  ctx.fill();
+  ctx.fillStyle = face;
+  ctx.beginPath();
+  ctx.moveTo(60, 420);
+  ctx.lineTo(280, 180);
+  ctx.lineTo(420, 520);
+  ctx.lineTo(120, 860);
+  ctx.closePath();
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(2040, 180);
+  ctx.lineTo(2380, 260);
+  ctx.lineTo(2320, 720);
+  ctx.lineTo(1960, 480);
+  ctx.closePath();
+  ctx.fill();
+  if (region.pond) {
+    ctx.fillStyle = pan;
+    blobPath(ctx, region.pond.cx, region.pond.cy, region.pond.rx, region.pond.ry, 7);
+    ctx.fill();
+  }
+  ctx.strokeStyle = night ? "rgba(160, 170, 190, 0.28)" : "rgba(90, 80, 70, 0.28)";
+  ctx.lineWidth = 10;
+  ctx.beginPath();
+  ctx.moveTo(region.station.x + 40, region.station.y + region.station.h + 18);
+  ctx.lineTo(1288, 640);
+  ctx.lineTo(1300, 980);
+  ctx.lineTo(1588, 1368);
+  ctx.stroke();
+}
+
 export function bakeHollowRock(ctx, region) {
   const peak = region.peak;
   ctx.fillStyle = "#d2c6b4";

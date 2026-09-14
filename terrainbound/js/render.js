@@ -2,7 +2,7 @@
  * Cartoon world renderer. Terrain is baked once; water, details, and characters animate.
  */
 
-import { groundColor, dist, desertNightColor } from "./world.js";
+import { groundColor, dist, desertNightColor, basinNightColor } from "./world.js";
 import { starField } from "./celestial.js";
 import { drawExplorer, drawWren, poseFromIntent } from "./character.js";
 import { drawStationBuilding, drawWorkProps } from "./stations.js";
@@ -14,6 +14,7 @@ import {
   drawIrregularTree,
   bakeAlpineStructure,
   bakeDesertStructure,
+  bakeBasinStructure,
   bakeHollowRock,
   drawRunoffBench
 } from "./density.js";
@@ -33,6 +34,8 @@ export function createRenderer(canvas, world, helpers) {
   nightGround.height = world.region.height;
   if (world.region.terrainModel === "sunfall-desert") {
     bakeGround(nightGround, world, helpers, (hex) => desertNightColor(hex, 0));
+  } else if (world.region.terrainModel === "dark-sky-basin") {
+    bakeGround(nightGround, world, helpers, (hex) => basinNightColor(hex));
   }
   const leaves = Array.from({ length: 14 }, (_, i) => ({
     x: ((i * 173) % world.region.width),
@@ -47,29 +50,31 @@ export function createRenderer(canvas, world, helpers) {
     draw(state) {
       const { width, height } = canvas;
       const desert = world.region.terrainModel === "sunfall-desert";
+      const basin = world.region.terrainModel === "dark-sky-basin";
       const alpine = world.region.terrainModel === "high-country";
       const sky = state.sky;
-      const night = Boolean(desert && sky?.night);
+      const night = Boolean((desert && sky?.night) || basin);
       const atm = state.atmosphere || {
-        skyTop: alpine ? "#6aa8d4" : desert ? "#8ec8f0" : "#7ec8ea",
-        skyHorizon: alpine ? "#d7e4ee" : desert ? "#f2d9a8" : "#c5e4c8",
-        haze: alpine ? 0.22 : 0.12,
+        skyTop: alpine ? "#6aa8d4" : basin ? "#0b1024" : desert ? "#8ec8f0" : "#7ec8ea",
+        skyHorizon: alpine ? "#d7e4ee" : basin ? "#243044" : desert ? "#f2d9a8" : "#c5e4c8",
+        haze: alpine ? 0.22 : basin ? 0.1 : 0.12,
         wind: alpine ? 0.85 : 0.4,
-        clouds: alpine ? 4 : 3,
+        clouds: alpine ? 4 : basin ? 0 : 3,
         dust: desert ? 1 : 0,
-        birds: !desert,
-        water: !desert
+        birds: !desert && !basin,
+        water: !desert && !basin
       };
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       ctx.fillStyle = night ? "#0b1020" : atm.skyHorizon;
       ctx.fillRect(0, 0, width, height);
       drawBackdrop(ctx, width, height, state.time, state.reducedMotion, atm, sky, stars);
+      if (basin) drawAuthoredSky(ctx, width, height, sky);
       ctx.translate(width / 2, height / 2);
       ctx.scale(state.camera.scale, state.camera.scale);
       ctx.translate(-state.camera.x, -state.camera.y);
       const moonLift = night ? Math.max(0, (sky?.moon?.illumination || 0) * Math.max(0, (sky?.moon?.altitudeDeg || 0) / 70)) : 0;
-      if (night && world.region.terrainModel === "sunfall-desert") {
+      if (night && (world.region.terrainModel === "sunfall-desert" || basin)) {
         ctx.drawImage(nightGround, 0, 0);
         if (moonLift > 0.05) {
           ctx.fillStyle = `rgba(186, 206, 224, ${0.03 + moonLift * 0.09})`;
@@ -83,16 +88,17 @@ export function createRenderer(canvas, world, helpers) {
         ctx.fillStyle = `rgba(40, 24, 10, ${shade.alpha * 0.35})`;
         ctx.fillRect(0, 0, world.region.width, world.region.height);
       }
-      if (!desert) drawWater(ctx, world, state.time, state.reducedMotion, night);
+      if (!desert && !basin) drawWater(ctx, world, state.time, state.reducedMotion, night);
       else drawDryWash(ctx, world, night);
       if (state.flowVisible) drawFlowArrows(ctx, world, state.time);
       if (state.landscapeInterpreted) drawIceFlowArrows(ctx, state);
       drawStoryProps(ctx, world.region, state.time, state.reducedMotion, state.flumeVisual, night);
+      if (basin) drawLampPool(ctx, world.region, state);
       drawGnomonShadow(ctx, world.region, sky);
       drawChallengeSites(ctx, state);
       drawDiscoveryLandmarks(ctx, world, state);
       drawDetails(ctx, world, state.time, state.reducedMotion, night);
-      if (!state.reducedMotion && !alpine && !desert) {
+      if (!state.reducedMotion && !alpine && !desert && !basin) {
         drawLeaves(ctx, leaves, world.region, state.time);
       }
       if (!night) drawDust(ctx, world, state.time, state.reducedMotion, atm);
@@ -130,6 +136,53 @@ export function createRenderer(canvas, world, helpers) {
       drawHaze(ctx, width, height, atm, night);
     }
   };
+}
+
+function drawAuthoredSky(ctx, width, height, sky) {
+  const targets = (sky?.catalog?.targets || []).filter((star) => star.skyVisible !== false && star.sky);
+  for (const star of targets) {
+    const x = width * (0.08 + (star.sky?.az ?? 0.5) * 0.84);
+    const y = height * (0.06 + (1 - (star.sky?.alt ?? 0.5)) * 0.28);
+    const bright = star.visual?.brightness ?? 0.8;
+    const size = (star.visual?.size ?? 2.6) * (0.9 + bright * 0.35);
+    ctx.save();
+    ctx.fillStyle = star.visual?.color || "#f4f6fb";
+    ctx.globalAlpha = 0.22 + bright * 0.28;
+    ctx.beginPath();
+    ctx.arc(x, y, size * 3.2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.95;
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function drawLampPool(ctx, region, state) {
+  const lamp = region.lampBench || (region.props || []).find((row) => row.kind === "lamp-bench");
+  if (!lamp) return;
+  const on = Boolean(state.lampOn);
+  ctx.save();
+  ctx.fillStyle = on ? "rgba(255, 228, 160, 0.22)" : "rgba(40, 44, 52, 0.18)";
+  ctx.beginPath();
+  ctx.ellipse(lamp.x, lamp.y + 6, on ? 54 : 36, on ? 22 : 16, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#3a342c";
+  ctx.fillRect(lamp.x - 18, lamp.y + 2, 36, 8);
+  ctx.fillStyle = "#5a5044";
+  ctx.fillRect(lamp.x - 4, lamp.y - 26, 8, 28);
+  ctx.fillStyle = on ? "#fff1c8" : "#9aa0aa";
+  ctx.beginPath();
+  ctx.arc(lamp.x, lamp.y - 32, on ? 10 : 7, 0, Math.PI * 2);
+  ctx.fill();
+  if (on) {
+    ctx.fillStyle = "rgba(255, 236, 180, 0.16)";
+    ctx.beginPath();
+    ctx.arc(lamp.x, lamp.y - 24, 38, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.restore();
 }
 
 function drawDryWash(ctx, world, night = false) {
@@ -209,6 +262,8 @@ function bakeGround(canvas, world, helpers, tintHex) {
 
   if (region.terrainModel === "sunfall-desert") {
     bakeDesertStructure(ctx, region, night);
+  } else if (region.terrainModel === "dark-sky-basin") {
+    bakeBasinStructure(ctx, region, night);
   } else if (region.terrainModel === "high-country") {
     bakeAlpineStructure(ctx, region);
   } else {
@@ -441,12 +496,86 @@ function drawStoryProps(ctx, region, time, reduced, flumeVisual, night = false) 
       ctx.arc(prop.x, prop.y - 36, 5, 0, Math.PI * 2);
       ctx.fill();
     } else if (prop.kind === "dome") {
-      ctx.fillStyle = "#c4a06a";
+      ctx.fillStyle = night ? "#c8d0dc" : "#c4a06a";
       ctx.fillRect(prop.x - 18, prop.y - 10, 36, 16);
-      ctx.fillStyle = "#d8c8a0";
+      ctx.fillStyle = night ? "#e8eef6" : "#d8c8a0";
       ctx.beginPath();
       ctx.arc(prop.x, prop.y - 10, 16, Math.PI, 0);
       ctx.fill();
+    } else if (prop.kind === "plate-desk") {
+      ctx.fillStyle = night ? "#3a342c" : "#6b4a2a";
+      ctx.fillRect(prop.x - 16, prop.y - 8, 32, 14);
+      ctx.fillStyle = night ? "#c4b48a" : "#e8d7a8";
+      ctx.fillRect(prop.x - 12, prop.y - 12, 24, 6);
+    } else if (prop.kind === "eyepiece") {
+      ctx.fillStyle = night ? "#2a3038" : "#4a5560";
+      ctx.fillRect(prop.x - 5, prop.y - 18, 10, 18);
+      ctx.fillStyle = night ? "#8aa0c8" : "#c8d4e4";
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 20, 7, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "spectrograph") {
+      ctx.fillStyle = night ? "#2c2830" : "#5c4030";
+      ctx.fillRect(prop.x - 14, prop.y - 10, 28, 16);
+      ctx.strokeStyle = night ? "#9ad0c0" : "#2a6b5a";
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(prop.x - 10, prop.y);
+      ctx.lineTo(prop.x - 2, prop.y - 6);
+      ctx.lineTo(prop.x + 4, prop.y + 2);
+      ctx.lineTo(prop.x + 10, prop.y - 4);
+      ctx.stroke();
+    } else if (prop.kind === "radio") {
+      ctx.fillStyle = night ? "#3a3834" : "#5c4030";
+      ctx.fillRect(prop.x - 10, prop.y - 8, 20, 12);
+      ctx.strokeStyle = night ? "#c8d0dc" : "#1f4d32";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(prop.x + 8, prop.y - 8);
+      ctx.lineTo(prop.x + 8, prop.y - 28);
+      ctx.stroke();
+    } else if (prop.kind === "lamp-bench") {
+      ctx.fillStyle = night ? "#4a463e" : "#8a8070";
+      ctx.fillRect(prop.x - 28, prop.y - 8, 56, 16);
+      ctx.fillStyle = night ? "#d8c48a" : "#e8d7a8";
+      ctx.fillRect(prop.x - 6, prop.y - 26, 12, 20);
+      ctx.beginPath();
+      ctx.arc(prop.x, prop.y - 28, 8, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "plot-board") {
+      ctx.fillStyle = night ? "#2a303c" : "#6b4a2a";
+      ctx.fillRect(prop.x - 16, prop.y - 18, 32, 22);
+      ctx.strokeStyle = night ? "#c8d0dc" : "#e8d7a8";
+      ctx.strokeRect(prop.x - 12, prop.y - 14, 24, 14);
+    } else if (prop.kind === "burst-poster") {
+      ctx.fillStyle = night ? "#3a3048" : "#8a6238";
+      ctx.fillRect(prop.x - 10, prop.y - 22, 20, 24);
+      ctx.fillStyle = night ? "#f4d0ff" : "#f0c070";
+      ctx.fillRect(prop.x - 7, prop.y - 18, 14, 8);
+    } else if (prop.kind === "horn") {
+      ctx.fillStyle = night ? "#4a505c" : "#6a7080";
+      ctx.beginPath();
+      ctx.moveTo(prop.x - 4, prop.y);
+      ctx.lineTo(prop.x + 18, prop.y - 16);
+      ctx.lineTo(prop.x + 18, prop.y + 8);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillRect(prop.x - 10, prop.y - 4, 12, 8);
+    } else if (prop.kind === "basin-rock") {
+      ctx.fillStyle = night ? "#8a8680" : "#c4bca8";
+      ctx.beginPath();
+      ctx.ellipse(prop.x, prop.y, 14, 8, -0.2, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "glow-notch") {
+      ctx.fillStyle = "rgba(255, 186, 120, 0.12)";
+      ctx.beginPath();
+      ctx.ellipse(prop.x, prop.y, 36, 16, 0, 0, Math.PI * 2);
+      ctx.fill();
+    } else if (prop.kind === "picnic") {
+      ctx.fillStyle = night ? "#3a342c" : "#6d4c32";
+      ctx.fillRect(prop.x - 16, prop.y - 8, 32, 8);
+      ctx.fillRect(prop.x - 14, prop.y, 4, 10);
+      ctx.fillRect(prop.x + 10, prop.y, 4, 10);
     } else if (prop.kind === "sundial") {
       ctx.fillStyle = "#c2b4a0";
       ctx.beginPath();

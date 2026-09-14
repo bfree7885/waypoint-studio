@@ -13,6 +13,7 @@ function hexToRgb(hex) {
 }
 
 export function skyFill(cfg, desertSky) {
+  if (desertSky?.darkSky) return { top: "#07091a", horizon: "#1c283c" };
   if (desertSky?.night) return { top: "#070b18", horizon: "#2a2438" };
   if (desertSky && desertSky.sun) {
     const alt = desertSky.sun.altitudeDeg ?? 40;
@@ -43,14 +44,14 @@ export function drawBackdrop(ctx, width, height, time, reduced, cfg, sky, stars)
     ctx.restore();
     ctx.fillStyle = "#f4efe2";
     for (const star of stars || []) {
-      ctx.globalAlpha = 0.5 + star.s * 0.3;
+      ctx.globalAlpha = (sky?.darkSky ? 0.62 : 0.5) + star.s * 0.35;
       ctx.beginPath();
-      ctx.arc(star.x * width, star.y * height * 0.5, star.s * 1.15, 0, Math.PI * 2);
+      ctx.arc(star.x * width, star.y * height * 0.5, star.s * (sky?.darkSky ? 1.35 : 1.15), 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.globalAlpha = 1;
     const moon = sky.moon;
-    if (moon && moon.altitudeDeg > -4) {
+    if (moon && moon.altitudeDeg > -4 && !sky.darkSky) {
       const mx = width * (0.18 + (moon.azimuthDeg / 360) * 0.64);
       const my = height * 0.26 - (moon.altitudeDeg / 90) * height * 0.16;
       ctx.fillStyle = "#efe6cc";

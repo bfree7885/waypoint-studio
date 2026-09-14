@@ -71,6 +71,7 @@ export function drawStationBuilding(ctx, region, night = false) {
   const s = region.station;
   const model = region.terrainModel;
   if (model === "sunfall-desert") return drawSunfallStation(ctx, s, night);
+  if (model === "dark-sky-basin") return drawDarkSkyStation(ctx, s, night);
   if (model === "high-country") return drawRidgeStation(ctx, s, night);
   return drawHollowStation(ctx, s, night);
 }
@@ -192,11 +193,47 @@ function drawSunfallStation(ctx, s, night) {
   plaque(ctx, s.x + 22, s.y + s.h + 8, 156, "FIELD SERVICE", "Sunfall Observatory");
 }
 
+function drawDarkSkyStation(ctx, s, night) {
+  ctx.fillStyle = "rgba(8, 10, 18, 0.35)";
+  ctx.fillRect(s.x + 10, s.y + s.h - 2, s.w, 16);
+  ctx.fillStyle = night ? "#3a3c46" : "#6a6e78";
+  ctx.fillRect(s.x - 18, s.y + s.h - 12, s.w + 40, 14);
+  ctx.fillStyle = night ? "#c8d2e0" : "#d8e0ea";
+  ctx.fillRect(s.x, s.y + 28, s.w, s.h - 28);
+  ctx.fillStyle = night ? "#9aa6b8" : "#b8c2d0";
+  ctx.beginPath();
+  ctx.arc(s.x + s.w * 0.58, s.y + 22, 44, Math.PI, 0);
+  ctx.fill();
+  ctx.fillStyle = night ? "#e8eef6" : "#f4f7fb";
+  ctx.beginPath();
+  ctx.arc(s.x + s.w * 0.58, s.y + 22, 30, Math.PI, 0);
+  ctx.fill();
+  ctx.fillStyle = night ? "rgba(180, 48, 42, 0.72)" : "#f4e2a8";
+  ctx.fillRect(s.x + 22, s.y + 46, 16, 12);
+  ctx.fillRect(s.x + s.w - 46, s.y + 46, 16, 12);
+  ctx.fillStyle = night ? "#2a2420" : "#5c4030";
+  ctx.fillRect(s.x + 14, s.y + s.h - 40, 18, 28);
+  if (night) {
+    ctx.fillStyle = "rgba(180, 48, 42, 0.18)";
+    ctx.beginPath();
+    ctx.arc(s.x + 30, s.y + 52, 18, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(220, 230, 245, 0.12)";
+    ctx.beginPath();
+    ctx.arc(s.x + s.w * 0.58, s.y + 8, 26, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  radioMast(ctx, s.x + s.w + 14, s.y + s.h - 6, 44);
+  drawEmblem(ctx, s.x + 28, s.y + 44, 1);
+  caseBox(ctx, s.x - 40, s.y + s.h - 14, night ? "#4a4034" : "#6b4a2a");
+  plaque(ctx, s.x + 18, s.y + s.h + 8, 168, "FIELD SERVICE", "North Rim Station");
+}
+
 export function drawWorkProps(ctx, region, time, reduced) {
   const s = region.station;
   const model = region.terrainModel;
   ctx.save();
-  if (model !== "sunfall-desert") {
+  if (model !== "sunfall-desert" && model !== "dark-sky-basin") {
     const sway = reduced ? 0 : Math.sin(time * 1.4) * 3;
     ctx.fillStyle = "#6d4c32";
     ctx.fillRect(s.x - 48, s.y + 8, 4, 36);
@@ -217,5 +254,5 @@ export function drawWorkProps(ctx, region, time, reduced) {
 
 export const STATION_IDENTITY = {
   network: "FIELD SERVICE",
-  variants: ["cedar-hollow", "high-country", "sunfall-desert"]
+  variants: ["cedar-hollow", "high-country", "sunfall-desert", "dark-sky-basin"]
 };

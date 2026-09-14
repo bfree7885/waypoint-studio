@@ -4,6 +4,7 @@
  */
 
 import { buildSummitTruth } from "./summit-truth.js";
+import { darkSkyPacketFacts, buildDarkSkyTruth } from "./darksky.js";
 
 export function selectSummitPacket(request) {
   const context = request.context || {};
@@ -17,6 +18,29 @@ export function selectSummitPacket(request) {
     intent === "why_evidence" ||
     /wren|pin|claim|evidence|card/i.test(question);
 
+  if (context.regionId === "dark-sky-basin") {
+    const truth = context.darkSkyTruth || buildDarkSkyTruth();
+    const recentTurns = request.recentTurns || [];
+    return {
+      facts: darkSkyPacketFacts(context),
+      nextAction: truth.nextAction,
+      tutoring: {
+        allowedLevel: level,
+        ladder: ["orient", "notice", "reason", "teach", "scaffold"][Math.max(0, Math.min(4, level))] || "orient",
+        doNotRevealCards: true,
+        doNotGrantClearance: true,
+        concept: request.conceptId || null,
+        allowCuriosity: true
+      },
+      recent: pickRecent(recentTurns),
+      privacy: {
+        noName: true,
+        noSchool: true,
+        noAccount: true
+      }
+    };
+  }
+
   const fair = (context.raw?.flume?.fairTrials || []).slice(0, 6);
   const measurements = fair.map((row) => ({
     slope: row.slope,
@@ -28,7 +52,7 @@ export function selectSummitPacket(request) {
 
   return {
     facts: {
-      region: context.regionId === "cedar-hollow" ? "Cedar Hollow" : "other",
+      region: context.regionId === "cedar-hollow" ? "Cedar Hollow" : context.regionId === "dark-sky-basin" ? "Dark Sky Basin" : "other",
       puzzle: context.puzzleName || "field work",
       stage: context.puzzleStage || "",
       near: (context.location?.near || []).slice(0, 3),

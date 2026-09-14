@@ -1,0 +1,207 @@
+{
+  "regionId": "dark-sky-basin",
+  "tutor": "summit",
+  "playOrder": ["DS-01", "DS-02", "DS-03", "DS-04", "DS-05", "DS-06", "DS-07", "DS-08", "DS-09", "DS-10"],
+  "puzzles": {
+    "DS-01": {
+      "id": "DS-01",
+      "name": "The twins that aren't",
+      "competencyIds": ["spectra"],
+      "vocab": ["spectrum", "appearance", "calibration", "evidence"],
+      "orient": "Two bright white stars were logged as twins because they look alike in the eyepiece. Appearance is a starting observation, not identity.",
+      "notice": "Look at both targets. Read the inherited log. If the eyepiece is not enough, the basin still has a known light south of the dome.",
+      "reason": "A spectrum is a record of structure in the light. Two objects can look the same and still leave different traces.",
+      "teach": "Visible color and brightness do not prove two stars are the same kind. A known lamp gives a repeatable pattern you can compare against stellar traces.",
+      "scaffold": "Walk to Lamp Bench for a fair reference, then bring that pattern back to the plate spectrograph. Try to align the two stellar traces. Log what refuses to match.",
+      "explainMore": [
+        "Looking the same from far away does not prove much. I should know.",
+        "The lamp is not a lecture. It is a light you can test because you already know the source."
+      ],
+      "misconceptions": {
+        "eyepiece-twins": "If they look white and bright, they still might not be the same light. The traces have to agree.",
+        "spectrum-quiz": "This is not a vocabulary match. You are comparing patterns you recorded."
+      },
+      "worldCue": "The dome wash is the problem. The lamp is south of here, on purpose."
+    },
+    "DS-02": {
+      "id": "DS-02",
+      "name": "The cooler ember",
+      "competencyIds": ["stellar-temp"],
+      "vocab": ["peak", "wavelength", "color", "temperature"],
+      "orient": "The old notes treat a reddish star as an ember, like a hot coal. Color folklore is not a temperature measurement.",
+      "notice": "Compare the reddish target with a white one you already logged. Watch where each trace is brightest, not only the color you saw.",
+      "reason": "A peak sitting farther toward longer wavelength is not evidence that the source is hotter.",
+      "teach": "Visible redness is one observation. Peak position is another. Temperature inference has to follow the evidence you actually marked.",
+      "scaffold": "Slide the peak marker to each trace's brightest place. Use the wavelength marks, not color memory.",
+      "explainMore": [
+        "Fire-color folklore is stubborn. The trace does not care what a coal looks like.",
+        "I will not invent a temperature you did not measure."
+      ],
+      "misconceptions": {
+        "red-hotter": "Red as fire is a story. Peak position is the evidence on this bench.",
+        "color-only": "Color without a peak mark is not enough here."
+      },
+      "worldCue": "The reddish target is still in the same sky. The spectrograph can hold both traces."
+    },
+    "DS-03": {
+      "id": "DS-03",
+      "name": "Two cairns",
+      "competencyIds": ["distance-brightness"],
+      "vocab": ["apparent brightness", "baseline", "shift"],
+      "orient": "Two stars can look about equally bright and still not sit at the same distance.",
+      "notice": "Walk the west rim, then the east. Compare the season plates from both ends of the baseline.",
+      "reason": "A nearby star shifts against the background when you change viewpoint. A distant one barely moves. Brightness does not decide that.",
+      "teach": "Apparent brightness is not a distance rule. Geometry on walked plates is the evidence here.",
+      "scaffold": "Stand at both cairns. Switch plate A and plate B. Mark the star that actually reverses with the baseline.",
+      "explainMore": [
+        "The star did not jump. You moved.",
+        "Equal look is not equal distance."
+      ],
+      "misconceptions": {
+        "brighter-closer": "Brighter is not automatically closer. These two already look similarly bright.",
+        "star-jumped": "The shift is the baseline, not the star leaping."
+      },
+      "worldCue": "West cairn, then east cairn. The walk is the instrument."
+    },
+    "DS-04": {
+      "id": "DS-04",
+      "name": "Unlabeled plot",
+      "competencyIds": ["hr-place"],
+      "vocab": ["pattern", "placement"],
+      "orient": "The board has no legend on purpose. You are building a diagram from measurements, not labeling a poster.",
+      "notice": "Use the peaks you marked and the distance rank from the cairns. Place those stars on empty axes.",
+      "reason": "A pattern can appear after points are placed. Naming the regions comes after that, not before.",
+      "teach": "This is not a hunt for memorized diagram parts. The points have to come from your notes.",
+      "scaffold": "Place the hot white star, the cooler ember, and the intrinsically brighter far cairn star where your evidence puts them.",
+      "explainMore": [
+        "If the poster already had the answer, we would not need the basin.",
+        "I will not place the points for you."
+      ],
+      "misconceptions": {
+        "poster-hr": "A finished diagram with labels to identify is the wrong job.",
+        "swapped-axes": "Shorter-wavelength peak sits toward the hotter side of this board."
+      },
+      "worldCue": "The unlabeled board is at the station, not in a textbook."
+    },
+    "DS-05": {
+      "id": "DS-05",
+      "name": "Not one life",
+      "competencyIds": ["stellar-mass-life"],
+      "vocab": ["mass", "branch", "remnant"],
+      "orient": "Stars do not all follow one cartoon lifecycle. Initial mass changes the path.",
+      "notice": "Compare the hotter massive star with the cooler sun-like one. Then check the remnant plate.",
+      "reason": "A massive star can end in a remnant after a violent late stage. A sun-like star will not explode as a supernova.",
+      "teach": "Mass branches lives. Gravity does not make a star 'burn' by squeezing a campfire.",
+      "scaffold": "Pick a future for each star, then match the outburst remnant to the massive branch.",
+      "explainMore": [
+        "Every-star-supernova is a storybook.",
+        "The remnant plate has to match the branch, not the wall cartoon."
+      ],
+      "misconceptions": {
+        "all-supernova": "Not every star becomes a supernova.",
+        "gravity-burns": "Gravity holds a star together. It is not a fire starter."
+      },
+      "worldCue": "The remnant plate is at the spectrograph after you have a branch to test."
+    },
+    "DS-06": {
+      "id": "DS-06",
+      "name": "What the floor is made of",
+      "competencyIds": ["nucleosynthesis"],
+      "vocab": ["metal lines", "abundance"],
+      "orient": "The rock in your hand has a cosmic history. That does not mean every element was made in a star.",
+      "notice": "Pick up the Quiet Floor stone. Compare a metal-poor trace with a metal-rich one.",
+      "reason": "Hydrogen and helium mostly come from the early universe. Many heavier elements need stellar processes, and some of the heaviest need explosions or neutron-star events.",
+      "teach": "Do not stamp 'everything was made in stars.' The missing metal lines in the poor star are the evidence that later generations added metals.",
+      "scaffold": "Walk down to the pan, take the rock, then mark a metal line present in one stellar trace and nearly absent in the other.",
+      "explainMore": [
+        "The stone is ordinary. Its ingredients are not local gossip.",
+        "Big Bang nucleosynthesis is not a star factory for iron."
+      ],
+      "misconceptions": {
+        "all-in-stars": "Not all elements were made in stars. Light elements have an earlier chapter.",
+        "all-at-start": "The metals were not all present equally at the beginning."
+      },
+      "worldCue": "Quiet Floor first. The spectrograph cannot pick up the rock for you."
+    },
+    "DS-07": {
+      "id": "DS-07",
+      "name": "Lines that moved",
+      "competencyIds": ["redshift-pattern"],
+      "vocab": ["redshift", "rest pattern", "distance rank"],
+      "orient": "Redshift is a moved pattern, not a red-colored object.",
+      "notice": "The galaxy plates use the same rest lines you already know. See whether the whole pattern has slid.",
+      "reason": "If known lines sit at longer wavelength together, that is a shift of the pattern. A red star is a different claim.",
+      "teach": "Farther plates in this set show larger shifts. One competing story — that every plate shifts the same — fails the farthest plate.",
+      "scaffold": "Align a galaxy trace to the rest marks, then place shift against distance rank for all three plates.",
+      "explainMore": [
+        "A red star can still have unshifted lines. Color is not redshift.",
+        "I will not invent a recession speed you did not plot."
+      ],
+      "misconceptions": {
+        "redshift-is-red": "Redshift is not 'the galaxy looks red.'",
+        "same-shift": "The plates do not all move by the same amount."
+      },
+      "worldCue": "Galaxy plates live on the plate desk after the floor work."
+    },
+    "DS-08": {
+      "id": "DS-08",
+      "name": "Three lines, no label",
+      "competencyIds": ["origin-evidence"],
+      "vocab": ["expansion", "abundance", "leftover glow"],
+      "orient": "A famous name is not a case. You need more than one independent line of evidence.",
+      "notice": "You already have expansion in the plates and abundance in the metal/rock work. Test the leftover glow with the horn.",
+      "reason": "Pointing at the station wall is noisy. Pointing overhead is quieter. That leftover sky is a third line, still not a slogan.",
+      "teach": "Hot-dense-early history is an inference from converging evidence. One noisy line stays weak by itself. The Big Bang was not a firecracker in empty space.",
+      "scaffold": "On the Quiet Floor, point the horn zenith, wall, and horizon. Pin expansion, leftover glow, and abundance together.",
+      "explainMore": [
+        "I will not let a label replace the clipboard.",
+        "If one line is noisy, say so."
+      ],
+      "misconceptions": {
+        "name-replaces-evidence": "Saying the famous name is not the same as assembling the evidence.",
+        "explosion-in-space": "An explosion in already-existing space is the wrong picture."
+      },
+      "worldCue": "The horn only works on the quiet pan, away from station lights."
+    },
+    "DS-09": {
+      "id": "DS-09",
+      "name": "Not tonight",
+      "competencyIds": ["lookback"],
+      "vocab": ["lookback", "light travel"],
+      "orient": "A telescope sees light that already left. Farther can mean earlier.",
+      "notice": "The poster says the distant outburst is happening now. Check a nearby variable later tonight, then look at the distant plate again.",
+      "reason": "The nearby star can change on a human timescale. The distant event's light left long before tonight. We do not know what is happening there right now.",
+      "teach": "A light-year is a distance, not a duration you wait. Lookback is why the poster overclaims.",
+      "scaffold": "Use later tonight at the eyepiece. Log that the nearby target changed and the distant one did not authorize a present-tense caption.",
+      "explainMore": [
+        "I will not describe the current state of a galaxy we cannot see live.",
+        "Happening now is a claim the plate does not support."
+      ],
+      "misconceptions": {
+        "seeing-now": "We are not seeing that distant event right now.",
+        "light-year-time": "A light-year is how far light travels in a year, not a kind of clock you set."
+      },
+      "worldCue": "Poster at the station, then the eyepiece for later tonight."
+    },
+    "DS-10": {
+      "id": "DS-10",
+      "name": "The unlabeled envelope",
+      "competencyIds": ["bounded-claims"],
+      "vocab": ["observed", "inferred", "unknown"],
+      "orient": "Wren is not asking for a complete story. Say what the light shows, what you can infer, and what you refuse.",
+      "notice": "The envelope has a trace and a peak. It does not have a famous name, a distance, or a live weather report.",
+      "reason": "Observed is the trace. Inferred has to ride on evidence. Unknown stays unknown. Overclaim fails.",
+      "teach": "Honesty about incomplete evidence is the skill. Invented magnitudes and present-tense distant weather are overclaims.",
+      "scaffold": "Sort the unlabeled target into observed, inferred, unknown, and at least one sentence you will not say.",
+      "explainMore": [
+        "I will not name an object you did not identify.",
+        "Stopping is part of the science."
+      ],
+      "misconceptions": {
+        "completeness-theater": "A tidy complete biography is not in the envelope.",
+        "naming-is-understanding": "A nickname is not a measurement."
+      },
+      "worldCue": "The unlabeled envelope is at the plate desk when the rest of the basin is in the tablet."
+    }
+  }
+}

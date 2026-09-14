@@ -257,7 +257,7 @@ check("P/Q. Summit UI is touch-friendly and present on HUD", () => {
   assert.match(css, /\.summit-form input/);
   assert.match(css, /min-height: 44px/);
   assert.match(html, /Ask Summit/);
-  assert.doesNotMatch(gameJs, /dark-sky-basin/);
+  assert.doesNotMatch(html, /\?field=1/);
 });
 
 check("intent recognition covers natural Cedar Hollow questions", () => {

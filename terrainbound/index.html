@@ -293,6 +293,7 @@
           <input id="summit-ask" name="ask" type="text" maxlength="240" autocomplete="off" enterkeyhint="send" placeholder="Ask Summit…">
           <button type="submit">Ask</button>
         </form>
+        <button type="button" id="summit-diag-toggle" class="summit-diag-toggle" hidden>Route debug</button>
         <p id="summit-diag" class="summit-diag" hidden aria-hidden="true"></p>
         <div id="summit-fieldtest" class="summit-fieldtest" hidden>
           <p class="summit-fieldtest-kicker">SUMMIT FIELD TEST · observer tools, not the student conversation</p>
@@ -309,6 +310,36 @@
             <button type="button" id="summit-fieldtest-json">Export JSON</button>
             <button type="button" id="summit-fieldtest-md">Export summary</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sky-eyepiece" hidden role="dialog" aria-label="Dome eyepiece">
+      <div class="hypothesis-card field-bench spectrum-card">
+        <p class="field-bench-kicker">Dome eyepiece</p>
+        <h2 id="sky-eye-title">Night sky</h2>
+        <p class="hypothesis-lead" id="sky-eye-lead"></p>
+        <canvas id="sky-eye-canvas" width="640" height="280" aria-label="Two bright white stars in the basin sky"></canvas>
+        <p id="sky-eye-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="sky-eye-close">Back to the dome</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="spectrum-bench" hidden role="dialog" aria-label="Field spectrograph">
+      <div class="hypothesis-card field-bench spectrum-card">
+        <p class="field-bench-kicker">Field spectrograph</p>
+        <h2 id="spectrum-title">Known light</h2>
+        <p class="hypothesis-lead" id="spectrum-lead"></p>
+        <canvas id="spectrum-canvas" width="640" height="280" aria-label="Light trace from shorter to longer wavelength"></canvas>
+        <p id="spectrum-readout"></p>
+        <div id="spectrum-tools" class="spectrum-tools"></div>
+        <p id="spectrum-status"></p>
+        <div class="conclusion-actions">
+          <button type="button" id="spectrum-lamp" hidden>Turn lamp on</button>
+          <button type="button" id="spectrum-log">Log this reading</button>
+          <button type="button" id="spectrum-close">Back to the basin</button>
         </div>
       </div>
     </div>
