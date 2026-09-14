@@ -37,10 +37,8 @@ const courseOrder = world.courseOrderTopicNumbers;
 function topicId(n) {
   return `topic-${String(n).padStart(2, "0")}`;
 }
-function coursePrereq(n) {
-  const idx = courseOrder.indexOf(n);
-  if (idx <= 0) return [];
-  return [topicId(courseOrder[idx - 1])];
+function coursePrereq() {
+  return [];
 }
 
 function regionForTopic(n) {
@@ -1376,8 +1374,8 @@ const topics = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((number) => {
     standardIds: [],
     gameExperienceIds: [`experience-${region.id}`],
     resourceIds: resourceIdsByTopic[topicId(number)] || [],
-    prerequisiteTopicIds: coursePrereq(number),
-    prerequisiteNote: "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+    prerequisiteTopicIds: coursePrereq(),
+    prerequisiteNote: "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
     courseOrder: region.courseOrder,
     status: playable ? "field-playable" : "field-future",
     titleSource: TITLE_SOURCE,
@@ -1395,7 +1393,12 @@ const curriculum = {
   authority: "This file is the 12-topic course. regions.json is the atlas, not the curriculum database.",
   titlePolicy: "Titles copied from regions.json curriculumTitle. They are not confirmed classroom names. Do not invent replacements.",
   courseOrderTopicNumbers: courseOrder,
-  courseOrderNote: world.courseOrderNote,
+  courseOrderNote: "Game atlas/travel order only. Not the student Course display and not a confirmed classroom sequence.",
+  gameTravelTopicNumbers: courseOrder,
+  courseDisplayTopicNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  courseDisplayRule: "topic-number",
+  ownerDefinedCourseSequence: null,
+  sequenceNote: "Course display is Topic 1 through Topic 12 until the owner supplies ownerDefinedCourseSequence. Game unlocks stay on regions.json / experiences.",
   topics
 };
 

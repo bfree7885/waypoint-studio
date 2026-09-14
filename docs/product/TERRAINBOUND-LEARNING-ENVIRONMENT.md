@@ -135,31 +135,35 @@ The current product is a **single-page field game**: title screen → canvas wor
 
 A four-tab LMS (`Today / Discover / Learn / Play / Ask Summit`) would fight that feel.
 
-**Recommendation: add a thin Field Station shell later, keep Play as the current game.**
+**Phase C adds a thin Field Station porch in front of the existing game.**
 
-| Surface | Student job | Now |
-| --- | --- | --- |
-| **Continue** | Resume the last field region or topic | Game title “Explore” / save resume |
-| **Field** | Play the existing TerrainBound game | The whole current app |
-| **Course** | See the 12-topic spine without fake completion | Atlas already shows topics; not a module list |
-| **Ask Summit** | Tutor with preserved context | In-game overlay only |
-| **Watch & Read** | DFD films and science stories | Not built; do not ingest news |
+Student-facing jobs (native labels):
 
-Why not the suggested labels as equal tabs:
+| Job | Station label |
+| --- | --- |
+| Continue | Continue field work / Start field work |
+| Field | Field — the existing Canvas game |
+| Course | Course atlas (Topic 1–12 from `curriculum.json`) |
+| Watch & Read | Watch & Read |
+| Ask Summit | Placeholder until Phase D |
 
-- **Today / Discover** as a news river would turn TerrainBound into Dashboard-lite. Curated “one interesting thing” can live under Watch & Read later.
-- **Learn** as a content library reads as a textbook. The course atlas should feel like the world map, not a checklist.
-- **Play** is already the product. It should not become a tile among four equals until the shell exists.
-- **Ask Summit** should be reachable from everywhere, including a dedicated mobile full-screen later, without leaving Field.
+Play remains the field game. The Station wraps it; `boot()` is unchanged for `?field=1`.
 
-Phase C should prototype Field Station as a calm porch in front of the existing `boot()`, not a rewrite of `game.js`.
+Why not LMS tabs:
 
-Student loop once the shell exists:
+- **Today / Discover** as a news river would turn TerrainBound into Dashboard-lite.
+- **Learn** as a content library reads as a textbook. The course atlas is an expedition guide.
+- **Play** is still the field game, reached from Field / Continue — not one tile among four equals.
+- **Ask Summit** stays in the field until Phase D. The Station entry is an honest placeholder.
+
+Student loop now:
 
 1. Arrive at Field Station.
-2. Continue field work, or open Course / Watch & Read.
-3. Ask Summit from any surface; conversation persists.
-4. Closing Summit returns to the exact surface (game camera, article, or video).
+2. Continue field work, or open Course atlas / Watch & Read.
+3. Field launches the existing game; Field Station returns without a reload.
+4. Global Ask Summit (Phase D) will persist conversation across surfaces.
+
+Detail: [`FIELD-STATION.md`](FIELD-STATION.md).
 
 ---
 
@@ -171,7 +175,7 @@ Adjusted from the requested sequence against what the repo already contains.
 | --- | --- | --- | --- |
 | **A** | Architecture / foundation | Learning module, SummitContext, mobile viewport hook | Done (`c5549b5a`) |
 | **B** | Curriculum + NYS standards spine | Independent 12-topic course, evidenced concepts, pending standards, experience/resource links | Done on this branch. Codes still owner-supplied |
-| **C** | Field Station / home | Thin shell: Continue + Field (existing game) + Course atlas from `curriculum.json`. No LMS chrome | A + B |
+| **C** | Field Station / home | Thin shell: Continue + Field (existing game) + Course atlas from `curriculum.json`. No LMS chrome | Done on `terrainbound/phase-c-field-station`. Ask Summit is a placeholder. |
 | **D** | Global Ask Summit | Wire `SummitContext` from game + course; optional mobile `fullscreen` layout; conversation persists across surfaces | A, C |
 | **E** | Real-world science + Summit’s Take | Curated `ScienceStory` items (manual). No live RSS | B for topic links |
 | **F** | Video / DFD | Embed DFD YouTube ids; TerrainBound may link out; DFD pages may link in | F does not require E |
@@ -193,3 +197,4 @@ Do not start live news ingestion, accounts, payments, or a second game engine in
 - `terrainbound/tests/learning-foundation.test.mjs`
 - `terrainbound/tests/curriculum-spine.test.mjs`
 - Isolated Summit keyboard inset (Phase A): `syncSummitViewport` + CSS variables (sheet layout unchanged)
+- Phase C: `docs/product/FIELD-STATION.md`, `terrainbound/js/field-station.js`, `terrainbound/css/station.css`

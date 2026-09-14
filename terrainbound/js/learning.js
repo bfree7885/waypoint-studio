@@ -361,5 +361,145 @@ export function validateLearningSpine({
     }
   }
 
+  const display = list(curriculum?.courseDisplayTopicNumbers);
+  if (display.length && JSON.stringify(display) === JSON.stringify(list(curriculum?.gameTravelTopicNumbers))) {
+    errors.push("courseDisplayTopicNumbers must not silently equal game travel order");
+  }
+  if (display.length && JSON.stringify(display) !== JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]) && !curriculum?.ownerDefinedCourseSequence) {
+    errors.push("without ownerDefinedCourseSequence, course display must be Topic 1–12");
+  }
+
   return { ok: errors.length === 0, errors };
+}
+
+export const DEFAULT_COURSE_DISPLAY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+export const RESOURCE_TYPE_LABELS = {
+  "terrainbound-investigation": "Field investigation",
+  "deep-forest-dispatch-video": "Deep Forest Dispatch",
+  "external-video": "Educational video",
+  article: "Article",
+  visualization: "Visualization",
+  simulation: "Simulation",
+  reading: "Reading",
+  review: "Field review",
+  assessment: "Review"
+};
+
+export function courseDisplayNumbers(curriculum) {
+  const owner = curriculum?.ownerDefinedCourseSequence;
+  if (Array.isArray(owner) && owner.length === 12) return [...owner];
+  const display = list(curriculum?.courseDisplayTopicNumbers);
+  if (display.length === 12) return display.map(Number);
+  return [...DEFAULT_COURSE_DISPLAY];
+}
+
+export function courseDisplayTopics(curriculum) {
+  const byNumber = new Map(list(curriculum?.topics).map((row) => [Number(row.number), row]));
+  return courseDisplayNumbers(curriculum).map((number) => byNumber.get(number)).filter(Boolean);
+}
+
+export function parseStationRoute(hash = "") {
+  const raw = String(hash || "").replace(/^#/, "");
+  const parts = raw.split("/").filter(Boolean);
+  if (!parts.length) return { view: "home", topicId: null, resourceId: null };
+  if (parts[0] === "course" && parts[1]) return { view: "topic", topicId: parts[1], resourceId: null };
+  if (parts[0] === "course") return { view: "course", topicId: null, resourceId: null };
+  if (parts[0] === "watch" && parts[1]) return { view: "resource", topicId: null, resourceId: parts[1] };
+  if (parts[0] === "watch") return { view: "watch", topicId: null, resourceId: null };
+  if (parts[0] === "ask") return { view: "ask", topicId: null, resourceId: null };
+  if (parts[0] === "field") return { view: "field", topicId: null, resourceId: null };
+  return { view: "home", topicId: null, resourceId: null };
+}
+
+export function stationHashFor(route = {}) {
+  if (route.view === "topic" && route.topicId) return `#/course/${route.topicId}`;
+  if (route.view === "course") return "#/course";
+  if (route.view === "resource" && route.resourceId) return `#/watch/${route.resourceId}`;
+  if (route.view === "watch") return "#/watch";
+  if (route.view === "ask") return "#/ask";
+  if (route.view === "field") return "#/field";
+  return "#/";
+}
+
+export function shouldSkipFieldStation(search = "") {
+  const params = new URLSearchParams(search);
+  return params.get("field") === "1" || params.get("station") === "0";
+}
+
+export function resumeLabel(save) {
+  if (!save) return null;
+  const id = save.world?.currentRegion || save.currentRegion || "cedar-hollow";
+  const pretty = String(id)
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+  return pretty || "the field";
+}
+
+export function fieldAvailability(topic, experiences = []) {
+  const linked = list(experiences).filter((row) => list(row.topicIds).includes(topic?.id));
+  const playable = linked.filter((row) => row.status === "playable");
+  if (playable.length) {
+    return { id: "available", label: "Available in the field", experiences: playable };
+  }
+  if (linked.length) {
+    return { id: "future", label: "Future field work", experiences: linked };
+  }
+  return { id: "future", label: "No field region yet", experiences: [] };
+}
+
+function conceptNameMap(concepts) {
+  return new Map(list(concepts).map((row) => [row.id, row.name || row.summary || ""]));
+}
+
+export function studentTopicCard(topic, { concepts = [], experiences = [], catalog } = {}) {
+  const availability = fieldAvailability(topic, experiences);
+  const names = conceptNameMap(concepts);
+  const resources = [...list(catalog?.collections?.resources), ...list(catalog?.collections?.videos)];
+  return {
+    id: topic.id,
+    number: topic.number,
+    title: topic.title,
+    shortTitle: topic.shortTitle || topic.title,
+    description: topic.description || "",
+    availability,
+    conceptNames: list(topic.conceptIds).map((id) => names.get(id)).filter(Boolean),
+    fieldExperiences: availability.experiences.map((row) => ({
+      id: row.id,
+      regionId: row.regionId,
+      status: row.status,
+      label: resumeLabel({ world: { currentRegion: row.regionId } })
+    })),
+    resources: resources
+      .filter((row) => list(row.topicIds).includes(topic.id))
+      .map((row) => studentResourceCard(row, { concepts }))
+  };
+}
+
+export function studentResourceCard(resource, { concepts = [] } = {}) {
+  const names = conceptNameMap(concepts);
+  return {
+    id: resource.id,
+    title: resource.title,
+    type: resource.type,
+    typeLabel: RESOURCE_TYPE_LABELS[resource.type] || "Resource",
+    brand: resource.brand === "deep-forest-dispatch" ? "Deep Forest Dispatch" : null,
+    youtubeVideoId: resource.youtubeVideoId || null,
+    youtubeUrl: resource.youtubeUrl || null,
+    embedPolicy: resource.embedPolicy || null,
+    note: resource.note || "",
+    fieldOnly: resource.type === "terrainbound-investigation" || resource.type === "review",
+    conceptNames: list(resource.conceptIds).map((id) => names.get(id)).filter(Boolean)
+  };
+}
+
+export function watchReadItems(catalog, concepts = []) {
+  const rows = [...list(catalog?.collections?.videos), ...list(catalog?.collections?.resources)];
+  return rows.map((row) => studentResourceCard(row, { concepts }));
+}
+
+export function studentFacingTextHasLeak(text) {
+  return /HS-ESS|NYSSLS|MS-ESS|performance expectation/i.test(String(text || ""));
 }

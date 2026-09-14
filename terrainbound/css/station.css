@@ -1,0 +1,289 @@
+/* Field Station shell — TerrainBound camp, not an LMS. */
+
+.station-shell {
+  --station-ink: #1d2a1c;
+  --station-paper: #f4efe2;
+  --station-moss: #2f6b3a;
+  --station-pine: #1f4d32;
+  --station-sun: #f0c44c;
+  --station-clay: #c45c26;
+  position: relative;
+  z-index: 20;
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow: auto;
+  color: var(--station-paper);
+  background:
+    radial-gradient(1200px 700px at 10% -10%, rgba(240, 196, 76, 0.12), transparent 50%),
+    radial-gradient(900px 500px at 110% 10%, rgba(47, 107, 58, 0.35), transparent 45%),
+    linear-gradient(180deg, #163326 0%, #123322 42%, #0e281c 100%);
+  padding:
+    max(16px, env(safe-area-inset-top, 0px))
+    max(16px, env(safe-area-inset-right, 0px))
+    max(20px, env(safe-area-inset-bottom, 0px))
+    max(16px, env(safe-area-inset-left, 0px));
+}
+
+.station-shell[hidden] {
+  display: none !important;
+}
+
+.station-skip {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  transform: translateY(-200%);
+  background: var(--station-sun);
+  color: var(--station-ink);
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: 2;
+}
+
+.station-skip:focus {
+  transform: none;
+}
+
+.station-mast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.station-mast img {
+  width: 40px;
+  height: 40px;
+}
+
+.station-mast p {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d7e4c8;
+}
+
+#station-view {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.station-hero h1,
+.station-view-head h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  margin: 0.2rem 0 0.6rem;
+  color: var(--station-paper);
+}
+
+.station-kicker {
+  margin: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--station-sun);
+}
+
+.station-tag,
+.station-view-head p,
+.station-foot,
+.station-empty {
+  line-height: 1.45;
+  color: #e6ddc8;
+}
+
+.station-summit {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 1.2rem 0;
+  padding: 12px 14px;
+  background: rgba(15, 36, 26, 0.55);
+  border: 1px solid rgba(232, 215, 168, 0.28);
+  border-radius: 12px;
+}
+
+.station-summit p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.station-actions {
+  display: grid;
+  gap: 10px;
+  margin: 1.4rem 0 1rem;
+}
+
+.station-btn,
+.station-back,
+.station-topic,
+.station-link {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.station-btn,
+.station-back {
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 239, 226, 0.35);
+  background: rgba(31, 77, 50, 0.7);
+  padding: 10px 16px;
+}
+
+.station-btn-primary {
+  background: var(--station-sun);
+  color: var(--station-ink);
+  border-color: var(--station-sun);
+  font-weight: 700;
+}
+
+.station-back {
+  background: transparent;
+  margin-bottom: 12px;
+}
+
+.station-topic-list,
+.station-plain,
+.station-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+}
+
+.station-topic-list {
+  display: grid;
+  gap: 10px;
+}
+
+.station-topic {
+  width: 100%;
+  text-align: left;
+  min-height: 44px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(232, 215, 168, 0.3);
+  background: rgba(20, 42, 30, 0.72);
+  display: grid;
+  gap: 4px;
+}
+
+.station-topic-num,
+.station-brand {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--station-sun);
+}
+
+.station-status {
+  font-size: 0.85rem;
+  color: #cfe3c3;
+}
+
+.station-status-future {
+  color: #d7c4a3;
+}
+
+.station-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.station-chips li {
+  border: 1px solid rgba(232, 215, 168, 0.35);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.station-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  min-height: 44px;
+  text-decoration: underline;
+  color: var(--station-sun);
+}
+
+.station-embed {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  margin: 12px 0;
+  background: #0b1c14;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.station-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.station-shell :focus-visible {
+  outline: 2px solid var(--station-sun);
+  outline-offset: 3px;
+}
+
+.station-view-head h2,
+#station-view h2 {
+  font-size: 1.05rem;
+  margin: 1.2rem 0 0.5rem;
+}
+
+body.is-station {
+  overflow: hidden;
+}
+
+body.is-station .station-shell {
+  height: 100%;
+  height: 100dvh;
+}
+
+body.is-field #field-station {
+  display: none !important;
+}
+
+@media (min-width: 800px) {
+  .station-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .station-btn-primary {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .station-hero h1,
+  .station-view-head h1 {
+    font-size: 1.4rem;
+  }
+
+  .station-summit img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .station-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .station-shell,
+  .station-btn,
+  .station-topic {
+    scroll-behavior: auto;
+    transition: none;
+  }
+}

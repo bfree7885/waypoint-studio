@@ -47,7 +47,7 @@ This file is the course. `data/world/regions.json` remains the atlas (`curriculu
 
 Teaching order (unchanged): `1, 2, 10, 11, 3, 4, 5, 6, 9, 7, 8, 12`.
 
-`prerequisiteTopicIds` are that teaching-order predecessor. **Game unlocks are separate** (`predecessor`, `availableAfter` on regions / experiences). Dark Sky is Topic 11 and opens after Cedar Hollow field clearance; it is not “you finished Topics 2–10.”
+**Phase C clarification:** that array is **game atlas/travel order**, not the student Course display and not a confirmed classroom sequence. Course atlas shows Topic **1 → 12** (`courseDisplayTopicNumbers`) until the owner supplies `ownerDefinedCourseSequence`. `prerequisiteTopicIds` are empty. Game unlocks stay on `regions.json`.
 
 ### Owner-review table
 

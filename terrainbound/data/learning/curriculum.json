@@ -19,7 +19,7 @@
     8,
     12
   ],
-  "courseOrderNote": "Travel follows teaching order, not topic number.",
+  "courseOrderNote": "Game atlas/travel order only. Not the student Course display and not a confirmed classroom sequence.",
   "topics": [
     {
       "id": "topic-01",
@@ -61,7 +61,7 @@
         "res-after-the-rain"
       ],
       "prerequisiteTopicIds": [],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 1,
       "status": "field-playable",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -97,10 +97,8 @@
       "resourceIds": [
         "res-high-country-geospatial"
       ],
-      "prerequisiteTopicIds": [
-        "topic-01"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 2,
       "status": "field-playable",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -131,10 +129,8 @@
         "experience-painted-badlands"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-11"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 5,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -166,10 +162,8 @@
         "experience-glacier-country"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-03"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 6,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -200,10 +194,8 @@
         "experience-firepeak"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-04"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 7,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -236,10 +228,8 @@
         "experience-deep-time-canyon"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-05"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 8,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -274,10 +264,8 @@
       "resourceIds": [
         "video-dfd-mount-hood-rain-shadow"
       ],
-      "prerequisiteTopicIds": [
-        "topic-09"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 10,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -308,10 +296,8 @@
         "experience-icewater-bay"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-07"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 11,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -344,10 +330,8 @@
         "experience-island-coast"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-06"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 9,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -381,10 +365,8 @@
       "resourceIds": [
         "res-sunfall-solar-system"
       ],
-      "prerequisiteTopicIds": [
-        "topic-02"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 3,
       "status": "field-playable",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -419,10 +401,8 @@
       "resourceIds": [
         "res-dark-sky-light-as-evidence"
       ],
-      "prerequisiteTopicIds": [
-        "topic-10"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 4,
       "status": "field-playable",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -453,10 +433,8 @@
         "experience-high-sierra"
       ],
       "resourceIds": [],
-      "prerequisiteTopicIds": [
-        "topic-08"
-      ],
-      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "No owner-confirmed course prerequisites. Do not copy game travel order here. Game unlocks live on regions.json / experiences.",
       "courseOrder": 12,
       "status": "field-future",
       "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
@@ -464,5 +442,36 @@
       "needsOwnerConfirmation": true,
       "titleConfidence": "repo-derived-from-region-metadata"
     }
-  ]
+  ],
+  "gameTravelTopicNumbers": [
+    1,
+    2,
+    10,
+    11,
+    3,
+    4,
+    5,
+    6,
+    9,
+    7,
+    8,
+    12
+  ],
+  "courseDisplayTopicNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "courseDisplayRule": "topic-number",
+  "ownerDefinedCourseSequence": null,
+  "sequenceNote": "Course display is Topic 1 through Topic 12 until the owner supplies ownerDefinedCourseSequence. Game unlocks stay on regions.json / experiences."
 }

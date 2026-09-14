@@ -2125,3 +2125,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Future-region concept IDs in the puzzle architecture doc are evidenced plans, not playable mastery. Tag `proposed-travel-competency` so later generators cannot pretend Glacier Country already teaches density.
 - Official NYSSLS codes are still absent. Allow SEP *titles* copied from placeholders, keep `code: null`, and reject any coded row that lacks source plus `owner-supplied` / `verified-against-nyssls`.
 
+### Lessons Learned — TerrainBound Phase C Field Station (2026-09-14)
+
+- `courseOrderTopicNumbers` was game travel, not classroom order. Student Course display defaults to Topic 1–12 until an owner-defined sequence exists. Do not copy atlas walk order into `prerequisiteTopicIds`.
+- The Field Station can lazy-boot `boot()` on first Field/Continue so the porch stays light. Returning to Station must pause play (`mode = "away"`) and persist; do not destroy the game instance.
+- Keep Ask Summit as an honest placeholder outside the field. Routing Station questions into the in-game tutor without context would fake a global Summit.
+

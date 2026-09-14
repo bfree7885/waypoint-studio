@@ -290,7 +290,7 @@ function useSummitProxy(cfg) {
   return Boolean(resolveSummitRuntime({ hostname: location.hostname, search: location.search, cfg }).endpoint);
 }
 
-export async function boot(root = document) {
+export async function boot(root = document, options = {}) {
   const canvas = root.querySelector("#world");
   const gameRoot = root.querySelector("#game-root") || (root.id === "game-root" ? root : document.querySelector("#game-root"));
   const [
@@ -5009,9 +5009,46 @@ export async function boot(root = document) {
     });
   }
 
-  ui.showTitle(true);
-  ui.setEnterLabel(Boolean(existingSave));
-  refreshAppearancePicker(!existingSave);
+  function leaveField() {
+    if (mode === "play" || readSave(storage)) persist();
+    if (summitOpen) closeSummit();
+    if (atlasOpen) closeAtlas();
+    mode = "away";
+    ui.showTitle(false);
+  }
+
+  function enterField({ skipTitle } = {}) {
+    root.querySelectorAll("[data-station-return]").forEach((node) => {
+      node.hidden = !options.enableReturn;
+    });
+    if (skipTitle) {
+      enterWorld();
+      return;
+    }
+    mode = "title";
+    ui.showTitle(true);
+    ui.setEnterLabel(Boolean(readSave(storage)));
+    refreshAppearancePicker(!readSave(storage));
+  }
+
+  function requestFieldStation() {
+    leaveField();
+    options.onLeave?.();
+  }
+
+  root.querySelectorAll("[data-station-return]").forEach((node) => {
+    node.addEventListener("click", requestFieldStation);
+    node.hidden = !options.enableReturn;
+  });
+
+  if (options.deferTitle) {
+    mode = "away";
+    ui.showTitle(false);
+  } else {
+    ui.showTitle(true);
+    ui.setEnterLabel(Boolean(existingSave));
+    refreshAppearancePicker(!existingSave);
+  }
   ui.setJournal(journalView(false));
   ui.setHint("");
   resize();
@@ -5458,4 +5495,11 @@ export async function boot(root = document) {
       CHARACTER_STATES: ["idle", "walk", "inspect", "measure", "tablet", "talk", "sky"]
     };
   }
+
+  return {
+    enterField,
+    leaveField,
+    requestFieldStation,
+    hasSave: () => Boolean(readSave(storage))
+  };
 }

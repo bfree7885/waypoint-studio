@@ -6,9 +6,18 @@
   <title>TerrainBound</title>
   <meta name="description" content="An exploration game about learning to read the Earth.">
   <link rel="stylesheet" href="./css/game.css">
+  <link rel="stylesheet" href="./css/station.css">
 </head>
 <body>
-  <div id="game-root">
+  <div id="field-station" class="station-shell">
+    <a class="station-skip" href="#station-view">Skip to Field Station</a>
+    <div class="station-mast">
+      <img src="./assets/summit/summit-neutral.svg" width="40" height="40" alt="">
+      <p>Field Service · TerrainBound</p>
+    </div>
+    <div id="station-view" tabindex="-1"></div>
+  </div>
+  <div id="game-root" hidden>
     <canvas id="world" tabindex="0" role="img" aria-label="Cedar Hollow, a forested valley you can explore"></canvas>
 
     <div class="hud">
@@ -23,6 +32,7 @@
       <div class="hud-dock">
         <button type="button" id="inspect-prompt" class="inspect-prompt" hidden></button>
         <div class="hud-tools">
+          <button type="button" id="station-toggle" class="map-toggle" data-station-return hidden>Field Station</button>
           <button type="button" id="map-toggle" class="map-toggle">World map</button>
           <button type="button" id="journal-toggle" class="journal-toggle">Field tablet</button>
           <button type="button" id="summit-toggle" class="summit-toggle" aria-expanded="false" aria-label="Open Summit, Earth Science companion">
@@ -48,6 +58,7 @@
           <button type="button" id="enter-btn" aria-label="Enter Cedar Hollow">Begin</button>
           <button type="button" id="new-explore-btn" class="quiet-btn">New exploration</button>
           <button type="button" id="world-map-btn" class="quiet-btn">World map</button>
+          <button type="button" id="station-title-return" class="quiet-btn" data-station-return hidden>Field Station</button>
         </div>
       </div>
     </section>
@@ -386,9 +397,8 @@
       <h2 id="travel-region">Cedar Hollow</h2>
       <p id="travel-station">Field Station</p>
     </div>
-
-    <div id="boot-error" hidden></div>
   </div>
+  <div id="boot-error" hidden></div>
   <script type="module" src="./js/main.js?v=p8ds"></script>
 </body>
 </html>
