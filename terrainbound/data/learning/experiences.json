@@ -1,0 +1,305 @@
+{
+  "id": "terrainbound-game-experiences",
+  "schemaVersion": 2,
+  "status": "atlas-linked",
+  "note": "Each atlas region is one game experience today. That is a current mapping, not a Topic = Region law.",
+  "experiences": [
+    {
+      "id": "experience-cedar-hollow",
+      "kind": "field-region",
+      "regionId": "cedar-hollow",
+      "topicIds": [
+        "topic-01"
+      ],
+      "conceptIds": [
+        "observation",
+        "interpretation",
+        "evidence",
+        "patterns",
+        "variables",
+        "fair-test",
+        "field-data",
+        "systems",
+        "explanation",
+        "revision",
+        "communication",
+        "runoff",
+        "slope",
+        "gravity",
+        "storage",
+        "downstream",
+        "timescale",
+        "cause",
+        "correlation"
+      ],
+      "standardIds": [],
+      "status": "playable",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-high-country",
+      "kind": "field-region",
+      "regionId": "high-country",
+      "topicIds": [
+        "topic-02"
+      ],
+      "conceptIds": [
+        "location",
+        "scale",
+        "elevation",
+        "contours",
+        "gradient",
+        "profile",
+        "gis",
+        "remote",
+        "decision",
+        "spatial",
+        "representation"
+      ],
+      "standardIds": [],
+      "status": "playable",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-sunfall-desert",
+      "kind": "field-region",
+      "regionId": "sunfall-desert",
+      "topicIds": [
+        "topic-10"
+      ],
+      "conceptIds": [
+        "rotation",
+        "seasons",
+        "orbit",
+        "math-orbit",
+        "moon",
+        "eclipses",
+        "celestial-data",
+        "prediction",
+        "model"
+      ],
+      "standardIds": [],
+      "status": "playable",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-dark-sky-basin",
+      "kind": "field-region",
+      "regionId": "dark-sky-basin",
+      "topicIds": [
+        "topic-11"
+      ],
+      "conceptIds": [
+        "spectra",
+        "stellar-temp",
+        "distance-brightness",
+        "hr-place",
+        "stellar-mass-life",
+        "nucleosynthesis",
+        "redshift-pattern",
+        "origin-evidence",
+        "lookback",
+        "bounded-claims"
+      ],
+      "standardIds": [],
+      "status": "playable",
+      "entry": "game",
+      "availableAfter": "cedar-hollow",
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-painted-badlands",
+      "kind": "field-region",
+      "regionId": "painted-badlands",
+      "topicIds": [
+        "topic-03"
+      ],
+      "conceptIds": [
+        "mineral-id",
+        "density",
+        "igneous-cooling",
+        "sed-environment",
+        "metamorphic-parent",
+        "transformation-evidence",
+        "porosity-perm",
+        "competing-id"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-glacier-country",
+      "kind": "field-region",
+      "regionId": "glacier-country",
+      "topicIds": [
+        "topic-04"
+      ],
+      "conceptIds": [
+        "agents-ice-water",
+        "glacial-forms",
+        "weathering-types",
+        "soil-profile",
+        "mass-wasting",
+        "source-sink",
+        "drainage-pattern",
+        "landscape-clocks",
+        "hollow-transfer"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-firepeak",
+      "kind": "field-region",
+      "regionId": "firepeak",
+      "topicIds": [
+        "topic-05"
+      ],
+      "conceptIds": [
+        "seismic-interior",
+        "fault-offset",
+        "volcano-products",
+        "geothermal-path",
+        "plate-motion",
+        "boundary-geometry",
+        "lahar-siting",
+        "convection-model"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-deep-time-canyon",
+      "kind": "field-region",
+      "regionId": "deep-time-canyon",
+      "topicIds": [
+        "topic-06"
+      ],
+      "conceptIds": [
+        "superposition-wayup",
+        "cross-cutting",
+        "unconformity",
+        "stratigraphic-correlation",
+        "index-fossil",
+        "radiometric",
+        "age-conflict",
+        "multi-line-history",
+        "fault-age-transfer"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-island-coast",
+      "kind": "field-region",
+      "regionId": "island-coast",
+      "topicIds": [
+        "topic-09"
+      ],
+      "conceptIds": [
+        "water-budget",
+        "infiltration-runoff",
+        "groundwater",
+        "estuary-mixing",
+        "tides-ocean",
+        "currents",
+        "longshore",
+        "tsunami-safety",
+        "watershed-coupling"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-stormlands",
+      "kind": "field-region",
+      "regionId": "stormlands",
+      "topicIds": [
+        "topic-07"
+      ],
+      "conceptIds": [
+        "station-obs",
+        "pressure-wind",
+        "fronts",
+        "dewpoint",
+        "forecast",
+        "severe-recognize",
+        "hurricane-place",
+        "lightning-safety",
+        "forecast-revision"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-icewater-bay",
+      "kind": "field-region",
+      "regionId": "icewater-bay",
+      "topicIds": [
+        "topic-08"
+      ],
+      "conceptIds": [
+        "weather-vs-climate",
+        "long-record",
+        "energy-budget",
+        "ice-albedo",
+        "local-change-scale",
+        "greenhouse-reservoir",
+        "ranged-forecast",
+        "weather-climate-sort"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    },
+    {
+      "id": "experience-high-sierra",
+      "kind": "field-region",
+      "regionId": "high-sierra",
+      "topicIds": [
+        "topic-12"
+      ],
+      "conceptIds": [
+        "water-source-synthesis",
+        "landslide-mitigation",
+        "mine-water-tradeoff",
+        "fire-wx-route",
+        "dam-fault",
+        "winter-route",
+        "drought-allocation",
+        "whole-toolkit"
+      ],
+      "standardIds": [],
+      "status": "future",
+      "entry": "game",
+      "availableAfter": null,
+      "note": "Current atlas association. A topic may later have zero, one, or many experiences; a region may later support more than one topic."
+    }
+  ]
+}

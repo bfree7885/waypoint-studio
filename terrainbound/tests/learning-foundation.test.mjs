@@ -19,7 +19,6 @@ import {
 import { GAME_HELP_LINE } from "../js/summit.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const repoRoot = path.resolve(root, "..");
 const failures = [];
 
 function check(name, fn) {
@@ -35,6 +34,9 @@ function check(name, fn) {
 const worldRaw = JSON.parse(fs.readFileSync(path.join(root, "data/world/regions.json"), "utf8"));
 const catalog = JSON.parse(fs.readFileSync(path.join(root, "data/learning/catalog.json"), "utf8"));
 const standards = JSON.parse(fs.readFileSync(path.join(root, "data/learning/standards.json"), "utf8"));
+const curriculum = JSON.parse(fs.readFileSync(path.join(root, "data/learning/curriculum.json"), "utf8"));
+const concepts = JSON.parse(fs.readFileSync(path.join(root, "data/learning/concepts.json"), "utf8"));
+const experiences = JSON.parse(fs.readFileSync(path.join(root, "data/learning/experiences.json"), "utf8"));
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const css = fs.readFileSync(path.join(root, "css/game.css"), "utf8");
 const gameJs = fs.readFileSync(path.join(root, "js/game.js"), "utf8");
@@ -63,21 +65,23 @@ check("twelve topic titles come from the existing world, not invented names", ()
   assert.equal(topics.find((row) => row.number === 11).regionId, "dark-sky-basin");
   assert.equal(topics.find((row) => row.number === 1).implementationState, "playable");
   assert.equal(topics.find((row) => row.number === 3).implementationState, "future");
+  for (const topic of curriculum.topics) {
+    const worldTopic = topics.find((row) => row.number === topic.number);
+    assert.equal(topic.title, worldTopic.title);
+  }
 });
 
-check("learning catalog stays empty of invented stories, videos, and standards codes", () => {
-  const loaded = loadLearningCatalog(catalog, worldRaw, standards);
+check("learning catalog does not invent stories or standards codes", () => {
+  const loaded = loadLearningCatalog(catalog, worldRaw, standards, { curriculum, concepts, experiences });
   assert.equal(loaded.stories.length, 0);
-  assert.equal(loaded.videos.length, 0);
-  assert.equal(loaded.resources.length, 0);
-  assert.equal(loaded.concepts.length, 0);
-  assert.equal(loaded.standards.length, 0);
-  assert.equal(loaded.standardsStatus, "pending-owner-codes");
   assert.equal(loaded.playerVisibleCodes, false);
+  assert.equal(loaded.standardsStatus, "pending-owner-codes");
   assert.equal(standards.alignments.length, 0);
+  assert.ok(loaded.standards.every((row) => row.code == null));
   assert.equal(catalog.deepForestDispatch.brandMerge, false);
   assert.equal(catalog.deepForestDispatch.embedPolicy, "youtube-embed-only");
   assert.equal(loaded.experiences.filter((row) => row.status === "playable").length, 4);
+  assert.equal(loaded.concepts.length > 0, true);
 });
 
 check("SummitContext is one identity with typed surfaces and never grants clearance", () => {
@@ -97,8 +101,8 @@ check("SummitContext is one identity with typed surfaces and never grants cleara
   assert.equal(story.regionId, null);
 });
 
-check("story cross-links stay empty until owner content exists", () => {
-  const loaded = loadLearningCatalog(catalog, worldRaw, standards);
+check("story cross-links stay empty until owner ScienceStory content exists", () => {
+  const loaded = loadLearningCatalog(catalog, worldRaw, standards, { curriculum, concepts, experiences });
   const related = relatedForStory({ id: "missing", topicIds: ["topic-07"] }, loaded);
   assert.equal(related.topics.length, 1);
   assert.equal(related.topics[0].title, "Weather & Atmospheric Systems");
@@ -123,10 +127,11 @@ check("mobile Summit gains a visualViewport hook without a visual redesign", () 
 });
 
 check("game experiences index existing regions only", () => {
-  const experiences = gameExperiencesFromWorld(worldRaw);
-  assert.equal(experiences.length, 12);
-  assert.ok(experiences.some((row) => row.regionId === "cedar-hollow" && row.status === "playable"));
-  assert.ok(experiences.some((row) => row.regionId === "dark-sky-basin" && row.topicId === "topic-11"));
+  const fromWorld = gameExperiencesFromWorld(worldRaw);
+  assert.equal(fromWorld.length, 12);
+  assert.ok(fromWorld.some((row) => row.regionId === "cedar-hollow" && row.status === "playable"));
+  assert.ok(fromWorld.some((row) => row.regionId === "dark-sky-basin" && row.topicIds.includes("topic-11")));
+  assert.equal(experiences.experiences.length, 12);
 });
 
 if (failures.length) {

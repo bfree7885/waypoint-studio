@@ -1,0 +1,1871 @@
+{
+  "id": "terrainbound-concepts",
+  "schemaVersion": 2,
+  "status": "evidenced-only",
+  "note": "Plain-language concepts evidenced in mastery, Summit, or the puzzle architecture travel lists. Do not fill from general Earth Science memory.",
+  "concepts": [
+    {
+      "id": "observation",
+      "name": "Observation",
+      "summary": "Distinguish what was actually observed from an interpretation.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "interpretation",
+        "evidence"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "interpretation",
+      "name": "Interpretation",
+      "summary": "The story attached after notes exist. It can be wrong even when the observation is real.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "observation"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "evidence",
+      "name": "Evidence",
+      "summary": "Gather relevant observations and measurements that can support or weaken a claim.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "observation",
+        "explanation"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "patterns",
+      "name": "Patterns",
+      "summary": "Recognize meaningful patterns in data or the environment — not a one-off.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "field-data"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "variables",
+      "name": "Variables",
+      "summary": "Use measurements and recognize relationships among variables. A fair test changes one thing on purpose.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "fair-test",
+        "slope"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "fair-test",
+      "name": "Fair test",
+      "summary": "A fair test changes one thing, keeps the rest the same, and repeats the run.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "variables"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "field-data",
+      "name": "Field data",
+      "summary": "Interpret a graph, table, or field dataset.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "patterns"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/cedar-hollow.json competency id data",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "systems",
+      "name": "Earth systems",
+      "summary": "Link atmosphere, hydrosphere, and geosphere in one event — not by finishing two unrelated stories.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "runoff",
+        "watershed-coupling"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "explanation",
+      "name": "Explanation",
+      "summary": "Construct an explanation supported by evidence.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "evidence",
+        "revision"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "revision",
+      "name": "Revision",
+      "summary": "Revise a model or explanation when evidence conflicts with it. First-try success is not revision.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "explanation",
+        "bounded-claims"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "communication",
+      "name": "Communication",
+      "summary": "Communicate a defensible conclusion.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "explanation"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "runoff",
+      "name": "Runoff",
+      "summary": "Rainwater moving over the ground instead of soaking in right away.",
+      "topicIds": [
+        "topic-01",
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "slope",
+        "infiltration-runoff",
+        "storage"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "slope",
+      "name": "Slope",
+      "summary": "How steep the ground is. Water on a steeper slope usually gets where it is going sooner.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "gradient",
+        "runoff",
+        "gravity"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "gravity",
+      "name": "Gravity",
+      "summary": "Gravity pulls water downhill. It does not pull water up Granite Knob.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "slope",
+        "runoff"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "storage",
+      "name": "Storage",
+      "summary": "Storage holds water for a while. It can change timing without starting the flood.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "runoff",
+        "groundwater"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "downstream",
+      "name": "Downstream",
+      "summary": "The direction water already chose — toward lower ground.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "runoff",
+        "systems"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "timescale",
+      "name": "Timescale",
+      "summary": "How long a process needs. Last night is one clock. A mismatched boulder needs a longer one.",
+      "topicIds": [
+        "topic-01",
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "landscape-clocks",
+        "multi-line-history"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "cause",
+      "name": "Cause",
+      "summary": "What actually made the change. Being nearby is not enough.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "correlation",
+        "explanation"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "correlation",
+      "name": "Correlation",
+      "summary": "Two things can happen together without one causing the other.",
+      "topicIds": [
+        "topic-01"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "cause"
+      ],
+      "evidenceSource": "terrainbound/data/summit/concepts.json",
+      "evidenceKind": "summit-concept",
+      "elicitedNow": true
+    },
+    {
+      "id": "location",
+      "name": "Location",
+      "summary": "Use coordinates as a pair of values to establish where a place is.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "scale"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "scale",
+      "name": "Scale",
+      "summary": "Use map scale to measure or compare distance on the land.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "location",
+        "gradient"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "elevation",
+      "name": "Elevation",
+      "summary": "Read height above a datum and compare relief.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "contours",
+        "gradient"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "contours",
+      "name": "Contours",
+      "summary": "Connect what the land looks like underfoot with contour spacing and shape.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "elevation",
+        "profile"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "gradient",
+      "name": "Gradient",
+      "summary": "Use elevation and distance to reason about steepness for a real travel problem.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "slope",
+        "scale",
+        "elevation"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "profile",
+      "name": "Profile",
+      "summary": "Translate a plan-view map into a side-view cross-section.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "contours"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "gis",
+      "name": "GIS layers",
+      "summary": "Combine more than one spatial layer to answer a field question.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "remote",
+        "decision"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "remote",
+      "name": "Remote sensing",
+      "summary": "Use remotely sensed imagery with field and map evidence.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "gis",
+        "representation"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "decision",
+      "name": "Geospatial decision",
+      "summary": "Use geospatial evidence to choose and defend a route.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "gis",
+        "gradient"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "spatial",
+      "name": "Spatial patterns",
+      "summary": "Identify spatial relationships among terrain, water, trails, and features.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "gis"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "representation",
+      "name": "Map representation",
+      "summary": "Notice that different representations of one place reveal different properties.",
+      "topicIds": [
+        "topic-02"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "gis",
+        "remote"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "rotation",
+      "name": "Earth rotation",
+      "summary": "Explain apparent daily solar motion using Earth's rotation and recorded shadows.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "seasons"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "seasons",
+      "name": "Seasons",
+      "summary": "Use tilt, Sun angle, and daylight — not Earth–Sun distance — to explain seasonal cycles.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "rotation"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "orbit",
+      "name": "Orbit shape",
+      "summary": "Interpret elliptical geometry and changing speed with distance.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "math-orbit",
+        "model"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "math-orbit",
+      "name": "Mathematical orbit",
+      "summary": "Use a simplified period–distance relation to predict a return and check it.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "orbit",
+        "prediction"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "moon",
+      "name": "Moon phases",
+      "summary": "Explain and predict phase from Earth–Moon–Sun geometry.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "eclipses",
+        "tides-ocean"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "eclipses",
+      "name": "Eclipses",
+      "summary": "Use orbital tilt to explain why eclipses do not happen every month.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "moon"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "celestial-data",
+      "name": "Celestial data",
+      "summary": "Interpret remote tide records and planetary tables without memorizing lists.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "moon",
+        "prediction"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/sunfall-desert.json competency id data / localCompetency celestial-data",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "prediction",
+      "name": "Observation planning",
+      "summary": "Make and test a defensible observing plan, and revise it if the sky disagrees.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "math-orbit",
+        "revision"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "model",
+      "name": "Sky model",
+      "summary": "Use or revise an orbital model based on evidence.",
+      "topicIds": [
+        "topic-10"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "orbit"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "spectra",
+      "name": "Spectra as evidence",
+      "summary": "Use spectral structure, not appearance, to compare sources.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "stellar-temp",
+        "redshift-pattern"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "stellar-temp",
+      "name": "Stellar temperature",
+      "summary": "Rank temperature from peak/color evidence, not fire folklore.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "spectra"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "distance-brightness",
+      "name": "Brightness vs distance",
+      "summary": "Separate apparent brightness from distance using a walked baseline.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "hr-place"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "hr-place",
+      "name": "Diagram from measurements",
+      "summary": "Place stars on unlabeled axes from player measurements.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "stellar-temp",
+        "distance-brightness"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "stellar-mass-life",
+      "name": "Stellar lives and mass",
+      "summary": "Show that initial mass branches stellar futures.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "hr-place",
+        "nucleosynthesis"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "nucleosynthesis",
+      "name": "Origin of some elements",
+      "summary": "Connect basin rock and metal lines without claiming all elements were made in stars.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "stellar-mass-life",
+        "origin-evidence"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "redshift-pattern",
+      "name": "Redshift as shifted lines",
+      "summary": "Treat redshift as a shifted line pattern, not a red color.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "spectra",
+        "origin-evidence"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "origin-evidence",
+      "name": "Converging origin evidence",
+      "summary": "Assemble expansion, leftover glow, and abundance rather than a slogan.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "redshift-pattern",
+        "lookback"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "lookback",
+      "name": "Lookback time",
+      "summary": "Refuse present-tense claims for distant light.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "origin-evidence",
+        "bounded-claims"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "bounded-claims",
+      "name": "Bounded claims",
+      "summary": "Separate observed, inferred, unknown, and refused overclaims.",
+      "topicIds": [
+        "topic-11"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "revision",
+        "lookback"
+      ],
+      "evidenceSource": "terrainbound/data/mastery/*.json competency",
+      "evidenceKind": "mastery-competency",
+      "elicitedNow": true
+    },
+    {
+      "id": "rain-shadow",
+      "name": "Rain shadow",
+      "summary": "A mountain barrier lifts moist air on the windward side and leaves drier country to leeward.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "station-obs"
+      ],
+      "evidenceSource": "data/deep-forest-dispatch/stories/mount-hood-rain-shadow.json concepts",
+      "evidenceKind": "dfd-story-concept",
+      "elicitedNow": false
+    },
+    {
+      "id": "mineral-id",
+      "name": "Mineral identification",
+      "summary": "Identify minerals from tested properties, not from a poster name.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "density",
+        "competing-id"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "density",
+      "name": "Density",
+      "summary": "Density as a measured property used in identification.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "mineral-id"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "igneous-cooling",
+      "name": "Igneous cooling",
+      "summary": "Cooling history recorded in igneous texture and related evidence.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "transformation-evidence"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "sed-environment",
+      "name": "Sedimentary environment",
+      "summary": "Formation environment written in sedimentary materials.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "transformation-evidence"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "metamorphic-parent",
+      "name": "Metamorphic parent",
+      "summary": "Parent rock and conditions implied by metamorphic evidence.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "transformation-evidence"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "transformation-evidence",
+      "name": "Rock transformation",
+      "summary": "Material evidence of how one rock became another.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "igneous-cooling",
+        "sed-environment",
+        "metamorphic-parent"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "porosity-perm",
+      "name": "Porosity and permeability",
+      "summary": "How pore space and connectedness affect fluids in rock.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "groundwater"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "competing-id",
+      "name": "Competing identification",
+      "summary": "Tell an economic mineral from a lookalike using tests, not wishful naming.",
+      "topicIds": [
+        "topic-03"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "mineral-id"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "agents-ice-water",
+      "name": "Ice and water as agents",
+      "summary": "Ice versus water as agents that reshape slopes.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "glacial-forms",
+        "source-sink"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "glacial-forms",
+      "name": "Glacial landforms",
+      "summary": "Landforms and deposits that record moving ice.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "agents-ice-water",
+        "landscape-clocks"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "weathering-types",
+      "name": "Weathering",
+      "summary": "Ways rock breaks down at the surface.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "soil-profile",
+        "source-sink"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "soil-profile",
+      "name": "Soil profile",
+      "summary": "Soil as a record of weathering and time on a slope.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "weathering-types"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "mass-wasting",
+      "name": "Mass wasting",
+      "summary": "Downslope movement of rock and soil under gravity.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "landslide-mitigation",
+        "agents-ice-water"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "source-sink",
+      "name": "Source to sink",
+      "summary": "Sediment from source through transport to deposition.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "drainage-pattern",
+        "agents-ice-water"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "drainage-pattern",
+      "name": "Drainage pattern",
+      "summary": "How stream networks organize a landscape.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "source-sink",
+        "watershed-coupling"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "landscape-clocks",
+      "name": "Landscape clocks",
+      "summary": "Different processes need different lengths of time.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "timescale",
+        "hollow-transfer"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "hollow-transfer",
+      "name": "Hollow transfer",
+      "summary": "Reuse Cedar Hollow runoff and slope notes in later surface-process work without reteaching Topic 1.",
+      "topicIds": [
+        "topic-04"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "runoff",
+        "slope"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "seismic-interior",
+      "name": "Seismic interior",
+      "summary": "Infer interior structure from seismic evidence you cannot walk into.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "convection-model"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "fault-offset",
+      "name": "Fault offset",
+      "summary": "Offset land as evidence of fault motion.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "plate-motion",
+        "fault-age-transfer"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "volcano-products",
+      "name": "Volcanic products",
+      "summary": "What a volcano leaves on the surface and what that implies underneath.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "geothermal-path",
+        "lahar-siting"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "geothermal-path",
+      "name": "Geothermal path",
+      "summary": "Heat and fluid paths from depth to hot springs or related features.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "volcano-products",
+        "convection-model"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "plate-motion",
+      "name": "Plate motion",
+      "summary": "Plate motion inferred from surface clues.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "boundary-geometry",
+        "fault-offset"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "boundary-geometry",
+      "name": "Plate-boundary geometry",
+      "summary": "Boundary type and geometry from field and map evidence.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "plate-motion"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "lahar-siting",
+      "name": "Lahar siting",
+      "summary": "Where volcanic mudflows can travel, used as a siting problem.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "volcano-products",
+        "decision"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "convection-model",
+      "name": "Convection model",
+      "summary": "A model of interior convection constrained by surface evidence.",
+      "topicIds": [
+        "topic-05"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "seismic-interior",
+        "plate-motion"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "superposition-wayup",
+      "name": "Superposition and way-up",
+      "summary": "Which bed is older, and which way was originally up.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "cross-cutting",
+        "unconformity"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "cross-cutting",
+      "name": "Cross-cutting relationships",
+      "summary": "A feature that cuts another is younger than what it cuts.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "superposition-wayup",
+        "fault-age-transfer"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "unconformity",
+      "name": "Unconformity",
+      "summary": "A gap in the rock record you can point to.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "superposition-wayup",
+        "timescale"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "stratigraphic-correlation",
+      "name": "Stratigraphic correlation",
+      "summary": "Matching rock units across a canyon or region. Not the Topic 1 habit of confusing togetherness with cause.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "index-fossil",
+        "multi-line-history"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "index-fossil",
+      "name": "Index fossil",
+      "summary": "Fossils used to correlate and constrain relative age.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "stratigraphic-correlation"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "radiometric",
+      "name": "Radiometric age",
+      "summary": "Numerical age from radiometric evidence, checked against other lines.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "age-conflict",
+        "timescale"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "age-conflict",
+      "name": "Conflicting ages",
+      "summary": "What to do when dating lines disagree.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "radiometric",
+        "multi-line-history"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "multi-line-history",
+      "name": "Multi-line history",
+      "summary": "Reconstruct events from several independent lines of evidence.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "timescale",
+        "age-conflict"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "fault-age-transfer",
+      "name": "Fault age transfer",
+      "summary": "Use earlier fault evidence when reading a later stratigraphic story.",
+      "topicIds": [
+        "topic-06"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "fault-offset",
+        "cross-cutting"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "water-budget",
+      "name": "Water budget",
+      "summary": "Where water is stored and how it moves among reservoirs.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "infiltration-runoff",
+        "groundwater"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "infiltration-runoff",
+      "name": "Infiltration vs runoff",
+      "summary": "Water that soaks in versus water that runs off.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "runoff",
+        "water-budget"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "groundwater",
+      "name": "Groundwater",
+      "summary": "Water stored and moving in the ground.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "storage",
+        "porosity-perm",
+        "water-budget"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "estuary-mixing",
+      "name": "Estuary mixing",
+      "summary": "Where fresh and salt water mix along a working shore.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "tides-ocean",
+        "currents"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "tides-ocean",
+      "name": "Tides",
+      "summary": "Tidal period and range, including Earth–Moon–Sun geometry without reteaching Topic 10.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "moon",
+        "currents"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "currents",
+      "name": "Currents",
+      "summary": "Ocean and coastal currents as movers of water and sediment.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "longshore",
+        "tides-ocean"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "longshore",
+      "name": "Longshore transport",
+      "summary": "Sediment moving along a shore.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "currents",
+        "source-sink"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "tsunami-safety",
+      "name": "Tsunami safety",
+      "summary": "Scientifically appropriate response when a tsunami hazard is real.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "severe-recognize"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "watershed-coupling",
+      "name": "Watershed coupling",
+      "summary": "Land, groundwater, and coast as one coupled water system.",
+      "topicIds": [
+        "topic-09"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "systems",
+        "water-budget",
+        "drainage-pattern"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "station-obs",
+      "name": "Station observations",
+      "summary": "Read the atmosphere from real station observations.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "observation",
+        "pressure-wind"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "pressure-wind",
+      "name": "Pressure and wind",
+      "summary": "How pressure patterns relate to wind.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "station-obs",
+        "fronts"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "fronts",
+      "name": "Fronts",
+      "summary": "Boundaries between air masses as observed change.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "pressure-wind",
+        "forecast"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "dewpoint",
+      "name": "Dew point",
+      "summary": "Moisture in the air as a measured quantity, not a slogan.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "station-obs"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "forecast",
+      "name": "Forecast",
+      "summary": "A short-range forecast from changing observations.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "forecast-revision",
+        "weather-vs-climate"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "severe-recognize",
+      "name": "Severe weather recognition",
+      "summary": "Recognize hazardous weather from evidence, then choose a safe response.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "hurricane-place",
+        "lightning-safety"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "hurricane-place",
+      "name": "Hurricane place",
+      "summary": "Where a hurricane's hazards actually sit relative to the person.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "severe-recognize"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "lightning-safety",
+      "name": "Lightning safety",
+      "summary": "A scientifically appropriate lightning response.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "severe-recognize"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "forecast-revision",
+      "name": "Forecast revision",
+      "summary": "Change a forecast when later observations disagree.",
+      "topicIds": [
+        "topic-07"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "forecast",
+        "revision"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "weather-vs-climate",
+      "name": "Weather vs climate",
+      "summary": "Separate a hot day from a long record.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "forecast",
+        "long-record",
+        "weather-climate-sort"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "long-record",
+      "name": "Long climate record",
+      "summary": "What a long record can say that a single cold day cannot.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "weather-vs-climate",
+        "ranged-forecast"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "energy-budget",
+      "name": "Energy budget",
+      "summary": "Energy balance and flows that climate explanations must respect.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "ice-albedo",
+        "greenhouse-reservoir"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "ice-albedo",
+      "name": "Ice-albedo feedback",
+      "summary": "Ice, reflectivity, and feedbacks in a long record.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "energy-budget"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "local-change-scale",
+      "name": "Local change and scale",
+      "summary": "Local change read at the scale the evidence actually supports.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "long-record"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "greenhouse-reservoir",
+      "name": "Greenhouse and reservoirs",
+      "summary": "Greenhouse gases and carbon/heat reservoirs as evidenced stores, not slogans.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "energy-budget"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "ranged-forecast",
+      "name": "Ranged forecast",
+      "summary": "Forecast a consequence with uncertainty named honestly.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "long-record",
+        "bounded-claims"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "weather-climate-sort",
+      "name": "Weather/climate sort",
+      "summary": "Sort claims into weather versus climate before arguing causes.",
+      "topicIds": [
+        "topic-08"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "weather-vs-climate"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "water-source-synthesis",
+      "name": "Water-source synthesis",
+      "summary": "Use the whole water toolkit in a community decision.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "water-budget",
+        "whole-toolkit"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "landslide-mitigation",
+      "name": "Landslide mitigation",
+      "summary": "A defensible response to slope failure using earlier map and surface-process work.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "mass-wasting",
+        "decision"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "mine-water-tradeoff",
+      "name": "Mine and water tradeoff",
+      "summary": "Resource extraction versus water quality as a coupled decision.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "competing-id",
+        "water-source-synthesis"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "fire-wx-route",
+      "name": "Fire-weather route",
+      "summary": "A route choice under fire weather using spatial and atmospheric evidence.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "decision",
+        "severe-recognize"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "dam-fault",
+      "name": "Dam and fault",
+      "summary": "Infrastructure sitting on geologic hazard as a synthesis problem.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "fault-offset",
+        "whole-toolkit"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "winter-route",
+      "name": "Winter route",
+      "summary": "A winter travel or siting choice that needs weather, terrain, and earlier habits.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "decision",
+        "forecast"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "drought-allocation",
+      "name": "Drought allocation",
+      "summary": "Allocate scarce water using budget and long-record evidence.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "water-source-synthesis",
+        "long-record"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    },
+    {
+      "id": "whole-toolkit",
+      "name": "Whole toolkit",
+      "summary": "A sustainability decision that requires tools and understanding from earlier topics — not a new isolated unit.",
+      "topicIds": [
+        "topic-12"
+      ],
+      "standardIds": [],
+      "relatedConceptIds": [
+        "water-source-synthesis",
+        "systems"
+      ],
+      "evidenceSource": "terrainbound/docs/PUZZLE-CURRICULUM-ARCHITECTURE.md §9.2 travel-required competencies",
+      "evidenceKind": "proposed-travel-competency",
+      "elicitedNow": false
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # Summit architecture — current and contextual
 
-**Status:** Phase A  
+**Status:** Phase B (contextual model extended; engine unchanged)  
 **Date:** 2026-09-14  
 **Not merged. Not deployed.**
 
 This document describes Summit as it ships today and the contextual architecture for a TerrainBound-wide tutor. It does not replace [`terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md`](../../terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md), which remains the Cedar Hollow / hybrid-pipeline authority.
 
-Product framing: [`TERRAINBOUND-LEARNING-ENVIRONMENT.md`](TERRAINBOUND-LEARNING-ENVIRONMENT.md).
+Product framing: [`TERRAINBOUND-LEARNING-ENVIRONMENT.md`](TERRAINBOUND-LEARNING-ENVIRONMENT.md). Curriculum spine: [`CURRICULUM-ARCHITECTURE.md`](CURRICULUM-ARCHITECTURE.md).
 
 ---
 
@@ -74,25 +74,31 @@ Summit **cannot operate outside the game** until Phase D: no route, no shell, co
 
 ## Proposed SummitContext
 
-`terrainbound/js/learning.js` — **not imported by `game.js` in Phase A**.
+`terrainbound/js/learning.js` — **not imported by `game.js`**.
 
 ```
 {
-  schemaVersion: 1,
+  schemaVersion: 2,
   contextType: "game" | "curriculum" | "story" | "video" | "general",
   topicId,
   conceptIds,
+  standardIds,
   regionId,
   investigationId,
   storyId,
   resourceId,
   videoId,
-  studentProgress: { masteredTopicIds, accessibleRegionIds, currentRegionId },
+  studentProgress: { masteredTopicIds, accessibleRegionIds, currentRegionId, currentTopicId },
   allowedAssistance: "guide" | "explain" | "connect",
   doNotRevealAnswers: true,
-  doNotGrantClearance: true
+  doNotGrantClearance: true,
+  studentFacingStandards: false
 }
 ```
+
+`standardIds` are for the engine, never for the student transcript. Summit may know “this student is on Topic 11 asking about spectra.” Summit must not recite HS-ESS codes.
+
+Helpers: `curriculumSummitContext`, `attachCurriculumToSummitContext`. Still **not imported by `game.js`**. Phase D wires this beside `summitContextInput()`.
 
 One identity. The same hybrid engine. Different **context builders** fill the object:
 

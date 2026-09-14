@@ -2,7 +2,7 @@
 
 A small cartoon wilderness you can walk. This folder is a **standalone game**, not a Waypoint Studio app.
 
-It is **not** the retired trail-endurance page at `apps/terrainbound/`. Do not wire this game into Studio nav or product registries. Public hosting is the companion Pages repo `bfree7885/terrainbound-site` → `https://terrainbound.org`. See `docs/HOSTING.md` and `docs/SUMMIT-PRODUCTION.md`. Learning-environment architecture (not a rewrite): `docs/product/TERRAINBOUND-LEARNING-ENVIRONMENT.md`.
+It is **not** the retired trail-endurance page at `apps/terrainbound/`. Do not wire this game into Studio nav or product registries. Public hosting is the companion Pages repo `bfree7885/terrainbound-site` → `https://terrainbound.org`. See `docs/HOSTING.md` and `docs/SUMMIT-PRODUCTION.md`. Learning-environment architecture (not a rewrite): `docs/product/TERRAINBOUND-LEARNING-ENVIRONMENT.md` and `docs/product/CURRICULUM-ARCHITECTURE.md`.
 
 **Production Summit baseline:** first live Summit `db2b7cc04bcbcd548657b5daa5addd42520c0eff` (tag `terrainbound-summit-production-2026-09`). Dark Sky Basin Topic 11 release candidate cache-bust `?v=p8ds`.
 
@@ -51,6 +51,7 @@ node terrainbound/tests/phase8_c.test.mjs
 node terrainbound/tests/phase8_d.test.mjs
 node terrainbound/tests/phase8_rc.test.mjs
 node terrainbound/tests/learning-foundation.test.mjs
+node terrainbound/tests/curriculum-spine.test.mjs
 # Supervised field-test RC (local; not the default):
 # npm run fieldtest:summit
 # Optional captures: node terrainbound/tests/capture-phase79l.mjs

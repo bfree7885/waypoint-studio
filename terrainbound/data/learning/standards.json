@@ -1,9 +1,136 @@
 {
   "id": "nys-ess-alignments",
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "playerVisible": false,
-  "framework": "NYS P-12 Science Learning Standards / Earth & Space Sciences",
+  "framework": "NYS P-12 Science Learning Standards / Earth & Space Sciences (NYSSLS)",
   "status": "pending-owner-codes",
-  "disclaimer": "Official performance-expectation codes have not been supplied. Alignments stay empty until the owner provides them. Do not invent HS-ESS or NYSSLS codes.",
-  "alignments": []
+  "disclaimer": "Official performance-expectation, DCI, and CCC codes have not been supplied. Do not invent HS-ESS or NYSSLS codes. SEP titles below are copied from existing placeholder sciencePractice strings only.",
+  "allowedTypes": [
+    "performance-expectation",
+    "science-engineering-practice",
+    "disciplinary-core-idea",
+    "crosscutting-concept"
+  ],
+  "codePolicy": {
+    "allowCodeWithoutSource": false,
+    "requiredVerificationToAcceptCode": [
+      "owner-supplied",
+      "verified-against-nyssls"
+    ],
+    "pendingVerificationStatus": "pending-owner-codes"
+  },
+  "alignments": [],
+  "standards": [
+    {
+      "id": "sep-asking-questions",
+      "code": null,
+      "title": "Asking questions and defining problems",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "topic-1-scientific-habits"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-planning-investigations",
+      "code": null,
+      "title": "Planning and carrying out investigations",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "water-movement-through-terrain",
+        "weathering-and-bedrock"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-analyzing-data",
+      "code": null,
+      "title": "Analyzing and interpreting data",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "interpreting-landforms",
+        "glacial-processes",
+        "interpreting-geologic-evidence"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-argument-from-evidence",
+      "code": null,
+      "title": "Engaging in argument from evidence",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "evidence-based-explanation"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-constructing-explanations",
+      "code": null,
+      "title": "Constructing explanations",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "transported-sediment",
+        "constructing-explanations-from-evidence"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-developing-models",
+      "code": null,
+      "title": "Developing and using models",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "erosion-and-deposition",
+        "landscape-change",
+        "scale-time-relationships"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    },
+    {
+      "id": "sep-obtaining-information",
+      "code": null,
+      "title": "Obtaining, evaluating, and communicating information",
+      "description": "NYSSLS science and engineering practice name as already stored in TerrainBound placeholder metadata. Official code pending owner supply.",
+      "type": "science-engineering-practice",
+      "topicIds": [],
+      "conceptIds": [],
+      "source": "terrainbound/data/curriculum/placeholders.json sciencePractice",
+      "placeholderIds": [
+        "wetlands-and-groundwater"
+      ],
+      "verificationStatus": "pending-owner-codes",
+      "playerVisible": false
+    }
+  ]
 }

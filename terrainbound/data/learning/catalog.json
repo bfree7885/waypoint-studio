@@ -1,19 +1,192 @@
 {
   "id": "terrainbound-learning",
-  "schemaVersion": 1,
-  "status": "foundation",
+  "schemaVersion": 2,
+  "status": "curriculum-spine",
   "playerVisibleCodes": false,
-  "note": "Phase A catalog. Curriculum topic titles are derived from data/world/regions.json. Do not invent topic names, standards codes, stories, or videos here.",
-  "curriculumSource": "data/world/regions.json",
+  "note": "Phase B catalog. Curriculum authority is curriculum.json, not regions.json. Do not invent topic names, PE codes, stories, or extra videos.",
+  "curriculumSource": "data/learning/curriculum.json",
   "standardsStatus": "pending-owner-codes",
   "collections": {
-    "topics": "derived-from-world",
-    "concepts": [],
-    "standards": [],
-    "resources": [],
+    "topics": "data/learning/curriculum.json",
+    "concepts": "data/learning/concepts.json",
+    "standards": "data/learning/standards.json",
+    "experiences": "data/learning/experiences.json",
+    "resources": [
+      {
+        "id": "res-where-does-the-water-go",
+        "type": "terrainbound-investigation",
+        "title": "Where Does the Water Go?",
+        "topicIds": [
+          "topic-01"
+        ],
+        "conceptIds": [
+          "observation",
+          "evidence",
+          "runoff",
+          "systems"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-cedar-hollow"
+        ],
+        "sourcePath": "terrainbound/data/missions/where-does-the-water-go.json"
+      },
+      {
+        "id": "res-what-makes-water-move",
+        "type": "terrainbound-investigation",
+        "title": "What makes water move",
+        "topicIds": [
+          "topic-01"
+        ],
+        "conceptIds": [
+          "variables",
+          "fair-test",
+          "slope",
+          "runoff",
+          "field-data"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-cedar-hollow"
+        ],
+        "sourcePath": "terrainbound/data/investigations/what-makes-water-move.json"
+      },
+      {
+        "id": "res-reading-the-landscape",
+        "type": "terrainbound-investigation",
+        "title": "Reading the Landscape",
+        "topicIds": [
+          "topic-01"
+        ],
+        "conceptIds": [
+          "observation",
+          "timescale",
+          "explanation",
+          "revision"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-cedar-hollow"
+        ],
+        "sourcePath": "terrainbound/data/investigations/reading-the-landscape.json",
+        "note": "Introduces an older landscape clock. Ice as an agent is not Topic 1 mastery; Glacier Country owns that assessment."
+      },
+      {
+        "id": "res-after-the-rain",
+        "type": "review",
+        "title": "After the rain",
+        "topicIds": [
+          "topic-01"
+        ],
+        "conceptIds": [
+          "systems",
+          "cause",
+          "correlation",
+          "revision",
+          "communication"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-cedar-hollow"
+        ],
+        "sourcePath": "terrainbound/data/challenges/after-the-rain.json"
+      },
+      {
+        "id": "res-high-country-geospatial",
+        "type": "terrainbound-investigation",
+        "title": "High Country field season",
+        "topicIds": [
+          "topic-02"
+        ],
+        "conceptIds": [
+          "location",
+          "scale",
+          "elevation",
+          "contours",
+          "gradient",
+          "profile",
+          "gis",
+          "remote",
+          "decision"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-high-country"
+        ],
+        "sourcePath": "terrainbound/data/investigations/high-country.json"
+      },
+      {
+        "id": "res-sunfall-solar-system",
+        "type": "terrainbound-investigation",
+        "title": "Sunfall observing campaign",
+        "topicIds": [
+          "topic-10"
+        ],
+        "conceptIds": [
+          "rotation",
+          "seasons",
+          "orbit",
+          "math-orbit",
+          "moon",
+          "eclipses",
+          "celestial-data",
+          "prediction"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-sunfall-desert"
+        ],
+        "sourcePath": "terrainbound/data/investigations/sunfall-desert.json"
+      },
+      {
+        "id": "res-dark-sky-light-as-evidence",
+        "type": "terrainbound-investigation",
+        "title": "Light as field evidence",
+        "topicIds": [
+          "topic-11"
+        ],
+        "conceptIds": [
+          "spectra",
+          "stellar-temp",
+          "distance-brightness",
+          "hr-place",
+          "stellar-mass-life",
+          "nucleosynthesis",
+          "redshift-pattern",
+          "origin-evidence",
+          "lookback",
+          "bounded-claims"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [
+          "experience-dark-sky-basin"
+        ],
+        "sourcePath": "terrainbound/data/investigations/dark-sky-basin.json"
+      }
+    ],
     "stories": [],
-    "videos": [],
-    "experiences": "derived-from-world"
+    "videos": [
+      {
+        "id": "video-dfd-mount-hood-rain-shadow",
+        "type": "deep-forest-dispatch-video",
+        "title": "Why one side of this mountain is a forest — and the other is a desert",
+        "topicIds": [
+          "topic-07"
+        ],
+        "conceptIds": [
+          "rain-shadow"
+        ],
+        "standardIds": [],
+        "gameExperienceIds": [],
+        "storyIds": [],
+        "embedPolicy": "youtube-embed-only",
+        "youtubeVideoId": "ue74ge9Bz7U",
+        "youtubeUrl": "https://www.youtube.com/watch?v=ue74ge9Bz7U",
+        "sourcePath": "data/deep-forest-dispatch/stories/mount-hood-rain-shadow.json",
+        "brand": "deep-forest-dispatch",
+        "note": "Architecture proof only. Do not rehost. DFD remains a sibling brand."
+      }
+    ]
   },
   "deepForestDispatch": {
     "relationship": "sibling",

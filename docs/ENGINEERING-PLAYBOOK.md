@@ -2118,3 +2118,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Summit cannot leave the game until a Field Station shell exists. Add `SummitContext` as a module first; do not import it from `game.js` until Phase D.
 - Mobile Summit keyboard coverage is a visualViewport geometry problem. Size the sheet to `visualViewport.height`; do not redesign the character or the sheet in the same phase.
 
+### Lessons Learned — TerrainBound Phase B curriculum spine (2026-09-14)
+
+- Regions are not the curriculum. Keep `curriculum.json` as the 12-topic authority and treat `regions.json` `curriculumTitle` as a current atlas link. A concept can belong to two topics without making that region both topics.
+- Topic titles found only on the atlas are not confirmed classroom names. Copy them, mark `awaiting-owner-confirmation`, and do not invent replacements.
+- Future-region concept IDs in the puzzle architecture doc are evidenced plans, not playable mastery. Tag `proposed-travel-competency` so later generators cannot pretend Glacier Country already teaches density.
+- Official NYSSLS codes are still absent. Allow SEP *titles* copied from placeholders, keep `code: null`, and reject any coded row that lacks source plus `owner-supplied` / `verified-against-nyssls`.
+

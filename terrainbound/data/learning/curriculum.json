@@ -1,0 +1,468 @@
+{
+  "id": "nys-ess-12-topic-course",
+  "schemaVersion": 2,
+  "status": "spine",
+  "playerVisibleCodes": false,
+  "authority": "This file is the 12-topic course. regions.json is the atlas, not the curriculum database.",
+  "titlePolicy": "Titles copied from regions.json curriculumTitle. They are not confirmed classroom names. Do not invent replacements.",
+  "courseOrderTopicNumbers": [
+    1,
+    2,
+    10,
+    11,
+    3,
+    4,
+    5,
+    6,
+    9,
+    7,
+    8,
+    12
+  ],
+  "courseOrderNote": "Travel follows teaching order, not topic number.",
+  "topics": [
+    {
+      "id": "topic-01",
+      "number": 1,
+      "title": "Scientific Thinking & Earth Systems",
+      "shortTitle": "Scientific Thinking",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Learn how to observe, measure, distinguish evidence from interpretation, identify patterns, test a changing condition fairly, interpret field data, reason about systems, and construct or revise explanations. Later regions reuse these habits; they do not reteach them from zero.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "observation",
+        "interpretation",
+        "evidence",
+        "patterns",
+        "variables",
+        "fair-test",
+        "field-data",
+        "systems",
+        "explanation",
+        "revision",
+        "communication",
+        "runoff",
+        "slope",
+        "gravity",
+        "storage",
+        "downstream",
+        "timescale",
+        "cause",
+        "correlation"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-cedar-hollow"
+      ],
+      "resourceIds": [
+        "res-where-does-the-water-go",
+        "res-what-makes-water-move",
+        "res-reading-the-landscape",
+        "res-after-the-rain"
+      ],
+      "prerequisiteTopicIds": [],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 1,
+      "status": "field-playable",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-02",
+      "number": 2,
+      "title": "Maps, GIS & Geospatial Thinking",
+      "shortTitle": "Maps & GIS",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Learn to locate, measure, represent, navigate, and interpret TerrainBound spatially. Permanent map and GIS tools should be earned here.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "location",
+        "scale",
+        "elevation",
+        "contours",
+        "gradient",
+        "profile",
+        "gis",
+        "remote",
+        "decision",
+        "spatial",
+        "representation"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-high-country"
+      ],
+      "resourceIds": [
+        "res-high-country-geospatial"
+      ],
+      "prerequisiteTopicIds": [
+        "topic-01"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 2,
+      "status": "field-playable",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-03",
+      "number": 3,
+      "title": "Earth's Materials",
+      "shortTitle": "Earth's Materials",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Investigate minerals, rocks, formation environments, transformations, and material evidence.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "mineral-id",
+        "density",
+        "igneous-cooling",
+        "sed-environment",
+        "metamorphic-parent",
+        "transformation-evidence",
+        "porosity-perm",
+        "competing-id"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-painted-badlands"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-11"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 5,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-04",
+      "number": 4,
+      "title": "Surface Processes",
+      "shortTitle": "Surface Processes",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "See water, gravity, ice, weathering, erosion, transport, and deposition actively reshape landscapes.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "agents-ice-water",
+        "glacial-forms",
+        "weathering-types",
+        "soil-profile",
+        "mass-wasting",
+        "source-sink",
+        "drainage-pattern",
+        "landscape-clocks",
+        "hollow-transfer"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-glacier-country"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-03"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 6,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-05",
+      "number": 5,
+      "title": "Earth's Interior & Plate Tectonics",
+      "shortTitle": "Interior & Tectonics",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Use seismic, volcanic, topographic, age, and plate-motion evidence to infer what cannot be seen directly inside Earth.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "seismic-interior",
+        "fault-offset",
+        "volcano-products",
+        "geothermal-path",
+        "plate-motion",
+        "boundary-geometry",
+        "lahar-siting",
+        "convection-model"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-firepeak"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-04"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 7,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-06",
+      "number": 6,
+      "title": "Earth's History",
+      "shortTitle": "Earth's History",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Reconstruct events from rock layers, fossils, correlation, radiometric evidence, and multiple lines of evidence.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "timescale",
+        "superposition-wayup",
+        "cross-cutting",
+        "unconformity",
+        "stratigraphic-correlation",
+        "index-fossil",
+        "radiometric",
+        "age-conflict",
+        "multi-line-history",
+        "fault-age-transfer"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-deep-time-canyon"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-05"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 8,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-07",
+      "number": 7,
+      "title": "Weather & Atmospheric Systems",
+      "shortTitle": "Weather",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Read the atmosphere from real observations and data, predict changing conditions, and respond safely when weather becomes hazardous.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "rain-shadow",
+        "station-obs",
+        "pressure-wind",
+        "fronts",
+        "dewpoint",
+        "forecast",
+        "severe-recognize",
+        "hurricane-place",
+        "lightning-safety",
+        "forecast-revision"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-stormlands"
+      ],
+      "resourceIds": [
+        "video-dfd-mount-hood-rain-shadow"
+      ],
+      "prerequisiteTopicIds": [
+        "topic-09"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 10,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-08",
+      "number": 8,
+      "title": "Climate & Global Change",
+      "shortTitle": "Climate",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Separate weather from climate, work with long records and models, understand energy balance and feedbacks, and forecast consequences from evidence.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "weather-vs-climate",
+        "long-record",
+        "energy-budget",
+        "ice-albedo",
+        "local-change-scale",
+        "greenhouse-reservoir",
+        "ranged-forecast",
+        "weather-climate-sort"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-icewater-bay"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-07"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 11,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-09",
+      "number": 9,
+      "title": "Water & Ocean Systems",
+      "shortTitle": "Water & Oceans",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Investigate water movement, reservoirs, infiltration and runoff, coastal and ocean processes, tides, and coupled systems.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "runoff",
+        "water-budget",
+        "infiltration-runoff",
+        "groundwater",
+        "estuary-mixing",
+        "tides-ocean",
+        "currents",
+        "longshore",
+        "tsunami-safety",
+        "watershed-coupling"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-island-coast"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-06"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 9,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-10",
+      "number": 10,
+      "title": "Solar System",
+      "shortTitle": "Solar System",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Use the sky, shadows, planetary and orbital data, models, and mathematics to understand and predict solar-system motion.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "rotation",
+        "seasons",
+        "orbit",
+        "math-orbit",
+        "moon",
+        "eclipses",
+        "celestial-data",
+        "prediction",
+        "model"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-sunfall-desert"
+      ],
+      "resourceIds": [
+        "res-sunfall-solar-system"
+      ],
+      "prerequisiteTopicIds": [
+        "topic-02"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 3,
+      "status": "field-playable",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-11",
+      "number": 11,
+      "title": "Stars & the Universe",
+      "shortTitle": "Stars & the Universe",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Use light, spectra, stellar properties, distance evidence, and observations to infer stellar and universal processes and history.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "spectra",
+        "stellar-temp",
+        "distance-brightness",
+        "hr-place",
+        "stellar-mass-life",
+        "nucleosynthesis",
+        "redshift-pattern",
+        "origin-evidence",
+        "lookback",
+        "bounded-claims"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-dark-sky-basin"
+      ],
+      "resourceIds": [
+        "res-dark-sky-light-as-evidence"
+      ],
+      "prerequisiteTopicIds": [
+        "topic-10"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 4,
+      "status": "field-playable",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    },
+    {
+      "id": "topic-12",
+      "number": 12,
+      "title": "Natural Resources, Hazards & Sustainability",
+      "shortTitle": "Resources & Hazards",
+      "shortTitleSource": "derived-from-curriculumTitle",
+      "description": "Synthesis: use spatial data, rocks, water, weather, climate, hazards, resources, and systems thinking earned across TerrainBound to make defensible decisions where Earth systems, hazards, resources, infrastructure, and people interact.",
+      "descriptionSource": "terrainbound/data/world/bible.json curriculumPurpose",
+      "conceptIds": [
+        "water-source-synthesis",
+        "landslide-mitigation",
+        "mine-water-tradeoff",
+        "fire-wx-route",
+        "dam-fault",
+        "winter-route",
+        "drought-allocation",
+        "whole-toolkit"
+      ],
+      "standardIds": [],
+      "gameExperienceIds": [
+        "experience-high-sierra"
+      ],
+      "resourceIds": [],
+      "prerequisiteTopicIds": [
+        "topic-08"
+      ],
+      "prerequisiteNote": "Teaching-order predecessor from courseOrderTopicNumbers. Game unlocks live on regions.json / experiences, not here. Dark Sky is Topic 11 and available after Cedar Hollow.",
+      "courseOrder": 12,
+      "status": "field-future",
+      "titleSource": "terrainbound/data/world/regions.json curriculumTitle",
+      "titleConfirmation": "awaiting-owner-confirmation",
+      "needsOwnerConfirmation": true,
+      "titleConfidence": "repo-derived-from-region-metadata"
+    }
+  ]
+}

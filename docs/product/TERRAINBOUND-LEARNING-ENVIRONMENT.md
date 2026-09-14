@@ -1,13 +1,13 @@
 # TerrainBound as an Earth & Space Science learning environment
 
-**Status:** Phase A foundation — architecture only  
+**Status:** Phase B curriculum spine (Phase A foundation remains)  
 **Date:** 2026-09-14  
-**Branch:** `terrainbound/phase-a-learning-foundation`  
+**Branch:** `terrainbound/phase-b-curriculum-spine`  
 **Not merged. Not deployed.**
 
 This document is the product north star for TerrainBound’s next evolution. It does **not** replace the working field game. Cedar Hollow, High Country, Sunfall Desert, Dark Sky Basin, Field Clearance, hazards, and production Summit stay.
 
-Companion: [`SUMMIT-ARCHITECTURE.md`](SUMMIT-ARCHITECTURE.md). Existing tutor design remains [`terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md`](../../terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md).
+Companions: [`SUMMIT-ARCHITECTURE.md`](SUMMIT-ARCHITECTURE.md), [`CURRICULUM-ARCHITECTURE.md`](CURRICULUM-ARCHITECTURE.md). Existing tutor design remains [`terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md`](../../terrainbound/docs/SUMMIT-TUTOR-ARCHITECTURE.md).
 
 ---
 
@@ -69,30 +69,13 @@ DFD catalog today: `data/deep-forest-dispatch/`. TerrainBound Phase A only recor
 
 ## Curriculum-first architecture
 
-The spine is the owner’s **12-topic NYS Earth & Space Sciences course**, already stored on the atlas:
+**Regions are not the curriculum.** The course lives in `terrainbound/data/learning/curriculum.json`. The atlas may link a region to a topic; that link is optional and many-to-many.
 
-| # | Title (from `data/world/regions.json`) | Region | State |
-| --- | --- | --- | --- |
-| 1 | Scientific Thinking & Earth Systems | Cedar Hollow | playable |
-| 2 | Maps, GIS & Geospatial Thinking | High Country | playable |
-| 3 | Earth's Materials | Painted Badlands | future |
-| 4 | Surface Processes | Glacier Country | future |
-| 5 | Earth's Interior & Plate Tectonics | Firepeak | future |
-| 6 | Earth's History | Deep Time Canyon | future |
-| 7 | Weather & Atmospheric Systems | Stormlands | future |
-| 8 | Climate & Global Change | Icewater Bay | future |
-| 9 | Water & Ocean Systems | Island Coast | future |
-| 10 | Solar System | Sunfall Desert | playable |
-| 11 | Stars & the Universe | Dark Sky Basin | playable |
-| 12 | Natural Resources, Hazards & Sustainability | High Sierra | future |
+The twelve titles currently copied from `regions.json` are **awaiting owner confirmation** as classroom names. Full owner-review table: [`CURRICULUM-ARCHITECTURE.md`](CURRICULUM-ARCHITECTURE.md).
 
-Teaching order is not numeric: `1, 2, 10, 11, 3, 4, 5, 6, 9, 7, 8, 12`.
+Teaching order is not numeric: `1, 2, 10, 11, 3, 4, 5, 6, 9, 7, 8, 12`. Game unlocks stay on the atlas (`availableAfter` for Dark Sky after Cedar Hollow).
 
-**Official NYS P-12 / NYSSLS performance-expectation codes are not in the repository.** `placeholderAlignment.code` is null. `data/learning/standards.json` is an empty alignment table with `status: pending-owner-codes`. Do not invent codes.
-
-Topic titles were **not invented in Phase A**. They are read from existing region data via `curriculumTopicsFromWorld`.
-
-If the owner’s classroom names differ from these twelve titles, supply the authoritative list before Phase B populates extra copy.
+**Official NYS P-12 / NYSSLS performance-expectation codes are still not in the repository.** SEP practice *names* were copied from existing placeholders; every `code` remains null. Do not invent codes. Students must never see standards chrome.
 
 ---
 
@@ -116,19 +99,22 @@ Shared rules: guide rather than give the answer; never grant Field Clearance; ne
 
 Implemented as `terrainbound/js/learning.js` plus:
 
-- `data/learning/catalog.json` — empty collections, DFD sibling pointer
-- `data/learning/standards.json` — empty alignments
+- `data/learning/curriculum.json` — 12-topic authority
+- `data/learning/concepts.json` — evidenced concepts only
+- `data/learning/experiences.json` — atlas regions as game experiences
+- `data/learning/catalog.json` — proven investigations + one DFD embed pointer
+- `data/learning/standards.json` — pending codes; SEP titles from placeholders
 
-| Model | Phase A |
+| Model | Phase B |
 | --- | --- |
-| `CurriculumTopic` | Derived from world regions |
-| `CurriculumConcept` | Empty here; game terms stay in `data/summit/concepts.json` |
-| `StandardAlignment` | Schema only; no codes |
-| `LearningResource` | Empty |
+| `CurriculumTopic` | `curriculum.json` (not derived from regions) |
+| `CurriculumConcept` | Evidenced library; game glossary remains in `data/summit/concepts.json` |
+| `StandardAlignment` | Schema + pending SEPs; no PE codes |
+| `LearningResource` | Existing investigations / After the rain / one DFD video |
 | `ScienceStory` | Empty (no news ingest) |
-| `VideoResource` | Empty (embed later; never rehost) |
-| `GameExperience` | Index of existing regions |
-| `SummitContext` | Typed context object; not yet wired into `game.js` |
+| `VideoResource` | One sibling DFD YouTube id; never rehost |
+| `GameExperience` | Atlas regions with `topicIds[]` |
+| `SummitContext` | Typed context + `standardIds`; still not wired into `game.js` |
 
 Conceptual relationship (not populated):
 
@@ -183,9 +169,9 @@ Adjusted from the requested sequence against what the repo already contains.
 
 | Phase | Name | Job | Depends on |
 | --- | --- | --- | --- |
-| **A** | Architecture / foundation | This document, `learning.js`, empty catalogs, SummitContext, mobile viewport hook | Done on this branch |
-| **B** | Curriculum + NYS standards spine | Owner-confirmed topic copy if needed; official PE codes into `standards.json`; concept map per topic **without** inventing codes | Owner codes |
-| **C** | Field Station / home | Thin shell: Continue + Field (existing game) + Course atlas. No LMS chrome | A |
+| **A** | Architecture / foundation | Learning module, SummitContext, mobile viewport hook | Done (`c5549b5a`) |
+| **B** | Curriculum + NYS standards spine | Independent 12-topic course, evidenced concepts, pending standards, experience/resource links | Done on this branch. Codes still owner-supplied |
+| **C** | Field Station / home | Thin shell: Continue + Field (existing game) + Course atlas from `curriculum.json`. No LMS chrome | A + B |
 | **D** | Global Ask Summit | Wire `SummitContext` from game + course; optional mobile `fullscreen` layout; conversation persists across surfaces | A, C |
 | **E** | Real-world science + Summit’s Take | Curated `ScienceStory` items (manual). No live RSS | B for topic links |
 | **F** | Video / DFD | Embed DFD YouTube ids; TerrainBound may link out; DFD pages may link in | F does not require E |
@@ -196,10 +182,14 @@ Do not start live news ingestion, accounts, payments, or a second game engine in
 
 ---
 
-## Phase A files
+## Phase A / B files
 
 - `terrainbound/js/learning.js`
+- `terrainbound/data/learning/curriculum.json`
+- `terrainbound/data/learning/concepts.json`
+- `terrainbound/data/learning/experiences.json`
 - `terrainbound/data/learning/catalog.json`
 - `terrainbound/data/learning/standards.json`
 - `terrainbound/tests/learning-foundation.test.mjs`
-- Isolated Summit keyboard inset: `syncSummitViewport` + CSS variables (sheet layout unchanged)
+- `terrainbound/tests/curriculum-spine.test.mjs`
+- Isolated Summit keyboard inset (Phase A): `syncSummitViewport` + CSS variables (sheet layout unchanged)
