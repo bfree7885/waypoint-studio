@@ -1863,7 +1863,21 @@ export async function boot(root = document) {
     return "";
   }
 
+  function syncSummitViewport() {
+    const host = gameRoot || document.documentElement;
+    const vv = window.visualViewport;
+    if (!vv) {
+      host.style.removeProperty("--summit-vvh");
+      host.style.removeProperty("--summit-keyboard-inset");
+      return;
+    }
+    const inset = Math.max(0, window.innerHeight - vv.height - (vv.offsetTop || 0));
+    host.style.setProperty("--summit-vvh", `${Math.round(vv.height)}px`);
+    host.style.setProperty("--summit-keyboard-inset", `${Math.round(inset)}px`);
+  }
+
   function resize() {
+    syncSummitViewport();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.floor(canvas.clientWidth * dpr);
     canvas.height = Math.floor(canvas.clientHeight * dpr);

@@ -1,0 +1,9 @@
+{
+  "id": "nys-ess-alignments",
+  "schemaVersion": 1,
+  "playerVisible": false,
+  "framework": "NYS P-12 Science Learning Standards / Earth & Space Sciences",
+  "status": "pending-owner-codes",
+  "disclaimer": "Official performance-expectation codes have not been supplied. Alignments stay empty until the owner provides them. Do not invent HS-ESS or NYSSLS codes.",
+  "alignments": []
+}

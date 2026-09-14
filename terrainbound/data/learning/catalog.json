@@ -1,0 +1,25 @@
+{
+  "id": "terrainbound-learning",
+  "schemaVersion": 1,
+  "status": "foundation",
+  "playerVisibleCodes": false,
+  "note": "Phase A catalog. Curriculum topic titles are derived from data/world/regions.json. Do not invent topic names, standards codes, stories, or videos here.",
+  "curriculumSource": "data/world/regions.json",
+  "standardsStatus": "pending-owner-codes",
+  "collections": {
+    "topics": "derived-from-world",
+    "concepts": [],
+    "standards": [],
+    "resources": [],
+    "stories": [],
+    "videos": [],
+    "experiences": "derived-from-world"
+  },
+  "deepForestDispatch": {
+    "relationship": "sibling",
+    "catalog": "data/deep-forest-dispatch/catalog.json",
+    "embedPolicy": "youtube-embed-only",
+    "rehostPolicy": "do-not-download-or-rehost-third-party-video",
+    "brandMerge": false
+  }
+}

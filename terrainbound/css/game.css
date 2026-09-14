@@ -933,8 +933,8 @@ input#geo-number {
 
 .summit-sheet {
   width: min(26rem, calc(100% - 24px));
-  max-height: min(38rem, calc(100dvh - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
-  margin: 12px 12px 16px auto;
+  max-height: min(38rem, calc(var(--summit-vvh, 100dvh) - 24px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+  margin: 12px 12px calc(16px + var(--summit-keyboard-inset, 0px)) auto;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1751,8 +1751,8 @@ input#geo-number {
 
   .summit-sheet {
     width: calc(100% - 16px);
-    max-height: min(78dvh, calc(100dvh - 12px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
-    margin: auto 8px 8px;
+    max-height: min(78dvh, calc(var(--summit-vvh, 100dvh) - 12px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)));
+    margin: auto 8px calc(8px + var(--summit-keyboard-inset, 0px));
     border-bottom-left-radius: 18px;
     border-bottom-right-radius: 18px;
   }
@@ -1882,8 +1882,8 @@ input#geo-number {
 
 @media (max-width: 900px) and (max-height: 500px) {
   .summit-sheet {
-    max-height: calc(100dvh - 8px - env(safe-area-inset-bottom, 0px));
-    margin: 4px 8px;
+    max-height: calc(var(--summit-vvh, 100dvh) - 8px - env(safe-area-inset-bottom, 0px));
+    margin: 4px 8px calc(4px + var(--summit-keyboard-inset, 0px));
   }
 
   .summit-lead {

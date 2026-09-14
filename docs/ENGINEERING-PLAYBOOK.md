@@ -2111,3 +2111,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dark Sky can be playable without being the next trail after Cedar Hollow. `availableAfter` opens a later topic as an available region; successor unlocks the next course-order region only when that region is playable. Atlas copy must say Topic 11, not “you finished Topics 2–10.”
 - `atlasResumeRegion` must persist Dark Sky only when it is accessible. Review-only `currentRegion: dark-sky-basin` still heals to Cedar Hollow so existing hollow saves are not stolen.
 
+### Lessons Learned — TerrainBound Phase A learning foundation (2026-09-14)
+
+- The twelve NYS ESS topic titles already live on `regions.json`. Index them; do not invent a second course list.
+- Official NYSSLS codes are still absent. An empty `standards.json` with `pending-owner-codes` is the honest schema.
+- Summit cannot leave the game until a Field Station shell exists. Add `SummitContext` as a module first; do not import it from `game.js` until Phase D.
+- Mobile Summit keyboard coverage is a visualViewport geometry problem. Size the sheet to `visualViewport.height`; do not redesign the character or the sheet in the same phase.
+
