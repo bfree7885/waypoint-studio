@@ -98,7 +98,7 @@ check("retired app, DNS, and curriculum architecture stay out of this pass", () 
   assert.match(retired, /Terrainbound is retired/);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
-  assert.doesNotMatch(gameJs, /dark-sky-basin/);
+  assert.doesNotMatch(html, /\?field=1/);
 });
 
 if (failures.length) {

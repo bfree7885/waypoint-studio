@@ -2077,3 +2077,32 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Studio `main` had moved independently. Merge 7.9L by keeping current Studio files on conflicts and taking `terrainbound/` from the accepted SHA. Do not replay pre-TB Studio commits that already landed through other PRs.
 - Do not redeploy TerrainBound, change the Worker, or configure `summit.terrainbound.org` for housekeeping. Future TerrainBound work starts from this production Summit baseline.
 
+### Lessons Learned — TerrainBound Phase 8A (2026-09-13)
+
+- Dark Sky Basin is Topic 11 (Stars & the Universe), not a second Sunfall. Seasons, Moon, and the celestial clock stay in Topic 10.
+- The region fantasy has to make *this basin* necessary: stray-light geography and a walked rim baseline, not an indoor spectrograph worksheet.
+- Summit may explain starlight only from a structured catalog and player measurements. Do not let a hosted model invent magnitudes.
+
+### Lessons Learned — TerrainBound Phase 8B (2026-09-13)
+
+- Dark Sky Basin's first playable slice is field spectroscopy, not a second Sunfall. Night lock plus an authored catalog is enough; do not reopen seasons, Moon, or the celestial clock.
+- Appearance-as-identity only breaks if the player first sees why the twins log was plausible, then has to walk to a known light. Opening a spectrograph overlay is not evidence.
+- Summit may talk about this basin only from structured measurements. Hosted language still cannot invent lamp calibration, line lists, magnitudes, or visits.
+- Keep Dark Sky `implementationState: "future"` on the atlas. Owner review uses an explicit `?field=1&region=dark-sky-basin` URL so unfinished night work cannot leak onto production.
+
+### Lessons Learned — TerrainBound Phase 8C (2026-09-13)
+
+- Completing Topic 11 is a geography problem first: opposite-rim plates, Quiet Floor rock/horn, and later-tonight at the dome. Eight spectrograph sliders would have been a worksheet even with correct astrophysics.
+- “All elements were made in stars” has to be a blocked claim, not flavor copy. Light elements and stellar/supernova/neutron-star processes are different chapters.
+- Wren AAR for Dark Sky must live on `dsState.aar`, not Cedar Hollow `puzzleState.aar`, or a basin debrief would rewrite a hollow save.
+- Historical `apps/terrainbound/` redirect assertions are not Dark Sky regressions. Do not “fix” that Studio file to make old TB suites green.
+- If a geo-board canvas is tall, put plate/horn **actions above the drawing**. Status copy (`lastHint`) must clear on a successful log, or the next investigation inherits the previous prompt.
+- Dark Sky AAR close copy cannot stay “Back to the hollow.” Pin notes must not repeat the puzzle title.
+
+### Lessons Learned — TerrainBound Phase 8D (2026-09-13)
+
+- Field-guide echo was `lookingFor` duplicating `next`. Blank `lookingFor` and ask a question; do not reprint the inspect prompt.
+- Later Dark Sky beats need a second instrument or a second time, not a second chip row. Redshift plot belongs on the unlabeled board. Lookback is leaving the dome. Origin leftover is the horn; expansion and abundance are already in the tablet.
+- `?field=1` Summit route strings must stay collapsed. Owner playthrough cannot be judged with a debug footer in the conversation.
+- A 180px `min-height` on a canvas with a fixed aspect ratio will overflow a 320px card and clip axis labels. Let the plot keep `width: 100%` and scroll the board body; do not force height.
+

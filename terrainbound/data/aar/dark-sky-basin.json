@@ -1,0 +1,90 @@
+{
+  "regionId": "dark-sky-basin",
+  "title": "Make the case",
+  "kicker": "Field debrief",
+  "open": "You've got light in that tablet. Show me why the twins log was unjustified — and what you can honestly say about the unlabeled target.",
+  "clearance": {
+    "title": "Field clearance earned",
+    "lines": [
+      "That's a case I can take. Appearance was not identity. Brightness was not distance. The unlabeled target stayed inside the light you actually recorded.",
+      "Painted Badlands is still closed. This basin taught you to stop talking when the evidence stops. Keep that."
+    ]
+  },
+  "moreEvidence": {
+    "title": "More evidence needed",
+    "lead": "Not a restart. The notes that hold stay in the tablet. The case still has a hole. Go get the missing line — I will not hand you an answer key."
+  },
+  "claims": [
+    {
+      "id": "aar-twins",
+      "puzzleId": "DS-01",
+      "competencyId": "spectra",
+      "wren": "The inherited log treated two white stars as twins because they looked alike. Show me the notes that make that claim unjustified.",
+      "retry": "Appearance was the first observation. Which notes actually break the nickname?",
+      "required": ["DS-01"],
+      "useful": ["DS-01", "DS-02"],
+      "misconception": [],
+      "irrelevant": ["DS-06", "DS-08"],
+      "why": {
+        "DS-06": "The floor rock is a different clock. It doesn't break the twins nickname.",
+        "DS-08": "Origin lines don't tell me why those two white stars weren't the same light."
+      },
+      "need": "I still need the comparison that appearance was not enough.",
+      "ok": "They looked alike. The traces did not. That's why the nickname fails.",
+      "overclaim": "That extra card doesn't answer the twins log. Drop what isn't about those two lights."
+    },
+    {
+      "id": "aar-distance",
+      "puzzleId": "DS-03",
+      "competencyId": "distance-brightness",
+      "wren": "Two cairn stars looked about equally bright. What notes show that brightness was not distance?",
+      "retry": "Don't tell me a rule. Show me the baseline you walked.",
+      "required": ["DS-03"],
+      "useful": ["DS-03", "DS-04"],
+      "misconception": [],
+      "irrelevant": ["DS-02", "DS-07"],
+      "why": {
+        "DS-02": "Peak wavelength is temperature evidence, not a walked baseline.",
+        "DS-07": "Moved galaxy lines are a different pattern."
+      },
+      "need": "I still need the cairn comparison — equal look, different shift.",
+      "ok": "Same apparent brightness, only one shifted with the baseline. Distance is not a brightness nickname.",
+      "overclaim": "Color folklore and galaxy shift don't stand in for the rim walk."
+    },
+    {
+      "id": "aar-envelope",
+      "puzzleId": "DS-10",
+      "competencyId": "bounded-claims",
+      "wren": "The unlabeled envelope. What can you honestly conclude — and what has to stay unknown?",
+      "retry": "Pin the notes you actually recorded. Leave the present-tense story off.",
+      "required": ["DS-10"],
+      "useful": ["DS-10", "DS-07", "DS-09", "DS-02"],
+      "misconception": [],
+      "irrelevant": ["DS-05"],
+      "why": {
+        "DS-05": "Mass branches other stars. It doesn't name this unlabeled target."
+      },
+      "need": "I still need the bounded envelope — observed, inferred, and a refused sentence.",
+      "ok": "That's inside the light you have. The rest stays unknown.",
+      "overclaim": "A complete life story isn't in that envelope. Drop the extra card."
+    },
+    {
+      "id": "aar-refuse",
+      "puzzleId": "DS-09",
+      "competencyId": "lookback",
+      "wren": "The poster said the distant outburst is happening now. Which notes refuse that?",
+      "retry": "Looking farther can mean seeing earlier. Which tablet notes actually say that?",
+      "required": ["DS-09"],
+      "useful": ["DS-09", "DS-10", "DS-07"],
+      "misconception": [],
+      "irrelevant": ["DS-01", "DS-06"],
+      "why": {
+        "DS-01": "The twins traces don't time a distant outburst.",
+        "DS-06": "The floor rock is material history, not lookback for that poster."
+      },
+      "need": "I still need the lookback note that the poster is not tonight's news.",
+      "ok": "The nearby star can change later tonight. The distant plate cannot tell you what is happening there now.",
+      "overclaim": "Keep the notes about light travel. Drop the ones that don't belong on this claim."
+    }
+  ]
+}

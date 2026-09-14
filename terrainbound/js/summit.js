@@ -105,7 +105,10 @@ export function createSummitEngine({ curriculum, concepts, curiosity, provider, 
     createDeterministicProvider({ curriculum, concepts });
 
   function ask(summitState, contextInput, { question = "", action = "" } = {}) {
-    const context = buildSummitContext({ ...contextInput, summitState });
+    const context =
+      contextInput?.regionId === "dark-sky-basin"
+        ? { ...contextInput, summitState }
+        : buildSummitContext({ ...contextInput, summitState });
     const puzzleId = context.activePuzzleId;
     const slot = puzzleSlot(summitState, puzzleId);
     const detected = detectIntent(question, action);

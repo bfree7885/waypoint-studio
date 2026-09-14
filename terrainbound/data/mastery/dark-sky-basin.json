@@ -1,0 +1,123 @@
+{
+  "id": "topic-11-dark-sky-basin",
+  "regionId": "dark-sky-basin",
+  "curriculumTopic": 11,
+  "curriculumTitle": "Stars & the Universe",
+  "purpose": "Treat light as field evidence: spectra, temperature from peaks, brightness vs distance, player-built diagrams, mass-dependent stellar lives, cosmic origin of some elements, redshift as a shifted pattern, converging origin evidence, lookback, and bounded claims.",
+  "playerVisibleCodes": false,
+  "contentCompletion": {
+    "note": "Visiting the dome or finishing a radio call is not mastery. Wren's case is the clearance.",
+    "discoveries": 0,
+    "missions": ["dark-sky-light-as-evidence"]
+  },
+  "competencies": [
+    {
+      "id": "spectra",
+      "internalLabel": "Spectra as evidence",
+      "studentLabel": "Reading light as evidence",
+      "fieldRecord": true,
+      "description": "Use spectral structure, not appearance, to compare sources.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-01", "source": "investigation" }]
+    },
+    {
+      "id": "stellar-temp",
+      "internalLabel": "Stellar temperature from peak",
+      "studentLabel": "Temperature from the light",
+      "fieldRecord": true,
+      "description": "Rank temperature from peak/color evidence, not fire folklore.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-02", "source": "investigation" }]
+    },
+    {
+      "id": "distance-brightness",
+      "internalLabel": "Apparent brightness vs distance",
+      "studentLabel": "Brightness is not distance",
+      "fieldRecord": true,
+      "description": "Separate apparent brightness from distance using a walked baseline.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-03", "source": "investigation" }]
+    },
+    {
+      "id": "hr-place",
+      "internalLabel": "Diagram from measurements",
+      "studentLabel": "Building a pattern from data",
+      "fieldRecord": true,
+      "description": "Place stars on unlabeled axes from player measurements.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-04", "source": "investigation" }]
+    },
+    {
+      "id": "stellar-mass-life",
+      "internalLabel": "Mass-dependent stellar lives",
+      "studentLabel": "Not one stellar life",
+      "fieldRecord": true,
+      "description": "Show that initial mass branches stellar futures.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-05", "source": "investigation" }]
+    },
+    {
+      "id": "nucleosynthesis",
+      "internalLabel": "Origin of some elements",
+      "studentLabel": "Matter with a cosmic history",
+      "fieldRecord": true,
+      "description": "Connect basin rock and metal lines without claiming all elements were made in stars.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-06", "source": "investigation" }]
+    },
+    {
+      "id": "redshift-pattern",
+      "internalLabel": "Redshift as shifted lines",
+      "studentLabel": "Moved spectral patterns",
+      "fieldRecord": true,
+      "description": "Treat redshift as a shifted line pattern, not a red color.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-07", "source": "investigation" }]
+    },
+    {
+      "id": "origin-evidence",
+      "internalLabel": "Converging origin evidence",
+      "studentLabel": "More than one origin line",
+      "fieldRecord": true,
+      "description": "Assemble expansion, leftover glow, and abundance rather than a slogan.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-08", "source": "investigation" }]
+    },
+    {
+      "id": "lookback",
+      "internalLabel": "Lookback time",
+      "studentLabel": "Farther can mean earlier",
+      "fieldRecord": true,
+      "description": "Refuse present-tense claims for distant light.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-09", "source": "investigation" }]
+    },
+    {
+      "id": "bounded-claims",
+      "internalLabel": "Bounded claims",
+      "studentLabel": "Stopping when evidence stops",
+      "fieldRecord": true,
+      "description": "Separate observed, inferred, unknown, and refused overclaims.",
+      "elicitedNow": true,
+      "requires": [{ "kind": "ds-puzzle", "id": "DS-10", "source": "investigation" }]
+    }
+  ],
+  "travelRequirements": [
+    "spectra",
+    "stellar-temp",
+    "distance-brightness",
+    "hr-place",
+    "stellar-mass-life",
+    "nucleosynthesis",
+    "redshift-pattern",
+    "origin-evidence",
+    "lookback",
+    "bounded-claims"
+  ],
+  "unlocks": null,
+  "statusWords": {
+    "demonstrated": "demonstrated",
+    "developing": "developing",
+    "none": "not yet observed"
+  }
+}

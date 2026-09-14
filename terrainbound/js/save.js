@@ -3,6 +3,8 @@
  * v1–v5 saves migrate to v6 (puzzles / AAR). Summit tutor memory is a v6 field.
  */
 
+import { emptyDarkSkySave, snapshotDarkSky } from "./darksky.js";
+
 export const SAVE_KEY = "terrainbound.cedar-hollow.v1";
 export const SAVE_VERSION = 6;
 
@@ -34,6 +36,13 @@ export function emptyWorldSave() {
   };
 }
 
+function atlasResumeRegion(id, worldState) {
+  if (id && id !== "dark-sky-basin") return id;
+  const acc = worldState?.accessibleRegions || [];
+  if (acc.includes("cedar-hollow")) return "cedar-hollow";
+  return acc.find((row) => row && row !== "dark-sky-basin") || "cedar-hollow";
+}
+
 export function emptyMasterySave() {
   return { records: [] };
 }
@@ -62,7 +71,7 @@ export function emptyDataSave() {
 }
 
 export function emptyRegionPlayers() {
-  return { "cedar-hollow": null, "high-country": null, "sunfall-desert": null };
+  return { "cedar-hollow": null, "high-country": null, "sunfall-desert": null, "dark-sky-basin": null };
 }
 
 export function emptySunfallSave() {
@@ -210,6 +219,8 @@ export function emptyChallengeSave() {
   };
 }
 
+export { emptyDarkSkySave };
+
 function snapshotPuzzles(state) {
   const empty = emptyPuzzleSave();
   if (!state) return empty;
@@ -280,7 +291,7 @@ export function migrateSave(data) {
       puzzles.systems.concluded = true;
       puzzles.conflict.repaired = true;
     }
-    return {
+    const migrated = {
       ...data,
       taught: { ...emptyTaught(), ...(data.taught || {}) },
       world: { ...emptyWorldSave(), ...(data.world || {}) },
@@ -293,9 +304,14 @@ export function migrateSave(data) {
       summit: snapshotSummit(data.summit),
       highCountry: snapshotHighCountry(data.highCountry),
       sunfall: snapshotSunfall(data.sunfall),
+      darkSky: snapshotDarkSky(data.darkSky),
       regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) },
       presentation: { ...emptyPresentationSave(), ...(data.presentation || {}) }
     };
+    if (migrated.world.currentRegion === "dark-sky-basin") {
+      migrated.world.currentRegion = "cedar-hollow";
+    }
+    return migrated;
   }
   if (data.v === 5) {
     const puzzles = emptyPuzzleSave();
@@ -371,15 +387,20 @@ export function captureSave({
   summitState,
   hcState,
   sfState,
+  dsState,
   regionPlayers,
   presentation
 }) {
-  const current = worldState?.currentRegion || "cedar-hollow";
+  const liveRegion = worldState?.currentRegion || "cedar-hollow";
+  const current = atlasResumeRegion(liveRegion, worldState);
+  const livePos = { x: player.x, y: player.y, facing: player.facing };
+  const resumePos =
+    liveRegion === "dark-sky-basin" ? regionPlayers?.[current] || { x: player.x, y: player.y, facing: player.facing } : livePos;
   return {
     v: SAVE_VERSION,
     regionId: current,
     savedAt: Date.now(),
-    player: { x: player.x, y: player.y, facing: player.facing },
+    player: resumePos,
     taught: { ...emptyTaught(), ...(taught || {}) },
     world: {
       currentRegion: current,
@@ -398,10 +419,12 @@ export function captureSave({
     summit: snapshotSummit(summitState),
     highCountry: snapshotHighCountry(hcState),
     sunfall: snapshotSunfall(sfState),
+    darkSky: snapshotDarkSky(dsState),
     regionPlayers: {
       ...emptyRegionPlayers(),
       ...(regionPlayers || {}),
-      [current]: { x: player.x, y: player.y, facing: player.facing }
+      [liveRegion]: livePos,
+      [current]: resumePos
     },
     presentation: { ...emptyPresentationSave(), ...(presentation || {}) },
     mission: {
@@ -451,6 +474,7 @@ export function applySave(
     summitState,
     hcState,
     sfState,
+    dsState,
     regionPlayers,
     presentation
   }
@@ -516,6 +540,9 @@ export function applySave(
   }
   if (sfState && migrated.sunfall) {
     Object.assign(sfState, snapshotSunfall(migrated.sunfall));
+  }
+  if (dsState && migrated.darkSky) {
+    Object.assign(dsState, snapshotDarkSky(migrated.darkSky));
   }
   if (regionPlayers && migrated.regionPlayers) {
     Object.assign(regionPlayers, emptyRegionPlayers(), migrated.regionPlayers);

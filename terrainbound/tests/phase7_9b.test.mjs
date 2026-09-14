@@ -188,8 +188,8 @@ check("CH-09 UI is evidence selection, not four answer chips", () => {
   assert.match(gameJs, /tabletEvidence/);
 });
 
-check("Dark Sky and other regions stay unimplemented", () => {
-  assert.doesNotMatch(gameJs, /dark-sky-basin/);
+check("Dark Sky stays closed on the production atlas", () => {
+  assert.doesNotMatch(html, /\?field=1/);
   assert.equal(fs.existsSync(path.join(root, "data/puzzles/high-country.json")), false);
 });
 

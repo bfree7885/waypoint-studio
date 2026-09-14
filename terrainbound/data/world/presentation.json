@@ -9,12 +9,14 @@
   "travelTitles": {
     "cedar-hollow": { "region": "Cedar Hollow", "station": "Field Station" },
     "high-country": { "region": "High Country", "station": "Ridgeline Station" },
-    "sunfall-desert": { "region": "Sunfall Desert", "station": "Observatory" }
+    "sunfall-desert": { "region": "Sunfall Desert", "station": "Observatory" },
+    "dark-sky-basin": { "region": "Dark Sky Basin", "station": "North Rim Station" }
   },
   "reveals": {
     "cedar-hollow": { "x": 1100, "y": 900, "ms": 900 },
     "high-country": { "x": 980, "y": 620, "ms": 1100 },
-    "sunfall-desert": { "x": 980, "y": 880, "ms": 1200 }
+    "sunfall-desert": { "x": 980, "y": 880, "ms": 1200 },
+    "dark-sky-basin": { "x": 1240, "y": 420, "ms": 1400 }
   },
   "atmosphere": {
     "cedar-hollow": {
@@ -44,6 +46,16 @@
       "wind": 0.45,
       "clouds": 2,
       "dust": 1,
+      "birds": false,
+      "water": false
+    },
+    "dark-sky-basin": {
+      "skyTop": "#07091a",
+      "skyHorizon": "#1c283c",
+      "haze": 0.1,
+      "wind": 0.3,
+      "clouds": 0,
+      "dust": 0,
       "birds": false,
       "water": false
     }

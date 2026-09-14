@@ -1,0 +1,58 @@
+{
+  "mobile390": {
+    "viewport": "390x844",
+    "spectrum": {
+      "sliderFits": true,
+      "sliderMoved": true,
+      "chipFits": false
+    },
+    "plot": {
+      "canvasFits": true,
+      "tryClear": true
+    },
+    "tablet": {
+      "open": true,
+      "fits": true
+    },
+    "aar": {
+      "pinFits": true,
+      "footerClear": true,
+      "pinned": false
+    },
+    "summit": {
+      "sheetFits": true,
+      "askH": 44,
+      "diagCollapsed": true,
+      "togglePresent": true,
+      "quickClicked": true
+    }
+  },
+  "mobile320": {
+    "viewport": "320x568",
+    "spectrum": {
+      "sliderFits": true,
+      "sliderMoved": true,
+      "chipFits": false
+    },
+    "plot": {
+      "canvasFits": true,
+      "tryClear": true
+    },
+    "tablet": {
+      "open": true,
+      "fits": true
+    },
+    "aar": {
+      "pinFits": true,
+      "footerClear": true,
+      "pinned": true
+    },
+    "summit": {
+      "sheetFits": true,
+      "askH": 44,
+      "diagCollapsed": true,
+      "togglePresent": true,
+      "quickClicked": true
+    }
+  }
+}

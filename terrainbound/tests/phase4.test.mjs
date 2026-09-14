@@ -184,7 +184,9 @@ check("only Cedar Hollow is accessible at start; High Country is playable but ga
   assert.equal(isPlayable(tbWorld, "sunfall-desert"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   const regionFiles = fs.readdirSync(path.join(root, "data/regions")).sort();
-  assert.deepEqual(regionFiles, ["cedar-hollow.json", "high-country.json", "sunfall-desert.json"]);
+  assert.deepEqual(regionFiles, ["cedar-hollow.json", "dark-sky-basin.json", "high-country.json", "sunfall-desert.json"]);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
 });
 
 check("High Country cannot unlock from content completion alone", () => {
