@@ -279,15 +279,16 @@ check("Dark Sky review does not steal Cedar Hollow resume", () => {
   assert.equal(healed.world.currentRegion, "cedar-hollow");
 });
 
-check("Dark Sky stays closed on the production atlas", () => {
+check("Dark Sky is Topic 11 and stays locked until Cedar Hollow field work", () => {
   const tbWorld = loadWorld(worldRaw);
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
-  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").implementationState, "future");
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
+  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").implementationState, "playable");
+  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").curriculumTopic, 11);
 });
 
 check("owner-review entry is explicit and not in production HTML", () => {

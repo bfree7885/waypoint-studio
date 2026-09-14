@@ -546,14 +546,20 @@ export function bindUi(root) {
       if (!model) return;
       if (atlasName) atlasName.textContent = model.name;
       if (atlasKicker) {
-        atlasKicker.textContent =
-          model.status === "here"
-            ? model.mastered
-              ? "Field work complete"
-              : "You are here"
-            : model.status === "open"
-              ? "Route open"
-              : "Preview";
+        if (model.topicKicker && model.availableLater && model.status === "open") {
+          atlasKicker.textContent = `${model.topicKicker} · available region`;
+        } else if (model.topicKicker) {
+          atlasKicker.textContent = model.topicKicker;
+        } else {
+          atlasKicker.textContent =
+            model.status === "here"
+              ? model.mastered
+                ? "Field work complete"
+                : "You are here"
+              : model.status === "open"
+                ? "Route open"
+                : "Preview";
+        }
       }
       if (atlasSubtitle) atlasSubtitle.textContent = model.subtitle;
       if (atlasBlurb) atlasBlurb.textContent = model.shortPreview;

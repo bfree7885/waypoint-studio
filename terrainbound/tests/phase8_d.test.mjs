@@ -95,9 +95,10 @@ check("no DS-11 and no new region or Worker change", () => {
   assert.match(wrangler, /terrainbound-summit/);
   const tbWorld = loadWorld(worldRaw);
   const worldState = createWorldState(tbWorld);
-  applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
+  applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
 });
 
 check("field guide asks a question without echoing the next click", () => {

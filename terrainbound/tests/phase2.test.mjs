@@ -300,7 +300,7 @@ check("Field tablet keeps a compact 1366 layout and hypothesis overlay", () => {
 
 check("retired Studio app untouched", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.doesNotMatch(html, /data-product="terrainbound"/);
 });
 

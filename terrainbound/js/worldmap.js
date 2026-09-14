@@ -56,13 +56,19 @@ export function previewModel(world, worldState, regionId) {
     routeLabel = worldState.masteredRegions.includes(region.id) ? "Field work complete" : "You are here";
     routeDetail = region.travelCopy;
   } else if (status === "open") {
-    routeLabel = "Route open";
-    routeDetail = region.travelCopy;
+    const laterTopic = Boolean(region.availableAfter && region.availableAfter !== region.predecessor);
+    routeLabel = laterTopic ? "Available region" : "Route open";
+    routeDetail = laterTopic
+      ? `Topic ${region.curriculumTopic} — ${region.curriculumTitle}. Implemented later field work. Unfinished topics are not complete.`
+      : region.travelCopy;
   }
   return {
     id: region.id,
     name: region.name,
     subtitle: region.curriculumTitle,
+    topicKicker: `Topic ${region.curriculumTopic}`,
+    curriculumTopic: region.curriculumTopic,
+    availableLater: Boolean(region.availableAfter && region.availableAfter !== region.predecessor),
     visualIdentity: region.visualIdentity,
     shortPreview: region.shortPreview,
     implementationState: region.implementationState,
@@ -83,9 +89,19 @@ export function applyTravelUnlocks(world, worldState, masteredRegionId, successo
   }
   const region = regionById(world, masteredRegionId);
   const nextId = successorId || region?.successor;
-  if (nextId && !worldState.accessibleRegions.includes(nextId)) {
+  if (nextId && isPlayable(world, nextId) && !worldState.accessibleRegions.includes(nextId)) {
     worldState.accessibleRegions = [...worldState.accessibleRegions, nextId];
     opened.push(nextId);
+  }
+  for (const row of world.regions) {
+    if (
+      row.availableAfter === masteredRegionId &&
+      row.implementationState === "playable" &&
+      !worldState.accessibleRegions.includes(row.id)
+    ) {
+      worldState.accessibleRegions = [...worldState.accessibleRegions, row.id];
+      opened.push(row.id);
+    }
   }
   return opened;
 }

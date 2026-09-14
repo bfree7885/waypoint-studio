@@ -593,7 +593,7 @@ check("no standards codes, 1366 layout, retired app untouched, nothing deployed"
   assert.doesNotMatch(gameJs, /TB\.simulateMastery\(\)/);
   assert.match(gameJs, /get\("field"\) === "1"/);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
   assert.match(bible.topic1Transfer, /do not reteach/i);

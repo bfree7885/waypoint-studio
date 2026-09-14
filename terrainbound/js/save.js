@@ -24,7 +24,8 @@ export function emptyTaught() {
     journal: false,
     worldMap: false,
     routeHighCountry: false,
-    routeSunfall: false
+    routeSunfall: false,
+    routeDarkSky: false
   };
 }
 
@@ -37,9 +38,11 @@ export function emptyWorldSave() {
 }
 
 function atlasResumeRegion(id, worldState) {
-  if (id && id !== "dark-sky-basin") return id;
+  if (id === "dark-sky-basin") {
+    return (worldState?.accessibleRegions || []).includes("dark-sky-basin") ? id : "cedar-hollow";
+  }
+  if (id) return id;
   const acc = worldState?.accessibleRegions || [];
-  if (acc.includes("cedar-hollow")) return "cedar-hollow";
   return acc.find((row) => row && row !== "dark-sky-basin") || "cedar-hollow";
 }
 
@@ -308,7 +311,7 @@ export function migrateSave(data) {
       regionPlayers: { ...emptyRegionPlayers(), ...(data.regionPlayers || {}) },
       presentation: { ...emptyPresentationSave(), ...(data.presentation || {}) }
     };
-    if (migrated.world.currentRegion === "dark-sky-basin") {
+    if (migrated.world.currentRegion === "dark-sky-basin" && !(migrated.world.accessibleRegions || []).includes("dark-sky-basin")) {
       migrated.world.currentRegion = "cedar-hollow";
     }
     return migrated;
@@ -394,8 +397,7 @@ export function captureSave({
   const liveRegion = worldState?.currentRegion || "cedar-hollow";
   const current = atlasResumeRegion(liveRegion, worldState);
   const livePos = { x: player.x, y: player.y, facing: player.facing };
-  const resumePos =
-    liveRegion === "dark-sky-basin" ? regionPlayers?.[current] || { x: player.x, y: player.y, facing: player.facing } : livePos;
+  const resumePos = current === liveRegion ? livePos : regionPlayers?.[current] || livePos;
   return {
     v: SAVE_VERSION,
     regionId: current,

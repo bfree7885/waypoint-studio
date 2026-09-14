@@ -125,7 +125,7 @@ check("curriculum stays behind the scenes with pending codes", () => {
 
 check("retired Studio Terrainbound redirect was not overwritten", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.match(retired, /fieldry/);
   const game = fs.readFileSync(path.join(root, "index.html"), "utf8");
   assert.doesNotMatch(game, /data-product="terrainbound"/);

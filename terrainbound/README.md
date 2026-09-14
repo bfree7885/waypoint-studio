@@ -4,7 +4,7 @@ A small cartoon wilderness you can walk. This folder is a **standalone game**, n
 
 It is **not** the retired trail-endurance page at `apps/terrainbound/`. Do not wire this game into Studio nav or product registries. Public hosting is the companion Pages repo `bfree7885/terrainbound-site` → `https://terrainbound.org`. See `docs/HOSTING.md` and `docs/SUMMIT-PRODUCTION.md`.
 
-**Production Summit baseline:** `db2b7cc04bcbcd548657b5daa5addd42520c0eff` (tag `terrainbound-summit-production-2026-09`).
+**Production Summit baseline:** first live Summit `db2b7cc04bcbcd548657b5daa5addd42520c0eff` (tag `terrainbound-summit-production-2026-09`). Dark Sky Basin Topic 11 release candidate cache-bust `?v=p8ds`.
 
 ## Run
 
@@ -49,6 +49,7 @@ node terrainbound/tests/phase7_9l.test.mjs
 node terrainbound/tests/phase8_b.test.mjs
 node terrainbound/tests/phase8_c.test.mjs
 node terrainbound/tests/phase8_d.test.mjs
+node terrainbound/tests/phase8_rc.test.mjs
 # Supervised field-test RC (local; not the default):
 # npm run fieldtest:summit
 # Optional captures: node terrainbound/tests/capture-phase79l.mjs
@@ -63,15 +64,16 @@ Progress is stored in this browser only. **New exploration** in the Field Tablet
 
 ## What is playable
 
-Three-region vertical slice:
+Four-region field product, two of which are the current release headline:
 
 - **Cedar Hollow** — Field Station. Woods, knob, creek, pond, marsh. Topic 1, Scientific Thinking & Earth Systems.
 - **High Country** — Ridgeline Station. Maps, GIS, and geospatial thinking. Opens after Cedar Hollow field clearance.
 - **Sunfall Desert** — Sunfall Observatory. Solar system / sky lab. Opens after High Country field clearance.
+- **Dark Sky Basin** — Topic 11, Stars & the Universe. An **available region** after Cedar Hollow field clearance. It is not Topic 2 and does not mean Topics 2–10 are complete.
 
-Nine further regions exist on the **world map as previews only**. They are not walkable worlds yet. Dark Sky Basin is visible and closed.
+Further regions exist on the **world map as previews only**. They are not walkable worlds yet.
 
-The world map is a stylized atlas, not GIS. Travel follows teaching order. A new region opens when mastery evidence is sufficient — not XP, quizzes, or collectible completion.
+The world map is a stylized atlas, not GIS. Travel follows teaching order. A later implemented topic may open as an available region without claiming unfinished topics are done.
 
 - **Where Does the Water Go?** (CH-02 storm water path)
 - **What You Can See** (CH-01 observation vs interpretation)

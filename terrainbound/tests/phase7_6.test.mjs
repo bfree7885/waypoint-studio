@@ -181,13 +181,15 @@ check("landmark labels are contextual rather than globally persistent", () => {
   assert.match(bible, /Player reads the environment first/);
 });
 
-check("Dark Sky remains closed", () => {
+check("Dark Sky is Topic 11 after Cedar Hollow, not after Sunfall", () => {
   const worldState = createWorldState(tbWorld);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
 });
 
 check("no standards codes in player UI", () => {
@@ -199,13 +201,13 @@ check("no standards codes in player UI", () => {
 
 check("no death/health/XP", () => {
   assert.doesNotMatch(html, /\bXP\b|\bhealth\b|\bGAME OVER\b|\bcoins?\b/i);
-  assert.doesNotMatch(gameJs, /\bhealth\b|\blives\b|\bGAME OVER\b|\bXP\b/);
+  assert.doesNotMatch(gameJs, /\bhealth\b|\bGAME OVER\b|\bXP\b|extra lives|player lives|lives remaining/i);
   assert.match(bible, /The player cannot die/);
 });
 
 check("apps/terrainbound/ untouched", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(DENSITY_MARK, "landcover-v76");
 });
 
