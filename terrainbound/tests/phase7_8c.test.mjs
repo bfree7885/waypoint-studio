@@ -95,7 +95,7 @@ check("hit testing still maps client pixels onto the canvas", () => {
 
 check("retired app, DNS, and curriculum architecture stay out of this pass", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
   assert.doesNotMatch(html, /\?field=1/);

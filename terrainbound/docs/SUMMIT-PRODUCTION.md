@@ -10,7 +10,7 @@ Accepted 2026-09-13. Future TerrainBound work starts here.
 | --- | --- |
 | Source SHA | `db2b7cc04bcbcd548657b5daa5addd42520c0eff` |
 | Companion Pages SHA | `1618cd695e0b6b8b6473867671678c0895eb4ca1` (`bfree7885/terrainbound-site`) |
-| Live site | `https://terrainbound.org` (GitHub Pages; cache-bust `?v=p79l`) |
+| Live site | `https://terrainbound.org` (GitHub Pages; cache-bust `?v=p8ds` for the Dark Sky RC). Prior Summit-only cache was `?v=p79l`. |
 | Summit Worker | `https://terrainbound-summit.bfree7885.workers.dev` |
 | Tag | `terrainbound-summit-production-2026-09` |
 | `summit.terrainbound.org` | Deferred — not required |

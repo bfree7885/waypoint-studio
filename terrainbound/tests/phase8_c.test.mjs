@@ -347,15 +347,16 @@ check("save v6 still migrates Cedar Hollow and keeps Dark Sky fields", () => {
   assert.equal(loaded.cairnConcluded, true);
 });
 
-check("Dark Sky stays closed on the atlas and production Summit is unchanged", () => {
+check("Dark Sky is Topic 11 on the atlas and production Summit is unchanged", () => {
   const tbWorld = loadWorld(worldRaw);
   const worldState = createWorldState(tbWorld);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
-  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").implementationState, "future");
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
+  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").implementationState, "playable");
+  assert.equal(worldRaw.regions.find((row) => row.id === "dark-sky-basin").curriculumTopic, 11);
   assert.equal(provider.productionEndpoint, "https://terrainbound-summit.bfree7885.workers.dev/summit");
   assert.doesNotMatch(workerSrc, /dark-sky-basin|DS-01/);
   assert.match(wrangler, /terrainbound-summit/);

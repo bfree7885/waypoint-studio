@@ -95,7 +95,8 @@
       "futureMasteryChallenge": "Build an explanation of a stellar process from astronomical evidence, not from a label.",
       "fieldToolsGained": ["astro-observation"],
       "prerequisiteRegion": "sunfall-desert",
-      "implementationState": "future"
+      "availableAfter": "cedar-hollow",
+      "implementationState": "playable"
     },
     {
       "id": "painted-badlands",

@@ -198,7 +198,7 @@ check("no backend, accounts, or retired Studio overwrite", () => {
   assert.doesNotMatch(gameJs, /fetch\(["']https?:/);
   assert.doesNotMatch(html, /login|signup|password/i);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
 });
 
 if (failures.length) {

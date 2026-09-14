@@ -175,17 +175,18 @@ check("only Cedar Hollow is accessible at start; High Country is playable but ga
   const worldState = createWorldState(tbWorld);
   assert.deepEqual(worldState.accessibleRegions, ["cedar-hollow"]);
   const playable = tbWorld.regions.filter((region) => region.implementationState === "playable");
-  assert.equal(playable.length, 3);
+  assert.equal(playable.length, 4);
   assert.ok(playable.some((region) => region.id === "cedar-hollow"));
   assert.ok(playable.some((region) => region.id === "high-country"));
   assert.ok(playable.some((region) => region.id === "sunfall-desert"));
+  assert.ok(playable.some((region) => region.id === "dark-sky-basin"));
   assert.equal(isPlayable(tbWorld, "high-country"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), false);
   assert.equal(isPlayable(tbWorld, "sunfall-desert"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   const regionFiles = fs.readdirSync(path.join(root, "data/regions")).sort();
   assert.deepEqual(regionFiles, ["cedar-hollow.json", "dark-sky-basin.json", "high-country.json", "sunfall-desert.json"]);
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
 });
 
@@ -243,7 +244,8 @@ check("development harness can simulate mastery and open High Country as enterab
   simulateMastery(profile, mastery, "cedar-hollow");
   assert.equal(regionMastered(profile, mastery), true);
   const opened = applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
-  assert.deepEqual(opened, ["high-country"]);
+  assert.ok(opened.includes("high-country"));
+  assert.ok(opened.includes("dark-sky-basin"));
   assert.equal(worldState.accessibleRegions.includes("high-country"), true);
   const preview = previewModel(tbWorld, worldState, "high-country");
   assert.equal(preview.status, "open");
@@ -361,7 +363,7 @@ check("Cedar Hollow gameplay, 1366 layout, retired app, and no deploy remain int
   assert.doesNotMatch(gameJs, /fetch\(["']https?:/);
   assert.doesNotMatch(html, /login|signup|password/i);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
 });

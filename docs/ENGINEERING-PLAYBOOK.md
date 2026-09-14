@@ -2106,3 +2106,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - `?field=1` Summit route strings must stay collapsed. Owner playthrough cannot be judged with a debug footer in the conversation.
 - A 180px `min-height` on a canvas with a fixed aspect ratio will overflow a 320px card and clip axis labels. Let the plot keep `width: 100%` and scroll the board body; do not force height.
 
+### Lessons Learned — TerrainBound Phase 8 RC (2026-09-13)
+
+- Dark Sky can be playable without being the next trail after Cedar Hollow. `availableAfter` opens a later topic as an available region; successor unlocks the next course-order region only when that region is playable. Atlas copy must say Topic 11, not “you finished Topics 2–10.”
+- `atlasResumeRegion` must persist Dark Sky only when it is accessible. Review-only `currentRegion: dark-sky-basin` still heals to Cedar Hollow so existing hollow saves are not stolen.
+

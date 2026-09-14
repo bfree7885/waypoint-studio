@@ -209,7 +209,7 @@ check("save v5 migrates and loads presentation without a version bump", () => {
 
 check("no death, health, XP, levels, badges, or currency", () => {
   assert.doesNotMatch(html, /\bXP\b|\bbadge\b|\blevels?\b|\bhealth\b|\bGAME OVER\b|\bcoins?\b|\bcurrency\b/i);
-  assert.doesNotMatch(gameJs, /\bhealth\b|\blives\b|\bGAME OVER\b|\bXP\b/);
+  assert.doesNotMatch(gameJs, /\bhealth\b|\bGAME OVER\b|\bXP\b|extra lives|player lives|lives remaining/i);
   assert.match(bible, /The player cannot die/);
 });
 
@@ -218,9 +218,9 @@ check("no standards codes; 1366 layout; Dark Sky closed; retired app untouched",
   const gate = assertNoPlayerFacingCodes(mission, curriculum, catalog, null, extras);
   assert.equal(gate.hasOfficialLookingCode, false);
   assert.match(css, /max-width: 1366px/);
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
 });
 

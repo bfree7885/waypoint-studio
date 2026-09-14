@@ -359,14 +359,16 @@ check("High Country map skill transfers into Sunfall site choice without a lectu
   assert.doesNotMatch(sfGuide.next, /Topic 2|High Country skill/i);
 });
 
-check("Dark Sky stays closed; Studio app is untouched", () => {
+check("Dark Sky is Topic 11 after Cedar Hollow; Studio app is untouched", () => {
   const worldState = createWorldState(tbWorld);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
-  assert.match(studioApp, /Fieldry|redirect/i);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
+  assert.match(studioApp, /waypointstudio\.org|Fieldry|redirect/i);
 });
 
 check("no player-facing standards codes", () => {

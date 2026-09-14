@@ -571,14 +571,11 @@ export async function boot(root = document) {
     audio.setPlace(id, Boolean((isSunfall() && liveSky(sfState, sfRegion, player).night) || isDarkSky()));
   }
 
-  if (!darkSkyReview && worldState.currentRegion === "dark-sky-basin") {
+  if (!darkSkyReview && worldState.currentRegion === "dark-sky-basin" && !worldState.accessibleRegions.includes("dark-sky-basin")) {
     worldState.currentRegion = "cedar-hollow";
   }
   applyRegionWorld(worldState.currentRegion || "cedar-hollow", { keepPlayer: true });
-  const resumeRegion =
-    worldState.currentRegion && worldState.currentRegion !== "dark-sky-basin"
-      ? worldState.currentRegion
-      : "cedar-hollow";
+  const resumeRegion = worldState.currentRegion || "cedar-hollow";
   if (!regionPlayers[resumeRegion]) {
     regionPlayers[resumeRegion] = { x: player.x, y: player.y, facing: player.facing };
   }
@@ -885,6 +882,10 @@ export async function boot(root = document) {
       if (opened.includes("high-country") && !taught.routeHighCountry) {
         taught.routeHighCountry = true;
         ui.showToast("High Country", "Route open.");
+      }
+      if (opened.includes("dark-sky-basin") && !taught.routeDarkSky) {
+        taught.routeDarkSky = true;
+        ui.showToast("Dark Sky Basin", "Topic 11 is available.");
       }
     }
     if (regionMastered(hcProfile, masteryState)) {
@@ -1734,6 +1735,8 @@ export async function boot(root = document) {
       closeAar();
       fieldObserve(result.result === "clearance" ? "clearance" : "aar");
       if (result.result === "clearance") {
+        applyTravelUnlocks(tbWorld, worldState, "dark-sky-basin");
+        persist();
         showDialogueLines("Ranger Wren", dsAarSpec.clearance.lines, 0, () => {
           dialogue = null;
           ui.showDialogue(false);

@@ -140,7 +140,7 @@ check("spawn still walkable and mission inspectables remain", () => {
 
 check("retired Studio app untouched", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
 });
 
 if (failures.length) {

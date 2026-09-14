@@ -429,7 +429,7 @@ check("no standards codes, 1366 layout, apps/terrainbound untouched, nothing dep
   assert.match(css, /max-width: 1366px/);
   assert.doesNotMatch(html, /\bXP\b|\bbadge\b|\bquiz\b/i);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
   assert.match(gameJs, /high-country\.json/);

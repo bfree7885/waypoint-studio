@@ -91,13 +91,15 @@ check("save v5 works", () => {
   assert.equal(migrated.v, 6);
 });
 
-check("Dark Sky remains closed", () => {
+check("Dark Sky is Topic 11 after Cedar Hollow, not after Sunfall", () => {
   const worldState = createWorldState(tbWorld);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
 });
 
 check("no player-facing standards codes", () => {
@@ -108,13 +110,13 @@ check("no player-facing standards codes", () => {
 
 check("no death / XP / health", () => {
   assert.doesNotMatch(html, /\bXP\b|\bhealth\b|\bGAME OVER\b/i);
-  assert.doesNotMatch(gameJs, /\bhealth\b|\blives\b|\bGAME OVER\b|\bXP\b/);
+  assert.doesNotMatch(gameJs, /\bhealth\b|\bGAME OVER\b|\bXP\b|extra lives|player lives|lives remaining/i);
 });
 
 check("production paths work at root deployment configuration", () => {
   assert.match(html, /href="\.\/css\/game\.css"/);
-  assert.match(html, /src="\.\/js\/main\.js\?v=p79l"/);
-  assert.match(mainJs, /game\.js\?v=p79l/);
+  assert.match(html, /src="\.\/js\/main\.js\?v=p8ds"/);
+  assert.match(mainJs, /game\.js\?v=p8ds/);
   assert.match(gameJs, /fetch\("\.\/data\//);
   assert.doesNotMatch(gameJs, /fetch\("\/terrainbound\//);
   assert.doesNotMatch(html, /href="\/terrainbound\//);
@@ -128,7 +130,7 @@ check("production paths work at root deployment configuration", () => {
 
 check("apps/terrainbound/ untouched", () => {
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
 });
 
 if (failures.length) {

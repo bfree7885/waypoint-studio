@@ -1,8 +1,8 @@
-# Dark Sky Basin — Implementation (Phase 8C / 8D)
+# Dark Sky Basin — Implementation (Phase 8 / production RC)
 
-Phase 8B SHA `8a9503e1a8ca97a3c0b157e07fe75ff45b51a3b8` remains the DS-01/DS-02 foundation. Phase 8C shipped the full region. Phase 8D is owner-playthrough refinement: later-region movement, less geo-board residue, field-guide echo, stale inspect prompts, AAR peek, Summit debug chrome.
+Phase 8B SHA `8a9503e1a8ca97a3c0b157e07fe75ff45b51a3b8` remains the DS-01/DS-02 foundation. Phase 8C shipped the full region. Phase 8D refined the owner playthrough. This cutover promotes Dark Sky to a live **Topic 11** available region.
 
-**Not a deploy.** Atlas `implementationState` for Dark Sky is still `"future"`. Owner review: `http://127.0.0.1:<port>/terrainbound/?field=1&region=dark-sky-basin&summit=local&v=p79l`
+Atlas `implementationState` is `"playable"`. Students do not need `?field=1`. After Cedar Hollow field clearance, the atlas lists Dark Sky as an **available region** (Topic 11 — Stars & the Universe), not as Topic 2 and not as proof that Topics 2–10 are complete. `?field=1&region=dark-sky-basin` remains a development override.
 
 ## World implementation
 

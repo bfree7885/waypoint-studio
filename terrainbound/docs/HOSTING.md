@@ -24,7 +24,7 @@ First public release with Summit. Source SHA `db2b7cc04bcbcd548657b5daa5addd4252
 | Server-side runtime on Pages | **none** (static files only) |
 | Summit language layer | Cloudflare Worker at `https://terrainbound-summit.bfree7885.workers.dev` (separate origin; not Pages) |
 | `summit.terrainbound.org` | **Deferred** — not required for production Summit |
-| Live cache-bust | `?v=p79l` on `main.js` / `game.js` |
+| Live cache-bust | `?v=p8ds` on `main.js` / `game.js` (Dark Sky Basin Topic 11 RC). Prior Summit-only live cache was `?v=p79l`. |
 
 GitHub Pages cannot run the Summit gateway or hold `SUMMIT_API_KEY`. The Groq key stays in the Worker secret store (or the local loopback proxy for development). Ordinary Cedar Hollow play on `terrainbound.org` uses the production Worker and does not need `?summit=fieldtest`.
 
@@ -81,6 +81,6 @@ Companion Pages rollback is an operator action on `bfree7885/terrainbound-site`,
 
 ## Cache
 
-Cache-bust query: `?v=p79l` on `main.js` / `game.js`.
+Cache-bust query: `?v=p8ds` on `main.js` / `game.js`.
 
 Production Summit language layer is a Cloudflare Worker at `https://terrainbound-summit.bfree7885.workers.dev/summit`. Pages never holds `SUMMIT_API_KEY`. See `docs/SUMMIT-PRODUCTION.md`.

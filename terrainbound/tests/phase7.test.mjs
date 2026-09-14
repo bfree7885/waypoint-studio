@@ -199,6 +199,7 @@ check("Sunfall unlocks only after High Country mastery; earlier regions stay ope
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
   assert.equal(canEnterRegion(tbWorld, worldState, "high-country"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), false);
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   assert.equal(canEnterRegion(tbWorld, worldState, "sunfall-desert"), true);
@@ -423,15 +424,20 @@ check("optional discoveries are not required for mastery", () => {
   assert.equal(sfCatalog.items.find((item) => item.id === "sf-dark-rock").name, "Dark heavy rock");
 });
 
-check("Dark Sky Basin remains non-playable", () => {
+check("Dark Sky Basin is Topic 11 and opens after Cedar Hollow without completing Topics 2–10", () => {
   const worldState = createWorldState(tbWorld);
+  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
   applyTravelUnlocks(tbWorld, worldState, "cedar-hollow");
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   applyTravelUnlocks(tbWorld, worldState, "high-country");
   applyTravelUnlocks(tbWorld, worldState, "sunfall-desert");
-  assert.equal(isPlayable(tbWorld, "dark-sky-basin"), false);
-  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), false);
+  assert.equal(canEnterRegion(tbWorld, worldState, "dark-sky-basin"), true);
   const preview = previewModel(tbWorld, worldState, "dark-sky-basin");
-  assert.equal(preview.playable, false);
+  assert.equal(preview.playable, true);
+  assert.equal(preview.curriculumTopic, 11);
+  assert.equal(preview.availableLater, true);
+  assert.equal(canEnterRegion(tbWorld, worldState, "painted-badlands"), false);
 });
 
 check("save persists Sunfall state and Phase 6 saves migrate", () => {
@@ -542,7 +548,7 @@ check("no standards codes, 1366 layout, apps/terrainbound untouched, nothing dep
   assert.match(css, /max-width: 1366px/);
   assert.doesNotMatch(html, /\bXP\b|\bbadge\b|\bquiz\b/i);
   const retired = fs.readFileSync(path.join(repoRoot, "apps/terrainbound/index.html"), "utf8");
-  assert.match(retired, /Terrainbound is retired/);
+  assert.match(retired, /waypointstudio\.org|Terrainbound is retired/i);
   assert.equal(fs.existsSync(path.join(root, "CNAME")), false);
   assert.doesNotMatch(html, /terrainbound\.org/);
   assert.match(gameJs, /sunfall-desert\.json/);
