@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Sep 2026 15:13:38 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 02:07:08 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -29,24 +29,6 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Overdue hikers located by Forest Rangers</title>
-    <link>https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</guid>
-    <pubDate>Fri, 11 Sep 2026 21:21:29 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Overdue hikers located by Forest Rangers. Silver Lakes wilderness area rescue. Photo courtesy of DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-29.jpg?fit=556%2C417&amp;ssl=1&quot; /&gt; Plus: Reports of an aggressive subject and ill hikers
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</description>
-    <category>Forests and Plants</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Lake Champlain named one of the best lakes in the country for fall foliage boating</title>
     <link>https://www.adirondackexplorer.org/communities/lake-champlain-named-one-of-the-best-lakes-in-the-country-for-fall-foliage-boating/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/lake-champlain-named-one-of-the-best-lakes-in-the-country-for-fall-foliage-boating/</guid>
@@ -62,6 +44,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Forests and Plants</category>
     <category>Seasonal Nature</category>
     <category>Regional News</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Overdue hikers located by Forest Rangers</title>
+    <link>https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</guid>
+    <pubDate>Fri, 11 Sep 2026 21:21:29 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Overdue hikers located by Forest Rangers. Silver Lakes wilderness area rescue. Photo courtesy of DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-29.jpg?fit=556%2C417&amp;ssl=1&quot; /&gt; Plus: Reports of an aggressive subject and ill hikers
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</description>
+    <category>Forests and Plants</category>
+    <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
@@ -122,6 +122,25 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Adirondack Stories: Mitchell Sabattis</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</guid>
+    <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: Mitchell Sabattis. Mitchell Sabattis was an Abenaki guide whose bravery and knowledge of the woods was legendary during his time
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Latest news headlines</title>
     <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
@@ -160,55 +179,19 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Seasonal forecasts could give northern India months of warning before severe winter air pollution</title>
-    <link>https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</guid>
-    <pubDate>Fri, 11 Sep 2026 16:20:04 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Northern India experiences some of the world&apos;s worst winter air pollution, with dangerous episodes often prompting emergency control efforts. In major cities like Delhi, the Air Quality Index has reached levels above 999—over 30 times the World Health Organization&apos;s safety limit.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: compare the claimed seasonal cue with what your local places actually show. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</description>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
-    <title>A Nature Conservancy Volunteer’s Hunt for Champion Trees</title>
-    <link>https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</link>
-    <guid isPermaLink="true">https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</guid>
-    <pubDate>Sun, 06 Sep 2026 23:16:34 GMT</pubDate>
-    <source url="https://www.nature.org/">The Nature Conservancy</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
-
-Summary: Gary Williamson and his friends have found more Champion Trees – the largest of their species – than anyone. And at age 82, he’s still searching. The post A Nature Conservancy Volunteer’s Hunt for Champion Trees appeared first on Cool Green Science .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</description>
-    <category>Conservation</category>
-    <category>Forests and Plants</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>The Nature Conservancy</author>
-  </item>
-  <item>
-    <title>Lighting fire towers and harvesting from the Inlet Community Garden</title>
-    <link>https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</guid>
-    <pubDate>Fri, 11 Sep 2026 16:00:00 GMT</pubDate>
+    <title>Hackensack: Not seeing the forest for the trees</title>
+    <link>https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</guid>
+    <pubDate>Sun, 13 Sep 2026 20:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: A colorful dahlia. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/397fbb39-064e-444c-ba26-25140d0e8f8d.jpgdahlia-2026.jpg?fit=780%2C1040&amp;ssl=1&quot; /&gt; Gary Lee shares a national weather update and his experience from the fire tower lighting this past week with views from the cab
+Summary: An aerial image of Hackensack and Warrensburg. Photo by Stan Cranker while William Cranker piloted. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Hackensack-Photo_2026-08-30_110041-scaled.jpg?fit=780%2C404&amp;ssl=1&quot; /&gt; Bill Cranker dissects the history and origin of the name of Hackensack Mountain which looms over the Village of Warrensburg
 
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/lighting-fire-towers-and-harvesting-from-the-inlet-community-garden/</description>
-    <category>Weather</category>
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</description>
+    <category>Forests and Plants</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
@@ -435,25 +418,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Discussion: Are you a Champ believer?</title>
-    <link>https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</guid>
-    <pubDate>Fri, 11 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A group of area residents filmed and photographed a strange wave phenomenon off Point au Roche that appeared to be created by a large dark shadow beneath the surface. Photo Courtesy of Susan Sisti. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Champy4-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; The idea of the lake monster Champ has been a favorite topic of discussion for residents and visitors to Lake Champlain for decades
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Restoring Fish Habitat - Saint Sebastian River</title>
     <link>https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</guid>
@@ -563,19 +527,19 @@ Read the original article at the publisher: https://phys.org/news/2026-09-unexpe
     <author>Phys.org</author>
   </item>
   <item>
-    <title>New study offers a detailed look at how wildfire smoke impacts Reno&apos;s air quality</title>
-    <link>https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</guid>
-    <pubDate>Fri, 11 Sep 2026 18:00:05 GMT</pubDate>
+    <title>Seasonal forecasts could give northern India months of warning before severe winter air pollution</title>
+    <link>https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</guid>
+    <pubDate>Fri, 11 Sep 2026 16:20:04 GMT</pubDate>
     <source url="https://phys.org/">Phys.org</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: With Western wildfires increasing in size, duration and intensity, millions of Americans are now exposed to wildfire smoke each year. In California, 2020 and 2021 were particularly challenging, with a 10-fold increase in fires compared with any time in the state&apos;s history. Northern Nevada is positioned to receive much of the smoke from California wildfires, and Reno residents experienced months of smoke-shrouded skies during this time.
+Summary: Northern India experiences some of the world&apos;s worst winter air pollution, with dangerous episodes often prompting emergency control efforts. In major cities like Delhi, the Air Quality Index has reached levels above 999—over 30 times the World Health Organization&apos;s safety limit.
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: read it as a field-safety brief — confirm the hazard, then decide whether to adjust timing or route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: compare the claimed seasonal cue with what your local places actually show. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://phys.org/news/2026-09-wildfire-impacts-reno-air-quality.html</description>
-    <category>Outdoor Safety</category>
+Read the original article at the publisher: https://phys.org/news/2026-09-seasonal-northern-india-months-severe.html</description>
+    <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
@@ -667,18 +631,37 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Fly of the Week: X-Caddis</title>
-    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</guid>
-    <pubDate>Fri, 11 Sep 2026 13:00:00 GMT</pubDate>
+    <title>A Nature Conservancy Volunteer’s Hunt for Champion Trees</title>
+    <link>https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</link>
+    <guid isPermaLink="true">https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</guid>
+    <pubDate>Sun, 06 Sep 2026 23:16:34 GMT</pubDate>
+    <source url="https://www.nature.org/">The Nature Conservancy</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
+
+Summary: Gary Williamson and his friends have found more Champion Trees – the largest of their species – than anyone. And at age 82, he’s still searching. The post A Nature Conservancy Volunteer’s Hunt for Champion Trees appeared first on Cool Green Science .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</description>
+    <category>Conservation</category>
+    <category>Forests and Plants</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>The Nature Conservancy</author>
+  </item>
+  <item>
+    <title>Discussion: Are you a Champ believer?</title>
+    <link>https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</guid>
+    <pubDate>Fri, 11 Sep 2026 20:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Fly of the Week: X-Caddis. Olive X-Caddis Tied and Photographed By Geoff Schaake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Olive-X-Caddis-Tied-and-Photographed-By-Geoff-Schaake.jpg?fit=780%2C685&amp;ssl=1&quot; /&gt; This successful pattern was created by a woman.
+Summary: A group of area residents filmed and photographed a strange wave phenomenon off Point au Roche that appeared to be created by a large dark shadow beneath the surface. Photo Courtesy of Susan Sisti. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Champy4-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; The idea of the lake monster Champ has been a favorite topic of discussion for residents and visitors to Lake Champlain for decades
 
 Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -871,23 +854,6 @@ Read the original article at the publisher: https://phys.org/news/2026-09-southe
     <author>Phys.org</author>
   </item>
   <item>
-    <title>Nepal flood disaster exposes cascading threats in Himalayas</title>
-    <link>https://phys.org/news/2026-09-nepal-disaster-exposes-cascading-threats.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-nepal-disaster-exposes-cascading-threats.html</guid>
-    <pubDate>Sat, 12 Sep 2026 02:00:05 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: A catastrophic flood in Nepal that left thousands missing began with a collapse of ice and rock high in the mountains—a warning that disaster planning must prepare for chains of hazards, not isolated events, experts say.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: notice water level, clarity, and bank conditions as living field signals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-nepal-disaster-exposes-cascading-threats.html</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Anita Vanek</title>
     <link>https://www.noaa.gov/our-people/leadership/anita-vanek</link>
     <guid isPermaLink="true">https://www.noaa.gov/our-people/leadership/anita-vanek</guid>
@@ -924,6 +890,43 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>The 2027 NOAA Hollings Scholarship application is now open!</title>
+    <link>https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</link>
+    <guid isPermaLink="true">https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</guid>
+    <pubDate>Tue, 01 Sep 2026 13:40:20 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: The 2027 NOAA Hollings Scholarship application is now open! NOAA undergraduate scholars complete 10-week summer internship projects that span NOAA&apos;s mission. (Image credit: NOAA Office of Education) Download Image September 1, 2026 The Hollings undergraduate scholarships application is open through January 31, 2027, 11:59 p.m.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.noaa.gov/office-education/hollings-scholarship/news/2027-noaa-hollings-scholarship-application-is-now-open-ext</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
+    <title>How a brutal drought may have helped unleash yellow fever in Brazil</title>
+    <link>https://www.sciencenews.org/article/drought-yellow-fever-outbreak-brazil</link>
+    <guid isPermaLink="true">https://www.sciencenews.org/article/drought-yellow-fever-outbreak-brazil</guid>
+    <pubDate>Fri, 14 Aug 2026 18:00:00 GMT</pubDate>
+    <source url="https://www.sciencenews.org/">Science News / Society for Science</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Science News / Society for Science.
+
+Summary: How a brutal drought may have helped unleash yellow fever in Brazil. Animals searching for water brought the forest to the city, perhaps sparking Brazil’s first yellow fever outbreak in decades.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencenews.org/article/drought-yellow-fever-outbreak-brazil</description>
+    <category>Forests and Plants</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Science News / Society for Science</author>
   </item>
   </channel>
 </rss>

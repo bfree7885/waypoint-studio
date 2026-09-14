@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Sep 2026 15:13:38 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2026 02:07:08 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>Overdue hikers located by Forest Rangers</title>
-    <link>https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</guid>
-    <pubDate>Fri, 11 Sep 2026 21:21:29 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Overdue hikers located by Forest Rangers. Silver Lakes wilderness area rescue. Photo courtesy of DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-29.jpg?fit=556%2C417&amp;ssl=1&quot; /&gt; Plus: Reports of an aggressive subject and ill hikers
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</description>
-    <category>Forests and Plants</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
   <item>
     <title>Lake Champlain named one of the best lakes in the country for fall foliage boating</title>
     <link>https://www.adirondackexplorer.org/communities/lake-champlain-named-one-of-the-best-lakes-in-the-country-for-fall-foliage-boating/</link>
@@ -43,6 +25,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Forests and Plants</category>
     <category>Seasonal Nature</category>
     <category>Regional News</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Overdue hikers located by Forest Rangers</title>
+    <link>https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</guid>
+    <pubDate>Fri, 11 Sep 2026 21:21:29 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Overdue hikers located by Forest Rangers. Silver Lakes wilderness area rescue. Photo courtesy of DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-29.jpg?fit=556%2C417&amp;ssl=1&quot; /&gt; Plus: Reports of an aggressive subject and ill hikers
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/search-and-rescue/overdue-hikers-located-by-forest-rangers/</description>
+    <category>Forests and Plants</category>
+    <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
@@ -103,6 +103,25 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Adirondack Stories: Mitchell Sabattis</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</guid>
+    <pubDate>Sun, 13 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: Mitchell Sabattis. Mitchell Sabattis was an Abenaki guide whose bravery and knowledge of the woods was legendary during his time
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-mitchell-sabattis/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Latest news headlines</title>
     <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
@@ -141,23 +160,21 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>A Nature Conservancy Volunteer’s Hunt for Champion Trees</title>
-    <link>https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</link>
-    <guid isPermaLink="true">https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</guid>
-    <pubDate>Sun, 06 Sep 2026 23:16:34 GMT</pubDate>
-    <source url="https://www.nature.org/">The Nature Conservancy</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
+    <title>Hackensack: Not seeing the forest for the trees</title>
+    <link>https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</guid>
+    <pubDate>Sun, 13 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Gary Williamson and his friends have found more Champion Trees – the largest of their species – than anyone. And at age 82, he’s still searching. The post A Nature Conservancy Volunteer’s Hunt for Champion Trees appeared first on Cool Green Science .
+Summary: An aerial image of Hackensack and Warrensburg. Photo by Stan Cranker while William Cranker piloted. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Hackensack-Photo_2026-08-30_110041-scaled.jpg?fit=780%2C404&amp;ssl=1&quot; /&gt; Bill Cranker dissects the history and origin of the name of Hackensack Mountain which looms over the Village of Warrensburg
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</description>
-    <category>Conservation</category>
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/natural-history/hackensack-not-seeing-the-forest-for-the-trees/</description>
     <category>Forests and Plants</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>The Nature Conservancy</author>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Mayday Mayday!</title>
@@ -382,25 +399,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Discussion: Are you a Champ believer?</title>
-    <link>https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</guid>
-    <pubDate>Fri, 11 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A group of area residents filmed and photographed a strange wave phenomenon off Point au Roche that appeared to be created by a large dark shadow beneath the surface. Photo Courtesy of Susan Sisti. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Champy4-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; The idea of the lake monster Champ has been a favorite topic of discussion for residents and visitors to Lake Champlain for decades
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Restoring Fish Habitat - Saint Sebastian River</title>
     <link>https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-09/restoring-fish-habitat-saint-sebastian-river</guid>
@@ -580,18 +578,37 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Fly of the Week: X-Caddis</title>
-    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</guid>
-    <pubDate>Fri, 11 Sep 2026 13:00:00 GMT</pubDate>
+    <title>A Nature Conservancy Volunteer’s Hunt for Champion Trees</title>
+    <link>https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</link>
+    <guid isPermaLink="true">https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</guid>
+    <pubDate>Sun, 06 Sep 2026 23:16:34 GMT</pubDate>
+    <source url="https://www.nature.org/">The Nature Conservancy</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
+
+Summary: Gary Williamson and his friends have found more Champion Trees – the largest of their species – than anyone. And at age 82, he’s still searching. The post A Nature Conservancy Volunteer’s Hunt for Champion Trees appeared first on Cool Green Science .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://blog.nature.org/2026/09/06/a-nature-conservancy-volunteers-hunt-for-champion-trees/</description>
+    <category>Conservation</category>
+    <category>Forests and Plants</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>The Nature Conservancy</author>
+  </item>
+  <item>
+    <title>Discussion: Are you a Champ believer?</title>
+    <link>https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</guid>
+    <pubDate>Fri, 11 Sep 2026 20:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Fly of the Week: X-Caddis. Olive X-Caddis Tied and Photographed By Geoff Schaake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Olive-X-Caddis-Tied-and-Photographed-By-Geoff-Schaake.jpg?fit=780%2C685&amp;ssl=1&quot; /&gt; This successful pattern was created by a woman.
+Summary: A group of area residents filmed and photographed a strange wave phenomenon off Point au Roche that appeared to be created by a large dark shadow beneath the surface. Photo Courtesy of Susan Sisti. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Champy4-scaled.jpg?fit=780%2C468&amp;ssl=1&quot; /&gt; The idea of the lake monster Champ has been a favorite topic of discussion for residents and visitors to Lake Champlain for decades
 
 Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-x-caddis/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/discussion-are-you-a-champ-believer/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -726,24 +743,6 @@ Read the original article at the publisher: https://earthsky.org/space/record-ga
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Southern Ocean may flip from carbon sink to carbon source under mitigation scenarios</title>
-    <link>https://phys.org/news/2026-09-southern-ocean-flip-carbon-source.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-southern-ocean-flip-carbon-source.html</guid>
-    <pubDate>Sat, 12 Sep 2026 17:20:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Plans to limit the global temperature rise to 1.5°C above preindustrial levels depend on reaching net-zero emissions and, in many cases, actively removing carbon dioxide (CO2) from the air. While this helps limit extreme weather, sea level rise, ecosystem loss and the risk of triggering irreversible climate tipping points, a new study, published in Science Advances, finds that reducing CO2 levels may have an unexpected effect.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-09-southern-ocean-flip-carbon-source.html</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category domain="geographic">Global</category>
-    <author>Phys.org</author>
   </item>
   </channel>
 </rss>
