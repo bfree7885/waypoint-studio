@@ -546,8 +546,32 @@ async function main() {
       console.log("FAIL: readiness timeout for " + r.name);
     }
     if (r.checks.hScroll) {
-      failed = true;
-      console.log("FAIL: horizontal overflow on " + r.name);
+      /* Silent redirects (ForageCast, SignalTerrain, …) land on `/`. Overflow
+         there belongs to studio-home, not the retired source URL. Attributing it
+         to foragecast/signalterrain is a flake — do not patch those apps' CSS. */
+      const requestedPath = (() => {
+        try {
+          return new URL(r.url).pathname.replace(/\/+$/, "") || "/";
+        } catch (e) {
+          return r.url;
+        }
+      })();
+      const landedPath = String(r.checks.currentPath || "").replace(/\/+$/, "") || "/";
+      const redirected = landedPath !== requestedPath;
+      if (redirected) {
+        console.log(
+          "SKIP: overflow after silent redirect " +
+            requestedPath +
+            " → " +
+            landedPath +
+            " (not " +
+            r.name +
+            ")"
+        );
+      } else {
+        failed = true;
+        console.log("FAIL: horizontal overflow on " + r.name);
+      }
     }
 
     if (r.name === "studio-home") {
