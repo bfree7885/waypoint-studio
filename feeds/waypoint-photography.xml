@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2026 15:50:43 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 02:06:46 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -25,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis III Crew Visits NASA Kennedy&apos;s Vehicle Assembly Building</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1307/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1307/</guid>
+    <pubDate>Tue, 15 Sep 2026 16:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut Randy Bresnik (left) and ESA (European Space Agency) astronaut Luca Parmitano view progress on the solid rocket booster integration in High Bay 3 inside the Vehicle Assembly Building at NASA&apos;s Kennedy Space Center in Florida on Wednesday, Sept. 2, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1307/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -82,24 +100,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ms
     <author>NASA</author>
   </item>
   <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Seeing Rangelands Through a New Lens</title>
     <link>https://www.audubon.org/california/news/seeing-rangelands-through-new-lens</link>
     <guid isPermaLink="true">https://www.audubon.org/california/news/seeing-rangelands-through-new-lens</guid>
@@ -117,6 +117,24 @@ Read the original article at the publisher: https://www.audubon.org/california/n
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Superbubble in the Large Magellanic Cloud</title>
+    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
+    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Igniting Roman&apos;s Journey</title>
@@ -252,7 +270,7 @@ Read the original article at the publisher: https://earthsky.org/space/mercury-i
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news September 15, 2026: A filament eruption sent a CME toward Earth, due September 17. Minor geomagnetic storms are possible. The post Sun news: Chunk of sun-stuff on its way to Earth first appeared on EarthSky .
+Summary: Sun news September 15, 2026: A filament eruption sent a coronal mass ejection toward Earth, due September 17. Minor geomagnetic storms are possible. The post Sun news: Chunk of sun-stuff on its way to Earth first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -425,24 +443,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA Astronaut Jessica Meir Uses VR Goggles</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0000191/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0000191/</guid>
-    <pubDate>Mon, 10 Aug 2026 15:50:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and Expedition 75 commander Jessica Meir wears a set of virtual reality goggles, also called the Nevada Screening Vision System, for a test that measures visual function using a series of vision screening apps testing visual acuity, contrast sensitivity, and more.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0000191/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Venus had a moon for nearly 2 billion years, scientists say</title>
     <link>https://earthsky.org/space/venus-had-a-moon-moons-roche-limit/</link>
     <guid isPermaLink="true">https://earthsky.org/space/venus-had-a-moon-moons-roche-limit/</guid>
@@ -600,24 +600,6 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Washingtonians Recognized in 2026 Audubon Photography Awards</title>
-    <link>https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</link>
-    <guid isPermaLink="true">https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</guid>
-    <pubDate>Wed, 02 Sep 2026 22:09:57 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: SEATTLE (September 2, 2026) – Today, the National Audubon Society announced the winners of the 2026 Audubon Photography Awards. Now in its seventeenth year, the awards celebrate stunning photos...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/washington/news/washingtonians-recognized-2026-audubon-photography-awards</description>
-    <category>Birds</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Lunar Occultation of Venus</title>
