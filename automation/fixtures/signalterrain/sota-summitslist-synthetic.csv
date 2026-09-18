@@ -1,0 +1,7 @@
+SOTA Summits List (Date=06/09/2026 Version=TEST-SYNTHETIC)
+SummitCode,AssociationName,RegionName,SummitName,AltM,AltFt,GridRef1,GridRef2,Longitude,Latitude,Points,BonusPoints,ValidFrom,ValidTo,ActivationCount,ActivationDate,ActivationCall
+XX/TS-001,Synthetic Test Association,Synthetic Test Region,Synthetic Alpha Peak,500,1640,GR1,GR2,-74.1000,41.5000,4,0,01/01/2020,31/12/2099,0,,
+XX/TS-002,Synthetic Test Association,Synthetic Test Region,"Synthetic Beta, Ridge",600,1969,,,-74.2000,41.6000,6,0,01/01/2020,31/12/2099,1,2024-01-01,XX0TST
+XX/TA-001,Synthetic Test Association,Synthetic Other Region,Synthetic Gamma Peak,400,1312,,,-75.0000,41.3000,2,0,01/01/2020,31/12/2099,0,,
+XX/TB-001,Synthetic Test Association,Synthetic Third Region,Synthetic Delta Peak,350,1148,,,-73.5000,41.2000,1,0,01/01/2020,31/12/2099,0,,
+XX/TS-001,Synthetic Test Association,Synthetic Test Region,Synthetic Alpha Peak,500,1640,GR1,GR2,-74.1000,41.5000,4,0,01/01/2020,31/12/2099,0,,

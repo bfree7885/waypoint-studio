@@ -1,0 +1,36 @@
+name: Publish SignalTerrain field-test host
+
+# Isolated github.io host for unlisted SignalTerrain field-test.
+# Does not deploy Studio production Pages. Does not touch the Shed Hunting host.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: signalterrain-field-test-host
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build isolated field-test artifact
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/prepare-signalterrain-field-test-host.mjs
+
+      - name: Publish to companion github.io project
+        env:
+          SIGNALTERRAIN_FIELD_TEST_HOST_REPO: bfree7885/waypoint-studio-site
+          SIGNALTERRAIN_FIELD_TEST_TOKEN: ${{ secrets.SHEDHUNTING_DEPLOY_TOKEN }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/publish-signalterrain-field-test-host.mjs

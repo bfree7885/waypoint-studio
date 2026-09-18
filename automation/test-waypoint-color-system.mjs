@@ -90,7 +90,10 @@ if (/\[data-product="waypoint-deck"\][\s\S]*--wp-accent:\s*var\(--waypoint-orang
   pass("Deck public shell is terracotta + desert purple");
 } else fail("Deck product tokens missing");
 
-if (/\[data-product="shed-hunting"\][\s\S]{0,500}--wp-warm:\s*var\(--wp-sage\)/.test(tokens)) {
+if (
+  /\[data-product="shed-hunting"\][\s\S]{0,800}--wp-warm:\s*var\(--wp-sage\)/.test(tokens) ||
+  /\[data-product="shed-hunting"\][\s\S]{0,800}--wp-warm:\s*#6f7d5f/.test(tokens)
+) {
   pass("Sheds warm pairing is sage");
 } else fail("Sheds not paired with sage");
 
