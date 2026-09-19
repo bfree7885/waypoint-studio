@@ -30,6 +30,7 @@ load("js/curriculum-lesson3.js");
 load("js/curriculum-lesson4.js");
 load("js/curriculum-lesson5.js");
 load("js/curriculum-lesson6.js");
+load("js/curriculum-lesson7.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -91,19 +92,30 @@ if (lesson6.id !== "parameters" || lesson6.number !== 6) {
   throw new Error("Lesson 6 should be Parameters and User Input with number 6");
 }
 
+var lesson7 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_7_ID);
+if (!lesson7 || lesson7.status !== "available" || lesson7.steps.length !== 13) {
+  throw new Error("Lesson 7 should be available with 13 steps");
+}
+if (!lesson7.trainingPage) {
+  throw new Error("Lesson 7 should reuse the Trail Supply training page");
+}
+if (lesson7.id !== "cookies" || lesson7.number !== 7) {
+  throw new Error("Lesson 7 should be Cookies and Sessions with number 7");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 4) {
-  throw new Error("Expected 4 future lessons (7–10), got " + future.length);
+if (future.length !== 3) {
+  throw new Error("Expected 3 future lessons (8–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 7 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 7–10: " + item.number);
+  if (item.number < 8 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 8–10: " + item.number);
   }
 });
-if (Hackbot.Curriculum.getLesson("parameters").status !== "available") {
-  throw new Error("Parameters catalog entry must be available, not future");
+if (Hackbot.Curriculum.getLesson("cookies").status !== "available") {
+  throw new Error("Cookies catalog entry must be available, not future");
 }
 
 function evalStep(lesson, stepId, text, attemptNumber) {
@@ -330,6 +342,49 @@ Promise.all([
   }),
   evalStep(lesson6, "m-reflect", "I was surprised the login input sat in the request body; next time I will compare query parameters and body fields in Network.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 6 reflection is soft-graded");
+  }),
+  evalStep(lesson7, "a-state-problem", "Each HTTP request is a separate exchange, so the application needs some form of state to remember continuity between them.").then(function (r) {
+    assert(r.verdict === "CORRECT", "state problem should be CORRECT");
+  }),
+  evalStep(lesson7, "b-cookie", "A cookie is small data the browser stores for a site and can send again on later requests.").then(function (r) {
+    assert(r.verdict === "CORRECT", "cookie definition should be CORRECT");
+  }),
+  evalStep(lesson7, "c-name-value", "The cookie name is trail_session and the value is demo-trail-7.").then(function (r) {
+    assert(r.verdict === "CORRECT", "cookie name/value should be CORRECT");
+  }),
+  evalStep(lesson7, "d-set-cookie", "Set-Cookie is a response header that asks the browser to store a cookie; Trail Supply shows it as X-Training-Set-Cookie.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Set-Cookie should be CORRECT");
+  }),
+  evalStep(lesson7, "e-cookie-header", "On later requests a normal browser sends the Cookie request header; this SW lab mirrors it as X-Trail-Training-Cookie.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Cookie header should be CORRECT");
+  }),
+  evalStep(lesson7, "f-observe", "Status was none before; after Start demo session I saw trail_session=demo-trail-7 and status recognized.").then(function (r) {
+    assert(r.verdict === "CORRECT", "observe session should be CORRECT");
+  }),
+  evalStep(lesson7, "g-vs-session", "A cookie is different from a session — the cookie may hold an identifier while session state lives on the application/server side.").then(function (r) {
+    assert(r.verdict === "CORRECT", "cookie vs session should be CORRECT");
+  }),
+  evalStep(lesson7, "h-attributes", "Path scopes where the cookie applies and HttpOnly blocks JavaScript access; Secure is for HTTPS transport.").then(function (r) {
+    assert(r.verdict === "CORRECT", "attributes should be CORRECT");
+  }),
+  evalStep(lesson7, "i-compare", "Before status was none; after trail_session existed the same status request returned recognized — evidence the demo state was remembered.").then(function (r) {
+    assert(r.verdict === "CORRECT", "before/after should be CORRECT");
+  }),
+  evalStep(lesson7, "j-why", "Researchers inspect cookies and session headers because state can make similar requests behave differently in ways the rendered page may not show.").then(function (r) {
+    assert(r.verdict === "CORRECT", "investigator why should be CORRECT");
+  }),
+  evalStep(
+    lesson7,
+    "k-challenge",
+    "Initial session/status is none; start sets trail_session=demo-trail-7; later status is recognized. Path stayed the same; state changed. The cookie value is an identifier; the session is application state."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 7 challenge should be CORRECT");
+  }),
+  evalStep(lesson7, "k-challenge", "asdf qwerty").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 7 challenge should not advance");
+  }),
+  evalStep(lesson7, "m-reflect", "Only Network showed session none becoming recognized after the trail_session cookie appeared.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 7 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

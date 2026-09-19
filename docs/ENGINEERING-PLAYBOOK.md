@@ -2133,3 +2133,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Lesson 6 shifts from seeing traffic to tracing input placement (query `q`, POST body, path `/products/42`) with change-one-thing comparison — still observational, never injection/fuzzing.
 - A minimal multi-param demo (`search?q=boots&sort=price` + params echo) teaches `&` without inventing a real filter engine.
 
+### Lessons Learned — HackBot Lesson 7 Cookies and Sessions (2026-09-19)
+
+- Browsers/SW forbid reliable `Set-Cookie` on SW responses and strip `Cookie` from `FetchEvent.request`; use `X-Training-Set-Cookie` / `X-Trail-Training-Cookie` mirrors plus `document.cookie` for Application-tab observation.
+- Keep cookie ≠ session explicit; demo value `trail_session=demo-trail-7` is a training identifier, not authentication.
+

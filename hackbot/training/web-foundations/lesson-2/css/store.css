@@ -257,6 +257,48 @@ button {
   font: inherit;
 }
 
+.session-lab {
+  margin: 1.25rem 0 0;
+  padding: 1rem 1.1rem;
+  background: var(--ts-panel);
+  border: 1px solid var(--ts-line);
+  border-radius: 8px;
+}
+
+.session-lab h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.session-copy {
+  margin: 0 0 0.75rem;
+  color: var(--ts-muted);
+  font-size: 0.92rem;
+}
+
+.session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.session-btn {
+  display: inline-block;
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ts-accent);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+}
+
+.session-btn-secondary {
+  background: transparent;
+  color: var(--ts-accent);
+  border: 1px solid var(--ts-accent);
+}
+
 :focus-visible {
   outline: 2px solid var(--ts-focus);
   outline-offset: 2px;

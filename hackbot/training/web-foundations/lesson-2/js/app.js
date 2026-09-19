@@ -85,6 +85,89 @@
     });
   });
 
+  var DEMO_COOKIE_NAME = "trail_session";
+  var DEMO_COOKIE_VALUE = "demo-trail-7";
+  var DEMO_COOKIE_PATH = "/hackbot/training/web-foundations/lesson-2";
+  var DEMO_COOKIE_PAIR = DEMO_COOKIE_NAME + "=" + DEMO_COOKIE_VALUE;
+
+  function mirrorDemoCookie() {
+    document.cookie =
+      DEMO_COOKIE_PAIR +
+      "; Path=" +
+      DEMO_COOKIE_PATH +
+      "; Max-Age=3600; SameSite=Lax";
+  }
+
+  function clearMirroredDemoCookie() {
+    document.cookie =
+      DEMO_COOKIE_NAME + "=; Path=" + DEMO_COOKIE_PATH + "; Max-Age=0; SameSite=Lax";
+  }
+
+  function hasMirroredDemoCookie() {
+    var parts = String(document.cookie || "").split(";");
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].trim() === DEMO_COOKIE_PAIR) return true;
+    }
+    return false;
+  }
+
+  function sessionFetch(relative) {
+    var headers = {};
+    // SW cannot read Cookie on FetchEvent.request — mirror the same pair for status recognition.
+    if (hasMirroredDemoCookie()) {
+      headers["X-Trail-Training-Cookie"] = DEMO_COOKIE_PAIR;
+    }
+    return send(trainingUrl(relative), {
+      method: "GET",
+      credentials: "same-origin",
+      headers: headers
+    });
+  }
+
+  var sessionStatusBtn = document.getElementById("session-status");
+  if (sessionStatusBtn) {
+    sessionStatusBtn.addEventListener("click", function () {
+      note(
+        "Sending GET session/status (synthetic). If a demo session exists, Network shows X-Trail-Training-Cookie mirroring Cookie: " +
+          DEMO_COOKIE_PAIR +
+          "."
+      );
+      sessionFetch("session/status").catch(function (err) {
+        note("Session status failed: " + (err && err.message ? err.message : String(err)));
+      });
+    });
+  }
+
+  var sessionStartBtn = document.getElementById("session-start");
+  if (sessionStartBtn) {
+    sessionStartBtn.addEventListener("click", function () {
+      note(
+        "Sending GET session/start. Inspect X-Training-Set-Cookie (training mirror of Set-Cookie) and Application → Cookies after the page mirrors trail_session."
+      );
+      sessionFetch("session/start")
+        .then(function () {
+          mirrorDemoCookie();
+          note(
+            "Demo session started. Network: X-Training-Set-Cookie / setCookieLine. Application → Cookies: trail_session. Then Check session status."
+          );
+        })
+        .catch(function (err) {
+          note("Session start failed: " + (err && err.message ? err.message : String(err)));
+        });
+    });
+  }
+
+  var sessionClearBtn = document.getElementById("session-clear");
+  if (sessionClearBtn) {
+    sessionClearBtn.addEventListener("click", function () {
+      note("Clearing mirrored demo cookie and sending GET session/clear (synthetic).");
+      clearMirroredDemoCookie();
+      sessionFetch("session/clear").catch(function (err) {
+        note("Session clear failed: " + (err && err.message ? err.message : String(err)));
+      });
+    });
+  }
+
   var redirectBtn = document.getElementById("redirect-demo");
   if (redirectBtn) {
     redirectBtn.addEventListener("click", function () {
@@ -126,7 +209,7 @@
 
   function readyMessage() {
     note(
-      "Trail Supply script loaded (js/app.js). Search, sign-in, products, redirect, and parameter demos generate local Network requests."
+      "Trail Supply script loaded (js/app.js). Search, sign-in, products, redirect, parameter, and session demos generate local Network requests."
     );
   }
 

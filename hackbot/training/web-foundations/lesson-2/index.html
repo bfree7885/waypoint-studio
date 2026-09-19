@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–6. Not a live shop.">
+  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–7. Not a live shop.">
   <title>Trail Supply</title>
   <link rel="stylesheet" href="css/store.css">
 </head>
@@ -28,7 +28,7 @@
   </header>
 
   <main class="store-main">
-    <p class="store-banner">Local Hackbot training page. Search, sign-in, product links, the redirect demo, and the multi-parameter demo generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
+    <p class="store-banner">Local Hackbot training page. Search, sign-in, product links, redirect, parameter, and session demos generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
 
     <section id="catalog" class="catalog" aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Field kit</h2>
@@ -54,6 +54,16 @@
         <input id="password" name="password" type="password" autocomplete="current-password" maxlength="80">
         <button type="submit">Sign in</button>
       </form>
+    </section>
+
+    <section class="session-lab" aria-labelledby="session-heading">
+      <h2 id="session-heading">Session lab</h2>
+      <p class="session-copy">Synthetic Lesson 7 demo. Starts a harmless local demo cookie <code>trail_session=demo-trail-7</code>, then lets you check whether a later request is recognized. Not login and not real authentication. Because the training handler is a service worker, Network shows <code>X-Training-Set-Cookie</code> / <code>X-Trail-Training-Cookie</code> as mirrors of real <code>Set-Cookie</code> / <code>Cookie</code> headers, and the page mirrors the cookie with <code>document.cookie</code> for Application → Cookies.</p>
+      <div class="session-actions">
+        <button type="button" class="session-btn" id="session-status">Check session status</button>
+        <button type="button" class="session-btn" id="session-start">Start demo session</button>
+        <button type="button" class="session-btn session-btn-secondary" id="session-clear">Clear demo session</button>
+      </div>
     </section>
 
     <section class="param-lab" aria-labelledby="param-heading">

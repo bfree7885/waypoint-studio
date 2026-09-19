@@ -449,7 +449,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect",
     completeBanner:
-      "Lesson 6 is complete. You can review steps; Lessons 7–10 are not built yet.",
+      "Lesson 6 is complete. You can review steps or continue to Lesson 7 — Cookies and Sessions.",
     goal:
       "Trace user actions into query parameters, request bodies, and path values on Trail Supply, and compare requests by changing one benign input at a time.",
     steps: STEPS
