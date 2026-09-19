@@ -1,5 +1,5 @@
 /**
- * Module 1 curriculum. Lessons 1–4 are fully authored; 5–10 are future shells.
+ * Module 1 curriculum. Lessons 1–5 are fully authored; 6–10 are future shells.
  * All examples are synthetic / local (training.hackbot.local / Trail Supply).
  */
 (function (global) {
@@ -226,7 +226,6 @@
   ];
 
   var FUTURE_LESSONS = [
-    { id: "status-redirects", title: "Status Codes and Redirects" },
     { id: "parameters", title: "Parameters and User Input" },
     { id: "cookies", title: "Cookies and Sessions" },
     { id: "devtools", title: "Browser Developer Tools" },
@@ -265,10 +264,14 @@
     MODULE_1.lessons.push(Hackbot.Lesson4);
   }
 
+  if (Hackbot.Lesson5) {
+    MODULE_1.lessons.push(Hackbot.Lesson5);
+  }
+
   FUTURE_LESSONS.forEach(function (item, index) {
     MODULE_1.lessons.push({
       id: item.id,
-      number: index + 5,
+      number: index + 6,
       title: item.title,
       status: "future",
       steps: []
@@ -301,6 +304,7 @@
     LESSON_2_ID: "inspect-page",
     LESSON_3_ID: "http-pair",
     LESSON_4_ID: "headers",
+    LESSON_5_ID: "status-redirects",
     trainingPageUrl: function (lesson) {
       if (!lesson || !lesson.trainingPage) return "";
       if (!global.location || !global.location.href) return lesson.trainingPage;

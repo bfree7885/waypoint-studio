@@ -15,12 +15,37 @@ self.addEventListener("activate", function (event) {
 
 function jsonResponse(status, body) {
   var text = JSON.stringify(body, null, 2);
+  var statusText =
+    status === 200
+      ? "OK"
+      : status === 302
+        ? "Found"
+        : status === 401
+          ? "Unauthorized"
+          : status === 403
+            ? "Forbidden"
+            : status === 404
+              ? "Not Found"
+              : status === 500
+                ? "Internal Server Error"
+                : "";
   return new Response(text, {
     status: status,
-    statusText: status === 200 ? "OK" : status === 401 ? "Unauthorized" : status === 404 ? "Not Found" : "",
+    statusText: statusText,
     headers: {
       "Content-Type": "application/json",
       "Content-Length": String(new Blob([text]).size),
+      "Cache-Control": "no-store"
+    }
+  });
+}
+
+function redirectResponse(locationUrl) {
+  return new Response(null, {
+    status: 302,
+    statusText: "Found",
+    headers: {
+      Location: locationUrl,
       "Cache-Control": "no-store"
     }
   });
@@ -37,6 +62,14 @@ self.addEventListener("fetch", function (event) {
 
   var path = url.pathname;
   var method = event.request.method;
+
+  // Synthetic redirect for Lesson 5 — local only, lands on product 42.
+  if (method === "GET" && /\/go\/camera$/.test(path)) {
+    // Resolve against the lesson scope, not /go/, so Location is .../products/42.
+    var dest = new URL("products/42", url.origin + path.replace(/\/go\/camera$/, "/")).href;
+    event.respondWith(redirectResponse(dest));
+    return;
+  }
 
   if (method === "GET" && /\/search$/.test(path)) {
     var q = url.searchParams.get("q") || "";

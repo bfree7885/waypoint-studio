@@ -28,6 +28,7 @@ load("js/models.js");
 load("js/curriculum-lesson2.js");
 load("js/curriculum-lesson3.js");
 load("js/curriculum-lesson4.js");
+load("js/curriculum-lesson5.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -67,19 +68,30 @@ if (lesson4.id !== "headers" || lesson4.number !== 4) {
   throw new Error("Lesson 4 should be Headers with number 4");
 }
 
+var lesson5 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_5_ID);
+if (!lesson5 || lesson5.status !== "available" || lesson5.steps.length !== 12) {
+  throw new Error("Lesson 5 should be available with 12 steps");
+}
+if (!lesson5.trainingPage) {
+  throw new Error("Lesson 5 should reuse the Trail Supply training page");
+}
+if (lesson5.id !== "status-redirects" || lesson5.number !== 5) {
+  throw new Error("Lesson 5 should be Status Codes and Redirects with number 5");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 6) {
-  throw new Error("Expected 6 future lessons (5–10), got " + future.length);
+if (future.length !== 5) {
+  throw new Error("Expected 5 future lessons (6–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 5 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 5–10: " + item.number);
+  if (item.number < 6 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 6–10: " + item.number);
   }
 });
-if (Hackbot.Curriculum.getLesson("headers").status !== "available") {
-  throw new Error("Headers catalog entry must be available, not future");
+if (Hackbot.Curriculum.getLesson("status-redirects").status !== "available") {
+  throw new Error("Status Codes catalog entry must be available, not future");
 }
 
 function evalStep(lesson, stepId, text, attemptNumber) {
@@ -223,6 +235,46 @@ Promise.all([
   }),
   evalStep(lesson4, "k-reflect", "The page never showed Cache-Control no-store or Content-Type application/json; those headers only appeared in Network.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 4 reflection is soft-graded");
+  }),
+  evalStep(lesson5, "a-signals", "A status code is a short number that signals how the request turned out — success, redirect, or error.").then(function (r) {
+    assert(r.verdict === "CORRECT", "status signals should be CORRECT");
+  }),
+  evalStep(lesson5, "b-locate", "In Network, the /search?q=boots request shows status 200.").then(function (r) {
+    assert(r.verdict === "CORRECT", "locate status should be CORRECT");
+  }),
+  evalStep(lesson5, "c-families", "2xx means success, 3xx means redirect, 4xx is a client problem, 5xx is a server problem.").then(function (r) {
+    assert(r.verdict === "CORRECT", "families should be CORRECT");
+  }),
+  evalStep(lesson5, "d-success", "200 OK is in the 2xx success family and means the request succeeded.").then(function (r) {
+    assert(r.verdict === "CORRECT", "200 success should be CORRECT");
+  }),
+  evalStep(lesson5, "e-unauthorized", "401 Unauthorized is a 4xx response; Trail Supply refused the login because credentials were invalid.").then(function (r) {
+    assert(r.verdict === "CORRECT", "401 should be CORRECT");
+  }),
+  evalStep(lesson5, "f-notfound", "404 means the resource is missing; 401 means auth failed — different client-side problems.").then(function (r) {
+    assert(r.verdict === "CORRECT", "404 vs 401 should be CORRECT");
+  }),
+  evalStep(lesson5, "g-compare", "200 is success while 401 and 404 are error signals researchers interpret in Network before changing anything.").then(function (r) {
+    assert(r.verdict === "CORRECT", "compare success/error should be CORRECT");
+  }),
+  evalStep(lesson5, "h-redirect-idea", "A 3xx response includes a Location header so the client can follow and make a new request.").then(function (r) {
+    assert(r.verdict === "CORRECT", "redirect idea should be CORRECT");
+  }),
+  evalStep(lesson5, "i-follow", "The /go/camera request returned 302 with Location products/42, then the product page loaded with 200.").then(function (r) {
+    assert(r.verdict === "CORRECT", "follow redirect should be CORRECT");
+  }),
+  evalStep(
+    lesson5,
+    "j-challenge",
+    "Search is 200, failed login is 401 Unauthorized, missing page is 404, redirect is 302 with Location to products/42, then a final 200."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 5 challenge should be CORRECT");
+  }),
+  evalStep(lesson5, "j-challenge", "not sure").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 5 challenge should not advance");
+  }),
+  evalStep(lesson5, "l-reflect", "The rendered page looked fine, but only Network showed the 302 Location hop and the 401 on failed login.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 5 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

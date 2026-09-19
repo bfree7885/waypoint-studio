@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–3. Not a live shop.">
+  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–5. Not a live shop.">
   <title>Trail Supply</title>
   <link rel="stylesheet" href="css/store.css">
 </head>
@@ -28,7 +28,7 @@
   </header>
 
   <main class="store-main">
-    <p class="store-banner">Local Hackbot training page. Search, sign-in, and product links generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
+    <p class="store-banner">Local Hackbot training page. Search, sign-in, product links, and the redirect demo generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
 
     <section id="catalog" class="catalog" aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Field kit</h2>
@@ -54,6 +54,12 @@
         <input id="password" name="password" type="password" autocomplete="current-password" maxlength="80">
         <button type="submit">Sign in</button>
       </form>
+    </section>
+
+    <section class="redirect-lab" aria-labelledby="redirect-heading">
+      <h2 id="redirect-heading">Redirect lab</h2>
+      <p class="redirect-copy">Synthetic Lesson 5 demo. Triggers a local <code>302</code> with a <code>Location</code> header that points at Trail Camera (<code>/products/42</code>). Not a real store redirect.</p>
+      <button type="button" class="redirect-btn" id="redirect-demo" data-path="go/camera">Follow camera redirect</button>
     </section>
 
     <p class="visually-hidden" id="inventory-hint" data-catalog="demo">Catalog source: /inventory/demo.json</p>

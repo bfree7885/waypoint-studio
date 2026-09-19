@@ -394,7 +394,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect",
     completeBanner:
-      "Lesson 4 is complete. You can review steps; Lessons 5–10 are not built yet.",
+      "Lesson 4 is complete. You can review steps or continue to Lesson 5 — Status Codes and Redirects.",
     goal:
       "Recognize HTTP headers as request/response metadata, inspect them in the Network panel on Trail Supply, and explain why authorized researchers read selected headers.",
     steps: STEPS

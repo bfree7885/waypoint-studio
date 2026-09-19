@@ -85,8 +85,34 @@
     });
   });
 
+  var redirectBtn = document.getElementById("redirect-demo");
+  if (redirectBtn) {
+    redirectBtn.addEventListener("click", function () {
+      var rel = redirectBtn.getAttribute("data-path") || "go/camera";
+      note(
+        "Sending GET " +
+          rel +
+          " (synthetic 302 → products/42). Watch Network for the redirect and Location header."
+      );
+      // Default redirect: 'follow' so DevTools can show the 302 then the final product request.
+      send(trainingUrl(rel), { method: "GET" })
+        .then(function (result) {
+          note(
+            "Redirect sequence finished at status " +
+              result.res.status +
+              ". Inspect the 302 and the followed products/42 request in Network."
+          );
+        })
+        .catch(function (err) {
+          note("Redirect demo failed: " + (err && err.message ? err.message : String(err)));
+        });
+    });
+  }
+
   function readyMessage() {
-    note("Trail Supply script loaded (js/app.js). Search, sign-in, and product links generate local Network requests.");
+    note(
+      "Trail Supply script loaded (js/app.js). Search, sign-in, products, and the redirect demo generate local Network requests."
+    );
   }
 
   if ("serviceWorker" in navigator) {

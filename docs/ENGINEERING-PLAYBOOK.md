@@ -2123,3 +2123,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Lesson 4 should deepen Network-panel header reading on the existing Trail Supply responses (`Content-Type`, `Content-Length`, `Cache-Control: no-store`) rather than inventing headers the lab does not emit.
 - Keep Headers as curriculum id `headers` so the catalog entry upgrades from `future` to `available` without renumbering Lessons 5–10 shells.
 
+### Lessons Learned — HackBot Lesson 5 Status Codes and Redirects (2026-09-19)
+
+- Hands-on status codes must come from Trail Supply behavior the SW actually emits (200 search, 401 login, 404 missing product, 302 `/go/camera` → Location `/products/42`). Conceptual codes (301, 403, 500, etc.) stay explain-only.
+- Redirect teaching connects Lesson 4’s Location header to a visible 3xx → follow → final 200 sequence; keep the redirect local, deterministic, and non-exploitative.
+
