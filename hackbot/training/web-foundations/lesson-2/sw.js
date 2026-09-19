@@ -73,6 +73,11 @@ self.addEventListener("fetch", function (event) {
 
   if (method === "GET" && /\/search$/.test(path)) {
     var q = url.searchParams.get("q") || "";
+    var sort = url.searchParams.get("sort") || "";
+    var params = {};
+    url.searchParams.forEach(function (value, key) {
+      params[key] = value;
+    });
     var items = [];
     if (q.toLowerCase() === "boots") {
       items = [PRODUCTS["42"], PRODUCTS["17"]];
@@ -87,6 +92,8 @@ self.addEventListener("fetch", function (event) {
     event.respondWith(
       jsonResponse(200, {
         query: q,
+        sort: sort || null,
+        params: params,
         results: items,
         note: "Synthetic search result. Local training only."
       })

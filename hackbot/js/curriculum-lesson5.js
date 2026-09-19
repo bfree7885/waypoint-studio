@@ -403,7 +403,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect",
     completeBanner:
-      "Lesson 5 is complete. You can review steps; Lessons 6–10 are not built yet.",
+      "Lesson 5 is complete. You can review steps or continue to Lesson 6 — Parameters and User Input.",
     goal:
       "Read HTTP status codes as outcome signals, distinguish common success and error codes on Trail Supply, and follow a synthetic 302 redirect via the Location header.",
     steps: STEPS

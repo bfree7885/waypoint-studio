@@ -14,13 +14,13 @@ MockProvider concept matching (no browser): `node hackbot/scripts/training-eval-
 | Recovery strategy | Fresh branch from current `origin/main` + transplant of `hackbot/` only (not the old stacked PR chain) |
 | Development branch | `hackbot/v1-recovery` |
 | Historical pointer | `hackbot/v1-historical-lesson3` → `d03af730` |
-| Lessons implemented | **1–5** (playable) |
-| Lessons not implemented | **6–10** (catalog titles only; labeled `future`) |
+| Lessons implemented | **1–6** (playable) |
+| Lessons not implemented | **7–10** (catalog titles only; labeled `future`) |
 | Trail Supply | Synthetic local storefront + service worker under `hackbot/training/web-foundations/lesson-2/` |
 | Protocol matching fix | `MockProvider` keeps `http`/`https` tokens when normalizing `https://…` answers |
-| Next phase | Phase B3 — Lesson 6: Parameters and User Input |
+| Next phase | Phase B4 — Lesson 7: Cookies and Sessions |
 
-Do **not** claim Lessons 6–10 exist. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
+Do **not** claim Lessons 7–10 exist. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
 
 ### Visual identity
 
@@ -51,11 +51,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–5 usable) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–6 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lesson 4 teaches reading request and response headers. Lesson 5 teaches status-code families and redirects (`Location`). Lessons 6–10 are labeled **future**. Assistance Level is not auto-changed.
+Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lesson 4 teaches reading request and response headers. Lesson 5 teaches status-code families and redirects (`Location`). Lesson 6 traces user input into query parameters, request bodies, and path values. Lessons 7–10 are labeled **future**. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -144,22 +144,26 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | 3. HTTP Requests and Responses | Available |
 | 4. Headers | Available |
 | 5. Status Codes and Redirects | Available |
-| 6–10 | Future (visible, not playable) |
+| 6. Parameters and User Input | Available |
+| 7–10 | Future (visible, not playable) |
 
-Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**.
+Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**. Lesson 6 emphasizes **Observe → Compare → Reason** and **change one thing at a time**.
 
-Lessons 2–5 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, product clicks, and the redirect lab issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show:
+Lessons 2–6 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, product clicks, the redirect lab, and the parameter lab issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show:
 
-- GET `/search?q=boots` → **200** JSON
-- POST `/login` (wrong credentials) → **401** JSON
+- GET `/search?q=boots` → **200** JSON (query parameter `q`)
+- GET `/search?q=boots&sort=price` → **200** JSON (multi-parameter demo; response echoes `params`)
+- Phrase search such as `trail camera` → `q=trail%20camera` (URL encoding via the client)
+- POST `/login` (synthetic body) → **401** JSON
+- GET `/products/42` → **200** (identifier in the path)
 - GET `/products/999` (or other missing id) → **404**
 - GET `/go/camera` → **302** with `Location` → `/products/42` → **200**
 
-Response headers from the training handler include `Content-Type: application/json`, `Content-Length`, and `Cache-Control: no-store`. The Lesson 5 redirect is local-only and deterministic. No general-purpose backend. No exploitation. No redirect-abuse training.
+Response headers from the training handler include `Content-Type: application/json`, `Content-Length`, and `Cache-Control: no-store`. Redirect and parameter demos are local-only and deterministic. No general-purpose backend. No exploitation. No injection or bypass training.
 
 Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
 
-Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Each lesson’s progress is stored separately (`workspaceId::lessonId`). Lesson 5 progress id is `workspaceId::status-redirects`. Schema version stays **2**.
+Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Each lesson’s progress is stored separately (`workspaceId::lessonId`). Lesson 5 progress id is `workspaceId::status-redirects`. Lesson 6 progress id is `workspaceId::parameters`. Schema version stays **2**.
 
 ### MockProvider evaluation
 
@@ -172,7 +176,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–5 call `evaluateLearnerResponse`.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–6 call `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 

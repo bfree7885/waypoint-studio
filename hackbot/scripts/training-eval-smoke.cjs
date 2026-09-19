@@ -29,6 +29,7 @@ load("js/curriculum-lesson2.js");
 load("js/curriculum-lesson3.js");
 load("js/curriculum-lesson4.js");
 load("js/curriculum-lesson5.js");
+load("js/curriculum-lesson6.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -79,19 +80,30 @@ if (lesson5.id !== "status-redirects" || lesson5.number !== 5) {
   throw new Error("Lesson 5 should be Status Codes and Redirects with number 5");
 }
 
+var lesson6 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_6_ID);
+if (!lesson6 || lesson6.status !== "available" || lesson6.steps.length !== 13) {
+  throw new Error("Lesson 6 should be available with 13 steps");
+}
+if (!lesson6.trainingPage) {
+  throw new Error("Lesson 6 should reuse the Trail Supply training page");
+}
+if (lesson6.id !== "parameters" || lesson6.number !== 6) {
+  throw new Error("Lesson 6 should be Parameters and User Input with number 6");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 5) {
-  throw new Error("Expected 5 future lessons (6–10), got " + future.length);
+if (future.length !== 4) {
+  throw new Error("Expected 4 future lessons (7–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 6 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 6–10: " + item.number);
+  if (item.number < 7 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 7–10: " + item.number);
   }
 });
-if (Hackbot.Curriculum.getLesson("status-redirects").status !== "available") {
-  throw new Error("Status Codes catalog entry must be available, not future");
+if (Hackbot.Curriculum.getLesson("parameters").status !== "available") {
+  throw new Error("Parameters catalog entry must be available, not future");
 }
 
 function evalStep(lesson, stepId, text, attemptNumber) {
@@ -275,6 +287,49 @@ Promise.all([
   }),
   evalStep(lesson5, "l-reflect", "The rendered page looked fine, but only Network showed the 302 Location hop and the 401 on failed login.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 5 reflection is soft-graded");
+  }),
+  evalStep(lesson6, "a-input-data", "When I type a search or fill a form, that input can appear as a parameter or value in the HTTP request.").then(function (r) {
+    assert(r.verdict === "CORRECT", "input becomes data should be CORRECT");
+  }),
+  evalStep(lesson6, "b-find-q", "The path is /search and the query string has parameter q with value boots.").then(function (r) {
+    assert(r.verdict === "CORRECT", "find q should be CORRECT");
+  }),
+  evalStep(lesson6, "c-name-value", "q is the parameter name and boots is the value — the name labels the slot while the value is the data I control.").then(function (r) {
+    assert(r.verdict === "CORRECT", "name vs value should be CORRECT");
+  }),
+  evalStep(lesson6, "d-one-thing", "Change one thing at a time so only the q value changes between searches.").then(function (r) {
+    assert(r.verdict === "CORRECT", "change one thing should be CORRECT");
+  }),
+  evalStep(lesson6, "e-compare", "Path /search and name q stayed the same; the value changed with what I typed — that value is what I controlled.").then(function (r) {
+    assert(r.verdict === "CORRECT", "compare searches should be CORRECT");
+  }),
+  evalStep(lesson6, "f-encoding", "Searching trail camera showed q=trail%20camera because URLs need a safe encoding for spaces.").then(function (r) {
+    assert(r.verdict === "CORRECT", "URL encoding should be CORRECT");
+  }),
+  evalStep(lesson6, "g-multi", "Multiple parameters are separated by & — the demo has q=boots and sort=price.").then(function (r) {
+    assert(r.verdict === "CORRECT", "multi-param should be CORRECT");
+  }),
+  evalStep(lesson6, "h-body", "Login sends username and password in the POST JSON body, not in the query string like search.").then(function (r) {
+    assert(r.verdict === "CORRECT", "request body should be CORRECT");
+  }),
+  evalStep(lesson6, "i-path", "Product 42 appears in the path /products/42, which is different from a query like /products?id=42.").then(function (r) {
+    assert(r.verdict === "CORRECT", "path value should be CORRECT");
+  }),
+  evalStep(lesson6, "j-where", "Search goes into query q, login fields go into the POST body, and product 42 goes into the path.").then(function (r) {
+    assert(r.verdict === "CORRECT", "where input went should be CORRECT");
+  }),
+  evalStep(
+    lesson6,
+    "k-challenge",
+    "GET /search with parameter q=trail%20camera returned 200; a second boots search kept the same path and name q while only the value changed — that is what I controlled."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 6 challenge should be CORRECT");
+  }),
+  evalStep(lesson6, "k-challenge", "not sure").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 6 challenge should not advance");
+  }),
+  evalStep(lesson6, "m-reflect", "I was surprised the login input sat in the request body; next time I will compare query parameters and body fields in Network.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 6 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

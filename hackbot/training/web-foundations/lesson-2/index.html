@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–5. Not a live shop.">
+  <meta name="description" content="Trail Supply — synthetic local storefront for Hackbot Lessons 2–6. Not a live shop.">
   <title>Trail Supply</title>
   <link rel="stylesheet" href="css/store.css">
 </head>
@@ -28,7 +28,7 @@
   </header>
 
   <main class="store-main">
-    <p class="store-banner">Local Hackbot training page. Search, sign-in, product links, and the redirect demo generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
+    <p class="store-banner">Local Hackbot training page. Search, sign-in, product links, the redirect demo, and the multi-parameter demo generate synthetic local HTTP so you can watch them in the Network panel. Nothing is sent off this machine.</p>
 
     <section id="catalog" class="catalog" aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Field kit</h2>
@@ -54,6 +54,12 @@
         <input id="password" name="password" type="password" autocomplete="current-password" maxlength="80">
         <button type="submit">Sign in</button>
       </form>
+    </section>
+
+    <section class="param-lab" aria-labelledby="param-heading">
+      <h2 id="param-heading">Parameter lab</h2>
+      <p class="param-copy">Synthetic Lesson 6 demo. Issues a local <code>GET search?q=boots&amp;sort=price</code> so you can see two query parameters separated by <code>&amp;</code>. Not a real storefront filter.</p>
+      <button type="button" class="param-btn" id="param-demo" data-query="q=boots&amp;sort=price">Search boots sorted</button>
     </section>
 
     <section class="redirect-lab" aria-labelledby="redirect-heading">

@@ -2128,3 +2128,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Hands-on status codes must come from Trail Supply behavior the SW actually emits (200 search, 401 login, 404 missing product, 302 `/go/camera` → Location `/products/42`). Conceptual codes (301, 403, 500, etc.) stay explain-only.
 - Redirect teaching connects Lesson 4’s Location header to a visible 3xx → follow → final 200 sequence; keep the redirect local, deterministic, and non-exploitative.
 
+### Lessons Learned — HackBot Lesson 6 Parameters and User Input (2026-09-19)
+
+- Lesson 6 shifts from seeing traffic to tracing input placement (query `q`, POST body, path `/products/42`) with change-one-thing comparison — still observational, never injection/fuzzing.
+- A minimal multi-param demo (`search?q=boots&sort=price` + params echo) teaches `&` without inventing a real filter engine.
+

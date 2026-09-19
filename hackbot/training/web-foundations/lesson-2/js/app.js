@@ -109,9 +109,24 @@
     });
   }
 
+  var paramBtn = document.getElementById("param-demo");
+  if (paramBtn) {
+    paramBtn.addEventListener("click", function () {
+      var query = paramBtn.getAttribute("data-query") || "q=boots&sort=price";
+      note(
+        "Sending GET search?" +
+          query +
+          " (synthetic multi-parameter demo). Watch Network for q and sort."
+      );
+      send(trainingUrl("search?" + query), { method: "GET" }).catch(function (err) {
+        note("Parameter demo failed: " + (err && err.message ? err.message : String(err)));
+      });
+    });
+  }
+
   function readyMessage() {
     note(
-      "Trail Supply script loaded (js/app.js). Search, sign-in, products, and the redirect demo generate local Network requests."
+      "Trail Supply script loaded (js/app.js). Search, sign-in, products, redirect, and parameter demos generate local Network requests."
     );
   }
 
