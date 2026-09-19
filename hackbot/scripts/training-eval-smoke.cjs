@@ -27,6 +27,7 @@ function load(rel) {
 load("js/models.js");
 load("js/curriculum-lesson2.js");
 load("js/curriculum-lesson3.js");
+load("js/curriculum-lesson4.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -55,17 +56,31 @@ if (!lesson3.trainingPage) {
   throw new Error("Lesson 3 should reuse the Trail Supply training page");
 }
 
+var lesson4 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_4_ID);
+if (!lesson4 || lesson4.status !== "available" || lesson4.steps.length !== 11) {
+  throw new Error("Lesson 4 should be available with 11 steps");
+}
+if (!lesson4.trainingPage) {
+  throw new Error("Lesson 4 should reuse the Trail Supply training page");
+}
+if (lesson4.id !== "headers" || lesson4.number !== 4) {
+  throw new Error("Lesson 4 should be Headers with number 4");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 7) {
-  throw new Error("Expected 7 future lessons (4–10), got " + future.length);
+if (future.length !== 6) {
+  throw new Error("Expected 6 future lessons (5–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 4 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 4–10: " + item.number);
+  if (item.number < 5 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 5–10: " + item.number);
   }
 });
+if (Hackbot.Curriculum.getLesson("headers").status !== "available") {
+  throw new Error("Headers catalog entry must be available, not future");
+}
 
 function evalStep(lesson, stepId, text, attemptNumber) {
   var step = null;
@@ -171,6 +186,43 @@ Promise.all([
   }),
   evalStep(lesson3, "k-reflect", "Network showed GET /search?q=boots and a 401 JSON body that the shop page never printed.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 3 reflection is soft-graded");
+  }),
+  evalStep(lesson4, "a-what", "Headers are metadata about the request or response; the body is the JSON payload inside.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "headers vs body definition should be CORRECT");
+  }),
+  evalStep(lesson4, "b-locate", "I opened Network, clicked the search request for boots, and found Request Headers and Response Headers.").then(function (r) {
+    assert(r.verdict === "CORRECT", "locating header panels should be CORRECT");
+  }),
+  evalStep(lesson4, "c-name-value", "Content-Type is application/json, Cache-Control is no-store, Host is 127.0.0.1 — name before the colon, value after.").then(function (r) {
+    assert(r.verdict === "CORRECT", "name/value structure should be CORRECT");
+  }),
+  evalStep(lesson4, "d-request", "Host names the server, User-Agent describes the browser client, Accept says what content the client prefers.").then(function (r) {
+    assert(r.verdict === "CORRECT", "request headers should be CORRECT");
+  }),
+  evalStep(lesson4, "e-req-ctype", "POST /login has Content-Type application/json so the server can parse the JSON body.").then(function (r) {
+    assert(r.verdict === "CORRECT", "login Content-Type should be CORRECT");
+  }),
+  evalStep(lesson4, "f-response", "Content-Type is application/json, Content-Length gives the size in bytes, Cache-Control is no-store.").then(function (r) {
+    assert(r.verdict === "CORRECT", "response headers should be CORRECT");
+  }),
+  evalStep(lesson4, "g-vs-body", "Headers are metadata like Content-Type; the body is the JSON results or error payload — different from the headers.").then(function (r) {
+    assert(r.verdict === "CORRECT", "headers vs body on live traffic should be CORRECT");
+  }),
+  evalStep(lesson4, "h-why", "Researchers inspect headers to understand what the client sent and what the server returned, including content types, before changing anything.").then(function (r) {
+    assert(r.verdict === "CORRECT", "investigator why should be CORRECT");
+  }),
+  evalStep(
+    lesson4,
+    "i-challenge",
+    "Request Host names the server; response Content-Type application/json and Cache-Control no-store; headers are metadata vs JSON body; researchers observe to understand the exchange."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 4 challenge should be CORRECT");
+  }),
+  evalStep(lesson4, "i-challenge", "not sure").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 4 challenge should not advance");
+  }),
+  evalStep(lesson4, "k-reflect", "The page never showed Cache-Control no-store or Content-Type application/json; those headers only appeared in Network.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 4 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

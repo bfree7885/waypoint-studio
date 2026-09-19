@@ -14,13 +14,13 @@ MockProvider concept matching (no browser): `node hackbot/scripts/training-eval-
 | Recovery strategy | Fresh branch from current `origin/main` + transplant of `hackbot/` only (not the old stacked PR chain) |
 | Development branch | `hackbot/v1-recovery` |
 | Historical pointer | `hackbot/v1-historical-lesson3` → `d03af730` |
-| Lessons implemented | **1–3** (playable) |
-| Lessons not implemented | **4–10** (catalog titles only; labeled `future`) |
+| Lessons implemented | **1–4** (playable) |
+| Lessons not implemented | **5–10** (catalog titles only; labeled `future`) |
 | Trail Supply | Synthetic local storefront + service worker under `hackbot/training/web-foundations/lesson-2/` |
 | Protocol matching fix | `MockProvider` keeps `http`/`https` tokens when normalizing `https://…` answers |
-| Next phase | Phase B — curriculum Lessons 4–9 |
+| Next phase | Phase B2 — curriculum Lesson 5 (Status Codes and Redirects) |
 
-Do **not** claim Lesson 4 exists. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
+Do **not** claim Lessons 5–10 exist. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
 
 ### Visual identity
 
@@ -51,11 +51,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–3 usable) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–4 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lessons 4–10 are labeled **future**. Assistance Level is not auto-changed.
+Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lesson 4 teaches reading request and response headers. Lessons 5–10 are labeled **future**. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -142,11 +142,12 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | 1. How a Web Request Works | Available |
 | 2. Inspecting a Web Page | Available |
 | 3. HTTP Requests and Responses | Available |
-| 4–10 | Future (visible, not playable) |
+| 4. Headers | Available |
+| 5–10 | Future (visible, not playable) |
 
 Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**.
 
-Lessons 2–3 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, and product clicks issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show GET `/search?q=boots`, POST `/login` (synthetic 401 JSON), and GET `/products/42`. No general-purpose backend. No exploitation.
+Lessons 2–4 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, and product clicks issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show GET `/search?q=boots`, POST `/login` (synthetic 401 JSON), and GET `/products/42`. Response headers from the training handler include `Content-Type: application/json`, `Content-Length`, and `Cache-Control: no-store`. No general-purpose backend. No exploitation.
 
 Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
 
@@ -163,7 +164,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–3 call `evaluateLearnerResponse`.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–4 call `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 

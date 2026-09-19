@@ -364,7 +364,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Observe before modify",
     completeBanner:
-      "Lesson 3 is complete. You can review steps; Lessons 4–10 are not built yet.",
+      "Lesson 3 is complete. You can review steps or continue to Lesson 4 — Headers.",
     goal: "Watch Trail Supply generate local GET and POST traffic in the Network panel, and read method, path, parameters, headers, status, and body as pairs.",
     steps: STEPS
   };

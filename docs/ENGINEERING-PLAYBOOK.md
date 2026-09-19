@@ -2118,3 +2118,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Keep HackBot’s green near-black workbench identity separate from Studio cyan; public Studio can show screenshots later without hosting the workbench.
 - Protocol normalize must keep `http`/`https` tokens (`/(https?):\/\//` → `$1 `) or Lesson 1 URL answers that include `https://` fail matching.
 
+### Lessons Learned — HackBot Lesson 4 Headers (2026-09-19)
+
+- Lesson 4 should deepen Network-panel header reading on the existing Trail Supply responses (`Content-Type`, `Content-Length`, `Cache-Control: no-store`) rather than inventing headers the lab does not emit.
+- Keep Headers as curriculum id `headers` so the catalog entry upgrades from `future` to `available` without renumbering Lessons 5–10 shells.
+
