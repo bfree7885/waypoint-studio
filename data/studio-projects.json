@@ -1,0 +1,103 @@
+{
+  "version": "2.0.0",
+  "studio": {
+    "name": "Waypoint Studio",
+    "tagline": "Independent software, tools & experiments.",
+    "positioning": "I had an idea, so I built it."
+  },
+  "statusLabels": {
+    "available": "AVAILABLE",
+    "building": "BUILDING",
+    "experiment": "EXPERIMENT",
+    "personal": "PERSONAL PROJECT",
+    "open-source": "OPEN SOURCE",
+    "archived": "ARCHIVED"
+  },
+  "projects": [
+    {
+      "id": "dashboard",
+      "slug": "dashboard",
+      "title": "Dashboard",
+      "description": "Outdoor conditions and attention tools — weather, light, and what is worth noticing, labeled honestly.",
+      "category": "Product",
+      "status": "available",
+      "href": "apps/dashboard/",
+      "image": "assets/images/home/hero.jpg",
+      "imageAlt": "Mountain light over a quiet landscape",
+      "featured": true
+    },
+    {
+      "id": "shed-hunting",
+      "slug": "shed-hunting",
+      "title": "Shed Hunting",
+      "description": "Should I go shed hunting today? Field map and search guidance on ShedHunting.org — powered by Waypoint.",
+      "category": "Product",
+      "status": "available",
+      "href": "https://shedhunting.org/",
+      "external": true,
+      "image": "assets/images/identity/placeholders/sheds-forest.svg",
+      "imageAlt": "Forest canopy placeholder for Shed Hunting",
+      "featured": true
+    },
+    {
+      "id": "waypoint-deck",
+      "slug": "waypoint-deck",
+      "title": "Waypoint Deck",
+      "description": "A local-first Linux field computer for offline maps, navigation, and field tools. Early-stage — direction is public.",
+      "category": "Hardware / OS",
+      "status": "building",
+      "href": "side-trails/waypoint-deck/",
+      "image": "assets/images/side-trails/waypoint-deck.svg",
+      "imageAlt": "Waypoint Deck mark",
+      "featured": true
+    },
+    {
+      "id": "terrainbound",
+      "slug": "terrainbound",
+      "title": "TerrainBound",
+      "description": "An exploration game about learning to read the Earth — walk the land, ask questions, keep a field tablet.",
+      "category": "Creative software",
+      "status": "building",
+      "href": "terrainbound/",
+      "image": "assets/images/featured/fog-forest.jpg",
+      "imageAlt": "Fog through a forest canopy",
+      "featured": true
+    },
+    {
+      "id": "articles",
+      "slug": "articles",
+      "title": "Articles",
+      "description": "Field reading and visual stories from Waypoint Publishing — including Deep Forest Dispatch.",
+      "category": "Publishing",
+      "status": "available",
+      "href": "articles/",
+      "image": "assets/images/scenes/old-growth-cedar.jpg",
+      "imageAlt": "Old-growth cedar forest",
+      "featured": true
+    },
+    {
+      "id": "scenes",
+      "slug": "scenes",
+      "title": "Scenes",
+      "description": "Photography tools and Living Scenes experiments — craft, review, and visual storytelling tech. Not a commercial product line.",
+      "category": "Creative technology",
+      "status": "experiment",
+      "href": "apps/scenes/",
+      "image": "apps/scenes/assets/media/hero.jpg",
+      "imageAlt": "Boardwalk through sun-dappled forest",
+      "featured": true
+    },
+    {
+      "id": "global-watch",
+      "slug": "global-watch",
+      "title": "Global Watch",
+      "description": "Standalone open-source intelligence field test — change detection and evidence correlation. Not a Studio platform product.",
+      "category": "Field test",
+      "status": "experiment",
+      "href": "side-trails/global-watch/",
+      "image": "assets/images/side-trails/global-watch.svg",
+      "imageAlt": "Global Watch mark",
+      "featured": true
+    }
+  ]
+}

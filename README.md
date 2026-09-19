@@ -1,24 +1,26 @@
 # Waypoint Studio
 
-**Observe. Discover. Understand.**
+**Independent software, tools & experiments.**
 
-*Capture what you find. Learn why it matters.*
+*Ideas explored through software—some useful, some creative, some simply worth building.*
 
-Outdoor tools for attention in the field — a coherent Studio, not a pile of unrelated apps.
+Waypoint Studio is a place for making things. Some projects become useful tools or finished products. Others remain experiments, prototypes, or personal projects.
 
 ## Canonical product direction
 
 **Read first:** [`docs/PRODUCT-DIRECTION.md`](docs/PRODUCT-DIRECTION.md)
 
-| Experience | Job |
-|------------|-----|
-| **Dashboard** | Discover — what’s interesting outdoors / worth exploring |
-| **Scenes** | Explore & understand — craft, stories, articles & video |
-| **Sheds** | Go — specialized shed-hunting field map & habitat tools |
+| Project | Role (examples) |
+|---------|-----------------|
+| **Dashboard** | Outdoor conditions & attention tools |
+| **Shed Hunting** | Dedicated shed-hunting product (ShedHunting.org) |
+| **Waypoint Deck** | Local-first Linux field computer (building) |
+| **TerrainBound** | Creative / educational exploration game (building) |
+| **Publishing** | Articles & Deep Forest Dispatch |
+| **Scenes** | Creative-technology experiment |
+| **Global Watch** | Standalone OSINT field test (experiment) |
 
-**Publishing** (articles, Deep Forest Dispatch, content engine) is shared Studio infrastructure, not a fourth consumer product.
-
-**Paused / retired:** Fieldry (paused), OpenRoad PA (retired), Savant (not a priority). Cyber / Global Signals are not standalone Studio apps (research may feed a separate **Waypoint Deck** project later).
+Future projects can be added to the studio catalog when they exist.
 
 ## Run locally
 
@@ -30,26 +32,36 @@ python3 -m http.server 8080
 
 | URL | What you see |
 |-----|----------------|
-| [http://localhost:8080/](http://localhost:8080/) | Studio front door |
-| [http://localhost:8080/apps/dashboard/](http://localhost:8080/apps/dashboard/) | **Dashboard** |
-| [https://shedhunting.org/](https://shedhunting.org/) | **Shed Hunting** (canonical public product) |
-| [http://localhost:8080/apps/shed-hunting/map/?local=1](http://localhost:8080/apps/shed-hunting/map/?local=1) | Local Shed Hunting map (export / development) |
-| [http://localhost:8080/articles/](http://localhost:8080/articles/) | Articles (publishing) |
-| [http://localhost:8080/deep-forest-dispatch/](http://localhost:8080/deep-forest-dispatch/) | Visual Earth stories (publishing) |
+| [http://localhost:8080/](http://localhost:8080/) | Studio front door / project gallery |
+| [http://localhost:8080/apps/dashboard/](http://localhost:8080/apps/dashboard/) | Dashboard |
+| [https://shedhunting.org/](https://shedhunting.org/) | Shed Hunting |
+| [http://localhost:8080/side-trails/waypoint-deck/](http://localhost:8080/side-trails/waypoint-deck/) | Waypoint Deck |
+| [http://localhost:8080/terrainbound/](http://localhost:8080/terrainbound/) | TerrainBound |
+| [http://localhost:8080/articles/](http://localhost:8080/articles/) | Articles |
+| [http://localhost:8080/apps/scenes/](http://localhost:8080/apps/scenes/) | Scenes (experiment) |
+
+## Studio project catalog
+
+Public gallery entries are data-driven from [`data/studio-projects.json`](data/studio-projects.json).
+
+To add a future project, add a catalog row (title, slug, description, image, status, category, href) — do not rebuild homepage markup by hand.
+
+Statuses: `available` · `building` · `experiment` · `personal` · `open-source` · `archived`
 
 ## Repository structure (simplified)
 
 ```
 /
-├── index.html                 # Studio front door
-├── apps/dashboard/            # Discover
-├── apps/scenes/               # Explore & understand
-├── apps/shed-hunting/         # Field exploration (Sheds)
+├── index.html                 # Studio front door (maker gallery)
+├── data/studio-projects.json  # Project/status catalog
+├── apps/dashboard/            # Dashboard
+├── apps/scenes/               # Scenes experiments
+├── apps/shed-hunting/         # Shed Hunting engines (canonical host is shedhunting.org)
 ├── articles/                  # Publishing entry
-├── deep-forest-dispatch/      # Owned visual stories
-├── design-system/             # Shared WDS + platform
+├── terrainbound/              # TerrainBound game
+├── design-system/             # Shared WDS + Studio V2 shell tokens
 ├── docs/PRODUCT-DIRECTION.md  # Canonical strategy
-└── side-trails/               # Archived / research (not flagships)
+└── side-trails/               # Deck, Global Watch bridges, unlisted paths
 ```
 
 ## Governance
@@ -60,13 +72,9 @@ python3 -m http.server 8080
 | Product standards | [`docs/PRODUCT_STANDARDS.md`](docs/PRODUCT_STANDARDS.md) |
 | App surface architecture | [`docs/APP-SURFACE-ARCHITECTURE.md`](docs/APP-SURFACE-ARCHITECTURE.md) |
 | Engineering playbook | [`docs/ENGINEERING-PLAYBOOK.md`](docs/ENGINEERING-PLAYBOOK.md) |
-| Content / publishing engine | [`docs/WAYPOINT-CONTENT-ENGINE.md`](docs/WAYPOINT-CONTENT-ENGINE.md) |
-| Constitution | [`docs/WAYPOINT-STUDIO-CONSTITUTION.md`](docs/WAYPOINT-STUDIO-CONSTITUTION.md) |
-
-Older roadmaps that describe a “four-instrument” ForageCast/Fieldry portfolio are **historical** — use `PRODUCT-DIRECTION.md` instead.
 
 ## Requirements
 
-- Modern browser  
-- No build step for static surfaces  
+- Modern browser
+- No build step for static Studio surfaces
 - `python3 -m http.server` or any static file server from repo root

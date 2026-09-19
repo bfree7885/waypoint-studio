@@ -1,7 +1,7 @@
 # Waypoint Studio — Product Direction (canonical)
 
 **Status:** Canonical · supersedes conflicting portfolio lists in older docs  
-**Last updated:** 2026-09-03  
+**Last updated:** 2026-09-18  
 **Audience:** Owners, engineers, and coding agents
 
 When documents disagree, **this file wins** for what Waypoint is building now.
@@ -12,29 +12,31 @@ Related: [`PRODUCT_STANDARDS.md`](PRODUCT_STANDARDS.md) (feel / trust / privacy)
 
 ## Mission
 
-**Observe. Discover. Understand.**
+**Independent software, tools & experiments.**
 
-*Capture what you find. Learn why it matters.*
+*Ideas explored through software—some useful, some creative, some simply worth building.*
 
-Waypoint helps curious people pay attention to landscapes, nature, geography, environmental phenomena, and the physical world — without becoming a social network, LMS, newsroom, or engagement platform.
+Waypoint Studio is an independent maker / creative-technology studio — a digital workshop. Projects may be useful products, personal tools, experiments, educational software, open source, or unfinished ideas.
+
+Do **not** imply that every Waypoint project integrates with every other project, shares one account/platform, belongs to one software ecosystem, needs a business model, or is part of one unified product suite. Do not invent integrations to create artificial cohesion. The cohesion is the maker/studio itself.
 
 ---
 
 ## Authoritative public portfolio
 
-Do **not** restore the retired peer architecture of **Dashboard + Scenes + Sheds** as three equal Studio applications.
+Do **not** restore a forced “everything integrates” product suite. Do **not** restore the retired peer architecture of **Dashboard + Scenes + Sheds** as three equal commercial Studio applications.
 
-There are **four** active public Waypoint efforts:
+Public work is presented as a **project gallery** (`data/studio-projects.json`) with understated statuses (`available`, `building`, `experiment`, `personal`, `open-source`, `archived`).
 
-### 1. Waypoint Studio (web) = Dashboard
+Active public / reachable efforts include:
 
-**Waypoint Studio’s core public product is Dashboard.**
+### 1. Dashboard (Studio web product)
 
 | Experience | Job |
 |------------|-----|
-| **Dashboard** | The Studio itself. Ambient situational awareness: what is happening, what is changing, what is worth attention. Conditions, weather, astronomy/light, outdoor opportunities — interpretation rather than a raw dump. Implementation: `docs/DASHBOARD-DISCOVER.md`. |
+| **Dashboard** | Outdoor conditions and attention tools: what is happening, what is changing, what is worth noticing — labeled honestly. Implementation: `docs/DASHBOARD-DISCOVER.md`. |
 
-The site homepage (`/`) remains the Studio **front door**. It must not redirect to `/apps/dashboard/`. It should present Dashboard as the Studio product — not a trio of equal apps.
+The site homepage (`/`) remains the Studio **front door** and maker gallery. It must not redirect to `/apps/dashboard/`. Dashboard is one project in the workshop — not the definition of the entire Studio.
 
 ### 2. Shed Hunting (public sibling destination)
 
@@ -86,20 +88,19 @@ Editorial layer — useful outdoor / environmental / geographic storytelling. **
 
 ---
 
-## Scenes — retained, unpublished
+## Scenes — experiment / creative technology
 
-**Scenes stays intact but unpublished.** Preserve all Scenes code, routes, models, assets, experiments, and related photography technology. Internal photography + publishing joins: `docs/SCENES-PUBLISHING.md`.
+**Scenes stays intact.** Preserve all Scenes code, routes, models, assets, experiments, and related photography technology. Internal photography + publishing joins: `docs/SCENES-PUBLISHING.md`.
 
-Remove Scenes from:
+Scenes may appear proudly on the Studio homepage as an **EXPERIMENT** / creative-technology project. It does **not** need a subscription model, commercial packaging, or integrations with other Waypoint projects.
 
-- primary public navigation
-- homepage active-product presentation
-- About / Support active-product architecture
-- sitemap
-- Dashboard public CTAs / deepeners
-- other obvious public product promotion
+Still do **not**:
 
-Keep URLs working. Do **not** delete Scenes. Do **not** 404 it. Apply `noindex` / `robots` Disallow so it is absent from normal public discovery.
+- add Scenes to primary public navigation as a peer product
+- claim Scenes is a finished commercial product line
+- delete Scenes, 404 it, or force it into a fake suite
+
+Keep URLs working. The public Scenes hub (`/apps/scenes/`) is indexable as an EXPERIMENT. Tool surfaces beneath Scenes (Photo Coach, Scene Builder, Living Scenes tools, etc.) remain `noindex` / robots-Disallow so internal craft pages stay undiscovered.
 
 ---
 
