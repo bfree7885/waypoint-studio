@@ -65,7 +65,15 @@ function recordMissing(fromRel, ref, abs) {
 
 function walk(dir, pred, out = []) {
   for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (ent.name === "node_modules" || ent.name === ".git" || ent.name === "audits") continue;
+    // HackBot is a local/private workbench, not a public Studio production surface.
+    if (
+      ent.name === "node_modules" ||
+      ent.name === ".git" ||
+      ent.name === "audits" ||
+      ent.name === "hackbot"
+    ) {
+      continue;
+    }
     const p = path.join(dir, ent.name);
     if (ent.isDirectory()) walk(p, pred, out);
     else if (pred(ent.name, p)) out.push(p);

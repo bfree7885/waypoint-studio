@@ -52,7 +52,9 @@ function walkHtml(dir, files = []) {
       ent.name === "node_modules" ||
       ent.name === ".git" ||
       ent.name === "chrome-profile" ||
-      ent.name.startsWith("chrome-profile-")
+      ent.name.startsWith("chrome-profile-") ||
+      // HackBot is local/private — synthetic lab hrefs are not Studio routes.
+      ent.name === "hackbot"
     ) {
       continue;
     }

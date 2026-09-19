@@ -2111,3 +2111,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dark Sky can be playable without being the next trail after Cedar Hollow. `availableAfter` opens a later topic as an available region; successor unlocks the next course-order region only when that region is playable. Atlas copy must say Topic 11, not “you finished Topics 2–10.”
 - `atlasResumeRegion` must persist Dark Sky only when it is accessible. Review-only `currentRegion: dark-sky-basin` still heals to Cedar Hollow so existing hollow saves are not stolen.
 
+### Lessons Learned — HackBot V1 Phase A recovery (2026-09-19)
+
+- Authoritative historical HackBot was `d03af730` (Lesson 3), not Lesson 4. Lessons 4–10 were title shells only.
+- Do not rebase/merge the old stacked PRs (#83–#87) onto current Studio. Transplant `hackbot/` onto current `origin/main` so Studio V2 stays intact.
+- Keep HackBot’s green near-black workbench identity separate from Studio cyan; public Studio can show screenshots later without hosting the workbench.
+- Protocol normalize must keep `http`/`https` tokens (`/(https?):\/\//` → `$1 `) or Lesson 1 URL answers that include `https://` fail matching.
+
