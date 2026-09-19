@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Sep 2026 15:21:26 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 02:02:15 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -25,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>COSI Telescope Comes Together</title>
+    <link>https://www.nasa.gov/image-detail/cosi-2026july-01/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cosi-2026july-01/</guid>
+    <pubDate>Fri, 18 Sep 2026 15:46:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: UC Berkeley engineers and managers watch as the COSI (Compton Spectrometer and Imager) detector assembly is slowly raised from a table in this July 8, 2026, image.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cosi-2026july-01/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -208,24 +226,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
-    <link>https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</guid>
-    <pubDate>Fri, 28 Aug 2026 22:24:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: President Donald J. Trump awarded NASA astronauts Victor Glover and Christina Koch, CSA (Canadian Space Agency) astronaut Jeremy Hansen, and NASA astronaut Reid Wiseman with the Congressional Space Medal of Honor on Aug. 28, 2026, at NASA’s Johnson Space Center in Houston.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Forms of aurora: Arcs, curtains, coronas and more</title>
     <link>https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</guid>
@@ -333,6 +333,24 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
+    <link>https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</guid>
+    <pubDate>Fri, 28 Aug 2026 22:24:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: President Donald J. Trump awarded NASA astronauts Victor Glover and Christina Koch, CSA (Canadian Space Agency) astronaut Jeremy Hansen, and NASA astronaut Reid Wiseman with the Congressional Space Medal of Honor on Aug. 28, 2026, at NASA’s Johnson Space Center in Houston.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Civil Servants Sworn in at NASA Ames</title>

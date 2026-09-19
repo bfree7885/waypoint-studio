@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Sep 2026 15:21:26 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 19 Sep 2026 02:02:15 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>Fall color starting to pop in the Adirondacks</title>
-    <link>https://www.adirondackexplorer.org/environment/fall-foliage-report-sept-12-22/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/fall-foliage-report-sept-12-22/</guid>
-    <pubDate>Wed, 16 Sep 2026 18:41:11 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A map of color changes for the week of Sept. 16-22. Photo courtesy of I LOVE NY. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/1160x740_Week1_MapCMSDownload_58822f74-d846-40e3-9056-d580bd3b0818.png?fit=780%2C498&amp;ssl=1&quot; /&gt; I LOVE NY&apos;s Fall Foliage Report provides regular updates on seasonal color changes throughout the region
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/fall-foliage-report-sept-12-22/</description>
-    <category>Forests and Plants</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
   <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
@@ -43,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>COSI Telescope Comes Together</title>
+    <link>https://www.nasa.gov/image-detail/cosi-2026july-01/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cosi-2026july-01/</guid>
+    <pubDate>Fri, 18 Sep 2026 15:46:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: UC Berkeley engineers and managers watch as the COSI (Compton Spectrometer and Imager) detector assembly is slowly raised from a table in this July 8, 2026, image.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cosi-2026july-01/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -100,22 +100,23 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Chandra Spots Galactic Gem</title>
-    <link>https://www.nasa.gov/image-detail/galaxies-iizw096/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-iizw096/</guid>
-    <pubDate>Fri, 11 Sep 2026 17:22:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Saving Maine&apos;s Eelgrass Meadows</title>
+    <link>https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</guid>
+    <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: Galaxies are like cosmic gems, each with characteristics including size and shape that make them distinct. A gallery from NASA’s Chandra X-ray Observatory and other telescopes displays a collection of galactic images that showcase this variety.
+Summary: Maine’s eelgrass meadows may lie beneath the waves, but their value reaches far beyond the seafloor. These underwater habitats shelter fish and wildlife, improve water quality, and protect coastal communities. As eelgrass declines, the Coastal Program and conservation partners are using drones and
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-iizw096/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+Read the original article at the publisher: https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Nearly Half of U.S. Bird Migration Hotspots Are in Cities—Here&apos;s Why That Matters</title>
@@ -136,25 +137,6 @@ Read the original article at the publisher: https://www.audubon.org/magazine/nea
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Saving Maine&apos;s Eelgrass Meadows</title>
-    <link>https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</guid>
-    <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Maine’s eelgrass meadows may lie beneath the waves, but their value reaches far beyond the seafloor. These underwater habitats shelter fish and wildlife, improve water quality, and protect coastal communities. As eelgrass declines, the Coastal Program and conservation partners are using drones and
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-09/saving-maines-eelgrass-meadows</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>New Tracking Data Uncovers Sandwich Tern Migration Mysteries</title>
     <link>https://www.audubon.org/north-carolina/news/new-tracking-data-uncovers-sandwich-tern-migration-mysteries</link>
     <guid isPermaLink="true">https://www.audubon.org/north-carolina/news/new-tracking-data-uncovers-sandwich-tern-migration-mysteries</guid>
@@ -172,6 +154,25 @@ Read the original article at the publisher: https://www.audubon.org/north-caroli
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Site of failed Tupper Lake project sells for $9.9M</title>
+    <link>https://www.adirondackexplorer.org/communities/adirondack-club-resort-land-sells-for-10-million/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-club-resort-land-sells-for-10-million/</guid>
+    <pubDate>Fri, 18 Sep 2026 22:33:52 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A view of the Adirondack Club and Resort property in Tupper Lake. Explorer file photo by Nancie Battaglia. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2018/04/nbACRtup-1217.jpg?fit=600%2C400&amp;ssl=1&quot; /&gt; Investor tied to property is official owner of 5,800 acres formerly slated for the Adirondack Club and Resort project
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-club-resort-land-sells-for-10-million/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Should the former ACR land in Tupper Lake be used for development?</title>
@@ -231,25 +232,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Event: New York’s 30×30 goals and the role of the Adirondacks</title>
-    <link>https://www.adirondackexplorer.org/environment/event-new-yorks-30x30-goals-and-the-role-of-the-adirondacks/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/event-new-yorks-30x30-goals-and-the-role-of-the-adirondacks/</guid>
-    <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: What role will the Adirondacks play in New York’s goal to protect 30% of the state’s lands and waters by 2030? Explorer file photo. &quot; data-large-file=&quot;https://www.adirondackexplorer.org/wp-content/uploads/2026/09/e1d52f83-0237-4d3b-a7c4-22e31a4d9c1e.jpg@responsive-2400-1200x600.avif&quot; /&gt; Join Adirondack Explorer for a panel discussion about New York&apos;s goal to protect 30% of the state&apos;s lands and waters by 2030
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/event-new-yorks-30x30-goals-and-the-role-of-the-adirondacks/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -284,6 +266,24 @@ Read the original article at the publisher: https://www.noaa.gov/stories/knockin
     <category>Outdoor Safety</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Chandra Spots Galactic Gem</title>
+    <link>https://www.nasa.gov/image-detail/galaxies-iizw096/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-iizw096/</guid>
+    <pubDate>Fri, 11 Sep 2026 17:22:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Galaxies are like cosmic gems, each with characteristics including size and shape that make them distinct. A gallery from NASA’s Chandra X-ray Observatory and other telescopes displays a collection of galactic images that showcase this variety.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-iizw096/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Dust and Water in Sagittarius A*</title>
@@ -394,24 +394,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
-    <link>https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</guid>
-    <pubDate>Fri, 28 Aug 2026 22:24:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: President Donald J. Trump awarded NASA astronauts Victor Glover and Christina Koch, CSA (Canadian Space Agency) astronaut Jeremy Hansen, and NASA astronaut Reid Wiseman with the Congressional Space Medal of Honor on Aug. 28, 2026, at NASA’s Johnson Space Center in Houston.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Forms of aurora: Arcs, curtains, coronas and more</title>
     <link>https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</guid>
@@ -500,25 +482,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-09/re
     <category>Wildlife</category>
     <category>Conservation</category>
     <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Interior Finalizes Streamlined Process for Migratory Game Bird Hunting Seasons</title>
-    <link>https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</guid>
-    <pubDate>Thu, 27 Aug 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: WASHINGTON — The Department of the Interior today announced the U.S. Fish and Wildlife Service is finalizing a streamlined process for authorizing seasonal migratory game bird hunting, reducing unnecessary federal rulemaking while providing greater predictability for states, Tribes and hunters.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-08/interior-finalizes-streamlined-process-migratory-game-bird-hunting-seasons</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
   </item>
@@ -613,6 +576,44 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>The myths and legends of Split Rock: A re-examination of 3 historical claims</title>
+    <link>https://www.adirondackexplorer.org/communities/history/the-myths-and-legends-of-split-rock-a-re-examination-of-3-historical-claims/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/the-myths-and-legends-of-split-rock-a-re-examination-of-3-historical-claims/</guid>
+    <pubDate>Fri, 18 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Split Rock marker. Photo courtesy of John Sasso. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Fig1_Split-Rock-Historic-Marker-scaled.jpg?fit=780%2C439&amp;ssl=1&quot; /&gt; The history of Split Rock on Lake Champlain is well documented, but how accurate are the various accounts?
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/the-myths-and-legends-of-split-rock-a-re-examination-of-3-historical-claims/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Enjoying a strong fall harvest and watching the 90-Miler canoe race</title>
+    <link>https://www.adirondackexplorer.org/communities/enjoying-a-strong-fall-harvest-and-watching-the-90-miler-canoe-race/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/enjoying-a-strong-fall-harvest-and-watching-the-90-miler-canoe-race/</guid>
+    <pubDate>Fri, 18 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: An eight-person canoe getting to the starting line. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/P9112373-1-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Gary Lee joined the large crowd watching the 90-miler canoe race in Old Forge and enjoyed a bountiful harvest from his small garden
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/enjoying-a-strong-fall-harvest-and-watching-the-90-miler-canoe-race/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Climbing St. Regis Mt., ‘Queen of the Northern Peaks’</title>
     <link>https://www.adirondackexplorer.org/recreation/hiking/climbing-st-regis-mt-queen-of-the-northern-peaks/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/climbing-st-regis-mt-queen-of-the-northern-peaks/</guid>
@@ -649,43 +650,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/s
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Fly of the Week: Magog Smelt</title>
-    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-magog-smelt/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-magog-smelt/</guid>
-    <pubDate>Thu, 17 Sep 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Fly of the Week: Magog Smelt. Magog Smelt tied and photographed by Geoff Schaake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Magaog-Smelt-Tied-and-Photographed-by-Geoff-Schaake.jpg?fit=780%2C650&amp;ssl=1&quot; /&gt; This popular pattern help with a trout and salmon catch.
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-magog-smelt/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Educating the Future: AmeriCorps Help Build the Next Generation of Conservationist at Ohio Centers</title>
-    <link>https://www.audubon.org/great-lakes/news/educating-future-americorps-help-build-next-generation-of-conservationist-ohio</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-lakes/news/educating-future-americorps-help-build-next-generation-of-conservationist-ohio</guid>
-    <pubDate>Wed, 16 Sep 2026 19:10:58 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: At Audubon, conservation is more than protecting birds and habitats. It&apos;s also about inspiring and empowering the next generation of conservationists who will care for our communities, lead...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/great-lakes/news/educating-future-americorps-help-build-next-generation-of-conservationist-ohio</description>
-    <category>Birds</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Communities, Audubon Create Resilience Road Map in Cape Romain</title>
@@ -726,6 +690,24 @@ Read the original article at the publisher: https://www.audubon.org/north-caroli
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>NASA&apos;s Artemis II Crew Receives Congressional Space Medal of Honor</title>
+    <link>https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</guid>
+    <pubDate>Fri, 28 Aug 2026 22:24:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: President Donald J. Trump awarded NASA astronauts Victor Glover and Christina Koch, CSA (Canadian Space Agency) astronaut Jeremy Hansen, and NASA astronaut Reid Wiseman with the Congressional Space Medal of Honor on Aug. 28, 2026, at NASA’s Johnson Space Center in Houston.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20260828-120552-jk1-3999-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Civil Servants Sworn in at NASA Ames</title>
     <link>https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</guid>
@@ -738,6 +720,24 @@ Summary: New civil servants and guests pose for a group photo with NASA and Cent
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/nasa-civil-servant-swearing-in-ceremony/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Roman Space Telescope Travels to SpaceX Hangar</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1305/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1305/</guid>
+    <pubDate>Wed, 26 Aug 2026 18:41:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s Nancy Grace Roman Space Telescope, encapsulated in its payload fairing, travels to the SpaceX hangar at Launch Complex 39A at NASA’s Kennedy Space Center on Tuesday, Aug. 25, 2026.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1305/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
