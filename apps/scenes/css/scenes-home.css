@@ -1,26 +1,91 @@
 /* Waypoint Scenes — photography landing on shared Rebuild foundation.
- * Product accents from locked dusk-desert palette (ochre + terracotta) on charcoal ground.
+ * Product accents: photographic / natural / cinematic (ochre + warm earth).
+ * When framed by Studio V2 chrome (data-studio-shell="v2"), nav/footer stay V2;
+ * Scenes content keeps its own atmospheric identity — not cyber/neon.
  */
 
 html[data-product="scenes"],
 .was-shell[data-product="scenes"] {
-  --scenes-ink: var(--wp-text, var(--wds-text, #f0e1c3));
-  --scenes-muted: var(--wp-text-secondary, var(--wds-text-secondary));
-  --scenes-navy: var(--wp-bg, var(--wds-bg, #181513));
-  --scenes-midnight: var(--wp-aubergine-900, #181513);
-  --scenes-violet: var(--wp-accent-gold, var(--waypoint-gold, #d7a72e));
-  --scenes-lime: var(--wp-accent, var(--waypoint-gold, #d7a72e));
-  --scenes-magenta: var(--wp-warm, var(--waypoint-orange, #d46a3a));
-  --wds-accent: var(--wp-accent, var(--scenes-lime));
-  --wds-product-glow: rgba(215, 167, 46, 0.1);
+  --scenes-ink: #f0e1c3;
+  --scenes-muted: #bfa98c;
+  --scenes-navy: #181513;
+  --scenes-midnight: #181513;
+  --scenes-violet: #d7a72e;
+  --scenes-lime: #d7a72e;
+  --scenes-magenta: #d46a3a;
+  --scenes-font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --scenes-font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
   background: var(--scenes-navy);
   color: var(--scenes-ink);
-  font-family: var(--wds-font-body);
+  font-family: var(--scenes-font-body);
+}
+
+/* Studio V2 frames the hub; do not let neon shell tokens restyle Scenes content */
+.was-shell[data-product="scenes"][data-studio-shell="v2"] {
+  background-color: var(--scenes-navy);
+  background-image: none;
+  color: var(--scenes-ink);
+  font-family: var(--scenes-font-body);
+  /* Content-facing tokens stay photographic even if shell remapped --wp/--wds */
+  --wds-text: var(--scenes-ink);
+  --wds-text-secondary: var(--scenes-muted);
+  --wds-text-muted: rgba(191, 169, 140, 0.72);
+  --wds-bg: var(--scenes-navy);
+  --wds-surface: #1e1816;
+  --wds-accent: var(--scenes-lime);
+  --wds-font-display: var(--scenes-font-display);
+  --wds-font-body: var(--scenes-font-body);
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"]::before {
+  display: none;
+}
+
+/* V2 chrome only — keep cyan Studio nav recognition */
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-global {
+  background: color-mix(in srgb, #07090d 88%, transparent);
+  border-bottom-color: rgba(0, 229, 255, 0.12);
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-brand__name {
+  color: #e8f1f2;
+  font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-brand__mark {
+  background: #00e5ff;
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-primary-nav__link {
+  color: #9aadb4;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-primary-nav__link:hover,
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-primary-nav__link:focus-visible,
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-primary-nav__link[aria-current="page"] {
+  color: #00e5ff;
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-primary-nav__link[aria-current="page"] {
+  box-shadow: inset 0 -2px 0 #00e5ff;
+}
+
+.was-shell[data-product="scenes"][data-studio-shell="v2"] .was-footer {
+  border-top-color: rgba(0, 229, 255, 0.12);
+  color: #9aadb4;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 .was-shell[data-product="scenes"] .was-global {
-  background: var(--wds-topbar-bg, color-mix(in srgb, var(--wp-bg, #181513) 94%, transparent));
-  border-bottom-color: var(--wds-border-subtle, rgba(191, 169, 140, 0.12));
+  background: var(--wds-topbar-bg, color-mix(in srgb, var(--scenes-navy) 94%, transparent));
+  border-bottom-color: rgba(191, 169, 140, 0.12);
   backdrop-filter: blur(10px);
 }
 
@@ -44,7 +109,7 @@ html[data-product="scenes"],
 }
 
 .was-shell[data-product="scenes"] .was-footer {
-  border-top-color: var(--wds-border-subtle, rgba(155, 143, 217, 0.08));
+  border-top-color: rgba(191, 169, 140, 0.12);
   color: var(--scenes-muted);
 }
 
@@ -99,13 +164,14 @@ html[data-product="scenes"],
 
 .scenes-stage__title {
   margin: 0;
-  font-family: var(--wds-font-display, "Cormorant Garamond", Georgia, serif);
+  font-family: var(--scenes-font-display, "Cormorant Garamond", Georgia, serif);
   font-weight: 400;
   font-size: clamp(2.35rem, 6.5vw, 3.75rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
   max-width: 14ch;
   text-wrap: balance;
+  color: var(--scenes-ink);
 }
 
 .scenes-stage__lead {

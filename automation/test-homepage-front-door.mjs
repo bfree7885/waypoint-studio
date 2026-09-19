@@ -41,16 +41,19 @@ async function staticChecks() {
   const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   if (!/data-product="studio-home"/.test(html)) fail("index missing data-product=studio-home");
   else pass("data-product=studio-home");
-  if (!/Observe\.\s*Discover\.\s*Understand/.test(html)) fail("missing Observe/Discover/Understand");
-  else pass("mission IA present");
+  if (!/Independent software|I had an idea|worth building/i.test(html)) fail("missing maker-studio positioning");
+  else pass("maker-studio positioning present");
   if (!/Enter Dashboard|apps\/dashboard\//.test(html)) fail("missing Dashboard entry");
   else pass("Dashboard entry");
   if (!/https:\/\/shedhunting\.org\//.test(html) || !/articles\//.test(html)) {
     fail("missing Shed Hunting/Articles entries");
   } else pass("Shed Hunting/Articles entries");
-  if (/href=["'][^"']*apps\/scenes\//.test(html)) {
-    fail("homepage still promotes unpublished Scenes");
-  } else pass("homepage omits Scenes product entry");
+  if (!/href=["'][^"']*apps\/scenes\//.test(html) || !/EXPERIMENT/i.test(html)) {
+    fail("homepage must present Scenes as an experiment");
+  } else pass("Scenes presented as experiment");
+  if (!/data\/studio-projects\.json|data-studio-projects/.test(html + fs.readFileSync(path.join(ROOT, "js/studio-home.js"), "utf8"))) {
+    fail("missing data-driven studio projects wiring");
+  } else pass("studio projects catalog wiring");
   if (!/side-trails\/waypoint-deck\//.test(html) || /Browse Side Trails|Older work is archived/i.test(html)) fail("homepage must present Deck, not a Side Trails archive");
   else pass("Deck presented without archive catalog");
   if (/side-trails\/openroad-pa|OpenRoad PA —|SignalTerrain<\/a>|Global Signals<\/a>/.test(html) &&
@@ -135,9 +138,10 @@ async function browserChecks() {
           dashHref,
           dashIsCurrent,
           hOverflow,
-          hasObserve: /Observe/.test(text),
+          hasMaker: /Independent software|I had an idea|worth building/i.test(text),
           hasDeck: /Waypoint Deck|Deck/.test(text),
           hasScenes: /Scenes/.test(text),
+          hasExperiment: /EXPERIMENT/.test(text),
           hasShedHunting: /Shed Hunting/.test(text),
           hasArticles: /Articles/.test(text)
         };
@@ -154,7 +158,7 @@ async function browserChecks() {
     if (v.dashIsCurrent) fail(`Dashboard incorrectly current on front door @${w}`);
     else pass(`Dashboard not current on / @${w}`);
     if (v.hOverflow) fail(`horizontal overflow @${w}`); else pass(`no h-overflow @${w}`);
-    if (!v.hasObserve || !v.hasDeck || v.hasScenes || !v.hasShedHunting || !v.hasArticles) {
+    if (!v.hasMaker || !v.hasDeck || !v.hasScenes || !v.hasExperiment || !v.hasShedHunting || !v.hasArticles) {
       fail(`content incomplete @${w}`);
     } else pass(`content complete @${w}`);
   }

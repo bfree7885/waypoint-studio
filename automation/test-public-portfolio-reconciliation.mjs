@@ -88,8 +88,10 @@ for (const file of publicFiles) {
   }
 }
 
-assert("homepage mission", /Observe\.\s*Discover\.\s*Understand/.test(read("index.html")));
+assert("homepage maker positioning", /Independent software|I had an idea|worth building/i.test(read("index.html")));
 assert("homepage has Deck not Side Trails archive", /Waypoint Deck/.test(read("index.html")) && !/Browse Side Trails/.test(read("index.html")));
+assert("homepage presents Scenes as experiment", /apps\/scenes\//.test(read("index.html")) && /EXPERIMENT/i.test(read("index.html")));
+assert("studio projects catalog exists", fs.existsSync(path.join(ROOT, "data/studio-projects.json")));
 assert("about has four public efforts", /Dashboard/.test(read("about.html")) && /Shed Hunting/.test(read("about.html")) && /Waypoint Deck/.test(read("about.html")) && /Deep Forest Dispatch/.test(read("about.html")));
 assert("about does not list Scenes as an active product heading", !/<strong>Scenes<\/strong>/.test(read("about.html")));
 assert("support Dashboard href is app", /href="apps\/dashboard\/"/.test(read("support.html")));
@@ -128,13 +130,15 @@ const sitemap = read("sitemap.xml");
 assert("sitemap has DFD", /deep-forest-dispatch\//.test(sitemap));
 assert("sitemap has deck", /waypoint-deck/.test(sitemap));
 assert("sitemap omits legacy Studio shed-hunting", !/\/apps\/shed-hunting\//.test(sitemap));
-assert("sitemap omits unpublished scenes", !/\/apps\/scenes\/|\/apps\/photo-coach\//.test(sitemap));
+assert("sitemap includes scenes hub", /https:\/\/waypointstudio\.org\/apps\/scenes\//.test(sitemap));
+assert("sitemap omits scenes tool surfaces", !/\/apps\/scenes\/photo-coach\/|\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits discontinued urls", !/openroad-pa|\/incubator\/|\/apps\/fieldry\/|\/apps\/foragecast\/|\/apps\/signalterrain\//.test(sitemap));
 
 const robots = read("robots.txt");
 assert("robots disallows incubator", /Disallow: \/incubator\//.test(robots));
 assert("robots disallows fieldry", /Disallow: \/apps\/fieldry\//.test(robots));
-assert("robots disallows unpublished scenes", /Disallow: \/apps\/scenes\//.test(robots));
+assert("robots allows scenes hub", /Allow: \/apps\/scenes\/\$/.test(robots) || /Allow: \/apps\/scenes\/index\.html/.test(robots));
+assert("robots disallows scenes tool surfaces", /Disallow: \/apps\/scenes\/photo-coach\//.test(robots) && /Disallow: \/apps\/scenes\/living-scenes\//.test(robots));
 assert("scenes URLs still exist", fs.existsSync(path.join(ROOT, "apps/scenes/index.html")) && fs.existsSync(path.join(ROOT, "apps/photo-coach/index.html")));
 
 const shell = read("design-system/js/platform/wds-app-shell.js");

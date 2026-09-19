@@ -5,9 +5,9 @@
  *
  * Asserts shared nav config + directory surfaces expose the current
  * public architecture labels (Dashboard, Shed Hunting, Deck,
- * Articles, Support, About). Scenes remains in-repo but unpublished.
- * Dashboard is Waypoint Studio's core public product. Do not present
- * discontinued products or unpublished Scenes as architecture equals.
+ * Articles, Support, About). Scenes remains reachable as an experiment
+ * in the Studio gallery but is not a primary-nav peer.
+ * Dashboard is one Studio project — not the definition of the whole workshop.
  *
  * Run: node automation/test-studio-nav-architecture.mjs
  */
@@ -166,15 +166,17 @@ assert("incubator does not catalog experiments", !/Steepleaf|Savant|Fieldry|Volu
 const sitemap = read("sitemap.xml");
 assert("sitemap includes waypoint-deck", /waypointstudio\.org\/side-trails\/waypoint-deck\//.test(sitemap));
 assert("sitemap omits legacy Studio shed-hunting URLs", !/waypointstudio\.org\/apps\/shed-hunting\//.test(sitemap));
-assert("sitemap omits unpublished scenes", !/\/apps\/scenes\//.test(sitemap) && !/\/apps\/photo-coach\//.test(sitemap));
+assert("sitemap includes scenes hub", /https:\/\/waypointstudio\.org\/apps\/scenes\//.test(sitemap));
+assert("sitemap omits scenes tool surfaces", !/\/apps\/scenes\/photo-coach\//.test(sitemap) && !/\/apps\/photo-coach\//.test(sitemap));
 assert("sitemap omits incubator", !/\/incubator\//.test(sitemap));
 assert("sitemap omits discontinued apps", !/\/apps\/fieldry\/|\/apps\/foragecast\/|\/side-trails\/openroad-pa\//.test(sitemap));
 assert("sitemap includes support", /support\.html/.test(sitemap));
 
 assert("scenes hub still exists", fs.existsSync(path.join(ROOT, "apps/scenes/index.html")));
 assert("scenes photo-coach still exists", fs.existsSync(path.join(ROOT, "apps/photo-coach/index.html")));
-assert("scenes hub is noindex", /noindex/i.test(read("apps/scenes/index.html")));
-assert("robots disallows scenes", /Disallow: \/apps\/scenes\//.test(read("robots.txt")));
+assert("scenes hub is indexable", /name="robots"\s+content="index,follow"/i.test(read("apps/scenes/index.html")) && !/noindex/i.test(read("apps/scenes/index.html")));
+assert("robots allows scenes hub", /Allow: \/apps\/scenes\/\$/.test(read("robots.txt")) || /Allow: \/apps\/scenes\/index\.html/.test(read("robots.txt")));
+assert("robots still disallows scenes tool surfaces", /Disallow: \/apps\/scenes\/photo-coach\//.test(read("robots.txt")) && /Disallow: \/apps\/scenes\/living-scenes\//.test(read("robots.txt")));
 assert("primary nav Shed Hunting is shedhunting.org", /https?:\/\/shedhunting\.org/.test(JSON.stringify(navReg.studioPrimaryNav)));
 assert("origin flag is on", navReg.origins && navReg.origins.shedDedicatedHostEnabled === true);
 
@@ -187,7 +189,7 @@ const studioHome = read("js/studio-home.js");
 assert("studio-home lists Deck", /side-trails\/waypoint-deck\//.test(studioHome));
 assert("studio-home omits Volunteer as home peer", !/waypoint-volunteer/.test(studioHome));
 assert("studio-home is front door (no dashboard boot)", !/home-boot\.js|wds-dashboard-rebuild/.test(studioHome));
-assert("studio-home mounts Useful now panel", /data-was-home-now|was-home-now/.test(studioHome));
+assert("studio-home mounts project gallery", /data-studio-projects|was-project-gallery|studio-projects\.json/.test(studioHome + fs.readFileSync(path.join(ROOT, "js/studio-home.js"), "utf8")));
 assert("index is front door HTML", /was-home-hero/.test(read("index.html")) && !/home-boot\.js/.test(read("index.html")));
 
 

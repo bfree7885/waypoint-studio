@@ -93,7 +93,7 @@ assert("no OpenRoad in deepeners", !/OpenRoad|Fieldry|Savant/.test(skeleton));
 const scenesHub = read("apps/scenes/index.html");
 assert("scenes hub explore framing", /See the world differently/.test(scenesHub));
 assert("scenes hub unpublished note", /not currently a public/.test(scenesHub));
-assert("scenes hub is noindex", /noindex/i.test(scenesHub));
+assert("scenes hub is indexable experiment", /name="robots"\s+content="index,follow"/i.test(scenesHub) && !/noindex/i.test(scenesHub));
 assert("scenes hub DFD stories", /deep-forest-dispatch/.test(scenesHub) && /valley-fog-at-dawn/.test(scenesHub));
 assert("scenes hub no OpenRoad", !/OpenRoad/.test(scenesHub));
 

@@ -10,18 +10,17 @@ with implementation convenience.
 
 # Mission
 
-Waypoint Studio helps people observe what is happening, discover what matters,
-and understand why — with Create and Share as craft workflows inside Scenes, not
-equal company pillars.
+Waypoint Studio is an independent maker / creative-technology studio.
 
 Our mission is summarized as:
 
-**Observe. Discover. Understand.**
+**Independent software, tools & experiments.**
 
-*Capture what you find. Learn why it matters.*
+*Ideas explored through software—some useful, some creative, some simply worth building.*
 
-> Historical phrasing “Observe. Understand. Create. Share.” is superseded for
-> company-level framing; see `docs/RC3-CONSTITUTION.md`.
+> Historical phrasing “Observe. Discover. Understand.” remains valid for outdoor
+> product craft language inside individual apps, but is no longer the Studio-level
+> north star. See `docs/PRODUCT-DIRECTION.md`.
 
 Technology should deepen human curiosity—not replace it.
 

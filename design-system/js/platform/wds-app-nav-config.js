@@ -321,7 +321,7 @@
           "href": "side-trails/waypoint-deck/"
         }
       ],
-      "purpose": "A local-first field computer, distinct from Waypoint Studio’s web apps.",
+      "purpose": "A personal field-computing project built through Waypoint Studio — local maps, knowledge, and field tools when the network is optional.",
       "maturity": "In development",
       "startHere": {
         "label": "Read Waypoint Deck",

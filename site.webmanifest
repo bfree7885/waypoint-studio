@@ -1,11 +1,11 @@
 {
   "name": "Waypoint Studio",
   "short_name": "Waypoint",
-  "description": "Observe. Discover. Understand. Home is your outdoor workspace — private by default.",
+  "description": "Independent software, tools & experiments. Ideas explored through software—some useful, some creative, some simply worth building.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a2420",
-  "theme_color": "#1a2420",
+  "background_color": "#07090D",
+  "theme_color": "#07090D",
   "icons": [
     {
       "src": "/favicon.svg",

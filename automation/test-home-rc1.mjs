@@ -39,7 +39,7 @@ const manifest = fs.readFileSync(path.join(ROOT, "site.webmanifest"), "utf8");
 
 assert("root is studio front door", /data-product="studio-home"/.test(rootHtml) && /studio-home\.js/.test(rootHtml));
 assert("root is not outdoor Dashboard boot", !/home-boot\.js|wds-content-engine/.test(rootHtml));
-assert("root mission present", /Observe\.\s*Discover\.\s*Understand/.test(rootHtml));
+assert("root maker positioning present", /Independent software|I had an idea|worth building/i.test(rootHtml));
 assert("root shell depth 0", /data-shell-depth="0"/.test(rootHtml));
 assert("dashboard is Rebuild host", /wds-dashboard-rebuild\.css/.test(dashHtml) && /home-boot\.js/.test(dashHtml));
 assert("dashboard labels Dashboard", /data-product-name="Dashboard"/.test(dashHtml) && /<title>Dashboard/.test(dashHtml));

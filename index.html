@@ -2,35 +2,35 @@
 <html lang="en" data-product="studio-home">
 <head>
   <meta charset="UTF-8">
-  <meta name="waypoint-build" content="local">
+  <meta name="waypoint-build" content="50be5d3">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta name="description" content="Waypoint Studio — Observe. Discover. Understand. Dashboard is the Studio: outdoor conditions and attention. Shed Hunting, Deck, and Publishing sit beside it.">
+  <meta name="description" content="Waypoint Studio — independent software, tools &amp; experiments. Ideas explored through software—some useful, some creative, some simply worth building.">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://waypointstudio.org/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Waypoint Studio">
-  <meta property="og:title" content="Waypoint Studio — Observe. Discover. Understand.">
-  <meta property="og:description" content="A calm outdoor studio: observe conditions, discover what matters in the field, and understand why — privacy-first.">
+  <meta property="og:title" content="Waypoint Studio — Independent software, tools &amp; experiments">
+  <meta property="og:description" content="Ideas explored through software—some useful, some creative, some simply worth building.">
   <meta property="og:url" content="https://waypointstudio.org/">
   <meta property="og:image" content="https://waypointstudio.org/assets/images/home/hero.jpg">
-  <title>Waypoint Studio — Observe. Discover. Understand.</title>
+  <title>Waypoint Studio — Independent software, tools &amp; experiments</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" href="assets/images/home/hero.jpg" fetchpriority="high">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="design-system/css/wds.css?v=portfolio-1">
-  <link rel="stylesheet" href="design-system/css/wds-studio-home.css?v=portfolio-1">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="design-system/css/wds.css?v=studio-v2">
+  <link rel="stylesheet" href="design-system/css/wds-studio-v2.css?v=studio-v2">
+  <link rel="stylesheet" href="design-system/css/wds-studio-home.css?v=studio-v2">
 </head>
 <body>
   <a class="wds-skip" href="#main">Skip to content</a>
   <div
     class="wds-app was-shell"
-    data-wds-app-shell
+    data-wds-app-shell data-studio-shell="v2"
     data-product="studio-home"
     data-product-name="Waypoint Studio"
     data-hide-local="true"
@@ -44,14 +44,17 @@
     <main id="main">
       <noscript>
         <section class="was-home was-home--noscript">
-          <p class="was-home__eyebrow">Waypoint Studio</p>
-          <h1>Observe. Discover. Understand.</h1>
-          <p>Independent outdoor tools — privacy-first, calm, and honest about what is ready.</p>
+          <p class="was-home-hero__eyebrow">Waypoint Studio</p>
+          <h1>Independent software, tools &amp; experiments.</h1>
+          <p>Ideas explored through software—some useful, some creative, some simply worth building.</p>
           <p>
             <a href="apps/dashboard/">Dashboard</a> ·
             <a href="https://shedhunting.org/">Shed Hunting</a> ·
             <a href="side-trails/waypoint-deck/">Deck</a> ·
+            <a href="terrainbound/">TerrainBound</a> ·
             <a href="articles/">Articles</a> ·
+            <a href="apps/scenes/">Scenes</a> ·
+            <a href="side-trails/global-watch/">Global Watch</a> ·
             <a href="about.html">About</a> ·
             <a href="contact.html">Contact</a>
           </p>
@@ -59,137 +62,178 @@
       </noscript>
 
       <header class="was-home-hero" aria-labelledby="was-home-brand">
-        <div class="was-home-hero__media" aria-hidden="true">
-          <img
-            src="assets/images/home/hero.jpg"
-            alt=""
-            width="1920"
-            height="1080"
-            decoding="async"
-            fetchpriority="high"
-          >
-        </div>
-        <div class="was-home-hero__overlay" aria-hidden="true"></div>
         <div class="was-home-hero__content">
+          <p class="was-home-hero__coords" aria-hidden="true">
+            <span>WS // 2026</span>
+            <span>MAKER STUDIO</span>
+          </p>
           <p class="was-home-hero__eyebrow" id="was-home-brand">Waypoint Studio</p>
-          <h1>Observe. Discover. Understand.</h1>
-          <p class="was-home__tagline">Capture what you find. Learn why it matters.</p>
-          <p class="was-home__lead">
-            A quiet outdoor studio — tools for attention in the field, not a feed to scroll.
+          <h1>
+            Independent software, tools &amp; experiments.<span class="was-home-hero__cursor" aria-hidden="true"></span>
+          </h1>
+          <p class="was-home__tagline">
+            Ideas explored through software—some useful, some creative, some simply worth building.
           </p>
           <div class="was-home-hero__cta">
-            <a class="was-home-hero__cta-primary" href="apps/dashboard/">Enter Dashboard</a>
-            <a class="was-home-hero__cta-secondary" href="#enter">See what’s ready</a>
+            <a class="was-home-hero__cta-primary" href="#work">Browse the work</a>
+            <a class="was-home-hero__cta-secondary" href="apps/dashboard/">Enter Dashboard</a>
           </div>
           <p class="was-home-hero__meta">
             <span>Privacy-first</span>
             <span>No ads</span>
-            <span>Facts labeled as facts</span>
+            <span>Honest status labels</span>
           </p>
         </div>
       </header>
 
       <div class="was-home">
-        <section class="was-home__section was-home__mission" aria-labelledby="was-home-mission">
-          <h2 id="was-home-mission" class="was-home__quiet-title">How the studio works</h2>
-          <ol class="was-home__pillars">
-            <li>
-              <strong>Observe</strong>
-              <span>Notice what the day is doing — weather, light, place — without inventing certainty.</span>
-            </li>
-            <li>
-              <strong>Discover</strong>
-              <span>Find what is worth walking toward: a frame, a habitat, a question.</span>
-            </li>
-            <li>
-              <strong>Understand</strong>
-              <span>Read context and interpretation labeled separately from raw conditions.</span>
-            </li>
-          </ol>
+        <section class="was-home__section" aria-labelledby="was-home-position">
+          <p class="was-home__section-label">Studio // Positioning</p>
+          <h2 id="was-home-position" class="wds-sr-only">Studio positioning</h2>
+          <div class="was-home__positioning">
+            <p>I had an idea, so I built it.</p>
+          </div>
         </section>
 
-        <section class="was-home__section was-home__now" aria-labelledby="was-home-now">
-          <h2 id="was-home-now">Useful now</h2>
+        <section class="was-home__section" id="work" aria-labelledby="was-home-work">
+          <p class="was-home__section-label">Project // Gallery</p>
+          <h2 id="was-home-work">Work from the studio</h2>
           <p class="was-home__journey-blurb">
-            Today’s outdoor picture lives in Dashboard. This front door does not pretend to be that workspace.
+            Each project stands on its own. Status is metadata — not a sales pitch.
+            Available routes stay available; experiments stay reachable without pretending they are products.
           </p>
-          <div class="was-home__now-panel" data-was-home-now role="status" aria-live="polite">
-            <p class="was-home__now-kicker">Outside today</p>
-            <p class="was-home__now-body" data-was-home-now-body>
-              Open Dashboard for Today Outside and instruments you choose. Location stays on your device unless you share it.
-            </p>
-            <p class="was-home__now-meta" data-was-home-now-meta></p>
-            <p class="was-home__now-actions">
-              <a class="wds-btn wds-btn--primary" href="apps/dashboard/">Open Dashboard</a>
-              <button type="button" class="wds-btn wds-btn--ghost" id="was-home-loc-btn" hidden>Use my location</button>
+          <div
+            class="was-project-gallery"
+            id="was-project-gallery"
+            data-studio-projects
+            aria-live="polite"
+          >
+            <!-- Progressive enhancement: static fallbacks mirror data/studio-projects.json -->
+            <a class="was-home__card was-project-card" data-status="available" href="apps/dashboard/">
+              <div class="was-project-card__media">
+                <img src="assets/images/home/hero.jpg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Product</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot" aria-hidden="true"></span>AVAILABLE</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Dashboard</h3>
+                <p class="was-project-card__desc">Outdoor conditions and attention tools — weather, light, and what is worth noticing, labeled honestly.</p>
+                <span class="was-project-card__action">Open →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="available" href="https://shedhunting.org/">
+              <div class="was-project-card__media">
+                <img src="assets/images/identity/placeholders/sheds-forest.svg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Product</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot" aria-hidden="true"></span>AVAILABLE</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Shed Hunting</h3>
+                <p class="was-project-card__desc">Should I go shed hunting today? Field map and search guidance on ShedHunting.org — powered by Waypoint.</p>
+                <span class="was-project-card__action">Open →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="building" href="side-trails/waypoint-deck/">
+              <div class="was-project-card__media">
+                <img src="assets/images/side-trails/waypoint-deck.svg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Hardware / OS</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot was-project-card__status-dot--pulse" aria-hidden="true"></span>BUILDING</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Waypoint Deck</h3>
+                <p class="was-project-card__desc">A local-first Linux field computer for offline maps, navigation, and field tools. Early-stage — direction is public.</p>
+                <span class="was-project-card__action">Read →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="building" href="terrainbound/">
+              <div class="was-project-card__media">
+                <img src="assets/images/featured/fog-forest.jpg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Creative software</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot was-project-card__status-dot--pulse" aria-hidden="true"></span>BUILDING</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">TerrainBound</h3>
+                <p class="was-project-card__desc">An exploration game about learning to read the Earth — walk the land, ask questions, keep a field tablet.</p>
+                <span class="was-project-card__action">Play →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="available" href="articles/">
+              <div class="was-project-card__media">
+                <img src="assets/images/scenes/old-growth-cedar.jpg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Publishing</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot" aria-hidden="true"></span>AVAILABLE</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Articles</h3>
+                <p class="was-project-card__desc">Field reading and visual stories from Waypoint Publishing — including Deep Forest Dispatch.</p>
+                <span class="was-project-card__action">Read →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="experiment" href="apps/scenes/">
+              <div class="was-project-card__media">
+                <img src="apps/scenes/assets/media/hero.jpg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Creative technology</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot" aria-hidden="true"></span>EXPERIMENT</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Scenes</h3>
+                <p class="was-project-card__desc">Photography tools and Living Scenes experiments — craft, review, and visual storytelling tech. Not a commercial product line.</p>
+                <span class="was-project-card__action">Explore →</span>
+              </div>
+            </a>
+            <a class="was-home__card was-project-card" data-status="experiment" href="side-trails/global-watch/">
+              <div class="was-project-card__media">
+                <img src="assets/images/side-trails/global-watch.svg" alt="" width="800" height="500" loading="lazy" decoding="async">
+              </div>
+              <div class="was-project-card__body">
+                <div class="was-project-card__meta">
+                  <span class="was-project-card__category">Field test</span>
+                  <span class="was-project-card__status"><span class="was-project-card__status-dot" aria-hidden="true"></span>EXPERIMENT</span>
+                </div>
+                <h3 class="was-home__card-title was-project-card__title">Global Watch</h3>
+                <p class="was-project-card__desc">Standalone open-source intelligence field test — change detection and evidence correlation. Not a Studio platform product.</p>
+                <span class="was-project-card__action">Launch →</span>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <section class="was-home__section" aria-labelledby="was-home-maker">
+          <p class="was-home__section-label">About // The Workshop</p>
+          <h2 id="was-home-maker">How this studio works</h2>
+          <div class="was-home__maker-note">
+            <p>
+              Waypoint Studio is a place for making things. Some projects become useful tools or finished products.
+              Others remain experiments, prototypes, or personal projects. Each is free to become whatever the idea calls for.
             </p>
           </div>
         </section>
 
-        <section class="was-home__section" id="enter" aria-labelledby="was-home-enter">
-          <h2 id="was-home-enter">Enter Waypoint Studio</h2>
-          <p class="was-home__journey-blurb">
-            Waypoint Studio is Dashboard — today’s outdoor picture, labeled honestly. Shed Hunting is a sibling field destination. Publishing is reading, not another instrument.
-          </p>
-
-          <article class="was-home__pathway was-home__pathway--lead">
-            <p class="was-home__maturity">Waypoint Studio · Live</p>
-            <h3>Dashboard</h3>
-            <p>The Studio product. What is happening around you? Conditions, season, light, and what is worth noticing — labeled honestly.</p>
-            <a class="was-home__pathway-go" href="apps/dashboard/">Enter Dashboard</a>
-          </article>
-
-          <p class="was-home__journey-then">Beside the Studio</p>
-          <ul class="was-home__pathway-list">
-            <li class="was-home__pathway">
-              <p class="was-home__maturity">ShedHunting.org · Powered by Waypoint</p>
-              <h3><a href="https://shedhunting.org/">Shed Hunting</a></h3>
-              <p>Should I go shed hunting today? Today’s hunt answers that first. The map is the field interface when you are ready to look.</p>
-            </li>
-            <li class="was-home__pathway">
-              <p class="was-home__maturity">Read · Live</p>
-              <h3><a href="articles/">Articles</a></h3>
-              <p>Field reading from Waypoint Publishing — stories, not another app.</p>
-            </li>
+        <section class="was-home__section" aria-labelledby="was-home-more">
+          <p class="was-home__section-label">Navigate // Studio</p>
+          <h2 id="was-home-more">More from the studio</h2>
+          <ul class="was-home__links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="deep-forest-dispatch/">Deep Forest Dispatch</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
           </ul>
         </section>
 
-        <section class="was-home__section was-home__return" aria-labelledby="was-home-return">
-          <h2 id="was-home-return">Why return tomorrow</h2>
-          <p class="was-home__journey-blurb">
-            Conditions change. Light shifts. A place you know still has new reading. Waypoint stays quiet so attention can go outside — then come back when you want context, not when an algorithm pulls you in.
-          </p>
-        </section>
-
-        <section class="was-home__section was-home__publish" aria-labelledby="was-home-publish">
-          <h2 id="was-home-publish">Stories &amp; publishing</h2>
-          <p class="was-home__journey-blurb">
-            Waypoint Publishing turns careful observation into articles and visual stories —
-            including <a href="deep-forest-dispatch/">Deep Forest Dispatch</a> — so curiosity can travel without becoming a feed.
-          </p>
-        </section>
-
-        <section class="was-home__section was-home__side-trails" aria-labelledby="was-home-deck">
-          <h2 id="was-home-deck">Waypoint Deck</h2>
-          <p class="was-home__journey-blurb">
-            A separate Waypoint project: a local-first Linux field computer for offline maps,
-            navigation, local knowledge, and field tools. Distinct from the Studio web apps.
-            Early-stage — direction is public; finished hardware and OS are not claimed here.
-          </p>
-          <p><a href="side-trails/waypoint-deck/">Read about Waypoint Deck</a></p>
-        </section>
-
-        <section class="was-home__section was-home__take-wrap" aria-labelledby="was-home-take">
-          <h2 id="was-home-take">Waypoint’s Take</h2>
-          <div class="wds-take" data-wds-take data-take-surface="homepage">
-            <p class="wds-take__title">Waypoint’s Take</p>
-            <p class="wds-take__body">Start with the day you are in. Tools wait until attention has somewhere to land.</p>
-            <p class="wds-take__meta">Editorial · not a score · not a to-do list</p>
-          </div>
-        </section>
-
-
-        <!-- Smoke / gate mount: progressive product pathways also mirror here for automation -->
+        <!-- Smoke / gate mount: keeps automation selectors stable -->
         <div id="was-home-apps" class="was-home__gate-mount" hidden aria-hidden="true"></div>
       </div>
     </main>
@@ -197,8 +241,8 @@
     <div data-wds-app-footer data-shell-depth="0"></div>
   </div>
 
-  <script src="design-system/js/wds-build.js?v=local"></script>
-  <script src="design-system/js/wds.js?v=home-door-1" defer></script>
-  <script src="js/studio-home.js?v=home-door-1" defer></script>
+  <script src="design-system/js/wds-build.js?v=50be5d3"></script>
+  <script src="design-system/js/wds.js?v=50be5d3" defer></script>
+  <script src="js/studio-home.js?v=50be5d3" defer></script>
 </body>
 </html>

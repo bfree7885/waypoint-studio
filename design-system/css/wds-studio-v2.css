@@ -1,0 +1,426 @@
+/**
+ * Waypoint Studio V2 — Maker Studio shell
+ * Late-1990s cyber-tech / neon workstation, interpreted for 2026.
+ *
+ * Apply with: data-studio-shell="v2" on .was-shell
+ * (data-product="studio-home" remains supported for the front door.)
+ *
+ * Product apps without data-studio-shell keep their own identities.
+ */
+
+.was-shell[data-studio-shell="v2"],
+.was-shell[data-product="studio-home"] {
+  /* ——— Studio V2 signal tokens ——— */
+  --ws2-canvas: #07090d;
+  --ws2-surface: #10151b;
+  --ws2-surface-2: #161d26;
+  --ws2-text: #e8f1f2;
+  --ws2-muted: #9aadb4;
+  --ws2-faint: #6b7d85;
+  --ws2-cyan: #00e5ff;
+  --ws2-green: #b6ff00;
+  --ws2-magenta: #ff3dae;
+  --ws2-amber: #ffb000;
+  --ws2-line: rgba(0, 229, 255, 0.18);
+  --ws2-line-soft: rgba(232, 241, 242, 0.08);
+  --ws2-grid: rgba(0, 229, 255, 0.04);
+  --ws2-scan: rgba(232, 241, 242, 0.03);
+  --ws2-font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --ws2-font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --ws2-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Remap --wp-* (authoritative semantic layer) */
+  --wp-bg: var(--ws2-canvas);
+  --wp-surface: var(--ws2-surface);
+  --wp-elevated: var(--ws2-surface-2);
+  --wp-surface-raised: var(--ws2-surface-2);
+  --wp-inset: #05070a;
+  --wp-border: var(--ws2-line);
+  --wp-border-subtle: var(--ws2-line-soft);
+  --wp-text: var(--ws2-text);
+  --wp-text-secondary: var(--ws2-muted);
+  --wp-text-tertiary: var(--ws2-faint);
+  --wp-text-muted: var(--ws2-faint);
+  --wp-brand: var(--ws2-cyan);
+  --wp-accent: var(--ws2-cyan);
+  --wp-accent-dim: rgba(0, 229, 255, 0.14);
+  --wp-accent-border: rgba(0, 229, 255, 0.45);
+  --wp-accent-bright: #5ef0ff;
+  --wp-accent-gold: var(--ws2-amber);
+  --wp-accent-purple: var(--ws2-magenta);
+  --wp-warm: var(--ws2-amber);
+  --wp-warm-dim: rgba(255, 176, 0, 0.16);
+  --wp-focus: var(--ws2-cyan);
+  --wp-on-accent: #07090d;
+  --wp-topbar-bg: color-mix(in srgb, var(--ws2-canvas) 92%, transparent);
+  --wp-product-glow: rgba(0, 229, 255, 0.1);
+  --wp-fog: rgba(0, 229, 255, 0.14);
+  --wp-fog-subtle: rgba(232, 241, 242, 0.08);
+  --wp-font-display: var(--ws2-font-display);
+  --wp-font-body: var(--ws2-font-body);
+  --wp-font-mono: var(--ws2-font-mono);
+
+  /*
+   * Re-bind --wds-* on this element.
+   * :root --wds-* resolve against :root --wp-* (dusk-desert) and inherit as
+   * computed values — remapping --wp-* alone does not update shell chrome.
+   */
+  --wds-bg: var(--ws2-canvas);
+  --wds-surface: var(--ws2-surface);
+  --wds-elevated: var(--ws2-surface-2);
+  --wds-surface-raised: var(--ws2-surface-2);
+  --wds-inset: #05070a;
+  --wds-border: var(--ws2-line);
+  --wds-border-subtle: var(--ws2-line-soft);
+  --wds-text: var(--ws2-text);
+  --wds-text-secondary: var(--ws2-muted);
+  --wds-text-tertiary: var(--ws2-faint);
+  --wds-text-muted: var(--ws2-faint);
+  --wds-muted: var(--ws2-faint);
+  --wds-brand: var(--ws2-cyan);
+  --wds-accent: var(--ws2-cyan);
+  --wds-accent-dim: rgba(0, 229, 255, 0.14);
+  --wds-accent-border: rgba(0, 229, 255, 0.45);
+  --wds-accent-gold: var(--ws2-amber);
+  --wds-accent-purple: var(--ws2-magenta);
+  --wds-warm: var(--ws2-amber);
+  --wds-warm-dim: rgba(255, 176, 0, 0.16);
+  --wds-focus: var(--ws2-cyan);
+  --wds-on-accent: #07090d;
+  --wds-topbar-bg: color-mix(in srgb, var(--ws2-canvas) 92%, transparent);
+  --wds-product-glow: rgba(0, 229, 255, 0.1);
+  --wds-fog: rgba(0, 229, 255, 0.14);
+  --wds-fog-subtle: rgba(232, 241, 242, 0.08);
+  --wds-lime: var(--ws2-green);
+  --wds-lime-bright: #d4ff4d;
+  --wds-lime-dim: rgba(182, 255, 0, 0.16);
+  --wds-font-body: var(--ws2-font-body);
+  --wds-font-display: var(--ws2-font-display);
+  --wds-font-mono: var(--ws2-font-mono);
+
+  --home-ink: var(--ws2-text);
+  --home-ink-muted: var(--ws2-muted);
+  --home-charcoal: var(--ws2-canvas);
+  --home-midnight: var(--ws2-surface);
+  --home-moss: var(--ws2-cyan);
+
+  color: var(--ws2-text);
+  background-color: var(--ws2-canvas);
+  font-family: var(--ws2-font-body);
+  background-image:
+    linear-gradient(var(--ws2-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ws2-grid) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 229, 255, 0.08), transparent 55%),
+    linear-gradient(180deg, var(--ws2-canvas), #05070a);
+  background-size: 48px 48px, 48px 48px, auto, auto;
+  background-attachment: fixed;
+}
+
+.was-shell[data-studio-shell="v2"]::before,
+.was-shell[data-product="studio-home"]::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--ws2-scan) 2px,
+      var(--ws2-scan) 3px
+    );
+}
+
+.was-shell[data-studio-shell="v2"] > *,
+.was-shell[data-product="studio-home"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ——— Shell chrome ——— */
+.was-shell[data-studio-shell="v2"] .was-global,
+.was-shell[data-product="studio-home"] .was-global {
+  background: color-mix(in srgb, var(--ws2-canvas) 88%, transparent);
+  border-bottom: 1px solid var(--ws2-line-soft);
+  backdrop-filter: blur(10px);
+}
+
+.was-shell[data-studio-shell="v2"] .was-brand__name,
+.was-shell[data-product="studio-home"] .was-brand__name {
+  color: var(--ws2-text);
+  font-family: var(--ws2-font-display);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.was-shell[data-studio-shell="v2"] .was-brand__mark,
+.was-shell[data-product="studio-home"] .was-brand__mark {
+  background: var(--ws2-cyan);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.35);
+}
+
+.was-shell[data-studio-shell="v2"] .was-primary-nav__link,
+.was-shell[data-product="studio-home"] .was-primary-nav__link {
+  color: var(--ws2-muted);
+  font-family: var(--ws2-font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 1;
+}
+
+.was-shell[data-studio-shell="v2"] .was-primary-nav__link:hover,
+.was-shell[data-studio-shell="v2"] .was-primary-nav__link:focus-visible,
+.was-shell[data-product="studio-home"] .was-primary-nav__link:hover,
+.was-shell[data-product="studio-home"] .was-primary-nav__link:focus-visible {
+  color: var(--ws2-cyan);
+  outline: none;
+}
+
+.was-shell[data-studio-shell="v2"] .was-primary-nav__link:focus-visible,
+.was-shell[data-product="studio-home"] .was-primary-nav__link:focus-visible {
+  box-shadow: 0 0 0 2px var(--ws2-canvas), 0 0 0 3px var(--ws2-cyan);
+}
+
+.was-shell[data-studio-shell="v2"] .was-primary-nav__link[aria-current="page"],
+.was-shell[data-product="studio-home"] .was-primary-nav__link[aria-current="page"] {
+  color: var(--ws2-cyan);
+  box-shadow: inset 0 -2px 0 var(--ws2-cyan);
+}
+
+.was-shell[data-studio-shell="v2"] .was-nav-toggle,
+.was-shell[data-product="studio-home"] .was-nav-toggle {
+  color: var(--ws2-text);
+  border-color: var(--ws2-line);
+}
+
+.was-shell[data-studio-shell="v2"] .was-footer,
+.was-shell[data-product="studio-home"] .was-footer {
+  background: transparent;
+  border-top: 1px solid var(--ws2-line-soft);
+  color: var(--ws2-muted);
+  font-family: var(--ws2-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.was-shell[data-studio-shell="v2"] .was-footer a,
+.was-shell[data-product="studio-home"] .was-footer a {
+  color: var(--ws2-muted);
+}
+
+.was-shell[data-studio-shell="v2"] .was-footer a:hover,
+.was-shell[data-studio-shell="v2"] .was-footer a:focus-visible,
+.was-shell[data-product="studio-home"] .was-footer a:hover,
+.was-shell[data-product="studio-home"] .was-footer a:focus-visible {
+  color: var(--ws2-cyan);
+}
+
+@media (max-width: 900px) {
+  .was-shell[data-studio-shell="v2"] .was-global,
+  .was-shell[data-studio-shell="v2"] .was-global--quiet,
+  .was-shell[data-studio-shell="v2"] .was-primary-nav,
+  .was-shell[data-product="studio-home"] .was-global,
+  .was-shell[data-product="studio-home"] .was-global--quiet,
+  .was-shell[data-product="studio-home"] .was-primary-nav {
+    background: var(--ws2-canvas);
+  }
+}
+
+/* ——— Shared Studio page content (contact / support / landings) ——— */
+.was-shell[data-studio-shell="v2"] .wcs-page,
+.was-shell[data-product="studio-home"] .wcs-page {
+  color: var(--ws2-text);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-hero h1,
+.was-shell[data-studio-shell="v2"] .wcs-section h2,
+.was-shell[data-studio-shell="v2"] .wcs-section h3,
+.was-shell[data-product="studio-home"] .wcs-hero h1,
+.was-shell[data-product="studio-home"] .wcs-section h2,
+.was-shell[data-product="studio-home"] .wcs-section h3 {
+  font-family: var(--ws2-font-display);
+  color: var(--ws2-text);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-hero p,
+.was-shell[data-studio-shell="v2"] .wcs-section p,
+.was-shell[data-studio-shell="v2"] .wcs-section li,
+.was-shell[data-studio-shell="v2"] .wcs-meta,
+.was-shell[data-product="studio-home"] .wcs-hero p,
+.was-shell[data-product="studio-home"] .wcs-section p,
+.was-shell[data-product="studio-home"] .wcs-section li,
+.was-shell[data-product="studio-home"] .wcs-meta {
+  color: var(--ws2-muted);
+}
+
+.was-shell[data-studio-shell="v2"] .wds-eyebrow,
+.was-shell[data-product="studio-home"] .wds-eyebrow {
+  font-family: var(--ws2-font-mono);
+  color: var(--ws2-cyan);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-section a,
+.was-shell[data-studio-shell="v2"] .wcs-hero a,
+.was-shell[data-studio-shell="v2"] .wcs-meta a,
+.was-shell[data-product="studio-home"] .wcs-section a,
+.was-shell[data-product="studio-home"] .wcs-hero a,
+.was-shell[data-product="studio-home"] .wcs-meta a {
+  color: var(--ws2-cyan);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-pill-row a,
+.was-shell[data-product="studio-home"] .wcs-pill-row a {
+  border-color: var(--ws2-line);
+  color: var(--ws2-text);
+  background: var(--ws2-surface);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-pill-row a:hover,
+.was-shell[data-studio-shell="v2"] .wcs-pill-row a:focus-visible,
+.was-shell[data-product="studio-home"] .wcs-pill-row a:hover,
+.was-shell[data-product="studio-home"] .wcs-pill-row a:focus-visible {
+  border-color: var(--ws2-cyan);
+  color: var(--ws2-cyan);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-card,
+.was-shell[data-product="studio-home"] .wcs-card {
+  background: var(--ws2-surface);
+  border: 1px solid var(--ws2-line-soft);
+  border-radius: 2px;
+  color: var(--ws2-text);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-card:hover,
+.was-shell[data-studio-shell="v2"] .wcs-card:focus-visible,
+.was-shell[data-product="studio-home"] .wcs-card:hover,
+.was-shell[data-product="studio-home"] .wcs-card:focus-visible {
+  border-color: var(--ws2-cyan);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-card span,
+.was-shell[data-product="studio-home"] .wcs-card span {
+  color: var(--ws2-muted);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-faq details,
+.was-shell[data-product="studio-home"] .wcs-faq details {
+  border-color: var(--ws2-line-soft);
+  background: var(--ws2-surface);
+}
+
+.was-shell[data-studio-shell="v2"] .wcs-faq summary,
+.was-shell[data-product="studio-home"] .wcs-faq summary {
+  color: var(--ws2-text);
+  font-family: var(--ws2-font-display);
+}
+
+.was-shell[data-studio-shell="v2"] .wds-btn--primary,
+.was-shell[data-product="studio-home"] .wds-btn--primary {
+  background: var(--ws2-cyan);
+  border-color: var(--ws2-cyan);
+  color: var(--ws2-canvas);
+}
+
+.was-shell[data-studio-shell="v2"] .wds-btn--ghost,
+.was-shell[data-product="studio-home"] .wds-btn--ghost {
+  color: var(--ws2-text);
+  border-color: var(--ws2-line);
+}
+
+.was-shell[data-studio-shell="v2"] .wds-btn--primary:hover,
+.was-shell[data-studio-shell="v2"] .wds-btn--primary:focus-visible,
+.was-shell[data-product="studio-home"] .wds-btn--primary:hover,
+.was-shell[data-product="studio-home"] .wds-btn--primary:focus-visible {
+  background: #5ef0ff;
+  border-color: #5ef0ff;
+  color: var(--ws2-canvas);
+  outline: none;
+}
+
+.was-shell[data-studio-shell="v2"] .wds-input,
+.was-shell[data-studio-shell="v2"] .wds-select,
+.was-shell[data-studio-shell="v2"] .wds-textarea,
+.was-shell[data-product="studio-home"] .wds-input,
+.was-shell[data-product="studio-home"] .wds-select,
+.was-shell[data-product="studio-home"] .wds-textarea {
+  background: var(--ws2-surface);
+  border-color: var(--ws2-line);
+  color: var(--ws2-text);
+}
+
+.was-shell[data-studio-shell="v2"] .wds-input:focus-visible,
+.was-shell[data-studio-shell="v2"] .wds-select:focus-visible,
+.was-shell[data-studio-shell="v2"] .wds-textarea:focus-visible,
+.was-shell[data-product="studio-home"] .wds-input:focus-visible,
+.was-shell[data-product="studio-home"] .wds-select:focus-visible,
+.was-shell[data-product="studio-home"] .wds-textarea:focus-visible {
+  border-color: var(--ws2-cyan);
+  box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.25);
+  outline: none;
+}
+
+/* Side Trails / Deck / Global Watch launch surfaces */
+.was-shell[data-studio-shell="v2"] .wst-lede,
+.was-shell[data-studio-shell="v2"] .wst-status,
+.was-shell[data-studio-shell="v2"] .was-home__purpose,
+.was-shell[data-studio-shell="v2"] .was-home__status {
+  color: var(--ws2-muted);
+}
+
+.was-shell[data-studio-shell="v2"] .wst-card {
+  background: var(--ws2-surface);
+  border: 1px solid var(--ws2-line-soft);
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+.was-shell[data-studio-shell="v2"] .wst-card--featured {
+  border-color: var(--ws2-line);
+  box-shadow: none;
+}
+
+.was-shell[data-studio-shell="v2"] .wst-archive {
+  border-top-color: var(--ws2-line-soft);
+}
+
+/* Articles hub on Studio shell */
+.was-shell[data-studio-shell="v2"] .waf-hub-hero h1,
+.was-shell[data-studio-shell="v2"] .waf-card__title {
+  font-family: var(--ws2-font-display);
+  color: var(--ws2-text);
+}
+
+.was-shell[data-studio-shell="v2"] .waf-hub-meta,
+.was-shell[data-studio-shell="v2"] .waf-card__meta,
+.was-shell[data-studio-shell="v2"] .waf-card__summary {
+  color: var(--ws2-muted);
+}
+
+.was-shell[data-studio-shell="v2"] .waf-card {
+  background: var(--ws2-surface);
+  border: 1px solid var(--ws2-line-soft);
+  border-radius: 2px;
+}
+
+.was-shell[data-studio-shell="v2"] .waf-card:hover,
+.was-shell[data-studio-shell="v2"] .waf-card:focus-within {
+  border-color: var(--ws2-cyan);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .was-shell[data-studio-shell="v2"],
+  .was-shell[data-studio-shell="v2"] *,
+  .was-shell[data-product="studio-home"],
+  .was-shell[data-product="studio-home"] * {
+    scroll-behavior: auto !important;
+  }
+}

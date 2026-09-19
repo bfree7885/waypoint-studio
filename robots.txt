@@ -21,7 +21,17 @@ Disallow: /apps/landscape-interpretation/
 Disallow: /apps/terrainbound/
 Disallow: /apps/signalterrain/
 Disallow: /apps/shed-hunting/host/
-Disallow: /apps/scenes/
+# Scenes hub is a public EXPERIMENT; tool surfaces beneath stay undiscovered
+Allow: /apps/scenes/$
+Allow: /apps/scenes/index.html
+Disallow: /apps/scenes/auto-edit/
+Disallow: /apps/scenes/hidden-landscapes/
+Disallow: /apps/scenes/living-scenes/
+Disallow: /apps/scenes/moving-scenes/
+Disallow: /apps/scenes/photo-coach/
+Disallow: /apps/scenes/photo-library/
+Disallow: /apps/scenes/photographer-profile/
+Disallow: /apps/scenes/scene-builder/
 Disallow: /apps/photo-coach/
 Disallow: /apps/moving-scenes/
 Disallow: /apps/hidden-landscapes/
