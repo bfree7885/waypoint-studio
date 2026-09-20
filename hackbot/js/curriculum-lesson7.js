@@ -434,7 +434,7 @@
     trainingPage: PAGE_PATH,
     cycle: "Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect",
     completeBanner:
-      "Lesson 7 is complete. You can review steps; Lessons 8–10 are not built yet.",
+      "Lesson 7 is complete. You can review steps or continue to Lesson 8 — Browser Developer Tools.",
     goal:
       "Understand how cookies and sessions provide continuity across separate HTTP requests, observe a synthetic Trail Supply demo cookie/session, and compare before/after state without attacking it.",
     steps: STEPS

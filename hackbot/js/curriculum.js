@@ -1,5 +1,5 @@
 /**
- * Module 1 curriculum. Lessons 1–7 are fully authored; 8–10 are future shells.
+ * Module 1 curriculum. Lessons 1–8 are fully authored; 9–10 are future shells.
  * All examples are synthetic / local (training.hackbot.local / Trail Supply).
  */
 (function (global) {
@@ -226,7 +226,6 @@
   ];
 
   var FUTURE_LESSONS = [
-    { id: "devtools", title: "Browser Developer Tools" },
     { id: "apis-json", title: "APIs and JSON" },
     { id: "structured-investigation", title: "Your First Structured Investigation" }
   ];
@@ -274,10 +273,14 @@
     MODULE_1.lessons.push(Hackbot.Lesson7);
   }
 
+  if (Hackbot.Lesson8) {
+    MODULE_1.lessons.push(Hackbot.Lesson8);
+  }
+
   FUTURE_LESSONS.forEach(function (item, index) {
     MODULE_1.lessons.push({
       id: item.id,
-      number: index + 8,
+      number: index + 9,
       title: item.title,
       status: "future",
       steps: []
@@ -313,6 +316,7 @@
     LESSON_5_ID: "status-redirects",
     LESSON_6_ID: "parameters",
     LESSON_7_ID: "cookies",
+    LESSON_8_ID: "devtools",
     trainingPageUrl: function (lesson) {
       if (!lesson || !lesson.trainingPage) return "";
       if (!global.location || !global.location.href) return lesson.trainingPage;

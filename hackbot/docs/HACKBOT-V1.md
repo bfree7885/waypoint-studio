@@ -14,13 +14,13 @@ MockProvider concept matching (no browser): `node hackbot/scripts/training-eval-
 | Recovery strategy | Fresh branch from current `origin/main` + transplant of `hackbot/` only (not the old stacked PR chain) |
 | Development branch | `hackbot/v1-recovery` |
 | Historical pointer | `hackbot/v1-historical-lesson3` → `d03af730` |
-| Lessons implemented | **1–7** (playable) |
-| Lessons not implemented | **8–10** (catalog titles only; labeled `future`) |
+| Lessons implemented | **1–8** (playable) |
+| Lessons not implemented | **9–10** (catalog titles only; labeled `future`) |
 | Trail Supply | Synthetic local storefront + service worker under `hackbot/training/web-foundations/lesson-2/` |
 | Protocol matching fix | `MockProvider` keeps `http`/`https` tokens when normalizing `https://…` answers |
-| Next phase | Phase B5 — Lesson 8: Browser Developer Tools |
+| Next phase | Phase B6 — Lesson 9: APIs and JSON |
 
-Do **not** claim Lessons 8–10 exist. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
+Do **not** claim Lessons 9–10 exist. Do **not** merge historical PRs #83/#85/#86/#87 blindly; this branch supersedes that stack for ongoing V1 work.
 
 ### Visual identity
 
@@ -51,11 +51,11 @@ It is **not** optimized for public launch, subscriptions, SaaS, marketing, or mo
 
 | Phase | Intent | This build |
 | --- | --- | --- |
-| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–7 usable) |
+| 1 | Teach through authorized, hands-on training | Foundation + Training Engine (Module 1; Lessons 1–8 usable) |
 | 2 | AI research partner on authorized targets | Not built |
 | 3 | Custom tools when real training/research shows they help | Not built |
 
-Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lesson 4 teaches reading request and response headers. Lesson 5 teaches status-code families and redirects (`Location`). Lesson 6 traces user input into query parameters, request bodies, and path values. Lesson 7 introduces cookies/sessions as continuity across separate HTTP exchanges. Lessons 8–10 are labeled **future**. Assistance Level is not auto-changed.
+Lesson 1 is the first training experience. Lesson 2 is page inspection. Lesson 3 watches local HTTP in the Network panel. Lesson 4 teaches reading request and response headers. Lesson 5 teaches status-code families and redirects (`Location`). Lesson 6 traces user input into query parameters, request bodies, and path values. Lesson 7 introduces cookies/sessions as continuity across separate HTTP exchanges. Lesson 8 consolidates DevTools into a question→tool→evidence workflow. Lessons 9–10 are labeled **future**. Assistance Level is not auto-changed.
 
 ## Local-first architecture
 
@@ -146,11 +146,12 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | 5. Status Codes and Redirects | Available |
 | 6. Parameters and User Input | Available |
 | 7. Cookies and Sessions | Available |
-| 8–10 | Future (visible, not playable) |
+| 8. Browser Developer Tools | Available |
+| 9–10 | Future (visible, not playable) |
 
-Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**. Lesson 6 emphasizes **Observe → Compare → Reason** and **change one thing at a time**. Lesson 7 adds state continuity (cookies/sessions) with before/after comparison.
+Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**. Lesson 6 emphasizes **Observe → Compare → Reason** and **change one thing at a time**. Lesson 7 adds state continuity (cookies/sessions) with before/after comparison. Lesson 8 consolidates DevTools into **question → choose tool → evidence → interpret within limits**.
 
-Lessons 2–7 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, product clicks, redirect, parameter, and session labs issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show:
+Lessons 2–8 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, product clicks, redirect, parameter, and session labs issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show:
 
 - GET `/search?q=boots` → **200** JSON (query parameter `q`)
 - GET `/search?q=boots&sort=price` → **200** JSON (multi-parameter demo; response echoes `params`)
@@ -163,6 +164,8 @@ Lessons 2–7 share a local synthetic storefront: [Trail Supply](../training/web
 - GET `/session/start` → **200** JSON with `setCookieLine` + response header `X-Training-Set-Cookie: trail_session=demo-trail-7; …` (synthetic; not auth)
 - GET `/session/clear` → **200** JSON + clear training Set-Cookie mirror
 
+Client script `js/app.js` also emits a benign `console.info` training log for Lesson 8 Console observation. `document.title` is `Trail Supply`.
+
 **Lesson 7 cookie/session limitations (documented honestly):**
 
 1. Service-worker responses cannot reliably expose real `Set-Cookie` (forbidden response header). Trail Supply shows the same string as `X-Training-Set-Cookie` and JSON `setCookieLine`.
@@ -170,13 +173,15 @@ Lessons 2–7 share a local synthetic storefront: [Trail Supply](../training/web
 3. Learners still inspect **Application → Cookies** for the real browser cookie jar entry.
 4. `HttpOnly` / `Secure` are taught conceptually (HTTP training origin; `document.cookie` cannot set HttpOnly).
 
+Do **not** treat Lesson 7 training-mirror headers as native `Set-Cookie` / `Cookie`. Lesson 8 teaches Application for real cookie-jar evidence and Network for traffic, including those mirrors when relevant.
+
 This is not real authentication and stores no credentials. Hackbot IndexedDB learner progress (`hackbot-v1`) is separate from Trail Supply’s demo cookie.
 
 Response headers from the training handler include `Content-Type: application/json`, `Content-Length`, and `Cache-Control: no-store`. Demos are local-only and deterministic. No general-purpose backend. No exploitation, session hijacking, or cookie-theft training.
 
 Right rail on the Training view is **Learning Progress** (module, lesson, step, concepts, hints, attempts, Assistance Level). No XP, streaks, coins, or leaderboards.
 
-Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Each lesson’s progress is stored separately (`workspaceId::lessonId`). Lesson 5 → `workspaceId::status-redirects`. Lesson 6 → `workspaceId::parameters`. Lesson 7 → `workspaceId::cookies`. Schema version stays **2**.
+Progress, attempts, hints, and reflections persist in IndexedDB and survive refresh. Each lesson’s progress is stored separately (`workspaceId::lessonId`). Lesson 5 → `workspaceId::status-redirects`. Lesson 6 → `workspaceId::parameters`. Lesson 7 → `workspaceId::cookies`. Lesson 8 → `workspaceId::devtools`. Schema version stays **2**.
 
 ### MockProvider evaluation
 
@@ -189,7 +194,7 @@ Hackbot.Provider.chat(context)
 Hackbot.Provider.evaluateLearnerResponse(context)
 ```
 
-This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–7 call `evaluateLearnerResponse`.
+This build registers **MockProvider** only. Responses are deterministic local strings. Lessons 1–8 call `evaluateLearnerResponse`.
 
 No external AI calls. No API keys. No local LLM install.
 

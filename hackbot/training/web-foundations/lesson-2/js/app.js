@@ -211,6 +211,10 @@
     note(
       "Trail Supply script loaded (js/app.js). Search, sign-in, products, redirect, parameter, and session demos generate local Network requests."
     );
+    // Benign Lesson 8 Console signal — not an error, not auth-related.
+    if (typeof console !== "undefined" && console.info) {
+      console.info("[Trail Supply] training script ready (js/app.js)");
+    }
   }
 
   if ("serviceWorker" in navigator) {

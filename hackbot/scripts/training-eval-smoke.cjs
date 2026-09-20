@@ -31,6 +31,7 @@ load("js/curriculum-lesson4.js");
 load("js/curriculum-lesson5.js");
 load("js/curriculum-lesson6.js");
 load("js/curriculum-lesson7.js");
+load("js/curriculum-lesson8.js");
 load("js/curriculum.js");
 load("ai/provider.js");
 load("ai/mock-provider.js");
@@ -103,19 +104,30 @@ if (lesson7.id !== "cookies" || lesson7.number !== 7) {
   throw new Error("Lesson 7 should be Cookies and Sessions with number 7");
 }
 
+var lesson8 = Hackbot.Curriculum.getLesson(Hackbot.Curriculum.LESSON_8_ID);
+if (!lesson8 || lesson8.status !== "available" || lesson8.steps.length !== 14) {
+  throw new Error("Lesson 8 should be available with 14 steps");
+}
+if (!lesson8.trainingPage) {
+  throw new Error("Lesson 8 should reuse the Trail Supply training page");
+}
+if (lesson8.id !== "devtools" || lesson8.number !== 8) {
+  throw new Error("Lesson 8 should be Browser Developer Tools with number 8");
+}
+
 var future = Hackbot.Curriculum.getModule().lessons.filter(function (item) {
   return item.status === "future";
 });
-if (future.length !== 3) {
-  throw new Error("Expected 3 future lessons (8–10), got " + future.length);
+if (future.length !== 2) {
+  throw new Error("Expected 2 future lessons (9–10), got " + future.length);
 }
 future.forEach(function (item) {
-  if (item.number < 8 || item.number > 10) {
-    throw new Error("Future lesson numbering should be 8–10: " + item.number);
+  if (item.number < 9 || item.number > 10) {
+    throw new Error("Future lesson numbering should be 9–10: " + item.number);
   }
 });
-if (Hackbot.Curriculum.getLesson("cookies").status !== "available") {
-  throw new Error("Cookies catalog entry must be available, not future");
+if (Hackbot.Curriculum.getLesson("devtools").status !== "available") {
+  throw new Error("DevTools catalog entry must be available, not future");
 }
 
 function evalStep(lesson, stepId, text, attemptNumber) {
@@ -385,6 +397,68 @@ Promise.all([
   }),
   evalStep(lesson7, "m-reflect", "Only Network showed session none becoming recognized after the trail_session cookie appeared.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 7 reflection is soft-graded");
+  }),
+  evalStep(lesson8, "a-question-first", "Start with a question, then choose the panel that can answer it instead of clicking randomly.").then(function (r) {
+    assert(r.verdict === "CORRECT", "question first should be CORRECT");
+  }),
+  evalStep(lesson8, "b-elements", "Elements is for DOM structure and attributes — on Trail Supply I inspect the search form input name=q.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Elements should be CORRECT");
+  }),
+  evalStep(lesson8, "c-network", "Network is for traffic — for example GET /search?q=boots returning status 200.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Network should be CORRECT");
+  }),
+  evalStep(lesson8, "d-application", "Application/Storage is for browser state like cookies — Lesson 7’s trail_session is the example.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Application should be CORRECT");
+  }),
+  evalStep(lesson8, "e-sources", "Sources shows loaded client code; Trail Supply’s js/app.js is the script that starts search fetches.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Sources should be CORRECT");
+  }),
+  evalStep(lesson8, "f-console", "Console shows runtime messages and benign checks; document.title is Trail Supply.").then(function (r) {
+    assert(r.verdict === "CORRECT", "Console should be CORRECT");
+  }),
+  evalStep(
+    lesson8,
+    "g-choose-tool",
+    "Status → Network; form attributes → Elements; cookies → Application; JS resources → Sources or Network; JS error → Console."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT", "tool selection should be CORRECT");
+  }),
+  evalStep(lesson8, "h-reduce-noise", "Clear the Network log, trigger one action, then observe the resulting traffic.").then(function (r) {
+    assert(r.verdict === "CORRECT", "reduce noise should be CORRECT");
+  }),
+  evalStep(
+    lesson8,
+    "i-connect",
+    "Elements shows the search form, Network shows GET /search?q=trail%20camera and the JSON response, then Sources identifies js/app.js — a connected trail."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT", "connect evidence should be CORRECT");
+  }),
+  evalStep(
+    lesson8,
+    "j-evidence-vs-interp",
+    "Evidence: Network shows GET /search?q=boots returned 200. Interpretation: search sends the term as parameter q. Speculation beyond evidence: claiming the site is insecure only because q is in the URL."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT", "evidence vs interpretation should be CORRECT");
+  }),
+  evalStep(
+    lesson8,
+    "k-case",
+    "Elements shows name=q; Network shows GET /search with q, status 200, Content-Type application/json and JSON results; Sources shows js/app.js."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT", "guided case should be CORRECT");
+  }),
+  evalStep(
+    lesson8,
+    "l-challenge",
+    "QUESTION how search works. EVIDENCE: Elements name=q; Network GET /search?q=… 200 JSON; Sources app.js. INTERPRETATION: typed term becomes query q. LIMIT: this cannot by itself prove a vulnerability beyond the evidence."
+  ).then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 8 challenge should be CORRECT");
+  }),
+  evalStep(lesson8, "l-challenge", "zzzz yyyy").then(function (r) {
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "vague lesson 8 challenge should not advance");
+  }),
+  evalStep(lesson8, "n-reflect", "I will clear Network and trigger one search action so the evidence is obvious before I interpret it.").then(function (r) {
+    assert(r.verdict === "CORRECT" && r.canAdvance, "lesson 8 reflection is soft-graded");
   })
 ]).then(function () {
   console.log("training-eval-smoke: ok");

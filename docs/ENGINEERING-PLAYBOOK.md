@@ -2138,3 +2138,8 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Browsers/SW forbid reliable `Set-Cookie` on SW responses and strip `Cookie` from `FetchEvent.request`; use `X-Training-Set-Cookie` / `X-Trail-Training-Cookie` mirrors plus `document.cookie` for Application-tab observation.
 - Keep cookie ≠ session explicit; demo value `trail_session=demo-trail-7` is a training identifier, not authentication.
 
+### Lessons Learned — HackBot Lesson 8 Browser Developer Tools (2026-09-19)
+
+- Lesson 8 is consolidation, not a first DevTools tour: question → panel → multi-panel evidence trail → evidence vs interpretation.
+- Keep Console/Sources observational (`document.title`, `js/app.js`, benign `console.info`); do not invent native Set-Cookie behavior when teaching Application after Lesson 7’s SW mirrors.
+
