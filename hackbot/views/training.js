@@ -185,6 +185,11 @@
       Models.escapeHtml(step.title) +
       "</h3></header>";
 
+    if (assistance >= 5) {
+      body +=
+        '<p class="hb-teach-model" role="note"><strong>Instructor Mode:</strong> Teach → Demonstrate → Guided try → Independent try → Reason → Reflect. Read the explanation, do the action, then answer. Use <em>Teach me</em> if you are stuck.</p>';
+    }
+
     if (pageUrl) {
       body +=
         '<p class="hb-train-tools">' +
@@ -214,7 +219,7 @@
         "</strong></p>" +
         '<form class="hb-compose" id="hb-train-form">' +
         '<label class="hb-sr" for="hb-train-input">Your interpretation</label>' +
-        '<textarea id="hb-train-input" rows="5" maxlength="4000" placeholder="What do you notice, and why?">' +
+        '<textarea id="hb-train-input" rows="5" maxlength="4000" placeholder="What do you notice, and why? (Or type: I don\'t know)">' +
         Models.escapeHtml(draft) +
         "</textarea>" +
         '<div class="hb-compose-row">' +
@@ -227,15 +232,21 @@
       body +=
         '<div class="hb-eval ' +
         verdictClass(evaln.verdict) +
+        (evaln.taught ? " is-teach" : "") +
         '" role="status"><p class="hb-eval-verdict">' +
-        Models.escapeHtml(evaln.verdict) +
+        Models.escapeHtml(evaln.taught ? "TEACHING" : evaln.verdict) +
         "</p><p>" +
         Models.escapeHtml(evaln.feedback) +
         "</p></div>";
     }
 
     if (hintText) {
-      body += '<p class="hb-hint" role="status"><strong>Hint.</strong> ' + Models.escapeHtml(hintText) + "</p>";
+      body +=
+        '<div class="hb-hint" role="status"><p><strong>' +
+        (state.training && state.training.hintIsTeach ? "Teach me." : "Hint.") +
+        "</strong> " +
+        Models.escapeHtml(hintText) +
+        "</p></div>";
     }
 
     if ((stepDone || (evaln && evaln.canAdvance)) && step.reveal) {
@@ -248,7 +259,10 @@
       (stepIndex === 0 ? " disabled" : "") +
       ">Back</button>";
     if (step.kind === "exercise" || step.kind === "reflection") {
-      body += '<button type="button" class="hb-btn hb-btn-ghost" id="hb-train-hint">Hint</button>';
+      body += '<button type="button" class="hb-btn hb-btn-ghost" id="hb-train-hint">Give me a hint</button>';
+      if (assistance >= 4) {
+        body += '<button type="button" class="hb-btn hb-btn-ghost" id="hb-train-teach">Teach me</button>';
+      }
     }
     body +=
       '<button type="button" class="hb-btn" id="hb-train-next"' +
@@ -301,6 +315,12 @@
     if (hint) {
       hint.addEventListener("click", function () {
         if (typeof handlers.onHint === "function") handlers.onHint();
+      });
+    }
+    var teach = el.querySelector("#hb-train-teach");
+    if (teach) {
+      teach.addEventListener("click", function () {
+        if (typeof handlers.onTeach === "function") handlers.onTeach();
       });
     }
   };

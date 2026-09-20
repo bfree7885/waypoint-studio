@@ -21,19 +21,20 @@
       instructorNote:
         "Open Developer Tools on the Trail Supply tab, not inside the Hackbot preview. Reload once so the list fills.",
       body:
-        "<p>Lessons 1 and 2 taught what a request looks like on paper and how a page is structured. Now you watch the browser <strong>actually send</strong> those requests.</p>" +
-        "<p>The Network panel records requests the browser makes. Menus differ by browser:</p><ul>" +
-        "<li>Right-click the page → <strong>Inspect</strong>, then find a tab named Network (or something close, such as Net)</li>" +
-        "<li><kbd>F12</kbd> where supported, then Network</li>" +
-        "<li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> (Windows/Linux) or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> (macOS)</li>" +
-        "</ul>" +
-        "<p>Then:</p><ol>" +
-        "<li>Open Trail Supply in another tab</li>" +
-        "<li>Open Network</li>" +
-        "<li>Reload the page</li>" +
+        "<p><strong>Teach.</strong> Lessons 1–2 taught requests on paper and page structure. Now you watch the browser <strong>actually send</strong> those requests.</p>" +
+        "<p>The <strong>Network</strong> panel is a log of every request the browser makes for this page.</p>" +
+        "<p><strong>Demonstrate — exact steps:</strong></p>" +
+        "<ol>" +
+        "<li>Open Trail Supply in another tab (not only the Hackbot preview iframe if your browser’s DevTools attach oddly).</li>" +
+        "<li>Press <kbd>F12</kbd> (or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> / macOS <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>), or right-click → <strong>Inspect</strong>.</li>" +
+        "<li>Select the <strong>Network</strong> tab.</li>" +
+        "<li>If the list is empty, click the clear (🚫/circle-slash) control near the top-left of Network, then <strong>reload</strong> the page.</li>" +
         "</ol>" +
-        "<p>Exact type names vary. Name what you see: the document, a stylesheet, a script, maybe other files.</p>",
+        "<p><strong>What you are looking for:</strong> rows for the HTML document, a stylesheet (CSS), and a script (JS). Exact type labels vary by browser.</p>" +
+        "<p><strong>Guided try:</strong> name two kinds of resources you see after reload.</p>",
       successFeedback: "You watched the browser fetch the page’s own files. Next we will cause a request on purpose.",
+      teach:
+        "Typical page-load requests: the document (Trail Supply HTML), the CSS stylesheet, and the JavaScript file. Those are resources, not exploits.",
       concepts: [
         { id: "doc", label: "document", terms: ["document", "html", "index", "page"] },
         { id: "css", label: "stylesheet", terms: ["css", "stylesheet", "store.css", "style"] },
@@ -59,13 +60,22 @@
       instructorNote:
         "Keep Network open. Type boots in Search, submit, then click the request whose URL contains search.",
       body:
-        "<p>Lesson 1: requests have methods, paths, headers, and responses.</p>" +
-        "<p>Lesson 2: the search form described what the browser <em>may</em> submit (<code>GET</code>, action <code>/search</code>, input <code>q</code>).</p>" +
-        "<p>Lesson 3: you are watching that submission happen.</p>" +
-        "<p>On Trail Supply, search for <strong>boots</strong>. In Network, find a request that looks like <code>/search?q=boots</code> (your browser may show the full local URL). Disable cache if the list looks empty, then submit again.</p>",
+        "<p><strong>Teach / remind.</strong> Lesson 1: requests have methods, paths, and often query values. Lesson 2: the search form said <code>GET</code>, action <code>/search</code>, input name <code>q</code>.</p>" +
+        "<p><strong>Demonstrate parameter shape:</strong> in <code>/search?q=boots</code>, <code>q</code> is the parameter <em>name</em> and <code>boots</code> is the parameter <em>value</em>.</p>" +
+        "<p><strong>Guided try — do this:</strong></p>" +
+        "<ol>" +
+        "<li>Keep <strong>Network</strong> open on Trail Supply.</li>" +
+        "<li>Clear the request list if it is crowded.</li>" +
+        "<li>In Search, type <strong>boots</strong> and submit.</li>" +
+        "<li>Click the new request whose URL contains <code>/search?q=boots</code>.</li>" +
+        "<li>On Headers (or the summary line), find Request Method — expect <code>GET</code>.</li>" +
+        "</ol>" +
+        "<p>Report method, path, query parameter name, and value.</p>",
       reveal:
         "<p>Method <code>GET</code>, path ending in <code>/search</code>, query name <code>q</code>, value <code>boots</code> — often written <code>GET /search?q=boots</code>.</p>",
       successFeedback: "You tied a UI action to a real GET. That is cause and effect, not a tool recipe.",
+      teach:
+        "The search form sent GET /search?q=boots. Method GET, path /search, query name q, value boots.",
       concepts: [
         { id: "method", label: "GET method", terms: ["get", "method"] },
         { id: "path", label: "search path", terms: ["/search", "search"] },
@@ -98,6 +108,8 @@
         "</ul>" +
         "<p>Compare that list to Lesson 2’s form: <code>action</code>, <code>method</code>, <code>name=\"q\"</code>, and the value you typed.</p>",
       successFeedback: "You mapped form fields onto a live request. The Network panel is the form, observed.",
+      teach:
+        "Lesson 2’s form gave GET + /search + name q. Your typing gave boots. Headers are extra metadata, not the form fields.",
       concepts: [
         { id: "action", label: "form action/path", terms: ["/search", "search", "action", "path", "url"] },
         { id: "method", label: "form method", terms: ["get", "method"] },
@@ -131,6 +143,8 @@
       reveal:
         "<p>Expect status <code>200</code>, <code>Content-Type: application/json</code>, and a JSON object with a <code>query</code> and <code>results</code> — a search answer, not an HTML shop page.</p>",
       successFeedback: "You read the reply, not just the ask. Status, type, and body are the three first looks.",
+      teach:
+        "Status 200 means the training search succeeded. Content-Type is JSON. The body reports the query and matching products — synthetic local data.",
       concepts: [
         { id: "status", label: "status code", terms: ["200", "ok", "status"] },
         { id: "type", label: "content type", terms: ["json", "content-type", "application/json"] },
@@ -166,6 +180,8 @@
         "</ul>" +
         "<p>POST is not “more secure” than GET by itself. It is a different way to send a request. Do not treat this as a password attack — it is a failed, local, synthetic login so you can see a body and a 401.</p>",
       successFeedback: "You compared GET-with-query to POST-with-body. Same shop, two different exchanges.",
+      teach:
+        "GET puts boots on the query string; POST puts username/password in the request body. Different paths (/search vs /login) and statuses (200 vs 401). POST is not automatically safer.",
       concepts: [
         { id: "getpost", label: "GET vs POST", terms: ["get", "post"] },
         { id: "where", label: "query vs body", terms: ["query", "body", "payload", "parameter"] },
@@ -199,6 +215,8 @@
         "</ul>" +
         "<p>Look for the area showing request headers; your browser may label or arrange this differently. Do not memorize the whole header catalog yet.</p>",
       successFeedback: "Headers describe the message. The body is the message. That split is enough for now.",
+      teach:
+        "Response headers are metadata (Content-Type, Content-Length, Cache-Control). The response body is the JSON payload — results or Invalid credentials.",
       concepts: [
         { id: "headers", label: "headers as metadata", terms: ["header", "metadata", "host", "user-agent", "accept", "content-type", "content-length", "cache"] },
         { id: "body", label: "body as payload", terms: ["body", "payload", "json", "error", "result", "content"] }
@@ -229,6 +247,8 @@
         "</ul>" +
         "<p>Lesson 5 will explore status codes and redirects more deeply. For now, pair each action with the number you saw.</p>",
       successFeedback: "You used status as a signal, not as trivia. 200 / 401 / 404 already tell different stories.",
+      teach:
+        "200 signals the search/page succeeded. 401 signals the synthetic login was refused. 404 signals the lantern resource was not found.",
       concepts: [
         { id: "ok", label: "200 success", terms: ["200", "ok", "success"] },
         { id: "unauth", label: "401 unauthorized", terms: ["401", "unauthorized"] },
@@ -262,6 +282,8 @@
         "</ul>" +
         "<p>Isolated messages are easy to collect and hard to understand. Pairs show cause and effect.</p>",
       successFeedback: "You are mapping behavior, not collecting souvenirs from the Network panel.",
+      teach:
+        "Seeing request and response together shows cause/effect, lets you compare behaviors, and maps what the UI asked the application to do.",
       concepts: [
         { id: "cause", label: "cause and effect", terms: ["cause", "effect", "action", "because", "pair", "together", "connect"] },
         { id: "compare", label: "compare behavior", terms: ["compare", "difference", "logic", "map", "behavior", "understand"] }
@@ -299,6 +321,8 @@
         "<li>Difference: query string vs request body; 200 vs 401</li>" +
         "</ul>",
       successFeedback: "That is a first traffic map: load, search, login — each a pair you can explain.",
+      teach:
+        "Page load GET 200 (html/css/js). Search GET /search q=boots 200. Login POST /login, values in the request body, Content-Type JSON, 401 Invalid credentials. Search uses a query string; login uses a body.",
       concepts: [
         { id: "load", label: "page load resource", terms: ["document", "css", "html", "app.js", "store.css", "script", "reload"] },
         { id: "get", label: "GET search", terms: ["get"] },
@@ -343,6 +367,8 @@
       instructorNote:
         "Name one traffic fact — a query string, a POST body, a 401, a JSON body — that the shopper UI did not print.",
       body: "<p>Write from the requests you generated. This is stored as a learning note, not a score.</p>",
+      teach:
+        "Example: the rendered page does not show GET /search?q=boots or the 401 JSON; Network does.",
       concepts: [
         { id: "insight", label: "network insight", terms: ["request", "response", "header", "status", "body", "query", "post", "401", "json", "network", "not"] }
       ],

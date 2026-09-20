@@ -131,7 +131,42 @@ Stored on the workspace. Default: **5 — Instructor**.
 | 2 | Analyst |
 | 1 | Independent |
 
-The learner may **view** the scale. This build does **not** auto-decrease the level and does not implement a competence algorithm. Lessons run at the workspace's current Assistance Level. At **5 — Instructor** lessons add extra context and guiding questions.
+The learner may **view** the scale. This build does **not** auto-decrease the level and does not implement a competence algorithm. Lessons run at the workspace's current Assistance Level.
+
+| Level | Behavior (summary) |
+| --- | --- |
+| **5 Instructor** | High scaffolding: plain-language explanations, terminology before tests, concrete examples, explicit DevTools directions (where to click / what to notice), demonstration before independent application, reminders of prior concepts. Failure ladder: guiding question → stronger field hint → clear teach-through with permission to continue. **Teach me** / “I don’t know” triggers teaching (not a cryptic hint). |
+| **4 Guided** | Substantial support, less explicit demonstration than Instructor. |
+| **3 Partner** | Assumes fundamentals; collaborates. |
+| **2 Analyst** | Mostly questions and evidence checks; occasional hints. |
+| **1 Independent** | Minimal intervention. |
+
+The user chooses the level. No automatic level changes in this phase.
+
+## Teaching model (Instructor Mode)
+
+At Assistance Level **5**, Hackbot follows:
+
+**TEACH → DEMONSTRATE → GUIDED TRY → INDEPENDENT TRY → REASON → REFLECT**
+
+The learner should not be required to infer a concept Hackbot has not yet taught or demonstrated. Reasoning remains important — it comes **after** enough information exists to reason. Prefer short explanations plus learner action over textbook walls of text.
+
+### Teach Me / I don’t know
+
+On graded steps (exercise / reflection), Training shows **Give me a hint** and, at Level 5, **Teach me**. Typing phrases such as “I don’t know”, “teach me”, “help”, or “stuck” also enters the Teach Me path.
+
+Teach Me:
+
+1. Explains the concept in plain language (`exercise.teach`, else the strongest hint)
+2. Points where to look
+3. Demonstrates enough to unblock
+4. Does **not** automatically complete the entire lesson; the learner continues in their own words
+
+Attempt 3 on Teach Me (or after three failed graded attempts) may allow continue without shame — same recovery philosophy as the hint ladder.
+
+### Training entry
+
+Workbench shows a primary **Start Training** / **Continue Training** control so beginners are not forced to understand hypotheses, evidence, findings, or terminal before beginning the curriculum. Workbench remains available and grows more useful as investigation skills develop.
 
 ## Training Engine
 
@@ -149,7 +184,9 @@ Sidebar **Training** opens Module 1 — Web Investigation Foundations.
 | 8. Browser Developer Tools | Available |
 | 9–10 | Future (visible, not playable) |
 
-Lesson loop: **Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify**. Lesson 3 uses **Observe before modify**. Lesson 6 emphasizes **Observe → Compare → Reason** and **change one thing at a time**. Lesson 7 adds state continuity (cookies/sessions) with before/after comparison. Lesson 8 consolidates DevTools into **question → choose tool → evidence → interpret within limits**.
+Instructor teaching loop: **Teach → Demonstrate → Guided try → Independent try → Reason → Reflect**. Lesson 2 also uses **Look → Identify → Ask why → Form a model → Verify** and teaches HTML/DOM basics before Elements inspection. Lesson 3 uses **Observe before modify**. Lesson 6 emphasizes **Observe → Compare → Reason** and **change one thing at a time**. Lesson 7 adds state continuity (cookies/sessions) with before/after comparison. Lesson 8 consolidates DevTools into **question → choose tool → evidence → interpret within limits**.
+
+**Next phase after field retest:** UNDECIDED until a learner tries revised Instructor Mode. Do **not** auto-start Lessons 9–10.
 
 Lessons 2–8 share a local synthetic storefront: [Trail Supply](../training/web-foundations/lesson-2/) (`hackbot/training/web-foundations/lesson-2/`). Open it in another tab. Search, login, product clicks, redirect, parameter, and session labs issue **same-origin** fetches handled by a small service worker (`sw.js`) so the Network panel can show:
 
@@ -185,7 +222,7 @@ Progress, attempts, hints, and reflections persist in IndexedDB and survive refr
 
 ### MockProvider evaluation
 
-`evaluateLearnerResponse` classifies answers as **CORRECT**, **PARTIALLY CORRECT**, or **NEEDS ANOTHER LOOK** using case/punctuation-insensitive concept matching defined on each exercise. Attempt 1 asks a guiding question; attempt 2 gives a stronger hint; attempt 3 explains clearly and lets the learner continue. Reflections are stored as `LearningNote`s and are not graded harshly.
+`evaluateLearnerResponse` classifies answers as **CORRECT**, **PARTIALLY CORRECT**, or **NEEDS ANOTHER LOOK** using case/punctuation-insensitive concept matching defined on each exercise. Optional `mode: "teach"` (or help-phrase answers) returns teaching feedback with `taught: true` and does not auto-complete the lesson on early attempts. Attempt 1 asks a guiding question (Level 5 prefixes Instructor guidance); attempt 2 gives a stronger hint; attempt 3 explains clearly (`exercise.teach`) and lets the learner continue. Reflections are stored as `LearningNote`s and are not graded harshly.
 
 ## AI provider abstraction
 

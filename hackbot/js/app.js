@@ -274,7 +274,10 @@
           self.state.notes = bundle.notes;
           self.state.training = self.emptyTraining();
           self.state.view = "workbench";
-          return Hackbot.Store.listWorkspaces();
+          return Hackbot.Store.listLessonProgress(id).then(function (catalog) {
+            self.state.training.catalog = catalog || [];
+            return Hackbot.Store.listWorkspaces();
+          });
         })
         .then(function (list) {
           self.state.workspaces = list;
@@ -570,12 +573,62 @@
       this.captureTrainingDraft();
       progress.hintsUsed += 1;
       this.state.training.hintClicks = (this.state.training.hintClicks || 0) + 1;
+      this.state.training.hintIsTeach = false;
       var hints = step.hints || [];
       var idx = Math.min(this.state.training.hintClicks, hints.length) - 1;
       this.state.training.hintText = hints[Math.max(idx, 0)] || "";
       return this.persistProgress().then(function () {
         self.render();
       });
+    },
+
+    teachTraining: function () {
+      var self = this;
+      var step = this.currentStep();
+      var lesson = this.currentLesson();
+      var progress = this.state.training.progress;
+      var ws = this.state.workspace;
+      if (!step || !lesson || !progress || !ws) return Promise.resolve();
+      if (step.kind !== "exercise" && step.kind !== "reflection") {
+        return Promise.resolve();
+      }
+      this.captureTrainingDraft();
+      progress.hintsUsed += 1;
+      progress.attempts += 1;
+      this.state.training.hintIsTeach = true;
+      var attemptNumber = this.attemptsForStep(step.id).length + 1;
+      return Promise.resolve(
+        Hackbot.Provider.evaluateLearnerResponse({
+          lesson: lesson,
+          exercise: step,
+          learnerResponse: "teach me",
+          assistanceLevel: ws.assistanceLevel,
+          attemptNumber: attemptNumber,
+          mode: "teach"
+        })
+      )
+        .then(function (evaln) {
+          self.state.training.lastEvaluation = evaln;
+          self.state.training.hintText = evaln.feedback || step.teach || "";
+          if (evaln.canAdvance) {
+            self.markStepComplete(step.id);
+          }
+          return Hackbot.Store.addExerciseAttempt({
+            workspaceId: ws.id,
+            lessonId: lesson.id,
+            exerciseId: step.id,
+            learnerResponse: "[teach me]",
+            evaluation: evaln.verdict,
+            hintLevel: evaln.hintLevel
+          });
+        })
+        .then(function (row) {
+          self.state.training.attempts = self.state.training.attempts.concat([row]);
+          return self.persistProgress();
+        })
+        .then(function () {
+          self.render();
+        });
     },
 
     backTraining: function () {
@@ -742,8 +795,8 @@
         el.innerHTML =
           '<div class="hb-empty-home">' +
           "<h2>Start a workspace</h2>" +
-          '<p class="hb-loop">Observe → Understand → Hypothesize → Test → Record → Learn</p>' +
-          "<p>Create a workspace with Target Scope, or load the local OWASP Training Lab demo. Hackbot stays in this browser.</p>" +
+          '<p class="hb-loop">Teach → Demonstrate → Guided try → Independent try → Reason → Reflect</p>' +
+          "<p>Create a workspace with Target Scope, or load the local OWASP Training Lab demo. Then use <strong>Start Training</strong> — you do not need Workbench panels to begin learning.</p>" +
           "</div>";
         return;
       }
@@ -757,6 +810,11 @@
           onHint: function () {
             self.enqueue(function () {
               return self.hintTraining();
+            });
+          },
+          onTeach: function () {
+            self.enqueue(function () {
+              return self.teachTraining();
             });
           },
           onBack: function () {
@@ -792,6 +850,11 @@
         onSend: function (text) {
           self.enqueue(function () {
             return self.sendMessage(text);
+          });
+        },
+        onContinueTraining: function () {
+          self.enqueue(function () {
+            return self.openTraining();
           });
         }
       });

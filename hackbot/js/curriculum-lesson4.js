@@ -26,11 +26,13 @@
       instructorNote:
         "Stay with the idea of metadata versus payload. You do not need a catalog of header names yet.",
       body:
-        "<p>Lesson 3 taught you to watch <strong>requests and responses</strong> as pairs. Lesson 4 zooms in on one part of those messages: <strong>headers</strong>.</p>" +
-        "<p>Headers are <strong>metadata</strong> attached to an HTTP request or response. They describe how to handle the message — who it is for, what kind of content it carries, whether it may be cached — without being the main payload.</p>" +
+        "<p><strong>Teach.</strong> Lesson 3 taught you to watch <strong>requests and responses</strong> as pairs. Lesson 4 zooms in on <strong>headers</strong>.</p>" +
+        "<p>Headers are <strong>metadata</strong> attached to a request or response. They describe how to handle the message — without being the main payload.</p>" +
         "<p>The <strong>body</strong> is the payload itself: HTML, JSON search results, an error object, and so on.</p>" +
-        "<p>Think of a parcel: headers are the labels on the outside; the body is what is inside the box.</p>",
+        "<p><strong>Demonstrate (analogy, then back to HTTP):</strong> think of a parcel — headers are labels on the outside; the body is what is inside. In HTTP that looks like <code>Name: value</code> lines above a blank line, then the body.</p>",
       successFeedback: "Headers describe the message. The body is the message. That split is the foundation for this lesson.",
+      teach:
+        "HTTP headers are metadata about the request or response. The body is the payload — for example JSON results — not the headers themselves.",
       concepts: [
         { id: "meta", label: "headers as metadata", terms: ["header", "metadata", "meta", "describe", "about"] },
         { id: "body", label: "body as payload", terms: ["body", "payload", "content", "json", "inside", "message"] }
@@ -54,16 +56,20 @@
       instructorNote:
         "Open Developer Tools on the Trail Supply tab. Submit Search, click the /search request, then look for a Headers section (labels vary by browser).",
       body:
-        "<p>Open Trail Supply in another tab (or use the preview). Keep Network open.</p>" +
+        "<p><strong>Demonstrate — where to click:</strong></p>" +
         "<ol>" +
-        "<li>Search for <strong>boots</strong></li>" +
-        "<li>Click the request whose path ends in <code>/search</code></li>" +
-        "<li>Find the area that lists <strong>Request Headers</strong> and <strong>Response Headers</strong></li>" +
+        "<li>Open Trail Supply → <kbd>F12</kbd> → <strong>Network</strong>.</li>" +
+        "<li>Clear the list, then search for <strong>boots</strong>.</li>" +
+        "<li>Click the request whose path ends in <code>/search</code>.</li>" +
+        "<li>Open the <strong>Headers</strong> section.</li>" +
+        "<li>Find the groups labeled <strong>Request Headers</strong> and <strong>Response Headers</strong> (wording varies).</li>" +
         "</ol>" +
-        "<p>Browsers label this differently — Headers, Message, or similar. Name what you opened and that you can see both request and response header lists.</p>",
+        "<p><strong>What you are looking for:</strong> two lists of <code>Name: value</code> lines — one for what the browser sent, one for what the server answered with.</p>",
       reveal:
         "<p>On the search request’s detail pane you should see separate request-header and response-header lists (or one Headers view with both groups).</p>",
       successFeedback: "You found the header lists on a live request. Next you will read individual lines.",
+      teach:
+        "You opened the Network panel, selected the search request, and located Request Headers and Response Headers on that exchange.",
       concepts: [
         { id: "network", label: "Network panel", terms: ["network", "devtools", "developer", "inspect"] },
         { id: "req", label: "request headers", terms: ["request header", "request headers"] },
@@ -103,6 +109,8 @@
         "<li><code>Host</code> → the machine/port the browser contacted</li>" +
         "</ul>",
       successFeedback: "You can split a header line into name and value. That reading skill transfers to any Network panel.",
+      teach:
+        "Each line is Name: value — Content-Type: application/json, Cache-Control: no-store, Host: your local host/port.",
       concepts: [
         { id: "ctype", label: "Content-Type name/value", terms: ["content-type", "application/json", "json"] },
         { id: "cache", label: "Cache-Control name/value", terms: ["cache-control", "no-store", "cache"] },
@@ -137,6 +145,8 @@
         "<p>You may also see <strong>Referer</strong> (sometimes spelled Referrer in UI) when the browser records the page that triggered the request — mention it only if you actually see it.</p>" +
         "<p>Do not memorize the full strings. Name the header and what job it is doing.</p>",
       successFeedback: "You read live request metadata: who is asked, who is asking, and what they prefer to receive.",
+      teach:
+        "Host says which host was contacted. User-Agent describes the browser/client. Accept describes what content types the client prefers.",
       concepts: [
         { id: "host", label: "Host", terms: ["host"] },
         { id: "ua", label: "User-Agent", terms: ["user-agent", "user agent", "browser", "client"] },
@@ -168,6 +178,8 @@
       reveal:
         "<p>Request header <code>Content-Type: application/json</code> means the body is JSON, not form-urlencoded HTML fields.</p>",
       successFeedback: "You connected a body-bearing POST to the header that labels how that body is encoded.",
+      teach:
+        "POST /login includes Content-Type: application/json so the server knows the body is JSON, not the credentials themselves.",
       concepts: [
         { id: "post", label: "POST login", terms: ["post", "login", "/login"] },
         { id: "ctype", label: "Content-Type json", terms: ["content-type", "application/json", "json"] },
@@ -202,6 +214,8 @@
       reveal:
         "<p>Expect <code>Content-Type: application/json</code>, a numeric <code>Content-Length</code>, and <code>Cache-Control: no-store</code> on the synthetic responses.</p>",
       successFeedback: "You read response metadata that Trail Supply actually generates — type, size, and cache policy.",
+      teach:
+        "Response headers include Content-Type: application/json, Content-Length for the body size, and Cache-Control: no-store from the training handler.",
       concepts: [
         { id: "ctype", label: "Content-Type json", terms: ["content-type", "application/json", "json"] },
         { id: "length", label: "Content-Length", terms: ["content-length", "length", "bytes", "size"] },
@@ -233,6 +247,8 @@
         "</ul>" +
         "<p>If you only read headers, you know the shape and handling rules. If you only read the body, you know the answer or error text — but not necessarily how the browser should treat it.</p>",
       successFeedback: "You can separate metadata from payload on a real pair. That habit prevents confusing labels with content.",
+      teach:
+        "Response headers are metadata (for example Content-Type and Cache-Control). The body is the JSON payload — results or an error — not the headers.",
       concepts: [
         { id: "headers", label: "headers metadata", terms: ["header", "metadata", "content-type", "cache", "length"] },
         { id: "body", label: "body payload", terms: ["body", "json", "result", "error", "invalid", "payload"] },
@@ -266,6 +282,8 @@
         "</ul>" +
         "<p>This lesson does not teach modifying headers, bypassing controls, or attacking credentials. Observation first.</p>",
       successFeedback: "You framed headers as investigation context, not as an attack surface checklist.",
+      teach:
+        "Authorized researchers inspect headers to understand client requests and server responses, identify content types, and notice context clues — observation, not exploitation.",
       concepts: [
         { id: "client", label: "understand client", terms: ["client", "request", "send", "browser", "user-agent", "accept", "host"] },
         { id: "server", label: "understand server", terms: ["server", "response", "return", "content-type", "cache"] },
@@ -311,6 +329,8 @@
         "<li>Why: understand what client and server exchanged before changing anything</li>" +
         "</ul>",
       successFeedback: "That is a first headers map: request metadata, response metadata, body contrast, and investigator purpose.",
+      teach:
+        "Request: Host/User-Agent/Accept or login Content-Type application/json. Response: Content-Type application/json, Cache-Control no-store, or Content-Length. Headers are metadata; the body is the JSON. Researchers read headers to understand what was sent and returned.",
       concepts: [
         { id: "req", label: "request header", terms: ["host", "user-agent", "accept", "content-type", "request"] },
         { id: "res", label: "response header", terms: ["content-type", "cache-control", "content-length", "no-store", "response", "json"] },
@@ -357,6 +377,8 @@
       instructorNote:
         "Name one header fact — Content-Type, Cache-Control, Host, User-Agent, or request Content-Type on login — that the shopper UI does not print.",
       body: "<p>Write from the exchanges you inspected. This is stored as a learning note, not a score.</p>",
+      teach:
+        "Example: the rendered page does not show Cache-Control: no-store or Content-Type: application/json; Network headers do.",
       concepts: [
         {
           id: "insight",

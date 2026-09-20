@@ -47,6 +47,33 @@
     return hints[index];
   }
 
+  function teachText(exercise) {
+    if (!exercise) return "";
+    return (
+      exercise.teach ||
+      hintFor(exercise, 3) ||
+      "Re-read the explanation above. Find one concrete token in the example, name it, and say what job you think it does."
+    );
+  }
+
+  function isHelpRequest(text) {
+    var n = normalize(text);
+    if (!n) return false;
+    return (
+      /^(i )?do not know\b/.test(n) ||
+      /^(i )?don t know\b/.test(n) ||
+      /^(i )?dont know\b/.test(n) ||
+      /^idk\b/.test(n) ||
+      /^help\b/.test(n) ||
+      /^teach( me)?\b/.test(n) ||
+      /^stuck\b/.test(n) ||
+      /^no idea\b/.test(n) ||
+      /^unsure\b/.test(n) ||
+      /^i am stuck\b/.test(n) ||
+      /^i m stuck\b/.test(n)
+    );
+  }
+
   function MockProvider() {}
 
   MockProvider.prototype.id = "mock";
@@ -85,6 +112,29 @@
     var concepts = exercise.concepts || [];
     var passCount = exercise.passCount || Math.max(1, concepts.length);
     var soft = !!exercise.soft;
+    var assistanceLevel = Number(context.assistanceLevel);
+    if (!assistanceLevel || assistanceLevel < 1 || assistanceLevel > 5) assistanceLevel = 5;
+    var mode = context.mode || "answer";
+
+    // Explicit Teach Me / I don't know path — teach, do not auto-complete the lesson.
+    if (mode === "teach" || isHelpRequest(text)) {
+      var taught = teachText(exercise);
+      var teachAdvance = assistanceLevel >= 5 ? attemptNumber >= 3 : attemptNumber >= 3;
+      return Promise.resolve({
+        verdict: "NEEDS_ANOTHER_LOOK",
+        provider: "mock",
+        matchedConcepts: [],
+        canAdvance: teachAdvance,
+        hintLevel: Math.min(Math.max(attemptNumber, 1), 3),
+        taught: true,
+        feedback:
+          "Teach me: " +
+          taught +
+          (teachAdvance
+            ? " You can continue when ready — try naming one concrete piece you can now see."
+            : " After reading this, try the step again in your own words.")
+      });
+    }
 
     if (!text) {
       return Promise.resolve({
@@ -93,15 +143,16 @@
         matchedConcepts: [],
         canAdvance: false,
         hintLevel: 1,
-        feedback: hintFor(exercise, 1) || "What did you notice? Name one concrete piece of the example."
+        feedback:
+          assistanceLevel >= 5
+            ? "Type what you notice, or use Teach me / I don't know if you are stuck."
+            : hintFor(exercise, 1) || "What did you notice? Name one concrete piece of the example."
       });
     }
 
     var matched = matchConcepts(text, concepts);
     var verdict;
     var canAdvance = false;
-    var assistanceLevel = Number(context.assistanceLevel);
-    if (!assistanceLevel || assistanceLevel < 1 || assistanceLevel > 5) assistanceLevel = 5;
 
     if (soft) {
       verdict = "CORRECT";
@@ -128,16 +179,33 @@
       feedback = "That is a fair research habit: name a field and why it would change how you read the application.";
     } else if (attemptNumber <= 1) {
       feedback = hintFor(exercise, 1);
+      if (assistanceLevel >= 5) {
+        feedback =
+          "Instructor: " +
+          feedback +
+          " Reminder: the evidence is in the example or panel described above — point at one concrete token.";
+      }
     } else if (attemptNumber === 2) {
       feedback = hintFor(exercise, 2);
+      if (assistanceLevel >= 5) {
+        feedback =
+          "Instructor: " +
+          feedback +
+          " Look at the exact field or label named in the step body.";
+      }
     } else {
-      feedback = hintFor(exercise, 3);
+      feedback = teachText(exercise);
       canAdvance = true;
+      if (assistanceLevel >= 5) {
+        feedback =
+          "Instructor — here is the clear explanation: " +
+          feedback +
+          " You may continue — no shame for needing the walkthrough.";
+      }
     }
 
-    if (assistanceLevel >= 5 && verdict !== "CORRECT" && attemptNumber < 3) {
-      feedback +=
-        " Instructor: stay with the example in front of you. Name a token you can point at, then say what job you think it does.";
+    if (assistanceLevel >= 4 && assistanceLevel < 5 && verdict !== "CORRECT" && attemptNumber < 3) {
+      feedback += " Guided: stay with one observation at a time.";
     }
 
     return Promise.resolve({

@@ -21,18 +21,19 @@
       instructorNote:
         "Keep the chain human: action → input → request field → application response. No payloads.",
       body:
-        "<p>Lessons 1–5 taught you to <strong>see</strong> traffic: requests, responses, headers, and status codes.</p>" +
-        "<p>Lesson 6 begins a new skill: <strong>reason about where user-controlled information enters a request</strong>.</p>" +
-        "<p>Actions such as typing a search term, filling a form, choosing an option, or clicking a product can place values into the request. Investigators trace:</p>" +
+        "<p><strong>Teach.</strong> Lessons 1–5 taught you to <strong>see</strong> traffic. Lesson 6: <strong>trace where your input enters a request</strong>.</p>" +
+        "<p><strong>Demonstrate the chain:</strong></p>" +
         '<ol class="hb-flow" aria-label="Input to response chain">' +
-        "<li>Human action</li>" +
+        "<li>Human action (type boots)</li>" +
         "<li>Input</li>" +
         "<li>Request</li>" +
-        "<li>Parameter or value</li>" +
+        "<li>Parameter or value (<code>q=boots</code>)</li>" +
         "<li>Application response</li>" +
         "</ol>" +
-        "<p>The loop stays observational: <strong>OBSERVE → COMPARE → REASON</strong>. This lesson does not teach injection, fuzzing, or bypasses.</p>",
+        "<p>Loop: <strong>OBSERVE → COMPARE → REASON</strong>. No injection or fuzzing in this lesson.</p>",
       successFeedback: "User actions can become named values inside a request — that is the trail to follow.",
+      teach:
+        "Something you type or click can become data in the HTTP request — for example a search term in the query string or form fields in a POST body.",
       concepts: [
         { id: "action", label: "human action", terms: ["type", "click", "form", "search", "input", "action", "select"] },
         { id: "request", label: "appears in request", terms: ["request", "parameter", "query", "body", "url", "value"] }
@@ -56,18 +57,24 @@
       instructorNote:
         "Expect GET …/search?q=boots. Point at path /search and q=boots.",
       body:
-        "<p>Open Trail Supply with Network recording. Type <strong>boots</strong> and submit Search.</p>" +
-        "<p>Look at the request URL. Structure to notice:</p>" +
+        "<p><strong>Demonstrate / guided try:</strong></p>" +
+        "<ol>" +
+        "<li>Trail Supply → Network open → clear the list.</li>" +
+        "<li>Type <strong>boots</strong> and submit Search.</li>" +
+        "<li>Click the request whose URL contains <code>/search?q=boots</code>.</li>" +
+        "</ol>" +
+        "<p><strong>What you are looking for</strong> in that URL:</p>" +
         "<ul>" +
         "<li><code>/search</code> — path</li>" +
         "<li><code>?</code> — start of the query string</li>" +
-        "<li><code>q</code> — parameter name</li>" +
-        "<li><code>boots</code> — parameter value</li>" +
-        "</ul>" +
-        "<p>Write what you see. Exact browser chrome labels are optional.</p>",
+        "<li><code>q</code> — parameter <em>name</em></li>" +
+        "<li><code>boots</code> — parameter <em>value</em></li>" +
+        "</ul>",
       reveal:
         "<p>Typical training request: <code>GET …/search?q=boots</code> — path <code>/search</code>, parameter <code>q</code>, value <code>boots</code>.</p>",
       successFeedback: "You located the search term as a named query parameter.",
+      teach:
+        "The request path is /search and the query string includes parameter q with value boots.",
       concepts: [
         { id: "path", label: "path /search", terms: ["search", "/search", "path"] },
         { id: "name", label: "parameter q", terms: ["q", "parameter", "name", "query"] },
@@ -98,6 +105,8 @@
         "</ul>" +
         "<p>When you change what you type, the <em>name</em> often stays the same while the <em>value</em> changes. That is the comparison unit for this lesson.</p>",
       successFeedback: "Name identifies the slot; value is the user-controlled data in that slot.",
+      teach:
+        "Parameter name is q; value is boots. Distinguishing them lets you see which slot you control when the request changes.",
       concepts: [
         { id: "name", label: "name q", terms: ["name", "q", "parameter", "key", "field"] },
         { id: "value", label: "value boots", terms: ["value", "boots", "data"] },
@@ -133,6 +142,8 @@
         "<p class=\"hb-loop\">CHANGE ONE THING AT A TIME</p>" +
         "<p>This is experimental discipline — not an attack method.</p>",
       successFeedback: "Good investigators change one input so the comparison stays readable.",
+      teach:
+        "Change one input at a time. Between boots and camera/tent searches, the q parameter value should change while the rest of the request shape stays comparable.",
       concepts: [
         { id: "one", label: "change one", terms: ["one", "single", "only", "at a time", "discipline"] },
         { id: "value", label: "value changes", terms: ["value", "q", "camera", "tent", "boots", "change", "parameter"] }
@@ -165,6 +176,8 @@
         "</ul>" +
         "<p>Record only what Network evidence supports.</p>",
       successFeedback: "You controlled the q value; path and parameter name stayed put.",
+      teach:
+        "Both requests keep GET /search and parameter name q; the value changes with your search text — that value is what you controlled.",
       concepts: [
         { id: "same", label: "path and name same", terms: ["search", "path", "q", "same", "name", "method", "get"] },
         { id: "changed", label: "value changed", terms: ["value", "change", "different", "boots", "camera", "tent"] },
@@ -195,6 +208,8 @@
       reveal:
         "<p>Example shape: <code>/search?q=trail%20camera</code> — the space became an encoded form while the parameter name stayed <code>q</code>.</p>",
       successFeedback: "You saw that user text may be encoded when it travels in a URL.",
+      teach:
+        "Searching trail camera typically shows q=trail%20camera (or similar). URL encoding gives spaces and special characters a safe representation inside the URL.",
       concepts: [
         { id: "space", label: "space encoded", terms: ["space", "%20", "plus", "+", "encode", "encoding", "encoded"] },
         { id: "why", label: "safe URL", terms: ["url", "safe", "represent", "character", "special", "query"] },
@@ -226,6 +241,8 @@
       reveal:
         "<p>Example: <code>q=boots</code> and <code>sort=price</code>, joined by <code>&amp;</code>.</p>",
       successFeedback: "Multiple parameters are name=value pairs joined by &.",
+      teach:
+        "Multiple query parameters are separated by &. The demo uses q=boots and sort=price.",
       concepts: [
         { id: "amp", label: "ampersand separator", terms: ["&", "ampersand", "separat", "multiple", "more than one"] },
         { id: "q", label: "q boots", terms: ["q", "boots"] },
@@ -259,6 +276,8 @@
         "<p>Open Network → the login request → Payload / Request body. Use any practice strings; Trail Supply always returns a synthetic 401. Nothing leaves this machine.</p>" +
         "<p><strong>Query parameter ≠ request body</strong> — both can carry user-controlled data in different places.</p>",
       successFeedback: "Login input rides in the POST body; search input rides in the query string.",
+      teach:
+        "Synthetic login puts username and password in the POST request body (JSON), not in the query string — unlike search’s q= parameter.",
       concepts: [
         { id: "body", label: "request body", terms: ["body", "payload", "json", "post"] },
         { id: "fields", label: "username password", terms: ["username", "password", "credential", "login"] },
@@ -292,6 +311,8 @@
         "</ul>" +
         "<p>Both can carry an identifier. The lesson is to notice <em>where</em> the value lives. Do not manipulate paths to attack the lab.</p>",
       successFeedback: "Product 42 is encoded in the path — another place user-relevant values can appear.",
+      teach:
+        "The request uses path /products/42 — the identifier is in the path, which differs from a query form like /products?id=42.",
       concepts: [
         { id: "path", label: "path products/42", terms: ["products/42", "/products/42", "path", "42"] },
         { id: "id", label: "identifier", terms: ["id", "identifier", "product", "42"] },
@@ -323,6 +344,8 @@
         "</ul>" +
         "<p>Investigators ask first: <em>What parts of this request came from me?</em></p>",
       successFeedback: "You can place the same idea — user-controlled data — into query, body, or path.",
+      teach:
+        "Search text goes into query parameter q; login fields go into the POST body; product 42 appears in the path /products/42.",
       concepts: [
         { id: "query", label: "search query", terms: ["search", "query", "q"] },
         { id: "body", label: "login body", terms: ["login", "body", "post", "username", "password"] },
@@ -361,6 +384,8 @@
         "</ul>" +
         "<p>Do not look for a vulnerability — reconstruct the input trail.</p>",
       successFeedback: "That is disciplined input tracing: action → parameter → compare → evidence.",
+      teach:
+        "Action trail camera → GET /search with parameter q (often trail%20camera), status 200. A second benign search keeps path and name q; only the value changes — that value is what you controlled.",
       concepts: [
         { id: "path", label: "path search", terms: ["search", "/search", "path"] },
         { id: "param", label: "parameter q", terms: ["q", "parameter", "name"] },
@@ -413,6 +438,8 @@
       instructorNote:
         "Soft-graded. Any honest placement + next-check habit is enough.",
       body: "<p>Write from the Trail Supply work you just did. Stored as a learning note, not a score.</p>",
+      teach:
+        "Example: I did not expect login values to sit only in the POST body; next time I will check Payload as well as the URL.",
       concepts: [
         {
           id: "insight",

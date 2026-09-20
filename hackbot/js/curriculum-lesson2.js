@@ -1,6 +1,7 @@
 /**
  * Module 1 Lesson 2 — Inspecting a Web Page.
  * Synthetic Trail Supply storefront; no live targets.
+ * Instructor Mode: teach HTML/DOM before graded inspection.
  */
 (function (global) {
   "use strict";
@@ -13,7 +14,7 @@
     "</a>";
 
   var FORM_EXCERPT =
-    '<form action="/search" method="GET">\n' +
+    '<form id="search-form" action="/search" method="GET">\n' +
     '  <input name="q">\n' +
     '  <button type="submit">Search</button>\n' +
     "</form>";
@@ -26,22 +27,27 @@
     {
       id: "a-visible",
       part: "A",
-      phase: "EXPLAIN",
+      phase: "TEACH",
       kind: "exercise",
       embedTrainingPage: true,
       title: "What the browser shows you",
-      prompt: "What information can you learn just by looking at the page?",
+      prompt: "Name two things a shopper can see on the Trail Supply page (no DevTools yet).",
       instructorNote:
-        "Name what a shopper would see: headings, products, a search box, a sign-in form. Do not inspect source yet.",
+        "Headings, products, search, or sign-in. Stay with the visible interface.",
       body:
-        "<p>Lesson 1 taught what <strong>requests</strong> and <strong>responses</strong> are. Lesson 2 asks what a <strong>page</strong> is made of — and why the picture on screen is only one representation of the application.</p>" +
-        "<p>Look at the Trail Supply storefront (preview below, or open it in another tab). Stay with the visible interface.</p>" +
-        '<p class="hb-loop">Look → Identify → Ask why → Form a model → Verify</p>',
+        "<p><strong>Teach.</strong> Lesson 1: client → request → server → response → rendered result. Lesson 2 asks what a <strong>page</strong> is made of.</p>" +
+        "<ul>" +
+        "<li><strong>Rendered page</strong> — the picture and text you see.</li>" +
+        "<li><strong>Underlying structure</strong> — HTML the browser received (we open that next).</li>" +
+        "</ul>" +
+        "<p><strong>Guided look:</strong> use the Trail Supply preview below (or open it in another tab). Do <em>not</em> open DevTools yet.</p>" +
+        '<p class="hb-loop">Look → Identify → Ask why → Form a model → Verify</p>' +
+        "<p>What should you notice? Shop name, product cards, a search box, account/sign-in, navigation links.</p>",
       reveal:
-        "<p>The rendered interface is useful: you can see a shop name, products, search, and a login. It still does not show everything the browser received or everything the application contains.</p>" +
-        "<p><strong>Visible interface ≠ complete application structure.</strong> That is a working observation, not a claim that the page is hiding an exploit.</p>",
-      successFeedback:
-        "You stayed with what a person can see. Next we will look underneath that picture.",
+        "<p>Visible interface ≠ complete application structure. Shoppers see Trail Supply, products, search, and login — not every attribute or comment underneath.</p>",
+      successFeedback: "You stayed with what a person can see. Next we learn the language under that picture.",
+      teach:
+        "From the visible page alone you can name Trail Supply, products like Trail Camera or Headlamp, the search box, and sign-in/account. That is the interface — not the whole structure.",
       concepts: [
         { id: "brand", label: "visible shop", terms: ["trail supply", "heading", "title", "store"] },
         { id: "products", label: "products", terms: ["product", "trail camera", "headlamp", "catalog", "camera"] },
@@ -51,33 +57,53 @@
       ],
       passCount: 2,
       hints: [
-        "If you could not open Developer Tools, what would you still know about this shop?",
-        "Point at a heading, a product name, the search box, or the sign-in form.",
-        "Visible pieces include the Trail Supply heading, product cards (Trail Camera, Headlamp), search, account/login, and navigation. That is the interface — not the whole structure."
+        "Without DevTools, what would a shopper still know about this shop?",
+        "Point at the Trail Supply heading, a product name, search, or sign-in.",
+        "Say two of: Trail Supply heading, product cards, search, login, navigation."
       ]
     },
     {
       id: "b-inspector",
       part: "B",
-      phase: "DEMONSTRATE",
+      phase: "TEACH",
       kind: "exercise",
       embedTrainingPage: true,
-      title: "Open the inspector",
+      title: "HTML basics, then open Elements",
       prompt:
-        "Find the HTML element containing the Trail Supply page heading. Report the element/tag type, the visible text, and any id or class you notice.",
+        "Find the HTML element for the Trail Supply page heading. Report the tag type, the visible text, and the id or class.",
       instructorNote:
-        "Open Developer Tools on the Trail Supply tab. Right-click the heading if that is easier than hunting in the tree.",
+        "Right-click the heading → Inspect, or F12 → Elements. Look for h1 with Trail Supply.",
       body:
-        "<p><strong>HTML</strong> is the document the browser received. The <strong>DOM</strong> is the live tree the browser builds from it. <strong>Elements</strong> are the nodes in that tree (a heading, a link, an input).</p>" +
-        "<p>Open Developer Tools on the Trail Supply page (browser menus differ):</p><ul>" +
-        "<li>Right-click the heading → <strong>Inspect</strong></li>" +
-        "<li><kbd>F12</kbd> where the keyboard supports it</li>" +
-        "<li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> on many desktop browsers (<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on macOS)</li>" +
+        "<p><strong>Teach — HTML before you dig.</strong> You do not need prior HTML knowledge.</p>" +
+        "<ul>" +
+        "<li><strong>HTML</strong> — structured text describing page content and structure.</li>" +
+        "<li><strong>Tag / element</strong> — a piece of structure in angle brackets: <code>&lt;form&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;h1&gt;</code>.</li>" +
+        "<li><strong>Opening / closing</strong> — pairs like <code>&lt;h1&gt;…&lt;/h1&gt;</code>. The slash ends the element.</li>" +
+        "<li><strong>Attribute</strong> — name/value on a tag: <code>id=\"site-heading\"</code>.</li>" +
+        "<li><strong>Rendered page vs DOM</strong> — what you see vs the live tree. The <strong>Elements</strong> panel shows that tree.</li>" +
         "</ul>" +
-        "<p>Hackbot does not open the tools for you. Inspect the local page; nothing is automated.</p>",
+        "<p><strong>Demonstrate</strong> one element pattern:</p>" +
+        '<pre class="hb-http" tabindex="0">&lt;form id="search-form" action="/search" method="GET"&gt;</pre>' +
+        "<ul>" +
+        "<li><code>form</code> = element / tag type</li>" +
+        "<li><code>id</code> = attribute name</li>" +
+        "<li><code>search-form</code> = attribute value</li>" +
+        "</ul>" +
+        "<p><strong>Now apply that pattern to the page heading.</strong> Exact navigation (menus vary):</p>" +
+        "<ol>" +
+        "<li>Open Trail Supply (preview or tab).</li>" +
+        "<li>Press <kbd>F12</kbd>, or <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> (macOS: <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>), or right-click the big title → <strong>Inspect</strong>.</li>" +
+        "<li>Select <strong>Elements</strong> (sometimes Inspector).</li>" +
+        "<li>Highlight the heading, or Ctrl/Cmd+F in Elements for <code>site-heading</code>.</li>" +
+        "</ol>" +
+        "<p><strong>What you are looking for:</strong></p>" +
+        '<pre class="hb-http" tabindex="0">&lt;h1 id="site-heading" class="site-title"&gt;Trail Supply&lt;/h1&gt;</pre>' +
+        "<p>Report tag type, visible text, and id or class — same pattern as the form demo.</p>",
       reveal:
-        "<p>The heading is an <code>&lt;h1&gt;</code> with visible text <strong>Trail Supply</strong>, <code>id=\"site-heading\"</code>, and class <code>site-title</code>.</p>",
+        "<p>The heading is an <code>&lt;h1&gt;</code> with text <strong>Trail Supply</strong>, <code>id=\"site-heading\"</code>, class <code>site-title</code>.</p>",
       successFeedback: "You inspected a real element instead of guessing from the screenshot.",
+      teach:
+        "Open Elements and find the h1. Text is Trail Supply. id is site-heading. class is site-title. Same name/value attribute pattern as form id=\"search-form\".",
       concepts: [
         { id: "tag", label: "heading tag", terms: ["h1", "heading"] },
         { id: "text", label: "heading text", terms: ["trail supply"] },
@@ -85,33 +111,37 @@
       ],
       passCount: 2,
       hints: [
-        "Right-click the large title. What tag wraps it? What is the text? Does it have an id?",
-        "Look for an h1. The text is Trail Supply. Check id and class on that same tag.",
+        "Right-click the large title → Inspect. What tag wraps it? What is the text? Does it have an id?",
+        "Look for an h1. Text Trail Supply. Check id and class on that same tag.",
         "It is an h1, text Trail Supply, id site-heading, class site-title."
       ]
     },
     {
       id: "c-html",
       part: "C",
-      phase: "INTERPRET",
+      phase: "DEMONSTRATE",
       kind: "exercise",
       title: "Read a small HTML element",
-      prompt: "What pieces of information could an investigator learn from this element?",
+      prompt: "From this link element, name the destination (href), one product identifier attribute, and the visible label.",
       instructorNote:
-        "Name the tag, the attributes, their values, and the visible text. You do not need to write HTML — just read it.",
+        "Name the tag, attributes, values, and visible text. You do not need to write HTML — just read it.",
       body:
-        "<p>This is investigation reading, not an HTML class. Distinguish:</p><ul>" +
-        "<li><strong>Element / tag</strong> — the kind of node (<code>a</code> is a link)</li>" +
-        "<li><strong>Attribute</strong> — a named property on the element (<code>href</code>, <code>class</code>)</li>" +
-        "<li><strong>Attribute value</strong> — what that property is set to</li>" +
-        "<li><strong>Visible text</strong> — what the rendered page shows</li>" +
+        "<p><strong>Demonstrate</strong> the same pattern on a link:</p>" +
+        "<ul>" +
+        "<li><strong>Element / tag</strong> — <code>a</code> means a link</li>" +
+        "<li><strong>Attribute</strong> — named property (<code>href</code>, <code>class</code>, <code>data-product-id</code>)</li>" +
+        "<li><strong>Attribute value</strong> — what it is set to</li>" +
+        "<li><strong>Visible text</strong> — between the tags</li>" +
         "</ul>" +
         '<pre class="hb-http" tabindex="0">' +
         LINK_EXCERPT.replace(/</g, "&lt;") +
-        "</pre>",
+        "</pre>" +
+        "<p><strong>Guided try:</strong> what path does <code>href</code> name? What identifier appears? What text would the shopper see?</p>",
       reveal:
-        "<p>An investigator can learn the destination <code>/products/42</code>, a class <code>product-link</code>, a product identifier <code>42</code>, and the label Trail Camera. Identifiers like this often help us understand how an application organizes resources — they are not an invitation to attack.</p>",
-      successFeedback: "You read structure: where it goes, how it is labeled, and how the app names the resource.",
+        "<p>Destination <code>/products/42</code>, class <code>product-link</code>, <code>data-product-id=\"42\"</code>, label Trail Camera. Identifiers help map resources — not an invitation to attack.</p>",
+      successFeedback: "You read structure: where it goes, how it is labeled, how the app names the resource.",
+      teach:
+        "href is /products/42. data-product-id is 42. Visible text is Trail Camera. class product-link is optional to mention.",
       concepts: [
         { id: "href", label: "destination", terms: ["/products/42", "products/42", "href", "path", "destination"] },
         { id: "class", label: "class", terms: ["product-link", "class"] },
@@ -131,21 +161,23 @@
       phase: "YOU TRY",
       kind: "exercise",
       embedTrainingPage: true,
-      title: "Inspect links",
+      title: "Inspect links on the page",
       prompt: "What is the destination of the Trail Camera product link? Note anything else the href or attributes tell you.",
       instructorNote:
         "Inspect the Trail Camera link. Read href first. Relative paths still name a resource on this host.",
       body:
-        "<p>When you inspect links, pay attention to:</p><ul>" +
-        "<li><code>href</code> — where the browser would go</li>" +
-        "<li>relative vs absolute paths</li>" +
-        "<li>query parameters when present (try <strong>Optics</strong>)</li>" +
-        "<li>identifiers in paths</li>" +
-        "<li>destinations that are not obvious from the link text (try <strong>Gear guide</strong>)</li>" +
-        "</ul>" +
-        "<p>These are safe local examples. We are mapping resources, not testing access control.</p>" +
-        "<p>Identifiers like <code>42</code> often help us understand how an application organizes resources.</p>",
+        "<p><strong>Independent try.</strong> You already read a link excerpt. Now find it in Elements.</p>" +
+        "<ol>" +
+        "<li>Open Trail Supply.</li>" +
+        "<li>Right-click the <strong>Trail Camera</strong> link → Inspect.</li>" +
+        "<li>On the highlighted <code>&lt;a&gt;</code>, find <code>href</code> — that is the destination.</li>" +
+        "<li>Also look for <code>data-product-id</code>.</li>" +
+        "</ol>" +
+        "<p>Optional: <strong>Optics</strong> may show a query string; <strong>Gear guide</strong> may go somewhere the link text does not spell out.</p>" +
+        "<p>We are mapping resources, not testing access control.</p>",
       successFeedback: "You mapped a resource from a link instead of trusting the label alone.",
+      teach:
+        "Trail Camera href is /products/42. The product identifier is 42 (data-product-id). Optics may use a query; Gear guide may go to /help/sizing.",
       concepts: [
         { id: "path", label: "product path", terms: ["/products/42", "products/42"] },
         { id: "id", label: "product identifier", terms: ["42", "data-product-id", "product-id"] }
@@ -154,35 +186,37 @@
       hints: [
         "Inspect the Trail Camera anchor. What is in href?",
         "The href is /products/42 — a relative path. data-product-id repeats 42.",
-        "Destination: /products/42. The product identifier is 42. Optics uses a query string; Gear guide goes to /help/sizing, which the text does not spell out."
+        "Destination: /products/42. The product identifier is 42."
       ]
     },
     {
       id: "e-forms",
       part: "E",
-      phase: "YOU TRY",
+      phase: "DEMONSTRATE",
       kind: "exercise",
       embedTrainingPage: true,
       title: "Forms and inputs",
       prompt: "If the learner searches for boots, what information would you expect the browser to send?",
       instructorNote:
-        "Connect this to Lesson 1: a form describes a future HTTP request — method, path, and named parameters.",
+        "Connect to Lesson 1: a form describes a future HTTP request — method, path, and named parameters.",
       body:
-        "<p>Lesson 1: a request has a method, a path, and often a body or query. A form is one way the page tells the browser how to build that request.</p>" +
-        "<p>Inspect the search form, or read this excerpt:</p>" +
+        "<p><strong>Teach.</strong> A <strong>form</strong> tells the browser how to build a request (Lesson 1: method, path, parameters).</p>" +
+        "<p><strong>Demonstrate:</strong></p>" +
         '<pre class="hb-http" tabindex="0">' +
         FORM_EXCERPT.replace(/</g, "&lt;") +
         "</pre>" +
-        "<p>Notice:</p><ul>" +
-        "<li><strong>action</strong> — the path</li>" +
-        "<li><strong>method</strong> — GET or POST</li>" +
-        "<li><strong>input name</strong> — the parameter name</li>" +
-        "<li><strong>value</strong> — what the user typed</li>" +
+        "<ul>" +
+        "<li><code>action=\"/search\"</code> — path</li>" +
+        "<li><code>method=\"GET\"</code> — HTTP method</li>" +
+        "<li><code>&lt;input name=\"q\"&gt;</code> — parameter <em>name</em> is <code>q</code>; typed text is the <em>value</em></li>" +
         "</ul>" +
-        "<p>Exact syntax is not required if the idea is right.</p>",
+        "<p>Example: typing <code>boots</code> → often <code>GET /search?q=boots</code>.</p>" +
+        "<p><strong>Guided try:</strong> for <strong>boots</strong>, name method, path, and q value. Confirm with Inspect on the search form if you want.</p>",
       reveal:
-        "<p>A GET to <code>/search</code> with <code>q=boots</code> — often written <code>GET /search?q=boots</code>. The name <code>q</code> is the parameter; <code>boots</code> is the submitted value.</p>",
-      successFeedback: "You connected the form to the request it would produce. That is Lesson 1, applied to a page.",
+        "<p>A GET to <code>/search</code> with <code>q=boots</code> — often written <code>GET /search?q=boots</code>.</p>",
+      successFeedback: "You connected the form to the request it would produce.",
+      teach:
+        "The browser would send GET /search?q=boots. Method GET, action /search, input name q, value boots.",
       concepts: [
         { id: "method", label: "GET method", terms: ["get", "method"] },
         { id: "action", label: "search path", terms: ["/search", "search"] },
@@ -205,15 +239,17 @@
       title: "Scripts and resources",
       prompt: "What file would you inspect if you wanted to understand some of the page's client-side behavior?",
       instructorNote:
-        "Find the script tag in the page source or Inspector. We are naming the file, not reverse-engineering it.",
+        "Find the script tag in page source or Elements. Name the file; do not reverse-engineer it.",
       body:
-        "<p>Pages often load JavaScript:</p>" +
+        "<p><strong>Teach:</strong> pages often load JavaScript with <code>&lt;script src=\"…\"&gt;</code>. The <code>src</code> attribute is the file path.</p>" +
+        "<p><strong>Demonstrate:</strong></p>" +
         '<pre class="hb-http" tabindex="0">' +
         SCRIPT_EXCERPT.replace(/</g, "&lt;") +
         "</pre>" +
-        "<p>JavaScript often contains client-side application behavior. Researchers inspect it to understand how the application works — later, on authorized targets, and still as reading, not as an exploit kit.</p>" +
-        "<p>This lesson does not teach JavaScript reverse engineering. Locate the synthetic page's script reference.</p>",
+        "<p><strong>Guided try:</strong> in Elements (or View Page Source), find the script near the bottom of Trail Supply HTML. What does <code>src</code> say?</p>" +
+        "<p>This lesson does not teach JavaScript reverse engineering — only locating the reference.</p>",
       successFeedback: "You found the client script the page actually loads.",
+      teach: "The storefront loads js/app.js — that is the src on the script tag.",
       concepts: [
         { id: "script", label: "script file", terms: ["js/app.js", "app.js", "script"] }
       ],
@@ -233,13 +269,15 @@
       title: "Comments and non-visible structure",
       prompt: "Why might comments or non-visible page structure be interesting during an authorized investigation?",
       instructorNote:
-        "View page source or the Inspector. There is a harmless HTML comment near the top, and a visually hidden catalog hint.",
+        "View page source or Elements. There is a harmless HTML comment near the top, and a visually hidden catalog hint.",
       body:
-        "<p>Find the HTML comment on the Trail Supply page (it is not rendered as visible text). Example of the idea:</p>" +
+        "<p><strong>Teach:</strong> HTML comments look like <code>&lt;!-- … --&gt;</code>. Browsers do not show them as page text. Hidden elements and <code>data-</code> attributes can also exist without looking like shopper copy.</p>" +
+        "<p><strong>Demonstrate the idea:</strong></p>" +
         '<pre class="hb-http" tabindex="0">&lt;!-- TODO: replace demo inventory endpoint before release --&gt;</pre>' +
-        "<p>Information can exist in page source or DOM structure without appearing as visible page text. That can include comments, hidden elements, and <code>data-</code> attributes.</p>" +
-        "<p>This example has no secrets, credentials, or tokens. The point is: <em>look</em> before you assume the screenshot is complete.</p>",
+        "<p><strong>Guided try:</strong> find the real comment on Trail Supply (View Page Source, or search in Elements). Then answer why non-visible structure can matter — no secrets here; the point is to look.</p>",
       successFeedback: "You treated hidden structure as part of the map, not as a prize.",
+      teach:
+        "Comments and hidden nodes can record endpoints, leftover notes, or structure the UI does not advertise. That is mapping, not exploitation. This page’s comment mentions a demo inventory endpoint.",
       concepts: [
         { id: "why", label: "why it matters", terms: ["comment", "hidden", "source", "not visible", "invisible", "todo", "endpoint", "structure", "data-", "because", "why", "reveal", "developer"] }
       ],
@@ -258,13 +296,20 @@
       embedTrainingPage: true,
       title: "Investigation challenge",
       prompt:
-        "Inspect the Trail Supply page and report: (1) page heading element, (2) login form action, (3) login form method, (4) username input name, (5) search form action, (6) product link path, (7) product identifier, (8) JavaScript file the page loads, (9) the HTML comment, (10) one additional detail you discovered yourself.",
+        "Inspect Trail Supply and report: (1) page heading element, (2) login form action, (3) login form method, (4) username input name, (5) search form action, (6) product link path, (7) product identifier, (8) JavaScript file, (9) the HTML comment, (10) one additional detail you found yourself.",
       instructorNote:
-        "This is miniature reconnaissance: look, identify, and write it down. Exact phrasing is not required. Name what you found.",
+        "Miniature recon: look, identify, write it down. Exact phrasing is not required.",
       body:
-        "<p>Without copying a scorecard from memory, inspect the local page and build a short map. Free-text is fine.</p>" +
+        "<p><strong>Independent try — build a short map.</strong> Use Elements and View Source. Free-text is fine.</p>" +
+        "<p>Where to look (you have practiced each skill):</p><ul>" +
+        "<li>Heading — the <code>h1</code> you already found</li>" +
+        "<li>Login form — Inspect sign-in; read <code>action</code>, <code>method</code>, input <code>name</code>s</li>" +
+        "<li>Search form — <code>action</code></li>" +
+        "<li>Trail Camera link — <code>href</code> and <code>data-product-id</code></li>" +
+        "<li>Script <code>src</code> and the HTML comment</li>" +
+        "</ul>" +
         '<p class="hb-loop">Look → Identify → Ask why → Form a model → Verify</p>' +
-        "<p>Do not test logins, guess passwords, or treat identifiers as something to attack. Report structure.</p>",
+        "<p>Do not test logins or guess passwords. Report structure.</p>",
       reveal:
         "<ol>" +
         "<li>Heading: <code>h1#site-heading.site-title</code> — Trail Supply</li>" +
@@ -276,9 +321,11 @@
         "<li>Identifier: <code>data-product-id=\"42\"</code></li>" +
         "<li>Script: <code>js/app.js</code></li>" +
         "<li>Comment: TODO replace demo inventory endpoint before release</li>" +
-        "<li>Other details: hidden catalog hint <code>/inventory/demo.json</code>, Optics <code>?category=optics</code>, Gear guide → <code>/help/sizing</code></li>" +
+        "<li>Other: hidden catalog hint, Optics query, Gear guide → /help/sizing, etc.</li>" +
         "</ol>",
-      successFeedback: "That is a first recon map: heading, forms, links, script, comment, plus something you noticed on your own.",
+      successFeedback: "That is a first recon map: heading, forms, links, script, comment, plus something you noticed.",
+      teach:
+        "Heading h1#site-heading Trail Supply; login POST /login username; search /search; product /products/42 id 42; js/app.js; TODO demo inventory; extra e.g. hidden inventory path or /help/sizing.",
       concepts: [
         { id: "heading", label: "heading", terms: ["h1", "site-heading", "site-title", "trail supply"] },
         { id: "loginaction", label: "login action", terms: ["/login", "action=\"/login\""] },
@@ -293,7 +340,7 @@
       ],
       passCount: 6,
       hints: [
-        "Walk the page once: heading tag, both forms (action/method/names), the Trail Camera href and data attribute, the script src, then view-source for the comment.",
+        "Walk once: heading tag, both forms (action/method/names), Trail Camera href + data attribute, script src, view-source for the comment.",
         "Login is POST /login with input name username. Search action is /search. Product href /products/42 and data-product-id 42. Script js/app.js. Comment mentions a demo inventory endpoint.",
         "Heading h1#site-heading Trail Supply; login action /login method POST; username name=username; search /search; product /products/42; id 42; js/app.js; TODO demo inventory endpoint; extra e.g. hidden /inventory/demo.json or /help/sizing."
       ]
@@ -309,7 +356,7 @@
         "<p>Researchers examine structure, requests, links, forms, scripts, parameters, and application behavior to build a mental model of how the application works.</p>" +
         "<p><strong>Understanding comes before testing.</strong></p>" +
         "<p class=\"hb-loop\">MAP BEFORE YOU TEST</p>" +
-        "<p>Lesson 1: you learned what requests and responses are. Lesson 2: page structure tells you what requests a browser may make and what application resources exist.</p>" +
+        "<p>Lesson 1: requests and responses. Lesson 2: page structure tells you what requests a browser may make and what resources exist.</p>" +
         "<p>This lesson does not teach exploitation. The habit is to map first.</p>"
     },
     {
@@ -323,6 +370,8 @@
       instructorNote:
         "Name one structural fact — a path, a method, a comment, a hidden node — and why the rendered page hid it.",
       body: "<p>Write from the inspection you just did. This is stored as a learning note, not a score.</p>",
+      teach:
+        "Example: the demo inventory comment, POST /login, or data-product-id are in the structure, not in the shopper-facing copy.",
       concepts: [
         { id: "insight", label: "inspection insight", terms: ["comment", "hidden", "href", "action", "script", "source", "attribute", "form", "id", "path", "not", "visible"] }
       ],
@@ -342,10 +391,10 @@
     title: "Inspecting a Web Page",
     status: "available",
     trainingPage: PAGE_PATH,
-    cycle: "Look → Identify → Ask why → Form a model → Verify",
+    cycle: "Teach → Demonstrate → Guided try → Independent try → Reason → Reflect",
     completeBanner:
       "Lesson 2 is complete. You can review steps or continue to Lesson 3 — HTTP Requests and Responses.",
-    goal: "See that the rendered page is one representation of an application, and practice inspecting HTML, links, forms, scripts, and comments on a synthetic storefront.",
+    goal: "Learn HTML/DOM basics, then practice inspecting structure, links, forms, scripts, and comments on a synthetic storefront — map before you test.",
     steps: STEPS
   };
 })(window);

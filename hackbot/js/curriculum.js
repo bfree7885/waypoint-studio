@@ -46,26 +46,44 @@
     {
       id: "a-url",
       part: "A",
-      phase: "EXPLAIN",
+      phase: "TEACH",
       kind: "exercise",
-      title: "Mental model — a web request",
-      prompt: "Look at this synthetic URL. What are the protocol, host, and path?",
+      title: "Mental model — browser, request, response",
+      prompt:
+        "Using the URL below, name the protocol, the host, and the path. Use the definitions you just read.",
       instructorNote:
-        "Stay with the pieces you can point to. You do not need formal definitions yet — name what you see, then say what job you think each piece does.",
+        "Point at each piece of the URL. Protocol is before ://, host is the server name, path starts with /.",
       body:
-        "<p>When you open a page, a <strong>browser (client)</strong> sends an <strong>HTTP request</strong> to a <strong>server</strong>. The server answers with an <strong>HTTP response</strong>, and the browser uses that response.</p>" +
-        '<ol class="hb-flow" aria-label="Request and response flow">' +
-        "<li>Browser / Client</li><li>HTTP Request</li><li>Server</li><li>HTTP Response</li><li>Browser</li>" +
+        "<p><strong>Teach — words first.</strong> You do not need prior cybersecurity knowledge.</p>" +
+        "<ul>" +
+        "<li><strong>Browser</strong> — the program that shows websites (Chrome, Firefox, Edge, Safari). In this training, the browser is also the <strong>client</strong>: the side that asks for something.</li>" +
+        "<li><strong>Website / page</strong> — what you see after the browser gets an answer. The page is built from data the server sent back.</li>" +
+        "<li><strong>Server / application</strong> — the other side. It receives asks and sends answers. Think of a shop: you ask for a product page; the store answers with that page.</li>" +
+        "<li><strong>Request</strong> — the message the client sends (“please give me this”).</li>" +
+        "<li><strong>Response</strong> — the message the server sends back (“here it is” / “no” / “go elsewhere”).</li>" +
+        "</ul>" +
+        '<ol class="hb-flow" aria-label="Action to rendered result">' +
+        "<li>You act (open a link, type a URL)</li>" +
+        "<li>Browser sends a request</li>" +
+        "<li>Server answers with a response</li>" +
+        "<li>Browser renders the result</li>" +
         "</ol>" +
-        "<p>Synthetic example (not a live target):</p>" +
+        "<p><strong>Demonstrate — a URL is an address.</strong> Example (synthetic, not a live target):</p>" +
         '<p class="hb-example-url"><code>https://training.hackbot.local/products/42</code></p>' +
-        "<p>Identify <strong>protocol</strong>, <strong>host</strong>, and <strong>path</strong> before Hackbot labels them.</p>",
+        "<p>Hackbot labels this one for you:</p><ul>" +
+        "<li><code>https</code> = <strong>protocol</strong> (how to talk; here, encrypted HTTP)</li>" +
+        "<li><code>training.hackbot.local</code> = <strong>host</strong> (which server)</li>" +
+        "<li><code>/products/42</code> = <strong>path</strong> (which resource on that server)</li>" +
+        "</ul>" +
+        "<p><strong>Guided try:</strong> say those three pieces back in your own words (protocol, host, path).</p>",
       reveal:
-        "<p>Labeled:</p><ul>" +
-        "<li><strong>Protocol:</strong> <code>https</code> — how the client will talk (encrypted HTTP).</li>" +
-        "<li><strong>Host / domain:</strong> <code>training.hackbot.local</code> — which server.</li>" +
-        "<li><strong>Path:</strong> <code>/products/42</code> — which resource on that server.</li>" +
+        "<p>Labeled again:</p><ul>" +
+        "<li><strong>Protocol:</strong> <code>https</code></li>" +
+        "<li><strong>Host:</strong> <code>training.hackbot.local</code></li>" +
+        "<li><strong>Path:</strong> <code>/products/42</code></li>" +
         "</ul>",
+      teach:
+        "https is the protocol. training.hackbot.local is the host. /products/42 is the path — the resource the client is asking for.",
       concepts: [
         { id: "protocol", label: "protocol", terms: ["https", "http", "protocol", "scheme"] },
         { id: "host", label: "host", terms: ["training.hackbot.local", "host", "domain"] },
@@ -84,21 +102,26 @@
       phase: "DEMONSTRATE",
       kind: "exercise",
       title: "Inspect a request",
-      prompt: "What parts of this request tell the server what resource the client wants?",
+      prompt:
+        "After reading the walk-through, name the method, the path, and the Host that tell the server what resource is wanted.",
       instructorNote:
-        "Read the first line and the Host header as a pair. Headers are extra instructions; the first line is the ask.",
+        "The first line is the ask. Host names the server. Together they identify the resource.",
       body:
-        "<p>Here is a realistic but synthetic request. Nothing is sent to a network.</p>" +
+        "<p><strong>Teach:</strong> An <strong>HTTP request</strong> is text the browser sends. The first line is the main ask. Lines after that are <strong>headers</strong> — named extra instructions (Name: value).</p>" +
+        "<p><strong>Demonstrate</strong> — synthetic request (nothing is sent to a network):</p>" +
         '<pre class="hb-http" tabindex="0">' +
         REQUEST_EXAMPLE.replace(/</g, "&lt;") +
         "</pre>" +
-        "<p>Walk-through:</p><ul>" +
-        "<li><strong>Method:</strong> <code>GET</code> — retrieve a resource; do not change it.</li>" +
-        "<li><strong>Path:</strong> <code>/products/42</code> — which resource.</li>" +
-        "<li><strong>Protocol / version:</strong> <code>HTTP/1.1</code>.</li>" +
-        "<li><strong>Host:</strong> <code>training.hackbot.local</code> — which server, because one IP can serve many names.</li>" +
-        "<li><strong>User-Agent</strong> and <strong>Accept</strong> describe the client and the representation it prefers.</li>" +
-        "</ul>",
+        "<p>What each piece means:</p><ul>" +
+        "<li><strong>Method</strong> <code>GET</code> — retrieve something; do not change it.</li>" +
+        "<li><strong>Path</strong> <code>/products/42</code> — which resource.</li>" +
+        "<li><strong>Protocol</strong> <code>HTTP/1.1</code> — the language version.</li>" +
+        "<li><strong>Host</strong> <code>training.hackbot.local</code> — which server (one machine can host many names).</li>" +
+        "<li><strong>User-Agent</strong> / <strong>Accept</strong> — describe the client and preferred format; they refine the answer, they do not rename the product.</li>" +
+        "</ul>" +
+        "<p><strong>Guided try:</strong> which three tokens identify <em>what</em> is being asked for?</p>",
+      teach:
+        "The server learns the resource from GET (method), /products/42 (path), and Host: training.hackbot.local. Other headers refine how to answer, not which object is meant.",
       concepts: [
         { id: "method", label: "HTTP method", terms: ["get", "method"] },
         { id: "path", label: "path", terms: ["/products/42", "products/42", "path", "resource"] },
@@ -106,9 +129,9 @@
       ],
       passCount: 2,
       hints: [
-        "If you could keep only a few tokens from this request, which ones identify the thing being asked for?",
-        "Look at the method plus the path, and the Host header. Together they name the resource.",
-        "The server learns the resource from GET, the path /products/42, and Host: training.hackbot.local. Other headers refine how to answer, not which object is meant."
+        "In the preformatted request, look at line 1 and the Host line. Point at method, path, and host.",
+        "Method is GET. Path is /products/42. Host is training.hackbot.local.",
+        "Answer with GET, /products/42, and Host training.hackbot.local."
       ]
     },
     {
@@ -117,14 +140,24 @@
       phase: "OBSERVE",
       kind: "exercise",
       title: "Inspect a response — what do you notice?",
-      prompt: "What do you notice in this response? Name concrete pieces before any explanation.",
+      prompt:
+        "Name at least two concrete pieces you see: a status, a header name/value, or something in the body.",
       instructorNote:
-        "Do not hunt for a trick. Point at a status, a header, or something in the body and say what it seems to mean.",
+        "Point at status, Content-Type, or the JSON body. No tricks.",
       body:
-        "<p>Corresponding synthetic response:</p>" +
+        "<p><strong>Teach:</strong> An <strong>HTTP response</strong> answers the request. Read it in order:</p><ol>" +
+        "<li><strong>Status line</strong> — did it work? (number + short phrase)</li>" +
+        "<li><strong>Headers</strong> — describe the answer (still Name: value)</li>" +
+        "<li><strong>Body</strong> — the payload after the blank line</li>" +
+        "</ol>" +
+        "<p><strong>Demonstrate</strong> — matching synthetic response:</p>" +
         '<pre class="hb-http" tabindex="0">' +
         RESPONSE_EXAMPLE.replace(/</g, "&lt;") +
-        "</pre>",
+        "</pre>" +
+        "<p>Look for: <code>200 OK</code> on the first line, <code>Content-Type: application/json</code>, then the JSON object under the blank line.</p>" +
+        "<p><strong>Guided try:</strong> say two of those pieces out loud in the answer box.</p>",
+      teach:
+        "Status 200 OK means success. Content-Type application/json means the body is JSON. After the blank line, the object with id 42 / Trail Camera is the body.",
       concepts: [
         { id: "status", label: "status code", terms: ["200", "ok", "status"] },
         { id: "type", label: "content type", terms: ["content-type", "json", "application/json"] },
@@ -134,8 +167,8 @@
       passCount: 2,
       hints: [
         "What is the first number on the first line? What does Content-Type claim? What sits under the blank line?",
-        "You should be able to point at a status (200 OK), a content type (JSON), and a body that describes product 42.",
-        "The status 200 OK means the request succeeded. Content-Type says the body is JSON. Headers sit above the blank line; the object with id 42 is the body."
+        "Point at 200 OK, application/json, and/or the Trail Camera body fields.",
+        "Write: status 200 OK; Content-Type application/json; body describes product 42 / Trail Camera."
       ]
     },
     {
@@ -145,26 +178,27 @@
       kind: "read",
       title: "Name the response pieces",
       body:
-        "<p>Now the same response, labeled:</p><ul>" +
+        "<p>Same response, fully labeled:</p><ul>" +
         "<li><strong>Status line:</strong> <code>HTTP/1.1 200 OK</code> — version, numeric status, reason phrase.</li>" +
         "<li><strong>Headers:</strong> <code>Content-Type</code> and <code>Content-Length</code> describe the body without being the body.</li>" +
-        "<li><strong>Content type:</strong> <code>application/json</code> — parse this as JSON, not HTML.</li>" +
-        "<li><strong>Body:</strong> the JSON object — the representation of product 42.</li>" +
+        "<li><strong>Content type:</strong> <code>application/json</code> — parse as JSON, not HTML.</li>" +
+        "<li><strong>Body:</strong> the JSON object — representation of product 42.</li>" +
         "</ul>" +
-        "<p>A researcher reads status first (did it work?), then headers (what kind of answer?), then body (what was actually returned?).</p>"
+        "<p>Researcher habit: status first → headers next → body last.</p>"
     },
     {
       id: "d-try",
       part: "D",
       phase: "YOU TRY",
       kind: "exercise",
-      title: "You try — a second pair",
+      title: "Independent try — a second pair",
       prompt:
-        "Identify the HTTP method, host, path, content type, status code, and what the response body communicates. Exact wording is not required.",
+        "Identify the HTTP method, host, path, content type, status code, and what the response body communicates.",
       instructorNote:
-        "Work through the pair the same way: first line, Host, headers, then the body. What was asked, and how did the application answer?",
+        "Same reading order as before: request first line + Host, then response status, headers, body.",
       body:
-        "<p>Synthetic login attempt — local training material only. These are not real credentials and nothing is sent.</p>" +
+        "<p><strong>Independent try.</strong> Same skills, new example. Local training only — not real credentials; nothing is sent.</p>" +
+        "<p>Reminder: method + path + Host = what was asked; status + headers + body = how the app answered.</p>" +
         "<p><strong>Request</strong></p>" +
         '<pre class="hb-http" tabindex="0">' +
         TRY_REQUEST.replace(/</g, "&lt;") +
@@ -173,6 +207,8 @@
         '<pre class="hb-http" tabindex="0">' +
         TRY_RESPONSE.replace(/</g, "&lt;") +
         "</pre>",
+      teach:
+        "Method POST, host training.hackbot.local, path /api/login, Content-Type application/json, status 401 Unauthorized, body: invalid credentials — the app refused the login.",
       concepts: [
         { id: "method", label: "HTTP method", terms: ["post", "method"] },
         { id: "host", label: "host", terms: ["host", "training.hackbot.local"] },
@@ -184,8 +220,8 @@
       passCount: 4,
       hints: [
         "Who is being asked (Host), what path, which method, which status, and what does the JSON error say?",
-        "POST /api/login to training.hackbot.local with JSON. The status is 401 Unauthorized. The body says the credentials were invalid — not that the page was missing.",
-        "Method POST, host training.hackbot.local, path /api/login, Content-Type application/json, status 401, body: the application refused the login because the credentials were invalid."
+        "Look for POST, /api/login, Host training.hackbot.local, application/json, 401, and the invalid-credentials message.",
+        "Method POST, host training.hackbot.local, path /api/login, Content-Type application/json, status 401, body: credentials invalid."
       ]
     },
     {
@@ -195,10 +231,9 @@
       kind: "read",
       title: "Why researchers care",
       body:
-        "<p>Security researchers care about <strong>requests</strong> because they show what the client is asking the application to do — which resource, which method, which data.</p>" +
-        "<p><strong>Responses</strong> show how the application handled that request — success, refusal, redirect, error, and what was returned.</p>" +
-        "<p>Much of web security work is carefully observing, comparing, and (later, only on authorized targets) modifying request/response behavior.</p>" +
-        "<p>This lesson does not teach exploitation. The skill is to <em>see the exchange clearly</em> before anyone changes it.</p>"
+        "<p>Security researchers care about <strong>requests</strong> because they show what the client asks the application to do — which resource, which method, which data.</p>" +
+        "<p><strong>Responses</strong> show how the application handled that ask — success, refusal, redirect, error, and what was returned.</p>" +
+        "<p>Much of web security work is carefully observing and comparing that exchange. This lesson does not teach exploitation. The skill is to <em>see the exchange clearly</em> first.</p>"
     },
     {
       id: "g-reflect",
@@ -209,9 +244,11 @@
       prompt:
         "What information in an HTTP request or response do you think a security researcher might pay attention to, and why?",
       instructorNote:
-        "There is no single correct list. Name one or two fields and why they would change how you read the application’s behavior.",
+        "Name one or two fields and why they would change how you read the application’s behavior.",
       noteConcept: "HTTP researcher attention",
-      body: "<p>Write from what you just inspected. This is stored as a learning note, not a score.</p>",
+      body: "<p>Write from what you just inspected. Stored as a learning note, not a score.</p>",
+      teach:
+        "Example: status codes show success vs refusal; paths show which feature was touched; bodies and headers can reveal how the app explains a failure. That is observation, not an exploit.",
       concepts: [
         { id: "attention", label: "researcher attention", terms: ["header", "status", "body", "path", "method", "cookie", "auth", "token", "password", "error", "host", "why", "because"] }
       ],
@@ -220,7 +257,7 @@
       hints: [
         "Pick one field you already named — a status, a path, a header, or a body error — and say what it would tell you.",
         "A researcher might watch methods and paths (what was asked), status codes (how it went), and bodies or headers that carry identity or errors.",
-        "Example: status codes show success vs refusal; paths show which feature was touched; bodies and headers can reveal how the app explains a failure. That is observation, not an exploit."
+        "Example: status codes show success vs refusal; paths show which feature was touched; bodies and headers can reveal how the app explains a failure."
       ]
     }
   ];
@@ -234,7 +271,7 @@
     id: "web-investigation-foundations",
     number: 1,
     title: "Web Investigation Foundations",
-    loop: "Explain → Demonstrate → You try → Observe → Interpret → Apply → Reflect",
+    loop: "Teach → Demonstrate → Guided try → Independent try → Reason → Reflect",
     lessons: [
       {
         id: "web-request-works",

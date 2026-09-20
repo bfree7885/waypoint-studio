@@ -21,10 +21,13 @@
       instructorNote:
         "Keep it simple: a short numeric signal about how the application handled the request. Not a full encyclopedia.",
       body:
-        "<p>Lessons 3–4 taught you to watch requests, responses, and headers. Lesson 5 focuses on the <strong>status code</strong> — the concise number on the response that signals how the request went.</p>" +
-        "<p>A status code does not replace the body. It is a quick signal: success, redirect, client-side problem, or server-side problem. Researchers read it early because it frames what to inspect next.</p>" +
-        "<p>This lesson is observational. You will not exploit redirects, bypass auth, or attack targets.</p>",
+        "<p><strong>Teach.</strong> Lessons 3–4 taught requests, responses, and headers. Lesson 5 focuses on the <strong>status code</strong> — the short number on the response that signals how the request went.</p>" +
+        "<p><strong>Demonstrate:</strong> on a successful response you already saw <code>HTTP/1.1 200 OK</code> — <code>200</code> is the status code; <code>OK</code> is the reason phrase.</p>" +
+        "<p>A status code does not replace the body. It frames what to inspect next: success, redirect, client-side problem, or server-side problem.</p>" +
+        "<p>This lesson is observational. You will not exploit redirects or attack targets.</p>",
       successFeedback: "Status codes are short signals about the outcome of a request — a starting clue, not the whole story.",
+      teach:
+        "An HTTP status code is a numeric signal on the response that summarizes the outcome of the request — success, redirect, client problem, or server problem.",
       concepts: [
         { id: "status", label: "status code", terms: ["status", "code", "number", "signal"] },
         { id: "outcome", label: "request outcome", terms: ["result", "outcome", "handled", "success", "error", "response", "how"] }
@@ -48,15 +51,18 @@
       instructorNote:
         "Status often appears in the Network list column and again in the selected request’s Headers / Status line. Expect 200 for a successful training search.",
       body:
-        "<p>Open Trail Supply with Network open.</p>" +
+        "<p><strong>Guided try — exact path:</strong></p>" +
         "<ol>" +
-        "<li>Search for <strong>boots</strong></li>" +
-        "<li>Click the <code>/search</code> request</li>" +
-        "<li>Locate the <strong>status code</strong> (list column and/or response status line)</li>" +
+        "<li>Trail Supply → Network open.</li>" +
+        "<li>Search for <strong>boots</strong>.</li>" +
+        "<li>Click the <code>/search</code> request.</li>" +
+        "<li>Find <strong>Status Code</strong> in the list column and/or under Headers (response status line).</li>" +
         "</ol>" +
-        "<p>Browser labels vary. Name where you found it and the number you observed.</p>",
+        "<p><strong>What you should notice:</strong> a successful training search shows <code>200</code>.</p>",
       reveal: "<p>A successful Trail Supply search should show status <code>200</code>.</p>",
       successFeedback: "You can find the status without guessing from the rendered shop page alone.",
+      teach:
+        "In the Network panel on the boots search request, the status code is 200.",
       concepts: [
         { id: "network", label: "Network panel", terms: ["network", "devtools", "inspect"] },
         { id: "status", label: "status 200", terms: ["200", "status", "ok"] },
@@ -97,6 +103,8 @@
         "</ul>" +
         "<p>Do not memorize every code. Learn the families, then read the specific number in context.</p>",
       successFeedback: "Families give you a map. Specific codes fill in the story.",
+      teach:
+        "2xx = success, 3xx = redirection, 4xx = client/request-side problem, 5xx = server-side problem (1xx is informational).",
       concepts: [
         { id: "two", label: "2xx success", terms: ["2xx", "200", "success"] },
         { id: "three", label: "3xx redirect", terms: ["3xx", "302", "301", "redirect", "redirection"] },
@@ -129,6 +137,8 @@
         "</ul>" +
         "<p>In Network, confirm status <code>200</code>. That is the <strong>2xx success</strong> family — the training handler accepted the request and returned a representation.</p>",
       successFeedback: "You tied a UI action to a live 200 success signal.",
+      teach:
+        "Status 200 OK is in the 2xx success family — the synthetic request succeeded.",
       concepts: [
         { id: "twohundred", label: "200 OK", terms: ["200", "ok"] },
         { id: "family", label: "2xx success family", terms: ["2xx", "success"] },
@@ -157,6 +167,8 @@
         "<p>Expect <code>401 Unauthorized</code> — a <strong>4xx</strong> signal that authentication failed for this request. The body explains <code>Invalid credentials</code>.</p>" +
         "<p>This is local training only. Do not treat it as credential stuffing or bypass practice.</p>",
       successFeedback: "You read 401 as a refusal signal, not as a puzzle to force open.",
+      teach:
+        "POST /login returns 401 Unauthorized (4xx): the training handler refused the credentials.",
       concepts: [
         { id: "status", label: "401", terms: ["401", "unauthorized"] },
         { id: "family", label: "4xx", terms: ["4xx", "client"] },
@@ -185,6 +197,8 @@
         "<p>Trail Supply should answer <code>404 Not Found</code>. That is still <strong>4xx</strong>, but it means “this resource is not here,” not “your credentials were rejected.”</p>" +
         "<p>Conceptual neighbors (not required hands-on here): <code>400 Bad Request</code>, <code>403 Forbidden</code>.</p>",
       successFeedback: "You distinguished missing resource (404) from failed authentication (401).",
+      teach:
+        "Lantern returns 404 Not Found (resource missing). Login returned 401 Unauthorized (credentials refused). Same 4xx family, different meanings.",
       concepts: [
         { id: "four04", label: "404", terms: ["404", "not found", "missing"] },
         { id: "vs401", label: "401 vs 404", terms: ["401", "404", "auth", "credentials", "missing", "resource", "different", "versus", "vs"] }
@@ -215,6 +229,8 @@
         "</ul>" +
         "<p>Investigators read status before assuming the body is “the page.” A rendered shop can look calm while Network shows refusals and misses.</p>",
       successFeedback: "You are using status to choose how to interpret the body — success payload vs error explanation.",
+      teach:
+        "A 200 success carries the useful payload; 401 and 404 are error signals that change how an investigator interprets the exchange.",
       concepts: [
         { id: "success", label: "success 200", terms: ["200", "success"] },
         { id: "error", label: "error statuses", terms: ["401", "404", "error", "fail", "refused", "missing"] },
@@ -251,6 +267,8 @@
         "<p>Lesson 4 taught headers as metadata. For redirects, <strong>Location</strong> is the critical response header — it names where to go next.</p>" +
         "<p>Common codes (concept): <code>301 Moved Permanently</code>, <code>302 Found</code>, <code>304 Not Modified</code> (caching shortcut, not a “go elsewhere” hop in the same way).</p>",
       successFeedback: "Redirect = 3xx signal + Location destination + a follow-up request.",
+      teach:
+        "A 3xx response tells the client to continue elsewhere; the Location response header names the destination for the next request.",
       concepts: [
         { id: "three", label: "3xx", terms: ["3xx", "302", "301", "redirect"] },
         { id: "location", label: "Location header", terms: ["location", "header", "destination"] },
@@ -282,6 +300,8 @@
       reveal:
         "<p><code>GET …/go/camera</code> → <code>302</code> + <code>Location: …/products/42</code> → <code>GET …/products/42</code> → <code>200</code>.</p>",
       successFeedback: "You reconstructed a redirect sequence: 3xx, Location, follow-up, final status.",
+      teach:
+        "GET go/camera returns 302 Found with Location to products/42; the followed product request returns 200.",
       concepts: [
         { id: "three02", label: "302", terms: ["302", "found", "redirect"] },
         { id: "location", label: "Location products/42", terms: ["location", "products/42", "product", "42", "camera"] },
@@ -315,6 +335,8 @@
         "</ol>" +
         "<p>Write a short field note covering those signals and why Location matters on the redirect.</p>",
       successFeedback: "That is a first status map: success, auth refusal, missing resource, and a redirect chain.",
+      teach:
+        "Search → 200 success. Login → 401 unauthorized. Lantern → 404 not found. Redirect → 302 with Location to products/42, then final 200.",
       concepts: [
         { id: "ok", label: "200", terms: ["200"] },
         { id: "unauth", label: "401", terms: ["401", "unauthorized"] },
@@ -366,6 +388,8 @@
       instructorNote:
         "Name one Network-only fact: 401, 404, 302, or Location → products/42.",
       body: "<p>Write from the exchanges you generated. This is stored as a learning note, not a score.</p>",
+      teach:
+        "Example: the rendered page does not show 401 Invalid credentials or a 302 Location to products/42; Network does.",
       concepts: [
         {
           id: "insight",

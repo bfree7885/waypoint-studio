@@ -184,6 +184,34 @@ Promise.all([
   evalStep(lesson1, "a-url", "").then(function (r) {
     assert(r.verdict === "NEEDS_ANOTHER_LOOK" && !r.canAdvance, "empty answers must not advance");
   }),
+  evalStep(lesson1, "a-url", "I don't know").then(function (r) {
+    assert(r.taught === true, "I don't know should enter Teach Me path");
+    assert(r.verdict === "NEEDS_ANOTHER_LOOK", "Teach Me does not auto-grade CORRECT");
+    assert(/Teach me:/.test(r.feedback), "Teach Me feedback should teach");
+    assert(/https is the protocol/.test(r.feedback), "Teach Me should explain the concept");
+    assert(!r.canAdvance, "Teach Me attempt 1 should not auto-complete the step");
+  }),
+  Hackbot.Provider.evaluateLearnerResponse({
+    lesson: lesson1,
+    exercise: lesson1.steps[0],
+    learnerResponse: "teach me",
+    assistanceLevel: 5,
+    attemptNumber: 1,
+    mode: "teach"
+  }).then(function (r) {
+    assert(r.taught === true && /Teach me:/.test(r.feedback), "mode=teach should teach without completing");
+    assert(!r.canAdvance, "mode=teach attempt 1 should not advance");
+  }),
+  Hackbot.Provider.evaluateLearnerResponse({
+    lesson: lesson1,
+    exercise: lesson1.steps[0],
+    learnerResponse: "teach me",
+    assistanceLevel: 5,
+    attemptNumber: 3,
+    mode: "teach"
+  }).then(function (r) {
+    assert(r.taught === true && r.canAdvance, "Teach Me attempt 3 may allow continue");
+  }),
   evalStep(lesson2, "a-visible", "I see Trail Supply, a Trail Camera product, a search box, and a sign-in form.").then(function (r) {
     assert(r.verdict === "CORRECT" && r.canAdvance, "visible page should be CORRECT");
   }),

@@ -2143,3 +2143,9 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Lesson 8 is consolidation, not a first DevTools tour: question → panel → multi-panel evidence trail → evidence vs interpretation.
 - Keep Console/Sources observational (`document.title`, `js/app.js`, benign `console.info`); do not invent native Set-Cookie behavior when teaching Application after Lesson 7’s SW mirrors.
 
+### Lessons Learned — HackBot Instructor Mode teaching pass (2026-09-19)
+
+- Field-test defect: learner lost at Lesson 2 was instructional sequencing (ask before teach), not grading hardness. Fix with TEACH → DEMONSTRATE → GUIDED TRY → INDEPENDENT TRY → REASON → REFLECT at Assistance Level 5.
+- Teach HTML tag/attribute patterns and explicit DevTools click paths before graded Elements work; add Teach Me / “I don’t know” that teaches without auto-completing the lesson; Start/Continue Training CTA so Workbench is not the beginner entry.
+- Normalize apostrophes before help-phrase match (`don't` → `don t`); keep Levels 1–4; next curriculum phase stays UNDECIDED until retest — do not auto-start Lessons 9–10.
+

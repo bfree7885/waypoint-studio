@@ -21,8 +21,8 @@
       instructorNote:
         "Question before tool. Panels are selected to answer something specific.",
       body:
-        "<p>Lessons 1–7 already used Elements, Network, headers, status codes, parameters, bodies, and Application/Cookies on Trail Supply.</p>" +
-        "<p>Lesson 8 is a <strong>consolidation</strong> lesson. The skill is not “tour every tab.” The skill is:</p>" +
+        "<p><strong>Teach.</strong> Lessons 1–7 already used Elements, Network, headers, status, parameters, bodies, and Application/Cookies.</p>" +
+        "<p>Lesson 8 consolidates: do not wander tabs. Follow:</p>" +
         '<ol class="hb-flow" aria-label="Investigation loop">' +
         "<li>QUESTION</li>" +
         "<li>CHOOSE TOOL</li>" +
@@ -30,8 +30,10 @@
         "<li>CONNECT EVIDENCE</li>" +
         "<li>FORM CONCLUSION</li>" +
         "</ol>" +
-        "<p>Do not click randomly through DevTools. Start with a question, then pick the panel that can answer it.</p>",
+        "<p><strong>Demonstrate the idea:</strong> “What is the search input’s name?” → open <strong>Elements</strong>, not Network. “What did Search send?” → open <strong>Network</strong>.</p>",
       successFeedback: "Tools follow questions — not the other way around.",
+      teach:
+        "Investigators start with a question and choose a DevTools panel on purpose — random clicking creates noise, not evidence.",
       concepts: [
         { id: "question", label: "start with question", terms: ["question", "ask", "investigat"] },
         { id: "choose", label: "choose tool", terms: ["choose", "select", "pick", "panel", "tool", "right"] },
@@ -56,15 +58,17 @@
       instructorNote:
         "DOM, attributes, links, forms. Point at #search-form / input#q / name=q.",
       body:
-        "<p><strong>Elements</strong> is for the rendered page structure (DOM): tags, attributes, links, forms, and relationships between elements.</p>" +
-        "<p>Good questions:</p>" +
-        "<ul>" +
-        "<li>What element produced this control?</li>" +
-        "<li>What are the attributes on this input?</li>" +
-        "<li>Is there a form, and what is its method/action?</li>" +
-        "</ul>" +
-        "<p>On Trail Supply, open Elements and find the search form (<code>#search-form</code>) and input <code>#q</code> with <code>name=\"q\"</code>.</p>",
+        "<p><strong>Teach:</strong> <strong>Elements</strong> shows the live page structure (DOM): tags, attributes, links, forms.</p>" +
+        "<p><strong>Demonstrate — where to click:</strong></p>" +
+        "<ol>" +
+        "<li>Trail Supply → <kbd>F12</kbd> → <strong>Elements</strong>.</li>" +
+        "<li>Right-click the search box → Inspect, or Ctrl/Cmd+F for <code>search-form</code>.</li>" +
+        "<li>Find input <code>#q</code> with <code>name=\"q\"</code>.</li>" +
+        "</ol>" +
+        "<p>Good questions for Elements: which element produced this control? What are its attributes? What is the form method/action?</p>",
       successFeedback: "Elements answers structure questions about what is on the page.",
+      teach:
+        "Elements is for DOM structure and attributes. On Trail Supply you can inspect the search form and input name=q.",
       concepts: [
         { id: "panel", label: "Elements", terms: ["elements", "dom", "inspector"] },
         { id: "use", label: "structure/attrs", terms: ["form", "input", "attribute", "link", "structure", "dom", "name", "id"] },
@@ -98,6 +102,8 @@
         "</ul>" +
         "<p>You have already used Network for search, login, redirects, and session lab traffic. Lesson 8 asks you to <em>choose</em> it when the question is about traffic.</p>",
       successFeedback: "Network answers traffic questions — what was sent and what came back.",
+      teach:
+        "Network is for traffic evidence: requests, status codes, headers, parameters, bodies. Trail Supply search or login are familiar examples.",
       concepts: [
         { id: "panel", label: "Network", terms: ["network"] },
         { id: "use", label: "traffic evidence", terms: ["request", "response", "status", "header", "url", "method", "parameter", "body", "traffic"] },
@@ -126,6 +132,8 @@
         "<p>Lesson 7 used Application → Cookies for <code>trail_session</code>. Remember: Trail Supply’s SW lab also uses training-mirror headers in Network — those are not native Set-Cookie/Cookie. Application still shows the real mirrored cookie jar entry.</p>" +
         "<p>Do not confuse Trail Supply storage with Hackbot’s own IndexedDB learner progress.</p>",
       successFeedback: "Application answers “what state is stored in the browser?”",
+      teach:
+        "Open Application/Storage for browser state such as cookies. Lesson 7’s trail_session is the familiar Trail Supply example.",
       concepts: [
         { id: "panel", label: "Application", terms: ["application", "storage"] },
         { id: "state", label: "browser state", terms: ["cookie", "local storage", "session storage", "indexeddb", "service worker", "state"] },
@@ -159,6 +167,8 @@
         "</ul>" +
         "<p>On Trail Supply, find <code>js/app.js</code> (also visible as a Network JS request). You do not need deep JavaScript skill — only to identify the resource. This is inspection, not exploitation.</p>",
       successFeedback: "Sources (and Network JS) show which client scripts loaded — e.g. app.js.",
+      teach:
+        "Sources answers which code/resources loaded. Trail Supply’s js/app.js is the script that starts search and related actions.",
       concepts: [
         { id: "panel", label: "Sources", terms: ["sources", "source", "network"] },
         { id: "resource", label: "app.js", terms: ["app.js", "js/app.js", "script", "javascript"] },
@@ -193,6 +203,8 @@
         "</ol>" +
         "<p>Do <strong>not</strong> use Console for XSS, cookie theft, session edits, or exploit scripts. Observation only.</p>",
       successFeedback: "Console is for runtime messages and safe inspection — e.g. document.title → Trail Supply.",
+      teach:
+        "Console is for runtime messages and benign checks. On Trail Supply, document.title is Trail Supply.",
       concepts: [
         { id: "panel", label: "Console", terms: ["console"] },
         { id: "use", label: "runtime messages", terms: ["error", "warning", "log", "message", "runtime", "evaluate"] },
@@ -225,6 +237,8 @@
         "<li>What JavaScript error did the page emit?</li>" +
         "</ol>",
       successFeedback: "You mapped questions to Elements, Network, Application, Sources, and Console.",
+      teach:
+        "1 Network (status). 2 Elements (attributes). 3 Application (cookies). 4 Sources or Network (JS resources). 5 Console (errors).",
       concepts: [
         { id: "net", label: "Network for status", terms: ["network", "status"] },
         { id: "el", label: "Elements for attributes", terms: ["elements", "attribute", "form", "input"] },
@@ -261,6 +275,8 @@
         "<p class=\"hb-loop\">ONE ACTION → OBSERVE RESULTING TRAFFIC</p>" +
         "<p>Same discipline as Lesson 6: <strong>CHANGE ONE THING AT A TIME</strong>. This is experimental control — not automated scanning.</p>",
       successFeedback: "Clear → one action → observe. That keeps Network evidence readable.",
+      teach:
+        "Clear the Network log, trigger one action, observe the resulting traffic — change one thing at a time.",
       concepts: [
         { id: "clear", label: "clear log", terms: ["clear", "empty", "reset", "noise"] },
         { id: "one", label: "one action", terms: ["one", "single", "action", "at a time"] },
@@ -297,6 +313,8 @@
         "</ul>" +
         "<p>Build a connected trail — not isolated screenshots of every tab.</p>",
       successFeedback: "A single question can pull a chain across Elements → Network → Sources.",
+      teach:
+        "Elements shows the search input; Network shows GET /search?q=trail%20camera and the JSON response; Sources/Network identifies js/app.js — one connected trail.",
       concepts: [
         { id: "elements", label: "Elements", terms: ["elements", "form", "input"] },
         { id: "network", label: "Network", terms: ["network", "search", "request", "status", "q", "response"] },
@@ -329,6 +347,8 @@
         "</ul>" +
         "<p>Evidence first. Interpret second. Do not claim more than the evidence supports. This discipline carries into Lesson 10.</p>",
       successFeedback: "You distinguished evidence, interpretation, and unsupported speculation.",
+      teach:
+        "Evidence: Network shows GET /search?q=boots → 200. Interpretation: search sends the term as q. Weak speculation: calling the site insecure only because q is in the URL.",
       concepts: [
         { id: "evidence", label: "evidence/observation", terms: ["evidence", "observation", "shows", "network", "200", "status", "saw", "panel"] },
         { id: "interp", label: "interpretation", terms: ["interpret", "means", "parameter", "q", "sends", "because"] },
@@ -364,6 +384,8 @@
         "</ol>" +
         "<p>Write a short evidence list. Skip panels that add nothing to this question.</p>",
       successFeedback: "You collected a multi-panel search evidence set from the real local app.",
+      teach:
+        "Elements shows the search input name=q. Network shows GET /search with q, status 200, Content-Type application/json and a JSON body. js/app.js is the client script that sends the fetch.",
       concepts: [
         { id: "elements", label: "Elements form", terms: ["elements", "form", "q", "input"] },
         { id: "network", label: "Network search", terms: ["network", "get", "search", "200", "q"] },
@@ -396,6 +418,8 @@
         "<p><strong>LIMIT</strong> — what you can conclude, and what you cannot conclude from this evidence alone</p>" +
         "<p>Discipline over guessing.</p>",
       successFeedback: "That is a complete mini-investigation: question, evidence chain, interpretation, and limits.",
+      teach:
+        "QUESTION: how search works. EVIDENCE: Elements name=q; Network GET /search?q=… 200 JSON; Sources app.js. INTERPRETATION: typed term becomes query q. LIMIT: this does not by itself prove a vulnerability.",
       concepts: [
         { id: "question", label: "question", terms: ["question", "how", "search"] },
         { id: "evidence", label: "multi-panel evidence", terms: ["elements", "network", "evidence", "200", "q=", "json", "app.js", "sources", "name=q"] },
@@ -444,6 +468,8 @@
       instructorNote:
         "Soft-graded. Any honest habit + reason is enough.",
       body: "<p>Write from the Trail Supply case you just ran. Stored as a learning note, not a score.</p>",
+      teach:
+        "Example: I will start with a question before opening panels, because random tab-clicking hid the search request until I cleared Network and triggered one action.",
       concepts: [
         {
           id: "habit",

@@ -732,6 +732,37 @@ kbd {
   background: rgba(62, 207, 142, 0.07);
 }
 
+.hb-teach-model {
+  margin: 0.5rem 0 0.85rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(62, 207, 142, 0.35);
+  border-radius: var(--hb-radius);
+  background: rgba(62, 207, 142, 0.06);
+  font-size: 0.86rem;
+  color: var(--hb-text);
+}
+
+.hb-train-entry {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(62, 207, 142, 0.45);
+  border-radius: var(--hb-radius);
+  background: rgba(62, 207, 142, 0.08);
+}
+
+.hb-train-entry h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.hb-btn-train-entry {
+  margin: 0.55rem 0 0.35rem;
+}
+
+.hb-eval.is-teach {
+  border-color: rgba(62, 207, 142, 0.55);
+}
+
 .hb-eval {
   margin: 0.75rem 0;
   padding: 0.65rem 0.75rem;

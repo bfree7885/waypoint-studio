@@ -21,12 +21,13 @@
       instructorNote:
         "Start from continuity, not cookie jargon. HTTP exchanges are separate; applications often need memory.",
       body:
-        "<p>Lessons 1–6 taught you to see pages, requests, headers, status codes, redirects, and user input.</p>" +
-        "<p>Lesson 7 introduces <strong>state</strong> — continuity across requests.</p>" +
-        "<p>Each HTTP request/response pair is its own exchange. Yet applications often need to remember something between visits: a cart, a preference, or “this browser already started a demo session.”</p>" +
-        "<p>Core question: <em>How can an application remember something about one request when HTTP requests themselves are separate exchanges?</em></p>" +
-        "<p>This lesson is observational. It does not teach stealing, forging, hijacking, or bypassing sessions.</p>",
+        "<p><strong>Teach.</strong> Lessons 1–6: pages, requests, headers, status, redirects, input. Lesson 7: <strong>state</strong> — continuity across requests.</p>" +
+        "<p><strong>Demonstrate the problem:</strong> each HTTP request/response pair is its own exchange. Yet apps often need to remember a cart, a preference, or “this browser already started a demo session.”</p>" +
+        "<p>Core question: <em>How can an application remember something when HTTP requests themselves are separate?</em></p>" +
+        "<p>Observational only — no stealing, forging, or hijacking sessions.</p>",
       successFeedback: "Separate requests need an extra mechanism if the application must remember prior interaction.",
+      teach:
+        "Because each HTTP request is a separate exchange, the application needs some form of state or identifier to recognize continuity between requests.",
       concepts: [
         { id: "separate", label: "separate requests", terms: ["separate", "individual", "each", "own", "stateless", "exchange"] },
         { id: "continuity", label: "continuity / remember", terms: ["remember", "state", "continu", "same", "session", "across", "between"] }
@@ -49,8 +50,8 @@
       instructorNote:
         "Small browser-managed data associated with a site, often sent on later requests.",
       body:
-        "<p>A <strong>cookie</strong> is a small piece of data the browser can store for a site and, when appropriate, send again on later requests to that site.</p>" +
-        "<p>Mental model:</p>" +
+        "<p><strong>Teach.</strong> A <strong>cookie</strong> is a small piece of data the browser can store for a site and, when appropriate, send again on later requests.</p>" +
+        "<p><strong>Demonstrate the loop:</strong></p>" +
         '<ol class="hb-flow" aria-label="Cookie continuity model">' +
         "<li>Browser sends a request</li>" +
         "<li>Application responds, sometimes with state information</li>" +
@@ -58,8 +59,10 @@
         "<li>Later request includes that cookie</li>" +
         "<li>Application can associate the request with prior state</li>" +
         "</ol>" +
-        "<p>Not every cookie is an authentication cookie. Trail Supply’s demo cookie is training-only.</p>",
+        "<p>Not every cookie is authentication. Trail Supply’s demo cookie is training-only. Later you will open <strong>Application → Cookies</strong> to see the jar.</p>",
       successFeedback: "Cookies help carry small site-associated data across later requests.",
+      teach:
+        "A cookie is small browser-managed data for a site that can be sent again with later requests so the application can recognize continuity.",
       concepts: [
         { id: "cookie", label: "cookie", terms: ["cookie"] },
         { id: "store", label: "browser stores", terms: ["store", "browser", "save", "keep"] },
@@ -92,6 +95,8 @@
         "</ul>" +
         "<p>Cookies are also associated with a site (origin) and often a path. Investigators note name, value, and where the cookie applies.</p>",
       successFeedback: "Name labels the cookie; value is the stored data — here a harmless training id.",
+      teach:
+        "Cookie name is trail_session; cookie value is demo-trail-7.",
       concepts: [
         { id: "name", label: "trail_session", terms: ["trail_session", "name"] },
         { id: "value", label: "demo-trail-7", terms: ["demo-trail-7", "value", "demo"] }
@@ -124,6 +129,8 @@
         "</ul>" +
         "<p><strong>Why a mirror?</strong> Service-worker responses cannot reliably expose the real <code>Set-Cookie</code> header (it is a forbidden response header for SW). The lab still teaches the Set-Cookie <em>direction and content</em> honestly, then mirrors the same cookie with <code>document.cookie</code> so Application → Cookies shows <code>trail_session</code>.</p>",
       successFeedback: "Set-Cookie is the response direction that asks the browser to store a cookie — this lab shows that content via a training mirror.",
+      teach:
+        "Set-Cookie is a response header that asks the browser to store a cookie. This SW lab shows the same line as X-Training-Set-Cookie / setCookieLine because real Set-Cookie is forbidden on service-worker responses.",
       concepts: [
         { id: "header", label: "Set-Cookie", terms: ["set-cookie", "set cookie", "x-training-set-cookie", "setcookieline"] },
         { id: "response", label: "response direction", terms: ["response", "server", "application"] },
@@ -157,6 +164,8 @@
         "</ul>" +
         "<p><strong>Trail Supply limitation:</strong> service workers cannot read the browser’s <code>Cookie</code> header on <code>FetchEvent.request</code>. After start, <strong>Check session status</strong> therefore also sends <code>X-Trail-Training-Cookie: trail_session=demo-trail-7</code> — the same name=value — so the lab can recognize state. Inspect that header in Network, and confirm <code>trail_session</code> in Application → Cookies.</p>",
       successFeedback: "Cookie is the request-direction header; this lab mirrors it as X-Trail-Training-Cookie for the SW.",
+      teach:
+        "On later requests a normal browser sends Cookie: trail_session=demo-trail-7. This SW lab mirrors that pair as X-Trail-Training-Cookie because the service worker cannot read Cookie.",
       concepts: [
         { id: "cookie-hdr", label: "Cookie header", terms: ["cookie:", "cookie header", "x-trail-training-cookie", "request header"] },
         { id: "request", label: "request direction", terms: ["request", "later", "send", "browser"] },
@@ -191,6 +200,8 @@
       reveal:
         "<p>Before: no demo session. After start: cookie <code>trail_session=demo-trail-7</code>; status returns <code>recognized</code>.</p>",
       successFeedback: "You watched state appear: none → demo cookie → recognized.",
+      teach:
+        "First status is none; after Start demo session you see trail_session=demo-trail-7 and status recognized.",
       concepts: [
         { id: "none", label: "session none", terms: ["none", "before", "absent"] },
         { id: "cookie", label: "trail_session", terms: ["trail_session", "demo-trail-7", "set-cookie", "cookie", "x-training-set-cookie"] },
@@ -223,6 +234,8 @@
         "<p><code>Cookie: session_id=abc123</code> does <em>not</em> mean all session data lives in the cookie. The application might use <code>abc123</code> to look up server-side state.</p>" +
         "<p>On Trail Supply, <code>demo-trail-7</code> is a synthetic identifier. The JSON fields like <code>session: \"recognized\"</code> and <code>cartItems: 0</code> stand in for harmless application state — not a password vault.</p>",
       successFeedback: "The cookie can identify; the session is the application’s remembered state.",
+      teach:
+        "A cookie is not the same as a session — the cookie may carry an identifier like demo-trail-7 while the session is application/server-side state associated with that id.",
       concepts: [
         { id: "not-same", label: "not the same", terms: ["different", "versus", "vs", "≠", "!=", "unlike"] },
         { id: "id", label: "identifier", terms: ["identifier", "id", "value", "demo-trail-7", "look up", "lookup"] },
@@ -257,6 +270,8 @@
         "<p>On this local HTTP lab you can observe <strong>Path</strong>, <strong>Max-Age</strong>, and <strong>SameSite=Lax</strong> on the mirrored demo cookie. <strong>Secure</strong> and <strong>HttpOnly</strong> are taught conceptually here — this page is HTTP, and <code>document.cookie</code> cannot create HttpOnly cookies.</p>" +
         "<p>Do not treat attributes as bypass puzzles.</p>",
       successFeedback: "Attributes describe scope, lifetime, and sending rules — not exploit knobs.",
+      teach:
+        "Path scopes the cookie to a URL prefix; Max-Age sets lifetime; Secure is for HTTPS; HttpOnly blocks JS access; SameSite affects cross-site sending.",
       concepts: [
         { id: "attr1", label: "attribute one", terms: ["path", "max-age", "expires", "secure", "httponly", "samesite"] },
         { id: "attr2", label: "attribute two", terms: ["path", "max-age", "expires", "secure", "httponly", "samesite"] },
@@ -290,6 +305,8 @@
         "</ul>" +
         "<p>Ask: What changed? What stayed the same? What evidence supports continuity?</p>",
       successFeedback: "Same status endpoint; different outcome once demo state existed — evidence of remembered state.",
+      teach:
+        "Before: status none without the demo cookie. After starting trail_session, the same session/status request returns recognized — evidence the demo state was remembered.",
       concepts: [
         { id: "before", label: "before none", terms: ["none", "before", "without"] },
         { id: "after", label: "after recognized", terms: ["recognized", "after", "with"] },
@@ -317,6 +334,8 @@
         "<p>Researchers inspect cookies and related headers to understand continuity: what the browser stored, what it sent, and how the application responded — still under authorization, still observational.</p>" +
         "<p>Hackbot’s own IndexedDB learner progress is a separate idea from Trail Supply’s demo cookie. Do not confuse product persistence with the training target’s state.</p>",
       successFeedback: "State can explain different outcomes for otherwise similar requests.",
+      teach:
+        "Researchers inspect cookies and session-related headers because state can make similar requests behave differently — continuity you may not see from the rendered page alone.",
       concepts: [
         { id: "different", label: "different outcomes", terms: ["different", "behav", "outcome", "similar", "same path"] },
         { id: "inspect", label: "inspect state", terms: ["cookie", "header", "session", "network", "inspect", "state"] },
@@ -347,6 +366,8 @@
         "<p><strong>LATER:</strong> request carries that state → application recognizes demo session</p>" +
         "<p>Explain: what was introduced, where you saw it, what changed, what stayed the same, whether evidence supports “remembered something,” and cookie value vs conceptual session.</p>",
       successFeedback: "You reconstructed a before/after state trail from evidence — without attacking it.",
+      teach:
+        "Initial session/status is none. Start sets trail_session=demo-trail-7 (Set-Cookie / Application). Later status is recognized. Path stayed the same; state changed. The cookie value is an identifier; the session is the application’s remembered state.",
       concepts: [
         { id: "none", label: "initial none", terms: ["none", "initial", "before"] },
         { id: "cookie", label: "trail_session", terms: ["trail_session", "demo-trail-7", "set-cookie", "cookie"] },
@@ -398,6 +419,8 @@
       instructorNote:
         "Soft-graded. Network Set-Cookie/Cookie or status none→recognized are good answers.",
       body: "<p>Write from the session lab evidence. Stored as a learning note, not a score.</p>",
+      teach:
+        "Example: only Network showed session none becoming recognized after trail_session appeared.",
       concepts: [
         {
           id: "insight",
