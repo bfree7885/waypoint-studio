@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 19 Sep 2026 15:01:26 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2026 02:06:33 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
-    <pubDate>Mon, 14 Sep 2026 16:04:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Fans pose for a photo with an astronaut in the NASA Experience Zone at an NFL game between the Pittsburgh Steelers and the Atlanta Falcons at Acrisure Stadium, Sunday, Sept. 13, 2026, in Pittsburgh, Pennsylvania.
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Northeast</category>
-    <author>NASA</author>
-  </item>
   <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</link>
@@ -45,6 +27,44 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Part 5: The president and his fishing guides, 1926 summer White House</title>
+    <link>https://www.adirondackexplorer.org/communities/history/part-5-the-president-and-his-fishing-guides-1926-summer-white-house/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/part-5-the-president-and-his-fishing-guides-1926-summer-white-house/</guid>
+    <pubDate>Sat, 19 Sep 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Major James F. Coupal. Photo courtesy of the National Library of Medicine. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/nlm_nlmuid-101412774-img-scaled.jpg?fit=780%2C1026&amp;ssl=1&quot; /&gt; The Adirondack summer of 1926 continued for President Coolidge as he continued to fish as frequently as he could
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/part-5-the-president-and-his-fishing-guides-1926-summer-white-house/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Where I went this week: Adirondack Folk School</title>
+    <link>https://www.adirondackexplorer.org/communities/arts/where-i-went-this-week-adirondack-folk-school/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/where-i-went-this-week-adirondack-folk-school/</guid>
+    <pubDate>Sat, 19 Sep 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Students can learn a variety of crafts at the Adirondack Folk School, including how to use a spinners loom. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/IMG_2599-scaled-e1789494907804.jpg?fit=780%2C825&amp;ssl=1&quot; /&gt; The Adirondack Folk School teaches traditional crafts including blacksmithing, weaving, basketmaking and more
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/where-i-went-this-week-adirondack-folk-school/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Site of failed Tupper Lake project sells for $9.9M</title>
@@ -85,25 +105,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>When the data tells the wrong story</title>
-    <link>https://www.adirondackexplorer.org/communities/when-the-data-tells-the-wrong-story/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/when-the-data-tells-the-wrong-story/</guid>
-    <pubDate>Thu, 17 Sep 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Ethan, left, and ANCA’s Small Business team (Zach, Mahala and Lauren) during their visit to Hamilton County. Photo courtesy of ANCA. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Ethan-and-SB-Team-Lake-Flower-reduced.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; ANCA shares how Adirondack data in isolation doesn&apos;t tell the full story of the region and the communities it contains
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/when-the-data-tells-the-wrong-story/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -136,23 +137,6 @@ Waypoint’s Take: Outside in the Northeast, this matters because it can change 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/tupper-lake-housing-northern-forest-center/</description>
     <category>Forests and Plants</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Flood studies highlight risk areas in Ausable, Boquet watersheds</title>
-    <link>https://www.adirondackexplorer.org/communities/flood-studies-highlight-risk-areas-in-ausable-boquet-watersheds/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/flood-studies-highlight-risk-areas-in-ausable-boquet-watersheds/</guid>
-    <pubDate>Thu, 17 Sep 2026 16:59:37 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Flooding control work on Roaring Brook in Elizabethtown in 2024, at the bridge on Route 9, before the brook joins with the Boquet River. Photo by Eric Teed &quot; data-large-file=&quot;https://www.adirondackexplorer.org/wp-content/uploads/2024/10/DSC08159-jpg-1200x800.avif&quot; /&gt; Homes, businesses, government buildings in threatened zones as floods projected to grow on Adirondack rivers.
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/flood-studies-highlight-risk-areas-in-ausable-boquet-watersheds/</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -321,6 +305,42 @@ Read the original article at the publisher: https://phys.org/news/2026-09-hottes
     <category>Climate</category>
     <category domain="geographic">Northeast</category>
     <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Updates on BTV&apos;s Frost/Freeze Program</title>
+    <link>https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</link>
+    <guid isPermaLink="true">https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</guid>
+    <pubDate>Mon, 24 Apr 2017 17:00:19 GMT</pubDate>
+    <source url="https://www.weather.gov/btv/">National Weather Service Burlington</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Burlington.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</description>
+    <category>Weather</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Weather Service Burlington</author>
+  </item>
+  <item>
+    <title>The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</guid>
+    <pubDate>Wed, 10 Jun 2026 18:06:39 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
+
+Summary: This story was featured in the Winter/Spring 2026 issue of Appalachia Journal. We rose early, while it was cool, for our nine-mile hike. We wanted to beat the heat and thunderstorms forecast for late that... Read More The post The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat appeared first on Appalachian Mountain Club (AMC) .
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</description>
+    <category>Weather</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
   </item>
   </channel>
 </rss>
