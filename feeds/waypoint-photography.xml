@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Sep 2026 02:07:48 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 17:19:36 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,24 @@ Read the original article at the publisher: https://www.audubon.org/california/n
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Sun news: Promising sunspot group AR4534 is growing</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Mon, 21 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news September 21, 2026: The sun is taking a breather, but sunspot region AR4534 is growing fast and just gained a promising delta complexity. The post Sun news: Promising sunspot group AR4534 is growing first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>6th batch of Pentagon UAP files: Air Force talk and more</title>
@@ -83,24 +101,6 @@ Read the original article at the publisher: https://earthsky.org/tonight/equinox
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Scientists discover a new tiger cat hiding in plain sight</title>
-    <link>https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</guid>
-    <pubDate>Sat, 19 Sep 2026 12:50:30 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Scientists studying the tiger cat have found 5 distinct species, revealing more diversity among these familiar-looking wild cats than previously known. The post Scientists discover a new tiger cat hiding in plain sight first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Forms of aurora: Arcs, curtains, coronas and more</title>
     <link>https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/forms-of-aurora-arcs-curtains-corona/</guid>
@@ -122,32 +122,15 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <title>Visible planets and night sky guide for September</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sun, 20 Sep 2026 08:40:08 GMT</pubDate>
+    <pubDate>Mon, 21 Sep 2026 10:00:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: This week, look for the September equinox and — on September 26 — the Harvest Moon. Venus is still bright, too. See a video. The post Visible planets and night sky guide for September first appeared on EarthSky .
+Summary: Visible planets and night sky guide: This is magnificent week! Don&apos;t miss the equinox, the full Harvest Moon, and Saturn and Venus in the evening sky. The post Visible planets and night sky guide for September first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>International Observe the Moon Night 2026 is tonight</title>
-    <link>https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</guid>
-    <pubDate>Sat, 19 Sep 2026 12:00:23 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: International Observe the Moon Night is September 19, 2026. It&apos;s a global event for celebrating the moon. Here&apos;s how you can participate online or in person. The post International Observe the Moon Night 2026 is tonight first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -170,6 +153,41 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <category domain="geographic">National</category>
     <category domain="geographic">Global</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Scientists discover a new tiger cat hiding in plain sight</title>
+    <link>https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</guid>
+    <pubDate>Sat, 19 Sep 2026 12:50:30 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Scientists studying the tiger cat have found 5 distinct species, revealing more diversity among these familiar-looking wild cats than previously known. The post Scientists discover a new tiger cat hiding in plain sight first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/earth/scientists-discover-a-new-tiger-cat-hiding-in-plain-sight/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>International Observe the Moon Night 2026 is tonight</title>
+    <link>https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</guid>
+    <pubDate>Sat, 19 Sep 2026 12:00:23 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: International Observe the Moon Night is September 19, 2026. It&apos;s a global event for celebrating the moon. Here&apos;s how you can participate online or in person. The post International Observe the Moon Night 2026 is tonight first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/international-observe-the-moon-night/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Newly formed moon crater is once-in-a-century discovery</title>
