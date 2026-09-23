@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Sep 2026 15:53:17 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 23 Sep 2026 02:12:50 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -118,24 +118,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/kr
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis III Crew Visits NASA Kennedy&apos;s Vehicle Assembly Building</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1307/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1307/</guid>
-    <pubDate>Tue, 15 Sep 2026 16:16:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut Randy Bresnik (left) and ESA (European Space Agency) astronaut Luca Parmitano view progress on the solid rocket booster integration in High Bay 3 inside the Vehicle Assembly Building at NASA&apos;s Kennedy Space Center in Florida on Wednesday, Sept. 2, 2026.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1307/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
@@ -151,6 +133,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Artemis III Crew Visits NASA Kennedy&apos;s Vehicle Assembly Building</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1307/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1307/</guid>
+    <pubDate>Tue, 15 Sep 2026 16:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut Randy Bresnik (left) and ESA (European Space Agency) astronaut Luca Parmitano view progress on the solid rocket booster integration in High Bay 3 inside the Vehicle Assembly Building at NASA&apos;s Kennedy Space Center in Florida on Wednesday, Sept. 2, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1307/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -244,24 +244,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/am
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis III RS-25 Engine Processing: #3 Lift</title>
-    <link>https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</guid>
-    <pubDate>Tue, 01 Sep 2026 17:32:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Technicians prepare to transfer the #2 RS-25 SLS (Space Launch System) rocket engine (front) to the work stand with the #3 engine (back) for integration with the Artemis III core stage rocket on Tuesday, Aug. 25, 2026, inside the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Sun news: 3 events to notice on today’s sun</title>
     <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
     <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
@@ -314,6 +296,24 @@ Read the original article at the publisher: https://earthsky.org/space/esas-juic
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Artemis III RS-25 Engine Processing: #3 Lift</title>
+    <link>https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</guid>
+    <pubDate>Tue, 01 Sep 2026 17:32:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Technicians prepare to transfer the #2 RS-25 SLS (Space Launch System) rocket engine (front) to the work stand with the #3 engine (back) for integration with the Artemis III core stage rocket on Tuesday, Aug. 25, 2026, inside the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-ksc-20260825-ph-rcr01_0045/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s Nancy Grace Roman Space Telescope Launches</title>

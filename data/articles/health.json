@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-22T15:53:17.057Z",
+  "checkedAt": "2026-09-23T02:12:50.039Z",
   "status": "ok",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 202,
+      "ms": 165,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 203,
+      "ms": 163,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 252,
+      "ms": 117,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 146,
+      "ms": 315,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 201,
+      "ms": 224,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 302,
+      "ms": 437,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 184,
+      "ms": 297,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 3323,
+      "ms": 313,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 242,
+      "ms": 212,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 392,
+      "ms": 286,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 316,
+      "ms": 283,
       "enabled": true
     },
     {
@@ -243,20 +243,20 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 195,
+      "ms": 344,
       "enabled": true
     },
     {
       "id": "nws-burlington",
       "name": "NWS Burlington Area Headlines",
       "ok": true,
-      "itemCount": 2,
+      "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 158,
+      "ms": 195,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-23T03:53:17.057Z"
+  "staleAfter": "2026-09-23T14:12:50.039Z"
 }
