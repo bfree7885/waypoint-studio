@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-09-24T16:03:51.165Z",
+  "checkedAt": "2026-09-25T02:16:01.070Z",
   "status": "ok",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 258,
+      "ms": 280,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 288,
+      "ms": 143,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 222,
+      "ms": 284,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 65,
+      "ms": 159,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 2530,
+      "ms": 1861,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 149,
+      "ms": 230,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 224,
+      "ms": 265,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1527,
+      "ms": 273,
       "enabled": true
     },
     {
@@ -211,17 +211,17 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 196,
+      "ms": 252,
       "enabled": true
     },
     {
       "id": "phys-org-earth",
       "name": "Phys.org — Earth Sciences",
       "ok": true,
-      "itemCount": 24,
+      "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 300,
+      "ms": 341,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 188,
+      "ms": 272,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 147,
+      "ms": 410,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 172,
+      "ms": 296,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-09-25T04:03:51.165Z"
+  "staleAfter": "2026-09-25T14:16:01.070Z"
 }
