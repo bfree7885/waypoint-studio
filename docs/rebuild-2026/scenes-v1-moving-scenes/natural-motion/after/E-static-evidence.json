@@ -1,0 +1,59 @@
+{
+  "caseId": "E-static",
+  "classes": [],
+  "noMotion": true,
+  "summary": "No motion found",
+  "wildlifeProtected": false,
+  "waterType": "none",
+  "confidence": {
+    "clouds": 0.05,
+    "water": 0,
+    "fog": 0.06,
+    "haze": 0.05,
+    "foliage": 0.17643281249999998,
+    "grass": 0.1,
+    "rain": 0,
+    "snow": 0,
+    "light": 0.05,
+    "stars": 0,
+    "parallax": 0.05
+  },
+  "coverage": {
+    "clouds": 0.020092410573409627,
+    "water": 0.06677567574866164,
+    "fog": 0.0004721207689726725,
+    "haze": 0.005972239395390109,
+    "foliage": 0.420078125,
+    "mountain": 0.19563802083333334,
+    "rock": 0.18549479166666666,
+    "wildlife": 0.00203125,
+    "snow": 0.006744791666666666,
+    "sky": 0.03328938802083333,
+    "wood": 0.0040234375,
+    "waterConnectivity": 0.39607799689785067,
+    "waterCentroidY": 0.7472846589943247
+  },
+  "analyzeLongEdge": 320,
+  "engineVersion": "1.2.0-natural-motion",
+  "sample": {
+    "w": 320,
+    "h": 240
+  },
+  "render": {
+    "w": 960,
+    "h": 720
+  },
+  "mime": null,
+  "honestyNotes": [
+    "No natural motion confidently detected. The photograph stays still."
+  ],
+  "stability": {
+    "terrainMae": 0,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ]
+  }
+}

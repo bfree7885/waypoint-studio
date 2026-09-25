@@ -1,0 +1,36 @@
+{
+  "caseId": "A-cloud",
+  "classes": [
+    "clouds"
+  ],
+  "noMotion": false,
+  "summary": "Clouds",
+  "wildlifeProtected": false,
+  "waterType": "none",
+  "confidence": {
+    "clouds": 0.7932830861079662,
+    "water": 0.06188913956504029,
+    "fog": 0.06,
+    "haze": 0.05,
+    "foliage": 0.000012323943661971829,
+    "grass": 0.1,
+    "rain": 0,
+    "snow": 0,
+    "light": 0.05,
+    "stars": 0,
+    "parallax": 0.05
+  },
+  "analyzeLongEdge": 320,
+  "sample": {
+    "w": 320,
+    "h": 213
+  },
+  "render": {
+    "w": 1920,
+    "h": 1280
+  },
+  "mime": "video/webm;codecs=vp9",
+  "honestyNotes": [
+    "Waypoint Choice: Clouds — restrained, localized motion only."
+  ]
+}

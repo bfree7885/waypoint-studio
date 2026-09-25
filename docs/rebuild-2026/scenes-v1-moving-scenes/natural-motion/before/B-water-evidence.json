@@ -1,0 +1,36 @@
+{
+  "caseId": "B-water",
+  "classes": [
+    "water"
+  ],
+  "noMotion": false,
+  "summary": "Water",
+  "wildlifeProtected": false,
+  "waterType": "lake",
+  "confidence": {
+    "clouds": 0.05,
+    "water": 0.92,
+    "fog": 0.06,
+    "haze": 0.05,
+    "foliage": 0.017068661971830983,
+    "grass": 0.1,
+    "rain": 0,
+    "snow": 0,
+    "light": 0.05,
+    "stars": 0,
+    "parallax": 0.05
+  },
+  "analyzeLongEdge": 320,
+  "sample": {
+    "w": 320,
+    "h": 213
+  },
+  "render": {
+    "w": 1920,
+    "h": 1280
+  },
+  "mime": "video/webm;codecs=vp9",
+  "honestyNotes": [
+    "Waypoint Choice: Water — restrained, localized motion only."
+  ]
+}

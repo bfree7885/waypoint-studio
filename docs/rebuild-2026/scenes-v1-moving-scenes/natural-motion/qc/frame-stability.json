@@ -1,0 +1,80 @@
+[
+  {
+    "id": "A-cloud",
+    "terrainMae": 0.387,
+    "cloudMae": 0.761,
+    "loopMae": 0.019,
+    "midMotion": [
+      1.151,
+      0.792
+    ],
+    "classes": [
+      "clouds"
+    ],
+    "noMotion": false
+  },
+  {
+    "id": "B-water",
+    "terrainMae": 0.415,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ],
+    "classes": [
+      "water"
+    ],
+    "noMotion": false
+  },
+  {
+    "id": "C-fog",
+    "terrainMae": 0,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ],
+    "classes": [],
+    "noMotion": true
+  },
+  {
+    "id": "D-wildlife",
+    "terrainMae": 0,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ],
+    "classes": [],
+    "noMotion": true
+  },
+  {
+    "id": "E-static",
+    "terrainMae": 0,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ],
+    "classes": [],
+    "noMotion": true
+  },
+  {
+    "id": "F-complex",
+    "terrainMae": 1.863,
+    "cloudMae": 0.029,
+    "loopMae": 0.001,
+    "midMotion": [
+      0.088,
+      0.057
+    ],
+    "classes": [
+      "clouds"
+    ],
+    "noMotion": false
+  }
+]

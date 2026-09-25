@@ -1,10 +1,20 @@
 /**
  * Waypoint Moving Scenes — localized Canvas motion renderer
  * NEVER whole-image Ken Burns. Displacement only inside motion masks.
- * Seamless loop via sinusoidal phase over durationSec (default 6s).
+ *
+ * Clouds (Fix 2): coherent advection + slow internal evolution + subtle
+ * differential drift — atmospheric material through time, not UV-warped still.
+ * Water / fog recipes frozen aside from shared field plumbing.
+ * Seamless-friendly phase over durationSec (default 6s); natural > rubber loop.
  */
 (function (global) {
   "use strict";
+
+  var FIELD_STRIDE = 4;
+  var MODE_NONE = 0;
+  var MODE_CLOUD = 1;
+  var MODE_WATER = 2;
+  var MODE_FOG = 3;
 
   function Models() {
     return global.WaypointMovingScenesModels;
@@ -46,19 +56,65 @@
     };
   }
 
+  function clamp(n, a, b) {
+    return Math.max(a, Math.min(b, n));
+  }
+
+  function hash2(ix, iy) {
+    var n = ix * 374761393 + iy * 668265263;
+    n = (n ^ (n >>> 13)) * 1274126177;
+    return ((n ^ (n >>> 16)) >>> 0) / 4294967296;
+  }
+
+  function smoothNoise2(x, y) {
+    var x0 = Math.floor(x);
+    var y0 = Math.floor(y);
+    var fx = x - x0;
+    var fy = y - y0;
+    var ux = fx * fx * (3 - 2 * fx);
+    var uy = fy * fy * (3 - 2 * fy);
+    var a = hash2(x0, y0);
+    var b = hash2(x0 + 1, y0);
+    var c = hash2(x0, y0 + 1);
+    var d = hash2(x0 + 1, y0 + 1);
+    return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+  }
+
+  /** Looping low-frequency evolution in [-1, 1] — no high-freq shimmer. */
+  function evolveNoise(x, y, phase, scale) {
+    var s = scale || 1;
+    var u = Math.cos(phase * Math.PI * 2);
+    var v = Math.sin(phase * Math.PI * 2);
+    var n =
+      smoothNoise2(x * 0.018 * s + u * 1.35, y * 0.014 * s + v * 1.35) * 0.62 +
+      smoothNoise2(x * 0.041 * s + u * 0.55 + 12.2, y * 0.033 * s + v * 0.55 + 7.1) * 0.38;
+    return n * 2 - 1;
+  }
+
+  function cloudSeaLike(analysis) {
+    var cov = (analysis && analysis.coverage) || {};
+    var clouds = cov.clouds || 0;
+    var sky = cov.sky || 0;
+    var foliage = cov.foliage || 0;
+    // Mid/lower soft vapor (cloud-sea) vs high open sky banks
+    return clouds > 0.12 && sky < 0.42 && foliage < 0.12;
+  }
+
   function buildMotionField(analysis, choice, userMask, tw, th) {
     var A = Analyze();
     var masks = analysis.masks;
     var sw = masks.width;
     var sh = masks.height;
     var classes = (choice && choice.classes) || [];
-    var field = new Float32Array(tw * th * 3); // dxScale, dyScale, amp
+    var field = new Float32Array(tw * th * FIELD_STRIDE);
     var clouds = A.resizeMask(masks.clouds, sw, sh, tw, th);
     var water = A.resizeMask(masks.water, sw, sh, tw, th);
     var fog = A.resizeMask(masks.fog, sw, sh, tw, th);
     var haze = A.resizeMask(masks.haze, sw, sh, tw, th);
     var wildlife = A.resizeMask(masks.wildlife, sw, sh, tw, th);
     var stable = A.resizeMask(masks.stable, sw, sh, tw, th);
+    var foliage = masks.foliage ? A.resizeMask(masks.foliage, sw, sh, tw, th) : null;
+    var sky = masks.sky ? A.resizeMask(masks.sky, sw, sh, tw, th) : null;
     var assist = normalizeAssistMask(userMask, tw, th);
     var i;
     var x;
@@ -66,28 +122,93 @@
     var hasClouds = classes.indexOf("clouds") >= 0;
     var hasWater = classes.indexOf("water") >= 0;
     var hasFog = classes.indexOf("fog") >= 0 || classes.indexOf("haze") >= 0;
+    var seaLike = cloudSeaLike(analysis);
+    // Dominant atmospheric wind (radians). Slight downward for perspective; cloud-sea flatter.
+    var windAng = seaLike ? 0.04 : 0.11;
+    var windCos = Math.cos(windAng);
+    var windSin = Math.sin(windAng);
 
     for (y = 0; y < th; y++) {
+      var ny = th > 1 ? y / (th - 1) : 0;
       for (x = 0; x < tw; x++) {
         i = y * tw + x;
-        var lock = Math.max(wildlife[i], stable[i] * 0.9);
+        var nx = tw > 1 ? x / (tw - 1) : 0;
+        var lock = Math.max(
+          wildlife[i],
+          stable[i] * 0.9,
+          foliage ? foliage[i] * 0.88 : 0
+        );
         var amp = 0;
         var dx = 0;
         var dy = 0;
+        var mode = MODE_NONE;
+        var best = 0;
+
         if (hasClouds) {
-          var c = clouds[i] * (1 - lock);
+          var cRaw = clouds[i];
+          // Clouds move through sky — do not slide clear / pale sky as a poster sheet
+          if (sky && sky[i] > 0.55 && cRaw < 0.5) {
+            cRaw *= 0.05;
+          } else if (!seaLike && cRaw < 0.42) {
+            cRaw *= 0.32;
+          } else if (seaLike && cRaw < 0.28) {
+            // Cloud-sea is soft vapor — keep weak material, only kill dust
+            cRaw *= 0.55;
+          }
+          var c = cRaw * (1 - lock);
+          // When Choice selected clouds (not water) but Perception left soft valley
+          // vapor in the water mask, animate it as cloud-sea — not as lake.
+          // Gate: seaLike + clouds-only. Real lakes keep hasWater and never enter.
+          if (!hasWater && seaLike && water[i] > 0.2 && ny > 0.22 && ny < 0.68) {
+            var vapor =
+              water[i] *
+              (1 - lock) *
+              (1 - Math.min(1, stable[i] * 1.35)) *
+              (1 - Math.min(1, (foliage ? foliage[i] : 0) * 0.9));
+            if (vapor > c) c = vapor * 0.55;
+          }
+          if (c > best) {
+            best = c;
+            mode = MODE_CLOUD;
+          }
           amp = Math.max(amp, c);
-          dx += c * 1;
-          dy += c * 0.08;
+          // Coherent flow: shared wind + low-freq speed variation (not independent pixels)
+          var layer =
+            0.9 +
+            0.12 * Math.sin(nx * 2.15 + ny * 0.65) +
+            0.06 * Math.sin(nx * 4.8 - ny * 2.9 + 1.1);
+          // Subtle differential by height — not dramatic parallax
+          var heightBias = seaLike
+            ? 0.96 + 0.06 * (1 - ny)
+            : 0.9 + 0.14 * (1 - ny);
+          var speed = layer * heightBias;
+          // Vertical component restrained; cloud-sea mostly horizontal advection
+          var vScale = seaLike ? 0.28 : 0.38;
+          // Cloud-sea: favor the mid/lower vapor mass (valley) over thin high wash
+          if (seaLike) {
+            var midBoost = ny > 0.26 && ny < 0.78 ? 1.45 : 0.82;
+            speed *= midBoost;
+          }
+          dx += windCos * speed * c;
+          dy += windSin * speed * vScale * c;
         }
         if (hasWater) {
           var wv = water[i] * (1 - Math.max(wildlife[i], stable[i] * 0.25));
+          if (wv * 0.9 > best) {
+            best = wv * 0.9;
+            mode = MODE_WATER;
+          }
           amp = Math.max(amp, wv * 0.9);
+          // Water recipe FROZEN (Attack 3 / Perception Fix 1)
           dx += wv * 0.15;
           dy += wv * 0.55;
         }
         if (hasFog) {
           var fv = Math.max(fog[i], haze[i]) * (1 - wildlife[i]);
+          if (fv * 0.7 > best) {
+            best = fv * 0.7;
+            mode = MODE_FOG;
+          }
           amp = Math.max(amp, fv * 0.7);
           dx += fv * 0.35;
           dy += fv * 0.12;
@@ -98,26 +219,29 @@
             amp = Math.max(amp, a);
             dx += a * 0.6;
             dy += a * 0.2;
+            if (a > best && mode === MODE_NONE) {
+              mode = MODE_CLOUD;
+              best = a;
+            }
           } else if (a < 0) {
-            // erase
-            amp *= 1 + a; // a in [-1,0]
+            amp *= 1 + a;
           }
         }
         if (amp < 0.04) {
           amp = 0;
           dx = 0;
           dy = 0;
+          mode = MODE_NONE;
         }
-        field[i * 3] = dx;
-        field[i * 3 + 1] = dy;
-        field[i * 3 + 2] = clamp(amp, 0, 1);
+        var base = i * FIELD_STRIDE;
+        field[base] = dx;
+        field[base + 1] = dy;
+        field[base + 2] = clamp(amp, 0, 1);
+        field[base + 3] = mode;
       }
     }
+    field._seaLike = seaLike;
     return field;
-  }
-
-  function clamp(n, a, b) {
-    return Math.max(a, Math.min(b, n));
   }
 
   function maskHasInclude(userMask) {
@@ -160,6 +284,7 @@
       srcCtx: null,
       srcData: null,
       field: null,
+      seaLike: false,
       w: 0,
       h: 0,
       durationSec: Models().DEFAULT_DURATION_SEC,
@@ -178,6 +303,7 @@
       state.srcCtx = null;
       state.srcData = null;
       state.field = null;
+      state.seaLike = false;
     }
 
     function prepare(img, analysis, choice, userMask) {
@@ -202,8 +328,8 @@
       state.durationSec = (choice && choice.durationSec) || Models().DEFAULT_DURATION_SEC;
       state.strength = (choice && choice.strength) || "natural";
       state.directionDeg = choice && choice.directionDeg != null ? choice.directionDeg : null;
+      state.seaLike = cloudSeaLike(analysis);
       state.field = resolveMotionField(analysis, choice, userMask, size.w, size.h);
-      // draw still first frame
       ctx.putImageData(state.srcData, 0, 0);
     }
 
@@ -246,52 +372,108 @@
       var od = out.data;
       var field = state.field;
       var scale = strengthScale(state.strength);
-      // max displacement in pixels — restrained
-      var maxPx = Math.max(2, Math.min(w, h) * 0.012) * scale;
+      var minEdge = Math.min(w, h);
+      // Water/fog: legacy restrained max (frozen)
+      var maxPxLegacy = Math.max(2, minEdge * 0.012) * scale;
+      // Clouds: less displacement than legacy warp, enough for readable drift
+      // Cloud-sea: slightly larger horizontal travel (vapor sheet) vs high banks
+      var cloudFrac = state.seaLike ? 0.0065 : 0.0055;
+      var maxPxCloud = Math.max(1.25, minEdge * cloudFrac) * scale;
       var dir = state.directionDeg;
       var cos = dir == null ? 1 : Math.cos((dir * Math.PI) / 180);
       var sin = dir == null ? 0 : Math.sin((dir * Math.PI) / 180);
-      // seamless: sin(2π phase) and cos for secondary ripple
       var wave = Math.sin(phase * Math.PI * 2);
       var wave2 = Math.sin(phase * Math.PI * 2 + 1.7);
+      // Multi-scale cloud time: large drift, medium evolution, tiny residual
+      var driftLarge = Math.sin(phase * Math.PI * 2);
+      var driftMed = Math.sin(phase * Math.PI * 2 + 0.85);
       var x;
       var y;
       var i;
-      // Step every pixel for final; for preview can skip — keep full for quality
+
       for (y = 0; y < h; y++) {
         for (x = 0; x < w; x++) {
           i = y * w + x;
-          var amp = field[i * 3 + 2];
+          var base = i * FIELD_STRIDE;
+          var amp = field[base + 2];
+          var mode = field[base + 3];
           var sx = x;
           var sy = y;
+          var dens = 1;
           if (amp > 0.02) {
-            var fdx = field[i * 3];
-            var fdy = field[i * 3 + 1];
+            var fdx = field[base];
+            var fdy = field[base + 1];
             var mx;
             var my;
-            if (dir == null) {
-              mx = fdx * wave + fdy * 0.25 * wave2;
-              my = fdy * wave + fdx * 0.12 * wave2;
-            } else {
+            if (mode === MODE_CLOUD) {
               var mag = Math.sqrt(fdx * fdx + fdy * fdy) || 1;
-              mx = cos * mag * wave;
-              my = sin * mag * wave;
+              var ux = fdx / mag;
+              var uy = fdy / mag;
+              if (dir != null) {
+                ux = cos;
+                uy = sin;
+              }
+              // Large: coherent directional advection (shared wind)
+              // Medium: slower secondary along same flow (differential layers)
+              // Small: low-freq shape evolution — almost imperceptible
+              var evol = evolveNoise(x, y, phase, 1);
+              var evolMed = evolveNoise(x * 0.55 + 40, y * 0.55 + 18, phase + 0.17, 0.7);
+              mx =
+                ux * (0.72 * driftLarge + 0.22 * driftMed) +
+                ux * evol * 0.1 +
+                uy * evolMed * 0.04;
+              my =
+                uy * (0.68 * driftLarge + 0.2 * driftMed) +
+                uy * evol * 0.08 +
+                ux * evolMed * 0.03;
+              sx = x + mx * maxPxCloud * amp;
+              sy = y + my * maxPxCloud * amp;
+              // Subtle density / edge soft change — no boil or pulse
+              dens = 1 + 0.012 * amp * evolMed;
+            } else if (mode === MODE_WATER) {
+              // WATER RECIPE FROZEN
+              if (dir == null) {
+                mx = fdx * wave + fdy * 0.25 * wave2;
+                my = fdy * wave + fdx * 0.12 * wave2;
+              } else {
+                var wmag = Math.sqrt(fdx * fdx + fdy * fdy) || 1;
+                mx = cos * wmag * wave;
+                my = sin * wmag * wave;
+              }
+              sx = x + mx * maxPxLegacy * amp;
+              sy = y + my * maxPxLegacy * amp;
+            } else if (mode === MODE_FOG) {
+              // Fog: only when Choice selected fog/haze — restrained legacy drift
+              if (dir == null) {
+                mx = fdx * wave + fdy * 0.25 * wave2;
+                my = fdy * wave + fdx * 0.12 * wave2;
+              } else {
+                var fmag = Math.sqrt(fdx * fdx + fdy * fdy) || 1;
+                mx = cos * fmag * wave;
+                my = sin * fmag * wave;
+              }
+              sx = x + mx * maxPxLegacy * amp;
+              sy = y + my * maxPxLegacy * amp;
+              dens = 1 + 0.012 * wave * amp;
+            } else {
+              // Assist / fallback: restrained cloud-like advection
+              if (dir == null) {
+                mx = fdx * driftLarge * 0.7;
+                my = fdy * driftLarge * 0.7;
+              } else {
+                var amag = Math.sqrt(fdx * fdx + fdy * fdy) || 1;
+                mx = cos * amag * driftLarge;
+                my = sin * amag * driftLarge;
+              }
+              sx = x + mx * maxPxCloud * amp;
+              sy = y + my * maxPxCloud * amp;
             }
-            sx = x + mx * maxPx * amp;
-            sy = y + my * maxPx * amp;
-            // fog: slight brightness breathe without inventing weather particles
-            // (applied after sample)
           }
           var rgb = sample(sx, sy);
           var o = i * 4;
-          var breathe = 1;
-          if (amp > 0.05 && Math.abs(field[i * 3]) < 0.4 && Math.abs(field[i * 3 + 1]) < 0.25) {
-            // fog/haze-ish: gentle luma pulse ±1.2%
-            breathe = 1 + 0.012 * wave * amp;
-          }
-          od[o] = clamp(rgb[0] * breathe, 0, 255);
-          od[o + 1] = clamp(rgb[1] * breathe, 0, 255);
-          od[o + 2] = clamp(rgb[2] * breathe, 0, 255);
+          od[o] = clamp(rgb[0] * dens, 0, 255);
+          od[o + 1] = clamp(rgb[1] * dens, 0, 255);
+          od[o + 2] = clamp(rgb[2] * dens, 0, 255);
           od[o + 3] = 255;
         }
       }
@@ -358,6 +540,12 @@
     resolveMotionField: resolveMotionField,
     maskHasInclude: maskHasInclude,
     fitSize: fitSize,
-    strengthScale: strengthScale
+    strengthScale: strengthScale,
+    cloudSeaLike: cloudSeaLike,
+    FIELD_STRIDE: FIELD_STRIDE,
+    MODE_NONE: MODE_NONE,
+    MODE_CLOUD: MODE_CLOUD,
+    MODE_WATER: MODE_WATER,
+    MODE_FOG: MODE_FOG
   };
 })(typeof window !== "undefined" ? window : globalThis);
