@@ -386,7 +386,8 @@
   function resolveInitialBasemapId(basemaps) {
     var saved = loadSavedBasemapId();
     if (saved && basemaps && basemaps.byId && basemaps.byId[saved]) return saved;
-    return "street";
+    /* No saved choice: topographic field map. A stored id is never overwritten here. */
+    return "topo";
   }
 
   global.WaypointShedsTiles = {

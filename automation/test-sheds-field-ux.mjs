@@ -49,16 +49,9 @@ assert("mobile field chrome breakpoint", /@media \(max-width:\s*719px\),\s*\(max
 assert("collapsible landscape legend", /btn-heat-legend-toggle/.test(html) && /data-expanded/.test(html.match(/id="heat-legend"[^>]*/)[0]));
 assert("labeled zoom in field rail (not Leaflet stack)", /btn-zoom-in/.test(html) && /btn-zoom-out/.test(html) && /sheds-zoom-pair/.test(css));
 assert("no Leaflet zoom control added", !/L\.control\.zoom\(/.test(app));
-assert("add note on FAB for field speed", (() => {
-  const fabStart = html.indexOf('class="sheds-fab-rail"');
-  const fabChunk = fabStart >= 0 ? html.slice(fabStart, fabStart + 2500) : "";
-  const tools = html.match(/id="sheet-tools"[\s\S]*?<\/div>\s*<\/div>/);
-  if (!fabChunk || !tools) return false;
-  return /btn-add-obs-fab/.test(fabChunk) && /btn-locate/.test(fabChunk) &&
-    !/btn-layers/.test(fabChunk) && /btn-layers/.test(tools[0]) && /btn-add-obs/.test(tools[0]);
-})());
+assert("map-first controls are locate layers more", /id="btn-locate"/.test(html) && /id="btn-map-layers"/.test(html) && /id="btn-more"/.test(html) && /class="sheds-app-dock" hidden/.test(html));
 assert("legend deferred until heat", /id="heat-legend"/.test(html) && /hidden/.test(html.match(/id="heat-legend"[^>]*/)[0]));
-assert("expanded briefing hides attribution over copy", /plan-card\[data-expanded="true"\].*leaflet-control-attribution[\s\S]*display:\s*none/i.test(css.replace(/\s+/g, " ")) || /#sheds-map-shell:has\(#plan-card\[data-expanded="true"\]\)\s+\.leaflet-control-attribution\s*\{[^}]*display:\s*none/i.test(css));
+assert("briefing keeps Esri attribution visible", /#sheds-map-shell:has\(#plan-card\[data-expanded="true"\]\) \.leaflet-control-attribution\s*\{[^}]*display:\s*block\s*!important/i.test(css));
 assert("field rail owns zoom chrome", /sheds-zoom-pair/.test(html) && /leaflet-bottom\.leaflet-right[\s\S]{0,80}display:\s*none/i.test(css));
 
 assert("privacy honesty on obs sheet", /Map tiles still leave provider/i.test(html));
@@ -255,13 +248,13 @@ async function runCdp() {
 
   assert("map owns vast majority of viewport", mPhone.mapShare >= 0.85);
   assert("hud is minimal", mPhone.hudHeight > 0 && mPhone.hudHeight < 80);
-  assert("lean app dock (Search/Note/Plan/More)", mPhone.dockCount === 4);
-  assert("compact map controls (not control tower)", mPhone.mapCtrlCount <= 4 && mPhone.mapCtrlsWidth < 90);
-  assert("briefing + dock leave most map visible", mPhone.chromeShare > 0 && mPhone.chromeShare <= 0.28);
+  assert("lean app dock stays off the map", mPhone.dockCount === 3 && mPhone.dockHeight === 0);
+  assert("compact map controls (not control tower)", mPhone.mapCtrlCount <= 6 && mPhone.mapCtrlsWidth < 120);
+  assert("briefing + dock leave most map visible", mPhone.chromeShare <= 0.28);
   assert("presence chip present", mPhone.hasHere);
   assert("no horizontal overflow phone", !mPhone.overflowX);
   assert("tools sheet wired", mPhone.toolsSheet && mPhone.moreBtn && mPhone.layersInTools);
-  assert("sheet peeks above bottom", mPhone.suggestTop > 0 && mPhone.suggestBottom >= mPhone.mapHeight - 4);
+  assert("briefing is not a normal-map peek", mPhone.suggestTop === 0);
 
   async function shot(name) {
     const shotRes = await send("Page.captureScreenshot", { format: "png" });

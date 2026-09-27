@@ -122,6 +122,10 @@
     measureActive: false,
     measurePoints: [],
     inspectArmed: false,
+    /** Map-first: SEARCH placement is armed from More, not every map tap. */
+    searchPlaceArmed: false,
+    /** Presentation only. Hiding a track does not stop recording or delete points. */
+    trackVisible: true,
     inspectLatLng: null,
     inspectElevGen: 0,
     inspectElevM: null,
@@ -399,8 +403,8 @@
   function syncHeatLegend() {
     var legend = $("heat-legend");
     if (!legend) return;
-    var on = !!(state.prefs && state.prefs.heatVisible !== false && state.lastGrid);
-    legend.hidden = !on;
+    /* Interest legend stays off the normal map. Copy is still updated for tests. */
+    legend.hidden = true;
     var modeEl = $("heat-legend-mode");
     if (modeEl) {
       syncGuidanceModeLabel();
@@ -798,7 +802,7 @@
 
   function promptSaveSearchArea() {
     if (!state.searchLocation) {
-      alert("Set a SEARCH location on the map first (tap the area to analyze).");
+      alert("Use More, then Place Search Area, and tap the map to choose a place first.");
       return;
     }
     var pack = packForSearch();
@@ -932,6 +936,10 @@
     var textEl = $("search-prompt-text");
     var btnYou = $("btn-analyze-you");
     if (!prompt) return;
+    if (!state.searchPlaceArmed) {
+      prompt.setAttribute("hidden", "");
+      return;
+    }
     /* Inspect owns map taps until Done — do not compete with SEARCH copy. */
     if (state.inspectArmed || state.inspectLatLng) {
       prompt.setAttribute("hidden", "");
@@ -994,9 +1002,7 @@
     state.searchMarker = L.marker(ll, {
       icon: L.divIcon({
         className: "sheds-search-loc",
-        html:
-          "<span class=\"sheds-search-loc__mark\" title=\"Search location\"></span>" +
-          "<span class=\"sheds-search-loc__label\">SEARCH</span>",
+        html: "<span class=\"sheds-search-loc__mark\" title=\"Search location\"></span>",
         iconSize: [44, 40],
         iconAnchor: [22, 18]
       }),
@@ -1004,7 +1010,7 @@
       zIndexOffset: 450
     })
       .bindTooltip("SEARCH — analysis center (not YOU)", {
-        permanent: true,
+        permanent: false,
         direction: "right",
         offset: [12, 0],
         className: "sheds-map-tip sheds-map-tip--search"
@@ -1098,8 +1104,40 @@
   }
 
   /**
+   * Heading arrow only when GPS course is a real number and the fix is not approximate.
+   * Missing heading stays a dot (precise) or ring (approximate). Never invents direction.
+   */
+  function userMarkerPresentation(headingDeg, approximate) {
+    var headingOk = headingDeg != null && isFinite(Number(headingDeg));
+    if (!approximate && headingOk) {
+      var deg = ((Number(headingDeg) % 360) + 360) % 360;
+      return { kind: "arrow", headingDeg: deg };
+    }
+    return { kind: approximate ? "ring" : "dot", headingDeg: null };
+  }
+
+  function userMarkerIcon(presentation) {
+    var html;
+    if (presentation.kind === "arrow") {
+      html = "<span class=\"sheds-user-arrow\" style=\"transform:rotate(" +
+        presentation.headingDeg + "deg)\"></span>";
+    } else if (presentation.kind === "ring") {
+      html = "<span class=\"sheds-user-ring\"></span>";
+    } else {
+      html = "<span class=\"sheds-user-dot\"></span>";
+    }
+    return L.divIcon({
+      className: "sheds-div-icon sheds-user-pin sheds-user-marker",
+      html: html,
+      iconSize: [22, 22],
+      iconAnchor: [11, 11]
+    });
+  }
+
+  /**
    * USER LOCATION marker only — never used for search target / map center.
-   * Approximate GPS uses a hollow ring + honest tooltip (not a precise “you are here” pin).
+   * Approximate GPS uses a hollow ring (not a precise “you are here” pin).
+   * A directional arrow is drawn only for a valid GPS course heading.
    */
   function upsertUserMarker(ll, accuracyM, headingDeg) {
     if (!map || !ll) return;
@@ -1108,36 +1146,32 @@
     state.locationKind = approximate
       ? LOCATION_KIND.USER_APPROXIMATE
       : LOCATION_KIND.USER_GPS;
-    var fill = approximate ? "#8ec0ff" : "#f5f8f4";
-    var stroke = approximate ? "#8ec0ff" : "#c4a574";
+    var presentation = userMarkerPresentation(headingDeg, approximate);
     var tip = approximate
       ? "YOU · approximate (±" + Math.round(accuracyM) + " m) — not a search target"
-      : "YOU — your location (not a search target)";
-    if (!userMarker) {
-      userMarker = L.circleMarker(ll, {
-        radius: approximate ? 9 : 8,
-        color: stroke,
-        weight: 3,
-        fillColor: fill,
-        fillOpacity: approximate ? 0.25 : 0.95,
-        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : ""),
+      : (presentation.kind === "arrow"
+        ? "YOU — heading " + Math.round(presentation.headingDeg) + "° (not a search target)"
+        : "YOU — your location (not a search target)");
+    var icon = userMarkerIcon(presentation);
+    if (!userMarker || typeof userMarker.setIcon !== "function") {
+      if (userMarker) {
+        try { map.removeLayer(userMarker); } catch (eMarker) { /* */ }
+      }
+      userMarker = L.marker(ll, {
+        icon: icon,
+        keyboard: false,
+        zIndexOffset: 600,
         pane: "markerPane"
       }).addTo(map);
       userMarker.bindTooltip(tip, {
-        permanent: true,
-        direction: "right",
-        offset: [10, 0],
+        permanent: false,
+        direction: "top",
+        offset: [0, -8],
         className: "sheds-map-tip sheds-map-tip--you"
       });
     } else {
       userMarker.setLatLng(ll);
-      userMarker.setStyle({
-        radius: approximate ? 8 : 7,
-        color: stroke,
-        fillColor: fill,
-        fillOpacity: approximate ? 0.25 : 0.95,
-        className: "sheds-user-marker" + (approximate ? " sheds-user-marker--approx" : "")
-      });
+      userMarker.setIcon(icon);
       userMarker.setTooltipContent(tip);
     }
     if (accuracyM != null && isFinite(accuracyM) && accuracyM > 0 && accuracyM < 5000) {
@@ -1164,21 +1198,6 @@
       map.removeLayer(headingLine);
       headingLine = null;
     }
-    if (headingDeg != null && isFinite(headingDeg) && state.userLatLng && !approximate) {
-      var rad = (headingDeg * Math.PI) / 180;
-      var len = 0.00045;
-      var tipPt = L.latLng(
-        ll.lat + Math.cos(rad) * len,
-        ll.lng + (Math.sin(rad) * len) / Math.cos((ll.lat * Math.PI) / 180)
-      );
-      headingLine = L.polyline([ll, tipPt], {
-        color: "#8ec0ff",
-        weight: 2,
-        opacity: 0.85,
-        interactive: false,
-        className: "sheds-user-heading"
-      }).addTo(map);
-    }
     publishLocationDebug();
   }
 
@@ -1188,19 +1207,22 @@
     state.userPosition.altitude = Number(alt);
   }
 
-  /** Apply GPS only when movement exceeds threshold (or forced). Prevents oscillation. */
+  /** Apply GPS only when movement exceeds threshold (or forced). Heading still refreshes. */
   function applyUserPosition(ll, accuracyM, headingDeg, opts) {
     opts = opts || {};
     rememberGpsAltitude(opts.altitude);
     if (ll && isFinite(ll.alt)) rememberGpsAltitude(ll.alt);
-    if (
+    /* A null course is honest: do not keep a stale arrow. */
+    state.headingDeg = headingDeg != null && isFinite(headingDeg) ? headingDeg : null;
+    var suppressed =
       !opts.force &&
       state.userLatLng &&
       metersBetween(state.userLatLng, ll) < GPS_MOVE_MIN_M &&
       state.accuracyM != null &&
       accuracyM != null &&
-      Math.abs(state.accuracyM - accuracyM) < 15
-    ) {
+      Math.abs(state.accuracyM - accuracyM) < 15;
+    if (suppressed) {
+      upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
       if (state.fieldHunting && ll) {
         ingestHuntTrackPoint(ll.lat, ll.lng, accuracyM, opts.altitude, Date.now());
       }
@@ -1208,7 +1230,6 @@
     }
     state.userLatLng = ll;
     state.accuracyM = accuracyM;
-    if (headingDeg != null && isFinite(headingDeg)) state.headingDeg = headingDeg;
     setSelectedLocation({
       lat: ll.lat,
       lng: ll.lng,
@@ -1426,6 +1447,7 @@
 
     var initialBasemap = Tiles.resolveInitialBasemapId(basemapsBundle);
     state.basemapId = Tiles.applyBasemap(map, basemapsBundle, initialBasemap) || "street";
+    placeMapCreditWithAttribution();
     syncBasemapSelect();
 
     basemapLayersControl = L.control.layers(basemapsBundle.baseLayers, null, {
@@ -1558,7 +1580,8 @@
         showInspectAt(e.latlng);
         return;
       }
-      // Phase 2: map tap sets SEARCH LOCATION — observations via Add note FAB.
+      /* SEARCH placement is an explicit mode from More → Place Search Area. */
+      if (!state.searchPlaceArmed) return;
       setSearchLocation(e.latlng.lat, e.latlng.lng, "map-tap");
       if (map.getZoom() < 12) {
         state.followUser = false;
@@ -2229,7 +2252,10 @@
     var hud = $("field-hunt-hud");
     if (hud) {
       hud.removeAttribute("hidden");
+      hud.removeAttribute("data-expanded");
       hud.scrollTop = 0;
+      var detailsBtn = $("btn-field-hunt-details");
+      if (detailsBtn) detailsBtn.setAttribute("aria-expanded", "false");
     }
     var shell = document.getElementById("sheds-map-shell");
     if (shell) {
@@ -2985,7 +3011,7 @@
   function syncRadarP0Ui() {
     var panel = $("radar-p0-panel");
     if (panel) {
-      panel.hidden = false;
+      panel.hidden = !state.radarDebugChrome;
       panel.setAttribute("data-mode", state.radarSurfaceMode || "today");
       panel.setAttribute("data-on", state.radarP0Enabled ? "true" : "false");
       panel.setAttribute("data-proof", state.radarProofFixtures ? "true" : "false");
@@ -3044,6 +3070,7 @@
       }
     }
     syncRadarDataCredit();
+    syncRadarLayerControls();
   }
 
   function syncRadarDataCredit() {
@@ -3071,6 +3098,105 @@
       html += Attr.radarPackCreditHtml();
     }
     Attr.setCredit(el, html, !!html);
+    syncMapCredits();
+  }
+
+  function radarWashVisible() {
+    return !state.prefs || state.prefs.heatVisible !== false;
+  }
+
+  function syncRadarLayerControls() {
+    var on = radarWashVisible();
+    var box = $("layer-shed-radar");
+    var heat = $("heat-visible");
+    if (box) box.checked = on;
+    if (heat) heat.checked = on;
+    var surface = $("layer-shed-radar-surface");
+    if (surface) {
+      surface.disabled = !on;
+      surface.hidden = !on;
+    }
+    var today = $("layer-radar-today");
+    var land = $("layer-radar-landscape");
+    var mode = state.radarSurfaceMode === "landscape" ? "landscape" : "today";
+    if (today) today.checked = mode === "today";
+    if (land) land.checked = mode === "landscape";
+    var track = $("layer-my-track");
+    if (track) track.checked = state.trackVisible !== false;
+  }
+
+  /**
+   * Compact credits for facts actually on the map. Esri stays in Leaflet attribution.
+   */
+  function syncMapCredits() {
+    var Attr = window.WaypointShedsDataAttribution;
+    var el = $("map-data-credit");
+    if (!Attr || !el) return;
+    var parts = [];
+    if (radarWashVisible() && state.radarP0Enabled) {
+      var packTerrain =
+        (state.lastGrid && state.lastGrid.terrainSource === "gis-pack") ||
+        (state.radarBaseCache &&
+          state.radarBaseCache.field &&
+          state.radarBaseCache.field.terrainSource === "gis-pack");
+      var frame = state.radarConditionFrame;
+      var weatherShown =
+        state.radarSurfaceMode === "today" &&
+        frame &&
+        (frame.freshness === "fresh" || frame.freshness === "stale");
+      if (weatherShown) parts.push(Attr.weatherCreditHtml());
+      if (packTerrain) parts.push(Attr.radarPackCreditHtml());
+    }
+    var elevUsed =
+      state.searchAreasVisible &&
+      state.searchAreasElevFromOpenMeteo &&
+      state.searchAreasStatus === "ready";
+    if (elevUsed) parts.push(Attr.elevationCreditHtml());
+    Attr.setCredit(el, parts.join("<br>"), parts.length > 0);
+    placeMapCreditWithAttribution();
+  }
+
+  /**
+   * Keep required credits in the same bottom-left stack as Leaflet/Esri.
+   * The credit element stays the source of truth; it is not clipped or removed.
+   */
+  function placeMapCreditWithAttribution() {
+    var src = $("map-data-credit");
+    if (!src || !map || !map.attributionControl || !map.attributionControl.getContainer) return;
+    var attr = map.attributionControl.getContainer();
+    if (!attr || !attr.parentNode) return;
+    if (src.parentNode !== attr.parentNode) attr.parentNode.insertBefore(src, attr);
+    src.classList.add("sheds-map-credit--joined");
+  }
+
+  /** Hide or show the existing Shed Radar canvas. Does not recompute or change scores. */
+  function setRadarWashVisible(on) {
+    if (!state.prefs) state.prefs = {};
+    state.prefs.heatVisible = !!on;
+    if (Store && Store.saveModelPrefs) Store.saveModelPrefs(state.prefs);
+    if (heatLayer) heatLayer.setHeatVisible(!!on);
+    syncRadarLayerControls();
+    syncHeatLegend();
+    syncMapCredits();
+  }
+
+  function applyTrackVisibility() {
+    if (!map) return;
+    var show = state.trackVisible !== false;
+    [trackLayer, huntTrackLayer, historyTrackLayer].forEach(function (layer) {
+      if (!layer) return;
+      var onMap = false;
+      try { onMap = map.hasLayer(layer); } catch (eLayer) { onMap = false; }
+      if (show && !onMap) layer.addTo(map);
+      else if (!show && onMap) map.removeLayer(layer);
+    });
+    var box = $("layer-my-track");
+    if (box) box.checked = show;
+  }
+
+  function setTrackVisible(on) {
+    state.trackVisible = !!on;
+    applyTrackVisibility();
   }
 
   function renderRadarExplain(explain) {
@@ -3625,7 +3751,7 @@
   function syncSearchAreasLegend() {
     var legend = $("search-areas-legend");
     if (!legend) return;
-    legend.hidden = false;
+    legend.hidden = true;
     legend.setAttribute("data-on", state.searchAreasVisible ? "true" : "false");
     var body = $("search-areas-legend-body");
     if (body) body.hidden = !state.searchAreasVisible;
@@ -3640,6 +3766,7 @@
     if (!state.searchAreasVisible) {
       status.textContent = "Terrain search priority — off";
       if (Attr) Attr.setCredit(credit, "", false);
+      syncMapCredits();
       return;
     }
     if (state.searchAreasStatus === "loading") status.textContent = "Reading terrain…";
@@ -3655,6 +3782,7 @@
         !!(elevUsed && state.searchAreasStatus === "ready")
       );
     }
+    syncMapCredits();
   }
 
   function paintSearchAreasLayer(grid) {
@@ -4189,6 +4317,32 @@
     };
   }
 
+  function openFieldBriefing() {
+    closeAllSheets();
+    var card = $("plan-card");
+    if (!card) return;
+    card.hidden = false;
+    card.setAttribute("data-expanded", "true");
+    var details = $("plan-details");
+    if (details) details.hidden = false;
+    var toggle = $("btn-toggle-plan");
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+    var why = $("why-bands-today");
+    if (why) why.hidden = false;
+  }
+
+  function closeFieldBriefing() {
+    var card = $("plan-card");
+    if (card) {
+      card.hidden = true;
+      card.setAttribute("data-expanded", "false");
+    }
+    var why = $("why-bands-today");
+    if (why) why.hidden = true;
+    var toggle = $("btn-toggle-plan");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+
   function renderWhyBandsToday(summary, meta) {
     meta = meta || {};
     var root = document.getElementById("why-bands-today");
@@ -4197,13 +4351,14 @@
     var status = document.getElementById("why-bands-today-status");
     var list = document.getElementById("why-bands-today-list");
     if (!state.searchLocation) {
-      root.hidden = false;
+      root.hidden = true;
       if (status) status.textContent = "Create or select a Search Area to see today's relative search interest.";
       if (list) list.innerHTML = "";
       root.setAttribute("data-state", "no-area");
       return;
     }
-    root.hidden = false;
+    var briefing = $("plan-card");
+    root.hidden = !(briefing && !briefing.hidden);
     var bullets = (summary && summary.bullets) || [];
     if (!bullets.length) {
       bullets = ["Today's conditions did not materially change the base spatial priority."];
@@ -4756,7 +4911,7 @@
     var marker = L.marker([r.lat, r.lng], {
       icon: L.divIcon({
         className: "sheds-search-target",
-        html: "<span class=\"sheds-search-target__mark\" title=\"Area to inspect\"></span><span class=\"sheds-search-target__label\">INSPECT</span>",
+        html: "<span class=\"sheds-search-target__mark\" title=\"Area to inspect\"></span>",
         iconSize: [36, 36],
         iconAnchor: [18, 18]
       }),
@@ -4764,7 +4919,7 @@
       riseOnHover: true,
       zIndexOffset: 200
     }).bindTooltip("AREA TO INSPECT — model suggestion (not an antler pin, not YOU)", {
-      permanent: true,
+      permanent: false,
       direction: "left",
       offset: [-12, 0],
       className: "sheds-map-tip sheds-map-tip--target"
@@ -5991,6 +6146,7 @@
     setTileStatus(null);
     state.basemapId = Tiles.applyBasemap(map, basemapsBundle, id) || "street";
     syncBasemapSelect();
+    placeMapCreditWithAttribution();
   }
 
   function shellModeClass(measuring, inspecting) {
@@ -6574,6 +6730,80 @@
         openSheet(els.sheetTools);
       });
     }
+    if ($("btn-map-layers")) {
+      $("btn-map-layers").addEventListener("click", function () {
+        openSheet($("sheet-controls"));
+      });
+    }
+    if ($("btn-place-search")) {
+      $("btn-place-search").addEventListener("click", function () {
+        state.searchPlaceArmed = true;
+        closeAllSheets();
+        syncSearchPrompt();
+      });
+    }
+    if ($("btn-search-place-done")) {
+      $("btn-search-place-done").addEventListener("click", function () {
+        state.searchPlaceArmed = false;
+        syncSearchPrompt();
+      });
+    }
+    if ($("btn-open-briefing")) {
+      $("btn-open-briefing").addEventListener("click", function () {
+        openFieldBriefing();
+      });
+    }
+    if ($("btn-close-briefing")) {
+      $("btn-close-briefing").addEventListener("click", function () {
+        closeFieldBriefing();
+      });
+    }
+    if ($("btn-more-start-search")) {
+      $("btn-more-start-search").addEventListener("click", function () {
+        closeAllSheets();
+        if (els.btnTrack) els.btnTrack.click();
+      });
+    }
+    if ($("btn-more-field-hunt")) {
+      $("btn-more-field-hunt").addEventListener("click", function () {
+        closeAllSheets();
+        var session = HuntSession && HuntSession.get();
+        if (session) {
+          var hud = $("field-hunt-hud");
+          if (hud) {
+            hud.removeAttribute("hidden");
+            hud.setAttribute("data-expanded", "true");
+            var details = $("btn-field-hunt-details");
+            if (details) details.setAttribute("aria-expanded", "true");
+          }
+          renderFieldHuntHud();
+        } else if ($("btn-hunt-plans")) {
+          $("btn-hunt-plans").click();
+        }
+      });
+    }
+    if ($("btn-field-hunt-details")) {
+      $("btn-field-hunt-details").addEventListener("click", function () {
+        var hud = $("field-hunt-hud");
+        if (!hud) return;
+        var open = hud.getAttribute("data-expanded") === "true";
+        if (open) hud.removeAttribute("data-expanded");
+        else hud.setAttribute("data-expanded", "true");
+        $("btn-field-hunt-details").setAttribute("aria-expanded", open ? "false" : "true");
+      });
+    }
+    if ($("btn-more-legend")) {
+      $("btn-more-legend").addEventListener("click", function () {
+        closeAllSheets();
+        if ($("btn-map-legend")) $("btn-map-legend").click();
+      });
+    }
+    if ($("btn-more-context")) {
+      $("btn-more-context").addEventListener("click", function () {
+        closeAllSheets();
+        if ($("btn-status")) $("btn-status").click();
+      });
+    }
     if ($("btn-layers")) {
       $("btn-layers").addEventListener("click", function () {
         closeSheet(els.sheetTools);
@@ -7152,12 +7382,28 @@
     $("obs-delete").addEventListener("click", deleteObservation);
 
     $("heat-visible").addEventListener("change", function () {
-      state.prefs.heatVisible = $("heat-visible").checked;
-      if (heatLayer) heatLayer.setHeatVisible(!!state.prefs.heatVisible);
-      Store.saveModelPrefs(state.prefs);
-      syncHeatLegend();
-      scheduleRecompute(50);
+      setRadarWashVisible($("heat-visible").checked);
     });
+    if ($("layer-shed-radar")) {
+      $("layer-shed-radar").addEventListener("change", function () {
+        setRadarWashVisible($("layer-shed-radar").checked);
+      });
+    }
+    if ($("layer-radar-today")) {
+      $("layer-radar-today").addEventListener("change", function () {
+        if ($("layer-radar-today").checked) setRadarSurfaceMode("today");
+      });
+    }
+    if ($("layer-radar-landscape")) {
+      $("layer-radar-landscape").addEventListener("change", function () {
+        if ($("layer-radar-landscape").checked) setRadarSurfaceMode("landscape");
+      });
+    }
+    if ($("layer-my-track")) {
+      $("layer-my-track").addEventListener("change", function () {
+        setTrackVisible($("layer-my-track").checked);
+      });
+    }
     if ($("search-areas-visible")) {
       $("search-areas-visible").addEventListener("change", function () {
         setSearchAreasVisible($("search-areas-visible").checked);
@@ -7416,6 +7662,7 @@
       var el = document.querySelector('[data-weight="' + k + '"]');
       if (el) el.value = state.prefs.weights[k];
     });
+    syncRadarLayerControls();
   }
 
   function loadHeatUiPrefs() {
@@ -7626,6 +7873,24 @@
       inspectAt: showInspectAt,
       startFieldHuntFromPlan: startFieldHuntFromPlan,
       finishFieldHunt: finishFieldHunt,
+      openFieldBriefing: openFieldBriefing,
+      closeFieldBriefing: closeFieldBriefing,
+      setRadarWashVisible: setRadarWashVisible,
+      radarWashVisible: radarWashVisible,
+      setTrackVisible: setTrackVisible,
+      userMarkerPresentation: userMarkerPresentation,
+      applyEvidenceHeading: function (deg) {
+        var ll = state.userLatLng;
+        if ((!ll || !isFinite(ll.lat)) && map) {
+          var c = map.getCenter();
+          ll = L.latLng(c.lat, c.lng);
+          state.userLatLng = ll;
+        }
+        state.accuracyM = 8;
+        state.headingDeg = deg != null && isFinite(Number(deg)) ? Number(deg) : null;
+        upsertUserMarker(ll, state.accuracyM, state.headingDeg);
+        return userMarkerPresentation(state.headingDeg, false);
+      },
       enterFieldHuntMode: enterFieldHuntMode,
       renderFieldHuntHud: renderFieldHuntHud,
       applyFieldHuntStatus: applyFieldHuntStatus,

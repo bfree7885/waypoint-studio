@@ -162,8 +162,12 @@ assert("save/load basemap id", (() => {
   Tiles.saveBasemapId("hybrid");
   return Tiles.loadSavedBasemapId() === "hybrid";
 })());
-assert("resolve falls back street when empty", (() => {
+assert("resolve defaults topographic when empty", (() => {
   sandbox.localStorage.removeItem(Tiles.BASEMAP_STORAGE_KEY);
+  return Tiles.resolveInitialBasemapId(layers) === "topo";
+})());
+assert("resolve keeps a saved street choice", (() => {
+  Tiles.saveBasemapId("street");
   return Tiles.resolveInitialBasemapId(layers) === "street";
 })());
 

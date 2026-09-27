@@ -164,6 +164,7 @@
         <div class="sheds-field-hunt-hud" id="field-hunt-hud" hidden role="dialog" aria-label="Field Hunt Mode" aria-live="polite">
           <div class="sheds-field-hunt-hud__head">
             <p class="sheds-inspect-hud__kicker" id="field-hunt-kicker">Hunt in progress</p>
+            <button type="button" class="sheds-btn sheds-btn--ghost sheds-inspect-hud__close" id="btn-field-hunt-details" aria-expanded="false">Details</button>
             <button type="button" class="sheds-btn sheds-btn--ghost sheds-inspect-hud__close" id="btn-field-hunt-finish">Finish Hunt</button>
           </div>
           <div class="sheds-field-hunt-hud__body">
@@ -271,7 +272,7 @@
         <h2 class="sheds-coach__title" id="coach-title">Quick orientation</h2>
         <ol class="sheds-coach__list">
           <li><strong>YOU</strong> is your location on the map.</li>
-          <li>Tap the map to choose a <strong>SEARCH AREA</strong>.</li>
+          <li>Use More, then Place Search Area, when you want to analyze a place.</li>
           <li>Sheds shows seasonal timing and mapped landscape guidance.</li>
           <li>Your observations stay separate and private on this device.</li>
           <li>Tap <strong>Start Search</strong> when you’re ready to record a field session.</li>
@@ -281,7 +282,9 @@
         </div>
       </aside>
 
-      <!-- Field controls: map cluster (locate/zoom) + app dock (search/note/plan/more). -->
+      <p class="sheds-map-credit" id="map-data-credit" hidden></p>
+
+      <!-- Field controls: locate, zoom, layers, more. The old dock stays in the DOM, off the map. -->
       <div class="sheds-fab-rail" role="toolbar" aria-label="Field actions">
         <div class="sheds-map-ctrls" role="group" aria-label="Map controls">
           <button type="button" class="sheds-fab sheds-fab--primary sheds-fab--map" id="btn-locate" title="Locate me" aria-label="Locate me">
@@ -302,8 +305,16 @@
               <span class="sheds-fab__label">Out</span>
             </button>
           </div>
+          <button type="button" class="sheds-fab sheds-fab--map" id="btn-map-layers" aria-controls="sheet-controls" title="Layers" aria-label="Layers">
+            <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5-8 4.5L4 7.5 12 3z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M4 12l8 4.5 8-4.5M4 16.5 12 21l8-4.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/></svg>
+            <span class="sheds-fab__label">Layers</span>
+          </button>
+          <button type="button" class="sheds-fab sheds-fab--map" id="btn-more" aria-expanded="false" aria-controls="sheet-tools" title="More" aria-label="More">
+            <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18" cy="12" r="1.8" fill="currentColor"/></svg>
+            <span class="sheds-fab__label">More</span>
+          </button>
         </div>
-        <div class="sheds-app-dock" role="group" aria-label="Search actions">
+        <div class="sheds-app-dock" hidden role="group" aria-label="Search actions">
           <button type="button" class="sheds-fab sheds-fab--session" id="btn-track" aria-pressed="false" title="Start Search" aria-label="Start Search">
             <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c2-6 6-10 8-10s6 4 8 10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="6" r="2" fill="currentColor"/></svg>
             <span class="sheds-fab__label">Search</span>
@@ -316,10 +327,6 @@
             <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16H6z" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             <span class="sheds-fab__label">Plan</span>
           </button>
-          <button type="button" class="sheds-fab" id="btn-more" aria-expanded="false" aria-controls="sheet-tools" title="More" aria-label="More">
-            <svg class="sheds-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18" cy="12" r="1.8" fill="currentColor"/></svg>
-            <span class="sheds-fab__label">More</span>
-          </button>
         </div>
       </div>
 
@@ -328,6 +335,7 @@
         <p class="sheds-search-prompt__text" id="search-prompt-text">Tap the area you want to analyze.</p>
         <div class="sheds-search-prompt__actions">
           <button type="button" class="sheds-btn sheds-btn--primary" id="btn-analyze-you" hidden>Analyze at YOU</button>
+          <button type="button" class="sheds-btn" id="btn-search-place-done">Done</button>
           <label class="sheds-search-prompt__radius" for="search-radius">
             Area
             <select id="search-radius" aria-label="Search area size">
@@ -340,7 +348,7 @@
       </div>
 
       <!-- Relative Search Interest — Today / Landscape -->
-      <div class="sheds-radar-p0" id="radar-p0-panel" data-mode="today" role="region" aria-label="Relative Search Interest">
+      <div class="sheds-radar-p0" id="radar-p0-panel" data-mode="today" hidden role="region" aria-label="Relative Search Interest">
         <div class="sheds-radar-p0__head">
           <p class="sheds-radar-p0__kicker">Relative Search Interest</p>
           <button type="button" class="sheds-btn sheds-btn--ghost sheds-radar-p0__toggle" id="btn-radar-p0-toggle" hidden aria-pressed="true">Interest · On</button>
@@ -372,7 +380,7 @@
       </div>
 
       <!-- Search Areas — V1.3 terrain search priority (not find chance) -->
-      <div class="sheds-search-legend" id="search-areas-legend" data-on="false" aria-label="Search Areas">
+      <div class="sheds-search-legend" id="search-areas-legend" hidden data-on="false" aria-label="Search Areas">
         <button type="button" class="sheds-search-legend__toggle" id="btn-search-areas" aria-pressed="false" title="Search Areas — terrain worth inspecting">
           Search Areas
         </button>
@@ -399,27 +407,26 @@
         </div>
       </div>
 
-      <!-- Why these bands today — compact explanation tied to active Search Area -->
-      <details class="sheds-why-bands" id="why-bands-today" data-state="no-area">
-        <summary class="sheds-why-bands__summary">Why these bands today</summary>
-        <div class="sheds-why-bands__body" id="why-bands-today-body">
-          <p class="sheds-why-bands__status" id="why-bands-today-status">Create or select a Search Area to see today’s relative search interest.</p>
-          <ul class="sheds-why-bands__list" id="why-bands-today-list"></ul>
-          <p class="sheds-why-bands__note">Relative search interest inside this Search Area — not a find probability.</p>
-        </div>
-      </details>
-
       <!-- Primary trip briefing — WHEN / WHERE / LANDSCAPE / TODAY / OBS / NEXT -->
-      <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" aria-live="polite" data-expanded="false" data-has-plan="false" data-todays-search="true">
+      <aside class="sheds-sheet-field sheds-suggest sheds-story" id="plan-card" hidden aria-live="polite" data-expanded="false" data-has-plan="false" data-todays-search="true">
         <div class="sheds-sheet-field__grab" aria-hidden="true"></div>
+        <button type="button" class="sheds-btn sheds-btn--ghost sheds-briefing-close" id="btn-close-briefing">Close</button>
         <button type="button" class="sheds-suggest__summary" id="btn-toggle-plan" aria-expanded="false" aria-controls="plan-details">
           <span class="sheds-suggest__eyebrow">Field briefing</span>
           <span class="sheds-suggest__kicker" id="plan-title">Choose a Search Area</span>
-          <span class="sheds-suggest__glance" id="plan-glance">Tap the map to choose an area to inspect.</span>
+          <span class="sheds-suggest__glance" id="plan-glance">Use More, then Place Search Area, when you want to analyze a place.</span>
           <span class="sheds-suggest__conf" id="plan-stars" aria-label="Next step">Next: set Search Area</span>
           <span class="sheds-suggest__chev" aria-hidden="true"></span>
         </button>
         <div class="sheds-suggest__details" id="plan-details" hidden>
+          <details class="sheds-why-bands" id="why-bands-today" data-state="no-area">
+            <summary class="sheds-why-bands__summary">Why these bands today</summary>
+            <div class="sheds-why-bands__body" id="why-bands-today-body">
+              <p class="sheds-why-bands__status" id="why-bands-today-status">Create or select a Search Area to see today’s relative search interest.</p>
+              <ul class="sheds-why-bands__list" id="why-bands-today-list"></ul>
+              <p class="sheds-why-bands__note">Relative search interest inside this Search Area — not a find probability.</p>
+            </div>
+          </details>
           <div id="today-hunt"></div>
           <details class="sheds-plan__why-wrap" id="hunt-more-detail">
             <summary>More detail</summary>
@@ -431,7 +438,7 @@
             </section>
             <section class="sheds-trip__block" data-trip="where">
               <h3 class="sheds-trip__k">Where</h3>
-              <p id="channel-where">Tap the map to choose an area to inspect.</p>
+              <p id="channel-where">Use Place Search Area when you want to analyze a place.</p>
             </section>
             <section class="sheds-trip__block" data-trip="landscape">
               <h3 class="sheds-trip__k">Landscape <span class="sheds-guidance-pill">MODEL</span></h3>
@@ -463,7 +470,7 @@
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Search radius</span><span id="plan-stat-area">—</span></div>
             <div class="sheds-plan__stat"><span class="sheds-plan__stat-label">Walk interest</span><span id="plan-stat-band">—</span></div>
           </div>
-          <p class="sheds-plan__body" id="plan-body">Locate yourself, or pan to your land and tap to set a Search Area.</p>
+          <p class="sheds-plan__body" id="plan-body">Locate yourself, then use Place Search Area when you want to analyze a place.</p>
           <p class="sheds-plan__meta" id="plan-meta"></p>
             <ul class="sheds-today__signals" id="today-signals"></ul>
             <p class="sheds-plan__why" id="plan-why"></p>
@@ -491,28 +498,49 @@
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel sheds-sheet__panel--tools">
       <h2 class="sheds-sheet__title" id="tools-title">More</h2>
-      <p class="sheds-sheet__lede">Field tools for this trip — including Map &amp; layers. Quick notes also live on the + button.</p>
-      <div class="sheds-tools-grid">
-        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-field-plan">Field Plan</button>
-        <button type="button" class="sheds-btn" id="btn-my-areas">My Search Areas</button>
-        <button type="button" class="sheds-btn" id="btn-scout-spots">Scout Spots</button>
-        <button type="button" class="sheds-btn" id="btn-hunt-plans">Hunt Plans</button>
-        <button type="button" class="sheds-btn" id="btn-save-area">Save Search Area</button>
-        <button type="button" class="sheds-btn" id="btn-add-obs">Add note</button>
-        <button type="button" class="sheds-btn" id="btn-layers" aria-controls="sheet-controls">Map &amp; layers</button>
-        <button type="button" class="sheds-btn" id="btn-history">Hunt History</button>
-        <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
-        <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
-        <button type="button" class="sheds-btn" id="btn-import">Import JSON</button>
-        <input id="import-json-file" type="file" accept="application/json,.json" hidden>
-        <a class="sheds-btn" data-studio-path="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report" href="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
-        <a class="sheds-btn" data-studio-path="/support.html" href="/support.html">Support</a>
-        <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
-        <a class="sheds-btn" data-studio-path="/privacy.html" href="/privacy.html">Privacy</a>
-        <a class="sheds-btn" data-studio-path="/terms.html" href="/terms.html">Terms</a>
-        <a class="sheds-btn" data-studio-path="/contact.html" href="/contact.html">Contact</a>
-        <a class="sheds-btn" data-powered-by-waypoint href="/">Powered by Waypoint</a>
+      <p class="sheds-sheet__lede">Start a hunt, add what you saw, or open something you already saved.</p>
+      <div class="sheds-more-primary">
+        <button type="button" class="sheds-btn sheds-btn--primary" id="btn-more-field-hunt">Start Hunt</button>
+        <button type="button" class="sheds-btn" id="btn-add-obs">Add Observation</button>
+        <button type="button" class="sheds-btn sheds-more-row" id="btn-history">Hunt History</button>
       </div>
+      <details class="sheds-more-group" id="more-saved-places">
+        <summary>Saved Places</summary>
+        <div class="sheds-tools-grid">
+          <button type="button" class="sheds-btn" id="btn-my-areas">My Search Areas</button>
+          <button type="button" class="sheds-btn" id="btn-scout-spots">Scout Spots</button>
+          <button type="button" class="sheds-btn" id="btn-save-area">Save Search Area</button>
+          <button type="button" class="sheds-btn" id="btn-place-search">Place Search Area</button>
+        </div>
+      </details>
+      <details class="sheds-more-group" id="more-planning">
+        <summary>Planning</summary>
+        <div class="sheds-tools-grid">
+          <button type="button" class="sheds-btn" id="btn-field-plan">Field Plan</button>
+          <button type="button" class="sheds-btn" id="btn-hunt-plans">Hunt Plans</button>
+          <button type="button" class="sheds-btn" id="btn-open-briefing">Field briefing</button>
+          <button type="button" class="sheds-btn" id="btn-more-start-search">Start Search</button>
+        </div>
+      </details>
+      <details class="sheds-more-group" id="more-tools-settings">
+        <summary>Tools &amp; Settings</summary>
+        <div class="sheds-tools-grid">
+          <button type="button" class="sheds-btn" id="btn-more-legend">Map legend</button>
+          <button type="button" class="sheds-btn" id="btn-more-context">Season &amp; coverage</button>
+          <button type="button" class="sheds-btn" id="btn-ethics">Ethics</button>
+          <button type="button" class="sheds-btn" id="btn-export">Export JSON</button>
+          <button type="button" class="sheds-btn" id="btn-import">Import JSON</button>
+          <input id="import-json-file" type="file" accept="application/json,.json" hidden>
+          <a class="sheds-btn" data-studio-path="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report" href="/contact.html?category=bug&amp;app=shed-hunting&amp;includeTech=1&amp;subject=Sheds%20bug%20report">Report bug</a>
+          <a class="sheds-btn" data-studio-path="/support.html" href="/support.html">Support</a>
+          <a class="sheds-btn" data-studio-path="/about.html" href="/about.html">About</a>
+          <a class="sheds-btn" data-studio-path="/privacy.html" href="/privacy.html">Privacy</a>
+          <a class="sheds-btn" data-studio-path="/terms.html" href="/terms.html">Terms</a>
+          <a class="sheds-btn" data-studio-path="/contact.html" href="/contact.html">Contact</a>
+          <a class="sheds-btn" data-powered-by-waypoint href="/">Powered by Waypoint</a>
+        </div>
+      </details>
+      <button type="button" id="btn-layers" hidden aria-controls="sheet-controls">Map &amp; layers</button>
       <details class="sheds-advanced" id="advanced-tools">
         <summary>Advanced</summary>
         <p class="sheds-note">Expert / engineering controls. Not required for normal field use.</p>
@@ -830,39 +858,52 @@
   <div class="sheds-sheet" id="sheet-controls" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="controls-title">
     <div class="sheds-sheet__backdrop" data-close-sheet tabindex="-1"></div>
     <div class="sheds-sheet__panel">
-      <h2 class="sheds-sheet__title" id="controls-title">Map &amp; layers</h2>
-      <p class="sheds-sheet__lede">What you see on the map. Landscape guidance stays separate from your observations unless you opt in under Advanced. Satellite imagery is landscape context — not proof of deer presence.</p>
-      <p class="sheds-note" id="inputs-summary"></p>
+      <h2 class="sheds-sheet__title" id="controls-title">Layers</h2>
+      <p class="sheds-sheet__lede">Choose what is drawn on the map. Shed Radar is antler-search interest, not precipitation.</p>
 
+      <section class="sheds-map-layers" aria-labelledby="map-layers-heading">
+        <h3 class="sheds-sheet__lede" id="map-layers-heading">Map layers</h3>
+        <label class="sheds-check"><input type="checkbox" id="layer-shed-radar" checked> Shed Radar</label>
+        <fieldset class="sheds-radar-surface" id="layer-shed-radar-surface">
+          <legend>Surface</legend>
+          <label class="sheds-check"><input type="radio" name="radar-surface" id="layer-radar-today" value="today" checked> Today</label>
+          <label class="sheds-check"><input type="radio" name="radar-surface" id="layer-radar-landscape" value="landscape"> Landscape</label>
+          <p class="sheds-note">Today includes current conditions. Landscape is the terrain surface without those conditions.</p>
+        </fieldset>
+        <label class="sheds-check sheds-check--disabled"><input type="checkbox" id="layer-weather-radar" disabled aria-disabled="true"> Weather Radar — Coming later</label>
+        <p class="sheds-note" id="layer-weather-radar-note">Precipitation radar is not available yet.</p>
+        <label class="sheds-check"><input type="checkbox" id="layer-my-track" checked> My Track</label>
+        <p class="sheds-note">Hiding the line does not stop recording or delete points.</p>
+        <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Observations</label>
+      </section>
+
+      <section class="sheds-map-type" aria-labelledby="map-type-heading">
+        <h3 class="sheds-sheet__lede" id="map-type-heading">Map type</h3>
         <div class="sheds-field">
-          <label for="basemap-select">Basemap</label>
-          <select id="basemap-select" aria-label="Basemap">
-            <option value="street">Street</option>
+          <label for="basemap-select">Map type</label>
+          <select id="basemap-select" aria-label="Map type">
             <option value="topo">Topographic</option>
+            <option value="street">Street</option>
             <option value="satellite">Satellite</option>
-            <option value="hybrid">Hybrid (imagery + labels)</option>
+            <option value="hybrid">Hybrid</option>
           </select>
-          <p class="sheds-note">Saved on this device. Imagery helps see fields, edges, and access — not biological certainty.</p>
+          <p class="sheds-note">Saved on this device. Satellite imagery is landscape context — not proof of deer presence.</p>
         </div>
+      </section>
 
+      <details class="sheds-more-group" id="advanced-map-tools">
+        <summary>Advanced Map Tools</summary>
         <div class="sheds-field">
-          <span class="sheds-field__label">Field tools</span>
           <div class="sheds-tools-grid sheds-tools-grid--compact">
-            <button type="button" class="sheds-btn" id="btn-measure">Measure distance</button>
-            <button type="button" class="sheds-btn" id="btn-inspect-point">Inspect next tap</button>
+            <button type="button" class="sheds-btn" id="btn-measure">Measure</button>
+            <button type="button" class="sheds-btn" id="btn-inspect-point">Inspect</button>
           </div>
-          <p class="sheds-note">Measure and Inspect temporarily take map taps so SEARCH stays intentional. Finish or cancel to return to normal tapping.</p>
+          <p class="sheds-note">Measure and Inspect use the next map tap. Finish or cancel to return to normal tapping.</p>
         </div>
-
-        <div class="sheds-field">
-          <span class="sheds-field__label">Guidance on map</span>
-          <p class="sheds-note" id="guidance-mode-label">MODEL — mapped landscape (observations excluded)</p>
-        </div>
-
         <label class="sheds-check"><input type="checkbox" id="heat-visible" checked> Show landscape guidance overlay</label>
+        <p class="sheds-note">Same wash as Shed Radar. Use the Shed Radar switch above for normal hunting.</p>
       <label class="sheds-check"><input type="checkbox" id="search-areas-visible"> Search Areas — terrain search priority</label>
       <p class="sheds-note">Search Areas highlights terrain that may be worth inspecting. It is not a claim that sheds or deer are present.</p>
-      <label class="sheds-check"><input type="checkbox" id="obs-visible" checked> Show observation markers</label>
       <label class="sheds-check"><input type="checkbox" id="coverage-visible" checked> Show search-coverage marks</label>
       <label class="sheds-check"><input type="checkbox" id="sgl-visible"> Show State Game Lands (access context only)</label>
       <p class="sheds-note" id="sgl-note">SGL outlines are access context — not landscape scores. Verify current regulations.</p>
@@ -873,7 +914,7 @@
           <option value="medium" selected>Medium (~600 m)</option>
           <option value="large">Large (~1 km)</option>
         </select>
-        <p class="sheds-note">Tap the map to set SEARCH. GPS updates do not move it.</p>
+        <p class="sheds-note">Size applies when you place a Search Area. GPS updates do not move it.</p>
       </div>
       <div class="sheds-field">
         <label for="heat-mode">Overlay mode</label>
@@ -935,8 +976,10 @@
         <label for="obs-filter">Filter observations</label>
         <select id="obs-filter"></select>
       </div>
+      <p class="sheds-note" id="inputs-summary"></p>
+      <p class="sheds-note" id="guidance-mode-label">Mapped landscape (observations excluded)</p>
       <details class="sheds-advanced" id="advanced-map-controls">
-        <summary>Advanced model controls</summary>
+        <summary>Model controls</summary>
         <p class="sheds-note">Off by default: observations do not change Landscape MODEL.</p>
         <label class="sheds-check">
           <input type="checkbox" id="include-obs-habitat">
@@ -994,6 +1037,7 @@
         <div class="sheds-actions">
           <button type="button" class="sheds-btn" id="btn-reset-weights">Reset balanced defaults</button>
         </div>
+      </details>
       </details>
       <div class="sheds-actions">
         <button type="button" class="sheds-btn sheds-btn--primary" data-close-sheet>Done</button>

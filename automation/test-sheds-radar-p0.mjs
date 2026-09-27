@@ -292,7 +292,8 @@ assert.ok(mapHtml.includes("btn-radar-mode-landscape"), "Landscape mode control"
 assert.ok(mapHtml.includes("btn-radar-frame-a"), "fixture A control");
 assert.ok(mapHtml.includes("btn-radar-frame-b"), "fixture B control");
 assert.ok(mapHtml.includes("Relative Search Interest"), "honest product language");
-assert.ok(!/Shed Radar/.test(mapHtml.replace(/Radar P0/g, "")), "no production Shed Radar rename");
+assert.ok(/sheds-radar-p0__kicker">Relative Search Interest/.test(mapHtml), "panel kicker stays Relative Search Interest");
+assert.ok(/id="layer-shed-radar"/.test(mapHtml), "Shed Radar layer control");
 
 // Real DEM fixture (Open-Meteo samples for locked Pike viewport) — enrichment-ready proof
 const elevFixturePath = path.join(

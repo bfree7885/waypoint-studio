@@ -2111,3 +2111,15 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Dark Sky can be playable without being the next trail after Cedar Hollow. `availableAfter` opens a later topic as an available region; successor unlocks the next course-order region only when that region is playable. Atlas copy must say Topic 11, not “you finished Topics 2–10.”
 - `atlasResumeRegion` must persist Dark Sky only when it is accessible. Review-only `currentRegion: dark-sky-basin` still heals to Cedar Hollow so existing hollow saves are not stolen.
 
+### Lessons Learned — Sheds map-first field UX V1 (2026-09-27)
+
+- The Sheds map was already full-screen Leaflet. The dashboard feel came from persistent chrome (radar panel, briefing peek, four-button dock, permanent YOU/SEARCH labels), not from the map engine.
+- Shed Radar on/off is a visibility flag (`heatVisible` / `setHeatVisible`). Do not flip the debug-gated radar enable flag and do not recompute scores to hide the wash. Today/Landscape state stays when the wash is toggled back on.
+- A normal map tap must not create a Search location. Placement stays an armed tool (More → Place Search Area). Inspect and Measure still arm the next tap on purpose.
+- GPS course heading can update the user arrow even when the position moved less than the ~8 m suppression gate. No heading means the existing dot or approximate ring. Do not invent a compass.
+- Required credits stay on the map as a compact line (Esri/Leaflet always; Open-Meteo when Today radar is showing; USGS pack when the landscape wash is showing). Hiding the old radar panel must not hide those credits.
+- `[hidden]` loses to an author `display:flex` unless the stylesheet forces `display:none !important`.
+- The next simplification is hierarchy, not a new model. Primary Layers is Shed Radar, Weather Radar, track, observations, and map type. Measure, Inspect, and specialist overlays stay under Advanced Map Tools. More leads with Start Hunt and Add Observation; the rest is grouped.
+- Mobile pinch-zoom is enough. Hide the persistent +/- below the mobile breakpoint and keep them for desktop. Leaflet keyboard zoom stays available.
+- Required Open-Meteo, USGS, and Esri credits can share the Leaflet attribution stack. Keep the same show/hide rules. Do not clip the text to make the map look cleaner.
+
