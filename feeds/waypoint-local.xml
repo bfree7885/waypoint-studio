@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Sep 2026 02:16:58 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 27 Sep 2026 15:56:33 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -29,23 +29,22 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Study finds alpine peaks are greening in the Northeast U.S., Canada</title>
-    <link>https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</guid>
-    <pubDate>Fri, 25 Sep 2026 11:00:02 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+    <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
+    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
+    <pubDate>Mon, 14 Sep 2026 16:04:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: In northeastern North America, a stretch of mountains runs 500 miles (800 kilometers) from the Adirondacks in New York to the Gaspé Peninsula in eastern Quebec. Nearly 70 million people live within a day&apos;s drive of one of the alpine zones, the areas above the tree line where trees don&apos;t grow because of harsh conditions.
+Summary: Fans pose for a photo with an astronaut in the NASA Experience Zone at an NFL game between the Pittsburgh Steelers and the Atlanta Falcons at Acrisure Stadium, Sunday, Sept. 13, 2026, in Pittsburgh, Pennsylvania.
 
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</description>
-    <category>Forests and Plants</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Adirondacks</category>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
-    <author>Phys.org</author>
+    <author>NASA</author>
   </item>
   <item>
     <title>Weekend nor’easter likely to bring damaging winds, coastal flooding</title>
@@ -64,6 +63,44 @@ Read the original article at the publisher: https://www.noaa.gov/news/weekend-no
     <category domain="geographic">Northeast</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
+    <pubDate>Sun, 27 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>An Adirondack farm-to-plate success story</title>
+    <link>https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</guid>
+    <pubDate>Sun, 27 Sep 2026 10:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: An Adirondack farm-to-plate success story. Customers shop for fresh vegetables. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/DSC05844.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Essex County stands out in number of values-driven farms, direct-to-consumer sales.
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Part 6: The president and his fishing guides, 1926 summer White House</title>
@@ -142,25 +179,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Great Camp Sagamore’s annual gala raises more than $220,000</title>
-    <link>https://www.adirondackexplorer.org/communities/great-camp-sagamores-annual-gala-raises-more-than-220000/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/great-camp-sagamores-annual-gala-raises-more-than-220000/</guid>
-    <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The annual gala brought together sponsors, donors, volunteers and community supporters. Photo courtesy of Sagamore Institute of the Adirondacks. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/2026-Annual-Gala_39.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; The Sagamore Institute raised funding to support its educational programs, events and community experiences
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/great-camp-sagamores-annual-gala-raises-more-than-220000/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -177,6 +195,43 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Study finds alpine peaks are greening in the Northeast U.S., Canada</title>
+    <link>https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</guid>
+    <pubDate>Fri, 25 Sep 2026 11:00:02 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: In northeastern North America, a stretch of mountains runs 500 miles (800 kilometers) from the Adirondacks in New York to the Gaspé Peninsula in eastern Quebec. Nearly 70 million people live within a day&apos;s drive of one of the alpine zones, the areas above the tree line where trees don&apos;t grow because of harsh conditions.
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-alpine-peaks-greening-northeast-canada.html</description>
+    <category>Forests and Plants</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">Northeast</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Powerful storm pummels Northeast US with rain, high winds</title>
+    <link>https://phys.org/news/2026-09-powerful-storm-pummels-northeast-high.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-powerful-storm-pummels-northeast-high.html</guid>
+    <pubDate>Sun, 27 Sep 2026 10:40:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Heavy rain and strong winds battered the northeastern United States on Sunday as an unusually powerful autumn storm intensified, leaving tens of thousands without power. U.S. media reported one person dead.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-powerful-storm-pummels-northeast-high.html</description>
+    <category>Weather</category>
+    <category domain="geographic">Northeast</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Millions in the US Northeast brace for a powerful storm</title>
@@ -311,23 +366,6 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Peaked Mountain: A worthy climb</title>
-    <link>https://www.adirondackexplorer.org/recreation/hiking/peaked-mountain-a-worthy-climb/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/peaked-mountain-a-worthy-climb/</guid>
-    <pubDate>Fri, 25 Sep 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Peaked Mountain: A worthy climb. Peaked Mt Pond from summit. Photo by Carol MacKinnon &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/Peaked-Mt-Pond-from-summit-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; A scenic hike with worthy swim spots.
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/peaked-mountain-a-worthy-climb/</description>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Hiking or camping? Get your Mountain Forecasts for the Adirondacks, Catskills, Berkshires, and Greens</title>
     <link>https://www.weather.gov/aly/mountain</link>
     <guid isPermaLink="true">https://www.weather.gov/aly/mountain</guid>
@@ -345,42 +383,6 @@ Read the original article at the publisher: https://www.weather.gov/aly/mountain
     <category domain="geographic">Adirondacks</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Albany</author>
-  </item>
-  <item>
-    <title>Updates on BTV&apos;s Frost/Freeze Program</title>
-    <link>https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</link>
-    <guid isPermaLink="true">https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</guid>
-    <pubDate>Mon, 24 Apr 2017 17:00:19 GMT</pubDate>
-    <source url="https://www.weather.gov/btv/">National Weather Service Burlington</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Burlington.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.weather.gov/media/btv/BTVFrost_Freeze_2026.pdf</description>
-    <category>Weather</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>National Weather Service Burlington</author>
-  </item>
-  <item>
-    <title>The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</guid>
-    <pubDate>Wed, 10 Jun 2026 18:06:39 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: This story was featured in the Winter/Spring 2026 issue of Appalachia Journal. We rose early, while it was cool, for our nine-mile hike. We wanted to beat the heat and thunderstorms forecast for late that... Read More The post The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</description>
-    <category>Weather</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
   </item>
   </channel>
 </rss>
