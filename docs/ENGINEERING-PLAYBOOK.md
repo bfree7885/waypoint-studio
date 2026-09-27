@@ -2123,3 +2123,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Mobile pinch-zoom is enough. Hide the persistent +/- below the mobile breakpoint and keep them for desktop. Leaflet keyboard zoom stays available.
 - Required Open-Meteo, USGS, and Esri credits can share the Leaflet attribution stack. Keep the same show/hide rules. Do not clip the text to make the map look cleaner.
 
+## Lessons Learned — Sheds RADAR static visual intensity (2026-09-10)
+
+- ±0.20 analytical deltas were nearly invisible because paint used near-linear priority with very low per-pixel alpha × ~0.42 layer opacity — a rendering problem, not a biology problem.
+- Keep analytical `priority` / explain scores untouched; map display through an explicit `displayIntensity` transfer (monotonic, ranking-preserving) in `sheds-radar-display.js`.
+- Prefer midrange contrast gain over global gamma-lift — lift plateaus the field and washes hierarchy.
+- Neutral parity is automatic when Neutral scores match Landscape; never style frames differently.
+- Measure success by human glance + meanAbs on changed pixels, not only % pixels changed (same cells can change with larger magnitude).
+- Integrated onto map-first field UX without replacing the approved map chrome. Display transfer only.

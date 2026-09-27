@@ -109,24 +109,39 @@
       return top + (bot - top) * fr;
     },
 
-    /** Soft radar wash — intensity from continuous priority (not probability). */
+    /**
+     * RADAR wash — analytical `priority` is preserved on the grid; only the
+     * painted rgba uses WaypointShedsRadarDisplay (contrast + alpha).
+     * Not a find probability.
+     */
     _colorForRadar: function (priority, alphaBoost) {
+      var Display = global.WaypointShedsRadarDisplay;
+      var boost =
+        alphaBoost != null
+          ? alphaBoost
+          : Display && Display.RADAR_PAINT_ALPHA_BOOST != null
+            ? Display.RADAR_PAINT_ALPHA_BOOST
+            : 1.28;
+      if (Display && typeof Display.colorForAnalyticalPriority === "function") {
+        return Display.colorForAnalyticalPriority(priority, boost);
+      }
+      // Fallback if display module missing (should not happen in host).
       var p = Math.max(0, Math.min(1, priority));
-      var aMul = alphaBoost != null ? alphaBoost : 1;
       if (p < 0.08) return null;
       if (p < 0.34) {
-        return "rgba(78, 110, 118, " + ((0.04 + p * 0.28) * aMul) + ")";
+        return "rgba(78, 110, 118, " + ((0.09 + p * 0.42) * boost) + ")";
       }
       if (p < 0.67) {
-        return "rgba(168, 148, 72, " + ((0.10 + (p - 0.34) * 0.42) * aMul) + ")";
+        return "rgba(168, 148, 72, " + ((0.18 + (p - 0.34) * 0.58) * boost) + ")";
       }
-      return "rgba(72, 140, 78, " + ((0.18 + (p - 0.67) * 0.55) * aMul) + ")";
+      return "rgba(62, 132, 72, " + ((0.30 + (p - 0.67) * 0.72) * boost) + ")";
     },
 
     _paintContinuousPriority: function (ctx, grid, nw, se, tileX, tileY, colorFn) {
       var cellW = (se.x - nw.x) / grid.cols;
       var cellH = (se.y - nw.y) / grid.rows;
-      var step = Math.max(2, Math.min(6, Math.floor(Math.min(Math.abs(cellW), Math.abs(cellH)) / 3) || 2));
+      // Slightly finer step than legacy max-6 — continuity only; analysis stays ~90 m.
+      var step = Math.max(2, Math.min(4, Math.floor(Math.min(Math.abs(cellW), Math.abs(cellH)) / 3) || 2));
       var y;
       var x;
       for (y = 0; y < 256; y += step) {
@@ -135,7 +150,8 @@
           var gy = (tileY + y + step / 2 - nw.y) / cellH;
           if (gx < -1 || gy < -1 || gx > grid.cols || gy > grid.rows) continue;
           var p = this._samplePriority(gy, gx);
-          var fill = colorFn.call(this, p, 1);
+          // Radar colorFn applies its own display boost; do not force alphaBoost=1.
+          var fill = colorFn.call(this, p);
           if (!fill) continue;
           ctx.fillStyle = fill;
           ctx.fillRect(x, y, step + 1, step + 1);
