@@ -83,7 +83,7 @@ assert("X field hunt still available", /id="btn-more-field-hunt"/.test(html) && 
 assert("Y stores not edited by this test", !/localStorage\.setItem/.test(fnBody("setTrackVisible")));
 
 assert("normal taps do not set search", /if \(!state\.searchPlaceArmed\) return;/.test(app));
-assert("heading refresh is outside the movement gate", /state\.headingDeg = headingDeg != null && isFinite\(headingDeg\)/.test(app));
+assert("heading refresh is outside the movement gate", /state\.headingDeg = displayedCourse\(/.test(app) && app.indexOf("state.headingDeg = displayedCourse(") < app.indexOf("var suppressed"));
 assert("brand name hidden", /\.sheds-hud-brand__name,[\s\S]{0,240}display:\s*none\s*!important/.test(css));
 assert("you chip hidden", /\.sheds-here[\s\S]{0,40}display:\s*none\s*!important/.test(css));
 assert("interest legend hidden", /#heat-legend\[hidden\][\s\S]*display:\s*none\s*!important/.test(css));

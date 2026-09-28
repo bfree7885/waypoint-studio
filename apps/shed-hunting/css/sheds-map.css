@@ -4131,14 +4131,16 @@ html.sheds-sheet-open .leaflet-control-attribution {
 
 .sheds-user-arrow {
   display: block;
-  width: 0;
-  height: 0;
-  margin: 2px auto 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-  border-bottom: 16px solid #f4f7f2;
-  filter: drop-shadow(0 0 1px #1a140c) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45));
-  transform-origin: 50% 78%;
+  width: 32px;
+  height: 32px;
+  transform-origin: center center;
+  filter: drop-shadow(0 0 1px #1a140c) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.sheds-user-arrow svg {
+  display: block;
+  width: 32px;
+  height: 32px;
 }
 
 .sheds-radar-surface {

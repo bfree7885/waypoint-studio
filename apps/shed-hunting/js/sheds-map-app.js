@@ -75,6 +75,8 @@
     accuracyM: null,
     headingDeg: null,
     watchId: null,
+    /** Normal-map GPS course watch. Never runs beside the Field Hunt watch. */
+    navWatchId: null,
     prefs: null,
     filterTypes: null,
     elevCache: null,
@@ -1118,19 +1120,23 @@
 
   function userMarkerIcon(presentation) {
     var html;
+    var size = 22;
     if (presentation.kind === "arrow") {
+      size = 32;
+      /* Tip is north at 0°. CSS rotate is clockwise, so 90° points east. Pivot is the icon center. */
       html = "<span class=\"sheds-user-arrow\" style=\"transform:rotate(" +
-        presentation.headingDeg + "deg)\"></span>";
+        presentation.headingDeg + "deg)\"><svg viewBox=\"0 0 32 32\" width=\"32\" height=\"32\" aria-hidden=\"true\" focusable=\"false\"><polygon points=\"16,3 25,29 16,22 7,29\" fill=\"#f4f7f2\" stroke=\"#1a140c\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/></svg></span>";
     } else if (presentation.kind === "ring") {
       html = "<span class=\"sheds-user-ring\"></span>";
     } else {
       html = "<span class=\"sheds-user-dot\"></span>";
     }
+    var half = size / 2;
     return L.divIcon({
       className: "sheds-div-icon sheds-user-pin sheds-user-marker",
       html: html,
-      iconSize: [22, 22],
-      iconAnchor: [11, 11]
+      iconSize: [size, size],
+      iconAnchor: [half, half]
     });
   }
 
@@ -1207,13 +1213,28 @@
     state.userPosition.altitude = Number(alt);
   }
 
+  /**
+   * GPS course to draw. Null clears immediately — never keep a stale arrow.
+   * Position is not smoothed. opts.navigation must not record a hunt track.
+   */
+  function displayedCourse(headingDeg, accuracyM, speedMps) {
+    var Course = window.WaypointShedsNavCourse;
+    if (!Course || typeof Course.resolveDisplayedHeading !== "function") {
+      var raw = headingDeg != null && isFinite(headingDeg) ? Number(headingDeg) : null;
+      if (raw == null) return null;
+      if (accuracyM != null && isFinite(accuracyM) && accuracyM > GPS_APPROX_M) return null;
+      if (speedMps != null && isFinite(Number(speedMps)) && Number(speedMps) < 0.5) return null;
+      return ((raw % 360) + 360) % 360;
+    }
+    return Course.resolveDisplayedHeading(state.headingDeg, headingDeg, accuracyM, speedMps);
+  }
+
   /** Apply GPS only when movement exceeds threshold (or forced). Heading still refreshes. */
   function applyUserPosition(ll, accuracyM, headingDeg, opts) {
     opts = opts || {};
     rememberGpsAltitude(opts.altitude);
     if (ll && isFinite(ll.alt)) rememberGpsAltitude(ll.alt);
-    /* A null course is honest: do not keep a stale arrow. */
-    state.headingDeg = headingDeg != null && isFinite(headingDeg) ? headingDeg : null;
+    state.headingDeg = displayedCourse(headingDeg, accuracyM, opts.speed);
     var suppressed =
       !opts.force &&
       state.userLatLng &&
@@ -1223,7 +1244,7 @@
       Math.abs(state.accuracyM - accuracyM) < 15;
     if (suppressed) {
       upsertUserMarker(state.userLatLng, state.accuracyM, state.headingDeg);
-      if (state.fieldHunting && ll) {
+      if (state.fieldHunting && ll && !opts.navigation) {
         ingestHuntTrackPoint(ll.lat, ll.lng, accuracyM, opts.altitude, Date.now());
       }
       return false;
@@ -1243,10 +1264,16 @@
     syncSearchPrompt();
     // V1.6: refresh straight-line display only. Never auto-check Scout Spots from GPS.
     // V1.7: Hunt Track ingest is independent of marker jitter; filtering lives in HuntActivity.
-    if (state.fieldHunting && ll) {
+    // Navigation-watch fixes must not call ingestHuntTrackPoint.
+    if (state.fieldHunting && ll && !opts.navigation) {
       ingestHuntTrackPoint(ll.lat, ll.lng, accuracyM, opts.altitude, Date.now());
     }
     if (state.fieldHunting) renderFieldHuntHud();
+    if (state.followUser && map && !opts.force && ll) {
+      map.panTo(ll, {
+        animate: !document.documentElement.classList.contains("reduced-motion")
+      });
+    }
     return true;
   }
 
@@ -2117,6 +2144,7 @@
 
   function startHuntTracking() {
     if (!HuntActivity) return;
+    stopNavWatch();
     redrawHuntTrack();
     redrawHuntObservations();
     if (state.userLatLng) {
@@ -2145,12 +2173,13 @@
         var acc = pos.coords.accuracy;
         var alt = pos.coords.altitude;
         var heading = pos.coords.heading;
+        var speed = pos.coords.speed;
         try {
           applyUserPosition(
             L.latLng(lat, lng),
             acc,
             heading != null && !isNaN(heading) ? heading : null,
-            { force: false, source: "geolocation", altitude: alt }
+            { force: false, source: "geolocation", altitude: alt, speed: speed }
           );
         } catch (ePos) { /* */ }
         ingestHuntTrackPoint(lat, lng, acc, alt, pos.timestamp || Date.now());
@@ -2178,6 +2207,7 @@
       state.huntWatchId = null;
     }
     stopHuntHudClock();
+    startNavWatch();
   }
 
   function attachOrStartHuntActivity(session) {
@@ -5008,9 +5038,11 @@
     if (navDot) navDot.dataset.state = "tracking";
     if (!navigator.geolocation) {
       syncSessionPill("Searching · distance unavailable", true);
+      startNavWatch();
       return;
     }
     if (state.watchId != null) navigator.geolocation.clearWatch(state.watchId);
+    stopNavWatch();
     state.watchId = navigator.geolocation.watchPosition(function (pos) {
       var lat = pos.coords.latitude;
       var lng = pos.coords.longitude;
@@ -5019,7 +5051,7 @@
         ll,
         pos.coords.accuracy,
         pos.coords.heading != null && !isNaN(pos.coords.heading) ? pos.coords.heading : null,
-        { force: false, altitude: pos.coords.altitude }
+        { force: false, altitude: pos.coords.altitude, speed: pos.coords.speed }
       );
       setLocStatus(
         "available",
@@ -5045,6 +5077,7 @@
       navigator.geolocation.clearWatch(state.watchId);
       state.watchId = null;
     }
+    startNavWatch();
     state.tracking = false;
     var summary = null;
     if (state.activeSessionId && Sessions) {
@@ -5125,6 +5158,60 @@
   }
 
   /**
+   * Normal-map GPS course watch. One high-accuracy stream.
+   * Stays off while Field Hunt or Start Search already owns a watch.
+   * Does not record hunt-track points.
+   */
+  function navWatchBlocked() {
+    return !!(state.fieldHunting || state.huntWatchId != null || state.watchId != null);
+  }
+
+  function startNavWatch() {
+    if (!navigator.geolocation || typeof navigator.geolocation.watchPosition !== "function") return;
+    if (document.hidden) return;
+    if (navWatchBlocked()) return;
+    if (state.navWatchId != null) return;
+    try {
+      state.navWatchId = navigator.geolocation.watchPosition(function (pos) {
+        if (navWatchBlocked()) {
+          stopNavWatch();
+          return;
+        }
+        if (!pos || !pos.coords || !map) return;
+        var heading = pos.coords.heading;
+        var speed = pos.coords.speed;
+        applyUserPosition(
+          L.latLng(pos.coords.latitude, pos.coords.longitude),
+          pos.coords.accuracy,
+          heading != null && !isNaN(heading) ? heading : null,
+          {
+            force: false,
+            source: "geolocation",
+            altitude: pos.coords.altitude,
+            speed: speed,
+            navigation: true
+          }
+        );
+      }, function (err) {
+        if (state.userLatLng) return;
+        if (err && err.code === 1) {
+          setLocStatus("denied", "Permission denied — enable location for this site, then tap Locate");
+        }
+      }, { enableHighAccuracy: true, timeout: 15000, maximumAge: 1000 });
+    } catch (eNav) {
+      state.navWatchId = null;
+    }
+  }
+
+  function stopNavWatch() {
+    if (state.navWatchId == null) return;
+    if (navigator.geolocation && navigator.geolocation.clearWatch) {
+      try { navigator.geolocation.clearWatch(state.navWatchId); } catch (eStopNav) { /* */ }
+    }
+    state.navWatchId = null;
+  }
+
+  /**
    * Request browser geolocation and apply YOU / selectedLocation.
    * Sticky denial memory is reconciled against live Permissions API so a later
    * grant is not blocked by an old localStorage flag (Phase 1 owner bug).
@@ -5176,11 +5263,12 @@
       if (locateGen !== state.locateGen) return; // stale locate
       rememberGpsDenied(false);
       var ll = L.latLng(pos.coords.latitude, pos.coords.longitude);
-      if (pos.coords.heading != null && !isNaN(pos.coords.heading)) state.headingDeg = pos.coords.heading;
-      applyUserPosition(ll, pos.coords.accuracy, state.headingDeg, {
+      var heading = pos.coords.heading;
+      applyUserPosition(ll, pos.coords.accuracy, heading != null && !isNaN(heading) ? heading : null, {
         force: true,
         source: "geolocation",
-        altitude: pos.coords.altitude
+        altitude: pos.coords.altitude,
+        speed: pos.coords.speed
       });
       var accDetail = state.accuracyM != null ? ("±" + Math.round(state.accuracyM) + " m") : "";
       if (state.locationKind === LOCATION_KIND.USER_APPROXIMATE) {
@@ -6702,7 +6790,15 @@
   function bindControls() {
     $("btn-locate").addEventListener("click", function () {
       state.radarHoldDemoCenter = false;
+      state.userPanned = false;
       locateUser({ center: true, force: true });
+    });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) {
+        stopNavWatch();
+        return;
+      }
+      startNavWatch();
     });
     if ($("btn-here-chip")) {
       $("btn-here-chip").addEventListener("click", function () { locateUser({ center: true, force: true }); });
@@ -7801,6 +7897,7 @@
     // against live Permissions API inside locateUser. Center on initial GPS even
     // when a prior session saved a map view (saved view remains fallback if GPS fails).
     locateUser({ center: true });
+    startNavWatch();
     consumeTodayHuntMapHandoff();
     setPlanExpanded(false);
     syncHeatLegend();
@@ -7879,17 +7976,21 @@
       radarWashVisible: radarWashVisible,
       setTrackVisible: setTrackVisible,
       userMarkerPresentation: userMarkerPresentation,
-      applyEvidenceHeading: function (deg) {
+      applyEvidenceHeading: function (deg, accuracyM) {
         var ll = state.userLatLng;
         if ((!ll || !isFinite(ll.lat)) && map) {
           var c = map.getCenter();
           ll = L.latLng(c.lat, c.lng);
           state.userLatLng = ll;
         }
-        state.accuracyM = 8;
-        state.headingDeg = deg != null && isFinite(Number(deg)) ? Number(deg) : null;
+        state.locateGen += 1;
+        stopNavWatch();
+        state.accuracyM = accuracyM != null && isFinite(Number(accuracyM)) ? Number(accuracyM) : 8;
+        state.headingDeg = deg != null && isFinite(Number(deg))
+          ? ((Number(deg) % 360) + 360) % 360
+          : null;
         upsertUserMarker(ll, state.accuracyM, state.headingDeg);
-        return userMarkerPresentation(state.headingDeg, false);
+        return userMarkerPresentation(state.headingDeg, state.accuracyM > GPS_APPROX_M);
       },
       enterFieldHuntMode: enterFieldHuntMode,
       renderFieldHuntHud: renderFieldHuntHud,

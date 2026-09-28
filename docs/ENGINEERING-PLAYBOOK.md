@@ -2131,3 +2131,11 @@ dynamic_visual + commercial visual + production inspection evidence.
 - Neutral parity is automatic when Neutral scores match Landscape; never style frames differently.
 - Measure success by human glance + meanAbs on changed pixels, not only % pixels changed (same cells can change with larger magnitude).
 - Integrated onto map-first field UX without replacing the approved map chrome. Display transfer only.
+
+## Lessons Learned — Sheds field navigation V1 (2026-09-27)
+
+- GPS course (`coords.heading`) is direction of travel. It is not the direction the phone is facing. A compass needs DeviceOrientation and, on iPhone, a separate permission. V1 does not ask for that.
+- The normal map previously took one fix. An arrow could not turn while walking unless a hunt or search session was already watching. One normal-map watch covers that, and it stays off while Field Hunt or Start Search already holds a high-accuracy watch.
+- A null course must clear the arrow immediately. The old Locate path copied a previous `headingDeg` forward when the new fix had no heading.
+- Smooth heading on the circle (shortest turn). Do not average 359 and 0 into 180, and do not smooth the coordinate. The 8 m marker gate still drops GPS jitter; heading may still rotate under that gate.
+- The navigation watch must not call hunt-track ingest. Hunt filtering stays in the hunt activity store.
