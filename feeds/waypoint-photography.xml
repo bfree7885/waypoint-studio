@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Sep 2026 03:05:18 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 17:10:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -25,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1312/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1312/</guid>
+    <pubDate>Tue, 29 Sep 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 rocket, with the Dragon spacecraft atop, is vertical at the launch pad of Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida on Sunday, Sept. 27, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -65,24 +83,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
-    <link>https://www.nasa.gov/image-detail/m101-lg/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/m101-lg/</guid>
-    <pubDate>Tue, 22 Sep 2026 15:44:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NASA’s Chandra X-ray Observatory, scientists have discovered a new class of objects behaving unlike any they have seen before.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
@@ -98,6 +98,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
+    <link>https://www.nasa.gov/image-detail/m101-lg/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/m101-lg/</guid>
+    <pubDate>Tue, 22 Sep 2026 15:44:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NASA’s Chandra X-ray Observatory, scientists have discovered a new class of objects behaving unlike any they have seen before.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -245,22 +263,40 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ms
     <author>NASA</author>
   </item>
   <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Starship reaches Earth’s orbit for 1st time</title>
+    <link>https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</link>
+    <guid isPermaLink="true">https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</guid>
+    <pubDate>Tue, 29 Sep 2026 12:21:34 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
+Summary: SpaceX&apos;s Starship spacecraft finally reached Earth&apos;s orbit in its 14th test flight on September 28. Though successful, the flight was not without its flaws. The post Starship reaches Earth’s orbit for 1st time first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Huge eruption sends blob to Earth!</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Tue, 29 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news, September 29, 2026: A huge filament eruption hurled a CME into space, and part of it may reach Earth on October 2. G1 storms and auroras possible! The post Sun news: Huge eruption sends blob to Earth! first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>The Komodo dragon is the world’s largest living lizard</title>
@@ -281,40 +317,22 @@ Read the original article at the publisher: https://earthsky.org/earth/the-komod
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>JUICE mission to fly by Earth Monday: Details here</title>
-    <link>https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:15:06 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Superbubble in the Large Magellanic Cloud</title>
+    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
+    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The JUICE mission will perform a flyby of Earth next week on September 28. The spacecraft is headed toward Jupiter&apos;s icy moons, where it will arrive in 2031. The post JUICE mission to fly by Earth Monday: Details here first appeared on EarthSky .
+Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>A black hole jet is aimed at us … and it’s in our galaxy</title>
-    <link>https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:00:37 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: For the first time, scientists have discovered a microblazar, a black hole system in our own galaxy with a jet pointed at Earth. It lies about 12,000 light-years away. The post A black hole jet is aimed at us … and it’s in our galaxy first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
     <title>Igniting Roman&apos;s Journey</title>
@@ -443,32 +461,14 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA Astronaut Reid Wiseman at Freedom 250 Grand Prix</title>
-    <link>https://www.nasa.gov/image-detail/freedom-250-grand-prix/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/freedom-250-grand-prix/</guid>
-    <pubDate>Mon, 24 Aug 2026 17:35:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut Reid Wiseman, Artemis II commander, is seen in the two-seat IndyCar as he prepares for driver Conor Daly to take him on a lap in the fastest seat in sport ahead of the start of the Freedom 250 Grand Prix, Sunday, Aug. 23, 2026, in Washington, D.C.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/freedom-250-grand-prix/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide late September and October</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Mon, 28 Sep 2026 10:00:08 GMT</pubDate>
+    <pubDate>Tue, 29 Sep 2026 08:30:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. Tonight, look for the bright waning gibbous moon near planet Saturn and the Pleiades star cluster. The post Visible planets and night sky guide late September and October first appeared on EarthSky .
+Summary: Visible planets and night sky guide. Tonight, look for the bright waning gibbous moon near the Pleiades star cluster and the orange star Aldebaran in Taurus. The post Visible planets and night sky guide late September and October first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -481,7 +481,7 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <title>Watch for the daytime moon after sunrise this week</title>
     <link>https://earthsky.org/tonight/see-the-daytime-moon/</link>
     <guid isPermaLink="true">https://earthsky.org/tonight/see-the-daytime-moon/</guid>
-    <pubDate>Sun, 27 Sep 2026 09:00:16 GMT</pubDate>
+    <pubDate>Tue, 29 Sep 2026 08:00:16 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
@@ -490,6 +490,40 @@ Summary: Watch for the beautiful daytime moon this week, a pale orb floating aga
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/tonight/see-the-daytime-moon/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Equuleus the Little Horse on autumn nights</title>
+    <link>https://earthsky.org/constellations/equuleus-the-little-horse-autumn-smallest-northern-constellation/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/equuleus-the-little-horse-autumn-smallest-northern-constellation/</guid>
+    <pubDate>Tue, 29 Sep 2026 07:00:54 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Equuleus the Little Horse is a diminutive constellation that lies south of the Summer Triangle. September nights are a great time to view the Little Horse. The post Equuleus the Little Horse on autumn nights first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/constellations/equuleus-the-little-horse-autumn-smallest-northern-constellation/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>JUICE mission completes flyby of Earth: New pics!</title>
+    <link>https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</guid>
+    <pubDate>Mon, 28 Sep 2026 13:14:06 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The JUICE mission made a successful flyby of Earth on September 28. See new images of Earth and the moon here from its 2nd of 3 Earth flybys. The post JUICE mission completes flyby of Earth: New pics! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -512,6 +546,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
+    <title>A black hole jet is aimed at us … and it’s in our galaxy</title>
+    <link>https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</guid>
+    <pubDate>Sun, 27 Sep 2026 12:00:37 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: For the first time, scientists have discovered a microblazar, a black hole system in our own galaxy with a jet pointed at Earth. It lies about 12,000 light-years away. The post A black hole jet is aimed at us … and it’s in our galaxy first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Mac Stone Puts His Photography to Work to Save Southern Swamps</title>
     <link>https://www.audubon.org/magazine/mac-stone-puts-his-photography-work-save-southern-swamps</link>
     <guid isPermaLink="true">https://www.audubon.org/magazine/mac-stone-puts-his-photography-work-save-southern-swamps</guid>
@@ -529,42 +581,6 @@ Read the original article at the publisher: https://www.audubon.org/magazine/mac
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Hurricane Nolo strengthening near Hawaii</title>
-    <link>https://earthsky.org/earth/hurricane-nolo-hawaii-sept-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/hurricane-nolo-hawaii-sept-2026/</guid>
-    <pubDate>Fri, 25 Sep 2026 12:05:07 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Hurricane Nolo is strengthening south of Hawaii, and could bring potentially catastrophic flooding to the Big Island through the weekend. The post Hurricane Nolo strengthening near Hawaii first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/hurricane-nolo-hawaii-sept-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Neptune at opposition on September 26, 2026</title>
-    <link>https://earthsky.org/astronomy-essentials/neptune-at-opposition-closest-brightest-best/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/neptune-at-opposition-closest-brightest-best/</guid>
-    <pubDate>Fri, 25 Sep 2026 11:10:51 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Neptune at opposition -- when it&apos;s opposite the sun on the sky&apos;s dome -- comes on September 26, 2026. You&apos;ll need optical aid to spot it. The post Neptune at opposition on September 26, 2026 first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/neptune-at-opposition-closest-brightest-best/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>The September full Moon is the Harvest Moon near Saturn</title>
     <link>https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</link>
     <guid isPermaLink="true">https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</guid>
@@ -577,23 +593,6 @@ Summary: The September full moon - the Super Harvest Moon - happens overnight on
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The Artemis Accords are rules for a new moon era</title>
-    <link>https://earthsky.org/space/what-are-the-artemis-accords/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/what-are-the-artemis-accords/</guid>
-    <pubDate>Fri, 25 Sep 2026 11:28:55 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Artemis Accords are a set of guidelines for peaceful space exploration. But questions remain about who makes the rules and controls space resources. The post The Artemis Accords are rules for a new moon era first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/what-are-the-artemis-accords/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>

@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Sep 2026 03:05:18 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Sep 2026 17:10:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -25,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1312/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1312/</guid>
+    <pubDate>Tue, 29 Sep 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 rocket, with the Dragon spacecraft atop, is vertical at the launch pad of Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida on Sunday, Sept. 27, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -65,24 +83,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
-    <link>https://www.nasa.gov/image-detail/m101-lg/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/m101-lg/</guid>
-    <pubDate>Tue, 22 Sep 2026 15:44:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NASA’s Chandra X-ray Observatory, scientists have discovered a new class of objects behaving unlike any they have seen before.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
@@ -99,25 +99,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Interior Expands Program for Review of Prairie Pothole Wetland Easements</title>
-    <link>https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</guid>
-    <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: WASHINGTON — The Department of the Interior today announced that the U.S. Fish and Wildlife Service will incorporate feedback from North Dakota farmers, ranchers and conservation partners as it updates and expands an innovative Prairie Pothole Wetland pilot project addressing landowner concerns—
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Thousands of Handmade Birds Spotlight a Deadly Migration Toll in Chicago</title>
@@ -138,56 +119,57 @@ Read the original article at the publisher: https://www.audubon.org/magazine/tho
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Closing the loop: How community composting builds a more self-sufficient Adirondacks</title>
-    <link>https://www.adirondackexplorer.org/communities/food-and-farms/closing-the-loop-how-community-composting-builds-a-more-self-sufficient-adirondacks/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/closing-the-loop-how-community-composting-builds-a-more-self-sufficient-adirondacks/</guid>
-    <pubDate>Sun, 27 Sep 2026 20:00:00 GMT</pubDate>
+    <title>Whitney Park price dropped to $106.5M</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/whitney-park-price-dropped-to-106-5-million/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/whitney-park-price-dropped-to-106-5-million/</guid>
+    <pubDate>Tue, 29 Sep 2026 13:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Compost for Good and Biochar Coalition held a workshop hosted by Driscoll Family Farm, March 2026. Photo by Cole Trager. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/image-2.png?fit=780%2C585&amp;ssl=1&quot; /&gt; Composting provides communities throughout the Adirondacks with a full circle of growing healthy foods, without wasting scraps
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/closing-the-loop-how-community-composting-builds-a-more-self-sufficient-adirondacks/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>An Adirondack farm-to-plate success story</title>
-    <link>https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</guid>
-    <pubDate>Sun, 27 Sep 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: An Adirondack farm-to-plate success story. Customers shop for fresh vegetables. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/DSC05844.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Essex County stands out in number of values-driven farms, direct-to-consumer sales.
+Summary: The view from Deerlands camp, part of the Whitney Park estate. Photo by Timothy Lake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/11/Whitney-Park-view.jpg?fit=780%2C439&amp;ssl=1&quot; /&gt; Historic 36,000 plus Adirondack acres still available after deal fell through in 2025.
 
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/feeding-ourselves/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/whitney-park-price-dropped-to-106-5-million/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>PROTECT releases election candidates’ positions on issues affecting Adirondacks</title>
+    <link>https://www.adirondackexplorer.org/communities/government/protect-releases-election-candidates-positions-on-issues-affecting-adirondacks/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/protect-releases-election-candidates-positions-on-issues-affecting-adirondacks/</guid>
+    <pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Blake Gendebien—a dairy farmer, basketball coach and political newcomer—is running for New York’s 21st Congressional seat. Times Union photo. &quot; data-large-file=&quot;https://www.adirondackexplorer.org/wp-content/uploads/2025/02/ratio4x3_960.avif&quot; /&gt; Protect the Adirondacks sent out a non-partisan questionnaire to federal and state candidates to gauge where they stand on issues
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/protect-releases-election-candidates-positions-on-issues-affecting-adirondacks/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">National</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Judge dismisses howitzer testing applicant’s lawsuit against state officials</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</guid>
+    <pubDate>Tue, 29 Sep 2026 10:31:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Michael Hopmeier, President of Unconventional Concepts, Inc, presenting on the proposed howitzer testing to the Lewis Town Board, at a public hearing at the Lewis Volunteer Fire Department. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/05/hopmeier_meeting.jpg?fit=780%2C480&amp;ssl=1&quot; /&gt; Project hearing pushed to December while Adirondack Park Agency staff work on next steps before board vote
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -287,6 +269,24 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
+    <link>https://www.nasa.gov/image-detail/m101-lg/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/m101-lg/</guid>
+    <pubDate>Tue, 22 Sep 2026 15:44:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NASA’s Chandra X-ray Observatory, scientists have discovered a new class of objects behaving unlike any they have seen before.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA Astronaut Reid Wiseman Attends Ravens vs. Saints Game</title>
@@ -433,24 +433,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ms
     <author>NASA</author>
   </item>
   <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Smooth slender crabgrass: A quiet engineer to remember</title>
     <link>https://www.adirondackexplorer.org/environment/smooth-slender-crabgrass-a-quiet-engineer-to-remember/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/smooth-slender-crabgrass-a-quiet-engineer-to-remember/</guid>
@@ -483,6 +465,25 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <category>Wildlife</category>
     <category>Conservation</category>
     <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Interior Expands Program for Review of Prairie Pothole Wetland Easements</title>
+    <link>https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</guid>
+    <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: WASHINGTON — The Department of the Interior today announced that the U.S. Fish and Wildlife Service will incorporate feedback from North Dakota farmers, ranchers and conservation partners as it updates and expands an innovative Prairie Pothole Wetland pilot project addressing landowner concerns—
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-09/interior-expands-program-review-prairie-pothole-wetland-easements</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
   </item>
@@ -524,6 +525,42 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-09/sa
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Starship reaches Earth’s orbit for 1st time</title>
+    <link>https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</link>
+    <guid isPermaLink="true">https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</guid>
+    <pubDate>Tue, 29 Sep 2026 12:21:34 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: SpaceX&apos;s Starship spacecraft finally reached Earth&apos;s orbit in its 14th test flight on September 28. Though successful, the flight was not without its flaws. The post Starship reaches Earth’s orbit for 1st time first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/spaceflight/spacex-starship-reaches-earths-orbit-for-1st-time/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Huge eruption sends blob to Earth!</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Tue, 29 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news, September 29, 2026: A huge filament eruption hurled a CME into space, and part of it may reach Earth on October 2. G1 storms and auroras possible! The post Sun news: Huge eruption sends blob to Earth! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Maintaining the Platte River for Cranes and Communities</title>
@@ -574,42 +611,6 @@ Summary: The Komodo dragon is the world’s largest lizard. It&apos;s a venomous
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/earth/the-komodo-dragon-is-the-world-largest-living-lizard/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>JUICE mission to fly by Earth Monday: Details here</title>
-    <link>https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:15:06 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The JUICE mission will perform a flyby of Earth next week on September 28. The spacecraft is headed toward Jupiter&apos;s icy moons, where it will arrive in 2031. The post JUICE mission to fly by Earth Monday: Details here first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>A black hole jet is aimed at us … and it’s in our galaxy</title>
-    <link>https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:00:37 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: For the first time, scientists have discovered a microblazar, a black hole system in our own galaxy with a jet pointed at Earth. It lies about 12,000 light-years away. The post A black hole jet is aimed at us … and it’s in our galaxy first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -729,9 +730,9 @@ Read the original article at the publisher: https://www.audubon.org/news/marine-
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Crane Season Take a Flock</title>
-    <link>https://www.audubon.org/great-plains/news/crane-season-take-flock</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/crane-season-take-flock</guid>
+    <title>Crane Season Takes a Flock</title>
+    <link>https://www.audubon.org/great-plains/news/crane-season-takes-flock</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/crane-season-takes-flock</guid>
     <pubDate>Fri, 25 Sep 2026 17:11:15 GMT</pubDate>
     <source url="https://www.audubon.org/">National Audubon Society</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
@@ -740,7 +741,7 @@ Summary: Every spring, people from across the country and around the world make 
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/crane-season-take-flock</description>
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/crane-season-takes-flock</description>
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>
