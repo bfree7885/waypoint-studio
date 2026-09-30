@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Sep 2026 17:10:51 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 02:47:02 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -288,7 +288,7 @@ Read the original article at the publisher: https://earthsky.org/spaceflight/spa
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news, September 29, 2026: A huge filament eruption hurled a CME into space, and part of it may reach Earth on October 2. G1 storms and auroras possible! The post Sun news: Huge eruption sends blob to Earth! first appeared on EarthSky .
+Summary: Sun news, September 29, 2026: A huge filament eruption hurled a coronal mass ejection into space, and part of it may reach Earth on October 2. G1 (minor) storms and auroras possible! The post Sun news: Huge eruption sends blob to Earth! first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -502,7 +502,7 @@ Read the original article at the publisher: https://earthsky.org/tonight/see-the
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Equuleus the Little Horse is a diminutive constellation that lies south of the Summer Triangle. September nights are a great time to view the Little Horse. The post Equuleus the Little Horse on autumn nights first appeared on EarthSky .
+Summary: Equuleus the Little Horse is a diminutive constellation that lies south of the Summer Triangle. Autumn nights are a great time to view the Little Horse. The post Equuleus the Little Horse on autumn nights first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -579,6 +579,23 @@ Read the original article at the publisher: https://www.audubon.org/magazine/mac
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>How the moon and sun may trigger slow earthquakes on Earth</title>
+    <link>https://phys.org/news/2026-09-moon-sun-trigger-earthquakes-earth.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-09-moon-sun-trigger-earthquakes-earth.html</guid>
+    <pubDate>Tue, 29 Sep 2026 18:00:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: While not quite a fatal attraction, the gravitational pull of the moon and sun creates tiny stresses on Earth that can trigger events known as slow earthquakes. These are movements along fault lines (fault slips) that release their energy gradually over much longer periods than ordinary quakes.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-09-moon-sun-trigger-earthquakes-earth.html</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>The September full Moon is the Harvest Moon near Saturn</title>
