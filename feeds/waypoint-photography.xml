@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2026 02:47:02 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 30 Sep 2026 17:08:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1312/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1312/</guid>
+    <pubDate>Tue, 29 Sep 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 rocket, with the Dragon spacecraft atop, is vertical at the launch pad of Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida on Sunday, Sept. 27, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Space Station View of Earth at Night</title>
     <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
@@ -25,24 +43,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1312/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1312/</guid>
-    <pubDate>Tue, 29 Sep 2026 15:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 rocket, with the Dragon spacecraft atop, is vertical at the launch pad of Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida on Sunday, Sept. 27, 2026.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -245,22 +245,58 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/55
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis II Crew at NASA Marshall</title>
-    <link>https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</guid>
-    <pubDate>Wed, 09 Sep 2026 15:32:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Water systems on early Mars were complex and hot</title>
+    <link>https://earthsky.org/space/water-systems-on-early-mars-margin-unit-jezero-crater-perseverance-rover/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/water-systems-on-early-mars-margin-unit-jezero-crater-perseverance-rover/</guid>
+    <pubDate>Wed, 30 Sep 2026 09:50:24 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Artemis II Crew at NASA Marshall. The crew of NASA’s Artemis II mission visited NASA’s Marshall Space Flight Center in Huntsville, Alabama on Sept. 1, 2026.
+Summary: NASA&apos;s Perseverance rover has found evidence of ancient complex water systems on early Mars, including hot hydrothermal activity. The post Water systems on early Mars were complex and hot first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/water-systems-on-early-mars-margin-unit-jezero-crater-perseverance-rover/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Mars calendar year begins September 30: Happy New Year, Mars!</title>
+    <link>https://earthsky.org/astronomy-essentials/mars-calendar-years-began-in-earth-year-1955/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/mars-calendar-years-began-in-earth-year-1955/</guid>
+    <pubDate>Wed, 30 Sep 2026 09:40:34 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Mars calendar year 39 begins on September 30, 2026. If you’re looking for a reason to celebrate, here’s to a Happy New Year ... on Mars. The post Mars calendar year begins September 30: Happy New Year, Mars! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/mars-calendar-years-began-in-earth-year-1955/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Near-M flare! Is the sun waking up?</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Wed, 30 Sep 2026 09:00:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news, September 30, 2026: Our star surprised us with an almost-M flare. It was a C8.6 flare from active region AR4535. Is the sun waking up? The post Sun news: Near-M flare! Is the sun waking up? first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Starship reaches Earth’s orbit for 1st time</title>
@@ -281,40 +317,22 @@ Read the original article at the publisher: https://earthsky.org/spaceflight/spa
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Huge eruption sends blob to Earth!</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 29 Sep 2026 09:00:53 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Artemis II Crew at NASA Marshall</title>
+    <link>https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</guid>
+    <pubDate>Wed, 09 Sep 2026 15:32:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Sun news, September 29, 2026: A huge filament eruption hurled a coronal mass ejection into space, and part of it may reach Earth on October 2. G1 (minor) storms and auroras possible! The post Sun news: Huge eruption sends blob to Earth! first appeared on EarthSky .
+Summary: Artemis II Crew at NASA Marshall. The crew of NASA’s Artemis II mission visited NASA’s Marshall Space Flight Center in Huntsville, Alabama on Sept. 1, 2026.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The Komodo dragon is the world’s largest living lizard</title>
-    <link>https://earthsky.org/earth/the-komodo-dragon-is-the-world-largest-living-lizard/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/the-komodo-dragon-is-the-world-largest-living-lizard/</guid>
-    <pubDate>Mon, 28 Sep 2026 11:30:57 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Komodo dragon is the world’s largest lizard. It&apos;s a venomous predator that can hunt, swim between islands and reproduce without a mate. The post The Komodo dragon is the world’s largest living lizard first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/the-komodo-dragon-is-the-world-largest-living-lizard/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
     <title>Superbubble in the Large Magellanic Cloud</title>
@@ -464,15 +482,49 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <title>Visible planets and night sky guide late September and October</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Tue, 29 Sep 2026 08:30:08 GMT</pubDate>
+    <pubDate>Wed, 30 Sep 2026 11:49:08 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. Tonight, look for the bright waning gibbous moon near the Pleiades star cluster and the orange star Aldebaran in Taurus. The post Visible planets and night sky guide late September and October first appeared on EarthSky .
+Summary: Visible planets and night sky guide. Join us for a livestream at noon CDT (17 UTC) on Wednesday, September 30. We are saying goodbye to evening Venus! The post Visible planets and night sky guide late September and October first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>JUICE mission completes flyby of Earth: New pics!</title>
+    <link>https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</guid>
+    <pubDate>Wed, 30 Sep 2026 10:00:06 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The JUICE mission made a successful flyby of Earth on September 28. See new images of Earth and the moon here. The spacecraft will reach Jupiter in 2031. The post JUICE mission completes flyby of Earth: New pics! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Alpha Cephei, or Alderamin, is a fast-spinning star</title>
+    <link>https://earthsky.org/brightest-stars/alderamin-the-kings-brightest-star/</link>
+    <guid isPermaLink="true">https://earthsky.org/brightest-stars/alderamin-the-kings-brightest-star/</guid>
+    <pubDate>Wed, 30 Sep 2026 07:00:43 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Meet Alpha Cephei, in the constellation Cepheus the King. It’s spinning so fast that it appears like a slightly flattened beach ball. The post Alpha Cephei, or Alderamin, is a fast-spinning star first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/brightest-stars/alderamin-the-kings-brightest-star/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -512,23 +564,6 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>JUICE mission completes flyby of Earth: New pics!</title>
-    <link>https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</guid>
-    <pubDate>Mon, 28 Sep 2026 13:14:06 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The JUICE mission made a successful flyby of Earth on September 28. See new images of Earth and the moon here from its 2nd of 3 Earth flybys. The post JUICE mission completes flyby of Earth: New pics! first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/esas-juice-mission-explore-jupiters-icy-moons-ganymede/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Practicing for Safe Landings on the Moon and Beyond</title>
     <link>https://www.nasa.gov/image-detail/nasa-navigation-experiment-shows-promise-for-landing-on-other-planets/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasa-navigation-experiment-shows-promise-for-landing-on-other-planets/</guid>
@@ -544,24 +579,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>A black hole jet is aimed at us … and it’s in our galaxy</title>
-    <link>https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</guid>
-    <pubDate>Sun, 27 Sep 2026 12:00:37 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: For the first time, scientists have discovered a microblazar, a black hole system in our own galaxy with a jet pointed at Earth. It lies about 12,000 light-years away. The post A black hole jet is aimed at us … and it’s in our galaxy first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/black-hole-jet-aimed-at-us-galaxy-microblazar/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Mac Stone Puts His Photography to Work to Save Southern Swamps</title>
@@ -596,23 +613,6 @@ Read the original article at the publisher: https://phys.org/news/2026-09-moon-s
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>Phys.org</author>
-  </item>
-  <item>
-    <title>The September full Moon is the Harvest Moon near Saturn</title>
-    <link>https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</link>
-    <guid isPermaLink="true">https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</guid>
-    <pubDate>Sat, 26 Sep 2026 19:41:35 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The September full moon - the Super Harvest Moon - happens overnight on September 26, 2026. It&apos;ll be near the planet Saturn. The post The September full Moon is the Harvest Moon near Saturn first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/moon-phases/september-full-moon-harvest-moon-corn-moon/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
