@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2026 17:08:51 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 02:52:58 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -26,6 +26,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Seasonal Nature</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Star Trails</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0144232/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0144232/</guid>
+    <pubDate>Wed, 30 Sep 2026 17:51:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: This long-duration image shows star trails above Earth and the blue lights of fishing boats and the yellow lights of Indonesian cities stretching below the International Space Station as it orbited 258 miles above the Banda Sea.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0144232/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
@@ -83,24 +101,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/a-
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Hubble Telescope Reaches Milestone, Looks for Elusive Supernova</title>
-    <link>https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</guid>
-    <pubDate>Wed, 23 Sep 2026 18:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An image from NASA&apos;s Hubble Space Telescope of galaxy cluster MACS J0417 is part of repeated observations to monitor for the reappearance of supernova Athena, which can help astronomers measure the expansion rate of the universe.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
@@ -135,6 +135,23 @@ Read the original article at the publisher: https://www.audubon.org/magazine/tho
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Near-peak and peak foliage arriving in the Adirondacks</title>
+    <link>https://www.adirondackexplorer.org/environment/near-peak-and-peak-foliage-arriving-in-the-adirondacks/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/near-peak-and-peak-foliage-arriving-in-the-adirondacks/</guid>
+    <pubDate>Wed, 30 Sep 2026 19:00:29 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A map of color changes for the week of Sept. 30-Oct. 6. Photo courtesy of I LOVE NY. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/1160x740_Week3_MapCMSDownload_90e63500-0fef-4a57-8cd8-79be1896a08e.png?fit=780%2C498&amp;ssl=1&quot; /&gt; Foliage changes continue throughout the park with the most significant colors in the northern and western regions
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/near-peak-and-peak-foliage-arriving-in-the-adirondacks/</description>
+    <category>Forests and Plants</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Whitney Park price dropped to $106.5M</title>
@@ -195,25 +212,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Judge dismisses howitzer testing applicant’s lawsuit against state officials</title>
-    <link>https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</guid>
-    <pubDate>Tue, 29 Sep 2026 10:31:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Michael Hopmeier, President of Unconventional Concepts, Inc, presenting on the proposed howitzer testing to the Lewis Town Board, at a public hearing at the Lewis Volunteer Fire Department. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/05/hopmeier_meeting.jpg?fit=780%2C480&amp;ssl=1&quot; /&gt; Project hearing pushed to December while Adirondack Park Agency staff work on next steps before board vote
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/judge-dismisses-howitzer-testing-applicants-lawsuit-against-state-officials/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Olive ridley sea turtles nest in California for the first time</title>
     <link>https://www.noaa.gov/stories/first-ever-olive-ridley-sea-turtle-nested-in-california-ext</link>
     <guid isPermaLink="true">https://www.noaa.gov/stories/first-ever-olive-ridley-sea-turtle-nested-in-california-ext</guid>
@@ -271,6 +269,25 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>2026 Conservation Ranching Bird Monitoring Results in the Rockies</title>
+    <link>https://www.audubon.org/rockies/news/2026-conservation-ranching-bird-monitoring-results-rockies</link>
+    <guid isPermaLink="true">https://www.audubon.org/rockies/news/2026-conservation-ranching-bird-monitoring-results-rockies</guid>
+    <pubDate>Wed, 30 Sep 2026 19:59:43 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Audubon Rockies and the skilled team of wildlife biologists from Precision Wildlife Resources once again hit the road in 2026 for another year of avian monitoring across Audubon Rockies...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/rockies/news/2026-conservation-ranching-bird-monitoring-results-rockies</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -287,6 +304,24 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Hubble Telescope Reaches Milestone, Looks for Elusive Supernova</title>
+    <link>https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</guid>
+    <pubDate>Wed, 23 Sep 2026 18:45:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: An image from NASA&apos;s Hubble Space Telescope of galaxy cluster MACS J0417 is part of repeated observations to monitor for the reappearance of supernova Athena, which can help astronomers measure the expansion rate of the universe.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
@@ -600,42 +635,6 @@ Read the original article at the publisher: https://earthsky.org/spaceflight/spa
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Maintaining the Platte River for Cranes and Communities</title>
-    <link>https://www.audubon.org/great-plains/news/maintaining-platte-river-cranes-and-communities</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/maintaining-platte-river-cranes-and-communities</guid>
-    <pubDate>Mon, 28 Sep 2026 20:28:19 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: If you&apos;ve ever spent any time along the Platte River in the Fall, you may have spotted an odd sight in the river channel: Heavy farm equipment! It can seem out of place on a wildlife sanctuary, but...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/maintaining-platte-river-cranes-and-communities</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Forecasting Water Supplies for Birds and Communities</title>
-    <link>https://www.audubon.org/great-plains/news/forecasting-water-supplies-birds-and-communities</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/forecasting-water-supplies-birds-and-communities</guid>
-    <pubDate>Mon, 28 Sep 2026 17:50:47 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Sadly, the times when I’m most likely to get a peek at the Platte River are only when I’m crossing over it on I-80, driving to or from the many meetings where I sit in a room and talk to people...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/forecasting-water-supplies-birds-and-communities</description>
-    <category>Birds</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>11 Native Shrubs to Make Your Yard a Wonderland for Birds</title>
     <link>https://www.audubon.org/magazine/11-native-shrubs-make-your-yard-wonderland-birds</link>
     <guid isPermaLink="true">https://www.audubon.org/magazine/11-native-shrubs-make-your-yard-wonderland-birds</guid>
@@ -692,6 +691,42 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Birds as Teachers: Inclusive Education for Bird Conservation Through Community, Culture, and Nature</title>
+    <link>https://www.audubon.org/news/birds-teachers-inclusive-education-bird-conservation-through-community-culture-and-nature</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/birds-teachers-inclusive-education-bird-conservation-through-community-culture-and-nature</guid>
+    <pubDate>Wed, 30 Sep 2026 17:28:25 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Birds have a unique ability to spark curiosity and inspire learning, especially among children. In Colombia, Audubon has harnessed that potential to help young people discover birds, understand their...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/news/birds-teachers-inclusive-education-bird-conservation-through-community-culture-and-nature</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Bird Conservation Director Corrie Folsom-O&apos;Keefe Honored for Exceptional Environmental Stewardship</title>
+    <link>https://www.audubon.org/connecticut/news/bird-conservation-director-corrie-folsom-okeefe-honored-exceptional-environmental</link>
+    <guid isPermaLink="true">https://www.audubon.org/connecticut/news/bird-conservation-director-corrie-folsom-okeefe-honored-exceptional-environmental</guid>
+    <pubDate>Wed, 30 Sep 2026 17:14:08 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: STRATFORD, Conn. – Audubon Connecticut congratulates Director of Bird Conservation Corrie Folsom-O&apos;Keefe on being named the 2026 recipient of the Terry Backer Environmental Champion Award...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/connecticut/news/bird-conservation-director-corrie-folsom-okeefe-honored-exceptional-environmental</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>&quot;Cranes on Parade&quot; returns to Kearney</title>
     <link>https://www.audubon.org/great-plains/news/cranes-parade-returns-kearney</link>
     <guid isPermaLink="true">https://www.audubon.org/great-plains/news/cranes-parade-returns-kearney</guid>
@@ -704,44 +739,6 @@ Summary: A familiar Kearney art tradition is returning this year- but with a new
 Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.audubon.org/great-plains/news/cranes-parade-returns-kearney</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Marine National Monuments and Sanctuaries: Reminders of Our Shared Past and Connected Future</title>
-    <link>https://www.audubon.org/news/marine-national-monuments-and-sanctuaries-reminders-of-our-shared-past-and-connected-future</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/marine-national-monuments-and-sanctuaries-reminders-of-our-shared-past-and-connected-future</guid>
-    <pubDate>Fri, 25 Sep 2026 17:25:02 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: The Papahānaumokuākea Marine National Monument would stretch from Manhattan to Omaha if laid out across the continental United States. Yet, you may never have heard of this diverse oceanic site in...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/news/marine-national-monuments-and-sanctuaries-reminders-of-our-shared-past-and-connected-future</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Crane Season Takes a Flock</title>
-    <link>https://www.audubon.org/great-plains/news/crane-season-takes-flock</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/crane-season-takes-flock</guid>
-    <pubDate>Fri, 25 Sep 2026 17:11:15 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Every spring, people from across the country and around the world make their way to Rowe Sanctuary to experience one of nature’s great migrations: the Sandhill Cranes roosting along the Platte...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/crane-season-takes-flock</description>
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>
