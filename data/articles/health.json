@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-01T02:52:58.075Z",
-  "status": "ok",
+  "checkedAt": "2026-10-01T17:38:46.185Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": true,
-      "itemCount": 25,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 155,
+      "ms": 242,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 188,
+      "ms": 287,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 220,
+      "ms": 327,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 448,
+      "ms": 233,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 1182,
+      "ms": 3578,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 249,
+      "ms": 385,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 270,
+      "ms": 379,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 252,
+      "ms": 1676,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 258,
+      "ms": 150,
       "enabled": true
     },
     {
@@ -221,19 +221,19 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 320,
+      "ms": 439,
       "enabled": true
     },
     {
       "id": "nws-albany",
       "name": "NWS Albany Area Forecast Discussions",
-      "ok": true,
-      "itemCount": 1,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "no parseable items",
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 167,
+      "ms": 264,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 149,
+      "ms": 345,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 360,
+      "ms": 154,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-01T14:52:58.075Z"
+  "staleAfter": "2026-10-02T05:38:46.185Z"
 }
