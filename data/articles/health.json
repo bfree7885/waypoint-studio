@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-02T02:55:35.514Z",
-  "status": "partial",
+  "checkedAt": "2026-10-02T16:58:03.315Z",
+  "status": "ok",
   "retainedPrevious": false,
   "feeds": [
     {
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 257,
+      "ms": 189,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 256,
+      "ms": 225,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 351,
+      "ms": 112,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 242,
+      "ms": 140,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 2210,
+      "ms": 2234,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 134,
+      "ms": 285,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 188,
+      "ms": 253,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 392,
+      "ms": 1481,
       "enabled": true
     },
     {
@@ -201,7 +201,7 @@
       "itemCount": 0,
       "error": "disabled",
       "warnings": [],
-      "ms": 0,
+      "ms": 1,
       "enabled": false
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 106,
+      "ms": 278,
       "enabled": true
     },
     {
@@ -221,19 +221,19 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 225,
+      "ms": 207,
       "enabled": true
     },
     {
       "id": "nws-albany",
       "name": "NWS Albany Area Forecast Discussions",
-      "ok": false,
-      "itemCount": 0,
-      "error": "no parseable items",
+      "ok": true,
+      "itemCount": 1,
+      "error": null,
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 291,
+      "ms": 278,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 156,
+      "ms": 328,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 159,
+      "ms": 402,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-02T14:55:35.514Z"
+  "staleAfter": "2026-10-03T04:58:03.315Z"
 }
