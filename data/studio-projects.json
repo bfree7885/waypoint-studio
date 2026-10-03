@@ -40,6 +40,19 @@
       "featured": true
     },
     {
+      "id": "radio-lab",
+      "slug": "radio-lab",
+      "title": "Radio Lab",
+      "description": "Hands-on Technician training: interactive labs, Exam Readiness, Quick Checks, focused practice, and 35-question mock exams. Progress stays in this browser. No account.",
+      "category": "Learning",
+      "status": "available",
+      "href": "https://radio.waypointstudio.org/",
+      "external": true,
+      "image": "assets/images/identity/placeholders/home-sky.svg",
+      "imageAlt": "",
+      "featured": true
+    },
+    {
       "id": "waypoint-deck",
       "slug": "waypoint-deck",
       "title": "Waypoint Deck",
