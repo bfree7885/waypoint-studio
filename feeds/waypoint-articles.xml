@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Oct 2026 03:13:28 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 16:05:53 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -154,23 +154,22 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>A Promising Discovery for Mojave Poppy Bees</title>
-    <link>https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</guid>
-    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>A forgotten 30-year forest experiment just delivered a huge surprise</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261001214120.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261001214120.htm</guid>
+    <pubDate>Sun, 04 Oct 2026 11:50:46 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
 
-Summary: For years, biologists were concerned about the Mojave poppy bee, a solitary, floral-specialist species, found only in a range that is narrower than that of its host plants. Survey teams have discovered six previously unknown population groups scattered across the bee&apos;s historical range, a dramatic
+Summary: A 30-year forestry experiment in Australia found that heavily thinned mountain ash forests grew unusually large trees while recovering enough carbon to match or exceed untouched areas. The results suggest carefully managed thinning could support timber production, wildlife habitat, and carbon storage at the same time.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</description>
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261001214120.htm</description>
     <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
+    <category>Forests and Plants</category>
     <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
@@ -190,6 +189,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
+    <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Cloudsplitter Foundation celebrates 40th anniversary</title>
@@ -228,24 +246,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Nisqually Watershed Festival</title>
-    <link>https://www.fws.gov/story/2026-10/nisqually-watershed-festival</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/nisqually-watershed-festival</guid>
-    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: It was standing room only at the Main Stage, where Reptile Man Scott Petersen held up a yellow and white albino python. Volunteers lined up at the edge of the stage as he laid the enormous snake onto their outheld arms. The expressions on their faces?
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/nisqually-watershed-festival</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Prescribed Burning Planned at Rocky Mountain Arsenal National Wildlife Refuge</title>
@@ -302,23 +302,6 @@ Read the original article at the publisher: https://phys.org/news/2026-10-scient
     <category>Outdoor Safety</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
-  </item>
-  <item>
-    <title>Prescribed Fire Operations Planned for Fall and Winter at Turnbull NWR</title>
-    <link>https://www.fws.gov/</link>
-    <guid isPermaLink="true">https://www.fws.gov/</guid>
-    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Staff will be conducting prescribed fire activities between the months of October to March depending on weather conditions. Smoke may be visible from nearby town of Cheney.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/</description>
-    <category>Weather</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Hubble Spots Chaotic Secret in Galaxy</title>
@@ -465,6 +448,43 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
+    <title>Sun news: Coronal hole winds set to spark auroras</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Sun, 04 Oct 2026 11:30:53 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news October 4, 2026: Coronal hole solar wind arrives today. Forecasters expect a minor geomagnetic storm with possible aurora for northern Scotland. The post Sun news: Coronal hole winds set to spark auroras first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>A Promising Discovery for Mojave Poppy Bees</title>
+    <link>https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</guid>
+    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: For years, biologists were concerned about the Mojave poppy bee, a solitary, floral-specialist species, found only in a range that is narrower than that of its host plants. Survey teams have discovered six previously unknown population groups scattered across the bee&apos;s historical range, a dramatic
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/promising-discovery-mojave-poppy-bees</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
     <title>Olive ridley sea turtles nest in California for the first time</title>
     <link>https://www.noaa.gov/stories/first-ever-olive-ridley-sea-turtle-nested-in-california-ext</link>
     <guid isPermaLink="true">https://www.noaa.gov/stories/first-ever-olive-ridley-sea-turtle-nested-in-california-ext</guid>
@@ -542,14 +562,14 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-09/sa
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>We fly between the sun and Saturn — at opposition — on October 4</title>
+    <title>We fly between the sun and Saturn. At opposition today</title>
     <link>https://earthsky.org/astronomy-essentials/saturn-at-opposition-closest-brightest-best/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/saturn-at-opposition-closest-brightest-best/</guid>
-    <pubDate>Sat, 03 Oct 2026 10:14:00 GMT</pubDate>
+    <pubDate>Sun, 04 Oct 2026 11:49:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Don&apos;t miss Saturn at opposition on and around the night of October 4, 2026. That&apos;s when our planet Earth passes between the sun and Saturn. The post We fly between the sun and Saturn — at opposition — on October 4 first appeared on EarthSky .
+Summary: Don&apos;t miss Saturn at opposition on and around the night of October 4, 2026. That&apos;s when our planet Earth passes between the sun and Saturn. The post We fly between the sun and Saturn. At opposition today first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -560,54 +580,36 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Sun-stuff arrives, with more on the way</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sat, 03 Oct 2026 09:00:53 GMT</pubDate>
+    <title>World Space Week is October 4 to 10. Find events here</title>
+    <link>https://earthsky.org/space/world-space-week-october-4-to-10/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/world-space-week-october-4-to-10/</guid>
+    <pubDate>Sun, 04 Oct 2026 11:40:45 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news October 3, 2026: The first CME arrived with only a mild disturbance. But fast coronal hole wind and a second CME could still bring G1 storms! The post Sun news: Sun-stuff arrives, with more on the way first appeared on EarthSky .
+Summary: World Space Week dates back to 1999 and runs every year from October 4 to 10. This year, the theme is The Rocket Revolution. Find events near you here. The post World Space Week is October 4 to 10. Find events here first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/space/world-space-week-october-4-to-10/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Is this an alien radio signal from a super-Earth exoplanet?</title>
-    <link>https://earthsky.org/space/alien-radio-signal-k2-155-d-fast-seti/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/alien-radio-signal-k2-155-d-fast-seti/</guid>
-    <pubDate>Fri, 02 Oct 2026 11:19:32 GMT</pubDate>
+    <title>How a helium leak in an exoplanet atmosphere hints at life</title>
+    <link>https://earthsky.org/space/helium-leak-exoplanets-atmosphere-life/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/helium-leak-exoplanets-atmosphere-life/</guid>
+    <pubDate>Sun, 04 Oct 2026 11:00:30 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Did China&apos;s FAST radio telescope detect an alien radio signal coming from the super-Earth exoplanet K2-155 d? Probably not. The post Is this an alien radio signal from a super-Earth exoplanet? first appeared on EarthSky .
+Summary: A tentative helium detection may offer the 1st glimpse of this exoplanet atmosphere, but we&apos;ll need more evidence to know if LHS 1140b could host life. The post How a helium leak in an exoplanet atmosphere hints at life first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/alien-radio-signal-k2-155-d-fast-seti/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Could an Earthlike planet with 2 stars be nearby?</title>
-    <link>https://earthsky.org/space/earthlike-planet-with-2-stars-70-ophiuchi/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/earthlike-planet-with-2-stars-70-ophiuchi/</guid>
-    <pubDate>Fri, 02 Oct 2026 11:12:52 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A new astronomical model has found that an Earthlike planet could have a stable and potentially habitable orbit around a star in a nearby 2-star system. The post Could an Earthlike planet with 2 stars be nearby? first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/earthlike-planet-with-2-stars-70-ophiuchi/</description>
+Read the original article at the publisher: https://earthsky.org/space/helium-leak-exoplanets-atmosphere-life/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -617,7 +619,7 @@ Read the original article at the publisher: https://earthsky.org/space/earthlike
     <title>October birthstone: Colorful opal and tourmaline</title>
     <link>https://earthsky.org/human-world/october-birthstone-opal-tourmaline/</link>
     <guid isPermaLink="true">https://earthsky.org/human-world/october-birthstone-opal-tourmaline/</guid>
-    <pubDate>Fri, 02 Oct 2026 09:02:17 GMT</pubDate>
+    <pubDate>Sat, 03 Oct 2026 09:02:17 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
@@ -630,6 +632,25 @@ Read the original article at the publisher: https://earthsky.org/human-world/oct
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sawyer Bailey of AdkAction announced as 2026-2027 Obama Foundation Leader</title>
+    <link>https://www.adirondackexplorer.org/communities/sawyer-bailey-of-adkaction-announced-as-2026-2027-obama-foundation-leader/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/sawyer-bailey-of-adkaction-announced-as-2026-2027-obama-foundation-leader/</guid>
+    <pubDate>Sun, 04 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Sawyer Bailey is the executive director of AdkAction. Photo courtesy of AdkAction. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/unnamed-3.jpg?fit=780%2C780&amp;ssl=1&quot; /&gt; AdkAction&apos;s executive director will take part in an eight-month leadership program led by the Obama Foundation
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/sawyer-bailey-of-adkaction-announced-as-2026-2027-obama-foundation-leader/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>North Country Community College launches second health worker training</title>
@@ -670,60 +691,39 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Battle of Valcour 250th commemoration set for Oct. 9–11 in Plattsburgh</title>
-    <link>https://www.adirondackexplorer.org/communities/history/battle-of-valcour-250th-commemoration-set-for-oct-9-11-in-plattsburgh/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/battle-of-valcour-250th-commemoration-set-for-oct-9-11-in-plattsburgh/</guid>
-    <pubDate>Fri, 02 Oct 2026 15:44:35 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Nisqually Watershed Festival</title>
+    <link>https://www.fws.gov/story/2026-10/nisqually-watershed-festival</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/nisqually-watershed-festival</guid>
+    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: Regional artist Ernest Haas donated a collection of artwork to the Lake Champlain Maritime Museum, including this painting, “Cannon Exploding on Gunboat New York.” Courtesy of the Lake Champlain Maritime Museum &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/01/Cannon-Exploding-on-Gunboat-New-York-Oct.-1776-KLJ_1646-1-scaled.jpg?fit=780%2C511&amp;ssl=1&quot; /&gt; A look at what&apos;s planned for a weekend of events around a pivotal Revolutionary War battle on Lake Champlain
+Summary: It was standing room only at the Main Stage, where Reptile Man Scott Petersen held up a yellow and white albino python. Volunteers lined up at the edge of the stage as he laid the enormous snake onto their outheld arms. The expressions on their faces?
 
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/battle-of-valcour-250th-commemoration-set-for-oct-9-11-in-plattsburgh/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Nepal disaster highlights risks for NZ mountains</title>
-    <link>https://phys.org/news/2026-10-nepal-disaster-highlights-nz-mountains.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-nepal-disaster-highlights-nz-mountains.html</guid>
-    <pubDate>Fri, 02 Oct 2026 12:40:05 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Te Whare Wānanga o Waitaha | University of Canterbury (UC) School of Earth and Environment senior lecturer Dr. Robinson was part of an international research team investigating the Aug. 26 disaster, when a massive rock and ice avalanche in the Himalaya rapidly transformed into a devastating debris flood.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-nepal-disaster-highlights-nz-mountains.html</description>
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/nisqually-watershed-festival</description>
+    <category>Wildlife</category>
     <category>Rivers and Water</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Global</category>
-    <author>Phys.org</author>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Driving Impact and Action Together at Climate Week NYC</title>
-    <link>https://www.audubon.org/news/driving-impact-and-action-together-climate-week-nyc</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/driving-impact-and-action-together-climate-week-nyc</guid>
-    <pubDate>Fri, 02 Oct 2026 15:13:48 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>A meteor hit Oklahoma 100 million years later than scientists thought</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261002080012.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261002080012.htm</guid>
+    <pubDate>Sun, 04 Oct 2026 12:41:43 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
 
-Summary: From a morning of birding in Central Park to discussions on clean energy, conservation careers, and the future of nature, birds provided a common thread throughout Audubon’s Climate Week NYC...
+Summary: A meteor crater buried beneath Oklahoma has turned out to be nearly 100 million years younger than scientists thought. Zircon crystals show the Ames impact occurred about 370 million years ago, meaning it was not part of the mysterious Ordovician bombardment once linked to a possible ring of debris around Earth.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/news/driving-impact-and-action-together-climate-week-nyc</description>
-    <category>Climate</category>
-    <category>Birds</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261002080012.htm</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>The Nēnē Survived Near-Extinction. Can It Survive Modern Hawaiʻi?</title>
@@ -836,6 +836,23 @@ Read the original article at the publisher: https://phys.org/news/2026-10-africa
     <author>Phys.org</author>
   </item>
   <item>
+    <title>Prescribed Fire Operations Planned for Fall and Winter at Turnbull NWR</title>
+    <link>https://www.fws.gov/</link>
+    <guid isPermaLink="true">https://www.fws.gov/</guid>
+    <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Staff will be conducting prescribed fire activities between the months of October to March depending on weather conditions. Smoke may be visible from nearby town of Cheney.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/</description>
+    <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
     <title>Bear River Migratory Bird Refuge Interns and Junior Duck Stamp</title>
     <link>https://www.fws.gov/story/2026-09/bear-river-migratory-bird-refuge-interns-and-junior-duck-stamp</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-09/bear-river-migratory-bird-refuge-interns-and-junior-duck-stamp</guid>
@@ -903,24 +920,6 @@ Summary: Artemis II Crew at NASA Marshall. The crew of NASA’s Artemis II missi
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/msfc-09012026-artemis-ii-crew-visit-at-msfc-1orig/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
