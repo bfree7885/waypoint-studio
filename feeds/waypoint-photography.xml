@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Oct 2026 16:05:53 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 02:48:08 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
-    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
-    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
   <item>
     <title>Space Station View of Earth at Night</title>
     <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
@@ -43,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
+    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
+    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -599,6 +599,24 @@ Read the original article at the publisher: https://www.audubon.org/magazine/mac
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Lunar Occultation of Venus</title>
+    <link>https://www.nasa.gov/image-detail/amf-nhq202606170001/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/amf-nhq202606170001/</guid>
+    <pubDate>Fri, 04 Sep 2026 14:16:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Wednesday, June 17, skywatchers across the United States—and parts of Canada—enjoyed a rare event: a daytime lunar occultation of Venus. A lunar occultation occurs when the Moon moves directly in front of another celestial object from our viewpoint on Earth, briefly hiding it from sight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/amf-nhq202606170001/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   </channel>
 </rss>

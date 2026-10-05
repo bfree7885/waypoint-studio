@@ -5,46 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Oct 2026 16:05:53 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 05 Oct 2026 02:48:08 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
-    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
-    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Forestry experts author national guidance on disaster preparedness</title>
-    <link>https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</guid>
-    <pubDate>Fri, 02 Oct 2026 18:40:07 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: John Daigle, professor of forest recreation management at the University of Maine, co-authored the first paper in a series designed to help communities nationwide prepare for future natural disasters and other extreme weather events.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</description>
-    <category>Weather</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
   <item>
     <title>Space Station View of Earth at Night</title>
     <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
@@ -61,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
+    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
+    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -137,6 +119,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
+    <title>Forestry experts author national guidance on disaster preparedness</title>
+    <link>https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</guid>
+    <pubDate>Fri, 02 Oct 2026 18:40:07 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: John Daigle, professor of forest recreation management at the University of Maine, co-authored the first paper in a series designed to help communities nationwide prepare for future natural disasters and other extreme weather events.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-10-forestry-experts-author-national-guidance.html</description>
+    <category>Weather</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
     <title>A forgotten 30-year forest experiment just delivered a huge surprise</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261001214120.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261001214120.htm</guid>
@@ -186,25 +186,6 @@ Summary: Cloudsplitter celebrated its 40th anniversary last week in Saranac Lake
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/cloudsplitter-foundation-celebrates-40th-anniversary/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>The boy who drew the blimp</title>
-    <link>https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</guid>
-    <pubDate>Fri, 02 Oct 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Reed Proper has spent his life based in the Adirondacks serving his community. Photo courtesy of Libby Zupnik. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/FullSizeRender-scaled.jpg?fit=780%2C1035&amp;ssl=1&quot; /&gt; Thendara’s Reed Proper has spent a lifetime standing out, pitching in and sharing the credit
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -634,6 +615,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>The boy who drew the blimp</title>
+    <link>https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</guid>
+    <pubDate>Fri, 02 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Reed Proper has spent his life based in the Adirondacks serving his community. Photo courtesy of Libby Zupnik. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/FullSizeRender-scaled.jpg?fit=780%2C1035&amp;ssl=1&quot; /&gt; Thendara’s Reed Proper has spent a lifetime standing out, pitching in and sharing the credit
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/the-boy-who-drew-the-blimp/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
