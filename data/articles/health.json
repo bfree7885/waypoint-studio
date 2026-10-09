@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-08T18:06:26.936Z",
-  "status": "ok",
+  "checkedAt": "2026-10-09T03:27:39.146Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": true,
-      "itemCount": 25,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 235,
+      "ms": 165,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 267,
+      "ms": 184,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 216,
+      "ms": 116,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 87,
+      "ms": 64,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 1145,
+      "ms": 362,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 218,
+      "ms": 318,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 812,
+      "ms": 222,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 219,
+      "ms": 514,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 192,
+      "ms": 371,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 92,
+      "ms": 139,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 229,
+      "ms": 265,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 28,
+      "ms": 208,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 250,
+      "ms": 172,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-09T06:06:26.936Z"
+  "staleAfter": "2026-10-09T15:27:39.146Z"
 }
