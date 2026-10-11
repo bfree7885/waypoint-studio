@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Oct 2026 16:30:46 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 02:38:57 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -83,24 +83,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ga
     <author>NASA</author>
   </item>
   <item>
-    <title>Crew-12 Returns to Earth</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
-    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Great Lakes Habitat Conservation</title>
     <link>https://www.fws.gov/story/2026-10/great-lakes-habitat-conservation</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/great-lakes-habitat-conservation</guid>
@@ -118,6 +100,24 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/gr
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Crew-12 Returns to Earth</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
+    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Pea Island National Wildlife Refuge Post-Storm Update</title>
@@ -175,25 +175,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>Rare and Vagrant Migratory Birds Find Refuge at Corkscrew Swamp Sanctuary</title>
-    <link>https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</link>
-    <guid isPermaLink="true">https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</guid>
-    <pubDate>Thu, 08 Oct 2026 17:25:01 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Imagine you are a migratory songbird flying south for the winter. Your flight path, which may have started in the boreal forest of eastern Canada, takes you over mountains, valleys, farms, and urban...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>Lake Durant caretaker receives commendation for dangerous water rescue</title>
     <link>https://www.adirondackexplorer.org/communities/lake-durant-caretaker-receives-commendation-for-dangerous-water-rescue/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/lake-durant-caretaker-receives-commendation-for-dangerous-water-rescue/</guid>
@@ -231,6 +212,25 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/ba
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Rare and Vagrant Migratory Birds Find Refuge at Corkscrew Swamp Sanctuary</title>
+    <link>https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</link>
+    <guid isPermaLink="true">https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</guid>
+    <pubDate>Thu, 08 Oct 2026 17:25:01 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Imagine you are a migratory songbird flying south for the winter. Your flight path, which may have started in the boreal forest of eastern Canada, takes you over mountains, valleys, farms, and urban...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</guid>
@@ -262,25 +262,6 @@ Summary: Paddling Boreas Ponds provides view of the High Peaks. Photo courtesy o
 Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/paddling/the-lure-of-boreas-ponds/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Harvest festivals and other community events around the Adirondacks</title>
-    <link>https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</guid>
-    <pubDate>Thu, 08 Oct 2026 18:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Harvest Craft Fair in Long Lake. Photo courtesy of the Town of Long Lake. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_8019.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Events this week include a harvest fair, Gore Mountain fest, community craft nights and many more activities throughout the region
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -381,24 +362,6 @@ Read the original article at the publisher: https://www.audubon.org/news/even-to
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Almost 300,000 people now live in flood‑prone areas in the Nepalese Himalayas—new research</title>
-    <link>https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</guid>
-    <pubDate>Thu, 08 Oct 2026 18:20:47 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: On Aug. 26, a rock and ice avalanche triggered a huge flood that swept through a steep valley in Nepal, leaving thousands dead and missing. It was an extreme example of a growing problem across the Himalayas. As glaciers melt, glacial lakes expand and mountain permafrost thaws, the risks from floods, landslides and other high-mountain hazards are increasing.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</description>
-    <category>Rivers and Water</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   <item>
     <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
@@ -767,6 +730,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Harvest festivals and other community events around the Adirondacks</title>
+    <link>https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</guid>
+    <pubDate>Thu, 08 Oct 2026 18:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Harvest Craft Fair in Long Lake. Photo courtesy of the Town of Long Lake. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_8019.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Events this week include a harvest fair, Gore Mountain fest, community craft nights and many more activities throughout the region
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/events/harvest-festivals-and-other-community-events-around-the-adirondacks/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>With These Tiny Binoculars, You Can Always Be Birding</title>
     <link>https://www.audubon.org/magazine/compact-pocket-binoculars-review</link>
     <guid isPermaLink="true">https://www.audubon.org/magazine/compact-pocket-binoculars-review</guid>
@@ -871,6 +853,24 @@ Waypoint’s Take: Outside, this matters because it can change what you watch fo
 
 Read the original article at the publisher: https://phys.org/news/2026-10-klauea-summit-scientists-lava-fountain.html</description>
     <category>Weather</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Almost 300,000 people now live in flood‑prone areas in the Nepalese Himalayas—new research</title>
+    <link>https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</guid>
+    <pubDate>Thu, 08 Oct 2026 18:20:47 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: On Aug. 26, a rock and ice avalanche triggered a huge flood that swept through a steep valley in Nepal, leaving thousands dead and missing. It was an extreme example of a growing problem across the Himalayas. As glaciers melt, glacial lakes expand and mountain permafrost thaws, the risks from floods, landslides and other high-mountain hazards are increasing.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-10-people-floodprone-areas-nepalese-himalayas.html</description>
+    <category>Rivers and Water</category>
+    <category>Outdoor Safety</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
