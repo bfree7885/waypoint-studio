@@ -2139,3 +2139,10 @@ dynamic_visual + commercial visual + production inspection evidence.
 - A null course must clear the arrow immediately. The old Locate path copied a previous `headingDeg` forward when the new fix had no heading.
 - Smooth heading on the circle (shortest turn). Do not average 359 and 0 into 180, and do not smooth the coordinate. The 8 m marker gate still drops GPS jitter; heading may still rotate under that gate.
 - The navigation watch must not call hunt-track ingest. Hunt filtering stays in the hunt activity store.
+
+## Lessons Learned — Sheds field observations V1 step 1 (2026-10-12)
+
+- Add Observation used the current map center whenever GPS was missing, and Save did it again. A map note now keeps a usable GPS fix or an explicit map tap. Map center, the last view, a Search Area center, and a default coordinate are not a location.
+- A poor or missing GPS fix must not replace an already accepted point. Use my GPS updates the draft only when the new fix passes the existing 80 m check.
+- Choose location on map is a temporary armed tap, same idea as Place Search Area. The tap selects coordinates and returns to the sheet. It does not create the observation, and a normal map tap still does not.
+- Hunt observations stay on `waypoint-sheds-hunt-activity-v1`. This step does not add a watch, a schema version, or a type.

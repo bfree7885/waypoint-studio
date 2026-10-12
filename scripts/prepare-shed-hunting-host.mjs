@@ -212,6 +212,7 @@ function main() {
     "js/sheds-radar-condition-frame.js",
     "js/sheds-radar-display.js",
     "js/sheds-nav-course.js",
+    "js/sheds-observation-place.js",
     "js/sheds-data-attribution.js",
     "js/sheds-map-app.js",
     "map/index.html",

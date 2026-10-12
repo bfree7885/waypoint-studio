@@ -56,6 +56,13 @@
           No network. Live conditions unavailable. Your saved area and field records still work.
         </div>
         <div class="sheds-map-tile-status" id="map-tile-status" hidden role="status" aria-live="polite"></div>
+        <div class="sheds-obs-place-hud" id="obs-place-hud" hidden role="status" aria-live="polite">
+          <p class="sheds-measure-hud__kicker">Observation</p>
+          <p class="sheds-obs-place-hud__text" id="obs-place-hud-text">Tap the map to choose this observation's location. The tap does not save it.</p>
+          <div class="sheds-measure-hud__actions">
+            <button type="button" class="sheds-btn sheds-btn--ghost" id="btn-obs-place-cancel">Back</button>
+          </div>
+        </div>
         <div class="sheds-measure-hud" id="measure-hud" hidden role="status" aria-live="polite">
           <p class="sheds-measure-hud__kicker">Measure</p>
           <p class="sheds-measure-hud__dist" id="measure-dist">Tap the map to set points</p>
@@ -733,8 +740,12 @@
       <form id="obs-form">
         <input type="hidden" id="obs-id" value="">
         <input type="hidden" id="obs-mode" value="create">
-        <p class="sheds-obs-location" id="obs-location-hint">Saving at map center</p>
+        <p class="sheds-obs-location" id="obs-location-hint" data-source="required">
+          <span class="sheds-obs-location__source" id="obs-location-source">Location required</span>
+          <span class="sheds-obs-location__detail" id="obs-location-detail">Choose a location on the map, or use a current GPS fix.</span>
+        </p>
         <div class="sheds-actions sheds-actions--compact">
+          <button type="button" class="sheds-btn" id="btn-obs-choose-map">Choose location on map</button>
           <button type="button" class="sheds-btn" id="btn-obs-use-gps">Use my GPS</button>
         </div>
         <p class="sheds-note">Species: Whitetail deer (field map focus)</p>
@@ -1259,6 +1270,7 @@
   <script src="../js/sheds-hunt-record-store.js"></script>
   <script src="../js/sheds-import-json.js"></script>
   <script src="../js/sheds-nav-course.js"></script>
+  <script src="../js/sheds-observation-place.js"></script>
   <script src="../js/sheds-map-app.js"></script>
 </body>
 </html>
