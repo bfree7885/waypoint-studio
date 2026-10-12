@@ -195,6 +195,7 @@ html, body {
 }
 
 .sheds-measure-hud,
+.sheds-obs-place-hud,
 .sheds-inspect-hud {
   position: absolute;
   z-index: 580;
@@ -324,14 +325,23 @@ html, body {
 }
 
 html.sheds-session-active .sheds-measure-hud,
+html.sheds-session-active .sheds-obs-place-hud,
 html.sheds-session-active .sheds-inspect-hud,
 html.sheds-session-active .sheds-scout-hud {
   top: calc(7.85rem + var(--sheds-safe-top));
 }
 
 .sheds-measure-hud[hidden],
+.sheds-obs-place-hud[hidden],
 .sheds-inspect-hud[hidden] {
   display: none !important;
+}
+
+.sheds-obs-place-hud__text {
+  margin: 0.15rem 0 0.45rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .sheds-inspect-hud__actions {
@@ -1277,6 +1287,7 @@ html.sheds-session-active .sheds-hunt-plan-hud {
 
 @media (max-width: 719px), (max-height: 500px) {
   .sheds-measure-hud,
+  .sheds-obs-place-hud,
   .sheds-inspect-hud,
   .sheds-scout-hud {
     top: calc(var(--sheds-mobile-header-end, 3.95rem) + var(--sheds-mobile-chrome-gap, 0.45rem));
@@ -1300,6 +1311,7 @@ html.sheds-session-active .sheds-hunt-plan-hud {
   }
 
   html.sheds-session-active .sheds-measure-hud,
+  html.sheds-session-active .sheds-obs-place-hud,
   html.sheds-session-active .sheds-inspect-hud,
   html.sheds-session-active .sheds-scout-hud {
     top: var(--sheds-mobile-strip-end, calc(8.35rem + var(--sheds-safe-top)));
@@ -2978,6 +2990,72 @@ html.sheds-sheet-open .leaflet-control-attribution {
   font-weight: 600;
   color: var(--sheds-text);
   word-break: break-word;
+}
+
+.sheds-obs-location__source {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.3;
+}
+
+.sheds-obs-location__detail {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--sheds-muted);
+}
+
+.sheds-obs-location[data-source="required"] {
+  border-color: rgba(232, 212, 160, 0.55);
+  background: rgba(232, 212, 160, 0.08);
+}
+
+.sheds-obs-draft-pin {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #c4a574;
+  border: 2px solid #0a1410;
+  box-shadow: 0 0 0 4px rgba(196, 165, 116, 0.35);
+}
+
+@media (max-width: 390px) {
+  #sheet-obs .sheds-sheet__panel {
+    width: 100%;
+    max-height: min(86vh, 720px);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  #sheet-obs .sheds-actions--compact {
+    flex-direction: column;
+  }
+
+  #sheet-obs .sheds-actions--compact .sheds-btn {
+    width: 100%;
+    white-space: normal;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 320px) {
+  .sheds-obs-place-hud {
+    left: 0.35rem;
+    right: 0.35rem;
+    max-width: none;
+  }
+
+  .sheds-obs-location__source {
+    font-size: 0.86rem;
+  }
+
+  .sheds-obs-location__detail {
+    font-size: 0.74rem;
+  }
 }
 
 .sheds-actions--compact {

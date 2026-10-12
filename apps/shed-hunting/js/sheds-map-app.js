@@ -126,6 +126,8 @@
     inspectArmed: false,
     /** Map-first: SEARCH placement is armed from More, not every map tap. */
     searchPlaceArmed: false,
+    /** Map-note placement. Armed only from Choose location on map. */
+    obsPlaceArmed: false,
     /** Presentation only. Hiding a track does not stop recording or delete points. */
     trackVisible: true,
     inspectLatLng: null,
@@ -183,6 +185,8 @@
 
   var els = {};
   var map, heatLayer, userMarker, accuracyCircle, headingLine, obsLayer, scoutLayer, clickLatLng;
+  var obsDraft = null;
+  var obsDraftLayer = null;
   var trackLayer, coverageLayer, planLayer, recMarker, trackLine;
   var huntTrackLayer, huntObsLayer, huntTrackLine, huntHudTimer;
   var historyTrackLayer, historyObsLayer;
@@ -1607,6 +1611,17 @@
         showInspectAt(e.latlng);
         return;
       }
+      /* Observation placement is armed from the observation sheet. The tap
+         selects a coordinate and returns to the sheet. It does not save. */
+      if (state.obsPlaceArmed) {
+        var PlaceTap = window.WaypointShedsObservationPlace;
+        var pickedTap = PlaceTap && PlaceTap.selectionFromMapTap(e.latlng.lat, e.latlng.lng);
+        if (!pickedTap || !pickedTap.ok) return;
+        applyObsDraft(pickedTap);
+        clearObsPlacementHud();
+        openSheet(els.sheetObs);
+        return;
+      }
       /* SEARCH placement is an explicit mode from More → Place Search Area. */
       if (!state.searchPlaceArmed) return;
       setSearchLocation(e.latlng.lat, e.latlng.lng, "map-tap");
@@ -1656,6 +1671,7 @@
       var m = L.marker([obs.location.lat, obs.location.lng], { icon: icon });
       m.on("click", function (ev) {
         L.DomEvent.stopPropagation(ev);
+        if (state.obsPlaceArmed) return;
         openViewObservation(obs.id);
       });
       obsLayer.addLayer(m);
@@ -5316,19 +5332,110 @@
     }, geoOpts);
   }
 
+  function obsPlaceApi() {
+    return window.WaypointShedsObservationPlace || null;
+  }
+
+  function clearObsDraftPin() {
+    if (obsDraftLayer) obsDraftLayer.clearLayers();
+  }
+
+  function showObsDraftPin() {
+    if (!map || !obsDraft || typeof L === "undefined") return;
+    if (!isFinite(obsDraft.lat) || !isFinite(obsDraft.lng)) return;
+    if (!obsDraftLayer) obsDraftLayer = L.layerGroup().addTo(map);
+    obsDraftLayer.clearLayers();
+    var icon = L.divIcon({
+      className: "sheds-div-icon",
+      html: "<span class=\"sheds-obs-draft-pin\" title=\"Observation location\"></span>",
+      iconSize: [18, 18],
+      iconAnchor: [9, 9]
+    });
+    obsDraftLayer.addLayer(L.marker([obsDraft.lat, obsDraft.lng], {
+      icon: icon,
+      interactive: false,
+      keyboard: false
+    }));
+  }
+
+  function clearObsPlacementHud() {
+    state.obsPlaceArmed = false;
+    var hud = $("obs-place-hud");
+    if (hud) hud.hidden = true;
+    var shell = document.getElementById("sheds-map-shell");
+    if (shell) shell.classList.remove("is-placing-obs");
+  }
+
+  function releaseObsDraft() {
+    obsDraft = null;
+    clickLatLng = null;
+    clearObsDraftPin();
+  }
+
+  function applyObsDraft(picked) {
+    if (!picked || !picked.ok) return false;
+    obsDraft = {
+      lat: picked.lat,
+      lng: picked.lng,
+      source: picked.source,
+      accuracyM: picked.accuracyM != null ? picked.accuracyM : null,
+      precision: picked.precision || null,
+      maxAccuracyM: Store && Store.OBS_GPS_ACCURACY_MAX_M
+    };
+    clickLatLng = L.latLng(picked.lat, picked.lng);
+    var err = $("obs-error");
+    if (err) err.hidden = true;
+    syncObsLocationHint();
+    showObsDraftPin();
+    return true;
+  }
+
   function syncObsLocationHint() {
     var hint = $("obs-location-hint");
-    if (!hint || !clickLatLng) return;
-    var acc = "";
-    if (state.userLatLng && state.accuracyM != null &&
-        Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
-        Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6) {
-      acc = state.accuracyM != null ? (" · GPS ±" + Math.round(state.accuracyM) + " m") : " · at you";
-    } else {
-      acc = " · map pin";
+    if (!hint) return;
+    var Place = obsPlaceApi();
+    var label = Place ? Place.sourceLabel(obsDraft) : (obsDraft ? "Selected on map" : "Location required");
+    var detail = "Choose a location on the map, or use a current GPS fix.";
+    var sourceAttr = "required";
+    if (label === "Current GPS" && obsDraft) {
+      sourceAttr = "gps";
+      var acc = obsDraft.accuracyM != null ? " · ±" + Math.round(obsDraft.accuracyM) + " m" : "";
+      detail = obsDraft.lat.toFixed(5) + ", " + obsDraft.lng.toFixed(5) + acc;
+    } else if (label === "Selected on map" && obsDraft) {
+      sourceAttr = "map";
+      detail = obsDraft.lat.toFixed(5) + ", " + obsDraft.lng.toFixed(5);
     }
-    hint.textContent =
-      "Saving at " + clickLatLng.lat.toFixed(5) + ", " + clickLatLng.lng.toFixed(5) + acc;
+    hint.setAttribute("data-source", sourceAttr);
+    var sourceEl = $("obs-location-source");
+    var detailEl = $("obs-location-detail");
+    if (sourceEl) sourceEl.textContent = label;
+    else hint.textContent = label;
+    if (detailEl) detailEl.textContent = detail;
+    var choose = $("btn-obs-choose-map");
+    if (choose) choose.classList.toggle("sheds-btn--primary", sourceAttr === "required");
+  }
+
+  function armObsMapPlacement() {
+    state.searchPlaceArmed = false;
+    if (state.measureActive) stopMeasureMode();
+    if (state.inspectArmed) stopInspectMode();
+    state.obsPlaceArmed = true;
+    var hud = $("obs-place-hud");
+    if (hud) hud.hidden = false;
+    var shell = document.getElementById("sheds-map-shell");
+    if (shell) shell.classList.add("is-placing-obs");
+    closeSheetQuiet(els.sheetObs);
+    syncSearchPrompt();
+  }
+
+  function currentGpsCandidate() {
+    var Place = obsPlaceApi();
+    if (!Place || !state.userLatLng) return { ok: false, reason: "missing" };
+    return Place.gpsCandidate({
+      lat: state.userLatLng.lat,
+      lng: state.userLatLng.lng,
+      accuracyM: state.accuracyM
+    }, Store && Store.OBS_GPS_ACCURACY_MAX_M);
   }
 
   /* —— Sheets —— */
@@ -5346,8 +5453,10 @@
 
   function closeSheet(el) {
     if (!el) return;
+    var closingObs = el === els.sheetObs;
     el.classList.remove("is-open");
     el.setAttribute("aria-hidden", "true");
+    if (closingObs && !state.obsPlaceArmed) releaseObsDraft();
     if (els.btnMore && el === els.sheetTools) els.btnMore.setAttribute("aria-expanded", "false");
     if (state.lastFocusEl && typeof state.lastFocusEl.focus === "function") {
       try { state.lastFocusEl.focus(); } catch (e) { /* */ }
@@ -5384,8 +5493,10 @@
 
   function closeSheetQuiet(el) {
     if (!el) return;
+    var closingObs = el === els.sheetObs;
     el.classList.remove("is-open");
     el.setAttribute("aria-hidden", "true");
+    if (closingObs && !state.obsPlaceArmed) releaseObsDraft();
   }
 
   function toDatetimeLocalValue(iso) {
@@ -5403,8 +5514,8 @@
     return isNaN(d.getTime()) ? null : d.toISOString();
   }
 
-  function openNewObservation(latlng) {
-    clickLatLng = latlng;
+  function openNewObservation(picked) {
+    clearObsPlacementHud();
     els.obsForm.reset();
     els.obsId.value = "";
     els.obsMode.value = "create";
@@ -5420,18 +5531,21 @@
     $("obs-form-title").textContent = "Add observation";
     $("obs-delete").hidden = true;
     toggleObsExtras("deer_sign");
-    syncObsLocationHint();
+    var freshErr = $("obs-error");
+    if (freshErr) freshErr.hidden = true;
+    releaseObsDraft();
+    if (picked && picked.ok) applyObsDraft(picked);
+    else syncObsLocationHint();
     openSheet(els.sheetObs);
-    var typeField = $("obs-type");
-    if (typeField && typeof typeField.focus === "function") {
-      try { typeField.focus(); } catch (e) { /* */ }
+    var focusEl = (picked && picked.ok) ? $("obs-type") : $("btn-obs-choose-map");
+    if (focusEl && typeof focusEl.focus === "function") {
+      try { focusEl.focus(); } catch (e) { /* */ }
     }
   }
 
   function openViewObservation(id) {
     var obs = Store.getById(id);
     if (!obs) return;
-    clickLatLng = L.latLng(obs.location.lat, obs.location.lng);
     els.obsId.value = obs.id;
     els.obsMode.value = "edit";
     $("obs-type").value = obs.type;
@@ -5454,7 +5568,12 @@
     }
     $("obs-form-title").textContent = "Edit observation";
     $("obs-delete").hidden = false;
-    syncObsLocationHint();
+    clearObsPlacementHud();
+    releaseObsDraft();
+    var PlaceEdit = obsPlaceApi();
+    var stored = PlaceEdit && PlaceEdit.selectionFromStored(obs.location);
+    if (stored && stored.ok) applyObsDraft(stored);
+    else syncObsLocationHint();
     openSheet(els.sheetObs);
   }
 
@@ -5487,45 +5606,33 @@
 
   function saveObservation(ev) {
     ev.preventDefault();
-    if (!clickLatLng) {
-      var fallback = state.userLatLng || (map && map.getCenter());
-      if (!fallback) {
-        var hintEl = $("obs-location-hint");
-        if (hintEl) {
-          hintEl.textContent = "Pick a map point or locate yourself before saving.";
-        }
-        return;
-      }
-      clickLatLng = fallback;
-      syncObsLocationHint();
-    }
-    var type = $("obs-type").value;
-    var habitat = $("obs-habitat") ? $("obs-habitat").value : "";
-    var atMe = !!(state.userLatLng && clickLatLng &&
-      Math.abs(state.userLatLng.lat - clickLatLng.lat) < 1e-6 &&
-      Math.abs(state.userLatLng.lng - clickLatLng.lng) < 1e-6);
-    var whenIso = $("obs-when") ? fromDatetimeLocalValue($("obs-when").value) : null;
-    var precision = atMe ? "gps" : "map-tap";
-    var accuracyM = atMe && state.accuracyM != null ? state.accuracyM : null;
-    if (atMe && Store.canPlaceFromGps && !Store.canPlaceFromGps(accuracyM)) {
-      $("obs-error").textContent = "YOU GPS is too approximate (±" +
-        (accuracyM != null ? Math.round(accuracyM) + " m" : "?") +
-        "). Tap the map to place this observation.";
+    var PlaceSave = obsPlaceApi();
+    var decision = PlaceSave && PlaceSave.draftForSave(obsDraft);
+    if (!decision || !decision.ok || !decision.location) {
+      $("obs-error").textContent = (decision && decision.error) ||
+        "Location required. Choose a location on the map, or use a current GPS fix.";
       $("obs-error").hidden = false;
+      syncObsLocationHint();
+      var chooseBtn = $("btn-obs-choose-map");
+      if (chooseBtn && typeof chooseBtn.focus === "function") {
+        try { chooseBtn.focus(); } catch (eFocus) { /* */ }
+      }
       return;
     }
-    if (atMe && accuracyM != null && accuracyM > (Store.OBS_GPS_ACCURACY_MAX_M || 80)) {
-      precision = "approximate";
-    }
+    var loc = decision.location;
+    clickLatLng = L.latLng(loc.lat, loc.lng);
+    var type = $("obs-type").value;
+    var habitat = $("obs-habitat") ? $("obs-habitat").value : "";
+    var whenIso = $("obs-when") ? fromDatetimeLocalValue($("obs-when").value) : null;
     var payload = {
       type: type,
       speciesId: Store.SPECIES_WHITETAIL,
       searchAreaId: state.activeSearchAreaId || null,
       location: {
-        lat: clickLatLng.lat,
-        lng: clickLatLng.lng,
-        precision: precision,
-        accuracyM: accuracyM
+        lat: loc.lat,
+        lng: loc.lng,
+        precision: loc.precision,
+        accuracyM: loc.accuracyM
       },
       observedAt: whenIso || new Date().toISOString(),
       note: $("obs-note").value.trim(),
@@ -5569,7 +5676,7 @@
         Sessions.attachObservation(sess.id, result.observation.id, type);
       }
       if (type === "search_completed") {
-        Sessions.markCoverage(clickLatLng.lat, clickLatLng.lng, "thorough", {
+        Sessions.markCoverage(loc.lat, loc.lng, "thorough", {
           sessionId: state.activeSessionId,
           source: "observation"
         });
@@ -6219,8 +6326,9 @@
 
   function openAddObservationFlow() {
     closeAllSheets();
-    var ll = state.userLatLng || (map && map.getCenter());
-    if (ll) openNewObservation(ll);
+    clearObsPlacementHud();
+    var picked = currentGpsCandidate();
+    openNewObservation(picked.ok ? picked : null);
   }
 
   function syncBasemapSelect() {
@@ -6318,6 +6426,7 @@
   }
 
   function startMeasureMode() {
+    clearObsPlacementHud();
     closeScoutHud();
     closeHuntPlanHud();
     stopHuntSelect({ silent: true });
@@ -6389,6 +6498,7 @@
   }
 
   function armInspectMode() {
+    clearObsPlacementHud();
     closeScoutHud();
     closeHuntPlanHud();
     stopHuntSelect({ silent: true });
@@ -6833,6 +6943,7 @@
     }
     if ($("btn-place-search")) {
       $("btn-place-search").addEventListener("click", function () {
+        clearObsPlacementHud();
         state.searchPlaceArmed = true;
         closeAllSheets();
         syncSearchPrompt();
@@ -6955,38 +7066,48 @@
     if ($("btn-add-obs-fab")) {
       $("btn-add-obs-fab").addEventListener("click", openAddObservationFlow);
     }
+    if ($("btn-obs-choose-map")) {
+      $("btn-obs-choose-map").addEventListener("click", function () {
+        armObsMapPlacement();
+      });
+    }
+    if ($("btn-obs-place-cancel")) {
+      $("btn-obs-place-cancel").addEventListener("click", function () {
+        clearObsPlacementHud();
+        openSheet(els.sheetObs);
+        syncObsLocationHint();
+      });
+    }
     if ($("btn-obs-use-gps")) {
       $("btn-obs-use-gps").addEventListener("click", function () {
         locateUser({
           center: false,
           force: true,
           onSuccess: function (ll) {
-            if (Store.canPlaceFromGps && !Store.canPlaceFromGps(state.accuracyM)) {
-              var hint = $("obs-location-hint");
-              if (hint) {
-                hint.textContent = "YOU is too approximate (±" +
-                  (state.accuracyM != null ? Math.round(state.accuracyM) + " m" : "?") +
-                  ") — tap the map to place this observation.";
+            var PlaceGps = obsPlaceApi();
+            var pickedGps = PlaceGps && PlaceGps.gpsCandidate({
+              lat: ll.lat,
+              lng: ll.lng,
+              accuracyM: state.accuracyM
+            }, Store && Store.OBS_GPS_ACCURACY_MAX_M);
+            if (!pickedGps || !pickedGps.ok) {
+              var errGps = $("obs-error");
+              var accGps = state.accuracyM != null && isFinite(state.accuracyM)
+                ? " (±" + Math.round(state.accuracyM) + " m)"
+                : "";
+              var msgGps = pickedGps && pickedGps.reason === "poor"
+                ? "Current GPS is too approximate" + accGps + ". Choose a location on the map."
+                : "Current GPS is unavailable. Choose a location on the map.";
+              if (errGps) {
+                errGps.textContent = msgGps;
+                errGps.hidden = false;
               }
+              syncObsLocationHint();
               return;
             }
-            clickLatLng = ll;
-            syncObsLocationHint();
+            applyObsDraft(pickedGps);
           }
         });
-        if (state.userLatLng && state.locationStatus === "available") {
-          if (Store.canPlaceFromGps && !Store.canPlaceFromGps(state.accuracyM)) {
-            var hint2 = $("obs-location-hint");
-            if (hint2) {
-              hint2.textContent = "YOU is too approximate (±" +
-                (state.accuracyM != null ? Math.round(state.accuracyM) + " m" : "?") +
-                ") — tap the map to place this observation.";
-            }
-            return;
-          }
-          clickLatLng = state.userLatLng;
-          syncObsLocationHint();
-        }
       });
     }
     if ($("btn-status")) {
@@ -7464,6 +7585,12 @@
 
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
+        if (state.obsPlaceArmed) {
+          clearObsPlacementHud();
+          openSheet(els.sheetObs);
+          syncObsLocationHint();
+          return;
+        }
         closeAllSheets();
         closeScoutHud();
         closeHuntPlanHud();
