@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Oct 2026 02:29:44 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 16:06:13 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
+    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Transporter-18 SmallSats Encapsulation</title>
     <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
@@ -266,11 +284,11 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <title>Did you see a strange cloud on the East Coast?</title>
     <link>https://earthsky.org/todays-image/strange-cloud-east-coast-jellyfish-spacex-oct-13/</link>
     <guid isPermaLink="true">https://earthsky.org/todays-image/strange-cloud-east-coast-jellyfish-spacex-oct-13/</guid>
-    <pubDate>Tue, 13 Oct 2026 13:23:01 GMT</pubDate>
+    <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Many people up before sunrise on Tuesday morning saw a strange cloud. It was the plume from a SpaceX rocket headed for the space station. The post Did you see a strange cloud on the East Coast? first appeared on EarthSky .
+Summary: Many people up before sunrise on Tuesday morning saw a strange cloud. It was the plume from a SpaceX rocket. See stunning images here! The post Did you see a strange cloud on the East Coast? first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -281,18 +299,36 @@ Read the original article at the publisher: https://earthsky.org/todays-image/st
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Auroras tonight? Sun-stuff and solar wind incoming</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 13 Oct 2026 11:45:00 GMT</pubDate>
+    <title>Best deep-sky photos of September 2026 from EarthSky community</title>
+    <link>https://earthsky.org/todays-image/deep-sky-photos-september-2026/</link>
+    <guid isPermaLink="true">https://earthsky.org/todays-image/deep-sky-photos-september-2026/</guid>
+    <pubDate>Wed, 14 Oct 2026 08:15:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news, October 13, 2026: Fast solar wind from a coronal hole and a burst of sun-stuff might trigger G2 (moderate) storms and auroras tonight. The post Sun news: Auroras tonight? Sun-stuff and solar wind incoming first appeared on EarthSky .
+Summary: Enjoy this gallery of deep-sky photos from September 2026 by our EarthSky community. If you have a great photo to share, we&apos;d love to see it! The post Best deep-sky photos of September 2026 from EarthSky community first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/todays-image/deep-sky-photos-september-2026/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Proxima Centauri is the closest star to our sun</title>
+    <link>https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</guid>
+    <pubDate>Wed, 14 Oct 2026 08:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Proxima Centauri is the nearest star to our sun at 4.22 light-years away. It&apos;s home to at least 3 planets and has massive solar flares. The post Proxima Centauri is the closest star to our sun first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -329,24 +365,6 @@ Summary: The weirdest cloud on Mars has a funny-sounding name. Scientists call i
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/weirdest-cloud-on-mars-formed-via-exotic-physics/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Amazon wildfires hide another threat to the rainforest</title>
-    <link>https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</guid>
-    <pubDate>Mon, 12 Oct 2026 11:30:55 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Amazon wildfires are weakening the rainforest’s ability to absorb carbon, as ozone pollution damages trees that survive the flames. The post Amazon wildfires hide another threat to the rainforest first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -515,37 +533,37 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ms
     <author>NASA</author>
   </item>
   <item>
-    <title>Superbubble in the Large Magellanic Cloud</title>
-    <link>https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</guid>
-    <pubDate>Tue, 08 Sep 2026 16:49:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: N44 is a complex nebula filled with glowing hydrogen gas, dark lanes of dust, massive stars, and many populations of stars of different ages. One of its most distinctive features, however, is the dark, starry gap called a “superbubble,” visible in this Hubble Space Telescope image in the upper central region.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-n44-wfc3-large/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide for October</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Tue, 13 Oct 2026 09:32:35 GMT</pubDate>
+    <pubDate>Wed, 14 Oct 2026 08:32:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. This evening, look for the thin moon near red Antares, the brightest star in Scorpius the Scorpion. The post Visible planets and night sky guide for October first appeared on EarthSky .
+Summary: Visible planets and night sky guide. This evening, the thin waxing crescent moon lies close to red Antares, the brightest star in Scorpius the Scorpion. The post Visible planets and night sky guide for October first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Amazon wildfires hide another threat to the rainforest</title>
+    <link>https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</guid>
+    <pubDate>Mon, 12 Oct 2026 11:30:55 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Amazon wildfires are weakening the rainforest’s ability to absorb carbon, as ozone pollution damages trees that survive the flames. The post Amazon wildfires hide another threat to the rainforest first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/earth/amazon-wildfires-hide-another-threat-to-the-rainforest/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
@@ -565,42 +583,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/fd
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Check out the Double Cluster in Perseus on October evenings</title>
-    <link>https://earthsky.org/clusters-nebulae-galaxies/double-cluster-in-perseus/</link>
-    <guid isPermaLink="true">https://earthsky.org/clusters-nebulae-galaxies/double-cluster-in-perseus/</guid>
-    <pubDate>Sun, 11 Oct 2026 08:00:56 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Double Cluster in Perseus is a breathtaking pair of open star clusters, easy to see in October. Here&apos;s how to find it in your sky. The post Check out the Double Cluster in Perseus on October evenings first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/clusters-nebulae-galaxies/double-cluster-in-perseus/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Isaias is a major hurricane, headed for the Gulf Coast</title>
-    <link>https://earthsky.org/earth/tropical-storm-hurricane-isaias-oct-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/tropical-storm-hurricane-isaias-oct-2026/</guid>
-    <pubDate>Fri, 09 Oct 2026 13:30:04 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Hurricane Isaias is the 1st hurricane of the 2026 Atlantic season. It is now a major hurricane, making landfall around midnight tonight near Pensacola. The post Isaias is a major hurricane, headed for the Gulf Coast first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/earth/tropical-storm-hurricane-isaias-oct-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Practicing for Safe Landings on the Moon and Beyond</title>
