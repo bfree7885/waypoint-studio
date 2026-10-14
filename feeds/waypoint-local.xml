@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Oct 2026 18:41:04 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 14 Oct 2026 02:29:44 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -110,7 +110,7 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: “Ice Palace: A Love Letter” world premier at the Palace Theatre for the Lake Placid Film Festival, 2019. Photo provided by ADK Film. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Ice-Palace-Premiere-Lake-Placid-Film-Festival-October-2019.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; With a rich history behind it, the Lake Placid Film Festival returns with an impressing lineup.
+Summary: “Ice Palace: A Love Letter” world premier at the Palace Theatre for the Lake Placid Film Festival, 2019. Photo provided by ADK Film. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Ice-Palace-Premiere-Lake-Placid-Film-Festival-October-2019.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; With a rich history behind it, the Lake Placid Film Festival returns with an impressive lineup.
 
 Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -233,25 +233,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 11 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -268,6 +249,23 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Tales of the Adirondacks, past and present: Hiking with those before me</title>
+    <link>https://www.adirondackexplorer.org/recreation/hiking/tales-of-the-adirondacks-past-and-present-hiking-with-those-before-me/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/tales-of-the-adirondacks-past-and-present-hiking-with-those-before-me/</guid>
+    <pubDate>Tue, 13 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Bethany Garretson reflects on her 46er experience in this short story. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/4d37b635-3ed5-4523-b413-329d639c320b.jpeg?fit=780%2C520&amp;ssl=1&quot; /&gt; A young woman on her journey to becoming a 46er reflects on her connection with the area and other 46ers who paved her path
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/tales-of-the-adirondacks-past-and-present-hiking-with-those-before-me/</description>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Weekend nor’easter likely to bring damaging winds, coastal flooding</title>
@@ -324,6 +322,24 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>2026-2027 Winter Skywarn Spotter Training Schedule</title>
+    <link>https://www.weather.gov/aly/skywarn</link>
+    <guid isPermaLink="true">https://www.weather.gov/aly/skywarn</guid>
+    <pubDate>Sun, 06 Oct 2019 14:38:54 GMT</pubDate>
+    <source url="https://www.weather.gov/aly/">National Weather Service Albany</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Albany.
+
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.weather.gov/aly/skywarn</description>
+    <category>Weather</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Weather Service Albany</author>
   </item>
   </channel>
 </rss>
