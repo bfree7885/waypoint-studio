@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-14T16:06:13.575Z",
-  "status": "ok",
+  "checkedAt": "2026-10-15T02:10:51.034Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": true,
-      "itemCount": 25,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 223,
+      "ms": 106,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 195,
+      "ms": 222,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 117,
+      "ms": 168,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 145,
+      "ms": 163,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 1191,
+      "ms": 1262,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 234,
+      "ms": 232,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 137,
+      "ms": 78,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 178,
+      "ms": 112,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 142,
+      "ms": 211,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 211,
+      "ms": 115,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 564,
+      "ms": 87,
       "enabled": true
     },
     {
@@ -243,20 +243,22 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 174,
+      "ms": 200,
       "enabled": true
     },
     {
       "id": "nws-burlington",
       "name": "NWS Burlington Area Headlines",
-      "ok": true,
-      "itemCount": 1,
-      "error": null,
-      "warnings": [],
-      "ms": 281,
+      "ok": false,
+      "itemCount": 0,
+      "error": "no parseable items",
+      "warnings": [
+        "no-parseable-items"
+      ],
+      "ms": 202,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-15T04:06:13.575Z"
+  "staleAfter": "2026-10-15T14:10:51.034Z"
 }
