@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 15 Oct 2026 15:53:57 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2026 02:01:20 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category domain="geographic">Adirondacks</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Prescribed Burning Planned at Bosque del Apache National Wildlife Refuge</title>
+    <link>https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</guid>
+    <pubDate>Thu, 15 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The U.S. Fish and Wildlife Service today announced that weather permitting, prescribed burns will begin Saturday, Oct. 17, at Bosque del Apache National Wildlife Refuge. Burning operations are expected to take three to five days.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</description>
+    <category>Weather</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -59,24 +78,6 @@ Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Transporter-18 SmallSats Encapsulation</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
-    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -137,6 +138,24 @@ Read the original article at the publisher: https://www.fws.gov/story/carp-contr
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Transporter-18 SmallSats Encapsulation</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
+    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Cosmic House of Mirrors</title>
     <link>https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</guid>
@@ -149,24 +168,6 @@ Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month featu
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Crew-12 Returns to Earth</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
-    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -190,6 +191,24 @@ Read the original article at the publisher: https://www.noaa.gov/media-advisory/
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Community Day Celebrates Fall Migration, Cultural Touchpoints</title>
+    <link>https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</link>
+    <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</guid>
+    <pubDate>Thu, 15 Oct 2026 20:46:20 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: As birds embarked on their fall migration journeys, Audubon and partners welcomed approximately 250 visitors to Community Day at the John James Audubon Center (JJAC) in late September. The event...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Kentucky Warbler Migration from the Great Plains to the Tropics</title>
@@ -285,23 +304,42 @@ Read the original article at the publisher: https://earthsky.org/tonight/what-st
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Rare and Vagrant Migratory Birds Find Refuge at Corkscrew Swamp Sanctuary</title>
-    <link>https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</link>
-    <guid isPermaLink="true">https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</guid>
-    <pubDate>Thu, 08 Oct 2026 17:25:01 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>Family of Fishkill woman killed in Indian Lake crash seeks answers</title>
+    <link>https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</guid>
+    <pubDate>Thu, 15 Oct 2026 18:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Imagine you are a migratory songbird flying south for the winter. Your flight path, which may have started in the boreal forest of eastern Canada, takes you over mountains, valleys, farms, and urban...
+Summary: A yellow Ferrari 458 Italia, at right, is seen at the start of a “OneLife” supercar rally from New York City to Lake Placid. A yellow Ferrari with a matching number was involved in a fatal collission in Indian Lake on Oct. 3. Photo provided by Adirondack Daily Enterprise &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/cars.webp?fit=780%2C616&amp;ssl=1&quot; /&gt; The collision killed a 64-year-old woman and injured her husband
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Adirondack Park Agency board likely to vote on howitzer project in November</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</guid>
+    <pubDate>Thu, 15 Oct 2026 16:02:26 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The site of Unconventional Concepts, Inc.’s proposed howitzer testing site on Pulsifer Logging lands in the town of Lewis. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/DSC00749.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; One year after voting to move to a hearing, the weapons-testing project is back before the agency. APA has until Dec.
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Saranac Lake development board looks at APA headquarters project</title>
@@ -361,25 +399,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>AdkAction opens first Community Idea Drive through Nov. 15</title>
-    <link>https://www.adirondackexplorer.org/communities/adkaction-opens-first-community-idea-drive-through-nov-15/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adkaction-opens-first-community-idea-drive-through-nov-15/</guid>
-    <pubDate>Tue, 13 Oct 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: AdkAction Executive Director Sawyer Bailey, left, discussing challenges facing the Adirondacks at a regional event. Photo courtesy of AdkAction. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/20230302_084302-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Adirondack community members of any background can submit proposals for solutions to problems requiring attention
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adkaction-opens-first-community-idea-drive-through-nov-15/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Ocean Facts: What are Kelvin waves?</title>
     <link>https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</link>
     <guid isPermaLink="true">https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</guid>
@@ -392,25 +411,6 @@ Summary: Ocean Facts: What are Kelvin waves? Kelvin waves are difficult to see w
 Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>Aerial images of damage from #Isaias now available online</title>
-    <link>https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</guid>
-    <pubDate>Tue, 13 Oct 2026 18:56:49 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Aerial images of damage from #Isaias now available online An aerial view of Pensacola, Florida, collected by NOAA aircraft on October 11, 2026, after Hurricane Isaias passed through. (Image credit: NOAA NGS) Download Image October 13, 2026 Ocean &amp; Coasts Marine &amp; Aviation aerial imagery hurricanes National Geodetic Survey NOAA planes 0 Off
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</description>
     <category>Weather</category>
     <category>Climate</category>
     <category>Environmental Science</category>
@@ -454,6 +454,25 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category domain="geographic">National</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>Preparing for the 2027 State Legislative Sessions in the Great Plains</title>
+    <link>https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</guid>
+    <pubDate>Thu, 15 Oct 2026 18:49:05 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: As state legislatures begin preparing for their 2027 sessions, now is the time to start planning for the policy discussions and legislative activity that will shape the year ahead. Early preparation...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Audubon Receives NFWF Grassland Resilience and Conservation Initiative Award</title>
@@ -508,6 +527,24 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fi
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Crew-12 Returns to Earth</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
+    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Astronomers Solve Cosmic Cold Case with NASA Hubble Data</title>
@@ -654,6 +691,25 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
+    <title>Aerial images of damage from #Isaias now available online</title>
+    <link>https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</guid>
+    <pubDate>Tue, 13 Oct 2026 18:56:49 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Aerial images of damage from #Isaias now available online An aerial view of Pensacola, Florida, collected by NOAA aircraft on October 11, 2026, after Hurricane Isaias passed through. (Image credit: NOAA NGS) Download Image October 13, 2026 Ocean &amp; Coasts Marine &amp; Aviation aerial imagery hurricanes National Geodetic Survey NOAA planes 0 Off
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
     <title>Bald Eagle Nest On Display</title>
     <link>https://www.fws.gov/story/2026-10/bald-eagle-nest-display</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/bald-eagle-nest-display</guid>
@@ -685,60 +741,6 @@ Summary: Astronomers studying planetary systems in the Milky Way have found they
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/planetary-systems-2-distinct-families/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Strange cloud! What was it? Observers in U.S. East report</title>
-    <link>https://earthsky.org/todays-image/strange-cloud-east-coast-jellyfish-spacex-oct-13/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/strange-cloud-east-coast-jellyfish-spacex-oct-13/</guid>
-    <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Many people up before sunrise on Tuesday morning saw a strange cloud. It was the plume from a SpaceX rocket. See stunning images here! The post Strange cloud! What was it? Observers in U.S. East report first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/strange-cloud-east-coast-jellyfish-spacex-oct-13/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Best deep-sky photos of September 2026 from EarthSky community</title>
-    <link>https://earthsky.org/todays-image/deep-sky-photos-september-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/deep-sky-photos-september-2026/</guid>
-    <pubDate>Wed, 14 Oct 2026 08:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Enjoy this gallery of deep-sky photos from September 2026 by our EarthSky community. If you have a great photo to share, we&apos;d love to see it! The post Best deep-sky photos of September 2026 from EarthSky community first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/deep-sky-photos-september-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Proxima Centauri is the closest star to our sun</title>
-    <link>https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</guid>
-    <pubDate>Wed, 14 Oct 2026 08:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Proxima Centauri is the nearest star to our sun at 4.22 light-years away. It&apos;s home to at least 3 planets and has massive solar flares. The post Proxima Centauri is the closest star to our sun first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/proxima-centauri-our-suns-nearest-neighbor/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
