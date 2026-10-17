@@ -5,29 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Oct 2026 15:42:23 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2026 01:55:34 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>Vibrant peak foliage continuing colorful trek across New York State</title>
-    <link>https://www.adirondackexplorer.org/environment/vibrant-peak-foliage-continuing-colorful-trek-across-new-york-state/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/vibrant-peak-foliage-continuing-colorful-trek-across-new-york-state/</guid>
-    <pubDate>Wed, 14 Oct 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A map of color changes for the week of Oct. 14-20. Photo courtesy of I LOVE NY. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/1160x740_Week5_MapCMSDownload_36b82e4e-0d15-4838-87b0-b51ecf4ce443.png?fit=780%2C498&amp;ssl=1&quot; /&gt; In this week&apos;s foliage report, the Catskills are mostly at peak, along with much of Adirondacks and central New York
-
-Waypoint’s Take: For someone heading outside in the Catskills, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/vibrant-peak-foliage-continuing-colorful-trek-across-new-york-state/</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Catskills</category>
-    <category domain="geographic">Adirondacks</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
   <item>
     <title>Prescribed Burning Planned at Bosque del Apache National Wildlife Refuge</title>
     <link>https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</link>
@@ -46,6 +27,24 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Artemis II Heat Shield After Splashdown</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
+    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -82,23 +81,6 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Red-headed Woodpecker by Zac Cody</title>
-    <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
-    <pubDate>Wed, 14 Oct 2026 22:44:00 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Painted: 10/7/2025About the Mural: Cast in drifting shadows, a mural splays across the concrete underpass stretching across a portion of the Wabash River in Warren County, Indiana. Broad strokes of...
-
-Waypoint’s Take: An outdoor reader in the Northern New Jersey can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/news/red-headed-woodpecker-zac-cody</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">Northern New Jersey</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
@@ -174,41 +156,40 @@ Read the original article at the publisher: https://www.audubon.org/mid-atlantic
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Kentucky Warbler Migration from the Great Plains to the Tropics</title>
-    <link>https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</guid>
-    <pubDate>Wed, 14 Oct 2026 19:45:06 GMT</pubDate>
+    <title>Red-headed Woodpecker by Zac Cody</title>
+    <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
+    <pubDate>Wed, 14 Oct 2026 22:44:00 GMT</pubDate>
     <source url="https://www.audubon.org/">National Audubon Society</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: While it has long been known that many songbirds complete vast migrations from the temperate zones to the tropics each year, surprisingly few species have been tracked along their entire journey...
+Summary: Painted: 10/7/2025About the Mural: Cast in drifting shadows, a mural splays across the concrete underpass stretching across a portion of the Wabash River in Warren County, Indiana. Broad strokes of...
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Northern New Jersey can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</description>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
+Read the original article at the publisher: https://www.audubon.org/news/red-headed-woodpecker-zac-cody</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Northern New Jersey</category>
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Meet the Caecilian, the Weird Amphibian Now Established in Florida</title>
-    <link>https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</link>
-    <guid isPermaLink="true">https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</guid>
-    <pubDate>Thu, 15 Oct 2026 01:13:42 GMT</pubDate>
-    <source url="https://www.nature.org/">The Nature Conservancy</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
+    <title>Tagging Today, Saving Tomorrow</title>
+    <link>https://www.fws.gov/story/2026-10/tagging-today-saving-tomorrow</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/tagging-today-saving-tomorrow</guid>
+    <pubDate>Thu, 15 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: What exactly is a caecilian? And how did it get to Florida? Let’s look at this unusual creature. The post Meet the Caecilian, the Weird Amphibian Now Established in Florida appeared first on Cool Green Science .
+Summary: Before the sun had fully risen over Dale Hollow National Fish Hatchery on October 13ᵗʰ, 2026, something quietly extraordinary was set in motion. In the stillness of the morning, conservationists and a biologist stood shoulder‑to‑shoulder, preparing to revive a species found in only a few secret
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to understand pressures on land and water without turning it into activism theater. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</description>
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/tagging-today-saving-tomorrow</description>
+    <category>Wildlife</category>
     <category>Conservation</category>
-    <category>Forests and Plants</category>
-    <category>Environmental Science</category>
+    <category>Birds</category>
     <category domain="geographic">National</category>
-    <author>The Nature Conservancy</author>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Carp Control: Removing Invasive Carp from the Grand River</title>
@@ -249,6 +230,24 @@ Read the original article at the publisher: https://earthsky.org/tonight/what-st
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Kentucky Warbler Migration from the Great Plains to the Tropics</title>
+    <link>https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</guid>
+    <pubDate>Wed, 14 Oct 2026 19:45:06 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: While it has long been known that many songbirds complete vast migrations from the temperate zones to the tropics each year, surprisingly few species have been tracked along their entire journey...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</guid>
@@ -266,6 +265,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Francis’ peace prayer: A gift from Paul Schaefer</title>
+    <link>https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</guid>
+    <pubDate>Fri, 16 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The peace prayer, calligraphy by Louis DiGesare, gift of Paul Schaefer. Photo by David Gibson. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Saint-Francis-Prayer-for-Peace-David-Gibson-scaled.jpg?fit=780%2C780&amp;ssl=1&quot; /&gt; Famed Adirondack wilderness conservationist Paul Schaefer gifted many prints of Saint Francis&apos; peace prayer during his life
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Send us your ghost stories</title>
@@ -344,44 +362,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Fall activities, helicopter tour opening and other Adirondack events</title>
-    <link>https://www.adirondackexplorer.org/events/fall-activities-helicopter-tour-opening-and-other-adirondack-events/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/fall-activities-helicopter-tour-opening-and-other-adirondack-events/</guid>
-    <pubDate>Thu, 15 Oct 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The harvest bar at Lakeside in Lake George. Photo courtesy of Fort William Henry. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Harvest-Bar-13-e1791908387194.png?fit=780%2C896&amp;ssl=1&quot; /&gt; Events this week include presentations, the annual antique outboard motor swap, North Country Heli Flight opening and more
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/events/fall-activities-helicopter-tour-opening-and-other-adirondack-events/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Ocean Facts: What are Kelvin waves?</title>
-    <link>https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</guid>
-    <pubDate>Wed, 14 Oct 2026 16:10:01 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Ocean Facts: What are Kelvin waves? Kelvin waves are difficult to see with the naked eye as they are large in scale, slow moving, and don&apos;t break onshore like typical ocean waves. In this graphic, satellite radar altimetry measurements reveal the sea surface signature of Kelvin waves where the ocean surface is higher or lower than its long-term average.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
     <title>Pea Island National Wildlife Refuge Post-Storm Update</title>
     <link>https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</guid>
@@ -456,24 +436,6 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Nepal flood triggered by rock and ice avalanche: Report</title>
-    <link>https://phys.org/news/2026-10-nepal-triggered-ice-avalanche.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-nepal-triggered-ice-avalanche.html</guid>
-    <pubDate>Thu, 15 Oct 2026 01:00:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Nepal&apos;s disaster authority said Wednesday that an avalanche of rock and ice triggered a recent flash flood, echoing the mountain collapse that unleashed a tsunami-like wall of water in August.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-nepal-triggered-ice-avalanche.html</description>
-    <category>Rivers and Water</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   <item>
     <title>Cosmic House of Mirrors</title>
@@ -620,24 +582,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
-    <title>Hubble Spots Chaotic Secret in Galaxy</title>
-    <link>https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</guid>
-    <pubDate>Fri, 25 Sep 2026 15:54:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Hubble Spots Chaotic Secret in Galaxy. Though the spiral galaxy in this ESA/Hubble Picture of the Month seems serene, it hides a chaotic secret.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA Kicks Off Inspiration Tour with Steelers vs. Falcons Game</title>
     <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-acrisure-stadium/</guid>
@@ -654,6 +598,44 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Nature Photography</category>
     <category domain="geographic">Northeast</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>Meet the Caecilian, the Weird Amphibian Now Established in Florida</title>
+    <link>https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</link>
+    <guid isPermaLink="true">https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</guid>
+    <pubDate>Thu, 15 Oct 2026 01:13:42 GMT</pubDate>
+    <source url="https://www.nature.org/">The Nature Conservancy</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: The Nature Conservancy.
+
+Summary: What exactly is a caecilian? And how did it get to Florida? Let’s look at this unusual creature. The post Meet the Caecilian, the Weird Amphibian Now Established in Florida appeared first on Cool Green Science .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to understand pressures on land and water without turning it into activism theater. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://blog.nature.org/2026/10/14/meet-the-caecilian-the-weird-amphibian-now-established-in-florida/</description>
+    <category>Conservation</category>
+    <category>Forests and Plants</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>The Nature Conservancy</author>
+  </item>
+  <item>
+    <title>Ocean Facts: What are Kelvin waves?</title>
+    <link>https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</link>
+    <guid isPermaLink="true">https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</guid>
+    <pubDate>Wed, 14 Oct 2026 16:10:01 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Ocean Facts: What are Kelvin waves? Kelvin waves are difficult to see with the naked eye as they are large in scale, slow moving, and don&apos;t break onshore like typical ocean waves. In this graphic, satellite radar altimetry measurements reveal the sea surface signature of Kelvin waves where the ocean surface is higher or lower than its long-term average.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
   </item>
   <item>
     <title>Aerial images of damage from #Isaias now available online</title>
@@ -818,6 +800,25 @@ Read the original article at the publisher: https://earthsky.org/space/planetary
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Leaves begin falling and flowers begin fading as winter approaches</title>
+    <link>https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</guid>
+    <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The last of the fall colors were visible from the Stillwater Fire Tower. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/last-color-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; While at Stillwater Fire Tower, Gary Lee welcomed nearly 100 visitors to catch the last of the fall colors as the leaves drop from the trees
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Towns of Perth and Johnstown invite communities to comprehensive plan open houses</title>
     <link>https://www.adirondackexplorer.org/communities/towns-of-perth-and-johnstown-invite-communities-to-comprehensive-plan-open-houses/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/towns-of-perth-and-johnstown-invite-communities-to-comprehensive-plan-open-houses/</guid>
@@ -875,23 +876,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>El Nino looms large over U.S. Winter Outlook</title>
-    <link>https://www.noaa.gov/news-release/el-nino-looms-large-over-us-winter-outlook</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news-release/el-nino-looms-large-over-us-winter-outlook</guid>
-    <pubDate>Wed, 14 Oct 2026 19:40:37 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: El Nino looms large over U.S. Winter Outlook Expected impacts include warmer North, wetter South and East October 15, 2026 A car drives through a snowstorm in Broomfield, Colorado, in 2024. (Image credit: Bob Hyatt/NOAA) Download Image NOAA’s U.S. Winter Outlook, released today, shows how El Nino will likely influence the upcoming winter months (December 2026 to February 2027), with warmer-than-average temperatures expected across the northern U.S.; wetter-than-average conditions likely across the southern U.S., from California to Florida, and along the Eastern Seaboard; and drought improving…
-
-Waypoint’s Take: An outdoor reader can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news-release/el-nino-looms-large-over-us-winter-outlook</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
     <title>A fungus is threatening the world’s food supply. Scientists just found a new defense</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261014015501.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261014015501.htm</guid>
@@ -924,6 +908,25 @@ Waypoint’s Take: Outside, this matters because it can change what you watch fo
 Read the original article at the publisher: https://www.audubon.org/great-lakes/news/audubon-chapter-leader-oakland-county-recognized-2026-alan-dolan-great-lakes</description>
     <category>Birds</category>
     <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Rare and Vagrant Migratory Birds Find Refuge at Corkscrew Swamp Sanctuary</title>
+    <link>https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</link>
+    <guid isPermaLink="true">https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</guid>
+    <pubDate>Thu, 08 Oct 2026 17:25:01 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Imagine you are a migratory songbird flying south for the winter. Your flight path, which may have started in the boreal forest of eastern Canada, takes you over mountains, valleys, farms, and urban...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/florida/news/rare-and-vagrant-migratory-birds-find-refuge-corkscrew-swamp-sanctuary</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
   </item>
