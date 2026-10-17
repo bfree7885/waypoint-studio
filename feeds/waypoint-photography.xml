@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2026 01:55:34 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 17 Oct 2026 14:33:58 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -28,24 +28,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
-    <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
-    <link>https://www.nasa.gov/image-detail/shape-3601-3601/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/shape-3601-3601/</guid>
-    <pubDate>Thu, 15 Oct 2026 14:20:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Astronomers have used NASA’s Chandra X-ray Observatory to break down the cause of a remarkable formation of radio waves they have nicknamed the “Treble Clef” because its distinct shape strongly resembles the musical symbol.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/shape-3601-3601/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
@@ -62,6 +44,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
+    <link>https://www.nasa.gov/image-detail/shape-3601-3601/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/shape-3601-3601/</guid>
+    <pubDate>Thu, 15 Oct 2026 14:20:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Astronomers have used NASA’s Chandra X-ray Observatory to break down the cause of a remarkable formation of radio waves they have nicknamed the “Treble Clef” because its distinct shape strongly resembles the musical symbol.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/shape-3601-3601/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
@@ -98,25 +98,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>What star in the northeast flashes colorfully? It’s Capella!</title>
-    <link>https://earthsky.org/tonight/what-star-in-the-northeast-flashes-red-and-green/</link>
-    <guid isPermaLink="true">https://earthsky.org/tonight/what-star-in-the-northeast-flashes-red-and-green/</guid>
-    <pubDate>Thu, 15 Oct 2026 10:59:37 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: If you&apos;re in Earth&apos;s Northern Hemisphere and see a bright star twinkling with red, green and blue flashes low in the northeast on October evenings, it&apos;s probably Capella. See charts here! The post What star in the northeast flashes colorfully? It’s Capella! first appeared on EarthSky .
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/tonight/what-star-in-the-northeast-flashes-red-and-green/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Northeast</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Space Station View of Earth at Night</title>
@@ -300,6 +281,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
+    <title>Inferior conjunction — Venus! October 23-24, 2026</title>
+    <link>https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</guid>
+    <pubDate>Sat, 17 Oct 2026 11:00:12 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Venus reaches inferior conjunction soon. It&apos;ll pass between Earth and the sun at 4 UTC on October 24. Then Venus emerges in the morning sky. The post Inferior conjunction — Venus! October 23-24, 2026 first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>No more leap seconds! Timekeeping is officially changing</title>
     <link>https://earthsky.org/human-world/no-more-leap-seconds-timekeeping-change/</link>
     <guid isPermaLink="true">https://earthsky.org/human-world/no-more-leap-seconds-timekeeping-change/</guid>
@@ -354,36 +353,18 @@ Read the original article at the publisher: https://earthsky.org/space/space-is-
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Meet monster sunspot region AR4551</title>
+    <title>Sun news: Huge sunspot still blasting out flares</title>
     <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
     <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
     <pubDate>Fri, 16 Oct 2026 11:05:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news, October 16, 2026: Meet AR4551, a monster sunspot region on the Earth-viewed solar disk. It&apos;s got the potential for major M and even X flares. The post Sun news: Meet monster sunspot region AR4551 first appeared on EarthSky .
+Summary: Sun news, October 17, 2026: Monster sunspot delivered an impulsive M1.4 flare at 15:42 UTC on October 16. Meanwhile a large coronal hole rotated now facing directly Earth. The post Sun news: Huge sunspot still blasting out flares first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Planetary systems fall into 2 distinct families, astronomers say</title>
-    <link>https://earthsky.org/space/planetary-systems-2-distinct-families/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/planetary-systems-2-distinct-families/</guid>
-    <pubDate>Thu, 15 Oct 2026 11:17:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Astronomers studying planetary systems in the Milky Way have found they can be sorted into 2 families. These families are largely determined by the host star. The post Planetary systems fall into 2 distinct families, astronomers say first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/planetary-systems-2-distinct-families/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -552,6 +533,23 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ga
     <author>NASA</author>
   </item>
   <item>
+    <title>Visible planets and night sky guide for October</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Sat, 17 Oct 2026 08:10:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Visible planets and night sky guide. In the east before dawn, look for Jupiter and Mars as they get closer and closer together. The post Visible planets and night sky guide for October first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Caves on the moon are target of new NASA mission</title>
     <link>https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</link>
     <guid isPermaLink="true">https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</guid>
@@ -586,19 +584,20 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Visible planets and night sky guide for October</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Fri, 16 Oct 2026 08:10:00 GMT</pubDate>
+    <title>Planetary systems fall into 2 distinct families, astronomers say</title>
+    <link>https://earthsky.org/space/planetary-systems-2-distinct-families/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/planetary-systems-2-distinct-families/</guid>
+    <pubDate>Thu, 15 Oct 2026 11:17:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. This evening look west for the crescent moon and red Antares. Watch a livestream here about the growing problem of space debris. The post Visible planets and night sky guide for October first appeared on EarthSky .
+Summary: Astronomers studying planetary systems in the Milky Way have found they can be sorted into 2 families. These families are largely determined by the host star. The post Planetary systems fall into 2 distinct families, astronomers say first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+Read the original article at the publisher: https://earthsky.org/space/planetary-systems-2-distinct-families/</description>
     <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
