@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Oct 2026 14:33:58 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 18 Oct 2026 01:54:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -138,24 +138,6 @@ Read the original article at the publisher: https://www.noaa.gov/media-advisory/
     <author>NOAA</author>
   </item>
   <item>
-    <title>Community Day Celebrates Fall Migration, Cultural Touchpoints</title>
-    <link>https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</link>
-    <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</guid>
-    <pubDate>Thu, 15 Oct 2026 20:46:20 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: As birds embarked on their fall migration journeys, Audubon and partners welcomed approximately 250 visitors to Community Day at the John James Audubon Center (JJAC) in late September. The event...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</description>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>Red-headed Woodpecker by Zac Cody</title>
     <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
     <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
@@ -192,6 +174,24 @@ Read the original article at the publisher: https://www.fws.gov/story/carp-contr
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Community Day Celebrates Fall Migration, Cultural Touchpoints</title>
+    <link>https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</link>
+    <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</guid>
+    <pubDate>Thu, 15 Oct 2026 20:46:20 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: As birds embarked on their fall migration journeys, Audubon and partners welcomed approximately 250 visitors to Community Day at the John James Audubon Center (JJAC) in late September. The event...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Kentucky Warbler Migration from the Great Plains to the Tropics</title>
     <link>https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</link>
     <guid isPermaLink="true">https://www.audubon.org/great-plains/news/kentucky-warbler-migration-great-plains-tropics</guid>
@@ -208,6 +208,25 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Perilous Monk</title>
+    <link>https://www.adirondackexplorer.org/communities/perilous-monk/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/perilous-monk/</guid>
+    <pubDate>Sat, 17 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Cheerleaders in 1980 at Saranac Lake High School. Photo by Dick Monroe. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Perilous-Monk.jpg?fit=640%2C508&amp;ssl=1&quot; /&gt; Dick Monroe shares stories of his high school adventures, including being accidentally elected senior class president
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/perilous-monk/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Francis’ peace prayer: A gift from Paul Schaefer</title>
@@ -241,44 +260,6 @@ Summary: Readers are invited to share spooky tales and campfire stories for Hall
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/send-us-your-ghost-stories/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Family of Fishkill woman killed in Indian Lake crash seeks answers</title>
-    <link>https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</guid>
-    <pubDate>Thu, 15 Oct 2026 18:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: A yellow Ferrari 458 Italia, at right, is seen at the start of a “OneLife” supercar rally from New York City to Lake Placid. A yellow Ferrari with a matching number was involved in a fatal collission in Indian Lake on Oct. 3. Photo provided by Adirondack Daily Enterprise &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/cars.webp?fit=780%2C616&amp;ssl=1&quot; /&gt; The collision killed a 64-year-old woman and injured her husband
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/family-of-fishkill-woman-killed-in-indian-lake-crash-seeks-answers/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Park Agency board likely to vote on howitzer project in November</title>
-    <link>https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</guid>
-    <pubDate>Thu, 15 Oct 2026 16:02:26 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The site of Unconventional Concepts, Inc.’s proposed howitzer testing site on Pulsifer Logging lands in the town of Lewis. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/DSC00749.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; One year after voting to move to a hearing, the weapons-testing project is back before the agency. APA has until Dec.
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/adirondack-park-agency-board-likely-to-vote-on-howitzer-project-in-november/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -322,44 +303,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category domain="geographic">National</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Preparing for the 2027 State Legislative Sessions in the Great Plains</title>
-    <link>https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</guid>
-    <pubDate>Thu, 15 Oct 2026 18:49:05 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: As state legislatures begin preparing for their 2027 sessions, now is the time to start planning for the policy discussions and legislative activity that will shape the year ahead. Early preparation...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Audubon Receives NFWF Grassland Resilience and Conservation Initiative Award</title>
-    <link>https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</guid>
-    <pubDate>Thu, 15 Oct 2026 14:55:11 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: The National Audubon Society has been awarded nearly $4 million dollars from the National Fish and Wildlife Foundation Grassland Resilience and Conservation Initiative (GRACI) grant, an investment...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Cosmic House of Mirrors</title>
@@ -742,6 +685,63 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Meet John Meyers, a one-man taxi service in NY’s North Country</title>
+    <link>https://www.adirondackexplorer.org/communities/adirondackers-people/meet-john-meyers-a-one-man-taxi-service-in-nys-north-country/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondackers-people/meet-john-meyers-a-one-man-taxi-service-in-nys-north-country/</guid>
+    <pubDate>Sat, 17 Oct 2026 20:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: John Meyers stands with his Taxi Zero car. Photo provided by Zachariah Morehouse &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_0113-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Potsdam solo entrepreneur hopes more drivers can step up to fill transportation voids in St. Lawrence County.
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondackers-people/meet-john-meyers-a-one-man-taxi-service-in-nys-north-country/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Community weigh in on proposed Schroon Lake short-term rental permit moratorium</title>
+    <link>https://www.adirondackexplorer.org/communities/housing/community-weigh-in-on-proposed-schroon-lake-short-term-rental-permit-moratorium/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/community-weigh-in-on-proposed-schroon-lake-short-term-rental-permit-moratorium/</guid>
+    <pubDate>Sat, 17 Oct 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Schroon Lake Town Supervisor Meg Wood listens as community members share their thoughts about the moratorium. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/DSC5987.jpg?fit=780%2C599&amp;ssl=1&quot; /&gt; The Town of Schroon is considering a one-year moratorium to evaluate the status of short-term rental permits in the area
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/community-weigh-in-on-proposed-schroon-lake-short-term-rental-permit-moratorium/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Healthcare forum provides answers to North Country residents</title>
+    <link>https://www.adirondackexplorer.org/communities/healthcare-forum-provides-answers-to-north-country-residents/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/healthcare-forum-provides-answers-to-north-country-residents/</guid>
+    <pubDate>Sat, 17 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Dr. Christopher Hoy spent most of the forum answering questions. Photo courtesy of Thurman Community Association. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/image-e1791992020338.png?fit=780%2C706&amp;ssl=1&quot; /&gt; Retired Dr. Christopher Hoy shared answers to community questions about healthcare based on his 35 years of experience in medicine
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/healthcare-forum-provides-answers-to-north-country-residents/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   </channel>
 </rss>
