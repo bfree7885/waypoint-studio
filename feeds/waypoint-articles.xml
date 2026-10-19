@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2026 15:01:50 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 02:11:48 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -26,24 +26,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA spots a giant patch of Moon-like rock on Earth</title>
-    <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
-    <pubDate>Sun, 11 Oct 2026 15:30:06 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: An astronaut aboard the International Space Station photographed a remarkable formation in Madagascar that looks surprisingly similar to the Moon’s bright highlands. Made of anorthosite, a rock abundant on the lunar surface, the formation dates back at least 600 million years and bears the scars of ancient continental collisions.
-
-Waypoint’s Take: For someone heading outside in the Northern New Jersey, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261008102707.htm</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Northern New Jersey</category>
-    <category domain="geographic">Global</category>
-    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -174,6 +156,24 @@ Read the original article at the publisher: https://www.fws.gov/story/carp-contr
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>NASA spots a giant patch of Moon-like rock on Earth</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
+    <pubDate>Sun, 11 Oct 2026 15:30:06 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: An astronaut aboard the International Space Station photographed a remarkable formation in Madagascar that looks surprisingly similar to the Moon’s bright highlands. Made of anorthosite, a rock abundant on the lunar surface, the formation dates back at least 600 million years and bears the scars of ancient continental collisions.
+
+Waypoint’s Take: For someone heading outside in the Northern New Jersey, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261008102707.htm</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Northern New Jersey</category>
+    <category domain="geographic">Global</category>
+    <author>ScienceDaily</author>
+  </item>
+  <item>
     <title>Community Day Celebrates Fall Migration, Cultural Touchpoints</title>
     <link>https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</link>
     <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</guid>
@@ -229,6 +229,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>Adirondack Stories: Fort Carillon</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</guid>
+    <pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: Fort Carillon. The French built Fort Carillon in 1755 to control the vital route between Canada and New York City, prompting British attacks
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Latest news headlines</title>
     <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
@@ -279,25 +298,6 @@ Summary: Cheerleaders in 1980 at Saranac Lake High School. Photo by Dick Monroe.
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/perilous-monk/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Francis’ peace prayer: A gift from Paul Schaefer</title>
-    <link>https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</guid>
-    <pubDate>Fri, 16 Oct 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The peace prayer, calligraphy by Louis DiGesare, gift of Paul Schaefer. Photo by David Gibson. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Saint-Francis-Prayer-for-Peace-David-Gibson-scaled.jpg?fit=780%2C780&amp;ssl=1&quot; /&gt; Famed Adirondack wilderness conservationist Paul Schaefer gifted many prints of Saint Francis&apos; peace prayer during his life
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -671,6 +671,24 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Warming could help make the Indian Ocean a stronger climate buffer</title>
+    <link>https://phys.org/news/2026-10-indian-ocean-stronger-climate-buffer.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-10-indian-ocean-stronger-climate-buffer.html</guid>
+    <pubDate>Sun, 18 Oct 2026 15:20:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: The world&apos;s oceans help slow climate change by absorbing carbon dioxide (CO₂) from the atmosphere, but how much they take up can vary throughout the year. New research, published in Geophysical Research Letters, suggests these seasonal patterns are changing across the Indian Ocean, potentially affecting how it helps to regulate Earth&apos;s climate.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: use it as a seasonal checkpoint — what should be arriving, leaving, or shifting now. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-10-indian-ocean-stronger-climate-buffer.html</description>
+    <category>Climate</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">Global</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
     <title>Meet John Meyers, a one-man taxi service in NY’s North Country</title>
     <link>https://www.adirondackexplorer.org/communities/adirondackers-people/meet-john-meyers-a-one-man-taxi-service-in-nys-north-country/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondackers-people/meet-john-meyers-a-one-man-taxi-service-in-nys-north-country/</guid>
@@ -728,37 +746,18 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Leaves begin falling and flowers begin fading as winter approaches</title>
-    <link>https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</guid>
-    <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+    <title>Francis’ peace prayer: A gift from Paul Schaefer</title>
+    <link>https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</guid>
+    <pubDate>Fri, 16 Oct 2026 20:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: The last of the fall colors were visible from the Stillwater Fire Tower. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/last-color-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; While at Stillwater Fire Tower, Gary Lee welcomed nearly 100 visitors to catch the last of the fall colors as the leaves drop from the trees
+Summary: The peace prayer, calligraphy by Louis DiGesare, gift of Paul Schaefer. Photo by David Gibson. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Saint-Francis-Prayer-for-Peace-David-Gibson-scaled.jpg?fit=780%2C780&amp;ssl=1&quot; /&gt; Famed Adirondack wilderness conservationist Paul Schaefer gifted many prints of Saint Francis&apos; peace prayer during his life
 
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/leaves-begin-falling-and-flowers-begin-fading-as-winter-approaches/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Send us your ghost stories</title>
-    <link>https://www.adirondackexplorer.org/communities/send-us-your-ghost-stories/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/send-us-your-ghost-stories/</guid>
-    <pubDate>Fri, 16 Oct 2026 14:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Readers are invited to share spooky tales and campfire stories for Halloween. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/A_simple_campfire.jpg?fit=780%2C517&amp;ssl=1&quot; /&gt; The Adirondack Almanack invites readers to share ghost stories and spooky tales for the Halloween season
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/send-us-your-ghost-stories/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/francis-peace-prayer-a-gift-from-paul-schaefer/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -858,23 +857,6 @@ Read the original article at the publisher: https://phys.org/news/2026-10-el-nio
     <author>Phys.org</author>
   </item>
   <item>
-    <title>NASA satellites observe historic 2026 El Niño</title>
-    <link>https://phys.org/news/2026-10-nasa-satellites-historic-el-nio.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-nasa-satellites-historic-el-nio.html</guid>
-    <pubDate>Fri, 16 Oct 2026 16:44:08 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: A phenomenon rarer than a solar eclipse and more powerful than any single storm system is unfolding this fall, and NASA is tracking it closely.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-nasa-satellites-historic-el-nio.html</description>
-    <category>Weather</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Firewood Month</title>
     <link>https://www.fws.gov/story/2026-10/firewood-month</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/firewood-month</guid>
@@ -923,6 +905,24 @@ Summary: Hubble Spots Chaotic Secret in Galaxy. Though the spiral galaxy in this
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Hubble Telescope Reaches Milestone, Looks for Elusive Supernova</title>
+    <link>https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</guid>
+    <pubDate>Wed, 23 Sep 2026 18:45:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: An image from NASA&apos;s Hubble Space Telescope of galaxy cluster MACS J0417 is part of repeated observations to monitor for the reappearance of supernova Athena, which can help astronomers measure the expansion rate of the universe.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>

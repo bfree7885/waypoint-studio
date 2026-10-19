@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Oct 2026 15:01:50 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 02:11:48 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -26,24 +26,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA spots a giant patch of Moon-like rock on Earth</title>
-    <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
-    <pubDate>Sun, 11 Oct 2026 15:30:06 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: An astronaut aboard the International Space Station photographed a remarkable formation in Madagascar that looks surprisingly similar to the Moon’s bright highlands. Made of anorthosite, a rock abundant on the lunar surface, the formation dates back at least 600 million years and bears the scars of ancient continental collisions.
-
-Waypoint’s Take: For someone heading outside in the Northern New Jersey, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261008102707.htm</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Northern New Jersey</category>
-    <category domain="geographic">Global</category>
-    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -98,6 +80,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA spots a giant patch of Moon-like rock on Earth</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
+    <pubDate>Sun, 11 Oct 2026 15:30:06 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: An astronaut aboard the International Space Station photographed a remarkable formation in Madagascar that looks surprisingly similar to the Moon’s bright highlands. Made of anorthosite, a rock abundant on the lunar surface, the formation dates back at least 600 million years and bears the scars of ancient continental collisions.
+
+Waypoint’s Take: For someone heading outside in the Northern New Jersey, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261008102707.htm</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Northern New Jersey</category>
+    <category domain="geographic">Global</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>Space Station View of Earth at Night</title>
@@ -530,23 +530,6 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Caves on the moon are target of new NASA mission</title>
-    <link>https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</guid>
-    <pubDate>Fri, 16 Oct 2026 17:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA wants to search for caves on the moon. A new mission named GIMLI will land and examine a volcanic pit — the Marius Hills Pit — in the vast, dark lunar lava plain known as Oceanus Procellarum. The post Caves on the moon are target of new NASA mission first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>No more leap seconds! Timekeeping is officially changing</title>
     <link>https://earthsky.org/human-world/no-more-leap-seconds-timekeeping-change/</link>
     <guid isPermaLink="true">https://earthsky.org/human-world/no-more-leap-seconds-timekeeping-change/</guid>
@@ -583,20 +566,19 @@ Read the original article at the publisher: https://earthsky.org/space/2nd-gener
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Space is getting crowded. Here’s the latest satellite report</title>
-    <link>https://earthsky.org/space/space-is-getting-crowded-low-earth-orbit-satellite-collision/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/space-is-getting-crowded-low-earth-orbit-satellite-collision/</guid>
-    <pubDate>Fri, 16 Oct 2026 11:16:00 GMT</pubDate>
+    <title>Caves on the moon are target of new NASA mission</title>
+    <link>https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</guid>
+    <pubDate>Fri, 16 Oct 2026 17:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: ESA reports on the state of low-Earth orbit. The number of satellites in orbit is skyrocketing, along with the chance for collisions and on-ground casualties. The post Space is getting crowded. Here’s the latest satellite report first appeared on EarthSky .
+Summary: NASA wants to search for caves on the moon. A new mission named GIMLI will land and examine a volcanic pit — the Marius Hills Pit — in the vast, dark lunar lava plain known as Oceanus Procellarum. The post Caves on the moon are target of new NASA mission first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/space-is-getting-crowded-low-earth-orbit-satellite-collision/</description>
+Read the original article at the publisher: https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
