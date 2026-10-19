@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Oct 2026 02:11:48 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 19 Oct 2026 17:53:51 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Martian Dawn</title>
+    <link>https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</guid>
+    <pubDate>Mon, 19 Oct 2026 16:05:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The captivating shapes of wind-carved crags called yardangs are revealed in this zoomed-in crop of a broader panorama captured by NASA’s Curiosity Mars rover. Scientists are eager to learn more about how the yardang layer formed.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Artemis II Heat Shield After Splashdown</title>
     <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
@@ -98,25 +116,6 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Space Station View of Earth at Night</title>
-    <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</guid>
-    <pubDate>Mon, 28 Sep 2026 15:22:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: This nighttime view of the United States, dotted with city lights looking toward New York City (center), was taken at approximately 3:40 a.m. local time from the International Space Station as it orbited 259 miles above Earth.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">National</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
   </item>
   <item>
     <title>Cosmic House of Mirrors</title>
@@ -281,6 +280,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
+    <title>Sun news: M flare erupts as solar wind heads to Earth</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Mon, 19 Oct 2026 11:05:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news, October 19, 2026: AR4551 fired a moderate flare. And a coronal hole’s fast solar wind could trigger auroras tomorrow. The post Sun news: M flare erupts as solar wind heads to Earth first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>The MMX mission launches to Mars’ moons on Monday</title>
     <link>https://earthsky.org/space/mmx-mission-mars-moons-phobos-deimos/</link>
     <guid isPermaLink="true">https://earthsky.org/space/mmx-mission-mars-moons-phobos-deimos/</guid>
@@ -299,22 +316,23 @@ Read the original article at the publisher: https://earthsky.org/space/mmx-missi
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Inferior conjunction — Venus! October 23-24, 2026</title>
-    <link>https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</guid>
-    <pubDate>Sat, 17 Oct 2026 11:00:12 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Space Station View of Earth at Night</title>
+    <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</guid>
+    <pubDate>Mon, 28 Sep 2026 15:22:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Venus reaches inferior conjunction soon. It&apos;ll pass between Earth and the sun at 4 UTC on October 24. Then Venus emerges in the morning sky. The post Inferior conjunction — Venus! October 23-24, 2026 first appeared on EarthSky .
+Summary: This nighttime view of the United States, dotted with city lights looking toward New York City (center), was taken at approximately 3:40 a.m. local time from the International Space Station as it orbited 259 miles above Earth.
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
     <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <author>NASA</author>
   </item>
   <item>
     <title>Hubble Spots Chaotic Secret in Galaxy</title>
@@ -461,22 +479,21 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s Chandra Spots Galactic Gem</title>
-    <link>https://www.nasa.gov/image-detail/galaxies-iizw096/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-iizw096/</guid>
-    <pubDate>Fri, 11 Sep 2026 17:22:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Visible planets and night sky guide for October</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Mon, 19 Oct 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Galaxies are like cosmic gems, each with characteristics including size and shape that make them distinct. A gallery from NASA’s Chandra X-ray Observatory and other telescopes displays a collection of galactic images that showcase this variety.
+Summary: Visible planets and night sky guide. The Orionid meteor shower is just beginning to ramp up! Ready to catch some shooting stars? Here&apos;s when and where to look! The post Visible planets and night sky guide for October first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-iizw096/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Comet Halley is parent of 2 meteor showers</title>
@@ -496,36 +513,20 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Fast solar wind is headed Earth’s way</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sun, 18 Oct 2026 11:05:00 GMT</pubDate>
+    <title>Inferior conjunction — Venus! October 23-24, 2026</title>
+    <link>https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</guid>
+    <pubDate>Sat, 17 Oct 2026 11:00:12 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news October 18, 2026: The sun stayed quiet over the past day. But a coronal hole is aiming its fast solar wind at Earth. Aurora alert beginning late on October 19. The post Sun news: Fast solar wind is headed Earth’s way first appeared on EarthSky .
+Summary: Venus reaches inferior conjunction soon. It&apos;ll pass between Earth and the sun at 4 UTC on October 24. Then Venus emerges in the morning sky. The post Inferior conjunction — Venus! October 23-24, 2026 first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</description>
     <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for October</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sun, 18 Oct 2026 08:10:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Visible planets and night sky guide. The 1st quarter moon is today, October 18. It rises around noon and sets around midnight. See it high at sundown. The post Visible planets and night sky guide for October first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
