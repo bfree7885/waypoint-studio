@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-19T17:53:51.614Z",
+  "checkedAt": "2026-10-20T02:27:01.088Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": true,
-      "itemCount": 25,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 156,
+      "ms": 193,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 158,
+      "ms": 261,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 1964,
+      "ms": 163,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 49,
+      "ms": 2005,
       "enabled": true
     },
     {
@@ -91,7 +91,7 @@
       "itemCount": 0,
       "error": "disabled",
       "warnings": [],
-      "ms": 1,
+      "ms": 0,
       "enabled": false
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 231,
+      "ms": 1279,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 572,
+      "ms": 142,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 257,
+      "ms": 192,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 86,
+      "ms": 248,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 267,
+      "ms": 330,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 348,
+      "ms": 273,
       "enabled": true
     },
     {
@@ -234,7 +234,7 @@
         "item-missing-safe-url",
         "item-missing-safe-url"
       ],
-      "ms": 214,
+      "ms": 260,
       "enabled": true
     },
     {
@@ -244,7 +244,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 33,
+      "ms": 236,
       "enabled": true
     },
     {
@@ -256,10 +256,10 @@
       "warnings": [
         "no-parseable-items"
       ],
-      "ms": 232,
+      "ms": 393,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-20T05:53:51.614Z"
+  "staleAfter": "2026-10-20T14:27:01.088Z"
 }
