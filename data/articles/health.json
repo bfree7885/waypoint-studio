@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-10-20T02:27:01.088Z",
+  "checkedAt": "2026-10-20T15:57:46.270Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
       "id": "nasa-image-of-the-day",
       "name": "NASA Image of the Day",
-      "ok": false,
-      "itemCount": 0,
-      "error": "HTTP 429",
+      "ok": true,
+      "itemCount": 25,
+      "error": null,
       "warnings": [],
-      "ms": 193,
+      "ms": 204,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 261,
+      "ms": 95,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 163,
+      "ms": 50,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 2005,
+      "ms": 49,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 1279,
+      "ms": 64,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 142,
+      "ms": 68,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 192,
+      "ms": 123,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 248,
+      "ms": 275,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 330,
+      "ms": 158,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 273,
+      "ms": 101,
       "enabled": true
     },
     {
@@ -234,7 +234,7 @@
         "item-missing-safe-url",
         "item-missing-safe-url"
       ],
-      "ms": 260,
+      "ms": 230,
       "enabled": true
     },
     {
@@ -244,7 +244,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 236,
+      "ms": 455,
       "enabled": true
     },
     {
@@ -256,10 +256,10 @@
       "warnings": [
         "no-parseable-items"
       ],
-      "ms": 393,
+      "ms": 199,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-10-20T14:27:01.088Z"
+  "staleAfter": "2026-10-21T03:57:46.270Z"
 }
