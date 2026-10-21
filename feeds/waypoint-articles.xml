@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Oct 2026 15:57:46 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 02:20:40 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Following the flight routes of migrating monarchs</title>
+    <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The fall monarch migration is fully underway! We at the U.S. Fish and Wildlife Service are fitting monarch butterflies with lightweight Bluetooth trackers as they migrate south toward overwintering habitat.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Flags Across America Visits Vieques National Wildlife Refuge</title>
@@ -170,24 +189,6 @@ Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Transporter-18 SmallSats Encapsulation</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
-    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -397,25 +398,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Adirondack Stories: Fort Carillon</title>
-    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</guid>
-    <pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Adirondack Stories: Fort Carillon. The French built Fort Carillon in 1755 to control the vital route between Canada and New York City, prompting British attacks
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-carillon/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Pea Island National Wildlife Refuge Post-Storm Update</title>
     <link>https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</guid>
@@ -433,6 +415,42 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/pe
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>What Birds Reveal About Fire, Forests, and Resilience</title>
+    <link>https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</link>
+    <guid isPermaLink="true">https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</guid>
+    <pubDate>Tue, 20 Oct 2026 19:54:25 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Scientific research shows that prescribed fire, managed wildfire, and carefully designed thinning can help restore forest resilience in appropriate settings. But forest restoration and wildfire...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</description>
+    <category>Birds</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Transporter-18 SmallSats Encapsulation</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
+    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Cosmic House of Mirrors</title>
@@ -580,6 +598,24 @@ Read the original article at the publisher: https://blog.nature.org/2026/10/14/m
     <author>The Nature Conservancy</author>
   </item>
   <item>
+    <title>Great American Outdoors Act Investment Delivers New Visitor Facility at Prime Hook National Wildlife Refuge</title>
+    <link>https://www.fws.gov/press-release/2026-10/great-american-outdoors-act-investment-delivers-new-visitor-facility-prime</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/great-american-outdoors-act-investment-delivers-new-visitor-facility-prime</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: U.S. Fish and Wildlife Service Senior Advisor to the Director Joshua Coursey today unveiled the new Prime Hook National Wildlife Refuge Visitor Contact Station, which is replacing the deteriorating facility with a smaller multipurpose building that will help connect people to nature and engage
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/great-american-outdoors-act-investment-delivers-new-visitor-facility-prime</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
     <title>Tagging Today, Saving Tomorrow</title>
     <link>https://www.fws.gov/story/2026-10/tagging-today-saving-tomorrow</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/tagging-today-saving-tomorrow</guid>
@@ -611,25 +647,6 @@ Summary: Ocean Facts: What are Kelvin waves? Kelvin waves are difficult to see w
 Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>Aerial images of damage from #Isaias now available online</title>
-    <link>https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</guid>
-    <pubDate>Tue, 13 Oct 2026 18:56:49 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Aerial images of damage from #Isaias now available online An aerial view of Pensacola, Florida, collected by NOAA aircraft on October 11, 2026, after Hurricane Isaias passed through. (Image credit: NOAA NGS) Download Image October 13, 2026 Ocean &amp; Coasts Marine &amp; Aviation aerial imagery hurricanes National Geodetic Survey NOAA planes 0 Off
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news/aerial-images-of-damage-from-isaias-now-available-online</description>
     <category>Weather</category>
     <category>Climate</category>
     <category>Environmental Science</category>
@@ -727,6 +744,44 @@ Read the original article at the publisher: https://earthsky.org/tonight/the-sky
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>OurStoryBridge Listens: Of the community, for the community</title>
+    <link>https://www.adirondackexplorer.org/communities/ourstorybridge-listens-of-the-community-for-the-community/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/ourstorybridge-listens-of-the-community-for-the-community/</guid>
+    <pubDate>Tue, 20 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: North Country Public Radio provides community news in the region. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/98e94e73-04b4-4dee-bf47-ea173a090678.jpeg?fit=780%2C780&amp;ssl=1&quot; /&gt; Mitch Teich from North Country Public Radio shares how radio news provides a unique resource in the U.S. media landscape
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/ourstorybridge-listens-of-the-community-for-the-community/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Two affordable housing units set to open Oct. 30 in Schroon Lake</title>
+    <link>https://www.adirondackexplorer.org/communities/housing/two-affordable-housing-units-set-to-open-oct-30-in-schroon-lake/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/two-affordable-housing-units-set-to-open-oct-30-in-schroon-lake/</guid>
+    <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Amanda and Ryan Ragland are the owners of the historic Schroon Lake Department Store. Photo by Tracy Ormsbee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_5133-preview-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Local business owners Amanda and Ryan Ragland worked with regional organizations to complete the renovations of the homes
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/two-affordable-housing-units-set-to-open-oct-30-in-schroon-lake/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Free Lake George septic workshop: Enhancing property and protecting water</title>
     <link>https://www.adirondackexplorer.org/communities/free-lake-george-septic-workshop-enhancing-property-and-protecting-water/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/free-lake-george-septic-workshop-enhancing-property-and-protecting-water/</guid>
@@ -799,25 +854,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 18 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -894,41 +930,6 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Study asks, Who benefits from where hospitals or landfills are located?</title>
-    <link>https://phys.org/news/2026-10-benefits-hospitals-landfills.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-benefits-hospitals-landfills.html</guid>
-    <pubDate>Tue, 20 Oct 2026 14:40:25 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Cities are built around critical public facilities, some more desirable for neighbors than others. People want to live near hospitals and parks. Living near a wastewater plant or a landfill is another matter.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-benefits-hospitals-landfills.html</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
-    <title>NZ&apos;s climate in &apos;uncharted territory,&apos; with more extreme weather events ahead</title>
-    <link>https://phys.org/news/2026-10-nz-climate-uncharted-territory-extreme.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-10-nz-climate-uncharted-territory-extreme.html</guid>
-    <pubDate>Tue, 20 Oct 2026 03:00:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Much is being made of a record-strength El Niño event that could well spell a drier, windier summer for the north and east of New Zealand. But, as a major new assessment shows, it is forming against a backdrop of warming that&apos;s pushed the country&apos;s climate into &quot;uncharted territory.&quot;
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-10-nz-climate-uncharted-territory-extreme.html</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   </channel>
 </rss>

@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Oct 2026 15:57:46 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 02:20:40 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -100,24 +100,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>Transporter-18 SmallSats Encapsulation</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
-    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
@@ -134,6 +116,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Transporter-18 SmallSats Encapsulation</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
+    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Cosmic House of Mirrors</title>
