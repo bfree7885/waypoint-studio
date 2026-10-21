@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2026 02:20:40 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 16:14:34 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -67,23 +67,22 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fl
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Prescribed Burn Planned for at Grays Lake National Wildlife Refuge</title>
-    <link>https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</guid>
-    <pubDate>Mon, 19 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>Science on the Space Station with NASA Astronaut Jessica Watkins</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0190239/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0190239/</guid>
+    <pubDate>Wed, 21 Oct 2026 15:07:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The U.S. Fish and Wildlife Service and the U.S. Wildland Fire Service will conduct a planned 279-acre prescribed fire at Grays Lake National Wildlife Refuge on October 19, conditions and weather permitting. The burn will reduce hazardous fuels buildup and help maintain defensible space for nearby
+Summary: NASA astronaut and Expedition 75 flight engineer Jessica Watkins works inside the Kibo laboratory module&apos;s Life Science Glovebox, safely mixing living cell samples with a bioink and then filling a special cartridge with the cell‑ink mixture.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</description>
-    <category>Weather</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0190239/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Webb Captures Stellar Jets</title>
@@ -120,6 +119,25 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>Prescribed Burn Planned for at Grays Lake National Wildlife Refuge</title>
+    <link>https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</guid>
+    <pubDate>Mon, 19 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The U.S. Fish and Wildlife Service and the U.S. Wildland Fire Service will conduct a planned 279-acre prescribed fire at Grays Lake National Wildlife Refuge on October 19, conditions and weather permitting. The burn will reduce hazardous fuels buildup and help maintain defensible space for nearby
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</description>
+    <category>Weather</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Artemis II Heat Shield After Splashdown</title>
@@ -177,24 +195,6 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NOAA to issue 2026-2027 U.S. Winter Outlook October 15</title>
     <link>https://www.noaa.gov/media-advisory/noaa-to-issue-2026-2027-us-winter-outlook-october-15</link>
     <guid isPermaLink="true">https://www.noaa.gov/media-advisory/noaa-to-issue-2026-2027-us-winter-outlook-october-15</guid>
@@ -214,24 +214,6 @@ Read the original article at the publisher: https://www.noaa.gov/media-advisory/
     <author>NOAA</author>
   </item>
   <item>
-    <title>How Audubon Science Informs a New Global Effort to Protect Migratory Birds</title>
-    <link>https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</guid>
-    <pubDate>Mon, 19 Oct 2026 08:33:49 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: As billions of birds embark on their southbound journeys to their non-breeding grounds, they will encounter numerous challenges along the way. After all, migration season is statistically the...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</description>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">Global</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>Red-headed Woodpecker by Zac Cody</title>
     <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
     <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
@@ -249,23 +231,22 @@ Read the original article at the publisher: https://www.audubon.org/news/red-hea
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Carp Control: Removing Invasive Carp from the Grand River</title>
-    <link>https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</guid>
-    <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>A train was delayed by a solar storm. But something didn&apos;t add up.</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261020085021.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261020085021.htm</guid>
+    <pubDate>Wed, 21 Oct 2026 12:35:57 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
 
-Summary: The U.S Fish and Wildlife Service Great Plains Fish and Wildlife Conservation Office (FWCO) recently traveled from Pierre, South Dakota, to north-central Missouri to support the Missouri Department of Conservation in a large-scale invasive carp removal effort on the Grand River. Funded through a
+Summary: Scientists have cracked a 178-year-old mystery surrounding a train delayed by a solar storm, revealing that the famous incident happened in 1848 rather than 1841. The discovery rewrites the early history of space weather and highlights a threat that still endangers modern power grids, satellites, and communication systems.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261020085021.htm</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
@@ -341,6 +322,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>Hochul pushes NYC/Adirondacks joint bid for 2042 Winter Olympics</title>
+    <link>https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</guid>
+    <pubDate>Wed, 21 Oct 2026 13:21:44 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: New York Gov. Kathy Hochul, left, shakes hands with Mike Hopper as ORDA CEO Ashley Walden looks on, at the kick off meeting Monday for the New York Olympics exploratory committee. Photo by Susan Watts/Office of Governor Kathy Hochul &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/55599530195_e72d425240_k.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; Governor urges 90-member committee to move ahead on proposal for hosting Winter Games split between New York City and Lake Placid facilities
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Saranac Lake residents share feedback on early plans for new housing development</title>
     <link>https://www.adirondackexplorer.org/communities/housing/saranac-lake-residents-share-feedback-on-early-plans-for-new-housing-development/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/saranac-lake-residents-share-feedback-on-early-plans-for-new-housing-development/</guid>
@@ -353,44 +353,6 @@ Summary: Residents peruse housing ideas for the Saranac Lake Sandpit property. P
 Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/saranac-lake-residents-share-feedback-on-early-plans-for-new-housing-development/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Garden Club honors Donna Baribeau for service to the club</title>
-    <link>https://www.adirondackexplorer.org/communities/adirondack-garden-club-honors-donna-baribeau-for-service-to-the-club/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-garden-club-honors-donna-baribeau-for-service-to-the-club/</guid>
-    <pubDate>Mon, 19 Oct 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Donna Baribeau, right, with Laura Sells-Doyle and Lynn Harrison, 2025 award recipients. Photo courtesy of Adirondack Garden Club. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/2026-Baribeau-Cachepot.jpeg?fit=780%2C598&amp;ssl=1&quot; /&gt; Community gardener Donna Baribeau was recognized for her service, hospitality and commitment to her fellow members
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-garden-club-honors-donna-baribeau-for-service-to-the-club/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Wild holds annual meeting, announces 2026 award winners</title>
-    <link>https://www.adirondackexplorer.org/communities/adirondack-wild-holds-annual-meeting-at-the-wild-center-open-to-public/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-wild-holds-annual-meeting-at-the-wild-center-open-to-public/</guid>
-    <pubDate>Mon, 19 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Wild Center will host Adirondack Wild’s annual meeting. Explorer file photo. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/05/WildCenterBuilding-091318-002sq-834x573-1.jpg?fit=780%2C536&amp;ssl=1&quot; /&gt; Community members are invited to presentations including the new film &quot;The Wild Adirondacks: An Enchanted Landscape&quot;
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-wild-holds-annual-meeting-at-the-wild-center-open-to-public/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -433,6 +395,42 @@ Read the original article at the publisher: https://www.audubon.org/rockies/news
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>How Audubon Science Informs a New Global Effort to Protect Migratory Birds</title>
+    <link>https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</guid>
+    <pubDate>Mon, 19 Oct 2026 08:33:49 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: As billions of birds embark on their southbound journeys to their non-breeding grounds, they will encounter numerous challenges along the way. After all, migration season is statistically the...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/news/how-audubon-science-informs-new-global-effort-protect-migratory-birds</description>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">Global</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
+    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Transporter-18 SmallSats Encapsulation</title>
@@ -635,23 +633,23 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/ta
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Ocean Facts: What are Kelvin waves?</title>
-    <link>https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</guid>
-    <pubDate>Wed, 14 Oct 2026 16:10:01 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+    <title>Carp Control: Removing Invasive Carp from the Grand River</title>
+    <link>https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</guid>
+    <pubDate>Wed, 14 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: Ocean Facts: What are Kelvin waves? Kelvin waves are difficult to see with the naked eye as they are large in scale, slow moving, and don&apos;t break onshore like typical ocean waves. In this graphic, satellite radar altimetry measurements reveal the sea surface signature of Kelvin waves where the ocean surface is higher or lower than its long-term average.
+Summary: The U.S Fish and Wildlife Service Great Plains Fish and Wildlife Conservation Office (FWCO) recently traveled from Pierre, South Dakota, to north-central Missouri to support the Missouri Department of Conservation in a large-scale invasive carp removal effort on the Grand River. Funded through a
 
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.noaa.gov/stories/ocean-facts-what-are-kelvin-waves-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
+Read the original article at the publisher: https://www.fws.gov/story/carp-control-removing-invasive-carp-grand-river</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
     <category domain="geographic">National</category>
-    <author>NOAA</author>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Great Lakes Habitat Conservation</title>
@@ -690,6 +688,42 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
+    <title>Surprising colors of white dwarf stars revealed for 1st time</title>
+    <link>https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:59:34 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Astronomers in the U.K. have found that the true colors of white dwarf stars can vary greatly. They even found the 1st known green star. The post Surprising colors of white dwarf stars revealed for 1st time first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Pegasus is a baseball diamond! Just in time for the World Series</title>
+    <link>https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</link>
+    <guid isPermaLink="true">https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Great Square of Pegasus is tilted to look like a baseball diamond in October, as if to celebrate baseball&apos;s World Series. The post Pegasus is a baseball diamond! Just in time for the World Series first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>New clues to how infectious fungus Candida auris resists antifungals</title>
     <link>https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</link>
     <guid isPermaLink="true">https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</guid>
@@ -702,24 +736,6 @@ Summary: Scientists have identified new resistance mechanisms used by the fungus
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Fast solar wind approaching Earth</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 20 Oct 2026 09:55:33 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news October 20, 2026: A coronal hole’s fast wind arrives today, with minor geomagnetic storms and auroras possible. The post Sun news: Fast solar wind approaching Earth first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -742,6 +758,44 @@ Read the original article at the publisher: https://earthsky.org/tonight/the-sky
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Old Forge Library news: Raffle and Halloween ‘Grab ‘N’ Go’ bags</title>
+    <link>https://www.adirondackexplorer.org/communities/old-forge-library-news-raffle-and-halloween-grab-n-go-bags/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/old-forge-library-news-raffle-and-halloween-grab-n-go-bags/</guid>
+    <pubDate>Wed, 21 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Grab ‘N’ Go bags offer crafts such as Bag-O-Lanterns, shown here. Photo courtesy of the Old Forge Library. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Bag-O-Lanterns-e1792423986599.png?fit=404%2C483&amp;ssl=1&quot; /&gt; Grab &apos;N&apos; Go bags offer activities for children while the raffle offers a handcrafted bookcase to fund the refresh of a section of the library
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/old-forge-library-news-raffle-and-halloween-grab-n-go-bags/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Saving riverbank, bringing back salmon at Ben Wever Farm in Willsboro</title>
+    <link>https://www.adirondackexplorer.org/communities/food-and-farms/saving-riverbank-bringing-back-salmon-at-ben-wever-farm-in-willsboro/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/saving-riverbank-bringing-back-salmon-at-ben-wever-farm-in-willsboro/</guid>
+    <pubDate>Wed, 21 Oct 2026 10:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Gillillands and Commissioner Ball pose with the collborators and guests who joined in celebrating their acheivement. Photo by Brianna Kimmel &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_5537-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Gillilland family recognized by New York state for environmentally conscious agriculture, built through partnerships.
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/saving-riverbank-bringing-back-salmon-at-ben-wever-farm-in-willsboro/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>OurStoryBridge Listens: Of the community, for the community</title>
@@ -838,25 +892,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Franklin County Land Bank celebrates first completed house</title>
-    <link>https://www.adirondackexplorer.org/communities/housing/franklin-county-land-bank-celebrates-first-completed-house/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/franklin-county-land-bank-celebrates-first-completed-house/</guid>
-    <pubDate>Mon, 19 Oct 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Officials gather to cut the ribbon on the Franklin County Land Bank’s first completed home. Photo by Tim Rowland &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Screenshot-2026-10-15-at-12.15.24-PM.png?fit=780%2C579&amp;ssl=1&quot; /&gt; Modular house in Tupper Lake will soon be followed by projects in other communities.
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/franklin-county-land-bank-celebrates-first-completed-house/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Space Station View of Earth at Night</title>
     <link>https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/gmt251_08_43_jessica-meir_northern-aurora-cupola-14mm/</guid>
@@ -889,44 +924,6 @@ Waypoint’s Take: For someone heading outside, the useful question is observati
 
 Read the original article at the publisher: https://www.audubon.org/rockies/news/newly-audubon-certified-pathfinder-ensign-ranches-advances-grassland-bird-conservation</description>
     <category>Birds</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Preparing for the 2027 State Legislative Sessions in the Great Plains</title>
-    <link>https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</guid>
-    <pubDate>Thu, 15 Oct 2026 18:49:05 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: As state legislatures begin preparing for their 2027 sessions, now is the time to start planning for the policy discussions and legislative activity that will shape the year ahead. Early preparation...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/preparing-2027-state-legislative-sessions-great-plains</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Audubon Receives NFWF Grassland Resilience and Conservation Initiative Award</title>
-    <link>https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</guid>
-    <pubDate>Thu, 15 Oct 2026 14:55:11 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: The National Audubon Society has been awarded nearly $4 million dollars from the National Fish and Wildlife Foundation Grassland Resilience and Conservation Initiative grant, an investment that will...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/audubon-receives-nfwf-grassland-resilience-and-conservation-initiative-award</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>

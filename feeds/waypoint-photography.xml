@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2026 02:20:40 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 16:14:34 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Science on the Space Station with NASA Astronaut Jessica Watkins</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0190239/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0190239/</guid>
+    <pubDate>Wed, 21 Oct 2026 15:07:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut and Expedition 75 flight engineer Jessica Watkins works inside the Kibo laboratory module&apos;s Life Science Glovebox, safely mixing living cell samples with a bioink and then filling a special cartridge with the cell‑ink mixture.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0190239/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Webb Captures Stellar Jets</title>
     <link>https://www.nasa.gov/image-detail/55572978759-545472774e-o/</link>
@@ -82,22 +100,22 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/sh
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>A train was delayed by a solar storm. But something didn&apos;t add up.</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261020085021.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261020085021.htm</guid>
+    <pubDate>Wed, 21 Oct 2026 12:35:57 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
 
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+Summary: Scientists have cracked a 178-year-old mystery surrounding a train delayed by a solar storm, revealing that the famous incident happened in 1848 rather than 1841. The discovery rewrites the early history of space weather and highlights a threat that still endangers modern power grids, satellites, and communication systems.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261020085021.htm</description>
+    <category>Weather</category>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <category domain="geographic">National</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
@@ -116,6 +134,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
+    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Transporter-18 SmallSats Encapsulation</title>
@@ -262,6 +298,42 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <author>NASA</author>
   </item>
   <item>
+    <title>Surprising colors of white dwarf stars revealed for 1st time</title>
+    <link>https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:59:34 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Astronomers in the U.K. have found that the true colors of white dwarf stars can vary greatly. They even found the 1st known green star. The post Surprising colors of white dwarf stars revealed for 1st time first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Pegasus is a baseball diamond! Just in time for the World Series</title>
+    <link>https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</link>
+    <guid isPermaLink="true">https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Great Square of Pegasus is tilted to look like a baseball diamond in October, as if to celebrate baseball&apos;s World Series. The post Pegasus is a baseball diamond! Just in time for the World Series first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>New clues to how infectious fungus Candida auris resists antifungals</title>
     <link>https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</link>
     <guid isPermaLink="true">https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</guid>
@@ -274,24 +346,6 @@ Summary: Scientists have identified new resistance mechanisms used by the fungus
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/earth/new-clues-to-how-infectious-fungus-candida-auris-resists-antifungals/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Fast solar wind approaching Earth</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 20 Oct 2026 09:55:33 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news October 20, 2026: A coronal hole’s fast wind arrives today, with minor geomagnetic storms and auroras possible. The post Sun news: Fast solar wind approaching Earth first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -479,22 +533,55 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/kr
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis III Crew Visits NASA Kennedy&apos;s Vehicle Assembly Building</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1307/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1307/</guid>
-    <pubDate>Tue, 15 Sep 2026 16:16:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Euclid was mapping the universe. Then it found a comet</title>
+    <link>https://earthsky.org/space/accidental-comet-discovery-euclid-c-2026-s1/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/accidental-comet-discovery-euclid-c-2026-s1/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:25:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: NASA astronaut Randy Bresnik (left) and ESA (European Space Agency) astronaut Luca Parmitano view progress on the solid rocket booster integration in High Bay 3 inside the Vehicle Assembly Building at NASA&apos;s Kennedy Space Center in Florida on Wednesday, Sept. 2, 2026.
+Summary: The Euclid space telescope made an accidental comet discovery as it searched the universe for evidence of dark matter and dark energy. The post Euclid was mapping the universe. Then it found a comet first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1307/</description>
+Read the original article at the publisher: https://earthsky.org/space/accidental-comet-discovery-euclid-c-2026-s1/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Visible planets and night sky guide for October</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Wed, 21 Oct 2026 11:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Visible planets and night sky guide. The moon hangs near Fomalhaut tonight. And see a video today at noon CDT (17:00 UTC) about the ancient origin of Halloween. The post Visible planets and night sky guide for October first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Auriga the Charioteer and bright Capella on October evenings</title>
+    <link>https://earthsky.org/constellations/closeup-on-auriga/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/closeup-on-auriga/</guid>
+    <pubDate>Wed, 21 Oct 2026 10:01:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Auriga the Charioteer is a north circumpolar constellation, best viewed on autumn and winter evenings. Its star Capella is the 6th brightest star in the sky. The post Auriga the Charioteer and bright Capella on October evenings first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/constellations/closeup-on-auriga/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Orionid meteor shower 2026: All you need to know</title>
@@ -509,93 +596,6 @@ Summary: The Orionid meteor shower is here! Find out where and when to look up w
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/everything-you-need-to-know-orionid-meteor-shower/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for October</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Tue, 20 Oct 2026 08:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Visible planets and night sky guide. This evening, look for the moon near Capricornus. Plus the Orionid meteor shower is here! The post Visible planets and night sky guide for October first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The MMX mission launches to Mars’ moons on Monday</title>
-    <link>https://earthsky.org/space/mmx-mission-mars-moons-phobos-deimos/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mmx-mission-mars-moons-phobos-deimos/</guid>
-    <pubDate>Sun, 18 Oct 2026 11:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The MMX mission launches October 19 to Mars’ moons Phobos and Deimos. It will collect a sample from Phobos and return it to Earth in 2031. The post The MMX mission launches to Mars’ moons on Monday first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/mmx-mission-mars-moons-phobos-deimos/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Inferior conjunction — Venus! October 23-24, 2026</title>
-    <link>https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</guid>
-    <pubDate>Sat, 17 Oct 2026 11:00:12 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Venus reaches inferior conjunction soon. It&apos;ll pass between Earth and the sun at 4 UTC on October 24. Then Venus emerges in the morning sky. The post Inferior conjunction — Venus! October 23-24, 2026 first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/inferior-conjunction-venus-between-sun-and-earth/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Comet Halley is parent of 2 meteor showers</title>
-    <link>https://earthsky.org/astronomy-essentials/comet-halley-parent-of-2-meteor-showers/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/comet-halley-parent-of-2-meteor-showers/</guid>
-    <pubDate>Sun, 18 Oct 2026 11:49:55 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The famous comet Halley spawns both the October Orionid meteor shower and the May Eta Aquariid meteor shower. It&apos;ll return to the inner solar system in 2061. The post Comet Halley is parent of 2 meteor showers first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/comet-halley-parent-of-2-meteor-showers/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Caves on the moon are target of new NASA mission</title>
-    <link>https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</guid>
-    <pubDate>Fri, 16 Oct 2026 17:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA is searching for caves on the moon. A new mission, GIMLI, will land near the volcanic Marius Hills Pit to look for a subsurface lava tube. Will it find one? The post Caves on the moon are target of new NASA mission first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/caves-on-the-moon-new-nasa-mission/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
