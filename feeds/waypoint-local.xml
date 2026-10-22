@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2026 16:14:34 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 02:15:23 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,23 +27,6 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
-  </item>
-  <item>
-    <title>Red-headed Woodpecker by Zac Cody</title>
-    <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
-    <pubDate>Wed, 14 Oct 2026 22:44:00 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Painted: 10/7/2025About the Mural: Cast in drifting shadows, a mural splays across the concrete underpass stretching across a portion of the Wabash River in Warren County, Indiana. Broad strokes of...
-
-Waypoint’s Take: An outdoor reader in the Northern New Jersey can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/news/red-headed-woodpecker-zac-cody</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">Northern New Jersey</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
@@ -119,6 +102,23 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Red-headed Woodpecker by Zac Cody</title>
+    <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
+    <pubDate>Wed, 14 Oct 2026 22:44:00 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Painted: 10/7/2025About the Mural: Cast in drifting shadows, a mural splays across the concrete underpass stretching across a portion of the Wabash River in Warren County, Indiana. Broad strokes of...
+
+Waypoint’s Take: An outdoor reader in the Northern New Jersey can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/news/red-headed-woodpecker-zac-cody</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Northern New Jersey</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Old Forge Library news: Raffle and Halloween ‘Grab ‘N’ Go’ bags</title>
@@ -234,6 +234,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
+    <pubDate>Thu, 10 Sep 2026 16:24:37 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
+
+Summary: It’s fall in the Northeast, and you know what that means—leaf-peeping season is here! From fiery reds to golden yellows, the region’s forests are about to put on a spectacular show. At AMC, we’ve been... Read More The post Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors appeared first on Appalachian Mountain Club (AMC) .
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</description>
+    <category>Forests and Plants</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
     <title>The joy of watching a leaf fall</title>
     <link>https://www.adirondackexplorer.org/environment/the-joy-of-watching-a-leaf-fall/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/the-joy-of-watching-a-leaf-fall/</guid>
@@ -251,24 +269,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
-    <pubDate>Thu, 10 Sep 2026 16:24:37 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: It’s fall in the Northeast, and you know what that means—leaf-peeping season is here! From fiery reds to golden yellows, the region’s forests are about to put on a spectacular show. At AMC, we’ve been... Read More The post Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</description>
-    <category>Forests and Plants</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
   </item>
   <item>
     <title>$100 Million a Year for Nature in Massachusetts</title>
@@ -361,6 +361,24 @@ Read the original article at the publisher: https://www.noaa.gov/news/weekend-no
     <category domain="geographic">Northeast</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>2026-2027 Winter Skywarn Spotter Training Schedule</title>
+    <link>https://www.weather.gov/aly/skywarn</link>
+    <guid isPermaLink="true">https://www.weather.gov/aly/skywarn</guid>
+    <pubDate>Sun, 06 Oct 2019 14:38:54 GMT</pubDate>
+    <source url="https://www.weather.gov/aly/">National Weather Service Albany</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Albany.
+
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.weather.gov/aly/skywarn</description>
+    <category>Weather</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>National Weather Service Albany</author>
   </item>
   </channel>
 </rss>
