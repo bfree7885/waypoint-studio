@@ -5,10 +5,30 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Oct 2026 02:21:45 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 23 Oct 2026 16:03:04 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>In a Sky Ruled by Ancient Birds, Bats Conquered the Dark</title>
+    <link>https://www.audubon.org/magazine/how-bats-evolved-flight-night-skies</link>
+    <guid isPermaLink="true">https://www.audubon.org/magazine/how-bats-evolved-flight-night-skies</guid>
+    <pubDate>Fri, 23 Oct 2026 14:11:09 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: A starlit forest rustles in the dark. Ancient birds sleep beneath a Cenozoic moon, survivors from the age of dinosaurs just recently passed. In the velvet gloom, a small, shrew-like mammal swings on...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/magazine/how-bats-evolved-flight-night-skies</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
   <item>
     <title>Forest Rangers locate multiple hikers without light sources</title>
     <link>https://www.adirondackexplorer.org/search-and-rescue/forest-rangers-locate-multiple-hikers-without-light-sources/</link>
@@ -28,23 +48,23 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/s
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>New state wildlife action plan considers plants, excludes carnivores</title>
-    <link>https://www.adirondackexplorer.org/environment/wildlife/new-state-wildlife-action-plan-considers-plants-excludes-carnivores/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/wildlife/new-state-wildlife-action-plan-considers-plants-excludes-carnivores/</guid>
-    <pubDate>Thu, 22 Oct 2026 10:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Following the flight routes of migrating monarchs</title>
+    <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: A canid crossing the iced mouth of the St. Lawrence River between Amherst and Wolfe Islands heading toward New York in January 2008. Photo by Larry Master &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2022/11/Wolves-.jpg?fit=780%2C574&amp;ssl=1&quot; /&gt; The updated plan features a list of plants and animals that face threats of population decline if conservation actions are not taken.
+Summary: The fall monarch migration is fully underway! We at the U.S. Fish and Wildlife Service are fitting monarch butterflies with lightweight Bluetooth trackers as they migrate south toward overwintering habitat.
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/wildlife/new-state-wildlife-action-plan-considers-plants-excludes-carnivores/</description>
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</description>
+    <category>Birds</category>
     <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Science on the Space Station with NASA Astronaut Jessica Watkins</title>
@@ -63,25 +83,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Following the flight routes of migrating monarchs</title>
-    <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
-    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The fall monarch migration is fully underway! We at the U.S. Fish and Wildlife Service are fitting monarch butterflies with lightweight Bluetooth trackers as they migrate south toward overwintering habitat.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Webb Captures Stellar Jets</title>
@@ -195,24 +196,6 @@ Read the original article at the publisher: https://www.noaa.gov/media-advisory/
     <author>NOAA</author>
   </item>
   <item>
-    <title>A train was delayed by a solar storm. But something didn&apos;t add up.</title>
-    <link>https://www.sciencedaily.com/releases/2026/10/261020085021.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261020085021.htm</guid>
-    <pubDate>Wed, 21 Oct 2026 12:35:57 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: Scientists have cracked a 178-year-old mystery surrounding a train delayed by a solar storm, revealing that the famous incident happened in 1848 rather than 1841. The discovery rewrites the early history of space weather and highlights a threat that still endangers modern power grids, satellites, and communication systems.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261020085021.htm</description>
-    <category>Weather</category>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
-  </item>
-  <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
@@ -248,6 +231,25 @@ Read the original article at the publisher: https://www.audubon.org/rockies/news
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Adirondack Stories: Adirondack Murray</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-adirondack-murray/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-adirondack-murray/</guid>
+    <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: Adirondack Murray. Adirondack Murray was a minister who wrote a guide book which spurred the development of tourism in the region
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-adirondack-murray/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Adirondack towns approve record number of shoreline setback exceptions</title>
@@ -319,44 +321,6 @@ Summary: State grants Elizabethtown $14M for sewer project. Photo by Jak Krouse 
 Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/environment/water-quality/state-grants-elizabethtown-14m-for-sewer-project/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>ACW’s annual High School Writing Retreat returns to Paul Smith’s College</title>
-    <link>https://www.adirondackexplorer.org/communities/arts/acws-annual-high-school-writing-retreat-returns-to-paul-smiths-college/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/acws-annual-high-school-writing-retreat-returns-to-paul-smiths-college/</guid>
-    <pubDate>Thu, 22 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Students gather at HSWR in 2025. Photo courtesy of ACW. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Students-at-2025-HSWR-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; The Adirondack Center for Writing will host two full days of creative writing workshops, activities and readings from featured panelists
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/acws-annual-high-school-writing-retreat-returns-to-paul-smiths-college/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Hochul pushes NYC/Adirondacks joint bid for 2042 Winter Olympics</title>
-    <link>https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</guid>
-    <pubDate>Wed, 21 Oct 2026 13:21:44 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: New York Gov. Kathy Hochul, left, shakes hands with Mike Hopper as ORDA CEO Ashley Walden looks on, at the kick off meeting Monday for the New York Olympics exploratory committee. Photo by Susan Watts/Office of Governor Kathy Hochul &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/55599530195_e72d425240_k.jpg?fit=780%2C662&amp;ssl=1&quot; /&gt; Governor urges 90-member committee to move ahead on proposal for hosting Winter Games split between New York City and Lake Placid facilities
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/governor-pushes-olympic-bid-to-committee/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -655,6 +619,60 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/gr
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>A train was delayed by a solar storm. But something didn&apos;t add up.</title>
+    <link>https://www.sciencedaily.com/releases/2026/10/261020085021.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261020085021.htm</guid>
+    <pubDate>Wed, 21 Oct 2026 12:35:57 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: Scientists have cracked a 178-year-old mystery surrounding a train delayed by a solar storm, revealing that the famous incident happened in 1848 rather than 1841. The discovery rewrites the early history of space weather and highlights a threat that still endangers modern power grids, satellites, and communication systems.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/10/261020085021.htm</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">National</category>
+    <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Sun news: Active sunspot grows more powerful</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Fri, 23 Oct 2026 10:25:59 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news October 23, 2026: AR4560 grew a delta, the most complex setup there is! Meanwhile, fast wind and a glancing CME could bring storms October 25. The post Sun news: Active sunspot grows more powerful first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>1st photo of Earth from space, 80 years ago</title>
+    <link>https://earthsky.org/space/this-date-in-science-first-ever-photo-of-earth-from-space/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/this-date-in-science-first-ever-photo-of-earth-from-space/</guid>
+    <pubDate>Fri, 23 Oct 2026 10:03:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: On October 24, 1946 — 80 years ago — a movie camera on board a V-2 rocket captured the 1st-ever photo of Earth from space. The post 1st photo of Earth from space, 80 years ago first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/this-date-in-science-first-ever-photo-of-earth-from-space/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Why does anything exist? New theory emerges</title>
     <link>https://earthsky.org/space/why-does-anything-exist-decoupled-heavy-neutrino/</link>
     <guid isPermaLink="true">https://earthsky.org/space/why-does-anything-exist-decoupled-heavy-neutrino/</guid>
@@ -709,40 +727,22 @@ Read the original article at the publisher: https://earthsky.org/constellations/
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Surprising colors of white dwarf stars revealed for 1st time</title>
-    <link>https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</guid>
-    <pubDate>Wed, 21 Oct 2026 11:59:34 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Looking for saw whet owls and celebrating fire tower stewards</title>
+    <link>https://www.adirondackexplorer.org/communities/looking-for-saw-whet-owls-and-celebrating-fire-tower-stewards/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/looking-for-saw-whet-owls-and-celebrating-fire-tower-stewards/</guid>
+    <pubDate>Fri, 23 Oct 2026 16:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Astronomers in the U.K. have found that the true colors of white dwarf stars can vary greatly. They even found the 1st known green star. The post Surprising colors of white dwarf stars revealed for 1st time first appeared on EarthSky .
+Summary: A bear berry shrub. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/74afe12e-86ab-4679-b410-a496fd29d405.jpgbear-berry.jpg?fit=780%2C1040&amp;ssl=1&quot; /&gt; Snow arrived in Inlet after five days of hard frost and Gary Lee joined other fire tower steward volunteers in Speculator
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/surprising-colors-of-white-dwarf-stars-revealed-for-1st-time/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pegasus is a baseball diamond! Just in time for the World Series</title>
-    <link>https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</link>
-    <guid isPermaLink="true">https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</guid>
-    <pubDate>Wed, 21 Oct 2026 11:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Great Square of Pegasus is tilted to look like a baseball diamond in October, as if to celebrate baseball&apos;s World Series. The post Pegasus is a baseball diamond! Just in time for the World Series first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/favorite-star-patterns/pegasus-is-a-baseball-diamond-october-world-series/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/looking-for-saw-whet-owls-and-celebrating-fire-tower-stewards/</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   </channel>
 </rss>
