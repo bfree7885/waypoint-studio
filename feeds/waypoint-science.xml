@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Oct 2026 16:03:04 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 24 Oct 2026 02:19:00 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -46,6 +46,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/s
     <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>RS-25 Engine Tests at NASA Stennis</title>
+    <link>https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</guid>
+    <pubDate>Fri, 23 Oct 2026 18:59:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: RS-25 Engine Tests at NASA Stennis. Teams at NASA’s Stennis Space Center near Bay St. Louis, Mississippi tested RS-25 engine No. 10001 on Oct. 21, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Following the flight routes of migrating monarchs</title>
@@ -159,24 +177,6 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Artemis II Heat Shield After Splashdown</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
-    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NOAA to issue 2026-2027 U.S. Winter Outlook October 15</title>
     <link>https://www.noaa.gov/media-advisory/noaa-to-issue-2026-2027-us-winter-outlook-october-15</link>
     <guid isPermaLink="true">https://www.noaa.gov/media-advisory/noaa-to-issue-2026-2027-us-winter-outlook-october-15</guid>
@@ -231,6 +231,25 @@ Read the original article at the publisher: https://www.audubon.org/rockies/news
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>The Community Store in Saranac Lake: A snapshot</title>
+    <link>https://www.adirondackexplorer.org/communities/the-community-store-in-saranac-lake-a-snapshot/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/the-community-store-in-saranac-lake-a-snapshot/</guid>
+    <pubDate>Fri, 23 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Community Store closed in Saranac Lake. Photo courtesy of Lorraine Duvall. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/CS-closes-Lorraine-Duvall-scaled.jpeg?fit=780%2C780&amp;ssl=1&quot; /&gt; Community members rallied to save the Community Store in Saranac Lake but were not able to due to the increase in online shopping
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/the-community-store-in-saranac-lake-a-snapshot/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Adirondack Stories: Adirondack Murray</title>
@@ -290,44 +309,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Presentations, curling and Halloween activities around the Adirondacks</title>
-    <link>https://www.adirondackexplorer.org/events/presentations-curling-and-halloween-activities-around-the-adirondacks/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/presentations-curling-and-halloween-activities-around-the-adirondacks/</guid>
-    <pubDate>Thu, 22 Oct 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Saranac Lake Civic Center offers an event to try out the sport of curling. Photo courtesy of Saranac Lake Civic Center. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_6368.jpg?fit=780%2C1040&amp;ssl=1&quot; /&gt; Events around the region this week include historical webinars, a trunk-or-treat event and an opportunity to learn about the sport of curling
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/events/presentations-curling-and-halloween-activities-around-the-adirondacks/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>State grants Elizabethtown $14M for sewer project</title>
-    <link>https://www.adirondackexplorer.org/environment/water-quality/state-grants-elizabethtown-14m-for-sewer-project/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/water-quality/state-grants-elizabethtown-14m-for-sewer-project/</guid>
-    <pubDate>Thu, 22 Oct 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: State grants Elizabethtown $14M for sewer project. Photo by Jak Krouse &quot; data-image-caption=&quot;&quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2023/07/IMG_6652-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Other Adirondack communities received state money to complete lead pipe inventories,
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/water-quality/state-grants-elizabethtown-14m-for-sewer-project/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Prescribed Burning Planned at Bosque del Apache National Wildlife Refuge</title>
     <link>https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</link>
     <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</guid>
@@ -340,25 +321,6 @@ Summary: The U.S. Fish and Wildlife Service today announced that weather permitt
 Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</description>
-    <category>Weather</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Pea Island National Wildlife Refuge Post-Storm Update</title>
-    <link>https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</guid>
-    <pubDate>Thu, 08 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Pea Island National Wildlife Refuge staff have been working closely with NCDOT on North Carolina Highway 12 access following the passage of the recent nor’easter and also assessing damage to refuge infrastructure.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/pea-island-national-wildlife-refuge-post-storm-update</description>
     <category>Weather</category>
     <category>Wildlife</category>
     <category>Conservation</category>
@@ -401,6 +363,24 @@ Read the original article at the publisher: https://www.audubon.org/news/how-aud
     <category>Seasonal Nature</category>
     <category domain="geographic">Global</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Artemis II Heat Shield After Splashdown</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
+    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -529,24 +509,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
-    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
-    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Red-headed Woodpecker by Zac Cody</title>
     <link>https://www.audubon.org/news/red-headed-woodpecker-zac-cody</link>
     <guid isPermaLink="true">https://www.audubon.org/news/red-headed-woodpecker-zac-cody</guid>
@@ -562,6 +524,43 @@ Read the original article at the publisher: https://www.audubon.org/news/red-hea
     <category>Rivers and Water</category>
     <category domain="geographic">Northern New Jersey</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Fact check: Viral post sparks unfounded rumors of Adirondack national park proposal</title>
+    <link>https://www.adirondackexplorer.org/communities/government/fact-check-viral-post-sparks-unfounded-rumors-of-adirondack-national-park-proposal/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/fact-check-viral-post-sparks-unfounded-rumors-of-adirondack-national-park-proposal/</guid>
+    <pubDate>Fri, 23 Oct 2026 18:21:51 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A state land sign indicates the Blue Line boundary along the Raquette River between Rainbow Falls and Five Falls dams. Photo by Tom French &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/06/PadFrom5Falls29-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; No serious national park proposals have been made about the Adirondacks since 1967.
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/fact-check-viral-post-sparks-unfounded-rumors-of-adirondack-national-park-proposal/</description>
+    <category>Rivers and Water</category>
+    <category>Regional News</category>
+    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">National</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Free Environmental Education Curriculum Available for Educators</title>
+    <link>https://www.fws.gov/press-release/2026-10/free-environmental-education-curriculum-available-educators</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/free-environmental-education-curriculum-available-educators</guid>
+    <pubDate>Fri, 23 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Turnbull National Wildlife Refuge welcomes educators to an environmental education open house Nov. 16 and 17. New environmental education curriculum and tools are available for first through 12th grades at Turnbull National Wildlife Refuge, thanks to the Friends of Turnbull National Wildlife Refuge
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/free-environmental-education-curriculum-available-educators</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Spiral&apos;s Edge</title>
