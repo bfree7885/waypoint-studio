@@ -1,0 +1,61 @@
+{
+  "caseId": "B-water",
+  "classes": [
+    "water"
+  ],
+  "noMotion": false,
+  "summary": "Water",
+  "wildlifeProtected": false,
+  "waterType": "lake",
+  "confidence": {
+    "clouds": 0.05,
+    "water": 0.92,
+    "fog": 0.06,
+    "haze": 0.05,
+    "foliage": 0.017068661971830983,
+    "grass": 0.1,
+    "rain": 0,
+    "snow": 0,
+    "light": 0.05,
+    "stars": 0,
+    "parallax": 0.05
+  },
+  "coverage": {
+    "clouds": 0.00033790507865840807,
+    "water": 0.5005715130440134,
+    "fog": 0,
+    "haze": 0.00001656259235187036,
+    "foliage": 0.040639671361502344,
+    "mountain": 0.020202464788732395,
+    "rock": 0.01653462441314554,
+    "wildlife": 0.030430237676056338,
+    "snow": 0,
+    "sky": 0.005355046948356808,
+    "wood": 0.004210680751173709,
+    "waterConnectivity": 0.9868032786885246,
+    "waterCentroidY": 0.5881572103679452
+  },
+  "analyzeLongEdge": 320,
+  "engineVersion": "1.2.0-natural-motion",
+  "sample": {
+    "w": 320,
+    "h": 213
+  },
+  "render": {
+    "w": 960,
+    "h": 640
+  },
+  "mime": "video/webm;codecs=vp9",
+  "honestyNotes": [
+    "Waypoint Choice: Water — restrained, localized motion only."
+  ],
+  "stability": {
+    "terrainMae": 0.415,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ]
+  }
+}

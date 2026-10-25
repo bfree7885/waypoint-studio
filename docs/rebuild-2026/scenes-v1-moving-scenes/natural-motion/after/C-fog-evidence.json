@@ -1,0 +1,61 @@
+{
+  "caseId": "C-fog",
+  "classes": [],
+  "noMotion": true,
+  "summary": "No motion found",
+  "wildlifeProtected": false,
+  "waterType": "none",
+  "confidence": {
+    "clouds": 0.3828841372170753,
+    "water": 0.03,
+    "fog": 0.3175799842107341,
+    "haze": 0.05,
+    "foliage": 0.1148314836448598,
+    "grass": 0.1,
+    "rain": 0,
+    "snow": 0,
+    "light": 0.05,
+    "stars": 0,
+    "parallax": 0.2
+  },
+  "coverage": {
+    "clouds": 0.15217665222140467,
+    "water": 0.0018948528809207311,
+    "fog": 0.07447999298254847,
+    "haze": 0.1126175568341147,
+    "foliage": 0.27340829439252334,
+    "mountain": 0.20949182242990655,
+    "rock": 0.1507447429906542,
+    "wildlife": 0.004201956775700935,
+    "snow": 0.060382593457943924,
+    "sky": 0.25339332651869156,
+    "wood": 0.0019129672897196261,
+    "waterConnectivity": 0.05084745762711865,
+    "waterCentroidY": 0.5
+  },
+  "analyzeLongEdge": 320,
+  "engineVersion": "1.2.0-natural-motion",
+  "sample": {
+    "w": 320,
+    "h": 214
+  },
+  "render": {
+    "w": 960,
+    "h": 641
+  },
+  "mime": null,
+  "honestyNotes": [
+    "No natural motion confidently detected. The photograph stays still.",
+    "Clouds looks possible but confidence is too low for automatic motion (38%).",
+    "Fog looks possible but confidence is too low for automatic motion (32%)."
+  ],
+  "stability": {
+    "terrainMae": 0,
+    "cloudMae": 0,
+    "loopMae": 0,
+    "midMotion": [
+      0,
+      0
+    ]
+  }
+}
