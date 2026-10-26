@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Oct 2026 02:07:03 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 26 Oct 2026 17:48:10 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -28,6 +28,24 @@ Read the original article at the publisher: https://www.audubon.org/magazine/how
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
+    <link>https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:29:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA test pilot Mike Lippert poses for a photo ahead of his first time flying the agency&apos;s X-59 quiet supersonic research aircraft on Oct. 21, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>RS-25 Engine Tests at NASA Stennis</title>
@@ -84,24 +102,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/55
     <author>NASA</author>
   </item>
   <item>
-    <title>Martian Dawn</title>
-    <link>https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</guid>
-    <pubDate>Mon, 19 Oct 2026 16:05:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The captivating shapes of wind-carved crags called yardangs are revealed in this zoomed-in crop of a broader panorama captured by NASA’s Curiosity Mars rover. Scientists are eager to learn more about how the yardang layer formed.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>NASA spots a giant patch of Moon-like rock on Earth</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261008102707.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261008102707.htm</guid>
@@ -118,6 +118,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category domain="geographic">Northern New Jersey</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Martian Dawn</title>
+    <link>https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</guid>
+    <pubDate>Mon, 19 Oct 2026 16:05:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The captivating shapes of wind-carved crags called yardangs are revealed in this zoomed-in crop of a broader panorama captured by NASA’s Curiosity Mars rover. Scientists are eager to learn more about how the yardang layer formed.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Artemis II Heat Shield After Splashdown</title>
@@ -246,24 +264,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA Astronaut Christina Koch at Eagles vs. Rams</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</guid>
-    <pubDate>Mon, 05 Oct 2026 17:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and mission specialist of the agency&apos;s Artemis II mission, Christina Koch, led the fans in singing the Eagles Fight Song from the field at an NFL game between the Philadelphia Eagles and the Los Angeles Rams at Lincoln Financial Field on Sunday, Oct. 4, 2026, in Philadelphia.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>A train was delayed by a solar storm. But something didn&apos;t add up.</title>
     <link>https://www.sciencedaily.com/releases/2026/10/261020085021.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/10/261020085021.htm</guid>
@@ -280,6 +280,42 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>Habitable worlds: Better than Earth? Scientists wonder</title>
+    <link>https://earthsky.org/space/habitable-worlds-more-than-earth-super-earths-exoplanets/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/habitable-worlds-more-than-earth-super-earths-exoplanets/</guid>
+    <pubDate>Mon, 26 Oct 2026 13:02:07 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Some scientists think there are more habitable worlds than Earth out there. What are they like? And how might we find them? The post Habitable worlds: Better than Earth? Scientists wonder first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/habitable-worlds-more-than-earth-super-earths-exoplanets/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: The Halloween Storms of 2003!</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Mon, 26 Oct 2026 10:21:12 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news October 26, 2026. On this date in 2003, the sun fired 2 X flares as monster sunspots grew. The 2003 Halloween Storms were just getting started! The post Sun news: The Halloween Storms of 2003! first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Pentagon UAP files part 7: Silent black triangles</title>
@@ -333,6 +369,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA Astronaut Christina Koch at Eagles vs. Rams</title>
+    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</guid>
+    <pubDate>Mon, 05 Oct 2026 17:45:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut and mission specialist of the agency&apos;s Artemis II mission, Christina Koch, led the fans in singing the Eagles Fight Song from the field at an NFL game between the Philadelphia Eagles and the Los Angeles Rams at Lincoln Financial Field on Sunday, Oct. 4, 2026, in Philadelphia.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
@@ -481,22 +535,38 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>COSI Telescope Comes Together</title>
-    <link>https://www.nasa.gov/image-detail/cosi-2026july-01/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cosi-2026july-01/</guid>
-    <pubDate>Fri, 18 Sep 2026 15:46:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Visible planets and night sky guide for October and November</title>
+    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
+    <pubDate>Mon, 26 Oct 2026 10:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: UC Berkeley engineers and managers watch as the COSI (Compton Spectrometer and Imager) detector assembly is slowly raised from a table in this July 8, 2026, image.
+Summary: Visible planets and night sky guide. This evening, look for the thick, bright, waning gibbous moon near the Pleiades star cluster and the brightest star of Taurus the Bull, Aldebaran. The post Visible planets and night sky guide for October and November first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/cosi-2026july-01/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>How to understand moon phases: 4 tips!</title>
+    <link>https://earthsky.org/moon-phases/understandingmoonphases/</link>
+    <guid isPermaLink="true">https://earthsky.org/moon-phases/understandingmoonphases/</guid>
+    <pubDate>Sun, 25 Oct 2026 13:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: As the moon orbits Earth, we see varying fractions of its day side. Here are four tips for understanding moon phases. The post How to understand moon phases: 4 tips! first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/moon-phases/understandingmoonphases/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Hunter’s Moon falls on October 25-26, with Saturn nearby</title>
@@ -511,40 +581,6 @@ Summary: The 2026 October full moon is the Hunter&apos;s Moon. It falls around O
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/everything-you-need-to-know-hunters-moon/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>How to understand moon phases: 4 tips!</title>
-    <link>https://earthsky.org/moon-phases/understandingmoonphases/</link>
-    <guid isPermaLink="true">https://earthsky.org/moon-phases/understandingmoonphases/</guid>
-    <pubDate>Sun, 25 Oct 2026 11:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: As the moon orbits Earth, we see varying fractions of its day side. Here are four tips for understanding moon phases. The post How to understand moon phases: 4 tips! first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/moon-phases/understandingmoonphases/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for October</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sun, 25 Oct 2026 08:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Visible planets and night sky guide. Tonight at sunset, look for the full Hunter&apos;s Moon. It&apos;ll rise in the east as the sun sets and shine all night long. The post Visible planets and night sky guide for October first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -597,24 +633,6 @@ Summary: Why does anything exist? A new theory suggests a forgotten particle mig
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/why-does-anything-exist-decoupled-heavy-neutrino/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Lucy mission to Trojan asteroids: 5 years of discoveries</title>
-    <link>https://earthsky.org/space/lucy-mission-to-trojan-asteroids-5-years-of-discoveries/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/lucy-mission-to-trojan-asteroids-5-years-of-discoveries/</guid>
-    <pubDate>Thu, 22 Oct 2026 09:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA’s Lucy mission is now less than a year from reaching the Trojan asteroids near Jupiter. And it has already made some exciting discoveries along the way. The post Lucy mission to Trojan asteroids: 5 years of discoveries first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/lucy-mission-to-trojan-asteroids-5-years-of-discoveries/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
