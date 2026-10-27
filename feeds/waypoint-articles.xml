@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Oct 2026 17:48:10 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2026 02:43:50 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,6 +27,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>32nd Annual Rio Reforestation</title>
+    <link>https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</guid>
+    <pubDate>Mon, 26 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The U.S. Fish and Wildlife Service hosted the 32nd annual Rio Reforestation Event on Saturday, Oct. 17, at the Lower Rio Grande Valley National Wildlife Refuge in south Texas. Over 2,000 volunteers attended and helped plant 10,000 native trees and shrubs at the event.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</description>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>In a Sky Ruled by Ancient Birds, Bats Conquered the Dark</title>
@@ -157,6 +176,26 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fl
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Rowe Sanctuary Strategic Plan</title>
+    <link>https://www.audubon.org/great-plains/news/rowe-sanctuary-strategic-plan</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/rowe-sanctuary-strategic-plan</guid>
+    <pubDate>Mon, 26 Oct 2026 18:12:51 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: “Dedicated to the conservation of Sandhill Cranes, Whooping Cranes and other migratory birds and their habitat along the Platte River.” This serves as the mission statement for Rowe Sanctuary and...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/rowe-sanctuary-strategic-plan</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>DEC announces $1.5 million available for community forest conservation grants</title>
@@ -472,23 +511,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/st
     <author>NASA</author>
   </item>
   <item>
-    <title>Village of Champlain plants tree to symbolize connection with Canadian neighbor</title>
-    <link>https://www.adirondackexplorer.org/communities/village-of-champlain-plants-tree-to-symbolize-connection-with-canadian-neighbor/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/village-of-champlain-plants-tree-to-symbolize-connection-with-canadian-neighbor/</guid>
-    <pubDate>Sat, 24 Oct 2026 20:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The tree ceremony in Hemmingford. Photo courtesy of the North Country Chamber. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Hemmingford-Tree-Ceremony-2-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Representatives from Champlain and Hemmingford in Canada fostered connections with a ceremonial friendship tree planting
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/village-of-champlain-plants-tree-to-symbolize-connection-with-canadian-neighbor/</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>2026 Reaching for Rainbows Fishing Derby</title>
     <link>https://www.fws.gov/story/2026-10/2026-reaching-rainbows-fishing-derby</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/2026-reaching-rainbows-fishing-derby</guid>
@@ -655,6 +677,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>The life of the American coot</title>
+    <link>https://www.adirondackexplorer.org/environment/wildlife/the-life-of-the-american-coot/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/wildlife/the-life-of-the-american-coot/</guid>
+    <pubDate>Mon, 26 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: An American coot. Illustration by Adelaide Murphy Tyrol. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/american-coot-2.jpeg?fit=780%2C780&amp;ssl=1&quot; /&gt; American coots can be identified by their black, chicken-shaped bodies and ghostly white beaks that droop slightly
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/wildlife/the-life-of-the-american-coot/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Report reveals 42% of New York schools have tested positive for lead in water</title>
     <link>https://www.adirondackexplorer.org/environment/water-quality/report-reveals-42-of-new-york-schools-have-tested-positive-for-lead-in-water/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/water-quality/report-reveals-42-of-new-york-schools-have-tested-positive-for-lead-in-water/</guid>
@@ -693,6 +734,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/gm
     <author>NASA</author>
   </item>
   <item>
+    <title>In Illinois, Students Piece Together a Conservation Message Through Bird Mosaics</title>
+    <link>https://www.audubon.org/news/illinois-students-piece-together-conservation-message-through-bird-mosaics</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/illinois-students-piece-together-conservation-message-through-bird-mosaics</guid>
+    <pubDate>Mon, 26 Oct 2026 23:59:00 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: In Rockford, Illinois, a group of students has brought a colorful aviary of bird art to life—piece by tiny piece. Each year, artist Susan Burton leads SPARK! Mosaic, a free summer program for...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/news/illinois-students-piece-together-conservation-message-through-bird-mosaics</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>10 Fun Facts About the Northern Shrike</title>
     <link>https://www.audubon.org/magazine/10-fun-facts-about-northern-shrike</link>
     <guid isPermaLink="true">https://www.audubon.org/magazine/10-fun-facts-about-northern-shrike</guid>
@@ -728,6 +787,23 @@ Read the original article at the publisher: https://www.audubon.org/mid-atlantic
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Tree‑hugging optional: What today&apos;s green tradespeople actually care about</title>
+    <link>https://phys.org/news/2026-10-treehugging-optional-today-green-tradespeople.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-10-treehugging-optional-today-green-tradespeople.html</guid>
+    <pubDate>Mon, 26 Oct 2026 20:40:11 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-10-treehugging-optional-today-green-tradespeople.html</description>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>While some eucalypts are hard to kill, climate change may test the ability of others to survive</title>
@@ -851,78 +927,6 @@ Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 r
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Hubble Spots Chaotic Secret in Galaxy</title>
-    <link>https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</guid>
-    <pubDate>Fri, 25 Sep 2026 15:54:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Hubble Spots Chaotic Secret in Galaxy. Though the spiral galaxy in this ESA/Hubble Picture of the Month seems serene, it hides a chaotic secret.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/a-galaxy-spinning-out-of-sync/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA&apos;s Hubble Telescope Reaches Milestone, Looks for Elusive Supernova</title>
-    <link>https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</guid>
-    <pubDate>Wed, 23 Sep 2026 18:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An image from NASA&apos;s Hubble Space Telescope of galaxy cluster MACS J0417 is part of repeated observations to monitor for the reappearance of supernova Athena, which can help astronomers measure the expansion rate of the universe.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-h-p26023a-m-2000x1207/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy</title>
-    <link>https://www.nasa.gov/image-detail/m101-lg/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/m101-lg/</guid>
-    <pubDate>Tue, 22 Sep 2026 15:44:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NASA’s Chandra X-ray Observatory, scientists have discovered a new class of objects behaving unlike any they have seen before.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA Astronaut Reid Wiseman Attends Ravens vs. Saints Game</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</guid>
-    <pubDate>Mon, 21 Sep 2026 18:46:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and commander of the agency’s Artemis II mission, Reid Wiseman, a Baltimore native, takes a selfie with fans at an NFL game between the New Orleans Saints and the Baltimore Ravens at M&amp;T Bank Stadium, Sunday, Sept. 20, 2026, in Baltimore.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
