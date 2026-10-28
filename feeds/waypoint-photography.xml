@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Oct 2026 16:58:56 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 02:52:40 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -28,6 +28,24 @@ Read the original article at the publisher: https://www.audubon.org/magazine/how
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Neo Surveyor Sunshade</title>
+    <link>https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</guid>
+    <pubDate>Tue, 27 Oct 2026 18:02:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The large sunshade of NASA’s Near-Earth Object Surveyor mission is inspected by a technician at BAE Systems Space &amp; Mission Systems in Boulder, Colorado, in late July.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
@@ -493,24 +511,6 @@ Summary: NASA&apos;s Chandra Finds Unusual Objects in Pinwheel Galaxy. Using NAS
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/m101-lg/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA Astronaut Reid Wiseman Attends Ravens vs. Saints Game</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</guid>
-    <pubDate>Mon, 21 Sep 2026 18:46:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and commander of the agency’s Artemis II mission, Reid Wiseman, a Baltimore native, takes a selfie with fans at an NFL game between the New Orleans Saints and the Baltimore Ravens at M&amp;T Bank Stadium, Sunday, Sept. 20, 2026, in Baltimore.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-mt-bank-stadium/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>

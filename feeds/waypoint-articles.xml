@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Oct 2026 16:58:56 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 28 Oct 2026 02:52:40 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -87,6 +87,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category domain="geographic">Adirondacks</category>
     <category domain="geographic">Global</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Neo Surveyor Sunshade</title>
+    <link>https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</guid>
+    <pubDate>Tue, 27 Oct 2026 18:02:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The large sunshade of NASA’s Near-Earth Object Surveyor mission is inspected by a technician at BAE Systems Space &amp; Mission Systems in Boulder, Colorado, in late July.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
@@ -237,23 +255,42 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>What Birds Reveal About Fire, Forests, and Resilience</title>
-    <link>https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</link>
-    <guid isPermaLink="true">https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</guid>
-    <pubDate>Tue, 20 Oct 2026 19:54:25 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>Tales of the Adirondacks, past and present: Why advocacy is important for the Adirondack Park</title>
+    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-why-advocacy-is-important-for-the-adirondack-park/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-why-advocacy-is-important-for-the-adirondack-park/</guid>
+    <pubDate>Tue, 27 Oct 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: In the 2025 State of the Birds report, a status assessment of the health of the nation’s bird populations, more than 50% of western forest species are declining due to habitat degradation from fire...
+Summary: Diane Fish works for the Adirondack Council. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/c35bdbe9-1363-45f9-bb77-3519c115974d.jpeg?fit=780%2C797&amp;ssl=1&quot; /&gt; Diane Fish, from the Adirondack Council, shares how advocacy work is essential for the future protection of the region
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-why-advocacy-is-important-for-the-adirondack-park/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>A ‘flight simulator’ for tough conversations: Idea goes to national stage</title>
+    <link>https://www.adirondackexplorer.org/communities/adirondackers-people/a-flight-simulator-for-tough-conversations-idea-goes-to-national-stage/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondackers-people/a-flight-simulator-for-tough-conversations-idea-goes-to-national-stage/</guid>
+    <pubDate>Tue, 27 Oct 2026 17:33:52 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Jenn Munsie is advancing as one of five finalists. Photo provided by Tim Rowland &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_5005.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Adirondack innovator advances to finals in &quot;Small Towns, Big Ideas&quot; competition.
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondackers-people/a-flight-simulator-for-tough-conversations-idea-goes-to-national-stage/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Saranac Lake board aims to use short-term rental moratorium to review regulations</title>
@@ -289,24 +326,6 @@ Waypoint’s Take: For someone heading outside in the Northern New Jersey, the u
 Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/north-creek-moves-forward-on-ski-bowl-connector-trail-system/</description>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northern New Jersey</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>DEC announces $1.5 million available for community forest conservation grants</title>
-    <link>https://www.adirondackexplorer.org/communities/land-use/dec-announces-1-5-million-available-for-community-forest-conservation-grants/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/dec-announces-1-5-million-available-for-community-forest-conservation-grants/</guid>
-    <pubDate>Sun, 25 Oct 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: ground-level view of an old-growth forest floor. Two large, fallen tree trunks covered in thick green moss lie diagonally across the frame, surrounded by a lush carpet of ferns, small evergreen saplings, and scattered brown autumn leaves. In the background, tall, mature tree trunks rise from a dense, shaded woodland.
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/dec-announces-1-5-million-available-for-community-forest-conservation-grants/</description>
-    <category>Forests and Plants</category>
-    <category>Conservation</category>
-    <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -773,6 +792,25 @@ Read the original article at the publisher: https://www.audubon.org/magazine/10-
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>What Birds Reveal About Fire, Forests, and Resilience</title>
+    <link>https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</link>
+    <guid isPermaLink="true">https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</guid>
+    <pubDate>Tue, 20 Oct 2026 19:54:25 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: In the 2025 State of the Birds report, a status assessment of the health of the nation’s bird populations, more than 50% of western forest species are declining due to habitat degradation from fire...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/rockies/news/what-birds-reveal-about-fire-forests-and-resilience</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Community Day Celebrates Fall Migration, Cultural Touchpoints</title>
     <link>https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</link>
     <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/community-day-celebrates-fall-migration-cultural-touchpoints</guid>
@@ -789,6 +827,24 @@ Read the original article at the publisher: https://www.audubon.org/mid-atlantic
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Antarctic rocks reveal a missing chapter of glacier history</title>
+    <link>https://phys.org/news/2026-10-antarctic-reveal-chapter-glacier-history.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-10-antarctic-reveal-chapter-glacier-history.html</guid>
+    <pubDate>Tue, 27 Oct 2026 20:30:05 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Antarctica&apos;s glaciers were changing long before satellites, weather stations or cameras captured their transformations, and they left behind clues. Along Marguerite Bay on the western Antarctic Peninsula, ridges of rocks and debris mark former glacier margins. For decades, scientists lacked direct evidence about when many of these ridges formed.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://phys.org/news/2026-10-antarctic-reveal-chapter-glacier-history.html</description>
+    <category>Weather</category>
+    <category>Geology</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>India orders evacuations as Cyclone Arnab looms</title>
@@ -872,60 +928,6 @@ Summary: This artist’s concept depicts a possible explanation for the unusual 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01m3cbk3t6srkp4q7wv9cgfgw9/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA Astronaut Christina Koch at Eagles vs. Rams</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</guid>
-    <pubDate>Mon, 05 Oct 2026 17:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and mission specialist of the agency&apos;s Artemis II mission, Christina Koch, led the fans in singing the Eagles Fight Song from the field at an NFL game between the Philadelphia Eagles and the Los Angeles Rams at Lincoln Financial Field on Sunday, Oct. 4, 2026, in Philadelphia.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA&apos;s DAVINCI Probe Can Stand the Heat</title>
-    <link>https://www.nasa.gov/image-detail/davinci-heat-test-1/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/davinci-heat-test-1/</guid>
-    <pubDate>Fri, 02 Oct 2026 19:04:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: An engineering model of NASA’s DAVINCI (Deep Atmosphere Venus Investigation of Noble gases, Chemistry, and Imaging) descent probe passed a key test that ran from Aug. 28 to Sept. 10, showing it can survive the extreme temperatures of Venus.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/davinci-heat-test-1/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA’s SpaceX Crew-13 Launches</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</guid>
-    <pubDate>Thu, 01 Oct 2026 18:07:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: A SpaceX Falcon 9 rocket carrying the company&apos;s Dragon spacecraft is launched on NASA’s SpaceX Crew-13 mission to the International Space Station with NASA astronauts Jessica Watkins and Luke Delaney, CSA (Canadian Space Agency) astronaut Joshua Kutryk, and Roscosmos cosmonaut Sergey Teteryatnikov aboard, Thursday, Oct. 1, 2026, from Cape Canaveral Space Force Station in Florida.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
