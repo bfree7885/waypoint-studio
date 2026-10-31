@@ -1,0 +1,61 @@
+{
+  "initial_region": {
+    "id": "ny-pa",
+    "name": "New York and Pennsylvania",
+    "west": -80.52,
+    "south": 39.72,
+    "east": -71.85,
+    "north": 45.02,
+    "frame_note": "Rectangular camera frame around New York and Pennsylvania. Not a legal boundary and not a parcel."
+  },
+  "extent_detail": {
+    "inside_initial_extent": "This coordinate is inside the initial map frame for New York and Pennsylvania. That frame is a rectangle for the camera. It is not a state boundary and not a parcel.",
+    "outside_initial_extent": "This coordinate is outside the initial New York and Pennsylvania map frame. The basemap still works. Analysis data is not loaded here."
+  },
+  "panels": {
+    "parcel": {
+      "title": "Parcel details",
+      "detail": "Parcel boundaries and ownership records are not loaded. A map click records a coordinate only. It does not identify a parcel."
+    },
+    "suitability": {
+      "title": "Vineyard suitability",
+      "detail": "No suitability score is calculated. Soil, slope, aspect, and growing-season climate are not loaded."
+    },
+    "varieties": {
+      "title": "Grape varieties",
+      "detail": "No grape varieties are listed. This foundation does not include a viticulture model."
+    },
+    "climate": {
+      "title": "Future climate",
+      "detail": "No climate projections are shown for 2050 or any later year. Scenario data is not loaded."
+    }
+  },
+  "search_message": "Property search is not connected. No listings were retrieved.",
+  "selection_note": "No result was calculated for this coordinate.",
+  "unexpected_message": "The analysis service returned something this screen will not display. No properties, parcels, varieties, or scores are shown.",
+  "api_down_search": "The analysis service is not running, so this search was not completed. No listings were retrieved.",
+  "map_unavailable": "The basemap did not load. Check the network connection. No substitute boundaries are drawn.",
+  "database": {
+    "not_configured": "No database is configured. The app does not need one to run.",
+    "configured_unused": "A database URL is set. This foundation does not connect to it and does not read parcels or climate rows."
+  },
+  "basemap": {
+    "provider": "OpenFreeMap",
+    "style_name": "positron",
+    "style_url": "https://tiles.openfreemap.org/styles/positron",
+    "attribution_links": [
+      {
+        "label": "OpenFreeMap",
+        "href": "https://openfreemap.org"
+      },
+      {
+        "label": "© OpenMapTiles",
+        "href": "https://www.openmaptiles.org/"
+      },
+      {
+        "label": "Data from OpenStreetMap",
+        "href": "https://www.openstreetmap.org/copyright"
+      }
+    ]
+  }
+}
