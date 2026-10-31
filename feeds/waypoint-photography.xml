@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Oct 2026 17:23:40 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 31 Oct 2026 03:02:12 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -64,24 +64,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/mi
     <author>NASA</author>
   </item>
   <item>
-    <title>RS-25 Engine Tests at NASA Stennis</title>
-    <link>https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</guid>
-    <pubDate>Fri, 23 Oct 2026 18:59:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: RS-25 Engine Tests at NASA Stennis. Teams at NASA’s Stennis Space Center near Bay St. Louis, Mississippi tested RS-25 engine No. 10001 on Oct. 21, 2026.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>In a Sky Ruled by Ancient Birds, Bats Conquered the Dark</title>
     <link>https://www.audubon.org/magazine/how-bats-evolved-flight-night-skies</link>
     <guid isPermaLink="true">https://www.audubon.org/magazine/how-bats-evolved-flight-night-skies</guid>
@@ -100,6 +82,24 @@ Read the original article at the publisher: https://www.audubon.org/magazine/how
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>RS-25 Engine Tests at NASA Stennis</title>
+    <link>https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</guid>
+    <pubDate>Fri, 23 Oct 2026 18:59:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: RS-25 Engine Tests at NASA Stennis. Teams at NASA’s Stennis Space Center near Bay St. Louis, Mississippi tested RS-25 engine No. 10001 on Oct. 21, 2026.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Science on the Space Station with NASA Astronaut Jessica Watkins</title>
