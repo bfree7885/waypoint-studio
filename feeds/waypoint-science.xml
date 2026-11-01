@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Nov 2026 02:58:13 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 01 Nov 2026 17:20:59 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -87,44 +87,6 @@ Read the original article at the publisher: https://www.audubon.org/magazine/how
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Reeling in New Anglers: Wolf Creek NFH&apos;s Fly Fishing 101 Workshop</title>
-    <link>https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</guid>
-    <pubDate>Fri, 30 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Reeling in New Anglers: Wolf Creek NFH&apos;s Fly Fishing 101 Workshop. Fifteen participants joined professional fly fisherman Bill Carman at Wolf Creek National Fish Hatchery for a full day of learning all things fly-fishing.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Outdoor Adventure Day at Wolf Creek National Fish Hatchery</title>
-    <link>https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</guid>
-    <pubDate>Fri, 30 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Outdoor Adventure Day at Wolf Creek National Fish Hatchery. All Russell County fourth grade students were welcomed at Wolf Creek National Fish Hatchery for a full day of learning and fun!
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>Following the flight routes of migrating monarchs</title>
     <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
@@ -142,6 +104,25 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fo
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>WhistlePig Whiskey fights back against air permit</title>
+    <link>https://www.adirondackexplorer.org/environment/whistlepig-whiskey-fights-back-against-air-permit/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/whistlepig-whiskey-fights-back-against-air-permit/</guid>
+    <pubDate>Sun, 01 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The grey building on the right, is owned by the Essex County Industrial Development Agency and occupied by High Peaks Hospice and Palliative Care for administration, tested positive for whiskey fungus. It has distillery buildings on three sides. Photo by Eric Teed &quot; data-image-caption=&quot; Whiskey fungus, also called warehouse-staining fungus, appears to be on the sides of a WhistlePig Whiskey aging warehouse in 2023 in Moriah.
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/whistlepig-whiskey-fights-back-against-air-permit/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Dammit defies the odds</title>
@@ -194,25 +175,6 @@ Summary: Panelists say local grocery stores can’t always supply every essentia
 Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adkaction-releases-findings-from-rural-grocery-report/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Stories: Fort Ticonderoga captured</title>
-    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-ticonderoga-captured/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-ticonderoga-captured/</guid>
-    <pubDate>Fri, 30 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Adirondack Stories: Fort Ticonderoga captured. Fort Ticonderoga&apos;s capture marked the first American victory in the Revolutionary War and provided much needed weaponry
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-fort-ticonderoga-captured/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -315,25 +277,6 @@ Read the original article at the publisher: https://www.audubon.org/texas/news/r
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Prothonotary Warblers in Kansas Have a Secret. Can a Team of Volunteers Figure It Out?</title>
-    <link>https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</guid>
-    <pubDate>Fri, 30 Oct 2026 15:08:29 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Ann Tanner is running on four hours of sleep and showing no signs of it. On a humid June morning, she greets me with enthusiasm and a surprisingly strong handshake as I join a group of volunteers...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
     <title>Rowe Sanctuary Strategic Plan</title>
     <link>https://www.audubon.org/great-plains/news/rowe-sanctuary-strategic-plan</link>
     <guid isPermaLink="true">https://www.audubon.org/great-plains/news/rowe-sanctuary-strategic-plan</guid>
@@ -352,6 +295,44 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Reeling in New Anglers: Wolf Creek NFH&apos;s Fly Fishing 101 Workshop</title>
+    <link>https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</guid>
+    <pubDate>Fri, 30 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Reeling in New Anglers: Wolf Creek NFH&apos;s Fly Fishing 101 Workshop. Fifteen participants joined professional fly fisherman Bill Carman at Wolf Creek National Fish Hatchery for a full day of learning all things fly-fishing.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/reeling-new-anglers-wolf-creek-nfhs-fly-fishing-101-workshop</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Outdoor Adventure Day at Wolf Creek National Fish Hatchery</title>
+    <link>https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</guid>
+    <pubDate>Fri, 30 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Outdoor Adventure Day at Wolf Creek National Fish Hatchery. All Russell County fourth grade students were welcomed at Wolf Creek National Fish Hatchery for a full day of learning and fun!
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/outdoor-adventure-day-wolf-creek-national-fish-hatchery</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Carp Control: Removing Invasive Carp from the Grand River</title>
@@ -373,16 +354,70 @@ Read the original article at the publisher: https://www.fws.gov/story/carp-contr
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Sun news: Halloween 2003 was a scary time to be a satellite</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sat, 31 Oct 2026 10:54:55 GMT</pubDate>
+    <title>Did comets seed life on Earth? A new study says — probably not</title>
+    <link>https://earthsky.org/space/did-comets-seed-life-on-earth-prebiotic-molecules-alma/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/did-comets-seed-life-on-earth-prebiotic-molecules-alma/</guid>
+    <pubDate>Sun, 01 Nov 2026 13:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news October 31, 2026: Satellite crews were counting damage from the Halloween storms 23 years ago today. Tonight brings a gentler treat: auroras! The post Sun news: Halloween 2003 was a scary time to be a satellite first appeared on EarthSky .
+Summary: Did comets seed life on Earth? It&apos;s unlikely, a new study from the University of Cambridge says. It would have been a very rare occurrence. The post Did comets seed life on Earth? A new study says — probably not first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/did-comets-seed-life-on-earth-prebiotic-molecules-alma/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Do black holes split into smaller black holes?</title>
+    <link>https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</guid>
+    <pubDate>Sun, 01 Nov 2026 12:45:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Black holes sometimes merge. But could 1 split into 2 or more? A new study explores the conditions that might allow it, including extremely rapid rotation. The post Do black holes split into smaller black holes? first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Did the Viking 2 lander detect marsquakes in 1976?</title>
+    <link>https://earthsky.org/space/marsquakes-viking2-insight-mars/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/marsquakes-viking2-insight-mars/</guid>
+    <pubDate>Sun, 01 Nov 2026 12:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: New analysis shows that 2 possible marsquakes detected by Viking 2 were in the same region as nearly 1,000 others detected by the InSight lander decades later. The post Did the Viking 2 lander detect marsquakes in 1976? first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/marsquakes-viking2-insight-mars/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news November 1: The day the sun wasn’t done yet</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Sun, 01 Nov 2026 11:43:45 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 1, 2026: 23 years ago today, Earth caught its breath between Halloween storms. But the sun had bigger blasts in store. Stay tuned! The post Sun news November 1: The day the sun wasn’t done yet first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
@@ -391,72 +426,18 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>New dwarf planet discovered by Rubin?</title>
-    <link>https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</guid>
-    <pubDate>Fri, 30 Oct 2026 11:43:00 GMT</pubDate>
+    <title>November birthstone: Choose from either topaz or citrine</title>
+    <link>https://earthsky.org/human-world/november-birthstone-topaz/</link>
+    <guid isPermaLink="true">https://earthsky.org/human-world/november-birthstone-topaz/</guid>
+    <pubDate>Sun, 01 Nov 2026 11:08:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Astronomers using the Rubin Observatory have discovered a new dwarf planet candidate. It lies just beyond the orbit of Pluto. The post New dwarf planet discovered by Rubin? first appeared on EarthSky .
+Summary: The November birthstone, topaz, comes in lots of colors. It&apos;s a much-loved gemstone in jewelry, with myths that date to ancient times. Or choose citrine. The post November birthstone: Choose from either topaz or citrine first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Ghostly white animals: What’s the cause?</title>
-    <link>https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</guid>
-    <pubDate>Fri, 30 Oct 2026 11:18:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Happy Halloween! They might look ghostly, but white animals are not ghosts. Here&apos;s the science behind why some creatures lose their color. The post Ghostly white animals: What’s the cause? first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Daylight Time ends Sunday: 7 tips to help you adjust</title>
-    <link>https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</guid>
-    <pubDate>Fri, 30 Oct 2026 11:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Daylight Time ends on November 1, 2026. Here are 7 tips from the American Academy of Sleep Medicine to help you adjust to the time change. The post Daylight Time ends Sunday: 7 tips to help you adjust first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The Witch Head Nebula rises near Orion on Halloween</title>
-    <link>https://earthsky.org/todays-image/witch-head-nebula-orion/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/witch-head-nebula-orion/</guid>
-    <pubDate>Fri, 30 Oct 2026 08:00:50 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Witch Head Nebula rises near the star Rigel in Orion on Halloween night, but it&apos;s too faint to see without a large telescope. It&apos;s perfect sight for Halloween. The post The Witch Head Nebula rises near Orion on Halloween first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/witch-head-nebula-orion/</description>
+Read the original article at the publisher: https://earthsky.org/human-world/november-birthstone-topaz/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -479,6 +460,25 @@ Read the original article at the publisher: https://www.audubon.org/magazine/bir
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Town of Plattsburgh receives award for C.H.A.M.P. law</title>
+    <link>https://www.adirondackexplorer.org/communities/town-of-plattsburgh-receives-award-for-c-h-a-m-p-law/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/town-of-plattsburgh-receives-award-for-c-h-a-m-p-law/</guid>
+    <pubDate>Sun, 01 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Senior Planner Jessica Kogut stands with the award. Photo courtesy of the Town of Plattsburgh. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Senior-Planner-Jessica-Kogut-with-award.jpg?fit=780%2C1040&amp;ssl=1&quot; /&gt; The town received the Best Practice Award for its Creating Housing Acceleration Measures for Plattsburgh adopted in 2025
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/town-of-plattsburgh-receives-award-for-c-h-a-m-p-law/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>How to know if your building is haunted</title>
@@ -538,71 +538,37 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Fly of the Week: Little Rainbow Trout Bucktail Streamer</title>
-    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-rainbow-trout-bucktail-streamer/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-rainbow-trout-bucktail-streamer/</guid>
-    <pubDate>Fri, 30 Oct 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Prothonotary Warblers in Kansas Have a Secret. Can a Team of Volunteers Figure It Out?</title>
+    <link>https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</guid>
+    <pubDate>Fri, 30 Oct 2026 15:08:29 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: Fly of the Week: Little Rainbow Trout Bucktail Streamer. Little Rainbow Trout Bucktail Streamer tied and photographed by Geoff Schaake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Little-Rainbow-Trout-Bucktail-Streamer-tied-and-photographed-by-Geoff-Schaake.jpg?fit=780%2C553&amp;ssl=1&quot; /&gt; A pattern to fool those looking for small prey.
+Summary: Ann Tanner is running on four hours of sleep and showing no signs of it. On a humid June morning, she greets me with enthusiasm and a surprisingly strong handshake as I join a group of volunteers...
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-rainbow-trout-bucktail-streamer/</description>
-    <category>Regional News</category>
+Read the original article at the publisher: https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
     <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Visible planets and night sky guide for October and November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sat, 31 Oct 2026 08:20:00 GMT</pubDate>
+    <pubDate>Sun, 01 Nov 2026 09:20:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. Halloween is an astronomical holiday! See a video about it here. Tomorrow, watch for the 3rd quarter moon. The post Visible planets and night sky guide for October and November first appeared on EarthSky .
+Summary: Visible planets and night sky guide. Tomorrow morning, the moon will hang close to Mars. And watch a video about the astronomical holiday we call Halloween. The post Visible planets and night sky guide for October and November first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Could the Taurid meteors bring a risk of airbursts in 2026?</title>
-    <link>https://earthsky.org/space/halloween-fireballs-airburst-2032-or-2036-taurid-fireballs/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/halloween-fireballs-airburst-2032-or-2036-taurid-fireballs/</guid>
-    <pubDate>Fri, 30 Oct 2026 11:18:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A researcher says the Taurid meteor shower could bring an increased risk of an airburst in 2026. But these Halloween fireballs are based on 2 big IFs. The post Could the Taurid meteors bring a risk of airbursts in 2026? first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/halloween-fireballs-airburst-2032-or-2036-taurid-fireballs/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Halloween is an astronomy holiday. It’s a cross-quarter day</title>
-    <link>https://earthsky.org/astronomy-essentials/halloween-derived-from-ancient-celtic-cross-quarter-day/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/halloween-derived-from-ancient-celtic-cross-quarter-day/</guid>
-    <pubDate>Fri, 30 Oct 2026 09:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: A cross-quarter day falls between an equinox and a solstice. Halloween is the year&apos;s 4th cross-quarter day and the spookiest of them all. The post Halloween is an astronomy holiday. It’s a cross-quarter day first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/halloween-derived-from-ancient-celtic-cross-quarter-day/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -625,6 +591,24 @@ Read the original article at the publisher: https://blog.nature.org/2026/10/14/m
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>The Nature Conservancy</author>
+  </item>
+  <item>
+    <title>Adirondack Council report examines political, social, environmental forces shaping park</title>
+    <link>https://www.adirondackexplorer.org/environment/adirondack-council-report-examines-political-social-environmental-forces-shaping-park/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/adirondack-council-report-examines-political-social-environmental-forces-shaping-park/</guid>
+    <pubDate>Sun, 01 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: State of the Park 2026 covers protections and threats to the park. Photo courtesy of the Adirondack Council. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/State-of-the-Park-2026-Cover.jpg?fit=780%2C932&amp;ssl=1&quot; /&gt; The State of the Park Report praises conservation efforts and criticizes federal rollbacks of environmental protections
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use the story to understand pressures on land and water without turning it into activism theater. Keep the publisher’s claims provisional until you read the original. Articles is a modest companion when the subject overlaps — skip it when it does not.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/adirondack-council-report-examines-political-social-environmental-forces-shaping-park/</description>
+    <category>Conservation</category>
+    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">National</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Prescribed Burns Planned at Chesapeake Marshlands National Wildlife Refuge Complex to Improve Habitat and Reduce Wildfire Risk</title>
@@ -719,41 +703,58 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
-    <title>Is this our solar system’s future? Scientists spot disk around dead star</title>
-    <link>https://earthsky.org/space/is-this-our-solar-systems-future-white-dwarf-debris-disks/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/is-this-our-solar-systems-future-white-dwarf-debris-disks/</guid>
-    <pubDate>Thu, 29 Oct 2026 11:50:00 GMT</pubDate>
+    <title>New dwarf planet discovered by Rubin?</title>
+    <link>https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</guid>
+    <pubDate>Fri, 30 Oct 2026 11:43:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Researchers have discovered a white dwarf surrounded by a debris disk with 2 separate rings. It offers a possible glimpse of our solar system&apos;s future. The post Is this our solar system’s future? Scientists spot disk around dead star first appeared on EarthSky .
+Summary: Astronomers using the Rubin Observatory have discovered a new dwarf planet candidate. It lies just beyond the orbit of Pluto. The post New dwarf planet discovered by Rubin? first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/is-this-our-solar-systems-future-white-dwarf-debris-disks/</description>
+Read the original article at the publisher: https://earthsky.org/space/new-dwarf-planet-candidate-ed138/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Mariculture in Alaska! Reflecting on my time spent in the hatchery and creating a home in Juneau, Alaska</title>
-    <link>https://www.noaa.gov/office-education/hollings-scholarship/stories/mariculture-in-alaska-reflecting-on-my-time-spent-in-hatchery-and-creating-home-in-juneau-alaska</link>
-    <guid isPermaLink="true">https://www.noaa.gov/office-education/hollings-scholarship/stories/mariculture-in-alaska-reflecting-on-my-time-spent-in-hatchery-and-creating-home-in-juneau-alaska</guid>
-    <pubDate>Fri, 16 Oct 2026 15:02:33 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+    <title>Ghostly white animals: What’s the cause?</title>
+    <link>https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</guid>
+    <pubDate>Fri, 30 Oct 2026 11:18:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Mariculture in Alaska! Reflecting on my time spent in the hatchery and creating a home in Juneau, Alaska Ella Skonieczny alongside her fellow Hollings intern Alleyah Britton, and mentor Becca, holding Pacific oysters ( Crassostrea gigas ) from the Salty Lady Seafood Company oyster farm.
+Summary: Happy Halloween! They might look ghostly, but white animals are not ghosts. Here&apos;s the science behind why some creatures lose their color. The post Ghostly white animals: What’s the cause? first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.noaa.gov/office-education/hollings-scholarship/stories/mariculture-in-alaska-reflecting-on-my-time-spent-in-hatchery-and-creating-home-in-juneau-alaska</description>
-    <category>Weather</category>
-    <category>Climate</category>
+Read the original article at the publisher: https://earthsky.org/earth/ghostly-white-animals-cause-albinism-leucism/</description>
+    <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Daylight Time ends Sunday: 7 tips to help you adjust</title>
+    <link>https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</link>
+    <guid isPermaLink="true">https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</guid>
+    <pubDate>Fri, 30 Oct 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Daylight Time ends on November 1, 2026. Here are 7 tips from the American Academy of Sleep Medicine to help you adjust to the time change. The post Daylight Time ends Sunday: 7 tips to help you adjust first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/human-world/daylight-time-ends-tips-to-help-you-adjust/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
