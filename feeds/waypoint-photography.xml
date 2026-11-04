@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Nov 2026 03:42:13 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2026 18:59:06 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -208,22 +208,22 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/sh
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Sun news: Sunspot region rapidly grows stronger</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Wed, 04 Nov 2026 10:52:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+Summary: Sun news November 4, 2026: Newcomer sunspot AR4566 just became magnetically complex. Could it fire an M- or X-class flare? The post Sun news: Sunspot region rapidly grows stronger first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Swift spacecraft fiery reentry expected within the next 24 hours</title>
@@ -262,24 +262,6 @@ Read the original article at the publisher: https://earthsky.org/space/blaze-sta
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: How a quiet sun stirs up auroras</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Tue, 03 Nov 2026 10:52:58 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 3, 2026: Few sunspots, but still auroras? Thank coronal holes! Their fast solar wind can stir Earth’s magnetic field for days. The post Sun news: How a quiet sun stirs up auroras first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Dark sky conference: Under One Sky, November 6-7</title>
     <link>https://earthsky.org/human-world/dark-sky-conference-under-one-sky-november-6-7-2026/</link>
     <guid isPermaLink="true">https://earthsky.org/human-world/dark-sky-conference-under-one-sky-november-6-7-2026/</guid>
@@ -305,7 +287,7 @@ Read the original article at the publisher: https://earthsky.org/human-world/dar
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Just before sunrise and after sunset, you can spot Earth&apos;s shadow. Look west at sunrise and east at sunset. Learn more about Earth&apos;s shadow here. The post How to see Earth’s shadow at sunrise and sunset first appeared on EarthSky .
+Summary: You can see Earth&apos;s shadow in both the evening and morning sky. It appears as a bluish band opposite the sun. And you might see the Belt of Venus too. The post How to see Earth’s shadow at sunrise and sunset first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -314,6 +296,24 @@ Read the original article at the publisher: https://earthsky.org/space/when-can-
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
+    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Transporter-18 SmallSats Encapsulation</title>
@@ -460,36 +460,52 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <author>NASA</author>
   </item>
   <item>
-    <title>Crew-13 Rocket and Spacecraft at Launch Pad</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1312/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1312/</guid>
-    <pubDate>Tue, 29 Sep 2026 15:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>A new mini-moon for Earth! Meet 2026 QQ8</title>
+    <link>https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</guid>
+    <pubDate>Wed, 04 Nov 2026 12:23:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Ahead of launch of NASA’s SpaceX Crew-13 mission, a SpaceX Falcon 9 rocket, with the Dragon spacecraft atop, is vertical at the launch pad of Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida on Sunday, Sept. 27, 2026.
+Summary: Earth has another new mini-moon! The little space rock 2026 QQ8 began orbiting Earth in April and will stay through 2026. The post A new mini-moon for Earth! Meet 2026 QQ8 first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1312/</description>
+Read the original article at the publisher: https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Tue, 03 Nov 2026 10:45:00 GMT</pubDate>
+    <pubDate>Wed, 04 Nov 2026 11:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. Tomorrow morning, before dawn, look for brilliant Venus, bright Jupiter and red Mars. And watch for Taurid meteors! The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide. Tomorrow, look for the peaking South Taurid meteors, and Venus will hang near Spica at dawn. The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Pegasus the Flying Horse, and the best sky story ever</title>
+    <link>https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</guid>
+    <pubDate>Wed, 04 Nov 2026 09:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Pegasus the Flying Horse is the 7th largest constellation. It dominates fall skies in the Northern Hemisphere and has a famous asterism called the Great Square. The post Pegasus the Flying Horse, and the best sky story ever first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -542,42 +558,6 @@ Summary: Did comets seed life on Earth? It&apos;s unlikely, a new study from the
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/did-comets-seed-life-on-earth-prebiotic-molecules-alma/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Do black holes split into smaller black holes?</title>
-    <link>https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</guid>
-    <pubDate>Sun, 01 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Black holes sometimes merge. But could 1 split into 2 or more? A new study explores the conditions that might allow it, including extremely rapid rotation. The post Do black holes split into smaller black holes? first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/black-holes-split-entropy-pair-of-pants-topology/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Did the Viking 2 lander detect marsquakes in 1976?</title>
-    <link>https://earthsky.org/space/marsquakes-viking2-insight-mars/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/marsquakes-viking2-insight-mars/</guid>
-    <pubDate>Sun, 01 Nov 2026 12:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: New analysis shows that 2 possible marsquakes detected by Viking 2 were in the same region as nearly 1,000 others detected by the InSight lander decades later. The post Did the Viking 2 lander detect marsquakes in 1976? first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/marsquakes-viking2-insight-mars/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
