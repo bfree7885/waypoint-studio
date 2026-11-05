@@ -5,10 +5,48 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Nov 2026 04:00:30 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 19:10:59 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>NOAA weather modeling hits key milestone with Rapid Refresh Forecast System debut</title>
+    <link>https://www.noaa.gov/news-release/noaa-weather-modeling-hits-key-milestone-with-rapid-refresh-forecast-system-debut</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news-release/noaa-weather-modeling-hits-key-milestone-with-rapid-refresh-forecast-system-debut</guid>
+    <pubDate>Wed, 04 Nov 2026 20:22:45 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: NOAA weather modeling hits key milestone with Rapid Refresh Forecast System debut RRFS delivers earlier, more accurate forecasts to support protection of life, property November 5, 2026 A shelf cloud and thunderstorm cross the Hudson River from Jersey City, New Jersey, into lower Manhattan, seen from the 86th-floor observation deck of the Empire State Building on August 07, 2026, in New York City. (Image credit: Gary Hershorn/Getty Images) NOAA marked an important milestone in numerical weather modeling on November 3 with the implementation of a next-generation rapid-update forecast system by…
+
+Waypoint’s Take: Outside in the Hudson Valley, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news-release/noaa-weather-modeling-hits-key-milestone-with-rapid-refresh-forecast-system-debut</description>
+    <category>Weather</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Hudson Valley</category>
+    <category domain="geographic">Northeast</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
+    <title>Midwestern City Lights</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>A new tool helps target conservation and pollution control on the Ganges River</title>
     <link>https://phys.org/news/2026-11-tool-pollution-ganges-river.html</link>
@@ -27,6 +65,25 @@ Read the original article at the publisher: https://phys.org/news/2026-11-tool-p
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Space walk in the Adirondacks: Girl Scouts build solar system hike in Lake Luzerne</title>
+    <link>https://www.adirondackexplorer.org/recreation/hiking/space-walk-in-the-adirondacks-girl-scouts-build-solar-system-hike-in-lake-luzerne/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/space-walk-in-the-adirondacks-girl-scouts-build-solar-system-hike-in-lake-luzerne/</guid>
+    <pubDate>Thu, 05 Nov 2026 11:27:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Rebecca Morlitz prepares to present facts about Mercury. The small round object at the top of the sign represents a scaled-down version of the planet. Photo by Brianna Kimmel &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_5670-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Astronomy club expands science-based opportunities for girls across Northern New York
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/space-walk-in-the-adirondacks-girl-scouts-build-solar-system-hike-in-lake-luzerne/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <category domain="geographic">Global</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Astronaut and Earth</title>
@@ -85,24 +142,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fa
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Soaking in shoulder-season views along the Northville Placid Trail</title>
-    <link>https://www.adirondackexplorer.org/recreation/hiking/soaking-in-shoulder-season-views-along-the-northville-placid-trail/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/soaking-in-shoulder-season-views-along-the-northville-placid-trail/</guid>
-    <pubDate>Tue, 03 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Fernando Figueroa stands on the bank of West Stony Creek along the Northville Placid Trail near Benson. Photo by David Escobar &quot; data-image-caption=&quot; Fernando Figueroa stands on the bank of West Stony Creek along the Northville Placid Trail near Benson. Photo by David Escobar &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/IMG_0905-2-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Leafy forest floors and barren trees give way to West Stony Creek
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/soaking-in-shoulder-season-views-along-the-northville-placid-trail/</description>
-    <category>Forests and Plants</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Following the flight routes of migrating monarchs</title>
     <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
@@ -122,18 +161,37 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fo
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Adirondack ‘Hub’ towns target shovel-ready housing solutions</title>
-    <link>https://www.adirondackexplorer.org/communities/housing/adirondack-hub-towns-target-shovel-ready-housing-solutions/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/adirondack-hub-towns-target-shovel-ready-housing-solutions/</guid>
-    <pubDate>Tue, 03 Nov 2026 14:47:00 GMT</pubDate>
+    <title>Lake Placid Film Festival and other Adirondack region events</title>
+    <link>https://www.adirondackexplorer.org/events/lake-placid-film-festival-and-other-adirondack-region-events/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/lake-placid-film-festival-and-other-adirondack-region-events/</guid>
+    <pubDate>Thu, 05 Nov 2026 17:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Community leaders in Schroon are in the process of identifying possible locations for workforce housing projects. Photo by Zachary Matson. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/01/IMG_9956-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Regional planning board offers technical assistance for communities overlooked when it comes to workforce housing projects.
+Summary: “Ice Palace: A Love Letter” world premier at the Palace Theatre for the Lake Placid Film Festival, 2019. Photo courtesy of ADK Film. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/Ice-Palace-Premiere-Lake-Placid-Film-Festival-October-2019.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Events in the region this week include a holiday market, pumpkin chunkin&apos; in Lake George, concerts and more
 
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/adirondack-hub-towns-target-shovel-ready-housing-solutions/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/events/lake-placid-film-festival-and-other-adirondack-region-events/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Adirondack Stories: John Brown</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-john-brown/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-john-brown/</guid>
+    <pubDate>Thu, 05 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: John Brown. John Brown was a famous abolitionist in the mid 1800s who moved his family to a farm at North Elba near Lake Placid
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-john-brown/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -198,23 +256,23 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Prescribed Burning Planned at Bosque del Apache National Wildlife Refuge</title>
-    <link>https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</guid>
-    <pubDate>Thu, 15 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>Sky, Sea, &amp; Shore</title>
+    <link>https://www.audubon.org/news/sky-sea-shore</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/sky-sea-shore</guid>
+    <pubDate>Thu, 05 Nov 2026 17:02:19 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: The U.S. Fish and Wildlife Service today announced that weather permitting, prescribed burns will begin Saturday, Oct. 17, at Bosque del Apache National Wildlife Refuge. Burning operations are expected to take three to five days.
+Summary: Sea-level rise and severe storms threaten coastal communities and shorelines around the world. Protecting wetlands and maintaining healthy beaches can help mitigate these threats. That’s why...
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burning-planned-bosque-del-apache-national-wildlife-refuge</description>
-    <category>Weather</category>
+Read the original article at the publisher: https://www.audubon.org/news/sky-sea-shore</description>
+    <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>
     <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Meet Julie Shapiro, Vice President of the Rockies Region</title>
@@ -380,22 +438,22 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/af
     <author>NASA</author>
   </item>
   <item>
-    <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
-    <link>https://www.nasa.gov/image-detail/shape-3601-3601/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/shape-3601-3601/</guid>
-    <pubDate>Thu, 15 Oct 2026 14:20:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Sun news: Sharp drop for Solar Cycle 25</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Thu, 05 Nov 2026 10:52:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Astronomers have used NASA’s Chandra X-ray Observatory to break down the cause of a remarkable formation of radio waves they have nicknamed the “Treble Clef” because its distinct shape strongly resembles the musical symbol.
+Summary: Sun news November 5, 2026: NOAA has announced the sunspot number for October, revealing another sharp drop in activity for Solar Cycle 25. The post Sun news: Sharp drop for Solar Cycle 25 first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/shape-3601-3601/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Reeling in New Anglers: Wolf Creek NFH&apos;s Fly Fishing 101 Workshop</title>
@@ -436,35 +494,34 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/ou
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Kirby Struhar</title>
-    <link>https://www.noaa.gov/our-people/leadership/kirby-struhar</link>
-    <guid isPermaLink="true">https://www.noaa.gov/our-people/leadership/kirby-struhar</guid>
-    <pubDate>Thu, 29 Oct 2026 15:59:00 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.noaa.gov/our-people/leadership/kirby-struhar</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>Swift spacecraft fell back to Earth in a fiery blaze on Wednesday</title>
-    <link>https://earthsky.org/space/swift-spacecraft-boost-plunging-back-to-earth/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/swift-spacecraft-boost-plunging-back-to-earth/</guid>
-    <pubDate>Wed, 04 Nov 2026 12:30:00 GMT</pubDate>
+    <title>Hera mission gets its 1st closeup view of Didymos and Dimorphos</title>
+    <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
+    <pubDate>Thu, 05 Nov 2026 17:15:56 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The Swift spacecraft fell back to Earth as a fiery streak of light on Wednesday. See videos here of the blazing reentry into Earth&apos;s atmosphere. The post Swift spacecraft fell back to Earth in a fiery blaze on Wednesday first appeared on EarthSky .
+Summary: The Hera mission just got its 1st closeup view of Didymos and its little moonlet Dimorphos. Soon it will begin investigating the aftermath of the DART impact. The post Hera mission gets its 1st closeup view of Didymos and Dimorphos first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hera-mission-dart-asteroid-impact/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Swift spacecraft fell back to Earth in a fiery blaze yesterday</title>
+    <link>https://earthsky.org/space/swift-spacecraft-boost-plunging-back-to-earth/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/swift-spacecraft-boost-plunging-back-to-earth/</guid>
+    <pubDate>Thu, 05 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Swift spacecraft fell back to Earth as a fiery streak of light yesterday. See videos here of the blazing reentry into Earth&apos;s atmosphere. The post Swift spacecraft fell back to Earth in a fiery blaze yesterday first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/swift-spacecraft-boost-plunging-back-to-earth/</description>
     <category>Astronomy and Night Sky</category>
@@ -473,72 +530,36 @@ Read the original article at the publisher: https://earthsky.org/space/swift-spa
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Sunspot region rapidly grows stronger</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 04 Nov 2026 10:52:00 GMT</pubDate>
+    <title>ESCAPADE mission to fly past Earth twice in 2 days</title>
+    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
+    <pubDate>Thu, 05 Nov 2026 11:25:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news November 4, 2026: Newcomer sunspot AR4566 just became magnetically complex. Could it fire an M- or X-class flare? The post Sun news: Sunspot region rapidly grows stronger first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>When will the Blaze Star erupt? Will neutrinos give us a warning?</title>
-    <link>https://earthsky.org/space/blaze-star-nova-corona-borealis-how-to-see-it/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/blaze-star-nova-corona-borealis-how-to-see-it/</guid>
-    <pubDate>Tue, 03 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Astronomers are still waiting for the Blaze Star to erupt. New research suggests neutrinos could provide an early warning of its next outburst. The post When will the Blaze Star erupt? Will neutrinos give us a warning? first appeared on EarthSky .
+Summary: On November 7 and 9, 2026, the twin probes of the ESCAPADE mission — first Blue and then Gold — will perform flybys of Earth on the way to Mars. The post ESCAPADE mission to fly past Earth twice in 2 days first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/blaze-star-nova-corona-borealis-how-to-see-it/</description>
+Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Dark sky conference: Under One Sky, November 6-7</title>
-    <link>https://earthsky.org/human-world/dark-sky-conference-under-one-sky-november-6-7-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/dark-sky-conference-under-one-sky-november-6-7-2026/</guid>
-    <pubDate>Tue, 03 Nov 2026 10:30:00 GMT</pubDate>
+    <title>Dark nebulae are star-obscuring clouds of gas and dust</title>
+    <link>https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</guid>
+    <pubDate>Thu, 05 Nov 2026 09:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: On November 6-7, 2026, DarkSky International will hold a virtual dark sky conference called Under One Sky. Learn more about it and light pollution here. The post Dark sky conference: Under One Sky, November 6-7 first appeared on EarthSky .
+Summary: Dark nebulae are clouds of gas and dust in space. They block the light of stars shining behind them. Often, they&apos;re locations where new stars are forming. The post Dark nebulae are star-obscuring clouds of gas and dust first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/human-world/dark-sky-conference-under-one-sky-november-6-7-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>How to see Earth’s shadow at sunrise and sunset</title>
-    <link>https://earthsky.org/space/when-can-you-see-earths-shadow/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/when-can-you-see-earths-shadow/</guid>
-    <pubDate>Tue, 03 Nov 2026 10:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: You can see Earth&apos;s shadow in both the evening and morning sky. It appears as a bluish band opposite the sun. And you might see the Belt of Venus too. The post How to see Earth’s shadow at sunrise and sunset first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/when-can-you-see-earths-shadow/</description>
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -658,25 +679,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Women Who Shape Schroon Lake: Local leaders gather for women in business panel</title>
-    <link>https://www.adirondackexplorer.org/communities/women-who-shape-schroon-lake-local-leaders-gather-for-women-in-business-panel/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/women-who-shape-schroon-lake-local-leaders-gather-for-women-in-business-panel/</guid>
-    <pubDate>Tue, 03 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The panel will be held at the Lodge at Schroon Lake. Photo by Nancie Battaglia, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/nbHistLodgeSchroon-9298MH.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Women business leaders in the Schroon Lake region will gather to share ideas during a free panel discussion
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/women-who-shape-schroon-lake-local-leaders-gather-for-women-in-business-panel/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Rethinking Your Lawn (Without Overthinking It)</title>
     <link>https://www.audubon.org/texas/news/rethinking-your-lawn-without-overthinking-it</link>
     <guid isPermaLink="true">https://www.audubon.org/texas/news/rethinking-your-lawn-without-overthinking-it</guid>
@@ -696,18 +698,18 @@ Read the original article at the publisher: https://www.audubon.org/texas/news/r
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Prothonotary Warblers in Kansas Have a Secret. Can a Team of Volunteers Figure It Out?</title>
-    <link>https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</guid>
+    <title>Prothonotary Warblers in Kansas City Have a Secret. Can a Team of Volunteers Figure It Out?</title>
+    <link>https://www.audubon.org/news/prothonotary-warblers-kansas-city-have-secret-can-team-of-volunteers-figure-it-out</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/prothonotary-warblers-kansas-city-have-secret-can-team-of-volunteers-figure-it-out</guid>
     <pubDate>Fri, 30 Oct 2026 15:08:29 GMT</pubDate>
     <source url="https://www.audubon.org/">National Audubon Society</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
 Summary: Ann Tanner is running on four hours of sleep and showing no signs of it. On a humid June morning, she greets me with enthusiasm and a surprisingly strong handshake as I join a group of volunteers...
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/news/prothonotary-warblers-kansas-have-secret-can-team-of-volunteers-figure-it-out</description>
+Read the original article at the publisher: https://www.audubon.org/news/prothonotary-warblers-kansas-city-have-secret-can-team-of-volunteers-figure-it-out</description>
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>
@@ -734,18 +736,18 @@ Read the original article at the publisher: https://phys.org/news/2026-11-northe
     <author>Phys.org</author>
   </item>
   <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
+    <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
+    <link>https://www.nasa.gov/image-detail/shape-3601-3601/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/shape-3601-3601/</guid>
+    <pubDate>Thu, 15 Oct 2026 14:20:00 GMT</pubDate>
     <source url="https://www.nasa.gov/">NASA</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+Summary: Astronomers have used NASA’s Chandra X-ray Observatory to break down the cause of a remarkable formation of radio waves they have nicknamed the “Treble Clef” because its distinct shape strongly resembles the musical symbol.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/shape-3601-3601/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
