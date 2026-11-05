@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Nov 2026 18:59:06 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 05 Nov 2026 04:00:30 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -119,6 +119,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Henderson Lake: A return to Tahawus, this time by canoe</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</guid>
+    <pubDate>Wed, 04 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Canoeing on Henderson Lake. Photo courtesy of Jenn Woltjen. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/image.jpg?fit=780%2C439&amp;ssl=1&quot; /&gt; Jenn Woltjen retraces the steps of Teddy Roosevelt and David Henderson, a businessman who lost his life due to an accident in the area
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Anthony Constantino says he’s heading to Congress</title>
@@ -289,21 +308,22 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Last climb of the zombie millipede</title>
-    <link>https://www.adirondackexplorer.org/environment/wildlife/last-climb-of-the-zombie-millipede/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/wildlife/last-climb-of-the-zombie-millipede/</guid>
-    <pubDate>Mon, 02 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>2026-2027 Winter Skywarn Spotter Training Schedule</title>
+    <link>https://www.weather.gov/aly/skywarn</link>
+    <guid isPermaLink="true">https://www.weather.gov/aly/skywarn</guid>
+    <pubDate>Sun, 06 Oct 2019 14:38:54 GMT</pubDate>
+    <source url="https://www.weather.gov/aly/">National Weather Service Albany</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Albany.
 
-Summary: Cherry millipedes can become infected by fungi and become zombified. Illustration by Adelaide Murphy Tyrol. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/cherry-millipede.jpg?fit=780%2C505&amp;ssl=1&quot; /&gt; Because of fungi which land on and infect them, millipedes can enter a zombification causing them to behave strangely
+Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: note seasonal fruiting cues and habitat moisture — identification stays provisional until you verify with care. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/wildlife/last-climb-of-the-zombie-millipede/</description>
-    <category>Fungi</category>
+Read the original article at the publisher: https://www.weather.gov/aly/skywarn</description>
+    <category>Weather</category>
+    <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
+    <author>National Weather Service Albany</author>
   </item>
   </channel>
 </rss>
