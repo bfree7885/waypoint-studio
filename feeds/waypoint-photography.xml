@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Nov 2026 03:58:39 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 18:38:47 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -25,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>M30&apos;s Sparkling Stars</title>
+    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
+    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -209,50 +227,50 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <author>NASA</author>
   </item>
   <item>
-    <title>Artemis II Heat Shield After Splashdown</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
-    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Sun news: Sharp drop for Solar Cycle 25</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Thu, 05 Nov 2026 10:52:00 GMT</pubDate>
+    <title>Active volcanoes on Mars? Noxious gas discovery says — maybe</title>
+    <link>https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</guid>
+    <pubDate>Fri, 06 Nov 2026 13:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news November 5, 2026: NOAA has announced the sunspot number for October, revealing another sharp drop in activity for Solar Cycle 25. The post Sun news: Sharp drop for Solar Cycle 25 first appeared on EarthSky .
+Summary: Are there still active volcanoes on Mars? New detections of hydrogen chloride from below the surface suggest flowing magma. The post Active volcanoes on Mars? Noxious gas discovery says — maybe first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Our star awakens with an M flare</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Fri, 06 Nov 2026 10:49:58 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 6, 2026: Bam! Sunspot AR4566 fired an M3.5 flare and sent sun-stuff soaring into space. Is any heading to Earth? The post Sun news: Our star awakens with an M flare first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
-    <category domain="geographic">National</category>
+    <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Hera mission gets its 1st closeup view of Didymos and Dimorphos</title>
+    <title>Hera mission begins asteroid defense investigation: 1st close-up views!</title>
     <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
     <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
     <pubDate>Thu, 05 Nov 2026 17:15:56 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The Hera mission just got its 1st closeup view of Didymos and its little moonlet Dimorphos. Soon it will begin investigating the aftermath of the DART impact. The post Hera mission gets its 1st closeup view of Didymos and Dimorphos first appeared on EarthSky .
+Summary: The Hera mission just got its 1st closeup view of Didymos and its little moonlet Dimorphos. Soon it will begin investigating the aftermath of the DART impact. The post Hera mission begins asteroid defense investigation: 1st close-up views! first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -315,6 +333,24 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Artemis II Heat Shield After Splashdown</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
+    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
@@ -461,36 +497,35 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/da
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA’s SpaceX Crew-13 Launches</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</guid>
-    <pubDate>Thu, 01 Oct 2026 18:07:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: A SpaceX Falcon 9 rocket carrying the company&apos;s Dragon spacecraft is launched on NASA’s SpaceX Crew-13 mission to the International Space Station with NASA astronauts Jessica Watkins and Luke Delaney, CSA (Canadian Space Agency) astronaut Joshua Kutryk, and Roscosmos cosmonaut Sergey Teteryatnikov aboard, Thursday, Oct. 1, 2026, from Cape Canaveral Space Force Station in Florida.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-13-launch-3/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Thu, 05 Nov 2026 11:20:00 GMT</pubDate>
+    <pubDate>Fri, 06 Nov 2026 09:20:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. In the early morning tomorrow, look for the crescent moon and Venus in the eastern sky. The star Spica will be near Venus. The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide. The slender waning moon meets Venus and the star Spica before sunrise tomorrow morning. Look low in the east as dawn breaks. The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The constellation Andromeda the Chained Lady</title>
+    <link>https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</guid>
+    <pubDate>Fri, 06 Nov 2026 09:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The constellation Andromeda the Chained Lady is most famous for containing M31, the Andromeda Galaxy, the closest large spiral galaxy to the Milky Way. The post The constellation Andromeda the Chained Lady first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -508,40 +543,6 @@ Summary: The moon and Jupiter played hide-and-seek on November 3, 2026. And they
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/todays-image/moon-and-jupiter-hide-and-seek-occultation-nov-2026/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>A new mini-moon for Earth! Meet 2026 QQ8</title>
-    <link>https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</guid>
-    <pubDate>Wed, 04 Nov 2026 12:23:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Earth has another new mini-moon! The little space rock 2026 QQ8 began orbiting Earth in April and will stay through 2026. The post A new mini-moon for Earth! Meet 2026 QQ8 first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/mini-moon-for-earth-2026-qq8/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pegasus the Flying Horse, and the best sky story ever</title>
-    <link>https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</guid>
-    <pubDate>Wed, 04 Nov 2026 09:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Pegasus the Flying Horse is the 7th largest constellation. It dominates fall skies in the Northern Hemisphere and has a famous asterism called the Great Square. The post Pegasus the Flying Horse, and the best sky story ever first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/constellations/pegasus-the-winged-horse-autumn-skies/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
