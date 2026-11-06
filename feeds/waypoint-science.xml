@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Nov 2026 19:10:59 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 06 Nov 2026 03:58:39 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -138,6 +138,25 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fa
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Invasive Species Prevention at the Front Lines</title>
+    <link>https://www.fws.gov/story/2026-11/invasive-species-prevention-front-lines</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/invasive-species-prevention-front-lines</guid>
+    <pubDate>Thu, 05 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Dreissenid mussels are one of the most notorious and destructive invasive species. Thankfully, as of 2026, Alaska remains one of five western states not infested with invasive dreissenid mussels, in part due to USFWS operation of a watercraft inspection and decontamination station at the Alaska-
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/invasive-species-prevention-front-lines</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Birds</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
   </item>
@@ -566,22 +585,23 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>How to Identify Bird Eggs by Color, Size, and Markings</title>
-    <link>https://www.audubon.org/magazine/bird-egg-identification</link>
-    <guid isPermaLink="true">https://www.audubon.org/magazine/bird-egg-identification</guid>
-    <pubDate>Fri, 30 Oct 2026 00:38:39 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+    <title>When in Rome: Experiencing a Constantino rally</title>
+    <link>https://www.adirondackexplorer.org/commentary/when-in-rome-experiencing-a-constantino-rally/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/when-in-rome-experiencing-a-constantino-rally/</guid>
+    <pubDate>Thu, 05 Nov 2026 19:31:31 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: So, you’ve found a bird egg. Maybe it was in a potted plant on the front porch, tucked into a bush’s tangled branches at the park, or, sadly, mysteriously broken and by itself on the ground...
+Summary: A poster for the Nov. 2 Anthony Constantino rally in Rome. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ConstantinoRallyFlyer1126.jpg?fit=780%2C1004&amp;ssl=1&quot; /&gt; On the ground of a rally for the race for New York’s 21st Congressional District.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.audubon.org/magazine/bird-egg-identification</description>
-    <category>Birds</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/when-in-rome-experiencing-a-constantino-rally/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Henderson Lake: A return to Tahawus, this time by canoe</title>
@@ -653,25 +673,6 @@ Summary: Just yards from Star Lake, the Clifton-Fine Hospital (center and left L
 Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/rising-premiums-few-options-the-fallout-of-nys-health-plan-rollbacks/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>OurStoryBridge Listens: Beth Joseph Synagogue</title>
-    <link>https://www.adirondackexplorer.org/communities/ourstorybridge-listens-beth-joseph-synagogue/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/ourstorybridge-listens-beth-joseph-synagogue/</guid>
-    <pubDate>Tue, 03 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Beth Joseph Synagogue is located in Tupper Lake. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/23489ee3-22cf-4500-b4ee-ec2b89c59217-e1793635100522.jpeg?fit=666%2C610&amp;ssl=1&quot; /&gt; OurStoryBridge shares a story from community member Randi Korn about the relationship she developed with a local synagogue
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/ourstorybridge-listens-beth-joseph-synagogue/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
