@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 06 Nov 2026 18:38:47 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 07 Nov 2026 03:33:59 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -27,24 +27,6 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <category domain="geographic">Hudson Valley</category>
     <category domain="geographic">Northeast</category>
     <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox</title>
-    <link>https://www.noaa.gov/news/project-jukebox-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/project-jukebox-ext</guid>
-    <pubDate>Fri, 06 Nov 2026 11:54:13 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox A shelf cloud and thunderstorm cross the Hudson River from Jersey City, New Jersey, into lower Manhattan, seen from the 86th-floor observation deck of the Empire State Building on August 07, 2026, in New York City. (Image credit: Gary Hershorn/Getty Images) November 6, 2026 EXT link test 0 Off
-
-Waypoint’s Take: An outdoor reader in the Hudson Valley can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.noaa.gov/news/project-jukebox-ext</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">Hudson Valley</category>
-    <category domain="geographic">Northeast</category>
     <author>NOAA</author>
   </item>
   <item>
@@ -257,22 +239,20 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Henderson Lake: A return to Tahawus, this time by canoe</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</guid>
-    <pubDate>Wed, 04 Nov 2026 21:00:00 GMT</pubDate>
+    <title>COMMENTARY: Calls continue for protecting Whitney Park</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/commentary-calls-continue-for-protecting-whitney-park/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/commentary-calls-continue-for-protecting-whitney-park/</guid>
+    <pubDate>Fri, 06 Nov 2026 21:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Canoeing on Henderson Lake. Photo courtesy of Jenn Woltjen. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/image.jpg?fit=780%2C439&amp;ssl=1&quot; /&gt; Jenn Woltjen retraces the steps of Teddy Roosevelt and David Henderson, a businessman who lost his life due to an accident in the area
+Summary: An aerial photo of Whitney Park showing Salmon Pond at the corner of the property. Taken September 2026. &quot; data-image-caption=&quot; Salmon Pond on the edge of Whitney Park. Photo courtesy of Protect the Adirondacks. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/AA-SalmonPond-intoWP-nbAerWhitneyParkHR-9577.png?fit=780%2C520&amp;ssl=1&quot; /&gt; State senators and public figures speak out in support of protection Whitney Park by the state or a land trust
 
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. Articles is a modest companion when the subject overlaps — skip it when it does not.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/henderson-lake-a-return-to-tahawus-this-time-by-canoe/</description>
-    <category>Regional News</category>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/commentary-calls-continue-for-protecting-whitney-park/</description>
     <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
+    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -348,6 +328,24 @@ Read the original article at the publisher: https://www.weather.gov/aly/skywarn<
     <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Albany</author>
+  </item>
+  <item>
+    <title>The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</guid>
+    <pubDate>Wed, 10 Jun 2026 18:06:39 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
+
+Summary: This story was featured in the Winter/Spring 2026 issue of Appalachia Journal. We rose early, while it was cool, for our nine-mile hike. We wanted to beat the heat and thunderstorms forecast for late that... Read More The post The Toll Ticks Take: Strangest Reason Yet to Give Up Red Meat appeared first on Appalachian Mountain Club (AMC) .
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/toll-ticks-take-give-up-red-meat/</description>
+    <category>Weather</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
   </item>
   </channel>
 </rss>
