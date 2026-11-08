@@ -5,28 +5,10 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Nov 2026 03:04:03 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 17:20:23 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
-  <item>
-    <title>M30&apos;s Sparkling Stars</title>
-    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
-    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
   <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
@@ -43,6 +25,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>M30&apos;s Sparkling Stars</title>
+    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
+    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -208,18 +208,18 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <author>NASA</author>
   </item>
   <item>
-    <title>Active volcanoes on Mars? Noxious gas discovery says — maybe</title>
-    <link>https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</guid>
-    <pubDate>Fri, 06 Nov 2026 13:00:00 GMT</pubDate>
+    <title>Backward world? Rubin finds a retrograde object past Neptune</title>
+    <link>https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</guid>
+    <pubDate>Sun, 08 Nov 2026 12:03:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Are there still active volcanoes on Mars? New detections of hydrogen chloride from below the surface suggest flowing magma. The post Active volcanoes on Mars? Noxious gas discovery says — maybe first appeared on EarthSky .
+Summary: The Rubin Observatory in Chile has discovered a retrograde object in our solar system. It circles the sun in a highly inclined orbit beyond Neptune. The post Backward world? Rubin finds a retrograde object past Neptune first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</description>
+Read the original article at the publisher: https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -388,18 +388,18 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/da
     <author>NASA</author>
   </item>
   <item>
-    <title>Sun news: Fast solar wind is headed Earth’s way</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sat, 07 Nov 2026 11:35:35 GMT</pubDate>
+    <title>Carl Sagan born 92 years ago tomorrow</title>
+    <link>https://earthsky.org/space/carl-sagan-birthday-november-9-1934/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/carl-sagan-birthday-november-9-1934/</guid>
+    <pubDate>Sun, 08 Nov 2026 11:27:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news November 7, 2026: Fast wind from a huge coronal hole is reaching Earth. G1 to G2 storms are possible this weekend. Aurora hunters, get ready! The post Sun news: Fast solar wind is headed Earth’s way first appeared on EarthSky .
+Summary: Carl Sagan, born November 9, 1934, brought astronomy to millions through books and the TV series Cosmos. He also helped create messages from Earth for the Pioneer and Voyager spacecraft. The post Carl Sagan born 92 years ago tomorrow first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://earthsky.org/space/carl-sagan-birthday-november-9-1934/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -408,11 +408,11 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sat, 07 Nov 2026 09:20:00 GMT</pubDate>
+    <pubDate>Sun, 08 Nov 2026 09:20:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide. Mars and Jupiter are getting closer together! Watch them this week. Saturn will be visible all month in the evening sky. The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Mars and Jupiter are getting closer. And tomorrow, the moon reaches its new phase. That means dark skies for stargazing! The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -422,18 +422,18 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>The constellation Andromeda the Chained Lady</title>
-    <link>https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</guid>
-    <pubDate>Fri, 06 Nov 2026 09:00:00 GMT</pubDate>
+    <title>Do we all see the same moon phase from Earth?</title>
+    <link>https://earthsky.org/moon-phases/do-we-all-see-the-same-moon-phase/</link>
+    <guid isPermaLink="true">https://earthsky.org/moon-phases/do-we-all-see-the-same-moon-phase/</guid>
+    <pubDate>Sun, 08 Nov 2026 09:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The constellation Andromeda the Chained Lady is most famous for containing M31, the Andromeda Galaxy, the closest large spiral galaxy to the Milky Way. The post The constellation Andromeda the Chained Lady first appeared on EarthSky .
+Summary: No matter where you are on Earth, we all see the same moon phase. So why can the moon look tilted, or even upside down, depending on where you are? The post Do we all see the same moon phase from Earth? first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</description>
+Read the original article at the publisher: https://earthsky.org/moon-phases/do-we-all-see-the-same-moon-phase/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -457,16 +457,34 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
-    <title>Hera mission begins asteroid defense investigation: 1st close-up views!</title>
+    <title>Active volcanoes on Mars? Noxious gas discovery says — maybe</title>
+    <link>https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</guid>
+    <pubDate>Fri, 06 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Are there still active volcanoes on Mars? New detections of hydrogen chloride from below the surface suggest flowing magma. The post Active volcanoes on Mars? Noxious gas discovery says — maybe first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hera mission begins asteroid defense investigation: 1st closeup views!</title>
     <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
     <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
     <pubDate>Thu, 05 Nov 2026 17:15:56 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The Hera mission just got its 1st closeup view of Didymos and its little moonlet Dimorphos. Soon it will begin investigating the aftermath of the DART impact. The post Hera mission begins asteroid defense investigation: 1st close-up views! first appeared on EarthSky .
+Summary: The Hera mission just got its 1st closeup view of Didymos and its little moonlet Dimorphos. Soon it will begin investigating the aftermath of the DART impact. The post Hera mission begins asteroid defense investigation: 1st closeup views! first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/space/hera-mission-dart-asteroid-impact/</description>
     <category>Astronomy and Night Sky</category>
@@ -493,54 +511,18 @@ Read the original article at the publisher: https://earthsky.org/space/swift-spa
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>ESCAPADE mission to fly past Earth twice in 2 days</title>
-    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
-    <pubDate>Thu, 05 Nov 2026 11:25:00 GMT</pubDate>
+    <title>The constellation Andromeda the Chained Lady</title>
+    <link>https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</link>
+    <guid isPermaLink="true">https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</guid>
+    <pubDate>Fri, 06 Nov 2026 09:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: On November 7 and 9, 2026, the twin probes of the ESCAPADE mission — first Blue and then Gold — will perform flybys of Earth on the way to Mars. The post ESCAPADE mission to fly past Earth twice in 2 days first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Dark nebulae are star-obscuring clouds of gas and dust</title>
-    <link>https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</guid>
-    <pubDate>Thu, 05 Nov 2026 09:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Dark nebulae are clouds of gas and dust in space. They block the light of stars shining behind them. Often, they&apos;re locations where new stars are forming. The post Dark nebulae are star-obscuring clouds of gas and dust first appeared on EarthSky .
+Summary: The constellation Andromeda the Chained Lady is most famous for containing M31, the Andromeda Galaxy, the closest large spiral galaxy to the Milky Way. The post The constellation Andromeda the Chained Lady first appeared on EarthSky .
 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/dark-nebulae-molecular-clouds-dust/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The moon and Jupiter play hide-and-seek. More pics here!</title>
-    <link>https://earthsky.org/todays-image/moon-and-jupiter-hide-and-seek-occultation-nov-2026/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/moon-and-jupiter-hide-and-seek-occultation-nov-2026/</guid>
-    <pubDate>Thu, 05 Nov 2026 09:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The moon and Jupiter played hide-and-seek on November 3, 2026. And they&apos;ll pair up again at the end of the month! Find out more. The post The moon and Jupiter play hide-and-seek. More pics here! first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/moon-and-jupiter-hide-and-seek-occultation-nov-2026/</description>
+Read the original article at the publisher: https://earthsky.org/constellations/constellation-andromeda-the-chained-lady/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>

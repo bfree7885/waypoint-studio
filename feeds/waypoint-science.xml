@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Nov 2026 03:04:03 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 08 Nov 2026 17:20:23 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -30,24 +30,6 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
-    <title>M30&apos;s Sparkling Stars</title>
-    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
-    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
@@ -63,6 +45,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>M30&apos;s Sparkling Stars</title>
+    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
+    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -122,25 +122,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fa
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery</title>
-    <link>https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</guid>
-    <pubDate>Fri, 06 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery. The community was invited to a night of exploring snakes, spiders, and all things creepy-crawly at Wolf Creek National Fish Hatchery.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
     <title>Following the flight routes of migrating monarchs</title>
     <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
@@ -158,6 +139,25 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fo
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Latest news headlines</title>
+    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
+    <pubDate>Sun, 08 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+
+Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Adirondack Economic Development Corporation launches new program for nonprofits</title>
@@ -196,44 +196,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>NOAA Voices at the 2026 Oral History Association Annual Meeting</title>
-    <link>https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</guid>
-    <pubDate>Fri, 06 Nov 2026 11:59:56 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: NOAA Voices at the 2026 Oral History Association Annual Meeting The 60th Annual Oral History Association Meeting will take place October 14–17, 2026, in Portland, Oregon. This year’s theme, “Landscapes of Memory,” explores relationships among place, memory, movement, and changing environmental, political, and cultural landscapes.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox</title>
-    <link>https://www.noaa.gov/news/project-jukebox-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/project-jukebox-ext</guid>
-    <pubDate>Fri, 06 Nov 2026 11:54:13 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox We are excited to partner with the University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox to co-locate selected oral histories, expanding access to one of the nation&apos;s most innovative digital oral history collections, where interviews are integrated with photographs, maps, and place-based storytelling to document Alaska&apos;s diverse communities, cultures, and changing environments. Download Image EXT link test 0 Off
-
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.noaa.gov/news/project-jukebox-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
   </item>
   <item>
     <title>32nd Annual Rio Reforestation</title>
@@ -419,22 +381,61 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <author>NASA</author>
   </item>
   <item>
-    <title>Interior Announces Rooted In Purpose</title>
-    <link>https://www.fws.gov/press-release/2026-11/interior-announces-rooted-purpose</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-11/interior-announces-rooted-purpose</guid>
+    <title>Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery</title>
+    <link>https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</guid>
     <pubDate>Fri, 06 Nov 2026 12:00:00 GMT</pubDate>
     <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: The Department of the Interior and the U.S. Fish and Wildlife Service today released Rooted in Purpose, a review of the National Wildlife Refuge System, alongside Secretary of the Interior Doug Burgum’s Secretary’s Order, Making America’s National Wildlife Refuges Great Again. The Order directs the
+Summary: Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery. The community was invited to a night of exploring snakes, spiders, and all things creepy-crawly at Wolf Creek National Fish Hatchery.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-11/interior-announces-rooted-purpose</description>
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</description>
     <category>Wildlife</category>
     <category>Conservation</category>
+    <category>Birds</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>NOAA Voices at the 2026 Oral History Association Annual Meeting</title>
+    <link>https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</guid>
+    <pubDate>Fri, 06 Nov 2026 11:59:56 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: NOAA Voices at the 2026 Oral History Association Annual Meeting The 60th Annual Oral History Association Meeting will take place October 14–17, 2026, in Portland, Oregon. This year’s theme, “Landscapes of Memory,” explores relationships among place, memory, movement, and changing environmental, political, and cultural landscapes.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
+    <title>University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox</title>
+    <link>https://www.noaa.gov/news/project-jukebox-ext</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news/project-jukebox-ext</guid>
+    <pubDate>Fri, 06 Nov 2026 11:54:13 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox We are excited to partner with the University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox to co-locate selected oral histories, expanding access to one of the nation&apos;s most innovative digital oral history collections, where interviews are integrated with photographs, maps, and place-based storytelling to document Alaska&apos;s diverse communities, cultures, and changing environments. Download Image EXT link test 0 Off
+
+Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.noaa.gov/news/project-jukebox-ext</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
   </item>
   <item>
     <title>Invasive Species Prevention at the Front Lines</title>
@@ -456,21 +457,22 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/in
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Five-inch-long beetle larvae are quietly destroying blueberry roots</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261103003200.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261103003200.htm</guid>
-    <pubDate>Fri, 06 Nov 2026 09:33:36 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+    <title>Backward world? Rubin finds a retrograde object past Neptune</title>
+    <link>https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</guid>
+    <pubDate>Sun, 08 Nov 2026 12:03:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Scientists have solved a mystery surrounding destructive beetles attacking blueberry bushes in North Carolina, identifying a species whose massive larvae can grow up to five inches long and destroy plant roots. Although farmers have reported damage for more than a decade, the insects responsible remained unidentified until researchers used DNA analysis to uncover the culprit.
+Summary: The Rubin Observatory in Chile has discovered a retrograde object in our solar system. It circles the sun in a highly inclined orbit beyond Neptune. The post Backward world? Rubin finds a retrograde object past Neptune first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261103003200.htm</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
+Read the original article at the publisher: https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Stewarding Southern Arizona Water Supplies</title>
@@ -491,22 +493,23 @@ Read the original article at the publisher: https://www.audubon.org/southwest/ne
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Active volcanoes on Mars? Noxious gas discovery says — maybe</title>
-    <link>https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</guid>
-    <pubDate>Fri, 06 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Hunter’s fare</title>
+    <link>https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</guid>
+    <pubDate>Sun, 08 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Are there still active volcanoes on Mars? New detections of hydrogen chloride from below the surface suggest flowing magma. The post Active volcanoes on Mars? Noxious gas discovery says — maybe first appeared on EarthSky .
+Summary: An authentic hunter’s meal. Photo by Dick Monroe. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Just-ducky-16a.jpg?fit=780%2C478&amp;ssl=1&quot; /&gt; Dick Monroe shares a story for those who have never experienced an authentic hunter&apos;s &quot;field to table&quot; meal
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/active-volcanoes-on-mars-hydrogen-chloride-trace-gas-orbiter/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Finding ‘enough’ in farming and life: Margot Brooks at Sugar House Creamery</title>
@@ -563,63 +566,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Watch out for wildfires as dry leaves cover the ground</title>
-    <link>https://www.adirondackexplorer.org/environment/watch-out-for-wildfires-as-dry-leaves-cover-the-ground/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/watch-out-for-wildfires-as-dry-leaves-cover-the-ground/</guid>
-    <pubDate>Fri, 06 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Sunset at Upper Browns Tract Pond. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/sunset-Brownstrat-pond.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Owls came to Eight-Acre Wood late at night, prompting Gary Lee to keep his nets out longer and becoming filled with leaves and burrs
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/watch-out-for-wildfires-as-dry-leaves-cover-the-ground/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Fly of the Week: Little Brown Trout Bucktail Streamer</title>
-    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-brown-trout-bucktail-streamer/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-brown-trout-bucktail-streamer/</guid>
-    <pubDate>Fri, 06 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Little Brown Trout Bucktail Streamer tied and photographed By Geoff Schaake &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Little-Brown-Trout-Bucktail-Streamer-Tied-and-Photographed-By-Geoff-Schaake.jpg?fit=780%2C663&amp;ssl=1&quot; /&gt; A pattern designed to look like the small, weaker fish that are preyed on.
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-little-brown-trout-bucktail-streamer/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>COMMENTARY: The importance of valuing Adirondack nonprofits</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-the-importance-of-valuing-adirondack-nonprofits/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-the-importance-of-valuing-adirondack-nonprofits/</guid>
-    <pubDate>Thu, 05 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Adirondacks contains many rural communities which rely on support from regional nonprofits. Photo by Carol MacKinnon &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/09/View-from-near-top-of-Mt-Sabattis-2-scaled-e1793976134390.jpg?fit=780%2C565&amp;ssl=1&quot; /&gt; Amy Godine writes about the essential niche Adirondack community organizations fill throughout the region
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-the-importance-of-valuing-adirondack-nonprofits/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -745,6 +691,60 @@ Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Transporter-18 SmallSats Encapsulation</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
+    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Cosmic House of Mirrors</title>
+    <link>https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</guid>
+    <pubDate>Fri, 09 Oct 2026 14:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: This NASA/ESA/CSA James Webb Space Telescope Picture of the Month features galaxies in incredible detail that have been warped and multiplied like they’ve stepped into a house of mirrors.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/galaxies-in-a-cosmic-house-of-mirrors/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Crew-12 Returns to Earth</title>
+    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
+    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
