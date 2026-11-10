@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 10 Nov 2026 05:00:31 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 18:59:41 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -28,6 +28,25 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <category domain="geographic">Northeast</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Rescue, Release, Recovery: Conservation Takes a Village</title>
+    <link>https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</guid>
+    <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Rescue, Release, Recovery: Conservation Takes a Village. Multiple agencies banded together for the sake of an imperiled small-stream fish; the Barrens Topminnow.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</description>
+    <category>Rivers and Water</category>
+    <category>Outdoor Safety</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Astronauts Across Generations Share the Stage</title>
@@ -85,25 +104,6 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
-    <title>Blazed Trails and Blaze Orange: Hiker Safety During Hunting Season</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</guid>
-    <pubDate>Tue, 20 Oct 2026 14:53:31 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: At work, AMC director of trails Alex DeLucia demonstrates how to safely wield dangerous equipment; chainsaws and bowsaws, pickaxes and Pulaskis. On his days off, he trades power tools for a bow and arrow and... Read More The post Blazed Trails and Blaze Orange: Hiker Safety During Hunting Season appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</description>
-    <category>Hiking and Trails</category>
-    <category>Outdoor Safety</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
-  </item>
-  <item>
     <title>M30&apos;s Sparkling Stars</title>
     <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
@@ -116,24 +116,6 @@ Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Astronaut and Earth</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0253663/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253663/</guid>
-    <pubDate>Tue, 03 Nov 2026 16:38:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: CSA (Canadian Space Agency) astronaut and Expedition 75 flight engineer Joshua Kutryk is pictured during a spacewalk with his spacesuit&apos;s helmet visor down to install a new roll-out solar array on the International Space Station&apos;s port side truss structure.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253663/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -179,23 +161,42 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/fi
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Following the flight routes of migrating monarchs</title>
-    <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
-    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>Blazed Trails and Blaze Orange: Hiker Safety During Hunting Season</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</guid>
+    <pubDate>Tue, 20 Oct 2026 14:53:31 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
 
-Summary: The fall monarch migration is fully underway! We at the U.S. Fish and Wildlife Service are fitting monarch butterflies with lightweight Bluetooth trackers as they migrate south toward overwintering habitat.
+Summary: At work, AMC director of trails Alex DeLucia demonstrates how to safely wield dangerous equipment; chainsaws and bowsaws, pickaxes and Pulaskis. On his days off, he trades power tools for a bow and arrow and... Read More The post Blazed Trails and Blaze Orange: Hiker Safety During Hunting Season appeared first on Appalachian Mountain Club (AMC) .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/hiker-safety-during-hunting-season/</description>
+    <category>Hiking and Trails</category>
+    <category>Outdoor Safety</category>
     <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Bucking broncos and child-sized tents: Riding the Adirondack BDR-X</title>
+    <link>https://www.adirondackexplorer.org/recreation/biking/bucking-broncos-and-child-sized-tents-riding-the-adirondack-bdr-x/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/biking/bucking-broncos-and-child-sized-tents-riding-the-adirondack-bdr-x/</guid>
+    <pubDate>Tue, 10 Nov 2026 14:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: From left: T.J. Brearton, Sean Kullman and Emily Furman pause for a photo a few hours into their Adirondack BDR-X ride. Photo by T.J. Brearton &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/TJ-Emily-and-Sean.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Lessons learned from a 300-mile motorcycle journey through overlooked towns, backcountry roads in the Adirondacks.
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/biking/bucking-broncos-and-child-sized-tents-riding-the-adirondack-bdr-x/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Plane strikes, kills photographer on private airstrip in Wilmington</title>
@@ -255,25 +256,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/r
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 08 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
-
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>32nd Annual Rio Reforestation</title>
     <link>https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</link>
     <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</guid>
@@ -293,23 +275,22 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Flags Across America Visits Vieques National Wildlife Refuge</title>
-    <link>https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</guid>
-    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>Astronaut and Earth</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0253663/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253663/</guid>
+    <pubDate>Tue, 03 Nov 2026 16:38:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: In May 2026, Flags Across America visited Vieques National Wildlife Refuge in Puerto Rico, the most ecologically diverse refuge in the Caribbean. Eleven federally protected plant and animal species occur on the refuge and its surrounding waters, including four of the six sea turtle species found in
+Summary: CSA (Canadian Space Agency) astronaut and Expedition 75 flight engineer Joshua Kutryk is pictured during a spacewalk with his spacesuit&apos;s helmet visor down to install a new roll-out solar array on the International Space Station&apos;s port side truss structure.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253663/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>NASA&apos;s CHAPEA Crew &quot;Returns&quot; to Earth</title>
@@ -420,24 +401,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <author>NASA</author>
   </item>
   <item>
-    <title>Webb Captures Stellar Jets</title>
-    <link>https://www.nasa.gov/image-detail/55572978759-545472774e-o/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55572978759-545472774e-o/</guid>
-    <pubDate>Tue, 20 Oct 2026 14:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA’s James Webb Space Telescope has revealed many protostars and stars within the glowing gases of NGC 7129. Hot, atomic hydrogen gas is shown here in the golden region, while cooler, molecular hydrogen gas, shocked by embedded protostars, is represented in red.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/55572978759-545472774e-o/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>American sycamore: Titan of the tree world</title>
     <link>https://www.adirondackexplorer.org/environment/american-sycamore-titan-of-the-tree-world/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/american-sycamore-titan-of-the-tree-world/</guid>
@@ -453,6 +416,43 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Forests and Plants</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Upper Laguna Madre Bird Nesting Island Cleanup</title>
+    <link>https://www.fws.gov/story/2026-11/upper-laguna-madre-bird-nesting-island-cleanup</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/upper-laguna-madre-bird-nesting-island-cleanup</guid>
+    <pubDate>Tue, 10 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: For 20 years, community volunteers and conservation partners have joined forces to protect vital bird nesting islands along the Texas coast. At this year’s cleanup, more than 50 volunteers continued the tradition, demonstrating how lasting partnerships and local stewardship can make a difference
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/upper-laguna-madre-bird-nesting-island-cleanup</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>N.C. Highway 12 Realignment at Pea Island National Wildlife Refuge Visitor Center</title>
+    <link>https://www.fws.gov/story/2026-11/nc-highway-12-realignment-pea-island-national-wildlife-refuge-visitor-center</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/nc-highway-12-realignment-pea-island-national-wildlife-refuge-visitor-center</guid>
+    <pubDate>Tue, 10 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The U.S. Fish and Wildlife Service (USFWS) and the National Park Service (NPS) are inviting public review and comment on a proposal from the North Carolina Department of Transportation (NCDOT) to realign a section of N.C. Highway 12 on Pea Island National Wildlife Refuge.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/nc-highway-12-realignment-pea-island-national-wildlife-refuge-visitor-center</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category>Regional News</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>K9 Team Recovers Firearm at Baca National Wildlife Refuge</title>
@@ -549,16 +549,53 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/in
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Sun news: Auroras continue! More tonight at northern U.S. latitudes?</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Mon, 09 Nov 2026 10:43:06 GMT</pubDate>
+    <title>Following the flight routes of migrating monarchs</title>
+    <link>https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The fall monarch migration is fully underway! We at the U.S. Fish and Wildlife Service are fitting monarch butterflies with lightweight Bluetooth trackers as they migrate south toward overwintering habitat.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/following-flight-routes-migrating-monarchs</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>Atmosphere of lava planet: ‘A cloudy, reflective sunscreen’</title>
+    <link>https://earthsky.org/space/lava-planets-surprising-atmosphere-toi-561-b-super-earth/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/lava-planets-surprising-atmosphere-toi-561-b-super-earth/</guid>
+    <pubDate>Tue, 10 Nov 2026 12:30:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news November 9, 2026: Fast solar wind topped 800 km/s, keeping G1 storms going. AR4566 fired another M flare. Auroras possible tonight! The post Sun news: Auroras continue! More tonight at northern U.S. latitudes? first appeared on EarthSky .
+Summary: New observations of super-Earth TOI-561 b by the Webb telescope show again that the atmosphere of lava planet TOI-561 b does exist, and is very reflective. The post Atmosphere of lava planet: ‘A cloudy, reflective sunscreen’ first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/lava-planets-surprising-atmosphere-toi-561-b-super-earth/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: Powerful sunspot region facing Earth</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Tue, 10 Nov 2026 11:10:50 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 10, 2026: Sunspot AR4566 faces Earth and fired 18 C flares over the past day. Could it send an eruption our way? The post Sun news: Powerful sunspot region facing Earth first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
@@ -567,18 +604,18 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Backward world? Rubin finds a retrograde object past Neptune</title>
-    <link>https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</guid>
-    <pubDate>Sun, 08 Nov 2026 12:03:00 GMT</pubDate>
+    <title>See the Summer Triangle in the northern autumn sky</title>
+    <link>https://earthsky.org/tonight/summer-triangle-in-fall-and-winter-sky/</link>
+    <guid isPermaLink="true">https://earthsky.org/tonight/summer-triangle-in-fall-and-winter-sky/</guid>
+    <pubDate>Tue, 10 Nov 2026 10:01:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The Rubin Observatory in Chile has discovered a retrograde object in our solar system. It circles the sun in a highly inclined orbit beyond Neptune. The post Backward world? Rubin finds a retrograde object past Neptune first appeared on EarthSky .
+Summary: Look west in the evening to see the Summer Triangle in autumn. Its 3 bright stars - Vega, Deneb and Altair - are in 3 different constellations. The post See the Summer Triangle in the northern autumn sky first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/space/rubin-retrograde-object-far-solar-system-r631/</description>
+Read the original article at the publisher: https://earthsky.org/tonight/summer-triangle-in-fall-and-winter-sky/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -602,6 +639,44 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Legal Aid Society announces temporary closure of Plattsburgh office</title>
+    <link>https://www.adirondackexplorer.org/general/legal-aid-society-announces-temporary-closure-of-plattsburgh-office/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/general/legal-aid-society-announces-temporary-closure-of-plattsburgh-office/</guid>
+    <pubDate>Tue, 10 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Plattsburgh office at 100 Court Street will be closed for renovations. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Skyline_of_Plattsburgh_New_York_aerial_view_in_2024.jpg?fit=780%2C550&amp;ssl=1&quot; /&gt; The Legal Aid Society of Northeastern New York (LASNNY) temporarily closed its Plattsburgh office at 100 Court Street on Oct. 14 for renovations. A reopening date has not yet been determined.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/general/legal-aid-society-announces-temporary-closure-of-plattsburgh-office/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Town of Webb seeking input on local housing needs</title>
+    <link>https://www.adirondackexplorer.org/communities/housing/town-of-webb-seeking-input-on-local-housing-needs/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/town-of-webb-seeking-input-on-local-housing-needs/</guid>
+    <pubDate>Tue, 10 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A sign in the Town of Webb. Photo by Jamie Organski, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2024/09/bear_sign.jpg?fit=780%2C553&amp;ssl=1&quot; /&gt; The Town of Webb created a survey for community members to confidentially share what housing programs would be beneficial
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/town-of-webb-seeking-input-on-local-housing-needs/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>COMMENTARY: Support registered nurses in a time of growing need</title>
@@ -635,25 +710,6 @@ Summary: Loon Lake in Franklin County. Photo by George Stowers &quot; data-large
 Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/loon-lake-landowners-sue-town-of-franklin-over-building-moratorium/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Hunter’s fare</title>
-    <link>https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</guid>
-    <pubDate>Sun, 08 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: An authentic hunter’s meal. Photo by Dick Monroe. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Just-ducky-16a.jpg?fit=780%2C478&amp;ssl=1&quot; /&gt; Dick Monroe shares a story for those who have never experienced an authentic hunter&apos;s &quot;field to table&quot; meal
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/hunters-fare/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -717,21 +773,41 @@ Read the original article at the publisher: https://phys.org/news/2026-11-cop31-
     <author>Phys.org</author>
   </item>
   <item>
-    <title>NOAA, NASA release measurements of 2026 ozone hole</title>
-    <link>https://www.noaa.gov/news-release/noaa-nasa-release-measurements-of-2026-ozone-hole</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news-release/noaa-nasa-release-measurements-of-2026-ozone-hole</guid>
-    <pubDate>Tue, 03 Nov 2026 17:16:45 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+    <title>Webb Captures Stellar Jets</title>
+    <link>https://www.nasa.gov/image-detail/55572978759-545472774e-o/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55572978759-545472774e-o/</guid>
+    <pubDate>Tue, 20 Oct 2026 14:45:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: NOAA, NASA release measurements of 2026 ozone hole While weather caused a greater loss of ozone this year, long-term recovery still on track November 4, 2026 NOAA Corps LT Michael Doneghey, the South Pole observatory station lead, holds a weather balloon while NOAA Station Technician Luke Longren carries a package containing an ozonesonde — an airborne instrument that measures ozone levels — just prior to launch on October 18, 2026. (Image credit: Tommy Jensen/Amentum.
+Summary: NASA’s James Webb Space Telescope has revealed many protostars and stars within the glowing gases of NGC 7129. Hot, atomic hydrogen gas is shown here in the golden region, while cooler, molecular hydrogen gas, shocked by embedded protostars, is represented in red.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.noaa.gov/news-release/noaa-nasa-release-measurements-of-2026-ozone-hole</description>
-    <category>Weather</category>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/55572978759-545472774e-o/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Flags Across America Visits Vieques National Wildlife Refuge</title>
+    <link>https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</guid>
+    <pubDate>Tue, 20 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: In May 2026, Flags Across America visited Vieques National Wildlife Refuge in Puerto Rico, the most ecologically diverse refuge in the Caribbean. Eleven federally protected plant and animal species occur on the refuge and its surrounding waters, including four of the six sea turtle species found in
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-10/flags-across-america-visits-vieques-national-wildlife-refuge</description>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category>Conservation</category>
     <category domain="geographic">National</category>
-    <author>NOAA</author>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Martian Dawn</title>
@@ -750,25 +826,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Prescribed Burn Planned for at Grays Lake National Wildlife Refuge</title>
-    <link>https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</guid>
-    <pubDate>Mon, 19 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The U.S. Fish and Wildlife Service and the U.S. Wildland Fire Service will conduct a planned 279-acre prescribed fire at Grays Lake National Wildlife Refuge on October 19, conditions and weather permitting. The burn will reduce hazardous fuels buildup and help maintain defensible space for nearby
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/prescribed-burn-planned-grays-lake-national-wildlife-refuge</description>
-    <category>Weather</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Artemis II Heat Shield After Splashdown</title>
@@ -877,59 +934,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Astronomers Solve Cosmic Cold Case with NASA Hubble Data</title>
-    <link>https://www.nasa.gov/image-detail/stsci-01m3cbk3t6srkp4q7wv9cgfgw9/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/stsci-01m3cbk3t6srkp4q7wv9cgfgw9/</guid>
-    <pubDate>Tue, 06 Oct 2026 16:17:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: This artist’s concept depicts a possible explanation for the unusual chemical abundances NASA’s Hubble Space Telescope detected in the HS 0209+0832 system: a second-generation planet orbiting the white dwarf star.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/stsci-01m3cbk3t6srkp4q7wv9cgfgw9/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA Astronaut Christina Koch at Eagles vs. Rams</title>
-    <link>https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</guid>
-    <pubDate>Mon, 05 Oct 2026 17:45:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA astronaut and mission specialist of the agency&apos;s Artemis II mission, Christina Koch, led the fans in singing the Eagles Fight Song from the field at an NFL game between the Philadelphia Eagles and the Los Angeles Rams at Lincoln Financial Field on Sunday, Oct. 4, 2026, in Philadelphia.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-inspiration-tour-at-lincoln-financial-field/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for November</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Mon, 09 Nov 2026 12:28:38 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Visible planets and night sky guide: November is a great month for both planets and meteor showers! Here&apos;s how to see Venus, Jupiter, Mars, Saturn and the ongoing Taurids. The post Visible planets and night sky guide for November first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>

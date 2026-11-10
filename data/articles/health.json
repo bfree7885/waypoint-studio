@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-11-10T05:00:31.001Z",
+  "checkedAt": "2026-11-10T18:59:41.945Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
@@ -11,17 +11,17 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 238,
+      "ms": 191,
       "enabled": true
     },
     {
       "id": "noaa-news",
       "name": "NOAA News Features",
       "ok": true,
-      "itemCount": 10,
+      "itemCount": 9,
       "error": null,
       "warnings": [],
-      "ms": 129,
+      "ms": 262,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 148,
+      "ms": 116,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 272,
+      "ms": 159,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 195,
+      "ms": 255,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 106,
+      "ms": 260,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 915,
+      "ms": 210,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 297,
+      "ms": 1793,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 128,
+      "ms": 255,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 147,
+      "ms": 197,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 277,
+      "ms": 113,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 62,
+      "ms": 168,
       "enabled": true
     },
     {
@@ -255,10 +255,10 @@
       "warnings": [
         "no-parseable-items"
       ],
-      "ms": 179,
+      "ms": 170,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-11-10T17:00:31.001Z"
+  "staleAfter": "2026-11-11T06:59:41.945Z"
 }
