@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-11-13T03:55:03.337Z",
-  "status": "ok",
+  "checkedAt": "2026-11-13T18:53:10.076Z",
+  "status": "partial",
   "retainedPrevious": false,
   "feeds": [
     {
@@ -11,17 +11,17 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 269,
+      "ms": 339,
       "enabled": true
     },
     {
       "id": "noaa-news",
       "name": "NOAA News Features",
       "ok": true,
-      "itemCount": 9,
+      "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 89,
+      "ms": 275,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 249,
+      "ms": 129,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 201,
+      "ms": 142,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 332,
+      "ms": 1141,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 86,
+      "ms": 174,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 206,
+      "ms": 196,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 128,
+      "ms": 118,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 118,
+      "ms": 314,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 233,
+      "ms": 197,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 388,
+      "ms": 249,
       "enabled": true
     },
     {
@@ -243,20 +243,22 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 120,
+      "ms": 383,
       "enabled": true
     },
     {
       "id": "nws-burlington",
       "name": "NWS Burlington Area Headlines",
-      "ok": true,
-      "itemCount": 1,
-      "error": null,
-      "warnings": [],
-      "ms": 195,
+      "ok": false,
+      "itemCount": 0,
+      "error": "no parseable items",
+      "warnings": [
+        "no-parseable-items"
+      ],
+      "ms": 179,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-11-13T15:55:03.337Z"
+  "staleAfter": "2026-11-14T06:53:10.076Z"
 }

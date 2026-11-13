@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 13 Nov 2026 03:55:03 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 13 Nov 2026 18:53:10 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -28,6 +28,44 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <category domain="geographic">Northeast</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Adirondack employers and businesses join forces to address rural child care</title>
+    <link>https://www.adirondackexplorer.org/communities/adirondack-employers-and-businesses-join-forces-to-address-rural-child-care/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-employers-and-businesses-join-forces-to-address-rural-child-care/</guid>
+    <pubDate>Fri, 13 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Employers gathered on Oct. 29 to discuss addressing child care access in the Adirondacks. Photo courtesy of EDC Warren County. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ADK-Child-Care-Event-Photo-2-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; In the rural Adirondack region, 80% of the area is classified as a child care desert, meaning the majority lacks access to quality care
+
+Waypoint’s Take: Outside in the Northern New Jersey, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-employers-and-businesses-join-forces-to-address-rural-child-care/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northern New Jersey</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Outbursts from a Massive Star</title>
+    <link>https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</guid>
+    <pubDate>Fri, 13 Nov 2026 16:41:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Outbursts from a Massive Star. Using Chandra, astronomers have discovered a previously hidden black hole or neutron star companion that is triggering repeated outbursts from a giant, unstable star.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Grace Under Fire: Leadville National Fish Hatchery Manager Receives Conservation Leadership Award</title>
@@ -124,24 +162,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/re
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>M30&apos;s Sparkling Stars</title>
-    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
-    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Fall Flights: Migration Hot Spots Supported by Industry Excise Tax</title>
     <link>https://www.fws.gov/story/2026-10/fall-flights-migration-hot-spots-supported-industry-excise-tax</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-10/fall-flights-migration-hot-spots-supported-industry-excise-tax</guid>
@@ -162,20 +182,21 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fa
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Clean water, hidden risks: New technology reveals neurotoxicity missed by conventional water quality monitoring</title>
-    <link>https://phys.org/news/2026-11-hidden-technology-reveals-neurotoxicity-conventional.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-hidden-technology-reveals-neurotoxicity-conventional.html</guid>
-    <pubDate>Wed, 11 Nov 2026 23:40:01 GMT</pubDate>
+    <title>Climate could force more than 200 million from homes: U.N. migration chief</title>
+    <link>https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</guid>
+    <pubDate>Fri, 13 Nov 2026 18:07:07 GMT</pubDate>
     <source url="https://phys.org/">Phys.org</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: A photograph of an orchestra can tell you whether the musicians are on stage and their instruments are intact. But it cannot tell you whether they are playing in harmony. Even when every musician is present, a subtle loss of coordination can change the entire performance.
+Summary: Climate change could force more than 200 million people from their homes even as countries spend billions on securing their borders, the head of the U.N.&apos;s migration body said Friday.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — carry one practical craft question into your next outing — light, composition, or subject behavior. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://phys.org/news/2026-11-hidden-technology-reveals-neurotoxicity-conventional.html</description>
-    <category>Rivers and Water</category>
-    <category>Nature Photography</category>
+Read the original article at the publisher: https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</description>
+    <category>Climate</category>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
@@ -237,42 +258,23 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Adirondack Innovation Initiative announces finalists for ADK Launchpad Pitch Competition</title>
-    <link>https://www.adirondackexplorer.org/communities/adirondack-innovation-initiative-announces-finalists-for-adk-launchpad-pitch-competition/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-innovation-initiative-announces-finalists-for-adk-launchpad-pitch-competition/</guid>
-    <pubDate>Wed, 11 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Status and trends of U.S. fisheries and economic impacts</title>
+    <link>https://www.noaa.gov/stories/noaa-fisheries-releases-three-flagship-reports-2025-status-of-stocks-2024-fisheries-of-united-states</link>
+    <guid isPermaLink="true">https://www.noaa.gov/stories/noaa-fisheries-releases-three-flagship-reports-2025-status-of-stocks-2024-fisheries-of-united-states</guid>
+    <pubDate>Fri, 13 Nov 2026 17:05:34 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
 
-Summary: A presentation from A2i’s 2025 Launchpad. Photo courtesy of Adirondack Community Foundation. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/A2iLaunchpadPhoto2025.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Emerging startups and community members will present their businesses and ideas for a shot at a cash prize and growth resources
+Summary: Status and trends of U.S. fisheries and economic impacts. Status and trends of U.S. fisheries and economic impacts (Image credit: NOAA Fisheries) Download Image November 13, 2026 Fisheries 0 Off
 
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-innovation-initiative-announces-finalists-for-adk-launchpad-pitch-competition/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Saranac Lake event aims to connect veterans with services and support</title>
-    <link>https://www.adirondackexplorer.org/communities/saranac-lake-event-aims-to-connect-veterans-with-services-and-support/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/saranac-lake-event-aims-to-connect-veterans-with-services-and-support/</guid>
-    <pubDate>Wed, 11 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Harrietstown town supervisor Jordanna Mallach and VFW Post 3357 commander Joe Fisher inside the Harrietstown Town Hall auditorium. Photo by David Escobar &quot; data-image-caption=&quot; Harrietstown town supervisor Jordanna Mallach and VFW Post 3357 commander Joe Fisher inside the Harrietstown Town Hall auditorium. Photo by David Escobar &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_0932-1-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; VFW hosts Veterans Day Stand Down on Saturday, Nov.
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/saranac-lake-event-aims-to-connect-veterans-with-services-and-support/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
+Read the original article at the publisher: https://www.noaa.gov/stories/noaa-fisheries-releases-three-flagship-reports-2025-status-of-stocks-2024-fisheries-of-united-states</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
   </item>
   <item>
     <title>Midwestern City Lights</title>
@@ -310,6 +312,41 @@ Read the original article at the publisher: https://www.fws.gov/press-release/20
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>The Sun unleashed a monster storm. Earth may have made it worse</title>
+    <link>https://www.sciencedaily.com/releases/2026/11/261111005905.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261111005905.htm</guid>
+    <pubDate>Fri, 13 Nov 2026 09:49:36 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: The massive solar storm that illuminated skies worldwide in May 2024 has uncovered an unexpected twist: Earth&apos;s own atmosphere may have helped make the storm so powerful. Satellite measurements revealed that roughly 85% of the charged particles fueling the disturbance originated from Earth&apos;s upper atmosphere rather than the solar wind.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261111005905.htm</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>In Search of Stars</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/in-search-of-stars/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/in-search-of-stars/</guid>
+    <pubDate>Fri, 13 Nov 2026 17:58:41 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
+
+Summary: With a name that means “star,” it’s no wonder that Stella Murray is drawn to the night sky. When she joined AMC last December, Murray was looking for a way to connect with the outdoors... Read More The post In Search of Stars appeared first on Appalachian Mountain Club (AMC) .
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/in-search-of-stars/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
   </item>
   <item>
     <title>Women Shaping the Future of Working Lands in the Rockies</title>
@@ -366,6 +403,24 @@ Read the original article at the publisher: https://www.audubon.org/mid-atlantic
     <category>Forests and Plants</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>M30&apos;s Sparkling Stars</title>
+    <link>https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</guid>
+    <pubDate>Fri, 06 Nov 2026 16:28:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: M30&apos;s Sparkling Stars. This NASA/ESA Hubble Space Telescope image features the globular star cluster called Messier 30 (M30), also called NGC 7099.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/hubble-m30-potm2610a/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Astronaut and Earth</title>
@@ -476,6 +531,23 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ss
     <author>NASA</author>
   </item>
   <item>
+    <title>On Osgood Pond, a paddle through history</title>
+    <link>https://www.adirondackexplorer.org/recreation/paddling/on-osgood-pond-a-paddle-through-history/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/paddling/on-osgood-pond-a-paddle-through-history/</guid>
+    <pubDate>Fri, 13 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Emma’s paddle and the wake of the canoe disturb the glassy stillness of Church Pond on a cool, late October morning. Photo by Tom French. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/1ChurchPond.jpg?fit=780%2C521&amp;ssl=1&quot; /&gt; Past-peak paddle from Church Pond near Paul Smith’s College offers dry feet in colder weather.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/paddling/on-osgood-pond-a-paddle-through-history/</description>
+    <category>Weather</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Fish Hatchery Completes Aquatic Invasive Species Remediation Project</title>
     <link>https://www.fws.gov/story/2026-11/fish-hatchery-completes-aquatic-invasive-species-remediation-project</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/fish-hatchery-completes-aquatic-invasive-species-remediation-project</guid>
@@ -495,61 +567,40 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/fi
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery</title>
-    <link>https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</guid>
-    <pubDate>Fri, 06 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>Mountain-sized asteroid 1999 AN10 to pass close to Earth in 2027</title>
+    <link>https://earthsky.org/space/mountain-sized-asteroid-1999-an10-pass-close-to-earth-aug-7-2027/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/mountain-sized-asteroid-1999-an10-pass-close-to-earth-aug-7-2027/</guid>
+    <pubDate>Fri, 13 Nov 2026 12:43:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Exploring Creepy Crawlies at Wolf Creek National Fish Hatchery. The community was invited to a night of exploring snakes, spiders, and all things creepy-crawly at Wolf Creek National Fish Hatchery.
+Summary: Asteroid 1999 AN10, which might be a mile wide, will pass Earth on August 7, 2027, about 1 lunar distance away. The encounter poses no danger. The post Mountain-sized asteroid 1999 AN10 to pass close to Earth in 2027 first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/exploring-creepy-crawlies-wolf-creek-national-fish-hatchery</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+Read the original article at the publisher: https://earthsky.org/space/mountain-sized-asteroid-1999-an10-pass-close-to-earth-aug-7-2027/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>NOAA Voices at the 2026 Oral History Association Annual Meeting</title>
-    <link>https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</guid>
-    <pubDate>Fri, 06 Nov 2026 11:59:56 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+    <title>Sun news: How the sun stripped Mars of its air</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Fri, 13 Nov 2026 11:07:54 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: NOAA Voices at the 2026 Oral History Association Annual Meeting The 60th Annual Oral History Association Meeting will take place October 14–17, 2026, in Portland, Oregon. This year’s theme, “Landscapes of Memory,” explores relationships among place, memory, movement, and changing environmental, political, and cultural landscapes.
+Summary: Sun news November 13, 2026: A year ago, the ESCAPDE spacecraft launched toward Mars. And this mission will also be monitoring the sun. The post Sun news: How the sun stripped Mars of its air first appeared on EarthSky .
 
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.noaa.gov/news/noaa-voices-at-2026-oral-history-association-annual-meeting-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox</title>
-    <link>https://www.noaa.gov/news/project-jukebox-ext</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/project-jukebox-ext</guid>
-    <pubDate>Fri, 06 Nov 2026 11:54:13 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox We are excited to partner with the University of Alaska Fairbanks Oral History Program&apos;s Project Jukebox to co-locate selected oral histories, expanding access to one of the nation&apos;s most innovative digital oral history collections, where interviews are integrated with photographs, maps, and place-based storytelling to document Alaska&apos;s diverse communities, cultures, and changing environments. Download Image EXT link test 0 Off
-
-Waypoint’s Take: An outdoor reader can treat this as field context — check how moisture and temperature shift trail footing and wildlife activity rather than treating the headline as a verdict. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.noaa.gov/news/project-jukebox-ext</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>The Platte River Does More Than Support Wildlife</title>
@@ -588,42 +639,6 @@ Read the original article at the publisher: https://earthsky.org/space/rare-mart
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>This active asteroid has grown a tail! What happened?</title>
-    <link>https://earthsky.org/space/active-asteroid-6993-1995-bj4-tail-comet-collision/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/active-asteroid-6993-1995-bj4-tail-comet-collision/</guid>
-    <pubDate>Wed, 11 Nov 2026 12:36:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Active asteroid 1995 BJ4 has grown a cometlike tail, leaving astronomers wondering what’s happening. The post This active asteroid has grown a tail! What happened? first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/active-asteroid-6993-1995-bj4-tail-comet-collision/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Taurid meteors in 2026: All you need to know</title>
-    <link>https://earthsky.org/astronomy-essentials/taurid-meteors-all-you-need-to-know/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/taurid-meteors-all-you-need-to-know/</guid>
-    <pubDate>Wed, 11 Nov 2026 08:45:12 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: You might see Taurid meteors from late October to early November. Expect up to 10 meteors per hour, and some of them might be fireballs. The post Taurid meteors in 2026: All you need to know first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/taurid-meteors-all-you-need-to-know/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</guid>
@@ -641,6 +656,44 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <category>Seasonal Nature</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Picking cranberries before they all get eaten by wild critters</title>
+    <link>https://www.adirondackexplorer.org/environment/wildlife/picking-cranberries-before-they-all-get-eaten-by-wild-critters/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/wildlife/picking-cranberries-before-they-all-get-eaten-by-wild-critters/</guid>
+    <pubDate>Fri, 13 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A bucket full of cranberries. Photo by Gary Lee. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/PB040053-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; After a good rain, Gary Lee went to pick cranberries at Ferd&apos;s Bog, noticing other animals enjoying the fruit as well
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/wildlife/picking-cranberries-before-they-all-get-eaten-by-wild-critters/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Fly of the Week: Parker Wet Fly</title>
+    <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wet-fly/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wet-fly/</guid>
+    <pubDate>Fri, 13 Nov 2026 14:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Fly of the Week: Parker Wet Fly. The Parker Wet Fly tied and photographed By Geoff Schaake. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/The-Parker-Wet-Fly-Tied-and-Photographed-By-Geoff-Schaake.jpg?fit=780%2C592&amp;ssl=1&quot; /&gt; A bold pattern that&apos;s easily noticed by trout.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wet-fly/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>The Adirondacks have a new winter weatherman—and he’s wearing a fur coat</title>
@@ -677,61 +730,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Cashman tells eligible New Yorkers to apply for Home Energy Assistance Program</title>
-    <link>https://www.adirondackexplorer.org/communities/cashman-tells-eligible-new-yorkers-to-apply-for-home-energy-assistance-program/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/cashman-tells-eligible-new-yorkers-to-apply-for-home-energy-assistance-program/</guid>
-    <pubDate>Wed, 11 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: HEAP can help New Yorkers with heating costs. Explorer file photo. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2020/11/heap-card.jpg?fit=533%2C400&amp;ssl=1&quot; /&gt; HEAP provides benefits to support eligible New York residents handle annual energy costs associated with heating in the winter
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/cashman-tells-eligible-new-yorkers-to-apply-for-home-energy-assistance-program/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Tales of the Adirondacks, past and present: The red barn</title>
-    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-the-red-barn/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-the-red-barn/</guid>
-    <pubDate>Tue, 10 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The red barn was referred to as the most photographed image in the Adirondacks. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/47f410bc-30ca-495b-b9f3-b0ac26f9406e.jpeg?fit=780%2C438&amp;ssl=1&quot; /&gt; Joanne Whitney shares a story about a particular beloved red barn that once stood at the bottom of Spruce Hill
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-the-red-barn/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>NASA reveals Earth&apos;s ozone hole has grown to a size not seen in a decade</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261110042546.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261110042546.htm</guid>
-    <pubDate>Wed, 11 Nov 2026 12:32:48 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: The Antarctic ozone hole expanded to its seventh-largest size on record in 2026, driven by unusual weather conditions that pushed it close to its historic maximum. Scientists say international restrictions on ozone-destroying chemicals prevented even greater damage, and Earth&apos;s protective ozone layer is still recovering.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261110042546.htm</description>
-    <category>Weather</category>
-    <category domain="geographic">Global</category>
-    <author>ScienceDaily</author>
   </item>
   <item>
     <title>El Niño threatens health, too—early warnings done right can save lives</title>
