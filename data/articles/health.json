@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-11-15T18:06:50.341Z",
+  "checkedAt": "2026-11-16T03:34:49.285Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 515,
+      "ms": 351,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 158,
+      "ms": 226,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 67,
+      "ms": 138,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 144,
+      "ms": 273,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 2360,
+      "ms": 1327,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 77,
+      "ms": 146,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 90,
+      "ms": 133,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 238,
+      "ms": 246,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 234,
+      "ms": 127,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 220,
+      "ms": 287,
       "enabled": true
     },
     {
@@ -233,7 +233,7 @@
       "warnings": [
         "item-missing-safe-url"
       ],
-      "ms": 398,
+      "ms": 509,
       "enabled": true
     },
     {
@@ -243,7 +243,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 159,
+      "ms": 100,
       "enabled": true
     },
     {
@@ -255,10 +255,10 @@
       "warnings": [
         "no-parseable-items"
       ],
-      "ms": 194,
+      "ms": 195,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-11-16T06:06:50.341Z"
+  "staleAfter": "2026-11-16T15:34:49.285Z"
 }

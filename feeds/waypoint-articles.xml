@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2026 18:06:50 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 03:34:49 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -124,25 +124,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-10/fa
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Climate could force more than 200 million from homes: U.N. migration chief</title>
-    <link>https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</guid>
-    <pubDate>Fri, 13 Nov 2026 18:07:07 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Climate change could force more than 200 million people from their homes even as countries spend billions on securing their borders, the head of the U.N.&apos;s migration body said Friday.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</description>
-    <category>Climate</category>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Grace Under Fire: Leadville National Fish Hatchery Manager Receives Conservation Leadership Award</title>
     <link>https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</guid>
@@ -238,25 +219,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>COMMENTARY: Part 2: Do we really need more ‘Forever Wild’ land?</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</guid>
-    <pubDate>Fri, 13 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: adirondack community foundation housing announcement at Schroon Lake Lodge &quot; data-image-caption=&quot; The Adirondack Community Foundation makes an announcement at the Lodge at Schroon Lake. Photo by Nancie Battaglia, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/nbAdkCommFndHousingEvent.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Jim Gould expands on his call for investment in Adirondack communities by showcasing positive work already being done
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
@@ -308,6 +270,25 @@ Waypoint’s Take: Outside, this matters because it can change what you watch fo
 Read the original article at the publisher: https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</description>
     <category>Weather</category>
     <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Climate could force more than 200 million from homes: U.N. migration chief</title>
+    <link>https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</guid>
+    <pubDate>Fri, 13 Nov 2026 18:07:07 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Climate change could force more than 200 million people from their homes even as countries spend billions on securing their borders, the head of the U.N.&apos;s migration body said Friday.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</description>
+    <category>Climate</category>
+    <category>Birds</category>
+    <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
@@ -657,6 +638,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>COMMENTARY: Part 2: Do we really need more ‘Forever Wild’ land?</title>
+    <link>https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</guid>
+    <pubDate>Fri, 13 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: adirondack community foundation housing announcement at Schroon Lake Lodge &quot; data-image-caption=&quot; The Adirondack Community Foundation makes an announcement at the Lodge at Schroon Lake. Photo by Nancie Battaglia, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/nbAdkCommFndHousingEvent.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Jim Gould expands on his call for investment in Adirondack communities by showcasing positive work already being done
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
