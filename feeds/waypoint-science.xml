@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2026 03:34:49 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 21:22:19 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -30,6 +30,24 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
+    <title>Thunderbirds in Formation</title>
+    <link>https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</guid>
+    <pubDate>Mon, 16 Nov 2026 18:35:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: U.S. Air Force Thunderbirds fighter jets pass overhead during the agency’s MAX POWER expo and air show on Saturday, Nov. 7, 2026, at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Outbursts from a Massive Star</title>
     <link>https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</guid>
@@ -46,43 +64,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/a-
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Astronauts Across Generations Share the Stage</title>
-    <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
-    <pubDate>Mon, 09 Nov 2026 16:57:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: On Nov. 6, 2026, Purpose Entertainment hosted the Artemis Celebration Gala at NASA&apos;s Kennedy Space Center Visitor Complex in Merritt Island, Florida. Held on the eve of NASA&apos;s MAX POWER event, the gala celebrated the explorers, innovators, and visionaries advancing the next era of human spaceflight.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Rescue, Release, Recovery: Conservation Takes a Village</title>
-    <link>https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</guid>
-    <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Rescue, Release, Recovery: Conservation Takes a Village. Multiple agencies banded together for the sake of an imperiled small-stream fish; the Barrens Topminnow.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</description>
-    <category>Rivers and Water</category>
-    <category>Outdoor Safety</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Fall Flights: Migration Hot Spots Supported by Industry Excise Tax</title>
@@ -181,6 +162,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Rescue, Release, Recovery: Conservation Takes a Village</title>
+    <link>https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</guid>
+    <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Rescue, Release, Recovery: Conservation Takes a Village. Multiple agencies banded together for the sake of an imperiled small-stream fish; the Barrens Topminnow.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</description>
+    <category>Rivers and Water</category>
+    <category>Outdoor Safety</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
@@ -197,43 +197,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>32nd Annual Rio Reforestation</title>
-    <link>https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</guid>
-    <pubDate>Mon, 26 Oct 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The U.S. Fish and Wildlife Service hosted the 32nd annual Rio Reforestation Event on Saturday, Oct. 17, at the Lower Rio Grande Valley National Wildlife Refuge in south Texas. Over 2,000 volunteers attended and helped plant 10,000 native trees and shrubs at the event.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>California steels for storms that could trigger massive waves, flooding</title>
-    <link>https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</guid>
-    <pubDate>Sat, 14 Nov 2026 11:40:06 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: California was bracing Friday for a storm series packing heavy rain and surf that could once again flood coastal communities and potentially send monster waves pounding shores.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</description>
-    <category>Weather</category>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   <item>
     <title>Climate could force more than 200 million from homes: U.N. migration chief</title>
@@ -253,6 +216,24 @@ Read the original article at the publisher: https://phys.org/news/2026-11-climat
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Astronauts Across Generations Share the Stage</title>
+    <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
+    <pubDate>Mon, 09 Nov 2026 16:57:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Nov. 6, 2026, Purpose Entertainment hosted the Artemis Celebration Gala at NASA&apos;s Kennedy Space Center Visitor Complex in Merritt Island, Florida. Held on the eve of NASA&apos;s MAX POWER event, the gala celebrated the explorers, innovators, and visionaries advancing the next era of human spaceflight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>M30&apos;s Sparkling Stars</title>
@@ -345,22 +326,21 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
-    <link>https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:29:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>One wandering plume may have created several Atlantic volcanic chains</title>
+    <link>https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</guid>
+    <pubDate>Mon, 16 Nov 2026 18:50:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: NASA test pilot Mike Lippert poses for a photo ahead of his first time flying the agency&apos;s X-59 quiet supersonic research aircraft on Oct. 21, 2026.
+Summary: Beneath the North Atlantic Ocean lies a series of underwater volcanic mountain chains stretching from the coast of North America toward the Azores. These include the New England Seamounts and the Great Meteor Seamounts.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</description>
+Read the original article at the publisher: https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <category domain="geographic">Northeast</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Status and trends of U.S. fisheries and economic impacts</title>
@@ -382,23 +362,22 @@ Read the original article at the publisher: https://www.noaa.gov/stories/noaa-fi
     <author>NOAA</author>
   </item>
   <item>
-    <title>Fish Hatchery Completes Aquatic Invasive Species Remediation Project</title>
-    <link>https://www.fws.gov/story/2026-11/fish-hatchery-completes-aquatic-invasive-species-remediation-project</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/fish-hatchery-completes-aquatic-invasive-species-remediation-project</guid>
-    <pubDate>Mon, 09 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>EPA Awards $13.9M for Project to Simultaneously Save Flooding Freeway and Restore Critical Wetland in San Francisco Bay</title>
+    <link>https://www.audubon.org/california/press-room/epa-awards-139m-project-simultaneously-save-flooding-freeway-and-restore</link>
+    <guid isPermaLink="true">https://www.audubon.org/california/press-room/epa-awards-139m-project-simultaneously-save-flooding-freeway-and-restore</guid>
+    <pubDate>Mon, 16 Nov 2026 20:54:48 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
 
-Summary: Jones Hole National Fish Hatchery has completed an extensive remediation project to address an infestation of New Zealand mudsnails, an aquatic invasive species that threatened hatchery operations.
+Summary: (Tiburon, CA) In partnership with Audubon California, local governments, transportation agencies, and restoration practitioners, the Association of Bay Area Governments has been awarded funding by...
 
 Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/fish-hatchery-completes-aquatic-invasive-species-remediation-project</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
+Read the original article at the publisher: https://www.audubon.org/california/press-room/epa-awards-139m-project-simultaneously-save-flooding-freeway-and-restore</description>
     <category>Birds</category>
+    <category>Rivers and Water</category>
     <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Starship capture thrills space fans! And SpaceX makes spaceflight history (again)</title>
@@ -510,6 +489,63 @@ Read the original article at the publisher: https://www.audubon.org/mid-atlantic
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>Decomposers’ haunt: Rotting pumpkin</title>
+    <link>https://www.adirondackexplorer.org/environment/decomposers-haunt-rotting-pumpkin/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/decomposers-haunt-rotting-pumpkin/</guid>
+    <pubDate>Mon, 16 Nov 2026 20:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Rotting pumpkins return nutrients to the soil. Illustration by Adelaide Murphy Tyrol. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/rotting-pumpkin.jpg?fit=780%2C648&amp;ssl=1&quot; /&gt; As carved Halloween pumpkins decompose, a combination of biological cities grow which can provide nutrients to soil
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/decomposers-haunt-rotting-pumpkin/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Tupper Community Builders tech room renovation ahead of schedule</title>
+    <link>https://www.adirondackexplorer.org/communities/tupper-community-builders-tech-room-renovation-ahead-of-schedule/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tupper-community-builders-tech-room-renovation-ahead-of-schedule/</guid>
+    <pubDate>Mon, 16 Nov 2026 18:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The tech room at the Tupper Lake Central School District. Photo courtesy of Tupper Community Builders. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_4916-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; The tech room at the Tupper Lake Central School District is in much need of repair, and Tupper Community Builders is helping
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tupper-community-builders-tech-room-renovation-ahead-of-schedule/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Regional Food Bank establishes first satellite distribution center for North Country</title>
+    <link>https://www.adirondackexplorer.org/communities/food-and-farms/regional-food-bank-establishes-first-satellite-distribution-center-for-north-country/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/regional-food-bank-establishes-first-satellite-distribution-center-for-north-country/</guid>
+    <pubDate>Mon, 16 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The investment will double both cold and dry storage space, dramatically increasing the amount of fresh produce and other nutritious foods available throughout the region. Photo courtesy of the Regional Food Bank. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/RFB-Malone-Joint-presser-with-JCEO-11-5-26-92-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; The Regional Food Bank is adding staffing and infrastructure improvements to increase food access in the North Country
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/regional-food-bank-establishes-first-satellite-distribution-center-for-north-country/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Coakley Home &amp; Hardware becomes worker-owned cooperative</title>
     <link>https://www.adirondackexplorer.org/communities/coakley-home-hardware-becomes-worker-owned-cooperative/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/coakley-home-hardware-becomes-worker-owned-cooperative/</guid>
@@ -526,63 +562,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Charles R. Wood Foundation awards $10,000 to Silver Bay YMCA program</title>
-    <link>https://www.adirondackexplorer.org/communities/charles-r-wood-foundation-awards-10000-to-silver-bay-ymca-program/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/charles-r-wood-foundation-awards-10000-to-silver-bay-ymca-program/</guid>
-    <pubDate>Sat, 14 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Students at TCELC consistent of ages 5 to 6. Photo courtesy of Silver Bay YMCA. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/TCELC_IPZ_2026-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; The Ticonderoga Community Early Learning Center at Silver Bay serves young children with curriculum-based, community driven learning
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/charles-r-wood-foundation-awards-10000-to-silver-bay-ymca-program/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>State funds move Elizabethtown sewer project closer to reality</title>
-    <link>https://www.adirondackexplorer.org/environment/water-quality/elizabethtown-secures-24-million-for-public-sewer-project/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/water-quality/elizabethtown-secures-24-million-for-public-sewer-project/</guid>
-    <pubDate>Sat, 14 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: New York State officials present $24 million in funding toward an Elizabethtown wastewater project. Photo by Tim Rowland &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_5227.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Community leaders celebrate big steps forward on a decades-long endeavor
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/water-quality/elizabethtown-secures-24-million-for-public-sewer-project/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>COMMENTARY: Part 2: Do we really need more ‘Forever Wild’ land?</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</guid>
-    <pubDate>Fri, 13 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: adirondack community foundation housing announcement at Schroon Lake Lodge &quot; data-image-caption=&quot; The Adirondack Community Foundation makes an announcement at the Lodge at Schroon Lake. Photo by Nancie Battaglia, Explorer file. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/nbAdkCommFndHousingEvent.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Jim Gould expands on his call for investment in Adirondack communities by showcasing positive work already being done
-
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-part-2-do-we-really-need-more-forever-wild-land/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -604,6 +583,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
+    <title>Conservation Funding Helps Keep Farmland Intact for Birds and People</title>
+    <link>https://www.audubon.org/north-carolina/news/conservation-funding-helps-keep-farmland-intact-birds-and-people</link>
+    <guid isPermaLink="true">https://www.audubon.org/north-carolina/news/conservation-funding-helps-keep-farmland-intact-birds-and-people</guid>
+    <pubDate>Mon, 16 Nov 2026 15:11:58 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: In 2026, North Carolina lawmakers included a historic $54 million investment in the state’s farmland preservation trust fund. This landmark allocation comes at a critical time, because North...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/north-carolina/news/conservation-funding-helps-keep-farmland-intact-birds-and-people</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Women Shaping the Future of Working Lands in the Rockies</title>
     <link>https://www.audubon.org/rockies/news/women-shaping-future-of-working-lands-rockies</link>
     <guid isPermaLink="true">https://www.audubon.org/rockies/news/women-shaping-future-of-working-lands-rockies</guid>
@@ -621,6 +618,78 @@ Read the original article at the publisher: https://www.audubon.org/rockies/news
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Why forest fires often break out simultaneously across Europe</title>
+    <link>https://phys.org/news/2026-11-forest-simultaneously-europe.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-forest-simultaneously-europe.html</guid>
+    <pubDate>Mon, 16 Nov 2026 18:00:14 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Firefighting aircraft, helicopters, fire departments—when forests across Europe are burning at the same time, the limited firefighting resources have to be allocated efficiently, and ideally before the fires even break out.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-forest-simultaneously-europe.html</description>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>California steels for storms that could trigger massive waves, flooding</title>
+    <link>https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</guid>
+    <pubDate>Sat, 14 Nov 2026 11:40:06 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: California was bracing Friday for a storm series packing heavy rain and surf that could once again flood coastal communities and potentially send monster waves pounding shores.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-california-steels-storms-trigger-massive.html</description>
+    <category>Weather</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
+    <link>https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:29:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA test pilot Mike Lippert poses for a photo ahead of his first time flying the agency&apos;s X-59 quiet supersonic research aircraft on Oct. 21, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>32nd Annual Rio Reforestation</title>
+    <link>https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</guid>
+    <pubDate>Mon, 26 Oct 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: The U.S. Fish and Wildlife Service hosted the 32nd annual Rio Reforestation Event on Saturday, Oct. 17, at the Lower Rio Grande Valley National Wildlife Refuge in south Texas. Over 2,000 volunteers attended and helped plant 10,000 native trees and shrubs at the event.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the story to refine where and when observation is ethical and useful. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-10/32nd-annual-rio-reforestation</description>
+    <category>Wildlife</category>
+    <category>Forests and Plants</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>RS-25 Engine Tests at NASA Stennis</title>
@@ -671,78 +740,6 @@ Summary: NASA’s James Webb Space Telescope has revealed many protostars and st
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/55572978759-545472774e-o/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Martian Dawn</title>
-    <link>https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</guid>
-    <pubDate>Mon, 19 Oct 2026 16:05:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The captivating shapes of wind-carved crags called yardangs are revealed in this zoomed-in crop of a broader panorama captured by NASA’s Curiosity Mars rover. Scientists are eager to learn more about how the yardang layer formed.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Artemis II Heat Shield After Splashdown</title>
-    <link>https://www.nasa.gov/image-detail/afs-8-101-1320/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1320/</guid>
-    <pubDate>Fri, 16 Oct 2026 16:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Artemis II Heat Shield After Splashdown. Shortly after Artemis II splashdown on April 10, 2026, U.S. Navy divers captured underwater imagery of the Orion spacecraft’s heat shield.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1320/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Chandra Finds Possible Origin of &apos;Treble Clef&apos; Waves</title>
-    <link>https://www.nasa.gov/image-detail/shape-3601-3601/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/shape-3601-3601/</guid>
-    <pubDate>Thu, 15 Oct 2026 14:20:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Astronomers have used NASA’s Chandra X-ray Observatory to break down the cause of a remarkable formation of radio waves they have nicknamed the “Treble Clef” because its distinct shape strongly resembles the musical symbol.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/shape-3601-3601/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>

@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2026 03:34:49 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 16 Nov 2026 21:22:19 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Thunderbirds in Formation</title>
+    <link>https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</guid>
+    <pubDate>Mon, 16 Nov 2026 18:35:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: U.S. Air Force Thunderbirds fighter jets pass overhead during the agency’s MAX POWER expo and air show on Saturday, Nov. 7, 2026, at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Outbursts from a Massive Star</title>
     <link>https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</link>
@@ -22,24 +40,6 @@ Summary: Outbursts from a Massive Star. Using Chandra, astronomers have discover
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Astronauts Across Generations Share the Stage</title>
-    <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
-    <pubDate>Mon, 09 Nov 2026 16:57:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: On Nov. 6, 2026, Purpose Entertainment hosted the Artemis Celebration Gala at NASA&apos;s Kennedy Space Center Visitor Complex in Merritt Island, Florida. Held on the eve of NASA&apos;s MAX POWER event, the gala celebrated the explorers, innovators, and visionaries advancing the next era of human spaceflight.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -61,6 +61,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Astronauts Across Generations Share the Stage</title>
+    <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
+    <pubDate>Mon, 09 Nov 2026 16:57:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Nov. 6, 2026, Purpose Entertainment hosted the Artemis Celebration Gala at NASA&apos;s Kennedy Space Center Visitor Complex in Merritt Island, Florida. Held on the eve of NASA&apos;s MAX POWER event, the gala celebrated the explorers, innovators, and visionaries advancing the next era of human spaceflight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -154,22 +172,21 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/1-
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
-    <link>https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</guid>
-    <pubDate>Mon, 26 Oct 2026 15:29:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>One wandering plume may have created several Atlantic volcanic chains</title>
+    <link>https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</guid>
+    <pubDate>Mon, 16 Nov 2026 18:50:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: NASA test pilot Mike Lippert poses for a photo ahead of his first time flying the agency&apos;s X-59 quiet supersonic research aircraft on Oct. 21, 2026.
+Summary: Beneath the North Atlantic Ocean lies a series of underwater volcanic mountain chains stretching from the coast of North America toward the Azores. These include the New England Seamounts and the Great Meteor Seamounts.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</description>
+Read the original article at the publisher: https://phys.org/news/2026-11-plume-atlantic-volcanic-chains.html</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <category domain="geographic">Northeast</category>
+    <author>Phys.org</author>
   </item>
   <item>
     <title>Starship capture thrills space fans! And SpaceX makes spaceflight history (again)</title>
@@ -260,6 +277,24 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
+  </item>
+  <item>
+    <title>NASA&apos;s X-59 Aircraft and Test Pilot</title>
+    <link>https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</guid>
+    <pubDate>Mon, 26 Oct 2026 15:29:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA test pilot Mike Lippert poses for a photo ahead of his first time flying the agency&apos;s X-59 quiet supersonic research aircraft on Oct. 21, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/mike-lippert-x-59-lbfd-flight-39-3/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>RS-25 Engine Tests at NASA Stennis</title>
@@ -424,36 +459,35 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ga
     <author>NASA</author>
   </item>
   <item>
-    <title>Crew-12 Returns to Earth</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</guid>
-    <pubDate>Thu, 08 Oct 2026 18:53:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The SpaceX Crew Dragon Freedom spacecraft is seen as it lands with NASA astronauts Jessica Meir and Jack Hathaway, ESA (European Space Agency) astronaut Sophie Adenot, and Roscosmos cosmonaut Andrey Fedyaev aboard in the Pacific Ocean off the coast of Los Angeles, Calif., Thursday, Oct. 8, 2026.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crew-12-splashdown-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Sun, 15 Nov 2026 11:31:00 GMT</pubDate>
+    <pubDate>Mon, 16 Nov 2026 14:48:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: This morning, Jupiter and Mars appeared just over a degree apart in the eastern sky! The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide: The Leonid meteor shower is peaking! Watch in a dark sky between midnight and dawn on the mornings of November 17 and 18. The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: The astronaut who watched a solar flare being born</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Mon, 16 Nov 2026 13:03:15 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 16, 2026: 53 years ago, Skylab’s last crew launched. One of these astronauts became the first to watch a solar flare from start to finish. The post Sun news: The astronaut who watched a solar flare being born first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
@@ -561,23 +595,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/hu
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Sun news: These 2 astronomers changed how we see the sun</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Sun, 15 Nov 2026 11:48:39 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 15, 2026: Today we honor Kepler, who mapped how planets orbit the sun, and Herschel, who found invisible light in sunlight! The post Sun news: These 2 astronomers changed how we see the sun first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — ask what the camera clarifies that a walk alone might miss. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Hidden Landscapes</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>
