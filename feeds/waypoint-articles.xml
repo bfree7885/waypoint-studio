@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Nov 2026 21:22:19 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 17 Nov 2026 05:32:20 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -252,25 +252,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Climate could force more than 200 million from homes: U.N. migration chief</title>
-    <link>https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</guid>
-    <pubDate>Fri, 13 Nov 2026 18:07:07 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Climate change could force more than 200 million people from their homes even as countries spend billions on securing their borders, the head of the U.N.&apos;s migration body said Friday.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-climate-billion-homes-migration-chief.html</description>
-    <category>Climate</category>
-    <category>Birds</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
   </item>
   <item>
     <title>Astronauts Across Generations Share the Stage</title>
@@ -920,6 +901,24 @@ Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Transporter-18 SmallSats Encapsulation</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1315/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1315/</guid>
+    <pubDate>Tue, 13 Oct 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Three NASA-supported small spacecraft, shown along with many commercial payloads, before being encapsulated in a SpaceX Falcon 9. The rocket launched the payloads into low-Earth orbit at 11:32 a.m. PDT Thursday, Oct. 1, 2026, as part of the company’s Transporter-18 mission from Space Launch Complex 4 East at Vandenberg Space Force Base in California.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1315/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
