@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Nov 2026 04:52:10 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 19:42:14 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -46,6 +46,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/s
     <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Lake Pelku</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0267074/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0267074/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Lake Pelku (near center), on the Chinese side of the snow-capped Himalayas with Nepal on the adjacent side, is pictured from the International Space Station as it orbited above Asia.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0267074/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Empire State Building Goes Gold for Voyager</title>
@@ -120,40 +138,21 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/a-
     <author>NASA</author>
   </item>
   <item>
-    <title>Grace Under Fire: Leadville National Fish Hatchery Manager Receives Conservation Leadership Award</title>
-    <link>https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</guid>
-    <pubDate>Thu, 12 Nov 2026 12:00:00 GMT</pubDate>
+    <title>Indiana&apos;s first Tribal Bat Blitz</title>
+    <link>https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</guid>
+    <pubDate>Wed, 18 Nov 2026 12:00:00 GMT</pubDate>
     <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: Josh Homer, project leader of the U.S. Fish and Wildlife Service’s Leadville and Hotchkiss National Fish Hatchery Complex, has received Colorado Trout Unlimited’s River Champion Conservation Leadership Award for his swift action to save nearly 150,000 greenback cutthroat trout threatened by the
+Summary: USFWS participated in Indiana&apos;s first Tribal Bat Blitz to help biologists gain valuable handling and tagging experience while helping researchers track a red bat’s thousand-mile journey.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</description>
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</description>
     <category>Wildlife</category>
-    <category>Rivers and Water</category>
     <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>New Exhibits at Huron Wetland Management District</title>
-    <link>https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</guid>
-    <pubDate>Thu, 12 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: New interactive exhibits at Huron Wetland Management District&apos;s headquarters and visitor center offer visitors an immersive look at the wetlands, grasslands, wildlife, and conservation partnerships that define South Dakota&apos;s Prairie Pothole Region.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</description>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
+    <category>Birds</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
   </item>
@@ -207,44 +206,6 @@ Summary: A Canadian flag flies as a business in downtown Lake Placid on Monday. 
 Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/communities/seven-contractors-detained-by-ice-at-lake-placid-hotel/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Tales of the Adirondacks, past and present: Wild work farm</title>
-    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-wild-work-farm/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-wild-work-farm/</guid>
-    <pubDate>Tue, 17 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Rivermede Farms in Keene Valley. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/03417821-08ff-453f-bc2c-e39b817154fc.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Rivermede Farms in Keene Valley is run by the descendants of Livingston Ludlow Taylor, who bought the farm in 1906
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-wild-work-farm/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Stories: Paul Smith</title>
-    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-paul-smith/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-paul-smith/</guid>
-    <pubDate>Tue, 17 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Adirondack Stories: Paul Smith. Apollos &quot;Paul&quot; Smith created multiple businesses in the northern Adirondacks, starting with his first hotel in 1859
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-paul-smith/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -345,6 +306,24 @@ Read the original article at the publisher: https://www.audubon.org/florida/news
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>Pacific island nations declare El Niño drought crisis</title>
+    <link>https://phys.org/news/2026-11-pacific-island-nations-declare-el.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-pacific-island-nations-declare-el.html</guid>
+    <pubDate>Thu, 19 Nov 2026 12:20:04 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Pacific island nations declare El Niño drought crisis. Fiji and Tonga have declared that severe droughts fueled by the El Niño weather phenomenon are reaching crisis levels in the South Pacific.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-pacific-island-nations-declare-el.html</description>
+    <category>Weather</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
     <title>Astronauts Across Generations Share the Stage</title>
     <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
@@ -417,6 +396,23 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ch
     <author>NASA</author>
   </item>
   <item>
+    <title>How the Boquet River Association is restoring a key Adirondack waterway</title>
+    <link>https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</guid>
+    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Volunteers planting sedges, rushes, willows, quaking aspen and balsam poplar, along the Boquet River in Elizabethtown, to stabilize and revegetate the area disturbed by a bridge and fish weir that have recently been removed. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00054.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Recent projects include removing a bridge, planting trees to improve river banks, flow
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Blackwater National Wildlife Refuge seeks bids for 2027 trapping season</title>
     <link>https://www.fws.gov/press-release/2026-11/blackwater-national-wildlife-refuge-seeks-bids-2027-trapping-season</link>
     <guid isPermaLink="true">https://www.fws.gov/press-release/2026-11/blackwater-national-wildlife-refuge-seeks-bids-2027-trapping-season</guid>
@@ -429,24 +425,6 @@ Summary: Blackwater National Wildlife Refuge seeks bids for 2027 trapping season
 Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.fws.gov/press-release/2026-11/blackwater-national-wildlife-refuge-seeks-bids-2027-trapping-season</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Flags Across America Witness the Vast and Wild Arctic National Wildlife Refuge</title>
-    <link>https://www.fws.gov/story/2026-11/flags-across-america-witness-vast-and-wild-arctic-national-wildlife-refuge</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/flags-across-america-witness-vast-and-wild-arctic-national-wildlife-refuge</guid>
-    <pubDate>Tue, 17 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: Imagine going to an area about the size of South Carolina, 19.3 million acres. Only unlike South Carolina, the area has no roads, established trails or facilities of any kind. You can find such a place in the northeastern corner of Alaska, Arctic National Wildlife Refuge, a vast landscape of rich
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/flags-across-america-witness-vast-and-wild-arctic-national-wildlife-refuge</description>
     <category>Wildlife</category>
     <category>Conservation</category>
     <category domain="geographic">National</category>
@@ -470,6 +448,98 @@ Read the original article at the publisher: https://www.noaa.gov/stories/noaa-fi
     <category>Environmental Science</category>
     <category domain="geographic">National</category>
     <author>NOAA</author>
+  </item>
+  <item>
+    <title>Grace Under Fire: Leadville National Fish Hatchery Manager Receives Conservation Leadership Award</title>
+    <link>https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: Josh Homer, project leader of the U.S. Fish and Wildlife Service’s Leadville and Hotchkiss National Fish Hatchery Complex, has received Colorado Trout Unlimited’s River Champion Conservation Leadership Award for his swift action to save nearly 150,000 greenback cutthroat trout threatened by the
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/grace-under-fire-leadville-national-fish-hatchery-manager-receives-conservation</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>New Exhibits at Huron Wetland Management District</title>
+    <link>https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</link>
+    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</guid>
+    <pubDate>Thu, 12 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+
+Summary: New interactive exhibits at Huron Wetland Management District&apos;s headquarters and visitor center offer visitors an immersive look at the wetlands, grasslands, wildlife, and conservation partnerships that define South Dakota&apos;s Prairie Pothole Region.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.fws.gov/story/2026-11/new-exhibits-huron-wetland-management-district</description>
+    <category>Wildlife</category>
+    <category>Rivers and Water</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>T. rex babies were the size of kittens, new study says. Aw!</title>
+    <link>https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</guid>
+    <pubDate>Thu, 19 Nov 2026 12:23:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: T. rex babies were the size of kittens. A new study that analyzed the fossils of juvenile T. rex bones suggests parents were largely hands off. The post T. rex babies were the size of kittens, new study says. Aw! first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>What do baby stars sound like? Listen to them here!</title>
+    <link>https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</guid>
+    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: NASA has shared 4 new sonifications — or soundscapes created from data — of stellar factories in our universe. Listen to what these baby stars sound like! The post What do baby stars sound like? Listen to them here! first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Look out our galaxy’s south window into intergalactic space</title>
+    <link>https://earthsky.org/tonight/looking-out-galaxys-south-window/</link>
+    <guid isPermaLink="true">https://earthsky.org/tonight/looking-out-galaxys-south-window/</guid>
+    <pubDate>Thu, 19 Nov 2026 09:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Use the Great Square of Pegasus to locate the star Fomalhaut. Then you&apos;re on your way to looking out our galaxy&apos;s south window into intergalactic space. The post Look out our galaxy’s south window into intergalactic space first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/tonight/looking-out-galaxys-south-window/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Voyager 1 reaches 1 light-day from Earth!</title>
@@ -508,78 +578,6 @@ Read the original article at the publisher: https://earthsky.org/space/mysteriou
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: Our star awakens with 2 M flares</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 18 Nov 2026 10:50:34 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 18, 2026: The sun has awoken with 2 M flares from AR4578. One sent a burst of sun-stuff our way. The post Sun news: Our star awakens with 2 M flares first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Mars Sample Return: NASA’s new effort to bring samples home</title>
-    <link>https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA has begun a new effort for a Mars Sample Return mission to bring the highly-sought samples from the Perseverance rover back to Earth. The post Mars Sample Return: NASA’s new effort to bring samples home first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Jupiter-Mars conjunction 2026: Best images here!</title>
-    <link>https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Jupiter and Mars had a beautiful cosmic encounter in November 2026. Enjoy this gallery of November&apos;s Jupiter-Mars conjunction. The post Jupiter-Mars conjunction 2026: Best images here! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Look for Mercury this week, farthest from morning sun</title>
-    <link>https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Mercury will reach its greatest elongation - greatest distance from the sunrise - on November 21. Look east at dawn. Bright Venus will be nearby. The post Look for Mercury this week, farthest from morning sun first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>Harris’s Hawks: A Pack with Wings</title>
     <link>https://www.audubon.org/southwest/news/harriss-hawks-pack-wings</link>
     <guid isPermaLink="true">https://www.audubon.org/southwest/news/harriss-hawks-pack-wings</guid>
@@ -599,36 +597,18 @@ Read the original article at the publisher: https://www.audubon.org/southwest/ne
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>Reclaiming an Urban Forest for Birds and People in Baltimore</title>
-    <link>https://www.audubon.org/mid-atlantic/news/reclaiming-urban-forest-birds-and-people-baltimore</link>
-    <guid isPermaLink="true">https://www.audubon.org/mid-atlantic/news/reclaiming-urban-forest-birds-and-people-baltimore</guid>
-    <pubDate>Thu, 12 Nov 2026 19:16:39 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: A forest in southwest Baltimore has a new lease on life thanks to a partnership between Audubon, Baltimore City Recreation and Parks, and the Lakeland community.Audubon wrapped up restoration work at...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/mid-atlantic/news/reclaiming-urban-forest-birds-and-people-baltimore</description>
-    <category>Birds</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>COMMENTARY: Reflecting on the midterm election and future of NY21</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-reflecting-on-the-midterm-election-and-future-of-ny21/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-reflecting-on-the-midterm-election-and-future-of-ny21/</guid>
-    <pubDate>Tue, 17 Nov 2026 21:00:00 GMT</pubDate>
+    <title>NY faces statewide electricity shortage and has nation’s oldest grid</title>
+    <link>https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</guid>
+    <pubDate>Thu, 19 Nov 2026 18:43:07 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: An election map of NY21. Photo courtesy of New York Focus. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Screenshot-2026-11-10-at-11.25.22-AM-1.png?fit=780%2C923&amp;ssl=1&quot; /&gt; Anthony Constantino led a brutal campaign, yet it remains to be seen what type of leader he will be for the region he represents
+Summary: New York’s four nuclear reactors provide the state with roughly 20% of its electricity needs. Photo by Lori Van Buren/Times Union &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/960x10.webp?fit=780%2C519&amp;ssl=1&quot; /&gt; For the first time, the New York Independent System Operator is warning the state may not have enough electricity to meet future demand.
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-reflecting-on-the-midterm-election-and-future-of-ny21/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -636,18 +616,36 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Report credits ORDA with $484M economic impact, as New York eyes 2042 Winter Games bid</title>
-    <link>https://www.adirondackexplorer.org/communities/government/report-credits-orda-with-484m-economic-impact-as-new-york-eyes-2042-winter-games-bid/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/report-credits-orda-with-484m-economic-impact-as-new-york-eyes-2042-winter-games-bid/</guid>
-    <pubDate>Tue, 17 Nov 2026 18:22:49 GMT</pubDate>
+    <title>Brazil&apos;s approach to deforestation delivers major reductions in Amazon forest loss</title>
+    <link>https://phys.org/news/2026-11-brazil-approach-deforestation-major-reductions.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-brazil-approach-deforestation-major-reductions.html</guid>
+    <pubDate>Thu, 19 Nov 2026 14:20:05 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: A new study finds that a Brazilian policy aimed at reducing deforestation appears to be remarkably effective and has significantly reduced forest loss in the Brazilian Amazon. The largest reductions occurred on private lands specifically targeted by Brazil&apos;s Priority List (PL) policy, with no evidence that deforestation shifted to other land ownerships or neighboring municipalities.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-brazil-approach-deforestation-major-reductions.html</description>
+    <category>Forests and Plants</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>COMMENTARY: North Country health partners mark the Great American Smokeout</title>
+    <link>https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</guid>
+    <pubDate>Thu, 19 Nov 2026 13:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: courtesy orda &quot; data-image-caption=&quot; People on Whiteface Mountain. Photo courtesy of ORDA &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2017/11/whiteface-opening-day.png?fit=540%2C347&amp;ssl=1&quot; /&gt; While study commissioned by the state authority points to 1.3 million venue visits and $36 million in tax revenue, it stops short of calculating return on state investment.
+Summary: Adult smoking has dropped more than 9% in New York State. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/E-Cigarette-Electronic_Cigarette-E-Cigs-E-Liquid-Vaping-Stop_Smoking-Quit_Smoking_16272143521.jpg?fit=640%2C427&amp;ssl=1&quot; /&gt; Health advocates in the region mark Nov. 19 an opportunity for tobacco users to quit, especially as winter nears and stressors worsen
 
 Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/report-credits-orda-with-484m-economic-impact-as-new-york-eyes-2042-winter-games-bid/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -710,25 +708,6 @@ Read the original article at the publisher: https://phys.org/news/2026-11-sea-is
     <author>Phys.org</author>
   </item>
   <item>
-    <title>An atlas of vanished places: How climate change is rewriting the books on our shelves</title>
-    <link>https://phys.org/news/2026-11-atlas-climate-rewriting-shelves.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-atlas-climate-rewriting-shelves.html</guid>
-    <pubDate>Wed, 18 Nov 2026 03:00:06 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: On Aug. 26, 2026, a huge mass of rock and ice broke away at an altitude of around 5,200 meters (17,100 feet) in the Himalayas. Within minutes, it became an avalanche of debris and water that hurtled down toward the Nepal-Tibet border, with such force that the seismic signals were initially mistaken for an earthquake.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: treat the notice as a caution to verify conditions, access, and gear before you go out. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-atlas-climate-rewriting-shelves.html</description>
-    <category>Climate</category>
-    <category>Geology</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">National</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
     <title>Webb Sees Turbulent Star Nursery</title>
     <link>https://www.nasa.gov/image-detail/stars-brewing-in-a-nebulous-cauldron/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/stars-brewing-in-a-nebulous-cauldron/</guid>
@@ -741,6 +720,24 @@ Summary: In this Picture of the Month from the NASA/ESA James Webb Space Telesco
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/stars-brewing-in-a-nebulous-cauldron/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>NASA&apos;s Neo Surveyor Sunshade</title>
+    <link>https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</guid>
+    <pubDate>Tue, 27 Oct 2026 18:02:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The large sunshade of NASA’s Near-Earth Object Surveyor mission is inspected by a technician at BAE Systems Space &amp; Mission Systems in Boulder, Colorado, in late July.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26715-bae-sunshade-inspection-2/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>

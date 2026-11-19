@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Nov 2026 04:52:10 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 19:42:14 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Lake Pelku</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0267074/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0267074/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Lake Pelku (near center), on the Chinese side of the snow-capped Himalayas with Nepal on the adjacent side, is pictured from the International Space Station as it orbited above Asia.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0267074/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Empire State Building Goes Gold for Voyager</title>
     <link>https://www.nasa.gov/image-detail/nasas-voyager-1-spacecraft-light-day/</link>
@@ -190,6 +208,60 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ch
     <author>NASA</author>
   </item>
   <item>
+    <title>T. rex babies were the size of kittens, new study says. Aw!</title>
+    <link>https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</link>
+    <guid isPermaLink="true">https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</guid>
+    <pubDate>Thu, 19 Nov 2026 12:23:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: T. rex babies were the size of kittens. A new study that analyzed the fossils of juvenile T. rex bones suggests parents were largely hands off. The post T. rex babies were the size of kittens, new study says. Aw! first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>What do baby stars sound like? Listen to them here!</title>
+    <link>https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</guid>
+    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: NASA has shared 4 new sonifications — or soundscapes created from data — of stellar factories in our universe. Listen to what these baby stars sound like! The post What do baby stars sound like? Listen to them here! first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Look out our galaxy’s south window into intergalactic space</title>
+    <link>https://earthsky.org/tonight/looking-out-galaxys-south-window/</link>
+    <guid isPermaLink="true">https://earthsky.org/tonight/looking-out-galaxys-south-window/</guid>
+    <pubDate>Thu, 19 Nov 2026 09:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Use the Great Square of Pegasus to locate the star Fomalhaut. Then you&apos;re on your way to looking out our galaxy&apos;s south window into intergalactic space. The post Look out our galaxy’s south window into intergalactic space first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/tonight/looking-out-galaxys-south-window/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Voyager 1 reaches 1 light-day from Earth!</title>
     <link>https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/</link>
     <guid isPermaLink="true">https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026/</guid>
@@ -220,78 +292,6 @@ Summary: Astronomers have discovered that a rare binary star system is the sourc
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/mysterious-radio-signals-rare-binary-star-system-white-dwarf-sun-like-star/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Our star awakens with 2 M flares</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 18 Nov 2026 10:50:34 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 18, 2026: The sun has awoken with 2 M flares from AR4578. One sent a burst of sun-stuff our way. The post Sun news: Our star awakens with 2 M flares first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Mars Sample Return: NASA’s new effort to bring samples home</title>
-    <link>https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA has begun a new effort for a Mars Sample Return mission to bring the highly-sought samples from the Perseverance rover back to Earth. The post Mars Sample Return: NASA’s new effort to bring samples home first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/mars-sample-return-nasa-perseverance-rover-psra/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Jupiter-Mars conjunction 2026: Best images here!</title>
-    <link>https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</link>
-    <guid isPermaLink="true">https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Jupiter and Mars had a beautiful cosmic encounter in November 2026. Enjoy this gallery of November&apos;s Jupiter-Mars conjunction. The post Jupiter-Mars conjunction 2026: Best images here! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/todays-image/jupiter-and-mars-conjunction-november-2026-best-images-here/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Look for Mercury this week, farthest from morning sun</title>
-    <link>https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</guid>
-    <pubDate>Tue, 17 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Mercury will reach its greatest elongation - greatest distance from the sunrise - on November 21. Look east at dawn. Bright Venus will be nearby. The post Look for Mercury this week, farthest from morning sun first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/mercury-before-sunrise-greatest-elongation-west/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -478,32 +478,31 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/sh
     <author>NASA</author>
   </item>
   <item>
-    <title>NASA’s SpaceX CRS-35 Launch Jellyfish</title>
-    <link>https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</guid>
-    <pubDate>Wed, 14 Oct 2026 15:19:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>Sun news: When astronauts caught solar wind on the moon</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Thu, 19 Nov 2026 11:05:02 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: The exhaust plumes of a SpaceX Falcon 9 rocket carrying the company’s Dragon spacecraft are seen illuminated by sunlight against the predawn sky during the launch of NASA’s SpaceX CRS-35 mission, Tuesday, Oct. 13, 2026, as seen from Cocoa Beach, Florida. The light makes the plumes look like a jellyfish in the sky.
+Summary: Sun news November 19, 2026: 57 years ago today, Apollo 12 astronauts caught the solar wind on the moon. And today, solar material sparked auroras. The post Sun news: When astronauts caught solar wind on the moon first appeared on EarthSky .
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-spacex-crs-35-launch/</description>
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
+    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Wed, 18 Nov 2026 09:59:00 GMT</pubDate>
+    <pubDate>Thu, 19 Nov 2026 09:59:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Now&apos;s the time to start observing winter stars, toward the edge of the galaxy. Watch a livestream at 12 CST (17 UTC) here! The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Find out how to see the edge of the Milky Way in a video, here. And this evening, look for the waxing moon near Saturn. The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
@@ -530,6 +529,24 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Venus brightest before dawn on November 29</title>
+    <link>https://earthsky.org/astronomy-essentials/venus-brightest-greatest-brilliancy-greatest-illuminated-extent-2/</link>
+    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/venus-brightest-greatest-brilliancy-greatest-illuminated-extent-2/</guid>
+    <pubDate>Tue, 17 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: See Venus brightest in the morning sky this week, with greatest brilliancy coming around November 29, 2026. Look east before sunrise. The post Venus brightest before dawn on November 29 first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/astronomy-essentials/venus-brightest-greatest-brilliancy-greatest-illuminated-extent-2/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Leonid meteor shower: All you need to know in 2026</title>
     <link>https://earthsky.org/astronomy-essentials/everything-you-need-to-know-leonid-meteor-shower/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/everything-you-need-to-know-leonid-meteor-shower/</guid>
@@ -545,41 +562,6 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Starship capture thrills space fans! And SpaceX makes spaceflight history (again)</title>
-    <link>https://earthsky.org/space/glorious-starship-capture-spacex-makes-spaceflight-history-again/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/glorious-starship-capture-spacex-makes-spaceflight-history-again/</guid>
-    <pubDate>Sun, 15 Nov 2026 13:14:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: SpaceX has achieved its first Starship capture! The catching mechanism nicknamed Mechazilla grabbed Starship out of the air over Starbase in South Texas. The post Starship capture thrills space fans! And SpaceX makes spaceflight history (again) first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/glorious-starship-capture-spacex-makes-spaceflight-history-again/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>NASA&apos;s Hubble Marks Way for Roman Space Telescope</title>
-    <link>https://www.nasa.gov/image-detail/55606049603-e8822462fe-o/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55606049603-e8822462fe-o/</guid>
-    <pubDate>Thu, 29 Oct 2026 15:02:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA&apos;s Hubble Marks Way for Roman Space Telescope. A sinuous spiral galaxy (center) appears in the same field of view as a vivid gravitational lens (right corner) in this Hubble image.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — carry one practical craft question into your next outing — light, composition, or subject behavior. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/55606049603-e8822462fe-o/</description>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
   </item>
   </channel>
 </rss>
