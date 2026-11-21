@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Nov 2026 19:21:15 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 04:37:44 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -92,7 +92,7 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Matthew Robinson-Loffler, General Counsel for the APA, presenting on a motion to dismiss the judicial hearing on an application to test howitzers. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00371.jpg?fit=780%2C380&amp;ssl=1&quot; /&gt; The Adirondack Park Agency voted to deny a permit application to test large cannons in the northeastern part of the park.
+Summary: Matthew Robinson-Loffler, General Counsel for the APA, presenting on a motion to dismiss the judicial hearing on an application to test howitzers. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00371.jpg?fit=780%2C380&amp;ssl=1&quot; /&gt; Michael Hopmeier&apos;s attorney said he would recommend Hopmeier sue the agency.
 
 Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -139,23 +139,6 @@ Read the original article at the publisher: https://phys.org/news/2026-11-decade
     <category>Environmental Science</category>
     <category domain="geographic">Northeast</category>
     <author>Phys.org</author>
-  </item>
-  <item>
-    <title>How the Boquet River Association is restoring a key Adirondack waterway</title>
-    <link>https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</guid>
-    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Volunteers planting sedges, rushes, willows, quaking aspen and balsam poplar, along the Boquet River in Elizabethtown, to stabilize and revegetate the area disturbed by a bridge and fish weir that have recently been removed. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00054.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; Recent projects include removing a bridge, planting trees to improve river banks, flow
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/how-the-boquet-river-association-is-restoring-a-key-adirondack-waterway/</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
@@ -249,6 +232,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>COMMENTARY: Environmental harms hidden in legislation</title>
+    <link>https://www.adirondackexplorer.org/environment/commentary-environmental-harms-hidden-in-legislation/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/commentary-environmental-harms-hidden-in-legislation/</guid>
+    <pubDate>Fri, 20 Nov 2026 20:55:53 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: . Photo by Tim Rowland &quot; data-image-caption=&quot; A proposed bill would limit environmental protections. Photo by Tim Rowland. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/12/IMG_1383.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Rather than provide conservation benefits, a new climate bill is actually polluting and environmentally destructive
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: hold the ecological context — habitat quality, stewardship, and uncertainty — beside what you observe locally. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/commentary-environmental-harms-hidden-in-legislation/</description>
+    <category>Climate</category>
+    <category>Conservation</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
