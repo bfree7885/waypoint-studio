@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Nov 2026 04:37:44 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2026 18:24:44 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -83,23 +83,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Thanksgiving events and other Adirondack activities</title>
-    <link>https://www.adirondackexplorer.org/events/thanksgiving-events-and-other-adirondack-activities/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/thanksgiving-events-and-other-adirondack-activities/</guid>
-    <pubDate>Thu, 19 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: courtesy tim rowland &quot; data-image-caption=&quot; Ausable Chasm will host a festival of lights this weekend. Photo by Tim Rowland. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2017/08/ausable-chasm-tim-rowland.png?fit=240%2C320&amp;ssl=1&quot; /&gt; Thanksgiving events begin this week along with theater productions and other seasonal activities throughout the region
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: compare the claimed seasonal cue with what your local places actually show. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/events/thanksgiving-events-and-other-adirondack-activities/</description>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Empire State Building Goes Gold for Voyager</title>
@@ -436,6 +419,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/ch
     <author>NASA</author>
   </item>
   <item>
+    <title>Sun news: What’s a CME glancing blow?</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Sat, 21 Nov 2026 11:38:37 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: un news November 21, 2026: What happens when a solar storm only grazes Earth? Meet the glancing blow, and a faint CME that may brush us November 23! The post Sun news: What’s a CME glancing blow? first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Study finds decades of water-saving innovation helped Northeast and Midwest avoid potential drought crises</title>
     <link>https://phys.org/news/2026-11-decades-northeast-midwest-potential-drought.html</link>
     <guid isPermaLink="true">https://phys.org/news/2026-11-decades-northeast-midwest-potential-drought.html</guid>
@@ -529,6 +530,42 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
+    <title>The Pleiades – or 7 Sisters – a favorite around the world</title>
+    <link>https://earthsky.org/favorite-star-patterns/pleiades-star-cluster-enjoys-worldwide-renown/</link>
+    <guid isPermaLink="true">https://earthsky.org/favorite-star-patterns/pleiades-star-cluster-enjoys-worldwide-renown/</guid>
+    <pubDate>Sat, 21 Nov 2026 15:01:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Pleiades star cluster - aka the 7 Sisters or M45 - is visible from almost every part of the globe. It looks like a tiny, misty dipper of stars. The post The Pleiades – or 7 Sisters – a favorite around the world first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/favorite-star-patterns/pleiades-star-cluster-enjoys-worldwide-renown/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>BepiColombo goes into orbit around Mercury today!</title>
+    <link>https://earthsky.org/space/bepicolombo-mission-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/bepicolombo-mission-mercury/</guid>
+    <pubDate>Sat, 21 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: BepiColombo has been maneuvering its way into orbit around Mercury for 8 years! Today, its 2 spacecraft will enter orbit. The post BepiColombo goes into orbit around Mercury today! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/space/bepicolombo-mission-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Looking Ahead to the 90th Texas Legislative Session</title>
     <link>https://www.audubon.org/texas/news/looking-ahead-90th-texas-legislative-session</link>
     <guid isPermaLink="true">https://www.audubon.org/texas/news/looking-ahead-90th-texas-legislative-session</guid>
@@ -558,96 +595,6 @@ Summary: 1998 KY26 is a mystery space object that accelerates in ways that gravi
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://earthsky.org/space/mystery-space-object-1998-ky26-asteroid/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Sun news: Sun produces two M flares in under an hour</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Fri, 20 Nov 2026 11:05:41 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 20, 2026: The sun fired two M flares in under an hour, one from behind its horizon, Plus, a CME may graze Earth on November 22. The post Sun news: Sun produces two M flares in under an hour first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>T. rex babies were the size of kittens, new study says. Aw!</title>
-    <link>https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</guid>
-    <pubDate>Thu, 19 Nov 2026 12:23:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: T. rex babies were the size of kittens. A new study that analyzed the fossils of juvenile T. rex bones suggests parents were largely hands off. The post T. rex babies were the size of kittens, new study says. Aw! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>What do baby stars sound like? Listen to them here!</title>
-    <link>https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</guid>
-    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA has shared 4 new sonifications — or soundscapes created from data — of stellar factories in our universe. Listen to what these baby stars sound like! The post What do baby stars sound like? Listen to them here! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Look out our galaxy’s south window into intergalactic space</title>
-    <link>https://earthsky.org/tonight/looking-out-galaxys-south-window/</link>
-    <guid isPermaLink="true">https://earthsky.org/tonight/looking-out-galaxys-south-window/</guid>
-    <pubDate>Thu, 19 Nov 2026 09:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Use the Great Square of Pegasus to locate the star Fomalhaut. Then you&apos;re on your way to looking out our galaxy&apos;s south window into intergalactic space. The post Look out our galaxy’s south window into intergalactic space first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/tonight/looking-out-galaxys-south-window/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Will Voyager 1 ever again be closer than 1 light-day?</title>
-    <link>https://earthsky.org/space/voyager-spacecraft-getting-closer-to-earth/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/voyager-spacecraft-getting-closer-to-earth/</guid>
-    <pubDate>Thu, 19 Nov 2026 08:41:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The Voyager spacecraft get closer to Earth for a few months every year. Will Voyager 1 cross back under the 1 light-day distance? The post Will Voyager 1 ever again be closer than 1 light-day? first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/voyager-spacecraft-getting-closer-to-earth/</description>
     <category>Astronomy and Night Sky</category>
     <category>Environmental Science</category>
     <category domain="geographic">Global</category>
@@ -691,6 +638,63 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>Bolton Landing hamlet expansion up for public comment</title>
+    <link>https://www.adirondackexplorer.org/communities/bolton-landing-hamlet-expansion-up-for-public-comment/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/bolton-landing-hamlet-expansion-up-for-public-comment/</guid>
+    <pubDate>Sat, 21 Nov 2026 14:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: APA board members meeting during a two-day session this week. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00300.jpg?fit=780%2C402&amp;ssl=1&quot; /&gt; Eyeing more density, private landowner initiated possible 3-acre expansion of hamlet boundaries near Lake George.
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/bolton-landing-hamlet-expansion-up-for-public-comment/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Momentum building at Franklin County Land Bank</title>
+    <link>https://www.adirondackexplorer.org/communities/housing/momentum-building-at-franklin-county-land-bank/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/housing/momentum-building-at-franklin-county-land-bank/</guid>
+    <pubDate>Sat, 21 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Franklin County Legislator Joe Shoemaker, Franklin County Land Bank Chair Harry Gordon and Franklin County Land Bank Executive director Shiela Conners outside a land bank property in Vermontville. Photo by Tim Rowland. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_4594.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Creating affordable housing continues to be a priority in the region and the land bank is working to rehabilitate dilapidated properties
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/housing/momentum-building-at-franklin-county-land-bank/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>DEC, APA request feedback on updates to Rogers Rock Campground on Lake George</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/dec-apa-request-feedback-on-updates-to-rogers-rock-campground-on-lake-george/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/dec-apa-request-feedback-on-updates-to-rogers-rock-campground-on-lake-george/</guid>
+    <pubDate>Sat, 21 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Rogers Rock Campground provided by DEC &quot; data-image-caption=&quot; Rogers Rock Campground provided by DEC &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2020/01/Rogers-Rock-Campground-provided-by-DEC.png?fit=475%2C355&amp;ssl=1&quot; /&gt; Joint public comment period will run until Dec. 21
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/dec-apa-request-feedback-on-updates-to-rogers-rock-campground-on-lake-george/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Fly of the Week: Warden’s Worry Bucktail Streamer</title>
     <link>https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wardens-worry-bucktail-streamer/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wardens-worry-bucktail-streamer/</guid>
@@ -703,63 +707,6 @@ Summary: Fly of the Week: Warden’s Worry Bucktail Streamer. Warden’s Worry t
 Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/fishing/fly-of-the-week-parker-wardens-worry-bucktail-streamer/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>NY faces statewide electricity shortage and has nation’s oldest grid</title>
-    <link>https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</guid>
-    <pubDate>Thu, 19 Nov 2026 19:43:07 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: New York’s four nuclear reactors provide the state with roughly 20% of its electricity needs. Photo by Lori Van Buren/Times Union &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/960x10.webp?fit=780%2C519&amp;ssl=1&quot; /&gt; For the first time, the New York Independent System Operator is warning the state may not have enough electricity to meet future demand.
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/energy/ny-faces-statewide-electricity-shortage-and-has-nations-oldest-grid/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>At Craigardan, life is defined as, and by, art</title>
-    <link>https://www.adirondackexplorer.org/communities/arts/at-craigardan-life-is-defined-as-and-by-art/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/arts/at-craigardan-life-is-defined-as-and-by-art/</guid>
-    <pubDate>Thu, 19 Nov 2026 19:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Michele Drozd, executive director at Craigardan. Photo courtesy Tim Rowland. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Michele-Drozd.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; An artist residency created for the community is taking shape outside of Elizabethtown on the premise that art is accessible
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/arts/at-craigardan-life-is-defined-as-and-by-art/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>COMMENTARY: North Country health partners mark the Great American Smokeout</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</guid>
-    <pubDate>Thu, 19 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Adult smoking has dropped more than 9% in New York State. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/04/E-Cigarette-Electronic_Cigarette-E-Cigs-E-Liquid-Vaping-Stop_Smoking-Quit_Smoking_16272143521.jpg?fit=640%2C427&amp;ssl=1&quot; /&gt; Health advocates in the region mark Nov. 19 an opportunity for tobacco users to quit, especially as winter nears and stressors worsen
-
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-north-country-health-partners-mark-the-great-american-smokeout/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -821,6 +768,23 @@ Read the original article at the publisher: https://www.audubon.org/news/journey
     <category>Regional News</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>DEC awards $26 million in grants to northern NY water quality projects</title>
+    <link>https://www.adirondackexplorer.org/environment/water-quality/dec-awards-26-million-in-grants-to-northern-ny-water-quality-projects/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/water-quality/dec-awards-26-million-in-grants-to-northern-ny-water-quality-projects/</guid>
+    <pubDate>Sat, 21 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: DEC and EFC at Elizabethtown in Essex County. Photo courtesy of DEC. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/unnamed.jpg?fit=585%2C439&amp;ssl=1&quot; /&gt; Funding will support 14 water protection initiatives in communities throughout the region to improve water quality and reduce risks
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — compare the report with what streams and wetlands look like after recent weather. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/water-quality/dec-awards-26-million-in-grants-to-northern-ny-water-quality-projects/</description>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>&apos;Forever&apos; chemicals? Don&apos;t be so sure, says engineer</title>
@@ -923,6 +887,42 @@ Summary: RS-25 Engine Tests at NASA Stennis. Teams at NASA’s Stennis Space Cen
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/ssc-20261021-s00947horig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Science on the Space Station with NASA Astronaut Jessica Watkins</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0190239/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0190239/</guid>
+    <pubDate>Wed, 21 Oct 2026 15:07:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut and Expedition 75 flight engineer Jessica Watkins works inside the Kibo laboratory module&apos;s Life Science Glovebox, safely mixing living cell samples with a bioink and then filling a special cartridge with the cell‑ink mixture.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0190239/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Webb Captures Stellar Jets</title>
+    <link>https://www.nasa.gov/image-detail/55572978759-545472774e-o/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/55572978759-545472774e-o/</guid>
+    <pubDate>Tue, 20 Oct 2026 14:45:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope has revealed many protostars and stars within the glowing gases of NGC 7129. Hot, atomic hydrogen gas is shown here in the golden region, while cooler, molecular hydrogen gas, shocked by embedded protostars, is represented in red.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/55572978759-545472774e-o/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
