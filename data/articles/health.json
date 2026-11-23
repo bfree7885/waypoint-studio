@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "checkedAt": "2026-11-22T18:47:05.419Z",
+  "checkedAt": "2026-11-23T04:30:07.997Z",
   "status": "partial",
   "retainedPrevious": false,
   "feeds": [
@@ -11,7 +11,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 150,
+      "ms": 196,
       "enabled": true
     },
     {
@@ -21,7 +21,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 271,
+      "ms": 256,
       "enabled": true
     },
     {
@@ -61,7 +61,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 221,
+      "ms": 105,
       "enabled": true
     },
     {
@@ -81,7 +81,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 218,
+      "ms": 278,
       "enabled": true
     },
     {
@@ -131,7 +131,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 1090,
+      "ms": 1208,
       "enabled": true
     },
     {
@@ -151,7 +151,7 @@
       "itemCount": 10,
       "error": null,
       "warnings": [],
-      "ms": 59,
+      "ms": 135,
       "enabled": true
     },
     {
@@ -181,7 +181,7 @@
       "itemCount": 20,
       "error": null,
       "warnings": [],
-      "ms": 264,
+      "ms": 122,
       "enabled": true
     },
     {
@@ -191,7 +191,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 170,
+      "ms": 439,
       "enabled": true
     },
     {
@@ -211,7 +211,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 137,
+      "ms": 288,
       "enabled": true
     },
     {
@@ -221,7 +221,7 @@
       "itemCount": 25,
       "error": null,
       "warnings": [],
-      "ms": 275,
+      "ms": 284,
       "enabled": true
     },
     {
@@ -231,17 +231,17 @@
       "itemCount": 1,
       "error": null,
       "warnings": [],
-      "ms": 351,
+      "ms": 237,
       "enabled": true
     },
     {
       "id": "adirondack-explorer",
       "name": "Adirondack Explorer",
-      "ok": true,
-      "itemCount": 10,
-      "error": null,
+      "ok": false,
+      "itemCount": 0,
+      "error": "HTTP 429",
       "warnings": [],
-      "ms": 221,
+      "ms": 106,
       "enabled": true
     },
     {
@@ -253,10 +253,10 @@
       "warnings": [
         "no-parseable-items"
       ],
-      "ms": 241,
+      "ms": 212,
       "enabled": true
     }
   ],
   "articleCount": 120,
-  "staleAfter": "2026-11-23T06:47:05.419Z"
+  "staleAfter": "2026-11-23T16:30:07.997Z"
 }
