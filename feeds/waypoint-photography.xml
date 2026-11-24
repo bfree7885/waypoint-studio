@@ -5,10 +5,28 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2026 07:25:37 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 21:39:33 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
+  <item>
+    <title>Webb Reveals New Details in Supernova Remnant</title>
+    <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
+    <pubDate>Tue, 24 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope reveals the hot dust that makes up Cassiopeia A. The composition of its dust provides clues to the structure of Cassiopeia A’s original star.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cas-a-webb-miri/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
   <item>
     <title>Studying Cancer Cells in Microgravity</title>
     <link>https://www.nasa.gov/image-detail/jsc2026e426880/</link>
@@ -82,24 +100,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>Space Selfie</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0253155/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253155/</guid>
-    <pubDate>Tue, 17 Nov 2026 16:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Space Selfie. NASA astronaut and Expedition 75 flight engineer Anil Menon takes an out-of-this-world “space selfie.”
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253155/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
@@ -115,6 +115,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Space Selfie</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0253155/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253155/</guid>
+    <pubDate>Tue, 17 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Space Selfie. NASA astronaut and Expedition 75 flight engineer Anil Menon takes an out-of-this-world “space selfie.”
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253155/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
     <author>NASA</author>
   </item>
   <item>
@@ -190,6 +208,78 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/hu
     <author>NASA</author>
   </item>
   <item>
+    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
+    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hera mission spots asteroid eclipse. Plus, impact reveal Wednesday!</title>
+    <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
+    <pubDate>Tue, 24 Nov 2026 14:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Hera mission captured a solar eclipse on the asteroid Didymos, as the smaller asteroid Dimorphos passed between it and the sun. Watch the livestream reveal here! The post Hera mission spots asteroid eclipse. Plus, impact reveal Wednesday! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hera-mission-dart-asteroid-impact/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
+    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
+    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: The first people to see Venus cross the sun</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Tue, 24 Nov 2026 08:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 24, 2026: On this day in 1639, 2 young Englishmen became the 1st to ever see Venus cross the face of the sun. The post Sun news: The first people to see Venus cross the sun first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Astronaut and Earth</title>
     <link>https://www.nasa.gov/image-detail/iss075e0253663/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253663/</guid>
@@ -206,60 +296,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Sun news: On this date, 1st total solar eclipse seen from Antarctica</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Mon, 23 Nov 2026 10:06:32 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 23, 2026: On this date in 2003, people saw a total solar eclipse from Antarctica for the 1st time. Most watched from jets! The post Sun news: On this date, 1st total solar eclipse seen from Antarctica first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>BepiColombo went into orbit around Mercury on November 21!</title>
-    <link>https://earthsky.org/space/bepicolombo-mission-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/bepicolombo-mission-mercury/</guid>
-    <pubDate>Sun, 22 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: BepiColombo has been maneuvering its way into orbit around Mercury for 8 years! Yesterday, the spacecraft successfully entered orbit. The post BepiColombo went into orbit around Mercury on November 21! first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/bepicolombo-mission-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pentagon UAP files part 8: Radar track analysis and more</title>
-    <link>https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</guid>
-    <pubDate>Sun, 22 Nov 2026 12:34:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The U.S. government released the 8th batch of Pentagon UAP files on November 20, 2026. They include 3 videos from the Middle East and numerous documents. The post Pentagon UAP files part 8: Radar track analysis and more first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   <item>
     <title>NASA&apos;s CHAPEA Crew &quot;Returns&quot; to Earth</title>
@@ -388,37 +424,89 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/55
     <author>NASA</author>
   </item>
   <item>
-    <title>Martian Dawn</title>
-    <link>https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</guid>
-    <pubDate>Mon, 19 Oct 2026 16:05:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: The captivating shapes of wind-carved crags called yardangs are revealed in this zoomed-in crop of a broader panorama captured by NASA’s Curiosity Mars rover. Scientists are eager to learn more about how the yardang layer formed.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/1-pia26728-fig-a-curiosity-captures-dawn-breaking-on-wind-carved-cliffs-2/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Visible planets and night sky guide for November</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Mon, 23 Nov 2026 12:21:42 GMT</pubDate>
+    <pubDate>Tue, 24 Nov 2026 11:00:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: Tonight, spot the nearly full moon near Aldebaran and the Pleiades. Tomorrow morning, enjoy the 1st of 4 supermoons! The post Visible planets and night sky guide for November first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Don&apos;t miss the full Beaver Supermoon tonight! It will shine near the brightest star of Taurus the Bull, Aldebaran, and the Pleiades star cluster. The post Visible planets and night sky guide for November first appeared on EarthSky .
 
 Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
     <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The full SUPER Beaver Moon will be near 2 TRUE star clusters</title>
+    <link>https://earthsky.org/moon-phases/november-full-moon/</link>
+    <guid isPermaLink="true">https://earthsky.org/moon-phases/november-full-moon/</guid>
+    <pubDate>Tue, 24 Nov 2026 10:30:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The November full moon, frequently called the Beaver Moon, will fall on November 24, 2026. It&apos;s the 1st of 4 supermoons in a row. The post The full SUPER Beaver Moon will be near 2 TRUE star clusters first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/moon-phases/november-full-moon/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The moon illusion makes the moon look huge!</title>
+    <link>https://earthsky.org/space/video-the-moon-illusion/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/video-the-moon-illusion/</guid>
+    <pubDate>Tue, 24 Nov 2026 10:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: When you see the moon low in the sky, does it look bigger to you? That&apos;s the moon illusion. It makes the moon look so big! The post The moon illusion makes the moon look huge! first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/video-the-moon-illusion/</description>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>BepiColombo is now in orbit around Mercury!</title>
+    <link>https://earthsky.org/space/bepicolombo-mission-mercury/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/bepicolombo-mission-mercury/</guid>
+    <pubDate>Sun, 22 Nov 2026 12:45:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: BepiColombo entered orbit around Mercury on November 21, 2026, though everything did not go as planned. Read more about the tense moments here. The post BepiColombo is now in orbit around Mercury! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/bepicolombo-mission-mercury/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Pentagon UAP files part 8: Radar track analysis and more</title>
+    <link>https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</link>
+    <guid isPermaLink="true">https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</guid>
+    <pubDate>Sun, 22 Nov 2026 12:34:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The U.S. government released the 8th batch of Pentagon UAP files on November 20, 2026. They include 3 videos from the Middle East and numerous documents. The post Pentagon UAP files part 8: Radar track analysis and more first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
   </item>
@@ -441,60 +529,6 @@ Read the original article at the publisher: https://earthsky.org/favorite-star-p
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Mystery space object moves in strange ways</title>
-    <link>https://earthsky.org/space/mystery-space-object-1998-ky26-asteroid/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/mystery-space-object-1998-ky26-asteroid/</guid>
-    <pubDate>Fri, 20 Nov 2026 12:41:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: 1998 KY26 is a mystery space object that accelerates in ways that gravity alone can&apos;t explain. A new study suggests light photons from the sun are the cause. The post Mystery space object moves in strange ways first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/mystery-space-object-1998-ky26-asteroid/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>T. rex babies were the size of kittens, new study says. Aw!</title>
-    <link>https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</link>
-    <guid isPermaLink="true">https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</guid>
-    <pubDate>Thu, 19 Nov 2026 12:23:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: T. rex babies were the size of kittens. A new study that analyzed the fossils of juvenile T. rex bones suggests parents were largely hands off. The post T. rex babies were the size of kittens, new study says. Aw! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/earth/t-rex-babies-were-the-size-of-kittens/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>What do baby stars sound like? Listen to them here!</title>
-    <link>https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</guid>
-    <pubDate>Thu, 19 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: NASA has shared 4 new sonifications — or soundscapes created from data — of stellar factories in our universe. Listen to what these baby stars sound like! The post What do baby stars sound like? Listen to them here! first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/what-do-baby-stars-sound-like-listen/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>The Sun unleashed a monster storm. Earth may have made it worse</title>
     <link>https://www.sciencedaily.com/releases/2026/11/261111005905.htm</link>
     <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261111005905.htm</guid>
@@ -511,40 +545,6 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Artemis astronauts on the moon will see Earth upside down</title>
-    <link>https://earthsky.org/human-world/artemis-astronauts-on-the-moon-earth-upside-down/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/artemis-astronauts-on-the-moon-earth-upside-down/</guid>
-    <pubDate>Fri, 20 Nov 2026 12:54:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Artemis astronauts will explore the moon&apos;s south pole, so Earth will appear &quot;upside down&quot; to them. Read more strange things the astronauts will experience here. The post Artemis astronauts on the moon will see Earth upside down first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/human-world/artemis-astronauts-on-the-moon-earth-upside-down/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Tucana the Toucan is home to the Small Magellanic Cloud</title>
-    <link>https://earthsky.org/constellations/tucana-the-toucan-small-magellanic-cloud/</link>
-    <guid isPermaLink="true">https://earthsky.org/constellations/tucana-the-toucan-small-magellanic-cloud/</guid>
-    <pubDate>Fri, 20 Nov 2026 09:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Tucana the Toucan is an easy-to-spot constellation in the Southern Hemisphere. Just look for the Small Magellanic Cloud and a bright star cluster. The post Tucana the Toucan is home to the Small Magellanic Cloud first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/constellations/tucana-the-toucan-small-magellanic-cloud/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
   </item>
   </channel>
 </rss>

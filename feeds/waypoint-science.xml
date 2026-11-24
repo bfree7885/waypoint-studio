@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2026 07:25:37 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 24 Nov 2026 21:39:33 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -30,6 +30,42 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
+    <title>Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel</title>
+    <link>https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</guid>
+    <pubDate>Tue, 24 Nov 2026 19:25:33 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel An aerial view of a car driving on a winding mountain road inside a colorful autumn forest. (stock image) (Image credit: rusm/Getty Images) November 24, 2026 As millions of Americans hit the roads, rails and skies to celebrate Turkey Day, the weather will likely bring major holiday headaches to both sides of the country.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</description>
+    <category>Weather</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
+    <title>COMMENTARY: Fighting Lyme disease starts in our forests</title>
+    <link>https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</guid>
+    <pubDate>Tue, 24 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Blacklegged ticks are major carriers of Lyme. Photo courtesy of the CDC. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/CDCblackleggedtick-scaled.jpg?fit=780%2C519&amp;ssl=1&quot; /&gt; Forest fragmentation due to human development is a major driver of tick population growth, allowing Lyme carriers to thrive
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</description>
+    <category>Forests and Plants</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Stronger Together: Building Partnerships for a Resilient Platte River</title>
     <link>https://www.audubon.org/great-plains/news/stronger-together-building-partnerships-resilient-platte-river</link>
     <guid isPermaLink="true">https://www.audubon.org/great-plains/news/stronger-together-building-partnerships-resilient-platte-river</guid>
@@ -47,6 +83,24 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Webb Reveals New Details in Supernova Remnant</title>
+    <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
+    <pubDate>Tue, 24 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope reveals the hot dust that makes up Cassiopeia A. The composition of its dust provides clues to the structure of Cassiopeia A’s original star.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cas-a-webb-miri/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Studying Cancer Cells in Microgravity</title>
@@ -140,24 +194,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/na
     <author>NASA</author>
   </item>
   <item>
-    <title>Space Selfie</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0253155/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253155/</guid>
-    <pubDate>Tue, 17 Nov 2026 16:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Space Selfie. NASA astronaut and Expedition 75 flight engineer Anil Menon takes an out-of-this-world “space selfie.”
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253155/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
     <title>Our American Legacy of Outdoor Opportunity</title>
     <link>https://www.fws.gov/story/2026-11/our-american-legacy-outdoor-opportunity</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/our-american-legacy-outdoor-opportunity</guid>
@@ -196,18 +232,18 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/po
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>Adirondack organizations weigh in on APA howitzer decision</title>
-    <link>https://www.adirondackexplorer.org/communities/adirondack-organizations-weigh-in-on-apa-howitzer-decision/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/adirondack-organizations-weigh-in-on-apa-howitzer-decision/</guid>
-    <pubDate>Mon, 23 Nov 2026 13:00:00 GMT</pubDate>
+    <title>Tales of the Adirondacks, past and present: Olympic dream fulfilled</title>
+    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</guid>
+    <pubDate>Tue, 24 Nov 2026 21:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: APA board meeting on Nov. 20. Photo courtesy of Protect the Adirondacks. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_3953-scaled.jpg?fit=780%2C577&amp;ssl=1&quot; /&gt; Protect the Adirondacks, Adirondack Wild and the Adirondack Council all applauded the park agency for denying the application
+Summary: Tommy Biesemeyer, from Keene, pursued his dream of Olympic skiing. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ab2a62ae-6aef-42a0-8061-8199839d1254.jpeg?fit=780%2C761&amp;ssl=1&quot; /&gt; Tommy Biesemeyer shares the story of his pursuit of ski racing in the Olympics with the support of his community
 
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/adirondack-organizations-weigh-in-on-apa-howitzer-decision/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
@@ -215,23 +251,59 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Latest news headlines</title>
-    <link>https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</guid>
-    <pubDate>Sun, 22 Nov 2026 13:00:00 GMT</pubDate>
+    <title>Tree cutting, dock variance projects drum up larger policy questions for Adirondack Park Agency</title>
+    <link>https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</guid>
+    <pubDate>Tue, 24 Nov 2026 14:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Available feed details are too limited to form a reliable summary. Open the original article for the publisher’s full reporting.
+Summary: Jose Almanzar, board member of the Adirondack Park Agency, at the agency’s November 2026 meeting in Ray Brook. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00383.jpg?fit=780%2C466&amp;ssl=1&quot; /&gt; Some of these policy questions have been lingering for years
 
-Waypoint’s Take: No Waypoint analysis is available — the feed provided too little context to ground a field take.
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/adirondacks-almanack/latest-news-headlines-185/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</description>
+    <category>Forests and Plants</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Adirondack Stories: Georgia O’Keeffe</title>
+    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</guid>
+    <pubDate>Tue, 24 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Adirondack Stories: Georgia O’Keeffe. Acclaimed artist Georgia O’Keeffe spent time in the Adirondacks at the family home of her husband, Alfred Stieglitz, in Lake George
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic</title>
+    <link>https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</guid>
+    <pubDate>Tue, 24 Nov 2026 13:39:35 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic November 24, 2026 A NOAA satellite view of the eye of Hurricane Isaias approaching the U.S. Gulf coast in daytime on October 9, 2026. (Image credit: NOAA Satellites) Download Image The 2026 hurricane season, which officially ends November 30, will be remembered as a year of contrasts between the Atlantic and Pacific, a classic indication of a hurricane season influenced by a very strong El Nino.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
   </item>
   <item>
     <title>ProTechnology Innovation Showcase: From the surface of the sun to the depths of the ocean&quot; – Use Cases in the Display and Communication of Complex NOAA Scientific Data</title>
@@ -386,6 +458,24 @@ Read the original article at the publisher: https://www.audubon.org/texas/news/l
     <author>National Audubon Society</author>
   </item>
   <item>
+    <title>Space Selfie</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0253155/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253155/</guid>
+    <pubDate>Tue, 17 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Space Selfie. NASA astronaut and Expedition 75 flight engineer Anil Menon takes an out-of-this-world “space selfie.”
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253155/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Thunderbirds in Formation</title>
     <link>https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</guid>
@@ -458,39 +548,22 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/hu
     <author>NASA</author>
   </item>
   <item>
-    <title>Astronaut and Earth</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0253663/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253663/</guid>
-    <pubDate>Tue, 03 Nov 2026 16:38:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+    <title>37th Annual Festival of the Cranes</title>
+    <link>https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</link>
+    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</guid>
+    <pubDate>Tue, 24 Nov 2026 12:00:00 GMT</pubDate>
+    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
 
-Summary: CSA (Canadian Space Agency) astronaut and Expedition 75 flight engineer Joshua Kutryk is pictured during a spacewalk with his spacesuit&apos;s helmet visor down to install a new roll-out solar array on the International Space Station&apos;s port side truss structure.
+Summary: The U.S. Fish and Wildlife Service today announced the 37th annual Festival of the Cranes at Bosque del Apache National Wildlife Refuge from Dec. 2-5 2026. As tens of thousands of migratory cranes, ducks, and other waterbirds arrive, the refuge will open its gates to the public for outdoor
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253663/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Remembering the Benson Mines</title>
-    <link>https://www.adirondackexplorer.org/communities/history/remembering-the-benson-mines/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/remembering-the-benson-mines/</guid>
-    <pubDate>Sat, 21 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Benson Mines plant before 1918. Photo curtesy of Russ Hall. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Benson-Mines-plant-before-1918.jpg?fit=780%2C462&amp;ssl=1&quot; /&gt; In an excerpt from his book, &quot;Gem of the Adirondacks,&quot; Russ Hall sets the scene of arriving at the Benson Mines complex
-
-Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: watch for phenology cues — bloom, leaf-out, senescence — that mark the season. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/remembering-the-benson-mines/</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
+Read the original article at the publisher: https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</description>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
     <title>Charting the course on recreational fishing data: A message from NOAA&apos;s Laura Grimm</title>
@@ -587,16 +660,70 @@ Read the original article at the publisher: https://www.sciencedaily.com/release
     <author>ScienceDaily</author>
   </item>
   <item>
-    <title>Sun news: On this date, 1st total solar eclipse seen from Antarctica</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Mon, 23 Nov 2026 10:06:32 GMT</pubDate>
+    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
+    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Sun news November 23, 2026: On this date in 2003, people saw a total solar eclipse from Antarctica for the 1st time. Most watched from jets! The post Sun news: On this date, 1st total solar eclipse seen from Antarctica first appeared on EarthSky .
+Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
 
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hera mission spots asteroid eclipse. Plus, impact reveal Wednesday!</title>
+    <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
+    <pubDate>Tue, 24 Nov 2026 14:15:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: The Hera mission captured a solar eclipse on the asteroid Didymos, as the smaller asteroid Dimorphos passed between it and the sun. Watch the livestream reveal here! The post Hera mission spots asteroid eclipse. Plus, impact reveal Wednesday! first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hera-mission-dart-asteroid-impact/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
+    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
+    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Sun news: The first people to see Venus cross the sun</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Tue, 24 Nov 2026 08:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 24, 2026: On this day in 1639, 2 young Englishmen became the 1st to ever see Venus cross the face of the sun. The post Sun news: The first people to see Venus cross the sun first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
     <category>Astronomy and Night Sky</category>
@@ -605,154 +732,23 @@ Read the original article at the publisher: https://earthsky.org/sun/sun-news-ac
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>BepiColombo went into orbit around Mercury on November 21!</title>
-    <link>https://earthsky.org/space/bepicolombo-mission-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/bepicolombo-mission-mercury/</guid>
-    <pubDate>Sun, 22 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: BepiColombo has been maneuvering its way into orbit around Mercury for 8 years! Yesterday, the spacecraft successfully entered orbit. The post BepiColombo went into orbit around Mercury on November 21! first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/bepicolombo-mission-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Pentagon UAP files part 8: Radar track analysis and more</title>
-    <link>https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</link>
-    <guid isPermaLink="true">https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</guid>
-    <pubDate>Sun, 22 Nov 2026 12:34:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: The U.S. government released the 8th batch of Pentagon UAP files on November 20, 2026. They include 3 videos from the Middle East and numerous documents. The post Pentagon UAP files part 8: Radar track analysis and more first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/human-world/pentagon-uap-files-part-8-radar-track-analysis/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Butternut: A hopeful story hiding in plain sight?</title>
-    <link>https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</guid>
-    <pubDate>Mon, 23 Nov 2026 21:00:00 GMT</pubDate>
+    <title>APA: Military exercises on Lewis missile silo property required a permit</title>
+    <link>https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</guid>
+    <pubDate>Tue, 24 Nov 2026 20:28:31 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Butternuts have declined to due fungal diseases. Illustration by Adelaide Murphy Tyrol. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/butternut-and-grey-squirrel.jpg?fit=780%2C709&amp;ssl=1&quot; /&gt; Many animals and even early humans counted on butternuts for critical sources of fat during cold winter months
+Summary: The missile silo in Lewis. Photo by Tom French &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2023/03/LewisSiteAerial-e1757100228532.jpg?fit=780%2C512&amp;ssl=1&quot; /&gt; Letter of enforcement comes just days after agency denied company’s proposal to test howitzer cannons
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</description>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</description>
     <category>Regional News</category>
     <category>Conservation</category>
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Schroon Town Board eliminates tax levy limit and appoints officers</title>
-    <link>https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</guid>
-    <pubDate>Mon, 23 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Schroon Town Supervisor Meg Wood listens to a community member at a public forum. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/DSC5987.jpg?fit=780%2C599&amp;ssl=1&quot; /&gt; The Town Board also eliminated the dollar amount for water and sewer fees, finding it should be decided by the board each year
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Fulton County Center for Regional Growth awarded $100,000 USDA grant</title>
-    <link>https://www.adirondackexplorer.org/communities/economy/fulton-county-center-for-regional-growth-awarded-100000-usda-grant/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/economy/fulton-county-center-for-regional-growth-awarded-100000-usda-grant/</guid>
-    <pubDate>Sun, 22 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Fulton County CRG works to support businesses in downtown Gloversville. Photo courtesy of Wikimedia Commons. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/North_Main_Street_west_side_south_from_Church_Street_Gloversville.jpg?fit=780%2C515&amp;ssl=1&quot; /&gt; The grant will go toward expanding CRG&apos;s programming including technical assistance, guidance and enhanced resources
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/economy/fulton-county-center-for-regional-growth-awarded-100000-usda-grant/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Announcing: Rowe Sanctuary Crane Viewing Season &amp; Special Guest Illustrator Rosemary Mosco</title>
-    <link>https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</link>
-    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</guid>
-    <pubDate>Thu, 19 Nov 2026 23:17:23 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Starting on December 2nd, visitors can begin planning their visit to Rowe Sanctuary by previewing the unique programming offered throughout Crane Season 2027. This year’s programming includes daily...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Helping Shape the Future of Washington’s Shorelines</title>
-    <link>https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</link>
-    <guid isPermaLink="true">https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</guid>
-    <pubDate>Thu, 19 Nov 2026 02:50:13 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Imagine standing on a local beach 50 years from now. Sea levels are an average of 1 foot higher, storms are more severe, and flooding and erosion are affecting a growing number of coastal...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>A Journey Through the Southwest: Public Lands and the Promise of Conservation</title>
-    <link>https://www.audubon.org/news/journey-through-southwest-public-lands-and-promise-of-conservation</link>
-    <guid isPermaLink="true">https://www.audubon.org/news/journey-through-southwest-public-lands-and-promise-of-conservation</guid>
-    <pubDate>Wed, 18 Nov 2026 22:53:55 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: I spotted V3 from Navajo Bridge, high above the Colorado River at Glen Canyon. The tag on the broad expanse of the condor’s wings, used by researchers to track his movements and health, was clearly...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how protection, access, and habitat change what an outdoor observer can still find. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/news/journey-through-southwest-public-lands-and-promise-of-conservation</description>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category>Regional News</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   </channel>
 </rss>
