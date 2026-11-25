@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2026 21:39:33 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 05:55:38 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -714,24 +714,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/ne
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>125,000 years ago, hippos roamed what is now the vast Arabian Desert</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261115085537.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261115085537.htm</guid>
-    <pubDate>Wed, 18 Nov 2026 01:52:47 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: A remarkable 125,000-year-old discovery in Saudi Arabia reveals that early humans once thrived beside enormous lakes filled with wildlife in what is now a vast desert. Thousands of stone tools and ancient plant remains suggest these prehistoric people used sophisticated hunting techniques, potentially including weapons enhanced with poisonous plant compounds.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261115085537.htm</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
-  </item>
-  <item>
     <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
     <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
     <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
@@ -928,6 +910,25 @@ Summary: Starting on December 2nd, visitors can begin planning their visit to Ro
 Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Helping Shape the Future of Washington’s Shorelines</title>
+    <link>https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</link>
+    <guid isPermaLink="true">https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</guid>
+    <pubDate>Thu, 19 Nov 2026 02:50:13 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Imagine standing on a local beach 50 years from now. Sea levels are an average of 1 foot higher, storms are more severe, and flooding and erosion are affecting a growing number of coastal...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/washington/news/helping-shape-future-of-washingtons-shorelines</description>
     <category>Birds</category>
     <category>Wildlife</category>
     <category>Conservation</category>

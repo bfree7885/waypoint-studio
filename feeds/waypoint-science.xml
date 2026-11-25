@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Nov 2026 21:39:33 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 05:55:38 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -642,24 +642,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/ne
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
-    <title>125,000 years ago, hippos roamed what is now the vast Arabian Desert</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261115085537.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261115085537.htm</guid>
-    <pubDate>Wed, 18 Nov 2026 01:52:47 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: A remarkable 125,000-year-old discovery in Saudi Arabia reveals that early humans once thrived beside enormous lakes filled with wildlife in what is now a vast desert. Thousands of stone tools and ancient plant remains suggest these prehistoric people used sophisticated hunting techniques, potentially including weapons enhanced with poisonous plant compounds.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261115085537.htm</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
-  </item>
-  <item>
     <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
     <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
     <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
@@ -749,6 +731,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <category>Hiking and Trails</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Lightning could strike more than twice as often in a warming world</title>
+    <link>https://phys.org/news/2026-11-lightning-world.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-lightning-world.html</guid>
+    <pubDate>Tue, 24 Nov 2026 14:00:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: Besides fires and floods, droughts and storms, another type of extreme weather may be getting more common due to climate change: lightning. Globally, in a future of high greenhouse gas emissions, lightning may get 76% to 140% more common by the end of the century than between 1995 and 2014, according to a new study published in Earth&apos;s Future.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-lightning-world.html</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Global</category>
+    <author>Phys.org</author>
   </item>
   </channel>
 </rss>
