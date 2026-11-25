@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint-curated regional outdoor and environmental reporting for the Hudson Valley, Catskills, Poconos, and Northeast. Original publishers remain the destination.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2026 05:55:38 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2026 20:47:21 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-local.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -44,6 +44,24 @@ Waypoint’s Take: An outdoor reader in the Northeast can treat this as field co
 Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</description>
     <category>Forests and Plants</category>
     <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Money to grow trees: DEC grants aim to boost state goal to plant 25 million trees</title>
+    <link>https://www.adirondackexplorer.org/environment/money-to-grow-trees-dec-grants-aim-to-boost-state-goal-to-plant-25-million-trees/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/money-to-grow-trees-dec-grants-aim-to-boost-state-goal-to-plant-25-million-trees/</guid>
+    <pubDate>Wed, 25 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Volunteers of the Ausable River Association planted dogwoods and willows along the East Branch of Ausable River in Jay in May 2023. Photo by Mike Lynch &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2023/08/AusableTreePlanting_Mlynch-1640-scaled-1.jpg?fit=540%2C360&amp;ssl=1&quot; /&gt; Additional funds in $45M initiative going toward supporting forest product industry
+
+Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare leaf stage, understory color, and canopy density with your usual routes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/money-to-grow-trees-dec-grants-aim-to-boost-state-goal-to-plant-25-million-trees/</description>
+    <category>Forests and Plants</category>
+    <category>Rivers and Water</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
   </item>
@@ -177,6 +195,25 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>Where I went this week: Schroon Lake</title>
+    <link>https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</guid>
+    <pubDate>Wed, 25 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: The Schroon Lake Area Chamber of Commerce is on the main strip in town. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_2762-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Community editor Ezra Maille enjoys a sunny day in Schroon and a history lesson from the new leaders of the region&apos;s historical society
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>APA: Military exercises on Lewis missile silo property required a permit</title>
     <link>https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</guid>
@@ -196,41 +233,38 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Butternut: A hopeful story hiding in plain sight?</title>
-    <link>https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</guid>
-    <pubDate>Mon, 23 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>New England&apos;s summer thunderstorms grow shorter and heavier, raising flash flood risk</title>
+    <link>https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</guid>
+    <pubDate>Wed, 25 Nov 2026 19:00:38 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: Butternuts have declined to due fungal diseases. Illustration by Adelaide Murphy Tyrol. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/butternut-and-grey-squirrel.jpg?fit=780%2C709&amp;ssl=1&quot; /&gt; Many animals and even early humans counted on butternuts for critical sources of fat during cold winter months
+Summary: A growing share of New England&apos;s summer rain is falling in the form of heavy, heat-related showers and thunderstorms, raising the risk of flash flooding events across the region as the climate continues to warm. That&apos;s according to a new study by Brown University researchers published in Science Advances.
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/environment/butternut-a-hopeful-story-hiding-in-plain-sight/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
+Read the original article at the publisher: https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</description>
+    <category>Climate</category>
+    <category>Rivers and Water</category>
     <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
+    <author>Phys.org</author>
   </item>
   <item>
-    <title>Schroon Town Board eliminates tax levy limit and appoints officers</title>
-    <link>https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</guid>
-    <pubDate>Mon, 23 Nov 2026 17:00:00 GMT</pubDate>
+    <title>BETA, Eagle Island Camp, ANCA welcome new leaders</title>
+    <link>https://www.adirondackexplorer.org/communities/beta-eagle-island-camp-anca-welcome-new-leaders/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/beta-eagle-island-camp-anca-welcome-new-leaders/</guid>
+    <pubDate>Wed, 25 Nov 2026 17:00:00 GMT</pubDate>
     <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
 
-Summary: Schroon Town Supervisor Meg Wood listens to a community member at a public forum. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/10/DSC5987.jpg?fit=780%2C599&amp;ssl=1&quot; /&gt; The Town Board also eliminated the dollar amount for water and sewer fees, finding it should be decided by the board each year
+Summary: BETA, Eagle Island Camp, ANCA welcome new leaders. Comings and Goings &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2025/10/comings.webp?fit=780%2C452&amp;ssl=1&quot; /&gt; Three Adirondack organizations welcome new executive directors, leaders and board members to advance their missions
 
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/schroon-town-board-eliminates-tax-levy-limit-and-appoints-officers/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/beta-eagle-island-camp-anca-welcome-new-leaders/</description>
+    <category>Birds</category>
+    <category domain="geographic">Adirondacks</category>
     <author>Adirondack Explorer</author>
   </item>
   <item>
@@ -252,40 +286,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Swift Rescues</title>
-    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</link>
-    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</guid>
-    <pubDate>Mon, 23 Nov 2026 13:56:17 GMT</pubDate>
-    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
-
-Summary: This story is a sneak preview from the upcoming Winter/Spring 2027 issue of Appalachia, AMC’s journal of conservation and mountaineering. Subscribe today to read more great stories like this one. The White Mountain region’s newest... Read More The post Swift Rescues appeared first on Appalachian Mountain Club (AMC) .
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — notice how protection, access, and habitat change what an outdoor observer can still find. Keep the publisher’s claims provisional until you read the original. Articles is a modest companion when the subject overlaps — skip it when it does not.
-
-Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</description>
-    <category>Conservation</category>
-    <category domain="geographic">Northeast</category>
-    <author>Appalachian Mountain Club</author>
-  </item>
-  <item>
-    <title>Pisgah Connector trail opens, with more in development</title>
-    <link>https://www.adirondackexplorer.org/recreation/biking/pisgah-connector-trail-opens-with-more-in-development/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/biking/pisgah-connector-trail-opens-with-more-in-development/</guid>
-    <pubDate>Mon, 23 Nov 2026 16:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Young bikers try out the Pisgah Connector after the ribbon cutting. Photo by Phil Brown &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Kids-biking-scaled.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; The 0.4-mile trail is one of many aimed to connect bike networks to communities.
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/biking/pisgah-connector-trail-opens-with-more-in-development/</description>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Northeast Fall Foliage Tracker 2026: When and Where to See Peak Colors</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</guid>
@@ -300,6 +300,23 @@ Waypoint’s Take: Outside in the Northeast, this matters because it can change 
 Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/outdoor-resources/northeast-fall-foliage-tracker/</description>
     <category>Forests and Plants</category>
     <category>Seasonal Nature</category>
+    <category domain="geographic">Northeast</category>
+    <author>Appalachian Mountain Club</author>
+  </item>
+  <item>
+    <title>Swift Rescues</title>
+    <link>https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</link>
+    <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</guid>
+    <pubDate>Mon, 23 Nov 2026 13:56:17 GMT</pubDate>
+    <source url="https://www.outdoors.org/">Appalachian Mountain Club</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Appalachian Mountain Club.
+
+Summary: This story is a sneak preview from the upcoming Winter/Spring 2027 issue of Appalachia, AMC’s journal of conservation and mountaineering. Subscribe today to read more great stories like this one. The White Mountain region’s newest... Read More The post Swift Rescues appeared first on Appalachian Mountain Club (AMC) .
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — notice how protection, access, and habitat change what an outdoor observer can still find. Keep the publisher’s claims provisional until you read the original. Articles is a modest companion when the subject overlaps — skip it when it does not.
+
+Read the original article at the publisher: https://www.outdoors.org/resources/amc-outdoors/appalachia/swift-rescues/</description>
+    <category>Conservation</category>
     <category domain="geographic">Northeast</category>
     <author>Appalachian Mountain Club</author>
   </item>
@@ -320,24 +337,6 @@ Read the original article at the publisher: https://www.weather.gov/btv/contactu
     <category>Outdoor Safety</category>
     <category domain="geographic">Northeast</category>
     <author>National Weather Service Burlington</author>
-  </item>
-  <item>
-    <title>2026-2027 Winter Skywarn Spotter Training Schedule</title>
-    <link>https://www.weather.gov/aly/skywarn</link>
-    <guid isPermaLink="true">https://www.weather.gov/aly/skywarn</guid>
-    <pubDate>Sun, 06 Oct 2019 14:38:54 GMT</pubDate>
-    <source url="https://www.weather.gov/aly/">National Weather Service Albany</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Weather Service Albany.
-
-Summary: The feed provided a headline only. Waypoint cannot form a reliable summary from that alone — open the original publisher page for details.
-
-Waypoint’s Take: Outside in the Northeast, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.weather.gov/aly/skywarn</description>
-    <category>Weather</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>National Weather Service Albany</author>
   </item>
   </channel>
 </rss>
