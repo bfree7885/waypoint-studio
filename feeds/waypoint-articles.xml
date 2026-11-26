@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2026 05:46:46 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 20:39:52 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-articles.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -30,42 +30,6 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
-    <title>Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel</title>
-    <link>https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</guid>
-    <pubDate>Tue, 24 Nov 2026 19:25:33 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel An aerial view of a car driving on a winding mountain road inside a colorful autumn forest. (stock image) (Image credit: rusm/Getty Images) November 24, 2026 As millions of Americans hit the roads, rails and skies to celebrate Turkey Day, the weather will likely bring major holiday headaches to both sides of the country.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</description>
-    <category>Weather</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
-    <title>COMMENTARY: Fighting Lyme disease starts in our forests</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</guid>
-    <pubDate>Tue, 24 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Blacklegged ticks are major carriers of Lyme. Photo courtesy of the CDC. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/CDCblackleggedtick-scaled.jpg?fit=780%2C519&amp;ssl=1&quot; /&gt; Forest fragmentation due to human development is a major driver of tick population growth, allowing Lyme carriers to thrive
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</description>
-    <category>Forests and Plants</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Eye of the Sahara</title>
     <link>https://www.nasa.gov/image-detail/iss075e0274930/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0274930/</guid>
@@ -78,24 +42,6 @@ Summary: The Richat Structure, also known as the &quot;Eye of the Sahara,&quot; 
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0274930/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Webb Reveals New Details in Supernova Remnant</title>
-    <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
-    <pubDate>Tue, 24 Nov 2026 16:52:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: NASA’s James Webb Space Telescope reveals the hot dust that makes up Cassiopeia A. The composition of its dust provides clues to the structure of Cassiopeia A’s original star.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/cas-a-webb-miri/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -139,6 +85,24 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel</title>
+    <link>https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</guid>
+    <pubDate>Tue, 24 Nov 2026 19:25:33 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel An aerial view of a car driving on a winding mountain road inside a colorful autumn forest. (stock image) (Image credit: rusm/Getty Images) November 24, 2026 As millions of Americans hit the roads, rails and skies to celebrate Turkey Day, the weather will likely bring major holiday headaches to both sides of the country.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</description>
+    <category>Weather</category>
+    <category>Forests and Plants</category>
+    <category domain="geographic">National</category>
+    <author>NOAA</author>
+  </item>
+  <item>
     <title>Stronger Together: Building Partnerships for a Resilient Platte River</title>
     <link>https://www.audubon.org/great-plains/news/stronger-together-building-partnerships-resilient-platte-river</link>
     <guid isPermaLink="true">https://www.audubon.org/great-plains/news/stronger-together-building-partnerships-resilient-platte-river</guid>
@@ -156,6 +120,42 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>COMMENTARY: Fighting Lyme disease starts in our forests</title>
+    <link>https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</guid>
+    <pubDate>Tue, 24 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Blacklegged ticks are major carriers of Lyme. Photo courtesy of the CDC. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/CDCblackleggedtick-scaled.jpg?fit=780%2C519&amp;ssl=1&quot; /&gt; Forest fragmentation due to human development is a major driver of tick population growth, allowing Lyme carriers to thrive
+
+Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</description>
+    <category>Forests and Plants</category>
+    <category>Outdoor Safety</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Webb Reveals New Details in Supernova Remnant</title>
+    <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
+    <pubDate>Tue, 24 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope reveals the hot dust that makes up Cassiopeia A. The composition of its dust provides clues to the structure of Cassiopeia A’s original star.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cas-a-webb-miri/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Studying Cancer Cells in Microgravity</title>
@@ -188,24 +188,6 @@ Summary: NASA&apos;s Curiosity Mars Rover Collects Samples. This collage shows 4
 Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
 Read the original article at the publisher: https://www.nasa.gov/image-detail/pia26804/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Lake Pelku</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0267074/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0267074/</guid>
-    <pubDate>Thu, 19 Nov 2026 15:33:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Lake Pelku (near center), on the Chinese side of the snow-capped Himalayas with Nepal on the adjacent side, is pictured from the International Space Station as it orbited above Asia.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0267074/</description>
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
@@ -303,6 +285,63 @@ Read the original article at the publisher: https://www.outdoors.org/resources/a
     <author>Appalachian Mountain Club</author>
   </item>
   <item>
+    <title>Wild Lights, ice skating and other holiday activities in the Adirondacks</title>
+    <link>https://www.adirondackexplorer.org/events/wild-lights-ice-skating-and-other-holiday-activities-in-the-adirondacks/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/events/wild-lights-ice-skating-and-other-holiday-activities-in-the-adirondacks/</guid>
+    <pubDate>Thu, 26 Nov 2026 17:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Hopscotch Stickwork installation is illuminated by Wild Lights during the 2021-22 winter season. Photo courtesy of The Wild Center. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/WildLightsHopscotch-120421-006-1-scaled.jpg?fit=780%2C507&amp;ssl=1&quot; /&gt; Holiday events throughout the region this week include holiday markets, art exhibitions and Thanksgiving activities
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/events/wild-lights-ice-skating-and-other-holiday-activities-in-the-adirondacks/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Happy Thanksgiving from Adirondack Explorer</title>
+    <link>https://www.adirondackexplorer.org/communities/happy-thanksgiving-from-adirondack-explorer/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/happy-thanksgiving-from-adirondack-explorer/</guid>
+    <pubDate>Thu, 26 Nov 2026 13:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Happy Thanksgiving from Adirondack Explorer. All Explorer staff will be out of the office Thursday and Friday and encourage readers to enjoy the holidays
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/happy-thanksgiving-from-adirondack-explorer/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Three early winter hikes</title>
+    <link>https://www.adirondackexplorer.org/recreation/hiking/three-early-winter-hikes/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/hiking/three-early-winter-hikes/</guid>
+    <pubDate>Thu, 26 Nov 2026 11:30:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Three early winter hikes. Black Pond. Photo by Melissa Hart &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/Background.jpg?fit=780%2C563&amp;ssl=1&quot; /&gt; A range of flat trails and low peaks around ponds in the Northern Adirondacks
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/hiking/three-early-winter-hikes/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Thanksgiving recipes from Almanack contributors</title>
     <link>https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</guid>
@@ -341,61 +380,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Tree cutting, dock variance projects drum up larger policy questions for Adirondack Park Agency</title>
-    <link>https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</guid>
-    <pubDate>Tue, 24 Nov 2026 14:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Jose Almanzar, board member of the Adirondack Park Agency, at the agency’s November 2026 meeting in Ray Brook. Photo by Eric Teed &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/DSC00383.jpg?fit=780%2C466&amp;ssl=1&quot; /&gt; Some of these policy questions have been lingering for years
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — read plant communities as living context, not background decoration. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/government/tree-cutting-dock-variance-projects-drum-up-larger-policy-questions-for-adirondack-park-agency/</description>
-    <category>Forests and Plants</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Adirondack Stories: Georgia O’Keeffe</title>
-    <link>https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</guid>
-    <pubDate>Tue, 24 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Adirondack Stories: Georgia O’Keeffe. Acclaimed artist Georgia O’Keeffe spent time in the Adirondacks at the family home of her husband, Alfred Stieglitz, in Lake George
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/history/adirondack-stories-georgia-okeeffe/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic</title>
-    <link>https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</link>
-    <guid isPermaLink="true">https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</guid>
-    <pubDate>Tue, 24 Nov 2026 13:39:35 GMT</pubDate>
-    <source url="https://www.noaa.gov/">NOAA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
-
-Summary: Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic November 24, 2026 A NOAA satellite view of the eye of Hurricane Isaias approaching the U.S. Gulf coast in daytime on October 9, 2026. (Image credit: NOAA Satellites) Download Image The 2026 hurricane season, which officially ends November 30, will be remembered as a year of contrasts between the Atlantic and Pacific, a classic indication of a hurricane season influenced by a very strong El Nino.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">National</category>
-    <author>NOAA</author>
-  </item>
-  <item>
     <title>Rescue, Release, Recovery: Conservation Takes a Village</title>
     <link>https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</guid>
@@ -413,24 +397,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/re
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Midwestern City Lights</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">National</category>
-    <author>NASA</author>
   </item>
   <item>
     <title>Growing Conservation, Community, and Opportunity at Audubon Center at Debs Park</title>
@@ -470,6 +436,24 @@ Read the original article at the publisher: https://www.audubon.org/texas/news/l
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Lake Pelku</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0267074/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0267074/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Lake Pelku (near center), on the Chinese side of the snow-capped Himalayas with Nepal on the adjacent side, is pictured from the International Space Station as it orbited above Asia.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0267074/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Empire State Building Goes Gold for Voyager</title>
@@ -580,22 +564,40 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/hu
     <author>NASA</author>
   </item>
   <item>
-    <title>37th Annual Festival of the Cranes</title>
-    <link>https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</guid>
-    <pubDate>Tue, 24 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
+    <title>5G interference can alter high-impact weather forecasts</title>
+    <link>https://phys.org/news/2026-11-5g-high-impact-weather.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-5g-high-impact-weather.html</guid>
+    <pubDate>Thu, 26 Nov 2026 17:40:01 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
 
-Summary: The U.S. Fish and Wildlife Service today announced the 37th annual Festival of the Cranes at Bosque del Apache National Wildlife Refuge from Dec. 2-5 2026. As tens of thousands of migratory cranes, ducks, and other waterbirds arrive, the refuge will open its gates to the public for outdoor
+Summary: Could leaks from future 5G networks interfere with satellite weather measurements and potentially alter forecasts? That&apos;s the concern of a group of researchers from the U.S. states of New Jersey and Maryland, with lead author Behzad Golparvar from Rutgers University in New Jersey.
 
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
+Read the original article at the publisher: https://phys.org/news/2026-11-5g-high-impact-weather.html</description>
+    <category>Weather</category>
+    <category domain="geographic">Northeast</category>
+    <author>Phys.org</author>
+  </item>
+  <item>
+    <title>Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic</title>
+    <link>https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</link>
+    <guid isPermaLink="true">https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</guid>
+    <pubDate>Tue, 24 Nov 2026 13:39:35 GMT</pubDate>
+    <source url="https://www.noaa.gov/">NOAA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NOAA.
+
+Summary: Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic November 24, 2026 A NOAA satellite view of the eye of Hurricane Isaias approaching the U.S. Gulf coast in daytime on October 9, 2026. (Image credit: NOAA Satellites) Download Image The 2026 hurricane season, which officially ends November 30, will be remembered as a year of contrasts between the Atlantic and Pacific, a classic indication of a hurricane season influenced by a very strong El Nino.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: compare forecast cues with what the sky, wind, and ground feel like before you commit to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.noaa.gov/news-release/hurricane-season-wrap-up-el-nino-fueled-record-number-of-pacific-storms-but-calmed-atlantic</description>
+    <category>Weather</category>
+    <category>Climate</category>
+    <category>Environmental Science</category>
     <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
+    <author>NOAA</author>
   </item>
   <item>
     <title>ProTechnology Innovation Showcase: From the surface of the sun to the depths of the ocean&quot; – Use Cases in the Display and Communication of Complex NOAA Scientific Data</title>
@@ -712,6 +714,24 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/ne
     <author>U.S. Fish and Wildlife Service</author>
   </item>
   <item>
+    <title>Sun news: New region flares in the solar southeast</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Thu, 26 Nov 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 26, 2026: Fiery action on the sun&apos;s southeast horizon points at a new active region coming into view. It&apos;s already become the lead flare producer. The post Sun news: New region flares in the solar southeast first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Hera mission reveals impact aftermath from when DART struck an asteroid</title>
     <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
     <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
@@ -784,60 +804,6 @@ Read the original article at the publisher: https://earthsky.org/space/seasons-o
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: How Einstein rewrote the rules of gravity</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 25 Nov 2026 11:00:26 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 25, 2026: On this date in 1915, Einstein finished his theory of general relativity. The sun&apos;s pull on Mercury and starlight proved him right! The post Sun news: How Einstein rewrote the rules of gravity first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
-    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
-    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
-    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
-    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
     <title>A Summer of Science: AMC’s 2026 Research Interns</title>
     <link>https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</link>
     <guid isPermaLink="true">https://www.outdoors.org/resources/amc-outdoors/conservation-and-climate/amcs-2026-research-interns/</guid>
@@ -876,42 +842,22 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>APA: Military exercises on Lewis missile silo property required a permit</title>
-    <link>https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</guid>
-    <pubDate>Tue, 24 Nov 2026 20:28:31 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>Midwestern City Lights</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: The missile silo in Lewis. Photo by Tom French &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2023/03/LewisSiteAerial-e1757100228532.jpg?fit=780%2C512&amp;ssl=1&quot; /&gt; Letter of enforcement comes just days after agency denied company’s proposal to test howitzer cannons
+Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
 
-Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/land-use/apa-military-exercises-on-lewis-missile-silo-property-required-a-permit/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>Lightning could strike more than twice as often in a warming world</title>
-    <link>https://phys.org/news/2026-11-lightning-world.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-lightning-world.html</guid>
-    <pubDate>Tue, 24 Nov 2026 14:00:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Besides fires and floods, droughts and storms, another type of extreme weather may be getting more common due to climate change: lightning. Globally, in a future of high greenhouse gas emissions, lightning may get 76% to 140% more common by the end of the century than between 1995 and 2014, according to a new study published in Earth&apos;s Future.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-lightning-world.html</description>
-    <category>Weather</category>
-    <category>Climate</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Global</category>
-    <author>Phys.org</author>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Counting on Shorebirds</title>
@@ -931,6 +877,62 @@ Read the original article at the publisher: https://www.audubon.org/news/countin
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>It&apos;s Time for &quot;Give Where You Live&quot;!</title>
+    <link>https://www.audubon.org/great-plains/news/its-time-give-where-you-live</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/its-time-give-where-you-live</guid>
+    <pubDate>Mon, 23 Nov 2026 18:34:46 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Hello Rowe Sanctuary Supporters! The Kearney Area Community Foundation’s Give Where You Live Day (GWYL) is on December 3rd. This year’s GWYL theme is “Amplify Good,” an important reminder...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/its-time-give-where-you-live</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Announcing: Rowe Sanctuary Crane Viewing Season &amp; Special Guest Illustrator Rosemary Mosco</title>
+    <link>https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</guid>
+    <pubDate>Thu, 19 Nov 2026 23:17:23 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Starting on December 2nd, visitors can begin planning their visit to Rowe Sanctuary by previewing the unique programming offered throughout Crane Season 2027. This year’s programming includes daily...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/announcing-rowe-sanctuary-crane-viewing-season-special-guest-illustrator-rosemary</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>New England&apos;s summer thunderstorms grow shorter and heavier, raising flash flood risk</title>
+    <link>https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</link>
+    <guid isPermaLink="true">https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</guid>
+    <pubDate>Wed, 25 Nov 2026 19:00:38 GMT</pubDate>
+    <source url="https://phys.org/">Phys.org</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
+
+Summary: A growing share of New England&apos;s summer rain is falling in the form of heavy, heat-related showers and thunderstorms, raising the risk of flash flooding events across the region as the climate continues to warm. That&apos;s according to a new study by Brown University researchers published in Science Advances.
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://phys.org/news/2026-11-england-summer-thunderstorms-shorter-heavier.html</description>
+    <category>Climate</category>
+    <category>Rivers and Water</category>
+    <category domain="geographic">Northeast</category>
+    <author>Phys.org</author>
   </item>
   </channel>
 </rss>

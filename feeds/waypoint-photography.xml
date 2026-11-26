@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2026 05:46:46 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 26 Nov 2026 20:39:52 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-photography.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -97,24 +97,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Astronomy and Night Sky</category>
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
-    <author>NASA</author>
-  </item>
-  <item>
-    <title>Midwestern City Lights</title>
-    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
-    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
-    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
-    <source url="https://www.nasa.gov/">NASA</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
-
-Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Nature Photography</category>
-    <category domain="geographic">National</category>
     <author>NASA</author>
   </item>
   <item>
@@ -226,6 +208,24 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/hu
     <author>NASA</author>
   </item>
   <item>
+    <title>Sun news: New region flares in the solar southeast</title>
+    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
+    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
+    <pubDate>Thu, 26 Nov 2026 11:00:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Sun news November 26, 2026: Fiery action on the sun&apos;s southeast horizon points at a new active region coming into view. It&apos;s already become the lead flare producer. The post Sun news: New region flares in the solar southeast first appeared on EarthSky .
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
     <title>Hera mission reveals impact aftermath from when DART struck an asteroid</title>
     <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
     <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
@@ -298,58 +298,22 @@ Read the original article at the publisher: https://earthsky.org/space/seasons-o
     <author>EarthSky Communications</author>
   </item>
   <item>
-    <title>Sun news: How Einstein rewrote the rules of gravity</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Wed, 25 Nov 2026 11:00:26 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+    <title>Midwestern City Lights</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Sun news November 25, 2026: On this date in 1915, Einstein finished his theory of general relativity. The sun&apos;s pull on Mercury and starlight proved him right! The post Sun news: How Einstein rewrote the rules of gravity first appeared on EarthSky .
+Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
 
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
 
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
     <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
-    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
-    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
-    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
-    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Astronaut and Earth</title>
@@ -481,11 +445,11 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <title>Visible planets and night sky guide for November and December</title>
     <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
     <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Wed, 25 Nov 2026 12:30:00 GMT</pubDate>
+    <pubDate>Thu, 26 Nov 2026 09:30:00 GMT</pubDate>
     <source url="https://earthsky.org/">EarthSky Communications</source>
     <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
 
-Summary: Visible planets and night sky guide: The moon, just past full, hangs among three bright stars tonight. And see a video here about super-bright Venus and last night&apos;s supermoon. The post Visible planets and night sky guide for November and December first appeared on EarthSky .
+Summary: Visible planets and night sky guide: Tonight, the moon lies near the twin stars of Gemini. And don&apos;t miss this new video. What&apos;s Venus doing? Find out here. The post Visible planets and night sky guide for November and December first appeared on EarthSky .
 
 Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
@@ -493,6 +457,60 @@ Read the original article at the publisher: https://earthsky.org/astronomy-essen
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
+    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
+    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
+    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
+    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
+    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
+    <source url="https://earthsky.org/">EarthSky Communications</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
+
+Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Environmental Science</category>
+    <category domain="geographic">Global</category>
+    <author>EarthSky Communications</author>
+  </item>
+  <item>
+    <title>The Sun unleashed a monster storm. Earth may have made it worse</title>
+    <link>https://www.sciencedaily.com/releases/2026/11/261111005905.htm</link>
+    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261111005905.htm</guid>
+    <pubDate>Fri, 13 Nov 2026 09:49:36 GMT</pubDate>
+    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
+
+Summary: The massive solar storm that illuminated skies worldwide in May 2024 has uncovered an unexpected twist: Earth&apos;s own atmosphere may have helped make the storm so powerful. Satellite measurements revealed that roughly 85% of the charged particles fueling the disturbance originated from Earth&apos;s upper atmosphere rather than the solar wind.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261111005905.htm</description>
+    <category>Weather</category>
+    <category>Astronomy and Night Sky</category>
+    <category domain="geographic">Global</category>
+    <author>ScienceDaily</author>
   </item>
   <item>
     <title>The full SUPER Beaver Moon will be near 2 TRUE star clusters</title>
@@ -527,24 +545,6 @@ Read the original article at the publisher: https://earthsky.org/space/video-the
     <category>Astronomy and Night Sky</category>
     <category domain="geographic">Global</category>
     <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The Sun unleashed a monster storm. Earth may have made it worse</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261111005905.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261111005905.htm</guid>
-    <pubDate>Fri, 13 Nov 2026 09:49:36 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: The massive solar storm that illuminated skies worldwide in May 2024 has uncovered an unexpected twist: Earth&apos;s own atmosphere may have helped make the storm so powerful. Satellite measurements revealed that roughly 85% of the charged particles fueling the disturbance originated from Earth&apos;s upper atmosphere rather than the solar wind.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: use the report as a planning signal — precipitation, wind, and visibility change what is safe and worth noticing. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261111005905.htm</description>
-    <category>Weather</category>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>ScienceDaily</author>
   </item>
   </channel>
 </rss>
