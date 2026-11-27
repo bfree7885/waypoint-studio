@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 26 Nov 2026 20:39:52 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 27 Nov 2026 05:41:27 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -46,25 +46,6 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">Global</category>
     <author>NASA</author>
-  </item>
-  <item>
-    <title>Cross-border Collaboration to Protect Wintering Grassland Birds</title>
-    <link>https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</link>
-    <guid isPermaLink="true">https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</guid>
-    <pubDate>Fri, 20 Nov 2026 00:16:49 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Team members from Audubon Southwest, Audubon Conservation Ranching, and Audubon Americas recently joined Bird Conservancy of the Rockies (BCR) and Mexican partners in Chihuahua City, Mexico for the...
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</description>
-    <category>Birds</category>
-    <category>Conservation</category>
-    <category>Seasonal Nature</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Money to grow trees: DEC grants aim to boost state goal to plant 25 million trees</title>
@@ -122,24 +103,6 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <author>National Audubon Society</author>
   </item>
   <item>
-    <title>COMMENTARY: Fighting Lyme disease starts in our forests</title>
-    <link>https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</guid>
-    <pubDate>Tue, 24 Nov 2026 17:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Blacklegged ticks are major carriers of Lyme. Photo courtesy of the CDC. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/CDCblackleggedtick-scaled.jpg?fit=780%2C519&amp;ssl=1&quot; /&gt; Forest fragmentation due to human development is a major driver of tick population growth, allowing Lyme carriers to thrive
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — let it change your preparation, not invent urgency beyond what the publisher stated. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/commentary/commentary-fighting-lyme-disease-starts-in-our-forests/</description>
-    <category>Forests and Plants</category>
-    <category>Outdoor Safety</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Webb Reveals New Details in Supernova Remnant</title>
     <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
@@ -194,6 +157,25 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/pi
     <author>NASA</author>
   </item>
   <item>
+    <title>Cross-border Collaboration to Protect Wintering Grassland Birds</title>
+    <link>https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</link>
+    <guid isPermaLink="true">https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</guid>
+    <pubDate>Fri, 20 Nov 2026 00:16:49 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Team members from Audubon Southwest, Audubon Conservation Ranching, and Audubon Americas recently joined Bird Conservancy of the Rockies (BCR) and Mexican partners in Chihuahua City, Mexico for the...
+
+Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/southwest/news/cross-border-collaboration-protect-wintering-grassland-birds</description>
+    <category>Birds</category>
+    <category>Conservation</category>
+    <category>Seasonal Nature</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
     <title>Pocosin Lakes National Wildlife Refuge Begins Improvements on Scuppernong River Boardwalk</title>
     <link>https://www.fws.gov/story/2026-11/pocosin-lakes-national-wildlife-refuge-begins-improvements-scuppernong-river</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/pocosin-lakes-national-wildlife-refuge-begins-improvements-scuppernong-river</guid>
@@ -211,6 +193,25 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/po
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
+  </item>
+  <item>
+    <title>First tracks: Where to find early-season cross-country skiing</title>
+    <link>https://www.adirondackexplorer.org/recreation/snow-sports/first-tracks-where-to-find-early-season-cross-country-skiing/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/recreation/snow-sports/first-tracks-where-to-find-early-season-cross-country-skiing/</guid>
+    <pubDate>Thu, 26 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Early skiing at Greenwood Park on Dec. 3, 2025. Photo courtesy of Jenn Woltjen. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/dc92d4c8-1f6c-45e7-9ada-be453607474f_2048x1536.webp?fit=780%2C585&amp;ssl=1&quot; /&gt; Experienced cross-country skier Jenn Woltjen offers suggestions for areas around the Adirondacks to begin the ski season
+
+Waypoint’s Take: For someone heading outside in the Adirondacks, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/recreation/snow-sports/first-tracks-where-to-find-early-season-cross-country-skiing/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
   </item>
   <item>
     <title>Wild Lights, ice skating and other holiday activities in the Adirondacks</title>
@@ -289,25 +290,6 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Tales of the Adirondacks, past and present: Olympic dream fulfilled</title>
-    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</guid>
-    <pubDate>Tue, 24 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: Tommy Biesemeyer, from Keene, pursued his dream of Olympic skiing. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ab2a62ae-6aef-42a0-8061-8199839d1254.jpeg?fit=780%2C761&amp;ssl=1&quot; /&gt; Tommy Biesemeyer shares the story of his pursuit of ski racing in the Olympics with the support of his community
-
-Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
     <title>Rescue, Release, Recovery: Conservation Takes a Village</title>
     <link>https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</link>
     <guid isPermaLink="true">https://www.fws.gov/story/2026-11/rescue-release-recovery-conservation-takes-village</guid>
@@ -325,45 +307,6 @@ Read the original article at the publisher: https://www.fws.gov/story/2026-11/re
     <category>Conservation</category>
     <category domain="geographic">National</category>
     <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Growing Conservation, Community, and Opportunity at Audubon Center at Debs Park</title>
-    <link>https://www.audubon.org/california/news/growing-conservation-community-and-opportunity-audubon-center-debs-park</link>
-    <guid isPermaLink="true">https://www.audubon.org/california/news/growing-conservation-community-and-opportunity-audubon-center-debs-park</guid>
-    <pubDate>Fri, 20 Nov 2026 02:44:22 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Restoring Habitat for Birds and PeopleDebs Park is an important urban refuge for birds, wildlife, and people. In a city shaped by development, habitat fragmentation, drought, and wildfire risk...
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/california/news/growing-conservation-community-and-opportunity-audubon-center-debs-park</description>
-    <category>Birds</category>
-    <category>Wildlife</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
-  </item>
-  <item>
-    <title>Local Action, Statewide Impact: Trinity River Audubon Center</title>
-    <link>https://www.audubon.org/texas/news/local-action-statewide-impact-trinity-river-audubon-center</link>
-    <guid isPermaLink="true">https://www.audubon.org/texas/news/local-action-statewide-impact-trinity-river-audubon-center</guid>
-    <pubDate>Thu, 19 Nov 2026 21:51:07 GMT</pubDate>
-    <source url="https://www.audubon.org/">National Audubon Society</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
-
-Summary: Conservation starts with connection. Every student who explores the trails, every volunteer who gives their time, and every supporter who invests in the Trinity River Audubon Center (TRAC) helps...
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.audubon.org/texas/news/local-action-statewide-impact-trinity-river-audubon-center</description>
-    <category>Birds</category>
-    <category>Rivers and Water</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>National Audubon Society</author>
   </item>
   <item>
     <title>Lake Pelku</title>
@@ -734,6 +677,25 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/c
     <author>Adirondack Explorer</author>
   </item>
   <item>
+    <title>Tales of the Adirondacks, past and present: Olympic dream fulfilled</title>
+    <link>https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</guid>
+    <pubDate>Tue, 24 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Tommy Biesemeyer, from Keene, pursued his dream of Olympic skiing. Photo courtesy of OurStoryBridge. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ab2a62ae-6aef-42a0-8061-8199839d1254.jpeg?fit=780%2C761&amp;ssl=1&quot; /&gt; Tommy Biesemeyer shares the story of his pursuit of ski racing in the Olympics with the support of his community
+
+Waypoint’s Take: An outdoor reader in the Adirondacks can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/tales-of-the-adirondacks-past-and-present-olympic-dream-fulfilled/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>Midwestern City Lights</title>
     <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
     <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
@@ -750,6 +712,44 @@ Read the original article at the publisher: https://www.nasa.gov/image-detail/is
     <category>Nature Photography</category>
     <category domain="geographic">National</category>
     <author>NASA</author>
+  </item>
+  <item>
+    <title>Counting on Shorebirds</title>
+    <link>https://www.audubon.org/news/counting-shorebirds</link>
+    <guid isPermaLink="true">https://www.audubon.org/news/counting-shorebirds</guid>
+    <pubDate>Mon, 23 Nov 2026 19:10:47 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: “Holy Plovers.” Max Malmquist angles his scope across the southern shore of Great Salt Lake as he calls out the Snowy Plover count to his dad, Mike, who keeps the running tally. It’s 6:45 a.m...
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: listen and watch for seasonal movement, calling, and habitat use on your usual walks. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.audubon.org/news/counting-shorebirds</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>It&apos;s Time for &quot;Give Where You Live&quot;!</title>
+    <link>https://www.audubon.org/great-plains/news/its-time-give-where-you-live</link>
+    <guid isPermaLink="true">https://www.audubon.org/great-plains/news/its-time-give-where-you-live</guid>
+    <pubDate>Mon, 23 Nov 2026 18:34:46 GMT</pubDate>
+    <source url="https://www.audubon.org/">National Audubon Society</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: National Audubon Society.
+
+Summary: Hello Rowe Sanctuary Supporters! The Kearney Area Community Foundation’s Give Where You Live Day (GWYL) is on December 3rd. This year’s GWYL theme is “Amplify Good,” an important reminder...
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: carry the reporting into patient birding — migration timing and cover matter more than a single sighting. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.audubon.org/great-plains/news/its-time-give-where-you-live</description>
+    <category>Birds</category>
+    <category>Wildlife</category>
+    <category>Conservation</category>
+    <category domain="geographic">National</category>
+    <author>National Audubon Society</author>
   </item>
   </channel>
 </rss>
