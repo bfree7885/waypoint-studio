@@ -5,7 +5,7 @@
     <link>https://waypointstudio.org/articles/</link>
     <description>Waypoint Studio curates and comments on third-party outdoor, environmental, and scientific reporting. Original publishers remain the destination. Waypoint does not republish full articles.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Nov 2026 20:25:31 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 28 Nov 2026 05:20:25 GMT</lastBuildDate>
     <generator>Waypoint Studio Articles Engine</generator>
     <atom:link href="https://waypointstudio.org/feeds/waypoint-science.xml" rel="self" type="application/rss+xml"/>
     <copyright>Waypoint curates links and commentary only. Article text remains copyright of original publishers.</copyright>
@@ -50,6 +50,24 @@ Read the original article at the publisher: https://www.noaa.gov/news-release/no
     <author>NOAA</author>
   </item>
   <item>
+    <title>Artemis III Astronaut Andre Douglas Visits VAB</title>
+    <link>https://www.nasa.gov/image-detail/afs-8-101-1328/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/afs-8-101-1328/</guid>
+    <pubDate>Fri, 27 Nov 2026 15:02:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA astronaut Andre Douglas, Artemis III mission specialist, stands inside an RS-25 engine test article during a visit to the Vehicle Assembly Building at NASA’s Kennedy Space Center in Florida on Tuesday, Nov. 17, 2026.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/afs-8-101-1328/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
     <title>Thanksgiving week weather: Potent coastal storms, rain and snow to impact travel</title>
     <link>https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</link>
     <guid isPermaLink="true">https://www.noaa.gov/news/thanksgiving-week-weather-potent-coastal-storms-rain-and-snow-to-impact-travel</guid>
@@ -85,6 +103,60 @@ Read the original article at the publisher: https://www.audubon.org/great-plains
     <category>Seasonal Nature</category>
     <category domain="geographic">National</category>
     <author>National Audubon Society</author>
+  </item>
+  <item>
+    <title>Eye of the Sahara</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0274930/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0274930/</guid>
+    <pubDate>Wed, 25 Nov 2026 16:22:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The Richat Structure, also known as the &quot;Eye of the Sahara,&quot; pictured from the International Space Station as it orbited above Africa, is an eroded geological dome about 100 million years old created by igneous activity and uplift in the nation of Mauritania.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0274930/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Webb Reveals New Details in Supernova Remnant</title>
+    <link>https://www.nasa.gov/image-detail/cas-a-webb-miri/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/cas-a-webb-miri/</guid>
+    <pubDate>Tue, 24 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: NASA’s James Webb Space Telescope reveals the hot dust that makes up Cassiopeia A. The composition of its dust provides clues to the structure of Cassiopeia A’s original star.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/cas-a-webb-miri/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Studying Cancer Cells in Microgravity</title>
+    <link>https://www.nasa.gov/image-detail/jsc2026e426880/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/jsc2026e426880/</guid>
+    <pubDate>Mon, 23 Nov 2026 17:29:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Studying Cancer Cells in Microgravity. The Encapsulate-1 investigation studies patient-derived tumor samples aboard the International Space Station to better understand how cancer cells move and interact in microgravity.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/jsc2026e426880/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Tharp&apos;s Bluestar Proposed as Endangered</title>
@@ -219,23 +291,130 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/r
     <author>Adirondack Explorer</author>
   </item>
   <item>
-    <title>Thanksgiving recipes from Almanack contributors</title>
-    <link>https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</guid>
-    <pubDate>Wed, 25 Nov 2026 21:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+    <title>NASA&apos;s Curiosity Mars Rover Collects Samples</title>
+    <link>https://www.nasa.gov/image-detail/pia26804/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/pia26804/</guid>
+    <pubDate>Fri, 20 Nov 2026 15:54:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
 
-Summary: Butternut squash ravioli after being cooked. Photo courtesy of Scott Pollacek. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Pollacek_Ravioli_SageBrownButter.jpg.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Explorer editors provide a selection of recipes by Adirondack contributors from the Almanack archives
+Summary: NASA&apos;s Curiosity Mars Rover Collects Samples. This collage shows 49 drill holes captured by NASA’s Curiosity Mars rover as of November 2026.
 
-Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
 
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Adirondacks</category>
-    <author>Adirondack Explorer</author>
+Read the original article at the publisher: https://www.nasa.gov/image-detail/pia26804/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Lake Pelku</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0267074/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0267074/</guid>
+    <pubDate>Thu, 19 Nov 2026 15:33:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Lake Pelku (near center), on the Chinese side of the snow-capped Himalayas with Nepal on the adjacent side, is pictured from the International Space Station as it orbited above Asia.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0267074/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Empire State Building Goes Gold for Voyager</title>
+    <link>https://www.nasa.gov/image-detail/nasas-voyager-1-spacecraft-light-day/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/nasas-voyager-1-spacecraft-light-day/</guid>
+    <pubDate>Wed, 18 Nov 2026 17:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: The Empire State Building is seen illuminated in gold to celebrate NASA&apos;s Voyager 1 spacecraft as it is about to pass one light-day away from Earth, a distance reached by no other human-made object, Tuesday, Nov. 17, 2026, in New York City.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/nasas-voyager-1-spacecraft-light-day/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Space Selfie</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0253155/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0253155/</guid>
+    <pubDate>Tue, 17 Nov 2026 16:52:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Space Selfie. NASA astronaut and Expedition 75 flight engineer Anil Menon takes an out-of-this-world “space selfie.”
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0253155/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Thunderbirds in Formation</title>
+    <link>https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</guid>
+    <pubDate>Mon, 16 Nov 2026 18:35:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: U.S. Air Force Thunderbirds fighter jets pass overhead during the agency’s MAX POWER expo and air show on Saturday, Nov. 7, 2026, at NASA’s Kennedy Space Center in Florida.
+
+Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/11072026-ksc-max-power-airdotshow-2orig/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Outbursts from a Massive Star</title>
+    <link>https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</guid>
+    <pubDate>Fri, 13 Nov 2026 16:41:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Outbursts from a Massive Star. Using Chandra, astronomers have discovered a previously hidden black hole or neutron star companion that is triggering repeated outbursts from a giant, unstable star.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/a-giant-star-in-a-distant-galaxy-has-been-mysteriously-erupting-for-at-least-15-years-new-data-from-nasas-chandra-explains-what-is-causing-these-huge-outbursts/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
+  </item>
+  <item>
+    <title>Astronauts Across Generations Share the Stage</title>
+    <link>https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</guid>
+    <pubDate>Mon, 09 Nov 2026 16:57:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: On Nov. 6, 2026, Purpose Entertainment hosted the Artemis Celebration Gala at NASA&apos;s Kennedy Space Center Visitor Complex in Merritt Island, Florida. Held on the eve of NASA&apos;s MAX POWER event, the gala celebrated the explorers, innovators, and visionaries advancing the next era of human spaceflight.
+
+Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/20261106-artemiscelebrationgala-sl1-4202/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">Global</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Hurricane season wrap-up: El Nino fueled record number of Pacific storms but calmed Atlantic</title>
@@ -389,6 +568,25 @@ Read the original article at the publisher: https://earthsky.org/brightest-stars
     <author>EarthSky Communications</author>
   </item>
   <item>
+    <title>Princeton Review names SUNY ESF No. 1 Green College in the nation</title>
+    <link>https://www.adirondackexplorer.org/environment/princeton-review-names-suny-esf-no-1-green-college-in-the-nation/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/princeton-review-names-suny-esf-no-1-green-college-in-the-nation/</guid>
+    <pubDate>Fri, 27 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: A roof cleanup at SUNY ESF. Photo courtesy of SUNY ESF. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/ESF_Green-Roof-Cleanup-27-scaled.jpg?fit=780%2C520&amp;ssl=1&quot; /&gt; SUNY ESF was recognized for its efforts in leading sustainability initiatives and furthering environmental stewardship
+
+Waypoint’s Take: For someone heading outside in the Northeast, the useful question is observational: use it as a planning note for footing, closures, and seasonal trail conditions. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/environment/princeton-review-names-suny-esf-no-1-green-college-in-the-nation/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Northeast</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
     <title>The birth of conservation and the Christmas Bird Count</title>
     <link>https://www.adirondackexplorer.org/environment/wildlife/the-birth-of-conservation-and-the-chrostmas-bird-count/</link>
     <guid isPermaLink="true">https://www.adirondackexplorer.org/environment/wildlife/the-birth-of-conservation-and-the-chrostmas-bird-count/</guid>
@@ -405,6 +603,43 @@ Read the original article at the publisher: https://www.adirondackexplorer.org/e
     <category>Conservation</category>
     <category domain="geographic">Northeast</category>
     <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Thanksgiving recipes from Almanack contributors</title>
+    <link>https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</link>
+    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</guid>
+    <pubDate>Wed, 25 Nov 2026 21:00:00 GMT</pubDate>
+    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
+
+Summary: Butternut squash ravioli after being cooked. Photo courtesy of Scott Pollacek. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/08/Pollacek_Ravioli_SageBrownButter.jpg.jpeg?fit=780%2C585&amp;ssl=1&quot; /&gt; Explorer editors provide a selection of recipes by Adirondack contributors from the Almanack archives
+
+Waypoint’s Take: Outside in the Adirondacks, this matters because it can change what you watch for: weigh trail surface, water crossings, access, and recent weather before committing to a route. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
+
+Read the original article at the publisher: https://www.adirondackexplorer.org/communities/food-and-farms/thanksgiving-recipes-from-almanack-contributors/</description>
+    <category>Regional News</category>
+    <category>Conservation</category>
+    <category>Hiking and Trails</category>
+    <category domain="geographic">Adirondacks</category>
+    <author>Adirondack Explorer</author>
+  </item>
+  <item>
+    <title>Midwestern City Lights</title>
+    <link>https://www.nasa.gov/image-detail/iss075e0227352/</link>
+    <guid isPermaLink="true">https://www.nasa.gov/image-detail/iss075e0227352/</guid>
+    <pubDate>Thu, 05 Nov 2026 15:23:00 GMT</pubDate>
+    <source url="https://www.nasa.gov/">NASA</source>
+    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: NASA.
+
+Summary: Midwestern City Lights. City lights from the midwestern United States to the East Coast sparkle across the landscape a couple of hours before sunrise.
+
+Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
+
+Read the original article at the publisher: https://www.nasa.gov/image-detail/iss075e0227352/</description>
+    <category>Astronomy and Night Sky</category>
+    <category>Nature Photography</category>
+    <category domain="geographic">National</category>
+    <author>NASA</author>
   </item>
   <item>
     <title>Counting on Shorebirds</title>
@@ -518,239 +753,6 @@ Read the original article at the publisher: https://phys.org/news/2026-11-qa-hom
     <category>Rivers and Water</category>
     <category domain="geographic">Northeast</category>
     <category domain="geographic">Global</category>
-    <author>Phys.org</author>
-  </item>
-  <item>
-    <title>Sun news: The man behind Celsius also cracked an aurora clue</title>
-    <link>https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</link>
-    <guid isPermaLink="true">https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</guid>
-    <pubDate>Fri, 27 Nov 2026 11:19:31 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Sun news November 27, 2026: Anders Celsius, born on this date in 1701, discovered the aurora&apos;s magnetic link using just a compass needle. The post Sun news: The man behind Celsius also cracked an aurora clue first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/sun/sun-news-activity-solar-flare-cme-aurora-updates/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Visible planets and night sky guide for November and December</title>
-    <link>https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</guid>
-    <pubDate>Fri, 27 Nov 2026 09:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Visible planets and night sky guide: Tonight, look for the waning gibbous moon near Pollux and Castor, the twin stars of Gemini. Pollux is the brighter of the 2. The post Visible planets and night sky guide for November and December first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury/</description>
-    <category>Astronomy and Night Sky</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Where I went this week: Schroon Lake</title>
-    <link>https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</link>
-    <guid isPermaLink="true">https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</guid>
-    <pubDate>Wed, 25 Nov 2026 13:00:00 GMT</pubDate>
-    <source url="https://www.adirondackexplorer.org/">Adirondack Explorer</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Adirondack Explorer.
-
-Summary: The Schroon Lake Area Chamber of Commerce is on the main strip in town. Photo by Ezra Maille. &quot; data-large-file=&quot;https://i0.wp.com/www.adirondackexplorer.org/wp-content/uploads/2026/11/IMG_2762-scaled.jpg?fit=780%2C585&amp;ssl=1&quot; /&gt; Community editor Ezra Maille enjoys a sunny day in Schroon and a history lesson from the new leaders of the region&apos;s historical society
-
-Waypoint’s Take: An outdoor reader in the Northeast can treat this as field context — pair the report with live conditions so you do not over-trust a single headline. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.adirondackexplorer.org/communities/where-i-went-this-week-schroon-lake/</description>
-    <category>Regional News</category>
-    <category>Conservation</category>
-    <category>Hiking and Trails</category>
-    <category domain="geographic">Northeast</category>
-    <author>Adirondack Explorer</author>
-  </item>
-  <item>
-    <title>37th Annual Festival of the Cranes</title>
-    <link>https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</link>
-    <guid isPermaLink="true">https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</guid>
-    <pubDate>Tue, 24 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: The U.S. Fish and Wildlife Service today announced the 37th annual Festival of the Cranes at Bosque del Apache National Wildlife Refuge from Dec. 2-5 2026. As tens of thousands of migratory cranes, ducks, and other waterbirds arrive, the refuge will open its gates to the public for outdoor
-
-Waypoint’s Take: An outdoor reader can treat this as field context — notice how weather and cover shape wildlife movement without turning the field into a chase. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.fws.gov/press-release/2026-11/37th-annual-festival-cranes</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>Indiana&apos;s first Tribal Bat Blitz</title>
-    <link>https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</link>
-    <guid isPermaLink="true">https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</guid>
-    <pubDate>Wed, 18 Nov 2026 12:00:00 GMT</pubDate>
-    <source url="https://www.fws.gov/">U.S. Fish and Wildlife Service</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: U.S. Fish and Wildlife Service.
-
-Summary: USFWS participated in Indiana&apos;s first Tribal Bat Blitz to help biologists gain valuable handling and tagging experience while helping researchers track a red bat’s thousand-mile journey.
-
-Waypoint’s Take: An outdoor reader can treat this as field context — look for habitat edges and stopover cues the story points toward, without assuming every bird will appear. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://www.fws.gov/story/2026-11/indianas-first-tribal-bat-blitz</description>
-    <category>Wildlife</category>
-    <category>Conservation</category>
-    <category>Birds</category>
-    <category domain="geographic">National</category>
-    <author>U.S. Fish and Wildlife Service</author>
-  </item>
-  <item>
-    <title>125,000 years ago, hippos roamed what is now the vast Arabian Desert</title>
-    <link>https://www.sciencedaily.com/releases/2026/11/261115085537.htm</link>
-    <guid isPermaLink="true">https://www.sciencedaily.com/releases/2026/11/261115085537.htm</guid>
-    <pubDate>Wed, 18 Nov 2026 01:52:47 GMT</pubDate>
-    <source url="https://www.sciencedaily.com/">ScienceDaily</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: ScienceDaily.
-
-Summary: A remarkable 125,000-year-old discovery in Saudi Arabia reveals that early humans once thrived beside enormous lakes filled with wildlife in what is now a vast desert. Thousands of stone tools and ancient plant remains suggest these prehistoric people used sophisticated hunting techniques, potentially including weapons enhanced with poisonous plant compounds.
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: watch for sign, timing, and habitat context rather than chasing animals. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://www.sciencedaily.com/releases/2026/11/261115085537.htm</description>
-    <category>Wildlife</category>
-    <category>Forests and Plants</category>
-    <category domain="geographic">National</category>
-    <author>ScienceDaily</author>
-  </item>
-  <item>
-    <title>Hera mission reveals impact aftermath from when DART struck an asteroid</title>
-    <link>https://earthsky.org/space/hera-mission-dart-asteroid-impact/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/hera-mission-dart-asteroid-impact/</guid>
-    <pubDate>Wed, 25 Nov 2026 12:45:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: On November 25, 2026, ESA revealed images that the Hera mission captured of a new crater on asteroid Dimorphos. In 2022, the DART mission impacted the asteroid, and now we see the results. The post Hera mission reveals impact aftermath from when DART struck an asteroid first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/hera-mission-dart-asteroid-impact/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Alien life in sulfuric acid? A surprising possible alternative to water</title>
-    <link>https://earthsky.org/space/alien-life-in-sulfuric-acid-astrobiology/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/alien-life-in-sulfuric-acid-astrobiology/</guid>
-    <pubDate>Wed, 25 Nov 2026 11:30:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Alien life in sulfuric acid? Recent studies show how some kinds of organic molecules and even DNA can survive in the highly corrosive acid. The post Alien life in sulfuric acid? A surprising possible alternative to water first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. Dashboard conditions can sit beside this report before you leave.
-
-Read the original article at the publisher: https://earthsky.org/space/alien-life-in-sulfuric-acid-astrobiology/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Uranus at opposition today, November 25, 2026</title>
-    <link>https://earthsky.org/astronomy-essentials/uranus-at-opposition-closest-brightest-best/</link>
-    <guid isPermaLink="true">https://earthsky.org/astronomy-essentials/uranus-at-opposition-closest-brightest-best/</guid>
-    <pubDate>Wed, 25 Nov 2026 11:15:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Don&apos;t miss Uranus at opposition today! It&apos;s brightest for the year and visible to the eye under optimum observing conditions. Here&apos;s how to see it. The post Uranus at opposition today, November 25, 2026 first appeared on EarthSky .
-
-Waypoint’s Take: An outdoor reader can treat this as field context — treat visibility windows as approximate — clear skies and dark sites still decide what you notice. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/astronomy-essentials/uranus-at-opposition-closest-brightest-best/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>The strange seasons of Uranus, a sideways world</title>
-    <link>https://earthsky.org/space/seasons-of-uranus-strange-sideways-world/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/seasons-of-uranus-strange-sideways-world/</guid>
-    <pubDate>Wed, 25 Nov 2026 11:05:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Uranus is tilted massively compared to the rest of the solar system&apos;s planets. That causes extreme seasons and great atmospheric shifts through its year. The post The strange seasons of Uranus, a sideways world first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/seasons-of-uranus-strange-sideways-world/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>ESCAPADE mission captures Earth pic on the way to Mars</title>
-    <link>https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</guid>
-    <pubDate>Tue, 24 Nov 2026 15:25:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: On November 9, 2026, the ESCAPADE mission flew past Earth and captured this view of our home planet on its journey to Mars. Read more about the mission here. The post ESCAPADE mission captures Earth pic on the way to Mars first appeared on EarthSky .
-
-Waypoint’s Take: Outside, this matters because it can change what you watch for: plan around timing, cloud cover, and light pollution if you hope to see or photograph the sky. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/escapade-mission-mars-gold-and-blue-probes/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Hidden planet lurking beyond Neptune? New simulations offer clues</title>
-    <link>https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</link>
-    <guid isPermaLink="true">https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</guid>
-    <pubDate>Tue, 24 Nov 2026 12:12:00 GMT</pubDate>
-    <source url="https://earthsky.org/">EarthSky Communications</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: EarthSky Communications.
-
-Summary: Could a hidden planet 1.5 to 2 times Earth&apos;s mass lurk beyond Neptune? A new model suggests it could explain the strange orbits of distant icy objects. The post Hidden planet lurking beyond Neptune? New simulations offer clues first appeared on EarthSky .
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: check whether the event is visible from your latitude and how moonlight interferes. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://earthsky.org/space/hidden-planet-x2-lurking-beyond-neptune-new-model/</description>
-    <category>Astronomy and Night Sky</category>
-    <category>Environmental Science</category>
-    <category domain="geographic">Global</category>
-    <author>EarthSky Communications</author>
-  </item>
-  <item>
-    <title>Thailand tests find high lead, arsenic in river shellfish</title>
-    <link>https://phys.org/news/2026-11-thailand-high-arsenic-river-shellfish.html</link>
-    <guid isPermaLink="true">https://phys.org/news/2026-11-thailand-high-arsenic-river-shellfish.html</guid>
-    <pubDate>Thu, 26 Nov 2026 17:00:01 GMT</pubDate>
-    <source url="https://phys.org/">Phys.org</source>
-    <description>Waypoint is curating and commenting on third-party reporting. Original publisher: Phys.org.
-
-Summary: Thai authorities have found dangerous levels of arsenic and lead in shellfish and other species in rivers contaminated by suspected mining pollution from neighboring Myanmar, an official said Thursday.
-
-Waypoint’s Take: For someone heading outside, the useful question is observational: treat flow and flood context as planning information for crossings and waterside walks. Keep the publisher’s claims provisional until you read the original. If you go out, pair the story with current Dashboard readings rather than the headline alone.
-
-Read the original article at the publisher: https://phys.org/news/2026-11-thailand-high-arsenic-river-shellfish.html</description>
-    <category>Rivers and Water</category>
-    <category domain="geographic">National</category>
     <author>Phys.org</author>
   </item>
   </channel>
